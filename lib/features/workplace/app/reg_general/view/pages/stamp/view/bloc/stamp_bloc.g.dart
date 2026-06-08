@@ -65,6 +65,14 @@ abstract class _$StampStateCWProxy {
 
   StampState detailItem(StampItem? detailItem);
 
+  StampState detailData(StampDetailItem? detailData);
+
+  StampState tracking(StampItem? tracking);
+
+  StampState detailEmployee(StampTrackingEmployeeItem? detailEmployee);
+
+  StampState detailDepartment(StampTrackingDepartmentItem? detailDepartment);
+
   StampState isDetailLoading(bool isDetailLoading);
 
   StampState isSubmitting(bool isSubmitting);
@@ -113,6 +121,10 @@ abstract class _$StampStateCWProxy {
     int? employeeSignId,
     String? employeeSignName,
     StampItem? detailItem,
+    StampDetailItem? detailData,
+    StampItem? tracking,
+    StampTrackingEmployeeItem? detailEmployee,
+    StampTrackingDepartmentItem? detailDepartment,
     bool? isDetailLoading,
     bool? isSubmitting,
     bool? submitSuccess,
@@ -235,6 +247,21 @@ class _$StampStateCWProxyImpl implements _$StampStateCWProxy {
   StampState detailItem(StampItem? detailItem) => this(detailItem: detailItem);
 
   @override
+  StampState detailData(StampDetailItem? detailData) =>
+      this(detailData: detailData);
+
+  @override
+  StampState tracking(StampItem? tracking) => this(tracking: tracking);
+
+  @override
+  StampState detailEmployee(StampTrackingEmployeeItem? detailEmployee) =>
+      this(detailEmployee: detailEmployee);
+
+  @override
+  StampState detailDepartment(StampTrackingDepartmentItem? detailDepartment) =>
+      this(detailDepartment: detailDepartment);
+
+  @override
   StampState isDetailLoading(bool isDetailLoading) =>
       this(isDetailLoading: isDetailLoading);
 
@@ -295,6 +322,10 @@ class _$StampStateCWProxyImpl implements _$StampStateCWProxy {
     Object? employeeSignId = const $CopyWithPlaceholder(),
     Object? employeeSignName = const $CopyWithPlaceholder(),
     Object? detailItem = const $CopyWithPlaceholder(),
+    Object? detailData = const $CopyWithPlaceholder(),
+    Object? tracking = const $CopyWithPlaceholder(),
+    Object? detailEmployee = const $CopyWithPlaceholder(),
+    Object? detailDepartment = const $CopyWithPlaceholder(),
     Object? isDetailLoading = const $CopyWithPlaceholder(),
     Object? isSubmitting = const $CopyWithPlaceholder(),
     Object? submitSuccess = const $CopyWithPlaceholder(),
@@ -424,6 +455,22 @@ class _$StampStateCWProxyImpl implements _$StampStateCWProxy {
           ? _value.detailItem
           // ignore: cast_nullable_to_non_nullable
           : detailItem as StampItem?,
+      detailData: detailData == const $CopyWithPlaceholder()
+          ? _value.detailData
+          // ignore: cast_nullable_to_non_nullable
+          : detailData as StampDetailItem?,
+      tracking: tracking == const $CopyWithPlaceholder()
+          ? _value.tracking
+          // ignore: cast_nullable_to_non_nullable
+          : tracking as StampItem?,
+      detailEmployee: detailEmployee == const $CopyWithPlaceholder()
+          ? _value.detailEmployee
+          // ignore: cast_nullable_to_non_nullable
+          : detailEmployee as StampTrackingEmployeeItem?,
+      detailDepartment: detailDepartment == const $CopyWithPlaceholder()
+          ? _value.detailDepartment
+          // ignore: cast_nullable_to_non_nullable
+          : detailDepartment as StampTrackingDepartmentItem?,
       isDetailLoading: isDetailLoading == const $CopyWithPlaceholder() ||
               isDetailLoading == null
           ? _value.isDetailLoading

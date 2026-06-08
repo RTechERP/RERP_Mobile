@@ -47,6 +47,20 @@ class StampRepoImpl implements StampRepo {
   }
 
   @override
+  Future<Either<BaseError, StampDetailItem>> getStampDetail({
+    required int id,
+  }) async {
+    try {
+      final res = await _service.getStampDetail(id: id);
+      return right(res);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpUnknownError(e.toString()));
+    }
+  }
+
+  @override
   Future<Either<BaseError, List<SealItem>>> getSealRegulations() async {
     try {
       final res = await _service.getSealRegulations();

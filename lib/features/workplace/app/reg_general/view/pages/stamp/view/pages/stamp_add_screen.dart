@@ -16,9 +16,9 @@ import '../../data/datasource/models/stamp_model.dart';
 import '../bloc/stamp_bloc.dart';
 
 class StampAddScreen extends StatefulWidget {
-  final StampItem? editItem;
+  final StampRoutePayload? payload;
 
-  const StampAddScreen({super.key, this.editItem});
+  const StampAddScreen({super.key, this.payload});
 
   @override
   State<StampAddScreen> createState() => _StampAddScreenState();
@@ -39,28 +39,39 @@ class _StampAddScreenState
   DateTime? _registerDate;
   DateTime? _urgentDeadline;
 
-  bool get _isEditMode => widget.editItem != null;
+  bool get _isEditMode => widget.payload?.item != null;
 
   @override
   void initState() {
     super.initState();
-    _registerDate = widget.editItem?.registerDate ?? DateTime.now();
-    _urgentDeadline = widget.editItem?.deadline;
+    final editItem = widget.payload?.item;
+    final detail = widget.payload?.detail;
 
-    _documentNameController.text = widget.editItem?.documentName ?? '';
-    _signerController.text = widget.editItem?.employeeSignName ?? '';
-    _quantityController.text = (widget.editItem?.documentQuantity ?? 1)
+    _registerDate = editItem?.registerDate ?? DateTime.now();
+    _urgentDeadline = editItem?.deadline;
+
+    _documentNameController.text = editItem?.documentName ?? '';
+    _signerController.text = editItem?.employeeSignName ?? '';
+    _quantityController.text = (editItem?.documentQuantity ?? 1).toString();
+    _pagesPerCopyController.text = (editItem?.documentTotalPage ?? 1)
         .toString();
-    _pagesPerCopyController.text = (widget.editItem?.documentTotalPage ?? 1)
-        .toString();
-    _documentTypeController.text = widget.editItem?.documentTypeName ?? '';
-    _companyController.text = widget.editItem?.taxCompanyText ?? '';
-    _sealTypeController.text = widget.editItem?.sealNameText ?? '';
+    _documentTypeController.text = editItem?.documentTypeName ?? '';
+    _companyController.text = editItem?.taxCompanyText ?? '';
+    _sealTypeController.text = editItem?.sealNameText ?? '';
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
-      if (_isEditMode && widget.editItem?.id != null) {
-        bloc.add(StampEvent.initEdit(id: widget.editItem!.id!));
+      if (_isEditMode) {
+        bloc.add(
+          StampEvent.hydrateEditPayload(
+            item: editItem,
+            detail: detail,
+            employees: widget.payload?.employees ?? const [],
+            sealRegulations: widget.payload?.sealRegulations ?? const [],
+            documentTypes: widget.payload?.documentTypes ?? const [],
+            taxCompanies: widget.payload?.taxCompanies ?? const [],
+          ),
+        );
       } else {
         bloc.add(const StampEvent.initAdd());
       }
@@ -95,10 +106,46 @@ class _StampAddScreenState
 
   @override
   void listener(BuildContext context, StampState state) {
-    _documentTypeController.text = state.documentTypeName ?? '';
-    _signerController.text = state.employeeSignName ?? '';
-    _companyController.text = state.taxCompanyName ?? '';
-    _sealTypeController.text = state.sealRegulationName ?? '';
+    final documentTypeName = state.documentTypeName ?? '';
+    final employeeSignName = state.employeeSignName ?? '';
+    final taxCompanyName = state.taxCompanyName ?? '';
+    final sealRegulationName = state.sealRegulationName ?? '';
+
+    if (_documentTypeController.text != documentTypeName) {
+      _documentTypeController.text = documentTypeName;
+    }
+    if (_signerController.text != employeeSignName) {
+      _signerController.text = employeeSignName;
+    }
+    if (_companyController.text != taxCompanyName) {
+      _companyController.text = taxCompanyName;
+    }
+    if (_sealTypeController.text != sealRegulationName) {
+      _sealTypeController.text = sealRegulationName;
+    }
+
+    final documentTypeField =
+        _formKey.currentState?.fields['stamp_document_type_form'];
+    if (documentTypeName.isNotEmpty &&
+        documentTypeField?.value != documentTypeName) {
+      documentTypeField?.didChange(documentTypeName);
+    }
+
+    final signerField = _formKey.currentState?.fields['stamp_signer_form'];
+    if (employeeSignName.isNotEmpty && signerField?.value != employeeSignName) {
+      signerField?.didChange(employeeSignName);
+    }
+
+    final companyField = _formKey.currentState?.fields['stamp_company_form'];
+    if (taxCompanyName.isNotEmpty && companyField?.value != taxCompanyName) {
+      companyField?.didChange(taxCompanyName);
+    }
+
+    final sealTypeField = _formKey.currentState?.fields['stamp_seal_type_form'];
+    if (sealRegulationName.isNotEmpty &&
+        sealTypeField?.value != sealRegulationName) {
+      sealTypeField?.didChange(sealRegulationName);
+    }
 
     if (_isEditMode) {
       if ((state.documentName ?? '') != _documentNameController.text) {
@@ -210,6 +257,11 @@ class _StampAddScreenState
                                 inputType: InputType.date,
                                 format: DateFormat('dd/MM/yyyy'),
                                 initialValue: _registerDate,
+                                selectableDayPredicate: (day) =>
+                                    day.day >
+                                    DateTime.now()
+                                        .add(const Duration(days: 30))
+                                        .day,
                                 isRequired: true,
                                 validator: (v) {
                                   if (v == null) {
@@ -227,7 +279,7 @@ class _StampAddScreenState
                               FormCheckbox(
                                 name: 'stamp_is_urgent',
                                 initialValue:
-                                    widget.editItem?.isUrgent ?? false,
+                                    widget.payload?.item?.isUrgent ?? false,
                                 title: const Text(
                                   'Đóng dấu gấp',
                                   style: TextStyle(fontSize: 14),
@@ -239,7 +291,8 @@ class _StampAddScreenState
                                           ?.fields['stamp_is_urgent']
                                           ?.value
                                       as bool?) ??
-                                  (widget.editItem?.isUrgent ?? false)) ...[
+                                  (widget.payload?.item?.isUrgent ??
+                                      false)) ...[
                                 const SizedBox(height: 12),
                                 FormDateTimePicker(
                                   nameForm: 'stamp_deadline_form',
@@ -249,6 +302,11 @@ class _StampAddScreenState
                                   inputType: InputType.both,
                                   format: DateFormat('dd/MM/yyyy HH:mm'),
                                   initialValue: _urgentDeadline,
+                                  selectableDayPredicate: (day) =>
+                                      day.day >
+                                      DateTime.now()
+                                          .add(const Duration(days: 30))
+                                          .day,
                                   isRequired: true,
                                   validator: (v) {
                                     final isUrgent =
@@ -279,6 +337,7 @@ class _StampAddScreenState
                                 icon: Icons.person_outline,
                                 controller: _signerController,
                                 initialValue: _signerController.text,
+                                autovalidateMode: AutovalidateMode.disabled,
                                 onTap: state.isFormOptionsLoading
                                     ? null
                                     : () => _openSignerSheet(state),
@@ -334,6 +393,7 @@ class _StampAddScreenState
                                 controller: _documentTypeController,
                                 initialValue: _documentTypeController.text,
                                 isRequired: true,
+                                autovalidateMode: AutovalidateMode.disabled,
                                 onTap: state.isFormOptionsLoading
                                     ? null
                                     : () => _openDocumentTypeSheet(state),
@@ -371,6 +431,7 @@ class _StampAddScreenState
                                 controller: _companyController,
                                 initialValue: _companyController.text,
                                 isRequired: true,
+                                autovalidateMode: AutovalidateMode.disabled,
                                 onTap: state.isFormOptionsLoading
                                     ? null
                                     : () => _openCompanySheet(state),
@@ -391,6 +452,7 @@ class _StampAddScreenState
                                 controller: _sealTypeController,
                                 initialValue: _sealTypeController.text,
                                 isRequired: true,
+                                autovalidateMode: AutovalidateMode.disabled,
                                 onTap: state.isFormOptionsLoading
                                     ? null
                                     : () => _openSealTypeSheet(state),
@@ -443,7 +505,7 @@ class _StampAddScreenState
       context: context,
       title: 'Chọn người ký chính',
       items: state.employees,
-      displayText: (item) => item.fullName ?? '',
+      displayText: (item) => '${item.code} - ${item.fullName ?? ''}',
       hintText: 'Tìm người ký...',
       onSelected: (item) {
         bloc.add(

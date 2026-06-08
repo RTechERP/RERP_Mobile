@@ -24,13 +24,30 @@ class StampBloc extends BaseBloc<StampEvent, StampState> {
   bool _isSubmitting = false;
 
   StampBloc(this._stampRepo, this._authRepo, this._log)
-      : super(StampState.init()) {
+    : super(StampState.init()) {
     on<StampEvent>((event, emit) async {
       await event.when(
         init: () => _onInit(emit),
         initAdd: () => _onInitAdd(emit),
         initDetail: (id) => _onInitDetail(emit, id: id),
         initEdit: (id) => _onInitEdit(emit, id: id),
+        hydrateEditPayload:
+            (
+              item,
+              detail,
+              employees,
+              sealRegulations,
+              documentTypes,
+              taxCompanies,
+            ) => _onHydrateEditPayload(
+              emit,
+              item: item,
+              detail: detail,
+              employees: employees,
+              sealRegulations: sealRegulations,
+              documentTypes: documentTypes,
+              taxCompanies: taxCompanies,
+            ),
         changeDateRange: (dateStart, dateEnd) =>
             _onChangeDateRange(emit, dateStart: dateStart, dateEnd: dateEnd),
         loadFormOptions: () => _onLoadFormOptions(emit),
@@ -256,12 +273,49 @@ class StampBloc extends BaseBloc<StampEvent, StampState> {
       (data) => companies = List<CompanyStampItem>.from(data),
     );
 
+    final mappedEmployeeSignName = employees
+        .firstWhere(
+          (item) => item.id == state.employeeSignId,
+          orElse: () => const AssignerStampItem(),
+        )
+        .fullName;
+    final mappedDocumentTypeName = documents
+        .firstWhere(
+          (item) => item.id == state.documentTypeId,
+          orElse: () => const DocumentStampItem(),
+        )
+        .name;
+    final mappedTaxCompanyName = companies
+        .firstWhere(
+          (item) => item.id == state.taxCompanyId,
+          orElse: () => const CompanyStampItem(),
+        )
+        .name;
+    final mappedSealRegulationName = seals
+        .firstWhere(
+          (item) => item.id == state.sealRegulationId,
+          orElse: () => const SealItem(),
+        )
+        .sealName;
+
     emit(
       state.copyWith(
         employees: employees,
         sealRegulations: seals,
         documentTypes: documents,
         taxCompanies: companies,
+        documentTypeName: mappedDocumentTypeName?.trim().isNotEmpty == true
+            ? mappedDocumentTypeName
+            : state.documentTypeName,
+        taxCompanyName: mappedTaxCompanyName?.trim().isNotEmpty == true
+            ? mappedTaxCompanyName
+            : state.taxCompanyName,
+        sealRegulationName: mappedSealRegulationName?.trim().isNotEmpty == true
+            ? mappedSealRegulationName
+            : state.sealRegulationName,
+        employeeSignName: mappedEmployeeSignName?.trim().isNotEmpty == true
+            ? mappedEmployeeSignName
+            : state.employeeSignName,
         isFormOptionsLoading: false,
         status: errorMessage == null
             ? BaseStateStatus.success
@@ -280,34 +334,136 @@ class StampBloc extends BaseBloc<StampEvent, StampState> {
         isDetailLoading: true,
         status: BaseStateStatus.loading,
         detailItem: null,
+        detailData: null,
+        tracking: null,
+        detailEmployee: null,
+        detailDepartment: null,
       ),
     );
 
-    final item = state.stamps.firstWhere(
-      (s) => s.id == id,
-      orElse: () => const StampItem(),
-    );
+    final results = await Future.wait([
+      _stampRepo.getStampDetail(id: id),
+      _stampRepo.getEmployees(),
+      _stampRepo.getSealRegulations(),
+      _stampRepo.getDocumentTypes(),
+      _stampRepo.getTaxCompanies(),
+    ]);
 
-    emit(
-      state.copyWith(
-        isDetailLoading: false,
-        detailItem: item,
-        status: BaseStateStatus.success,
-        registerDate: item.registerDate,
-        isUrgent: item.isUrgent ?? false,
-        deadline: item.deadline,
-        documentTypeId: item.documentTypeId,
-        documentTypeName: item.documentTypeName,
-        taxCompanyName: item.taxCompanyText,
-        sealRegulationName: item.sealNameText,
-        documentName: item.documentName,
-        documentQuantity: item.documentQuantity,
-        documentTotalPage: item.documentTotalPage,
-        approvedId: item.approvedId,
-        approvedName: item.approvedName,
-        employeeSignId: item.employeeSignId,
-        employeeSignName: item.employeeSignName,
-      ),
+    final detailRes = results[0] as dynamic;
+    final employeesRes = results[1] as dynamic;
+    final sealRes = results[2] as dynamic;
+    final documentRes = results[3] as dynamic;
+    final companyRes = results[4] as dynamic;
+
+    await detailRes.fold(
+      (err) async {
+        _log.logE('StampBloc _onInitDetail failed: $err');
+        emit(
+          state.copyWith(
+            isDetailLoading: false,
+            status: BaseStateStatus.failed,
+            message: err.getErrorMessage,
+          ),
+        );
+      },
+      (detail) async {
+        _log.logI('StampBloc _onInitDetail success');
+
+        List<AssignerStampItem> employees = state.employees;
+        List<SealItem> seals = state.sealRegulations;
+        List<DocumentStampItem> documents = state.documentTypes;
+        List<CompanyStampItem> companies = state.taxCompanies;
+
+        employeesRes.fold(
+          (err) => _log.logE('StampBloc getEmployees failed: $err'),
+          (data) => employees = List<AssignerStampItem>.from(data),
+        );
+        sealRes.fold(
+          (err) => _log.logE('StampBloc getSealRegulations failed: $err'),
+          (data) => seals = List<SealItem>.from(data),
+        );
+        documentRes.fold(
+          (err) => _log.logE('StampBloc getDocumentTypes failed: $err'),
+          (data) => documents = List<DocumentStampItem>.from(data),
+        );
+        companyRes.fold(
+          (err) => _log.logE('StampBloc getTaxCompanies failed: $err'),
+          (data) => companies = List<CompanyStampItem>.from(data),
+        );
+
+        final tracking = detail.tracking;
+        final sealIds =
+            detail.seals?.map((item) => item.sealId).whereType<int>().toSet() ??
+            <int>{};
+        final taxCompanyIds =
+            detail.taxs
+                ?.map((item) => item.taxCompanyId)
+                .whereType<int>()
+                .toSet() ??
+            <int>{};
+
+        final mappedEmployeeSignName = employees
+            .firstWhere(
+              (item) => item.id == tracking?.employeeSignId,
+              orElse: () => const AssignerStampItem(),
+            )
+            .fullName;
+        final mappedDocumentTypeName = documents
+            .firstWhere(
+              (item) => item.id == tracking?.documentTypeId,
+              orElse: () => const DocumentStampItem(),
+            )
+            .name;
+        final mappedSealName = seals
+            .where((item) => sealIds.contains(item.id))
+            .map((item) => item.sealName)
+            .whereType<String>()
+            .where((item) => item.trim().isNotEmpty)
+            .join(', ');
+        final mappedTaxCompanyName = companies
+            .where((item) => taxCompanyIds.contains(item.id))
+            .map((item) => item.name)
+            .whereType<String>()
+            .where((item) => item.trim().isNotEmpty)
+            .join(', ');
+
+        emit(
+          state.copyWith(
+            isDetailLoading: false,
+            status: BaseStateStatus.success,
+            detailData: detail,
+            detailItem: tracking,
+            tracking: tracking,
+            detailEmployee: detail.employee,
+            detailDepartment: detail.department,
+            employees: employees,
+            sealRegulations: seals,
+            documentTypes: documents,
+            taxCompanies: companies,
+            registerDate: tracking?.registerDate,
+            isUrgent: tracking?.isUrgent ?? false,
+            deadline: tracking?.deadline,
+            documentTypeId: tracking?.documentTypeId,
+            documentTypeName: mappedDocumentTypeName?.trim().isNotEmpty == true
+                ? mappedDocumentTypeName
+                : tracking?.documentTypeName,
+            taxCompanyName: mappedTaxCompanyName.trim().isNotEmpty
+                ? mappedTaxCompanyName
+                : tracking?.taxCompanyText,
+            sealRegulationName: mappedSealName.trim().isNotEmpty
+                ? mappedSealName
+                : tracking?.sealNameText,
+            documentName: tracking?.documentName,
+            documentQuantity: tracking?.documentQuantity,
+            documentTotalPage: tracking?.documentTotalPage,
+            approvedId: tracking?.approvedId,
+            employeeSignId: tracking?.employeeSignId,
+            employeeSignName: mappedEmployeeSignName?.trim().isNotEmpty == true
+                ? mappedEmployeeSignName
+                : tracking?.employeeSignName,
+          ),
+        );
+      },
     );
   }
 
@@ -317,40 +473,120 @@ class StampBloc extends BaseBloc<StampEvent, StampState> {
         isDetailLoading: true,
         status: BaseStateStatus.loading,
         detailItem: null,
+        detailData: null,
+        tracking: null,
+        detailEmployee: null,
+        detailDepartment: null,
         isSubmitting: false,
         submitSuccess: false,
         message: null,
       ),
     );
 
-    final item = state.stamps.firstWhere(
-      (s) => s.id == id,
-      orElse: () => const StampItem(),
+    final res = await _stampRepo.getStampDetail(id: id);
+
+    await res.fold(
+      (err) async {
+        _log.logE('StampBloc _onInitEdit failed: $err');
+        emit(
+          state.copyWith(
+            isDetailLoading: false,
+            status: BaseStateStatus.failed,
+            message: err.getErrorMessage,
+          ),
+        );
+      },
+      (detail) async {
+        _log.logI('StampBloc _onInitEdit success');
+        emit(
+          state.copyWith(
+            isDetailLoading: false,
+            status: BaseStateStatus.success,
+            detailData: detail,
+            detailItem: detail.tracking,
+            tracking: detail.tracking,
+            detailEmployee: detail.employee,
+            detailDepartment: detail.department,
+            registerDate: detail.tracking?.registerDate,
+            isUrgent: detail.tracking?.isUrgent ?? false,
+            deadline: detail.tracking?.deadline,
+            documentTypeId: detail.tracking?.documentTypeId,
+            documentTypeName: detail.tracking?.documentTypeName,
+            taxCompanyId: detail.taxs
+                ?.map((item) => item.taxCompanyId)
+                .whereType<int>()
+                .firstOrNull,
+            taxCompanyName: detail.tracking?.taxCompanyText,
+            sealRegulationId: detail.seals
+                ?.map((item) => item.sealId)
+                .whereType<int>()
+                .firstOrNull,
+            sealRegulationName: detail.tracking?.sealNameText,
+            documentName: detail.tracking?.documentName,
+            documentQuantity: detail.tracking?.documentQuantity,
+            documentTotalPage: detail.tracking?.documentTotalPage,
+            approvedId: detail.tracking?.approvedId,
+            employeeSignId: detail.tracking?.employeeSignId,
+          ),
+        );
+
+        await _onLoadFormOptions(emit);
+      },
     );
+  }
+
+  _onHydrateEditPayload(
+    Emitter<StampState> emit, {
+    StampItem? item,
+    StampDetailItem? detail,
+    required List<AssignerStampItem> employees,
+    required List<SealItem> sealRegulations,
+    required List<DocumentStampItem> documentTypes,
+    required List<CompanyStampItem> taxCompanies,
+  }) {
+    final taxCompanyId = detail?.taxs
+        ?.map((item) => item.taxCompanyId)
+        .whereType<int>()
+        .firstOrNull;
+    final sealRegulationId = detail?.seals
+        ?.map((item) => item.sealId)
+        .whereType<int>()
+        .firstOrNull;
 
     emit(
       state.copyWith(
-        isDetailLoading: false,
-        detailItem: item,
         status: BaseStateStatus.success,
-        registerDate: item.registerDate,
-        isUrgent: item.isUrgent ?? false,
-        deadline: item.deadline,
-        documentTypeId: item.documentTypeId,
-        documentTypeName: item.documentTypeName,
-        taxCompanyName: item.taxCompanyText,
-        sealRegulationName: item.sealNameText,
-        documentName: item.documentName,
-        documentQuantity: item.documentQuantity,
-        documentTotalPage: item.documentTotalPage,
-        approvedId: item.approvedId,
-        approvedName: item.approvedName,
-        employeeSignId: item.employeeSignId,
-        employeeSignName: item.employeeSignName,
+        detailData: detail,
+        detailItem: item,
+        tracking: item,
+        detailEmployee: detail?.employee,
+        detailDepartment: detail?.department,
+        registerDate: item?.registerDate,
+        isUrgent: item?.isUrgent ?? false,
+        deadline: item?.deadline,
+        documentTypeId: item?.documentTypeId,
+        documentTypeName: item?.documentTypeName,
+        taxCompanyId: taxCompanyId,
+        taxCompanyName: item?.taxCompanyText,
+        sealRegulationId: sealRegulationId,
+        sealRegulationName: item?.sealNameText,
+        documentName: item?.documentName,
+        documentQuantity: item?.documentQuantity,
+        documentTotalPage: item?.documentTotalPage,
+        approvedId: item?.approvedId,
+        approvedName: item?.approvedName,
+        employeeSignId: item?.employeeSignId,
+        employeeSignName: item?.employeeSignName,
+        employees: employees,
+        sealRegulations: sealRegulations,
+        documentTypes: documentTypes,
+        taxCompanies: taxCompanies,
+        isFormOptionsLoading: false,
+        isSubmitting: false,
+        submitSuccess: false,
+        message: null,
       ),
     );
-
-    await _onLoadFormOptions(emit);
   }
 
   _onChangeRegisterDate(
@@ -361,7 +597,12 @@ class StampBloc extends BaseBloc<StampEvent, StampState> {
   }
 
   _onChangeUrgent(Emitter<StampState> emit, {required bool isUrgent}) {
-    emit(state.copyWith(isUrgent: isUrgent, deadline: isUrgent ? state.deadline : null));
+    emit(
+      state.copyWith(
+        isUrgent: isUrgent,
+        deadline: isUrgent ? state.deadline : null,
+      ),
+    );
   }
 
   _onChangeDeadline(Emitter<StampState> emit, {required DateTime? deadline}) {

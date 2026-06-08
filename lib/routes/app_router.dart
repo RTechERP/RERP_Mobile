@@ -1133,8 +1133,13 @@ class AppRouter {
             path: RouteNames.stampAdd,
             builder: (context, state) {
               final extra = state.extra;
+              if (extra is StampRoutePayload) {
+                return StampAddScreen(payload: extra);
+              }
               if (extra is StampItem) {
-                return StampAddScreen(editItem: extra);
+                return StampAddScreen(
+                  payload: StampRoutePayload(item: extra),
+                );
               }
               return const StampAddScreen();
             },
@@ -1143,10 +1148,13 @@ class AppRouter {
             path: RouteNames.stampDetail,
             builder: (context, state) {
               final extra = state.extra;
-              if (extra is StampItem) {
-                return StampDetailScreen(item: extra);
+              if (extra is StampRoutePayload) {
+                return StampDetailScreen(payload: extra);
               }
-              return const StampDetailScreen(item: StampItem());
+              if (extra is StampItem) {
+                return StampDetailScreen(payload: StampRoutePayload(item: extra));
+              }
+              return const StampDetailScreen(payload: StampRoutePayload());
             },
           ),
         ],

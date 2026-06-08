@@ -36,6 +36,10 @@ class StampState extends BaseBlocState {
   final String? employeeSignName;
 
   final StampItem? detailItem;
+  final StampDetailItem? detailData;
+  final StampItem? tracking;
+  final StampTrackingEmployeeItem? detailEmployee;
+  final StampTrackingDepartmentItem? detailDepartment;
   final bool isDetailLoading;
 
   final bool isSubmitting;
@@ -75,6 +79,10 @@ class StampState extends BaseBlocState {
     this.employeeSignId,
     this.employeeSignName,
     this.detailItem,
+    this.detailData,
+    this.tracking,
+    this.detailEmployee,
+    this.detailDepartment,
     this.isDetailLoading = false,
     this.isSubmitting = false,
     this.submitSuccess = false,
@@ -112,6 +120,10 @@ class StampState extends BaseBlocState {
         employeeSignId: null,
         employeeSignName: null,
         detailItem: null,
+        detailData: null,
+        tracking: null,
+        detailEmployee: null,
+        detailDepartment: null,
         isDetailLoading: false,
         isSubmitting: false,
         submitSuccess: false,
@@ -151,6 +163,10 @@ class StampState extends BaseBlocState {
         employeeSignId,
         employeeSignName,
         detailItem,
+        detailData,
+        tracking,
+        detailEmployee,
+        detailDepartment,
         isDetailLoading,
         isSubmitting,
         submitSuccess,

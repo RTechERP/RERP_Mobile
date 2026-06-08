@@ -834,6 +834,1657 @@ abstract class _StampItem implements StampItem {
       throw _privateConstructorUsedError;
 }
 
+StampDetailItem _$StampDetailItemFromJson(Map<String, dynamic> json) {
+  return _StampDetailItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$StampDetailItem {
+  StampItem? get tracking => throw _privateConstructorUsedError;
+  List<StampTrackingSealItem>? get seals => throw _privateConstructorUsedError;
+  List<StampTrackingTaxItem>? get taxs => throw _privateConstructorUsedError;
+  List<Map<String, dynamic>>? get files => throw _privateConstructorUsedError;
+  StampTrackingEmployeeItem? get employee => throw _privateConstructorUsedError;
+  StampTrackingDepartmentItem? get department =>
+      throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $StampDetailItemCopyWith<StampDetailItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $StampDetailItemCopyWith<$Res> {
+  factory $StampDetailItemCopyWith(
+          StampDetailItem value, $Res Function(StampDetailItem) then) =
+      _$StampDetailItemCopyWithImpl<$Res, StampDetailItem>;
+  @useResult
+  $Res call(
+      {StampItem? tracking,
+      List<StampTrackingSealItem>? seals,
+      List<StampTrackingTaxItem>? taxs,
+      List<Map<String, dynamic>>? files,
+      StampTrackingEmployeeItem? employee,
+      StampTrackingDepartmentItem? department});
+
+  $StampItemCopyWith<$Res>? get tracking;
+  $StampTrackingEmployeeItemCopyWith<$Res>? get employee;
+  $StampTrackingDepartmentItemCopyWith<$Res>? get department;
+}
+
+/// @nodoc
+class _$StampDetailItemCopyWithImpl<$Res, $Val extends StampDetailItem>
+    implements $StampDetailItemCopyWith<$Res> {
+  _$StampDetailItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? tracking = freezed,
+    Object? seals = freezed,
+    Object? taxs = freezed,
+    Object? files = freezed,
+    Object? employee = freezed,
+    Object? department = freezed,
+  }) {
+    return _then(_value.copyWith(
+      tracking: freezed == tracking
+          ? _value.tracking
+          : tracking // ignore: cast_nullable_to_non_nullable
+              as StampItem?,
+      seals: freezed == seals
+          ? _value.seals
+          : seals // ignore: cast_nullable_to_non_nullable
+              as List<StampTrackingSealItem>?,
+      taxs: freezed == taxs
+          ? _value.taxs
+          : taxs // ignore: cast_nullable_to_non_nullable
+              as List<StampTrackingTaxItem>?,
+      files: freezed == files
+          ? _value.files
+          : files // ignore: cast_nullable_to_non_nullable
+              as List<Map<String, dynamic>>?,
+      employee: freezed == employee
+          ? _value.employee
+          : employee // ignore: cast_nullable_to_non_nullable
+              as StampTrackingEmployeeItem?,
+      department: freezed == department
+          ? _value.department
+          : department // ignore: cast_nullable_to_non_nullable
+              as StampTrackingDepartmentItem?,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $StampItemCopyWith<$Res>? get tracking {
+    if (_value.tracking == null) {
+      return null;
+    }
+
+    return $StampItemCopyWith<$Res>(_value.tracking!, (value) {
+      return _then(_value.copyWith(tracking: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $StampTrackingEmployeeItemCopyWith<$Res>? get employee {
+    if (_value.employee == null) {
+      return null;
+    }
+
+    return $StampTrackingEmployeeItemCopyWith<$Res>(_value.employee!, (value) {
+      return _then(_value.copyWith(employee: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $StampTrackingDepartmentItemCopyWith<$Res>? get department {
+    if (_value.department == null) {
+      return null;
+    }
+
+    return $StampTrackingDepartmentItemCopyWith<$Res>(_value.department!,
+        (value) {
+      return _then(_value.copyWith(department: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$StampDetailItemImplCopyWith<$Res>
+    implements $StampDetailItemCopyWith<$Res> {
+  factory _$$StampDetailItemImplCopyWith(_$StampDetailItemImpl value,
+          $Res Function(_$StampDetailItemImpl) then) =
+      __$$StampDetailItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {StampItem? tracking,
+      List<StampTrackingSealItem>? seals,
+      List<StampTrackingTaxItem>? taxs,
+      List<Map<String, dynamic>>? files,
+      StampTrackingEmployeeItem? employee,
+      StampTrackingDepartmentItem? department});
+
+  @override
+  $StampItemCopyWith<$Res>? get tracking;
+  @override
+  $StampTrackingEmployeeItemCopyWith<$Res>? get employee;
+  @override
+  $StampTrackingDepartmentItemCopyWith<$Res>? get department;
+}
+
+/// @nodoc
+class __$$StampDetailItemImplCopyWithImpl<$Res>
+    extends _$StampDetailItemCopyWithImpl<$Res, _$StampDetailItemImpl>
+    implements _$$StampDetailItemImplCopyWith<$Res> {
+  __$$StampDetailItemImplCopyWithImpl(
+      _$StampDetailItemImpl _value, $Res Function(_$StampDetailItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? tracking = freezed,
+    Object? seals = freezed,
+    Object? taxs = freezed,
+    Object? files = freezed,
+    Object? employee = freezed,
+    Object? department = freezed,
+  }) {
+    return _then(_$StampDetailItemImpl(
+      tracking: freezed == tracking
+          ? _value.tracking
+          : tracking // ignore: cast_nullable_to_non_nullable
+              as StampItem?,
+      seals: freezed == seals
+          ? _value._seals
+          : seals // ignore: cast_nullable_to_non_nullable
+              as List<StampTrackingSealItem>?,
+      taxs: freezed == taxs
+          ? _value._taxs
+          : taxs // ignore: cast_nullable_to_non_nullable
+              as List<StampTrackingTaxItem>?,
+      files: freezed == files
+          ? _value._files
+          : files // ignore: cast_nullable_to_non_nullable
+              as List<Map<String, dynamic>>?,
+      employee: freezed == employee
+          ? _value.employee
+          : employee // ignore: cast_nullable_to_non_nullable
+              as StampTrackingEmployeeItem?,
+      department: freezed == department
+          ? _value.department
+          : department // ignore: cast_nullable_to_non_nullable
+              as StampTrackingDepartmentItem?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$StampDetailItemImpl implements _StampDetailItem {
+  const _$StampDetailItemImpl(
+      {this.tracking,
+      final List<StampTrackingSealItem>? seals,
+      final List<StampTrackingTaxItem>? taxs,
+      final List<Map<String, dynamic>>? files,
+      this.employee,
+      this.department})
+      : _seals = seals,
+        _taxs = taxs,
+        _files = files;
+
+  factory _$StampDetailItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$StampDetailItemImplFromJson(json);
+
+  @override
+  final StampItem? tracking;
+  final List<StampTrackingSealItem>? _seals;
+  @override
+  List<StampTrackingSealItem>? get seals {
+    final value = _seals;
+    if (value == null) return null;
+    if (_seals is EqualUnmodifiableListView) return _seals;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<StampTrackingTaxItem>? _taxs;
+  @override
+  List<StampTrackingTaxItem>? get taxs {
+    final value = _taxs;
+    if (value == null) return null;
+    if (_taxs is EqualUnmodifiableListView) return _taxs;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<Map<String, dynamic>>? _files;
+  @override
+  List<Map<String, dynamic>>? get files {
+    final value = _files;
+    if (value == null) return null;
+    if (_files is EqualUnmodifiableListView) return _files;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  final StampTrackingEmployeeItem? employee;
+  @override
+  final StampTrackingDepartmentItem? department;
+
+  @override
+  String toString() {
+    return 'StampDetailItem(tracking: $tracking, seals: $seals, taxs: $taxs, files: $files, employee: $employee, department: $department)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$StampDetailItemImpl &&
+            (identical(other.tracking, tracking) ||
+                other.tracking == tracking) &&
+            const DeepCollectionEquality().equals(other._seals, _seals) &&
+            const DeepCollectionEquality().equals(other._taxs, _taxs) &&
+            const DeepCollectionEquality().equals(other._files, _files) &&
+            (identical(other.employee, employee) ||
+                other.employee == employee) &&
+            (identical(other.department, department) ||
+                other.department == department));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      tracking,
+      const DeepCollectionEquality().hash(_seals),
+      const DeepCollectionEquality().hash(_taxs),
+      const DeepCollectionEquality().hash(_files),
+      employee,
+      department);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$StampDetailItemImplCopyWith<_$StampDetailItemImpl> get copyWith =>
+      __$$StampDetailItemImplCopyWithImpl<_$StampDetailItemImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$StampDetailItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _StampDetailItem implements StampDetailItem {
+  const factory _StampDetailItem(
+      {final StampItem? tracking,
+      final List<StampTrackingSealItem>? seals,
+      final List<StampTrackingTaxItem>? taxs,
+      final List<Map<String, dynamic>>? files,
+      final StampTrackingEmployeeItem? employee,
+      final StampTrackingDepartmentItem? department}) = _$StampDetailItemImpl;
+
+  factory _StampDetailItem.fromJson(Map<String, dynamic> json) =
+      _$StampDetailItemImpl.fromJson;
+
+  @override
+  StampItem? get tracking;
+  @override
+  List<StampTrackingSealItem>? get seals;
+  @override
+  List<StampTrackingTaxItem>? get taxs;
+  @override
+  List<Map<String, dynamic>>? get files;
+  @override
+  StampTrackingEmployeeItem? get employee;
+  @override
+  StampTrackingDepartmentItem? get department;
+  @override
+  @JsonKey(ignore: true)
+  _$$StampDetailItemImplCopyWith<_$StampDetailItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+StampRoutePayload _$StampRoutePayloadFromJson(Map<String, dynamic> json) {
+  return _StampRoutePayload.fromJson(json);
+}
+
+/// @nodoc
+mixin _$StampRoutePayload {
+  StampItem? get item => throw _privateConstructorUsedError;
+  StampDetailItem? get detail => throw _privateConstructorUsedError;
+  List<AssignerStampItem> get employees => throw _privateConstructorUsedError;
+  List<SealItem> get sealRegulations => throw _privateConstructorUsedError;
+  List<DocumentStampItem> get documentTypes =>
+      throw _privateConstructorUsedError;
+  List<CompanyStampItem> get taxCompanies => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $StampRoutePayloadCopyWith<StampRoutePayload> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $StampRoutePayloadCopyWith<$Res> {
+  factory $StampRoutePayloadCopyWith(
+          StampRoutePayload value, $Res Function(StampRoutePayload) then) =
+      _$StampRoutePayloadCopyWithImpl<$Res, StampRoutePayload>;
+  @useResult
+  $Res call(
+      {StampItem? item,
+      StampDetailItem? detail,
+      List<AssignerStampItem> employees,
+      List<SealItem> sealRegulations,
+      List<DocumentStampItem> documentTypes,
+      List<CompanyStampItem> taxCompanies});
+
+  $StampItemCopyWith<$Res>? get item;
+  $StampDetailItemCopyWith<$Res>? get detail;
+}
+
+/// @nodoc
+class _$StampRoutePayloadCopyWithImpl<$Res, $Val extends StampRoutePayload>
+    implements $StampRoutePayloadCopyWith<$Res> {
+  _$StampRoutePayloadCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? item = freezed,
+    Object? detail = freezed,
+    Object? employees = null,
+    Object? sealRegulations = null,
+    Object? documentTypes = null,
+    Object? taxCompanies = null,
+  }) {
+    return _then(_value.copyWith(
+      item: freezed == item
+          ? _value.item
+          : item // ignore: cast_nullable_to_non_nullable
+              as StampItem?,
+      detail: freezed == detail
+          ? _value.detail
+          : detail // ignore: cast_nullable_to_non_nullable
+              as StampDetailItem?,
+      employees: null == employees
+          ? _value.employees
+          : employees // ignore: cast_nullable_to_non_nullable
+              as List<AssignerStampItem>,
+      sealRegulations: null == sealRegulations
+          ? _value.sealRegulations
+          : sealRegulations // ignore: cast_nullable_to_non_nullable
+              as List<SealItem>,
+      documentTypes: null == documentTypes
+          ? _value.documentTypes
+          : documentTypes // ignore: cast_nullable_to_non_nullable
+              as List<DocumentStampItem>,
+      taxCompanies: null == taxCompanies
+          ? _value.taxCompanies
+          : taxCompanies // ignore: cast_nullable_to_non_nullable
+              as List<CompanyStampItem>,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $StampItemCopyWith<$Res>? get item {
+    if (_value.item == null) {
+      return null;
+    }
+
+    return $StampItemCopyWith<$Res>(_value.item!, (value) {
+      return _then(_value.copyWith(item: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $StampDetailItemCopyWith<$Res>? get detail {
+    if (_value.detail == null) {
+      return null;
+    }
+
+    return $StampDetailItemCopyWith<$Res>(_value.detail!, (value) {
+      return _then(_value.copyWith(detail: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$StampRoutePayloadImplCopyWith<$Res>
+    implements $StampRoutePayloadCopyWith<$Res> {
+  factory _$$StampRoutePayloadImplCopyWith(_$StampRoutePayloadImpl value,
+          $Res Function(_$StampRoutePayloadImpl) then) =
+      __$$StampRoutePayloadImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {StampItem? item,
+      StampDetailItem? detail,
+      List<AssignerStampItem> employees,
+      List<SealItem> sealRegulations,
+      List<DocumentStampItem> documentTypes,
+      List<CompanyStampItem> taxCompanies});
+
+  @override
+  $StampItemCopyWith<$Res>? get item;
+  @override
+  $StampDetailItemCopyWith<$Res>? get detail;
+}
+
+/// @nodoc
+class __$$StampRoutePayloadImplCopyWithImpl<$Res>
+    extends _$StampRoutePayloadCopyWithImpl<$Res, _$StampRoutePayloadImpl>
+    implements _$$StampRoutePayloadImplCopyWith<$Res> {
+  __$$StampRoutePayloadImplCopyWithImpl(_$StampRoutePayloadImpl _value,
+      $Res Function(_$StampRoutePayloadImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? item = freezed,
+    Object? detail = freezed,
+    Object? employees = null,
+    Object? sealRegulations = null,
+    Object? documentTypes = null,
+    Object? taxCompanies = null,
+  }) {
+    return _then(_$StampRoutePayloadImpl(
+      item: freezed == item
+          ? _value.item
+          : item // ignore: cast_nullable_to_non_nullable
+              as StampItem?,
+      detail: freezed == detail
+          ? _value.detail
+          : detail // ignore: cast_nullable_to_non_nullable
+              as StampDetailItem?,
+      employees: null == employees
+          ? _value._employees
+          : employees // ignore: cast_nullable_to_non_nullable
+              as List<AssignerStampItem>,
+      sealRegulations: null == sealRegulations
+          ? _value._sealRegulations
+          : sealRegulations // ignore: cast_nullable_to_non_nullable
+              as List<SealItem>,
+      documentTypes: null == documentTypes
+          ? _value._documentTypes
+          : documentTypes // ignore: cast_nullable_to_non_nullable
+              as List<DocumentStampItem>,
+      taxCompanies: null == taxCompanies
+          ? _value._taxCompanies
+          : taxCompanies // ignore: cast_nullable_to_non_nullable
+              as List<CompanyStampItem>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$StampRoutePayloadImpl implements _StampRoutePayload {
+  const _$StampRoutePayloadImpl(
+      {this.item,
+      this.detail,
+      final List<AssignerStampItem> employees = const <AssignerStampItem>[],
+      final List<SealItem> sealRegulations = const <SealItem>[],
+      final List<DocumentStampItem> documentTypes = const <DocumentStampItem>[],
+      final List<CompanyStampItem> taxCompanies = const <CompanyStampItem>[]})
+      : _employees = employees,
+        _sealRegulations = sealRegulations,
+        _documentTypes = documentTypes,
+        _taxCompanies = taxCompanies;
+
+  factory _$StampRoutePayloadImpl.fromJson(Map<String, dynamic> json) =>
+      _$$StampRoutePayloadImplFromJson(json);
+
+  @override
+  final StampItem? item;
+  @override
+  final StampDetailItem? detail;
+  final List<AssignerStampItem> _employees;
+  @override
+  @JsonKey()
+  List<AssignerStampItem> get employees {
+    if (_employees is EqualUnmodifiableListView) return _employees;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_employees);
+  }
+
+  final List<SealItem> _sealRegulations;
+  @override
+  @JsonKey()
+  List<SealItem> get sealRegulations {
+    if (_sealRegulations is EqualUnmodifiableListView) return _sealRegulations;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_sealRegulations);
+  }
+
+  final List<DocumentStampItem> _documentTypes;
+  @override
+  @JsonKey()
+  List<DocumentStampItem> get documentTypes {
+    if (_documentTypes is EqualUnmodifiableListView) return _documentTypes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_documentTypes);
+  }
+
+  final List<CompanyStampItem> _taxCompanies;
+  @override
+  @JsonKey()
+  List<CompanyStampItem> get taxCompanies {
+    if (_taxCompanies is EqualUnmodifiableListView) return _taxCompanies;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_taxCompanies);
+  }
+
+  @override
+  String toString() {
+    return 'StampRoutePayload(item: $item, detail: $detail, employees: $employees, sealRegulations: $sealRegulations, documentTypes: $documentTypes, taxCompanies: $taxCompanies)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$StampRoutePayloadImpl &&
+            (identical(other.item, item) || other.item == item) &&
+            (identical(other.detail, detail) || other.detail == detail) &&
+            const DeepCollectionEquality()
+                .equals(other._employees, _employees) &&
+            const DeepCollectionEquality()
+                .equals(other._sealRegulations, _sealRegulations) &&
+            const DeepCollectionEquality()
+                .equals(other._documentTypes, _documentTypes) &&
+            const DeepCollectionEquality()
+                .equals(other._taxCompanies, _taxCompanies));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      item,
+      detail,
+      const DeepCollectionEquality().hash(_employees),
+      const DeepCollectionEquality().hash(_sealRegulations),
+      const DeepCollectionEquality().hash(_documentTypes),
+      const DeepCollectionEquality().hash(_taxCompanies));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$StampRoutePayloadImplCopyWith<_$StampRoutePayloadImpl> get copyWith =>
+      __$$StampRoutePayloadImplCopyWithImpl<_$StampRoutePayloadImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$StampRoutePayloadImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _StampRoutePayload implements StampRoutePayload {
+  const factory _StampRoutePayload(
+      {final StampItem? item,
+      final StampDetailItem? detail,
+      final List<AssignerStampItem> employees,
+      final List<SealItem> sealRegulations,
+      final List<DocumentStampItem> documentTypes,
+      final List<CompanyStampItem> taxCompanies}) = _$StampRoutePayloadImpl;
+
+  factory _StampRoutePayload.fromJson(Map<String, dynamic> json) =
+      _$StampRoutePayloadImpl.fromJson;
+
+  @override
+  StampItem? get item;
+  @override
+  StampDetailItem? get detail;
+  @override
+  List<AssignerStampItem> get employees;
+  @override
+  List<SealItem> get sealRegulations;
+  @override
+  List<DocumentStampItem> get documentTypes;
+  @override
+  List<CompanyStampItem> get taxCompanies;
+  @override
+  @JsonKey(ignore: true)
+  _$$StampRoutePayloadImplCopyWith<_$StampRoutePayloadImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+StampTrackingSealItem _$StampTrackingSealItemFromJson(
+    Map<String, dynamic> json) {
+  return _StampTrackingSealItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$StampTrackingSealItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TrackingMartkID')
+  int? get trackingMartkId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'SealID')
+  int? get sealId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $StampTrackingSealItemCopyWith<StampTrackingSealItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $StampTrackingSealItemCopyWith<$Res> {
+  factory $StampTrackingSealItemCopyWith(StampTrackingSealItem value,
+          $Res Function(StampTrackingSealItem) then) =
+      _$StampTrackingSealItemCopyWithImpl<$Res, StampTrackingSealItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'TrackingMartkID') int? trackingMartkId,
+      @JsonKey(name: 'SealID') int? sealId,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy});
+}
+
+/// @nodoc
+class _$StampTrackingSealItemCopyWithImpl<$Res,
+        $Val extends StampTrackingSealItem>
+    implements $StampTrackingSealItemCopyWith<$Res> {
+  _$StampTrackingSealItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? trackingMartkId = freezed,
+    Object? sealId = freezed,
+    Object? createdDate = freezed,
+    Object? updatedDate = freezed,
+    Object? createdBy = freezed,
+    Object? updatedBy = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      trackingMartkId: freezed == trackingMartkId
+          ? _value.trackingMartkId
+          : trackingMartkId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      sealId: freezed == sealId
+          ? _value.sealId
+          : sealId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$StampTrackingSealItemImplCopyWith<$Res>
+    implements $StampTrackingSealItemCopyWith<$Res> {
+  factory _$$StampTrackingSealItemImplCopyWith(
+          _$StampTrackingSealItemImpl value,
+          $Res Function(_$StampTrackingSealItemImpl) then) =
+      __$$StampTrackingSealItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'TrackingMartkID') int? trackingMartkId,
+      @JsonKey(name: 'SealID') int? sealId,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy});
+}
+
+/// @nodoc
+class __$$StampTrackingSealItemImplCopyWithImpl<$Res>
+    extends _$StampTrackingSealItemCopyWithImpl<$Res,
+        _$StampTrackingSealItemImpl>
+    implements _$$StampTrackingSealItemImplCopyWith<$Res> {
+  __$$StampTrackingSealItemImplCopyWithImpl(_$StampTrackingSealItemImpl _value,
+      $Res Function(_$StampTrackingSealItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? trackingMartkId = freezed,
+    Object? sealId = freezed,
+    Object? createdDate = freezed,
+    Object? updatedDate = freezed,
+    Object? createdBy = freezed,
+    Object? updatedBy = freezed,
+  }) {
+    return _then(_$StampTrackingSealItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      trackingMartkId: freezed == trackingMartkId
+          ? _value.trackingMartkId
+          : trackingMartkId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      sealId: freezed == sealId
+          ? _value.sealId
+          : sealId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$StampTrackingSealItemImpl implements _StampTrackingSealItem {
+  const _$StampTrackingSealItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'TrackingMartkID') this.trackingMartkId,
+      @JsonKey(name: 'SealID') this.sealId,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'UpdatedBy') this.updatedBy});
+
+  factory _$StampTrackingSealItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$StampTrackingSealItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'TrackingMartkID')
+  final int? trackingMartkId;
+  @override
+  @JsonKey(name: 'SealID')
+  final int? sealId;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final DateTime? updatedDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  final String? createdBy;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  final String? updatedBy;
+
+  @override
+  String toString() {
+    return 'StampTrackingSealItem(id: $id, trackingMartkId: $trackingMartkId, sealId: $sealId, createdDate: $createdDate, updatedDate: $updatedDate, createdBy: $createdBy, updatedBy: $updatedBy)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$StampTrackingSealItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.trackingMartkId, trackingMartkId) ||
+                other.trackingMartkId == trackingMartkId) &&
+            (identical(other.sealId, sealId) || other.sealId == sealId) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, trackingMartkId, sealId,
+      createdDate, updatedDate, createdBy, updatedBy);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$StampTrackingSealItemImplCopyWith<_$StampTrackingSealItemImpl>
+      get copyWith => __$$StampTrackingSealItemImplCopyWithImpl<
+          _$StampTrackingSealItemImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$StampTrackingSealItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _StampTrackingSealItem implements StampTrackingSealItem {
+  const factory _StampTrackingSealItem(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'TrackingMartkID') final int? trackingMartkId,
+          @JsonKey(name: 'SealID') final int? sealId,
+          @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+          @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
+          @JsonKey(name: 'CreatedBy') final String? createdBy,
+          @JsonKey(name: 'UpdatedBy') final String? updatedBy}) =
+      _$StampTrackingSealItemImpl;
+
+  factory _StampTrackingSealItem.fromJson(Map<String, dynamic> json) =
+      _$StampTrackingSealItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'TrackingMartkID')
+  int? get trackingMartkId;
+  @override
+  @JsonKey(name: 'SealID')
+  int? get sealId;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy;
+  @override
+  @JsonKey(ignore: true)
+  _$$StampTrackingSealItemImplCopyWith<_$StampTrackingSealItemImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+StampTrackingTaxItem _$StampTrackingTaxItemFromJson(Map<String, dynamic> json) {
+  return _StampTrackingTaxItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$StampTrackingTaxItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TrackingMartkID')
+  int? get trackingMartkId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TaxCompanyID')
+  int? get taxCompanyId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $StampTrackingTaxItemCopyWith<StampTrackingTaxItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $StampTrackingTaxItemCopyWith<$Res> {
+  factory $StampTrackingTaxItemCopyWith(StampTrackingTaxItem value,
+          $Res Function(StampTrackingTaxItem) then) =
+      _$StampTrackingTaxItemCopyWithImpl<$Res, StampTrackingTaxItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'TrackingMartkID') int? trackingMartkId,
+      @JsonKey(name: 'TaxCompanyID') int? taxCompanyId,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy});
+}
+
+/// @nodoc
+class _$StampTrackingTaxItemCopyWithImpl<$Res,
+        $Val extends StampTrackingTaxItem>
+    implements $StampTrackingTaxItemCopyWith<$Res> {
+  _$StampTrackingTaxItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? trackingMartkId = freezed,
+    Object? taxCompanyId = freezed,
+    Object? createdDate = freezed,
+    Object? updatedDate = freezed,
+    Object? createdBy = freezed,
+    Object? updatedBy = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      trackingMartkId: freezed == trackingMartkId
+          ? _value.trackingMartkId
+          : trackingMartkId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      taxCompanyId: freezed == taxCompanyId
+          ? _value.taxCompanyId
+          : taxCompanyId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$StampTrackingTaxItemImplCopyWith<$Res>
+    implements $StampTrackingTaxItemCopyWith<$Res> {
+  factory _$$StampTrackingTaxItemImplCopyWith(_$StampTrackingTaxItemImpl value,
+          $Res Function(_$StampTrackingTaxItemImpl) then) =
+      __$$StampTrackingTaxItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'TrackingMartkID') int? trackingMartkId,
+      @JsonKey(name: 'TaxCompanyID') int? taxCompanyId,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy});
+}
+
+/// @nodoc
+class __$$StampTrackingTaxItemImplCopyWithImpl<$Res>
+    extends _$StampTrackingTaxItemCopyWithImpl<$Res, _$StampTrackingTaxItemImpl>
+    implements _$$StampTrackingTaxItemImplCopyWith<$Res> {
+  __$$StampTrackingTaxItemImplCopyWithImpl(_$StampTrackingTaxItemImpl _value,
+      $Res Function(_$StampTrackingTaxItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? trackingMartkId = freezed,
+    Object? taxCompanyId = freezed,
+    Object? createdDate = freezed,
+    Object? updatedDate = freezed,
+    Object? createdBy = freezed,
+    Object? updatedBy = freezed,
+  }) {
+    return _then(_$StampTrackingTaxItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      trackingMartkId: freezed == trackingMartkId
+          ? _value.trackingMartkId
+          : trackingMartkId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      taxCompanyId: freezed == taxCompanyId
+          ? _value.taxCompanyId
+          : taxCompanyId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$StampTrackingTaxItemImpl implements _StampTrackingTaxItem {
+  const _$StampTrackingTaxItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'TrackingMartkID') this.trackingMartkId,
+      @JsonKey(name: 'TaxCompanyID') this.taxCompanyId,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'UpdatedBy') this.updatedBy});
+
+  factory _$StampTrackingTaxItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$StampTrackingTaxItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'TrackingMartkID')
+  final int? trackingMartkId;
+  @override
+  @JsonKey(name: 'TaxCompanyID')
+  final int? taxCompanyId;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final DateTime? updatedDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  final String? createdBy;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  final String? updatedBy;
+
+  @override
+  String toString() {
+    return 'StampTrackingTaxItem(id: $id, trackingMartkId: $trackingMartkId, taxCompanyId: $taxCompanyId, createdDate: $createdDate, updatedDate: $updatedDate, createdBy: $createdBy, updatedBy: $updatedBy)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$StampTrackingTaxItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.trackingMartkId, trackingMartkId) ||
+                other.trackingMartkId == trackingMartkId) &&
+            (identical(other.taxCompanyId, taxCompanyId) ||
+                other.taxCompanyId == taxCompanyId) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, trackingMartkId,
+      taxCompanyId, createdDate, updatedDate, createdBy, updatedBy);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$StampTrackingTaxItemImplCopyWith<_$StampTrackingTaxItemImpl>
+      get copyWith =>
+          __$$StampTrackingTaxItemImplCopyWithImpl<_$StampTrackingTaxItemImpl>(
+              this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$StampTrackingTaxItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _StampTrackingTaxItem implements StampTrackingTaxItem {
+  const factory _StampTrackingTaxItem(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'TrackingMartkID') final int? trackingMartkId,
+          @JsonKey(name: 'TaxCompanyID') final int? taxCompanyId,
+          @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+          @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
+          @JsonKey(name: 'CreatedBy') final String? createdBy,
+          @JsonKey(name: 'UpdatedBy') final String? updatedBy}) =
+      _$StampTrackingTaxItemImpl;
+
+  factory _StampTrackingTaxItem.fromJson(Map<String, dynamic> json) =
+      _$StampTrackingTaxItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'TrackingMartkID')
+  int? get trackingMartkId;
+  @override
+  @JsonKey(name: 'TaxCompanyID')
+  int? get taxCompanyId;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy;
+  @override
+  @JsonKey(ignore: true)
+  _$$StampTrackingTaxItemImplCopyWith<_$StampTrackingTaxItemImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+StampTrackingEmployeeItem _$StampTrackingEmployeeItemFromJson(
+    Map<String, dynamic> json) {
+  return _StampTrackingEmployeeItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$StampTrackingEmployeeItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DepartmentID')
+  int? get departmentId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Code')
+  String? get code => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FullName')
+  String? get fullName => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $StampTrackingEmployeeItemCopyWith<StampTrackingEmployeeItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $StampTrackingEmployeeItemCopyWith<$Res> {
+  factory $StampTrackingEmployeeItemCopyWith(StampTrackingEmployeeItem value,
+          $Res Function(StampTrackingEmployeeItem) then) =
+      _$StampTrackingEmployeeItemCopyWithImpl<$Res, StampTrackingEmployeeItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'DepartmentID') int? departmentId,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'FullName') String? fullName});
+}
+
+/// @nodoc
+class _$StampTrackingEmployeeItemCopyWithImpl<$Res,
+        $Val extends StampTrackingEmployeeItem>
+    implements $StampTrackingEmployeeItemCopyWith<$Res> {
+  _$StampTrackingEmployeeItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? departmentId = freezed,
+    Object? code = freezed,
+    Object? fullName = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentId: freezed == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$StampTrackingEmployeeItemImplCopyWith<$Res>
+    implements $StampTrackingEmployeeItemCopyWith<$Res> {
+  factory _$$StampTrackingEmployeeItemImplCopyWith(
+          _$StampTrackingEmployeeItemImpl value,
+          $Res Function(_$StampTrackingEmployeeItemImpl) then) =
+      __$$StampTrackingEmployeeItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'DepartmentID') int? departmentId,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'FullName') String? fullName});
+}
+
+/// @nodoc
+class __$$StampTrackingEmployeeItemImplCopyWithImpl<$Res>
+    extends _$StampTrackingEmployeeItemCopyWithImpl<$Res,
+        _$StampTrackingEmployeeItemImpl>
+    implements _$$StampTrackingEmployeeItemImplCopyWith<$Res> {
+  __$$StampTrackingEmployeeItemImplCopyWithImpl(
+      _$StampTrackingEmployeeItemImpl _value,
+      $Res Function(_$StampTrackingEmployeeItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? departmentId = freezed,
+    Object? code = freezed,
+    Object? fullName = freezed,
+  }) {
+    return _then(_$StampTrackingEmployeeItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentId: freezed == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$StampTrackingEmployeeItemImpl implements _StampTrackingEmployeeItem {
+  const _$StampTrackingEmployeeItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'DepartmentID') this.departmentId,
+      @JsonKey(name: 'Code') this.code,
+      @JsonKey(name: 'FullName') this.fullName});
+
+  factory _$StampTrackingEmployeeItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$StampTrackingEmployeeItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'DepartmentID')
+  final int? departmentId;
+  @override
+  @JsonKey(name: 'Code')
+  final String? code;
+  @override
+  @JsonKey(name: 'FullName')
+  final String? fullName;
+
+  @override
+  String toString() {
+    return 'StampTrackingEmployeeItem(id: $id, departmentId: $departmentId, code: $code, fullName: $fullName)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$StampTrackingEmployeeItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.departmentId, departmentId) ||
+                other.departmentId == departmentId) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, id, departmentId, code, fullName);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$StampTrackingEmployeeItemImplCopyWith<_$StampTrackingEmployeeItemImpl>
+      get copyWith => __$$StampTrackingEmployeeItemImplCopyWithImpl<
+          _$StampTrackingEmployeeItemImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$StampTrackingEmployeeItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _StampTrackingEmployeeItem implements StampTrackingEmployeeItem {
+  const factory _StampTrackingEmployeeItem(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'DepartmentID') final int? departmentId,
+          @JsonKey(name: 'Code') final String? code,
+          @JsonKey(name: 'FullName') final String? fullName}) =
+      _$StampTrackingEmployeeItemImpl;
+
+  factory _StampTrackingEmployeeItem.fromJson(Map<String, dynamic> json) =
+      _$StampTrackingEmployeeItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'DepartmentID')
+  int? get departmentId;
+  @override
+  @JsonKey(name: 'Code')
+  String? get code;
+  @override
+  @JsonKey(name: 'FullName')
+  String? get fullName;
+  @override
+  @JsonKey(ignore: true)
+  _$$StampTrackingEmployeeItemImplCopyWith<_$StampTrackingEmployeeItemImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+StampTrackingDepartmentItem _$StampTrackingDepartmentItemFromJson(
+    Map<String, dynamic> json) {
+  return _StampTrackingDepartmentItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$StampTrackingDepartmentItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Code')
+  String? get code => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Name')
+  String? get name => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $StampTrackingDepartmentItemCopyWith<StampTrackingDepartmentItem>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $StampTrackingDepartmentItemCopyWith<$Res> {
+  factory $StampTrackingDepartmentItemCopyWith(
+          StampTrackingDepartmentItem value,
+          $Res Function(StampTrackingDepartmentItem) then) =
+      _$StampTrackingDepartmentItemCopyWithImpl<$Res,
+          StampTrackingDepartmentItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'Name') String? name});
+}
+
+/// @nodoc
+class _$StampTrackingDepartmentItemCopyWithImpl<$Res,
+        $Val extends StampTrackingDepartmentItem>
+    implements $StampTrackingDepartmentItemCopyWith<$Res> {
+  _$StampTrackingDepartmentItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? code = freezed,
+    Object? name = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$StampTrackingDepartmentItemImplCopyWith<$Res>
+    implements $StampTrackingDepartmentItemCopyWith<$Res> {
+  factory _$$StampTrackingDepartmentItemImplCopyWith(
+          _$StampTrackingDepartmentItemImpl value,
+          $Res Function(_$StampTrackingDepartmentItemImpl) then) =
+      __$$StampTrackingDepartmentItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'Name') String? name});
+}
+
+/// @nodoc
+class __$$StampTrackingDepartmentItemImplCopyWithImpl<$Res>
+    extends _$StampTrackingDepartmentItemCopyWithImpl<$Res,
+        _$StampTrackingDepartmentItemImpl>
+    implements _$$StampTrackingDepartmentItemImplCopyWith<$Res> {
+  __$$StampTrackingDepartmentItemImplCopyWithImpl(
+      _$StampTrackingDepartmentItemImpl _value,
+      $Res Function(_$StampTrackingDepartmentItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? code = freezed,
+    Object? name = freezed,
+  }) {
+    return _then(_$StampTrackingDepartmentItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$StampTrackingDepartmentItemImpl
+    implements _StampTrackingDepartmentItem {
+  const _$StampTrackingDepartmentItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'Code') this.code,
+      @JsonKey(name: 'Name') this.name});
+
+  factory _$StampTrackingDepartmentItemImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$StampTrackingDepartmentItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'Code')
+  final String? code;
+  @override
+  @JsonKey(name: 'Name')
+  final String? name;
+
+  @override
+  String toString() {
+    return 'StampTrackingDepartmentItem(id: $id, code: $code, name: $name)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$StampTrackingDepartmentItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.name, name) || other.name == name));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, code, name);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$StampTrackingDepartmentItemImplCopyWith<_$StampTrackingDepartmentItemImpl>
+      get copyWith => __$$StampTrackingDepartmentItemImplCopyWithImpl<
+          _$StampTrackingDepartmentItemImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$StampTrackingDepartmentItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _StampTrackingDepartmentItem
+    implements StampTrackingDepartmentItem {
+  const factory _StampTrackingDepartmentItem(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'Code') final String? code,
+          @JsonKey(name: 'Name') final String? name}) =
+      _$StampTrackingDepartmentItemImpl;
+
+  factory _StampTrackingDepartmentItem.fromJson(Map<String, dynamic> json) =
+      _$StampTrackingDepartmentItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'Code')
+  String? get code;
+  @override
+  @JsonKey(name: 'Name')
+  String? get name;
+  @override
+  @JsonKey(ignore: true)
+  _$$StampTrackingDepartmentItemImplCopyWith<_$StampTrackingDepartmentItemImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
 SealItem _$SealItemFromJson(Map<String, dynamic> json) {
   return _SealItem.fromJson(json);
 }

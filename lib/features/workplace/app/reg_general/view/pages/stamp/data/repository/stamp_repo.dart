@@ -8,6 +8,10 @@ abstract class StampRepo {
     required Map<String, dynamic> payload,
   });
 
+  Future<Either<BaseError, StampDetailItem>> getStampDetail({
+    required int id,
+  });
+
   Future<Either<BaseError, List<AssignerStampItem>>> getEmployees();
 
   Future<Either<BaseError, List<SealItem>>> getSealRegulations();

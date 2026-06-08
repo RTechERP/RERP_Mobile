@@ -62,6 +62,14 @@ class StampService extends DioBaseApiService {
     );
   }
 
+  Future<StampDetailItem> getStampDetail({
+    required int id,
+  }) async {
+    final res = await dio.get('/TrackingMarks/$id');
+    final data = (res.data as Map<String, dynamic>)['data'] as Map<String, dynamic>?;
+    return StampDetailItem.fromJson(data ?? <String, dynamic>{});
+  }
+
   Future<Map<String, dynamic>> saveStamp({
     required Map<String, dynamic> payload,
   }) async {

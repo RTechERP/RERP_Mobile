@@ -84,6 +84,173 @@ Map<String, dynamic> _$$StampItemImplToJson(_$StampItemImpl instance) =>
       'ExpectDateComplete': instance.expectDateComplete?.toIso8601String(),
     };
 
+_$StampDetailItemImpl _$$StampDetailItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$StampDetailItemImpl(
+      tracking: json['tracking'] == null
+          ? null
+          : StampItem.fromJson(json['tracking'] as Map<String, dynamic>),
+      seals: (json['seals'] as List<dynamic>?)
+          ?.map(
+              (e) => StampTrackingSealItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      taxs: (json['taxs'] as List<dynamic>?)
+          ?.map((e) => StampTrackingTaxItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      files: (json['files'] as List<dynamic>?)
+          ?.map((e) => e as Map<String, dynamic>)
+          .toList(),
+      employee: json['employee'] == null
+          ? null
+          : StampTrackingEmployeeItem.fromJson(
+              json['employee'] as Map<String, dynamic>),
+      department: json['department'] == null
+          ? null
+          : StampTrackingDepartmentItem.fromJson(
+              json['department'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$StampDetailItemImplToJson(
+        _$StampDetailItemImpl instance) =>
+    <String, dynamic>{
+      'tracking': instance.tracking,
+      'seals': instance.seals,
+      'taxs': instance.taxs,
+      'files': instance.files,
+      'employee': instance.employee,
+      'department': instance.department,
+    };
+
+_$StampRoutePayloadImpl _$$StampRoutePayloadImplFromJson(
+        Map<String, dynamic> json) =>
+    _$StampRoutePayloadImpl(
+      item: json['item'] == null
+          ? null
+          : StampItem.fromJson(json['item'] as Map<String, dynamic>),
+      detail: json['detail'] == null
+          ? null
+          : StampDetailItem.fromJson(json['detail'] as Map<String, dynamic>),
+      employees: (json['employees'] as List<dynamic>?)
+              ?.map(
+                  (e) => AssignerStampItem.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const <AssignerStampItem>[],
+      sealRegulations: (json['sealRegulations'] as List<dynamic>?)
+              ?.map((e) => SealItem.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const <SealItem>[],
+      documentTypes: (json['documentTypes'] as List<dynamic>?)
+              ?.map(
+                  (e) => DocumentStampItem.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const <DocumentStampItem>[],
+      taxCompanies: (json['taxCompanies'] as List<dynamic>?)
+              ?.map((e) => CompanyStampItem.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const <CompanyStampItem>[],
+    );
+
+Map<String, dynamic> _$$StampRoutePayloadImplToJson(
+        _$StampRoutePayloadImpl instance) =>
+    <String, dynamic>{
+      'item': instance.item,
+      'detail': instance.detail,
+      'employees': instance.employees,
+      'sealRegulations': instance.sealRegulations,
+      'documentTypes': instance.documentTypes,
+      'taxCompanies': instance.taxCompanies,
+    };
+
+_$StampTrackingSealItemImpl _$$StampTrackingSealItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$StampTrackingSealItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      trackingMartkId: (json['TrackingMartkID'] as num?)?.toInt(),
+      sealId: (json['SealID'] as num?)?.toInt(),
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+      updatedDate: json['UpdatedDate'] == null
+          ? null
+          : DateTime.parse(json['UpdatedDate'] as String),
+      createdBy: json['CreatedBy'] as String?,
+      updatedBy: json['UpdatedBy'] as String?,
+    );
+
+Map<String, dynamic> _$$StampTrackingSealItemImplToJson(
+        _$StampTrackingSealItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'TrackingMartkID': instance.trackingMartkId,
+      'SealID': instance.sealId,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'UpdatedDate': instance.updatedDate?.toIso8601String(),
+      'CreatedBy': instance.createdBy,
+      'UpdatedBy': instance.updatedBy,
+    };
+
+_$StampTrackingTaxItemImpl _$$StampTrackingTaxItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$StampTrackingTaxItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      trackingMartkId: (json['TrackingMartkID'] as num?)?.toInt(),
+      taxCompanyId: (json['TaxCompanyID'] as num?)?.toInt(),
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+      updatedDate: json['UpdatedDate'] == null
+          ? null
+          : DateTime.parse(json['UpdatedDate'] as String),
+      createdBy: json['CreatedBy'] as String?,
+      updatedBy: json['UpdatedBy'] as String?,
+    );
+
+Map<String, dynamic> _$$StampTrackingTaxItemImplToJson(
+        _$StampTrackingTaxItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'TrackingMartkID': instance.trackingMartkId,
+      'TaxCompanyID': instance.taxCompanyId,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'UpdatedDate': instance.updatedDate?.toIso8601String(),
+      'CreatedBy': instance.createdBy,
+      'UpdatedBy': instance.updatedBy,
+    };
+
+_$StampTrackingEmployeeItemImpl _$$StampTrackingEmployeeItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$StampTrackingEmployeeItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      departmentId: (json['DepartmentID'] as num?)?.toInt(),
+      code: json['Code'] as String?,
+      fullName: json['FullName'] as String?,
+    );
+
+Map<String, dynamic> _$$StampTrackingEmployeeItemImplToJson(
+        _$StampTrackingEmployeeItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'DepartmentID': instance.departmentId,
+      'Code': instance.code,
+      'FullName': instance.fullName,
+    };
+
+_$StampTrackingDepartmentItemImpl _$$StampTrackingDepartmentItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$StampTrackingDepartmentItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      code: json['Code'] as String?,
+      name: json['Name'] as String?,
+    );
+
+Map<String, dynamic> _$$StampTrackingDepartmentItemImplToJson(
+        _$StampTrackingDepartmentItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'Code': instance.code,
+      'Name': instance.name,
+    };
+
 _$SealItemImpl _$$SealItemImplFromJson(Map<String, dynamic> json) =>
     _$SealItemImpl(
       id: (json['ID'] as num?)?.toInt(),

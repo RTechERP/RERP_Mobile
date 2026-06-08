@@ -22,6 +22,14 @@ mixin _$StampEvent {
     required TResult Function() initAdd,
     required TResult Function(int id) initDetail,
     required TResult Function(int id) initEdit,
+    required TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)
+        hydrateEditPayload,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() loadFormOptions,
@@ -48,6 +56,14 @@ mixin _$StampEvent {
     TResult? Function()? initAdd,
     TResult? Function(int id)? initDetail,
     TResult? Function(int id)? initEdit,
+    TResult? Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? loadFormOptions,
     TResult? Function(DateTime registerDate)? changeRegisterDate,
@@ -73,6 +89,14 @@ mixin _$StampEvent {
     TResult Function()? initAdd,
     TResult Function(int id)? initDetail,
     TResult Function(int id)? initEdit,
+    TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? loadFormOptions,
     TResult Function(DateTime registerDate)? changeRegisterDate,
@@ -99,6 +123,7 @@ mixin _$StampEvent {
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_HydrateEditPayload value) hydrateEditPayload,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_ChangeRegisterDate value) changeRegisterDate,
@@ -126,6 +151,7 @@ mixin _$StampEvent {
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -151,6 +177,7 @@ mixin _$StampEvent {
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -232,6 +259,14 @@ class _$InitImpl implements _Init {
     required TResult Function() initAdd,
     required TResult Function(int id) initDetail,
     required TResult Function(int id) initEdit,
+    required TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)
+        hydrateEditPayload,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() loadFormOptions,
@@ -261,6 +296,14 @@ class _$InitImpl implements _Init {
     TResult? Function()? initAdd,
     TResult? Function(int id)? initDetail,
     TResult? Function(int id)? initEdit,
+    TResult? Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? loadFormOptions,
     TResult? Function(DateTime registerDate)? changeRegisterDate,
@@ -289,6 +332,14 @@ class _$InitImpl implements _Init {
     TResult Function()? initAdd,
     TResult Function(int id)? initDetail,
     TResult Function(int id)? initEdit,
+    TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? loadFormOptions,
     TResult Function(DateTime registerDate)? changeRegisterDate,
@@ -321,6 +372,7 @@ class _$InitImpl implements _Init {
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_HydrateEditPayload value) hydrateEditPayload,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_ChangeRegisterDate value) changeRegisterDate,
@@ -351,6 +403,7 @@ class _$InitImpl implements _Init {
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -379,6 +432,7 @@ class _$InitImpl implements _Init {
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -451,6 +505,14 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function() initAdd,
     required TResult Function(int id) initDetail,
     required TResult Function(int id) initEdit,
+    required TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)
+        hydrateEditPayload,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() loadFormOptions,
@@ -480,6 +542,14 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function()? initAdd,
     TResult? Function(int id)? initDetail,
     TResult? Function(int id)? initEdit,
+    TResult? Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? loadFormOptions,
     TResult? Function(DateTime registerDate)? changeRegisterDate,
@@ -508,6 +578,14 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function()? initAdd,
     TResult Function(int id)? initDetail,
     TResult Function(int id)? initEdit,
+    TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? loadFormOptions,
     TResult Function(DateTime registerDate)? changeRegisterDate,
@@ -540,6 +618,7 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_HydrateEditPayload value) hydrateEditPayload,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_ChangeRegisterDate value) changeRegisterDate,
@@ -570,6 +649,7 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -598,6 +678,7 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -696,6 +777,14 @@ class _$InitDetailImpl implements _InitDetail {
     required TResult Function() initAdd,
     required TResult Function(int id) initDetail,
     required TResult Function(int id) initEdit,
+    required TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)
+        hydrateEditPayload,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() loadFormOptions,
@@ -725,6 +814,14 @@ class _$InitDetailImpl implements _InitDetail {
     TResult? Function()? initAdd,
     TResult? Function(int id)? initDetail,
     TResult? Function(int id)? initEdit,
+    TResult? Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? loadFormOptions,
     TResult? Function(DateTime registerDate)? changeRegisterDate,
@@ -753,6 +850,14 @@ class _$InitDetailImpl implements _InitDetail {
     TResult Function()? initAdd,
     TResult Function(int id)? initDetail,
     TResult Function(int id)? initEdit,
+    TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? loadFormOptions,
     TResult Function(DateTime registerDate)? changeRegisterDate,
@@ -785,6 +890,7 @@ class _$InitDetailImpl implements _InitDetail {
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_HydrateEditPayload value) hydrateEditPayload,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_ChangeRegisterDate value) changeRegisterDate,
@@ -815,6 +921,7 @@ class _$InitDetailImpl implements _InitDetail {
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -843,6 +950,7 @@ class _$InitDetailImpl implements _InitDetail {
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -946,6 +1054,14 @@ class _$InitEditImpl implements _InitEdit {
     required TResult Function() initAdd,
     required TResult Function(int id) initDetail,
     required TResult Function(int id) initEdit,
+    required TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)
+        hydrateEditPayload,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() loadFormOptions,
@@ -975,6 +1091,14 @@ class _$InitEditImpl implements _InitEdit {
     TResult? Function()? initAdd,
     TResult? Function(int id)? initDetail,
     TResult? Function(int id)? initEdit,
+    TResult? Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? loadFormOptions,
     TResult? Function(DateTime registerDate)? changeRegisterDate,
@@ -1003,6 +1127,14 @@ class _$InitEditImpl implements _InitEdit {
     TResult Function()? initAdd,
     TResult Function(int id)? initDetail,
     TResult Function(int id)? initEdit,
+    TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? loadFormOptions,
     TResult Function(DateTime registerDate)? changeRegisterDate,
@@ -1035,6 +1167,7 @@ class _$InitEditImpl implements _InitEdit {
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_HydrateEditPayload value) hydrateEditPayload,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_ChangeRegisterDate value) changeRegisterDate,
@@ -1065,6 +1198,7 @@ class _$InitEditImpl implements _InitEdit {
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -1093,6 +1227,7 @@ class _$InitEditImpl implements _InitEdit {
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -1125,6 +1260,419 @@ abstract class _InitEdit implements StampEvent {
   int get id;
   @JsonKey(ignore: true)
   _$$InitEditImplCopyWith<_$InitEditImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$HydrateEditPayloadImplCopyWith<$Res> {
+  factory _$$HydrateEditPayloadImplCopyWith(_$HydrateEditPayloadImpl value,
+          $Res Function(_$HydrateEditPayloadImpl) then) =
+      __$$HydrateEditPayloadImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {StampItem? item,
+      StampDetailItem? detail,
+      List<AssignerStampItem> employees,
+      List<SealItem> sealRegulations,
+      List<DocumentStampItem> documentTypes,
+      List<CompanyStampItem> taxCompanies});
+
+  $StampItemCopyWith<$Res>? get item;
+  $StampDetailItemCopyWith<$Res>? get detail;
+}
+
+/// @nodoc
+class __$$HydrateEditPayloadImplCopyWithImpl<$Res>
+    extends _$StampEventCopyWithImpl<$Res, _$HydrateEditPayloadImpl>
+    implements _$$HydrateEditPayloadImplCopyWith<$Res> {
+  __$$HydrateEditPayloadImplCopyWithImpl(_$HydrateEditPayloadImpl _value,
+      $Res Function(_$HydrateEditPayloadImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? item = freezed,
+    Object? detail = freezed,
+    Object? employees = null,
+    Object? sealRegulations = null,
+    Object? documentTypes = null,
+    Object? taxCompanies = null,
+  }) {
+    return _then(_$HydrateEditPayloadImpl(
+      item: freezed == item
+          ? _value.item
+          : item // ignore: cast_nullable_to_non_nullable
+              as StampItem?,
+      detail: freezed == detail
+          ? _value.detail
+          : detail // ignore: cast_nullable_to_non_nullable
+              as StampDetailItem?,
+      employees: null == employees
+          ? _value._employees
+          : employees // ignore: cast_nullable_to_non_nullable
+              as List<AssignerStampItem>,
+      sealRegulations: null == sealRegulations
+          ? _value._sealRegulations
+          : sealRegulations // ignore: cast_nullable_to_non_nullable
+              as List<SealItem>,
+      documentTypes: null == documentTypes
+          ? _value._documentTypes
+          : documentTypes // ignore: cast_nullable_to_non_nullable
+              as List<DocumentStampItem>,
+      taxCompanies: null == taxCompanies
+          ? _value._taxCompanies
+          : taxCompanies // ignore: cast_nullable_to_non_nullable
+              as List<CompanyStampItem>,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $StampItemCopyWith<$Res>? get item {
+    if (_value.item == null) {
+      return null;
+    }
+
+    return $StampItemCopyWith<$Res>(_value.item!, (value) {
+      return _then(_value.copyWith(item: value));
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $StampDetailItemCopyWith<$Res>? get detail {
+    if (_value.detail == null) {
+      return null;
+    }
+
+    return $StampDetailItemCopyWith<$Res>(_value.detail!, (value) {
+      return _then(_value.copyWith(detail: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$HydrateEditPayloadImpl implements _HydrateEditPayload {
+  const _$HydrateEditPayloadImpl(
+      {this.item,
+      this.detail,
+      final List<AssignerStampItem> employees = const <AssignerStampItem>[],
+      final List<SealItem> sealRegulations = const <SealItem>[],
+      final List<DocumentStampItem> documentTypes = const <DocumentStampItem>[],
+      final List<CompanyStampItem> taxCompanies = const <CompanyStampItem>[]})
+      : _employees = employees,
+        _sealRegulations = sealRegulations,
+        _documentTypes = documentTypes,
+        _taxCompanies = taxCompanies;
+
+  @override
+  final StampItem? item;
+  @override
+  final StampDetailItem? detail;
+  final List<AssignerStampItem> _employees;
+  @override
+  @JsonKey()
+  List<AssignerStampItem> get employees {
+    if (_employees is EqualUnmodifiableListView) return _employees;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_employees);
+  }
+
+  final List<SealItem> _sealRegulations;
+  @override
+  @JsonKey()
+  List<SealItem> get sealRegulations {
+    if (_sealRegulations is EqualUnmodifiableListView) return _sealRegulations;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_sealRegulations);
+  }
+
+  final List<DocumentStampItem> _documentTypes;
+  @override
+  @JsonKey()
+  List<DocumentStampItem> get documentTypes {
+    if (_documentTypes is EqualUnmodifiableListView) return _documentTypes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_documentTypes);
+  }
+
+  final List<CompanyStampItem> _taxCompanies;
+  @override
+  @JsonKey()
+  List<CompanyStampItem> get taxCompanies {
+    if (_taxCompanies is EqualUnmodifiableListView) return _taxCompanies;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_taxCompanies);
+  }
+
+  @override
+  String toString() {
+    return 'StampEvent.hydrateEditPayload(item: $item, detail: $detail, employees: $employees, sealRegulations: $sealRegulations, documentTypes: $documentTypes, taxCompanies: $taxCompanies)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$HydrateEditPayloadImpl &&
+            (identical(other.item, item) || other.item == item) &&
+            (identical(other.detail, detail) || other.detail == detail) &&
+            const DeepCollectionEquality()
+                .equals(other._employees, _employees) &&
+            const DeepCollectionEquality()
+                .equals(other._sealRegulations, _sealRegulations) &&
+            const DeepCollectionEquality()
+                .equals(other._documentTypes, _documentTypes) &&
+            const DeepCollectionEquality()
+                .equals(other._taxCompanies, _taxCompanies));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      item,
+      detail,
+      const DeepCollectionEquality().hash(_employees),
+      const DeepCollectionEquality().hash(_sealRegulations),
+      const DeepCollectionEquality().hash(_documentTypes),
+      const DeepCollectionEquality().hash(_taxCompanies));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$HydrateEditPayloadImplCopyWith<_$HydrateEditPayloadImpl> get copyWith =>
+      __$$HydrateEditPayloadImplCopyWithImpl<_$HydrateEditPayloadImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() initAdd,
+    required TResult Function(int id) initDetail,
+    required TResult Function(int id) initEdit,
+    required TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)
+        hydrateEditPayload,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() loadFormOptions,
+    required TResult Function(DateTime registerDate) changeRegisterDate,
+    required TResult Function(bool isUrgent) changeUrgent,
+    required TResult Function(DateTime? deadline) changeDeadline,
+    required TResult Function(int? id, String? name) changeDocumentType,
+    required TResult Function(String name) changeDocumentName,
+    required TResult Function(int quantity) changeDocumentQuantity,
+    required TResult Function(int totalPage) changeDocumentTotalPage,
+    required TResult Function(int? id, String? name) changeApproved,
+    required TResult Function(int? id, String? name) changeEmployeeSign,
+    required TResult Function(int? id, String? name) changeSealRegulation,
+    required TResult Function(int? id, String? name) changeTaxCompany,
+    required TResult Function() submitStamp,
+    required TResult Function() clearSubmitState,
+    required TResult Function(int id) deleteStamp,
+    required TResult Function() clearDeleteState,
+  }) {
+    return hydrateEditPayload(
+        item, detail, employees, sealRegulations, documentTypes, taxCompanies);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? initAdd,
+    TResult? Function(int id)? initDetail,
+    TResult? Function(int id)? initEdit,
+    TResult? Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? loadFormOptions,
+    TResult? Function(DateTime registerDate)? changeRegisterDate,
+    TResult? Function(bool isUrgent)? changeUrgent,
+    TResult? Function(DateTime? deadline)? changeDeadline,
+    TResult? Function(int? id, String? name)? changeDocumentType,
+    TResult? Function(String name)? changeDocumentName,
+    TResult? Function(int quantity)? changeDocumentQuantity,
+    TResult? Function(int totalPage)? changeDocumentTotalPage,
+    TResult? Function(int? id, String? name)? changeApproved,
+    TResult? Function(int? id, String? name)? changeEmployeeSign,
+    TResult? Function(int? id, String? name)? changeSealRegulation,
+    TResult? Function(int? id, String? name)? changeTaxCompany,
+    TResult? Function()? submitStamp,
+    TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? deleteStamp,
+    TResult? Function()? clearDeleteState,
+  }) {
+    return hydrateEditPayload?.call(
+        item, detail, employees, sealRegulations, documentTypes, taxCompanies);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? initAdd,
+    TResult Function(int id)? initDetail,
+    TResult Function(int id)? initEdit,
+    TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? loadFormOptions,
+    TResult Function(DateTime registerDate)? changeRegisterDate,
+    TResult Function(bool isUrgent)? changeUrgent,
+    TResult Function(DateTime? deadline)? changeDeadline,
+    TResult Function(int? id, String? name)? changeDocumentType,
+    TResult Function(String name)? changeDocumentName,
+    TResult Function(int quantity)? changeDocumentQuantity,
+    TResult Function(int totalPage)? changeDocumentTotalPage,
+    TResult Function(int? id, String? name)? changeApproved,
+    TResult Function(int? id, String? name)? changeEmployeeSign,
+    TResult Function(int? id, String? name)? changeSealRegulation,
+    TResult Function(int? id, String? name)? changeTaxCompany,
+    TResult Function()? submitStamp,
+    TResult Function()? clearSubmitState,
+    TResult Function(int id)? deleteStamp,
+    TResult Function()? clearDeleteState,
+    required TResult orElse(),
+  }) {
+    if (hydrateEditPayload != null) {
+      return hydrateEditPayload(item, detail, employees, sealRegulations,
+          documentTypes, taxCompanies);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_HydrateEditPayload value) hydrateEditPayload,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_LoadFormOptions value) loadFormOptions,
+    required TResult Function(_ChangeRegisterDate value) changeRegisterDate,
+    required TResult Function(_ChangeUrgent value) changeUrgent,
+    required TResult Function(_ChangeDeadline value) changeDeadline,
+    required TResult Function(_ChangeDocumentType value) changeDocumentType,
+    required TResult Function(_ChangeDocumentName value) changeDocumentName,
+    required TResult Function(_ChangeDocumentQuantity value)
+        changeDocumentQuantity,
+    required TResult Function(_ChangeDocumentTotalPage value)
+        changeDocumentTotalPage,
+    required TResult Function(_ChangeApproved value) changeApproved,
+    required TResult Function(_ChangeEmployeeSign value) changeEmployeeSign,
+    required TResult Function(_ChangeSealRegulation value) changeSealRegulation,
+    required TResult Function(_ChangeTaxCompany value) changeTaxCompany,
+    required TResult Function(_SubmitStamp value) submitStamp,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_DeleteStamp value) deleteStamp,
+    required TResult Function(_ClearDeleteState value) clearDeleteState,
+  }) {
+    return hydrateEditPayload(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_HydrateEditPayload value)? hydrateEditPayload,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_LoadFormOptions value)? loadFormOptions,
+    TResult? Function(_ChangeRegisterDate value)? changeRegisterDate,
+    TResult? Function(_ChangeUrgent value)? changeUrgent,
+    TResult? Function(_ChangeDeadline value)? changeDeadline,
+    TResult? Function(_ChangeDocumentType value)? changeDocumentType,
+    TResult? Function(_ChangeDocumentName value)? changeDocumentName,
+    TResult? Function(_ChangeDocumentQuantity value)? changeDocumentQuantity,
+    TResult? Function(_ChangeDocumentTotalPage value)? changeDocumentTotalPage,
+    TResult? Function(_ChangeApproved value)? changeApproved,
+    TResult? Function(_ChangeEmployeeSign value)? changeEmployeeSign,
+    TResult? Function(_ChangeSealRegulation value)? changeSealRegulation,
+    TResult? Function(_ChangeTaxCompany value)? changeTaxCompany,
+    TResult? Function(_SubmitStamp value)? submitStamp,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_DeleteStamp value)? deleteStamp,
+    TResult? Function(_ClearDeleteState value)? clearDeleteState,
+  }) {
+    return hydrateEditPayload?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_HydrateEditPayload value)? hydrateEditPayload,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_LoadFormOptions value)? loadFormOptions,
+    TResult Function(_ChangeRegisterDate value)? changeRegisterDate,
+    TResult Function(_ChangeUrgent value)? changeUrgent,
+    TResult Function(_ChangeDeadline value)? changeDeadline,
+    TResult Function(_ChangeDocumentType value)? changeDocumentType,
+    TResult Function(_ChangeDocumentName value)? changeDocumentName,
+    TResult Function(_ChangeDocumentQuantity value)? changeDocumentQuantity,
+    TResult Function(_ChangeDocumentTotalPage value)? changeDocumentTotalPage,
+    TResult Function(_ChangeApproved value)? changeApproved,
+    TResult Function(_ChangeEmployeeSign value)? changeEmployeeSign,
+    TResult Function(_ChangeSealRegulation value)? changeSealRegulation,
+    TResult Function(_ChangeTaxCompany value)? changeTaxCompany,
+    TResult Function(_SubmitStamp value)? submitStamp,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_DeleteStamp value)? deleteStamp,
+    TResult Function(_ClearDeleteState value)? clearDeleteState,
+    required TResult orElse(),
+  }) {
+    if (hydrateEditPayload != null) {
+      return hydrateEditPayload(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _HydrateEditPayload implements StampEvent {
+  const factory _HydrateEditPayload(
+      {final StampItem? item,
+      final StampDetailItem? detail,
+      final List<AssignerStampItem> employees,
+      final List<SealItem> sealRegulations,
+      final List<DocumentStampItem> documentTypes,
+      final List<CompanyStampItem> taxCompanies}) = _$HydrateEditPayloadImpl;
+
+  StampItem? get item;
+  StampDetailItem? get detail;
+  List<AssignerStampItem> get employees;
+  List<SealItem> get sealRegulations;
+  List<DocumentStampItem> get documentTypes;
+  List<CompanyStampItem> get taxCompanies;
+  @JsonKey(ignore: true)
+  _$$HydrateEditPayloadImplCopyWith<_$HydrateEditPayloadImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1206,6 +1754,14 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function() initAdd,
     required TResult Function(int id) initDetail,
     required TResult Function(int id) initEdit,
+    required TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)
+        hydrateEditPayload,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() loadFormOptions,
@@ -1235,6 +1791,14 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function()? initAdd,
     TResult? Function(int id)? initDetail,
     TResult? Function(int id)? initEdit,
+    TResult? Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? loadFormOptions,
     TResult? Function(DateTime registerDate)? changeRegisterDate,
@@ -1263,6 +1827,14 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function()? initAdd,
     TResult Function(int id)? initDetail,
     TResult Function(int id)? initEdit,
+    TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? loadFormOptions,
     TResult Function(DateTime registerDate)? changeRegisterDate,
@@ -1295,6 +1867,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_HydrateEditPayload value) hydrateEditPayload,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_ChangeRegisterDate value) changeRegisterDate,
@@ -1325,6 +1898,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -1353,6 +1927,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -1433,6 +2008,14 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     required TResult Function() initAdd,
     required TResult Function(int id) initDetail,
     required TResult Function(int id) initEdit,
+    required TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)
+        hydrateEditPayload,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() loadFormOptions,
@@ -1462,6 +2045,14 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     TResult? Function()? initAdd,
     TResult? Function(int id)? initDetail,
     TResult? Function(int id)? initEdit,
+    TResult? Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? loadFormOptions,
     TResult? Function(DateTime registerDate)? changeRegisterDate,
@@ -1490,6 +2081,14 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     TResult Function()? initAdd,
     TResult Function(int id)? initDetail,
     TResult Function(int id)? initEdit,
+    TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? loadFormOptions,
     TResult Function(DateTime registerDate)? changeRegisterDate,
@@ -1522,6 +2121,7 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_HydrateEditPayload value) hydrateEditPayload,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_ChangeRegisterDate value) changeRegisterDate,
@@ -1552,6 +2152,7 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -1580,6 +2181,7 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -1680,6 +2282,14 @@ class _$ChangeRegisterDateImpl implements _ChangeRegisterDate {
     required TResult Function() initAdd,
     required TResult Function(int id) initDetail,
     required TResult Function(int id) initEdit,
+    required TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)
+        hydrateEditPayload,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() loadFormOptions,
@@ -1709,6 +2319,14 @@ class _$ChangeRegisterDateImpl implements _ChangeRegisterDate {
     TResult? Function()? initAdd,
     TResult? Function(int id)? initDetail,
     TResult? Function(int id)? initEdit,
+    TResult? Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? loadFormOptions,
     TResult? Function(DateTime registerDate)? changeRegisterDate,
@@ -1737,6 +2355,14 @@ class _$ChangeRegisterDateImpl implements _ChangeRegisterDate {
     TResult Function()? initAdd,
     TResult Function(int id)? initDetail,
     TResult Function(int id)? initEdit,
+    TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? loadFormOptions,
     TResult Function(DateTime registerDate)? changeRegisterDate,
@@ -1769,6 +2395,7 @@ class _$ChangeRegisterDateImpl implements _ChangeRegisterDate {
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_HydrateEditPayload value) hydrateEditPayload,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_ChangeRegisterDate value) changeRegisterDate,
@@ -1799,6 +2426,7 @@ class _$ChangeRegisterDateImpl implements _ChangeRegisterDate {
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -1827,6 +2455,7 @@ class _$ChangeRegisterDateImpl implements _ChangeRegisterDate {
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -1932,6 +2561,14 @@ class _$ChangeUrgentImpl implements _ChangeUrgent {
     required TResult Function() initAdd,
     required TResult Function(int id) initDetail,
     required TResult Function(int id) initEdit,
+    required TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)
+        hydrateEditPayload,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() loadFormOptions,
@@ -1961,6 +2598,14 @@ class _$ChangeUrgentImpl implements _ChangeUrgent {
     TResult? Function()? initAdd,
     TResult? Function(int id)? initDetail,
     TResult? Function(int id)? initEdit,
+    TResult? Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? loadFormOptions,
     TResult? Function(DateTime registerDate)? changeRegisterDate,
@@ -1989,6 +2634,14 @@ class _$ChangeUrgentImpl implements _ChangeUrgent {
     TResult Function()? initAdd,
     TResult Function(int id)? initDetail,
     TResult Function(int id)? initEdit,
+    TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? loadFormOptions,
     TResult Function(DateTime registerDate)? changeRegisterDate,
@@ -2021,6 +2674,7 @@ class _$ChangeUrgentImpl implements _ChangeUrgent {
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_HydrateEditPayload value) hydrateEditPayload,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_ChangeRegisterDate value) changeRegisterDate,
@@ -2051,6 +2705,7 @@ class _$ChangeUrgentImpl implements _ChangeUrgent {
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -2079,6 +2734,7 @@ class _$ChangeUrgentImpl implements _ChangeUrgent {
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -2184,6 +2840,14 @@ class _$ChangeDeadlineImpl implements _ChangeDeadline {
     required TResult Function() initAdd,
     required TResult Function(int id) initDetail,
     required TResult Function(int id) initEdit,
+    required TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)
+        hydrateEditPayload,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() loadFormOptions,
@@ -2213,6 +2877,14 @@ class _$ChangeDeadlineImpl implements _ChangeDeadline {
     TResult? Function()? initAdd,
     TResult? Function(int id)? initDetail,
     TResult? Function(int id)? initEdit,
+    TResult? Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? loadFormOptions,
     TResult? Function(DateTime registerDate)? changeRegisterDate,
@@ -2241,6 +2913,14 @@ class _$ChangeDeadlineImpl implements _ChangeDeadline {
     TResult Function()? initAdd,
     TResult Function(int id)? initDetail,
     TResult Function(int id)? initEdit,
+    TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? loadFormOptions,
     TResult Function(DateTime registerDate)? changeRegisterDate,
@@ -2273,6 +2953,7 @@ class _$ChangeDeadlineImpl implements _ChangeDeadline {
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_HydrateEditPayload value) hydrateEditPayload,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_ChangeRegisterDate value) changeRegisterDate,
@@ -2303,6 +2984,7 @@ class _$ChangeDeadlineImpl implements _ChangeDeadline {
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -2331,6 +3013,7 @@ class _$ChangeDeadlineImpl implements _ChangeDeadline {
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -2444,6 +3127,14 @@ class _$ChangeDocumentTypeImpl implements _ChangeDocumentType {
     required TResult Function() initAdd,
     required TResult Function(int id) initDetail,
     required TResult Function(int id) initEdit,
+    required TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)
+        hydrateEditPayload,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() loadFormOptions,
@@ -2473,6 +3164,14 @@ class _$ChangeDocumentTypeImpl implements _ChangeDocumentType {
     TResult? Function()? initAdd,
     TResult? Function(int id)? initDetail,
     TResult? Function(int id)? initEdit,
+    TResult? Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? loadFormOptions,
     TResult? Function(DateTime registerDate)? changeRegisterDate,
@@ -2501,6 +3200,14 @@ class _$ChangeDocumentTypeImpl implements _ChangeDocumentType {
     TResult Function()? initAdd,
     TResult Function(int id)? initDetail,
     TResult Function(int id)? initEdit,
+    TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? loadFormOptions,
     TResult Function(DateTime registerDate)? changeRegisterDate,
@@ -2533,6 +3240,7 @@ class _$ChangeDocumentTypeImpl implements _ChangeDocumentType {
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_HydrateEditPayload value) hydrateEditPayload,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_ChangeRegisterDate value) changeRegisterDate,
@@ -2563,6 +3271,7 @@ class _$ChangeDocumentTypeImpl implements _ChangeDocumentType {
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -2591,6 +3300,7 @@ class _$ChangeDocumentTypeImpl implements _ChangeDocumentType {
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -2697,6 +3407,14 @@ class _$ChangeDocumentNameImpl implements _ChangeDocumentName {
     required TResult Function() initAdd,
     required TResult Function(int id) initDetail,
     required TResult Function(int id) initEdit,
+    required TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)
+        hydrateEditPayload,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() loadFormOptions,
@@ -2726,6 +3444,14 @@ class _$ChangeDocumentNameImpl implements _ChangeDocumentName {
     TResult? Function()? initAdd,
     TResult? Function(int id)? initDetail,
     TResult? Function(int id)? initEdit,
+    TResult? Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? loadFormOptions,
     TResult? Function(DateTime registerDate)? changeRegisterDate,
@@ -2754,6 +3480,14 @@ class _$ChangeDocumentNameImpl implements _ChangeDocumentName {
     TResult Function()? initAdd,
     TResult Function(int id)? initDetail,
     TResult Function(int id)? initEdit,
+    TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? loadFormOptions,
     TResult Function(DateTime registerDate)? changeRegisterDate,
@@ -2786,6 +3520,7 @@ class _$ChangeDocumentNameImpl implements _ChangeDocumentName {
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_HydrateEditPayload value) hydrateEditPayload,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_ChangeRegisterDate value) changeRegisterDate,
@@ -2816,6 +3551,7 @@ class _$ChangeDocumentNameImpl implements _ChangeDocumentName {
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -2844,6 +3580,7 @@ class _$ChangeDocumentNameImpl implements _ChangeDocumentName {
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -2952,6 +3689,14 @@ class _$ChangeDocumentQuantityImpl implements _ChangeDocumentQuantity {
     required TResult Function() initAdd,
     required TResult Function(int id) initDetail,
     required TResult Function(int id) initEdit,
+    required TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)
+        hydrateEditPayload,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() loadFormOptions,
@@ -2981,6 +3726,14 @@ class _$ChangeDocumentQuantityImpl implements _ChangeDocumentQuantity {
     TResult? Function()? initAdd,
     TResult? Function(int id)? initDetail,
     TResult? Function(int id)? initEdit,
+    TResult? Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? loadFormOptions,
     TResult? Function(DateTime registerDate)? changeRegisterDate,
@@ -3009,6 +3762,14 @@ class _$ChangeDocumentQuantityImpl implements _ChangeDocumentQuantity {
     TResult Function()? initAdd,
     TResult Function(int id)? initDetail,
     TResult Function(int id)? initEdit,
+    TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? loadFormOptions,
     TResult Function(DateTime registerDate)? changeRegisterDate,
@@ -3041,6 +3802,7 @@ class _$ChangeDocumentQuantityImpl implements _ChangeDocumentQuantity {
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_HydrateEditPayload value) hydrateEditPayload,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_ChangeRegisterDate value) changeRegisterDate,
@@ -3071,6 +3833,7 @@ class _$ChangeDocumentQuantityImpl implements _ChangeDocumentQuantity {
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -3099,6 +3862,7 @@ class _$ChangeDocumentQuantityImpl implements _ChangeDocumentQuantity {
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -3207,6 +3971,14 @@ class _$ChangeDocumentTotalPageImpl implements _ChangeDocumentTotalPage {
     required TResult Function() initAdd,
     required TResult Function(int id) initDetail,
     required TResult Function(int id) initEdit,
+    required TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)
+        hydrateEditPayload,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() loadFormOptions,
@@ -3236,6 +4008,14 @@ class _$ChangeDocumentTotalPageImpl implements _ChangeDocumentTotalPage {
     TResult? Function()? initAdd,
     TResult? Function(int id)? initDetail,
     TResult? Function(int id)? initEdit,
+    TResult? Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? loadFormOptions,
     TResult? Function(DateTime registerDate)? changeRegisterDate,
@@ -3264,6 +4044,14 @@ class _$ChangeDocumentTotalPageImpl implements _ChangeDocumentTotalPage {
     TResult Function()? initAdd,
     TResult Function(int id)? initDetail,
     TResult Function(int id)? initEdit,
+    TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? loadFormOptions,
     TResult Function(DateTime registerDate)? changeRegisterDate,
@@ -3296,6 +4084,7 @@ class _$ChangeDocumentTotalPageImpl implements _ChangeDocumentTotalPage {
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_HydrateEditPayload value) hydrateEditPayload,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_ChangeRegisterDate value) changeRegisterDate,
@@ -3326,6 +4115,7 @@ class _$ChangeDocumentTotalPageImpl implements _ChangeDocumentTotalPage {
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -3354,6 +4144,7 @@ class _$ChangeDocumentTotalPageImpl implements _ChangeDocumentTotalPage {
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -3467,6 +4258,14 @@ class _$ChangeApprovedImpl implements _ChangeApproved {
     required TResult Function() initAdd,
     required TResult Function(int id) initDetail,
     required TResult Function(int id) initEdit,
+    required TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)
+        hydrateEditPayload,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() loadFormOptions,
@@ -3496,6 +4295,14 @@ class _$ChangeApprovedImpl implements _ChangeApproved {
     TResult? Function()? initAdd,
     TResult? Function(int id)? initDetail,
     TResult? Function(int id)? initEdit,
+    TResult? Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? loadFormOptions,
     TResult? Function(DateTime registerDate)? changeRegisterDate,
@@ -3524,6 +4331,14 @@ class _$ChangeApprovedImpl implements _ChangeApproved {
     TResult Function()? initAdd,
     TResult Function(int id)? initDetail,
     TResult Function(int id)? initEdit,
+    TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? loadFormOptions,
     TResult Function(DateTime registerDate)? changeRegisterDate,
@@ -3556,6 +4371,7 @@ class _$ChangeApprovedImpl implements _ChangeApproved {
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_HydrateEditPayload value) hydrateEditPayload,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_ChangeRegisterDate value) changeRegisterDate,
@@ -3586,6 +4402,7 @@ class _$ChangeApprovedImpl implements _ChangeApproved {
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -3614,6 +4431,7 @@ class _$ChangeApprovedImpl implements _ChangeApproved {
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -3728,6 +4546,14 @@ class _$ChangeEmployeeSignImpl implements _ChangeEmployeeSign {
     required TResult Function() initAdd,
     required TResult Function(int id) initDetail,
     required TResult Function(int id) initEdit,
+    required TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)
+        hydrateEditPayload,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() loadFormOptions,
@@ -3757,6 +4583,14 @@ class _$ChangeEmployeeSignImpl implements _ChangeEmployeeSign {
     TResult? Function()? initAdd,
     TResult? Function(int id)? initDetail,
     TResult? Function(int id)? initEdit,
+    TResult? Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? loadFormOptions,
     TResult? Function(DateTime registerDate)? changeRegisterDate,
@@ -3785,6 +4619,14 @@ class _$ChangeEmployeeSignImpl implements _ChangeEmployeeSign {
     TResult Function()? initAdd,
     TResult Function(int id)? initDetail,
     TResult Function(int id)? initEdit,
+    TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? loadFormOptions,
     TResult Function(DateTime registerDate)? changeRegisterDate,
@@ -3817,6 +4659,7 @@ class _$ChangeEmployeeSignImpl implements _ChangeEmployeeSign {
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_HydrateEditPayload value) hydrateEditPayload,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_ChangeRegisterDate value) changeRegisterDate,
@@ -3847,6 +4690,7 @@ class _$ChangeEmployeeSignImpl implements _ChangeEmployeeSign {
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -3875,6 +4719,7 @@ class _$ChangeEmployeeSignImpl implements _ChangeEmployeeSign {
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -3990,6 +4835,14 @@ class _$ChangeSealRegulationImpl implements _ChangeSealRegulation {
     required TResult Function() initAdd,
     required TResult Function(int id) initDetail,
     required TResult Function(int id) initEdit,
+    required TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)
+        hydrateEditPayload,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() loadFormOptions,
@@ -4019,6 +4872,14 @@ class _$ChangeSealRegulationImpl implements _ChangeSealRegulation {
     TResult? Function()? initAdd,
     TResult? Function(int id)? initDetail,
     TResult? Function(int id)? initEdit,
+    TResult? Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? loadFormOptions,
     TResult? Function(DateTime registerDate)? changeRegisterDate,
@@ -4047,6 +4908,14 @@ class _$ChangeSealRegulationImpl implements _ChangeSealRegulation {
     TResult Function()? initAdd,
     TResult Function(int id)? initDetail,
     TResult Function(int id)? initEdit,
+    TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? loadFormOptions,
     TResult Function(DateTime registerDate)? changeRegisterDate,
@@ -4079,6 +4948,7 @@ class _$ChangeSealRegulationImpl implements _ChangeSealRegulation {
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_HydrateEditPayload value) hydrateEditPayload,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_ChangeRegisterDate value) changeRegisterDate,
@@ -4109,6 +4979,7 @@ class _$ChangeSealRegulationImpl implements _ChangeSealRegulation {
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -4137,6 +5008,7 @@ class _$ChangeSealRegulationImpl implements _ChangeSealRegulation {
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -4252,6 +5124,14 @@ class _$ChangeTaxCompanyImpl implements _ChangeTaxCompany {
     required TResult Function() initAdd,
     required TResult Function(int id) initDetail,
     required TResult Function(int id) initEdit,
+    required TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)
+        hydrateEditPayload,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() loadFormOptions,
@@ -4281,6 +5161,14 @@ class _$ChangeTaxCompanyImpl implements _ChangeTaxCompany {
     TResult? Function()? initAdd,
     TResult? Function(int id)? initDetail,
     TResult? Function(int id)? initEdit,
+    TResult? Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? loadFormOptions,
     TResult? Function(DateTime registerDate)? changeRegisterDate,
@@ -4309,6 +5197,14 @@ class _$ChangeTaxCompanyImpl implements _ChangeTaxCompany {
     TResult Function()? initAdd,
     TResult Function(int id)? initDetail,
     TResult Function(int id)? initEdit,
+    TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? loadFormOptions,
     TResult Function(DateTime registerDate)? changeRegisterDate,
@@ -4341,6 +5237,7 @@ class _$ChangeTaxCompanyImpl implements _ChangeTaxCompany {
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_HydrateEditPayload value) hydrateEditPayload,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_ChangeRegisterDate value) changeRegisterDate,
@@ -4371,6 +5268,7 @@ class _$ChangeTaxCompanyImpl implements _ChangeTaxCompany {
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -4399,6 +5297,7 @@ class _$ChangeTaxCompanyImpl implements _ChangeTaxCompany {
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -4478,6 +5377,14 @@ class _$SubmitStampImpl implements _SubmitStamp {
     required TResult Function() initAdd,
     required TResult Function(int id) initDetail,
     required TResult Function(int id) initEdit,
+    required TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)
+        hydrateEditPayload,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() loadFormOptions,
@@ -4507,6 +5414,14 @@ class _$SubmitStampImpl implements _SubmitStamp {
     TResult? Function()? initAdd,
     TResult? Function(int id)? initDetail,
     TResult? Function(int id)? initEdit,
+    TResult? Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? loadFormOptions,
     TResult? Function(DateTime registerDate)? changeRegisterDate,
@@ -4535,6 +5450,14 @@ class _$SubmitStampImpl implements _SubmitStamp {
     TResult Function()? initAdd,
     TResult Function(int id)? initDetail,
     TResult Function(int id)? initEdit,
+    TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? loadFormOptions,
     TResult Function(DateTime registerDate)? changeRegisterDate,
@@ -4567,6 +5490,7 @@ class _$SubmitStampImpl implements _SubmitStamp {
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_HydrateEditPayload value) hydrateEditPayload,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_ChangeRegisterDate value) changeRegisterDate,
@@ -4597,6 +5521,7 @@ class _$SubmitStampImpl implements _SubmitStamp {
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -4625,6 +5550,7 @@ class _$SubmitStampImpl implements _SubmitStamp {
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -4697,6 +5623,14 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function() initAdd,
     required TResult Function(int id) initDetail,
     required TResult Function(int id) initEdit,
+    required TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)
+        hydrateEditPayload,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() loadFormOptions,
@@ -4726,6 +5660,14 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function()? initAdd,
     TResult? Function(int id)? initDetail,
     TResult? Function(int id)? initEdit,
+    TResult? Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? loadFormOptions,
     TResult? Function(DateTime registerDate)? changeRegisterDate,
@@ -4754,6 +5696,14 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function()? initAdd,
     TResult Function(int id)? initDetail,
     TResult Function(int id)? initEdit,
+    TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? loadFormOptions,
     TResult Function(DateTime registerDate)? changeRegisterDate,
@@ -4786,6 +5736,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_HydrateEditPayload value) hydrateEditPayload,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_ChangeRegisterDate value) changeRegisterDate,
@@ -4816,6 +5767,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -4844,6 +5796,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -4942,6 +5895,14 @@ class _$DeleteStampImpl implements _DeleteStamp {
     required TResult Function() initAdd,
     required TResult Function(int id) initDetail,
     required TResult Function(int id) initEdit,
+    required TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)
+        hydrateEditPayload,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() loadFormOptions,
@@ -4971,6 +5932,14 @@ class _$DeleteStampImpl implements _DeleteStamp {
     TResult? Function()? initAdd,
     TResult? Function(int id)? initDetail,
     TResult? Function(int id)? initEdit,
+    TResult? Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? loadFormOptions,
     TResult? Function(DateTime registerDate)? changeRegisterDate,
@@ -4999,6 +5968,14 @@ class _$DeleteStampImpl implements _DeleteStamp {
     TResult Function()? initAdd,
     TResult Function(int id)? initDetail,
     TResult Function(int id)? initEdit,
+    TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? loadFormOptions,
     TResult Function(DateTime registerDate)? changeRegisterDate,
@@ -5031,6 +6008,7 @@ class _$DeleteStampImpl implements _DeleteStamp {
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_HydrateEditPayload value) hydrateEditPayload,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_ChangeRegisterDate value) changeRegisterDate,
@@ -5061,6 +6039,7 @@ class _$DeleteStampImpl implements _DeleteStamp {
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -5089,6 +6068,7 @@ class _$DeleteStampImpl implements _DeleteStamp {
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -5166,6 +6146,14 @@ class _$ClearDeleteStateImpl implements _ClearDeleteState {
     required TResult Function() initAdd,
     required TResult Function(int id) initDetail,
     required TResult Function(int id) initEdit,
+    required TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)
+        hydrateEditPayload,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() loadFormOptions,
@@ -5195,6 +6183,14 @@ class _$ClearDeleteStateImpl implements _ClearDeleteState {
     TResult? Function()? initAdd,
     TResult? Function(int id)? initDetail,
     TResult? Function(int id)? initEdit,
+    TResult? Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? loadFormOptions,
     TResult? Function(DateTime registerDate)? changeRegisterDate,
@@ -5223,6 +6219,14 @@ class _$ClearDeleteStateImpl implements _ClearDeleteState {
     TResult Function()? initAdd,
     TResult Function(int id)? initDetail,
     TResult Function(int id)? initEdit,
+    TResult Function(
+            StampItem? item,
+            StampDetailItem? detail,
+            List<AssignerStampItem> employees,
+            List<SealItem> sealRegulations,
+            List<DocumentStampItem> documentTypes,
+            List<CompanyStampItem> taxCompanies)?
+        hydrateEditPayload,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? loadFormOptions,
     TResult Function(DateTime registerDate)? changeRegisterDate,
@@ -5255,6 +6259,7 @@ class _$ClearDeleteStateImpl implements _ClearDeleteState {
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_HydrateEditPayload value) hydrateEditPayload,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_ChangeRegisterDate value) changeRegisterDate,
@@ -5285,6 +6290,7 @@ class _$ClearDeleteStateImpl implements _ClearDeleteState {
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_ChangeRegisterDate value)? changeRegisterDate,
@@ -5313,6 +6319,7 @@ class _$ClearDeleteStateImpl implements _ClearDeleteState {
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_HydrateEditPayload value)? hydrateEditPayload,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_ChangeRegisterDate value)? changeRegisterDate,

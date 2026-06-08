@@ -10,6 +10,15 @@ class StampEvent with _$StampEvent {
 
   const factory StampEvent.initEdit({required int id}) = _InitEdit;
 
+  const factory StampEvent.hydrateEditPayload({
+    StampItem? item,
+    StampDetailItem? detail,
+    @Default(<AssignerStampItem>[]) List<AssignerStampItem> employees,
+    @Default(<SealItem>[]) List<SealItem> sealRegulations,
+    @Default(<DocumentStampItem>[]) List<DocumentStampItem> documentTypes,
+    @Default(<CompanyStampItem>[]) List<CompanyStampItem> taxCompanies,
+  }) = _HydrateEditPayload;
+
   const factory StampEvent.changeDateRange({
     required DateTime dateStart,
     required DateTime dateEnd,

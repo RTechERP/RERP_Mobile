@@ -41,6 +41,93 @@ class StampItem with _$StampItem {
 }
 
 @freezed
+class StampDetailItem with _$StampDetailItem {
+  const factory StampDetailItem({
+    StampItem? tracking,
+    List<StampTrackingSealItem>? seals,
+    List<StampTrackingTaxItem>? taxs,
+    List<Map<String, dynamic>>? files,
+    StampTrackingEmployeeItem? employee,
+    StampTrackingDepartmentItem? department,
+  }) = _StampDetailItem;
+
+  factory StampDetailItem.fromJson(Map<String, dynamic> json) =>
+      _$StampDetailItemFromJson(json);
+}
+
+@freezed
+class StampRoutePayload with _$StampRoutePayload {
+  const factory StampRoutePayload({
+    StampItem? item,
+    StampDetailItem? detail,
+    @Default(<AssignerStampItem>[]) List<AssignerStampItem> employees,
+    @Default(<SealItem>[]) List<SealItem> sealRegulations,
+    @Default(<DocumentStampItem>[]) List<DocumentStampItem> documentTypes,
+    @Default(<CompanyStampItem>[]) List<CompanyStampItem> taxCompanies,
+  }) = _StampRoutePayload;
+
+  factory StampRoutePayload.fromJson(Map<String, dynamic> json) =>
+      _$StampRoutePayloadFromJson(json);
+}
+
+@freezed
+class StampTrackingSealItem with _$StampTrackingSealItem {
+  const factory StampTrackingSealItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'TrackingMartkID') int? trackingMartkId,
+    @JsonKey(name: 'SealID') int? sealId,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+  }) = _StampTrackingSealItem;
+
+  factory StampTrackingSealItem.fromJson(Map<String, dynamic> json) =>
+      _$StampTrackingSealItemFromJson(json);
+}
+
+@freezed
+class StampTrackingTaxItem with _$StampTrackingTaxItem {
+  const factory StampTrackingTaxItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'TrackingMartkID') int? trackingMartkId,
+    @JsonKey(name: 'TaxCompanyID') int? taxCompanyId,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+  }) = _StampTrackingTaxItem;
+
+  factory StampTrackingTaxItem.fromJson(Map<String, dynamic> json) =>
+      _$StampTrackingTaxItemFromJson(json);
+}
+
+@freezed
+class StampTrackingEmployeeItem with _$StampTrackingEmployeeItem {
+  const factory StampTrackingEmployeeItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'DepartmentID') int? departmentId,
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'FullName') String? fullName,
+  }) = _StampTrackingEmployeeItem;
+
+  factory StampTrackingEmployeeItem.fromJson(Map<String, dynamic> json) =>
+      _$StampTrackingEmployeeItemFromJson(json);
+}
+
+@freezed
+class StampTrackingDepartmentItem with _$StampTrackingDepartmentItem {
+  const factory StampTrackingDepartmentItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'Name') String? name,
+  }) = _StampTrackingDepartmentItem;
+
+  factory StampTrackingDepartmentItem.fromJson(Map<String, dynamic> json) =>
+      _$StampTrackingDepartmentItemFromJson(json);
+}
+
+@freezed
 class SealItem with _$SealItem {
   const factory SealItem({
     @JsonKey(name: 'ID') int? id,
