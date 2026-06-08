@@ -7,8 +7,8 @@ part 'work_trip_model.g.dart';
 class WorkTripItem with _$WorkTripItem {
   const factory WorkTripItem({
     @JsonKey(name: 'ID') required int id,
-    @JsonKey(name: 'IsApprovedTBP') int? isApprovedTbp,
-    @JsonKey(name: 'IsApprovedHR') int? isApprovedHr,
+    @JsonKey(name: 'IsApprovedTBP') bool? isApprovedTbp,
+    @JsonKey(name: 'IsApprovedHR') bool? isApprovedHr,
     @JsonKey(name: 'IsApprovedText') String? isApprovedText,
     @JsonKey(name: 'EmployeeName') String? employeeName,
     @JsonKey(name: 'ApprovedName') String? approvedName,

@@ -9,8 +9,8 @@ part of 'work_trip_model.dart';
 _$WorkTripItemImpl _$$WorkTripItemImplFromJson(Map<String, dynamic> json) =>
     _$WorkTripItemImpl(
       id: (json['ID'] as num).toInt(),
-      isApprovedTbp: (json['IsApprovedTBP'] as num?)?.toInt(),
-      isApprovedHr: (json['IsApprovedHR'] as num?)?.toInt(),
+      isApprovedTbp: json['IsApprovedTBP'] as bool?,
+      isApprovedHr: json['IsApprovedHR'] as bool?,
       isApprovedText: json['IsApprovedText'] as String?,
       employeeName: json['EmployeeName'] as String?,
       approvedName: json['ApprovedName'] as String?,
