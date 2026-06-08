@@ -28,6 +28,7 @@ const Set<String> kBookingVehicleFormFieldNames = {
   'pickup_address_text',
   'approver',
   'approver_text',
+  'approver_field',
   'problem_rule_reason',
 };
 

@@ -684,6 +684,8 @@ class _BookingVehicleAddScreenState
                                                     title: 'Chọn người duyệt',
                                                     items: bvState.approver,
                                                     onSelected: (item) {
+                                                      final approverName =
+                                                          item.fullName ?? '';
                                                       bloc.add(
                                                         BookingVehicleEvent.selectApprover(
                                                           employeeId: item.employeeId ?? 0,
@@ -691,17 +693,22 @@ class _BookingVehicleAddScreenState
                                                       );
                                                       _formKey.currentState
                                                           ?.patchValue({
+                                                        'approver':
+                                                            (item.employeeId ?? 0)
+                                                                .toString(),
                                                         'approver_text':
-                                                            '${item.code ?? ''} - ${item.fullName ?? ''}',
+                                                            approverName,
+                                                        'approver_field':
+                                                            approverName,
                                                       });
                                                     },
                                                     displayText: (item) =>
-                                                        '${item.code ?? ''} - ${item.fullName ?? ''}',
+                                                        item.fullName ?? '',
                                                   );
                                                 },
                                                 child: AbsorbPointer(
                                                   child: FormBuilderField<String>(
-                                                    name: 'approver_field',
+                                                    name: 'approver',
                                                     validator:
                                                         FormBuilderValidators.required(
                                                           errorText:
@@ -709,7 +716,8 @@ class _BookingVehicleAddScreenState
                                                         ),
                                                     builder: (field) {
                                                       return FormInputField(
-                                                        nameForm: 'approver',
+                                                        nameForm:
+                                                            'approver_field',
                                                         nameTextField:
                                                             'approver_text',
                                                         label: 'Người duyệt',

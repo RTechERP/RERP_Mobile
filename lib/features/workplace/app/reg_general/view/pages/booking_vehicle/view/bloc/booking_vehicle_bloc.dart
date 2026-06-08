@@ -874,7 +874,9 @@ class BookingVehicleBloc
       }
     }
 
-    final approvedTBP = state.selectedApproverEmployeeId ?? 0;
+    final approvedTBP =
+        state.selectedApproverEmployeeId ??
+        bookingVehicleParseApproverId(formValues['approver']);
     final timeNeedPresent = bookingVehicleParseFormDateTime(
       formValues['time_need_present'],
     );
@@ -1031,7 +1033,9 @@ class BookingVehicleBloc
       }
     }
 
-    final approvedTBP = state.selectedApproverEmployeeId ?? 0;
+    final approvedTBP =
+        state.selectedApproverEmployeeId ??
+        bookingVehicleParseApproverId(formValues['approver']);
     final timeNeedPresent = bookingVehicleParseFormDateTime(
       formValues['time_need_present'],
     );
@@ -1273,7 +1277,9 @@ class BookingVehicleBloc
       }
     }
 
-    final approvedTBP = state.selectedApproverEmployeeId ?? 0;
+    final approvedTBP =
+        state.selectedApproverEmployeeId ??
+        bookingVehicleParseApproverId(formValues['approver']);
     final timeNeedPresent = bookingVehicleParseFormDateTime(
       formValues['time_need_present'],
     );
@@ -1586,7 +1592,9 @@ class BookingVehicleBloc
       }
       }
 
-    final approvedTBP = state.selectedApproverEmployeeId ?? 0;
+    final approvedTBP =
+        state.selectedApproverEmployeeId ??
+        bookingVehicleParseApproverId(formValues['approver']);
     final timeNeedPresent = bookingVehicleParseFormDateTime(
       formValues['pickup_need_arrive_time'],
     );
