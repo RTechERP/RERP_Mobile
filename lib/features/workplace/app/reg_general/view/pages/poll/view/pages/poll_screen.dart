@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../../base/widgets/base_scaffold.dart';
@@ -7,6 +8,7 @@ import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/constants/index.dart';
 import '../../../../../../../../../common/utils/navigation/navigation_utils.dart';
+import '../../../../../../../../../routes/route_names.dart';
 import '../../data/datasource/models/poll_model.dart';
 import '../bloc/poll_bloc.dart';
 import '../widgets/poll_card.dart';
@@ -118,17 +120,20 @@ class _PollScreenState
               physics: const AlwaysScrollableScrollPhysics(),
               padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
               children: [
-                _PollOverviewHeader(
-                  totalCount: visiblePolls.length,
-                  openCount: openCount,
-                ),
-                const SizedBox(height: 16),
+                // _PollOverviewHeader(
+                //   totalCount: visiblePolls.length,
+                //   openCount: openCount,
+                // ),
+                // const SizedBox(height: 16),
                 ...visiblePolls.map(
                   (item) => Padding(
                     padding: const EdgeInsets.only(bottom: 14),
                     child: PollCard(
                       item: item,
-                      onTap: () {},
+                      onTap: () => context.push(
+                        RouteNames.pollDetail,
+                        extra: item,
+                      ),
                     ),
                   ),
                 ),

@@ -3,16 +3,11 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../../../../../../common/app/app_config.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../data/datasource/models/poll_model.dart';
 
 class PollCard extends StatelessWidget {
-  const PollCard({
-    super.key,
-    required this.item,
-    required this.onTap,
-  });
+  const PollCard({super.key, required this.item, required this.onTap});
 
   final PollItem item;
   final VoidCallback onTap;
@@ -48,7 +43,8 @@ class PollCard extends StatelessWidget {
       return path;
     }
 
-    final baseUrl = AppConfig.baseUrl.trim();
+    // final baseUrl = AppConfig.baseUrl.trim();
+    final baseUrl = 'https://erp.rtc.edu.vn/api/api';
     if (baseUrl.isEmpty) return path;
 
     var normalizedBaseUrl = baseUrl.endsWith('/')
@@ -254,18 +250,12 @@ class PollCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppColors.warning.withValues(alpha: 0.12),
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-            color: AppColors.warning.withValues(alpha: 0.3),
-          ),
+          border: Border.all(color: AppColors.warning.withValues(alpha: 0.3)),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              Icons.schedule_rounded,
-              size: 12,
-              color: AppColors.warning,
-            ),
+            Icon(Icons.schedule_rounded, size: 12, color: AppColors.warning),
             const SizedBox(width: 5),
             Text(
               'Sắp diễn ra',
@@ -314,9 +304,7 @@ class PollCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.white.withValues(alpha: 0.36),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: AppColors.white.withValues(alpha: 0.38),
-        ),
+        border: Border.all(color: AppColors.white.withValues(alpha: 0.38)),
       ),
       child: Text(
         item.description!.trim(),
@@ -333,12 +321,8 @@ class PollCard extends StatelessWidget {
   }
 
   Widget _buildChips() {
-    return Wrap(
-      alignment: WrapAlignment.center,
-      runAlignment: WrapAlignment.center,
-      crossAxisAlignment: WrapCrossAlignment.center,
-      spacing: 12,
-      runSpacing: 12,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         _InfoChip(
           icon: Icons.play_circle_outline_rounded,
@@ -348,6 +332,7 @@ class PollCard extends StatelessWidget {
           iconColor: const Color(0xFF2E7D32),
           textColor: const Color(0xFF2E7D32),
         ),
+        const SizedBox(width: 12),
         _InfoChip(
           icon: Icons.event_available_rounded,
           label: _endDateLabel,
@@ -418,7 +403,10 @@ class _InfoChip extends StatelessWidget {
 }
 
 class _PollCardBackground extends StatelessWidget {
-  const _PollCardBackground({required this.imageUrl, required this.accentColor});
+  const _PollCardBackground({
+    required this.imageUrl,
+    required this.accentColor,
+  });
 
   final String? imageUrl;
   final Color accentColor;

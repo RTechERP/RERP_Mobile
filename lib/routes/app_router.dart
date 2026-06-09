@@ -47,7 +47,9 @@ import '../features/workplace/app/reg_general/view/pages/personal_assets/view/bl
 import '../features/workplace/app/reg_general/view/pages/personal_assets/view/pages/personal_asset_detail_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/personal_assets/view/pages/personal_asset_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/personal_assets/view/pages/personal_property_detail_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/poll/data/datasource/models/poll_model.dart';
 import '../features/workplace/app/reg_general/view/pages/poll/view/bloc/poll_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/poll/view/pages/poll_detail_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/poll/view/pages/poll_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/stationery/data/datasource/models/stationery_model.dart';
 import '../features/workplace/app/reg_general/view/pages/stationery/stationery_edit_route_args.dart';
@@ -1235,7 +1237,19 @@ class AppRouter {
           GoRoute(
             path: RouteNames.poll,
             builder: (context, state) => const PollScreen(),
-          )],),
+          ),
+          GoRoute(
+            path: RouteNames.pollDetail,
+            builder: (context, state) {
+              final item = state.extra;
+              if (item is! PollItem) {
+                return const PollScreen();
+              }
+              return PollDetailScreen(item: item);
+            },
+          ),
+        ],
+      ),
     ],
   );
 }

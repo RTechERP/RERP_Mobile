@@ -13,6 +13,16 @@ abstract class _$PollStateCWProxy {
 
   PollState polls(List<PollItem> polls);
 
+  PollState isDetailLoading(bool isDetailLoading);
+
+  PollState detailItem(PollItem? detailItem);
+
+  PollState detailData(PollDetailItem? detailData);
+
+  PollState detailMessage(String? detailMessage);
+
+  PollState questionReadonlyMap(Map<int, bool> questionReadonlyMap);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PollState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -23,6 +33,11 @@ abstract class _$PollStateCWProxy {
     BaseStateStatus? status,
     String? message,
     List<PollItem>? polls,
+    bool? isDetailLoading,
+    PollItem? detailItem,
+    PollDetailItem? detailData,
+    String? detailMessage,
+    Map<int, bool>? questionReadonlyMap,
   });
 }
 
@@ -42,6 +57,25 @@ class _$PollStateCWProxyImpl implements _$PollStateCWProxy {
   PollState polls(List<PollItem> polls) => this(polls: polls);
 
   @override
+  PollState isDetailLoading(bool isDetailLoading) =>
+      this(isDetailLoading: isDetailLoading);
+
+  @override
+  PollState detailItem(PollItem? detailItem) => this(detailItem: detailItem);
+
+  @override
+  PollState detailData(PollDetailItem? detailData) =>
+      this(detailData: detailData);
+
+  @override
+  PollState detailMessage(String? detailMessage) =>
+      this(detailMessage: detailMessage);
+
+  @override
+  PollState questionReadonlyMap(Map<int, bool> questionReadonlyMap) =>
+      this(questionReadonlyMap: questionReadonlyMap);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PollState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -53,6 +87,11 @@ class _$PollStateCWProxyImpl implements _$PollStateCWProxy {
     Object? status = const $CopyWithPlaceholder(),
     Object? message = const $CopyWithPlaceholder(),
     Object? polls = const $CopyWithPlaceholder(),
+    Object? isDetailLoading = const $CopyWithPlaceholder(),
+    Object? detailItem = const $CopyWithPlaceholder(),
+    Object? detailData = const $CopyWithPlaceholder(),
+    Object? detailMessage = const $CopyWithPlaceholder(),
+    Object? questionReadonlyMap = const $CopyWithPlaceholder(),
   }) {
     return PollState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -67,6 +106,29 @@ class _$PollStateCWProxyImpl implements _$PollStateCWProxy {
           ? _value.polls
           // ignore: cast_nullable_to_non_nullable
           : polls as List<PollItem>,
+      isDetailLoading: isDetailLoading == const $CopyWithPlaceholder() ||
+              isDetailLoading == null
+          ? _value.isDetailLoading
+          // ignore: cast_nullable_to_non_nullable
+          : isDetailLoading as bool,
+      detailItem: detailItem == const $CopyWithPlaceholder()
+          ? _value.detailItem
+          // ignore: cast_nullable_to_non_nullable
+          : detailItem as PollItem?,
+      detailData: detailData == const $CopyWithPlaceholder()
+          ? _value.detailData
+          // ignore: cast_nullable_to_non_nullable
+          : detailData as PollDetailItem?,
+      detailMessage: detailMessage == const $CopyWithPlaceholder()
+          ? _value.detailMessage
+          // ignore: cast_nullable_to_non_nullable
+          : detailMessage as String?,
+      questionReadonlyMap:
+          questionReadonlyMap == const $CopyWithPlaceholder() ||
+                  questionReadonlyMap == null
+              ? _value.questionReadonlyMap
+              // ignore: cast_nullable_to_non_nullable
+              : questionReadonlyMap as Map<int, bool>,
     );
   }
 }

@@ -20,18 +20,24 @@ mixin _$PollEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() refresh,
+    required TResult Function(PollItem item) initDetail,
+    required TResult Function() refreshDetail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? refresh,
+    TResult? Function(PollItem item)? initDetail,
+    TResult? Function()? refreshDetail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? refresh,
+    TResult Function(PollItem item)? initDetail,
+    TResult Function()? refreshDetail,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +45,24 @@ mixin _$PollEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_Refresh value) refresh,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_RefreshDetail value) refreshDetail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_RefreshDetail value)? refreshDetail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_Refresh value)? refresh,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_RefreshDetail value)? refreshDetail,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -112,6 +124,8 @@ class _$InitImpl implements _Init {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() refresh,
+    required TResult Function(PollItem item) initDetail,
+    required TResult Function() refreshDetail,
   }) {
     return init();
   }
@@ -121,6 +135,8 @@ class _$InitImpl implements _Init {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? refresh,
+    TResult? Function(PollItem item)? initDetail,
+    TResult? Function()? refreshDetail,
   }) {
     return init?.call();
   }
@@ -130,6 +146,8 @@ class _$InitImpl implements _Init {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? refresh,
+    TResult Function(PollItem item)? initDetail,
+    TResult Function()? refreshDetail,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -143,6 +161,8 @@ class _$InitImpl implements _Init {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_Refresh value) refresh,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_RefreshDetail value) refreshDetail,
   }) {
     return init(this);
   }
@@ -152,6 +172,8 @@ class _$InitImpl implements _Init {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_RefreshDetail value)? refreshDetail,
   }) {
     return init?.call(this);
   }
@@ -161,6 +183,8 @@ class _$InitImpl implements _Init {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_Refresh value)? refresh,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_RefreshDetail value)? refreshDetail,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -214,6 +238,8 @@ class _$RefreshImpl implements _Refresh {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() refresh,
+    required TResult Function(PollItem item) initDetail,
+    required TResult Function() refreshDetail,
   }) {
     return refresh();
   }
@@ -223,6 +249,8 @@ class _$RefreshImpl implements _Refresh {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? refresh,
+    TResult? Function(PollItem item)? initDetail,
+    TResult? Function()? refreshDetail,
   }) {
     return refresh?.call();
   }
@@ -232,6 +260,8 @@ class _$RefreshImpl implements _Refresh {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? refresh,
+    TResult Function(PollItem item)? initDetail,
+    TResult Function()? refreshDetail,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -245,6 +275,8 @@ class _$RefreshImpl implements _Refresh {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_Refresh value) refresh,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_RefreshDetail value) refreshDetail,
   }) {
     return refresh(this);
   }
@@ -254,6 +286,8 @@ class _$RefreshImpl implements _Refresh {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_RefreshDetail value)? refreshDetail,
   }) {
     return refresh?.call(this);
   }
@@ -263,6 +297,8 @@ class _$RefreshImpl implements _Refresh {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_Refresh value)? refresh,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_RefreshDetail value)? refreshDetail,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -274,4 +310,273 @@ class _$RefreshImpl implements _Refresh {
 
 abstract class _Refresh implements PollEvent {
   const factory _Refresh() = _$RefreshImpl;
+}
+
+/// @nodoc
+abstract class _$$InitDetailImplCopyWith<$Res> {
+  factory _$$InitDetailImplCopyWith(
+          _$InitDetailImpl value, $Res Function(_$InitDetailImpl) then) =
+      __$$InitDetailImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({PollItem item});
+
+  $PollItemCopyWith<$Res> get item;
+}
+
+/// @nodoc
+class __$$InitDetailImplCopyWithImpl<$Res>
+    extends _$PollEventCopyWithImpl<$Res, _$InitDetailImpl>
+    implements _$$InitDetailImplCopyWith<$Res> {
+  __$$InitDetailImplCopyWithImpl(
+      _$InitDetailImpl _value, $Res Function(_$InitDetailImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? item = null,
+  }) {
+    return _then(_$InitDetailImpl(
+      null == item
+          ? _value.item
+          : item // ignore: cast_nullable_to_non_nullable
+              as PollItem,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PollItemCopyWith<$Res> get item {
+    return $PollItemCopyWith<$Res>(_value.item, (value) {
+      return _then(_value.copyWith(item: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$InitDetailImpl implements _InitDetail {
+  const _$InitDetailImpl(this.item);
+
+  @override
+  final PollItem item;
+
+  @override
+  String toString() {
+    return 'PollEvent.initDetail(item: $item)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InitDetailImpl &&
+            (identical(other.item, item) || other.item == item));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, item);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitDetailImplCopyWith<_$InitDetailImpl> get copyWith =>
+      __$$InitDetailImplCopyWithImpl<_$InitDetailImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() refresh,
+    required TResult Function(PollItem item) initDetail,
+    required TResult Function() refreshDetail,
+  }) {
+    return initDetail(item);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? refresh,
+    TResult? Function(PollItem item)? initDetail,
+    TResult? Function()? refreshDetail,
+  }) {
+    return initDetail?.call(item);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? refresh,
+    TResult Function(PollItem item)? initDetail,
+    TResult Function()? refreshDetail,
+    required TResult orElse(),
+  }) {
+    if (initDetail != null) {
+      return initDetail(item);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_RefreshDetail value) refreshDetail,
+  }) {
+    return initDetail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_RefreshDetail value)? refreshDetail,
+  }) {
+    return initDetail?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_RefreshDetail value)? refreshDetail,
+    required TResult orElse(),
+  }) {
+    if (initDetail != null) {
+      return initDetail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InitDetail implements PollEvent {
+  const factory _InitDetail(final PollItem item) = _$InitDetailImpl;
+
+  PollItem get item;
+  @JsonKey(ignore: true)
+  _$$InitDetailImplCopyWith<_$InitDetailImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RefreshDetailImplCopyWith<$Res> {
+  factory _$$RefreshDetailImplCopyWith(
+          _$RefreshDetailImpl value, $Res Function(_$RefreshDetailImpl) then) =
+      __$$RefreshDetailImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$RefreshDetailImplCopyWithImpl<$Res>
+    extends _$PollEventCopyWithImpl<$Res, _$RefreshDetailImpl>
+    implements _$$RefreshDetailImplCopyWith<$Res> {
+  __$$RefreshDetailImplCopyWithImpl(
+      _$RefreshDetailImpl _value, $Res Function(_$RefreshDetailImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$RefreshDetailImpl implements _RefreshDetail {
+  const _$RefreshDetailImpl();
+
+  @override
+  String toString() {
+    return 'PollEvent.refreshDetail()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$RefreshDetailImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() refresh,
+    required TResult Function(PollItem item) initDetail,
+    required TResult Function() refreshDetail,
+  }) {
+    return refreshDetail();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? refresh,
+    TResult? Function(PollItem item)? initDetail,
+    TResult? Function()? refreshDetail,
+  }) {
+    return refreshDetail?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? refresh,
+    TResult Function(PollItem item)? initDetail,
+    TResult Function()? refreshDetail,
+    required TResult orElse(),
+  }) {
+    if (refreshDetail != null) {
+      return refreshDetail();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_RefreshDetail value) refreshDetail,
+  }) {
+    return refreshDetail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_RefreshDetail value)? refreshDetail,
+  }) {
+    return refreshDetail?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_RefreshDetail value)? refreshDetail,
+    required TResult orElse(),
+  }) {
+    if (refreshDetail != null) {
+      return refreshDetail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RefreshDetail implements PollEvent {
+  const factory _RefreshDetail() = _$RefreshDetailImpl;
 }
