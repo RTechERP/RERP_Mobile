@@ -21,10 +21,62 @@ class PollDetailScreen extends StatefulWidget {
 
 class _PollDetailScreenState
     extends BaseState<PollDetailScreen, PollEvent, PollState, PollBloc> {
+  Map<String, String?> _liveFieldValueMap = const {};
+  int? _selectedSectionId;
+
   @override
   void initState() {
     super.initState();
     bloc.add(PollEvent.initDetail(widget.item));
+  }
+
+  void _onAnswerChanged(String fieldKey, String? value) {
+    final normalizedKey = fieldKey.trim();
+    if (normalizedKey.isEmpty) return;
+
+    final normalizedValue = value?.trim();
+    final nextValue = normalizedValue == null || normalizedValue.isEmpty
+        ? null
+        : normalizedValue;
+
+    if (_liveFieldValueMap[normalizedKey] == nextValue) return;
+
+    setState(() {
+      _liveFieldValueMap = {
+        ..._liveFieldValueMap,
+        normalizedKey: nextValue,
+      };
+    });
+  }
+
+  void _onSectionSelected(int? sectionId) {
+    if (_selectedSectionId == sectionId) return;
+    setState(() => _selectedSectionId = sectionId);
+  }
+
+  int? _resolveSelectedSectionId(List<_SurveySectionData> sections) {
+    if (sections.isEmpty) return null;
+
+    final hasSelectedSection = sections.any((section) => section.id == _selectedSectionId);
+    if (hasSelectedSection) return _selectedSectionId;
+
+    return sections.first.id;
+  }
+
+  bool _hasTriggeredDependentSection(PollDetailItem detail) {
+    final allSections = detail.sections ?? const <PollSectionItem>[];
+    if (allSections.isEmpty) return false;
+
+    final fieldValueMap = {
+      ...PollDetailHelpers.buildFieldValueMap(detail),
+      ..._liveFieldValueMap,
+    };
+
+    return allSections.any((section) {
+      final questions = section.questions ?? const <PollQuestionItem>[];
+      if (questions.isEmpty) return false;
+      return PollDetailHelpers.evaluateShowIf(section.showIfJson, fieldValueMap);
+    });
   }
 
   @override
@@ -67,7 +119,20 @@ class _PollDetailScreenState
           final accentColor = _parseColor(
             detail.titleColor ?? widget.item.titleColor,
           );
-          final surveySections = _buildSurveySections(detail);
+          final surveySections = _buildSurveySections(
+            detail,
+            liveFieldValueMap: _liveFieldValueMap,
+          );
+          final hasTriggeredDependentSection = _hasTriggeredDependentSection(detail);
+          final rootSection = surveySections.where((section) => section.id == null).firstOrNull;
+          final visibleSections = surveySections.where((section) => section.id != null).toList();
+          final selectedSectionId = _resolveSelectedSectionId(visibleSections);
+          final selectedSection = selectedSectionId == null
+              ? visibleSections.firstOrNull
+              : visibleSections.firstWhere(
+                  (section) => section.id == selectedSectionId,
+                  orElse: () => visibleSections.first,
+                );
 
           return RefreshIndicator(
             color: AppColors.primaryERP,
@@ -100,20 +165,41 @@ class _PollDetailScreenState
                   accentColor: accentColor,
                   titleColorValue: detail.titleColor ?? widget.item.titleColor,
                 ),
-                const SizedBox(height: 16),
-                ...surveySections.asMap().entries.map(
-                  (entry) => Padding(
-                    padding: EdgeInsets.only(top: entry.key == 0 ? 0 : 16),
-                    child: PollDetailSectionCard(
-                      title: entry.value.title,
-                      description: entry.value.description,
-                      questions: entry.value.questions,
-                      backgroundImageUrl: backgroundImageUrl,
-                      accentColor: accentColor,
-                      questionReadonlyMap: state.questionReadonlyMap,
-                    ),
+                if (rootSection != null) ...[
+                  const SizedBox(height: 16),
+                  PollDetailSectionCard(
+                    key: const ValueKey('poll-root-section'),
+                    title: rootSection.title,
+                    description: rootSection.description,
+                    questions: rootSection.questions,
+                    backgroundImageUrl: backgroundImageUrl,
+                    accentColor: accentColor,
+                    questionReadonlyMap: state.questionReadonlyMap,
+                    liveFieldValueMap: _liveFieldValueMap,
+                    onAnswerChanged: _onAnswerChanged,
                   ),
-                ),
+                ],
+                if (hasTriggeredDependentSection && visibleSections.isNotEmpty && selectedSection != null) ...[
+                  const SizedBox(height: 16),
+                  _SectionTabsRow(
+                    sections: visibleSections,
+                    selectedSectionId: selectedSectionId,
+                    accentColor: accentColor,
+                    onSectionSelected: _onSectionSelected,
+                  ),
+                  const SizedBox(height: 16),
+                  PollDetailSectionCard(
+                    key: ValueKey('poll-section-${selectedSection.id}'),
+                    title: selectedSection.title,
+                    description: selectedSection.description,
+                    questions: selectedSection.questions,
+                    backgroundImageUrl: backgroundImageUrl,
+                    accentColor: accentColor,
+                    questionReadonlyMap: state.questionReadonlyMap,
+                    liveFieldValueMap: _liveFieldValueMap,
+                    onAnswerChanged: _onAnswerChanged,
+                  ),
+                ],
               ],
             ),
           );
@@ -122,9 +208,18 @@ class _PollDetailScreenState
     );
   }
 
-  List<_SurveySectionData> _buildSurveySections(PollDetailItem detail) {
+  List<_SurveySectionData> _buildSurveySections(
+    PollDetailItem detail, {
+    Map<String, String?> liveFieldValueMap = const {},
+  }) {
+    final baseFieldValueMap = PollDetailHelpers.buildFieldValueMap(detail);
+    final mergedFieldValueMap = {...baseFieldValueMap, ...liveFieldValueMap};
     final sections = (detail.sections ?? const <PollSectionItem>[])
-        .where((section) => (section.questions ?? const []).isNotEmpty)
+        .where(
+          (section) =>
+              (section.questions ?? const []).isNotEmpty &&
+              PollDetailHelpers.evaluateShowIf(section.showIfJson, mergedFieldValueMap),
+        )
         .toList()
       ..sort((a, b) => (a.sortOrder ?? 0).compareTo(b.sortOrder ?? 0));
     final rootQuestions = (detail.questions ?? const <PollQuestionItem>[]).toList()
@@ -136,6 +231,7 @@ class _PollDetailScreenState
     return [
       if (hasStandaloneQuestions)
         _SurveySectionData(
+          id: null,
           title: null,
           description: null,
           questions: rootQuestions
@@ -144,6 +240,7 @@ class _PollDetailScreenState
         ),
       ...sections.map(
         (section) => _SurveySectionData(
+          id: section.id,
           title: PollDetailHelpers.normalizedOrNull(section.title),
           description: PollDetailHelpers.normalizedOrNull(section.description),
           questions: (section.questions ?? const <PollQuestionItem>[]).toList()
@@ -198,12 +295,129 @@ class _PollDetailScreenState
 
 class _SurveySectionData {
   const _SurveySectionData({
+    required this.id,
     required this.title,
     required this.description,
     required this.questions,
   });
 
+  final int? id;
   final String? title;
   final String? description;
   final List<PollQuestionItem> questions;
+}
+
+class _SectionTabsRow extends StatelessWidget {
+  const _SectionTabsRow({
+    required this.sections,
+    required this.selectedSectionId,
+    required this.accentColor,
+    required this.onSectionSelected,
+  });
+
+  final List<_SurveySectionData> sections;
+  final int? selectedSectionId;
+  final Color accentColor;
+  final ValueChanged<int?> onSectionSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    if (sections.length == 1) {
+      final section = sections.first;
+      final isSelected = section.id == selectedSectionId;
+      final label = section.title?.trim().isNotEmpty == true
+          ? section.title!
+          : 'Section 1';
+
+      return SizedBox(
+        width: double.infinity,
+        child: InkWell(
+          onTap: () => onSectionSelected(section.id),
+          borderRadius: BorderRadius.circular(999),
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 180),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            decoration: BoxDecoration(
+              color: isSelected ? accentColor : Colors.white,
+              borderRadius: BorderRadius.circular(999),
+              border: Border.all(
+                color: isSelected
+                    ? accentColor
+                    : AppColors.secondaryERP.withValues(alpha: 0.18),
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.secondaryERP.withValues(alpha: isSelected ? 0.16 : 0.05),
+                  blurRadius: isSelected ? 16 : 10,
+                  offset: const Offset(0, 6),
+                ),
+              ],
+            ),
+            child: Center(
+              child: Text(
+                label,
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  color: isSelected ? Colors.white : AppColors.heading,
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      physics: const BouncingScrollPhysics(),
+      child: Row(
+        children: sections.asMap().entries.map((entry) {
+          final section = entry.value;
+          final isSelected = section.id == selectedSectionId;
+          final label = section.title?.trim().isNotEmpty == true
+              ? section.title!
+              : 'Section ${entry.key + 1}';
+
+          return Padding(
+            padding: EdgeInsets.only(right: entry.key == sections.length - 1 ? 0 : 10),
+            child: InkWell(
+              onTap: () => onSectionSelected(section.id),
+              borderRadius: BorderRadius.circular(999),
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 180),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                decoration: BoxDecoration(
+                  color: isSelected
+                      ? accentColor
+                      : Colors.white,
+                  borderRadius: BorderRadius.circular(999),
+                  border: Border.all(
+                    color: isSelected
+                        ? accentColor
+                        : AppColors.secondaryERP.withValues(alpha: 0.18),
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.secondaryERP.withValues(alpha: isSelected ? 0.16 : 0.05),
+                      blurRadius: isSelected ? 16 : 10,
+                      offset: const Offset(0, 6),
+                    ),
+                  ],
+                ),
+                child: Text(
+                  label,
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                    color: isSelected ? Colors.white : AppColors.heading,
+                  ),
+                ),
+              ),
+            ),
+          );
+        }).toList(),
+      ),
+    );
+  }
 }

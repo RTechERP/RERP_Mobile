@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../../../../common/app_theme/index.dart';
@@ -224,6 +225,8 @@ class PollDetailSectionCard extends StatelessWidget {
     required this.backgroundImageUrl,
     required this.accentColor,
     required this.questionReadonlyMap,
+    required this.liveFieldValueMap,
+    required this.onAnswerChanged,
   });
 
   final String? title;
@@ -232,6 +235,8 @@ class PollDetailSectionCard extends StatelessWidget {
   final String? backgroundImageUrl;
   final Color accentColor;
   final Map<int, bool> questionReadonlyMap;
+  final Map<String, String?> liveFieldValueMap;
+  final void Function(String fieldKey, String? value) onAnswerChanged;
 
   bool get _hasSectionHeader =>
       (title?.trim().isNotEmpty == true) || (description?.trim().isNotEmpty == true);
@@ -312,6 +317,8 @@ class PollDetailSectionCard extends StatelessWidget {
                     question: question,
                     readonly: readonly,
                     displayOrder: question.sortOrder ?? index + 1,
+                    liveFieldValueMap: liveFieldValueMap,
+                    onAnswerChanged: onAnswerChanged,
                   ),
                 );
               }).toList(),
@@ -329,11 +336,15 @@ class PollQuestionReadonlyCard extends StatefulWidget {
     required this.question,
     required this.readonly,
     required this.displayOrder,
+    required this.liveFieldValueMap,
+    required this.onAnswerChanged,
   });
 
   final PollQuestionItem question;
   final bool readonly;
   final int displayOrder;
+  final Map<String, String?> liveFieldValueMap;
+  final void Function(String fieldKey, String? value) onAnswerChanged;
 
   @override
   State<PollQuestionReadonlyCard> createState() => _PollQuestionReadonlyCardState();
@@ -343,28 +354,31 @@ class _PollQuestionReadonlyCardState extends State<PollQuestionReadonlyCard> {
   late Set<String> _selectedValues;
   late TextEditingController _textController;
   DateTime? _selectedDate;
+  String? _lastNotifiedValue;
 
   @override
   void initState() {
     super.initState();
-    _selectedValues = PollDetailHelpers.extractSelectedValuesFromConfig(
-      widget.question.configJson,
-    );
+    _selectedValues = _resolveSelectedValues(widget.question);
     _textController = TextEditingController(
-      text: _buildInitialTextValue(widget.question),
+      text: _buildResolvedTextValue(widget.question),
     );
-    _selectedDate = _parseInitialDate(widget.question);
+    _selectedDate = _resolveSelectedDate(widget.question);
+    _scheduleAnswerChangedNotification();
   }
 
   @override
   void didUpdateWidget(covariant PollQuestionReadonlyCard oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.question != widget.question) {
-      _selectedValues = PollDetailHelpers.extractSelectedValuesFromConfig(
-        widget.question.configJson,
+    if (oldWidget.question != widget.question ||
+        oldWidget.liveFieldValueMap != widget.liveFieldValueMap) {
+      _selectedValues = _resolveSelectedValues(widget.question);
+      _textController.text = _buildResolvedTextValue(widget.question);
+      _textController.selection = TextSelection.collapsed(
+        offset: _textController.text.length,
       );
-      _textController.text = _buildInitialTextValue(widget.question);
-      _selectedDate = _parseInitialDate(widget.question);
+      _selectedDate = _resolveSelectedDate(widget.question);
+      _scheduleAnswerChangedNotification();
     }
   }
 
@@ -374,7 +388,13 @@ class _PollQuestionReadonlyCardState extends State<PollQuestionReadonlyCard> {
     super.dispose();
   }
 
-  DateTime? _parseInitialDate(PollQuestionItem question) {
+  DateTime? _resolveSelectedDate(PollQuestionItem question) {
+    final liveValue = _liveValue(question);
+    if (liveValue != null && liveValue.isNotEmpty) {
+      final parsedLiveValue = DateTime.tryParse(liveValue);
+      if (parsedLiveValue != null) return parsedLiveValue;
+    }
+
     final values = PollDetailHelpers.extractDisplayValues(question);
     if (values.isEmpty) return null;
     final firstValue = values.first.trim();
@@ -403,7 +423,10 @@ class _PollQuestionReadonlyCardState extends State<PollQuestionReadonlyCard> {
     return DateTime.tryParse(firstValue);
   }
 
-  String _buildInitialTextValue(PollQuestionItem question) {
+  String _buildResolvedTextValue(PollQuestionItem question) {
+    final liveValue = _liveValue(question);
+    if (liveValue != null) return liveValue;
+
     final values = PollDetailHelpers.extractDisplayValues(question);
     if (values.isEmpty) return '';
     if (values.length == 1 &&
@@ -412,6 +435,25 @@ class _PollQuestionReadonlyCardState extends State<PollQuestionReadonlyCard> {
       return '';
     }
     return values.join('\n');
+  }
+
+  Set<String> _resolveSelectedValues(PollQuestionItem question) {
+    final liveValue = _liveValue(question);
+    if (liveValue != null) {
+      return liveValue
+          .split(',')
+          .map((value) => value.trim())
+          .where((value) => value.isNotEmpty)
+          .toSet();
+    }
+
+    return PollDetailHelpers.extractSelectedValuesFromConfig(question.configJson);
+  }
+
+  String? _liveValue(PollQuestionItem question) {
+    final fieldKey = question.fieldKey?.trim();
+    if (fieldKey == null || fieldKey.isEmpty) return null;
+    return widget.liveFieldValueMap[fieldKey];
   }
 
   bool _hasResponseValue(PollQuestionItem question) {
@@ -431,11 +473,50 @@ class _PollQuestionReadonlyCardState extends State<PollQuestionReadonlyCard> {
     return widget.readonly;
   }
 
+  void _scheduleAnswerChangedNotification() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      _notifyAnswerChanged();
+    });
+  }
+
+  void _notifyAnswerChanged() {
+    final fieldKey = widget.question.fieldKey?.trim();
+    if (fieldKey == null || fieldKey.isEmpty) return;
+
+    final normalizedType = PollDetailHelpers.normalizeQuestionType(
+      widget.question.questionType,
+    );
+
+    String? nextValue;
+    if (PollDetailHelpers.isChoiceQuestion(normalizedType)) {
+      nextValue = _selectedValues.isEmpty ? null : _selectedValues.join(',');
+    } else if (PollDetailHelpers.isDateQuestion(normalizedType)) {
+      nextValue = _selectedDate == null ? null : DateFormat('yyyy-MM-dd').format(_selectedDate!);
+    } else {
+      final text = _textController.text.trim();
+      nextValue = text.isEmpty ? null : text;
+    }
+
+    if (_lastNotifiedValue == nextValue) return;
+    _lastNotifiedValue = nextValue;
+    widget.onAnswerChanged(fieldKey, nextValue);
+  }
+
   void _onSelectSingle(String value) {
     if (widget.readonly) return;
     setState(() {
       _selectedValues = {value};
     });
+    _notifyAnswerChanged();
+  }
+
+  void _onResetSingle() {
+    if (widget.readonly) return;
+    setState(() {
+      _selectedValues = <String>{};
+    });
+    _notifyAnswerChanged();
   }
 
   void _onToggleMultiple(String value) {
@@ -447,6 +528,7 @@ class _PollQuestionReadonlyCardState extends State<PollQuestionReadonlyCard> {
         _selectedValues.add(value);
       }
     });
+    _notifyAnswerChanged();
   }
 
   Future<void> _onPickDate() async {
@@ -460,6 +542,7 @@ class _PollQuestionReadonlyCardState extends State<PollQuestionReadonlyCard> {
     setState(() {
       _selectedDate = picked;
     });
+    _notifyAnswerChanged();
   }
 
   @override
@@ -520,7 +603,9 @@ class _PollQuestionReadonlyCardState extends State<PollQuestionReadonlyCard> {
             textController: _textController,
             onPickDate: _onPickDate,
             onSelectSingle: _onSelectSingle,
+            onResetSingle: _onResetSingle,
             onToggleMultiple: _onToggleMultiple,
+            onTextChanged: (_) => _notifyAnswerChanged(),
           ),
         ],
       ),
@@ -546,7 +631,9 @@ class _AnswerContent extends StatelessWidget {
     required this.textController,
     required this.onPickDate,
     required this.onSelectSingle,
+    required this.onResetSingle,
     required this.onToggleMultiple,
+    required this.onTextChanged,
   });
 
   final PollQuestionItem question;
@@ -559,43 +646,66 @@ class _AnswerContent extends StatelessWidget {
   final TextEditingController textController;
   final Future<void> Function() onPickDate;
   final ValueChanged<String> onSelectSingle;
+  final VoidCallback onResetSingle;
   final ValueChanged<String> onToggleMultiple;
+  final ValueChanged<String> onTextChanged;
 
   @override
   Widget build(BuildContext context) {
     if (PollDetailHelpers.isChoiceQuestion(type)) {
       final hasInteractiveOptions = options.isNotEmpty && !readonly;
       if (hasInteractiveOptions) {
+        final isMultipleChoice = PollDetailHelpers.isMultipleChoiceQuestion(type);
+        final canResetSingleChoice = !isMultipleChoice && selectedValues.isNotEmpty;
+
         return Column(
-          children: options.asMap().entries.map((entry) {
-            final option = entry.value;
-            final optionText = option.optionText?.trim();
-            final optionValue = option.optionValue?.trim();
-            if (optionText == null || optionText.isEmpty) {
-              return const SizedBox.shrink();
-            }
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ...options.asMap().entries.map((entry) {
+              final option = entry.value;
+              final optionText = option.optionText?.trim();
+              final optionValue = option.optionValue?.trim();
+              if (optionText == null || optionText.isEmpty) {
+                return const SizedBox.shrink();
+              }
 
-            final effectiveValue =
-                optionValue == null || optionValue.isEmpty ? optionText : optionValue;
-            final isSelected = selectedValues.contains(effectiveValue);
-            final isLast = entry.key == options.length - 1;
+              final effectiveValue =
+                  optionValue == null || optionValue.isEmpty ? optionText : optionValue;
+              final isSelected = selectedValues.contains(effectiveValue);
+              final isLast = entry.key == options.length - 1;
 
-            return Padding(
-              padding: EdgeInsets.only(bottom: isLast ? 0 : 10),
-              child: ChoiceInputTile(
-                value: optionText,
-                isMultiple: PollDetailHelpers.isMultipleChoiceQuestion(type),
-                selected: isSelected,
-                onTap: () {
-                  if (PollDetailHelpers.isMultipleChoiceQuestion(type)) {
-                    onToggleMultiple(effectiveValue);
-                  } else {
-                    onSelectSingle(effectiveValue);
-                  }
-                },
+              return Padding(
+                padding: EdgeInsets.only(bottom: isLast && !canResetSingleChoice ? 0 : 10),
+                child: ChoiceInputTile(
+                  value: optionText,
+                  isMultiple: isMultipleChoice,
+                  selected: isSelected,
+                  onTap: () {
+                    if (isMultipleChoice) {
+                      onToggleMultiple(effectiveValue);
+                    } else {
+                      onSelectSingle(effectiveValue);
+                    }
+                  },
+                ),
+              );
+            }),
+            if (canResetSingleChoice)
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton.icon(
+                  onPressed: onResetSingle,
+                  icon: const Icon(Icons.restart_alt_rounded, size: 18),
+                  label: const Text('Bỏ chọn'),
+                  style: TextButton.styleFrom(
+                    foregroundColor: AppColors.secondaryERP,
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    visualDensity: VisualDensity.compact,
+                  ),
+                ),
               ),
-            );
-          }).toList(),
+          ],
         );
       }
 
@@ -629,6 +739,7 @@ class _AnswerContent extends StatelessWidget {
         controller: textController,
         isMultiline: type == 'textarea',
         isRequired: question.isRequired == true,
+        onChanged: onTextChanged,
       );
     }
 
@@ -707,16 +818,19 @@ class EditableTextAnswerField extends StatelessWidget {
     required this.controller,
     required this.isMultiline,
     required this.isRequired,
+    required this.onChanged,
   });
 
   final TextEditingController controller;
   final bool isMultiline;
   final bool isRequired;
+  final ValueChanged<String> onChanged;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       controller: controller,
+      onChanged: onChanged,
       minLines: isMultiline ? 4 : 1,
       maxLines: isMultiline ? 6 : 1,
       textInputAction: isMultiline ? TextInputAction.newline : TextInputAction.done,

@@ -9,6 +9,8 @@ class PollDetailHelpers {
   static final RegExp _dateTimePattern = RegExp(
     r'^(\d{4})-(\d{2})-(\d{2})[T\s](\d{2}):(\d{2})(?::\d{2}(?:\.\d{1,6})?)?(?:Z|[+-]\d{2}:?\d{2})?$',
   );
+  static const _emptyAnswerText = 'Chưa có dữ liệu trả lời';
+  static const _emptyChoiceText = 'Chưa chọn đáp án';
 
   static String formatDate(DateTime? value) {
     if (value == null) return '--';
@@ -152,11 +154,11 @@ class PollDetailHelpers {
     }
 
     if (values.isEmpty && isChoiceQuestion(type)) {
-      return const ['Chưa chọn đáp án'];
+      return const [_emptyChoiceText];
     }
 
     if (values.isEmpty) {
-      return const ['Chưa có dữ liệu trả lời'];
+      return const [_emptyAnswerText];
     }
 
     return values;
@@ -272,5 +274,160 @@ class PollDetailHelpers {
     if (config.containsKey('label')) return config['label'];
     if (config.containsKey('text')) return config['text'];
     return null;
+  }
+
+  static Map<String, String?> buildFieldValueMap(PollDetailItem detail) {
+    final Map<String, String?> fieldValueMap = {};
+
+    void collectFieldValues(List<PollQuestionItem>? questions) {
+      if (questions == null) return;
+      for (final q in questions) {
+        final key = q.fieldKey?.trim();
+        if (key == null || key.isEmpty) continue;
+        if (fieldValueMap.containsKey(key)) continue;
+
+        final values = extractDisplayValues(q);
+        final first = values.isNotEmpty ? values.first : null;
+        if (first == _emptyAnswerText || first == _emptyChoiceText) {
+          fieldValueMap[key] = null;
+        } else {
+          fieldValueMap[key] = first;
+        }
+      }
+    }
+
+    collectFieldValues(detail.questions);
+    for (final section in detail.sections ?? const <PollSectionItem>[]) {
+      collectFieldValues(section.questions);
+    }
+
+    return fieldValueMap;
+  }
+
+  static bool evaluateShowIf(
+    String? showIfJson,
+    Map<String, String?> fieldValueMap,
+  ) {
+    final raw = showIfJson?.trim();
+    if (raw == null || raw.isEmpty) return true;
+
+    try {
+      final decoded = jsonDecode(raw);
+      return _evaluateShowIfNode(decoded, fieldValueMap);
+    } catch (_) {
+      return true;
+    }
+  }
+
+  static bool _evaluateShowIfNode(
+    dynamic node,
+    Map<String, String?> fieldValueMap,
+  ) {
+    if (node is! Map) return true;
+
+    final logic = (node['logic'] as String?)?.toLowerCase();
+    final conditions = node['conditions'] as List?;
+
+    if (conditions == null || conditions.isEmpty) return true;
+
+    if (logic == 'or') {
+      for (final cond in conditions) {
+        if (_evaluateSingleCondition(cond, fieldValueMap)) return true;
+      }
+      return false;
+    }
+
+    for (final cond in conditions) {
+      if (!_evaluateSingleCondition(cond, fieldValueMap)) return false;
+    }
+    return true;
+  }
+
+  static bool _evaluateSingleCondition(
+    dynamic cond,
+    Map<String, String?> fieldValueMap,
+  ) {
+    if (cond is! Map) return true;
+
+    final fieldKey = (cond['fieldKey'] as String?)?.trim();
+    if (fieldKey == null || fieldKey.isEmpty) return true;
+
+    final rawValue = cond['value'];
+    final rawFieldValue = fieldValueMap[fieldKey];
+
+    if (rawFieldValue == null) return false;
+
+    final op = (cond['operator'] as String?)?.toLowerCase();
+    if (op == null) return false;
+
+    final numField = num.tryParse(rawFieldValue);
+    final numTarget = num.tryParse(rawValue?.toString() ?? '');
+
+    switch (op) {
+      case 'greaterorEqual':
+      case 'greaterorequal':
+      case 'gte':
+        if (numField != null && numTarget != null) return numField >= numTarget;
+        return rawFieldValue.compareTo(rawValue?.toString() ?? '') >= 0;
+
+      case 'lessOrEqual':
+      case 'lessorequal':
+      case 'lte':
+        if (numField != null && numTarget != null) return numField <= numTarget;
+        return rawFieldValue.compareTo(rawValue?.toString() ?? '') <= 0;
+
+      case 'greaterThan':
+      case 'greaterthan':
+      case 'gt':
+        if (numField != null && numTarget != null) return numField > numTarget;
+        return rawFieldValue.compareTo(rawValue?.toString() ?? '') > 0;
+
+      case 'lessThan':
+      case 'lessthan':
+      case 'lt':
+        if (numField != null && numTarget != null) return numField < numTarget;
+        return rawFieldValue.compareTo(rawValue?.toString() ?? '') < 0;
+
+      case 'equals':
+      case 'equal':
+      case 'eq':
+        if (numField != null && numTarget != null) return numField == numTarget;
+        return rawFieldValue == rawValue?.toString();
+
+      case 'notEquals':
+      case 'notequal':
+      case 'neq':
+        if (numField != null && numTarget != null) return numField != numTarget;
+        return rawFieldValue != rawValue?.toString();
+
+      case 'contains':
+        return rawFieldValue.toLowerCase().contains(
+              (rawValue?.toString() ?? '').toLowerCase(),
+            );
+
+      case 'notContains':
+        return !rawFieldValue.toLowerCase().contains(
+              (rawValue?.toString() ?? '').toLowerCase(),
+            );
+
+      case 'startsWith':
+        return rawFieldValue.toLowerCase().startsWith(
+              (rawValue?.toString() ?? '').toLowerCase(),
+            );
+
+      case 'endsWith':
+        return rawFieldValue.toLowerCase().endsWith(
+              (rawValue?.toString() ?? '').toLowerCase(),
+            );
+
+      case 'isEmpty':
+        return rawFieldValue.isEmpty;
+
+      case 'isNotEmpty':
+        return rawFieldValue.isNotEmpty;
+
+      default:
+        return true;
+    }
   }
 }
