@@ -372,7 +372,13 @@ class ApiEndPoint {
   static const String getStamp = '/TrackingMarks/get-all';
   static const String saveStamp = '/TrackingMarks/save';
   static const String getStampEmployees = '/TrackingMarks/get-employees';
-  static const String getStampSealRegulations = '/TrackingMarks/seal-regulations';
+  static const String getStampSealRegulations =
+      '/TrackingMarks/seal-regulations';
   static const String getStampDocumentTypes = '/TrackingMarks/document-types';
   static const String getStampTaxCompanies = '/TrackingMarks/tax-companies';
+
+  // Poll
+  static const String getPolls = '/pollform/all';
+  static const String getDetailPoll = '/pollform';
+  static const String getPollMyResponse = '/pollform';
 }

@@ -216,6 +216,16 @@ class AppItemRegistry {
       route: RouteNames.stamp,
       imageUrl: AppImages.reg_general_stamp,
     ),
+
+    AppItemModel(
+      id: 'reg_general:poll',
+      name: 'reg_general.poll'.tr(),
+      iconCodePoint: Icons.poll_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'reg_general',
+      route: RouteNames.poll,
+      imageUrl: '',
+    ),
   ];
 
   static final List<AppItemModel> summaryword = [

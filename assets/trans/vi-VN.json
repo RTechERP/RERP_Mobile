@@ -82,7 +82,8 @@
     "stationery": "VPP",
     "work_category": "Hạng mục công việc",
     "personal_asset": "Tài sản cá nhân",
-    "stamp": "Đ.ký đóng dấu"
+    "stamp": "Đ.ký đóng dấu",
+    "poll": "Bình chọn"
   },
   "report": {
     "sale": "Sale",

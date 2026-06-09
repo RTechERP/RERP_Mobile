@@ -47,6 +47,8 @@ import '../features/workplace/app/reg_general/view/pages/personal_assets/view/bl
 import '../features/workplace/app/reg_general/view/pages/personal_assets/view/pages/personal_asset_detail_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/personal_assets/view/pages/personal_asset_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/personal_assets/view/pages/personal_property_detail_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/poll/view/bloc/poll_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/poll/view/pages/poll_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/stationery/data/datasource/models/stationery_model.dart';
 import '../features/workplace/app/reg_general/view/pages/stationery/stationery_edit_route_args.dart';
 import '../features/workplace/app/reg_general/view/pages/stationery/view/bloc/stationery_bloc.dart';
@@ -1220,6 +1222,20 @@ class AppRouter {
           ),
         ],
       ),
+
+      // Poll
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(
+            value: getIt<PollBloc>(),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.poll,
+            builder: (context, state) => const PollScreen(),
+          )],),
     ],
   );
 }

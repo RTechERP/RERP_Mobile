@@ -30,6 +30,10 @@ import '../features/workplace/app/reg_general/view/pages/personal_assets/data/da
 import '../features/workplace/app/reg_general/view/pages/personal_assets/data/repository/personal_asset_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/personal_assets/data/repository/pesonal_asset_repo_impl.dart';
 import '../features/workplace/app/reg_general/view/pages/personal_assets/view/bloc/personal_asset_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/poll/data/datasource/service/poll_service.dart';
+import '../features/workplace/app/reg_general/view/pages/poll/data/repository/poll_repo.dart';
+import '../features/workplace/app/reg_general/view/pages/poll/data/repository/poll_repository.dart';
+import '../features/workplace/app/reg_general/view/pages/poll/view/bloc/poll_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/stationery/data/datasource/service/stationery_service.dart';
 import '../features/workplace/app/reg_general/view/pages/stationery/data/repository/stationery_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/stationery/data/repository/stationery_repo_impl.dart';
@@ -220,6 +224,10 @@ void configureDependencies() {
     () => SalaryService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<PollService>(
+    () => PollService(getIt<Dio>()),
+  );
+
   /// ===== REPOSITORY =====
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImpl(
@@ -309,6 +317,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<SalaryRepo>(
     () => SalaryRepoImpl(getIt<SalaryService>()),
+  );
+
+  getIt.registerLazySingleton<PollRepo>(
+    () => PollRepoImpl(getIt<PollService>()),
   );
 
   /// ===== BLOCS =====
@@ -494,6 +506,13 @@ void configureDependencies() {
     () => TimekeepingBloc(
       getIt<SalaryRepo>(),
       getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<PollBloc>(
+    () => PollBloc(
+      getIt<PollRepo>(),
       getIt<LogUtils>(),
     ),
   );

@@ -37,6 +37,7 @@ assets/env/.env.*
 .pub/
 /build/
 /coverage/
+**/XCBuildData/
 
 # Symbolication related
 app.*.symbols
