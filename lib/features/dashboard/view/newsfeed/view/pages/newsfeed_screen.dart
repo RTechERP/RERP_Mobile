@@ -1,110 +1,150 @@
 import 'dart:ui';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 
 import '../../../../../../../base/bloc/index.dart';
+import '../../../../../../../common/app_theme/app_bar_common.dart';
 import '../../../../../../../common/app_theme/index.dart';
+import '../../../../../../../di/injection.dart';
 import '../../data/datasource/models/newsfeed_model.dart';
 import '../bloc/newsfeed_bloc.dart';
+import '../widgets/newsfeed_calendar_widgets.dart';
+import '../widgets/newsfeed_month_picker.dart';
 
 class NewsFeedScreen extends StatelessWidget {
   const NewsFeedScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const _NewsFeedView();
+    return BlocProvider(
+      create: (_) => getIt<NewsfeedBloc>()..add(const NewsfeedEvent.init()),
+      child: const _NewsFeedView(),
+    );
   }
 }
 
-class _NewsFeedView extends StatelessWidget {
+class _NewsFeedView extends StatefulWidget {
   const _NewsFeedView();
 
   @override
+  State<_NewsFeedView> createState() => _NewsFeedViewState();
+}
+
+class _NewsFeedViewState extends State<_NewsFeedView>
+    with SingleTickerProviderStateMixin {
+  late final TabController _tabController;
+  int _currentTabIndex = 0;
+
+  static const _tabTitles = ['Bảng tin', 'Lịch làm việc'];
+  static const _tabIcons = [Icons.campaign, Icons.calendar_month];
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this)
+      ..addListener(_handleTabChanged);
+  }
+
+  void _handleTabChanged() {
+    if (_tabController.indexIsChanging) return;
+    if (_currentTabIndex == _tabController.index) return;
+    setState(() {
+      _currentTabIndex = _tabController.index;
+    });
+  }
+
+  @override
+  void dispose() {
+    _tabController
+      ..removeListener(_handleTabChanged)
+      ..dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        backgroundColor: const Color(0xFFF0F2F5),
-        appBar: AppBar(
-          backgroundColor: AppColors.white,
-          elevation: 0,
-          centerTitle: false,
-          automaticallyImplyLeading: false,
-          titleSpacing: 16,
-          title: Row(
-            children: [
-              Container(
-                width: 32,
-                height: 32,
-                decoration: BoxDecoration(
-                  gradient: AppColors.gradientERP,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: const Icon(Icons.campaign, color: Colors.white, size: 18),
-              ),
-              const SizedBox(width: 10),
-              const Text(
-                'Bảng tin',
-                style: TextStyle(
-                  color: AppColors.heading,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ],
-          ),
-          bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(58),
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: AppColors.bgCard,
-                  borderRadius: BorderRadius.circular(14),
-                  border: Border.all(
-                    color: const Color(0xFFD9DEEA),
+    return Scaffold(
+      backgroundColor: const Color(0xFFF0F2F5),
+      appBar: AppBarCommon(
+        automaticallyImplyLeading: false,
+        centerTitle: false,
+        title: Row(
+          children: [
+            Container(
+              width: 34,
+              height: 34,
+              decoration: BoxDecoration(
+                gradient: AppColors.gradientERP,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Color(0x1FEE4623),
+                    blurRadius: 10,
+                    offset: Offset(0, 4),
                   ),
-                ),
-                child: const TabBar(
-                  indicatorSize: TabBarIndicatorSize.tab,
-                  dividerColor: Colors.transparent,
-                  labelColor: AppColors.primaryERP,
-                  unselectedLabelColor: AppColors.gray,
-                  splashBorderRadius: BorderRadius.all(Radius.circular(14)),
-                  indicator: BoxDecoration(
-                    color: AppColors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(14)),
-                    border: Border.fromBorderSide(
-                      BorderSide(
-                        color: AppColors.primaryERP,
-                        width: 1.2,
-                      ),
+                ],
+              ),
+              child: Icon(_tabIcons[_currentTabIndex], color: Colors.white, size: 18),
+            ),
+            const SizedBox(width: 10),
+            Text(
+              _tabTitles[_currentTabIndex],
+              style: const TextStyle(
+                color: AppColors.heading,
+                fontSize: 20,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ],
+        ),
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(58),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+            child: Container(
+              decoration: BoxDecoration(
+                color: AppColors.bgCard,
+                borderRadius: BorderRadius.circular(14),
+                border: Border.all(color: const Color(0xFFD9DEEA)),
+              ),
+              child: TabBar(
+                controller: _tabController,
+                indicatorSize: TabBarIndicatorSize.tab,
+                dividerColor: Colors.transparent,
+                labelColor: AppColors.primaryERP,
+                unselectedLabelColor: AppColors.gray,
+                splashBorderRadius: const BorderRadius.all(Radius.circular(14)),
+                indicator: const BoxDecoration(
+                  color: AppColors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(14)),
+                  border: Border.fromBorderSide(
+                    BorderSide(color: AppColors.primaryERP, width: 1.2),
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color(0x1FEE4623),
+                      blurRadius: 10,
+                      offset: Offset(0, 4),
                     ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Color(0x1FEE4623),
-                        blurRadius: 10,
-                        offset: Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                  tabs: [
-                    Tab(text: 'Bảng tin'),
-                    Tab(text: 'Lịch làm việc'),
                   ],
                 ),
+                tabs: const [
+                  Tab(text: 'Bảng tin'),
+                  Tab(text: 'Lịch làm việc'),
+                ],
               ),
             ),
           ),
         ),
-        body: const TabBarView(
-          children: [
-            _NewsfeedTab(),
-            _WorkingCalendarPlaceholder(),
-          ],
-        ),
+      ),
+      body: TabBarView(
+        controller: _tabController,
+        children: const [
+          _NewsfeedTab(),
+          _WorkingCalendarTab(),
+        ],
       ),
     );
   }
@@ -124,8 +164,7 @@ class _NewsfeedTab extends StatelessWidget {
         if (state.status == BaseStateStatus.failed && state.newsfeeds.isEmpty) {
           return _NewsfeedError(
             message: state.message ?? 'Không tải được bảng tin',
-            onRetry: () =>
-                context.read<NewsfeedBloc>().add(const NewsfeedEvent.refresh()),
+            onRetry: () => context.read<NewsfeedBloc>().add(const NewsfeedEvent.refresh()),
           );
         }
 
@@ -141,9 +180,8 @@ class _NewsfeedTab extends StatelessWidget {
           child: ListView.separated(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             itemCount: state.newsfeeds.length + 1,
-            separatorBuilder: (_, index) => index == 0
-                ? const SizedBox(height: 10)
-                : const SizedBox(height: 12),
+            separatorBuilder: (_, index) =>
+                index == 0 ? const SizedBox(height: 10) : const SizedBox(height: 12),
             itemBuilder: (context, index) {
               if (index == 0) {
                 return const _SectionHeader();
@@ -159,50 +197,87 @@ class _NewsfeedTab extends StatelessWidget {
   }
 }
 
-class _WorkingCalendarPlaceholder extends StatelessWidget {
-  const _WorkingCalendarPlaceholder();
+class _WorkingCalendarTab extends StatelessWidget {
+  const _WorkingCalendarTab();
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(24),
-        child: Container(
-          width: double.infinity,
-          padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            color: AppColors.white,
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: const Color(0xFFE8EAF0)),
-          ),
-          child: const Column(
-            mainAxisSize: MainAxisSize.min,
+    return BlocBuilder<NewsfeedBloc, NewsfeedState>(
+      builder: (context, state) {
+        final monthDate = DateTime(state.selectedYear, state.selectedMonth);
+        final holidaysByDay = {
+          for (final holiday in state.holidays)
+            if (holiday.holidayDate != null) holiday.holidayDate!.day: holiday,
+        };
+
+        return RefreshIndicator(
+          color: AppColors.primaryERP,
+          onRefresh: () async {
+            context.read<NewsfeedBloc>().add(const NewsfeedEvent.refreshCalendar());
+          },
+          child: ListView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            padding: const EdgeInsets.all(16),
             children: [
-              Icon(Icons.calendar_month_outlined,
-                  color: AppColors.primaryERP, size: 36),
-              SizedBox(height: 12),
-              Text(
-                'Lịch làm việc sẽ được bổ sung sau',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700,
-                  color: AppColors.heading,
-                ),
+              CalendarToolbar(
+                selectedMonth: state.selectedMonth,
+                selectedYear: state.selectedYear,
+                onPreviousMonth: () {
+                  final previous = DateTime(state.selectedYear, state.selectedMonth - 1);
+                  context.read<NewsfeedBloc>().add(
+                        NewsfeedEvent.changeCalendarMonth(
+                          month: previous.month,
+                          year: previous.year,
+                        ),
+                      );
+                },
+                onNextMonth: () {
+                  final next = DateTime(state.selectedYear, state.selectedMonth + 1);
+                  context.read<NewsfeedBloc>().add(
+                        NewsfeedEvent.changeCalendarMonth(
+                          month: next.month,
+                          year: next.year,
+                        ),
+                      );
+                },
+                onPickMonthYear: () => _showMonthYearPicker(context, state),
               ),
-              SizedBox(height: 6),
-              Text(
-                'Tab đã sẵn sàng để nối dữ liệu ở bước tiếp theo.',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 13,
-                  color: AppColors.gray,
-                ),
+              const SizedBox(height: 14),
+              if (state.calendarStatus == BaseStateStatus.failed && state.holidays.isEmpty)
+              _NewsfeedError(
+                message: state.calendarMessage ?? 'Không tải được lịch làm việc',
+                onRetry: () =>
+                    context.read<NewsfeedBloc>().add(const NewsfeedEvent.refreshCalendar()),
+              )
+            else ...[
+              HolidayLegend(count: state.holidays.length),
+              const SizedBox(height: 12),
+              CalendarMonthCard(
+                monthDate: monthDate,
+                holidaysByDay: holidaysByDay,
+                isLoading: state.calendarStatus == BaseStateStatus.loading,
               ),
             ],
+            ],
           ),
-        ),
-      ),
+        );
+      },
+    );
+  }
+
+  Future<void> _showMonthYearPicker(BuildContext context, NewsfeedState state) async {
+    await NewsfeedMonthPicker.show(
+      context,
+      selectedMonth: DateTime(state.selectedYear, state.selectedMonth),
+      onApply: (month) {
+        if (!context.mounted) return;
+        context.read<NewsfeedBloc>().add(
+              NewsfeedEvent.changeCalendarMonth(
+                month: month.month,
+                year: month.year,
+              ),
+            );
+      },
     );
   }
 }

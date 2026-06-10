@@ -20,18 +20,27 @@ mixin _$NewsfeedEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() refresh,
+    required TResult Function() loadCalendar,
+    required TResult Function(int month, int year) changeCalendarMonth,
+    required TResult Function() refreshCalendar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? refresh,
+    TResult? Function()? loadCalendar,
+    TResult? Function(int month, int year)? changeCalendarMonth,
+    TResult? Function()? refreshCalendar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? refresh,
+    TResult Function()? loadCalendar,
+    TResult Function(int month, int year)? changeCalendarMonth,
+    TResult Function()? refreshCalendar,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +48,27 @@ mixin _$NewsfeedEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_Refresh value) refresh,
+    required TResult Function(_LoadCalendar value) loadCalendar,
+    required TResult Function(_ChangeCalendarMonth value) changeCalendarMonth,
+    required TResult Function(_RefreshCalendar value) refreshCalendar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_LoadCalendar value)? loadCalendar,
+    TResult? Function(_ChangeCalendarMonth value)? changeCalendarMonth,
+    TResult? Function(_RefreshCalendar value)? refreshCalendar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_Refresh value)? refresh,
+    TResult Function(_LoadCalendar value)? loadCalendar,
+    TResult Function(_ChangeCalendarMonth value)? changeCalendarMonth,
+    TResult Function(_RefreshCalendar value)? refreshCalendar,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,6 +131,9 @@ class _$InitImpl implements _Init {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() refresh,
+    required TResult Function() loadCalendar,
+    required TResult Function(int month, int year) changeCalendarMonth,
+    required TResult Function() refreshCalendar,
   }) {
     return init();
   }
@@ -122,6 +143,9 @@ class _$InitImpl implements _Init {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? refresh,
+    TResult? Function()? loadCalendar,
+    TResult? Function(int month, int year)? changeCalendarMonth,
+    TResult? Function()? refreshCalendar,
   }) {
     return init?.call();
   }
@@ -131,6 +155,9 @@ class _$InitImpl implements _Init {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? refresh,
+    TResult Function()? loadCalendar,
+    TResult Function(int month, int year)? changeCalendarMonth,
+    TResult Function()? refreshCalendar,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -144,6 +171,9 @@ class _$InitImpl implements _Init {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_Refresh value) refresh,
+    required TResult Function(_LoadCalendar value) loadCalendar,
+    required TResult Function(_ChangeCalendarMonth value) changeCalendarMonth,
+    required TResult Function(_RefreshCalendar value) refreshCalendar,
   }) {
     return init(this);
   }
@@ -153,6 +183,9 @@ class _$InitImpl implements _Init {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_LoadCalendar value)? loadCalendar,
+    TResult? Function(_ChangeCalendarMonth value)? changeCalendarMonth,
+    TResult? Function(_RefreshCalendar value)? refreshCalendar,
   }) {
     return init?.call(this);
   }
@@ -162,6 +195,9 @@ class _$InitImpl implements _Init {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_Refresh value)? refresh,
+    TResult Function(_LoadCalendar value)? loadCalendar,
+    TResult Function(_ChangeCalendarMonth value)? changeCalendarMonth,
+    TResult Function(_RefreshCalendar value)? refreshCalendar,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -215,6 +251,9 @@ class _$RefreshImpl implements _Refresh {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() refresh,
+    required TResult Function() loadCalendar,
+    required TResult Function(int month, int year) changeCalendarMonth,
+    required TResult Function() refreshCalendar,
   }) {
     return refresh();
   }
@@ -224,6 +263,9 @@ class _$RefreshImpl implements _Refresh {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? refresh,
+    TResult? Function()? loadCalendar,
+    TResult? Function(int month, int year)? changeCalendarMonth,
+    TResult? Function()? refreshCalendar,
   }) {
     return refresh?.call();
   }
@@ -233,6 +275,9 @@ class _$RefreshImpl implements _Refresh {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? refresh,
+    TResult Function()? loadCalendar,
+    TResult Function(int month, int year)? changeCalendarMonth,
+    TResult Function()? refreshCalendar,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -246,6 +291,9 @@ class _$RefreshImpl implements _Refresh {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_Refresh value) refresh,
+    required TResult Function(_LoadCalendar value) loadCalendar,
+    required TResult Function(_ChangeCalendarMonth value) changeCalendarMonth,
+    required TResult Function(_RefreshCalendar value) refreshCalendar,
   }) {
     return refresh(this);
   }
@@ -255,6 +303,9 @@ class _$RefreshImpl implements _Refresh {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_LoadCalendar value)? loadCalendar,
+    TResult? Function(_ChangeCalendarMonth value)? changeCalendarMonth,
+    TResult? Function(_RefreshCalendar value)? refreshCalendar,
   }) {
     return refresh?.call(this);
   }
@@ -264,6 +315,9 @@ class _$RefreshImpl implements _Refresh {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_Refresh value)? refresh,
+    TResult Function(_LoadCalendar value)? loadCalendar,
+    TResult Function(_ChangeCalendarMonth value)? changeCalendarMonth,
+    TResult Function(_RefreshCalendar value)? refreshCalendar,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -275,4 +329,407 @@ class _$RefreshImpl implements _Refresh {
 
 abstract class _Refresh implements NewsfeedEvent {
   const factory _Refresh() = _$RefreshImpl;
+}
+
+/// @nodoc
+abstract class _$$LoadCalendarImplCopyWith<$Res> {
+  factory _$$LoadCalendarImplCopyWith(
+          _$LoadCalendarImpl value, $Res Function(_$LoadCalendarImpl) then) =
+      __$$LoadCalendarImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LoadCalendarImplCopyWithImpl<$Res>
+    extends _$NewsfeedEventCopyWithImpl<$Res, _$LoadCalendarImpl>
+    implements _$$LoadCalendarImplCopyWith<$Res> {
+  __$$LoadCalendarImplCopyWithImpl(
+      _$LoadCalendarImpl _value, $Res Function(_$LoadCalendarImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$LoadCalendarImpl implements _LoadCalendar {
+  const _$LoadCalendarImpl();
+
+  @override
+  String toString() {
+    return 'NewsfeedEvent.loadCalendar()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LoadCalendarImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() refresh,
+    required TResult Function() loadCalendar,
+    required TResult Function(int month, int year) changeCalendarMonth,
+    required TResult Function() refreshCalendar,
+  }) {
+    return loadCalendar();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? refresh,
+    TResult? Function()? loadCalendar,
+    TResult? Function(int month, int year)? changeCalendarMonth,
+    TResult? Function()? refreshCalendar,
+  }) {
+    return loadCalendar?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? refresh,
+    TResult Function()? loadCalendar,
+    TResult Function(int month, int year)? changeCalendarMonth,
+    TResult Function()? refreshCalendar,
+    required TResult orElse(),
+  }) {
+    if (loadCalendar != null) {
+      return loadCalendar();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_LoadCalendar value) loadCalendar,
+    required TResult Function(_ChangeCalendarMonth value) changeCalendarMonth,
+    required TResult Function(_RefreshCalendar value) refreshCalendar,
+  }) {
+    return loadCalendar(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_LoadCalendar value)? loadCalendar,
+    TResult? Function(_ChangeCalendarMonth value)? changeCalendarMonth,
+    TResult? Function(_RefreshCalendar value)? refreshCalendar,
+  }) {
+    return loadCalendar?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_LoadCalendar value)? loadCalendar,
+    TResult Function(_ChangeCalendarMonth value)? changeCalendarMonth,
+    TResult Function(_RefreshCalendar value)? refreshCalendar,
+    required TResult orElse(),
+  }) {
+    if (loadCalendar != null) {
+      return loadCalendar(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadCalendar implements NewsfeedEvent {
+  const factory _LoadCalendar() = _$LoadCalendarImpl;
+}
+
+/// @nodoc
+abstract class _$$ChangeCalendarMonthImplCopyWith<$Res> {
+  factory _$$ChangeCalendarMonthImplCopyWith(_$ChangeCalendarMonthImpl value,
+          $Res Function(_$ChangeCalendarMonthImpl) then) =
+      __$$ChangeCalendarMonthImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int month, int year});
+}
+
+/// @nodoc
+class __$$ChangeCalendarMonthImplCopyWithImpl<$Res>
+    extends _$NewsfeedEventCopyWithImpl<$Res, _$ChangeCalendarMonthImpl>
+    implements _$$ChangeCalendarMonthImplCopyWith<$Res> {
+  __$$ChangeCalendarMonthImplCopyWithImpl(_$ChangeCalendarMonthImpl _value,
+      $Res Function(_$ChangeCalendarMonthImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? month = null,
+    Object? year = null,
+  }) {
+    return _then(_$ChangeCalendarMonthImpl(
+      month: null == month
+          ? _value.month
+          : month // ignore: cast_nullable_to_non_nullable
+              as int,
+      year: null == year
+          ? _value.year
+          : year // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChangeCalendarMonthImpl implements _ChangeCalendarMonth {
+  const _$ChangeCalendarMonthImpl({required this.month, required this.year});
+
+  @override
+  final int month;
+  @override
+  final int year;
+
+  @override
+  String toString() {
+    return 'NewsfeedEvent.changeCalendarMonth(month: $month, year: $year)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangeCalendarMonthImpl &&
+            (identical(other.month, month) || other.month == month) &&
+            (identical(other.year, year) || other.year == year));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, month, year);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangeCalendarMonthImplCopyWith<_$ChangeCalendarMonthImpl> get copyWith =>
+      __$$ChangeCalendarMonthImplCopyWithImpl<_$ChangeCalendarMonthImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() refresh,
+    required TResult Function() loadCalendar,
+    required TResult Function(int month, int year) changeCalendarMonth,
+    required TResult Function() refreshCalendar,
+  }) {
+    return changeCalendarMonth(month, year);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? refresh,
+    TResult? Function()? loadCalendar,
+    TResult? Function(int month, int year)? changeCalendarMonth,
+    TResult? Function()? refreshCalendar,
+  }) {
+    return changeCalendarMonth?.call(month, year);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? refresh,
+    TResult Function()? loadCalendar,
+    TResult Function(int month, int year)? changeCalendarMonth,
+    TResult Function()? refreshCalendar,
+    required TResult orElse(),
+  }) {
+    if (changeCalendarMonth != null) {
+      return changeCalendarMonth(month, year);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_LoadCalendar value) loadCalendar,
+    required TResult Function(_ChangeCalendarMonth value) changeCalendarMonth,
+    required TResult Function(_RefreshCalendar value) refreshCalendar,
+  }) {
+    return changeCalendarMonth(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_LoadCalendar value)? loadCalendar,
+    TResult? Function(_ChangeCalendarMonth value)? changeCalendarMonth,
+    TResult? Function(_RefreshCalendar value)? refreshCalendar,
+  }) {
+    return changeCalendarMonth?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_LoadCalendar value)? loadCalendar,
+    TResult Function(_ChangeCalendarMonth value)? changeCalendarMonth,
+    TResult Function(_RefreshCalendar value)? refreshCalendar,
+    required TResult orElse(),
+  }) {
+    if (changeCalendarMonth != null) {
+      return changeCalendarMonth(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangeCalendarMonth implements NewsfeedEvent {
+  const factory _ChangeCalendarMonth(
+      {required final int month,
+      required final int year}) = _$ChangeCalendarMonthImpl;
+
+  int get month;
+  int get year;
+  @JsonKey(ignore: true)
+  _$$ChangeCalendarMonthImplCopyWith<_$ChangeCalendarMonthImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RefreshCalendarImplCopyWith<$Res> {
+  factory _$$RefreshCalendarImplCopyWith(_$RefreshCalendarImpl value,
+          $Res Function(_$RefreshCalendarImpl) then) =
+      __$$RefreshCalendarImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$RefreshCalendarImplCopyWithImpl<$Res>
+    extends _$NewsfeedEventCopyWithImpl<$Res, _$RefreshCalendarImpl>
+    implements _$$RefreshCalendarImplCopyWith<$Res> {
+  __$$RefreshCalendarImplCopyWithImpl(
+      _$RefreshCalendarImpl _value, $Res Function(_$RefreshCalendarImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$RefreshCalendarImpl implements _RefreshCalendar {
+  const _$RefreshCalendarImpl();
+
+  @override
+  String toString() {
+    return 'NewsfeedEvent.refreshCalendar()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$RefreshCalendarImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() refresh,
+    required TResult Function() loadCalendar,
+    required TResult Function(int month, int year) changeCalendarMonth,
+    required TResult Function() refreshCalendar,
+  }) {
+    return refreshCalendar();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? refresh,
+    TResult? Function()? loadCalendar,
+    TResult? Function(int month, int year)? changeCalendarMonth,
+    TResult? Function()? refreshCalendar,
+  }) {
+    return refreshCalendar?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? refresh,
+    TResult Function()? loadCalendar,
+    TResult Function(int month, int year)? changeCalendarMonth,
+    TResult Function()? refreshCalendar,
+    required TResult orElse(),
+  }) {
+    if (refreshCalendar != null) {
+      return refreshCalendar();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_LoadCalendar value) loadCalendar,
+    required TResult Function(_ChangeCalendarMonth value) changeCalendarMonth,
+    required TResult Function(_RefreshCalendar value) refreshCalendar,
+  }) {
+    return refreshCalendar(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_LoadCalendar value)? loadCalendar,
+    TResult? Function(_ChangeCalendarMonth value)? changeCalendarMonth,
+    TResult? Function(_RefreshCalendar value)? refreshCalendar,
+  }) {
+    return refreshCalendar?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_LoadCalendar value)? loadCalendar,
+    TResult Function(_ChangeCalendarMonth value)? changeCalendarMonth,
+    TResult Function(_RefreshCalendar value)? refreshCalendar,
+    required TResult orElse(),
+  }) {
+    if (refreshCalendar != null) {
+      return refreshCalendar(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RefreshCalendar implements NewsfeedEvent {
+  const factory _RefreshCalendar() = _$RefreshCalendarImpl;
 }

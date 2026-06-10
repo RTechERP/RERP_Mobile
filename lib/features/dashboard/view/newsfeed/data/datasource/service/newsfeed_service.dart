@@ -20,4 +20,17 @@ class NewsfeedService extends DioBaseApiService {
       ),
     );
   }
+
+  Future<BaseData<CalendarItem>> getCalendar({
+    required int month,
+    required int year,
+  }) {
+    return get<BaseData<CalendarItem>>(
+      '${ApiEndPoint.getCalendar}?month=$month&year=$year',
+      parser: (json) => BaseData<CalendarItem>.fromJson(
+        json,
+        (data) => CalendarItem.fromJson(data as Map<String, dynamic>),
+      ),
+    );
+  }
 }

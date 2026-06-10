@@ -23,12 +23,37 @@ class NewsfeedBloc extends BaseBloc<NewsfeedEvent, NewsfeedState> {
     on<NewsfeedEvent>((event, emit) async {
       await event.when(
         init: () => _onInit(emit),
-        refresh: () => _onInit(emit),
+        refresh: () => _loadNewsfeed(emit),
+        loadCalendar: () => _loadCalendar(
+          emit,
+          month: state.selectedMonth,
+          year: state.selectedYear,
+        ),
+        changeCalendarMonth: (month, year) => _loadCalendar(
+          emit,
+          month: month,
+          year: year,
+        ),
+        refreshCalendar: () => _loadCalendar(
+          emit,
+          month: state.selectedMonth,
+          year: state.selectedYear,
+        ),
       );
     });
   }
 
   Future<void> _onInit(Emitter<NewsfeedState> emit) async {
+    await _loadNewsfeed(emit);
+    await _loadCalendar(
+      emit,
+      month: state.selectedMonth,
+      year: state.selectedYear,
+      showLoading: false,
+    );
+  }
+
+  Future<void> _loadNewsfeed(Emitter<NewsfeedState> emit) async {
     emit(state.copyWith(status: BaseStateStatus.loading, message: null));
 
     final res = await _newsfeedRepo.getNewsfeed();
@@ -49,6 +74,49 @@ class NewsfeedBloc extends BaseBloc<NewsfeedEvent, NewsfeedState> {
             status: BaseStateStatus.success,
             newsfeeds: data,
             message: null,
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> _loadCalendar(
+    Emitter<NewsfeedState> emit, {
+    required int month,
+    required int year,
+    bool showLoading = true,
+  }) async {
+    emit(
+      state.copyWith(
+        selectedMonth: month,
+        selectedYear: year,
+        calendarStatus: showLoading ? BaseStateStatus.loading : state.calendarStatus,
+        calendarMessage: null,
+      ),
+    );
+
+    final res = await _newsfeedRepo.getCalendar(month: month, year: year);
+    await res.fold(
+      (err) async {
+        _log.logE('❌ Get holiday calendar failed: $err');
+        emit(
+          state.copyWith(
+            calendarStatus: BaseStateStatus.failed,
+            calendarMessage: err.getErrorMessage,
+          ),
+        );
+      },
+      (data) async {
+        _log.logI(
+          '✅ Get holiday calendar success - month: $month/$year - count: ${data.holidays?.length ?? 0}',
+        );
+        emit(
+          state.copyWith(
+            calendar: data,
+            selectedMonth: month,
+            selectedYear: year,
+            calendarStatus: BaseStateStatus.success,
+            calendarMessage: null,
           ),
         );
       },

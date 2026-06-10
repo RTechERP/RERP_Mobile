@@ -6,4 +6,9 @@ import '../datasource/models/newsfeed_model.dart';
 
 abstract class NewsfeedRepo {
   Future<Either<BaseError, List<NewsletterItem>>> getNewsfeed();
+
+  Future<Either<BaseError, CalendarItem>> getCalendar({
+    required int month,
+    required int year,
+  });
 }

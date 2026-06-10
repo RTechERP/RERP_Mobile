@@ -28,4 +28,23 @@ class NewsfeedRepoImpl implements NewsfeedRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, CalendarItem>> getCalendar({
+    required int month,
+    required int year,
+  }) async {
+    try {
+      final res = await _service.getCalendar(month: month, year: year);
+      final data = res.data ?? res.result;
+      if (res.status == 1 && data != null) {
+        return right(data);
+      }
+      return left(
+        BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

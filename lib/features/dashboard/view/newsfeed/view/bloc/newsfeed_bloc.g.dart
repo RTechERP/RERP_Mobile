@@ -13,6 +13,16 @@ abstract class _$NewsfeedStateCWProxy {
 
   NewsfeedState newsfeeds(List<NewsletterItem> newsfeeds);
 
+  NewsfeedState calendar(CalendarItem? calendar);
+
+  NewsfeedState selectedMonth(int selectedMonth);
+
+  NewsfeedState selectedYear(int selectedYear);
+
+  NewsfeedState calendarStatus(BaseStateStatus calendarStatus);
+
+  NewsfeedState calendarMessage(String? calendarMessage);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `NewsfeedState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -23,6 +33,11 @@ abstract class _$NewsfeedStateCWProxy {
     BaseStateStatus? status,
     String? message,
     List<NewsletterItem>? newsfeeds,
+    CalendarItem? calendar,
+    int? selectedMonth,
+    int? selectedYear,
+    BaseStateStatus? calendarStatus,
+    String? calendarMessage,
   });
 }
 
@@ -43,6 +58,25 @@ class _$NewsfeedStateCWProxyImpl implements _$NewsfeedStateCWProxy {
       this(newsfeeds: newsfeeds);
 
   @override
+  NewsfeedState calendar(CalendarItem? calendar) => this(calendar: calendar);
+
+  @override
+  NewsfeedState selectedMonth(int selectedMonth) =>
+      this(selectedMonth: selectedMonth);
+
+  @override
+  NewsfeedState selectedYear(int selectedYear) =>
+      this(selectedYear: selectedYear);
+
+  @override
+  NewsfeedState calendarStatus(BaseStateStatus calendarStatus) =>
+      this(calendarStatus: calendarStatus);
+
+  @override
+  NewsfeedState calendarMessage(String? calendarMessage) =>
+      this(calendarMessage: calendarMessage);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `NewsfeedState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -54,6 +88,11 @@ class _$NewsfeedStateCWProxyImpl implements _$NewsfeedStateCWProxy {
     Object? status = const $CopyWithPlaceholder(),
     Object? message = const $CopyWithPlaceholder(),
     Object? newsfeeds = const $CopyWithPlaceholder(),
+    Object? calendar = const $CopyWithPlaceholder(),
+    Object? selectedMonth = const $CopyWithPlaceholder(),
+    Object? selectedYear = const $CopyWithPlaceholder(),
+    Object? calendarStatus = const $CopyWithPlaceholder(),
+    Object? calendarMessage = const $CopyWithPlaceholder(),
   }) {
     return NewsfeedState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -68,6 +107,29 @@ class _$NewsfeedStateCWProxyImpl implements _$NewsfeedStateCWProxy {
           ? _value.newsfeeds
           // ignore: cast_nullable_to_non_nullable
           : newsfeeds as List<NewsletterItem>,
+      calendar: calendar == const $CopyWithPlaceholder()
+          ? _value.calendar
+          // ignore: cast_nullable_to_non_nullable
+          : calendar as CalendarItem?,
+      selectedMonth:
+          selectedMonth == const $CopyWithPlaceholder() || selectedMonth == null
+              ? _value.selectedMonth
+              // ignore: cast_nullable_to_non_nullable
+              : selectedMonth as int,
+      selectedYear:
+          selectedYear == const $CopyWithPlaceholder() || selectedYear == null
+              ? _value.selectedYear
+              // ignore: cast_nullable_to_non_nullable
+              : selectedYear as int,
+      calendarStatus: calendarStatus == const $CopyWithPlaceholder() ||
+              calendarStatus == null
+          ? _value.calendarStatus
+          // ignore: cast_nullable_to_non_nullable
+          : calendarStatus as BaseStateStatus,
+      calendarMessage: calendarMessage == const $CopyWithPlaceholder()
+          ? _value.calendarMessage
+          // ignore: cast_nullable_to_non_nullable
+          : calendarMessage as String?,
     );
   }
 }
