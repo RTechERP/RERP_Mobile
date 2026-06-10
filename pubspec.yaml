@@ -78,6 +78,7 @@ dependencies:
   flutter_form_builder: ^10.2.0
   form_builder_validators: ^11.2.0
   file_picker: ^10.3.10
+  file_saver: ^0.2.14
   image_picker: ^1.1.2
   form_builder_file_picker: ^5.0.0
   skeletonizer: ^2.1.2
@@ -89,6 +90,7 @@ dependencies:
   syncfusion_flutter_core: ^32.2.4
   syncfusion_flutter_datepicker: ^32.2.4
   syncfusion_flutter_calendar: ^32.2.4
+  syncfusion_flutter_pdfviewer: ^32.2.4
   flutter_speed_dial: ^7.0.0
   smooth_sheets: ^1.0.0
   easy_stepper: ^1.0.1

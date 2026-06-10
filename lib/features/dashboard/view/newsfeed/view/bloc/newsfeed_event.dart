@@ -7,4 +7,6 @@ class NewsfeedEvent with _$NewsfeedEvent {
   const factory NewsfeedEvent.loadCalendar() = _LoadCalendar;
   const factory NewsfeedEvent.changeCalendarMonth({required int month, required int year}) = _ChangeCalendarMonth;
   const factory NewsfeedEvent.refreshCalendar() = _RefreshCalendar;
+  const factory NewsfeedEvent.loadNewsfeedDetail({required NewsletterItem item}) = _LoadNewsfeedDetail;
+  const factory NewsfeedEvent.clearNewsfeedDetail() = _ClearNewsfeedDetail;
 }

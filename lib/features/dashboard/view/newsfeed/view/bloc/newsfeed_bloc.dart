@@ -39,6 +39,8 @@ class NewsfeedBloc extends BaseBloc<NewsfeedEvent, NewsfeedState> {
           month: state.selectedMonth,
           year: state.selectedYear,
         ),
+        loadNewsfeedDetail: (item) => _loadNewsfeedDetail(emit, item: item),
+        clearNewsfeedDetail: () => _clearNewsfeedDetail(emit),
       );
     });
   }
@@ -120,6 +122,87 @@ class NewsfeedBloc extends BaseBloc<NewsfeedEvent, NewsfeedState> {
           ),
         );
       },
+    );
+  }
+
+  Future<void> _loadNewsfeedDetail(
+    Emitter<NewsfeedState> emit, {
+    required NewsletterItem item,
+  }) async {
+    final id = item.id;
+    if (id == null) {
+      emit(
+        state.copyWith(
+          selectedNewsfeed: item,
+          selectedNewsfeedDetail: null,
+          selectedNewsfeedFiles: const [],
+          detailStatus: BaseStateStatus.failed,
+          detailMessage: 'Không tìm thấy mã bản tin',
+        ),
+      );
+      return;
+    }
+
+    emit(
+      state.copyWith(
+        selectedNewsfeed: item,
+        selectedNewsfeedDetail: null,
+        selectedNewsfeedFiles: const [],
+        detailStatus: BaseStateStatus.loading,
+        detailMessage: null,
+      ),
+    );
+
+    final detailRes = await _newsfeedRepo.getNewsfeedDetail(id: id);
+    await detailRes.fold(
+      (err) async {
+        _log.logE('❌ Get newsfeed detail failed: $err');
+        emit(
+          state.copyWith(
+            detailStatus: BaseStateStatus.failed,
+            detailMessage: err.getErrorMessage,
+          ),
+        );
+      },
+      (detail) async {
+        final filesRes = await _newsfeedRepo.getNewsfeedFiles(newsletterId: id);
+        await filesRes.fold(
+          (err) async {
+            _log.logE('❌ Get newsfeed files failed: $err');
+            emit(
+              state.copyWith(
+                selectedNewsfeedDetail: detail,
+                selectedNewsfeedFiles: const [],
+                detailStatus: BaseStateStatus.success,
+                detailMessage: err.getErrorMessage,
+              ),
+            );
+          },
+          (files) async {
+            _log.logI('✅ Get newsfeed detail success - files: ${files.length}');
+            emit(
+              state.copyWith(
+                selectedNewsfeedDetail: detail,
+                selectedNewsfeedFiles: files,
+                detailStatus: BaseStateStatus.success,
+                detailMessage: null,
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  _clearNewsfeedDetail(Emitter<NewsfeedState> emit) {
+    emit(
+      state.copyWith(
+        selectedNewsfeed: null,
+        selectedNewsfeedDetail: null,
+        selectedNewsfeedFiles: const [],
+        detailStatus: BaseStateStatus.init,
+        detailMessage: null,
+      ),
     );
   }
 }

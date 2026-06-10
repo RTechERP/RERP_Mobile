@@ -384,5 +384,8 @@ class ApiEndPoint {
 
   // Newsfeed
   static const String getNewsletter = '/newsletter/get-limit-newsletter';
+  static const String getNewsletterById = '/newsletter/get-newsletter-by-id';
+  static const String getNewsletterFileByNewsletterId =
+      '/newsletter/get-newsletter-file-by-newsletterid';
   static const String getCalendar = '/Holiday';
 }

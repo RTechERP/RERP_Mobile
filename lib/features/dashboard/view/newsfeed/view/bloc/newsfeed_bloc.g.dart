@@ -23,6 +23,18 @@ abstract class _$NewsfeedStateCWProxy {
 
   NewsfeedState calendarMessage(String? calendarMessage);
 
+  NewsfeedState selectedNewsfeed(NewsletterItem? selectedNewsfeed);
+
+  NewsfeedState selectedNewsfeedDetail(
+      NewsletterDetailItem? selectedNewsfeedDetail);
+
+  NewsfeedState selectedNewsfeedFiles(
+      List<NewsletterFileItem> selectedNewsfeedFiles);
+
+  NewsfeedState detailStatus(BaseStateStatus detailStatus);
+
+  NewsfeedState detailMessage(String? detailMessage);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `NewsfeedState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -38,6 +50,11 @@ abstract class _$NewsfeedStateCWProxy {
     int? selectedYear,
     BaseStateStatus? calendarStatus,
     String? calendarMessage,
+    NewsletterItem? selectedNewsfeed,
+    NewsletterDetailItem? selectedNewsfeedDetail,
+    List<NewsletterFileItem>? selectedNewsfeedFiles,
+    BaseStateStatus? detailStatus,
+    String? detailMessage,
   });
 }
 
@@ -77,6 +94,28 @@ class _$NewsfeedStateCWProxyImpl implements _$NewsfeedStateCWProxy {
       this(calendarMessage: calendarMessage);
 
   @override
+  NewsfeedState selectedNewsfeed(NewsletterItem? selectedNewsfeed) =>
+      this(selectedNewsfeed: selectedNewsfeed);
+
+  @override
+  NewsfeedState selectedNewsfeedDetail(
+          NewsletterDetailItem? selectedNewsfeedDetail) =>
+      this(selectedNewsfeedDetail: selectedNewsfeedDetail);
+
+  @override
+  NewsfeedState selectedNewsfeedFiles(
+          List<NewsletterFileItem> selectedNewsfeedFiles) =>
+      this(selectedNewsfeedFiles: selectedNewsfeedFiles);
+
+  @override
+  NewsfeedState detailStatus(BaseStateStatus detailStatus) =>
+      this(detailStatus: detailStatus);
+
+  @override
+  NewsfeedState detailMessage(String? detailMessage) =>
+      this(detailMessage: detailMessage);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `NewsfeedState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -93,6 +132,11 @@ class _$NewsfeedStateCWProxyImpl implements _$NewsfeedStateCWProxy {
     Object? selectedYear = const $CopyWithPlaceholder(),
     Object? calendarStatus = const $CopyWithPlaceholder(),
     Object? calendarMessage = const $CopyWithPlaceholder(),
+    Object? selectedNewsfeed = const $CopyWithPlaceholder(),
+    Object? selectedNewsfeedDetail = const $CopyWithPlaceholder(),
+    Object? selectedNewsfeedFiles = const $CopyWithPlaceholder(),
+    Object? detailStatus = const $CopyWithPlaceholder(),
+    Object? detailMessage = const $CopyWithPlaceholder(),
   }) {
     return NewsfeedState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -130,6 +174,30 @@ class _$NewsfeedStateCWProxyImpl implements _$NewsfeedStateCWProxy {
           ? _value.calendarMessage
           // ignore: cast_nullable_to_non_nullable
           : calendarMessage as String?,
+      selectedNewsfeed: selectedNewsfeed == const $CopyWithPlaceholder()
+          ? _value.selectedNewsfeed
+          // ignore: cast_nullable_to_non_nullable
+          : selectedNewsfeed as NewsletterItem?,
+      selectedNewsfeedDetail:
+          selectedNewsfeedDetail == const $CopyWithPlaceholder()
+              ? _value.selectedNewsfeedDetail
+              // ignore: cast_nullable_to_non_nullable
+              : selectedNewsfeedDetail as NewsletterDetailItem?,
+      selectedNewsfeedFiles:
+          selectedNewsfeedFiles == const $CopyWithPlaceholder() ||
+                  selectedNewsfeedFiles == null
+              ? _value.selectedNewsfeedFiles
+              // ignore: cast_nullable_to_non_nullable
+              : selectedNewsfeedFiles as List<NewsletterFileItem>,
+      detailStatus:
+          detailStatus == const $CopyWithPlaceholder() || detailStatus == null
+              ? _value.detailStatus
+              // ignore: cast_nullable_to_non_nullable
+              : detailStatus as BaseStateStatus,
+      detailMessage: detailMessage == const $CopyWithPlaceholder()
+          ? _value.detailMessage
+          // ignore: cast_nullable_to_non_nullable
+          : detailMessage as String?,
     );
   }
 }

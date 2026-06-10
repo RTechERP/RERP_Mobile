@@ -8,6 +8,11 @@ class NewsfeedState extends BaseBlocState {
   final int selectedYear;
   final BaseStateStatus calendarStatus;
   final String? calendarMessage;
+  final NewsletterItem? selectedNewsfeed;
+  final NewsletterDetailItem? selectedNewsfeedDetail;
+  final List<NewsletterFileItem> selectedNewsfeedFiles;
+  final BaseStateStatus detailStatus;
+  final String? detailMessage;
 
   const NewsfeedState({
     required super.status,
@@ -18,6 +23,11 @@ class NewsfeedState extends BaseBlocState {
     required this.selectedYear,
     this.calendarStatus = BaseStateStatus.init,
     this.calendarMessage,
+    this.selectedNewsfeed,
+    this.selectedNewsfeedDetail,
+    this.selectedNewsfeedFiles = const [],
+    this.detailStatus = BaseStateStatus.init,
+    this.detailMessage,
   });
 
   factory NewsfeedState.init() {
@@ -28,6 +38,7 @@ class NewsfeedState extends BaseBlocState {
       selectedMonth: now.month,
       selectedYear: now.year,
       calendarStatus: BaseStateStatus.init,
+      detailStatus: BaseStateStatus.init,
     );
   }
 
@@ -43,5 +54,10 @@ class NewsfeedState extends BaseBlocState {
         selectedYear,
         calendarStatus,
         calendarMessage,
+        selectedNewsfeed,
+        selectedNewsfeedDetail,
+        selectedNewsfeedFiles,
+        detailStatus,
+        detailMessage,
       ];
 }

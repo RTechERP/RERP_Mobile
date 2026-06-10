@@ -177,6 +177,38 @@ class DialogService {
     );
   }
 
+  static Future<T?> showFullscreen<T>({
+    required BuildContext context,
+    required Widget child,
+    bool barrierDismissible = true,
+    Color barrierColor = const Color(0x99000000),
+  }) {
+    return showGeneralDialog<T>(
+      context: context,
+      barrierDismissible: barrierDismissible,
+      barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
+      barrierColor: barrierColor,
+      pageBuilder: (_, __, ___) => child,
+      transitionBuilder: (context, animation, secondaryAnimation, dialogChild) {
+        final curved = CurvedAnimation(
+          parent: animation,
+          curve: Curves.easeOutCubic,
+          reverseCurve: Curves.easeInCubic,
+        );
+        return FadeTransition(
+          opacity: curved,
+          child: SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(0, 0.04),
+              end: Offset.zero,
+            ).animate(curved),
+            child: dialogChild,
+          ),
+        );
+      },
+    );
+  }
+
   static Future<String?> showProblemDialog({
     required BuildContext context,
     String? initialProblems,

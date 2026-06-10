@@ -21,6 +21,34 @@ class NewsfeedService extends DioBaseApiService {
     );
   }
 
+  Future<BaseData<NewsletterDetailItem>> getNewsfeedDetail({
+    required int id,
+  }) {
+    return post<BaseData<NewsletterDetailItem>>(
+      ApiEndPoint.getNewsletterById,
+      query: {'id': id},
+      parser: (json) => BaseData<NewsletterDetailItem>.fromJson(
+        json,
+        (data) => NewsletterDetailItem.fromJson(data as Map<String, dynamic>),
+      ),
+    );
+  }
+
+  Future<BaseData<List<NewsletterFileItem>>> getNewsfeedFiles({
+    required int newsletterId,
+  }) {
+    return post<BaseData<List<NewsletterFileItem>>>(
+      ApiEndPoint.getNewsletterFileByNewsletterId,
+      query: {'newsletterid': newsletterId},
+      parser: (json) => BaseData<List<NewsletterFileItem>>.fromJson(
+        json,
+        (data) => (data as List)
+            .map((e) => NewsletterFileItem.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      ),
+    );
+  }
+
   Future<BaseData<CalendarItem>> getCalendar({
     required int month,
     required int year,

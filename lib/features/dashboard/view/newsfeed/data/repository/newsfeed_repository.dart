@@ -30,6 +30,40 @@ class NewsfeedRepoImpl implements NewsfeedRepo {
   }
 
   @override
+  Future<Either<BaseError, NewsletterDetailItem>> getNewsfeedDetail({
+    required int id,
+  }) async {
+    try {
+      final res = await _service.getNewsfeedDetail(id: id);
+      final data = res.data ?? res.result;
+      if (res.status == 1 && data != null) {
+        return right(data);
+      }
+      return left(
+        BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<NewsletterFileItem>>> getNewsfeedFiles({
+    required int newsletterId,
+  }) async {
+    try {
+      final res = await _service.getNewsfeedFiles(newsletterId: newsletterId);
+      final data = res.data ?? res.result;
+      if (res.status == 1 && data != null) {
+        return right(data);
+      }
+      return right(const []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
   Future<Either<BaseError, CalendarItem>> getCalendar({
     required int month,
     required int year,
