@@ -14,6 +14,10 @@ import '../features/more/data/datasource/service/more_service.dart';
 import '../features/more/data/repository/more_repo.dart';
 import '../features/more/data/repository/more_repo_impl.dart';
 import '../features/more/view/settings/notification/bloc/notification_bloc.dart';
+import '../features/dashboard/view/newsfeed/data/datasource/service/newsfeed_service.dart';
+import '../features/dashboard/view/newsfeed/data/repository/newsfeed_repo.dart';
+import '../features/dashboard/view/newsfeed/data/repository/newsfeed_repository.dart';
+import '../features/dashboard/view/newsfeed/view/bloc/newsfeed_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/datasource/service/booking_vehicle_service.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repo_impl.dart';
@@ -228,6 +232,10 @@ void configureDependencies() {
     () => PollService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<NewsfeedService>(
+    () => NewsfeedService(getIt<Dio>()),
+  );
+
   /// ===== REPOSITORY =====
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImpl(
@@ -321,6 +329,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<PollRepo>(
     () => PollRepoImpl(getIt<PollService>()),
+  );
+
+  getIt.registerLazySingleton<NewsfeedRepo>(
+    () => NewsfeedRepoImpl(getIt<NewsfeedService>()),
   );
 
   /// ===== BLOCS =====
@@ -513,6 +525,12 @@ void configureDependencies() {
   getIt.registerFactory<PollBloc>(
     () => PollBloc(
       getIt<PollRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+  getIt.registerFactory<NewsfeedBloc>(
+    () => NewsfeedBloc(
+      getIt<NewsfeedRepo>(),
       getIt<LogUtils>(),
     ),
   );

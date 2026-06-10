@@ -8,10 +8,13 @@ import 'package:go_router/go_router.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 import '../../../common/utils/bottom_bar.dart';
+import '../../../di/injection.dart';
 import '../../../routes/route_names.dart';
 import '../../auth/view/bloc/auth_bloc.dart';
 import '../../more/view/more_screen.dart';
 import '../../workplace/view/workspace_screen.dart';
+import 'newsfeed/view/bloc/newsfeed_bloc.dart';
+import 'newsfeed/view/pages/newsfeed_screen.dart';
 
 /// DashboardScreen là màn hình chính sau khi đăng nhập.
 ///
@@ -47,12 +50,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
       child: BottomBarDashboard(
         context: context,
         controller: _tabController,
-        screens: const [
+        screens: [
           // MessageScreen(),
-          // NewsFeedScreen(),
-          WorkPlaceScreen(),
+          const WorkPlaceScreen(),
+          BlocProvider(
+            create: (_) => getIt<NewsfeedBloc>()..add(const NewsfeedEvent.init()),
+            child: const NewsFeedScreen(),
+          ),
           // ContactScreen(),
-          MoreScreen(),
+          const MoreScreen(),
         ],
         items: [
           // navItem(
@@ -60,14 +66,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
           //   'dashboard.chat'.tr(),
           //   activeColorPrimary: Colors.deepOrange,
           // ),
-          // navItem(
-          //   Icons.dashboard,
-          //   'dashboard.feeds'.tr(),
-          //   activeColorPrimary: Colors.deepOrange,
-          // ),
           navItem(
             Icons.keyboard_command_key_outlined,
             'dashboard.workplace'.tr(),
+            activeColorPrimary: Colors.deepOrange,
+          ),
+          navItem(
+            Icons.dashboard,
+            'dashboard.feeds'.tr(),
             activeColorPrimary: Colors.deepOrange,
           ),
           // navItem(
