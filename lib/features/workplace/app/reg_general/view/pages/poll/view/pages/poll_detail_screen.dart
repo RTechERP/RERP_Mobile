@@ -7,7 +7,6 @@ import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../data/datasource/models/poll_model.dart';
 import '../bloc/poll_bloc.dart';
-import '../widgets/poll_detail_helpers.dart';
 import '../widgets/poll_detail_widgets.dart';
 
 class PollDetailScreen extends StatefulWidget {
@@ -23,6 +22,10 @@ class _PollDetailScreenState
     extends BaseState<PollDetailScreen, PollEvent, PollState, PollBloc> {
   Map<String, String?> _liveFieldValueMap = const {};
   int? _selectedSectionId;
+  bool _hasAttemptedConfirm = false;
+  final Map<int, GlobalKey> _questionKeys = {};
+  final Set<String> _dirtyFields = {};
+  final Set<String> _clearedFields = {};
 
   @override
   void initState() {
@@ -39,19 +42,76 @@ class _PollDetailScreenState
         ? null
         : normalizedValue;
 
-    if (_liveFieldValueMap[normalizedKey] == nextValue) return;
-
-    setState(() {
-      _liveFieldValueMap = {
-        ..._liveFieldValueMap,
-        normalizedKey: nextValue,
-      };
-    });
+    if (nextValue == null) {
+      // Chỉ xóa nếu field đã bị dirty (user từng thay đổi)
+      if (_dirtyFields.contains(normalizedKey)) {
+        _clearedFields.add(normalizedKey);
+        setState(() {
+          _liveFieldValueMap = Map.from(_liveFieldValueMap)..remove(normalizedKey);
+        });
+      }
+    } else {
+      _dirtyFields.add(normalizedKey);
+      _clearedFields.remove(normalizedKey);
+      final currentValue = _liveFieldValueMap[normalizedKey];
+      if (currentValue != nextValue) {
+        setState(() {
+          _liveFieldValueMap = {
+            ..._liveFieldValueMap,
+            normalizedKey: nextValue,
+          };
+        });
+      }
+    }
   }
 
   void _onSectionSelected(int? sectionId) {
     if (_selectedSectionId == sectionId) return;
     setState(() => _selectedSectionId = sectionId);
+  }
+
+  GlobalKey _questionKeyFor(int? questionId) {
+    if (questionId == null) {
+      return GlobalKey();
+    }
+    return _questionKeys.putIfAbsent(questionId, GlobalKey.new);
+  }
+
+  Future<void> _scrollToQuestion(int? questionId) async {
+    if (questionId == null) return;
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final targetContext = _questionKeys[questionId]?.currentContext;
+      if (targetContext == null || !mounted) return;
+
+      await Scrollable.ensureVisible(
+        targetContext,
+        duration: const Duration(milliseconds: 260),
+        curve: Curves.easeInOut,
+        alignment: 0.12,
+      );
+    });
+  }
+
+  void _onConfirm(
+    _RequiredValidationState validation,
+    List<_SurveySectionData> visibleSections,
+  ) {
+    final firstInvalidSectionId = validation.firstInvalidSectionId;
+    final firstInvalidQuestionId = validation.firstInvalidQuestionId;
+
+    setState(() {
+      _hasAttemptedConfirm = true;
+      if (firstInvalidSectionId != null &&
+          visibleSections.any((section) => section.id == firstInvalidSectionId)) {
+        _selectedSectionId = firstInvalidSectionId;
+      }
+    });
+
+    if (validation.hasMissingRequiredAnswers) {
+      _scrollToQuestion(firstInvalidQuestionId);
+      return;
+    }
   }
 
   int? _resolveSelectedSectionId(List<_SurveySectionData> sections) {
@@ -79,132 +139,276 @@ class _PollDetailScreenState
     });
   }
 
+  _RequiredValidationState _buildRequiredValidationState(
+    List<_SurveySectionData> sections, {
+    Map<String, String?> liveFieldValueMap = const {},
+  }) {
+    final missingTitles = <String>[];
+    final invalidQuestionIds = <int>{};
+    int? firstInvalidSectionId;
+    int? firstInvalidQuestionId;
+
+    for (final section in sections) {
+      for (final question in section.questions) {
+        if (question.isRequired != true) continue;
+        if (_hasQuestionValue(question, liveFieldValueMap: liveFieldValueMap)) {
+          continue;
+        }
+        final questionId = question.id;
+        if (questionId != null) {
+          invalidQuestionIds.add(questionId);
+        }
+        firstInvalidSectionId ??= section.id;
+        firstInvalidQuestionId ??= questionId;
+        missingTitles.add(_questionLabel(question, missingTitles.length + 1));
+      }
+    }
+
+    return _RequiredValidationState(
+      missingQuestionTitles: missingTitles,
+      invalidQuestionIds: invalidQuestionIds,
+      firstInvalidSectionId: firstInvalidSectionId,
+      firstInvalidQuestionId: firstInvalidQuestionId,
+    );
+  }
+
+  bool _hasQuestionValue(
+    PollQuestionItem question, {
+    Map<String, String?> liveFieldValueMap = const {},
+  }) {
+    final fieldKey = question.fieldKey?.trim();
+    if (fieldKey != null && fieldKey.isNotEmpty && liveFieldValueMap.containsKey(fieldKey)) {
+      final liveValue = liveFieldValueMap[fieldKey]?.trim();
+      return liveValue != null && liveValue.isNotEmpty;
+    }
+
+    final values = PollDetailHelpers.extractDisplayValues(question);
+    return values.any(
+      (value) =>
+          value.trim().isNotEmpty &&
+          value != 'Chưa có dữ liệu trả lời' &&
+          value != 'Chưa chọn đáp án',
+    );
+  }
+
+  String _questionLabel(PollQuestionItem question, int fallbackIndex) {
+    final text = question.questionText?.trim();
+    if (text != null && text.isNotEmpty) {
+      return text;
+    }
+    return 'Câu hỏi $fallbackIndex';
+  }
+
   @override
   Widget renderUI(BuildContext context) {
-    return BaseScaffold(
-      backgroundColor: const Color(0xFFF4F7FB),
-      appBar: const AppBarCommon(title: Text('Chi tiết bình chọn')),
-      body: BlocBuilder<PollBloc, PollState>(
-        buildWhen: (prev, curr) =>
-            prev.isDetailLoading != curr.isDetailLoading ||
-            prev.detailData != curr.detailData ||
-            prev.detailMessage != curr.detailMessage ||
-            prev.questionReadonlyMap != curr.questionReadonlyMap,
-        builder: (context, state) {
-          if (state.isDetailLoading && state.detailData == null) {
-            return const Center(child: CircularProgressIndicator());
-          }
+    return Stack(
+      children: [
+        BaseScaffold(
+          backgroundColor: const Color(0xFFF4F7FB),
+          appBar: const AppBarCommon(title: Text('Chi tiết bình chọn')),
+          body: BlocBuilder<PollBloc, PollState>(
+            buildWhen: (prev, curr) =>
+                prev.isDetailLoading != curr.isDetailLoading ||
+                prev.detailData != curr.detailData ||
+                prev.responseData != curr.responseData ||
+                prev.detailMessage != curr.detailMessage ||
+                prev.questionReadonlyMap != curr.questionReadonlyMap,
+            builder: (context, state) {
+              if (state.isDetailLoading && state.detailData == null) {
+                return const Center(child: CircularProgressIndicator());
+              }
 
-          if (state.detailMessage?.trim().isNotEmpty == true &&
-              state.detailData == null) {
-            return PollDetailStateView(
-              title: state.detailMessage!,
-              actionLabel: 'Tải lại',
-              onTap: () => bloc.add(const PollEvent.refreshDetail()),
-            );
-          }
-
-          final detail = state.detailData;
-          if (detail == null) {
-            return PollDetailStateView(
-              title: 'Không có dữ liệu chi tiết bình chọn',
-              actionLabel: 'Tải lại',
-              onTap: () => bloc.add(const PollEvent.refreshDetail()),
-            );
-          }
-
-          final backgroundImageUrl = _buildBackgroundImageUrl(
-            detail.backgroundImagePath ?? widget.item.backgroundImagePath,
-          );
-          final accentColor = _parseColor(
-            detail.titleColor ?? widget.item.titleColor,
-          );
-          final surveySections = _buildSurveySections(
-            detail,
-            liveFieldValueMap: _liveFieldValueMap,
-          );
-          final hasTriggeredDependentSection = _hasTriggeredDependentSection(detail);
-          final rootSection = surveySections.where((section) => section.id == null).firstOrNull;
-          final visibleSections = surveySections.where((section) => section.id != null).toList();
-          final selectedSectionId = _resolveSelectedSectionId(visibleSections);
-          final selectedSection = selectedSectionId == null
-              ? visibleSections.firstOrNull
-              : visibleSections.firstWhere(
-                  (section) => section.id == selectedSectionId,
-                  orElse: () => visibleSections.first,
+              if (state.detailMessage?.trim().isNotEmpty == true &&
+                  state.detailData == null) {
+                return PollDetailStateView(
+                  title: state.detailMessage!,
+                  actionLabel: 'Tải lại',
+                  onTap: () => bloc.add(const PollEvent.refreshDetail()),
                 );
+              }
 
-          return RefreshIndicator(
-            color: AppColors.primaryERP,
-            onRefresh: () async {
-              bloc.add(const PollEvent.refreshDetail());
-              await bloc.stream.firstWhere((s) => !s.isDetailLoading);
+              final detail = state.detailData;
+              if (detail == null) {
+                return PollDetailStateView(
+                  title: 'Không có dữ liệu chi tiết bình chọn',
+                  actionLabel: 'Tải lại',
+                  onTap: () => bloc.add(const PollEvent.refreshDetail()),
+                );
+              }
+
+              final response = state.responseData;
+              final backgroundImageUrl = _buildBackgroundImageUrl(
+                detail.backgroundImagePath ?? widget.item.backgroundImagePath,
+              );
+              final accentColor = _parseColor(
+                detail.titleColor ?? widget.item.titleColor,
+              );
+              final surveySections = _buildSurveySections(
+                detail,
+                liveFieldValueMap: _liveFieldValueMap,
+              );
+              final requiredValidation = _buildRequiredValidationState(
+                surveySections,
+                liveFieldValueMap: _liveFieldValueMap,
+              );
+              final hasTriggeredDependentSection = _hasTriggeredDependentSection(detail);
+              final rootSection = surveySections.where((section) => section.id == null).firstOrNull;
+              final visibleSections = surveySections.where((section) => section.id != null).toList();
+              final selectedSectionId = _resolveSelectedSectionId(visibleSections);
+              final selectedSection = selectedSectionId == null
+                  ? visibleSections.firstOrNull
+                  : visibleSections.firstWhere(
+                      (section) => section.id == selectedSectionId,
+                      orElse: () => visibleSections.first,
+                    );
+
+              return Column(
+                children: [
+                  Expanded(
+                    child: RefreshIndicator(
+                      color: AppColors.primaryERP,
+                      onRefresh: () async {
+                        bloc.add(const PollEvent.refreshDetail());
+                        await bloc.stream.firstWhere((s) => !s.isDetailLoading);
+                      },
+                      child: ListView(
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
+                        children: [
+                          PollDetailHeroCard(
+                            title: PollDetailHelpers.displayText(
+                              detail.title,
+                              widget.item.title,
+                              '--',
+                            ),
+                            description: PollDetailHelpers.displayText(
+                              detail.description,
+                              widget.item.description,
+                              '--',
+                            ),
+                            startDateText: _formatDetailDateTime(
+                              response?.startDate ?? detail.startDate ?? widget.item.startDate,
+                            ),
+                            endDateText: _formatDetailDateTime(
+                              response?.endDate ?? detail.endDate ?? widget.item.endDate,
+                            ),
+                            backgroundImageUrl: backgroundImageUrl,
+                            accentColor: accentColor,
+                            titleColorValue: detail.titleColor ?? widget.item.titleColor,
+                            status: _buildPollStatus(
+                              response,
+                              hasMissingRequiredAnswers:
+                                  requiredValidation.hasMissingRequiredAnswers,
+                            ),
+                          ),
+                          if (response?.isClosed == true &&
+                              (response?.closedReason?.trim().isNotEmpty == true)) ...[
+                            const SizedBox(height: 12),
+                            PollClosedReasonCard(reason: response!.closedReason!.trim()),
+                          ],
+                          if (rootSection != null) ...[
+                            const SizedBox(height: 16),
+                            PollDetailSectionCard(
+                              key: const ValueKey('poll-root-section'),
+                              title: rootSection.title,
+                              description: rootSection.description,
+                              questions: rootSection.questions,
+                              backgroundImageUrl: backgroundImageUrl,
+                              accentColor: accentColor,
+                              questionReadonlyMap: state.questionReadonlyMap,
+                              liveFieldValueMap: _liveFieldValueMap,
+                              dirtyFields: _dirtyFields,
+                              clearedFields: _clearedFields,
+                              questionKeyBuilder: _questionKeyFor,
+                              invalidQuestionIds: requiredValidation.invalidQuestionIds,
+                              showValidationErrors: _hasAttemptedConfirm,
+                              onAnswerChanged: _onAnswerChanged,
+                            ),
+                          ],
+                          if (hasTriggeredDependentSection && visibleSections.isNotEmpty && selectedSection != null) ...[
+                            const SizedBox(height: 16),
+                            _SectionTabsRow(
+                              sections: visibleSections,
+                              selectedSectionId: selectedSectionId,
+                              accentColor: accentColor,
+                              onSectionSelected: _onSectionSelected,
+                            ),
+                            const SizedBox(height: 16),
+                            PollDetailSectionCard(
+                              key: ValueKey('poll-section-${selectedSection.id}'),
+                              title: selectedSection.title,
+                              description: selectedSection.description,
+                              questions: selectedSection.questions,
+                              backgroundImageUrl: backgroundImageUrl,
+                              accentColor: accentColor,
+                              questionReadonlyMap: state.questionReadonlyMap,
+                              liveFieldValueMap: _liveFieldValueMap,
+                              dirtyFields: _dirtyFields,
+                              clearedFields: _clearedFields,
+                              questionKeyBuilder: _questionKeyFor,
+                              invalidQuestionIds: requiredValidation.invalidQuestionIds,
+                              showValidationErrors: _hasAttemptedConfirm,
+                              onAnswerChanged: _onAnswerChanged,
+                            ),
+                          ],
+                        ],
+                      ),
+                    ),
+                  ),
+                  SafeArea(
+                    top: false,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: response?.isClosed == true
+                              ? null
+                              : () => _onConfirm(requiredValidation, visibleSections),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.primaryERP,
+                            foregroundColor: Colors.white,
+                            disabledBackgroundColor: const Color(0xFFDDE5F0),
+                            padding: const EdgeInsets.symmetric(vertical: 14),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(14),
+                            ),
+                            elevation: 0,
+                          ),
+                          child: const Text(
+                            'Xác nhận',
+                            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              );
             },
-            child: ListView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
-              children: [
-                PollDetailHeroCard(
-                  title: PollDetailHelpers.displayText(
-                    detail.title,
-                    widget.item.title,
-                    '--',
-                  ),
-                  description: PollDetailHelpers.displayText(
-                    detail.description,
-                    widget.item.description,
-                    '--',
-                  ),
-                  startDateText: _formatDetailDateTime(
-                    detail.startDate ?? widget.item.startDate,
-                  ),
-                  endDateText: _formatDetailDateTime(
-                    detail.endDate ?? widget.item.endDate,
-                  ),
-                  backgroundImageUrl: backgroundImageUrl,
-                  accentColor: accentColor,
-                  titleColorValue: detail.titleColor ?? widget.item.titleColor,
+          ),
+        ),
+        BlocBuilder<PollBloc, PollState>(
+          buildWhen: (prev, curr) =>
+              prev.isDetailLoading != curr.isDetailLoading ||
+              prev.detailData != curr.detailData,
+          builder: (context, state) {
+            if (!state.isDetailLoading || state.detailData == null) {
+              return const SizedBox.shrink();
+            }
+
+            return Positioned.fill(
+              child: AbsorbPointer(
+                absorbing: true,
+                child: Container(
+                  alignment: Alignment.center,
+                  child: const SizedBox.shrink(),
                 ),
-                if (rootSection != null) ...[
-                  const SizedBox(height: 16),
-                  PollDetailSectionCard(
-                    key: const ValueKey('poll-root-section'),
-                    title: rootSection.title,
-                    description: rootSection.description,
-                    questions: rootSection.questions,
-                    backgroundImageUrl: backgroundImageUrl,
-                    accentColor: accentColor,
-                    questionReadonlyMap: state.questionReadonlyMap,
-                    liveFieldValueMap: _liveFieldValueMap,
-                    onAnswerChanged: _onAnswerChanged,
-                  ),
-                ],
-                if (hasTriggeredDependentSection && visibleSections.isNotEmpty && selectedSection != null) ...[
-                  const SizedBox(height: 16),
-                  _SectionTabsRow(
-                    sections: visibleSections,
-                    selectedSectionId: selectedSectionId,
-                    accentColor: accentColor,
-                    onSectionSelected: _onSectionSelected,
-                  ),
-                  const SizedBox(height: 16),
-                  PollDetailSectionCard(
-                    key: ValueKey('poll-section-${selectedSection.id}'),
-                    title: selectedSection.title,
-                    description: selectedSection.description,
-                    questions: selectedSection.questions,
-                    backgroundImageUrl: backgroundImageUrl,
-                    accentColor: accentColor,
-                    questionReadonlyMap: state.questionReadonlyMap,
-                    liveFieldValueMap: _liveFieldValueMap,
-                    onAnswerChanged: _onAnswerChanged,
-                  ),
-                ],
-              ],
-            ),
-          );
-        },
-      ),
+              ),
+            );
+          },
+        ),
+      ],
     );
   }
 
@@ -291,6 +495,90 @@ class _PollDetailScreenState
     if (value == null) return '--';
     return DateFormat('dd/MM/yyyy HH:mm').format(value);
   }
+
+  PollStatusData _buildPollStatus(
+    ResponseItem? response, {
+    required bool hasMissingRequiredAnswers,
+  }) {
+    if (response?.isClosed == true) {
+      return const PollStatusData(
+        label: 'Bình chọn đã đóng',
+        caption: 'TRẠNG THÁI',
+        highlight: 'Không thể chỉnh sửa',
+        icon: Icons.lock_outline_rounded,
+        backgroundColor: Color(0xFFFFF1F2),
+        borderColor: Color(0xFFFECDD3),
+        iconColor: Color(0xFFE11D48),
+        textColor: Color(0xFF9F1239),
+      );
+    }
+
+    if (hasMissingRequiredAnswers) {
+      return const PollStatusData(
+        label: 'Thiếu câu trả lời bắt buộc',
+        caption: 'TRẠNG THÁI',
+        highlight: 'Cần hoàn tất trước khi gửi',
+        icon: Icons.error_outline_rounded,
+        backgroundColor: Color(0xFFFFF7ED),
+        borderColor: Color(0xFFFED7AA),
+        iconColor: Color(0xFFEA580C),
+        textColor: Color(0xFF9A3412),
+      );
+    }
+
+    if (response?.hasResponse == true && response?.isCompleted == true) {
+      return PollStatusData(
+        label: 'Đã hoàn thành',
+        caption: 'TRẠNG THÁI',
+        highlight: response?.canEdit == true ? 'Bạn vẫn có thể chỉnh sửa' : 'Đã khóa chỉnh sửa',
+        icon: Icons.task_alt_rounded,
+        backgroundColor: const Color(0xFFECFDF3),
+        borderColor: const Color(0xFFA7F3D0),
+        iconColor: const Color(0xFF059669),
+        textColor: const Color(0xFF065F46),
+      );
+    }
+
+    if (response?.hasResponse == true) {
+      return PollStatusData(
+        label: 'Đã gửi phản hồi',
+        caption: 'TRẠNG THÁI',
+        highlight: response?.canEdit == true ? 'Có thể cập nhật thêm' : 'Đã lưu phản hồi',
+        icon: Icons.edit_note_rounded,
+        backgroundColor: const Color(0xFFFFF7ED),
+        borderColor: const Color(0xFFFED7AA),
+        iconColor: const Color(0xFFEA580C),
+        textColor: const Color(0xFF9A3412),
+      );
+    }
+
+    return const PollStatusData(
+      label: 'Đang nhận bình chọn',
+      caption: 'TRẠNG THÁI',
+      highlight: 'Bạn có thể tham gia ngay',
+      icon: Icons.how_to_vote_rounded,
+      backgroundColor: Color(0xFFEFF6FF),
+      borderColor: Color(0xFFBFDBFE),
+      iconColor: Color(0xFF2563EB),
+      textColor: Color(0xFF1D4ED8),
+    );
+  }
+}
+
+class _RequiredValidationState {
+  const _RequiredValidationState({
+    required this.missingQuestionTitles,
+    required this.invalidQuestionIds,
+    required this.firstInvalidSectionId,
+    required this.firstInvalidQuestionId,
+  });
+
+  final List<String> missingQuestionTitles;
+  final Set<int> invalidQuestionIds;
+  final int? firstInvalidSectionId;
+  final int? firstInvalidQuestionId;
+
+  bool get hasMissingRequiredAnswers => missingQuestionTitles.isNotEmpty;
 }
 
 class _SurveySectionData {

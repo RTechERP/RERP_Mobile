@@ -76,6 +76,7 @@ class PollSectionItem with _$PollSectionItem {
 @freezed
 class PollQuestionItem with _$PollQuestionItem {
   const factory PollQuestionItem({
+    @JsonKey(name: 'Response') PollAnswerItem? response,
     @JsonKey(name: 'DataSourceLabel') String? dataSourceLabel,
     @JsonKey(name: 'DataSourceValue') String? dataSourceValue,
     @JsonKey(name: 'DataSourceDisplayValue') String? dataSourceDisplayValue,
@@ -124,9 +125,43 @@ class ResponseItem with _$ResponseItem {
     @JsonKey(name: 'ClosedReason') String? closedReason,
     @JsonKey(name: 'StartDate') DateTime? startDate,
     @JsonKey(name: 'EndDate') DateTime? endDate,
-    @JsonKey(name: 'Response') String? response,
+    @JsonKey(name: 'Response') PollFormResponseItem? response,
   }) = _ResponseItem;
 
   factory ResponseItem.fromJson(Map<String, dynamic> json) =>
       _$ResponseItemFromJson(json);
+}
+
+@freezed
+class PollFormResponseItem with _$PollFormResponseItem {
+  const factory PollFormResponseItem({
+    @JsonKey(name: 'Answers') List<PollAnswerItem>? answers,
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'PollFormID') int? pollFormId,
+    @JsonKey(name: 'EmployeeID') int? employeeId,
+    @JsonKey(name: 'IsCompleted') bool? isCompleted,
+    @JsonKey(name: 'CompletedDate') DateTime? completedDate,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+  }) = _PollFormResponseItem;
+
+  factory PollFormResponseItem.fromJson(Map<String, dynamic> json) =>
+      _$PollFormResponseItemFromJson(json);
+}
+
+@freezed
+class PollAnswerItem with _$PollAnswerItem {
+  const factory PollAnswerItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'PollResponseID') int? pollResponseId,
+    @JsonKey(name: 'PollQuestionID') int? pollQuestionId,
+    @JsonKey(name: 'AnswerText') String? answerText,
+    @JsonKey(name: 'AnswerJson') String? answerJson,
+    @JsonKey(name: 'DisplayText') String? displayText,
+  }) = _PollAnswerItem;
+
+  factory PollAnswerItem.fromJson(Map<String, dynamic> json) =>
+      _$PollAnswerItemFromJson(json);
 }

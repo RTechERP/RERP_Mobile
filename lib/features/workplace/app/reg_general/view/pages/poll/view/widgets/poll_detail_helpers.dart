@@ -105,6 +105,23 @@ class PollDetailHelpers {
   }
 
   static List<String> extractDisplayValues(PollQuestionItem question) {
+    final response = question.response;
+    final responseDisplayText = normalizedOrNull(response?.displayText);
+    final responseAnswerText = _normalizeDisplayValue(
+      response?.answerText,
+      isDate: isDateQuestion(question.questionType),
+    );
+    if (responseDisplayText != null) {
+      return [responseDisplayText];
+    }
+    if (responseAnswerText != null) {
+      if (isChoiceQuestion(question.questionType)) {
+        final mapped = _mapOptionTexts(question.options, [responseAnswerText]);
+        if (mapped.isNotEmpty) return mapped;
+      }
+      return [responseAnswerText];
+    }
+
     final config = _decodeConfig(question.configJson);
     final values = <String>[];
     final type = normalizeQuestionType(question.questionType);
@@ -170,8 +187,17 @@ class PollDetailHelpers {
       ..sort((a, b) => (a.sortOrder ?? 0).compareTo(b.sortOrder ?? 0));
   }
 
-  static Set<String> extractSelectedValuesFromConfig(String? configJson) {
-    final config = _decodeConfig(configJson);
+  static Set<String> extractSelectedValuesFromConfig(PollQuestionItem question) {
+    final responseAnswerText = question.response?.answerText?.trim();
+    if (responseAnswerText != null && responseAnswerText.isNotEmpty) {
+      return responseAnswerText
+          .split(',')
+          .map((value) => value.trim())
+          .where((value) => value.isNotEmpty)
+          .toSet();
+    }
+
+    final config = _decodeConfig(question.configJson);
     return _extractSelectedValues(config).toSet();
   }
 

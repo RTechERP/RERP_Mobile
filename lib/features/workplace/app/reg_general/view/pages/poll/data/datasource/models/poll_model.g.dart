@@ -148,6 +148,9 @@ Map<String, dynamic> _$$PollSectionItemImplToJson(
 _$PollQuestionItemImpl _$$PollQuestionItemImplFromJson(
         Map<String, dynamic> json) =>
     _$PollQuestionItemImpl(
+      response: json['Response'] == null
+          ? null
+          : PollAnswerItem.fromJson(json['Response'] as Map<String, dynamic>),
       dataSourceLabel: json['DataSourceLabel'] as String?,
       dataSourceValue: json['DataSourceValue'] as String?,
       dataSourceDisplayValue: json['DataSourceDisplayValue'] as String?,
@@ -171,6 +174,7 @@ _$PollQuestionItemImpl _$$PollQuestionItemImplFromJson(
 Map<String, dynamic> _$$PollQuestionItemImplToJson(
         _$PollQuestionItemImpl instance) =>
     <String, dynamic>{
+      'Response': instance.response,
       'DataSourceLabel': instance.dataSourceLabel,
       'DataSourceValue': instance.dataSourceValue,
       'DataSourceDisplayValue': instance.dataSourceDisplayValue,
@@ -223,7 +227,10 @@ _$ResponseItemImpl _$$ResponseItemImplFromJson(Map<String, dynamic> json) =>
       endDate: json['EndDate'] == null
           ? null
           : DateTime.parse(json['EndDate'] as String),
-      response: json['Response'] as String?,
+      response: json['Response'] == null
+          ? null
+          : PollFormResponseItem.fromJson(
+              json['Response'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$ResponseItemImplToJson(_$ResponseItemImpl instance) =>
@@ -238,4 +245,63 @@ Map<String, dynamic> _$$ResponseItemImplToJson(_$ResponseItemImpl instance) =>
       'StartDate': instance.startDate?.toIso8601String(),
       'EndDate': instance.endDate?.toIso8601String(),
       'Response': instance.response,
+    };
+
+_$PollFormResponseItemImpl _$$PollFormResponseItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$PollFormResponseItemImpl(
+      answers: (json['Answers'] as List<dynamic>?)
+          ?.map((e) => PollAnswerItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      id: (json['ID'] as num?)?.toInt(),
+      pollFormId: (json['PollFormID'] as num?)?.toInt(),
+      employeeId: (json['EmployeeID'] as num?)?.toInt(),
+      isCompleted: json['IsCompleted'] as bool?,
+      completedDate: json['CompletedDate'] == null
+          ? null
+          : DateTime.parse(json['CompletedDate'] as String),
+      createdBy: json['CreatedBy'] as String?,
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+      updatedBy: json['UpdatedBy'] as String?,
+      updatedDate: json['UpdatedDate'] == null
+          ? null
+          : DateTime.parse(json['UpdatedDate'] as String),
+    );
+
+Map<String, dynamic> _$$PollFormResponseItemImplToJson(
+        _$PollFormResponseItemImpl instance) =>
+    <String, dynamic>{
+      'Answers': instance.answers,
+      'ID': instance.id,
+      'PollFormID': instance.pollFormId,
+      'EmployeeID': instance.employeeId,
+      'IsCompleted': instance.isCompleted,
+      'CompletedDate': instance.completedDate?.toIso8601String(),
+      'CreatedBy': instance.createdBy,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'UpdatedBy': instance.updatedBy,
+      'UpdatedDate': instance.updatedDate?.toIso8601String(),
+    };
+
+_$PollAnswerItemImpl _$$PollAnswerItemImplFromJson(Map<String, dynamic> json) =>
+    _$PollAnswerItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      pollResponseId: (json['PollResponseID'] as num?)?.toInt(),
+      pollQuestionId: (json['PollQuestionID'] as num?)?.toInt(),
+      answerText: json['AnswerText'] as String?,
+      answerJson: json['AnswerJson'] as String?,
+      displayText: json['DisplayText'] as String?,
+    );
+
+Map<String, dynamic> _$$PollAnswerItemImplToJson(
+        _$PollAnswerItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'PollResponseID': instance.pollResponseId,
+      'PollQuestionID': instance.pollQuestionId,
+      'AnswerText': instance.answerText,
+      'AnswerJson': instance.answerJson,
+      'DisplayText': instance.displayText,
     };

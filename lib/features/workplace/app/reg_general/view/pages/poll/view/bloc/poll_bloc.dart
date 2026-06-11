@@ -87,6 +87,7 @@ class PollBloc extends BaseBloc<PollEvent, PollState> {
         detailItem: item,
         isDetailLoading: true,
         detailData: null,
+        responseData: null,
         detailMessage: null,
         questionReadonlyMap: const {},
       ),
@@ -116,6 +117,7 @@ class PollBloc extends BaseBloc<PollEvent, PollState> {
         state.copyWith(
           isDetailLoading: false,
           detailData: null,
+          responseData: null,
           detailMessage: 'Không tìm thấy mã bình chọn',
           questionReadonlyMap: const {},
         ),
@@ -123,30 +125,81 @@ class PollBloc extends BaseBloc<PollEvent, PollState> {
       return;
     }
 
-    final result = await _pollRepo.getPollDetail(pollFormId: pollFormId);
+    final detailResult = await _pollRepo.getPollDetail(pollFormId: pollFormId);
+    final responseResult = await _pollRepo.getMyResponse(pollFormId: pollFormId);
 
-    result.fold(
+    detailResult.fold(
       (error) {
         _log.logE('Get poll detail failed: $error');
         emit(
           state.copyWith(
             isDetailLoading: false,
             detailData: null,
+            responseData: null,
             detailMessage: error.getErrorMessage,
             questionReadonlyMap: const {},
           ),
         );
       },
       (detail) {
-        emit(
-          state.copyWith(
-            isDetailLoading: false,
-            detailData: detail,
-            detailMessage: null,
-            questionReadonlyMap: _buildQuestionReadonlyMap(detail),
-          ),
+        responseResult.fold(
+          (error) {
+            _log.logE('Get poll response failed: $error');
+            final detailWithResponse = _mergeQuestionResponses(detail, null);
+            emit(
+              state.copyWith(
+                isDetailLoading: false,
+                detailData: detailWithResponse,
+                responseData: null,
+                detailMessage: null,
+                questionReadonlyMap: _buildQuestionReadonlyMap(detailWithResponse),
+              ),
+            );
+          },
+          (response) {
+            final detailWithResponse = _mergeQuestionResponses(detail, response);
+            emit(
+              state.copyWith(
+                isDetailLoading: false,
+                detailData: detailWithResponse,
+                responseData: response,
+                detailMessage: null,
+                questionReadonlyMap: _buildQuestionReadonlyMap(detailWithResponse),
+              ),
+            );
+          },
         );
       },
+    );
+  }
+
+  PollDetailItem _mergeQuestionResponses(
+    PollDetailItem detail,
+    ResponseItem? response,
+  ) {
+    final answers = response?.response?.answers ?? const <PollAnswerItem>[];
+    if (answers.isEmpty) return detail;
+
+    final answerMap = <int, PollAnswerItem>{
+      for (final answer in answers)
+        if (answer.pollQuestionId != null) answer.pollQuestionId!: answer,
+    };
+
+    PollQuestionItem mergeQuestion(PollQuestionItem question) {
+      final questionId = question.id;
+      if (questionId == null) return question;
+      return question.copyWith(response: answerMap[questionId]);
+    }
+
+    return detail.copyWith(
+      questions: detail.questions?.map(mergeQuestion).toList(),
+      sections: detail.sections
+          ?.map(
+            (section) => section.copyWith(
+              questions: section.questions?.map(mergeQuestion).toList(),
+            ),
+          )
+          .toList(),
     );
   }
 

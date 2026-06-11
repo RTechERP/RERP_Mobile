@@ -19,6 +19,8 @@ abstract class _$PollStateCWProxy {
 
   PollState detailData(PollDetailItem? detailData);
 
+  PollState responseData(ResponseItem? responseData);
+
   PollState detailMessage(String? detailMessage);
 
   PollState questionReadonlyMap(Map<int, bool> questionReadonlyMap);
@@ -36,6 +38,7 @@ abstract class _$PollStateCWProxy {
     bool? isDetailLoading,
     PollItem? detailItem,
     PollDetailItem? detailData,
+    ResponseItem? responseData,
     String? detailMessage,
     Map<int, bool>? questionReadonlyMap,
   });
@@ -68,6 +71,10 @@ class _$PollStateCWProxyImpl implements _$PollStateCWProxy {
       this(detailData: detailData);
 
   @override
+  PollState responseData(ResponseItem? responseData) =>
+      this(responseData: responseData);
+
+  @override
   PollState detailMessage(String? detailMessage) =>
       this(detailMessage: detailMessage);
 
@@ -90,6 +97,7 @@ class _$PollStateCWProxyImpl implements _$PollStateCWProxy {
     Object? isDetailLoading = const $CopyWithPlaceholder(),
     Object? detailItem = const $CopyWithPlaceholder(),
     Object? detailData = const $CopyWithPlaceholder(),
+    Object? responseData = const $CopyWithPlaceholder(),
     Object? detailMessage = const $CopyWithPlaceholder(),
     Object? questionReadonlyMap = const $CopyWithPlaceholder(),
   }) {
@@ -119,6 +127,10 @@ class _$PollStateCWProxyImpl implements _$PollStateCWProxy {
           ? _value.detailData
           // ignore: cast_nullable_to_non_nullable
           : detailData as PollDetailItem?,
+      responseData: responseData == const $CopyWithPlaceholder()
+          ? _value.responseData
+          // ignore: cast_nullable_to_non_nullable
+          : responseData as ResponseItem?,
       detailMessage: detailMessage == const $CopyWithPlaceholder()
           ? _value.detailMessage
           // ignore: cast_nullable_to_non_nullable

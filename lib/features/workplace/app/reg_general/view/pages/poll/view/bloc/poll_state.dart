@@ -6,6 +6,7 @@ class PollState extends BaseBlocState {
   final bool isDetailLoading;
   final PollItem? detailItem;
   final PollDetailItem? detailData;
+  final ResponseItem? responseData;
   final String? detailMessage;
   final Map<int, bool> questionReadonlyMap;
 
@@ -16,6 +17,7 @@ class PollState extends BaseBlocState {
     this.isDetailLoading = false,
     this.detailItem,
     this.detailData,
+    this.responseData,
     this.detailMessage,
     this.questionReadonlyMap = const {},
   });
@@ -27,6 +29,7 @@ class PollState extends BaseBlocState {
         isDetailLoading: false,
         detailItem: null,
         detailData: null,
+        responseData: null,
         detailMessage: null,
         questionReadonlyMap: {},
       );
@@ -39,6 +42,7 @@ class PollState extends BaseBlocState {
         isDetailLoading,
         detailItem,
         detailData,
+        responseData,
         detailMessage,
         questionReadonlyMap,
       ];

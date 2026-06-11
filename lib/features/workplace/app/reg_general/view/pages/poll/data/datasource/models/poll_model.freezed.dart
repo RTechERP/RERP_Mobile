@@ -1480,6 +1480,8 @@ PollQuestionItem _$PollQuestionItemFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PollQuestionItem {
+  @JsonKey(name: 'Response')
+  PollAnswerItem? get response => throw _privateConstructorUsedError;
   @JsonKey(name: 'DataSourceLabel')
   String? get dataSourceLabel => throw _privateConstructorUsedError;
   @JsonKey(name: 'DataSourceValue')
@@ -1526,7 +1528,8 @@ abstract class $PollQuestionItemCopyWith<$Res> {
       _$PollQuestionItemCopyWithImpl<$Res, PollQuestionItem>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'DataSourceLabel') String? dataSourceLabel,
+      {@JsonKey(name: 'Response') PollAnswerItem? response,
+      @JsonKey(name: 'DataSourceLabel') String? dataSourceLabel,
       @JsonKey(name: 'DataSourceValue') String? dataSourceValue,
       @JsonKey(name: 'DataSourceDisplayValue') String? dataSourceDisplayValue,
       @JsonKey(name: 'IsAutoFilled') bool? isAutoFilled,
@@ -1542,6 +1545,8 @@ abstract class $PollQuestionItemCopyWith<$Res> {
       @JsonKey(name: 'ConfigJson') String? configJson,
       @JsonKey(name: 'DataSourceType') String? dataSourceType,
       @JsonKey(name: 'DataSourceField') String? dataSourceField});
+
+  $PollAnswerItemCopyWith<$Res>? get response;
 }
 
 /// @nodoc
@@ -1557,6 +1562,7 @@ class _$PollQuestionItemCopyWithImpl<$Res, $Val extends PollQuestionItem>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? response = freezed,
     Object? dataSourceLabel = freezed,
     Object? dataSourceValue = freezed,
     Object? dataSourceDisplayValue = freezed,
@@ -1575,6 +1581,10 @@ class _$PollQuestionItemCopyWithImpl<$Res, $Val extends PollQuestionItem>
     Object? dataSourceField = freezed,
   }) {
     return _then(_value.copyWith(
+      response: freezed == response
+          ? _value.response
+          : response // ignore: cast_nullable_to_non_nullable
+              as PollAnswerItem?,
       dataSourceLabel: freezed == dataSourceLabel
           ? _value.dataSourceLabel
           : dataSourceLabel // ignore: cast_nullable_to_non_nullable
@@ -1641,6 +1651,18 @@ class _$PollQuestionItemCopyWithImpl<$Res, $Val extends PollQuestionItem>
               as String?,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PollAnswerItemCopyWith<$Res>? get response {
+    if (_value.response == null) {
+      return null;
+    }
+
+    return $PollAnswerItemCopyWith<$Res>(_value.response!, (value) {
+      return _then(_value.copyWith(response: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -1652,7 +1674,8 @@ abstract class _$$PollQuestionItemImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'DataSourceLabel') String? dataSourceLabel,
+      {@JsonKey(name: 'Response') PollAnswerItem? response,
+      @JsonKey(name: 'DataSourceLabel') String? dataSourceLabel,
       @JsonKey(name: 'DataSourceValue') String? dataSourceValue,
       @JsonKey(name: 'DataSourceDisplayValue') String? dataSourceDisplayValue,
       @JsonKey(name: 'IsAutoFilled') bool? isAutoFilled,
@@ -1668,6 +1691,9 @@ abstract class _$$PollQuestionItemImplCopyWith<$Res>
       @JsonKey(name: 'ConfigJson') String? configJson,
       @JsonKey(name: 'DataSourceType') String? dataSourceType,
       @JsonKey(name: 'DataSourceField') String? dataSourceField});
+
+  @override
+  $PollAnswerItemCopyWith<$Res>? get response;
 }
 
 /// @nodoc
@@ -1681,6 +1707,7 @@ class __$$PollQuestionItemImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? response = freezed,
     Object? dataSourceLabel = freezed,
     Object? dataSourceValue = freezed,
     Object? dataSourceDisplayValue = freezed,
@@ -1699,6 +1726,10 @@ class __$$PollQuestionItemImplCopyWithImpl<$Res>
     Object? dataSourceField = freezed,
   }) {
     return _then(_$PollQuestionItemImpl(
+      response: freezed == response
+          ? _value.response
+          : response // ignore: cast_nullable_to_non_nullable
+              as PollAnswerItem?,
       dataSourceLabel: freezed == dataSourceLabel
           ? _value.dataSourceLabel
           : dataSourceLabel // ignore: cast_nullable_to_non_nullable
@@ -1771,7 +1802,8 @@ class __$$PollQuestionItemImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PollQuestionItemImpl implements _PollQuestionItem {
   const _$PollQuestionItemImpl(
-      {@JsonKey(name: 'DataSourceLabel') this.dataSourceLabel,
+      {@JsonKey(name: 'Response') this.response,
+      @JsonKey(name: 'DataSourceLabel') this.dataSourceLabel,
       @JsonKey(name: 'DataSourceValue') this.dataSourceValue,
       @JsonKey(name: 'DataSourceDisplayValue') this.dataSourceDisplayValue,
       @JsonKey(name: 'IsAutoFilled') this.isAutoFilled,
@@ -1792,6 +1824,9 @@ class _$PollQuestionItemImpl implements _PollQuestionItem {
   factory _$PollQuestionItemImpl.fromJson(Map<String, dynamic> json) =>
       _$$PollQuestionItemImplFromJson(json);
 
+  @override
+  @JsonKey(name: 'Response')
+  final PollAnswerItem? response;
   @override
   @JsonKey(name: 'DataSourceLabel')
   final String? dataSourceLabel;
@@ -1851,7 +1886,7 @@ class _$PollQuestionItemImpl implements _PollQuestionItem {
 
   @override
   String toString() {
-    return 'PollQuestionItem(dataSourceLabel: $dataSourceLabel, dataSourceValue: $dataSourceValue, dataSourceDisplayValue: $dataSourceDisplayValue, isAutoFilled: $isAutoFilled, options: $options, id: $id, pollFormId: $pollFormId, sectionId: $sectionId, questionText: $questionText, fieldKey: $fieldKey, questionType: $questionType, isRequired: $isRequired, sortOrder: $sortOrder, configJson: $configJson, dataSourceType: $dataSourceType, dataSourceField: $dataSourceField)';
+    return 'PollQuestionItem(response: $response, dataSourceLabel: $dataSourceLabel, dataSourceValue: $dataSourceValue, dataSourceDisplayValue: $dataSourceDisplayValue, isAutoFilled: $isAutoFilled, options: $options, id: $id, pollFormId: $pollFormId, sectionId: $sectionId, questionText: $questionText, fieldKey: $fieldKey, questionType: $questionType, isRequired: $isRequired, sortOrder: $sortOrder, configJson: $configJson, dataSourceType: $dataSourceType, dataSourceField: $dataSourceField)';
   }
 
   @override
@@ -1859,6 +1894,8 @@ class _$PollQuestionItemImpl implements _PollQuestionItem {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PollQuestionItemImpl &&
+            (identical(other.response, response) ||
+                other.response == response) &&
             (identical(other.dataSourceLabel, dataSourceLabel) ||
                 other.dataSourceLabel == dataSourceLabel) &&
             (identical(other.dataSourceValue, dataSourceValue) ||
@@ -1895,6 +1932,7 @@ class _$PollQuestionItemImpl implements _PollQuestionItem {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      response,
       dataSourceLabel,
       dataSourceValue,
       dataSourceDisplayValue,
@@ -1929,7 +1967,8 @@ class _$PollQuestionItemImpl implements _PollQuestionItem {
 
 abstract class _PollQuestionItem implements PollQuestionItem {
   const factory _PollQuestionItem(
-          {@JsonKey(name: 'DataSourceLabel') final String? dataSourceLabel,
+          {@JsonKey(name: 'Response') final PollAnswerItem? response,
+          @JsonKey(name: 'DataSourceLabel') final String? dataSourceLabel,
           @JsonKey(name: 'DataSourceValue') final String? dataSourceValue,
           @JsonKey(name: 'DataSourceDisplayValue')
           final String? dataSourceDisplayValue,
@@ -1951,6 +1990,9 @@ abstract class _PollQuestionItem implements PollQuestionItem {
   factory _PollQuestionItem.fromJson(Map<String, dynamic> json) =
       _$PollQuestionItemImpl.fromJson;
 
+  @override
+  @JsonKey(name: 'Response')
+  PollAnswerItem? get response;
   @override
   @JsonKey(name: 'DataSourceLabel')
   String? get dataSourceLabel;
@@ -2271,7 +2313,7 @@ mixin _$ResponseItem {
   @JsonKey(name: 'EndDate')
   DateTime? get endDate => throw _privateConstructorUsedError;
   @JsonKey(name: 'Response')
-  String? get response => throw _privateConstructorUsedError;
+  PollFormResponseItem? get response => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -2295,7 +2337,9 @@ abstract class $ResponseItemCopyWith<$Res> {
       @JsonKey(name: 'ClosedReason') String? closedReason,
       @JsonKey(name: 'StartDate') DateTime? startDate,
       @JsonKey(name: 'EndDate') DateTime? endDate,
-      @JsonKey(name: 'Response') String? response});
+      @JsonKey(name: 'Response') PollFormResponseItem? response});
+
+  $PollFormResponseItemCopyWith<$Res>? get response;
 }
 
 /// @nodoc
@@ -2362,8 +2406,20 @@ class _$ResponseItemCopyWithImpl<$Res, $Val extends ResponseItem>
       response: freezed == response
           ? _value.response
           : response // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as PollFormResponseItem?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PollFormResponseItemCopyWith<$Res>? get response {
+    if (_value.response == null) {
+      return null;
+    }
+
+    return $PollFormResponseItemCopyWith<$Res>(_value.response!, (value) {
+      return _then(_value.copyWith(response: value) as $Val);
+    });
   }
 }
 
@@ -2385,7 +2441,10 @@ abstract class _$$ResponseItemImplCopyWith<$Res>
       @JsonKey(name: 'ClosedReason') String? closedReason,
       @JsonKey(name: 'StartDate') DateTime? startDate,
       @JsonKey(name: 'EndDate') DateTime? endDate,
-      @JsonKey(name: 'Response') String? response});
+      @JsonKey(name: 'Response') PollFormResponseItem? response});
+
+  @override
+  $PollFormResponseItemCopyWith<$Res>? get response;
 }
 
 /// @nodoc
@@ -2450,7 +2509,7 @@ class __$$ResponseItemImplCopyWithImpl<$Res>
       response: freezed == response
           ? _value.response
           : response // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as PollFormResponseItem?,
     ));
   }
 }
@@ -2502,7 +2561,7 @@ class _$ResponseItemImpl implements _ResponseItem {
   final DateTime? endDate;
   @override
   @JsonKey(name: 'Response')
-  final String? response;
+  final PollFormResponseItem? response;
 
   @override
   String toString() {
@@ -2565,16 +2624,17 @@ class _$ResponseItemImpl implements _ResponseItem {
 
 abstract class _ResponseItem implements ResponseItem {
   const factory _ResponseItem(
-      {@JsonKey(name: 'PollFormID') final int? pollFormId,
-      @JsonKey(name: 'EmployeeID') final int? employeeId,
-      @JsonKey(name: 'HasResponse') final bool? hasResponse,
-      @JsonKey(name: 'IsCompleted') final bool? isCompleted,
-      @JsonKey(name: 'CanEdit') final bool? canEdit,
-      @JsonKey(name: 'IsClosed') final bool? isClosed,
-      @JsonKey(name: 'ClosedReason') final String? closedReason,
-      @JsonKey(name: 'StartDate') final DateTime? startDate,
-      @JsonKey(name: 'EndDate') final DateTime? endDate,
-      @JsonKey(name: 'Response') final String? response}) = _$ResponseItemImpl;
+          {@JsonKey(name: 'PollFormID') final int? pollFormId,
+          @JsonKey(name: 'EmployeeID') final int? employeeId,
+          @JsonKey(name: 'HasResponse') final bool? hasResponse,
+          @JsonKey(name: 'IsCompleted') final bool? isCompleted,
+          @JsonKey(name: 'CanEdit') final bool? canEdit,
+          @JsonKey(name: 'IsClosed') final bool? isClosed,
+          @JsonKey(name: 'ClosedReason') final String? closedReason,
+          @JsonKey(name: 'StartDate') final DateTime? startDate,
+          @JsonKey(name: 'EndDate') final DateTime? endDate,
+          @JsonKey(name: 'Response') final PollFormResponseItem? response}) =
+      _$ResponseItemImpl;
 
   factory _ResponseItem.fromJson(Map<String, dynamic> json) =
       _$ResponseItemImpl.fromJson;
@@ -2608,9 +2668,657 @@ abstract class _ResponseItem implements ResponseItem {
   DateTime? get endDate;
   @override
   @JsonKey(name: 'Response')
-  String? get response;
+  PollFormResponseItem? get response;
   @override
   @JsonKey(ignore: true)
   _$$ResponseItemImplCopyWith<_$ResponseItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+PollFormResponseItem _$PollFormResponseItemFromJson(Map<String, dynamic> json) {
+  return _PollFormResponseItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$PollFormResponseItem {
+  @JsonKey(name: 'Answers')
+  List<PollAnswerItem>? get answers => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PollFormID')
+  int? get pollFormId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsCompleted')
+  bool? get isCompleted => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CompletedDate')
+  DateTime? get completedDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $PollFormResponseItemCopyWith<PollFormResponseItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PollFormResponseItemCopyWith<$Res> {
+  factory $PollFormResponseItemCopyWith(PollFormResponseItem value,
+          $Res Function(PollFormResponseItem) then) =
+      _$PollFormResponseItemCopyWithImpl<$Res, PollFormResponseItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'Answers') List<PollAnswerItem>? answers,
+      @JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'PollFormID') int? pollFormId,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'IsCompleted') bool? isCompleted,
+      @JsonKey(name: 'CompletedDate') DateTime? completedDate,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate});
+}
+
+/// @nodoc
+class _$PollFormResponseItemCopyWithImpl<$Res,
+        $Val extends PollFormResponseItem>
+    implements $PollFormResponseItemCopyWith<$Res> {
+  _$PollFormResponseItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? answers = freezed,
+    Object? id = freezed,
+    Object? pollFormId = freezed,
+    Object? employeeId = freezed,
+    Object? isCompleted = freezed,
+    Object? completedDate = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+  }) {
+    return _then(_value.copyWith(
+      answers: freezed == answers
+          ? _value.answers
+          : answers // ignore: cast_nullable_to_non_nullable
+              as List<PollAnswerItem>?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      pollFormId: freezed == pollFormId
+          ? _value.pollFormId
+          : pollFormId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isCompleted: freezed == isCompleted
+          ? _value.isCompleted
+          : isCompleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      completedDate: freezed == completedDate
+          ? _value.completedDate
+          : completedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$PollFormResponseItemImplCopyWith<$Res>
+    implements $PollFormResponseItemCopyWith<$Res> {
+  factory _$$PollFormResponseItemImplCopyWith(_$PollFormResponseItemImpl value,
+          $Res Function(_$PollFormResponseItemImpl) then) =
+      __$$PollFormResponseItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'Answers') List<PollAnswerItem>? answers,
+      @JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'PollFormID') int? pollFormId,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'IsCompleted') bool? isCompleted,
+      @JsonKey(name: 'CompletedDate') DateTime? completedDate,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate});
+}
+
+/// @nodoc
+class __$$PollFormResponseItemImplCopyWithImpl<$Res>
+    extends _$PollFormResponseItemCopyWithImpl<$Res, _$PollFormResponseItemImpl>
+    implements _$$PollFormResponseItemImplCopyWith<$Res> {
+  __$$PollFormResponseItemImplCopyWithImpl(_$PollFormResponseItemImpl _value,
+      $Res Function(_$PollFormResponseItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? answers = freezed,
+    Object? id = freezed,
+    Object? pollFormId = freezed,
+    Object? employeeId = freezed,
+    Object? isCompleted = freezed,
+    Object? completedDate = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+  }) {
+    return _then(_$PollFormResponseItemImpl(
+      answers: freezed == answers
+          ? _value._answers
+          : answers // ignore: cast_nullable_to_non_nullable
+              as List<PollAnswerItem>?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      pollFormId: freezed == pollFormId
+          ? _value.pollFormId
+          : pollFormId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isCompleted: freezed == isCompleted
+          ? _value.isCompleted
+          : isCompleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      completedDate: freezed == completedDate
+          ? _value.completedDate
+          : completedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$PollFormResponseItemImpl implements _PollFormResponseItem {
+  const _$PollFormResponseItemImpl(
+      {@JsonKey(name: 'Answers') final List<PollAnswerItem>? answers,
+      @JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'PollFormID') this.pollFormId,
+      @JsonKey(name: 'EmployeeID') this.employeeId,
+      @JsonKey(name: 'IsCompleted') this.isCompleted,
+      @JsonKey(name: 'CompletedDate') this.completedDate,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'UpdatedBy') this.updatedBy,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate})
+      : _answers = answers;
+
+  factory _$PollFormResponseItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PollFormResponseItemImplFromJson(json);
+
+  final List<PollAnswerItem>? _answers;
+  @override
+  @JsonKey(name: 'Answers')
+  List<PollAnswerItem>? get answers {
+    final value = _answers;
+    if (value == null) return null;
+    if (_answers is EqualUnmodifiableListView) return _answers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'PollFormID')
+  final int? pollFormId;
+  @override
+  @JsonKey(name: 'EmployeeID')
+  final int? employeeId;
+  @override
+  @JsonKey(name: 'IsCompleted')
+  final bool? isCompleted;
+  @override
+  @JsonKey(name: 'CompletedDate')
+  final DateTime? completedDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  final String? createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  final String? updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final DateTime? updatedDate;
+
+  @override
+  String toString() {
+    return 'PollFormResponseItem(answers: $answers, id: $id, pollFormId: $pollFormId, employeeId: $employeeId, isCompleted: $isCompleted, completedDate: $completedDate, createdBy: $createdBy, createdDate: $createdDate, updatedBy: $updatedBy, updatedDate: $updatedDate)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PollFormResponseItemImpl &&
+            const DeepCollectionEquality().equals(other._answers, _answers) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.pollFormId, pollFormId) ||
+                other.pollFormId == pollFormId) &&
+            (identical(other.employeeId, employeeId) ||
+                other.employeeId == employeeId) &&
+            (identical(other.isCompleted, isCompleted) ||
+                other.isCompleted == isCompleted) &&
+            (identical(other.completedDate, completedDate) ||
+                other.completedDate == completedDate) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_answers),
+      id,
+      pollFormId,
+      employeeId,
+      isCompleted,
+      completedDate,
+      createdBy,
+      createdDate,
+      updatedBy,
+      updatedDate);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PollFormResponseItemImplCopyWith<_$PollFormResponseItemImpl>
+      get copyWith =>
+          __$$PollFormResponseItemImplCopyWithImpl<_$PollFormResponseItemImpl>(
+              this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$PollFormResponseItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _PollFormResponseItem implements PollFormResponseItem {
+  const factory _PollFormResponseItem(
+          {@JsonKey(name: 'Answers') final List<PollAnswerItem>? answers,
+          @JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'PollFormID') final int? pollFormId,
+          @JsonKey(name: 'EmployeeID') final int? employeeId,
+          @JsonKey(name: 'IsCompleted') final bool? isCompleted,
+          @JsonKey(name: 'CompletedDate') final DateTime? completedDate,
+          @JsonKey(name: 'CreatedBy') final String? createdBy,
+          @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+          @JsonKey(name: 'UpdatedBy') final String? updatedBy,
+          @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate}) =
+      _$PollFormResponseItemImpl;
+
+  factory _PollFormResponseItem.fromJson(Map<String, dynamic> json) =
+      _$PollFormResponseItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'Answers')
+  List<PollAnswerItem>? get answers;
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'PollFormID')
+  int? get pollFormId;
+  @override
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId;
+  @override
+  @JsonKey(name: 'IsCompleted')
+  bool? get isCompleted;
+  @override
+  @JsonKey(name: 'CompletedDate')
+  DateTime? get completedDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate;
+  @override
+  @JsonKey(ignore: true)
+  _$$PollFormResponseItemImplCopyWith<_$PollFormResponseItemImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+PollAnswerItem _$PollAnswerItemFromJson(Map<String, dynamic> json) {
+  return _PollAnswerItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$PollAnswerItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PollResponseID')
+  int? get pollResponseId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PollQuestionID')
+  int? get pollQuestionId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AnswerText')
+  String? get answerText => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AnswerJson')
+  String? get answerJson => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DisplayText')
+  String? get displayText => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $PollAnswerItemCopyWith<PollAnswerItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PollAnswerItemCopyWith<$Res> {
+  factory $PollAnswerItemCopyWith(
+          PollAnswerItem value, $Res Function(PollAnswerItem) then) =
+      _$PollAnswerItemCopyWithImpl<$Res, PollAnswerItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'PollResponseID') int? pollResponseId,
+      @JsonKey(name: 'PollQuestionID') int? pollQuestionId,
+      @JsonKey(name: 'AnswerText') String? answerText,
+      @JsonKey(name: 'AnswerJson') String? answerJson,
+      @JsonKey(name: 'DisplayText') String? displayText});
+}
+
+/// @nodoc
+class _$PollAnswerItemCopyWithImpl<$Res, $Val extends PollAnswerItem>
+    implements $PollAnswerItemCopyWith<$Res> {
+  _$PollAnswerItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? pollResponseId = freezed,
+    Object? pollQuestionId = freezed,
+    Object? answerText = freezed,
+    Object? answerJson = freezed,
+    Object? displayText = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      pollResponseId: freezed == pollResponseId
+          ? _value.pollResponseId
+          : pollResponseId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      pollQuestionId: freezed == pollQuestionId
+          ? _value.pollQuestionId
+          : pollQuestionId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      answerText: freezed == answerText
+          ? _value.answerText
+          : answerText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      answerJson: freezed == answerJson
+          ? _value.answerJson
+          : answerJson // ignore: cast_nullable_to_non_nullable
+              as String?,
+      displayText: freezed == displayText
+          ? _value.displayText
+          : displayText // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$PollAnswerItemImplCopyWith<$Res>
+    implements $PollAnswerItemCopyWith<$Res> {
+  factory _$$PollAnswerItemImplCopyWith(_$PollAnswerItemImpl value,
+          $Res Function(_$PollAnswerItemImpl) then) =
+      __$$PollAnswerItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'PollResponseID') int? pollResponseId,
+      @JsonKey(name: 'PollQuestionID') int? pollQuestionId,
+      @JsonKey(name: 'AnswerText') String? answerText,
+      @JsonKey(name: 'AnswerJson') String? answerJson,
+      @JsonKey(name: 'DisplayText') String? displayText});
+}
+
+/// @nodoc
+class __$$PollAnswerItemImplCopyWithImpl<$Res>
+    extends _$PollAnswerItemCopyWithImpl<$Res, _$PollAnswerItemImpl>
+    implements _$$PollAnswerItemImplCopyWith<$Res> {
+  __$$PollAnswerItemImplCopyWithImpl(
+      _$PollAnswerItemImpl _value, $Res Function(_$PollAnswerItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? pollResponseId = freezed,
+    Object? pollQuestionId = freezed,
+    Object? answerText = freezed,
+    Object? answerJson = freezed,
+    Object? displayText = freezed,
+  }) {
+    return _then(_$PollAnswerItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      pollResponseId: freezed == pollResponseId
+          ? _value.pollResponseId
+          : pollResponseId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      pollQuestionId: freezed == pollQuestionId
+          ? _value.pollQuestionId
+          : pollQuestionId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      answerText: freezed == answerText
+          ? _value.answerText
+          : answerText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      answerJson: freezed == answerJson
+          ? _value.answerJson
+          : answerJson // ignore: cast_nullable_to_non_nullable
+              as String?,
+      displayText: freezed == displayText
+          ? _value.displayText
+          : displayText // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$PollAnswerItemImpl implements _PollAnswerItem {
+  const _$PollAnswerItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'PollResponseID') this.pollResponseId,
+      @JsonKey(name: 'PollQuestionID') this.pollQuestionId,
+      @JsonKey(name: 'AnswerText') this.answerText,
+      @JsonKey(name: 'AnswerJson') this.answerJson,
+      @JsonKey(name: 'DisplayText') this.displayText});
+
+  factory _$PollAnswerItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PollAnswerItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'PollResponseID')
+  final int? pollResponseId;
+  @override
+  @JsonKey(name: 'PollQuestionID')
+  final int? pollQuestionId;
+  @override
+  @JsonKey(name: 'AnswerText')
+  final String? answerText;
+  @override
+  @JsonKey(name: 'AnswerJson')
+  final String? answerJson;
+  @override
+  @JsonKey(name: 'DisplayText')
+  final String? displayText;
+
+  @override
+  String toString() {
+    return 'PollAnswerItem(id: $id, pollResponseId: $pollResponseId, pollQuestionId: $pollQuestionId, answerText: $answerText, answerJson: $answerJson, displayText: $displayText)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PollAnswerItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.pollResponseId, pollResponseId) ||
+                other.pollResponseId == pollResponseId) &&
+            (identical(other.pollQuestionId, pollQuestionId) ||
+                other.pollQuestionId == pollQuestionId) &&
+            (identical(other.answerText, answerText) ||
+                other.answerText == answerText) &&
+            (identical(other.answerJson, answerJson) ||
+                other.answerJson == answerJson) &&
+            (identical(other.displayText, displayText) ||
+                other.displayText == displayText));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, pollResponseId,
+      pollQuestionId, answerText, answerJson, displayText);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PollAnswerItemImplCopyWith<_$PollAnswerItemImpl> get copyWith =>
+      __$$PollAnswerItemImplCopyWithImpl<_$PollAnswerItemImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$PollAnswerItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _PollAnswerItem implements PollAnswerItem {
+  const factory _PollAnswerItem(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'PollResponseID') final int? pollResponseId,
+          @JsonKey(name: 'PollQuestionID') final int? pollQuestionId,
+          @JsonKey(name: 'AnswerText') final String? answerText,
+          @JsonKey(name: 'AnswerJson') final String? answerJson,
+          @JsonKey(name: 'DisplayText') final String? displayText}) =
+      _$PollAnswerItemImpl;
+
+  factory _PollAnswerItem.fromJson(Map<String, dynamic> json) =
+      _$PollAnswerItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'PollResponseID')
+  int? get pollResponseId;
+  @override
+  @JsonKey(name: 'PollQuestionID')
+  int? get pollQuestionId;
+  @override
+  @JsonKey(name: 'AnswerText')
+  String? get answerText;
+  @override
+  @JsonKey(name: 'AnswerJson')
+  String? get answerJson;
+  @override
+  @JsonKey(name: 'DisplayText')
+  String? get displayText;
+  @override
+  @JsonKey(ignore: true)
+  _$$PollAnswerItemImplCopyWith<_$PollAnswerItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
