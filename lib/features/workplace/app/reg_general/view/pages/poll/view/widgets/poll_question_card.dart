@@ -35,6 +35,7 @@ class PollQuestionReadonlyCard extends StatefulWidget {
 class PollQuestionReadonlyCardState extends State<PollQuestionReadonlyCard> {
   late TextEditingController _textController;
   DateTime? _selectedDate;
+  int? _selectedRating;
   String? _lastNotifiedValue;
 
   @override
@@ -44,6 +45,7 @@ class PollQuestionReadonlyCardState extends State<PollQuestionReadonlyCard> {
       text: _buildResolvedTextValue(widget.question),
     );
     _selectedDate = _resolveSelectedDate(widget.question);
+    _selectedRating = _resolveSelectedRating(widget.question);
     _scheduleAnswerChangedNotification();
   }
 
@@ -56,8 +58,12 @@ class PollQuestionReadonlyCardState extends State<PollQuestionReadonlyCard> {
         offset: _textController.text.length,
       );
       _selectedDate = _resolveSelectedDate(widget.question);
-    } else if (oldWidget.liveFieldValueMap != widget.liveFieldValueMap) {
+      _selectedRating = _resolveSelectedRating(widget.question);
+    } else if (oldWidget.liveFieldValueMap != widget.liveFieldValueMap ||
+        oldWidget.clearedFields != widget.clearedFields ||
+        oldWidget.dirtyFields != widget.dirtyFields) {
       _selectedDate = _resolveSelectedDate(widget.question);
+      _selectedRating = _resolveSelectedRating(widget.question);
       _textController.text = _buildResolvedTextValue(widget.question);
     }
   }
@@ -69,10 +75,18 @@ class PollQuestionReadonlyCardState extends State<PollQuestionReadonlyCard> {
   }
 
   DateTime? _resolveSelectedDate(PollQuestionItem question) {
-    final liveValue = _liveValue(question);
-    if (liveValue != null && liveValue.isNotEmpty) {
-      final parsedLiveValue = DateTime.tryParse(liveValue);
-      if (parsedLiveValue != null) return parsedLiveValue;
+    final fieldKey = question.fieldKey?.trim() ?? '';
+
+    if (widget.clearedFields.contains(fieldKey)) {
+      return null;
+    }
+
+    if (widget.dirtyFields.contains(fieldKey)) {
+      final liveValue = _liveValue(question);
+      if (liveValue != null && liveValue.isNotEmpty) {
+        final parsedLiveValue = DateTime.tryParse(liveValue);
+        if (parsedLiveValue != null) return parsedLiveValue;
+      }
     }
 
     final values = PollDetailHelpers.extractDisplayValues(question);
@@ -103,9 +117,45 @@ class PollQuestionReadonlyCardState extends State<PollQuestionReadonlyCard> {
     return DateTime.tryParse(firstValue);
   }
 
+  int? _resolveSelectedRating(PollQuestionItem question) {
+    final fieldKey = question.fieldKey?.trim() ?? '';
+
+    if (widget.clearedFields.contains(fieldKey)) {
+      return null;
+    }
+
+    if (widget.dirtyFields.contains(fieldKey)) {
+      final liveValue = _liveValue(question);
+      if (liveValue != null && liveValue.isNotEmpty) {
+        return int.tryParse(liveValue);
+      }
+    }
+
+    final values = PollDetailHelpers.extractDisplayValues(question);
+    if (values.isEmpty) return null;
+    final firstValue = values.first.trim();
+    if (firstValue.isEmpty ||
+        firstValue == 'Chưa có dữ liệu trả lời' ||
+        firstValue == 'Chưa chọn đáp án') {
+      return null;
+    }
+
+    return int.tryParse(firstValue);
+  }
+
   String _buildResolvedTextValue(PollQuestionItem question) {
-    final liveValue = _liveValue(question);
-    if (liveValue != null) return liveValue;
+    final fieldKey = question.fieldKey?.trim() ?? '';
+
+    if (widget.clearedFields.contains(fieldKey)) {
+      return '';
+    }
+
+    if (widget.dirtyFields.contains(fieldKey)) {
+      final liveVal = _liveValue(question);
+      if (liveVal != null && liveVal.isNotEmpty) {
+        return liveVal;
+      }
+    }
 
     final values = PollDetailHelpers.extractDisplayValues(question);
     if (values.isEmpty) return '';
@@ -151,7 +201,11 @@ class PollQuestionReadonlyCardState extends State<PollQuestionReadonlyCard> {
 
     String? nextValue;
     if (PollDetailHelpers.isChoiceQuestion(normalizedType)) {
-      nextValue = _liveSelectedValues.isEmpty ? null : _liveSelectedValues.join(',');
+      if (normalizedType == 'rating') {
+        nextValue = _selectedRating == null ? null : _selectedRating.toString();
+      } else {
+        nextValue = _liveSelectedValues.isEmpty ? null : _liveSelectedValues.join(',');
+      }
     } else if (PollDetailHelpers.isDateQuestion(normalizedType)) {
       nextValue = _selectedDate == null ? null : DateFormat('yyyy-MM-dd').format(_selectedDate!);
     } else {
@@ -228,13 +282,38 @@ class PollQuestionReadonlyCardState extends State<PollQuestionReadonlyCard> {
     _notifyAnswerChanged();
   }
 
+  void _onSelectRating(int value) {
+    if (widget.readonly) return;
+    setState(() {
+      _selectedRating = value;
+    });
+    _notifyAnswerChanged();
+  }
+
+  void _onClearRating() {
+    if (widget.readonly || widget.question.isRequired == true || _selectedRating == null) {
+      return;
+    }
+    setState(() {
+      _selectedRating = null;
+    });
+    _notifyAnswerChanged();
+  }
+
   void _onResetReadonly() {
     if (widget.question.isRequired == true) return;
     final fieldKey = widget.question.fieldKey?.trim();
     if (fieldKey == null || fieldKey.isEmpty) return;
     final normalizedType = PollDetailHelpers.normalizeQuestionType(widget.question.questionType);
     if (PollDetailHelpers.isChoiceQuestion(normalizedType)) {
-      widget.onAnswerChanged(fieldKey, null);
+      if (normalizedType == 'rating') {
+        setState(() {
+          _selectedRating = null;
+        });
+        widget.onAnswerChanged(fieldKey, null);
+      } else {
+        widget.onAnswerChanged(fieldKey, null);
+      }
     } else if (PollDetailHelpers.isDateQuestion(normalizedType)) {
       widget.onAnswerChanged(fieldKey, null);
     } else {
@@ -315,8 +394,10 @@ class PollQuestionReadonlyCardState extends State<PollQuestionReadonlyCard> {
             options: sortedOptions,
             selectedValues: _liveSelectedValues,
             selectedDate: _selectedDate,
+            selectedRating: _selectedRating,
             textController: _textController,
             showValidationError: showValidationError,
+            liveFieldValueMap: widget.liveFieldValueMap,
             onPickDate: _onPickDate,
             onClearDate: _onClearDate,
             onClearText: _onClearText,
@@ -324,6 +405,8 @@ class PollQuestionReadonlyCardState extends State<PollQuestionReadonlyCard> {
             onResetSingle: _onResetSingle,
             onToggleMultiple: _onToggleMultiple,
             onResetMultiple: _onResetMultiple,
+            onSelectRating: _onSelectRating,
+            onClearRating: _onClearRating,
             onTextChanged: (_) => _notifyAnswerChanged(),
             onResetReadonly: _onResetReadonly,
           ),
@@ -388,8 +471,10 @@ class _AnswerContent extends StatelessWidget {
     required this.options,
     required this.selectedValues,
     required this.selectedDate,
+    required this.selectedRating,
     required this.textController,
     required this.showValidationError,
+    required this.liveFieldValueMap,
     required this.onPickDate,
     required this.onClearDate,
     required this.onClearText,
@@ -399,6 +484,8 @@ class _AnswerContent extends StatelessWidget {
     required this.onResetMultiple,
     required this.onResetReadonly,
     required this.onTextChanged,
+    required this.onSelectRating,
+    required this.onClearRating,
   });
 
   final PollQuestionItem question;
@@ -409,8 +496,10 @@ class _AnswerContent extends StatelessWidget {
   final List<PollOptionItem> options;
   final Set<String> selectedValues;
   final DateTime? selectedDate;
+  final int? selectedRating;
   final TextEditingController textController;
   final bool showValidationError;
+  final Map<String, String?> liveFieldValueMap;
   final Future<void> Function() onPickDate;
   final VoidCallback onClearDate;
   final VoidCallback onClearText;
@@ -420,9 +509,92 @@ class _AnswerContent extends StatelessWidget {
   final VoidCallback onResetMultiple;
   final VoidCallback onResetReadonly;
   final ValueChanged<String> onTextChanged;
+  final ValueChanged<int> onSelectRating;
+  final VoidCallback onClearRating;
+
+  int? _resolveRatingValueFromOptions(List<PollOptionItem> ratingOptions) {
+    // Kiểm tra live value trước
+    final liveValue = _getLiveValue();
+    if (liveValue != null && liveValue.isNotEmpty) {
+      return int.tryParse(liveValue);
+    }
+
+    // Kiểm tra response.answerText từ API
+    final apiAnswerText = question.response?.answerText?.trim();
+    if (apiAnswerText != null && apiAnswerText.isNotEmpty) {
+      return int.tryParse(apiAnswerText);
+    }
+
+    // Kiểm tra selected values
+    for (final option in ratingOptions) {
+      final optionValue = option.optionValue?.trim();
+      if (selectedValues.contains(optionValue)) {
+        return int.tryParse(optionValue ?? '');
+      }
+      final optionText = option.optionText?.trim();
+      if (selectedValues.contains(optionText)) {
+        return int.tryParse(optionText ?? '');
+      }
+    }
+    return null;
+  }
+
+  String _getRatingDisplayValue() {
+    final liveValue = _getLiveValue();
+    if (liveValue != null && liveValue.isNotEmpty) {
+      return liveValue;
+    }
+
+    // Kiểm tra response.answerText từ API
+    final apiAnswerText = question.response?.answerText?.trim();
+    if (apiAnswerText != null && apiAnswerText.isNotEmpty) {
+      return apiAnswerText;
+    }
+
+    if (effectiveValues.isNotEmpty) {
+      return effectiveValues.first;
+    }
+    return '--';
+  }
+
+  String? _getLiveValue() {
+    final fieldKey = question.fieldKey?.trim();
+    if (fieldKey == null || fieldKey.isEmpty) return null;
+    if (liveFieldValueMap.containsKey(fieldKey)) {
+      return liveFieldValueMap[fieldKey];
+    }
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
+    final isRatingQuestion = type == 'rating';
+
+    if (isRatingQuestion) {
+      final isEditableRating = !readonly;
+      if (isEditableRating) {
+        // Lấy số từ options của API
+        final ratingOptions = PollDetailHelpers.extractSortedOptions(options);
+        final selectedValue = _resolveRatingValueFromOptions(ratingOptions);
+        return RatingNumberInputField(
+          selectedValue: selectedValue,
+          isRequired: question.isRequired == true,
+          showValidationError: showValidationError,
+          onSelect: onSelectRating,
+          onClear: onClearRating,
+          options: ratingOptions,
+          configJson: question.configJson,
+        );
+      }
+
+      // Readonly mode
+      final displayValue = _getRatingDisplayValue();
+      return ReadonlyRatingTile(
+        value: displayValue,
+        readonly: readonly,
+      );
+    }
+
     if (PollDetailHelpers.isChoiceQuestion(type)) {
       final hasInteractiveOptions = options.isNotEmpty && !readonly;
       if (hasInteractiveOptions) {

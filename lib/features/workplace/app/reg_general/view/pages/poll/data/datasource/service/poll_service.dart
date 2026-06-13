@@ -44,4 +44,18 @@ class PollService extends DioBaseApiService {
       ),
     );
   }
+
+  Future<BaseData<PollSubmitResultItem>> submitPollBulk({
+    required int pollFormId,
+    required PollSubmitPayload payload,
+  }) {
+    return post<BaseData<PollSubmitResultItem>>(
+      '${ApiEndPoint.submitPollBulk}/$pollFormId/mobile/submit-bulk',
+      body: payload.toJson(),
+      parser: (json) => BaseData<PollSubmitResultItem>.fromJson(
+        json as Map<String, dynamic>,
+        (data) => PollSubmitResultItem.fromJson(data as Map<String, dynamic>),
+      ),
+    );
+  }
 }

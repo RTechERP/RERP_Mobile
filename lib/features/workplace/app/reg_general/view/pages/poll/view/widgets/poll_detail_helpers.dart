@@ -60,6 +60,9 @@ class PollDetailHelpers {
       'dropdown',
       'select',
       'combobox',
+      'rating',
+      'danhgia',
+      'đánh giá',
     }.contains(normalizeQuestionType(type));
   }
 
@@ -76,6 +79,11 @@ class PollDetailHelpers {
       'date',
       'datetime',
       'datetime-local',
+      'ngaychotoi',
+      'ngày chotôi',
+      'pickdate',
+      'pick_date',
+      'chosedate',
     }.contains(normalizeQuestionType(type));
   }
 
@@ -96,8 +104,15 @@ class PollDetailHelpers {
       case 'text':
         return 'text';
       case 'date':
+      case 'ngaychotoi':
+      case 'ngày chotôi':
+      case 'pickdate':
+      case 'pick_date':
+      case 'chosedate':
         return 'date';
       case 'rating':
+      case 'danhgia':
+      case 'đánh giá':
         return 'rating';
       default:
         return normalized;
@@ -111,6 +126,15 @@ class PollDetailHelpers {
       response?.answerText,
       isDate: isDateQuestion(question.questionType),
     );
+    final type = normalizeQuestionType(question.questionType);
+
+    // Rating: giữ nguyên giá trị số, không map sang option text
+    if (type == 'rating') {
+      if (responseAnswerText != null) {
+        return [responseAnswerText];
+      }
+    }
+
     if (responseDisplayText != null) {
       return [responseDisplayText];
     }
@@ -124,7 +148,6 @@ class PollDetailHelpers {
 
     final config = _decodeConfig(question.configJson);
     final values = <String>[];
-    final type = normalizeQuestionType(question.questionType);
 
     void appendValue(String? raw, {bool forceDateFormat = false}) {
       final normalized = _normalizeDisplayValue(

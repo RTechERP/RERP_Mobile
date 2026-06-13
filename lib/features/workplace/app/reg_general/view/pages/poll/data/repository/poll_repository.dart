@@ -55,6 +55,44 @@ class PollRepoImpl implements PollRepo {
     try {
       final res = await _service.getMyResponse(pollFormId: pollFormId);
 
+      if (res.status == 1) {
+        return right(res.data ?? ResponseItem());
+      }
+      return left(
+        BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  // @override
+  // Future<Either<BaseError, void>> submitPoll(PollSubmitPayload payload) async {
+  //   try {
+  //     final res = await _service.submitPoll(payload);
+  //
+  //     if (res.status == 1) {
+  //       return right(null);
+  //     }
+  //     return left(
+  //       BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+  //     );
+  //   } on DioException catch (e) {
+  //     return left(e.baseError);
+  //   }
+  // }
+
+  @override
+  Future<Either<BaseError, PollSubmitResultItem>> submitPollBulk({
+    required int pollFormId,
+    required PollSubmitPayload payload,
+  }) async {
+    try {
+      final res = await _service.submitPollBulk(
+        pollFormId: pollFormId,
+        payload: payload,
+      );
+
       if (res.status == 1 && res.data != null) {
         return right(res.data!);
       }

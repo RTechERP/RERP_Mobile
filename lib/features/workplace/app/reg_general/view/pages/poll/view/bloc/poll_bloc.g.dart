@@ -25,6 +25,12 @@ abstract class _$PollStateCWProxy {
 
   PollState questionReadonlyMap(Map<int, bool> questionReadonlyMap);
 
+  PollState selectedSectionId(int? selectedSectionId);
+
+  PollState isNavigating(bool isNavigating);
+
+  PollState isSubmitting(bool isSubmitting);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PollState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -41,6 +47,9 @@ abstract class _$PollStateCWProxy {
     ResponseItem? responseData,
     String? detailMessage,
     Map<int, bool>? questionReadonlyMap,
+    int? selectedSectionId,
+    bool? isNavigating,
+    bool? isSubmitting,
   });
 }
 
@@ -83,6 +92,16 @@ class _$PollStateCWProxyImpl implements _$PollStateCWProxy {
       this(questionReadonlyMap: questionReadonlyMap);
 
   @override
+  PollState selectedSectionId(int? selectedSectionId) =>
+      this(selectedSectionId: selectedSectionId);
+
+  @override
+  PollState isNavigating(bool isNavigating) => this(isNavigating: isNavigating);
+
+  @override
+  PollState isSubmitting(bool isSubmitting) => this(isSubmitting: isSubmitting);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PollState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -100,6 +119,9 @@ class _$PollStateCWProxyImpl implements _$PollStateCWProxy {
     Object? responseData = const $CopyWithPlaceholder(),
     Object? detailMessage = const $CopyWithPlaceholder(),
     Object? questionReadonlyMap = const $CopyWithPlaceholder(),
+    Object? selectedSectionId = const $CopyWithPlaceholder(),
+    Object? isNavigating = const $CopyWithPlaceholder(),
+    Object? isSubmitting = const $CopyWithPlaceholder(),
   }) {
     return PollState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -141,6 +163,20 @@ class _$PollStateCWProxyImpl implements _$PollStateCWProxy {
               ? _value.questionReadonlyMap
               // ignore: cast_nullable_to_non_nullable
               : questionReadonlyMap as Map<int, bool>,
+      selectedSectionId: selectedSectionId == const $CopyWithPlaceholder()
+          ? _value.selectedSectionId
+          // ignore: cast_nullable_to_non_nullable
+          : selectedSectionId as int?,
+      isNavigating:
+          isNavigating == const $CopyWithPlaceholder() || isNavigating == null
+              ? _value.isNavigating
+              // ignore: cast_nullable_to_non_nullable
+              : isNavigating as bool,
+      isSubmitting:
+          isSubmitting == const $CopyWithPlaceholder() || isSubmitting == null
+              ? _value.isSubmitting
+              // ignore: cast_nullable_to_non_nullable
+              : isSubmitting as bool,
     );
   }
 }

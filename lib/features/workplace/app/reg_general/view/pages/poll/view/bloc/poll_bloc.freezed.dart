@@ -22,6 +22,11 @@ mixin _$PollEvent {
     required TResult Function() refresh,
     required TResult Function(PollItem item) initDetail,
     required TResult Function() refreshDetail,
+    required TResult Function(int sectionId) selectSection,
+    required TResult Function() goToNextSection,
+    required TResult Function() goToPreviousSection,
+    required TResult Function(bool isNavigating) setNavigating,
+    required TResult Function(PollSubmitPayload payload) submitPollSection,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +35,11 @@ mixin _$PollEvent {
     TResult? Function()? refresh,
     TResult? Function(PollItem item)? initDetail,
     TResult? Function()? refreshDetail,
+    TResult? Function(int sectionId)? selectSection,
+    TResult? Function()? goToNextSection,
+    TResult? Function()? goToPreviousSection,
+    TResult? Function(bool isNavigating)? setNavigating,
+    TResult? Function(PollSubmitPayload payload)? submitPollSection,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +48,11 @@ mixin _$PollEvent {
     TResult Function()? refresh,
     TResult Function(PollItem item)? initDetail,
     TResult Function()? refreshDetail,
+    TResult Function(int sectionId)? selectSection,
+    TResult Function()? goToNextSection,
+    TResult Function()? goToPreviousSection,
+    TResult Function(bool isNavigating)? setNavigating,
+    TResult Function(PollSubmitPayload payload)? submitPollSection,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +62,11 @@ mixin _$PollEvent {
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_RefreshDetail value) refreshDetail,
+    required TResult Function(_SelectSection value) selectSection,
+    required TResult Function(_GoToNextSection value) goToNextSection,
+    required TResult Function(_GoToPreviousSection value) goToPreviousSection,
+    required TResult Function(_SetNavigating value) setNavigating,
+    required TResult Function(_SubmitPollSection value) submitPollSection,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +75,11 @@ mixin _$PollEvent {
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_RefreshDetail value)? refreshDetail,
+    TResult? Function(_SelectSection value)? selectSection,
+    TResult? Function(_GoToNextSection value)? goToNextSection,
+    TResult? Function(_GoToPreviousSection value)? goToPreviousSection,
+    TResult? Function(_SetNavigating value)? setNavigating,
+    TResult? Function(_SubmitPollSection value)? submitPollSection,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +88,11 @@ mixin _$PollEvent {
     TResult Function(_Refresh value)? refresh,
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_RefreshDetail value)? refreshDetail,
+    TResult Function(_SelectSection value)? selectSection,
+    TResult Function(_GoToNextSection value)? goToNextSection,
+    TResult Function(_GoToPreviousSection value)? goToPreviousSection,
+    TResult Function(_SetNavigating value)? setNavigating,
+    TResult Function(_SubmitPollSection value)? submitPollSection,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -126,6 +156,11 @@ class _$InitImpl implements _Init {
     required TResult Function() refresh,
     required TResult Function(PollItem item) initDetail,
     required TResult Function() refreshDetail,
+    required TResult Function(int sectionId) selectSection,
+    required TResult Function() goToNextSection,
+    required TResult Function() goToPreviousSection,
+    required TResult Function(bool isNavigating) setNavigating,
+    required TResult Function(PollSubmitPayload payload) submitPollSection,
   }) {
     return init();
   }
@@ -137,6 +172,11 @@ class _$InitImpl implements _Init {
     TResult? Function()? refresh,
     TResult? Function(PollItem item)? initDetail,
     TResult? Function()? refreshDetail,
+    TResult? Function(int sectionId)? selectSection,
+    TResult? Function()? goToNextSection,
+    TResult? Function()? goToPreviousSection,
+    TResult? Function(bool isNavigating)? setNavigating,
+    TResult? Function(PollSubmitPayload payload)? submitPollSection,
   }) {
     return init?.call();
   }
@@ -148,6 +188,11 @@ class _$InitImpl implements _Init {
     TResult Function()? refresh,
     TResult Function(PollItem item)? initDetail,
     TResult Function()? refreshDetail,
+    TResult Function(int sectionId)? selectSection,
+    TResult Function()? goToNextSection,
+    TResult Function()? goToPreviousSection,
+    TResult Function(bool isNavigating)? setNavigating,
+    TResult Function(PollSubmitPayload payload)? submitPollSection,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -163,6 +208,11 @@ class _$InitImpl implements _Init {
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_RefreshDetail value) refreshDetail,
+    required TResult Function(_SelectSection value) selectSection,
+    required TResult Function(_GoToNextSection value) goToNextSection,
+    required TResult Function(_GoToPreviousSection value) goToPreviousSection,
+    required TResult Function(_SetNavigating value) setNavigating,
+    required TResult Function(_SubmitPollSection value) submitPollSection,
   }) {
     return init(this);
   }
@@ -174,6 +224,11 @@ class _$InitImpl implements _Init {
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_RefreshDetail value)? refreshDetail,
+    TResult? Function(_SelectSection value)? selectSection,
+    TResult? Function(_GoToNextSection value)? goToNextSection,
+    TResult? Function(_GoToPreviousSection value)? goToPreviousSection,
+    TResult? Function(_SetNavigating value)? setNavigating,
+    TResult? Function(_SubmitPollSection value)? submitPollSection,
   }) {
     return init?.call(this);
   }
@@ -185,6 +240,11 @@ class _$InitImpl implements _Init {
     TResult Function(_Refresh value)? refresh,
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_RefreshDetail value)? refreshDetail,
+    TResult Function(_SelectSection value)? selectSection,
+    TResult Function(_GoToNextSection value)? goToNextSection,
+    TResult Function(_GoToPreviousSection value)? goToPreviousSection,
+    TResult Function(_SetNavigating value)? setNavigating,
+    TResult Function(_SubmitPollSection value)? submitPollSection,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -240,6 +300,11 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function() refresh,
     required TResult Function(PollItem item) initDetail,
     required TResult Function() refreshDetail,
+    required TResult Function(int sectionId) selectSection,
+    required TResult Function() goToNextSection,
+    required TResult Function() goToPreviousSection,
+    required TResult Function(bool isNavigating) setNavigating,
+    required TResult Function(PollSubmitPayload payload) submitPollSection,
   }) {
     return refresh();
   }
@@ -251,6 +316,11 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function()? refresh,
     TResult? Function(PollItem item)? initDetail,
     TResult? Function()? refreshDetail,
+    TResult? Function(int sectionId)? selectSection,
+    TResult? Function()? goToNextSection,
+    TResult? Function()? goToPreviousSection,
+    TResult? Function(bool isNavigating)? setNavigating,
+    TResult? Function(PollSubmitPayload payload)? submitPollSection,
   }) {
     return refresh?.call();
   }
@@ -262,6 +332,11 @@ class _$RefreshImpl implements _Refresh {
     TResult Function()? refresh,
     TResult Function(PollItem item)? initDetail,
     TResult Function()? refreshDetail,
+    TResult Function(int sectionId)? selectSection,
+    TResult Function()? goToNextSection,
+    TResult Function()? goToPreviousSection,
+    TResult Function(bool isNavigating)? setNavigating,
+    TResult Function(PollSubmitPayload payload)? submitPollSection,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -277,6 +352,11 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_RefreshDetail value) refreshDetail,
+    required TResult Function(_SelectSection value) selectSection,
+    required TResult Function(_GoToNextSection value) goToNextSection,
+    required TResult Function(_GoToPreviousSection value) goToPreviousSection,
+    required TResult Function(_SetNavigating value) setNavigating,
+    required TResult Function(_SubmitPollSection value) submitPollSection,
   }) {
     return refresh(this);
   }
@@ -288,6 +368,11 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_RefreshDetail value)? refreshDetail,
+    TResult? Function(_SelectSection value)? selectSection,
+    TResult? Function(_GoToNextSection value)? goToNextSection,
+    TResult? Function(_GoToPreviousSection value)? goToPreviousSection,
+    TResult? Function(_SetNavigating value)? setNavigating,
+    TResult? Function(_SubmitPollSection value)? submitPollSection,
   }) {
     return refresh?.call(this);
   }
@@ -299,6 +384,11 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_Refresh value)? refresh,
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_RefreshDetail value)? refreshDetail,
+    TResult Function(_SelectSection value)? selectSection,
+    TResult Function(_GoToNextSection value)? goToNextSection,
+    TResult Function(_GoToPreviousSection value)? goToPreviousSection,
+    TResult Function(_SetNavigating value)? setNavigating,
+    TResult Function(_SubmitPollSection value)? submitPollSection,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -390,6 +480,11 @@ class _$InitDetailImpl implements _InitDetail {
     required TResult Function() refresh,
     required TResult Function(PollItem item) initDetail,
     required TResult Function() refreshDetail,
+    required TResult Function(int sectionId) selectSection,
+    required TResult Function() goToNextSection,
+    required TResult Function() goToPreviousSection,
+    required TResult Function(bool isNavigating) setNavigating,
+    required TResult Function(PollSubmitPayload payload) submitPollSection,
   }) {
     return initDetail(item);
   }
@@ -401,6 +496,11 @@ class _$InitDetailImpl implements _InitDetail {
     TResult? Function()? refresh,
     TResult? Function(PollItem item)? initDetail,
     TResult? Function()? refreshDetail,
+    TResult? Function(int sectionId)? selectSection,
+    TResult? Function()? goToNextSection,
+    TResult? Function()? goToPreviousSection,
+    TResult? Function(bool isNavigating)? setNavigating,
+    TResult? Function(PollSubmitPayload payload)? submitPollSection,
   }) {
     return initDetail?.call(item);
   }
@@ -412,6 +512,11 @@ class _$InitDetailImpl implements _InitDetail {
     TResult Function()? refresh,
     TResult Function(PollItem item)? initDetail,
     TResult Function()? refreshDetail,
+    TResult Function(int sectionId)? selectSection,
+    TResult Function()? goToNextSection,
+    TResult Function()? goToPreviousSection,
+    TResult Function(bool isNavigating)? setNavigating,
+    TResult Function(PollSubmitPayload payload)? submitPollSection,
     required TResult orElse(),
   }) {
     if (initDetail != null) {
@@ -427,6 +532,11 @@ class _$InitDetailImpl implements _InitDetail {
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_RefreshDetail value) refreshDetail,
+    required TResult Function(_SelectSection value) selectSection,
+    required TResult Function(_GoToNextSection value) goToNextSection,
+    required TResult Function(_GoToPreviousSection value) goToPreviousSection,
+    required TResult Function(_SetNavigating value) setNavigating,
+    required TResult Function(_SubmitPollSection value) submitPollSection,
   }) {
     return initDetail(this);
   }
@@ -438,6 +548,11 @@ class _$InitDetailImpl implements _InitDetail {
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_RefreshDetail value)? refreshDetail,
+    TResult? Function(_SelectSection value)? selectSection,
+    TResult? Function(_GoToNextSection value)? goToNextSection,
+    TResult? Function(_GoToPreviousSection value)? goToPreviousSection,
+    TResult? Function(_SetNavigating value)? setNavigating,
+    TResult? Function(_SubmitPollSection value)? submitPollSection,
   }) {
     return initDetail?.call(this);
   }
@@ -449,6 +564,11 @@ class _$InitDetailImpl implements _InitDetail {
     TResult Function(_Refresh value)? refresh,
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_RefreshDetail value)? refreshDetail,
+    TResult Function(_SelectSection value)? selectSection,
+    TResult Function(_GoToNextSection value)? goToNextSection,
+    TResult Function(_GoToPreviousSection value)? goToPreviousSection,
+    TResult Function(_SetNavigating value)? setNavigating,
+    TResult Function(_SubmitPollSection value)? submitPollSection,
     required TResult orElse(),
   }) {
     if (initDetail != null) {
@@ -509,6 +629,11 @@ class _$RefreshDetailImpl implements _RefreshDetail {
     required TResult Function() refresh,
     required TResult Function(PollItem item) initDetail,
     required TResult Function() refreshDetail,
+    required TResult Function(int sectionId) selectSection,
+    required TResult Function() goToNextSection,
+    required TResult Function() goToPreviousSection,
+    required TResult Function(bool isNavigating) setNavigating,
+    required TResult Function(PollSubmitPayload payload) submitPollSection,
   }) {
     return refreshDetail();
   }
@@ -520,6 +645,11 @@ class _$RefreshDetailImpl implements _RefreshDetail {
     TResult? Function()? refresh,
     TResult? Function(PollItem item)? initDetail,
     TResult? Function()? refreshDetail,
+    TResult? Function(int sectionId)? selectSection,
+    TResult? Function()? goToNextSection,
+    TResult? Function()? goToPreviousSection,
+    TResult? Function(bool isNavigating)? setNavigating,
+    TResult? Function(PollSubmitPayload payload)? submitPollSection,
   }) {
     return refreshDetail?.call();
   }
@@ -531,6 +661,11 @@ class _$RefreshDetailImpl implements _RefreshDetail {
     TResult Function()? refresh,
     TResult Function(PollItem item)? initDetail,
     TResult Function()? refreshDetail,
+    TResult Function(int sectionId)? selectSection,
+    TResult Function()? goToNextSection,
+    TResult Function()? goToPreviousSection,
+    TResult Function(bool isNavigating)? setNavigating,
+    TResult Function(PollSubmitPayload payload)? submitPollSection,
     required TResult orElse(),
   }) {
     if (refreshDetail != null) {
@@ -546,6 +681,11 @@ class _$RefreshDetailImpl implements _RefreshDetail {
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_RefreshDetail value) refreshDetail,
+    required TResult Function(_SelectSection value) selectSection,
+    required TResult Function(_GoToNextSection value) goToNextSection,
+    required TResult Function(_GoToPreviousSection value) goToPreviousSection,
+    required TResult Function(_SetNavigating value) setNavigating,
+    required TResult Function(_SubmitPollSection value) submitPollSection,
   }) {
     return refreshDetail(this);
   }
@@ -557,6 +697,11 @@ class _$RefreshDetailImpl implements _RefreshDetail {
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_RefreshDetail value)? refreshDetail,
+    TResult? Function(_SelectSection value)? selectSection,
+    TResult? Function(_GoToNextSection value)? goToNextSection,
+    TResult? Function(_GoToPreviousSection value)? goToPreviousSection,
+    TResult? Function(_SetNavigating value)? setNavigating,
+    TResult? Function(_SubmitPollSection value)? submitPollSection,
   }) {
     return refreshDetail?.call(this);
   }
@@ -568,6 +713,11 @@ class _$RefreshDetailImpl implements _RefreshDetail {
     TResult Function(_Refresh value)? refresh,
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_RefreshDetail value)? refreshDetail,
+    TResult Function(_SelectSection value)? selectSection,
+    TResult Function(_GoToNextSection value)? goToNextSection,
+    TResult Function(_GoToPreviousSection value)? goToPreviousSection,
+    TResult Function(_SetNavigating value)? setNavigating,
+    TResult Function(_SubmitPollSection value)? submitPollSection,
     required TResult orElse(),
   }) {
     if (refreshDetail != null) {
@@ -579,4 +729,832 @@ class _$RefreshDetailImpl implements _RefreshDetail {
 
 abstract class _RefreshDetail implements PollEvent {
   const factory _RefreshDetail() = _$RefreshDetailImpl;
+}
+
+/// @nodoc
+abstract class _$$SelectSectionImplCopyWith<$Res> {
+  factory _$$SelectSectionImplCopyWith(
+          _$SelectSectionImpl value, $Res Function(_$SelectSectionImpl) then) =
+      __$$SelectSectionImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int sectionId});
+}
+
+/// @nodoc
+class __$$SelectSectionImplCopyWithImpl<$Res>
+    extends _$PollEventCopyWithImpl<$Res, _$SelectSectionImpl>
+    implements _$$SelectSectionImplCopyWith<$Res> {
+  __$$SelectSectionImplCopyWithImpl(
+      _$SelectSectionImpl _value, $Res Function(_$SelectSectionImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? sectionId = null,
+  }) {
+    return _then(_$SelectSectionImpl(
+      null == sectionId
+          ? _value.sectionId
+          : sectionId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SelectSectionImpl implements _SelectSection {
+  const _$SelectSectionImpl(this.sectionId);
+
+  @override
+  final int sectionId;
+
+  @override
+  String toString() {
+    return 'PollEvent.selectSection(sectionId: $sectionId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectSectionImpl &&
+            (identical(other.sectionId, sectionId) ||
+                other.sectionId == sectionId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, sectionId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SelectSectionImplCopyWith<_$SelectSectionImpl> get copyWith =>
+      __$$SelectSectionImplCopyWithImpl<_$SelectSectionImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() refresh,
+    required TResult Function(PollItem item) initDetail,
+    required TResult Function() refreshDetail,
+    required TResult Function(int sectionId) selectSection,
+    required TResult Function() goToNextSection,
+    required TResult Function() goToPreviousSection,
+    required TResult Function(bool isNavigating) setNavigating,
+    required TResult Function(PollSubmitPayload payload) submitPollSection,
+  }) {
+    return selectSection(sectionId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? refresh,
+    TResult? Function(PollItem item)? initDetail,
+    TResult? Function()? refreshDetail,
+    TResult? Function(int sectionId)? selectSection,
+    TResult? Function()? goToNextSection,
+    TResult? Function()? goToPreviousSection,
+    TResult? Function(bool isNavigating)? setNavigating,
+    TResult? Function(PollSubmitPayload payload)? submitPollSection,
+  }) {
+    return selectSection?.call(sectionId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? refresh,
+    TResult Function(PollItem item)? initDetail,
+    TResult Function()? refreshDetail,
+    TResult Function(int sectionId)? selectSection,
+    TResult Function()? goToNextSection,
+    TResult Function()? goToPreviousSection,
+    TResult Function(bool isNavigating)? setNavigating,
+    TResult Function(PollSubmitPayload payload)? submitPollSection,
+    required TResult orElse(),
+  }) {
+    if (selectSection != null) {
+      return selectSection(sectionId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_RefreshDetail value) refreshDetail,
+    required TResult Function(_SelectSection value) selectSection,
+    required TResult Function(_GoToNextSection value) goToNextSection,
+    required TResult Function(_GoToPreviousSection value) goToPreviousSection,
+    required TResult Function(_SetNavigating value) setNavigating,
+    required TResult Function(_SubmitPollSection value) submitPollSection,
+  }) {
+    return selectSection(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_RefreshDetail value)? refreshDetail,
+    TResult? Function(_SelectSection value)? selectSection,
+    TResult? Function(_GoToNextSection value)? goToNextSection,
+    TResult? Function(_GoToPreviousSection value)? goToPreviousSection,
+    TResult? Function(_SetNavigating value)? setNavigating,
+    TResult? Function(_SubmitPollSection value)? submitPollSection,
+  }) {
+    return selectSection?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_RefreshDetail value)? refreshDetail,
+    TResult Function(_SelectSection value)? selectSection,
+    TResult Function(_GoToNextSection value)? goToNextSection,
+    TResult Function(_GoToPreviousSection value)? goToPreviousSection,
+    TResult Function(_SetNavigating value)? setNavigating,
+    TResult Function(_SubmitPollSection value)? submitPollSection,
+    required TResult orElse(),
+  }) {
+    if (selectSection != null) {
+      return selectSection(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SelectSection implements PollEvent {
+  const factory _SelectSection(final int sectionId) = _$SelectSectionImpl;
+
+  int get sectionId;
+  @JsonKey(ignore: true)
+  _$$SelectSectionImplCopyWith<_$SelectSectionImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GoToNextSectionImplCopyWith<$Res> {
+  factory _$$GoToNextSectionImplCopyWith(_$GoToNextSectionImpl value,
+          $Res Function(_$GoToNextSectionImpl) then) =
+      __$$GoToNextSectionImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GoToNextSectionImplCopyWithImpl<$Res>
+    extends _$PollEventCopyWithImpl<$Res, _$GoToNextSectionImpl>
+    implements _$$GoToNextSectionImplCopyWith<$Res> {
+  __$$GoToNextSectionImplCopyWithImpl(
+      _$GoToNextSectionImpl _value, $Res Function(_$GoToNextSectionImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$GoToNextSectionImpl implements _GoToNextSection {
+  const _$GoToNextSectionImpl();
+
+  @override
+  String toString() {
+    return 'PollEvent.goToNextSection()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$GoToNextSectionImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() refresh,
+    required TResult Function(PollItem item) initDetail,
+    required TResult Function() refreshDetail,
+    required TResult Function(int sectionId) selectSection,
+    required TResult Function() goToNextSection,
+    required TResult Function() goToPreviousSection,
+    required TResult Function(bool isNavigating) setNavigating,
+    required TResult Function(PollSubmitPayload payload) submitPollSection,
+  }) {
+    return goToNextSection();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? refresh,
+    TResult? Function(PollItem item)? initDetail,
+    TResult? Function()? refreshDetail,
+    TResult? Function(int sectionId)? selectSection,
+    TResult? Function()? goToNextSection,
+    TResult? Function()? goToPreviousSection,
+    TResult? Function(bool isNavigating)? setNavigating,
+    TResult? Function(PollSubmitPayload payload)? submitPollSection,
+  }) {
+    return goToNextSection?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? refresh,
+    TResult Function(PollItem item)? initDetail,
+    TResult Function()? refreshDetail,
+    TResult Function(int sectionId)? selectSection,
+    TResult Function()? goToNextSection,
+    TResult Function()? goToPreviousSection,
+    TResult Function(bool isNavigating)? setNavigating,
+    TResult Function(PollSubmitPayload payload)? submitPollSection,
+    required TResult orElse(),
+  }) {
+    if (goToNextSection != null) {
+      return goToNextSection();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_RefreshDetail value) refreshDetail,
+    required TResult Function(_SelectSection value) selectSection,
+    required TResult Function(_GoToNextSection value) goToNextSection,
+    required TResult Function(_GoToPreviousSection value) goToPreviousSection,
+    required TResult Function(_SetNavigating value) setNavigating,
+    required TResult Function(_SubmitPollSection value) submitPollSection,
+  }) {
+    return goToNextSection(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_RefreshDetail value)? refreshDetail,
+    TResult? Function(_SelectSection value)? selectSection,
+    TResult? Function(_GoToNextSection value)? goToNextSection,
+    TResult? Function(_GoToPreviousSection value)? goToPreviousSection,
+    TResult? Function(_SetNavigating value)? setNavigating,
+    TResult? Function(_SubmitPollSection value)? submitPollSection,
+  }) {
+    return goToNextSection?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_RefreshDetail value)? refreshDetail,
+    TResult Function(_SelectSection value)? selectSection,
+    TResult Function(_GoToNextSection value)? goToNextSection,
+    TResult Function(_GoToPreviousSection value)? goToPreviousSection,
+    TResult Function(_SetNavigating value)? setNavigating,
+    TResult Function(_SubmitPollSection value)? submitPollSection,
+    required TResult orElse(),
+  }) {
+    if (goToNextSection != null) {
+      return goToNextSection(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GoToNextSection implements PollEvent {
+  const factory _GoToNextSection() = _$GoToNextSectionImpl;
+}
+
+/// @nodoc
+abstract class _$$GoToPreviousSectionImplCopyWith<$Res> {
+  factory _$$GoToPreviousSectionImplCopyWith(_$GoToPreviousSectionImpl value,
+          $Res Function(_$GoToPreviousSectionImpl) then) =
+      __$$GoToPreviousSectionImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GoToPreviousSectionImplCopyWithImpl<$Res>
+    extends _$PollEventCopyWithImpl<$Res, _$GoToPreviousSectionImpl>
+    implements _$$GoToPreviousSectionImplCopyWith<$Res> {
+  __$$GoToPreviousSectionImplCopyWithImpl(_$GoToPreviousSectionImpl _value,
+      $Res Function(_$GoToPreviousSectionImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$GoToPreviousSectionImpl implements _GoToPreviousSection {
+  const _$GoToPreviousSectionImpl();
+
+  @override
+  String toString() {
+    return 'PollEvent.goToPreviousSection()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GoToPreviousSectionImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() refresh,
+    required TResult Function(PollItem item) initDetail,
+    required TResult Function() refreshDetail,
+    required TResult Function(int sectionId) selectSection,
+    required TResult Function() goToNextSection,
+    required TResult Function() goToPreviousSection,
+    required TResult Function(bool isNavigating) setNavigating,
+    required TResult Function(PollSubmitPayload payload) submitPollSection,
+  }) {
+    return goToPreviousSection();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? refresh,
+    TResult? Function(PollItem item)? initDetail,
+    TResult? Function()? refreshDetail,
+    TResult? Function(int sectionId)? selectSection,
+    TResult? Function()? goToNextSection,
+    TResult? Function()? goToPreviousSection,
+    TResult? Function(bool isNavigating)? setNavigating,
+    TResult? Function(PollSubmitPayload payload)? submitPollSection,
+  }) {
+    return goToPreviousSection?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? refresh,
+    TResult Function(PollItem item)? initDetail,
+    TResult Function()? refreshDetail,
+    TResult Function(int sectionId)? selectSection,
+    TResult Function()? goToNextSection,
+    TResult Function()? goToPreviousSection,
+    TResult Function(bool isNavigating)? setNavigating,
+    TResult Function(PollSubmitPayload payload)? submitPollSection,
+    required TResult orElse(),
+  }) {
+    if (goToPreviousSection != null) {
+      return goToPreviousSection();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_RefreshDetail value) refreshDetail,
+    required TResult Function(_SelectSection value) selectSection,
+    required TResult Function(_GoToNextSection value) goToNextSection,
+    required TResult Function(_GoToPreviousSection value) goToPreviousSection,
+    required TResult Function(_SetNavigating value) setNavigating,
+    required TResult Function(_SubmitPollSection value) submitPollSection,
+  }) {
+    return goToPreviousSection(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_RefreshDetail value)? refreshDetail,
+    TResult? Function(_SelectSection value)? selectSection,
+    TResult? Function(_GoToNextSection value)? goToNextSection,
+    TResult? Function(_GoToPreviousSection value)? goToPreviousSection,
+    TResult? Function(_SetNavigating value)? setNavigating,
+    TResult? Function(_SubmitPollSection value)? submitPollSection,
+  }) {
+    return goToPreviousSection?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_RefreshDetail value)? refreshDetail,
+    TResult Function(_SelectSection value)? selectSection,
+    TResult Function(_GoToNextSection value)? goToNextSection,
+    TResult Function(_GoToPreviousSection value)? goToPreviousSection,
+    TResult Function(_SetNavigating value)? setNavigating,
+    TResult Function(_SubmitPollSection value)? submitPollSection,
+    required TResult orElse(),
+  }) {
+    if (goToPreviousSection != null) {
+      return goToPreviousSection(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GoToPreviousSection implements PollEvent {
+  const factory _GoToPreviousSection() = _$GoToPreviousSectionImpl;
+}
+
+/// @nodoc
+abstract class _$$SetNavigatingImplCopyWith<$Res> {
+  factory _$$SetNavigatingImplCopyWith(
+          _$SetNavigatingImpl value, $Res Function(_$SetNavigatingImpl) then) =
+      __$$SetNavigatingImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isNavigating});
+}
+
+/// @nodoc
+class __$$SetNavigatingImplCopyWithImpl<$Res>
+    extends _$PollEventCopyWithImpl<$Res, _$SetNavigatingImpl>
+    implements _$$SetNavigatingImplCopyWith<$Res> {
+  __$$SetNavigatingImplCopyWithImpl(
+      _$SetNavigatingImpl _value, $Res Function(_$SetNavigatingImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isNavigating = null,
+  }) {
+    return _then(_$SetNavigatingImpl(
+      null == isNavigating
+          ? _value.isNavigating
+          : isNavigating // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SetNavigatingImpl implements _SetNavigating {
+  const _$SetNavigatingImpl(this.isNavigating);
+
+  @override
+  final bool isNavigating;
+
+  @override
+  String toString() {
+    return 'PollEvent.setNavigating(isNavigating: $isNavigating)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetNavigatingImpl &&
+            (identical(other.isNavigating, isNavigating) ||
+                other.isNavigating == isNavigating));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isNavigating);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetNavigatingImplCopyWith<_$SetNavigatingImpl> get copyWith =>
+      __$$SetNavigatingImplCopyWithImpl<_$SetNavigatingImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() refresh,
+    required TResult Function(PollItem item) initDetail,
+    required TResult Function() refreshDetail,
+    required TResult Function(int sectionId) selectSection,
+    required TResult Function() goToNextSection,
+    required TResult Function() goToPreviousSection,
+    required TResult Function(bool isNavigating) setNavigating,
+    required TResult Function(PollSubmitPayload payload) submitPollSection,
+  }) {
+    return setNavigating(isNavigating);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? refresh,
+    TResult? Function(PollItem item)? initDetail,
+    TResult? Function()? refreshDetail,
+    TResult? Function(int sectionId)? selectSection,
+    TResult? Function()? goToNextSection,
+    TResult? Function()? goToPreviousSection,
+    TResult? Function(bool isNavigating)? setNavigating,
+    TResult? Function(PollSubmitPayload payload)? submitPollSection,
+  }) {
+    return setNavigating?.call(isNavigating);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? refresh,
+    TResult Function(PollItem item)? initDetail,
+    TResult Function()? refreshDetail,
+    TResult Function(int sectionId)? selectSection,
+    TResult Function()? goToNextSection,
+    TResult Function()? goToPreviousSection,
+    TResult Function(bool isNavigating)? setNavigating,
+    TResult Function(PollSubmitPayload payload)? submitPollSection,
+    required TResult orElse(),
+  }) {
+    if (setNavigating != null) {
+      return setNavigating(isNavigating);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_RefreshDetail value) refreshDetail,
+    required TResult Function(_SelectSection value) selectSection,
+    required TResult Function(_GoToNextSection value) goToNextSection,
+    required TResult Function(_GoToPreviousSection value) goToPreviousSection,
+    required TResult Function(_SetNavigating value) setNavigating,
+    required TResult Function(_SubmitPollSection value) submitPollSection,
+  }) {
+    return setNavigating(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_RefreshDetail value)? refreshDetail,
+    TResult? Function(_SelectSection value)? selectSection,
+    TResult? Function(_GoToNextSection value)? goToNextSection,
+    TResult? Function(_GoToPreviousSection value)? goToPreviousSection,
+    TResult? Function(_SetNavigating value)? setNavigating,
+    TResult? Function(_SubmitPollSection value)? submitPollSection,
+  }) {
+    return setNavigating?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_RefreshDetail value)? refreshDetail,
+    TResult Function(_SelectSection value)? selectSection,
+    TResult Function(_GoToNextSection value)? goToNextSection,
+    TResult Function(_GoToPreviousSection value)? goToPreviousSection,
+    TResult Function(_SetNavigating value)? setNavigating,
+    TResult Function(_SubmitPollSection value)? submitPollSection,
+    required TResult orElse(),
+  }) {
+    if (setNavigating != null) {
+      return setNavigating(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetNavigating implements PollEvent {
+  const factory _SetNavigating(final bool isNavigating) = _$SetNavigatingImpl;
+
+  bool get isNavigating;
+  @JsonKey(ignore: true)
+  _$$SetNavigatingImplCopyWith<_$SetNavigatingImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SubmitPollSectionImplCopyWith<$Res> {
+  factory _$$SubmitPollSectionImplCopyWith(_$SubmitPollSectionImpl value,
+          $Res Function(_$SubmitPollSectionImpl) then) =
+      __$$SubmitPollSectionImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({PollSubmitPayload payload});
+
+  $PollSubmitPayloadCopyWith<$Res> get payload;
+}
+
+/// @nodoc
+class __$$SubmitPollSectionImplCopyWithImpl<$Res>
+    extends _$PollEventCopyWithImpl<$Res, _$SubmitPollSectionImpl>
+    implements _$$SubmitPollSectionImplCopyWith<$Res> {
+  __$$SubmitPollSectionImplCopyWithImpl(_$SubmitPollSectionImpl _value,
+      $Res Function(_$SubmitPollSectionImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? payload = null,
+  }) {
+    return _then(_$SubmitPollSectionImpl(
+      null == payload
+          ? _value.payload
+          : payload // ignore: cast_nullable_to_non_nullable
+              as PollSubmitPayload,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PollSubmitPayloadCopyWith<$Res> get payload {
+    return $PollSubmitPayloadCopyWith<$Res>(_value.payload, (value) {
+      return _then(_value.copyWith(payload: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$SubmitPollSectionImpl implements _SubmitPollSection {
+  const _$SubmitPollSectionImpl(this.payload);
+
+  @override
+  final PollSubmitPayload payload;
+
+  @override
+  String toString() {
+    return 'PollEvent.submitPollSection(payload: $payload)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SubmitPollSectionImpl &&
+            (identical(other.payload, payload) || other.payload == payload));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, payload);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SubmitPollSectionImplCopyWith<_$SubmitPollSectionImpl> get copyWith =>
+      __$$SubmitPollSectionImplCopyWithImpl<_$SubmitPollSectionImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() refresh,
+    required TResult Function(PollItem item) initDetail,
+    required TResult Function() refreshDetail,
+    required TResult Function(int sectionId) selectSection,
+    required TResult Function() goToNextSection,
+    required TResult Function() goToPreviousSection,
+    required TResult Function(bool isNavigating) setNavigating,
+    required TResult Function(PollSubmitPayload payload) submitPollSection,
+  }) {
+    return submitPollSection(payload);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? refresh,
+    TResult? Function(PollItem item)? initDetail,
+    TResult? Function()? refreshDetail,
+    TResult? Function(int sectionId)? selectSection,
+    TResult? Function()? goToNextSection,
+    TResult? Function()? goToPreviousSection,
+    TResult? Function(bool isNavigating)? setNavigating,
+    TResult? Function(PollSubmitPayload payload)? submitPollSection,
+  }) {
+    return submitPollSection?.call(payload);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? refresh,
+    TResult Function(PollItem item)? initDetail,
+    TResult Function()? refreshDetail,
+    TResult Function(int sectionId)? selectSection,
+    TResult Function()? goToNextSection,
+    TResult Function()? goToPreviousSection,
+    TResult Function(bool isNavigating)? setNavigating,
+    TResult Function(PollSubmitPayload payload)? submitPollSection,
+    required TResult orElse(),
+  }) {
+    if (submitPollSection != null) {
+      return submitPollSection(payload);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_RefreshDetail value) refreshDetail,
+    required TResult Function(_SelectSection value) selectSection,
+    required TResult Function(_GoToNextSection value) goToNextSection,
+    required TResult Function(_GoToPreviousSection value) goToPreviousSection,
+    required TResult Function(_SetNavigating value) setNavigating,
+    required TResult Function(_SubmitPollSection value) submitPollSection,
+  }) {
+    return submitPollSection(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_RefreshDetail value)? refreshDetail,
+    TResult? Function(_SelectSection value)? selectSection,
+    TResult? Function(_GoToNextSection value)? goToNextSection,
+    TResult? Function(_GoToPreviousSection value)? goToPreviousSection,
+    TResult? Function(_SetNavigating value)? setNavigating,
+    TResult? Function(_SubmitPollSection value)? submitPollSection,
+  }) {
+    return submitPollSection?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_RefreshDetail value)? refreshDetail,
+    TResult Function(_SelectSection value)? selectSection,
+    TResult Function(_GoToNextSection value)? goToNextSection,
+    TResult Function(_GoToPreviousSection value)? goToPreviousSection,
+    TResult Function(_SetNavigating value)? setNavigating,
+    TResult Function(_SubmitPollSection value)? submitPollSection,
+    required TResult orElse(),
+  }) {
+    if (submitPollSection != null) {
+      return submitPollSection(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SubmitPollSection implements PollEvent {
+  const factory _SubmitPollSection(final PollSubmitPayload payload) =
+      _$SubmitPollSectionImpl;
+
+  PollSubmitPayload get payload;
+  @JsonKey(ignore: true)
+  _$$SubmitPollSectionImplCopyWith<_$SubmitPollSectionImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

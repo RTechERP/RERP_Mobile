@@ -165,3 +165,59 @@ class PollAnswerItem with _$PollAnswerItem {
   factory PollAnswerItem.fromJson(Map<String, dynamic> json) =>
       _$PollAnswerItemFromJson(json);
 }
+
+@freezed
+class PollSubmitAnswer with _$PollSubmitAnswer {
+  const factory PollSubmitAnswer({
+    @JsonKey(name: 'questionId') int? questionId,
+    @JsonKey(name: 'answerText') String? answerText,
+    @JsonKey(name: 'answerJson') String? answerJson,
+  }) = _PollSubmitAnswer;
+
+  factory PollSubmitAnswer.fromJson(Map<String, dynamic> json) =>
+      _$PollSubmitAnswerFromJson(json);
+}
+
+@freezed
+class PollSubmitPayload with _$PollSubmitPayload {
+  const factory PollSubmitPayload({
+    @JsonKey(name: 'pollResponseId') int? pollResponseId,
+    @JsonKey(name: 'sectionId') int? sectionId,
+    @JsonKey(name: 'employeeId') int? employeeId,
+    @JsonKey(name: 'answers') List<PollSubmitAnswer>? answers,
+    @JsonKey(name: 'visibleSectionIds') List<int>? visibleSectionIds,
+    @JsonKey(name: 'hiddenSectionIds') List<int>? hiddenSectionIds,
+    @JsonKey(name: 'visibleQuestionIds') List<int>? visibleQuestionIds,
+    @JsonKey(name: 'hiddenQuestionIds') List<int>? hiddenQuestionIds,
+    @JsonKey(name: 'clearSectionIds') List<int>? clearSectionIds,
+    @JsonKey(name: 'clearQuestionIds') List<int>? clearQuestionIds,
+  }) = _PollSubmitPayload;
+
+  factory PollSubmitPayload.fromJson(Map<String, dynamic> json) =>
+      _$PollSubmitPayloadFromJson(json);
+}
+
+@freezed
+class PollSubmitResultItem with _$PollSubmitResultItem {
+  const factory PollSubmitResultItem({
+    @JsonKey(name: 'PollResponseID') int? pollResponseId,
+    @JsonKey(name: 'PollFormID') int? pollFormId,
+    @JsonKey(name: 'IsCompleted') bool? isCompleted,
+    @JsonKey(name: 'TotalSavedAnswerCount') int? totalSavedAnswerCount,
+    @JsonKey(name: 'SectionResults') List<PollSectionResultItem>? sectionResults,
+  }) = _PollSubmitResultItem;
+
+  factory PollSubmitResultItem.fromJson(Map<String, dynamic> json) =>
+      _$PollSubmitResultItemFromJson(json);
+}
+
+@freezed
+class PollSectionResultItem with _$PollSectionResultItem {
+  const factory PollSectionResultItem({
+    @JsonKey(name: 'SectionID') int? sectionId,
+    @JsonKey(name: 'SavedAnswerCount') int? savedAnswerCount,
+  }) = _PollSectionResultItem;
+
+  factory PollSectionResultItem.fromJson(Map<String, dynamic> json) =>
+      _$PollSectionResultItemFromJson(json);
+}

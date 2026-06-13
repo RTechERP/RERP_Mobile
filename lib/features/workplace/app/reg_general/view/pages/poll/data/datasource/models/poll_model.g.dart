@@ -305,3 +305,100 @@ Map<String, dynamic> _$$PollAnswerItemImplToJson(
       'AnswerJson': instance.answerJson,
       'DisplayText': instance.displayText,
     };
+
+_$PollSubmitAnswerImpl _$$PollSubmitAnswerImplFromJson(
+        Map<String, dynamic> json) =>
+    _$PollSubmitAnswerImpl(
+      questionId: (json['questionId'] as num?)?.toInt(),
+      answerText: json['answerText'] as String?,
+      answerJson: json['answerJson'] as String?,
+    );
+
+Map<String, dynamic> _$$PollSubmitAnswerImplToJson(
+        _$PollSubmitAnswerImpl instance) =>
+    <String, dynamic>{
+      'questionId': instance.questionId,
+      'answerText': instance.answerText,
+      'answerJson': instance.answerJson,
+    };
+
+_$PollSubmitPayloadImpl _$$PollSubmitPayloadImplFromJson(
+        Map<String, dynamic> json) =>
+    _$PollSubmitPayloadImpl(
+      pollResponseId: (json['pollResponseId'] as num?)?.toInt(),
+      sectionId: (json['sectionId'] as num?)?.toInt(),
+      employeeId: (json['employeeId'] as num?)?.toInt(),
+      answers: (json['answers'] as List<dynamic>?)
+          ?.map((e) => PollSubmitAnswer.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      visibleSectionIds: (json['visibleSectionIds'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
+          .toList(),
+      hiddenSectionIds: (json['hiddenSectionIds'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
+          .toList(),
+      visibleQuestionIds: (json['visibleQuestionIds'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
+          .toList(),
+      hiddenQuestionIds: (json['hiddenQuestionIds'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
+          .toList(),
+      clearSectionIds: (json['clearSectionIds'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
+          .toList(),
+      clearQuestionIds: (json['clearQuestionIds'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
+          .toList(),
+    );
+
+Map<String, dynamic> _$$PollSubmitPayloadImplToJson(
+        _$PollSubmitPayloadImpl instance) =>
+    <String, dynamic>{
+      'pollResponseId': instance.pollResponseId,
+      'sectionId': instance.sectionId,
+      'employeeId': instance.employeeId,
+      'answers': instance.answers,
+      'visibleSectionIds': instance.visibleSectionIds,
+      'hiddenSectionIds': instance.hiddenSectionIds,
+      'visibleQuestionIds': instance.visibleQuestionIds,
+      'hiddenQuestionIds': instance.hiddenQuestionIds,
+      'clearSectionIds': instance.clearSectionIds,
+      'clearQuestionIds': instance.clearQuestionIds,
+    };
+
+_$PollSubmitResultItemImpl _$$PollSubmitResultItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$PollSubmitResultItemImpl(
+      pollResponseId: (json['PollResponseID'] as num?)?.toInt(),
+      pollFormId: (json['PollFormID'] as num?)?.toInt(),
+      isCompleted: json['IsCompleted'] as bool?,
+      totalSavedAnswerCount: (json['TotalSavedAnswerCount'] as num?)?.toInt(),
+      sectionResults: (json['SectionResults'] as List<dynamic>?)
+          ?.map(
+              (e) => PollSectionResultItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$$PollSubmitResultItemImplToJson(
+        _$PollSubmitResultItemImpl instance) =>
+    <String, dynamic>{
+      'PollResponseID': instance.pollResponseId,
+      'PollFormID': instance.pollFormId,
+      'IsCompleted': instance.isCompleted,
+      'TotalSavedAnswerCount': instance.totalSavedAnswerCount,
+      'SectionResults': instance.sectionResults,
+    };
+
+_$PollSectionResultItemImpl _$$PollSectionResultItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$PollSectionResultItemImpl(
+      sectionId: (json['SectionID'] as num?)?.toInt(),
+      savedAnswerCount: (json['SavedAnswerCount'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$PollSectionResultItemImplToJson(
+        _$PollSectionResultItemImpl instance) =>
+    <String, dynamic>{
+      'SectionID': instance.sectionId,
+      'SavedAnswerCount': instance.savedAnswerCount,
+    };

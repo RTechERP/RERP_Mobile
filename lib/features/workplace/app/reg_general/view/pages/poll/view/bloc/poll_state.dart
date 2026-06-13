@@ -9,6 +9,9 @@ class PollState extends BaseBlocState {
   final ResponseItem? responseData;
   final String? detailMessage;
   final Map<int, bool> questionReadonlyMap;
+  final int? selectedSectionId;
+  final bool isNavigating;
+  final bool isSubmitting;
 
   const PollState({
     required super.status,
@@ -20,6 +23,9 @@ class PollState extends BaseBlocState {
     this.responseData,
     this.detailMessage,
     this.questionReadonlyMap = const {},
+    this.selectedSectionId,
+    this.isNavigating = false,
+    this.isSubmitting = false,
   });
 
   factory PollState.init() => const PollState(
@@ -32,6 +38,9 @@ class PollState extends BaseBlocState {
         responseData: null,
         detailMessage: null,
         questionReadonlyMap: {},
+        selectedSectionId: null,
+        isNavigating: false,
+        isSubmitting: false,
       );
 
   @override
@@ -45,5 +54,8 @@ class PollState extends BaseBlocState {
         responseData,
         detailMessage,
         questionReadonlyMap,
+        selectedSectionId,
+        isNavigating,
+        isSubmitting,
       ];
 }

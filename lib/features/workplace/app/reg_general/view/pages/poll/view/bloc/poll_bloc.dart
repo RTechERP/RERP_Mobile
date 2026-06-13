@@ -28,6 +28,11 @@ class PollBloc extends BaseBloc<PollEvent, PollState> {
         refresh: () => _onRefresh(emit),
         initDetail: (item) => _onInitDetail(emit, item),
         refreshDetail: () => _onRefreshDetail(emit),
+        selectSection: (id) => _onSelectSection(emit, id),
+        goToNextSection: () => _onGoToNextSection(emit),
+        goToPreviousSection: () => _onGoToPreviousSection(emit),
+        setNavigating: (isNavigating) => _onSetNavigating(emit, isNavigating),
+        submitPollSection: (payload) => _onSubmitPollSection(emit, payload),
       );
     });
   }
@@ -153,6 +158,7 @@ class PollBloc extends BaseBloc<PollEvent, PollState> {
                 responseData: null,
                 detailMessage: null,
                 questionReadonlyMap: _buildQuestionReadonlyMap(detailWithResponse),
+                selectedSectionId: state.selectedSectionId ?? _getDefaultSectionId(detailWithResponse),
               ),
             );
           },
@@ -165,12 +171,19 @@ class PollBloc extends BaseBloc<PollEvent, PollState> {
                 responseData: response,
                 detailMessage: null,
                 questionReadonlyMap: _buildQuestionReadonlyMap(detailWithResponse),
+                selectedSectionId: state.selectedSectionId ?? _getDefaultSectionId(detailWithResponse),
               ),
             );
           },
         );
       },
     );
+  }
+
+  int? _getDefaultSectionId(PollDetailItem detail) {
+    final sections = detail.sections ?? [];
+    if (sections.isEmpty) return null;
+    return sections.first.id;
   }
 
   PollDetailItem _mergeQuestionResponses(
@@ -243,5 +256,165 @@ class PollBloc extends BaseBloc<PollEvent, PollState> {
     if (value is bool) return value;
     if (value is String) return value.toLowerCase() == 'true';
     return false;
+  }
+
+   _onSelectSection(Emitter<PollState> emit, int sectionId) {
+    _log.logI('_onSelectSection: $sectionId, current: ${state.selectedSectionId}');
+    emit(PollState(
+      status: state.status,
+      message: state.message,
+      polls: state.polls,
+      isDetailLoading: state.isDetailLoading,
+      detailItem: state.detailItem,
+      detailData: state.detailData,
+      responseData: state.responseData,
+      detailMessage: state.detailMessage,
+      questionReadonlyMap: state.questionReadonlyMap,
+      selectedSectionId: sectionId,
+      isNavigating: false,
+    ));
+  }
+
+   _onGoToNextSection(Emitter<PollState> emit) {
+    if (state.isNavigating) return;
+
+    final sections = state.detailData?.sections ?? [];
+    if (sections.isEmpty) return;
+
+    final currentIndex = sections.indexWhere((s) => s.id == state.selectedSectionId);
+    _log.logI('_onGoToNextSection: currentIndex=$currentIndex, total=${sections.length}');
+    if (currentIndex < sections.length - 1) {
+      final nextId = sections[currentIndex + 1].id;
+      _log.logI('_onGoToNextSection: nextId=$nextId');
+      emit(PollState(
+        status: state.status,
+        message: state.message,
+        polls: state.polls,
+        isDetailLoading: state.isDetailLoading,
+        detailItem: state.detailItem,
+        detailData: state.detailData,
+        responseData: state.responseData,
+        detailMessage: state.detailMessage,
+        questionReadonlyMap: state.questionReadonlyMap,
+        selectedSectionId: nextId,
+        isNavigating: true,
+      ));
+
+      Future.delayed(const Duration(milliseconds: 300), () {
+        add(const PollEvent.setNavigating(false));
+      });
+    }
+  }
+
+   _onGoToPreviousSection(Emitter<PollState> emit) {
+    if (state.isNavigating) return;
+
+    final sections = state.detailData?.sections ?? [];
+    if (sections.isEmpty) return;
+
+    final currentIndex = sections.indexWhere((s) => s.id == state.selectedSectionId);
+    if (currentIndex > 0) {
+      emit(PollState(
+        status: state.status,
+        message: state.message,
+        polls: state.polls,
+        isDetailLoading: state.isDetailLoading,
+        detailItem: state.detailItem,
+        detailData: state.detailData,
+        responseData: state.responseData,
+        detailMessage: state.detailMessage,
+        questionReadonlyMap: state.questionReadonlyMap,
+        selectedSectionId: sections[currentIndex - 1].id,
+        isNavigating: true,
+      ));
+
+      Future.delayed(const Duration(milliseconds: 300), () {
+        add(const PollEvent.setNavigating(false));
+      });
+    }
+  }
+
+   _onSetNavigating(Emitter<PollState> emit, bool isNavigating) {
+    emit(PollState(
+      status: state.status,
+      message: state.message,
+      polls: state.polls,
+      isDetailLoading: state.isDetailLoading,
+      detailItem: state.detailItem,
+      detailData: state.detailData,
+      responseData: state.responseData,
+      detailMessage: state.detailMessage,
+      questionReadonlyMap: state.questionReadonlyMap,
+      selectedSectionId: state.selectedSectionId,
+      isNavigating: isNavigating,
+      isSubmitting: state.isSubmitting,
+    ));
+  }
+
+  Future<void> _onSubmitPollSection(
+    Emitter<PollState> emit,
+    PollSubmitPayload payload,
+  ) async {
+    _log.logI('_onSubmitPollSection: payload=${payload.toJson()}');
+    emit(PollState(
+      status: state.status,
+      message: state.message,
+      polls: state.polls,
+      isDetailLoading: state.isDetailLoading,
+      detailItem: state.detailItem,
+      detailData: state.detailData,
+      responseData: state.responseData,
+      detailMessage: state.detailMessage,
+      questionReadonlyMap: state.questionReadonlyMap,
+      selectedSectionId: state.selectedSectionId,
+      isNavigating: state.isNavigating,
+      isSubmitting: true,
+    ));
+
+    final pollFormId = state.detailItem?.id;
+    if (pollFormId == null) return;
+
+    final result = await _pollRepo.submitPollBulk(
+      pollFormId: pollFormId,
+      payload: payload,
+    );
+
+    result.fold(
+      (error) {
+        _log.logE('Submit poll failed: $error');
+        emit(PollState(
+          status: state.status,
+          message: state.message,
+          polls: state.polls,
+          isDetailLoading: state.isDetailLoading,
+          detailItem: state.detailItem,
+          detailData: state.detailData,
+          responseData: state.responseData,
+          detailMessage: error.getErrorMessage,
+          questionReadonlyMap: state.questionReadonlyMap,
+          selectedSectionId: state.selectedSectionId,
+          isNavigating: state.isNavigating,
+          isSubmitting: false,
+        ));
+      },
+      (_) {
+        _log.logI('Submit poll success');
+        emit(PollState(
+          status: state.status,
+          message: null,
+          polls: state.polls,
+          isDetailLoading: state.isDetailLoading,
+          detailItem: state.detailItem,
+          detailData: state.detailData,
+          responseData: state.responseData,
+          detailMessage: null,
+          questionReadonlyMap: state.questionReadonlyMap,
+          selectedSectionId: state.selectedSectionId,
+          isNavigating: state.isNavigating,
+          isSubmitting: false,
+        ));
+        add(const PollEvent.refreshDetail());
+      },
+    );
   }
 }

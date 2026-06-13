@@ -381,6 +381,8 @@ class ApiEndPoint {
   static const String getPolls = '/pollform/all';
   static const String getDetailPoll = '/pollform';
   static const String getPollMyResponse = '/pollform';
+  static const String submitPoll = '/pollform/respond';
+  static const String submitPollBulk = '/pollform';
 
   // Newsfeed
   static const String getNewsletter = '/newsletter/get-limit-newsletter';

@@ -13,4 +13,11 @@ abstract class PollRepo {
   Future<Either<BaseError, ResponseItem>> getMyResponse({
     required int pollFormId,
   });
+
+  // Future<Either<BaseError, void>> submitPoll(PollSubmitPayload payload);
+
+  Future<Either<BaseError, PollSubmitResultItem>> submitPollBulk({
+    required int pollFormId,
+    required PollSubmitPayload payload,
+  });
 }
