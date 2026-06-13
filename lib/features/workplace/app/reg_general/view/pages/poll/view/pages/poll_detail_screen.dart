@@ -9,7 +9,6 @@ import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../data/datasource/models/poll_model.dart';
 import '../bloc/poll_bloc.dart';
-import '../widgets/poll_detail_helpers.dart';
 import '../widgets/poll_detail_widgets.dart';
 
 class PollDetailScreen extends StatefulWidget {
@@ -357,10 +356,11 @@ class _PollDetailScreenState
     final allSections = detail.sections ?? const <PollSectionItem>[];
     if (allSections.isEmpty) return false;
 
-    final fieldValueMap = {
-      ...PollDetailHelpers.buildFieldValueMap(detail),
-      ..._liveFieldValueMap,
-    };
+    final baseMap = PollDetailHelpers.buildFieldValueMap(detail);
+    for (final key in _clearedFields) {
+      baseMap.remove(key);
+    }
+    final fieldValueMap = {...baseMap, ..._liveFieldValueMap};
 
     return allSections.any((section) {
       final questions = section.questions ?? const <PollQuestionItem>[];
@@ -375,6 +375,7 @@ class _PollDetailScreenState
   _RequiredValidationState _buildRequiredValidationState(
     List<_SurveySectionData> sections, {
     Map<String, String?> liveFieldValueMap = const {},
+    Set<String> clearedFields = const {},
   }) {
     final missingTitles = <String>[];
     final invalidQuestionIds = <int>{};
@@ -384,7 +385,11 @@ class _PollDetailScreenState
     for (final section in sections) {
       for (final question in section.questions) {
         if (question.isRequired != true) continue;
-        if (_hasQuestionValue(question, liveFieldValueMap: liveFieldValueMap)) {
+        if (_hasQuestionValue(
+          question,
+          liveFieldValueMap: liveFieldValueMap,
+          clearedFields: clearedFields,
+        )) {
           continue;
         }
         final questionId = question.id;
@@ -408,13 +413,16 @@ class _PollDetailScreenState
   bool _hasQuestionValue(
     PollQuestionItem question, {
     Map<String, String?> liveFieldValueMap = const {},
+    Set<String> clearedFields = const {},
   }) {
     final fieldKey = question.fieldKey?.trim();
-    if (fieldKey != null &&
-        fieldKey.isNotEmpty &&
-        liveFieldValueMap.containsKey(fieldKey)) {
-      final liveValue = liveFieldValueMap[fieldKey]?.trim();
-      return liveValue != null && liveValue.isNotEmpty;
+    if (fieldKey != null && fieldKey.isNotEmpty) {
+      if (clearedFields.contains(fieldKey)) return false;
+
+      if (liveFieldValueMap.containsKey(fieldKey)) {
+        final liveValue = liveFieldValueMap[fieldKey]?.trim();
+        return liveValue != null && liveValue.isNotEmpty;
+      }
     }
 
     final values = PollDetailHelpers.extractDisplayValues(question);
@@ -500,10 +508,12 @@ class _PollDetailScreenState
                 final surveySections = _buildSurveySections(
                   detail,
                   liveFieldValueMap: _liveFieldValueMap,
+                  clearedFields: _clearedFields,
                 );
                 final requiredValidation = _buildRequiredValidationState(
                   surveySections,
                   liveFieldValueMap: _liveFieldValueMap,
+                  clearedFields: _clearedFields,
                 );
                 final hasTriggeredDependentSection =
                     _hasTriggeredDependentSection(detail);
@@ -675,8 +685,12 @@ class _PollDetailScreenState
   List<_SurveySectionData> _buildSurveySections(
     PollDetailItem detail, {
     Map<String, String?> liveFieldValueMap = const {},
+    Set<String> clearedFields = const {},
   }) {
     final baseFieldValueMap = PollDetailHelpers.buildFieldValueMap(detail);
+    for (final key in clearedFields) {
+      baseFieldValueMap.remove(key);
+    }
     final mergedFieldValueMap = {...baseFieldValueMap, ...liveFieldValueMap};
     final sections =
         (detail.sections ?? const <PollSectionItem>[])

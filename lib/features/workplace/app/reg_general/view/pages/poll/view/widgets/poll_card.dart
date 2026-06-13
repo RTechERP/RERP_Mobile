@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../../../../../../common/app/app_config.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../data/datasource/models/poll_model.dart';
 
@@ -43,8 +44,7 @@ class PollCard extends StatelessWidget {
       return path;
     }
 
-    // final baseUrl = AppConfig.baseUrl.trim();
-    final baseUrl = 'https://erp.rtc.edu.vn/api/api';
+    final baseUrl = AppConfig.baseUrl.trim();
     if (baseUrl.isEmpty) return path;
 
     var normalizedBaseUrl = baseUrl.endsWith('/')
