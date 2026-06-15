@@ -597,6 +597,40 @@ class ReportService extends DioBaseApiService {
     );
   }
 
+  Future<BaseData<List<AccountantItem>>> getAccountantReport({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+    int page = 1,
+    int size = 50,
+    String filterText = '',
+    int employeeId = 0,
+  }) async {
+    final query = {
+      'page': page,
+      'size': size,
+      'dateStart': '${dateStart.year}-${dateStart.month.toString().padLeft(2, '0')}-${dateStart.day.toString().padLeft(2, '0')}T${dateStart.hour.toString().padLeft(2, '0')}:${dateStart.minute.toString().padLeft(2, '0')}:${dateStart.second.toString().padLeft(2, '0')}',
+      'dateEnd': '${dateEnd.year}-${dateEnd.month.toString().padLeft(2, '0')}-${dateEnd.day.toString().padLeft(2, '0')}T${dateEnd.hour.toString().padLeft(2, '0')}:${dateEnd.minute.toString().padLeft(2, '0')}:${dateEnd.second.toString().padLeft(2, '0')}',
+      'filterText': filterText,
+      'EmployeeID': employeeId,
+    };
+
+    return get<BaseData<List<AccountantItem>>>(
+      ApiEndPoint.getAccountantReport,
+      query: query,
+      parser: (json) {
+        final map = json as Map<String, dynamic>;
+        final innerMap = map['data'] as Map<String, dynamic>;
+        final dataList = innerMap['data'] as List<dynamic>;
+        return BaseData<List<AccountantItem>>.fromJson(
+          {'status': 1, 'data': dataList},
+          (data) => (data as List)
+              .map((e) => AccountantItem.fromJson(e as Map<String, dynamic>))
+              .toList(),
+        );
+      },
+    );
+  }
+
   Future<BaseData<void>> saveReportSaleAdmin({
     required Map<String, dynamic> payload,
   }) async {

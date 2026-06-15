@@ -16,6 +16,7 @@ class PermissionService {
     'report:marketing': AppPermission.viewMarketingReport,
     'report:agv': AppPermission.viewAgvReport,
     'report:ad': AppPermission.viewAdReport,
+    'report:accountant': AppPermission.viewAccountingReport,
   };
 
   static Set<AppPermission> _cachedPermissions = {};

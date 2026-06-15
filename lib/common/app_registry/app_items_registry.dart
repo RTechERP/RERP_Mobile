@@ -345,6 +345,16 @@ class AppItemRegistry {
       route: RouteNames.reportAGVdepart,
       imageUrl: AppImages.report_agv,
     ),
+
+    AppItemModel(
+      id: 'report:accountant',
+      name: 'report.accountant'.tr(),
+      iconCodePoint: Icons.precision_manufacturing_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'report',
+      route: RouteNames.reportAccountant,
+      imageUrl: AppImages.report_agv,
+    ),
   ];
 
   static final List<AppItemModel> weekplan = [

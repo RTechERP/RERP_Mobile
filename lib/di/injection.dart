@@ -96,6 +96,7 @@ import '../features/workplace/app/reports/data/repository/report_repo_impl.dart'
 import '../features/workplace/app/reports/view/ad/view/bloc/ad_bloc.dart';
 import '../features/workplace/app/reports/view/agv/view/bloc/agv_bloc.dart';
 import '../features/workplace/app/reports/view/hr/view/bloc/hr_bloc.dart';
+import '../features/workplace/app/reports/view/accountant/view/bloc/accountant_bloc.dart';
 import '../features/workplace/app/reports/view/marketing/view/bloc/marketing_bloc.dart';
 import '../features/workplace/app/reports/view/sale/view/bloc/sale_bloc.dart';
 import '../features/workplace/app/reports/view/tech/view/bloc/tech_bloc.dart';
@@ -531,6 +532,14 @@ void configureDependencies() {
   getIt.registerFactory<NewsfeedBloc>(
     () => NewsfeedBloc(
       getIt<NewsfeedRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<AccountantBloc>(
+    () => AccountantBloc(
+      getIt<ReportRepo>(),
+      getIt<AuthRepo>(),
       getIt<LogUtils>(),
     ),
   );

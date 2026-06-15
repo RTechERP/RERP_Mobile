@@ -2112,3 +2112,52 @@ Map<String, dynamic> _$$DetailSaleAdminReportResponseImplToJson(
       'STT': instance.stt,
       'ProjectID': instance.projectId,
     };
+
+_$AccountantItemImpl _$$AccountantItemImplFromJson(Map<String, dynamic> json) =>
+    _$AccountantItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      employeeId: (json['EmployeeID'] as num?)?.toInt(),
+      reportDate: json['ReportDate'] == null
+          ? null
+          : DateTime.parse(json['ReportDate'] as String),
+      content: json['Content'] as String?,
+      result: json['Result'] as String?,
+      nextPlan: json['NextPlan'] as String?,
+      pendingIssues: json['PendingIssues'] as String?,
+      urgent: json['Urgent'] as String?,
+      mistakeOrViolation: json['MistakeOrViolation'] as String?,
+      createdBy: json['CreatedBy'] as String?,
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+      updatedBy: json['UpdatedBy'] as String?,
+      updatedDate: json['UpdatedDate'] == null
+          ? null
+          : DateTime.parse(json['UpdatedDate'] as String),
+      isDeleted: json['IsDeleted'] as bool?,
+      fullName: json['FullName'] as String?,
+      chucVu: json['ChucVu'] as String?,
+      rowNum: (json['RowNum'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$AccountantItemImplToJson(
+        _$AccountantItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'EmployeeID': instance.employeeId,
+      'ReportDate': instance.reportDate?.toIso8601String(),
+      'Content': instance.content,
+      'Result': instance.result,
+      'NextPlan': instance.nextPlan,
+      'PendingIssues': instance.pendingIssues,
+      'Urgent': instance.urgent,
+      'MistakeOrViolation': instance.mistakeOrViolation,
+      'CreatedBy': instance.createdBy,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'UpdatedBy': instance.updatedBy,
+      'UpdatedDate': instance.updatedDate?.toIso8601String(),
+      'IsDeleted': instance.isDeleted,
+      'FullName': instance.fullName,
+      'ChucVu': instance.chucVu,
+      'RowNum': instance.rowNum,
+    };

@@ -6,6 +6,6 @@ enum AppRole {
   marketing,
   agv,
   employee,
-
   ad,
+  accountant,
 }

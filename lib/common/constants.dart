@@ -159,6 +159,10 @@ class ApiEndPoint {
 
   static const String getSaleAdminById = '/DailyReportSaleAdmin/get-details';
 
+  // Accountant
+  static const String getAccountantReport =
+      '/DailyReportAccounting/get-data';
+
   static const String getMeetingRoom = '/bookingroom/get-booking-room';
 
   static const String saveMeetingRoom = '/BookingRoom/save-data';

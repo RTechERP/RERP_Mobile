@@ -701,4 +701,29 @@ class ReportRepoImpl implements ReportRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, List<AccountantItem>>> getAccountantReport({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+    int page = 1,
+    int size = 50,
+    String filterText = '',
+    int employeeId = 0,
+  }) async {
+    try {
+      final res = await _service.getAccountantReport(
+        dateStart: dateStart,
+        dateEnd: dateEnd,
+        page: page,
+        size: size,
+        filterText: filterText,
+        employeeId: employeeId,
+      );
+
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

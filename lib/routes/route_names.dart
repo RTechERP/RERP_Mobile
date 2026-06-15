@@ -131,6 +131,12 @@ class RouteNames {
 
   static const reportADdepartEdit = '/report/ad/edit';
 
+  ///*** Accountant Department ***///
+  static const reportAccountant = '/report/accountant';
+  static const reportAccountantDetail = '/report/accountant/detail';
+  static const reportAccountantAdd = '/report/accountant/add';
+  static const reportAccountantEdit = '/report/accountant/edit';
+
   // Favorites
   static const favorites = '/favorites';
 

@@ -105,6 +105,10 @@ class _WorkPlaceScreenState
       return RouteNames.reportMarketingdepart;
     }
 
+    if (roles.contains(AppRole.accountant)) {
+      return RouteNames.reportAccountant;
+    }
+
     return null;
   }
 

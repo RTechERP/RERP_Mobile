@@ -116,6 +116,8 @@ import '../features/workplace/app/reg_work/view/pages/salary/view/pages/timekeep
 import '../features/workplace/app/reg_work/view/pages/salary/view/pages/forgot_pin_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/salary/view/pages/salary_card_detail_screen.dart';
 import '../features/workplace/app/reports/data/datasource/models/report_model.dart';
+import '../features/workplace/app/reports/view/accountant/view/bloc/accountant_bloc.dart';
+import '../features/workplace/app/reports/view/accountant/view/pages/accountant_screen.dart';
 import '../features/workplace/app/reports/view/ad/view/bloc/ad_bloc.dart';
 import '../features/workplace/app/reports/view/ad/view/pages/ad_add_screen.dart';
 import '../features/workplace/app/reports/view/ad/view/pages/ad_detail_screen.dart';
@@ -1247,6 +1249,22 @@ class AppRouter {
               }
               return PollDetailScreen(item: item);
             },
+          ),
+        ],
+      ),
+
+      // Accountant Report
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(
+            value: getIt<AccountantBloc>(),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.reportAccountant,
+            builder: (context, state) => const AccountantScreen(),
           ),
         ],
       ),
