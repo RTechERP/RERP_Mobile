@@ -147,6 +147,8 @@ abstract class _$WeekPlanStateCWProxy {
 
   WeekPlanState pauseReason(String? pauseReason);
 
+  WeekPlanState isDeadlineLocked(bool isDeadlineLocked);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WeekPlanState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -222,6 +224,7 @@ abstract class _$WeekPlanStateCWProxy {
     int? currentStep,
     int? detailTaskId,
     String? pauseReason,
+    bool? isDeadlineLocked,
   });
 }
 
@@ -499,6 +502,10 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
       this(pauseReason: pauseReason);
 
   @override
+  WeekPlanState isDeadlineLocked(bool isDeadlineLocked) =>
+      this(isDeadlineLocked: isDeadlineLocked);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WeekPlanState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -575,6 +582,7 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
     Object? currentStep = const $CopyWithPlaceholder(),
     Object? detailTaskId = const $CopyWithPlaceholder(),
     Object? pauseReason = const $CopyWithPlaceholder(),
+    Object? isDeadlineLocked = const $CopyWithPlaceholder(),
   }) {
     return WeekPlanState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -882,6 +890,11 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
           ? _value.pauseReason
           // ignore: cast_nullable_to_non_nullable
           : pauseReason as String?,
+      isDeadlineLocked: isDeadlineLocked == const $CopyWithPlaceholder() ||
+              isDeadlineLocked == null
+          ? _value.isDeadlineLocked
+          // ignore: cast_nullable_to_non_nullable
+          : isDeadlineLocked as bool,
     );
   }
 }

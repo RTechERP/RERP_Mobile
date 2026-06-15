@@ -51,6 +51,18 @@ class _WeekPlanAddScreenState
     return s.headerWorkType == 2 || name.contains('bug');
   }
 
+  /// Deadline là bắt buộc khi status > 0 (Đang làm, Hoàn thành, Tạm hoãn).
+  bool _isDeadlineRequired(WeekPlanState s) => (s.headerStatus ?? 0) > 0;
+
+  /// Trả về true nếu user hiện tại được phép sửa Deadline.
+  /// Khi chưa lock (tạo mới) → luôn sửa được.
+  /// Khi đã lock (sau lần lưu đầu) → chỉ người giao việc mới sửa được.
+  bool _canEditDeadline(WeekPlanState s) {
+    if (!s.isDeadlineLocked) return true;
+    final currentUserId = s.contentAssignerId;
+    return currentUserId != null && currentUserId == s.headerAssignerId;
+  }
+
   /// Tổng số step hiện tại (6 hoặc 7).
   int _totalSteps(WeekPlanState s) => _isBugTask(s) ? 7 : 6;
 
@@ -109,6 +121,9 @@ class _WeekPlanAddScreenState
           showMessage(context, state.message ?? '', type: SnackBarType.success);
         }
         if (state.submitSuccess) {
+          // Sau khi lưu thành công, khóa Deadline. Chỉ người giao việc mới có
+          // quyền mở khóa để sửa.
+          bloc.add(const WeekPlanEvent.setDeadlineLocked(true));
           bloc.add(const WeekPlanEvent.clearSubmitState());
           context.pop(true);
         }
@@ -497,6 +512,7 @@ class _WeekPlanAddScreenState
                           ),
                         );
                         _autoFillExpectedHours(null, value);
+                        _autoFillDeadline(value, state.contentDeadline);
                       },
                     ),
                   ),
@@ -521,12 +537,27 @@ class _WeekPlanAddScreenState
                   const SizedBox(width: 10),
                   Expanded(
                     child: FormDateTimePicker(
+                      // Key dựa trên giá trị Deadline để force rebuild khi
+                      // auto-fill từ KT dự kiến → FormBuilderField patch lại
+                      // initialValue qua initState.
+                      key: ValueKey<DateTime?>(state.contentDeadline),
                       nameForm: 'deadline',
                       nameTimePicker: 'deadline_picker',
                       label: 'Thời hạn',
                       icon: Icons.flag_outlined,
                       inputType: InputType.date,
                       format: DateFormat('dd/MM/yyyy'),
+                      isRequired: _isDeadlineRequired(state),
+                      enabled: _canEditDeadline(state),
+                      initialValue: state.contentDeadline,
+                      validator: _isDeadlineRequired(state)
+                          ? (value) {
+                              if (value == null) {
+                                return 'Vui lòng nhập thời hạn khi trạng thái lớn hơn "Chưa làm"';
+                              }
+                              return null;
+                            }
+                          : null,
                       onChanged: (value) {
                         bloc.add(
                           WeekPlanEvent.updateContentDates(
@@ -566,6 +597,16 @@ class _WeekPlanAddScreenState
                         deadline: state.contentDeadline,
                       ),
                     );
+                    // Thực tế BĐ có giá trị → tự động chuyển status = "Đang làm".
+                    // Tránh đè status nếu đã "Hoàn thành"/"Pending".
+                    if (value != null && (state.headerStatus ?? 0) < 1) {
+                      bloc.add(
+                        WeekPlanEvent.updateHeaderStatus(
+                          statusId: 1,
+                          statusName: WeekPlanStatusCard.labels[1],
+                        ),
+                      );
+                    }
                   },
                 ),
               ),
@@ -589,6 +630,15 @@ class _WeekPlanAddScreenState
                         deadline: state.contentDeadline,
                       ),
                     );
+                    // Thực tế KT có giá trị → tự động chuyển status = "Hoàn thành".
+                    if (value != null && (state.headerStatus ?? 0) != 2) {
+                      bloc.add(
+                        WeekPlanEvent.updateHeaderStatus(
+                          statusId: 2,
+                          statusName: WeekPlanStatusCard.labels[2],
+                        ),
+                      );
+                    }
                   },
                 ),
               ),
@@ -1384,6 +1434,24 @@ class _WeekPlanAddScreenState
     });
   }
 
+  /// Tự động fill Deadline = KT dự kiến khi user chọn KT dự kiến mà
+  /// Deadline hiện đang rỗng. Cập nhật bloc state; UI sẽ tự rebuild nhờ
+  /// `ValueKey(state.contentDeadline)` trên FormDateTimePicker.
+  void _autoFillDeadline(DateTime? newEnd, DateTime? currentDeadline) {
+    if (newEnd == null) return;
+    if (currentDeadline != null) return;
+
+    bloc.add(
+      WeekPlanEvent.updateContentDates(
+        startDate: bloc.state.contentStartDate,
+        endDate: newEnd,
+        actualStartDate: bloc.state.contentActualStartDate,
+        actualEndDate: bloc.state.contentActualEndDate,
+        deadline: newEnd,
+      ),
+    );
+  }
+
   //---(_Step: Incident)---//
   Widget _buildIncidentStep(WeekPlanState state) {
     final hasIncidents = state.incidents.isNotEmpty;
@@ -1707,6 +1775,16 @@ class _WeekPlanAddScreenState
         _goToStep(1); // step Sự cố & Khắc phục
         return;
       }
+    }
+
+    // Validate Deadline bắt buộc khi status > 0.
+    if (_isDeadlineRequired(bloc.state) && bloc.state.contentDeadline == null) {
+      showMessage(
+        context,
+        'Vui lòng nhập thời hạn khi trạng thái lớn hơn "Chưa làm"',
+        type: SnackBarType.error,
+      );
+      return;
     }
 
     // Validate ngày tháng: KT dự kiến >= BĐ dự kiến

@@ -222,6 +222,11 @@ class WeekPlanEvent with _$WeekPlanEvent {
   const factory WeekPlanEvent.updatePauseReason(String? reason) =
       _UpdatePauseReason;
 
+  /// Khóa/mở khóa trường Deadline. Sau khi lưu lần đầu sẽ tự động lock; chỉ
+  /// người giao việc mới có thể mở khóa để sửa.
+  const factory WeekPlanEvent.setDeadlineLocked(bool locked) =
+      _SetDeadlineLocked;
+
   // Submit
   const factory WeekPlanEvent.createTask() = _CreateTask;
 

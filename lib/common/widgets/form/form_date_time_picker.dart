@@ -81,6 +81,26 @@ class _FormDateTimePickerState extends State<FormDateTimePicker> {
   }
 
   @override
+  void didUpdateWidget(covariant FormDateTimePicker oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // Sync khi initialValue thay đổi từ bên ngoài (ví dụ: auto-fill Deadline
+    // từ KT dự kiến). Chỉ patch nếu giá trị hiện tại của form chưa khớp với
+    // initialValue mới → tránh ghi đè khi user đã tự chọn bằng tay.
+    if (!_isSameDate(widget.initialValue, oldWidget.initialValue)) {
+      final current = _fieldKey.currentState?.value;
+      if (!_isSameDate(current, widget.initialValue)) {
+        _fieldKey.currentState?.didChange(widget.initialValue);
+      }
+    }
+  }
+
+  bool _isSameDate(DateTime? a, DateTime? b) {
+    if (a == null && b == null) return true;
+    if (a == null || b == null) return false;
+    return a.year == b.year && a.month == b.month && a.day == b.day;
+  }
+
+  @override
   void dispose() {
     _internalFocusNode?.dispose();
     super.dispose();

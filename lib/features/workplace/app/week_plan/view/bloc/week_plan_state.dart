@@ -119,6 +119,10 @@ class WeekPlanState extends BaseBlocState {
   /// Lý do tạm dừng — bắt buộc nhập khi chuyển status = 3 (Pending).
   final String? pauseReason;
 
+  /// Cờ khóa Deadline sau lần lưu đầu tiên. Khi true, Deadline chỉ người
+  /// giao việc (assigner) mới có quyền sửa. Reset = false khi tạo mới.
+  final bool isDeadlineLocked;
+
   const WeekPlanState({
     required super.status,
     super.message,
@@ -200,6 +204,7 @@ class WeekPlanState extends BaseBlocState {
     // Detail mode
     this.detailTaskId,
     this.pauseReason,
+    this.isDeadlineLocked = false,
   });
 
   factory WeekPlanState.init() => const WeekPlanState(
@@ -249,6 +254,7 @@ class WeekPlanState extends BaseBlocState {
         expandedIncidentIndex: -1,
         currentStep: 0,
         pauseReason: null,
+        isDeadlineLocked: false,
       );
 
   @override
@@ -332,5 +338,6 @@ class WeekPlanState extends BaseBlocState {
         // Detail mode
         detailTaskId,
         pauseReason,
+        isDeadlineLocked,
       ];
 }

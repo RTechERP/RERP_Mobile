@@ -157,6 +157,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
         removeIncident: (index) => _onRemoveIncident(emit, index),
         toggleIncidentExpand: (index) => _onToggleIncidentExpand(emit, index),
         updatePauseReason: (reason) => _onUpdatePauseReason(emit, reason),
+        setDeadlineLocked: (locked) => _onSetDeadlineLocked(emit, locked),
         createTask: () => _onCreateTask(emit),
         editTask: () => _onEditTask(emit),
         clearSubmitState: () => _onClearSubmitState(emit),
@@ -484,6 +485,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
         contentReasonSolution: null,
         contentWorkplace: 0,
         contentWorkplaceOther: null,
+        isDeadlineLocked: false,
         selectedAssignees: const [],
         selectedRelatedPersons: const [],
         subTasks: const [],
@@ -1068,13 +1070,20 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
     DateTime? actualEndDate,
     DateTime? deadline,
   ) async {
+    // Auto-fill: khi chọn KT dự kiến mà Deadline chưa có, Deadline = KT dự kiến.
+    // Áp dụng khi user thay đổi endDate (không phải khi explicit set deadline).
+    // Nếu caller truyền deadline khác null → tôn trọng giá trị đó.
+    // Nếu deadline null và endDate thay đổi → fill.
+    final shouldAutoFillDeadline =
+        deadline == null && endDate != null && state.contentDeadline == null;
+
     emit(
       state.copyWith(
         contentStartDate: startDate,
         contentEndDate: endDate,
         contentActualStartDate: actualStartDate,
         contentActualEndDate: actualEndDate,
-        contentDeadline: deadline,
+        contentDeadline: shouldAutoFillDeadline ? endDate : deadline,
       ),
     );
   }
@@ -1378,6 +1387,13 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
     String? reason,
   ) async {
     emit(state.copyWith(pauseReason: reason));
+  }
+
+  Future<void> _onSetDeadlineLocked(
+    Emitter<WeekPlanState> emit,
+    bool locked,
+  ) async {
+    emit(state.copyWith(isDeadlineLocked: locked));
   }
 
   Future<void> _onUpdateIncident(
