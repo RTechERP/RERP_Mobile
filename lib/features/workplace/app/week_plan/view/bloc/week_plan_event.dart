@@ -125,6 +125,13 @@ class WeekPlanEvent with _$WeekPlanEvent {
   const factory WeekPlanEvent.updateContentReasonSolution(String reasonSolution) =
       _UpdateContentReasonSolution;
 
+  /// Cập nhật địa điểm làm việc (-1=chưa chọn, 0=Hà Nội, 1=Đan Phượng, 2=Khác)
+  /// và giá trị nhập tay khi chọn Khác.
+  const factory WeekPlanEvent.updateContentWorkplace({
+    required int value,
+    String? otherText,
+  }) = _UpdateContentWorkplace;
+
   // Step 3: Người thực hiện (multi-select)
   const factory WeekPlanEvent.setAssignees(List<EmployeeTaskItem> assignees) =
       _SetAssignees;
@@ -217,6 +224,10 @@ class WeekPlanEvent with _$WeekPlanEvent {
 
   // Submit
   const factory WeekPlanEvent.createTask() = _CreateTask;
+
+  /// Submit từ màn detail — copy logic từ createTask, dùng để phân biệt flow
+  /// tạo mới vs cập nhật trong UI (navigate/refresh khác nhau).
+  const factory WeekPlanEvent.editTask() = _EditTask;
 
   const factory WeekPlanEvent.clearSubmitState() = _ClearSubmitState;
 

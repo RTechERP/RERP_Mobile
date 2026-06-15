@@ -72,6 +72,11 @@ class WeekPlanState extends BaseBlocState {
   /// Lý do / phương án xử lý — hiển thị khi loại công việc là "TT Chung".
   final String? contentReasonSolution;
 
+  /// Địa điểm làm việc: -1=chưa chọn, 0=Hà Nội, 1=Đan Phượng, 2=Khác.
+  final int contentWorkplace;
+  /// Giá trị nhập tay khi contentWorkplace = 2 (Khác).
+  final String? contentWorkplaceOther;
+
   // Step 3: Người thực hiện (multi-select)
   final List<EmployeeTaskItem> selectedAssignees;
 
@@ -165,9 +170,11 @@ class WeekPlanState extends BaseBlocState {
     this.contentActualStartDate,
     this.contentActualEndDate,
         this.contentDeadline,
-        this.contentDescription,
-        this.contentResult,
-        this.contentReasonSolution,
+    this.contentDescription,
+    this.contentResult,
+    this.contentReasonSolution,
+    this.contentWorkplace = -1,
+    this.contentWorkplaceOther,
         // Step 3
     this.selectedAssignees = const [],
     // Step 4
@@ -226,6 +233,8 @@ class WeekPlanState extends BaseBlocState {
         contentDescription: null,
         contentResult: null,
         contentReasonSolution: null,
+        contentWorkplace: -1,
+        contentWorkplaceOther: null,
         selectedAssignees: [],
         selectedRelatedPersons: [],
         subTasks: [],
@@ -297,6 +306,8 @@ class WeekPlanState extends BaseBlocState {
         contentDescription,
         contentResult,
         contentReasonSolution,
+        contentWorkplace,
+        contentWorkplaceOther,
         // Step 3
         selectedAssignees,
         // Step 4

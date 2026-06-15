@@ -110,6 +110,10 @@ abstract class _$WeekPlanStateCWProxy {
 
   WeekPlanState contentReasonSolution(String? contentReasonSolution);
 
+  WeekPlanState contentWorkplace(int contentWorkplace);
+
+  WeekPlanState contentWorkplaceOther(String? contentWorkplaceOther);
+
   WeekPlanState selectedAssignees(List<EmployeeTaskItem> selectedAssignees);
 
   WeekPlanState selectedRelatedPersons(
@@ -201,6 +205,8 @@ abstract class _$WeekPlanStateCWProxy {
     String? contentDescription,
     String? contentResult,
     String? contentReasonSolution,
+    int? contentWorkplace,
+    String? contentWorkplaceOther,
     List<EmployeeTaskItem>? selectedAssignees,
     List<EmployeeTaskItem>? selectedRelatedPersons,
     List<WeekPlanSubTaskItem>? subTasks,
@@ -424,6 +430,14 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
       this(contentReasonSolution: contentReasonSolution);
 
   @override
+  WeekPlanState contentWorkplace(int contentWorkplace) =>
+      this(contentWorkplace: contentWorkplace);
+
+  @override
+  WeekPlanState contentWorkplaceOther(String? contentWorkplaceOther) =>
+      this(contentWorkplaceOther: contentWorkplaceOther);
+
+  @override
   WeekPlanState selectedAssignees(List<EmployeeTaskItem> selectedAssignees) =>
       this(selectedAssignees: selectedAssignees);
 
@@ -544,6 +558,8 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
     Object? contentDescription = const $CopyWithPlaceholder(),
     Object? contentResult = const $CopyWithPlaceholder(),
     Object? contentReasonSolution = const $CopyWithPlaceholder(),
+    Object? contentWorkplace = const $CopyWithPlaceholder(),
+    Object? contentWorkplaceOther = const $CopyWithPlaceholder(),
     Object? selectedAssignees = const $CopyWithPlaceholder(),
     Object? selectedRelatedPersons = const $CopyWithPlaceholder(),
     Object? subTasks = const $CopyWithPlaceholder(),
@@ -782,6 +798,16 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
               ? _value.contentReasonSolution
               // ignore: cast_nullable_to_non_nullable
               : contentReasonSolution as String?,
+      contentWorkplace: contentWorkplace == const $CopyWithPlaceholder() ||
+              contentWorkplace == null
+          ? _value.contentWorkplace
+          // ignore: cast_nullable_to_non_nullable
+          : contentWorkplace as int,
+      contentWorkplaceOther:
+          contentWorkplaceOther == const $CopyWithPlaceholder()
+              ? _value.contentWorkplaceOther
+              // ignore: cast_nullable_to_non_nullable
+              : contentWorkplaceOther as String?,
       selectedAssignees: selectedAssignees == const $CopyWithPlaceholder() ||
               selectedAssignees == null
           ? _value.selectedAssignees

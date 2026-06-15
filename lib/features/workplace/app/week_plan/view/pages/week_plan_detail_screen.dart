@@ -582,6 +582,23 @@ class _WeekPlanDetailScreenState
             onChanged: (v) => bloc.add(WeekPlanEvent.updateHeaderPersonalTask(v)),
           ),
           const SizedBox(height: 10),
+          WeekPlanWorkplaceCard(
+            selected: state.contentWorkplace,
+            otherText: state.contentWorkplaceOther ?? '',
+            onSelected: (v) => bloc.add(
+              WeekPlanEvent.updateContentWorkplace(
+                value: v,
+                otherText: state.contentWorkplaceOther,
+              ),
+            ),
+            onOtherTextChanged: (v) => bloc.add(
+              WeekPlanEvent.updateContentWorkplace(
+                value: state.contentWorkplace,
+                otherText: v,
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
           WeekPlanComplexityRow(
             selected: state.headerComplexity,
             onChanged: (v) => bloc.add(WeekPlanEvent.updateHeaderComplexity(v)),
@@ -1526,8 +1543,8 @@ class _WeekPlanDetailScreenState
     bloc.add(WeekPlanEvent.updateContentDescription(vals['description']?.toString() ?? ''));
     bloc.add(WeekPlanEvent.updateContentResult(vals['expected_result']?.toString() ?? ''));
 
-    // Trigger update — createTask với ID của task hiện tại
-    bloc.add(const WeekPlanEvent.createTask());
+    // Trigger update — dùng event editTask (copy-paste từ createTask).
+    bloc.add(const WeekPlanEvent.editTask());
   }
 }
 

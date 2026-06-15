@@ -13,6 +13,7 @@ import '../../data/datasource/models/week_plan_model.dart';
 import '../../data/repository/week_plan_repo.dart';
 import '../../../../../auth/data/repository/auth_repo.dart';
 import '../week_plan_tab_enum.dart';
+import '../widgets/week_plan_workplace_card.dart';
 
 part 'week_plan_event.dart';
 part 'week_plan_state.dart';
@@ -107,6 +108,8 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
         updateContentResult: (result) => _onUpdateContentResult(emit, result),
         updateContentReasonSolution: (reasonSolution) =>
             _onUpdateContentReasonSolution(emit, reasonSolution),
+        updateContentWorkplace: (value, otherText) =>
+            _onUpdateContentWorkplace(emit, value, otherText),
         setAssignees: (assignees) => _onSetAssignees(emit, assignees),
         addAssignee: (employee) => _onAddAssignee(emit, employee),
         removeAssignee: (employeeId) => _onRemoveAssignee(emit, employeeId),
@@ -155,6 +158,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
         toggleIncidentExpand: (index) => _onToggleIncidentExpand(emit, index),
         updatePauseReason: (reason) => _onUpdatePauseReason(emit, reason),
         createTask: () => _onCreateTask(emit),
+        editTask: () => _onEditTask(emit),
         clearSubmitState: () => _onClearSubmitState(emit),
         clearCheckInState: () => _onClearCheckInState(emit),
         uploadFiles: (filePaths, subPath) =>
@@ -478,6 +482,8 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
         contentDescription: null,
         contentResult: null,
         contentReasonSolution: null,
+        contentWorkplace: 0,
+        contentWorkplaceOther: null,
         selectedAssignees: const [],
         selectedRelatedPersons: const [],
         subTasks: const [],
@@ -691,6 +697,13 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
             detailChecklists: checklists,
           ),
         );
+
+        // Fill giá trị địa điểm làm việc từ response.
+        final wp = _resolveWorkplace(detail.location);
+        emit(state.copyWith(
+          contentWorkplace: wp['contentWorkplace'] as int,
+          contentWorkplaceOther: wp['contentWorkplaceOther'] as String?,
+        ));
       },
     );
   }
@@ -708,6 +721,32 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
       default:
         return 'Chưa làm';
     }
+  }
+
+  /// Map `Location` từ response về (`contentWorkplace`, `contentWorkplaceOther`).
+  /// - "Hà Nội" / "Đan Phượng" → index trong `WeekPlanWorkplaceCard.labels`.
+  /// - Bất kỳ giá trị nào khác (rỗng / khác) → 2 (Khác) + lưu text vào other.
+  /// - Null/empty → -1 (chưa chọn).
+  Map<String, dynamic> _resolveWorkplace(String? location) {
+    if (location == null || location.trim().isEmpty) {
+      return const {
+        'contentWorkplace': -1,
+        'contentWorkplaceOther': null,
+      };
+    }
+    final trimmed = location.trim();
+    final labels = WeekPlanWorkplaceCard.labels;
+    final idx = labels.indexOf(trimmed);
+    if (idx >= 0 && idx < 2) {
+      return {
+        'contentWorkplace': idx,
+        'contentWorkplaceOther': null,
+      };
+    }
+    return {
+      'contentWorkplace': 2,
+      'contentWorkplaceOther': trimmed,
+    };
   }
 
   Future<void> _onChangeStep(Emitter<WeekPlanState> emit, int step) async {
@@ -1061,6 +1100,22 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
     emit(state.copyWith(contentReasonSolution: reasonSolution));
   }
 
+  Future<void> _onUpdateContentWorkplace(
+    Emitter<WeekPlanState> emit,
+    int value,
+    String? otherText,
+  ) async {
+    // Khi chuyển sang Khác, giữ text người dùng đang nhập (nếu có).
+    // Khi rời Khác, xoá text cũ.
+    final newOtherText = value == 2 ? (otherText ?? state.contentWorkplaceOther) : null;
+    emit(
+      state.copyWith(
+        contentWorkplace: value,
+        contentWorkplaceOther: newOtherText,
+      ),
+    );
+  }
+
   // Bug: projectTaskTypeID == 2 (1=Task, 2=Bug, 3=Issue Log).
   bool _isBugTaskType(WeekPlanState s) {
     return s.headerWorkType == 2;
@@ -1412,6 +1467,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
 
       final payload = _buildCreatePayload(user.employeeId);
 
+      print('Create Task Payload: $payload'); // Debug log payload
       final res = await _weekPlanRepo.saveTask(payload: payload);
 
       await res.fold(
@@ -1596,6 +1652,259 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
     }
   }
 
+  //---(Edit)---//
+  // Copy-paste từ _onCreateTask — dùng riêng cho flow edit từ detail screen.
+  bool _isEditTaskInFlight = false;
+
+  Future<void> _onEditTask(Emitter<WeekPlanState> emit) async {
+    if (_isEditTaskInFlight) return;
+    _isEditTaskInFlight = true;
+
+    try {
+      emit(
+        state.copyWith(isSubmitting: true, submitSuccess: false, message: null),
+      );
+
+      final userRes = await _authRepo.getCurrentUser();
+      final user = userRes.getOrElse(() => null);
+
+      if (user == null) {
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            submitSuccess: false,
+            status: BaseStateStatus.failed,
+            message: 'Không lấy được thông tin người dùng',
+          ),
+        );
+        return;
+      }
+
+      // Upload file đính kèm trước nếu có file local (chưa upload)
+      List<String> filePathsToUpload = state.attachments
+          .where((a) => a.filePath != null && a.filePath!.isNotEmpty)
+          .where((a) {
+            // Chỉ upload những file local (không phải URL đã upload trước đó)
+            final path = a.filePath!;
+            return path.startsWith('/') || path.startsWith('file://');
+          })
+          .map((a) => a.filePath!)
+          .toList();
+
+      if (filePathsToUpload.isNotEmpty) {
+        final files = filePathsToUpload.map((p) => File(p)).toList();
+
+        final uploadRes = await _weekPlanRepo.uploadAttachmentFile(
+          files: files,
+          key: 'ProjectTask',
+          subPath: '',
+        );
+
+        await uploadRes.fold(
+          (err) async {
+            emit(
+              state.copyWith(
+                isSubmitting: false,
+                submitSuccess: false,
+                status: BaseStateStatus.failed,
+                message: 'Upload file thất bại: ${err.getErrorMessage}',
+              ),
+            );
+            return;
+          },
+          (uploaded) async {
+            emit(state.copyWith(uploadedAttachmentFiles: uploaded));
+          },
+        );
+      }
+
+      final payload = _buildCreatePayload(user.employeeId);
+
+      print('Edit Task Payload: $payload'); // Debug log payload
+      final res = await _weekPlanRepo.saveTask(payload: payload);
+
+      await res.fold(
+        (err) async {
+          _log.logE('EditTask error: $err | Payload: $payload');
+          emit(
+            state.copyWith(
+              isSubmitting: false,
+              submitSuccess: false,
+              status: BaseStateStatus.failed,
+              message: err.getErrorMessage,
+            ),
+          );
+        },
+        (data) async {
+          _log.logI('Edit task success, ID: ${data.id}');
+          emit(
+            state.copyWith(
+              isSubmitting: false,
+              submitSuccess: true,
+              status: BaseStateStatus.success,
+              message: 'Cập nhật công việc thành công',
+            ),
+          );
+
+          // Gọi ngầm saveSubTask cho từng công việc con sau khi cập nhật task cha thành công.
+          if (state.subTasks.isNotEmpty && data.id != null) {
+            for (final subTask in state.subTasks) {
+              final subPayload = _subTaskToChildPayload(
+                subTask,
+                parentId: data.id!,
+                projectId: state.headerProjectId ?? 0,
+                assignerId: state.headerAssignerId ?? user.employeeId,
+              );
+              _log.logI('Saving subtask: ${subTask.content ?? ""}');
+
+              // ignore: invalid_use_of_visible_for_testing_member
+              await _weekPlanRepo.saveSubTask(payload: subPayload);
+            }
+            _log.logI('All subtasks saved for task ID: ${data.id}');
+          }
+
+          // Gọi ngầm saveProjectTaskFiles cho từng file đã upload.
+          final uploaded = state.uploadedAttachmentFiles;
+          if (uploaded.isNotEmpty && data.id != null) {
+            for (final file in uploaded) {
+              final filePayload = {
+                'ID': 0,
+                'ProjectTaskID': data.id,
+                'FileName': file.originalFileName,
+                'FilePath': file.filePath,
+                'IsDeleted': false,
+              };
+              _log.logI('Saving file: ${file.originalFileName}');
+
+              // ignore: invalid_use_of_visible_for_testing_member
+              await _weekPlanRepo.saveProjectTaskFiles(payload: filePayload);
+            }
+            _log.logI('All files saved for task ID: ${data.id}');
+          }
+
+          // Gọi ngầm saveProjectTaskChecklists cho từng checklist đã nhập nội dung.
+          final checklistItems = state.checklistItems
+              .asMap()
+              .entries
+              .where((e) => e.value.isNotEmpty)
+              .toList();
+          if (checklistItems.isNotEmpty && data.id != null) {
+            for (final entry in checklistItems) {
+              final idx = entry.key;
+              final title = entry.value;
+              final isDone = idx < state.checklistDone.length
+                  ? state.checklistDone[idx]
+                  : false;
+              final checklistPayload = {
+                'ProjectTaskID': data.id,
+                'ChecklistTitle': title,
+                'OrderIndex': idx + 1,
+                'IsDone': isDone,
+                'IsDeleted': false,
+                'CreatedBy': null,
+                'UpdatedBy': null,
+              };
+              _log.logI('Saving checklist: $title');
+
+              // ignore: invalid_use_of_visible_for_testing_member
+              await _weekPlanRepo.saveProjectTaskChecklists(
+                payload: checklistPayload,
+              );
+            }
+            _log.logI('All checklists saved for task ID: ${data.id}');
+          }
+
+          // Sync cac thay doi local (toggle/edit) cua detail checklists.
+          for (final item in state.detailChecklists) {
+            if (item.id == null || item.id == 0) continue;
+
+            _log.logI(
+              'Syncing checklist ID=${item.id}: "${item.checklistTitle}", isDone=${item.isDone}',
+            );
+            // ignore: invalid_use_of_visible_for_testing_member
+            await _weekPlanRepo.updateProjectTaskChecklists(
+              id: item.id!,
+              payload: {
+                'ID': item.id,
+                'ChecklistTitle': item.checklistTitle ?? '',
+                'OrderIndex': item.orderIndex ?? 1,
+                'IsDone': item.isDone ?? false,
+              },
+            );
+          }
+          _log.logI('All detail checklists synced for task ID: ${data.id}');
+
+          // Xoa checklist da duoc mark xoa boi user.
+          for (final checklistId in state.deletedChecklistIds) {
+            _log.logI('Deleting checklist ID: $checklistId');
+            // ignore: invalid_use_of_visible_for_testing_member
+            await _weekPlanRepo.deleteProjectTaskChecklists(id: checklistId);
+          }
+          _log.logI('All deleted checklists removed for task ID: ${data.id}');
+          emit(state.copyWith(deletedChecklistIds: const []));
+
+          // Gọi ngầm saveProjectTaskLinks cho từng link đã nhập.
+          if (state.links.isNotEmpty && data.id != null) {
+            for (final link in state.links) {
+              final linkPayload = {
+                'ID': 0,
+                'ProjectTaskID': data.id,
+                'FileName': link.fileName ?? '',
+                'FilePath': link.filePath ?? '',
+                'IsDeleted': false,
+              };
+              _log.logI('Saving link: ${link.fileName}');
+
+              // ignore: invalid_use_of_visible_for_testing_member
+              await _weekPlanRepo.saveProjectTaskLinks(payload: linkPayload);
+            }
+            _log.logI('All links saved for task ID: ${data.id}');
+          }
+
+          // Gọi ngầm saveProjectTaskAdditional cho từng sự phát sinh.
+          _log.logI('Incidents state count: ${state.incidents.length}');
+          for (int i = 0; i < state.incidents.length; i++) {
+            _log.logI(
+              'Incident[$i] description: "${state.incidents[i].description}"',
+            );
+          }
+          final incidents = state.incidents
+              .where((i) => i.description?.isNotEmpty == true)
+              .toList();
+          _log.logI(
+            'Incidents with description: ${incidents.length}, taskID: ${data.id}',
+          );
+          if (incidents.isNotEmpty && data.id != null) {
+            for (final incident in incidents) {
+              final additionalPayload = {
+                'ID': incident.id ?? 0,
+                'ProjectTaskID': data.id,
+                'Description': incident.description ?? '',
+                'IsDeleted': false,
+              };
+              _log.logI('Saving additional: "${incident.description}"');
+
+              // ignore: invalid_use_of_visible_for_testing_member
+              final additionalRes = await _weekPlanRepo
+                  .saveProjectTaskAdditional(payload: additionalPayload);
+              additionalRes.fold(
+                (err) => _log.logE(
+                  'Additional save failed for "${incident.description}": $err',
+                ),
+                (_) => _log.logI('Additional saved: "${incident.description}"'),
+              );
+            }
+            _log.logI('All additional saved for task ID: ${data.id}');
+          } else {
+            _log.logI('Additional skip: no incidents with description');
+          }
+        },
+      );
+    } finally {
+      _isEditTaskInFlight = false;
+    }
+  }
+
   Map<String, dynamic> _buildCreatePayload(int userId) {
     final employeeIds = state.selectedAssignees
         .where((e) => e.id != null)
@@ -1632,6 +1941,10 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
       'IsAdditional': false,
       'ProjectTaskResult': state.contentResult ?? '',
       'Description': state.contentDescription ?? '',
+      if (state.contentWorkplace >= 0)
+        'Location': state.contentWorkplace == 2
+            ? (state.contentWorkplaceOther ?? '')
+            : WeekPlanWorkplaceCard.labels[state.contentWorkplace],
       if (_isBugTaskType(state))
         'DescriptionSolution': state.contentReasonSolution ?? '',
       if (state.pauseReason != null)

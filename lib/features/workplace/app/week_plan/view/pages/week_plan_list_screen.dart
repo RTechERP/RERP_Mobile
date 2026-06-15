@@ -120,25 +120,7 @@ class _WeekPlanListScreenState extends BaseState<
             buildWhen: (prev, curr) =>
                 prev.selectedStatuses != curr.selectedStatuses,
             builder: (context, s) => IconButton(
-              icon: Stack(
-                children: [
-                  const Icon(Icons.filter_list),
-                  if (s.selectedStatuses.isEmpty ||
-                      s.selectedStatuses.contains('Tất cả') == false)
-                    Positioned(
-                      right: 0,
-                      top: 0,
-                      child: Container(
-                        width: 8,
-                        height: 8,
-                        decoration: const BoxDecoration(
-                          color: AppColors.primaryERP,
-                          shape: BoxShape.circle,
-                        ),
-                      ),
-                    ),
-                ],
-              ),
+              icon: const Icon(Icons.filter_list),
               tooltip: 'Lọc trạng thái',
               onPressed: () => _showStatusFilter(),
             ),
@@ -148,24 +130,7 @@ class _WeekPlanListScreenState extends BaseState<
                 prev.dateStart != curr.dateStart ||
                 prev.dateEnd != curr.dateEnd,
             builder: (context, s) => IconButton(
-              icon: Stack(
-                children: [
-                  const Icon(Icons.calendar_month),
-                  if (s.dateStart != null || s.dateEnd != null)
-                    Positioned(
-                      right: 0,
-                      top: 0,
-                      child: Container(
-                        width: 8,
-                        height: 8,
-                        decoration: const BoxDecoration(
-                          color: AppColors.primaryERP,
-                          shape: BoxShape.circle,
-                        ),
-                      ),
-                    ),
-                ],
-              ),
+              icon: const Icon(Icons.calendar_month),
               tooltip: 'Lọc ngày',
               onPressed: () => _showDateRangePicker(),
             ),

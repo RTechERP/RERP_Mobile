@@ -669,6 +669,23 @@ class _WeekPlanAddScreenState
                 bloc.add(WeekPlanEvent.updateHeaderPersonalTask(v)),
           ),
           const SizedBox(height: 10),
+          WeekPlanWorkplaceCard(
+            selected: state.contentWorkplace,
+            otherText: state.contentWorkplaceOther ?? '',
+            onSelected: (v) => bloc.add(
+              WeekPlanEvent.updateContentWorkplace(
+                value: v,
+                otherText: state.contentWorkplaceOther,
+              ),
+            ),
+            onOtherTextChanged: (v) => bloc.add(
+              WeekPlanEvent.updateContentWorkplace(
+                value: state.contentWorkplace,
+                otherText: v,
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
           WeekPlanComplexityRow(
             selected: state.headerComplexity,
             onChanged: (v) => bloc.add(WeekPlanEvent.updateHeaderComplexity(v)),
@@ -683,6 +700,7 @@ class _WeekPlanAddScreenState
             selected: state.headerStatus ?? 0,
             onChanged: (v) => _onStatusChanged(context, state, v),
           ),
+
         ],
       ),
     );
