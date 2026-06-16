@@ -1,4 +1,5 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -30,8 +31,101 @@ class AccountantBloc extends BaseBloc<AccountantEvent, AccountantState> {
             _onChangeDateRange(dateStart, dateEnd, emit),
         searchKeyword: (keyword) => _onSearchKeyword(keyword, emit),
         refresh: () => _onRefresh(emit),
+        resetSubmitStatus: () => _onResetSubmitStatus(emit),
+        submit: (employeeId, items) => _onSubmit(employeeId, items, emit),
       );
     });
+  }
+
+  Future<void> _onResetSubmitStatus(Emitter<AccountantState> emit) async {
+    if (!state.submitSuccess && !state.isSubmitting && state.message == null) {
+      return;
+    }
+    emit(state.copyWith(
+      isSubmitting: false,
+      submitSuccess: false,
+      message: null,
+    ));
+  }
+
+  Future<void> _onSubmit(
+    int? passedEmployeeId,
+    List<AccountantSubmitItem> items,
+    Emitter<AccountantState> emit,
+  ) async {
+    if (state.isSubmitting) return;
+
+    emit(state.copyWith(
+      isSubmitting: true,
+      submitSuccess: false,
+      message: null,
+    ));
+
+    int? employeeId = passedEmployeeId;
+    if (employeeId == null || employeeId == 0) {
+      final userRes = await _authRepo.getCurrentUser();
+      employeeId = await userRes.fold(
+        (l) async {
+          _log.logE('Get current user failed: ${l.getErrorMessage}');
+          emit(state.copyWith(
+            isSubmitting: false,
+            submitSuccess: false,
+            message: l.getErrorMessage,
+          ));
+          return null;
+        },
+        (user) async => user?.employeeId,
+      );
+      if (employeeId == null || employeeId == 0) {
+        emit(state.copyWith(
+          isSubmitting: false,
+          submitSuccess: false,
+          message: 'Không xác định được nhân viên hiện tại',
+        ));
+        return;
+      }
+    }
+
+    final payload = items.map((e) {
+      final dt = e.reportDate;
+      final dateStr =
+          '${dt.year.toString().padLeft(4, '0')}-${dt.month.toString().padLeft(2, '0')}-${dt.day.toString().padLeft(2, '0')}'
+          'T'
+          '${dt.hour.toString().padLeft(2, '0')}:${dt.minute.toString().padLeft(2, '0')}:${dt.second.toString().padLeft(2, '0')}';
+      return <String, dynamic>{
+        'Id': 0,
+        'EmployeeID': employeeId,
+        'ReportDate': dateStr,
+        'Content': e.content,
+        'Result': e.result,
+        'NextPlan': e.nextPlan,
+        'PendingIssues': e.pendingIssues,
+        'Urgent': e.urgent,
+        'MistakeOrViolation': e.mistakeOrViolation,
+      };
+    }).toList();
+
+    final res = await _reportRepo.saveReportAccounting(payload: payload);
+
+    await res.fold(
+      (l) async {
+        _log.logE('Save accountant report failed: ${l.getErrorMessage}');
+        emit(state.copyWith(
+          isSubmitting: false,
+          submitSuccess: false,
+          status: BaseStateStatus.failed,
+          message: l.getErrorMessage,
+        ));
+      },
+      (r) async {
+        emit(state.copyWith(
+          isSubmitting: false,
+          submitSuccess: true,
+          status: BaseStateStatus.success,
+          message: r,
+        ));
+      },
+    );
   }
 
   Future<void> _onInit(Emitter<AccountantState> emit) async {

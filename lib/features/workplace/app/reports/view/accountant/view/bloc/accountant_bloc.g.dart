@@ -33,6 +33,10 @@ abstract class _$AccountantStateCWProxy {
 
   AccountantState chucVu(String? chucVu);
 
+  AccountantState isSubmitting(bool isSubmitting);
+
+  AccountantState submitSuccess(bool submitSuccess);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AccountantState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -53,6 +57,8 @@ abstract class _$AccountantStateCWProxy {
     int? employeeId,
     String? fullName,
     String? chucVu,
+    bool? isSubmitting,
+    bool? submitSuccess,
   });
 }
 
@@ -105,6 +111,14 @@ class _$AccountantStateCWProxyImpl implements _$AccountantStateCWProxy {
   AccountantState chucVu(String? chucVu) => this(chucVu: chucVu);
 
   @override
+  AccountantState isSubmitting(bool isSubmitting) =>
+      this(isSubmitting: isSubmitting);
+
+  @override
+  AccountantState submitSuccess(bool submitSuccess) =>
+      this(submitSuccess: submitSuccess);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AccountantState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -126,6 +140,8 @@ class _$AccountantStateCWProxyImpl implements _$AccountantStateCWProxy {
     Object? employeeId = const $CopyWithPlaceholder(),
     Object? fullName = const $CopyWithPlaceholder(),
     Object? chucVu = const $CopyWithPlaceholder(),
+    Object? isSubmitting = const $CopyWithPlaceholder(),
+    Object? submitSuccess = const $CopyWithPlaceholder(),
   }) {
     return AccountantState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -182,6 +198,16 @@ class _$AccountantStateCWProxyImpl implements _$AccountantStateCWProxy {
           ? _value.chucVu
           // ignore: cast_nullable_to_non_nullable
           : chucVu as String?,
+      isSubmitting:
+          isSubmitting == const $CopyWithPlaceholder() || isSubmitting == null
+              ? _value.isSubmitting
+              // ignore: cast_nullable_to_non_nullable
+              : isSubmitting as bool,
+      submitSuccess:
+          submitSuccess == const $CopyWithPlaceholder() || submitSuccess == null
+              ? _value.submitSuccess
+              // ignore: cast_nullable_to_non_nullable
+              : submitSuccess as bool,
     );
   }
 }

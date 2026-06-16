@@ -8,7 +8,7 @@ part of 'accountant_model.dart';
 
 _$AccountantItemImpl _$$AccountantItemImplFromJson(Map<String, dynamic> json) =>
     _$AccountantItemImpl(
-      id: (json['id'] as num).toInt(),
+      id: (json['ID'] as num).toInt(),
       employeeId: (json['EmployeeID'] as num).toInt(),
       reportDate: json['ReportDate'] as String,
       content: json['Content'] as String,
@@ -30,7 +30,7 @@ _$AccountantItemImpl _$$AccountantItemImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$AccountantItemImplToJson(
         _$AccountantItemImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'ID': instance.id,
       'EmployeeID': instance.employeeId,
       'ReportDate': instance.reportDate,
       'Content': instance.content,

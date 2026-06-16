@@ -186,4 +186,8 @@ abstract class ReportRepo {
     int employeeId,
   });
 
+  /// Lưu báo cáo phòng Kế toán (Accountant)
+  Future<Either<BaseError, String>> saveReportAccounting({
+    required List<Map<String, dynamic>> payload,
+  });
 }

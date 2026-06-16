@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../base/widgets/base_scaffold.dart';
@@ -8,10 +9,10 @@ import '../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../common/utils/navigation/navigation_utils.dart';
 import '../../../../../../../../common/widgets/date_range_picker.dart';
+import '../../../../../../../../routes/route_names.dart';
 import '../bloc/accountant_bloc.dart';
 import '../widgets/accountant_card.dart';
 import '../widgets/date_header.dart';
-import 'accountant_add_screen.dart';
 
 class AccountantScreen extends StatefulWidget {
   const AccountantScreen({super.key});
@@ -102,10 +103,7 @@ class _AccountantScreenState
             },
           ),
           IconButton(
-            icon: const Icon(
-              Icons.date_range_rounded,
-              size: 22,
-            ),
+            icon: const Icon(Icons.date_range_rounded, size: 22),
             onPressed: () {
               showModalBottomSheet<void>(
                 context: context,
@@ -158,8 +156,7 @@ class _AccountantScreenState
                   ),
                   const SizedBox(height: 8),
                   ElevatedButton(
-                    onPressed: () =>
-                        bloc.add(const AccountantEvent.refresh()),
+                    onPressed: () => bloc.add(const AccountantEvent.refresh()),
                     child: const Text('Thử lại'),
                   ),
                 ],
@@ -172,11 +169,7 @@ class _AccountantScreenState
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(
-                    Icons.inbox_outlined,
-                    size: 48,
-                    color: Colors.grey,
-                  ),
+                  Icon(Icons.inbox_outlined, size: 48, color: Colors.grey),
                   SizedBox(height: 8),
                   Text(
                     'Không có báo cáo',
@@ -204,23 +197,18 @@ class _AccountantScreenState
                 }
 
                 final item = state.reports[index - 1];
-                return AccountantCard(
-                  item: item,
-                  onTap: () {
-                  },
-                );
+                return AccountantCard(item: item, onTap: () {});
               },
             ),
           );
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (_) => const AccountantAddScreen(),
-            ),
-          );
+        onPressed: () async {
+          final result = await context.push(RouteNames.reportAccountantAdd);
+          if (result == true) {
+            bloc.add(const AccountantEvent.refresh());
+          }
         },
         backgroundColor: AppColors.primaryERP,
         foregroundColor: Colors.white,

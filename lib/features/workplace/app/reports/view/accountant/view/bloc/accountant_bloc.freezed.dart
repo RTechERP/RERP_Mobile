@@ -23,6 +23,9 @@ mixin _$AccountantEvent {
         changeDateRange,
     required TResult Function(String keyword) searchKeyword,
     required TResult Function() refresh,
+    required TResult Function() resetSubmitStatus,
+    required TResult Function(int? employeeId, List<AccountantSubmitItem> items)
+        submit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -31,6 +34,9 @@ mixin _$AccountantEvent {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(String keyword)? searchKeyword,
     TResult? Function()? refresh,
+    TResult? Function()? resetSubmitStatus,
+    TResult? Function(int? employeeId, List<AccountantSubmitItem> items)?
+        submit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -39,6 +45,8 @@ mixin _$AccountantEvent {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(String keyword)? searchKeyword,
     TResult Function()? refresh,
+    TResult Function()? resetSubmitStatus,
+    TResult Function(int? employeeId, List<AccountantSubmitItem> items)? submit,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -48,6 +56,8 @@ mixin _$AccountantEvent {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SearchKeyword value) searchKeyword,
     required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ResetSubmitStatus value) resetSubmitStatus,
+    required TResult Function(_Submit value) submit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -56,6 +66,8 @@ mixin _$AccountantEvent {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SearchKeyword value)? searchKeyword,
     TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ResetSubmitStatus value)? resetSubmitStatus,
+    TResult? Function(_Submit value)? submit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -64,6 +76,8 @@ mixin _$AccountantEvent {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SearchKeyword value)? searchKeyword,
     TResult Function(_Refresh value)? refresh,
+    TResult Function(_ResetSubmitStatus value)? resetSubmitStatus,
+    TResult Function(_Submit value)? submit,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -129,6 +143,9 @@ class _$InitImpl implements _Init {
         changeDateRange,
     required TResult Function(String keyword) searchKeyword,
     required TResult Function() refresh,
+    required TResult Function() resetSubmitStatus,
+    required TResult Function(int? employeeId, List<AccountantSubmitItem> items)
+        submit,
   }) {
     return init();
   }
@@ -140,6 +157,9 @@ class _$InitImpl implements _Init {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(String keyword)? searchKeyword,
     TResult? Function()? refresh,
+    TResult? Function()? resetSubmitStatus,
+    TResult? Function(int? employeeId, List<AccountantSubmitItem> items)?
+        submit,
   }) {
     return init?.call();
   }
@@ -151,6 +171,8 @@ class _$InitImpl implements _Init {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(String keyword)? searchKeyword,
     TResult Function()? refresh,
+    TResult Function()? resetSubmitStatus,
+    TResult Function(int? employeeId, List<AccountantSubmitItem> items)? submit,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -166,6 +188,8 @@ class _$InitImpl implements _Init {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SearchKeyword value) searchKeyword,
     required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ResetSubmitStatus value) resetSubmitStatus,
+    required TResult Function(_Submit value) submit,
   }) {
     return init(this);
   }
@@ -177,6 +201,8 @@ class _$InitImpl implements _Init {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SearchKeyword value)? searchKeyword,
     TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ResetSubmitStatus value)? resetSubmitStatus,
+    TResult? Function(_Submit value)? submit,
   }) {
     return init?.call(this);
   }
@@ -188,6 +214,8 @@ class _$InitImpl implements _Init {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SearchKeyword value)? searchKeyword,
     TResult Function(_Refresh value)? refresh,
+    TResult Function(_ResetSubmitStatus value)? resetSubmitStatus,
+    TResult Function(_Submit value)? submit,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -280,6 +308,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
         changeDateRange,
     required TResult Function(String keyword) searchKeyword,
     required TResult Function() refresh,
+    required TResult Function() resetSubmitStatus,
+    required TResult Function(int? employeeId, List<AccountantSubmitItem> items)
+        submit,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -291,6 +322,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(String keyword)? searchKeyword,
     TResult? Function()? refresh,
+    TResult? Function()? resetSubmitStatus,
+    TResult? Function(int? employeeId, List<AccountantSubmitItem> items)?
+        submit,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -302,6 +336,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(String keyword)? searchKeyword,
     TResult Function()? refresh,
+    TResult Function()? resetSubmitStatus,
+    TResult Function(int? employeeId, List<AccountantSubmitItem> items)? submit,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -317,6 +353,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SearchKeyword value) searchKeyword,
     required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ResetSubmitStatus value) resetSubmitStatus,
+    required TResult Function(_Submit value) submit,
   }) {
     return changeDateRange(this);
   }
@@ -328,6 +366,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SearchKeyword value)? searchKeyword,
     TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ResetSubmitStatus value)? resetSubmitStatus,
+    TResult? Function(_Submit value)? submit,
   }) {
     return changeDateRange?.call(this);
   }
@@ -339,6 +379,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SearchKeyword value)? searchKeyword,
     TResult Function(_Refresh value)? refresh,
+    TResult Function(_ResetSubmitStatus value)? resetSubmitStatus,
+    TResult Function(_Submit value)? submit,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -429,6 +471,9 @@ class _$SearchKeywordImpl implements _SearchKeyword {
         changeDateRange,
     required TResult Function(String keyword) searchKeyword,
     required TResult Function() refresh,
+    required TResult Function() resetSubmitStatus,
+    required TResult Function(int? employeeId, List<AccountantSubmitItem> items)
+        submit,
   }) {
     return searchKeyword(keyword);
   }
@@ -440,6 +485,9 @@ class _$SearchKeywordImpl implements _SearchKeyword {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(String keyword)? searchKeyword,
     TResult? Function()? refresh,
+    TResult? Function()? resetSubmitStatus,
+    TResult? Function(int? employeeId, List<AccountantSubmitItem> items)?
+        submit,
   }) {
     return searchKeyword?.call(keyword);
   }
@@ -451,6 +499,8 @@ class _$SearchKeywordImpl implements _SearchKeyword {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(String keyword)? searchKeyword,
     TResult Function()? refresh,
+    TResult Function()? resetSubmitStatus,
+    TResult Function(int? employeeId, List<AccountantSubmitItem> items)? submit,
     required TResult orElse(),
   }) {
     if (searchKeyword != null) {
@@ -466,6 +516,8 @@ class _$SearchKeywordImpl implements _SearchKeyword {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SearchKeyword value) searchKeyword,
     required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ResetSubmitStatus value) resetSubmitStatus,
+    required TResult Function(_Submit value) submit,
   }) {
     return searchKeyword(this);
   }
@@ -477,6 +529,8 @@ class _$SearchKeywordImpl implements _SearchKeyword {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SearchKeyword value)? searchKeyword,
     TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ResetSubmitStatus value)? resetSubmitStatus,
+    TResult? Function(_Submit value)? submit,
   }) {
     return searchKeyword?.call(this);
   }
@@ -488,6 +542,8 @@ class _$SearchKeywordImpl implements _SearchKeyword {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SearchKeyword value)? searchKeyword,
     TResult Function(_Refresh value)? refresh,
+    TResult Function(_ResetSubmitStatus value)? resetSubmitStatus,
+    TResult Function(_Submit value)? submit,
     required TResult orElse(),
   }) {
     if (searchKeyword != null) {
@@ -549,6 +605,9 @@ class _$RefreshImpl implements _Refresh {
         changeDateRange,
     required TResult Function(String keyword) searchKeyword,
     required TResult Function() refresh,
+    required TResult Function() resetSubmitStatus,
+    required TResult Function(int? employeeId, List<AccountantSubmitItem> items)
+        submit,
   }) {
     return refresh();
   }
@@ -560,6 +619,9 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(String keyword)? searchKeyword,
     TResult? Function()? refresh,
+    TResult? Function()? resetSubmitStatus,
+    TResult? Function(int? employeeId, List<AccountantSubmitItem> items)?
+        submit,
   }) {
     return refresh?.call();
   }
@@ -571,6 +633,8 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(String keyword)? searchKeyword,
     TResult Function()? refresh,
+    TResult Function()? resetSubmitStatus,
+    TResult Function(int? employeeId, List<AccountantSubmitItem> items)? submit,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -586,6 +650,8 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SearchKeyword value) searchKeyword,
     required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ResetSubmitStatus value) resetSubmitStatus,
+    required TResult Function(_Submit value) submit,
   }) {
     return refresh(this);
   }
@@ -597,6 +663,8 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SearchKeyword value)? searchKeyword,
     TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ResetSubmitStatus value)? resetSubmitStatus,
+    TResult? Function(_Submit value)? submit,
   }) {
     return refresh?.call(this);
   }
@@ -608,6 +676,8 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SearchKeyword value)? searchKeyword,
     TResult Function(_Refresh value)? refresh,
+    TResult Function(_ResetSubmitStatus value)? resetSubmitStatus,
+    TResult Function(_Submit value)? submit,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -619,4 +689,313 @@ class _$RefreshImpl implements _Refresh {
 
 abstract class _Refresh implements AccountantEvent {
   const factory _Refresh() = _$RefreshImpl;
+}
+
+/// @nodoc
+abstract class _$$ResetSubmitStatusImplCopyWith<$Res> {
+  factory _$$ResetSubmitStatusImplCopyWith(_$ResetSubmitStatusImpl value,
+          $Res Function(_$ResetSubmitStatusImpl) then) =
+      __$$ResetSubmitStatusImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ResetSubmitStatusImplCopyWithImpl<$Res>
+    extends _$AccountantEventCopyWithImpl<$Res, _$ResetSubmitStatusImpl>
+    implements _$$ResetSubmitStatusImplCopyWith<$Res> {
+  __$$ResetSubmitStatusImplCopyWithImpl(_$ResetSubmitStatusImpl _value,
+      $Res Function(_$ResetSubmitStatusImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ResetSubmitStatusImpl implements _ResetSubmitStatus {
+  const _$ResetSubmitStatusImpl();
+
+  @override
+  String toString() {
+    return 'AccountantEvent.resetSubmitStatus()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ResetSubmitStatusImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String keyword) searchKeyword,
+    required TResult Function() refresh,
+    required TResult Function() resetSubmitStatus,
+    required TResult Function(int? employeeId, List<AccountantSubmitItem> items)
+        submit,
+  }) {
+    return resetSubmitStatus();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String keyword)? searchKeyword,
+    TResult? Function()? refresh,
+    TResult? Function()? resetSubmitStatus,
+    TResult? Function(int? employeeId, List<AccountantSubmitItem> items)?
+        submit,
+  }) {
+    return resetSubmitStatus?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String keyword)? searchKeyword,
+    TResult Function()? refresh,
+    TResult Function()? resetSubmitStatus,
+    TResult Function(int? employeeId, List<AccountantSubmitItem> items)? submit,
+    required TResult orElse(),
+  }) {
+    if (resetSubmitStatus != null) {
+      return resetSubmitStatus();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_SearchKeyword value) searchKeyword,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ResetSubmitStatus value) resetSubmitStatus,
+    required TResult Function(_Submit value) submit,
+  }) {
+    return resetSubmitStatus(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_SearchKeyword value)? searchKeyword,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ResetSubmitStatus value)? resetSubmitStatus,
+    TResult? Function(_Submit value)? submit,
+  }) {
+    return resetSubmitStatus?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_SearchKeyword value)? searchKeyword,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ResetSubmitStatus value)? resetSubmitStatus,
+    TResult Function(_Submit value)? submit,
+    required TResult orElse(),
+  }) {
+    if (resetSubmitStatus != null) {
+      return resetSubmitStatus(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ResetSubmitStatus implements AccountantEvent {
+  const factory _ResetSubmitStatus() = _$ResetSubmitStatusImpl;
+}
+
+/// @nodoc
+abstract class _$$SubmitImplCopyWith<$Res> {
+  factory _$$SubmitImplCopyWith(
+          _$SubmitImpl value, $Res Function(_$SubmitImpl) then) =
+      __$$SubmitImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int? employeeId, List<AccountantSubmitItem> items});
+}
+
+/// @nodoc
+class __$$SubmitImplCopyWithImpl<$Res>
+    extends _$AccountantEventCopyWithImpl<$Res, _$SubmitImpl>
+    implements _$$SubmitImplCopyWith<$Res> {
+  __$$SubmitImplCopyWithImpl(
+      _$SubmitImpl _value, $Res Function(_$SubmitImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? employeeId = freezed,
+    Object? items = null,
+  }) {
+    return _then(_$SubmitImpl(
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      items: null == items
+          ? _value._items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<AccountantSubmitItem>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SubmitImpl implements _Submit {
+  const _$SubmitImpl(
+      {this.employeeId, required final List<AccountantSubmitItem> items})
+      : _items = items;
+
+  @override
+  final int? employeeId;
+  final List<AccountantSubmitItem> _items;
+  @override
+  List<AccountantSubmitItem> get items {
+    if (_items is EqualUnmodifiableListView) return _items;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_items);
+  }
+
+  @override
+  String toString() {
+    return 'AccountantEvent.submit(employeeId: $employeeId, items: $items)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SubmitImpl &&
+            (identical(other.employeeId, employeeId) ||
+                other.employeeId == employeeId) &&
+            const DeepCollectionEquality().equals(other._items, _items));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, employeeId, const DeepCollectionEquality().hash(_items));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SubmitImplCopyWith<_$SubmitImpl> get copyWith =>
+      __$$SubmitImplCopyWithImpl<_$SubmitImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String keyword) searchKeyword,
+    required TResult Function() refresh,
+    required TResult Function() resetSubmitStatus,
+    required TResult Function(int? employeeId, List<AccountantSubmitItem> items)
+        submit,
+  }) {
+    return submit(employeeId, items);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String keyword)? searchKeyword,
+    TResult? Function()? refresh,
+    TResult? Function()? resetSubmitStatus,
+    TResult? Function(int? employeeId, List<AccountantSubmitItem> items)?
+        submit,
+  }) {
+    return submit?.call(employeeId, items);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String keyword)? searchKeyword,
+    TResult Function()? refresh,
+    TResult Function()? resetSubmitStatus,
+    TResult Function(int? employeeId, List<AccountantSubmitItem> items)? submit,
+    required TResult orElse(),
+  }) {
+    if (submit != null) {
+      return submit(employeeId, items);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_SearchKeyword value) searchKeyword,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ResetSubmitStatus value) resetSubmitStatus,
+    required TResult Function(_Submit value) submit,
+  }) {
+    return submit(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_SearchKeyword value)? searchKeyword,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ResetSubmitStatus value)? resetSubmitStatus,
+    TResult? Function(_Submit value)? submit,
+  }) {
+    return submit?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_SearchKeyword value)? searchKeyword,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ResetSubmitStatus value)? resetSubmitStatus,
+    TResult Function(_Submit value)? submit,
+    required TResult orElse(),
+  }) {
+    if (submit != null) {
+      return submit(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Submit implements AccountantEvent {
+  const factory _Submit(
+      {final int? employeeId,
+      required final List<AccountantSubmitItem> items}) = _$SubmitImpl;
+
+  int? get employeeId;
+  List<AccountantSubmitItem> get items;
+  @JsonKey(ignore: true)
+  _$$SubmitImplCopyWith<_$SubmitImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

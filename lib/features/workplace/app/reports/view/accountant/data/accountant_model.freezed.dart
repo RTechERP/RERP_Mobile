@@ -20,6 +20,7 @@ AccountantItem _$AccountantItemFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AccountantItem {
+  @JsonKey(name: 'ID')
   int get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'EmployeeID')
   int get employeeId => throw _privateConstructorUsedError;
@@ -67,7 +68,7 @@ abstract class $AccountantItemCopyWith<$Res> {
       _$AccountantItemCopyWithImpl<$Res, AccountantItem>;
   @useResult
   $Res call(
-      {int id,
+      {@JsonKey(name: 'ID') int id,
       @JsonKey(name: 'EmployeeID') int employeeId,
       @JsonKey(name: 'ReportDate') String reportDate,
       @JsonKey(name: 'Content') String content,
@@ -199,7 +200,7 @@ abstract class _$$AccountantItemImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
+      {@JsonKey(name: 'ID') int id,
       @JsonKey(name: 'EmployeeID') int employeeId,
       @JsonKey(name: 'ReportDate') String reportDate,
       @JsonKey(name: 'Content') String content,
@@ -324,7 +325,7 @@ class __$$AccountantItemImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AccountantItemImpl implements _AccountantItem {
   const _$AccountantItemImpl(
-      {required this.id,
+      {@JsonKey(name: 'ID') required this.id,
       @JsonKey(name: 'EmployeeID') required this.employeeId,
       @JsonKey(name: 'ReportDate') required this.reportDate,
       @JsonKey(name: 'Content') required this.content,
@@ -346,6 +347,7 @@ class _$AccountantItemImpl implements _AccountantItem {
       _$$AccountantItemImplFromJson(json);
 
   @override
+  @JsonKey(name: 'ID')
   final int id;
   @override
   @JsonKey(name: 'EmployeeID')
@@ -475,7 +477,7 @@ class _$AccountantItemImpl implements _AccountantItem {
 
 abstract class _AccountantItem implements AccountantItem {
   const factory _AccountantItem(
-      {required final int id,
+      {@JsonKey(name: 'ID') required final int id,
       @JsonKey(name: 'EmployeeID') required final int employeeId,
       @JsonKey(name: 'ReportDate') required final String reportDate,
       @JsonKey(name: 'Content') required final String content,
@@ -497,6 +499,7 @@ abstract class _AccountantItem implements AccountantItem {
       _$AccountantItemImpl.fromJson;
 
   @override
+  @JsonKey(name: 'ID')
   int get id;
   @override
   @JsonKey(name: 'EmployeeID')

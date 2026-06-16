@@ -148,6 +148,9 @@ class ApiEndPoint {
 
   static const String saveSaleAdminReport = '/DailyReportSaleAdmin/save-data';
 
+  static const String saveReportAccounting =
+      '/DailyReportAccounting/save-data';
+
   static const String getAdminTypeReport =
       '/DailyReportSaleAdmin/get-reporttypes';
 

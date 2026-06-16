@@ -388,6 +388,19 @@ class ReportService extends DioBaseApiService {
     );
   }
 
+  /// Lưu báo cáo phòng Kế toán (Accountant)
+  Future<BaseData<void>> saveReportAccounting({
+    required List<Map<String, dynamic>> payload,
+  }) async {
+    final body = payload;
+
+    return post<BaseData<void>>(
+      ApiEndPoint.saveReportAccounting,
+      body: body,
+      parser: (json) => BaseData<void>.fromJson(json, (_) => null),
+    );
+  }
+
   /// Danh sách chi tiết phim
   Future<BaseData<List<FilmDetailResponse>>> getFilmDetail() async {
     return get<BaseData<List<FilmDetailResponse>>>(
