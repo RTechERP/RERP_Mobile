@@ -41,6 +41,14 @@ abstract class _$AccountantStateCWProxy {
 
   AccountantState deleteSuccess(bool deleteSuccess);
 
+  AccountantState detailItem(AccountantItem? detailItem);
+
+  AccountantState isFetchingDetail(bool isFetchingDetail);
+
+  AccountantState isUpdating(bool isUpdating);
+
+  AccountantState updateSuccess(bool updateSuccess);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AccountantState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -65,6 +73,10 @@ abstract class _$AccountantStateCWProxy {
     bool? submitSuccess,
     bool? isDeleting,
     bool? deleteSuccess,
+    AccountantItem? detailItem,
+    bool? isFetchingDetail,
+    bool? isUpdating,
+    bool? updateSuccess,
   });
 }
 
@@ -132,6 +144,21 @@ class _$AccountantStateCWProxyImpl implements _$AccountantStateCWProxy {
       this(deleteSuccess: deleteSuccess);
 
   @override
+  AccountantState detailItem(AccountantItem? detailItem) =>
+      this(detailItem: detailItem);
+
+  @override
+  AccountantState isFetchingDetail(bool isFetchingDetail) =>
+      this(isFetchingDetail: isFetchingDetail);
+
+  @override
+  AccountantState isUpdating(bool isUpdating) => this(isUpdating: isUpdating);
+
+  @override
+  AccountantState updateSuccess(bool updateSuccess) =>
+      this(updateSuccess: updateSuccess);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AccountantState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -157,6 +184,10 @@ class _$AccountantStateCWProxyImpl implements _$AccountantStateCWProxy {
     Object? submitSuccess = const $CopyWithPlaceholder(),
     Object? isDeleting = const $CopyWithPlaceholder(),
     Object? deleteSuccess = const $CopyWithPlaceholder(),
+    Object? detailItem = const $CopyWithPlaceholder(),
+    Object? isFetchingDetail = const $CopyWithPlaceholder(),
+    Object? isUpdating = const $CopyWithPlaceholder(),
+    Object? updateSuccess = const $CopyWithPlaceholder(),
   }) {
     return AccountantState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -233,6 +264,25 @@ class _$AccountantStateCWProxyImpl implements _$AccountantStateCWProxy {
               ? _value.deleteSuccess
               // ignore: cast_nullable_to_non_nullable
               : deleteSuccess as bool,
+      detailItem: detailItem == const $CopyWithPlaceholder()
+          ? _value.detailItem
+          // ignore: cast_nullable_to_non_nullable
+          : detailItem as AccountantItem?,
+      isFetchingDetail: isFetchingDetail == const $CopyWithPlaceholder() ||
+              isFetchingDetail == null
+          ? _value.isFetchingDetail
+          // ignore: cast_nullable_to_non_nullable
+          : isFetchingDetail as bool,
+      isUpdating:
+          isUpdating == const $CopyWithPlaceholder() || isUpdating == null
+              ? _value.isUpdating
+              // ignore: cast_nullable_to_non_nullable
+              : isUpdating as bool,
+      updateSuccess:
+          updateSuccess == const $CopyWithPlaceholder() || updateSuccess == null
+              ? _value.updateSuccess
+              // ignore: cast_nullable_to_non_nullable
+              : updateSuccess as bool,
     );
   }
 }

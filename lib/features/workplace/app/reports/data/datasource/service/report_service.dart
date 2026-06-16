@@ -790,4 +790,16 @@ class ReportService extends DioBaseApiService {
       parser: (json) => BaseData<void>.fromJson(json, (_) {}),
     );
   }
+
+  /// Lấy chi tiết báo cáo phòng Kế toán theo ID
+  Future<BaseData<AccountantItem>> getAccountantById({required int id}) async {
+    return get<BaseData<AccountantItem>>(
+      ApiEndPoint.getAccountantById,
+      query: {'id': id},
+      parser: (json) => BaseData<AccountantItem>.fromJson(
+        json,
+        (data) => AccountantItem.fromJson(data as Map<String, dynamic>),
+      ),
+    );
+  }
 }

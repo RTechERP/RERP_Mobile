@@ -276,7 +276,9 @@ class _AccountantAddScreenState
 }
 
 class _SlipMeta {
-  _SlipMeta({required this.date}) : key = 'k_${date.millisecondsSinceEpoch}';
+  static int _counter = 0;
+
+  _SlipMeta({required this.date}) : key = 'k_${++_counter}_${date.millisecondsSinceEpoch}';
 
   final String key;
   DateTime date;

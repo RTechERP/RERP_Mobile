@@ -21,6 +21,12 @@ class AccountantState extends BaseBlocState {
   final bool isDeleting;
   final bool deleteSuccess;
 
+  final AccountantItem? detailItem;
+
+  final bool isFetchingDetail;
+  final bool isUpdating;
+  final bool updateSuccess;
+
   const AccountantState({
     required super.status,
     super.message,
@@ -39,6 +45,10 @@ class AccountantState extends BaseBlocState {
     this.submitSuccess = false,
     this.isDeleting = false,
     this.deleteSuccess = false,
+    this.detailItem,
+    this.isFetchingDetail = false,
+    this.isUpdating = false,
+    this.updateSuccess = false,
   });
 
   factory AccountantState.init() => const AccountantState(
@@ -58,6 +68,10 @@ class AccountantState extends BaseBlocState {
         submitSuccess: false,
         isDeleting: false,
         deleteSuccess: false,
+        detailItem: null,
+        isFetchingDetail: false,
+        isUpdating: false,
+        updateSuccess: false,
       );
 
   @override
@@ -79,5 +93,9 @@ class AccountantState extends BaseBlocState {
         submitSuccess,
         isDeleting,
         deleteSuccess,
+        detailItem,
+        isFetchingDetail,
+        isUpdating,
+        updateSuccess,
       ];
 }

@@ -768,4 +768,25 @@ class ReportRepoImpl implements ReportRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, AccountantItem>> getAccountantById({
+    required int id,
+  }) async {
+    try {
+      final res = await _service.getAccountantById(id: id);
+
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      } else {
+        return left(
+          BaseError.httpInternalServerError(
+            res.message ?? 'Lấy chi tiết báo cáo thất bại',
+          ),
+        );
+      }
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

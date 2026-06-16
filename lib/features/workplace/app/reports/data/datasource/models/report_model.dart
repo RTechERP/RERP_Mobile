@@ -1415,3 +1415,28 @@ class AccountantItem with _$AccountantItem {
       ) =>
       _$AccountantItemFromJson(json);
 }
+
+@freezed
+class AccountantDetailItem with _$AccountantDetailItem {
+  const factory AccountantDetailItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'EmployeeID') int? employeeId,
+    @JsonKey(name: 'ReportDate') DateTime? reportDate,
+    @JsonKey(name: 'Content') String? content,
+    @JsonKey(name: 'Result') String? result,
+    @JsonKey(name: 'NextPlan') String? nextPlan,
+    @JsonKey(name: 'PendingIssues') String? pendingIssues,
+    @JsonKey(name: 'Urgent') String? urgent,
+    @JsonKey(name: 'MistakeOrViolation') String? mistakeOrViolation,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+  }) = _AccountantDetailItem;
+
+  factory AccountantDetailItem.fromJson(
+      Map<String, dynamic> json,
+      ) =>
+      _$AccountantDetailItemFromJson(json);
+}

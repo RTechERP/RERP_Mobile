@@ -193,4 +193,7 @@ abstract class ReportRepo {
 
   /// Xoá báo cáo phòng Kế toán theo ID
   Future<Either<BaseError, String>> deleteReportAccounting({required int id});
+
+  /// Lấy chi tiết báo cáo phòng Kế toán theo ID
+  Future<Either<BaseError, AccountantItem>> getAccountantById({required int id});
 }

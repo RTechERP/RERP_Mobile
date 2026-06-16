@@ -118,6 +118,7 @@ import '../features/workplace/app/reg_work/view/pages/salary/view/pages/salary_c
 import '../features/workplace/app/reports/data/datasource/models/report_model.dart';
 import '../features/workplace/app/reports/view/accountant/view/bloc/accountant_bloc.dart';
 import '../features/workplace/app/reports/view/accountant/view/pages/accountant_add_screen.dart';
+import '../features/workplace/app/reports/view/accountant/view/pages/accountant_edit_screen.dart';
 import '../features/workplace/app/reports/view/accountant/view/pages/accountant_screen.dart';
 import '../features/workplace/app/reports/view/ad/view/bloc/ad_bloc.dart';
 import '../features/workplace/app/reports/view/ad/view/pages/ad_add_screen.dart';
@@ -1270,6 +1271,13 @@ class AppRouter {
           GoRoute(
             path: RouteNames.reportAccountantAdd,
             builder: (context, state) => const AccountantAddScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.reportAccountantEdit,
+            builder: (context, state) {
+              final id = state.extra as int? ?? 0;
+              return AccountantEditScreen(reportId: id);
+            },
           ),
         ],
       ),

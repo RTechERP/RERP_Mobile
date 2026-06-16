@@ -2161,3 +2161,47 @@ Map<String, dynamic> _$$AccountantItemImplToJson(
       'ChucVu': instance.chucVu,
       'RowNum': instance.rowNum,
     };
+
+_$AccountantDetailItemImpl _$$AccountantDetailItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$AccountantDetailItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      employeeId: (json['EmployeeID'] as num?)?.toInt(),
+      reportDate: json['ReportDate'] == null
+          ? null
+          : DateTime.parse(json['ReportDate'] as String),
+      content: json['Content'] as String?,
+      result: json['Result'] as String?,
+      nextPlan: json['NextPlan'] as String?,
+      pendingIssues: json['PendingIssues'] as String?,
+      urgent: json['Urgent'] as String?,
+      mistakeOrViolation: json['MistakeOrViolation'] as String?,
+      createdBy: json['CreatedBy'] as String?,
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+      updatedBy: json['UpdatedBy'] as String?,
+      updatedDate: json['UpdatedDate'] == null
+          ? null
+          : DateTime.parse(json['UpdatedDate'] as String),
+      isDeleted: json['IsDeleted'] as bool?,
+    );
+
+Map<String, dynamic> _$$AccountantDetailItemImplToJson(
+        _$AccountantDetailItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'EmployeeID': instance.employeeId,
+      'ReportDate': instance.reportDate?.toIso8601String(),
+      'Content': instance.content,
+      'Result': instance.result,
+      'NextPlan': instance.nextPlan,
+      'PendingIssues': instance.pendingIssues,
+      'Urgent': instance.urgent,
+      'MistakeOrViolation': instance.mistakeOrViolation,
+      'CreatedBy': instance.createdBy,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'UpdatedBy': instance.updatedBy,
+      'UpdatedDate': instance.updatedDate?.toIso8601String(),
+      'IsDeleted': instance.isDeleted,
+    };

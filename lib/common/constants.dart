@@ -169,6 +169,9 @@ class ApiEndPoint {
   static const String deleteReportAccounting =
       '/DailyReportAccounting/delete';
 
+  static const String getAccountantById =
+      '/DailyReportAccounting/get-by-id';
+
   static const String getMeetingRoom = '/bookingroom/get-booking-room';
 
   static const String saveMeetingRoom = '/BookingRoom/save-data';

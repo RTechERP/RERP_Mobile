@@ -24,6 +24,18 @@ class AccountantEvent with _$AccountantEvent {
   const factory AccountantEvent.deleteReport(int id) = _DeleteReport;
 
   const factory AccountantEvent.resetDeleteStatus() = _ResetDeleteStatus;
+
+  const factory AccountantEvent.getById(int id) = _GetById;
+
+  const factory AccountantEvent.resetDetailStatus() = _ResetDetailStatus;
+
+  const factory AccountantEvent.updateReport({
+    required int id,
+    int? employeeId,
+    required List<AccountantSubmitItem> items,
+  }) = _UpdateReport;
+
+  const factory AccountantEvent.resetUpdateStatus() = _ResetUpdateStatus;
 }
 
 class AccountantSubmitItem {

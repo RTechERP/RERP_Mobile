@@ -35,6 +35,10 @@ class AccountantBloc extends BaseBloc<AccountantEvent, AccountantState> {
         submit: (employeeId, items) => _onSubmit(employeeId, items, emit),
         deleteReport: (id) => _onDeleteReport(id, emit),
         resetDeleteStatus: () => _onResetDeleteStatus(emit),
+        getById: (id) => _onGetById(id, emit),
+        resetDetailStatus: () => _onResetDetailStatus(emit),
+        updateReport: (id, passedEmployeeId, items) => _onUpdateReport(id, passedEmployeeId, items, emit),
+        resetUpdateStatus: () => _onResetUpdateStatus(emit),
       );
     });
   }
@@ -303,5 +307,137 @@ class AccountantBloc extends BaseBloc<AccountantEvent, AccountantState> {
         );
       },
     );
+  }
+
+  Future<void> _onGetById(int id, Emitter<AccountantState> emit) async {
+    if (state.isFetchingDetail) return;
+
+    emit(state.copyWith(
+      isFetchingDetail: true,
+      detailItem: null,
+      status: BaseStateStatus.loading,
+    ));
+
+    final res = await _reportRepo.getAccountantById(id: id);
+
+    res.fold(
+      (l) {
+        _log.logE('Get accountant detail failed: ${l.getErrorMessage}');
+        emit(state.copyWith(
+          isFetchingDetail: false,
+          status: BaseStateStatus.failed,
+          message: l.getErrorMessage,
+        ));
+      },
+      (item) {
+        emit(state.copyWith(
+          isFetchingDetail: false,
+          detailItem: item,
+          status: BaseStateStatus.success,
+        ));
+      },
+    );
+  }
+
+  Future<void> _onResetDetailStatus(Emitter<AccountantState> emit) async {
+    if (!state.isFetchingDetail && state.detailItem == null) return;
+    emit(state.copyWith(
+      isFetchingDetail: false,
+      detailItem: null,
+    ));
+  }
+
+  Future<void> _onUpdateReport(
+    int id,
+    int? passedEmployeeId,
+    List<AccountantSubmitItem> items,
+    Emitter<AccountantState> emit,
+  ) async {
+    if (state.isUpdating) return;
+
+    emit(state.copyWith(
+      isUpdating: true,
+      updateSuccess: false,
+      message: null,
+    ));
+
+    int? employeeId = passedEmployeeId;
+    if (employeeId == null || employeeId == 0) {
+      final userRes = await _authRepo.getCurrentUser();
+      employeeId = await userRes.fold(
+        (l) async {
+          _log.logE('Get current user failed: ${l.getErrorMessage}');
+          emit(state.copyWith(
+            isUpdating: false,
+            updateSuccess: false,
+            message: l.getErrorMessage,
+          ));
+          return null;
+        },
+        (user) async => user?.employeeId,
+      );
+      if (employeeId == null || employeeId == 0) {
+        emit(state.copyWith(
+          isUpdating: false,
+          updateSuccess: false,
+          message: 'Không xác định được nhân viên hiện tại',
+        ));
+        return;
+      }
+    }
+
+    final payload = items.map((e) {
+      final dt = e.reportDate;
+      final dateStr =
+          '${dt.year.toString().padLeft(4, '0')}-${dt.month.toString().padLeft(2, '0')}-${dt.day.toString().padLeft(2, '0')}'
+          'T'
+          '${dt.hour.toString().padLeft(2, '0')}:${dt.minute.toString().padLeft(2, '0')}:${dt.second.toString().padLeft(2, '0')}';
+      return <String, dynamic>{
+        'Id': id,
+        'EmployeeID': employeeId,
+        'ReportDate': dateStr,
+        'Content': e.content,
+        'Result': e.result,
+        'NextPlan': e.nextPlan,
+        'PendingIssues': e.pendingIssues,
+        'Urgent': e.urgent,
+        'MistakeOrViolation': e.mistakeOrViolation,
+      };
+    }).toList();
+
+    print("Payload: $payload");
+
+    final res = await _reportRepo.saveReportAccounting(payload: payload);
+
+    await res.fold(
+      (l) async {
+        _log.logE('Update accountant report failed: ${l.getErrorMessage}');
+        emit(state.copyWith(
+          isUpdating: false,
+          updateSuccess: false,
+          status: BaseStateStatus.failed,
+          message: l.getErrorMessage,
+        ));
+      },
+      (r) async {
+        emit(state.copyWith(
+          isUpdating: false,
+          updateSuccess: true,
+          status: BaseStateStatus.success,
+          message: r,
+        ));
+      },
+    );
+  }
+
+  Future<void> _onResetUpdateStatus(Emitter<AccountantState> emit) async {
+    if (!state.updateSuccess && !state.isUpdating && state.message == null) {
+      return;
+    }
+    emit(state.copyWith(
+      isUpdating: false,
+      updateSuccess: false,
+      message: null,
+    ));
   }
 }

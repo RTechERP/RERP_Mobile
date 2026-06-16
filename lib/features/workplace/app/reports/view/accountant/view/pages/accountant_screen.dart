@@ -232,7 +232,17 @@ class _AccountantScreenState
                   final reportId = item.id ?? 0;
                   return AccountantCard(
                     item: item,
-                    onTap: () {},
+                    onTap: reportId == 0
+                        ? null
+                        : () async {
+                            final result = await context.push<int>(
+                              RouteNames.reportAccountantEdit,
+                              extra: reportId,
+                            );
+                            if (result == true) {
+                              bloc.add(const AccountantEvent.refresh());
+                            }
+                          },
                     onDelete: reportId == 0
                         ? null
                         : () async {

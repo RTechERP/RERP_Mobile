@@ -25679,3 +25679,474 @@ abstract class _AccountantItem implements AccountantItem {
   _$$AccountantItemImplCopyWith<_$AccountantItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+AccountantDetailItem _$AccountantDetailItemFromJson(Map<String, dynamic> json) {
+  return _AccountantDetailItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$AccountantDetailItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ReportDate')
+  DateTime? get reportDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Content')
+  String? get content => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Result')
+  String? get result => throw _privateConstructorUsedError;
+  @JsonKey(name: 'NextPlan')
+  String? get nextPlan => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PendingIssues')
+  String? get pendingIssues => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Urgent')
+  String? get urgent => throw _privateConstructorUsedError;
+  @JsonKey(name: 'MistakeOrViolation')
+  String? get mistakeOrViolation => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $AccountantDetailItemCopyWith<AccountantDetailItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AccountantDetailItemCopyWith<$Res> {
+  factory $AccountantDetailItemCopyWith(AccountantDetailItem value,
+          $Res Function(AccountantDetailItem) then) =
+      _$AccountantDetailItemCopyWithImpl<$Res, AccountantDetailItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'ReportDate') DateTime? reportDate,
+      @JsonKey(name: 'Content') String? content,
+      @JsonKey(name: 'Result') String? result,
+      @JsonKey(name: 'NextPlan') String? nextPlan,
+      @JsonKey(name: 'PendingIssues') String? pendingIssues,
+      @JsonKey(name: 'Urgent') String? urgent,
+      @JsonKey(name: 'MistakeOrViolation') String? mistakeOrViolation,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted});
+}
+
+/// @nodoc
+class _$AccountantDetailItemCopyWithImpl<$Res,
+        $Val extends AccountantDetailItem>
+    implements $AccountantDetailItemCopyWith<$Res> {
+  _$AccountantDetailItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? employeeId = freezed,
+    Object? reportDate = freezed,
+    Object? content = freezed,
+    Object? result = freezed,
+    Object? nextPlan = freezed,
+    Object? pendingIssues = freezed,
+    Object? urgent = freezed,
+    Object? mistakeOrViolation = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+    Object? isDeleted = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      reportDate: freezed == reportDate
+          ? _value.reportDate
+          : reportDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      content: freezed == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String?,
+      result: freezed == result
+          ? _value.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextPlan: freezed == nextPlan
+          ? _value.nextPlan
+          : nextPlan // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pendingIssues: freezed == pendingIssues
+          ? _value.pendingIssues
+          : pendingIssues // ignore: cast_nullable_to_non_nullable
+              as String?,
+      urgent: freezed == urgent
+          ? _value.urgent
+          : urgent // ignore: cast_nullable_to_non_nullable
+              as String?,
+      mistakeOrViolation: freezed == mistakeOrViolation
+          ? _value.mistakeOrViolation
+          : mistakeOrViolation // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$AccountantDetailItemImplCopyWith<$Res>
+    implements $AccountantDetailItemCopyWith<$Res> {
+  factory _$$AccountantDetailItemImplCopyWith(_$AccountantDetailItemImpl value,
+          $Res Function(_$AccountantDetailItemImpl) then) =
+      __$$AccountantDetailItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'ReportDate') DateTime? reportDate,
+      @JsonKey(name: 'Content') String? content,
+      @JsonKey(name: 'Result') String? result,
+      @JsonKey(name: 'NextPlan') String? nextPlan,
+      @JsonKey(name: 'PendingIssues') String? pendingIssues,
+      @JsonKey(name: 'Urgent') String? urgent,
+      @JsonKey(name: 'MistakeOrViolation') String? mistakeOrViolation,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted});
+}
+
+/// @nodoc
+class __$$AccountantDetailItemImplCopyWithImpl<$Res>
+    extends _$AccountantDetailItemCopyWithImpl<$Res, _$AccountantDetailItemImpl>
+    implements _$$AccountantDetailItemImplCopyWith<$Res> {
+  __$$AccountantDetailItemImplCopyWithImpl(_$AccountantDetailItemImpl _value,
+      $Res Function(_$AccountantDetailItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? employeeId = freezed,
+    Object? reportDate = freezed,
+    Object? content = freezed,
+    Object? result = freezed,
+    Object? nextPlan = freezed,
+    Object? pendingIssues = freezed,
+    Object? urgent = freezed,
+    Object? mistakeOrViolation = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+    Object? isDeleted = freezed,
+  }) {
+    return _then(_$AccountantDetailItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      reportDate: freezed == reportDate
+          ? _value.reportDate
+          : reportDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      content: freezed == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String?,
+      result: freezed == result
+          ? _value.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextPlan: freezed == nextPlan
+          ? _value.nextPlan
+          : nextPlan // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pendingIssues: freezed == pendingIssues
+          ? _value.pendingIssues
+          : pendingIssues // ignore: cast_nullable_to_non_nullable
+              as String?,
+      urgent: freezed == urgent
+          ? _value.urgent
+          : urgent // ignore: cast_nullable_to_non_nullable
+              as String?,
+      mistakeOrViolation: freezed == mistakeOrViolation
+          ? _value.mistakeOrViolation
+          : mistakeOrViolation // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$AccountantDetailItemImpl implements _AccountantDetailItem {
+  const _$AccountantDetailItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'EmployeeID') this.employeeId,
+      @JsonKey(name: 'ReportDate') this.reportDate,
+      @JsonKey(name: 'Content') this.content,
+      @JsonKey(name: 'Result') this.result,
+      @JsonKey(name: 'NextPlan') this.nextPlan,
+      @JsonKey(name: 'PendingIssues') this.pendingIssues,
+      @JsonKey(name: 'Urgent') this.urgent,
+      @JsonKey(name: 'MistakeOrViolation') this.mistakeOrViolation,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'UpdatedBy') this.updatedBy,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate,
+      @JsonKey(name: 'IsDeleted') this.isDeleted});
+
+  factory _$AccountantDetailItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AccountantDetailItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'EmployeeID')
+  final int? employeeId;
+  @override
+  @JsonKey(name: 'ReportDate')
+  final DateTime? reportDate;
+  @override
+  @JsonKey(name: 'Content')
+  final String? content;
+  @override
+  @JsonKey(name: 'Result')
+  final String? result;
+  @override
+  @JsonKey(name: 'NextPlan')
+  final String? nextPlan;
+  @override
+  @JsonKey(name: 'PendingIssues')
+  final String? pendingIssues;
+  @override
+  @JsonKey(name: 'Urgent')
+  final String? urgent;
+  @override
+  @JsonKey(name: 'MistakeOrViolation')
+  final String? mistakeOrViolation;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  final String? createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  final String? updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final DateTime? updatedDate;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  final bool? isDeleted;
+
+  @override
+  String toString() {
+    return 'AccountantDetailItem(id: $id, employeeId: $employeeId, reportDate: $reportDate, content: $content, result: $result, nextPlan: $nextPlan, pendingIssues: $pendingIssues, urgent: $urgent, mistakeOrViolation: $mistakeOrViolation, createdBy: $createdBy, createdDate: $createdDate, updatedBy: $updatedBy, updatedDate: $updatedDate, isDeleted: $isDeleted)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AccountantDetailItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.employeeId, employeeId) ||
+                other.employeeId == employeeId) &&
+            (identical(other.reportDate, reportDate) ||
+                other.reportDate == reportDate) &&
+            (identical(other.content, content) || other.content == content) &&
+            (identical(other.result, result) || other.result == result) &&
+            (identical(other.nextPlan, nextPlan) ||
+                other.nextPlan == nextPlan) &&
+            (identical(other.pendingIssues, pendingIssues) ||
+                other.pendingIssues == pendingIssues) &&
+            (identical(other.urgent, urgent) || other.urgent == urgent) &&
+            (identical(other.mistakeOrViolation, mistakeOrViolation) ||
+                other.mistakeOrViolation == mistakeOrViolation) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      employeeId,
+      reportDate,
+      content,
+      result,
+      nextPlan,
+      pendingIssues,
+      urgent,
+      mistakeOrViolation,
+      createdBy,
+      createdDate,
+      updatedBy,
+      updatedDate,
+      isDeleted);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AccountantDetailItemImplCopyWith<_$AccountantDetailItemImpl>
+      get copyWith =>
+          __$$AccountantDetailItemImplCopyWithImpl<_$AccountantDetailItemImpl>(
+              this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$AccountantDetailItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _AccountantDetailItem implements AccountantDetailItem {
+  const factory _AccountantDetailItem(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'EmployeeID') final int? employeeId,
+          @JsonKey(name: 'ReportDate') final DateTime? reportDate,
+          @JsonKey(name: 'Content') final String? content,
+          @JsonKey(name: 'Result') final String? result,
+          @JsonKey(name: 'NextPlan') final String? nextPlan,
+          @JsonKey(name: 'PendingIssues') final String? pendingIssues,
+          @JsonKey(name: 'Urgent') final String? urgent,
+          @JsonKey(name: 'MistakeOrViolation') final String? mistakeOrViolation,
+          @JsonKey(name: 'CreatedBy') final String? createdBy,
+          @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+          @JsonKey(name: 'UpdatedBy') final String? updatedBy,
+          @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
+          @JsonKey(name: 'IsDeleted') final bool? isDeleted}) =
+      _$AccountantDetailItemImpl;
+
+  factory _AccountantDetailItem.fromJson(Map<String, dynamic> json) =
+      _$AccountantDetailItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId;
+  @override
+  @JsonKey(name: 'ReportDate')
+  DateTime? get reportDate;
+  @override
+  @JsonKey(name: 'Content')
+  String? get content;
+  @override
+  @JsonKey(name: 'Result')
+  String? get result;
+  @override
+  @JsonKey(name: 'NextPlan')
+  String? get nextPlan;
+  @override
+  @JsonKey(name: 'PendingIssues')
+  String? get pendingIssues;
+  @override
+  @JsonKey(name: 'Urgent')
+  String? get urgent;
+  @override
+  @JsonKey(name: 'MistakeOrViolation')
+  String? get mistakeOrViolation;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted;
+  @override
+  @JsonKey(ignore: true)
+  _$$AccountantDetailItemImplCopyWith<_$AccountantDetailItemImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
