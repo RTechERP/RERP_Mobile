@@ -20,6 +20,10 @@ class AccountantEvent with _$AccountantEvent {
     int? employeeId,
     required List<AccountantSubmitItem> items,
   }) = _Submit;
+
+  const factory AccountantEvent.deleteReport(int id) = _DeleteReport;
+
+  const factory AccountantEvent.resetDeleteStatus() = _ResetDeleteStatus;
 }
 
 class AccountantSubmitItem {

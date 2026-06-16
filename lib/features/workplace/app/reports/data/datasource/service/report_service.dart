@@ -781,4 +781,13 @@ class ReportService extends DioBaseApiService {
       ),
     );
   }
+
+  /// Xoá báo cáo phòng Kế toán theo ID
+  Future<BaseData<void>> deleteReportAccounting({required int id}) async {
+    return post<BaseData<void>>(
+      ApiEndPoint.deleteReportAccounting,
+      query: {'id': id},
+      parser: (json) => BaseData<void>.fromJson(json, (_) {}),
+    );
+  }
 }

@@ -26,6 +26,8 @@ mixin _$AccountantEvent {
     required TResult Function() resetSubmitStatus,
     required TResult Function(int? employeeId, List<AccountantSubmitItem> items)
         submit,
+    required TResult Function(int id) deleteReport,
+    required TResult Function() resetDeleteStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,6 +39,8 @@ mixin _$AccountantEvent {
     TResult? Function()? resetSubmitStatus,
     TResult? Function(int? employeeId, List<AccountantSubmitItem> items)?
         submit,
+    TResult? Function(int id)? deleteReport,
+    TResult? Function()? resetDeleteStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,6 +51,8 @@ mixin _$AccountantEvent {
     TResult Function()? refresh,
     TResult Function()? resetSubmitStatus,
     TResult Function(int? employeeId, List<AccountantSubmitItem> items)? submit,
+    TResult Function(int id)? deleteReport,
+    TResult Function()? resetDeleteStatus,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -58,6 +64,8 @@ mixin _$AccountantEvent {
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ResetSubmitStatus value) resetSubmitStatus,
     required TResult Function(_Submit value) submit,
+    required TResult Function(_DeleteReport value) deleteReport,
+    required TResult Function(_ResetDeleteStatus value) resetDeleteStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -68,6 +76,8 @@ mixin _$AccountantEvent {
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ResetSubmitStatus value)? resetSubmitStatus,
     TResult? Function(_Submit value)? submit,
+    TResult? Function(_DeleteReport value)? deleteReport,
+    TResult? Function(_ResetDeleteStatus value)? resetDeleteStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -78,6 +88,8 @@ mixin _$AccountantEvent {
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ResetSubmitStatus value)? resetSubmitStatus,
     TResult Function(_Submit value)? submit,
+    TResult Function(_DeleteReport value)? deleteReport,
+    TResult Function(_ResetDeleteStatus value)? resetDeleteStatus,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -146,6 +158,8 @@ class _$InitImpl implements _Init {
     required TResult Function() resetSubmitStatus,
     required TResult Function(int? employeeId, List<AccountantSubmitItem> items)
         submit,
+    required TResult Function(int id) deleteReport,
+    required TResult Function() resetDeleteStatus,
   }) {
     return init();
   }
@@ -160,6 +174,8 @@ class _$InitImpl implements _Init {
     TResult? Function()? resetSubmitStatus,
     TResult? Function(int? employeeId, List<AccountantSubmitItem> items)?
         submit,
+    TResult? Function(int id)? deleteReport,
+    TResult? Function()? resetDeleteStatus,
   }) {
     return init?.call();
   }
@@ -173,6 +189,8 @@ class _$InitImpl implements _Init {
     TResult Function()? refresh,
     TResult Function()? resetSubmitStatus,
     TResult Function(int? employeeId, List<AccountantSubmitItem> items)? submit,
+    TResult Function(int id)? deleteReport,
+    TResult Function()? resetDeleteStatus,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -190,6 +208,8 @@ class _$InitImpl implements _Init {
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ResetSubmitStatus value) resetSubmitStatus,
     required TResult Function(_Submit value) submit,
+    required TResult Function(_DeleteReport value) deleteReport,
+    required TResult Function(_ResetDeleteStatus value) resetDeleteStatus,
   }) {
     return init(this);
   }
@@ -203,6 +223,8 @@ class _$InitImpl implements _Init {
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ResetSubmitStatus value)? resetSubmitStatus,
     TResult? Function(_Submit value)? submit,
+    TResult? Function(_DeleteReport value)? deleteReport,
+    TResult? Function(_ResetDeleteStatus value)? resetDeleteStatus,
   }) {
     return init?.call(this);
   }
@@ -216,6 +238,8 @@ class _$InitImpl implements _Init {
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ResetSubmitStatus value)? resetSubmitStatus,
     TResult Function(_Submit value)? submit,
+    TResult Function(_DeleteReport value)? deleteReport,
+    TResult Function(_ResetDeleteStatus value)? resetDeleteStatus,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -311,6 +335,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function() resetSubmitStatus,
     required TResult Function(int? employeeId, List<AccountantSubmitItem> items)
         submit,
+    required TResult Function(int id) deleteReport,
+    required TResult Function() resetDeleteStatus,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -325,6 +351,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function()? resetSubmitStatus,
     TResult? Function(int? employeeId, List<AccountantSubmitItem> items)?
         submit,
+    TResult? Function(int id)? deleteReport,
+    TResult? Function()? resetDeleteStatus,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -338,6 +366,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function()? refresh,
     TResult Function()? resetSubmitStatus,
     TResult Function(int? employeeId, List<AccountantSubmitItem> items)? submit,
+    TResult Function(int id)? deleteReport,
+    TResult Function()? resetDeleteStatus,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -355,6 +385,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ResetSubmitStatus value) resetSubmitStatus,
     required TResult Function(_Submit value) submit,
+    required TResult Function(_DeleteReport value) deleteReport,
+    required TResult Function(_ResetDeleteStatus value) resetDeleteStatus,
   }) {
     return changeDateRange(this);
   }
@@ -368,6 +400,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ResetSubmitStatus value)? resetSubmitStatus,
     TResult? Function(_Submit value)? submit,
+    TResult? Function(_DeleteReport value)? deleteReport,
+    TResult? Function(_ResetDeleteStatus value)? resetDeleteStatus,
   }) {
     return changeDateRange?.call(this);
   }
@@ -381,6 +415,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ResetSubmitStatus value)? resetSubmitStatus,
     TResult Function(_Submit value)? submit,
+    TResult Function(_DeleteReport value)? deleteReport,
+    TResult Function(_ResetDeleteStatus value)? resetDeleteStatus,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -474,6 +510,8 @@ class _$SearchKeywordImpl implements _SearchKeyword {
     required TResult Function() resetSubmitStatus,
     required TResult Function(int? employeeId, List<AccountantSubmitItem> items)
         submit,
+    required TResult Function(int id) deleteReport,
+    required TResult Function() resetDeleteStatus,
   }) {
     return searchKeyword(keyword);
   }
@@ -488,6 +526,8 @@ class _$SearchKeywordImpl implements _SearchKeyword {
     TResult? Function()? resetSubmitStatus,
     TResult? Function(int? employeeId, List<AccountantSubmitItem> items)?
         submit,
+    TResult? Function(int id)? deleteReport,
+    TResult? Function()? resetDeleteStatus,
   }) {
     return searchKeyword?.call(keyword);
   }
@@ -501,6 +541,8 @@ class _$SearchKeywordImpl implements _SearchKeyword {
     TResult Function()? refresh,
     TResult Function()? resetSubmitStatus,
     TResult Function(int? employeeId, List<AccountantSubmitItem> items)? submit,
+    TResult Function(int id)? deleteReport,
+    TResult Function()? resetDeleteStatus,
     required TResult orElse(),
   }) {
     if (searchKeyword != null) {
@@ -518,6 +560,8 @@ class _$SearchKeywordImpl implements _SearchKeyword {
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ResetSubmitStatus value) resetSubmitStatus,
     required TResult Function(_Submit value) submit,
+    required TResult Function(_DeleteReport value) deleteReport,
+    required TResult Function(_ResetDeleteStatus value) resetDeleteStatus,
   }) {
     return searchKeyword(this);
   }
@@ -531,6 +575,8 @@ class _$SearchKeywordImpl implements _SearchKeyword {
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ResetSubmitStatus value)? resetSubmitStatus,
     TResult? Function(_Submit value)? submit,
+    TResult? Function(_DeleteReport value)? deleteReport,
+    TResult? Function(_ResetDeleteStatus value)? resetDeleteStatus,
   }) {
     return searchKeyword?.call(this);
   }
@@ -544,6 +590,8 @@ class _$SearchKeywordImpl implements _SearchKeyword {
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ResetSubmitStatus value)? resetSubmitStatus,
     TResult Function(_Submit value)? submit,
+    TResult Function(_DeleteReport value)? deleteReport,
+    TResult Function(_ResetDeleteStatus value)? resetDeleteStatus,
     required TResult orElse(),
   }) {
     if (searchKeyword != null) {
@@ -608,6 +656,8 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function() resetSubmitStatus,
     required TResult Function(int? employeeId, List<AccountantSubmitItem> items)
         submit,
+    required TResult Function(int id) deleteReport,
+    required TResult Function() resetDeleteStatus,
   }) {
     return refresh();
   }
@@ -622,6 +672,8 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function()? resetSubmitStatus,
     TResult? Function(int? employeeId, List<AccountantSubmitItem> items)?
         submit,
+    TResult? Function(int id)? deleteReport,
+    TResult? Function()? resetDeleteStatus,
   }) {
     return refresh?.call();
   }
@@ -635,6 +687,8 @@ class _$RefreshImpl implements _Refresh {
     TResult Function()? refresh,
     TResult Function()? resetSubmitStatus,
     TResult Function(int? employeeId, List<AccountantSubmitItem> items)? submit,
+    TResult Function(int id)? deleteReport,
+    TResult Function()? resetDeleteStatus,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -652,6 +706,8 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ResetSubmitStatus value) resetSubmitStatus,
     required TResult Function(_Submit value) submit,
+    required TResult Function(_DeleteReport value) deleteReport,
+    required TResult Function(_ResetDeleteStatus value) resetDeleteStatus,
   }) {
     return refresh(this);
   }
@@ -665,6 +721,8 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ResetSubmitStatus value)? resetSubmitStatus,
     TResult? Function(_Submit value)? submit,
+    TResult? Function(_DeleteReport value)? deleteReport,
+    TResult? Function(_ResetDeleteStatus value)? resetDeleteStatus,
   }) {
     return refresh?.call(this);
   }
@@ -678,6 +736,8 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ResetSubmitStatus value)? resetSubmitStatus,
     TResult Function(_Submit value)? submit,
+    TResult Function(_DeleteReport value)? deleteReport,
+    TResult Function(_ResetDeleteStatus value)? resetDeleteStatus,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -737,6 +797,8 @@ class _$ResetSubmitStatusImpl implements _ResetSubmitStatus {
     required TResult Function() resetSubmitStatus,
     required TResult Function(int? employeeId, List<AccountantSubmitItem> items)
         submit,
+    required TResult Function(int id) deleteReport,
+    required TResult Function() resetDeleteStatus,
   }) {
     return resetSubmitStatus();
   }
@@ -751,6 +813,8 @@ class _$ResetSubmitStatusImpl implements _ResetSubmitStatus {
     TResult? Function()? resetSubmitStatus,
     TResult? Function(int? employeeId, List<AccountantSubmitItem> items)?
         submit,
+    TResult? Function(int id)? deleteReport,
+    TResult? Function()? resetDeleteStatus,
   }) {
     return resetSubmitStatus?.call();
   }
@@ -764,6 +828,8 @@ class _$ResetSubmitStatusImpl implements _ResetSubmitStatus {
     TResult Function()? refresh,
     TResult Function()? resetSubmitStatus,
     TResult Function(int? employeeId, List<AccountantSubmitItem> items)? submit,
+    TResult Function(int id)? deleteReport,
+    TResult Function()? resetDeleteStatus,
     required TResult orElse(),
   }) {
     if (resetSubmitStatus != null) {
@@ -781,6 +847,8 @@ class _$ResetSubmitStatusImpl implements _ResetSubmitStatus {
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ResetSubmitStatus value) resetSubmitStatus,
     required TResult Function(_Submit value) submit,
+    required TResult Function(_DeleteReport value) deleteReport,
+    required TResult Function(_ResetDeleteStatus value) resetDeleteStatus,
   }) {
     return resetSubmitStatus(this);
   }
@@ -794,6 +862,8 @@ class _$ResetSubmitStatusImpl implements _ResetSubmitStatus {
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ResetSubmitStatus value)? resetSubmitStatus,
     TResult? Function(_Submit value)? submit,
+    TResult? Function(_DeleteReport value)? deleteReport,
+    TResult? Function(_ResetDeleteStatus value)? resetDeleteStatus,
   }) {
     return resetSubmitStatus?.call(this);
   }
@@ -807,6 +877,8 @@ class _$ResetSubmitStatusImpl implements _ResetSubmitStatus {
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ResetSubmitStatus value)? resetSubmitStatus,
     TResult Function(_Submit value)? submit,
+    TResult Function(_DeleteReport value)? deleteReport,
+    TResult Function(_ResetDeleteStatus value)? resetDeleteStatus,
     required TResult orElse(),
   }) {
     if (resetSubmitStatus != null) {
@@ -909,6 +981,8 @@ class _$SubmitImpl implements _Submit {
     required TResult Function() resetSubmitStatus,
     required TResult Function(int? employeeId, List<AccountantSubmitItem> items)
         submit,
+    required TResult Function(int id) deleteReport,
+    required TResult Function() resetDeleteStatus,
   }) {
     return submit(employeeId, items);
   }
@@ -923,6 +997,8 @@ class _$SubmitImpl implements _Submit {
     TResult? Function()? resetSubmitStatus,
     TResult? Function(int? employeeId, List<AccountantSubmitItem> items)?
         submit,
+    TResult? Function(int id)? deleteReport,
+    TResult? Function()? resetDeleteStatus,
   }) {
     return submit?.call(employeeId, items);
   }
@@ -936,6 +1012,8 @@ class _$SubmitImpl implements _Submit {
     TResult Function()? refresh,
     TResult Function()? resetSubmitStatus,
     TResult Function(int? employeeId, List<AccountantSubmitItem> items)? submit,
+    TResult Function(int id)? deleteReport,
+    TResult Function()? resetDeleteStatus,
     required TResult orElse(),
   }) {
     if (submit != null) {
@@ -953,6 +1031,8 @@ class _$SubmitImpl implements _Submit {
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ResetSubmitStatus value) resetSubmitStatus,
     required TResult Function(_Submit value) submit,
+    required TResult Function(_DeleteReport value) deleteReport,
+    required TResult Function(_ResetDeleteStatus value) resetDeleteStatus,
   }) {
     return submit(this);
   }
@@ -966,6 +1046,8 @@ class _$SubmitImpl implements _Submit {
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ResetSubmitStatus value)? resetSubmitStatus,
     TResult? Function(_Submit value)? submit,
+    TResult? Function(_DeleteReport value)? deleteReport,
+    TResult? Function(_ResetDeleteStatus value)? resetDeleteStatus,
   }) {
     return submit?.call(this);
   }
@@ -979,6 +1061,8 @@ class _$SubmitImpl implements _Submit {
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ResetSubmitStatus value)? resetSubmitStatus,
     TResult Function(_Submit value)? submit,
+    TResult Function(_DeleteReport value)? deleteReport,
+    TResult Function(_ResetDeleteStatus value)? resetDeleteStatus,
     required TResult orElse(),
   }) {
     if (submit != null) {
@@ -998,4 +1082,317 @@ abstract class _Submit implements AccountantEvent {
   @JsonKey(ignore: true)
   _$$SubmitImplCopyWith<_$SubmitImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DeleteReportImplCopyWith<$Res> {
+  factory _$$DeleteReportImplCopyWith(
+          _$DeleteReportImpl value, $Res Function(_$DeleteReportImpl) then) =
+      __$$DeleteReportImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id});
+}
+
+/// @nodoc
+class __$$DeleteReportImplCopyWithImpl<$Res>
+    extends _$AccountantEventCopyWithImpl<$Res, _$DeleteReportImpl>
+    implements _$$DeleteReportImplCopyWith<$Res> {
+  __$$DeleteReportImplCopyWithImpl(
+      _$DeleteReportImpl _value, $Res Function(_$DeleteReportImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$DeleteReportImpl(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeleteReportImpl implements _DeleteReport {
+  const _$DeleteReportImpl(this.id);
+
+  @override
+  final int id;
+
+  @override
+  String toString() {
+    return 'AccountantEvent.deleteReport(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteReportImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteReportImplCopyWith<_$DeleteReportImpl> get copyWith =>
+      __$$DeleteReportImplCopyWithImpl<_$DeleteReportImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String keyword) searchKeyword,
+    required TResult Function() refresh,
+    required TResult Function() resetSubmitStatus,
+    required TResult Function(int? employeeId, List<AccountantSubmitItem> items)
+        submit,
+    required TResult Function(int id) deleteReport,
+    required TResult Function() resetDeleteStatus,
+  }) {
+    return deleteReport(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String keyword)? searchKeyword,
+    TResult? Function()? refresh,
+    TResult? Function()? resetSubmitStatus,
+    TResult? Function(int? employeeId, List<AccountantSubmitItem> items)?
+        submit,
+    TResult? Function(int id)? deleteReport,
+    TResult? Function()? resetDeleteStatus,
+  }) {
+    return deleteReport?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String keyword)? searchKeyword,
+    TResult Function()? refresh,
+    TResult Function()? resetSubmitStatus,
+    TResult Function(int? employeeId, List<AccountantSubmitItem> items)? submit,
+    TResult Function(int id)? deleteReport,
+    TResult Function()? resetDeleteStatus,
+    required TResult orElse(),
+  }) {
+    if (deleteReport != null) {
+      return deleteReport(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_SearchKeyword value) searchKeyword,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ResetSubmitStatus value) resetSubmitStatus,
+    required TResult Function(_Submit value) submit,
+    required TResult Function(_DeleteReport value) deleteReport,
+    required TResult Function(_ResetDeleteStatus value) resetDeleteStatus,
+  }) {
+    return deleteReport(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_SearchKeyword value)? searchKeyword,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ResetSubmitStatus value)? resetSubmitStatus,
+    TResult? Function(_Submit value)? submit,
+    TResult? Function(_DeleteReport value)? deleteReport,
+    TResult? Function(_ResetDeleteStatus value)? resetDeleteStatus,
+  }) {
+    return deleteReport?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_SearchKeyword value)? searchKeyword,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ResetSubmitStatus value)? resetSubmitStatus,
+    TResult Function(_Submit value)? submit,
+    TResult Function(_DeleteReport value)? deleteReport,
+    TResult Function(_ResetDeleteStatus value)? resetDeleteStatus,
+    required TResult orElse(),
+  }) {
+    if (deleteReport != null) {
+      return deleteReport(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DeleteReport implements AccountantEvent {
+  const factory _DeleteReport(final int id) = _$DeleteReportImpl;
+
+  int get id;
+  @JsonKey(ignore: true)
+  _$$DeleteReportImplCopyWith<_$DeleteReportImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ResetDeleteStatusImplCopyWith<$Res> {
+  factory _$$ResetDeleteStatusImplCopyWith(_$ResetDeleteStatusImpl value,
+          $Res Function(_$ResetDeleteStatusImpl) then) =
+      __$$ResetDeleteStatusImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ResetDeleteStatusImplCopyWithImpl<$Res>
+    extends _$AccountantEventCopyWithImpl<$Res, _$ResetDeleteStatusImpl>
+    implements _$$ResetDeleteStatusImplCopyWith<$Res> {
+  __$$ResetDeleteStatusImplCopyWithImpl(_$ResetDeleteStatusImpl _value,
+      $Res Function(_$ResetDeleteStatusImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ResetDeleteStatusImpl implements _ResetDeleteStatus {
+  const _$ResetDeleteStatusImpl();
+
+  @override
+  String toString() {
+    return 'AccountantEvent.resetDeleteStatus()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ResetDeleteStatusImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String keyword) searchKeyword,
+    required TResult Function() refresh,
+    required TResult Function() resetSubmitStatus,
+    required TResult Function(int? employeeId, List<AccountantSubmitItem> items)
+        submit,
+    required TResult Function(int id) deleteReport,
+    required TResult Function() resetDeleteStatus,
+  }) {
+    return resetDeleteStatus();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String keyword)? searchKeyword,
+    TResult? Function()? refresh,
+    TResult? Function()? resetSubmitStatus,
+    TResult? Function(int? employeeId, List<AccountantSubmitItem> items)?
+        submit,
+    TResult? Function(int id)? deleteReport,
+    TResult? Function()? resetDeleteStatus,
+  }) {
+    return resetDeleteStatus?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String keyword)? searchKeyword,
+    TResult Function()? refresh,
+    TResult Function()? resetSubmitStatus,
+    TResult Function(int? employeeId, List<AccountantSubmitItem> items)? submit,
+    TResult Function(int id)? deleteReport,
+    TResult Function()? resetDeleteStatus,
+    required TResult orElse(),
+  }) {
+    if (resetDeleteStatus != null) {
+      return resetDeleteStatus();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_SearchKeyword value) searchKeyword,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ResetSubmitStatus value) resetSubmitStatus,
+    required TResult Function(_Submit value) submit,
+    required TResult Function(_DeleteReport value) deleteReport,
+    required TResult Function(_ResetDeleteStatus value) resetDeleteStatus,
+  }) {
+    return resetDeleteStatus(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_SearchKeyword value)? searchKeyword,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ResetSubmitStatus value)? resetSubmitStatus,
+    TResult? Function(_Submit value)? submit,
+    TResult? Function(_DeleteReport value)? deleteReport,
+    TResult? Function(_ResetDeleteStatus value)? resetDeleteStatus,
+  }) {
+    return resetDeleteStatus?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_SearchKeyword value)? searchKeyword,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ResetSubmitStatus value)? resetSubmitStatus,
+    TResult Function(_Submit value)? submit,
+    TResult Function(_DeleteReport value)? deleteReport,
+    TResult Function(_ResetDeleteStatus value)? resetDeleteStatus,
+    required TResult orElse(),
+  }) {
+    if (resetDeleteStatus != null) {
+      return resetDeleteStatus(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ResetDeleteStatus implements AccountantEvent {
+  const factory _ResetDeleteStatus() = _$ResetDeleteStatusImpl;
 }

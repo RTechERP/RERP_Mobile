@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../data/datasource/models/report_model.dart';
@@ -8,11 +9,13 @@ import '../../../../data/datasource/models/report_model.dart';
 class AccountantCard extends StatefulWidget {
   final AccountantItem item;
   final VoidCallback? onTap;
+  final VoidCallback? onDelete;
 
   const AccountantCard({
     super.key,
     required this.item,
     this.onTap,
+    this.onDelete,
   });
 
   @override
@@ -31,7 +34,7 @@ class _AccountantCardState extends State<AccountantCard> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Container(
+    final card = Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(22),
@@ -39,22 +42,22 @@ class _AccountantCardState extends State<AccountantCard> {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            Colors.white.withOpacity(0.85),
-            Colors.white.withOpacity(0.55),
+            Colors.white.withValues(alpha:0.85),
+            Colors.white.withValues(alpha:0.55),
           ],
         ),
         border: Border.all(
-          color: Colors.white.withOpacity(0.6),
+          color: Colors.white.withValues(alpha:0.6),
           width: 1.2,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.06),
+            color: Colors.black.withValues(alpha:0.06),
             blurRadius: 18,
             offset: const Offset(0, 8),
           ),
           BoxShadow(
-            color: Colors.blue.withOpacity(0.05),
+            color: Colors.blue.withValues(alpha:0.05),
             blurRadius: 26,
             offset: const Offset(0, 4),
           ),
@@ -91,6 +94,30 @@ class _AccountantCardState extends State<AccountantCard> {
         ),
       ),
     );
+
+    if (widget.onDelete == null) return card;
+
+    return Slidable(
+      key: ValueKey(widget.item.id),
+      endActionPane: ActionPane(
+        motion: const DrawerMotion(),
+        extentRatio: 0.2,
+        children: [
+          SlidableAction(
+            onPressed: (_) => widget.onDelete?.call(),
+            backgroundColor: Colors.red,
+            foregroundColor: Colors.white,
+            icon: Icons.delete,
+            label: 'Xoá',
+            borderRadius: const BorderRadius.only(
+              topRight: Radius.circular(22),
+              bottomRight: Radius.circular(22),
+            ),
+          ),
+        ],
+      ),
+      child: card,
+    );
   }
 
   Widget _buildHeader(ThemeData theme) {
@@ -108,7 +135,7 @@ class _AccountantCardState extends State<AccountantCard> {
             ),
             boxShadow: [
               BoxShadow(
-                color: Colors.blue.withOpacity(0.25),
+                color: Colors.blue.withValues(alpha:0.25),
                 blurRadius: 8,
                 offset: const Offset(0, 3),
               ),
@@ -141,7 +168,7 @@ class _AccountantCardState extends State<AccountantCard> {
                 Text(
                   widget.item.chucVu!,
                   style: theme.textTheme.bodySmall?.copyWith(
-                    color: Colors.black.withOpacity(0.55),
+                    color: Colors.black.withValues(alpha:0.55),
                     fontWeight: FontWeight.w500,
                   ),
                   overflow: TextOverflow.ellipsis,
@@ -153,10 +180,10 @@ class _AccountantCardState extends State<AccountantCard> {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.7),
+            color: Colors.white.withValues(alpha:0.7),
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: Colors.white.withOpacity(0.9),
+              color: Colors.white.withValues(alpha:0.9),
             ),
           ),
           child: Row(
@@ -192,9 +219,9 @@ class _AccountantCardState extends State<AccountantCard> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       decoration: BoxDecoration(
-        color: Colors.blue.withOpacity(0.08),
+        color: Colors.blue.withValues(alpha:0.08),
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: Colors.blue.withOpacity(0.2)),
+        border: Border.all(color: Colors.blue.withValues(alpha:0.2)),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -203,7 +230,7 @@ class _AccountantCardState extends State<AccountantCard> {
             width: 28,
             height: 28,
             decoration: BoxDecoration(
-              color: const Color(0xFF1E88E5).withOpacity(0.15),
+              color: const Color(0xFF1E88E5).withValues(alpha:0.15),
               borderRadius: BorderRadius.circular(8),
             ),
             alignment: Alignment.center,
@@ -337,9 +364,9 @@ class _AccountantCardState extends State<AccountantCard> {
       margin: const EdgeInsets.only(bottom: 6),
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.55),
+        color: Colors.white.withValues(alpha:0.55),
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: Colors.white.withOpacity(0.7)),
+        border: Border.all(color: Colors.white.withValues(alpha:0.7)),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -348,7 +375,7 @@ class _AccountantCardState extends State<AccountantCard> {
             width: 28,
             height: 28,
             decoration: BoxDecoration(
-              color: iconColor.withOpacity(0.15),
+              color: iconColor.withValues(alpha:0.15),
               borderRadius: BorderRadius.circular(8),
             ),
             alignment: Alignment.center,
@@ -364,7 +391,7 @@ class _AccountantCardState extends State<AccountantCard> {
                   style: TextStyle(
                     fontSize: 11,
                     fontWeight: FontWeight.w600,
-                    color: iconColor.withOpacity(0.85),
+                    color: iconColor.withValues(alpha:0.85),
                     letterSpacing: 0.2,
                   ),
                 ),

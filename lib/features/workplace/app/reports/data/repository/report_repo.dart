@@ -190,4 +190,7 @@ abstract class ReportRepo {
   Future<Either<BaseError, String>> saveReportAccounting({
     required List<Map<String, dynamic>> payload,
   });
+
+  /// Xoá báo cáo phòng Kế toán theo ID
+  Future<Either<BaseError, String>> deleteReportAccounting({required int id});
 }

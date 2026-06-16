@@ -747,4 +747,25 @@ class ReportRepoImpl implements ReportRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, String>> deleteReportAccounting({
+    required int id,
+  }) async {
+    try {
+      final res = await _service.deleteReportAccounting(id: id);
+
+      if (res.status == 1) {
+        return right(res.message ?? 'Xoá báo cáo thành công');
+      } else {
+        return left(
+          BaseError.httpInternalServerError(
+            res.message ?? 'Xoá dữ liệu thất bại',
+          ),
+        );
+      }
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

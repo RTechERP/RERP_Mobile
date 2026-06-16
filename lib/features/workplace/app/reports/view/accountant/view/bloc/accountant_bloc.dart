@@ -33,6 +33,8 @@ class AccountantBloc extends BaseBloc<AccountantEvent, AccountantState> {
         refresh: () => _onRefresh(emit),
         resetSubmitStatus: () => _onResetSubmitStatus(emit),
         submit: (employeeId, items) => _onSubmit(employeeId, items, emit),
+        deleteReport: (id) => _onDeleteReport(id, emit),
+        resetDeleteStatus: () => _onResetDeleteStatus(emit),
       );
     });
   }
@@ -129,7 +131,7 @@ class AccountantBloc extends BaseBloc<AccountantEvent, AccountantState> {
   }
 
   Future<void> _onInit(Emitter<AccountantState> emit) async {
-    emit(state.copyWith(status: BaseStateStatus.loading));
+    emit(state.copyWith(status: BaseStateStatus.loading, deleteSuccess: false));
 
     final userRes = await _authRepo.getCurrentUser();
 
@@ -218,6 +220,51 @@ class AccountantBloc extends BaseBloc<AccountantEvent, AccountantState> {
     );
 
     await _fetchReports(emit: emit, isLoadMore: false);
+  }
+
+  Future<void> _onDeleteReport(int id, Emitter<AccountantState> emit) async {
+    emit(state.copyWith(
+      isDeleting: true,
+      deleteSuccess: false,
+      status: BaseStateStatus.loading,
+    ));
+
+    final result = await _reportRepo.deleteReportAccounting(id: id);
+
+    result.fold(
+      (error) {
+        _log.logE('Delete accountant report failed: ${error.getErrorMessage}');
+        emit(state.copyWith(
+          isDeleting: false,
+          deleteSuccess: false,
+          status: BaseStateStatus.failed,
+          message: error.getErrorMessage,
+        ));
+      },
+      (message) {
+        final updatedReports =
+            state.reports.where((e) => e.id != id).toList();
+
+        emit(state.copyWith(
+          reports: updatedReports,
+          isDeleting: false,
+          deleteSuccess: true,
+          status: BaseStateStatus.success,
+          message: message,
+        ));
+      },
+    );
+  }
+
+  Future<void> _onResetDeleteStatus(Emitter<AccountantState> emit) async {
+    if (!state.deleteSuccess && (state.message == null || state.isDeleting)) {
+      return;
+    }
+    emit(state.copyWith(
+      deleteSuccess: false,
+      message: null,
+      isDeleting: false,
+    ));
   }
 
   Future<void> _fetchReports({

@@ -18,6 +18,9 @@ class AccountantState extends BaseBlocState {
   final bool isSubmitting;
   final bool submitSuccess;
 
+  final bool isDeleting;
+  final bool deleteSuccess;
+
   const AccountantState({
     required super.status,
     super.message,
@@ -34,6 +37,8 @@ class AccountantState extends BaseBlocState {
     this.chucVu,
     this.isSubmitting = false,
     this.submitSuccess = false,
+    this.isDeleting = false,
+    this.deleteSuccess = false,
   });
 
   factory AccountantState.init() => const AccountantState(
@@ -51,6 +56,8 @@ class AccountantState extends BaseBlocState {
         chucVu: null,
         isSubmitting: false,
         submitSuccess: false,
+        isDeleting: false,
+        deleteSuccess: false,
       );
 
   @override
@@ -70,5 +77,7 @@ class AccountantState extends BaseBlocState {
         chucVu,
         isSubmitting,
         submitSuccess,
+        isDeleting,
+        deleteSuccess,
       ];
 }

@@ -37,6 +37,10 @@ abstract class _$AccountantStateCWProxy {
 
   AccountantState submitSuccess(bool submitSuccess);
 
+  AccountantState isDeleting(bool isDeleting);
+
+  AccountantState deleteSuccess(bool deleteSuccess);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AccountantState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -59,6 +63,8 @@ abstract class _$AccountantStateCWProxy {
     String? chucVu,
     bool? isSubmitting,
     bool? submitSuccess,
+    bool? isDeleting,
+    bool? deleteSuccess,
   });
 }
 
@@ -119,6 +125,13 @@ class _$AccountantStateCWProxyImpl implements _$AccountantStateCWProxy {
       this(submitSuccess: submitSuccess);
 
   @override
+  AccountantState isDeleting(bool isDeleting) => this(isDeleting: isDeleting);
+
+  @override
+  AccountantState deleteSuccess(bool deleteSuccess) =>
+      this(deleteSuccess: deleteSuccess);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AccountantState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -142,6 +155,8 @@ class _$AccountantStateCWProxyImpl implements _$AccountantStateCWProxy {
     Object? chucVu = const $CopyWithPlaceholder(),
     Object? isSubmitting = const $CopyWithPlaceholder(),
     Object? submitSuccess = const $CopyWithPlaceholder(),
+    Object? isDeleting = const $CopyWithPlaceholder(),
+    Object? deleteSuccess = const $CopyWithPlaceholder(),
   }) {
     return AccountantState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -208,6 +223,16 @@ class _$AccountantStateCWProxyImpl implements _$AccountantStateCWProxy {
               ? _value.submitSuccess
               // ignore: cast_nullable_to_non_nullable
               : submitSuccess as bool,
+      isDeleting:
+          isDeleting == const $CopyWithPlaceholder() || isDeleting == null
+              ? _value.isDeleting
+              // ignore: cast_nullable_to_non_nullable
+              : isDeleting as bool,
+      deleteSuccess:
+          deleteSuccess == const $CopyWithPlaceholder() || deleteSuccess == null
+              ? _value.deleteSuccess
+              // ignore: cast_nullable_to_non_nullable
+              : deleteSuccess as bool,
     );
   }
 }
