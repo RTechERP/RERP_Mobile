@@ -49,6 +49,8 @@ abstract class _$AccountantStateCWProxy {
 
   AccountantState updateSuccess(bool updateSuccess);
 
+  AccountantState isAccountantAdmin(bool isAccountantAdmin);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AccountantState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -77,6 +79,7 @@ abstract class _$AccountantStateCWProxy {
     bool? isFetchingDetail,
     bool? isUpdating,
     bool? updateSuccess,
+    bool? isAccountantAdmin,
   });
 }
 
@@ -159,6 +162,10 @@ class _$AccountantStateCWProxyImpl implements _$AccountantStateCWProxy {
       this(updateSuccess: updateSuccess);
 
   @override
+  AccountantState isAccountantAdmin(bool isAccountantAdmin) =>
+      this(isAccountantAdmin: isAccountantAdmin);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AccountantState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -188,6 +195,7 @@ class _$AccountantStateCWProxyImpl implements _$AccountantStateCWProxy {
     Object? isFetchingDetail = const $CopyWithPlaceholder(),
     Object? isUpdating = const $CopyWithPlaceholder(),
     Object? updateSuccess = const $CopyWithPlaceholder(),
+    Object? isAccountantAdmin = const $CopyWithPlaceholder(),
   }) {
     return AccountantState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -283,6 +291,11 @@ class _$AccountantStateCWProxyImpl implements _$AccountantStateCWProxy {
               ? _value.updateSuccess
               // ignore: cast_nullable_to_non_nullable
               : updateSuccess as bool,
+      isAccountantAdmin: isAccountantAdmin == const $CopyWithPlaceholder() ||
+              isAccountantAdmin == null
+          ? _value.isAccountantAdmin
+          // ignore: cast_nullable_to_non_nullable
+          : isAccountantAdmin as bool,
     );
   }
 }

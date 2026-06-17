@@ -183,7 +183,7 @@ abstract class ReportRepo {
     int page,
     int size,
     String filterText,
-    int employeeId,
+    int? employeeId,
   });
 
   /// Lưu báo cáo phòng Kế toán (Accountant)

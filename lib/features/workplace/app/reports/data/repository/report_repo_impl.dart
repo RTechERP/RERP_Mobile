@@ -709,7 +709,7 @@ class ReportRepoImpl implements ReportRepo {
     int page = 1,
     int size = 50,
     String filterText = '',
-    int employeeId = 0,
+    int? employeeId,
   }) async {
     try {
       final res = await _service.getAccountantReport(

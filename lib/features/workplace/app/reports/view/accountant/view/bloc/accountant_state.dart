@@ -27,6 +27,8 @@ class AccountantState extends BaseBlocState {
   final bool isUpdating;
   final bool updateSuccess;
 
+  final bool isAccountantAdmin;
+
   const AccountantState({
     required super.status,
     super.message,
@@ -49,6 +51,7 @@ class AccountantState extends BaseBlocState {
     this.isFetchingDetail = false,
     this.isUpdating = false,
     this.updateSuccess = false,
+    this.isAccountantAdmin = false,
   });
 
   factory AccountantState.init() => const AccountantState(
@@ -72,6 +75,7 @@ class AccountantState extends BaseBlocState {
         isFetchingDetail: false,
         isUpdating: false,
         updateSuccess: false,
+        isAccountantAdmin: false,
       );
 
   @override
@@ -97,5 +101,6 @@ class AccountantState extends BaseBlocState {
         isFetchingDetail,
         isUpdating,
         updateSuccess,
+        isAccountantAdmin,
       ];
 }

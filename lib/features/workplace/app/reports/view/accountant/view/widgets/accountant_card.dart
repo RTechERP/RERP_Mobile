@@ -10,12 +10,14 @@ class AccountantCard extends StatefulWidget {
   final AccountantItem item;
   final VoidCallback? onTap;
   final VoidCallback? onDelete;
+  final bool isAccountantAdmin;
 
   const AccountantCard({
     super.key,
     required this.item,
     this.onTap,
     this.onDelete,
+    this.isAccountantAdmin = false,
   });
 
   @override
@@ -23,7 +25,7 @@ class AccountantCard extends StatefulWidget {
 }
 
 class _AccountantCardState extends State<AccountantCard> {
-  bool _isExpanded = false;
+  late bool _isExpanded = widget.isAccountantAdmin;
 
   String _formatDate(DateTime? d) {
     if (d == null) return '--/--/----';
@@ -77,8 +79,8 @@ class _AccountantCardState extends State<AccountantCard> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _buildHeader(theme),
-                    const SizedBox(height: 12),
+                    if (widget.isAccountantAdmin) _buildHeader(theme),
+                    if (widget.isAccountantAdmin) const SizedBox(height: 12),
                     _buildMainContent(theme),
                     const SizedBox(height: 8),
                     _buildExpandButton(),
@@ -271,6 +273,8 @@ class _AccountantCardState extends State<AccountantCard> {
   }
 
   Widget _buildExpandButton() {
+    if (widget.isAccountantAdmin) return const SizedBox.shrink();
+
     final hasMoreContent = _hasExpandableContent();
     if (!hasMoreContent) return const SizedBox.shrink();
 

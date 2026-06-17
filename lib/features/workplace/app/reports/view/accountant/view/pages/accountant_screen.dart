@@ -232,6 +232,7 @@ class _AccountantScreenState
                   final reportId = item.id ?? 0;
                   return AccountantCard(
                     item: item,
+                    isAccountantAdmin: state.isAccountantAdmin,
                     onTap: reportId == 0
                         ? null
                         : () async {

@@ -616,16 +616,18 @@ class ReportService extends DioBaseApiService {
     int page = 1,
     int size = 50,
     String filterText = '',
-    int employeeId = 0,
+    int? employeeId,
   }) async {
-    final query = {
+    final query = <String, dynamic>{
       'page': page,
       'size': size,
       'dateStart': '${dateStart.year}-${dateStart.month.toString().padLeft(2, '0')}-${dateStart.day.toString().padLeft(2, '0')}T${dateStart.hour.toString().padLeft(2, '0')}:${dateStart.minute.toString().padLeft(2, '0')}:${dateStart.second.toString().padLeft(2, '0')}',
       'dateEnd': '${dateEnd.year}-${dateEnd.month.toString().padLeft(2, '0')}-${dateEnd.day.toString().padLeft(2, '0')}T${dateEnd.hour.toString().padLeft(2, '0')}:${dateEnd.minute.toString().padLeft(2, '0')}:${dateEnd.second.toString().padLeft(2, '0')}',
       'filterText': filterText,
-      'EmployeeID': employeeId,
     };
+    if (employeeId != null) {
+      query['EmployeeID'] = employeeId;
+    }
 
     return get<BaseData<List<AccountantItem>>>(
       ApiEndPoint.getAccountantReport,

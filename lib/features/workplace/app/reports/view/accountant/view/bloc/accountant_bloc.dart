@@ -7,6 +7,7 @@ import 'package:injectable/injectable.dart';
 import '../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../common/logger/index.dart';
+import '../../../../../../../../common/services/permissions/role_groups.dart';
 import '../../../../../../../../features/auth/data/repository/auth_repo.dart';
 import '../../../../data/datasource/models/report_model.dart';
 import '../../../../data/repository/report_repo.dart';
@@ -154,6 +155,11 @@ class AccountantBloc extends BaseBloc<AccountantEvent, AccountantState> {
         final start = DateTime(now.year, now.month - 1, now.day);
         final end = DateTime(now.year, now.month, now.day, 23, 59, 59);
 
+        final permissions = (user.permissions).split(',');
+        final isAccountantAdmin = permissions.any(
+          (p) => PermissionGroups.accountantAdminReports.contains(p),
+        );
+
         emit(
           state.copyWith(
             employeeId: user.employeeId,
@@ -165,6 +171,7 @@ class AccountantBloc extends BaseBloc<AccountantEvent, AccountantState> {
             dateStart: start,
             dateEnd: end,
             keyword: '',
+            isAccountantAdmin: isAccountantAdmin,
           ),
         );
 
@@ -287,7 +294,7 @@ class AccountantBloc extends BaseBloc<AccountantEvent, AccountantState> {
       page: state.page,
       size: state.size,
       filterText: state.keyword,
-      employeeId: state.employeeId ?? 0,
+      employeeId: state.isAccountantAdmin ? null : (state.employeeId ?? 0),
     );
 
     res.fold(
@@ -404,8 +411,6 @@ class AccountantBloc extends BaseBloc<AccountantEvent, AccountantState> {
         'MistakeOrViolation': e.mistakeOrViolation,
       };
     }).toList();
-
-    print("Payload: $payload");
 
     final res = await _reportRepo.saveReportAccounting(payload: payload);
 
