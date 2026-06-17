@@ -6,8 +6,10 @@ import 'index.dart';
 
 class FormDateTimePicker extends StatefulWidget {
   final String nameForm;
+  final GlobalKey<FormBuilderFieldState>? formFieldKey;
 
   final String nameTimePicker;
+  final GlobalKey<FormBuilderFieldState>? timePickerFieldKey;
   final String label;
   final IconData icon;
 
@@ -28,10 +30,17 @@ class FormDateTimePicker extends StatefulWidget {
   final AutovalidateMode autovalidateMode;
   final FocusNode? focusNode;
 
+  /// Key cho phép bên ngoài gọi `setValue(...)` để cập nhật cả UI lẫn form state
+  /// một cách chắc chắn (giải quyết trường hợp gọi `didChange` từ bên ngoài
+  /// nhưng TextField không rebuild).
+  final GlobalKey<FormDateTimePickerState>? pickerKey;
+
   const FormDateTimePicker({
     super.key,
     required this.nameForm,
+    this.formFieldKey,
     required this.nameTimePicker,
+    this.timePickerFieldKey,
     required this.label,
     required this.icon,
     required this.inputType,
@@ -48,19 +57,49 @@ class FormDateTimePicker extends StatefulWidget {
     this.validator,
     this.autovalidateMode = AutovalidateMode.onUserInteraction,
     this.focusNode,
+    this.pickerKey,
   });
 
   @override
-  State<FormDateTimePicker> createState() => _FormDateTimePickerState();
+  State<FormDateTimePicker> createState() => FormDateTimePickerState();
 }
 
-class _FormDateTimePickerState extends State<FormDateTimePicker> {
+/// Public state để bên ngoài có thể truy cập qua [FormDateTimePicker.pickerKey].
+class FormDateTimePickerState extends State<FormDateTimePicker> {
   FocusNode? _internalFocusNode;
   final GlobalKey<FormBuilderFieldState> _fieldKey =
+      GlobalKey<FormBuilderFieldState>();
+  final GlobalKey<FormBuilderFieldState> _innerFieldKey =
       GlobalKey<FormBuilderFieldState>();
 
   FocusNode get _effectiveFocusNode {
     return widget.focusNode ?? (_internalFocusNode ??= FocusNode());
+  }
+
+  /// Set value cho cả outer + inner field, đồng thời force rebuild để
+  /// TextField hiển thị text mới (gọi từ bên ngoài qua [pickerKey]).
+  ///
+  /// Gọi `didChange` trên field chỉ set `value` + `setState`, nhưng nếu
+  /// widget tree cha không rebuild, TextField controller bên trong
+  /// `FormBuilderDateTimePicker` có thể không được refresh. Method này
+  /// đảm bảo UI update bằng cách ép state ngoài cùng setState.
+  void setValue(DateTime? value) {
+    if (!mounted) return;
+    setState(() {
+      _innerFieldKey.currentState?.didChange(value);
+      _fieldKey.currentState?.didChange(value);
+    });
+  }
+
+  /// Gọi didChange trên CẢ inner (FormBuilderDateTimePicker) lẫn outer
+  /// (FormBuilderField) để đảm bảo:
+  /// - Inner TextField UI update
+  /// - Outer field value lưu vào FormBuilder
+  void _syncValue(DateTime? value) {
+    _innerFieldKey.currentState?.didChange(value);
+    // Outer sẽ tự update qua onChanged callback của inner. Nhưng để chắc chắn
+    // (trường hợp inner chưa mount), vẫn gọi cả outer.
+    _fieldKey.currentState?.didChange(value);
   }
 
   @override
@@ -73,8 +112,12 @@ class _FormDateTimePickerState extends State<FormDateTimePicker> {
     // KHÔNG gọi validate() ở đây vì sẽ chạy validator trên TẤT CẢ required fields
     // ngay khi mở màn, gây error icon sai cho các field chưa có giá trị.
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final current = _fieldKey.currentState?.value;
-      if (current == null && widget.initialValue != null) {
+      if (widget.initialValue == null) return;
+      final innerCurrent = _innerFieldKey.currentState?.value;
+      final outerCurrent = _fieldKey.currentState?.value;
+      if (innerCurrent == null && outerCurrent == null) {
+        _syncValue(widget.initialValue);
+      } else if (outerCurrent == null) {
         _fieldKey.currentState?.didChange(widget.initialValue);
       }
     });
@@ -86,18 +129,28 @@ class _FormDateTimePickerState extends State<FormDateTimePicker> {
     // Sync khi initialValue thay đổi từ bên ngoài (ví dụ: auto-fill Deadline
     // từ KT dự kiến). Chỉ patch nếu giá trị hiện tại của form chưa khớp với
     // initialValue mới → tránh ghi đè khi user đã tự chọn bằng tay.
-    if (!_isSameDate(widget.initialValue, oldWidget.initialValue)) {
+    if (!_isSameDateTime(widget.initialValue, oldWidget.initialValue)) {
       final current = _fieldKey.currentState?.value;
-      if (!_isSameDate(current, widget.initialValue)) {
-        _fieldKey.currentState?.didChange(widget.initialValue);
+      if (!_isSameDateTime(current, widget.initialValue)) {
+        _syncValue(widget.initialValue);
       }
     }
   }
 
-  bool _isSameDate(DateTime? a, DateTime? b) {
+  bool _isSameDateTime(DateTime? a, DateTime? b) {
     if (a == null && b == null) return true;
     if (a == null || b == null) return false;
-    return a.year == b.year && a.month == b.month && a.day == b.day;
+    if (widget.inputType == InputType.date) {
+      return a.year == b.year && a.month == b.month && a.day == b.day;
+    }
+    if (widget.inputType == InputType.time) {
+      return a.hour == b.hour && a.minute == b.minute;
+    }
+    return a.year == b.year &&
+        a.month == b.month &&
+        a.day == b.day &&
+        a.hour == b.hour &&
+        a.minute == b.minute;
   }
 
   @override
@@ -118,6 +171,7 @@ class _FormDateTimePickerState extends State<FormDateTimePicker> {
       focusNode: _effectiveFocusNode,
       builder: (field) {
         return FormBuilderDateTimePicker(
+          key: _innerFieldKey,
           name: widget.nameTimePicker,
           inputType: widget.inputType,
           format: widget.format,

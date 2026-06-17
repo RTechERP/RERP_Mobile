@@ -31,6 +31,7 @@ class FormChoiceGroup<T> extends StatefulWidget {
     this.validator,
     this.onChanged,
     this.onFieldCreated,
+    this.columns,
   });
 
   /// GlobalKey để screen có thể gọi didChange từ bên ngoài
@@ -67,6 +68,10 @@ class FormChoiceGroup<T> extends StatefulWidget {
   /// Callback khi field được tạo, truyền field state để screen có thể
   /// gọi didChange từ bên ngoài.
   final ValueChanged<FormFieldState<T>>? onFieldCreated;
+
+  /// Số cột cố định. Null = dùng `Wrap` tự xuống dòng theo width.
+  /// Khi đặt (vd 2), các option sẽ xếp đều trong grid N cột.
+  final int? columns;
 
   @override
   State<FormChoiceGroup<T>> createState() => _FormChoiceGroupState<T>();
@@ -115,8 +120,8 @@ class _FormChoiceGroupState<T> extends State<FormChoiceGroup<T>> {
     // 2. Fallback: đọc từ FormBuilder state
     final formState = FormBuilder.of(context);
     if (formState != null) {
-      final raw = formState.initialValue?[widget.name] ??
-                  formState.value?[widget.name];
+      final raw = formState.initialValue[widget.name] ??
+                  formState.value[widget.name];
       if (raw != null) {
         final idx = _matchIndex(raw);
         if (idx >= 0) return widget.options[idx].value;
@@ -190,39 +195,66 @@ class _FormChoiceGroupState<T> extends State<FormChoiceGroup<T>> {
       return const SizedBox.shrink();
     }
 
+    final chips = widget.options.map((option) {
+      final isSelected = _normValue(displayValue) == _normValue(option.value);
+      final selectedColor = option.selectedColor ?? Theme.of(context).primaryColor;
+
+      return GestureDetector(
+        onTap: widget.enabled ? () => field.didChange(option.value) : null,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: isSelected
+                ? selectedColor.withValues(alpha: 0.1)
+                : Colors.grey.withValues(alpha: 0.08),
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(
+              color: isSelected ? selectedColor : Colors.grey.withValues(alpha: 0.25),
+              width: 1.5,
+            ),
+          ),
+          child: Text(
+            option.label,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+              color: isSelected ? selectedColor : Colors.grey.shade700,
+            ),
+          ),
+        ),
+      );
+    }).toList();
+
+    final columns = widget.columns;
+    if (columns != null && columns > 1) {
+      final rows = <Widget>[];
+      for (int i = 0; i < chips.length; i += columns) {
+        final rowChildren = <Widget>[];
+        for (int c = 0; c < columns; c++) {
+          if (c > 0) rowChildren.add(const SizedBox(width: 8));
+          final idx = i + c;
+          if (idx < chips.length) {
+            rowChildren.add(Expanded(child: chips[idx]));
+          } else {
+            rowChildren.add(const Expanded(child: SizedBox.shrink()));
+          }
+        }
+        rows.add(Row(children: rowChildren));
+        if (i + columns < chips.length) rows.add(const SizedBox(height: 8));
+      }
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: rows,
+      );
+    }
+
     return Wrap(
       spacing: 8,
       runSpacing: 8,
-      children: widget.options.map((option) {
-        final isSelected = _normValue(displayValue) == _normValue(option.value);
-        final selectedColor = option.selectedColor ?? Theme.of(context).primaryColor;
-
-        return GestureDetector(
-          onTap: widget.enabled ? () => field.didChange(option.value) : null,
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 200),
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            decoration: BoxDecoration(
-              color: isSelected
-                  ? selectedColor.withValues(alpha: 0.1)
-                  : Colors.grey.withValues(alpha: 0.08),
-              borderRadius: BorderRadius.circular(8),
-              border: Border.all(
-                color: isSelected ? selectedColor : Colors.grey.withValues(alpha: 0.25),
-                width: 1.5,
-              ),
-            ),
-            child: Text(
-              option.label,
-              style: TextStyle(
-                fontSize: 13,
-                fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-                color: isSelected ? selectedColor : Colors.grey.shade700,
-              ),
-            ),
-          ),
-        );
-      }).toList(),
+      children: chips,
     );
   }
 }

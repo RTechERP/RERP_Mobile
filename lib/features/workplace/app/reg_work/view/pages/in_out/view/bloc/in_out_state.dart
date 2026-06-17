@@ -15,6 +15,16 @@ class InOutState extends BaseBlocState {
 
   final FillApproverItem? approveId;
 
+  /// Loại được auto-gợi ý khi mở màn add (theo khung giờ hiện tại).
+  /// Null nếu ngoài khung giờ tự động — user phải tự chọn.
+  final String? suggestedType;
+
+  /// Khung giờ [from, to] gợi ý tương ứng với [suggestedType].
+  /// Screen đọc 2 field này để auto-fill FormDateTimePicker, đảm bảo UI
+  /// chắc chắn render text (vì gọi qua state → widget rebuild).
+  final DateTime? suggestedFrom;
+  final DateTime? suggestedTo;
+
   const InOutState({
     required super.status,
     super.message,
@@ -29,6 +39,9 @@ class InOutState extends BaseBlocState {
     this.dateStart,
     this.dateEnd,
     this.approveId,
+    this.suggestedType,
+    this.suggestedFrom,
+    this.suggestedTo,
   });
 
   factory InOutState.init() => const InOutState(
@@ -44,6 +57,9 @@ class InOutState extends BaseBlocState {
     dateStart: null,
     dateEnd: null,
     approveId: null,
+    suggestedType: null,
+    suggestedFrom: null,
+    suggestedTo: null,
   );
 
   @override
@@ -61,5 +77,8 @@ class InOutState extends BaseBlocState {
     dateStart,
     dateEnd,
     approveId,
+    suggestedType,
+    suggestedFrom,
+    suggestedTo,
   ];
 }

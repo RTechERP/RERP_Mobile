@@ -96,13 +96,31 @@ class _InOutDetailScreenPageState extends BaseState<
     InOutBloc> {
 
   static const List<FormChoiceOption<String>> _inOutTypes = [
-    FormChoiceOption(value: 'late_personal', label: 'Đi muộn việc cá nhân', selectedColor: AppColors.primaryERP),
-    FormChoiceOption(value: 'early_personal', label: 'Về sớm việc cá nhân', selectedColor: AppColors.primaryERP),
-    FormChoiceOption(value: 'late_company', label: 'Đi muộn việc công ty', selectedColor: AppColors.primaryERP),
-    FormChoiceOption(value: 'early_company', label: 'Về sớm việc công ty', selectedColor: AppColors.primaryERP),
+    FormChoiceOption(
+      value: 'late_personal',
+      label: 'Đi muộn việc cá nhân',
+      selectedColor: AppColors.primaryERP,
+    ),
+    FormChoiceOption(
+      value: 'late_company',
+      label: 'Đi muộn việc công ty',
+      selectedColor: AppColors.primaryERP,
+    ),
+    FormChoiceOption(
+      value: 'early_personal',
+      label: 'Về sớm việc cá nhân',
+      selectedColor: AppColors.primaryERP,
+    ),
+    FormChoiceOption(
+      value: 'early_company',
+      label: 'Về sớm việc công ty',
+      selectedColor: AppColors.primaryERP,
+    ),
   ];
   final _formKey = GlobalKey<FormBuilderState>();
   final _typeFieldKey = GlobalKey<FormBuilderFieldState>();
+  final _fromPickerKey = GlobalKey<FormDateTimePickerState>();
+  final _toPickerKey = GlobalKey<FormDateTimePickerState>();
 
   InOutItem? _item;
   bool _invalidRoute = false;
@@ -159,9 +177,6 @@ class _InOutDetailScreenPageState extends BaseState<
   void _autoSetTimeByType(String? type) {
     if (!_canEdit || type == null || type.isEmpty) return;
 
-    final form = _formKey.currentState;
-    if (form == null) return;
-
     DateTime time(int h, int m) =>
         DateTime(_selectedDate.year, _selectedDate.month, _selectedDate.day, h, m);
 
@@ -177,10 +192,11 @@ class _InOutDetailScreenPageState extends BaseState<
       return;
     }
 
-    form.fields['regwork_inout_detail_from']?.didChange(from);
-    form.fields['inout_detail_from']?.didChange(from);
-    form.fields['regwork_inout_detail_to']?.didChange(to);
-    form.fields['inout_detail_to']?.didChange(to);
+    // Dùng pickerKey.setValue() — method này gọi didChange cả inner+outer
+    // kèm setState trên FormDateTimePicker state để TextField chắc chắn
+    // rebuild UI.
+    _fromPickerKey.currentState?.setValue(from);
+    _toPickerKey.currentState?.setValue(to);
   }
 
   Future<void> _openApproverSheet() async {
@@ -362,7 +378,9 @@ class _InOutDetailScreenPageState extends BaseState<
                                         children: [
                                           Expanded(
                                             child: FormDateTimePicker(
-                                              nameForm: 'regwork_inout_detail_from',
+                                              key: _fromPickerKey,
+                                              nameForm:
+                                                  'regwork_inout_detail_from',
                                               nameTimePicker: 'inout_detail_from',
                                               label: 'Từ',
                                               icon: Icons.schedule_outlined,
@@ -375,6 +393,7 @@ class _InOutDetailScreenPageState extends BaseState<
                                           const SizedBox(width: 12),
                                           Expanded(
                                             child: FormDateTimePicker(
+                                              key: _toPickerKey,
                                               nameForm: 'regwork_inout_detail_to',
                                               nameTimePicker: 'inout_detail_to',
                                               label: 'Đến',
@@ -395,6 +414,7 @@ class _InOutDetailScreenPageState extends BaseState<
                                           label: 'Loại',
                                           icon: Icons.swap_vert_outlined,
                                           options: _inOutTypes,
+                                          columns: 2,
                                           initialValue: typeKey ?? 'late_personal',
                                           onChanged: (value) {
                                             _autoSetTimeByType(value);

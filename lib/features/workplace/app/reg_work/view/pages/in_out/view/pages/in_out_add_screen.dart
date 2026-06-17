@@ -18,12 +18,6 @@ import '../bloc/in_out_bloc.dart';
 
 int approvedInOutPayloadValue(ApproverItem item) => item.employeeId ?? item.id;
 
-
-
-/// Trùng với [FormDateTimePicker.nameTimePicker] — cần [didChange] cả hai mới sync UI.
-const _kInOutTimeFromInner = 'inout_add_from';
-const _kInOutTimeToInner = 'inout_add_to';
-
 /// Giá trị gửi API `ApprovedTP` — đồng bộ TBP đặt xe: dùng **EmployeeID** (mã NV người duyệt),
 /// không dùng [Type] (thường là cấp/loại, hay trùng `1` cho nhiều dòng).
 int _approvedTpPayloadValue(ApproverItem item) => item.employeeId ?? item.id;
@@ -37,15 +31,32 @@ class InOutAddScreenPage extends StatefulWidget {
 
 class _InOutAddScreenPageState
     extends BaseState<InOutAddScreenPage, InOutEvent, InOutState, InOutBloc> {
-
   static const List<FormChoiceOption<String>> _inOutTypes = [
-    FormChoiceOption(value: 'late_personal', label: 'Đi muộn việc cá nhân', selectedColor: AppColors.primaryERP),
-    FormChoiceOption(value: 'early_personal', label: 'Về sớm việc cá nhân', selectedColor: AppColors.primaryERP),
-    FormChoiceOption(value: 'late_company', label: 'Đi muộn việc công ty', selectedColor: AppColors.primaryERP),
-    FormChoiceOption(value: 'early_company', label: 'Về sớm việc công ty', selectedColor: AppColors.primaryERP),
+    FormChoiceOption(
+      value: 'late_personal',
+      label: 'Đi muộn việc cá nhân',
+      selectedColor: AppColors.primaryERP,
+    ),
+    FormChoiceOption(
+      value: 'late_company',
+      label: 'Đi muộn việc công ty',
+      selectedColor: AppColors.primaryERP,
+    ),
+    FormChoiceOption(
+      value: 'early_personal',
+      label: 'Về sớm việc cá nhân',
+      selectedColor: AppColors.primaryERP,
+    ),
+    FormChoiceOption(
+      value: 'early_company',
+      label: 'Về sớm việc công ty',
+      selectedColor: AppColors.primaryERP,
+    ),
   ];
   final _formKey = GlobalKey<FormBuilderState>();
   final _typeFieldKey = GlobalKey<FormBuilderFieldState>();
+  final _fromPickerKey = GlobalKey<FormDateTimePickerState>();
+  final _toPickerKey = GlobalKey<FormDateTimePickerState>();
 
   late final DateTime _todayStart;
 
@@ -64,6 +75,8 @@ class _InOutAddScreenPageState
     }
   }
 
+  bool _hasAutoFilled = false;
+
   @override
   void initState() {
     super.initState();
@@ -71,48 +84,43 @@ class _InOutAddScreenPageState
     _todayStart = DateTime(now.year, now.month, now.day);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
-
       bloc.add(const InOutEvent.clearSubmitState());
       bloc.add(const InOutEvent.initAdd());
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (!mounted) return;
-        _autoSelectTypeByTimeWindow();
-      });
     });
   }
 
-  void _autoSelectTypeByTimeWindow() {
+  /// Áp dụng loại + khung giờ từ bloc state (do _onInitAdd tự tính theo
+  /// giờ hiện tại) vào form. Chỉ chạy 1 lần — lần đầu có đủ dữ liệu từ state.
+  /// Sau đó việc đổi loại do user tự chọn sẽ dùng [_autoSetTimeByType] để set giờ.
+  void _applySuggestedFromState() {
+    if (_hasAutoFilled) return;
+    final s = bloc.state;
+    final suggestedType = s.suggestedType;
+    final from = s.suggestedFrom;
+    final to = s.suggestedTo;
+    if (suggestedType == null || from == null || to == null) return;
+
     final typeField = _typeFieldKey.currentState;
     if (typeField == null) return;
 
     final rawType = '${typeField.value ?? ''}'.trim();
-
-    // User đã chọn sẵn thì không auto override.
-    if (rawType.isNotEmpty) return;
-
-    final now = DateTime.now();
-    final minutes = now.hour * 60 + now.minute;
-
-    String? pickKey;
-    // (8h-12h) => đi muộn việc cá nhân
-    if (minutes >= 8 * 60 && minutes <= 12 * 60) {
-      pickKey = 'late_personal';
+    if (rawType.isNotEmpty) {
+      // User đã có sẵn giá trị (state cũ) → không override.
+      _hasAutoFilled = true;
+      return;
     }
 
-    // (12h10 - 17h30) => về sớm việc cá nhân
-    if (minutes >= 12 * 60 + 10 && minutes <= 17 * 60 + 30) {
-      pickKey = 'early_personal';
-    }
+    typeField.didChange(suggestedType);
 
-    if (pickKey == null) return;
+    // Đợi 1 frame để FormChoiceGroup update UI chip đã chọn,
+    // rồi mới setValue time picker.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      _fromPickerKey.currentState?.setValue(from);
+      _toPickerKey.currentState?.setValue(to);
+    });
 
-    final option = _inOutTypes.firstWhere(
-      (e) => e.value == pickKey,
-      orElse: () => _inOutTypes.first,
-    );
-
-    typeField.didChange(option.value);
-    _autoSetTimeByType(option.value);
+    _hasAutoFilled = true;
   }
 
   void _autoSetTimeByType(String? type) {
@@ -142,11 +150,12 @@ class _InOutAddScreenPageState
       return;
     }
 
-    // FormDateTimePicker cần sync cả 2 field (nameForm + nameTimePicker).
-    form.fields['regwork_inout_add_from']?.didChange(from);
-    form.fields[_kInOutTimeFromInner]?.didChange(from);
-    form.fields['regwork_inout_add_to']?.didChange(to);
-    form.fields[_kInOutTimeToInner]?.didChange(to);
+    // Dùng pickerKey.setValue() — method này gọi didChange cả inner+outer
+    // kèm setState trên FormDateTimePicker state để TextField chắc chắn
+    // rebuild UI (gọi didChange trực tiếp trên form.fields chỉ set value
+    // mà TextField bên trong FormBuilderDateTimePicker có thể không refresh).
+    _fromPickerKey.currentState?.setValue(from);
+    _toPickerKey.currentState?.setValue(to);
   }
 
   Future<void> _openApproverSheet() async {
@@ -203,36 +212,51 @@ class _InOutAddScreenPageState
                 }
               },
             ),
-              BlocListener<InOutBloc, InOutState>(
-                listenWhen: (previous, current) =>
-                    previous.approveId != current.approveId ||
-                    previous.approvers != current.approvers,
-                listener: (context, state) {
-                  if (state.approveId != null && state.approvers.isNotEmpty) {
-                    final form = _formKey.currentState;
-                    if (form == null) return;
+            BlocListener<InOutBloc, InOutState>(
+              listenWhen: (previous, current) =>
+                  previous.approveId != current.approveId ||
+                  previous.approvers != current.approvers,
+              listener: (context, state) {
+                if (state.approveId != null && state.approvers.isNotEmpty) {
+                  final form = _formKey.currentState;
+                  if (form == null) return;
 
-                    final targetId = state.approveId!.approveId;
-                    final match = state.approvers.cast<ApproverItem?>().firstWhere(
-                      (a) {
+                  final targetId = state.approveId!.approveId;
+                  final match = state.approvers
+                      .cast<ApproverItem?>()
+                      .firstWhere((a) {
                         if (a == null || a.isDeleted == true) return false;
                         return _approvedTpPayloadValue(a) == targetId;
-                      },
-                      orElse: () => null,
-                    );
+                      }, orElse: () => null);
 
-                    if (match != null) {
-                      final tpValue = _approvedTpPayloadValue(match);
-                      final line =
-                          '${match.code ?? ''} - ${match.fullName ?? ''}'.trim();
-                      form.fields['regwork_inout_add_approver_tp']?.didChange(
-                        tpValue.toString(),
-                      );
-                      form.fields['regwork_inout_add_approver_text']?.didChange(line);
-                    }
+                  if (match != null) {
+                    final tpValue = _approvedTpPayloadValue(match);
+                    final line = '${match.code ?? ''} - ${match.fullName ?? ''}'
+                        .trim();
+                    form.fields['regwork_inout_add_approver_tp']?.didChange(
+                      tpValue.toString(),
+                    );
+                    form.fields['regwork_inout_add_approver_text']?.didChange(
+                      line,
+                    );
                   }
-                },
-              ),
+                }
+              },
+            ),
+            // Khi bloc emit suggestedType/From/To (sau initAdd), set vào form.
+            // Listen trên sự thay đổi của các field này thay vì status, để
+            // chỉ trigger đúng 1 lần khi initAdd hoàn tất.
+            BlocListener<InOutBloc, InOutState>(
+              listenWhen: (previous, current) =>
+                  previous.suggestedType != current.suggestedType &&
+                  current.suggestedType != null,
+              listener: (context, state) {
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  if (!mounted) return;
+                  _applySuggestedFromState();
+                });
+              },
+            ),
           ],
           child: BaseScaffold(
             appBar: AppBarCommon(title: const Text('Tạo đơn đi muộn - về sớm')),
@@ -262,15 +286,16 @@ class _InOutAddScreenPageState
                                           child: FormInputField(
                                             readOnly: true,
                                             nameForm:
-                                            'regwork_inout_add_approver_text',
+                                                'regwork_inout_add_approver_text',
                                             nameTextField:
-                                            'regwork_inout_add_approver_text_field',
+                                                'regwork_inout_add_approver_text_field',
                                             label: 'Người duyệt',
                                             icon: Icons
                                                 .supervisor_account_outlined,
                                             isRequired: true,
                                             validator: (v) {
-                                              if (v == null || v.trim().isEmpty) {
+                                              if (v == null ||
+                                                  v.trim().isEmpty) {
                                                 return 'Vui lòng chọn người duyệt';
                                               }
                                               return null;
@@ -300,8 +325,9 @@ class _InOutAddScreenPageState
                                         children: [
                                           Expanded(
                                             child: FormDateTimePicker(
+                                              key: _fromPickerKey,
                                               nameForm:
-                                              'regwork_inout_add_from',
+                                                  'regwork_inout_add_from',
                                               nameTimePicker: 'inout_add_from',
                                               label: 'Từ',
                                               icon: Icons.schedule_outlined,
@@ -312,6 +338,7 @@ class _InOutAddScreenPageState
                                           const SizedBox(width: 12),
                                           Expanded(
                                             child: FormDateTimePicker(
+                                              key: _toPickerKey,
                                               nameForm: 'regwork_inout_add_to',
                                               nameTimePicker: 'inout_add_to',
                                               label: 'Đến',
@@ -331,6 +358,7 @@ class _InOutAddScreenPageState
                                         label: 'Loại',
                                         icon: Icons.swap_vert_outlined,
                                         options: _inOutTypes,
+                                        columns: 2,
                                         onChanged: (value) {
                                           _autoSetTimeByType(value);
                                         },
@@ -341,10 +369,11 @@ class _InOutAddScreenPageState
                                       FormInputField(
                                         nameForm: 'regwork',
                                         nameTextField:
-                                        'regwork_inout_add_reason',
+                                            'regwork_inout_add_reason',
                                         label: 'Lý do',
                                         icon: Icons.note_alt_outlined,
-                                        textInputAction: TextInputAction.newline,
+                                        textInputAction:
+                                            TextInputAction.newline,
                                         autoExpand: true,
                                         isRequired: true,
                                         validator: (v) {
@@ -354,7 +383,7 @@ class _InOutAddScreenPageState
                                           return null;
                                         },
                                         autovalidateMode:
-                                        AutovalidateMode.onUserInteraction,
+                                            AutovalidateMode.onUserInteraction,
                                       ),
                                     ],
                                   ),
