@@ -328,6 +328,8 @@ class _WeekPlanAddScreenState
             nameTextField: 'task_name_field',
             label: 'Tên công việc',
             icon: Icons.assignment_outlined,
+            keyboardType: TextInputType.multiline,
+            textInputAction: TextInputAction.newline,
             isRequired: true,
             autoExpand: true,
             maxLength: 150,
@@ -677,6 +679,7 @@ class _WeekPlanAddScreenState
                   icon: Icons.description_outlined,
                   autoExpand: true,
                   keyboardType: TextInputType.multiline,
+                  textInputAction: TextInputAction.newline,
                   onChanged: (value) {
                     if (value != null) {
                       bloc.add(
@@ -694,6 +697,7 @@ class _WeekPlanAddScreenState
                   nameTextField: 'expected_result_field',
                   label: 'Kết quả công việc',
                   keyboardType: TextInputType.multiline,
+                  textInputAction: TextInputAction.newline,
                   icon: Icons.check_circle_outline,
                   autoExpand: true,
                   onChanged: (value) {
@@ -750,7 +754,6 @@ class _WeekPlanAddScreenState
             selected: state.headerStatus ?? 0,
             onChanged: (v) => _onStatusChanged(context, state, v),
           ),
-
         ],
       ),
     );
@@ -1046,6 +1049,9 @@ class _WeekPlanAddScreenState
             nameTextField: 'checklist_content_field',
             label: 'Nội dung',
             icon: Icons.check_box_outlined,
+            keyboardType: TextInputType.multiline,
+            textInputAction: TextInputAction.newline,
+            autoExpand: true,
             isRequired: true,
             validator: FormBuilderValidators.required(
               errorText: 'Vui lòng nhập nội dung',

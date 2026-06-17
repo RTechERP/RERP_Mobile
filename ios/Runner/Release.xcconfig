@@ -3,5 +3,5 @@
 FLUTTER_TARGET=lib/main_production.dart
 APP_ENV=production
 
-PRODUCT_BUNDLE_IDENTIFIER=vn.rtc.erp
+PRODUCT_BUNDLE_IDENTIFIER=com.erp.rtc
 PRODUCT_NAME=RTC ERP

@@ -262,6 +262,9 @@ class _WeekPlanDetailScreenState
             nameTextField: 'task_name_field',
             label: 'Tên công việc',
             icon: Icons.assignment_outlined,
+            keyboardType: TextInputType.multiline,
+            textInputAction: TextInputAction.newline,
+            autoExpand: true,
             isRequired: true,
             initialValue: state.taskName,
             validator: FormBuilderValidators.required(
@@ -545,8 +548,9 @@ class _WeekPlanDetailScreenState
                   nameTextField: 'description_field',
                   label: 'Mô tả chi tiết',
                   icon: Icons.description_outlined,
-                  autoExpand: true,
                   keyboardType: TextInputType.multiline,
+                  textInputAction: TextInputAction.newline,
+                  autoExpand: true,
                   initialValue: state.contentDescription,
                   onChanged: (value) {
                     if (value != null) {
@@ -560,6 +564,7 @@ class _WeekPlanDetailScreenState
                   nameTextField: 'expected_result_field',
                   label: 'Kết quả công việc',
                   keyboardType: TextInputType.multiline,
+                  textInputAction: TextInputAction.newline,
                   icon: Icons.check_circle_outline,
                   autoExpand: true,
                   initialValue: state.contentResult,
@@ -1114,6 +1119,9 @@ class _WeekPlanDetailScreenState
             nameForm: 'checklist_content',
             nameTextField: 'checklist_content_field',
             label: 'Nội dung',
+            keyboardType: TextInputType.multiline,
+            textInputAction: TextInputAction.newline,
+            autoExpand: true,
             icon: Icons.check_box_outlined,
             isRequired: true,
             validator: FormBuilderValidators.required(

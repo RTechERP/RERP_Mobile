@@ -278,6 +278,8 @@ class _WeekPlanSubTaskBottomSheetState extends State<WeekPlanSubTaskBottomSheet>
                       nameTextField: 'subtask_content_field',
                       label: 'Nội dung công việc',
                       icon: Icons.assignment_outlined,
+                      keyboardType: TextInputType.multiline,
+                      textInputAction: TextInputAction.newline,
                       controller: _contentController,
                       isRequired: true,
                       validator: FormBuilderValidators.required(
