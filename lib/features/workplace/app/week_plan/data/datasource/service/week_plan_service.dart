@@ -20,6 +20,7 @@ class WeekPlanService extends DioBaseApiService {
     required DateTime dateStart,
     required DateTime dateEnd,
     required int status,
+    required int isApprove,
     required int viewNumber,
   }) async {
     return get<BaseData<List<WeekPlanTaskItem>>>(
@@ -30,6 +31,7 @@ class WeekPlanService extends DioBaseApiService {
         'dateEnd': DateTime(dateEnd.year, dateEnd.month, dateEnd.day, 23, 59, 59)
             .toIso8601String(),
         'status': status,
+        'isApprove': isApprove,
         'viewNumber': viewNumber,
       },
       parser: (json) => BaseData<List<WeekPlanTaskItem>>.fromJson(

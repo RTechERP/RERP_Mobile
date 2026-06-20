@@ -23,6 +23,7 @@ class WeekPlanRepoImpl implements WeekPlanRepo {
     required DateTime dateStart,
     required DateTime dateEnd,
     required int status,
+    required int isApprove,
     required int viewNumber,
   }) async {
     try {
@@ -30,6 +31,7 @@ class WeekPlanRepoImpl implements WeekPlanRepo {
         dateStart: dateStart,
         dateEnd: dateEnd,
         status: status,
+        isApprove: isApprove,
         viewNumber: viewNumber,
       );
 

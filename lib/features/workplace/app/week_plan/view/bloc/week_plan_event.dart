@@ -8,6 +8,10 @@ class WeekPlanEvent with _$WeekPlanEvent {
   //---(Screen)---//
   const factory WeekPlanEvent.initScreen() = _InitScreen;
 
+  /// Khởi tạo dữ liệu cho màn Dashboard. Gọi API getTask với viewNumber = 1
+  /// (Công việc của tôi) để thống kê theo trạng thái & loại công việc.
+  const factory WeekPlanEvent.initDashboard() = _InitDashboard;
+
   const factory WeekPlanEvent.initScreenWithView(int viewNumber) = _InitScreenWithView;
 
   const factory WeekPlanEvent.changeView(int viewNumber) = _ChangeView;

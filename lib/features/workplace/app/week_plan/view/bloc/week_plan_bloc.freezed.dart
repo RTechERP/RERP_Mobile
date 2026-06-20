@@ -20,6 +20,7 @@ mixin _$WeekPlanEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -120,6 +121,7 @@ mixin _$WeekPlanEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -212,6 +214,7 @@ mixin _$WeekPlanEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -304,6 +307,7 @@ mixin _$WeekPlanEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -393,6 +397,7 @@ mixin _$WeekPlanEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -475,6 +480,7 @@ mixin _$WeekPlanEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -610,6 +616,7 @@ class _$InitMenuImpl implements _InitMenu {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -713,6 +720,7 @@ class _$InitMenuImpl implements _InitMenu {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -808,6 +816,7 @@ class _$InitMenuImpl implements _InitMenu {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -906,6 +915,7 @@ class _$InitMenuImpl implements _InitMenu {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -998,6 +1008,7 @@ class _$InitMenuImpl implements _InitMenu {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -1083,6 +1094,7 @@ class _$InitMenuImpl implements _InitMenu {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -1208,6 +1220,7 @@ class _$InitScreenImpl implements _InitScreen {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -1311,6 +1324,7 @@ class _$InitScreenImpl implements _InitScreen {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -1406,6 +1420,7 @@ class _$InitScreenImpl implements _InitScreen {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -1504,6 +1519,7 @@ class _$InitScreenImpl implements _InitScreen {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -1596,6 +1612,7 @@ class _$InitScreenImpl implements _InitScreen {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -1681,6 +1698,7 @@ class _$InitScreenImpl implements _InitScreen {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -1767,6 +1785,610 @@ abstract class _InitScreen implements WeekPlanEvent {
 }
 
 /// @nodoc
+abstract class _$$InitDashboardImplCopyWith<$Res> {
+  factory _$$InitDashboardImplCopyWith(
+          _$InitDashboardImpl value, $Res Function(_$InitDashboardImpl) then) =
+      __$$InitDashboardImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$InitDashboardImplCopyWithImpl<$Res>
+    extends _$WeekPlanEventCopyWithImpl<$Res, _$InitDashboardImpl>
+    implements _$$InitDashboardImplCopyWith<$Res> {
+  __$$InitDashboardImplCopyWithImpl(
+      _$InitDashboardImpl _value, $Res Function(_$InitDashboardImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$InitDashboardImpl implements _InitDashboard {
+  const _$InitDashboardImpl();
+
+  @override
+  String toString() {
+    return 'WeekPlanEvent.initDashboard()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$InitDashboardImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function() initDashboard,
+    required TResult Function(int viewNumber) initScreenWithView,
+    required TResult Function(int viewNumber) changeView,
+    required TResult Function() refresh,
+    required TResult Function(String keyword) search,
+    required TResult Function() clearSearch,
+    required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() clearDateFilter,
+    required TResult Function(int taskId, bool isCheck) checkIn,
+    required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
+    required TResult Function(int step) changeStep,
+    required TResult Function(int projectId, String projectName)
+        updateHeaderProject,
+    required TResult Function(int parentTaskId, String parentTaskName)
+        updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
+    required TResult Function(bool isPersonal) updateHeaderPersonalTask,
+    required TResult Function(int complexity) updateHeaderComplexity,
+    required TResult Function(int priority) updateHeaderPriority,
+    required TResult Function(int statusId, String statusName)
+        updateHeaderStatus,
+    required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
+    required TResult Function(int categoryId, String categoryName)
+        updateHeaderTaskCategory,
+    required TResult Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)
+        updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
+    required TResult Function() fetchProjectTypes,
+    required TResult Function() fetchEmployees,
+    required TResult Function(int projectId, bool isPersonalProject)
+        fetchParentProjectTasks,
+    required TResult Function(String name) updateContentTaskName,
+    required TResult Function(int assigneeId, String assigneeName)
+        updateContentAssignee,
+    required TResult Function(int assignerId, String assignerName)
+        updateContentAssigner,
+    required TResult Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)
+        updateContentDates,
+    required TResult Function(String description) updateContentDescription,
+    required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
+    required TResult Function(int value, String? otherText)
+        updateContentWorkplace,
+    required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
+    required TResult Function(EmployeeTaskItem employee) addAssignee,
+    required TResult Function(int employeeId) removeAssignee,
+    required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
+    required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
+    required TResult Function(int employeeId) removeRelatedPerson,
+    required TResult Function(WeekPlanSubTaskItem subTask) addSubTaskWithData,
+    required TResult Function(int index, WeekPlanSubTaskItem subTask)
+        updateSubTask,
+    required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
+    required TResult Function(String item) addChecklistItem,
+    required TResult Function(int index, String item) updateChecklistItem,
+    required TResult Function(int index) toggleChecklistDone,
+    required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
+    required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
+    required TResult Function(int index) removeAttachment,
+    required TResult Function(WeekPlanLinkItem link) addLink,
+    required TResult Function(int index) removeLink,
+    required TResult Function() addIncident,
+    required TResult Function(int index, WeekPlanIncidentItem incident)
+        updateIncident,
+    required TResult Function(int index) removeIncident,
+    required TResult Function(int index) toggleIncidentExpand,
+    required TResult Function(String? reason) updatePauseReason,
+    required TResult Function(bool locked) setDeadlineLocked,
+    required TResult Function() createTask,
+    required TResult Function() editTask,
+    required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
+    required TResult Function(List<String> filePaths, String subPath)
+        uploadFiles,
+    required TResult Function() clearUploadedFiles,
+  }) {
+    return initDashboard();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
+    TResult? Function(int viewNumber)? initScreenWithView,
+    TResult? Function(int viewNumber)? changeView,
+    TResult? Function()? refresh,
+    TResult? Function(String keyword)? search,
+    TResult? Function()? clearSearch,
+    TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? clearDateFilter,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
+    TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
+    TResult? Function(int step)? changeStep,
+    TResult? Function(int projectId, String projectName)? updateHeaderProject,
+    TResult? Function(int parentTaskId, String parentTaskName)?
+        updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
+    TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
+    TResult? Function(int complexity)? updateHeaderComplexity,
+    TResult? Function(int priority)? updateHeaderPriority,
+    TResult? Function(int statusId, String statusName)? updateHeaderStatus,
+    TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
+    TResult? Function(int categoryId, String categoryName)?
+        updateHeaderTaskCategory,
+    TResult? Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)?
+        updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
+    TResult? Function()? fetchProjectTypes,
+    TResult? Function()? fetchEmployees,
+    TResult? Function(int projectId, bool isPersonalProject)?
+        fetchParentProjectTasks,
+    TResult? Function(String name)? updateContentTaskName,
+    TResult? Function(int assigneeId, String assigneeName)?
+        updateContentAssignee,
+    TResult? Function(int assignerId, String assignerName)?
+        updateContentAssigner,
+    TResult? Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)?
+        updateContentDates,
+    TResult? Function(String description)? updateContentDescription,
+    TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
+    TResult? Function(int value, String? otherText)? updateContentWorkplace,
+    TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
+    TResult? Function(EmployeeTaskItem employee)? addAssignee,
+    TResult? Function(int employeeId)? removeAssignee,
+    TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
+    TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
+    TResult? Function(int employeeId)? removeRelatedPerson,
+    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
+    TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
+    TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
+    TResult? Function(String item)? addChecklistItem,
+    TResult? Function(int index, String item)? updateChecklistItem,
+    TResult? Function(int index)? toggleChecklistDone,
+    TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
+    TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
+    TResult? Function(int index)? removeAttachment,
+    TResult? Function(WeekPlanLinkItem link)? addLink,
+    TResult? Function(int index)? removeLink,
+    TResult? Function()? addIncident,
+    TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
+    TResult? Function(int index)? removeIncident,
+    TResult? Function(int index)? toggleIncidentExpand,
+    TResult? Function(String? reason)? updatePauseReason,
+    TResult? Function(bool locked)? setDeadlineLocked,
+    TResult? Function()? createTask,
+    TResult? Function()? editTask,
+    TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
+    TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
+    TResult? Function()? clearUploadedFiles,
+  }) {
+    return initDashboard?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function()? initDashboard,
+    TResult Function(int viewNumber)? initScreenWithView,
+    TResult Function(int viewNumber)? changeView,
+    TResult Function()? refresh,
+    TResult Function(String keyword)? search,
+    TResult Function()? clearSearch,
+    TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? clearDateFilter,
+    TResult Function(int taskId, bool isCheck)? checkIn,
+    TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
+    TResult Function(int step)? changeStep,
+    TResult Function(int projectId, String projectName)? updateHeaderProject,
+    TResult Function(int parentTaskId, String parentTaskName)?
+        updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
+    TResult Function(bool isPersonal)? updateHeaderPersonalTask,
+    TResult Function(int complexity)? updateHeaderComplexity,
+    TResult Function(int priority)? updateHeaderPriority,
+    TResult Function(int statusId, String statusName)? updateHeaderStatus,
+    TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
+    TResult Function(int categoryId, String categoryName)?
+        updateHeaderTaskCategory,
+    TResult Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)?
+        updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
+    TResult Function()? fetchProjectTypes,
+    TResult Function()? fetchEmployees,
+    TResult Function(int projectId, bool isPersonalProject)?
+        fetchParentProjectTasks,
+    TResult Function(String name)? updateContentTaskName,
+    TResult Function(int assigneeId, String assigneeName)?
+        updateContentAssignee,
+    TResult Function(int assignerId, String assignerName)?
+        updateContentAssigner,
+    TResult Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)?
+        updateContentDates,
+    TResult Function(String description)? updateContentDescription,
+    TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
+    TResult Function(int value, String? otherText)? updateContentWorkplace,
+    TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
+    TResult Function(EmployeeTaskItem employee)? addAssignee,
+    TResult Function(int employeeId)? removeAssignee,
+    TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
+    TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
+    TResult Function(int employeeId)? removeRelatedPerson,
+    TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
+    TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
+    TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
+    TResult Function(String item)? addChecklistItem,
+    TResult Function(int index, String item)? updateChecklistItem,
+    TResult Function(int index)? toggleChecklistDone,
+    TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
+    TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
+    TResult Function(int index)? removeAttachment,
+    TResult Function(WeekPlanLinkItem link)? addLink,
+    TResult Function(int index)? removeLink,
+    TResult Function()? addIncident,
+    TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
+    TResult Function(int index)? removeIncident,
+    TResult Function(int index)? toggleIncidentExpand,
+    TResult Function(String? reason)? updatePauseReason,
+    TResult Function(bool locked)? setDeadlineLocked,
+    TResult Function()? createTask,
+    TResult Function()? editTask,
+    TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
+    TResult Function(List<String> filePaths, String subPath)? uploadFiles,
+    TResult Function()? clearUploadedFiles,
+    required TResult orElse(),
+  }) {
+    if (initDashboard != null) {
+      return initDashboard();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
+    required TResult Function(_ChangeView value) changeView,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ClearSearch value) clearSearch,
+    required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ClearDateFilter value) clearDateFilter,
+    required TResult Function(_CheckIn value) checkIn,
+    required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
+    required TResult Function(_ChangeStep value) changeStep,
+    required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
+    required TResult Function(_UpdateHeaderParentTask value)
+        updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
+    required TResult Function(_UpdateHeaderPersonalTask value)
+        updateHeaderPersonalTask,
+    required TResult Function(_UpdateHeaderComplexity value)
+        updateHeaderComplexity,
+    required TResult Function(_UpdateHeaderPriority value) updateHeaderPriority,
+    required TResult Function(_UpdateHeaderStatus value) updateHeaderStatus,
+    required TResult Function(_UpdateHeaderTimeEstimate value)
+        updateHeaderTimeEstimate,
+    required TResult Function(_UpdateHeaderTaskCategory value)
+        updateHeaderTaskCategory,
+    required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
+        updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
+    required TResult Function(_FetchProjectTypes value) fetchProjectTypes,
+    required TResult Function(_FetchEmployees value) fetchEmployees,
+    required TResult Function(_FetchParentProjectTasks value)
+        fetchParentProjectTasks,
+    required TResult Function(_UpdateContentTaskName value)
+        updateContentTaskName,
+    required TResult Function(_UpdateContentAssignee value)
+        updateContentAssignee,
+    required TResult Function(_UpdateContentAssigner value)
+        updateContentAssigner,
+    required TResult Function(_UpdateContentDates value) updateContentDates,
+    required TResult Function(_UpdateContentDescription value)
+        updateContentDescription,
+    required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
+    required TResult Function(_UpdateContentWorkplace value)
+        updateContentWorkplace,
+    required TResult Function(_SetAssignees value) setAssignees,
+    required TResult Function(_AddAssignee value) addAssignee,
+    required TResult Function(_RemoveAssignee value) removeAssignee,
+    required TResult Function(_SetRelatedPersons value) setRelatedPersons,
+    required TResult Function(_AddRelatedPerson value) addRelatedPerson,
+    required TResult Function(_RemoveRelatedPerson value) removeRelatedPerson,
+    required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
+    required TResult Function(_UpdateSubTask value) updateSubTask,
+    required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
+    required TResult Function(_AddChecklistItem value) addChecklistItem,
+    required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
+    required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
+    required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
+    required TResult Function(_AddAttachment value) addAttachment,
+    required TResult Function(_RemoveAttachment value) removeAttachment,
+    required TResult Function(_AddLink value) addLink,
+    required TResult Function(_RemoveLink value) removeLink,
+    required TResult Function(_AddIncident value) addIncident,
+    required TResult Function(_UpdateIncident value) updateIncident,
+    required TResult Function(_RemoveIncident value) removeIncident,
+    required TResult Function(_ToggleIncidentExpand value) toggleIncidentExpand,
+    required TResult Function(_UpdatePauseReason value) updatePauseReason,
+    required TResult Function(_SetDeadlineLocked value) setDeadlineLocked,
+    required TResult Function(_CreateTask value) createTask,
+    required TResult Function(_EditTask value) editTask,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
+    required TResult Function(_UploadFiles value) uploadFiles,
+    required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
+  }) {
+    return initDashboard(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
+    TResult? Function(_ChangeView value)? changeView,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ClearSearch value)? clearSearch,
+    TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ClearDateFilter value)? clearDateFilter,
+    TResult? Function(_CheckIn value)? checkIn,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
+    TResult? Function(_ChangeStep value)? changeStep,
+    TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
+    TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
+    TResult? Function(_UpdateHeaderPersonalTask value)?
+        updateHeaderPersonalTask,
+    TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
+    TResult? Function(_UpdateHeaderPriority value)? updateHeaderPriority,
+    TResult? Function(_UpdateHeaderStatus value)? updateHeaderStatus,
+    TResult? Function(_UpdateHeaderTimeEstimate value)?
+        updateHeaderTimeEstimate,
+    TResult? Function(_UpdateHeaderTaskCategory value)?
+        updateHeaderTaskCategory,
+    TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
+        updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
+    TResult? Function(_FetchProjectTypes value)? fetchProjectTypes,
+    TResult? Function(_FetchEmployees value)? fetchEmployees,
+    TResult? Function(_FetchParentProjectTasks value)? fetchParentProjectTasks,
+    TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
+    TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
+    TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
+    TResult? Function(_UpdateContentDates value)? updateContentDates,
+    TResult? Function(_UpdateContentDescription value)?
+        updateContentDescription,
+    TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
+    TResult? Function(_UpdateContentWorkplace value)? updateContentWorkplace,
+    TResult? Function(_SetAssignees value)? setAssignees,
+    TResult? Function(_AddAssignee value)? addAssignee,
+    TResult? Function(_RemoveAssignee value)? removeAssignee,
+    TResult? Function(_SetRelatedPersons value)? setRelatedPersons,
+    TResult? Function(_AddRelatedPerson value)? addRelatedPerson,
+    TResult? Function(_RemoveRelatedPerson value)? removeRelatedPerson,
+    TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
+    TResult? Function(_UpdateSubTask value)? updateSubTask,
+    TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
+    TResult? Function(_AddChecklistItem value)? addChecklistItem,
+    TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
+    TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
+    TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
+    TResult? Function(_AddAttachment value)? addAttachment,
+    TResult? Function(_RemoveAttachment value)? removeAttachment,
+    TResult? Function(_AddLink value)? addLink,
+    TResult? Function(_RemoveLink value)? removeLink,
+    TResult? Function(_AddIncident value)? addIncident,
+    TResult? Function(_UpdateIncident value)? updateIncident,
+    TResult? Function(_RemoveIncident value)? removeIncident,
+    TResult? Function(_ToggleIncidentExpand value)? toggleIncidentExpand,
+    TResult? Function(_UpdatePauseReason value)? updatePauseReason,
+    TResult? Function(_SetDeadlineLocked value)? setDeadlineLocked,
+    TResult? Function(_CreateTask value)? createTask,
+    TResult? Function(_EditTask value)? editTask,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
+    TResult? Function(_UploadFiles value)? uploadFiles,
+    TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
+  }) {
+    return initDashboard?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
+    TResult Function(_ChangeView value)? changeView,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_Search value)? search,
+    TResult Function(_ClearSearch value)? clearSearch,
+    TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ClearDateFilter value)? clearDateFilter,
+    TResult Function(_CheckIn value)? checkIn,
+    TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
+    TResult Function(_ChangeStep value)? changeStep,
+    TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
+    TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
+    TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
+    TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
+    TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
+    TResult Function(_UpdateHeaderStatus value)? updateHeaderStatus,
+    TResult Function(_UpdateHeaderTimeEstimate value)? updateHeaderTimeEstimate,
+    TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
+    TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
+        updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
+    TResult Function(_FetchProjectTypes value)? fetchProjectTypes,
+    TResult Function(_FetchEmployees value)? fetchEmployees,
+    TResult Function(_FetchParentProjectTasks value)? fetchParentProjectTasks,
+    TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
+    TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
+    TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
+    TResult Function(_UpdateContentDates value)? updateContentDates,
+    TResult Function(_UpdateContentDescription value)? updateContentDescription,
+    TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
+    TResult Function(_UpdateContentWorkplace value)? updateContentWorkplace,
+    TResult Function(_SetAssignees value)? setAssignees,
+    TResult Function(_AddAssignee value)? addAssignee,
+    TResult Function(_RemoveAssignee value)? removeAssignee,
+    TResult Function(_SetRelatedPersons value)? setRelatedPersons,
+    TResult Function(_AddRelatedPerson value)? addRelatedPerson,
+    TResult Function(_RemoveRelatedPerson value)? removeRelatedPerson,
+    TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
+    TResult Function(_UpdateSubTask value)? updateSubTask,
+    TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
+    TResult Function(_AddChecklistItem value)? addChecklistItem,
+    TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
+    TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
+    TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
+    TResult Function(_AddAttachment value)? addAttachment,
+    TResult Function(_RemoveAttachment value)? removeAttachment,
+    TResult Function(_AddLink value)? addLink,
+    TResult Function(_RemoveLink value)? removeLink,
+    TResult Function(_AddIncident value)? addIncident,
+    TResult Function(_UpdateIncident value)? updateIncident,
+    TResult Function(_RemoveIncident value)? removeIncident,
+    TResult Function(_ToggleIncidentExpand value)? toggleIncidentExpand,
+    TResult Function(_UpdatePauseReason value)? updatePauseReason,
+    TResult Function(_SetDeadlineLocked value)? setDeadlineLocked,
+    TResult Function(_CreateTask value)? createTask,
+    TResult Function(_EditTask value)? editTask,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
+    TResult Function(_UploadFiles value)? uploadFiles,
+    TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
+    required TResult orElse(),
+  }) {
+    if (initDashboard != null) {
+      return initDashboard(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InitDashboard implements WeekPlanEvent {
+  const factory _InitDashboard() = _$InitDashboardImpl;
+}
+
+/// @nodoc
 abstract class _$$InitScreenWithViewImplCopyWith<$Res> {
   factory _$$InitScreenWithViewImplCopyWith(_$InitScreenWithViewImpl value,
           $Res Function(_$InitScreenWithViewImpl) then) =
@@ -1834,6 +2456,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -1937,6 +2560,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -2032,6 +2656,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -2130,6 +2755,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -2222,6 +2848,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -2307,6 +2934,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -2465,6 +3093,7 @@ class _$ChangeViewImpl implements _ChangeView {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -2568,6 +3197,7 @@ class _$ChangeViewImpl implements _ChangeView {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -2663,6 +3293,7 @@ class _$ChangeViewImpl implements _ChangeView {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -2761,6 +3392,7 @@ class _$ChangeViewImpl implements _ChangeView {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -2853,6 +3485,7 @@ class _$ChangeViewImpl implements _ChangeView {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -2938,6 +3571,7 @@ class _$ChangeViewImpl implements _ChangeView {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -3068,6 +3702,7 @@ class _$RefreshImpl implements _Refresh {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -3171,6 +3806,7 @@ class _$RefreshImpl implements _Refresh {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -3266,6 +3902,7 @@ class _$RefreshImpl implements _Refresh {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -3364,6 +4001,7 @@ class _$RefreshImpl implements _Refresh {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -3456,6 +4094,7 @@ class _$RefreshImpl implements _Refresh {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -3541,6 +4180,7 @@ class _$RefreshImpl implements _Refresh {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -3692,6 +4332,7 @@ class _$SearchImpl implements _Search {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -3795,6 +4436,7 @@ class _$SearchImpl implements _Search {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -3890,6 +4532,7 @@ class _$SearchImpl implements _Search {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -3988,6 +4631,7 @@ class _$SearchImpl implements _Search {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -4080,6 +4724,7 @@ class _$SearchImpl implements _Search {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -4165,6 +4810,7 @@ class _$SearchImpl implements _Search {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -4295,6 +4941,7 @@ class _$ClearSearchImpl implements _ClearSearch {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -4398,6 +5045,7 @@ class _$ClearSearchImpl implements _ClearSearch {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -4493,6 +5141,7 @@ class _$ClearSearchImpl implements _ClearSearch {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -4591,6 +5240,7 @@ class _$ClearSearchImpl implements _ClearSearch {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -4683,6 +5333,7 @@ class _$ClearSearchImpl implements _ClearSearch {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -4768,6 +5419,7 @@ class _$ClearSearchImpl implements _ClearSearch {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -4927,6 +5579,7 @@ class _$FilterByStatusesImpl implements _FilterByStatuses {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -5030,6 +5683,7 @@ class _$FilterByStatusesImpl implements _FilterByStatuses {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -5125,6 +5779,7 @@ class _$FilterByStatusesImpl implements _FilterByStatuses {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -5223,6 +5878,7 @@ class _$FilterByStatusesImpl implements _FilterByStatuses {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -5315,6 +5971,7 @@ class _$FilterByStatusesImpl implements _FilterByStatuses {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -5400,6 +6057,7 @@ class _$FilterByStatusesImpl implements _FilterByStatuses {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -5567,6 +6225,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -5670,6 +6329,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -5765,6 +6425,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -5863,6 +6524,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -5955,6 +6617,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -6040,6 +6703,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -6173,6 +6837,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -6276,6 +6941,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -6371,6 +7037,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -6469,6 +7136,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -6561,6 +7229,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -6646,6 +7315,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -6805,6 +7475,7 @@ class _$CheckInImpl implements _CheckIn {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -6908,6 +7579,7 @@ class _$CheckInImpl implements _CheckIn {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -7003,6 +7675,7 @@ class _$CheckInImpl implements _CheckIn {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -7101,6 +7774,7 @@ class _$CheckInImpl implements _CheckIn {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -7193,6 +7867,7 @@ class _$CheckInImpl implements _CheckIn {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -7278,6 +7953,7 @@ class _$CheckInImpl implements _CheckIn {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -7409,6 +8085,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -7512,6 +8189,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -7607,6 +8285,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -7705,6 +8384,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -7797,6 +8477,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -7882,6 +8563,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -8034,6 +8716,7 @@ class _$InitDetailScreenImpl implements _InitDetailScreen {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -8137,6 +8820,7 @@ class _$InitDetailScreenImpl implements _InitDetailScreen {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -8232,6 +8916,7 @@ class _$InitDetailScreenImpl implements _InitDetailScreen {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -8330,6 +9015,7 @@ class _$InitDetailScreenImpl implements _InitDetailScreen {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -8422,6 +9108,7 @@ class _$InitDetailScreenImpl implements _InitDetailScreen {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -8507,6 +9194,7 @@ class _$InitDetailScreenImpl implements _InitDetailScreen {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -8664,6 +9352,7 @@ class _$ChangeStepImpl implements _ChangeStep {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -8767,6 +9456,7 @@ class _$ChangeStepImpl implements _ChangeStep {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -8862,6 +9552,7 @@ class _$ChangeStepImpl implements _ChangeStep {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -8960,6 +9651,7 @@ class _$ChangeStepImpl implements _ChangeStep {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -9052,6 +9744,7 @@ class _$ChangeStepImpl implements _ChangeStep {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -9137,6 +9830,7 @@ class _$ChangeStepImpl implements _ChangeStep {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -9305,6 +9999,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -9408,6 +10103,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -9503,6 +10199,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -9601,6 +10298,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -9693,6 +10391,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -9778,6 +10477,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -9951,6 +10651,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -10054,6 +10755,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -10149,6 +10851,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -10247,6 +10950,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -10339,6 +11043,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -10424,6 +11129,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -10596,6 +11302,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -10699,6 +11406,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -10794,6 +11502,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -10892,6 +11601,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -10984,6 +11694,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -11069,6 +11780,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -11232,6 +11944,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -11335,6 +12048,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -11430,6 +12144,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -11528,6 +12243,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -11620,6 +12336,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -11705,6 +12422,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -11866,6 +12584,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -11969,6 +12688,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -12064,6 +12784,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -12162,6 +12883,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -12254,6 +12976,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -12339,6 +13062,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -12499,6 +13223,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -12602,6 +13327,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -12697,6 +13423,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -12795,6 +13522,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -12887,6 +13615,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -12972,6 +13701,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -13141,6 +13871,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -13244,6 +13975,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -13339,6 +14071,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -13437,6 +14170,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -13529,6 +14263,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -13614,6 +14349,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -13777,6 +14513,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -13880,6 +14617,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -13975,6 +14713,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -14073,6 +14812,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -14165,6 +14905,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -14250,6 +14991,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -14421,6 +15163,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -14524,6 +15267,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -14619,6 +15363,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -14717,6 +15462,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -14809,6 +15555,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -14894,6 +15641,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -15093,6 +15841,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -15197,6 +15946,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -15293,6 +16043,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -15392,6 +16143,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -15484,6 +16236,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -15569,6 +16322,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -15707,6 +16461,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -15810,6 +16565,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -15905,6 +16661,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -16003,6 +16760,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -16095,6 +16853,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -16180,6 +16939,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -16305,6 +17065,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -16408,6 +17169,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -16503,6 +17265,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -16601,6 +17364,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -16693,6 +17457,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -16778,6 +17543,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -16903,6 +17669,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -17006,6 +17773,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -17101,6 +17869,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -17199,6 +17968,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -17291,6 +18061,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -17376,6 +18147,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -17501,6 +18273,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -17604,6 +18377,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -17699,6 +18473,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -17797,6 +18572,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -17889,6 +18665,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -17974,6 +18751,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -18139,6 +18917,7 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -18242,6 +19021,7 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -18337,6 +19117,7 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -18435,6 +19216,7 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -18527,6 +19309,7 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -18612,6 +19395,7 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -18773,6 +19557,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -18876,6 +19661,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -18971,6 +19757,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -19069,6 +19856,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -19161,6 +19949,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -19246,6 +20035,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -19416,6 +20206,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -19519,6 +20310,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -19614,6 +20406,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -19712,6 +20505,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -19804,6 +20598,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -19889,6 +20684,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -20061,6 +20857,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -20164,6 +20961,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -20259,6 +21057,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -20357,6 +21156,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -20449,6 +21249,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -20534,6 +21335,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -20741,6 +21543,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -20845,6 +21648,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -20941,6 +21745,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -21040,6 +21845,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -21132,6 +21938,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -21217,6 +22024,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -21386,6 +22194,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -21489,6 +22298,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -21584,6 +22394,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -21682,6 +22493,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -21774,6 +22586,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -21859,6 +22672,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -22017,6 +22831,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -22120,6 +22935,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -22215,6 +23031,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -22313,6 +23130,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -22405,6 +23223,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -22490,6 +23309,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -22652,6 +23472,7 @@ class _$UpdateContentReasonSolutionImpl
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -22755,6 +23576,7 @@ class _$UpdateContentReasonSolutionImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -22850,6 +23672,7 @@ class _$UpdateContentReasonSolutionImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -22948,6 +23771,7 @@ class _$UpdateContentReasonSolutionImpl
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -23040,6 +23864,7 @@ class _$UpdateContentReasonSolutionImpl
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -23125,6 +23950,7 @@ class _$UpdateContentReasonSolutionImpl
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -23294,6 +24120,7 @@ class _$UpdateContentWorkplaceImpl implements _UpdateContentWorkplace {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -23397,6 +24224,7 @@ class _$UpdateContentWorkplaceImpl implements _UpdateContentWorkplace {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -23492,6 +24320,7 @@ class _$UpdateContentWorkplaceImpl implements _UpdateContentWorkplace {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -23590,6 +24419,7 @@ class _$UpdateContentWorkplaceImpl implements _UpdateContentWorkplace {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -23682,6 +24512,7 @@ class _$UpdateContentWorkplaceImpl implements _UpdateContentWorkplace {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -23767,6 +24598,7 @@ class _$UpdateContentWorkplaceImpl implements _UpdateContentWorkplace {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -23934,6 +24766,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -24037,6 +24870,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -24132,6 +24966,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -24230,6 +25065,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -24322,6 +25158,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -24407,6 +25244,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -24575,6 +25413,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -24678,6 +25517,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -24773,6 +25613,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -24871,6 +25712,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -24963,6 +25805,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -25048,6 +25891,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -25207,6 +26051,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -25310,6 +26155,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -25405,6 +26251,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -25503,6 +26350,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -25595,6 +26443,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -25680,6 +26529,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -25844,6 +26694,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -25947,6 +26798,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -26042,6 +26894,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -26140,6 +26993,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -26232,6 +27086,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -26317,6 +27172,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -26486,6 +27342,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -26589,6 +27446,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -26684,6 +27542,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -26782,6 +27641,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -26874,6 +27734,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -26959,6 +27820,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -27118,6 +27980,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -27221,6 +28084,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -27316,6 +28180,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -27414,6 +28279,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -27506,6 +28372,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -27591,6 +28458,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -27759,6 +28627,7 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -27862,6 +28731,7 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -27957,6 +28827,7 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -28055,6 +28926,7 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -28147,6 +29019,7 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -28232,6 +29105,7 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -28407,6 +29281,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -28510,6 +29385,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -28605,6 +29481,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -28703,6 +29580,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -28795,6 +29673,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -28880,6 +29759,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -29038,6 +29918,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -29141,6 +30022,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -29236,6 +30118,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -29334,6 +30217,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -29426,6 +30310,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -29511,6 +30396,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -29668,6 +30554,7 @@ class _$FetchChecklistsImpl implements _FetchChecklists {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -29771,6 +30658,7 @@ class _$FetchChecklistsImpl implements _FetchChecklists {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -29866,6 +30754,7 @@ class _$FetchChecklistsImpl implements _FetchChecklists {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -29964,6 +30853,7 @@ class _$FetchChecklistsImpl implements _FetchChecklists {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -30056,6 +30946,7 @@ class _$FetchChecklistsImpl implements _FetchChecklists {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -30141,6 +31032,7 @@ class _$FetchChecklistsImpl implements _FetchChecklists {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -30334,6 +31226,7 @@ class _$UpdateDetailChecklistItemImpl implements _UpdateDetailChecklistItem {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -30438,6 +31331,7 @@ class _$UpdateDetailChecklistItemImpl implements _UpdateDetailChecklistItem {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -30534,6 +31428,7 @@ class _$UpdateDetailChecklistItemImpl implements _UpdateDetailChecklistItem {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -30633,6 +31528,7 @@ class _$UpdateDetailChecklistItemImpl implements _UpdateDetailChecklistItem {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -30725,6 +31621,7 @@ class _$UpdateDetailChecklistItemImpl implements _UpdateDetailChecklistItem {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -30810,6 +31707,7 @@ class _$UpdateDetailChecklistItemImpl implements _UpdateDetailChecklistItem {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -31010,6 +31908,7 @@ class _$UpdateChecklistItemOnServerImpl
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -31114,6 +32013,7 @@ class _$UpdateChecklistItemOnServerImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -31210,6 +32110,7 @@ class _$UpdateChecklistItemOnServerImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -31309,6 +32210,7 @@ class _$UpdateChecklistItemOnServerImpl
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -31401,6 +32303,7 @@ class _$UpdateChecklistItemOnServerImpl
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -31486,6 +32389,7 @@ class _$UpdateChecklistItemOnServerImpl
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -31650,6 +32554,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -31753,6 +32658,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -31848,6 +32754,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -31946,6 +32853,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -32038,6 +32946,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -32123,6 +33032,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -32288,6 +33198,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -32391,6 +33302,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -32486,6 +33398,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -32584,6 +33497,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -32676,6 +33590,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -32761,6 +33676,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -32920,6 +33836,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -33023,6 +33940,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -33118,6 +34036,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -33216,6 +34135,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -33308,6 +34228,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -33393,6 +34314,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -33551,6 +34473,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -33654,6 +34577,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -33749,6 +34673,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -33847,6 +34772,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -33939,6 +34865,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -34024,6 +34951,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -34184,6 +35112,7 @@ class _$MarkChecklistDeletedImpl implements _MarkChecklistDeleted {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -34287,6 +35216,7 @@ class _$MarkChecklistDeletedImpl implements _MarkChecklistDeleted {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -34382,6 +35312,7 @@ class _$MarkChecklistDeletedImpl implements _MarkChecklistDeleted {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -34480,6 +35411,7 @@ class _$MarkChecklistDeletedImpl implements _MarkChecklistDeleted {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -34572,6 +35504,7 @@ class _$MarkChecklistDeletedImpl implements _MarkChecklistDeleted {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -34657,6 +35590,7 @@ class _$MarkChecklistDeletedImpl implements _MarkChecklistDeleted {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -34825,6 +35759,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -34928,6 +35863,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -35023,6 +35959,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -35121,6 +36058,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -35213,6 +36151,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -35298,6 +36237,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -35456,6 +36396,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -35559,6 +36500,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -35654,6 +36596,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -35752,6 +36695,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -35844,6 +36788,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -35929,6 +36874,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -36095,6 +37041,7 @@ class _$AddLinkImpl implements _AddLink {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -36198,6 +37145,7 @@ class _$AddLinkImpl implements _AddLink {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -36293,6 +37241,7 @@ class _$AddLinkImpl implements _AddLink {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -36391,6 +37340,7 @@ class _$AddLinkImpl implements _AddLink {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -36483,6 +37433,7 @@ class _$AddLinkImpl implements _AddLink {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -36568,6 +37519,7 @@ class _$AddLinkImpl implements _AddLink {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -36724,6 +37676,7 @@ class _$RemoveLinkImpl implements _RemoveLink {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -36827,6 +37780,7 @@ class _$RemoveLinkImpl implements _RemoveLink {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -36922,6 +37876,7 @@ class _$RemoveLinkImpl implements _RemoveLink {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -37020,6 +37975,7 @@ class _$RemoveLinkImpl implements _RemoveLink {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -37112,6 +38068,7 @@ class _$RemoveLinkImpl implements _RemoveLink {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -37197,6 +38154,7 @@ class _$RemoveLinkImpl implements _RemoveLink {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -37327,6 +38285,7 @@ class _$AddIncidentImpl implements _AddIncident {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -37430,6 +38389,7 @@ class _$AddIncidentImpl implements _AddIncident {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -37525,6 +38485,7 @@ class _$AddIncidentImpl implements _AddIncident {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -37623,6 +38584,7 @@ class _$AddIncidentImpl implements _AddIncident {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -37715,6 +38677,7 @@ class _$AddIncidentImpl implements _AddIncident {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -37800,6 +38763,7 @@ class _$AddIncidentImpl implements _AddIncident {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -37971,6 +38935,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -38074,6 +39039,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -38169,6 +39135,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -38267,6 +39234,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -38359,6 +39327,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -38444,6 +39413,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -38604,6 +39574,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -38707,6 +39678,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -38802,6 +39774,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -38900,6 +39873,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -38992,6 +39966,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -39077,6 +40052,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -39235,6 +40211,7 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -39338,6 +40315,7 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -39433,6 +40411,7 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -39531,6 +40510,7 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -39623,6 +40603,7 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -39708,6 +40689,7 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -39866,6 +40848,7 @@ class _$UpdatePauseReasonImpl implements _UpdatePauseReason {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -39969,6 +40952,7 @@ class _$UpdatePauseReasonImpl implements _UpdatePauseReason {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -40064,6 +41048,7 @@ class _$UpdatePauseReasonImpl implements _UpdatePauseReason {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -40162,6 +41147,7 @@ class _$UpdatePauseReasonImpl implements _UpdatePauseReason {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -40254,6 +41240,7 @@ class _$UpdatePauseReasonImpl implements _UpdatePauseReason {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -40339,6 +41326,7 @@ class _$UpdatePauseReasonImpl implements _UpdatePauseReason {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -40497,6 +41485,7 @@ class _$SetDeadlineLockedImpl implements _SetDeadlineLocked {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -40600,6 +41589,7 @@ class _$SetDeadlineLockedImpl implements _SetDeadlineLocked {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -40695,6 +41685,7 @@ class _$SetDeadlineLockedImpl implements _SetDeadlineLocked {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -40793,6 +41784,7 @@ class _$SetDeadlineLockedImpl implements _SetDeadlineLocked {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -40885,6 +41877,7 @@ class _$SetDeadlineLockedImpl implements _SetDeadlineLocked {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -40970,6 +41963,7 @@ class _$SetDeadlineLockedImpl implements _SetDeadlineLocked {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -41100,6 +42094,7 @@ class _$CreateTaskImpl implements _CreateTask {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -41203,6 +42198,7 @@ class _$CreateTaskImpl implements _CreateTask {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -41298,6 +42294,7 @@ class _$CreateTaskImpl implements _CreateTask {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -41396,6 +42393,7 @@ class _$CreateTaskImpl implements _CreateTask {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -41488,6 +42486,7 @@ class _$CreateTaskImpl implements _CreateTask {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -41573,6 +42572,7 @@ class _$CreateTaskImpl implements _CreateTask {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -41698,6 +42698,7 @@ class _$EditTaskImpl implements _EditTask {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -41801,6 +42802,7 @@ class _$EditTaskImpl implements _EditTask {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -41896,6 +42898,7 @@ class _$EditTaskImpl implements _EditTask {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -41994,6 +42997,7 @@ class _$EditTaskImpl implements _EditTask {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -42086,6 +43090,7 @@ class _$EditTaskImpl implements _EditTask {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -42171,6 +43176,7 @@ class _$EditTaskImpl implements _EditTask {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -42296,6 +43302,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -42399,6 +43406,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -42494,6 +43502,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -42592,6 +43601,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -42684,6 +43694,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -42769,6 +43780,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -42894,6 +43906,7 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -42997,6 +44010,7 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -43092,6 +44106,7 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -43190,6 +44205,7 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -43282,6 +44298,7 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -43367,6 +44384,7 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -43536,6 +44554,7 @@ class _$UploadFilesImpl implements _UploadFiles {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -43639,6 +44658,7 @@ class _$UploadFilesImpl implements _UploadFiles {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -43734,6 +44754,7 @@ class _$UploadFilesImpl implements _UploadFiles {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -43832,6 +44853,7 @@ class _$UploadFilesImpl implements _UploadFiles {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -43924,6 +44946,7 @@ class _$UploadFilesImpl implements _UploadFiles {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -44009,6 +45032,7 @@ class _$UploadFilesImpl implements _UploadFiles {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,
@@ -44142,6 +45166,7 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
   TResult when<TResult extends Object?>({
     required TResult Function() initMenu,
     required TResult Function() initScreen,
+    required TResult Function() initDashboard,
     required TResult Function(int viewNumber) initScreenWithView,
     required TResult Function(int viewNumber) changeView,
     required TResult Function() refresh,
@@ -44245,6 +45270,7 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initMenu,
     TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
     TResult? Function(int viewNumber)? initScreenWithView,
     TResult? Function(int viewNumber)? changeView,
     TResult? Function()? refresh,
@@ -44340,6 +45366,7 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initMenu,
     TResult Function()? initScreen,
+    TResult Function()? initDashboard,
     TResult Function(int viewNumber)? initScreenWithView,
     TResult Function(int viewNumber)? changeView,
     TResult Function()? refresh,
@@ -44438,6 +45465,7 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitMenu value) initMenu,
     required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
     required TResult Function(_InitScreenWithView value) initScreenWithView,
     required TResult Function(_ChangeView value) changeView,
     required TResult Function(_Refresh value) refresh,
@@ -44530,6 +45558,7 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitMenu value)? initMenu,
     TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
     TResult? Function(_InitScreenWithView value)? initScreenWithView,
     TResult? Function(_ChangeView value)? changeView,
     TResult? Function(_Refresh value)? refresh,
@@ -44615,6 +45644,7 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitMenu value)? initMenu,
     TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
     TResult Function(_InitScreenWithView value)? initScreenWithView,
     TResult Function(_ChangeView value)? changeView,
     TResult Function(_Refresh value)? refresh,

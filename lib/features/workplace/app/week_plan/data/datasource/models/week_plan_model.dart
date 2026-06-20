@@ -80,6 +80,8 @@ class WeekPlanTaskItem with _$WeekPlanTaskItem {
     @JsonKey(name: 'PriorityText') String? priorityText,
     @JsonKey(name: 'EstimatedTime') double? estimatedTime,
     @JsonKey(name: 'Description') String? description,
+    @JsonKey(name: 'IsApprove') bool? isApprove,
+    @JsonKey(name: 'ProjectStatusName') String? projectStatusName,
   }) = _WeekPlanTaskItem;
 
   factory WeekPlanTaskItem.fromJson(Map<String, dynamic> json) =>

@@ -14,6 +14,7 @@ abstract class WeekPlanRepo {
     required DateTime dateStart,
     required DateTime dateEnd,
     required int status,
+    required int isApprove,
     required int viewNumber,
   });
 

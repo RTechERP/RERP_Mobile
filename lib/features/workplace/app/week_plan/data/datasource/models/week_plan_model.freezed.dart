@@ -156,6 +156,10 @@ mixin _$WeekPlanTaskItem {
   double? get estimatedTime => throw _privateConstructorUsedError;
   @JsonKey(name: 'Description')
   String? get description => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsApprove')
+  bool? get isApprove => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectStatusName')
+  String? get projectStatusName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -237,7 +241,9 @@ abstract class $WeekPlanTaskItemCopyWith<$Res> {
       @JsonKey(name: 'Priority') int? priority,
       @JsonKey(name: 'PriorityText') String? priorityText,
       @JsonKey(name: 'EstimatedTime') double? estimatedTime,
-      @JsonKey(name: 'Description') String? description});
+      @JsonKey(name: 'Description') String? description,
+      @JsonKey(name: 'IsApprove') bool? isApprove,
+      @JsonKey(name: 'ProjectStatusName') String? projectStatusName});
 }
 
 /// @nodoc
@@ -321,6 +327,8 @@ class _$WeekPlanTaskItemCopyWithImpl<$Res, $Val extends WeekPlanTaskItem>
     Object? priorityText = freezed,
     Object? estimatedTime = freezed,
     Object? description = freezed,
+    Object? isApprove = freezed,
+    Object? projectStatusName = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -595,6 +603,14 @@ class _$WeekPlanTaskItemCopyWithImpl<$Res, $Val extends WeekPlanTaskItem>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      isApprove: freezed == isApprove
+          ? _value.isApprove
+          : isApprove // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      projectStatusName: freezed == projectStatusName
+          ? _value.projectStatusName
+          : projectStatusName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -675,7 +691,9 @@ abstract class _$$WeekPlanTaskItemImplCopyWith<$Res>
       @JsonKey(name: 'Priority') int? priority,
       @JsonKey(name: 'PriorityText') String? priorityText,
       @JsonKey(name: 'EstimatedTime') double? estimatedTime,
-      @JsonKey(name: 'Description') String? description});
+      @JsonKey(name: 'Description') String? description,
+      @JsonKey(name: 'IsApprove') bool? isApprove,
+      @JsonKey(name: 'ProjectStatusName') String? projectStatusName});
 }
 
 /// @nodoc
@@ -757,6 +775,8 @@ class __$$WeekPlanTaskItemImplCopyWithImpl<$Res>
     Object? priorityText = freezed,
     Object? estimatedTime = freezed,
     Object? description = freezed,
+    Object? isApprove = freezed,
+    Object? projectStatusName = freezed,
   }) {
     return _then(_$WeekPlanTaskItemImpl(
       id: freezed == id
@@ -1031,6 +1051,14 @@ class __$$WeekPlanTaskItemImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      isApprove: freezed == isApprove
+          ? _value.isApprove
+          : isApprove // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      projectStatusName: freezed == projectStatusName
+          ? _value.projectStatusName
+          : projectStatusName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -1106,7 +1134,9 @@ class _$WeekPlanTaskItemImpl implements _WeekPlanTaskItem {
       @JsonKey(name: 'Priority') this.priority,
       @JsonKey(name: 'PriorityText') this.priorityText,
       @JsonKey(name: 'EstimatedTime') this.estimatedTime,
-      @JsonKey(name: 'Description') this.description});
+      @JsonKey(name: 'Description') this.description,
+      @JsonKey(name: 'IsApprove') this.isApprove,
+      @JsonKey(name: 'ProjectStatusName') this.projectStatusName});
 
   factory _$WeekPlanTaskItemImpl.fromJson(Map<String, dynamic> json) =>
       _$$WeekPlanTaskItemImplFromJson(json);
@@ -1315,10 +1345,16 @@ class _$WeekPlanTaskItemImpl implements _WeekPlanTaskItem {
   @override
   @JsonKey(name: 'Description')
   final String? description;
+  @override
+  @JsonKey(name: 'IsApprove')
+  final bool? isApprove;
+  @override
+  @JsonKey(name: 'ProjectStatusName')
+  final String? projectStatusName;
 
   @override
   String toString() {
-    return 'WeekPlanTaskItem(id: $id, status: $status, statusText: $statusText, stt: $stt, userId: $userId, projectId: $projectId, projectCode: $projectCode, projectName: $projectName, mission: $mission, taskName: $taskName, taskContent: $taskContent, planStartDate: $planStartDate, planEndDate: $planEndDate, startDate: $startDate, endDate: $endDate, actualStartDate: $actualStartDate, actualEndDate: $actualEndDate, totalDayPlan: $totalDayPlan, percentItem: $percentItem, percentageActual: $percentageActual, progress: $progress, parentId: $parentId, typeProjectItem: $typeProjectItem, employeeIdRequest: $employeeIdRequest, updatedDateActual: $updatedDateActual, code: $code, createdDate: $createdDate, createdBy: $createdBy, creatorId: $creatorId, creatorName: $creatorName, assigneeId: $assigneeId, assigneeName: $assigneeName, asigneeEmployeeId: $asigneeEmployeeId, asigneeEmployeeFullName: $asigneeEmployeeFullName, updatedDate: $updatedDate, updatedBy: $updatedBy, isUpdateLate: $isUpdateLate, isDeleted: $isDeleted, isPersonalProject: $isPersonalProject, isAdditional: $isAdditional, isCheckedIn: $isCheckedIn, checkInTime: $checkInTime, taskComplexity: $taskComplexity, taskComplexityText: $taskComplexityText, percentOverTime: $percentOverTime, fullName: $fullName, parentCode: $parentCode, parentTitle: $parentTitle, secondEmployeeId: $secondEmployeeId, secondEmployeeFullName: $secondEmployeeFullName, secondEmployeeType: $secondEmployeeType, reviewDiscription: $reviewDiscription, projectTaskTypeName: $projectTaskTypeName, departmentAssignerId: $departmentAssignerId, departmentAssigneeId: $departmentAssigneeId, departmentAssignerName: $departmentAssignerName, departmentAssigneeName: $departmentAssigneeName, projectTaskColor: $projectTaskColor, totalActualHours: $totalActualHours, reviewCompletionRating: $reviewCompletionRating, isCheck: $isCheck, deadline: $deadline, projectTaskTypeId: $projectTaskTypeId, approvalStatus: $approvalStatus, priority: $priority, priorityText: $priorityText, estimatedTime: $estimatedTime, description: $description)';
+    return 'WeekPlanTaskItem(id: $id, status: $status, statusText: $statusText, stt: $stt, userId: $userId, projectId: $projectId, projectCode: $projectCode, projectName: $projectName, mission: $mission, taskName: $taskName, taskContent: $taskContent, planStartDate: $planStartDate, planEndDate: $planEndDate, startDate: $startDate, endDate: $endDate, actualStartDate: $actualStartDate, actualEndDate: $actualEndDate, totalDayPlan: $totalDayPlan, percentItem: $percentItem, percentageActual: $percentageActual, progress: $progress, parentId: $parentId, typeProjectItem: $typeProjectItem, employeeIdRequest: $employeeIdRequest, updatedDateActual: $updatedDateActual, code: $code, createdDate: $createdDate, createdBy: $createdBy, creatorId: $creatorId, creatorName: $creatorName, assigneeId: $assigneeId, assigneeName: $assigneeName, asigneeEmployeeId: $asigneeEmployeeId, asigneeEmployeeFullName: $asigneeEmployeeFullName, updatedDate: $updatedDate, updatedBy: $updatedBy, isUpdateLate: $isUpdateLate, isDeleted: $isDeleted, isPersonalProject: $isPersonalProject, isAdditional: $isAdditional, isCheckedIn: $isCheckedIn, checkInTime: $checkInTime, taskComplexity: $taskComplexity, taskComplexityText: $taskComplexityText, percentOverTime: $percentOverTime, fullName: $fullName, parentCode: $parentCode, parentTitle: $parentTitle, secondEmployeeId: $secondEmployeeId, secondEmployeeFullName: $secondEmployeeFullName, secondEmployeeType: $secondEmployeeType, reviewDiscription: $reviewDiscription, projectTaskTypeName: $projectTaskTypeName, departmentAssignerId: $departmentAssignerId, departmentAssigneeId: $departmentAssigneeId, departmentAssignerName: $departmentAssignerName, departmentAssigneeName: $departmentAssigneeName, projectTaskColor: $projectTaskColor, totalActualHours: $totalActualHours, reviewCompletionRating: $reviewCompletionRating, isCheck: $isCheck, deadline: $deadline, projectTaskTypeId: $projectTaskTypeId, approvalStatus: $approvalStatus, priority: $priority, priorityText: $priorityText, estimatedTime: $estimatedTime, description: $description, isApprove: $isApprove, projectStatusName: $projectStatusName)';
   }
 
   @override
@@ -1434,7 +1470,9 @@ class _$WeekPlanTaskItemImpl implements _WeekPlanTaskItem {
             (identical(other.priority, priority) || other.priority == priority) &&
             (identical(other.priorityText, priorityText) || other.priorityText == priorityText) &&
             (identical(other.estimatedTime, estimatedTime) || other.estimatedTime == estimatedTime) &&
-            (identical(other.description, description) || other.description == description));
+            (identical(other.description, description) || other.description == description) &&
+            (identical(other.isApprove, isApprove) || other.isApprove == isApprove) &&
+            (identical(other.projectStatusName, projectStatusName) || other.projectStatusName == projectStatusName));
   }
 
   @JsonKey(ignore: true)
@@ -1508,7 +1546,9 @@ class _$WeekPlanTaskItemImpl implements _WeekPlanTaskItem {
         priority,
         priorityText,
         estimatedTime,
-        description
+        description,
+        isApprove,
+        projectStatusName
       ]);
 
   @JsonKey(ignore: true)
@@ -1600,8 +1640,10 @@ abstract class _WeekPlanTaskItem implements WeekPlanTaskItem {
       @JsonKey(name: 'Priority') final int? priority,
       @JsonKey(name: 'PriorityText') final String? priorityText,
       @JsonKey(name: 'EstimatedTime') final double? estimatedTime,
-      @JsonKey(name: 'Description')
-      final String? description}) = _$WeekPlanTaskItemImpl;
+      @JsonKey(name: 'Description') final String? description,
+      @JsonKey(name: 'IsApprove') final bool? isApprove,
+      @JsonKey(name: 'ProjectStatusName')
+      final String? projectStatusName}) = _$WeekPlanTaskItemImpl;
 
   factory _WeekPlanTaskItem.fromJson(Map<String, dynamic> json) =
       _$WeekPlanTaskItemImpl.fromJson;
@@ -1810,6 +1852,12 @@ abstract class _WeekPlanTaskItem implements WeekPlanTaskItem {
   @override
   @JsonKey(name: 'Description')
   String? get description;
+  @override
+  @JsonKey(name: 'IsApprove')
+  bool? get isApprove;
+  @override
+  @JsonKey(name: 'ProjectStatusName')
+  String? get projectStatusName;
   @override
   @JsonKey(ignore: true)
   _$$WeekPlanTaskItemImplCopyWith<_$WeekPlanTaskItemImpl> get copyWith =>

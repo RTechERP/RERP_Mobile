@@ -100,6 +100,8 @@ _$WeekPlanTaskItemImpl _$$WeekPlanTaskItemImplFromJson(
       priorityText: json['PriorityText'] as String?,
       estimatedTime: (json['EstimatedTime'] as num?)?.toDouble(),
       description: json['Description'] as String?,
+      isApprove: json['IsApprove'] as bool?,
+      projectStatusName: json['ProjectStatusName'] as String?,
     );
 
 Map<String, dynamic> _$$WeekPlanTaskItemImplToJson(
@@ -173,6 +175,8 @@ Map<String, dynamic> _$$WeekPlanTaskItemImplToJson(
       'PriorityText': instance.priorityText,
       'EstimatedTime': instance.estimatedTime,
       'Description': instance.description,
+      'IsApprove': instance.isApprove,
+      'ProjectStatusName': instance.projectStatusName,
     };
 
 _$TaskTypeItemImpl _$$TaskTypeItemImplFromJson(Map<String, dynamic> json) =>

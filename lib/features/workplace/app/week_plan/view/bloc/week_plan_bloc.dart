@@ -41,6 +41,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
       await event.when(
         initMenu: () => _onInitMenu(emit),
         initScreen: () => _onInitScreen(emit),
+        initDashboard: () => _onInitDashboard(emit),
         initScreenWithView: (viewNumber) =>
             _onInitScreenWithView(emit, viewNumber),
         changeView: (viewNumber) => _onChangeView(emit, viewNumber),
@@ -187,6 +188,15 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
     await _doInitScreen(emit, viewNumber: viewNumber);
   }
 
+  /// Khởi tạo dữ liệu cho màn Dashboard.
+  /// Tập trung vào viewNumber = 1 (Công việc của tôi) — đây là nguồn dữ liệu
+  /// chính để thống kê trạng thái & loại công việc.
+  /// Đồng thời fetch projectTypes để phục vụ bảng thống kê theo hạng mục.
+  Future<void> _onInitDashboard(Emitter<WeekPlanState> emit) async {
+    _isInitInFlight = false;
+    await _doInitScreen(emit, viewNumber: 1);
+  }
+
   Future<void> _doInitScreen(
     Emitter<WeekPlanState> emit, {
     required int viewNumber,
@@ -251,7 +261,8 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
           final monthEnd = DateTime(now.year, now.month + 1, 0);
           final dateStart = state.dateStart ?? monthStart;
           final dateEnd = state.dateEnd ?? monthEnd;
-          final statusFilter = -1; // API fetch all; UI multi-select filter handled by _filterTasks client-side
+          final statusFilter = -1;
+          final isApprove = -1;
 
           List<WeekPlanTaskItem> myTasks = state.myTasks;
           List<WeekPlanTaskItem> relatedTasks = state.relatedTasks;
@@ -259,41 +270,52 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
           List<WeekPlanTaskItem> allTasks = state.allTasks;
 
           switch (viewNumber) {
+            // Viewnumber 1: Công việc của tôi
             case 1:
               final res = await _weekPlanRepo.getTasks(
                 dateStart: dateStart,
                 dateEnd: dateEnd,
                 status: statusFilter,
+                isApprove: isApprove,
                 viewNumber: 1,
               );
               myTasks = res.getOrElse(() => []);
               _log.logI('Get my tasks: ${myTasks.length}');
               break;
+
+            // Viewnumber 2: Công việc liên quan
             case 2:
               final res = await _weekPlanRepo.getTasks(
                 dateStart: dateStart,
                 dateEnd: dateEnd,
                 status: statusFilter,
+                isApprove: isApprove,
                 viewNumber: 2,
               );
               relatedTasks = res.getOrElse(() => []);
               _log.logI('Get related tasks: ${relatedTasks.length}');
               break;
+
+            // Viewnumber 3: CÔng việc tôi giao
             case 3:
               final res = await _weekPlanRepo.getTasks(
                 dateStart: dateStart,
                 dateEnd: dateEnd,
                 status: statusFilter,
+                isApprove: isApprove,
                 viewNumber: 3,
               );
               assignedTasks = res.getOrElse(() => []);
               _log.logI('Get assigned tasks: ${assignedTasks.length}');
               break;
+
+            // Viewnumber -1: Tổng công việc
             case -1:
               final res = await _weekPlanRepo.getTasks(
                 dateStart: dateStart,
                 dateEnd: dateEnd,
                 status: statusFilter,
+                isApprove: isApprove,
                 viewNumber: -1,
               );
               allTasks = res.getOrElse(() => []);
@@ -304,6 +326,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
                 dateStart: dateStart,
                 dateEnd: dateEnd,
                 status: statusFilter,
+                isApprove: isApprove,
                 viewNumber: 1,
               );
               myTasks = res.getOrElse(() => []);
@@ -1483,7 +1506,6 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
 
       final payload = _buildCreatePayload(user.employeeId);
 
-      print('Create Task Payload: $payload'); // Debug log payload
       final res = await _weekPlanRepo.saveTask(payload: payload);
 
       await res.fold(
