@@ -167,6 +167,7 @@ import '../features/workplace/app/week_plan/view/pages/week_plan_detail_screen.d
 import '../features/workplace/app/week_plan/view/pages/week_plan_menu_screen.dart';
 import '../features/workplace/app/week_plan/view/pages/week_plan_my_task_screen.dart';
 import '../features/workplace/app/week_plan/view/pages/week_plan_related_screen.dart';
+import '../features/workplace/app/week_plan/view/pages/week_plan_timeline_screen.dart';
 import '../features/workplace/view/bloc/workspace_bloc.dart';
 
 class AppRouter {
@@ -1201,6 +1202,10 @@ class AppRouter {
           GoRoute(
             path: RouteNames.weekplanDashboard,
             builder: (context, state) => const WeekPlanDashboardScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.weekplanTimeline,
+            builder: (context, state) => const WeekPlanTimelineScreen(),
           ),
           GoRoute(
             path: RouteNames.weekplanAdd,

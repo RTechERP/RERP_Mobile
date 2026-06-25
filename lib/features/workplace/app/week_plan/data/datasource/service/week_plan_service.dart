@@ -26,24 +26,30 @@ class WeekPlanService extends DioBaseApiService {
     return get<BaseData<List<WeekPlanTaskItem>>>(
       ApiEndPoint.getProjectTask,
       query: {
-        'dateStart': DateTime(dateStart.year, dateStart.month, dateStart.day)
-            .toIso8601String(),
-        'dateEnd': DateTime(dateEnd.year, dateEnd.month, dateEnd.day, 23, 59, 59)
-            .toIso8601String(),
+        'dateStart': DateTime(
+          dateStart.year,
+          dateStart.month,
+          dateStart.day,
+        ).toIso8601String(),
+        'dateEnd': DateTime(
+          dateEnd.year,
+          dateEnd.month,
+          dateEnd.day,
+          23,
+          59,
+          59,
+        ).toIso8601String(),
         'status': status,
         'isApprove': isApprove,
         'viewNumber': viewNumber,
       },
-      parser: (json) => BaseData<List<WeekPlanTaskItem>>.fromJson(
-        json,
-        (data) {
-          final map = data as Map<String, dynamic>;
-          final projectTask = map['ProjectTask'] as List?;
-          return (projectTask ?? [])
-              .map((e) => WeekPlanTaskItem.fromJson(e as Map<String, dynamic>))
-              .toList();
-        },
-      ),
+      parser: (json) => BaseData<List<WeekPlanTaskItem>>.fromJson(json, (data) {
+        final map = data as Map<String, dynamic>;
+        final projectTask = map['ProjectTask'] as List?;
+        return (projectTask ?? [])
+            .map((e) => WeekPlanTaskItem.fromJson(e as Map<String, dynamic>))
+            .toList();
+      }),
     );
   }
 
@@ -53,15 +59,12 @@ class WeekPlanService extends DioBaseApiService {
   Future<BaseData<List<TaskTypeItem>>> getProjectTaskType() async {
     return get<BaseData<List<TaskTypeItem>>>(
       ApiEndPoint.getProjectTaskType,
-      parser: (json) => BaseData<List<TaskTypeItem>>.fromJson(
-        json,
-        (data) {
-          final list = data as List?;
-          return (list ?? [])
-              .map((e) => TaskTypeItem.fromJson(e as Map<String, dynamic>))
-              .toList();
-        },
-      ),
+      parser: (json) => BaseData<List<TaskTypeItem>>.fromJson(json, (data) {
+        final list = data as List?;
+        return (list ?? [])
+            .map((e) => TaskTypeItem.fromJson(e as Map<String, dynamic>))
+            .toList();
+      }),
     );
   }
 
@@ -71,15 +74,12 @@ class WeekPlanService extends DioBaseApiService {
   Future<BaseData<List<ProjectTaskItem>>> getAllProject() async {
     return get<BaseData<List<ProjectTaskItem>>>(
       ApiEndPoint.getAllProjectTask,
-      parser: (json) => BaseData<List<ProjectTaskItem>>.fromJson(
-        json,
-        (data) {
-          final list = data as List?;
-          return (list ?? [])
-              .map((e) => ProjectTaskItem.fromJson(e as Map<String, dynamic>))
-              .toList();
-        },
-      ),
+      parser: (json) => BaseData<List<ProjectTaskItem>>.fromJson(json, (data) {
+        final list = data as List?;
+        return (list ?? [])
+            .map((e) => ProjectTaskItem.fromJson(e as Map<String, dynamic>))
+            .toList();
+      }),
     );
   }
 
@@ -89,15 +89,12 @@ class WeekPlanService extends DioBaseApiService {
   Future<BaseData<List<ProjectTypeItem>>> getProjectTypeItem() async {
     return get<BaseData<List<ProjectTypeItem>>>(
       ApiEndPoint.getWorkProjectType,
-      parser: (json) => BaseData<List<ProjectTypeItem>>.fromJson(
-        json,
-        (data) {
-          final list = data as List?;
-          return (list ?? [])
-              .map((e) => ProjectTypeItem.fromJson(e as Map<String, dynamic>))
-              .toList();
-        },
-      ),
+      parser: (json) => BaseData<List<ProjectTypeItem>>.fromJson(json, (data) {
+        final list = data as List?;
+        return (list ?? [])
+            .map((e) => ProjectTypeItem.fromJson(e as Map<String, dynamic>))
+            .toList();
+      }),
     );
   }
 
@@ -107,15 +104,12 @@ class WeekPlanService extends DioBaseApiService {
   Future<BaseData<List<EmployeeTaskItem>>> getEmployees() async {
     return get<BaseData<List<EmployeeTaskItem>>>(
       ApiEndPoint.getEmployees,
-      parser: (json) => BaseData<List<EmployeeTaskItem>>.fromJson(
-        json,
-        (data) {
-          final list = data as List?;
-          return (list ?? [])
-              .map((e) => EmployeeTaskItem.fromJson(e as Map<String, dynamic>))
-              .toList();
-        },
-      ),
+      parser: (json) => BaseData<List<EmployeeTaskItem>>.fromJson(json, (data) {
+        final list = data as List?;
+        return (list ?? [])
+            .map((e) => EmployeeTaskItem.fromJson(e as Map<String, dynamic>))
+            .toList();
+      }),
     );
   }
 
@@ -129,10 +123,7 @@ class WeekPlanService extends DioBaseApiService {
   }) async {
     return post<BaseData<AttendanceTaskResponse>>(
       ApiEndPoint.projectTaskAttendance,
-      query: {
-        'ProjectTaskID': projectTaskId,
-        'IsCheck': isCheck,
-      },
+      query: {'ProjectTaskID': projectTaskId, 'IsCheck': isCheck},
       body: {},
       parser: (json) => BaseData<AttendanceTaskResponse>.fromJson(
         json,
@@ -150,19 +141,17 @@ class WeekPlanService extends DioBaseApiService {
   }) async {
     return get<BaseData<List<ParentProjectTaskItem>>>(
       ApiEndPoint.listProjectTask,
-      query: {
-        'projectID': projectId,
-        'isPersionalProject': isPersonalProject,
-      },
-      parser: (json) => BaseData<List<ParentProjectTaskItem>>.fromJson(
-        json,
-        (data) {
-          final list = data as List?;
-          return (list ?? [])
-              .map((e) => ParentProjectTaskItem.fromJson(e as Map<String, dynamic>))
-              .toList();
-        },
-      ),
+      query: {'projectID': projectId, 'isPersionalProject': isPersonalProject},
+      parser: (json) =>
+          BaseData<List<ParentProjectTaskItem>>.fromJson(json, (data) {
+            final list = data as List?;
+            return (list ?? [])
+                .map(
+                  (e) =>
+                      ParentProjectTaskItem.fromJson(e as Map<String, dynamic>),
+                )
+                .toList();
+          }),
     );
   }
 
@@ -220,8 +209,9 @@ class WeekPlanService extends DioBaseApiService {
       options: Options(contentType: 'multipart/form-data'),
       parser: (json) => BaseData<List<UploadAttachmentResponse>>.fromJson(
         json,
-            (data) =>
-            (data as List).map((e) => UploadAttachmentResponse.fromJson(e)).toList(),
+        (data) => (data as List)
+            .map((e) => UploadAttachmentResponse.fromJson(e))
+            .toList(),
       ),
     );
   }
@@ -267,17 +257,21 @@ class WeekPlanService extends DioBaseApiService {
     required int taskId,
   }) async {
     return get<BaseData<List<ChecklistWeekPlanResponse>>>(
-      '${ApiEndPoint.projectTaskChecklistsGet}'.replaceFirst('{taskId}', '$taskId'),
-      parser: (json) => BaseData<List<ChecklistWeekPlanResponse>>.fromJson(
-        json,
-        (data) {
-          final list = data as List?;
-          return (list ?? [])
-              .map((e) =>
-                  ChecklistWeekPlanResponse.fromJson(e as Map<String, dynamic>))
-              .toList();
-        },
+      '${ApiEndPoint.projectTaskChecklistsGet}'.replaceFirst(
+        '{taskId}',
+        '$taskId',
       ),
+      parser: (json) =>
+          BaseData<List<ChecklistWeekPlanResponse>>.fromJson(json, (data) {
+            final list = data as List?;
+            return (list ?? [])
+                .map(
+                  (e) => ChecklistWeekPlanResponse.fromJson(
+                    e as Map<String, dynamic>,
+                  ),
+                )
+                .toList();
+          }),
     );
   }
 
@@ -293,7 +287,8 @@ class WeekPlanService extends DioBaseApiService {
       body: payload,
       parser: (json) => BaseData<ChecklistWeekPlanResponse>.fromJson(
         json,
-        (data) => ChecklistWeekPlanResponse.fromJson(data as Map<String, dynamic>),
+        (data) =>
+            ChecklistWeekPlanResponse.fromJson(data as Map<String, dynamic>),
       ),
     );
   }
@@ -311,7 +306,8 @@ class WeekPlanService extends DioBaseApiService {
       body: payload,
       parser: (json) => BaseData<ChecklistWeekPlanResponse>.fromJson(
         json,
-        (data) => ChecklistWeekPlanResponse.fromJson(data as Map<String, dynamic>),
+        (data) =>
+            ChecklistWeekPlanResponse.fromJson(data as Map<String, dynamic>),
       ),
     );
   }
@@ -326,7 +322,8 @@ class WeekPlanService extends DioBaseApiService {
       '${ApiEndPoint.projectTaskChecklistsUpdate}'.replaceFirst('{id}', '$id'),
       parser: (json) => BaseData<ChecklistWeekPlanResponse>.fromJson(
         json,
-        (data) => ChecklistWeekPlanResponse.fromJson(data as Map<String, dynamic>),
+        (data) =>
+            ChecklistWeekPlanResponse.fromJson(data as Map<String, dynamic>),
       ),
     );
   }
@@ -365,7 +362,8 @@ class WeekPlanService extends DioBaseApiService {
       body: payload,
       parser: (json) => BaseData<AdditionalWeekPlanResponse>.fromJson(
         json,
-            (data) => AdditionalWeekPlanResponse.fromJson(data as Map<String, dynamic>),
+        (data) =>
+            AdditionalWeekPlanResponse.fromJson(data as Map<String, dynamic>),
       ),
     );
   }
@@ -392,17 +390,89 @@ class WeekPlanService extends DioBaseApiService {
     return get<BaseData<List<WeekPlanTypeEmployeeDetailResponse>>>(
       '${ApiEndPoint.projectTaskEmployee}/$id',
       query: {'typeEmployee': typeEmployee},
-      parser: (json) => BaseData<List<WeekPlanTypeEmployeeDetailResponse>>.fromJson(
+      parser: (json) =>
+          BaseData<List<WeekPlanTypeEmployeeDetailResponse>>.fromJson(json, (
+            data,
+          ) {
+            final list = data as List?;
+            return (list ?? [])
+                .map(
+                  (e) => WeekPlanTypeEmployeeDetailResponse.fromJson(
+                    e as Map<String, dynamic>,
+                  ),
+                )
+                .toList();
+          }),
+    );
+  }
+
+  /// GET /ProjectTask/project-task-timeline-by-team
+  ///
+  /// Query params: dateStart, dateEnd, departmentID, teamID, userID, status, approve, typeSearch
+  /// Response: { status: 1, data: [ { ID, FullName, ..., "2026-06-01": "2", ... }, ... ] }
+  Future<BaseData<List<ProjectTaskTimelineResponse>>>
+  getProjectTaskTimelineByTeam({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+    int? departmentId,
+    int? teamId,
+    int? userId,
+    int? status,
+    int? approve,
+    int? typeSearch,
+  }) async {
+    return get<BaseData<List<ProjectTaskTimelineResponse>>>(
+      ApiEndPoint.projectTaskTimelineByTeam,
+      query: {
+        'dateStart':
+            '${dateStart.year}-${dateStart.month.toString().padLeft(2, '0')}-${dateStart.day.toString().padLeft(2, '0')}',
+        'dateEnd':
+            '${dateEnd.year}-${dateEnd.month.toString().padLeft(2, '0')}-${dateEnd.day.toString().padLeft(2, '0')}',
+        if (departmentId != null) 'departmentID': departmentId,
+        if (teamId != null) 'teamID': teamId,
+        if (userId != null) 'userID': userId,
+        if (status != null) 'status': status,
+        if (approve != null) 'approve': approve,
+        if (typeSearch != null) 'typeSearch': typeSearch,
+      },
+      parser: (json) => BaseData<List<ProjectTaskTimelineResponse>>.fromJson(
         json,
         (data) {
           final list = data as List?;
           return (list ?? [])
-              .map((e) =>
-                  WeekPlanTypeEmployeeDetailResponse.fromJson(e as Map<String, dynamic>))
+              .map(
+                (e) => ProjectTaskTimelineResponse.fromJson(
+                  e as Map<String, dynamic>,
+                ),
+              )
               .toList();
         },
       ),
     );
   }
 
+  /// POST /ProjectTask/day-off
+  ///
+  /// Query params: dateStart, dateEnd
+  /// Response: { status: 1, data: [ { DateOff: "2026-06-07T00:00:00" }, ... ] }
+  Future<BaseData<List<DayOffItem>>> getDayOff({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+  }) async {
+    return post<BaseData<List<DayOffItem>>>(
+      ApiEndPoint.projectTaskDayOff,
+      query: {
+        'dateStart':
+            '${dateStart.year}-${dateStart.month.toString().padLeft(2, '0')}-${dateStart.day.toString().padLeft(2, '0')}',
+        'dateEnd':
+            '${dateEnd.year}-${dateEnd.month.toString().padLeft(2, '0')}-${dateEnd.day.toString().padLeft(2, '0')}',
+      },
+      parser: (json) => BaseData<List<DayOffItem>>.fromJson(json, (data) {
+        final list = data as List?;
+        return (list ?? [])
+            .map((e) => DayOffItem.fromJson(e as Map<String, dynamic>))
+            .toList();
+      }),
+    );
+  }
 }

@@ -1071,3 +1071,77 @@ Map<String, dynamic> _$$WeekPlanTypeEmployeeDetailResponseImplToJson(
       'UpdatedBy': instance.updatedBy,
       'IsDeleted': instance.isDeleted,
     };
+
+_$ProjectTaskTimelineItemImpl _$$ProjectTaskTimelineItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ProjectTaskTimelineItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      fullName: json['FullName'] as String?,
+      departmentId: (json['DepartmentID'] as num?)?.toInt(),
+      code: json['Code'] as String?,
+      projectId: (json['ProjectID'] as num?)?.toInt(),
+      projectCode: json['ProjectCode'] as String?,
+      projectName: json['ProjectName'] as String?,
+      projectStatusName: json['ProjectStatusName'] as String?,
+      planEndDate: json['PlanEndDate'] == null
+          ? null
+          : DateTime.parse(json['PlanEndDate'] as String),
+      planStartDate: json['PlanStartDate'] == null
+          ? null
+          : DateTime.parse(json['PlanStartDate'] as String),
+      projectTaskId: (json['ProjectTaskID'] as num?)?.toInt(),
+      projectTaskCode: json['ProjectTaskCode'] as String?,
+      typeProjectItem: (json['TypeProjectItem'] as num?)?.toInt(),
+      projectTypeName: json['ProjectTypeName'] as String?,
+      projectTaskTitle: json['ProjectTaskTitle'] as String?,
+      projectTaskParentId: (json['ProjectTaskParentID'] as num?)?.toInt(),
+      projectTaskParentCode: json['ProjectTaskParentCode'] as String?,
+      projectTaskParentTitle: json['ProjectTaskParentTitle'] as String?,
+      status: (json['Status'] as num?)?.toInt(),
+      isApprove: json['IsApprove'] as bool?,
+      sumTotalHour: (json['SumTotalHour'] as num?)?.toDouble(),
+      durationDays: (json['DurationDays'] as num?)?.toInt(),
+      typeDate: (json['TypeDate'] as num?)?.toInt(),
+      dateOff: json['DateOff'] as String?,
+    );
+
+Map<String, dynamic> _$$ProjectTaskTimelineItemImplToJson(
+        _$ProjectTaskTimelineItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'FullName': instance.fullName,
+      'DepartmentID': instance.departmentId,
+      'Code': instance.code,
+      'ProjectID': instance.projectId,
+      'ProjectCode': instance.projectCode,
+      'ProjectName': instance.projectName,
+      'ProjectStatusName': instance.projectStatusName,
+      'PlanEndDate': instance.planEndDate?.toIso8601String(),
+      'PlanStartDate': instance.planStartDate?.toIso8601String(),
+      'ProjectTaskID': instance.projectTaskId,
+      'ProjectTaskCode': instance.projectTaskCode,
+      'TypeProjectItem': instance.typeProjectItem,
+      'ProjectTypeName': instance.projectTypeName,
+      'ProjectTaskTitle': instance.projectTaskTitle,
+      'ProjectTaskParentID': instance.projectTaskParentId,
+      'ProjectTaskParentCode': instance.projectTaskParentCode,
+      'ProjectTaskParentTitle': instance.projectTaskParentTitle,
+      'Status': instance.status,
+      'IsApprove': instance.isApprove,
+      'SumTotalHour': instance.sumTotalHour,
+      'DurationDays': instance.durationDays,
+      'TypeDate': instance.typeDate,
+      'DateOff': instance.dateOff,
+    };
+
+_$DayOffItemImpl _$$DayOffItemImplFromJson(Map<String, dynamic> json) =>
+    _$DayOffItemImpl(
+      dateOff: json['DateOff'] == null
+          ? null
+          : DateTime.parse(json['DateOff'] as String),
+    );
+
+Map<String, dynamic> _$$DayOffItemImplToJson(_$DayOffItemImpl instance) =>
+    <String, dynamic>{
+      'DateOff': instance.dateOff?.toIso8601String(),
+    };

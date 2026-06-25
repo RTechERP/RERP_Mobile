@@ -577,3 +577,106 @@ class WeekPlanTypeEmployeeDetailResponse
       ) =>
       _$WeekPlanTypeEmployeeDetailResponseFromJson(json);
 }
+
+/// Freezed model for timeline task item
+@freezed
+class ProjectTaskTimelineItem with _$ProjectTaskTimelineItem {
+  const factory ProjectTaskTimelineItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'FullName') String? fullName,
+    @JsonKey(name: 'DepartmentID') int? departmentId,
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'ProjectID') int? projectId,
+    @JsonKey(name: 'ProjectCode') String? projectCode,
+    @JsonKey(name: 'ProjectName') String? projectName,
+    @JsonKey(name: 'ProjectStatusName') String? projectStatusName,
+    @JsonKey(name: 'PlanEndDate') DateTime? planEndDate,
+    @JsonKey(name: 'PlanStartDate') DateTime? planStartDate,
+    @JsonKey(name: 'ProjectTaskID') int? projectTaskId,
+    @JsonKey(name: 'ProjectTaskCode') String? projectTaskCode,
+    @JsonKey(name: 'TypeProjectItem') int? typeProjectItem,
+    @JsonKey(name: 'ProjectTypeName') String? projectTypeName,
+    @JsonKey(name: 'ProjectTaskTitle') String? projectTaskTitle,
+    @JsonKey(name: 'ProjectTaskParentID') int? projectTaskParentId,
+    @JsonKey(name: 'ProjectTaskParentCode') String? projectTaskParentCode,
+    @JsonKey(name: 'ProjectTaskParentTitle') String? projectTaskParentTitle,
+    @JsonKey(name: 'Status') int? status,
+    @JsonKey(name: 'IsApprove') bool? isApprove,
+    @JsonKey(name: 'SumTotalHour') double? sumTotalHour,
+    @JsonKey(name: 'DurationDays') int? durationDays,
+    @JsonKey(name: 'TypeDate') int? typeDate,
+    @JsonKey(name: 'DateOff') String? dateOff,
+  }) = _ProjectTaskTimelineItem;
+
+  factory ProjectTaskTimelineItem.fromJson(Map<String, dynamic> json) =>
+      _$ProjectTaskTimelineItemFromJson(json);
+}
+
+/// Wrapper for timeline response that handles dynamic date keys
+class ProjectTaskTimelineResponse {
+  final ProjectTaskTimelineItem task;
+  final Map<String, double> dailyHours;
+
+  ProjectTaskTimelineResponse({
+    required this.task,
+    required this.dailyHours,
+  });
+
+  factory ProjectTaskTimelineResponse.fromJson(Map<String, dynamic> json) {
+    final dailyHours = <String, double>{};
+    for (final entry in json.entries) {
+      final key = entry.key;
+      if (RegExp(r'^\d{4}-\d{2}-\d{2}$').hasMatch(key)) {
+        final value = entry.value;
+        if (value != null && value != '0') {
+          dailyHours[key] = double.tryParse(value.toString()) ?? 0.0;
+        }
+      }
+    }
+
+    return ProjectTaskTimelineResponse(
+      task: ProjectTaskTimelineItem(
+        id: json['ID'] as int?,
+        fullName: json['FullName'] as String?,
+        departmentId: json['DepartmentID'] as int?,
+        code: json['Code'] as String?,
+        projectId: json['ProjectID'] as int?,
+        projectCode: json['ProjectCode'] as String?,
+        projectName: json['ProjectName'] as String?,
+        projectStatusName: json['ProjectStatusName'] as String?,
+        planEndDate: json['PlanEndDate'] != null
+            ? DateTime.tryParse(json['PlanEndDate'] as String)
+            : null,
+        planStartDate: json['PlanStartDate'] != null
+            ? DateTime.tryParse(json['PlanStartDate'] as String)
+            : null,
+        projectTaskId: json['ProjectTaskID'] as int?,
+        projectTaskCode: json['ProjectTaskCode'] as String?,
+        typeProjectItem: json['TypeProjectItem'] as int?,
+        projectTypeName: json['ProjectTypeName'] as String?,
+        projectTaskTitle: json['ProjectTaskTitle'] as String?,
+        projectTaskParentId: json['ProjectTaskParentID'] as int?,
+        projectTaskParentCode: json['ProjectTaskParentCode'] as String?,
+        projectTaskParentTitle: json['ProjectTaskParentTitle'] as String?,
+        status: json['Status'] as int?,
+        isApprove: json['IsApprove'] as bool?,
+        sumTotalHour: (json['SumTotalHour'] as num?)?.toDouble(),
+        durationDays: json['DurationDays'] as int?,
+        typeDate: json['TypeDate'] as int?,
+        dateOff: json['DateOff'] as String?,
+      ),
+      dailyHours: dailyHours,
+    );
+  }
+}
+
+/// Response model for /ProjectTask/day-off
+@freezed
+class DayOffItem with _$DayOffItem {
+  const factory DayOffItem({
+    @JsonKey(name: 'DateOff') DateTime? dateOff,
+  }) = _DayOffItem;
+
+  factory DayOffItem.fromJson(Map<String, dynamic> json) =>
+      _$DayOffItemFromJson(json);
+}

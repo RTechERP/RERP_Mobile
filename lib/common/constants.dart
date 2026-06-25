@@ -334,6 +334,11 @@ class ApiEndPoint {
   static const String projectTaskDetail = '/ProjectTask';
   static const String projectTaskEmployee = '/ProjectTask/employee';
 
+  static const String projectTaskTimelineByTeam =
+      '/ProjectTask/project-task-timeline-by-team';
+
+  static const String projectTaskDayOff = '/ProjectTask/day-off';
+
   static const String getEmployees = '/Employee';
 
   // Salary

@@ -149,6 +149,10 @@ abstract class _$WeekPlanStateCWProxy {
 
   WeekPlanState isDeadlineLocked(bool isDeadlineLocked);
 
+  WeekPlanState timelineTasks(List<ProjectTaskTimelineResponse> timelineTasks);
+
+  WeekPlanState dayOffDates(List<DayOffItem> dayOffDates);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WeekPlanState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -225,6 +229,8 @@ abstract class _$WeekPlanStateCWProxy {
     int? detailTaskId,
     String? pauseReason,
     bool? isDeadlineLocked,
+    List<ProjectTaskTimelineResponse>? timelineTasks,
+    List<DayOffItem>? dayOffDates,
   });
 }
 
@@ -506,6 +512,15 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
       this(isDeadlineLocked: isDeadlineLocked);
 
   @override
+  WeekPlanState timelineTasks(
+          List<ProjectTaskTimelineResponse> timelineTasks) =>
+      this(timelineTasks: timelineTasks);
+
+  @override
+  WeekPlanState dayOffDates(List<DayOffItem> dayOffDates) =>
+      this(dayOffDates: dayOffDates);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WeekPlanState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -583,6 +598,8 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
     Object? detailTaskId = const $CopyWithPlaceholder(),
     Object? pauseReason = const $CopyWithPlaceholder(),
     Object? isDeadlineLocked = const $CopyWithPlaceholder(),
+    Object? timelineTasks = const $CopyWithPlaceholder(),
+    Object? dayOffDates = const $CopyWithPlaceholder(),
   }) {
     return WeekPlanState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -895,6 +912,16 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
           ? _value.isDeadlineLocked
           // ignore: cast_nullable_to_non_nullable
           : isDeadlineLocked as bool,
+      timelineTasks:
+          timelineTasks == const $CopyWithPlaceholder() || timelineTasks == null
+              ? _value.timelineTasks
+              // ignore: cast_nullable_to_non_nullable
+              : timelineTasks as List<ProjectTaskTimelineResponse>,
+      dayOffDates:
+          dayOffDates == const $CopyWithPlaceholder() || dayOffDates == null
+              ? _value.dayOffDates
+              // ignore: cast_nullable_to_non_nullable
+              : dayOffDates as List<DayOffItem>,
     );
   }
 }

@@ -11679,3 +11679,870 @@ abstract class _WeekPlanTypeEmployeeDetailResponse
           _$WeekPlanTypeEmployeeDetailResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+ProjectTaskTimelineItem _$ProjectTaskTimelineItemFromJson(
+    Map<String, dynamic> json) {
+  return _ProjectTaskTimelineItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ProjectTaskTimelineItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FullName')
+  String? get fullName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DepartmentID')
+  int? get departmentId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Code')
+  String? get code => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectID')
+  int? get projectId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectCode')
+  String? get projectCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectName')
+  String? get projectName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectStatusName')
+  String? get projectStatusName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PlanEndDate')
+  DateTime? get planEndDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PlanStartDate')
+  DateTime? get planStartDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectTaskID')
+  int? get projectTaskId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectTaskCode')
+  String? get projectTaskCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TypeProjectItem')
+  int? get typeProjectItem => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectTypeName')
+  String? get projectTypeName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectTaskTitle')
+  String? get projectTaskTitle => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectTaskParentID')
+  int? get projectTaskParentId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectTaskParentCode')
+  String? get projectTaskParentCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectTaskParentTitle')
+  String? get projectTaskParentTitle => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Status')
+  int? get status => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsApprove')
+  bool? get isApprove => throw _privateConstructorUsedError;
+  @JsonKey(name: 'SumTotalHour')
+  double? get sumTotalHour => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DurationDays')
+  int? get durationDays => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TypeDate')
+  int? get typeDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DateOff')
+  String? get dateOff => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ProjectTaskTimelineItemCopyWith<ProjectTaskTimelineItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProjectTaskTimelineItemCopyWith<$Res> {
+  factory $ProjectTaskTimelineItemCopyWith(ProjectTaskTimelineItem value,
+          $Res Function(ProjectTaskTimelineItem) then) =
+      _$ProjectTaskTimelineItemCopyWithImpl<$Res, ProjectTaskTimelineItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'DepartmentID') int? departmentId,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'ProjectID') int? projectId,
+      @JsonKey(name: 'ProjectCode') String? projectCode,
+      @JsonKey(name: 'ProjectName') String? projectName,
+      @JsonKey(name: 'ProjectStatusName') String? projectStatusName,
+      @JsonKey(name: 'PlanEndDate') DateTime? planEndDate,
+      @JsonKey(name: 'PlanStartDate') DateTime? planStartDate,
+      @JsonKey(name: 'ProjectTaskID') int? projectTaskId,
+      @JsonKey(name: 'ProjectTaskCode') String? projectTaskCode,
+      @JsonKey(name: 'TypeProjectItem') int? typeProjectItem,
+      @JsonKey(name: 'ProjectTypeName') String? projectTypeName,
+      @JsonKey(name: 'ProjectTaskTitle') String? projectTaskTitle,
+      @JsonKey(name: 'ProjectTaskParentID') int? projectTaskParentId,
+      @JsonKey(name: 'ProjectTaskParentCode') String? projectTaskParentCode,
+      @JsonKey(name: 'ProjectTaskParentTitle') String? projectTaskParentTitle,
+      @JsonKey(name: 'Status') int? status,
+      @JsonKey(name: 'IsApprove') bool? isApprove,
+      @JsonKey(name: 'SumTotalHour') double? sumTotalHour,
+      @JsonKey(name: 'DurationDays') int? durationDays,
+      @JsonKey(name: 'TypeDate') int? typeDate,
+      @JsonKey(name: 'DateOff') String? dateOff});
+}
+
+/// @nodoc
+class _$ProjectTaskTimelineItemCopyWithImpl<$Res,
+        $Val extends ProjectTaskTimelineItem>
+    implements $ProjectTaskTimelineItemCopyWith<$Res> {
+  _$ProjectTaskTimelineItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? fullName = freezed,
+    Object? departmentId = freezed,
+    Object? code = freezed,
+    Object? projectId = freezed,
+    Object? projectCode = freezed,
+    Object? projectName = freezed,
+    Object? projectStatusName = freezed,
+    Object? planEndDate = freezed,
+    Object? planStartDate = freezed,
+    Object? projectTaskId = freezed,
+    Object? projectTaskCode = freezed,
+    Object? typeProjectItem = freezed,
+    Object? projectTypeName = freezed,
+    Object? projectTaskTitle = freezed,
+    Object? projectTaskParentId = freezed,
+    Object? projectTaskParentCode = freezed,
+    Object? projectTaskParentTitle = freezed,
+    Object? status = freezed,
+    Object? isApprove = freezed,
+    Object? sumTotalHour = freezed,
+    Object? durationDays = freezed,
+    Object? typeDate = freezed,
+    Object? dateOff = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departmentId: freezed == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectCode: freezed == projectCode
+          ? _value.projectCode
+          : projectCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectName: freezed == projectName
+          ? _value.projectName
+          : projectName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectStatusName: freezed == projectStatusName
+          ? _value.projectStatusName
+          : projectStatusName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      planEndDate: freezed == planEndDate
+          ? _value.planEndDate
+          : planEndDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      planStartDate: freezed == planStartDate
+          ? _value.planStartDate
+          : planStartDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      projectTaskId: freezed == projectTaskId
+          ? _value.projectTaskId
+          : projectTaskId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectTaskCode: freezed == projectTaskCode
+          ? _value.projectTaskCode
+          : projectTaskCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      typeProjectItem: freezed == typeProjectItem
+          ? _value.typeProjectItem
+          : typeProjectItem // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectTypeName: freezed == projectTypeName
+          ? _value.projectTypeName
+          : projectTypeName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectTaskTitle: freezed == projectTaskTitle
+          ? _value.projectTaskTitle
+          : projectTaskTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectTaskParentId: freezed == projectTaskParentId
+          ? _value.projectTaskParentId
+          : projectTaskParentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectTaskParentCode: freezed == projectTaskParentCode
+          ? _value.projectTaskParentCode
+          : projectTaskParentCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectTaskParentTitle: freezed == projectTaskParentTitle
+          ? _value.projectTaskParentTitle
+          : projectTaskParentTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isApprove: freezed == isApprove
+          ? _value.isApprove
+          : isApprove // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      sumTotalHour: freezed == sumTotalHour
+          ? _value.sumTotalHour
+          : sumTotalHour // ignore: cast_nullable_to_non_nullable
+              as double?,
+      durationDays: freezed == durationDays
+          ? _value.durationDays
+          : durationDays // ignore: cast_nullable_to_non_nullable
+              as int?,
+      typeDate: freezed == typeDate
+          ? _value.typeDate
+          : typeDate // ignore: cast_nullable_to_non_nullable
+              as int?,
+      dateOff: freezed == dateOff
+          ? _value.dateOff
+          : dateOff // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ProjectTaskTimelineItemImplCopyWith<$Res>
+    implements $ProjectTaskTimelineItemCopyWith<$Res> {
+  factory _$$ProjectTaskTimelineItemImplCopyWith(
+          _$ProjectTaskTimelineItemImpl value,
+          $Res Function(_$ProjectTaskTimelineItemImpl) then) =
+      __$$ProjectTaskTimelineItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'DepartmentID') int? departmentId,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'ProjectID') int? projectId,
+      @JsonKey(name: 'ProjectCode') String? projectCode,
+      @JsonKey(name: 'ProjectName') String? projectName,
+      @JsonKey(name: 'ProjectStatusName') String? projectStatusName,
+      @JsonKey(name: 'PlanEndDate') DateTime? planEndDate,
+      @JsonKey(name: 'PlanStartDate') DateTime? planStartDate,
+      @JsonKey(name: 'ProjectTaskID') int? projectTaskId,
+      @JsonKey(name: 'ProjectTaskCode') String? projectTaskCode,
+      @JsonKey(name: 'TypeProjectItem') int? typeProjectItem,
+      @JsonKey(name: 'ProjectTypeName') String? projectTypeName,
+      @JsonKey(name: 'ProjectTaskTitle') String? projectTaskTitle,
+      @JsonKey(name: 'ProjectTaskParentID') int? projectTaskParentId,
+      @JsonKey(name: 'ProjectTaskParentCode') String? projectTaskParentCode,
+      @JsonKey(name: 'ProjectTaskParentTitle') String? projectTaskParentTitle,
+      @JsonKey(name: 'Status') int? status,
+      @JsonKey(name: 'IsApprove') bool? isApprove,
+      @JsonKey(name: 'SumTotalHour') double? sumTotalHour,
+      @JsonKey(name: 'DurationDays') int? durationDays,
+      @JsonKey(name: 'TypeDate') int? typeDate,
+      @JsonKey(name: 'DateOff') String? dateOff});
+}
+
+/// @nodoc
+class __$$ProjectTaskTimelineItemImplCopyWithImpl<$Res>
+    extends _$ProjectTaskTimelineItemCopyWithImpl<$Res,
+        _$ProjectTaskTimelineItemImpl>
+    implements _$$ProjectTaskTimelineItemImplCopyWith<$Res> {
+  __$$ProjectTaskTimelineItemImplCopyWithImpl(
+      _$ProjectTaskTimelineItemImpl _value,
+      $Res Function(_$ProjectTaskTimelineItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? fullName = freezed,
+    Object? departmentId = freezed,
+    Object? code = freezed,
+    Object? projectId = freezed,
+    Object? projectCode = freezed,
+    Object? projectName = freezed,
+    Object? projectStatusName = freezed,
+    Object? planEndDate = freezed,
+    Object? planStartDate = freezed,
+    Object? projectTaskId = freezed,
+    Object? projectTaskCode = freezed,
+    Object? typeProjectItem = freezed,
+    Object? projectTypeName = freezed,
+    Object? projectTaskTitle = freezed,
+    Object? projectTaskParentId = freezed,
+    Object? projectTaskParentCode = freezed,
+    Object? projectTaskParentTitle = freezed,
+    Object? status = freezed,
+    Object? isApprove = freezed,
+    Object? sumTotalHour = freezed,
+    Object? durationDays = freezed,
+    Object? typeDate = freezed,
+    Object? dateOff = freezed,
+  }) {
+    return _then(_$ProjectTaskTimelineItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departmentId: freezed == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectCode: freezed == projectCode
+          ? _value.projectCode
+          : projectCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectName: freezed == projectName
+          ? _value.projectName
+          : projectName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectStatusName: freezed == projectStatusName
+          ? _value.projectStatusName
+          : projectStatusName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      planEndDate: freezed == planEndDate
+          ? _value.planEndDate
+          : planEndDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      planStartDate: freezed == planStartDate
+          ? _value.planStartDate
+          : planStartDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      projectTaskId: freezed == projectTaskId
+          ? _value.projectTaskId
+          : projectTaskId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectTaskCode: freezed == projectTaskCode
+          ? _value.projectTaskCode
+          : projectTaskCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      typeProjectItem: freezed == typeProjectItem
+          ? _value.typeProjectItem
+          : typeProjectItem // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectTypeName: freezed == projectTypeName
+          ? _value.projectTypeName
+          : projectTypeName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectTaskTitle: freezed == projectTaskTitle
+          ? _value.projectTaskTitle
+          : projectTaskTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectTaskParentId: freezed == projectTaskParentId
+          ? _value.projectTaskParentId
+          : projectTaskParentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectTaskParentCode: freezed == projectTaskParentCode
+          ? _value.projectTaskParentCode
+          : projectTaskParentCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectTaskParentTitle: freezed == projectTaskParentTitle
+          ? _value.projectTaskParentTitle
+          : projectTaskParentTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isApprove: freezed == isApprove
+          ? _value.isApprove
+          : isApprove // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      sumTotalHour: freezed == sumTotalHour
+          ? _value.sumTotalHour
+          : sumTotalHour // ignore: cast_nullable_to_non_nullable
+              as double?,
+      durationDays: freezed == durationDays
+          ? _value.durationDays
+          : durationDays // ignore: cast_nullable_to_non_nullable
+              as int?,
+      typeDate: freezed == typeDate
+          ? _value.typeDate
+          : typeDate // ignore: cast_nullable_to_non_nullable
+              as int?,
+      dateOff: freezed == dateOff
+          ? _value.dateOff
+          : dateOff // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ProjectTaskTimelineItemImpl implements _ProjectTaskTimelineItem {
+  const _$ProjectTaskTimelineItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'FullName') this.fullName,
+      @JsonKey(name: 'DepartmentID') this.departmentId,
+      @JsonKey(name: 'Code') this.code,
+      @JsonKey(name: 'ProjectID') this.projectId,
+      @JsonKey(name: 'ProjectCode') this.projectCode,
+      @JsonKey(name: 'ProjectName') this.projectName,
+      @JsonKey(name: 'ProjectStatusName') this.projectStatusName,
+      @JsonKey(name: 'PlanEndDate') this.planEndDate,
+      @JsonKey(name: 'PlanStartDate') this.planStartDate,
+      @JsonKey(name: 'ProjectTaskID') this.projectTaskId,
+      @JsonKey(name: 'ProjectTaskCode') this.projectTaskCode,
+      @JsonKey(name: 'TypeProjectItem') this.typeProjectItem,
+      @JsonKey(name: 'ProjectTypeName') this.projectTypeName,
+      @JsonKey(name: 'ProjectTaskTitle') this.projectTaskTitle,
+      @JsonKey(name: 'ProjectTaskParentID') this.projectTaskParentId,
+      @JsonKey(name: 'ProjectTaskParentCode') this.projectTaskParentCode,
+      @JsonKey(name: 'ProjectTaskParentTitle') this.projectTaskParentTitle,
+      @JsonKey(name: 'Status') this.status,
+      @JsonKey(name: 'IsApprove') this.isApprove,
+      @JsonKey(name: 'SumTotalHour') this.sumTotalHour,
+      @JsonKey(name: 'DurationDays') this.durationDays,
+      @JsonKey(name: 'TypeDate') this.typeDate,
+      @JsonKey(name: 'DateOff') this.dateOff});
+
+  factory _$ProjectTaskTimelineItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProjectTaskTimelineItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'FullName')
+  final String? fullName;
+  @override
+  @JsonKey(name: 'DepartmentID')
+  final int? departmentId;
+  @override
+  @JsonKey(name: 'Code')
+  final String? code;
+  @override
+  @JsonKey(name: 'ProjectID')
+  final int? projectId;
+  @override
+  @JsonKey(name: 'ProjectCode')
+  final String? projectCode;
+  @override
+  @JsonKey(name: 'ProjectName')
+  final String? projectName;
+  @override
+  @JsonKey(name: 'ProjectStatusName')
+  final String? projectStatusName;
+  @override
+  @JsonKey(name: 'PlanEndDate')
+  final DateTime? planEndDate;
+  @override
+  @JsonKey(name: 'PlanStartDate')
+  final DateTime? planStartDate;
+  @override
+  @JsonKey(name: 'ProjectTaskID')
+  final int? projectTaskId;
+  @override
+  @JsonKey(name: 'ProjectTaskCode')
+  final String? projectTaskCode;
+  @override
+  @JsonKey(name: 'TypeProjectItem')
+  final int? typeProjectItem;
+  @override
+  @JsonKey(name: 'ProjectTypeName')
+  final String? projectTypeName;
+  @override
+  @JsonKey(name: 'ProjectTaskTitle')
+  final String? projectTaskTitle;
+  @override
+  @JsonKey(name: 'ProjectTaskParentID')
+  final int? projectTaskParentId;
+  @override
+  @JsonKey(name: 'ProjectTaskParentCode')
+  final String? projectTaskParentCode;
+  @override
+  @JsonKey(name: 'ProjectTaskParentTitle')
+  final String? projectTaskParentTitle;
+  @override
+  @JsonKey(name: 'Status')
+  final int? status;
+  @override
+  @JsonKey(name: 'IsApprove')
+  final bool? isApprove;
+  @override
+  @JsonKey(name: 'SumTotalHour')
+  final double? sumTotalHour;
+  @override
+  @JsonKey(name: 'DurationDays')
+  final int? durationDays;
+  @override
+  @JsonKey(name: 'TypeDate')
+  final int? typeDate;
+  @override
+  @JsonKey(name: 'DateOff')
+  final String? dateOff;
+
+  @override
+  String toString() {
+    return 'ProjectTaskTimelineItem(id: $id, fullName: $fullName, departmentId: $departmentId, code: $code, projectId: $projectId, projectCode: $projectCode, projectName: $projectName, projectStatusName: $projectStatusName, planEndDate: $planEndDate, planStartDate: $planStartDate, projectTaskId: $projectTaskId, projectTaskCode: $projectTaskCode, typeProjectItem: $typeProjectItem, projectTypeName: $projectTypeName, projectTaskTitle: $projectTaskTitle, projectTaskParentId: $projectTaskParentId, projectTaskParentCode: $projectTaskParentCode, projectTaskParentTitle: $projectTaskParentTitle, status: $status, isApprove: $isApprove, sumTotalHour: $sumTotalHour, durationDays: $durationDays, typeDate: $typeDate, dateOff: $dateOff)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProjectTaskTimelineItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName) &&
+            (identical(other.departmentId, departmentId) ||
+                other.departmentId == departmentId) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.projectId, projectId) ||
+                other.projectId == projectId) &&
+            (identical(other.projectCode, projectCode) ||
+                other.projectCode == projectCode) &&
+            (identical(other.projectName, projectName) ||
+                other.projectName == projectName) &&
+            (identical(other.projectStatusName, projectStatusName) ||
+                other.projectStatusName == projectStatusName) &&
+            (identical(other.planEndDate, planEndDate) ||
+                other.planEndDate == planEndDate) &&
+            (identical(other.planStartDate, planStartDate) ||
+                other.planStartDate == planStartDate) &&
+            (identical(other.projectTaskId, projectTaskId) ||
+                other.projectTaskId == projectTaskId) &&
+            (identical(other.projectTaskCode, projectTaskCode) ||
+                other.projectTaskCode == projectTaskCode) &&
+            (identical(other.typeProjectItem, typeProjectItem) ||
+                other.typeProjectItem == typeProjectItem) &&
+            (identical(other.projectTypeName, projectTypeName) ||
+                other.projectTypeName == projectTypeName) &&
+            (identical(other.projectTaskTitle, projectTaskTitle) ||
+                other.projectTaskTitle == projectTaskTitle) &&
+            (identical(other.projectTaskParentId, projectTaskParentId) ||
+                other.projectTaskParentId == projectTaskParentId) &&
+            (identical(other.projectTaskParentCode, projectTaskParentCode) ||
+                other.projectTaskParentCode == projectTaskParentCode) &&
+            (identical(other.projectTaskParentTitle, projectTaskParentTitle) ||
+                other.projectTaskParentTitle == projectTaskParentTitle) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.isApprove, isApprove) ||
+                other.isApprove == isApprove) &&
+            (identical(other.sumTotalHour, sumTotalHour) ||
+                other.sumTotalHour == sumTotalHour) &&
+            (identical(other.durationDays, durationDays) ||
+                other.durationDays == durationDays) &&
+            (identical(other.typeDate, typeDate) ||
+                other.typeDate == typeDate) &&
+            (identical(other.dateOff, dateOff) || other.dateOff == dateOff));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        fullName,
+        departmentId,
+        code,
+        projectId,
+        projectCode,
+        projectName,
+        projectStatusName,
+        planEndDate,
+        planStartDate,
+        projectTaskId,
+        projectTaskCode,
+        typeProjectItem,
+        projectTypeName,
+        projectTaskTitle,
+        projectTaskParentId,
+        projectTaskParentCode,
+        projectTaskParentTitle,
+        status,
+        isApprove,
+        sumTotalHour,
+        durationDays,
+        typeDate,
+        dateOff
+      ]);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProjectTaskTimelineItemImplCopyWith<_$ProjectTaskTimelineItemImpl>
+      get copyWith => __$$ProjectTaskTimelineItemImplCopyWithImpl<
+          _$ProjectTaskTimelineItemImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ProjectTaskTimelineItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ProjectTaskTimelineItem implements ProjectTaskTimelineItem {
+  const factory _ProjectTaskTimelineItem(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'FullName') final String? fullName,
+          @JsonKey(name: 'DepartmentID') final int? departmentId,
+          @JsonKey(name: 'Code') final String? code,
+          @JsonKey(name: 'ProjectID') final int? projectId,
+          @JsonKey(name: 'ProjectCode') final String? projectCode,
+          @JsonKey(name: 'ProjectName') final String? projectName,
+          @JsonKey(name: 'ProjectStatusName') final String? projectStatusName,
+          @JsonKey(name: 'PlanEndDate') final DateTime? planEndDate,
+          @JsonKey(name: 'PlanStartDate') final DateTime? planStartDate,
+          @JsonKey(name: 'ProjectTaskID') final int? projectTaskId,
+          @JsonKey(name: 'ProjectTaskCode') final String? projectTaskCode,
+          @JsonKey(name: 'TypeProjectItem') final int? typeProjectItem,
+          @JsonKey(name: 'ProjectTypeName') final String? projectTypeName,
+          @JsonKey(name: 'ProjectTaskTitle') final String? projectTaskTitle,
+          @JsonKey(name: 'ProjectTaskParentID') final int? projectTaskParentId,
+          @JsonKey(name: 'ProjectTaskParentCode')
+          final String? projectTaskParentCode,
+          @JsonKey(name: 'ProjectTaskParentTitle')
+          final String? projectTaskParentTitle,
+          @JsonKey(name: 'Status') final int? status,
+          @JsonKey(name: 'IsApprove') final bool? isApprove,
+          @JsonKey(name: 'SumTotalHour') final double? sumTotalHour,
+          @JsonKey(name: 'DurationDays') final int? durationDays,
+          @JsonKey(name: 'TypeDate') final int? typeDate,
+          @JsonKey(name: 'DateOff') final String? dateOff}) =
+      _$ProjectTaskTimelineItemImpl;
+
+  factory _ProjectTaskTimelineItem.fromJson(Map<String, dynamic> json) =
+      _$ProjectTaskTimelineItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'FullName')
+  String? get fullName;
+  @override
+  @JsonKey(name: 'DepartmentID')
+  int? get departmentId;
+  @override
+  @JsonKey(name: 'Code')
+  String? get code;
+  @override
+  @JsonKey(name: 'ProjectID')
+  int? get projectId;
+  @override
+  @JsonKey(name: 'ProjectCode')
+  String? get projectCode;
+  @override
+  @JsonKey(name: 'ProjectName')
+  String? get projectName;
+  @override
+  @JsonKey(name: 'ProjectStatusName')
+  String? get projectStatusName;
+  @override
+  @JsonKey(name: 'PlanEndDate')
+  DateTime? get planEndDate;
+  @override
+  @JsonKey(name: 'PlanStartDate')
+  DateTime? get planStartDate;
+  @override
+  @JsonKey(name: 'ProjectTaskID')
+  int? get projectTaskId;
+  @override
+  @JsonKey(name: 'ProjectTaskCode')
+  String? get projectTaskCode;
+  @override
+  @JsonKey(name: 'TypeProjectItem')
+  int? get typeProjectItem;
+  @override
+  @JsonKey(name: 'ProjectTypeName')
+  String? get projectTypeName;
+  @override
+  @JsonKey(name: 'ProjectTaskTitle')
+  String? get projectTaskTitle;
+  @override
+  @JsonKey(name: 'ProjectTaskParentID')
+  int? get projectTaskParentId;
+  @override
+  @JsonKey(name: 'ProjectTaskParentCode')
+  String? get projectTaskParentCode;
+  @override
+  @JsonKey(name: 'ProjectTaskParentTitle')
+  String? get projectTaskParentTitle;
+  @override
+  @JsonKey(name: 'Status')
+  int? get status;
+  @override
+  @JsonKey(name: 'IsApprove')
+  bool? get isApprove;
+  @override
+  @JsonKey(name: 'SumTotalHour')
+  double? get sumTotalHour;
+  @override
+  @JsonKey(name: 'DurationDays')
+  int? get durationDays;
+  @override
+  @JsonKey(name: 'TypeDate')
+  int? get typeDate;
+  @override
+  @JsonKey(name: 'DateOff')
+  String? get dateOff;
+  @override
+  @JsonKey(ignore: true)
+  _$$ProjectTaskTimelineItemImplCopyWith<_$ProjectTaskTimelineItemImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+DayOffItem _$DayOffItemFromJson(Map<String, dynamic> json) {
+  return _DayOffItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$DayOffItem {
+  @JsonKey(name: 'DateOff')
+  DateTime? get dateOff => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $DayOffItemCopyWith<DayOffItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DayOffItemCopyWith<$Res> {
+  factory $DayOffItemCopyWith(
+          DayOffItem value, $Res Function(DayOffItem) then) =
+      _$DayOffItemCopyWithImpl<$Res, DayOffItem>;
+  @useResult
+  $Res call({@JsonKey(name: 'DateOff') DateTime? dateOff});
+}
+
+/// @nodoc
+class _$DayOffItemCopyWithImpl<$Res, $Val extends DayOffItem>
+    implements $DayOffItemCopyWith<$Res> {
+  _$DayOffItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? dateOff = freezed,
+  }) {
+    return _then(_value.copyWith(
+      dateOff: freezed == dateOff
+          ? _value.dateOff
+          : dateOff // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$DayOffItemImplCopyWith<$Res>
+    implements $DayOffItemCopyWith<$Res> {
+  factory _$$DayOffItemImplCopyWith(
+          _$DayOffItemImpl value, $Res Function(_$DayOffItemImpl) then) =
+      __$$DayOffItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({@JsonKey(name: 'DateOff') DateTime? dateOff});
+}
+
+/// @nodoc
+class __$$DayOffItemImplCopyWithImpl<$Res>
+    extends _$DayOffItemCopyWithImpl<$Res, _$DayOffItemImpl>
+    implements _$$DayOffItemImplCopyWith<$Res> {
+  __$$DayOffItemImplCopyWithImpl(
+      _$DayOffItemImpl _value, $Res Function(_$DayOffItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? dateOff = freezed,
+  }) {
+    return _then(_$DayOffItemImpl(
+      dateOff: freezed == dateOff
+          ? _value.dateOff
+          : dateOff // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$DayOffItemImpl implements _DayOffItem {
+  const _$DayOffItemImpl({@JsonKey(name: 'DateOff') this.dateOff});
+
+  factory _$DayOffItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DayOffItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'DateOff')
+  final DateTime? dateOff;
+
+  @override
+  String toString() {
+    return 'DayOffItem(dateOff: $dateOff)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DayOffItemImpl &&
+            (identical(other.dateOff, dateOff) || other.dateOff == dateOff));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, dateOff);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DayOffItemImplCopyWith<_$DayOffItemImpl> get copyWith =>
+      __$$DayOffItemImplCopyWithImpl<_$DayOffItemImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$DayOffItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _DayOffItem implements DayOffItem {
+  const factory _DayOffItem(
+      {@JsonKey(name: 'DateOff') final DateTime? dateOff}) = _$DayOffItemImpl;
+
+  factory _DayOffItem.fromJson(Map<String, dynamic> json) =
+      _$DayOffItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'DateOff')
+  DateTime? get dateOff;
+  @override
+  @JsonKey(ignore: true)
+  _$$DayOffItemImplCopyWith<_$DayOffItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

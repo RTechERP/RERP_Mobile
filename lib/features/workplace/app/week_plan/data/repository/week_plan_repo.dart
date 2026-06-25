@@ -90,5 +90,23 @@ abstract class WeekPlanRepo {
     required int typeEmployee,
   });
 
+  /// Lấy timeline task theo team.
+  Future<Either<BaseError, List<ProjectTaskTimelineResponse>>> getProjectTaskTimelineByTeam({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+    int? departmentId,
+    int? teamId,
+    int? userId,
+    int? status,
+    int? approve,
+    int? typeSearch,
+  });
+
+  /// Lấy danh sách ngày nghỉ.
+  Future<Either<BaseError, List<DayOffItem>>> getDayOff({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+  });
+
 }
 

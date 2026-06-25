@@ -123,6 +123,10 @@ class WeekPlanState extends BaseBlocState {
   /// giao việc (assigner) mới có quyền sửa. Reset = false khi tạo mới.
   final bool isDeadlineLocked;
 
+  // Timeline data
+  final List<ProjectTaskTimelineResponse> timelineTasks;
+  final List<DayOffItem> dayOffDates;
+
   const WeekPlanState({
     required super.status,
     super.message,
@@ -205,6 +209,8 @@ class WeekPlanState extends BaseBlocState {
     this.detailTaskId,
     this.pauseReason,
     this.isDeadlineLocked = false,
+    this.timelineTasks = const [],
+    this.dayOffDates = const [],
   });
 
   factory WeekPlanState.init() => const WeekPlanState(
@@ -255,6 +261,8 @@ class WeekPlanState extends BaseBlocState {
         currentStep: 0,
         pauseReason: null,
         isDeadlineLocked: false,
+        timelineTasks: const [],
+        dayOffDates: const [],
       );
 
   @override
@@ -339,5 +347,7 @@ class WeekPlanState extends BaseBlocState {
         detailTaskId,
         pauseReason,
         isDeadlineLocked,
+        timelineTasks,
+        dayOffDates,
       ];
 }

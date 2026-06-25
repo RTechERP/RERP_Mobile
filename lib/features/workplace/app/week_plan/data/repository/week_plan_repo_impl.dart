@@ -433,4 +433,66 @@ class WeekPlanRepoImpl implements WeekPlanRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, List<ProjectTaskTimelineResponse>>> getProjectTaskTimelineByTeam({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+    int? departmentId,
+    int? teamId,
+    int? userId,
+    int? status,
+    int? approve,
+    int? typeSearch,
+  }) async {
+    try {
+      final res = await _service.getProjectTaskTimelineByTeam(
+        dateStart: dateStart,
+        dateEnd: dateEnd,
+        departmentId: departmentId,
+        teamId: teamId,
+        userId: userId,
+        status: status,
+        approve: approve,
+        typeSearch: typeSearch,
+      );
+
+      if (res.status == 1) {
+        return right(res.data ?? []);
+      }
+
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? res.msg ?? 'Có lỗi xảy ra',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<DayOffItem>>> getDayOff({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+  }) async {
+    try {
+      final res = await _service.getDayOff(
+        dateStart: dateStart,
+        dateEnd: dateEnd,
+      );
+
+      if (res.status == 1) {
+        return right(res.data ?? []);
+      }
+
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? res.msg ?? 'Có lỗi xảy ra',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

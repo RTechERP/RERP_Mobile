@@ -89,6 +89,11 @@ class _WeekPlanMenuScreenState
                           title: 'Tổng quan',
                           onTap: () => context.push(RouteNames.weekplanDashboard),
                         ),
+                        _MenuTile(
+                          icon: Icons.view_timeline_outlined,
+                          title: 'Timeline',
+                          onTap: () => context.push(RouteNames.weekplanTimeline),
+                        ),
                         // _MenuTile(
                         //   icon: Icons.view_agenda_outlined,
                         //   title: 'Tổng công việc',

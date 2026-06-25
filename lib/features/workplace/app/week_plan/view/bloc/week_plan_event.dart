@@ -249,4 +249,10 @@ class WeekPlanEvent with _$WeekPlanEvent {
   }) = _UploadFiles;
 
   const factory WeekPlanEvent.clearUploadedFiles() = _ClearUploadedFiles;
+
+  // Timeline
+  const factory WeekPlanEvent.fetchTimelineData({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+  }) = _FetchTimelineData;
 }

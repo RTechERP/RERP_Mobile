@@ -166,6 +166,8 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
         uploadFiles: (filePaths, subPath) =>
             _onUploadFiles(emit, filePaths, subPath),
         clearUploadedFiles: () => _onClearUploadedFiles(emit),
+        fetchTimelineData: (dateStart, dateEnd) =>
+            _onFetchTimelineData(emit, dateStart, dateEnd),
       );
     });
   }
@@ -2071,5 +2073,69 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
 
   Future<void> _onClearUploadedFiles(Emitter<WeekPlanState> emit) async {
     emit(state.copyWith(uploadedAttachmentFiles: const []));
+  }
+
+  //---(Timeline)---//
+  Future<void> _onFetchTimelineData(
+    Emitter<WeekPlanState> emit,
+    DateTime dateStart,
+    DateTime dateEnd,
+  ) async {
+    try {
+      emit(state.copyWith(status: BaseStateStatus.loading));
+
+      // Lấy thông tin user hiện tại
+      final userRes = await _authRepo.getCurrentUser();
+      final user = userRes.getOrElse(() => null);
+
+      // Fetch timeline tasks
+      final timelineRes = await _weekPlanRepo.getProjectTaskTimelineByTeam(
+        dateStart: dateStart,
+        dateEnd: dateEnd,
+        departmentId: user?.departmentId,
+        teamId: user?.teamOfUser,
+        userId: user?.id,
+        status: -1,
+        approve: 2,
+        typeSearch: 1,
+      );
+
+      // Fetch day-off dates
+      final dayOffRes = await _weekPlanRepo.getDayOff(
+        dateStart: dateStart,
+        dateEnd: dateEnd,
+      );
+
+      List<ProjectTaskTimelineResponse> timelineTasks = [];
+      List<DayOffItem> dayOffDates = [];
+
+      timelineRes.fold(
+        (err) => _log.logE('Fetch timeline failed: $err'),
+        (data) {
+          timelineTasks = data;
+          _log.logI('Fetch timeline tasks: ${timelineTasks.length}');
+        },
+      );
+
+      dayOffRes.fold(
+        (err) => _log.logE('Fetch day-off failed: $err'),
+        (data) {
+          dayOffDates = data;
+          _log.logI('Fetch day-off: ${dayOffDates.length}');
+        },
+      );
+
+      emit(state.copyWith(
+        status: BaseStateStatus.success,
+        timelineTasks: timelineTasks,
+        dayOffDates: dayOffDates,
+      ));
+    } catch (e) {
+      _log.logE('Fetch timeline error: $e');
+      emit(state.copyWith(
+        status: BaseStateStatus.failed,
+        message: 'Lỗi khi tải dữ liệu timeline',
+      ));
+    }
   }
 }
