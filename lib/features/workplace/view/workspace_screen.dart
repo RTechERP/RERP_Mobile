@@ -225,13 +225,13 @@ class _WorkPlaceScreenState
                       //   name: 'applications.summary_work'.tr(),
                       //   imageUrl: AppImages.app_menu_summary_work,
                       // ),
-                      AppItemModel(
-                        id: 'week_plan',
-                        iconCodePoint: Icons.newspaper_outlined.codePoint,
-                        name: 'applications.week_plan'.tr(),
-                        route: '/week_plan',
-                        imageUrl: AppImages.app_menu_week_plan,
-                      ),
+                      // AppItemModel(
+                      //   id: 'week_plan',
+                      //   iconCodePoint: Icons.newspaper_outlined.codePoint,
+                      //   name: 'applications.week_plan'.tr(),
+                      //   route: '/week_plan',
+                      //   imageUrl: AppImages.app_menu_week_plan,
+                      // ),
                       // AppItemModel(
                       //   id: 'stock',
                       //   iconCodePoint: Icons.shopping_cart_outlined.codePoint,

@@ -1,23 +1,21 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:go_router/go_router.dart';
-import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import '../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../common/app_theme/index.dart';
-import '../../../../../../../../common/utils/card/index.dart';
 import '../../../../../../../../common/utils/dialog/index.dart';
 import '../../../../../../../../common/utils/navigation/navigation_utils.dart';
 import '../../../../../../../../common/utils/snack_bar_helper.dart';
+import '../../../../../../../../common/widgets/date_range_picker.dart';
 import '../../../../../../../../routes/route_names.dart';
 import '../../../../data/datasource/models/report_model.dart';
 import '../bloc/marketing_bloc.dart';
+import '../widgets/marketing_report_card.dart';
 
 class MarketingScreen extends StatefulWidget {
   const MarketingScreen({super.key});
@@ -160,6 +158,12 @@ class _MarketingScreenState
                 });
               },
             ),
+            IconButton(
+              icon: const Icon(Icons.date_range, size: 22),
+              onPressed: () {
+                _showDateRangePicker(context);
+              },
+            ),
           ],
         ),
         body: BlocBuilder<MarketingBloc, MarketingState>(
@@ -207,46 +211,52 @@ class _MarketingScreenState
                         final r = displayList[index];
                         final parsedDate = DateTime.tryParse(r.dateReport);
 
-                        return Slidable(
-                          key: ValueKey(r.id),
-                          endActionPane: ActionPane(
-                            motion: const DrawerMotion(),
-                            extentRatio: 0.25,
-                            children: [
-                              SlidableAction(
-                                onPressed: (_) async {
-                                  final confirmed =
-                                  await DialogService.showConfirmDelete(
-                                    context: context,
-                                  );
-                                  if (!confirmed) return;
+                        return ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Slidable(
+                            key: ValueKey(r.id),
+                            endActionPane: ActionPane(
+                              motion: const DrawerMotion(),
+                              extentRatio: 0.25,
+                              children: [
+                                SlidableAction(
+                                  onPressed: (_) async {
+                                    final confirmed =
+                                    await DialogService.showConfirmDelete(
+                                      context: context,
+                                    );
+                                    if (!confirmed) return;
 
-                                  bloc.add(MarketingEvent.deleteReport(r.id));
-                                },
-                                backgroundColor: Colors.red,
-                                foregroundColor: Colors.white,
-                                icon: Icons.delete,
-                                label: 'Xoá',
-                              ),
-                            ],
-                          ),
-                          child: AppCardReport(
-                            category: state.departmentName,
-                            employeeName: r.fullName,
-                            position: state.positionName,
-                            planNextDay: r.planNextDay,
-                            time: parsedDate,
-                            showProgress: false,
-                            onTap: () async {
-                              final reload = await context.push(
-                                RouteNames.reportMarketingdepartDetail,
-                                extra: r.id,
-                              );
+                                    bloc.add(MarketingEvent.deleteReport(r.id));
+                                  },
+                                  borderRadius: BorderRadius.circular(20),
+                                  backgroundColor: Colors.red,
+                                  foregroundColor: Colors.white,
+                                  icon: Icons.delete,
+                                  label: 'Xoá',
+                                ),
+                              ],
+                            ),
+                            child: MarketingReportCard(
+                              employeeName: r.fullName,
+                              position: state.positionName,
+                              projectCode: r.projectCode,
+                              departmentName: state.departmentName,
+                              planNextDay: r.planNextDay,
+                              time: parsedDate,
+                              showProgress: false,
+                              mission: r.mission,
+                              onTap: () async {
+                                final reload = await context.push(
+                                  RouteNames.reportMarketingdepartDetail,
+                                  extra: r.id,
+                                );
 
-                              if (reload == true) {
-                                bloc.add(const MarketingEvent.init());
-                              }
-                            },
+                                if (reload == true) {
+                                  bloc.add(const MarketingEvent.init());
+                                }
+                              },
+                            ),
                           ),
                         );
                       },
@@ -257,133 +267,39 @@ class _MarketingScreenState
             );
           },
         ),
-        floatingActionButton: SpeedDial(
-          icon: Icons.menu,
-          activeIcon: Icons.close,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            final reload = await context.push(
+              RouteNames.reportMarketingdepartAdd,
+            );
+
+            if (reload == true) {
+              bloc.add(const MarketingEvent.init());
+            }
+          },
           backgroundColor: AppColors.primaryERP,
           foregroundColor: Colors.white,
-          spacing: 8,
-          spaceBetweenChildren: 8,
-          overlayOpacity: 0.3,
-
-          children: [
-            /// ===== THÊM =====
-            SpeedDialChild(
-              child: const Icon(Icons.add),
-              label: 'Thêm',
-              onTap: () async {
-                final reload = await context.push(
-                  RouteNames.reportMarketingdepartAdd,
-                );
-
-                if (reload == true) {
-                  bloc.add(const MarketingEvent.init());
-                }
-              },
-            ),
-
-            /// ===== LỌC THEO NGÀY =====
-            SpeedDialChild(
-              child: const Icon(Icons.date_range),
-              label: 'Lọc ngày',
-              onTap: () {
-                MarketingDateRangePicker.open(context, bloc);
-              },
-            ),
-
-          ],
+          child: const Icon(Icons.add),
         ),
       ),
     );
   }
-}
 
-class MarketingDateRangePicker {
-  static DateTime _safeAddMonth(DateTime d, int offset) {
-    final target = DateTime(d.year, d.month + offset, 1);
-    final lastDay = DateTime(target.year, target.month + 1, 0).day;
-    final day = d.day.clamp(1, lastDay);
-    return DateTime(target.year, target.month, day);
-  }
-
-  static void open(BuildContext context, MarketingBloc bloc) {
-    final now = DateTime.now();
-    final minDate = _safeAddMonth(now, -1);
-    final maxDate = _safeAddMonth(now, 1);
-
+  void _showDateRangePicker(BuildContext context) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      builder: (_) {
-        DateTime? start;
-        DateTime? end;
-
-        return SafeArea(
-          child: SizedBox(
-            height: 420,
-            child: Column(
-              children: [
-                const SizedBox(height: 12),
-                const Text(
-                  'Chọn ngày / khoảng ngày',
-                  style: TextStyle(fontWeight: FontWeight.w600),
-                ),
-                Expanded(
-                  child: SfDateRangePicker(
-                    selectionMode: DateRangePickerSelectionMode.range,
-                    minDate: minDate,
-                    maxDate: maxDate,
-                    initialSelectedRange:
-                        (bloc.state.dateStart != null &&
-                            bloc.state.dateEnd != null)
-                        ? PickerDateRange(
-                            bloc.state.dateStart,
-                            bloc.state.dateEnd,
-                          )
-                        : null,
-                    onSelectionChanged: (args) {
-                      final range = args.value as PickerDateRange?;
-                      start = range?.startDate;
-                      end = range?.endDate ?? range?.startDate;
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: OutlinedButton(
-                          onPressed: () => onBack(context),
-                          child: const Text('Huỷ'),
-                        ),
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: ElevatedButton(
-                          onPressed: () {
-                            if (start != null && end != null) {
-                              onBack(context);
-
-                              bloc.add(
-                                MarketingEvent.changeDateRange(
-                                  dateStart: start!,
-                                  dateEnd: end!,
-                                ),
-                              );
-                            }
-                          },
-                          child: const Text('Áp dụng'),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
-      },
+      backgroundColor: Colors.transparent,
+      builder: (_) => DateRangePicker(
+        initialStart: bloc.state.dateStart,
+        initialEnd: bloc.state.dateEnd,
+        onApply: (start, end) {
+          bloc.add(MarketingEvent.changeDateRange(
+            dateStart: start,
+            dateEnd: end,
+          ));
+        },
+      ),
     );
   }
 }
