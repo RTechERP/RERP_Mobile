@@ -1130,6 +1130,30 @@ class ValidateHelper {
   static const String leaveAnnualBalanceInsufficientMessage =
       'Số dư phép không đủ';
 
+  /// Validate số dư phép khi CHỈNH SỬA phiếu trong phase.
+  /// So sánh delta giữa phiếu mới và phiếu gốc, không phải toàn bộ số ngày mới.
+  static String? validateLeaveEditAnnualBalance({
+    required num? totalDayRemain,
+    required int newTimeRegister,
+    required int newType,
+    required int originalTimeRegister,
+    required int originalType,
+  }) {
+    if (totalDayRemain == null) return null;
+    // Chỉ kiểm tra nếu loại nghỉ là nghỉ phép (type == 2)
+    if (newType != leaveTypeAnnual) return null;
+
+    final newUnits = leaveDayUnitsForSession(newTimeRegister);
+    final originalUnits = leaveDayUnitsForSession(originalTimeRegister);
+    final delta = newUnits - originalUnits;
+
+    // Nếu tăng số ngày (delta > 0) mà vượt số dư → lỗi
+    if (delta > 0 && delta > totalDayRemain) {
+      return leaveAnnualBalanceInsufficientMessage;
+    }
+    return null;
+  }
+
   static const String leavePast19hTomorrowMessage =
       'Đã qua 19h00, không thể đăng ký nghỉ cho ngày mai.';
 
@@ -1256,7 +1280,7 @@ class ValidateHelper {
 
   /// Chỉ khi loại nghỉ == nghỉ phép (2). [totalDayRemain] null = bỏ qua kiểm tra.
   static String? validateLeaveAnnualBalance({
-    required int? totalDayRemain,
+    required num? totalDayRemain,
     required List<({int type, int timeRegister})> slips,
   }) {
     if (totalDayRemain == null) return null;
@@ -1277,7 +1301,7 @@ class ValidateHelper {
     required List<LeaveAddSlipRow> slips,
     required DateTime todayStart,
     required bool bypassDateRules,
-    required int? totalDayRemain,
+    required num? totalDayRemain,
     DateTime? clock,
   }) {
     final deptErr = validateLeaveRequiredText(departmentName, 'Phòng ban');

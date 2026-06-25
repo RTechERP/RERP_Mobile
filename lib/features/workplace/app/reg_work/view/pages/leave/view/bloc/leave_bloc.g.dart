@@ -45,6 +45,8 @@ abstract class _$LeaveStateCWProxy {
 
   LeaveState detailPhaseId(int? detailPhaseId);
 
+  LeaveState detailPhaseCode(String? detailPhaseCode);
+
   LeaveState detailPhaseDateRegister(DateTime? detailPhaseDateRegister);
 
   LeaveState detailApprovedTP(int? detailApprovedTP);
@@ -93,6 +95,7 @@ abstract class _$LeaveStateCWProxy {
     bool? skipLeaveDateConstraints,
     bool? isDetailLoading,
     int? detailPhaseId,
+    String? detailPhaseCode,
     DateTime? detailPhaseDateRegister,
     int? detailApprovedTP,
     List<LeaveEditSlip>? detailEditSlips,
@@ -182,6 +185,10 @@ class _$LeaveStateCWProxyImpl implements _$LeaveStateCWProxy {
       this(detailPhaseId: detailPhaseId);
 
   @override
+  LeaveState detailPhaseCode(String? detailPhaseCode) =>
+      this(detailPhaseCode: detailPhaseCode);
+
+  @override
   LeaveState detailPhaseDateRegister(DateTime? detailPhaseDateRegister) =>
       this(detailPhaseDateRegister: detailPhaseDateRegister);
 
@@ -253,6 +260,7 @@ class _$LeaveStateCWProxyImpl implements _$LeaveStateCWProxy {
     Object? skipLeaveDateConstraints = const $CopyWithPlaceholder(),
     Object? isDetailLoading = const $CopyWithPlaceholder(),
     Object? detailPhaseId = const $CopyWithPlaceholder(),
+    Object? detailPhaseCode = const $CopyWithPlaceholder(),
     Object? detailPhaseDateRegister = const $CopyWithPlaceholder(),
     Object? detailApprovedTP = const $CopyWithPlaceholder(),
     Object? detailEditSlips = const $CopyWithPlaceholder(),
@@ -350,6 +358,10 @@ class _$LeaveStateCWProxyImpl implements _$LeaveStateCWProxy {
           ? _value.detailPhaseId
           // ignore: cast_nullable_to_non_nullable
           : detailPhaseId as int?,
+      detailPhaseCode: detailPhaseCode == const $CopyWithPlaceholder()
+          ? _value.detailPhaseCode
+          // ignore: cast_nullable_to_non_nullable
+          : detailPhaseCode as String?,
       detailPhaseDateRegister:
           detailPhaseDateRegister == const $CopyWithPlaceholder()
               ? _value.detailPhaseDateRegister

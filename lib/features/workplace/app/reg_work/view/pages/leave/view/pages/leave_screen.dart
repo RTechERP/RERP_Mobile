@@ -90,6 +90,7 @@ class _LeaveScreenPageState
       listener: (context, state) {
         if (state.deleteSuccess) {
           showMessage(context, 'Xoá thành công', type: SnackBarType.success);
+          bloc.add(const LeaveEvent.init());
           return;
         }
         if ((state.message ?? '').isNotEmpty) {

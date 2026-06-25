@@ -96,6 +96,10 @@ mixin _$LeaveItem {
   String? get reasonDecilineSenior => throw _privateConstructorUsedError;
   @JsonKey(name: 'EmployeeOnLeavePhaseID')
   int? get employeeOnLeavePhaseId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PhaseCode')
+  String? get phaseCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DateRegister')
+  DateTime? get dateRegister => throw _privateConstructorUsedError;
   @JsonKey(name: 'Code')
   String? get code => throw _privateConstructorUsedError;
   @JsonKey(name: 'FullName')
@@ -175,6 +179,8 @@ abstract class $LeaveItemCopyWith<$Res> {
       @JsonKey(name: 'DecilineApproveSenior') int? decilineApproveSenior,
       @JsonKey(name: 'ReasonDecilineSenior') String? reasonDecilineSenior,
       @JsonKey(name: 'EmployeeOnLeavePhaseID') int? employeeOnLeavePhaseId,
+      @JsonKey(name: 'PhaseCode') String? phaseCode,
+      @JsonKey(name: 'DateRegister') DateTime? dateRegister,
       @JsonKey(name: 'Code') String? code,
       @JsonKey(name: 'FullName') String? fullName,
       @JsonKey(name: 'IDApprovedTP') int? idApprovedTP,
@@ -242,6 +248,8 @@ class _$LeaveItemCopyWithImpl<$Res, $Val extends LeaveItem>
     Object? decilineApproveSenior = freezed,
     Object? reasonDecilineSenior = freezed,
     Object? employeeOnLeavePhaseId = freezed,
+    Object? phaseCode = freezed,
+    Object? dateRegister = freezed,
     Object? code = freezed,
     Object? fullName = freezed,
     Object? idApprovedTP = freezed,
@@ -410,6 +418,14 @@ class _$LeaveItemCopyWithImpl<$Res, $Val extends LeaveItem>
           ? _value.employeeOnLeavePhaseId
           : employeeOnLeavePhaseId // ignore: cast_nullable_to_non_nullable
               as int?,
+      phaseCode: freezed == phaseCode
+          ? _value.phaseCode
+          : phaseCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dateRegister: freezed == dateRegister
+          ? _value.dateRegister
+          : dateRegister // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -517,6 +533,8 @@ abstract class _$$LeaveItemImplCopyWith<$Res>
       @JsonKey(name: 'DecilineApproveSenior') int? decilineApproveSenior,
       @JsonKey(name: 'ReasonDecilineSenior') String? reasonDecilineSenior,
       @JsonKey(name: 'EmployeeOnLeavePhaseID') int? employeeOnLeavePhaseId,
+      @JsonKey(name: 'PhaseCode') String? phaseCode,
+      @JsonKey(name: 'DateRegister') DateTime? dateRegister,
       @JsonKey(name: 'Code') String? code,
       @JsonKey(name: 'FullName') String? fullName,
       @JsonKey(name: 'IDApprovedTP') int? idApprovedTP,
@@ -582,6 +600,8 @@ class __$$LeaveItemImplCopyWithImpl<$Res>
     Object? decilineApproveSenior = freezed,
     Object? reasonDecilineSenior = freezed,
     Object? employeeOnLeavePhaseId = freezed,
+    Object? phaseCode = freezed,
+    Object? dateRegister = freezed,
     Object? code = freezed,
     Object? fullName = freezed,
     Object? idApprovedTP = freezed,
@@ -750,6 +770,14 @@ class __$$LeaveItemImplCopyWithImpl<$Res>
           ? _value.employeeOnLeavePhaseId
           : employeeOnLeavePhaseId // ignore: cast_nullable_to_non_nullable
               as int?,
+      phaseCode: freezed == phaseCode
+          ? _value.phaseCode
+          : phaseCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dateRegister: freezed == dateRegister
+          ? _value.dateRegister
+          : dateRegister // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -852,6 +880,8 @@ class _$LeaveItemImpl implements _LeaveItem {
       @JsonKey(name: 'DecilineApproveSenior') this.decilineApproveSenior,
       @JsonKey(name: 'ReasonDecilineSenior') this.reasonDecilineSenior,
       @JsonKey(name: 'EmployeeOnLeavePhaseID') this.employeeOnLeavePhaseId,
+      @JsonKey(name: 'PhaseCode') this.phaseCode,
+      @JsonKey(name: 'DateRegister') this.dateRegister,
       @JsonKey(name: 'Code') this.code,
       @JsonKey(name: 'FullName') this.fullName,
       @JsonKey(name: 'IDApprovedTP') this.idApprovedTP,
@@ -985,6 +1015,12 @@ class _$LeaveItemImpl implements _LeaveItem {
   @JsonKey(name: 'EmployeeOnLeavePhaseID')
   final int? employeeOnLeavePhaseId;
   @override
+  @JsonKey(name: 'PhaseCode')
+  final String? phaseCode;
+  @override
+  @JsonKey(name: 'DateRegister')
+  final DateTime? dateRegister;
+  @override
   @JsonKey(name: 'Code')
   final String? code;
   @override
@@ -1029,7 +1065,7 @@ class _$LeaveItemImpl implements _LeaveItem {
 
   @override
   String toString() {
-    return 'LeaveItem(id: $id, employeeId: $employeeId, approvedTP: $approvedTP, approvedHR: $approvedHR, timeOnLeave: $timeOnLeave, startDate: $startDate, endDate: $endDate, totalTime: $totalTime, type: $type, typeIsReal: $typeIsReal, totalDay: $totalDay, reason: $reason, note: $note, isApprovedTP: $isApprovedTP, isApprovedHR: $isApprovedHR, createdDate: $createdDate, createdBy: $createdBy, updatedDate: $updatedDate, updatedBy: $updatedBy, isCancelTP: $isCancelTP, isCancelHR: $isCancelHR, isCancelRegister: $isCancelRegister, decilineApprove: $decilineApprove, reasonCancel: $reasonCancel, dateCancel: $dateCancel, deleteFlag: $deleteFlag, reasonDeciline: $reasonDeciline, reasonHREdit: $reasonHREdit, isProblem: $isProblem, isApprovedBGD: $isApprovedBGD, approvedBGDID: $approvedBGDID, dateApprovedBGD: $dateApprovedBGD, isSeniorApproved: $isSeniorApproved, approvedSeniorID: $approvedSeniorID, dateApprovedSenior: $dateApprovedSenior, decilineApproveSenior: $decilineApproveSenior, reasonDecilineSenior: $reasonDecilineSenior, employeeOnLeavePhaseId: $employeeOnLeavePhaseId, code: $code, fullName: $fullName, idApprovedTP: $idApprovedTP, typeText: $typeText, timeOnLeaveText: $timeOnLeaveText, typeHR: $typeHR, departmentId: $departmentId, departmentName: $departmentName, rowNumber: $rowNumber, approvedName: $approvedName, statusNumber: $statusNumber, statusHRNumber: $statusHRNumber, statusText: $statusText, statusHRText: $statusHRText)';
+    return 'LeaveItem(id: $id, employeeId: $employeeId, approvedTP: $approvedTP, approvedHR: $approvedHR, timeOnLeave: $timeOnLeave, startDate: $startDate, endDate: $endDate, totalTime: $totalTime, type: $type, typeIsReal: $typeIsReal, totalDay: $totalDay, reason: $reason, note: $note, isApprovedTP: $isApprovedTP, isApprovedHR: $isApprovedHR, createdDate: $createdDate, createdBy: $createdBy, updatedDate: $updatedDate, updatedBy: $updatedBy, isCancelTP: $isCancelTP, isCancelHR: $isCancelHR, isCancelRegister: $isCancelRegister, decilineApprove: $decilineApprove, reasonCancel: $reasonCancel, dateCancel: $dateCancel, deleteFlag: $deleteFlag, reasonDeciline: $reasonDeciline, reasonHREdit: $reasonHREdit, isProblem: $isProblem, isApprovedBGD: $isApprovedBGD, approvedBGDID: $approvedBGDID, dateApprovedBGD: $dateApprovedBGD, isSeniorApproved: $isSeniorApproved, approvedSeniorID: $approvedSeniorID, dateApprovedSenior: $dateApprovedSenior, decilineApproveSenior: $decilineApproveSenior, reasonDecilineSenior: $reasonDecilineSenior, employeeOnLeavePhaseId: $employeeOnLeavePhaseId, phaseCode: $phaseCode, dateRegister: $dateRegister, code: $code, fullName: $fullName, idApprovedTP: $idApprovedTP, typeText: $typeText, timeOnLeaveText: $timeOnLeaveText, typeHR: $typeHR, departmentId: $departmentId, departmentName: $departmentName, rowNumber: $rowNumber, approvedName: $approvedName, statusNumber: $statusNumber, statusHRNumber: $statusHRNumber, statusText: $statusText, statusHRText: $statusHRText)';
   }
 
   @override
@@ -1108,6 +1144,10 @@ class _$LeaveItemImpl implements _LeaveItem {
                 other.reasonDecilineSenior == reasonDecilineSenior) &&
             (identical(other.employeeOnLeavePhaseId, employeeOnLeavePhaseId) ||
                 other.employeeOnLeavePhaseId == employeeOnLeavePhaseId) &&
+            (identical(other.phaseCode, phaseCode) ||
+                other.phaseCode == phaseCode) &&
+            (identical(other.dateRegister, dateRegister) ||
+                other.dateRegister == dateRegister) &&
             (identical(other.code, code) || other.code == code) &&
             (identical(other.fullName, fullName) ||
                 other.fullName == fullName) &&
@@ -1126,10 +1166,8 @@ class _$LeaveItemImpl implements _LeaveItem {
                 other.rowNumber == rowNumber) &&
             (identical(other.approvedName, approvedName) ||
                 other.approvedName == approvedName) &&
-            (identical(other.statusNumber, statusNumber) ||
-                other.statusNumber == statusNumber) &&
-            (identical(other.statusHRNumber, statusHRNumber) ||
-                other.statusHRNumber == statusHRNumber) &&
+            (identical(other.statusNumber, statusNumber) || other.statusNumber == statusNumber) &&
+            (identical(other.statusHRNumber, statusHRNumber) || other.statusHRNumber == statusHRNumber) &&
             (identical(other.statusText, statusText) || other.statusText == statusText) &&
             (identical(other.statusHRText, statusHRText) || other.statusHRText == statusHRText));
   }
@@ -1176,6 +1214,8 @@ class _$LeaveItemImpl implements _LeaveItem {
         decilineApproveSenior,
         reasonDecilineSenior,
         employeeOnLeavePhaseId,
+        phaseCode,
+        dateRegister,
         code,
         fullName,
         idApprovedTP,
@@ -1247,6 +1287,8 @@ abstract class _LeaveItem implements LeaveItem {
       @JsonKey(name: 'ReasonDecilineSenior') final String? reasonDecilineSenior,
       @JsonKey(name: 'EmployeeOnLeavePhaseID')
       final int? employeeOnLeavePhaseId,
+      @JsonKey(name: 'PhaseCode') final String? phaseCode,
+      @JsonKey(name: 'DateRegister') final DateTime? dateRegister,
       @JsonKey(name: 'Code') final String? code,
       @JsonKey(name: 'FullName') final String? fullName,
       @JsonKey(name: 'IDApprovedTP') final int? idApprovedTP,
@@ -1381,6 +1423,12 @@ abstract class _LeaveItem implements LeaveItem {
   @JsonKey(name: 'EmployeeOnLeavePhaseID')
   int? get employeeOnLeavePhaseId;
   @override
+  @JsonKey(name: 'PhaseCode')
+  String? get phaseCode;
+  @override
+  @JsonKey(name: 'DateRegister')
+  DateTime? get dateRegister;
+  @override
   @JsonKey(name: 'Code')
   String? get code;
   @override
@@ -1436,16 +1484,16 @@ LeaveTimeItem _$LeaveTimeItemFromJson(Map<String, dynamic> json) {
 mixin _$LeaveTimeItem {
   @JsonKey(name: 'FullName')
   String? get fullName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'TotalToday')
-  int? get totalDay => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TotalDay')
+  double? get totalDay => throw _privateConstructorUsedError;
   @JsonKey(name: 'TotalDayApproved')
-  int? get totalDayApproved => throw _privateConstructorUsedError;
+  double? get totalDayApproved => throw _privateConstructorUsedError;
   @JsonKey(name: 'TotalDayOnleaveActual')
-  int? get totalDayOnleaveActual => throw _privateConstructorUsedError;
+  double? get totalDayOnleaveActual => throw _privateConstructorUsedError;
   @JsonKey(name: 'TotalDayRemain')
-  int? get totalDayRemain => throw _privateConstructorUsedError;
+  double? get totalDayRemain => throw _privateConstructorUsedError;
   @JsonKey(name: 'TotalDayUnApproved')
-  int? get totalDayUnApproved => throw _privateConstructorUsedError;
+  double? get totalDayUnApproved => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1461,11 +1509,11 @@ abstract class $LeaveTimeItemCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'FullName') String? fullName,
-      @JsonKey(name: 'TotalToday') int? totalDay,
-      @JsonKey(name: 'TotalDayApproved') int? totalDayApproved,
-      @JsonKey(name: 'TotalDayOnleaveActual') int? totalDayOnleaveActual,
-      @JsonKey(name: 'TotalDayRemain') int? totalDayRemain,
-      @JsonKey(name: 'TotalDayUnApproved') int? totalDayUnApproved});
+      @JsonKey(name: 'TotalDay') double? totalDay,
+      @JsonKey(name: 'TotalDayApproved') double? totalDayApproved,
+      @JsonKey(name: 'TotalDayOnleaveActual') double? totalDayOnleaveActual,
+      @JsonKey(name: 'TotalDayRemain') double? totalDayRemain,
+      @JsonKey(name: 'TotalDayUnApproved') double? totalDayUnApproved});
 }
 
 /// @nodoc
@@ -1496,23 +1544,23 @@ class _$LeaveTimeItemCopyWithImpl<$Res, $Val extends LeaveTimeItem>
       totalDay: freezed == totalDay
           ? _value.totalDay
           : totalDay // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       totalDayApproved: freezed == totalDayApproved
           ? _value.totalDayApproved
           : totalDayApproved // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       totalDayOnleaveActual: freezed == totalDayOnleaveActual
           ? _value.totalDayOnleaveActual
           : totalDayOnleaveActual // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       totalDayRemain: freezed == totalDayRemain
           ? _value.totalDayRemain
           : totalDayRemain // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       totalDayUnApproved: freezed == totalDayUnApproved
           ? _value.totalDayUnApproved
           : totalDayUnApproved // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
     ) as $Val);
   }
 }
@@ -1527,11 +1575,11 @@ abstract class _$$LeaveTimeItemImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'FullName') String? fullName,
-      @JsonKey(name: 'TotalToday') int? totalDay,
-      @JsonKey(name: 'TotalDayApproved') int? totalDayApproved,
-      @JsonKey(name: 'TotalDayOnleaveActual') int? totalDayOnleaveActual,
-      @JsonKey(name: 'TotalDayRemain') int? totalDayRemain,
-      @JsonKey(name: 'TotalDayUnApproved') int? totalDayUnApproved});
+      @JsonKey(name: 'TotalDay') double? totalDay,
+      @JsonKey(name: 'TotalDayApproved') double? totalDayApproved,
+      @JsonKey(name: 'TotalDayOnleaveActual') double? totalDayOnleaveActual,
+      @JsonKey(name: 'TotalDayRemain') double? totalDayRemain,
+      @JsonKey(name: 'TotalDayUnApproved') double? totalDayUnApproved});
 }
 
 /// @nodoc
@@ -1560,23 +1608,23 @@ class __$$LeaveTimeItemImplCopyWithImpl<$Res>
       totalDay: freezed == totalDay
           ? _value.totalDay
           : totalDay // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       totalDayApproved: freezed == totalDayApproved
           ? _value.totalDayApproved
           : totalDayApproved // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       totalDayOnleaveActual: freezed == totalDayOnleaveActual
           ? _value.totalDayOnleaveActual
           : totalDayOnleaveActual // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       totalDayRemain: freezed == totalDayRemain
           ? _value.totalDayRemain
           : totalDayRemain // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       totalDayUnApproved: freezed == totalDayUnApproved
           ? _value.totalDayUnApproved
           : totalDayUnApproved // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
     ));
   }
 }
@@ -1586,7 +1634,7 @@ class __$$LeaveTimeItemImplCopyWithImpl<$Res>
 class _$LeaveTimeItemImpl implements _LeaveTimeItem {
   const _$LeaveTimeItemImpl(
       {@JsonKey(name: 'FullName') this.fullName,
-      @JsonKey(name: 'TotalToday') this.totalDay,
+      @JsonKey(name: 'TotalDay') this.totalDay,
       @JsonKey(name: 'TotalDayApproved') this.totalDayApproved,
       @JsonKey(name: 'TotalDayOnleaveActual') this.totalDayOnleaveActual,
       @JsonKey(name: 'TotalDayRemain') this.totalDayRemain,
@@ -1599,20 +1647,20 @@ class _$LeaveTimeItemImpl implements _LeaveTimeItem {
   @JsonKey(name: 'FullName')
   final String? fullName;
   @override
-  @JsonKey(name: 'TotalToday')
-  final int? totalDay;
+  @JsonKey(name: 'TotalDay')
+  final double? totalDay;
   @override
   @JsonKey(name: 'TotalDayApproved')
-  final int? totalDayApproved;
+  final double? totalDayApproved;
   @override
   @JsonKey(name: 'TotalDayOnleaveActual')
-  final int? totalDayOnleaveActual;
+  final double? totalDayOnleaveActual;
   @override
   @JsonKey(name: 'TotalDayRemain')
-  final int? totalDayRemain;
+  final double? totalDayRemain;
   @override
   @JsonKey(name: 'TotalDayUnApproved')
-  final int? totalDayUnApproved;
+  final double? totalDayUnApproved;
 
   @override
   String toString() {
@@ -1666,12 +1714,13 @@ class _$LeaveTimeItemImpl implements _LeaveTimeItem {
 abstract class _LeaveTimeItem implements LeaveTimeItem {
   const factory _LeaveTimeItem(
       {@JsonKey(name: 'FullName') final String? fullName,
-      @JsonKey(name: 'TotalToday') final int? totalDay,
-      @JsonKey(name: 'TotalDayApproved') final int? totalDayApproved,
-      @JsonKey(name: 'TotalDayOnleaveActual') final int? totalDayOnleaveActual,
-      @JsonKey(name: 'TotalDayRemain') final int? totalDayRemain,
+      @JsonKey(name: 'TotalDay') final double? totalDay,
+      @JsonKey(name: 'TotalDayApproved') final double? totalDayApproved,
+      @JsonKey(name: 'TotalDayOnleaveActual')
+      final double? totalDayOnleaveActual,
+      @JsonKey(name: 'TotalDayRemain') final double? totalDayRemain,
       @JsonKey(name: 'TotalDayUnApproved')
-      final int? totalDayUnApproved}) = _$LeaveTimeItemImpl;
+      final double? totalDayUnApproved}) = _$LeaveTimeItemImpl;
 
   factory _LeaveTimeItem.fromJson(Map<String, dynamic> json) =
       _$LeaveTimeItemImpl.fromJson;
@@ -1680,20 +1729,20 @@ abstract class _LeaveTimeItem implements LeaveTimeItem {
   @JsonKey(name: 'FullName')
   String? get fullName;
   @override
-  @JsonKey(name: 'TotalToday')
-  int? get totalDay;
+  @JsonKey(name: 'TotalDay')
+  double? get totalDay;
   @override
   @JsonKey(name: 'TotalDayApproved')
-  int? get totalDayApproved;
+  double? get totalDayApproved;
   @override
   @JsonKey(name: 'TotalDayOnleaveActual')
-  int? get totalDayOnleaveActual;
+  double? get totalDayOnleaveActual;
   @override
   @JsonKey(name: 'TotalDayRemain')
-  int? get totalDayRemain;
+  double? get totalDayRemain;
   @override
   @JsonKey(name: 'TotalDayUnApproved')
-  int? get totalDayUnApproved;
+  double? get totalDayUnApproved;
   @override
   @JsonKey(ignore: true)
   _$$LeaveTimeItemImplCopyWith<_$LeaveTimeItemImpl> get copyWith =>

@@ -44,6 +44,8 @@ class LeaveItem with _$LeaveItem {
     @JsonKey(name: 'DecilineApproveSenior') int? decilineApproveSenior,
     @JsonKey(name: 'ReasonDecilineSenior') String? reasonDecilineSenior,
     @JsonKey(name: 'EmployeeOnLeavePhaseID') int? employeeOnLeavePhaseId,
+    @JsonKey(name: 'PhaseCode') String? phaseCode,
+    @JsonKey(name: 'DateRegister') DateTime? dateRegister,
     @JsonKey(name: 'Code') String? code,
     @JsonKey(name: 'FullName') String? fullName,
     @JsonKey(name: 'IDApprovedTP') int? idApprovedTP,
@@ -68,11 +70,11 @@ class LeaveItem with _$LeaveItem {
 class LeaveTimeItem with _$LeaveTimeItem {
   const factory LeaveTimeItem({
     @JsonKey(name: 'FullName') String? fullName,
-    @JsonKey(name: 'TotalToday') int? totalDay,
-    @JsonKey(name: 'TotalDayApproved') int? totalDayApproved,
-    @JsonKey(name: 'TotalDayOnleaveActual') int? totalDayOnleaveActual,
-    @JsonKey(name: 'TotalDayRemain') int? totalDayRemain,
-    @JsonKey(name: 'TotalDayUnApproved') int? totalDayUnApproved,
+    @JsonKey(name: 'TotalDay') double? totalDay,
+    @JsonKey(name: 'TotalDayApproved') double? totalDayApproved,
+    @JsonKey(name: 'TotalDayOnleaveActual') double? totalDayOnleaveActual,
+    @JsonKey(name: 'TotalDayRemain') double? totalDayRemain,
+    @JsonKey(name: 'TotalDayUnApproved') double? totalDayUnApproved,
   }) = _LeaveTimeItem;
 
   factory LeaveTimeItem.fromJson(Map<String, dynamic> json) =>
@@ -375,6 +377,7 @@ class LeavePhaseMultiDto {
     required this.slips,
     this.dateRegister,
     this.employeeId,
+    this.phaseCode,
     this.phaseIsApprovedBGD,
     this.phaseIsApprovedTP,
     this.phaseIsApprovedHR,
@@ -386,6 +389,7 @@ class LeavePhaseMultiDto {
   final int approvedTP;
   final DateTime? dateRegister;
   final int? employeeId;
+  final String? phaseCode;
   final List<LeaveEditSlip> slips;
   final bool? phaseIsApprovedBGD;
   final bool? phaseIsApprovedTP;
@@ -447,6 +451,7 @@ class LeavePhaseMultiDto {
         0;
 
     final empId = _readInt(phaseMap?['EmployeeID']);
+    final phaseCode = phaseMap?['Code']?.toString();
 
     final phaseIsApprovedBGD = _readBool(phaseMap?['IsApprovedBGD']);
     final phaseIsApprovedTP = _readBool(phaseMap?['IsApprovedTP']);
@@ -483,6 +488,7 @@ class LeavePhaseMultiDto {
       approvedTP: approvedTP,
       dateRegister: dr,
       employeeId: empId,
+      phaseCode: phaseCode,
       slips: slips,
       phaseIsApprovedBGD: phaseIsApprovedBGD,
       phaseIsApprovedTP: phaseIsApprovedTP,

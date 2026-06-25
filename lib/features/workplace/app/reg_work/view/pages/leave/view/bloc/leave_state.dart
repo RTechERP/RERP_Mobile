@@ -27,6 +27,7 @@ class LeaveState extends BaseBlocState {
   /// Màn chi tiết: đang tải get-multi.
   final bool isDetailLoading;
   final int? detailPhaseId;
+  final String? detailPhaseCode;
   final DateTime? detailPhaseDateRegister;
   final int? detailApprovedTP;
   final List<LeaveEditSlip> detailEditSlips;
@@ -61,6 +62,7 @@ class LeaveState extends BaseBlocState {
     this.skipLeaveDateConstraints = false,
     this.isDetailLoading = false,
     this.detailPhaseId,
+    this.detailPhaseCode,
     this.detailPhaseDateRegister,
     this.detailApprovedTP,
     this.detailEditSlips = const [],
@@ -93,6 +95,7 @@ class LeaveState extends BaseBlocState {
     skipLeaveDateConstraints: false,
     isDetailLoading: false,
     detailPhaseId: null,
+    detailPhaseCode: null,
     detailPhaseDateRegister: null,
     detailApprovedTP: null,
     detailEditSlips: [],
@@ -127,6 +130,7 @@ class LeaveState extends BaseBlocState {
     skipLeaveDateConstraints,
     isDetailLoading,
     detailPhaseId,
+    detailPhaseCode,
     detailPhaseDateRegister,
     detailApprovedTP,
     detailEditSlips,

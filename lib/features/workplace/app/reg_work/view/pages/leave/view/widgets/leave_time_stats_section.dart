@@ -17,7 +17,14 @@ class LeaveTimeStatsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String formatLeaveStat(int? v) => v == null ? '0' : '$v';
+    String formatLeaveStat(num? v) {
+      if (v == null) return '0';
+      // Kiểm tra nếu là số nguyên (2.0, 3.0, ...) → hiển thị int
+      // Nếu có phần thập phân (0.5, 1.5, 0.50, ...) → hiển thị double
+      final intVal = v.toInt();
+      final isWhole = (v - intVal).abs() < 0.001;
+      return isWhole ? intVal.toString() : v.toString();
+    }
 
     return Column(
       children: [
@@ -49,7 +56,7 @@ class LeaveTimeStatsSection extends StatelessWidget {
                 ),
               ),
               Text(
-                formatLeaveStat(stat?.totalDay),
+                formatLeaveStat(stat?.totalDayOnleaveActual),
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -86,7 +93,7 @@ class LeaveTimeStatsSection extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      formatLeaveStat(stat?.totalDayOnleaveActual),
+                      formatLeaveStat(stat?.totalDay),
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
