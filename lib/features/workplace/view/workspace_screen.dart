@@ -163,7 +163,7 @@ class _WorkPlaceScreenState
                   const SizedBox(height: 8),
 
                   WpActionCard(
-                    onItemTap: (item) {
+                    onItemTap: (item) async {
                       final user = state.user;
                       if (user == null) return;
 
@@ -176,6 +176,17 @@ class _WorkPlaceScreenState
                         }
 
                         DialogService.showProcessing(context: context);
+                        return;
+                      }
+
+                      // Personal Approve: route đã được WorkspaceBloc resolve sẵn
+                      // lúc load workspace (so sánh employeeID vs leaderId).
+                      // Bấm là vào thẳng, không gọi API, không show processing.
+                      if (item.id == 'personal_approve') {
+                        final route = state.personalApproveRoute;
+                        if (route != null && route.isNotEmpty) {
+                          context.push(route);
+                        }
                         return;
                       }
 
@@ -232,6 +243,13 @@ class _WorkPlaceScreenState
                       //   route: '/week_plan',
                       //   imageUrl: AppImages.app_menu_week_plan,
                       // ),
+                      AppItemModel(
+                        id: 'personal_approve',
+                        iconCodePoint: Icons.approval_outlined.codePoint,
+                        name: 'applications.personal_approve'.tr(),
+                        // route trống - sẽ resolve ngay khi tap
+                        // imageUrl: AppImages.app_menu_week_plan,
+                      ),
                       // AppItemModel(
                       //   id: 'stock',
                       //   iconCodePoint: Icons.shopping_cart_outlined.codePoint,

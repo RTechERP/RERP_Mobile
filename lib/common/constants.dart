@@ -148,8 +148,7 @@ class ApiEndPoint {
 
   static const String saveSaleAdminReport = '/DailyReportSaleAdmin/save-data';
 
-  static const String saveReportAccounting =
-      '/DailyReportAccounting/save-data';
+  static const String saveReportAccounting = '/DailyReportAccounting/save-data';
 
   static const String getAdminTypeReport =
       '/DailyReportSaleAdmin/get-reporttypes';
@@ -163,14 +162,11 @@ class ApiEndPoint {
   static const String getSaleAdminById = '/DailyReportSaleAdmin/get-details';
 
   // Accountant
-  static const String getAccountantReport =
-      '/DailyReportAccounting/get-data';
+  static const String getAccountantReport = '/DailyReportAccounting/get-data';
 
-  static const String deleteReportAccounting =
-      '/DailyReportAccounting/delete';
+  static const String deleteReportAccounting = '/DailyReportAccounting/delete';
 
-  static const String getAccountantById =
-      '/DailyReportAccounting/get-by-id';
+  static const String getAccountantById = '/DailyReportAccounting/get-by-id';
 
   static const String getMeetingRoom = '/bookingroom/get-booking-room';
 
@@ -408,4 +404,11 @@ class ApiEndPoint {
   static const String getNewsletterFileByNewsletterId =
       '/newsletter/get-newsletter-file-by-newsletterid';
   static const String getCalendar = '/Holiday';
+
+  // Personal Approve
+  // Approve Timesheet
+  static const String getApproveTimesheet = '/home/get-approve-by-approve-tp';
+  static const String getApproveUserTeam = '/home/get-user-team';
+  static const String getApproveSeniorInfo =
+      '/home/get-user-team-link-by-leader-id';
 }

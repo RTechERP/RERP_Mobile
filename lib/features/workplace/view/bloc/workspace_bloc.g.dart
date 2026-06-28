@@ -13,6 +13,8 @@ abstract class _$WorkspaceStateCWProxy {
 
   WorkspaceState user(User? user);
 
+  WorkspaceState personalApproveRoute(String? personalApproveRoute);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WorkspaceState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -23,6 +25,7 @@ abstract class _$WorkspaceStateCWProxy {
     BaseStateStatus? status,
     String? message,
     User? user,
+    String? personalApproveRoute,
   });
 }
 
@@ -42,6 +45,10 @@ class _$WorkspaceStateCWProxyImpl implements _$WorkspaceStateCWProxy {
   WorkspaceState user(User? user) => this(user: user);
 
   @override
+  WorkspaceState personalApproveRoute(String? personalApproveRoute) =>
+      this(personalApproveRoute: personalApproveRoute);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WorkspaceState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -53,6 +60,7 @@ class _$WorkspaceStateCWProxyImpl implements _$WorkspaceStateCWProxy {
     Object? status = const $CopyWithPlaceholder(),
     Object? message = const $CopyWithPlaceholder(),
     Object? user = const $CopyWithPlaceholder(),
+    Object? personalApproveRoute = const $CopyWithPlaceholder(),
   }) {
     return WorkspaceState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -67,6 +75,10 @@ class _$WorkspaceStateCWProxyImpl implements _$WorkspaceStateCWProxy {
           ? _value.user
           // ignore: cast_nullable_to_non_nullable
           : user as User?,
+      personalApproveRoute: personalApproveRoute == const $CopyWithPlaceholder()
+          ? _value.personalApproveRoute
+          // ignore: cast_nullable_to_non_nullable
+          : personalApproveRoute as String?,
     );
   }
 }

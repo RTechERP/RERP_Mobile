@@ -8,10 +8,18 @@ class WorkspaceState extends BaseBlocState {
   /// User hiện tại — được load từ cache hoặc API.
   final User? user;
 
+  /// Route đã resolve sẵn cho "Phê duyệt" — cache lúc load workspace
+  /// để khi user bấm là vào thẳng, không gọi API lại.
+  /// - null: chưa resolve (đang loading hoặc lỗi).
+  /// - RouteNames.personalApproveSeniorTimesheet: user là Senior.
+  /// - RouteNames.personalApprove: user không phải Senior.
+  final String? personalApproveRoute;
+
   const WorkspaceState({
     required super.status,
     super.message,
     this.user,
+    this.personalApproveRoute,
   });
 
   factory WorkspaceState.init() => const WorkspaceState(
@@ -23,5 +31,5 @@ class WorkspaceState extends BaseBlocState {
   bool get hasUser => user != null;
 
   @override
-  List get props => [status, message, user];
+  List get props => [status, message, user, personalApproveRoute];
 }

@@ -46,7 +46,8 @@
     "reg_general": "Đăng ký chung",
     "report": "Báo cáo CV",
     "week_plan": "Công việc",
-    "stock": "Tồn kho theo SP"
+    "stock": "Tồn kho theo SP",
+    "personal_approve": "Phê duyệt"
   },
   "general_forms": {
 
@@ -128,6 +129,11 @@
     "cancel_other": "Connection failed due to internet connection",
     "receive_timeout": "Receive timeout in connection",
     "send_timeout": "Connection failed due to internet connection"
+  },
+  "personal_approve": {
+    "senior": "Senior",
+    "head_of_department": "Trưởng phòng",
+    "board_of_director": "Ban Giám Đốc"
   }
 
 }

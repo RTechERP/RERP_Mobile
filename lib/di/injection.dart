@@ -18,6 +18,11 @@ import '../features/dashboard/view/newsfeed/data/datasource/service/newsfeed_ser
 import '../features/dashboard/view/newsfeed/data/repository/newsfeed_repo.dart';
 import '../features/dashboard/view/newsfeed/data/repository/newsfeed_repository.dart';
 import '../features/dashboard/view/newsfeed/view/bloc/newsfeed_bloc.dart';
+import '../features/workplace/app/personal_approve/app/approve_timesheet/data/datasource/service/approve_timesheet_service.dart';
+import '../features/workplace/app/personal_approve/app/approve_timesheet/data/repository/approve_timesheet_repo.dart';
+import '../features/workplace/app/personal_approve/app/approve_timesheet/data/repository/approve_timesheet_repo_impl.dart';
+import '../features/workplace/app/personal_approve/app/approve_timesheet/view/bloc/approve_timesheet_bloc.dart';
+import '../features/workplace/app/personal_approve/view/bloc/personal_approve_menu_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/datasource/service/booking_vehicle_service.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repo_impl.dart';
@@ -205,9 +210,7 @@ void configureDependencies() {
     () => StationeryService(getIt<Dio>()),
   );
 
-  getIt.registerLazySingleton<StampService>(
-    () => StampService(getIt<Dio>()),
-  );
+  getIt.registerLazySingleton<StampService>(() => StampService(getIt<Dio>()));
 
   getIt.registerLazySingleton<WorkRequirementService>(
     () => WorkRequirementService(getIt<Dio>()),
@@ -225,16 +228,16 @@ void configureDependencies() {
     () => WeekPlanService(getIt<Dio>()),
   );
 
-  getIt.registerLazySingleton<SalaryService>(
-    () => SalaryService(getIt<Dio>()),
-  );
+  getIt.registerLazySingleton<SalaryService>(() => SalaryService(getIt<Dio>()));
 
-  getIt.registerLazySingleton<PollService>(
-    () => PollService(getIt<Dio>()),
-  );
+  getIt.registerLazySingleton<PollService>(() => PollService(getIt<Dio>()));
 
   getIt.registerLazySingleton<NewsfeedService>(
     () => NewsfeedService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<ApproveTimeSheetService>(
+    () => ApproveTimeSheetService(getIt<Dio>()),
   );
 
   /// ===== REPOSITORY =====
@@ -336,6 +339,10 @@ void configureDependencies() {
     () => NewsfeedRepoImpl(getIt<NewsfeedService>()),
   );
 
+  getIt.registerLazySingleton<ApproveTimesheetRepo>(
+    () => ApproveTimesheetRepoImpl(getIt<ApproveTimeSheetService>()),
+  );
+
   /// ===== BLOCS =====
   getIt.registerFactory<AuthBloc>(
     () => AuthBloc(getIt<AuthRepo>(), getIt<LogUtils>()),
@@ -343,7 +350,13 @@ void configureDependencies() {
   getIt.registerFactory<TechBloc>(
     () => TechBloc(getIt<ReportRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
   );
-  getIt.registerFactory<WorkspaceBloc>(() => WorkspaceBloc(getIt<LogUtils>()));
+  getIt.registerFactory<WorkspaceBloc>(
+    () => WorkspaceBloc(
+      getIt<ApproveTimesheetRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
   getIt.registerFactory<HrBloc>(
     () => HrBloc(getIt<ReportRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
   );
@@ -482,11 +495,7 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<StampBloc>(
-    () => StampBloc(
-      getIt<StampRepo>(),
-      getIt<AuthRepo>(),
-      getIt<LogUtils>(),
-    ),
+    () => StampBloc(getIt<StampRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
   );
 
   getIt.registerFactory<WeekPlanBloc>(
@@ -524,16 +533,10 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<PollBloc>(
-    () => PollBloc(
-      getIt<PollRepo>(),
-      getIt<LogUtils>(),
-    ),
+    () => PollBloc(getIt<PollRepo>(), getIt<LogUtils>()),
   );
   getIt.registerFactory<NewsfeedBloc>(
-    () => NewsfeedBloc(
-      getIt<NewsfeedRepo>(),
-      getIt<LogUtils>(),
-    ),
+    () => NewsfeedBloc(getIt<NewsfeedRepo>(), getIt<LogUtils>()),
   );
 
   getIt.registerFactory<AccountantBloc>(
@@ -542,5 +545,17 @@ void configureDependencies() {
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
     ),
+  );
+
+  getIt.registerFactory<ApproveTimesheetBloc>(
+    () => ApproveTimesheetBloc(
+      getIt<ApproveTimesheetRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<PersonalApproveMenuBloc>(
+    () => PersonalApproveMenuBloc(getIt<AuthRepo>(), getIt<LogUtils>()),
   );
 }

@@ -23,6 +23,15 @@ class RoleResolver {
     final hasAccountingPermission = permissions.any(
       (p) => PermissionGroups.accountantAdminReports.contains(p),
     );
+    final hasSeniorPermission = permissions.any(
+      (p) => PermissionGroups.senior.contains(p),
+    );
+    final hasHeadOfDepartmentPermission = permissions.any(
+      (p) => PermissionGroups.headOfDepartment.contains(p),
+    );
+    final hasBoardOfDirectorPermission = permissions.any(
+      (p) => PermissionGroups.boardOfDirector.contains(p),
+    );
 
     /// ===== HR =====
     if (DepartmentGroups.hr.contains(deptId) ||
@@ -65,6 +74,21 @@ class RoleResolver {
     if (DepartmentGroups.accountant.contains(deptId) ||
         hasAccountingPermission) {
       roles.add(AppRole.accountant);
+    }
+
+    /// ===== PERSONAL APPROVE =====
+    /// ===== SENIOR =====
+    if (hasSeniorPermission) {
+      roles.add(AppRole.senior);
+    }
+    /// ===== HEAD OF DEPARTMENT =====
+    if (hasHeadOfDepartmentPermission) {
+      roles.add(AppRole.headOfDepartment);
+    }
+    /// ===== BOARD OF DIRECTOR =====
+    if (hasBoardOfDirectorPermission ||
+        EmployeeIdGroups.employeeBOD.contains(empId)) {
+      roles.add(AppRole.boardOfDirector);
     }
 
     if (roles.isEmpty) {

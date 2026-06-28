@@ -180,8 +180,10 @@ class RouteNames {
 
   // Contract Registration
   static const contractRegistration = '/reg_general/contract_registration';
-  static const contractRegistrationAdd = '/reg_general/contract_registration/add';
-  static const contractRegistrationDetail = '/reg_general/contract_registration/detail';
+  static const contractRegistrationAdd =
+      '/reg_general/contract_registration/add';
+  static const contractRegistrationDetail =
+      '/reg_general/contract_registration/detail';
 
   // Work Requirement
   static const workRequirement = '/reg_general/work_requirement';
@@ -214,4 +216,10 @@ class RouteNames {
   // Poll
   static const poll = '/poll';
   static const pollDetail = '/poll/detail';
+
+  // Personal Approve
+  static const personalApprove = '/personal_approve';
+  static const personalApproveTimesheet = '/personal_approve/approve_timesheet/timesheet';
+  static const personalApproveSeniorTimesheet =
+      '/personal_approve/approve_timesheet/senior_timesheet';
 }

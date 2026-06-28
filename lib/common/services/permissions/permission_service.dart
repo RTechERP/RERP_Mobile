@@ -1,4 +1,3 @@
-
 import '../../../features/auth/data/repository/auth_repository.dart';
 import '../../enums/permission_enum.dart';
 import '../../enums/role_enum.dart';
@@ -17,6 +16,11 @@ class PermissionService {
     'report:agv': AppPermission.viewAgvReport,
     'report:ad': AppPermission.viewAdReport,
     'report:accountant': AppPermission.viewAccountingReport,
+    'personal_approve:senior': AppPermission.viewSeniorApprove,
+    'personal_approve:head_of_department':
+        AppPermission.viewHeadOfDepartmentApprove,
+    'personal_approve:board_of_director':
+        AppPermission.viewBoardOfDirectorApprove,
   };
 
   static Set<AppPermission> _cachedPermissions = {};
@@ -58,10 +62,7 @@ class PermissionService {
     return items.map((item) {
       final enabled = hasAccess(item.id);
 
-      return item.copyWith(
-        enabled: enabled,
-        opacity: enabled ? 1.0 : 0.4,
-      );
+      return item.copyWith(enabled: enabled, opacity: enabled ? 1.0 : 0.4);
     }).toList();
   }
 

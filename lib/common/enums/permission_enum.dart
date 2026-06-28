@@ -6,4 +6,7 @@ enum AppPermission {
   viewAgvReport,
   viewAdReport,
   viewAccountingReport,
+  viewSeniorApprove,
+  viewHeadOfDepartmentApprove,
+  viewBoardOfDirectorApprove,
 }

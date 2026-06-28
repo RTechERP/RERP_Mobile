@@ -8,4 +8,7 @@ enum AppRole {
   employee,
   ad,
   accountant,
+  senior,
+  headOfDepartment,
+  boardOfDirector,
 }
