@@ -37,7 +37,9 @@ import '../features/dashboard/view/dashboard_screen.dart';
 import '../features/more/view/settings/notification/bloc/notification_bloc.dart';
 import '../features/more/view/settings/notification/page/notification_settings_screen.dart';
 import '../features/workplace/app/personal_approve/app/approve_timesheet/view/bloc/approve_timesheet_bloc.dart';
+import '../features/workplace/app/personal_approve/app/approve_timesheet/view/pages/approve_timesheet_detail_screen.dart';
 import '../features/workplace/app/personal_approve/app/approve_timesheet/view/pages/approve_timesheet_senior_screen.dart';
+import '../features/workplace/app/personal_approve/app/approve_timesheet/data/datasource/models/approve_timesheet_model.dart';
 import '../features/workplace/app/personal_approve/view/bloc/personal_approve_menu_bloc.dart';
 import '../features/workplace/app/personal_approve/view/pages/personal_approve_menu_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_add_screen.dart';
@@ -1308,6 +1310,27 @@ class AppRouter {
               GoRoute(
                 path: RouteNames.personalApproveSeniorTimesheet,
                 builder: (context, state) => const ApproveTimesheetSeniorScreen(),
+              ),
+              GoRoute(
+                path: RouteNames.personalApproveSeniorTimesheetDetail,
+                builder: (context, state) {
+                  final extra = state.extra;
+                  if (extra is ApproveTimesheetItem) {
+                    return ApproveTimesheetDetailScreen(item: extra);
+                  }
+                  return Scaffold(
+                    appBar: AppBar(title: const Text('Chi tiết phiếu')),
+                    body: const Center(
+                      child: Padding(
+                        padding: EdgeInsets.all(24),
+                        child: Text(
+                          'Không có dữ liệu phiếu. Vui lòng mở từ danh sách.',
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  );
+                },
               ),
             ],
           ),

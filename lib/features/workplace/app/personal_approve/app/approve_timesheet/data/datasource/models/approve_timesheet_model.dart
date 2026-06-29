@@ -41,8 +41,8 @@ class ApproveTimesheetItem with _$ApproveTimesheetItem {
     @JsonKey(name: 'ApprovedSeniorName') String? approvedSeniorName,
     @JsonKey(name: 'FileName') String? fileName,
     @JsonKey(name: 'FilePath') String? filePath,
-    @JsonKey(name: 'CheckIn') DateTime? checkIn,
-    @JsonKey(name: 'CheckOut') DateTime? checkOut,
+    @JsonKey(name: 'CheckIn') String? checkIn,
+    @JsonKey(name: 'CheckOut') String? checkOut,
     @JsonKey(name: 'IsNotValid') int? isNotValid,
     @JsonKey(name: 'StatusText') String? statusText,
     @JsonKey(name: 'StatusHRText') String? statusHRText,
@@ -106,3 +106,16 @@ class SeniorInfoItem with _$SeniorInfoItem {
   factory SeniorInfoItem.fromJson(Map<String, dynamic> json) =>
       _$SeniorInfoItemFromJson(json);
 }
+
+/// Map cứng TType -> [TypeText, TableName] dùng để hiển thị label và resolve table khi API không trả đủ.
+const kApproveTimesheetTypeMap = <int, ({String typeText, String tableName})>{
+  1: (typeText: 'Đăng ký nghỉ',            tableName: 'EmployeeOnLeave'),
+  2: (typeText: 'Đăng ký Đi muộn về sớm', tableName: 'EmployeeEarlyLate'),
+  3: (typeText: 'Đăng ký Làm thêm',        tableName: 'EmployeeOvertime'),
+  4: (typeText: 'Đăng ký công tác',        tableName: 'EmployeeBussiness'),
+  5: (typeText: 'Làm việc ở nhà',           tableName: 'EmployeeWFH'),
+  6: (typeText: 'Quên chấm vân tay',        tableName: 'EmployeeNoFingerprint'),
+  7: (typeText: 'Tạm ứng lương',            tableName: 'EmployeeSalaryAdvance'),
+  8: (typeText: 'Làm Ca Đêm',               tableName: 'EmployeeNighShift'),
+  9: (typeText: 'Đăng ký đặt xe',           tableName: 'VehicleBookingManagement'),
+};

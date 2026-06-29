@@ -89,9 +89,9 @@ mixin _$ApproveTimesheetItem {
   @JsonKey(name: 'FilePath')
   String? get filePath => throw _privateConstructorUsedError;
   @JsonKey(name: 'CheckIn')
-  DateTime? get checkIn => throw _privateConstructorUsedError;
+  String? get checkIn => throw _privateConstructorUsedError;
   @JsonKey(name: 'CheckOut')
-  DateTime? get checkOut => throw _privateConstructorUsedError;
+  String? get checkOut => throw _privateConstructorUsedError;
   @JsonKey(name: 'IsNotValid')
   int? get isNotValid => throw _privateConstructorUsedError;
   @JsonKey(name: 'StatusText')
@@ -152,8 +152,8 @@ abstract class $ApproveTimesheetItemCopyWith<$Res> {
       @JsonKey(name: 'ApprovedSeniorName') String? approvedSeniorName,
       @JsonKey(name: 'FileName') String? fileName,
       @JsonKey(name: 'FilePath') String? filePath,
-      @JsonKey(name: 'CheckIn') DateTime? checkIn,
-      @JsonKey(name: 'CheckOut') DateTime? checkOut,
+      @JsonKey(name: 'CheckIn') String? checkIn,
+      @JsonKey(name: 'CheckOut') String? checkOut,
       @JsonKey(name: 'IsNotValid') int? isNotValid,
       @JsonKey(name: 'StatusText') String? statusText,
       @JsonKey(name: 'StatusHRText') String? statusHRText,
@@ -359,11 +359,11 @@ class _$ApproveTimesheetItemCopyWithImpl<$Res,
       checkIn: freezed == checkIn
           ? _value.checkIn
           : checkIn // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       checkOut: freezed == checkOut
           ? _value.checkOut
           : checkOut // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       isNotValid: freezed == isNotValid
           ? _value.isNotValid
           : isNotValid // ignore: cast_nullable_to_non_nullable
@@ -435,8 +435,8 @@ abstract class _$$ApproveTimesheetItemImplCopyWith<$Res>
       @JsonKey(name: 'ApprovedSeniorName') String? approvedSeniorName,
       @JsonKey(name: 'FileName') String? fileName,
       @JsonKey(name: 'FilePath') String? filePath,
-      @JsonKey(name: 'CheckIn') DateTime? checkIn,
-      @JsonKey(name: 'CheckOut') DateTime? checkOut,
+      @JsonKey(name: 'CheckIn') String? checkIn,
+      @JsonKey(name: 'CheckOut') String? checkOut,
       @JsonKey(name: 'IsNotValid') int? isNotValid,
       @JsonKey(name: 'StatusText') String? statusText,
       @JsonKey(name: 'StatusHRText') String? statusHRText,
@@ -639,11 +639,11 @@ class __$$ApproveTimesheetItemImplCopyWithImpl<$Res>
       checkIn: freezed == checkIn
           ? _value.checkIn
           : checkIn // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       checkOut: freezed == checkOut
           ? _value.checkOut
           : checkOut // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       isNotValid: freezed == isNotValid
           ? _value.isNotValid
           : isNotValid // ignore: cast_nullable_to_non_nullable
@@ -826,10 +826,10 @@ class _$ApproveTimesheetItemImpl implements _ApproveTimesheetItem {
   final String? filePath;
   @override
   @JsonKey(name: 'CheckIn')
-  final DateTime? checkIn;
+  final String? checkIn;
   @override
   @JsonKey(name: 'CheckOut')
-  final DateTime? checkOut;
+  final String? checkOut;
   @override
   @JsonKey(name: 'IsNotValid')
   final int? isNotValid;
@@ -1039,8 +1039,8 @@ abstract class _ApproveTimesheetItem implements ApproveTimesheetItem {
       @JsonKey(name: 'ApprovedSeniorName') final String? approvedSeniorName,
       @JsonKey(name: 'FileName') final String? fileName,
       @JsonKey(name: 'FilePath') final String? filePath,
-      @JsonKey(name: 'CheckIn') final DateTime? checkIn,
-      @JsonKey(name: 'CheckOut') final DateTime? checkOut,
+      @JsonKey(name: 'CheckIn') final String? checkIn,
+      @JsonKey(name: 'CheckOut') final String? checkOut,
       @JsonKey(name: 'IsNotValid') final int? isNotValid,
       @JsonKey(name: 'StatusText') final String? statusText,
       @JsonKey(name: 'StatusHRText') final String? statusHRText,
@@ -1156,10 +1156,10 @@ abstract class _ApproveTimesheetItem implements ApproveTimesheetItem {
   String? get filePath;
   @override
   @JsonKey(name: 'CheckIn')
-  DateTime? get checkIn;
+  String? get checkIn;
   @override
   @JsonKey(name: 'CheckOut')
-  DateTime? get checkOut;
+  String? get checkOut;
   @override
   @JsonKey(name: 'IsNotValid')
   int? get isNotValid;

@@ -411,4 +411,6 @@ class ApiEndPoint {
   static const String getApproveUserTeam = '/home/get-user-team';
   static const String getApproveSeniorInfo =
       '/home/get-user-team-link-by-leader-id';
+  // Senior approve/reject
+  static const String approveSeniorNew = '/Approve/approve-senior-new';
 }

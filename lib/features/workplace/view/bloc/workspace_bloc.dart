@@ -13,7 +13,6 @@ import '../../../../routes/route_names.dart';
 import '../../../auth/data/datasource/models/user_model.dart';
 import '../../../auth/data/repository/auth_repo.dart';
 import '../../../auth/data/repository/auth_repository.dart';
-import '../../app/personal_approve/app/approve_timesheet/data/repository/approve_timesheet_repo.dart';
 
 part 'workspace_event.dart';
 part 'workspace_state.dart';
@@ -24,10 +23,8 @@ part 'workspace_bloc.freezed.dart';
 class WorkspaceBloc extends BaseBloc<WorkspaceEvent, WorkspaceState> {
   final LogUtils _log;
   final AuthRepo _authRepo;
-  final ApproveTimesheetRepo _approveTimesheetRepo;
 
   WorkspaceBloc(
-    this._approveTimesheetRepo,
     this._authRepo,
     this._log,
   ) : super(WorkspaceState.init()) {
@@ -117,23 +114,21 @@ class WorkspaceBloc extends BaseBloc<WorkspaceEvent, WorkspaceState> {
     );
   }
 
-  /// Resolve route "Phê duyệt" dựa trên currentUser và team.
-  /// - employeeID == leaderId → Senior screen.
+  /// Resolve route "Phê duyệt" dựa trên permission Senior đã resolve sẵn
+  /// qua `PermissionService.init()` ở trên (role `senior` ← permission N85).
+  /// - Có quyền `personal_approve:senior` → Senior screen.
   /// - Ngược lại → Menu screen.
   /// Trả về null nếu lỗi / không resolve được (để caller xử lý).
   Future<String?> _resolvePersonalApproveRoute(User user) async {
     try {
-      final teamRes = await _approveTimesheetRepo.getApproveUserTeam();
-      final teamList = teamRes.getOrElse(() => []);
-
-      if (teamList.isEmpty) return RouteNames.personalApprove;
-
-      final leaderId = teamList.first.leaderId;
+      final isSenior = PermissionService.hasAccess(
+        'personal_approve:senior',
+      );
       _log.logI(
-        'PersonalApprove.resolveRoute: employeeId=${user.employeeId}, leaderId=$leaderId',
+        'PersonalApprove.resolveRoute: employeeId=${user.employeeId}, isSenior=$isSenior',
       );
 
-      return user.employeeId == leaderId
+      return isSenior
           ? RouteNames.personalApproveSeniorTimesheet
           : RouteNames.personalApprove;
     } catch (e) {

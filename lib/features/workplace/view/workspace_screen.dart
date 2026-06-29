@@ -180,7 +180,7 @@ class _WorkPlaceScreenState
                       }
 
                       // Personal Approve: route đã được WorkspaceBloc resolve sẵn
-                      // lúc load workspace (so sánh employeeID vs leaderId).
+                      // lúc load workspace (theo permission Senior N85).
                       // Bấm là vào thẳng, không gọi API, không show processing.
                       if (item.id == 'personal_approve') {
                         final route = state.personalApproveRoute;

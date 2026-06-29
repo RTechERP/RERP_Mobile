@@ -14,4 +14,18 @@ abstract class ApproveTimesheetRepo{
 
   // Hàm lấy dữ liệu Senior
   Future<Either<BaseError, List<SeniorInfoItem>>> getApproveSeniorInfo();
+
+  // Duyệt / huỷ duyệt / từ chối hàng loạt (Senior)
+  Future<Either<BaseError, bool>> approveSenior({
+    required List<ApproveTimesheetItem> items,
+    required bool isApproved,
+    required int seniorId,
+  });
+
+  // Senior từ chối hàng loạt kèm lý do (ghi DecilineApproveSenior + ReasonDecilineSenior).
+  Future<Either<BaseError, bool>> declineSenior({
+    required List<ApproveTimesheetItem> items,
+    required int seniorId,
+    required String reason,
+  });
 }

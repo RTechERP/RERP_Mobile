@@ -59,4 +59,94 @@ class ApproveTimesheetRepoImpl implements ApproveTimesheetRepo {
       return left(e.baseError);
     }
   }
+
+  // Duyệt / huỷ duyệt / từ chối hàng loạt (Senior)
+  @override
+  Future<Either<BaseError, bool>> approveSenior({
+    required List<ApproveTimesheetItem> items,
+    required bool isApproved,
+    required int seniorId,
+  }) async {
+    try {
+      final now = DateTime.now().toUtc();
+      final payloadItems = items.map((item) {
+        return {
+          'Id': item.id,
+          'TableName': item.tableName ?? kApproveTimesheetTypeMap[item.tType ?? 0]?.tableName,
+          'FieldName': 'IsSeniorApproved',
+          'FullName': item.fullName,
+          'DeleteFlag': false,
+          'IsApprovedHR': false,
+          'IsCancelRegister': -1,
+          'IsApprovedTP': false,
+          'IsApprovedBGD': null,
+          'IsSeniorApproved': isApproved,
+          'ValueUpdatedDate': now.toIso8601String(),
+          'ValueDecilineApprove': isApproved ? '1' : '1',
+          'EvaluateResults': item.evaluateResults ?? '',
+          'EmployeeID': item.employeeId,
+          'TType': item.tType,
+          'ApprovedSeniorID': seniorId,
+        };
+      }).toList();
+
+      final res = await _service.approveSenior(
+        items: payloadItems,
+        isApproved: isApproved,
+      );
+      if (res.status == 1) {
+        return right(true);
+      } else {
+        return left(BaseError.httpInternalServerError(res.message ?? 'Thao tác thất bại'));
+      }
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  // Senior từ chối hàng loạt kèm lý do (DecilineApproveSenior=2, ReasonDecilineSenior)
+  @override
+  Future<Either<BaseError, bool>> declineSenior({
+    required List<ApproveTimesheetItem> items,
+    required int seniorId,
+    required String reason,
+  }) async {
+    try {
+      final now = DateTime.now().toUtc();
+      final payloadItems = items.map((item) {
+        return {
+          'Id': item.id,
+          'TableName': item.tableName ?? kApproveTimesheetTypeMap[item.tType ?? 0]?.tableName,
+          'FieldName': 'IsSeniorApproved',
+          'FullName': item.fullName,
+          'DeleteFlag': false,
+          'IsApprovedHR': false,
+          'IsCancelRegister': -1,
+          'IsApprovedTP': false,
+          'IsApprovedBGD': null,
+          'IsSeniorApproved': false,
+          'ValueUpdatedDate': now.toIso8601String(),
+          'ValueDecilineApprove': '1',
+          'EvaluateResults': item.evaluateResults ?? '',
+          'EmployeeID': item.employeeId,
+          'TType': item.tType,
+          'ApprovedSeniorID': seniorId,
+          'DecilineApproveSenior': 2,
+          'ReasonDecilineSenior': reason,
+        };
+      }).toList();
+
+      final res = await _service.approveSenior(
+        items: payloadItems,
+        isApproved: false,
+      );
+      if (res.status == 1) {
+        return right(true);
+      } else {
+        return left(BaseError.httpInternalServerError(res.message ?? 'Thao tác thất bại'));
+      }
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

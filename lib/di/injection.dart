@@ -352,7 +352,6 @@ void configureDependencies() {
   );
   getIt.registerFactory<WorkspaceBloc>(
     () => WorkspaceBloc(
-      getIt<ApproveTimesheetRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
     ),
@@ -550,7 +549,6 @@ void configureDependencies() {
   getIt.registerFactory<ApproveTimesheetBloc>(
     () => ApproveTimesheetBloc(
       getIt<ApproveTimesheetRepo>(),
-      getIt<AuthRepo>(),
       getIt<LogUtils>(),
     ),
   );
