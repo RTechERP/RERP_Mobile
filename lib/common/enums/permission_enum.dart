@@ -9,4 +9,5 @@ enum AppPermission {
   viewSeniorApprove,
   viewHeadOfDepartmentApprove,
   viewBoardOfDirectorApprove,
+  viewPersonalApproveMenu,
 }

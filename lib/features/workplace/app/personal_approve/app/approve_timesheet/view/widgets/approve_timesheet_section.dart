@@ -20,6 +20,7 @@ class ApproveTimesheetSection extends StatelessWidget {
     required this.onToggleGroup,
     required this.onItemTap,
     required this.onItemCheckboxTap,
+    this.showSeniorStage = true,
   });
 
   final String typeText;
@@ -30,6 +31,7 @@ class ApproveTimesheetSection extends StatelessWidget {
   final bool isGroupSomeSelected;
   final Set<int> selectedIds;
   final VoidCallback onToggleGroup;
+  final bool showSeniorStage;
 
   /// Tap vào phần thân card (trừ checkbox) — thường dùng để mở chi tiết.
   final void Function(ApproveTimesheetItem item) onItemTap;
@@ -82,6 +84,7 @@ class ApproveTimesheetSection extends StatelessWidget {
                 item: items[i],
                 isSelected: items[i].id != null &&
                     selectedIds.contains(items[i].id),
+                showSeniorStage: showSeniorStage,
                 onTap: () => onItemTap(items[i]),
                 onCheckboxTap: () => onItemCheckboxTap(items[i]),
               ),
@@ -247,10 +250,12 @@ class ApproveTimesheetCard extends StatelessWidget {
     required this.isSelected,
     required this.onTap,
     required this.onCheckboxTap,
+    this.showSeniorStage = true,
   });
 
   final ApproveTimesheetItem item;
   final bool isSelected;
+  final bool showSeniorStage;
   final VoidCallback onTap;
   final VoidCallback onCheckboxTap;
 
@@ -283,6 +288,7 @@ class ApproveTimesheetCard extends StatelessWidget {
                 item: item,
                 isSelected: isSelected,
                 onCheckboxTap: onCheckboxTap,
+                showSeniorStage: showSeniorStage,
               ),
               if (hasContent) ...[
                 const Divider(
@@ -318,10 +324,12 @@ class _CardHeader extends StatelessWidget {
     required this.item,
     required this.isSelected,
     required this.onCheckboxTap,
+    required this.showSeniorStage,
   });
 
   final ApproveTimesheetItem item;
   final bool isSelected;
+  final bool showSeniorStage;
   final VoidCallback onCheckboxTap;
 
   String get _employeeLine {
@@ -359,7 +367,7 @@ class _CardHeader extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
                 const SizedBox(height: 6),
-                _Pipeline(item: item),
+                _Pipeline(item: item, showSeniorStage: showSeniorStage),
               ],
             ),
           ),
@@ -405,13 +413,43 @@ class _CheckBox extends StatelessWidget {
 // ===== Pipeline =====
 
 class _Pipeline extends StatelessWidget {
-  const _Pipeline({required this.item});
+  const _Pipeline({
+    required this.item,
+    this.showSeniorStage = true,
+  });
 
   final ApproveTimesheetItem item;
+  final bool showSeniorStage;
 
   @override
   Widget build(BuildContext context) {
     final stages = ApproveTimesheetStages.fromItem(item);
+    if (!showSeniorStage) {
+      return Row(
+        children: [
+          _PipelineStage(
+            label: 'HR',
+            shortLabel: 'H',
+            state: stages.hr,
+            statusText: item.statusHRText,
+          ),
+          _PipelineConnector(approved: stages.hr == ApproveTimesheetStageState.approved),
+          _PipelineStage(
+            label: 'TBP',
+            shortLabel: 'T',
+            state: stages.tbp,
+            statusText: item.statusText,
+          ),
+          _PipelineConnector(approved: stages.tbp == ApproveTimesheetStageState.approved),
+          _PipelineStage(
+            label: 'BGD',
+            shortLabel: 'B',
+            state: stages.bgd,
+            statusText: item.statusBGDText,
+          ),
+        ],
+      );
+    }
     return Row(
       children: [
         _PipelineStage(

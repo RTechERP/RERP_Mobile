@@ -114,26 +114,38 @@ class WorkspaceBloc extends BaseBloc<WorkspaceEvent, WorkspaceState> {
     );
   }
 
-  /// Resolve route "Phê duyệt" dựa trên permission Senior đã resolve sẵn
-  /// qua `PermissionService.init()` ở trên (role `senior` ← permission N85).
-  /// - Có quyền `personal_approve:senior` → Senior screen.
-  /// - Ngược lại → Menu screen.
-  /// Trả về null nếu lỗi / không resolve được (để caller xử lý).
-  Future<String?> _resolvePersonalApproveRoute(User user) async {
-    try {
-      final isSenior = PermissionService.hasAccess(
-        'personal_approve:senior',
-      );
-      _log.logI(
-        'PersonalApprove.resolveRoute: employeeId=${user.employeeId}, isSenior=$isSenior',
-      );
-
-      return isSenior
-          ? RouteNames.personalApproveSeniorTimesheet
-          : RouteNames.personalApprove;
-    } catch (e) {
-      _log.logE('Resolve personalApprove route failed: $e');
+  /// Resolve route "Phê duyệt" dựa trên permission đã resolve sẵn qua
+/// `PermissionService.init()` ở trên.
+///
+/// Thứ tự ưu tiên (cao → thấp):
+/// 1. Có quyền `personal_approve:menu` (HeadOfDept / BOD / Admin) → Menu screen.
+/// 2. Có quyền `personal_approve:senior` → Senior screen (thẳng).
+/// 3. Ngược lại → Menu screen.
+///
+/// Trả về null nếu lỗi / không resolve được (để caller xử lý).
+Future<String?> _resolvePersonalApproveRoute(User user) async {
+  try {
+    // Có quyền vào Menu duyệt (HeadOfDept / BOD / Admin) → Menu screen.
+    final hasMenuAccess = PermissionService.hasAccess(
+      'personal_approve:menu',
+    );
+    if (hasMenuAccess) {
       return RouteNames.personalApprove;
     }
+
+    final isSenior = PermissionService.hasAccess(
+      'personal_approve:senior',
+    );
+    _log.logI(
+      'PersonalApprove.resolveRoute: employeeId=${user.employeeId}, isSenior=$isSenior',
+    );
+
+    return isSenior
+        ? RouteNames.personalApproveSeniorTimesheet
+        : RouteNames.personalApprove;
+  } catch (e) {
+    _log.logE('Resolve personalApprove route failed: $e');
+    return RouteNames.personalApprove;
   }
+}
 }

@@ -20,9 +20,15 @@ class RolePermissionMap {
 
     AppRole.senior: {AppPermission.viewSeniorApprove},
 
-    AppRole.headOfDepartment: {AppPermission.viewHeadOfDepartmentApprove},
+    AppRole.headOfDepartment: {
+      AppPermission.viewHeadOfDepartmentApprove,
+      AppPermission.viewPersonalApproveMenu,
+    },
 
-    AppRole.boardOfDirector: {AppPermission.viewBoardOfDirectorApprove},
+    AppRole.boardOfDirector: {
+      AppPermission.viewBoardOfDirectorApprove,
+      AppPermission.viewPersonalApproveMenu,
+    },
 
     AppRole.employee: {},
   };

@@ -5,6 +5,11 @@ class ApproveTimesheetState extends BaseBlocState {
   final List<ApproveTimesheetItem>? items;
   final List<UserTeamItem>? seniorItems;
 
+  /// Role đang dùng bloc — Senior hoặc TBP.
+  /// Không dùng để gate UI (screen chọn role khi tạo); chỉ để bloc
+  /// phân biệt filter API và payload.
+  final ApproveTimesheetRole role;
+
   /// Đang ở chế độ chọn nhiều (long-press để vào).
   final bool selectionMode;
 
@@ -20,23 +25,35 @@ class ApproveTimesheetState extends BaseBlocState {
   /// Đang duyệt / từ chối hàng loạt (Senior).
   final bool isSeniorApproving;
 
+  /// EmployeeID của TBP đang đăng nhập (dùng khi submit TBP approve / decline
+  /// để ghi `IDApprovedTP`).
+  final int? tbpApproverEmployeeId;
+
+  /// Đang duyệt / từ chối hàng loạt (TBP).
+  final bool isTbpApproving;
+
   const ApproveTimesheetState({
     required super.status,
     super.message,
     this.items,
     this.seniorItems,
+    this.role = ApproveTimesheetRole.senior,
     this.selectionMode = false,
     this.selectedIds = const <int>{},
     this.filteredTTypes = const <int>{},
     this.seniorId,
     this.isSeniorApproving = false,
+    this.tbpApproverEmployeeId,
+    this.isTbpApproving = false,
   });
 
   factory ApproveTimesheetState.init() => const ApproveTimesheetState(
         status: BaseStateStatus.init,
         items: [],
+        role: ApproveTimesheetRole.senior,
         filteredTTypes: <int>{},
         isSeniorApproving: false,
+        isTbpApproving: false,
       );
 
   /// Tổng số phiếu có id hợp lệ đang hiển thị (dùng cho "chọn tất cả").
@@ -65,7 +82,21 @@ class ApproveTimesheetState extends BaseBlocState {
 
   /// Lấy các item đang được chọn.
   List<ApproveTimesheetItem> get selectedItems =>
-      items?.where((e) => e.id != null && selectedIds.contains(e.id!)).toList() ?? [];
+      items?.where((e) => e.id != null && selectedIds.contains(e.id!)).toList() ?? const [];
+
+  /// Phiếu chưa được Senior duyệt (isSeniorApproved != 1).
+  /// Dùng cho TBP để cảnh báo + bottom sheet bypass.
+  List<ApproveTimesheetItem> get notSeniorApprovedItems {
+    final list = items ?? const <ApproveTimesheetItem>[];
+    return list.where((e) => (e.isSeniorApproved ?? 0) != 1).toList();
+  }
+
+  int get notSeniorApprovedCount => notSeniorApprovedItems.length;
+
+  int get seniorApprovedCount {
+    final list = items ?? const <ApproveTimesheetItem>[];
+    return list.where((e) => (e.isSeniorApproved ?? 0) == 1).length;
+  }
 
   @override
   List get props => [
@@ -73,10 +104,13 @@ class ApproveTimesheetState extends BaseBlocState {
         message,
         items,
         seniorItems,
+        role,
         selectionMode,
         selectedIds,
         filteredTTypes,
         seniorId,
         isSeniorApproving,
+        tbpApproverEmployeeId,
+        isTbpApproving,
       ];
 }

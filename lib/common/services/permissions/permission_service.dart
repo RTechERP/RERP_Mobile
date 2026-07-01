@@ -17,21 +17,18 @@ class PermissionService {
     'report:ad': AppPermission.viewAdReport,
     'report:accountant': AppPermission.viewAccountingReport,
     'personal_approve:senior': AppPermission.viewSeniorApprove,
-    'personal_approve:head_of_department':
-        AppPermission.viewHeadOfDepartmentApprove,
-    'personal_approve:board_of_director':
-        AppPermission.viewBoardOfDirectorApprove,
+    'personal_approve:menu': AppPermission.viewPersonalApproveMenu,
   };
 
   static Set<AppPermission> _cachedPermissions = {};
   static bool _initialized = false;
 
-  /// ✅ Init permission theo user hiện tại
+  /// Init permission theo user hiện tại
   static Future<void> init() async {
     final user = await AuthRepository.getCurrentUser();
 
     if (user == null) {
-      reset(); // dùng reset thay vì clear thủ công
+      reset();
       return;
     }
 
@@ -41,7 +38,7 @@ class PermissionService {
     _initialized = true;
   }
 
-  /// ✅ Reset hoàn toàn (dùng khi logout)
+  /// Reset hoàn toàn (dùng khi logout)
   static void reset() {
     _cachedPermissions = {};
     _initialized = false;

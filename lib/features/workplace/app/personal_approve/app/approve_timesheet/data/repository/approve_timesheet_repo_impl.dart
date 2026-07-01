@@ -149,4 +149,95 @@ class ApproveTimesheetRepoImpl implements ApproveTimesheetRepo {
       return left(e.baseError);
     }
   }
+
+  // Duyệt / huỷ duyệt hàng loạt (TBP)
+  // FieldName = IsApprovedTP, ghi IDApprovedTP = approverEmployeeId.
+  @override
+  Future<Either<BaseError, bool>> approveTBP({
+    required List<ApproveTimesheetItem> items,
+    required int approverEmployeeId,
+    required bool isApproved,
+  }) async {
+    try {
+      final now = DateTime.now().toUtc();
+      final payloadItems = items.map((item) {
+        return {
+          'Id': item.id,
+          'TableName': item.tableName ?? kApproveTimesheetTypeMap[item.tType ?? 0]?.tableName,
+          'FieldName': 'IsApprovedTP',
+          'FullName': item.fullName,
+          'DeleteFlag': false,
+          'IsApprovedHR': item.isApprovedHR ?? false,
+          'IsCancelRegister': -1,
+          'IsApprovedTP': isApproved,
+          'IsApprovedBGD': null,
+          'IsSeniorApproved': item.isSeniorApproved ?? false,
+          'ValueUpdatedDate': now.toIso8601String(),
+          'ValueDecilineApprove': isApproved ? '1' : '1',
+          'EvaluateResults': item.evaluateResults ?? '',
+          'EmployeeID': item.employeeId,
+          'TType': item.tType,
+          'IDApprovedTP': approverEmployeeId,
+        };
+      }).toList();
+
+      final res = await _service.approveTBP(
+        items: payloadItems,
+        isApproved: isApproved,
+      );
+      if (res.status == 1) {
+        return right(true);
+      } else {
+        return left(BaseError.httpInternalServerError(res.message ?? 'Thao tác thất bại'));
+      }
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  // TBP từ chối hàng loạt kèm lý do (DecilineApprove=2, ReasonDeciline).
+  @override
+  Future<Either<BaseError, bool>> declineTBP({
+    required List<ApproveTimesheetItem> items,
+    required int approverEmployeeId,
+    required String reason,
+  }) async {
+    try {
+      final now = DateTime.now().toUtc();
+      final payloadItems = items.map((item) {
+        return {
+          'Id': item.id,
+          'TableName': item.tableName ?? kApproveTimesheetTypeMap[item.tType ?? 0]?.tableName,
+          'FieldName': 'IsApprovedTP',
+          'FullName': item.fullName,
+          'DeleteFlag': false,
+          'IsApprovedHR': item.isApprovedHR ?? false,
+          'IsCancelRegister': -1,
+          'IsApprovedTP': false,
+          'IsApprovedBGD': null,
+          'IsSeniorApproved': item.isSeniorApproved ?? false,
+          'ValueUpdatedDate': now.toIso8601String(),
+          'ValueDecilineApprove': '1',
+          'EvaluateResults': item.evaluateResults ?? '',
+          'EmployeeID': item.employeeId,
+          'TType': item.tType,
+          'IDApprovedTP': approverEmployeeId,
+          'DecilineApprove': 2,
+          'ReasonDeciline': reason,
+        };
+      }).toList();
+
+      final res = await _service.approveTBP(
+        items: payloadItems,
+        isApproved: false,
+      );
+      if (res.status == 1) {
+        return right(true);
+      } else {
+        return left(BaseError.httpInternalServerError(res.message ?? 'Thao tác thất bại'));
+      }
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

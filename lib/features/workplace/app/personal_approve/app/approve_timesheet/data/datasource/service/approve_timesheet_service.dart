@@ -68,4 +68,19 @@ class ApproveTimeSheetService extends DioBaseApiService {
       parser: (json) => BaseData.fromJson(json, (_) {}),
     );
   }
+
+  // Service duyệt / từ chối hàng loạt (TBP)
+  Future<BaseData<void>> approveTBP({
+    required List<Map<String, dynamic>> items,
+    required bool isApproved,
+  }) async {
+    return post<BaseData<void>>(
+      ApiEndPoint.approveTBPNew,
+      body: {
+        'Items': items,
+        'IsApproved': isApproved,
+      },
+      parser: (json) => BaseData.fromJson(json, (_) {}),
+    );
+  }
 }

@@ -220,6 +220,8 @@ class RouteNames {
   // Personal Approve
   static const personalApprove = '/personal_approve';
   static const personalApproveTimesheet = '/personal_approve/approve_timesheet/timesheet';
+  static const personalApproveTimesheetDetail =
+      '/personal_approve/approve_timesheet/timesheet/detail';
   static const personalApproveSeniorTimesheet =
       '/personal_approve/approve_timesheet/senior_timesheet';
   static const personalApproveSeniorTimesheetDetail =

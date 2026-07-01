@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ApproveTimesheetEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(ApproveTimesheetRole role, int? employeeId) init,
     required TResult Function() toggleSelectionMode,
     required TResult Function(int id) toggleSelection,
     required TResult Function(int tType) toggleSelectGroup,
@@ -29,11 +29,16 @@ mixin _$ApproveTimesheetEvent {
     required TResult Function() seniorApprove,
     required TResult Function() seniorUnapprove,
     required TResult Function(String reason) seniorDecline,
+    required TResult Function() tbpApprove,
+    required TResult Function() tbpUnapprove,
+    required TResult Function(String reason) tbpDecline,
+    required TResult Function(List<ApproveTimesheetItem> items)
+        tbpSeniorBypassApprove,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(ApproveTimesheetRole role, int? employeeId)? init,
     TResult? Function()? toggleSelectionMode,
     TResult? Function(int id)? toggleSelection,
     TResult? Function(int tType)? toggleSelectGroup,
@@ -44,11 +49,15 @@ mixin _$ApproveTimesheetEvent {
     TResult? Function()? seniorApprove,
     TResult? Function()? seniorUnapprove,
     TResult? Function(String reason)? seniorDecline,
+    TResult? Function()? tbpApprove,
+    TResult? Function()? tbpUnapprove,
+    TResult? Function(String reason)? tbpDecline,
+    TResult? Function(List<ApproveTimesheetItem> items)? tbpSeniorBypassApprove,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(ApproveTimesheetRole role, int? employeeId)? init,
     TResult Function()? toggleSelectionMode,
     TResult Function(int id)? toggleSelection,
     TResult Function(int tType)? toggleSelectGroup,
@@ -59,6 +68,10 @@ mixin _$ApproveTimesheetEvent {
     TResult Function()? seniorApprove,
     TResult Function()? seniorUnapprove,
     TResult Function(String reason)? seniorDecline,
+    TResult Function()? tbpApprove,
+    TResult Function()? tbpUnapprove,
+    TResult Function(String reason)? tbpDecline,
+    TResult Function(List<ApproveTimesheetItem> items)? tbpSeniorBypassApprove,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -75,6 +88,11 @@ mixin _$ApproveTimesheetEvent {
     required TResult Function(_SeniorApprove value) seniorApprove,
     required TResult Function(_SeniorUnapprove value) seniorUnapprove,
     required TResult Function(_SeniorDecline value) seniorDecline,
+    required TResult Function(_TbpApprove value) tbpApprove,
+    required TResult Function(_TbpUnapprove value) tbpUnapprove,
+    required TResult Function(_TbpDecline value) tbpDecline,
+    required TResult Function(_TbpSeniorBypassApprove value)
+        tbpSeniorBypassApprove,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -90,6 +108,10 @@ mixin _$ApproveTimesheetEvent {
     TResult? Function(_SeniorApprove value)? seniorApprove,
     TResult? Function(_SeniorUnapprove value)? seniorUnapprove,
     TResult? Function(_SeniorDecline value)? seniorDecline,
+    TResult? Function(_TbpApprove value)? tbpApprove,
+    TResult? Function(_TbpUnapprove value)? tbpUnapprove,
+    TResult? Function(_TbpDecline value)? tbpDecline,
+    TResult? Function(_TbpSeniorBypassApprove value)? tbpSeniorBypassApprove,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -105,6 +127,10 @@ mixin _$ApproveTimesheetEvent {
     TResult Function(_SeniorApprove value)? seniorApprove,
     TResult Function(_SeniorUnapprove value)? seniorUnapprove,
     TResult Function(_SeniorDecline value)? seniorDecline,
+    TResult Function(_TbpApprove value)? tbpApprove,
+    TResult Function(_TbpUnapprove value)? tbpUnapprove,
+    TResult Function(_TbpDecline value)? tbpDecline,
+    TResult Function(_TbpSeniorBypassApprove value)? tbpSeniorBypassApprove,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -134,6 +160,8 @@ abstract class _$$InitImplCopyWith<$Res> {
   factory _$$InitImplCopyWith(
           _$InitImpl value, $Res Function(_$InitImpl) then) =
       __$$InitImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ApproveTimesheetRole role, int? employeeId});
 }
 
 /// @nodoc
@@ -142,31 +170,65 @@ class __$$InitImplCopyWithImpl<$Res>
     implements _$$InitImplCopyWith<$Res> {
   __$$InitImplCopyWithImpl(_$InitImpl _value, $Res Function(_$InitImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? role = null,
+    Object? employeeId = freezed,
+  }) {
+    return _then(_$InitImpl(
+      role: null == role
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
+              as ApproveTimesheetRole,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$InitImpl implements _Init {
-  const _$InitImpl();
+  const _$InitImpl({this.role = ApproveTimesheetRole.senior, this.employeeId});
+
+  @override
+  @JsonKey()
+  final ApproveTimesheetRole role;
+  @override
+  final int? employeeId;
 
   @override
   String toString() {
-    return 'ApproveTimesheetEvent.init()';
+    return 'ApproveTimesheetEvent.init(role: $role, employeeId: $employeeId)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$InitImpl &&
+            (identical(other.role, role) || other.role == role) &&
+            (identical(other.employeeId, employeeId) ||
+                other.employeeId == employeeId));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, role, employeeId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitImplCopyWith<_$InitImpl> get copyWith =>
+      __$$InitImplCopyWithImpl<_$InitImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(ApproveTimesheetRole role, int? employeeId) init,
     required TResult Function() toggleSelectionMode,
     required TResult Function(int id) toggleSelection,
     required TResult Function(int tType) toggleSelectGroup,
@@ -177,14 +239,19 @@ class _$InitImpl implements _Init {
     required TResult Function() seniorApprove,
     required TResult Function() seniorUnapprove,
     required TResult Function(String reason) seniorDecline,
+    required TResult Function() tbpApprove,
+    required TResult Function() tbpUnapprove,
+    required TResult Function(String reason) tbpDecline,
+    required TResult Function(List<ApproveTimesheetItem> items)
+        tbpSeniorBypassApprove,
   }) {
-    return init();
+    return init(role, employeeId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(ApproveTimesheetRole role, int? employeeId)? init,
     TResult? Function()? toggleSelectionMode,
     TResult? Function(int id)? toggleSelection,
     TResult? Function(int tType)? toggleSelectGroup,
@@ -195,14 +262,18 @@ class _$InitImpl implements _Init {
     TResult? Function()? seniorApprove,
     TResult? Function()? seniorUnapprove,
     TResult? Function(String reason)? seniorDecline,
+    TResult? Function()? tbpApprove,
+    TResult? Function()? tbpUnapprove,
+    TResult? Function(String reason)? tbpDecline,
+    TResult? Function(List<ApproveTimesheetItem> items)? tbpSeniorBypassApprove,
   }) {
-    return init?.call();
+    return init?.call(role, employeeId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(ApproveTimesheetRole role, int? employeeId)? init,
     TResult Function()? toggleSelectionMode,
     TResult Function(int id)? toggleSelection,
     TResult Function(int tType)? toggleSelectGroup,
@@ -213,10 +284,14 @@ class _$InitImpl implements _Init {
     TResult Function()? seniorApprove,
     TResult Function()? seniorUnapprove,
     TResult Function(String reason)? seniorDecline,
+    TResult Function()? tbpApprove,
+    TResult Function()? tbpUnapprove,
+    TResult Function(String reason)? tbpDecline,
+    TResult Function(List<ApproveTimesheetItem> items)? tbpSeniorBypassApprove,
     required TResult orElse(),
   }) {
     if (init != null) {
-      return init();
+      return init(role, employeeId);
     }
     return orElse();
   }
@@ -235,6 +310,11 @@ class _$InitImpl implements _Init {
     required TResult Function(_SeniorApprove value) seniorApprove,
     required TResult Function(_SeniorUnapprove value) seniorUnapprove,
     required TResult Function(_SeniorDecline value) seniorDecline,
+    required TResult Function(_TbpApprove value) tbpApprove,
+    required TResult Function(_TbpUnapprove value) tbpUnapprove,
+    required TResult Function(_TbpDecline value) tbpDecline,
+    required TResult Function(_TbpSeniorBypassApprove value)
+        tbpSeniorBypassApprove,
   }) {
     return init(this);
   }
@@ -253,6 +333,10 @@ class _$InitImpl implements _Init {
     TResult? Function(_SeniorApprove value)? seniorApprove,
     TResult? Function(_SeniorUnapprove value)? seniorUnapprove,
     TResult? Function(_SeniorDecline value)? seniorDecline,
+    TResult? Function(_TbpApprove value)? tbpApprove,
+    TResult? Function(_TbpUnapprove value)? tbpUnapprove,
+    TResult? Function(_TbpDecline value)? tbpDecline,
+    TResult? Function(_TbpSeniorBypassApprove value)? tbpSeniorBypassApprove,
   }) {
     return init?.call(this);
   }
@@ -271,6 +355,10 @@ class _$InitImpl implements _Init {
     TResult Function(_SeniorApprove value)? seniorApprove,
     TResult Function(_SeniorUnapprove value)? seniorUnapprove,
     TResult Function(_SeniorDecline value)? seniorDecline,
+    TResult Function(_TbpApprove value)? tbpApprove,
+    TResult Function(_TbpUnapprove value)? tbpUnapprove,
+    TResult Function(_TbpDecline value)? tbpDecline,
+    TResult Function(_TbpSeniorBypassApprove value)? tbpSeniorBypassApprove,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -281,7 +369,14 @@ class _$InitImpl implements _Init {
 }
 
 abstract class _Init implements ApproveTimesheetEvent {
-  const factory _Init() = _$InitImpl;
+  const factory _Init(
+      {final ApproveTimesheetRole role, final int? employeeId}) = _$InitImpl;
+
+  ApproveTimesheetRole get role;
+  int? get employeeId;
+  @JsonKey(ignore: true)
+  _$$InitImplCopyWith<_$InitImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -323,7 +418,7 @@ class _$ToggleSelectionModeImpl implements _ToggleSelectionMode {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(ApproveTimesheetRole role, int? employeeId) init,
     required TResult Function() toggleSelectionMode,
     required TResult Function(int id) toggleSelection,
     required TResult Function(int tType) toggleSelectGroup,
@@ -334,6 +429,11 @@ class _$ToggleSelectionModeImpl implements _ToggleSelectionMode {
     required TResult Function() seniorApprove,
     required TResult Function() seniorUnapprove,
     required TResult Function(String reason) seniorDecline,
+    required TResult Function() tbpApprove,
+    required TResult Function() tbpUnapprove,
+    required TResult Function(String reason) tbpDecline,
+    required TResult Function(List<ApproveTimesheetItem> items)
+        tbpSeniorBypassApprove,
   }) {
     return toggleSelectionMode();
   }
@@ -341,7 +441,7 @@ class _$ToggleSelectionModeImpl implements _ToggleSelectionMode {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(ApproveTimesheetRole role, int? employeeId)? init,
     TResult? Function()? toggleSelectionMode,
     TResult? Function(int id)? toggleSelection,
     TResult? Function(int tType)? toggleSelectGroup,
@@ -352,6 +452,10 @@ class _$ToggleSelectionModeImpl implements _ToggleSelectionMode {
     TResult? Function()? seniorApprove,
     TResult? Function()? seniorUnapprove,
     TResult? Function(String reason)? seniorDecline,
+    TResult? Function()? tbpApprove,
+    TResult? Function()? tbpUnapprove,
+    TResult? Function(String reason)? tbpDecline,
+    TResult? Function(List<ApproveTimesheetItem> items)? tbpSeniorBypassApprove,
   }) {
     return toggleSelectionMode?.call();
   }
@@ -359,7 +463,7 @@ class _$ToggleSelectionModeImpl implements _ToggleSelectionMode {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(ApproveTimesheetRole role, int? employeeId)? init,
     TResult Function()? toggleSelectionMode,
     TResult Function(int id)? toggleSelection,
     TResult Function(int tType)? toggleSelectGroup,
@@ -370,6 +474,10 @@ class _$ToggleSelectionModeImpl implements _ToggleSelectionMode {
     TResult Function()? seniorApprove,
     TResult Function()? seniorUnapprove,
     TResult Function(String reason)? seniorDecline,
+    TResult Function()? tbpApprove,
+    TResult Function()? tbpUnapprove,
+    TResult Function(String reason)? tbpDecline,
+    TResult Function(List<ApproveTimesheetItem> items)? tbpSeniorBypassApprove,
     required TResult orElse(),
   }) {
     if (toggleSelectionMode != null) {
@@ -392,6 +500,11 @@ class _$ToggleSelectionModeImpl implements _ToggleSelectionMode {
     required TResult Function(_SeniorApprove value) seniorApprove,
     required TResult Function(_SeniorUnapprove value) seniorUnapprove,
     required TResult Function(_SeniorDecline value) seniorDecline,
+    required TResult Function(_TbpApprove value) tbpApprove,
+    required TResult Function(_TbpUnapprove value) tbpUnapprove,
+    required TResult Function(_TbpDecline value) tbpDecline,
+    required TResult Function(_TbpSeniorBypassApprove value)
+        tbpSeniorBypassApprove,
   }) {
     return toggleSelectionMode(this);
   }
@@ -410,6 +523,10 @@ class _$ToggleSelectionModeImpl implements _ToggleSelectionMode {
     TResult? Function(_SeniorApprove value)? seniorApprove,
     TResult? Function(_SeniorUnapprove value)? seniorUnapprove,
     TResult? Function(_SeniorDecline value)? seniorDecline,
+    TResult? Function(_TbpApprove value)? tbpApprove,
+    TResult? Function(_TbpUnapprove value)? tbpUnapprove,
+    TResult? Function(_TbpDecline value)? tbpDecline,
+    TResult? Function(_TbpSeniorBypassApprove value)? tbpSeniorBypassApprove,
   }) {
     return toggleSelectionMode?.call(this);
   }
@@ -428,6 +545,10 @@ class _$ToggleSelectionModeImpl implements _ToggleSelectionMode {
     TResult Function(_SeniorApprove value)? seniorApprove,
     TResult Function(_SeniorUnapprove value)? seniorUnapprove,
     TResult Function(_SeniorDecline value)? seniorDecline,
+    TResult Function(_TbpApprove value)? tbpApprove,
+    TResult Function(_TbpUnapprove value)? tbpUnapprove,
+    TResult Function(_TbpDecline value)? tbpDecline,
+    TResult Function(_TbpSeniorBypassApprove value)? tbpSeniorBypassApprove,
     required TResult orElse(),
   }) {
     if (toggleSelectionMode != null) {
@@ -506,7 +627,7 @@ class _$ToggleSelectionImpl implements _ToggleSelection {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(ApproveTimesheetRole role, int? employeeId) init,
     required TResult Function() toggleSelectionMode,
     required TResult Function(int id) toggleSelection,
     required TResult Function(int tType) toggleSelectGroup,
@@ -517,6 +638,11 @@ class _$ToggleSelectionImpl implements _ToggleSelection {
     required TResult Function() seniorApprove,
     required TResult Function() seniorUnapprove,
     required TResult Function(String reason) seniorDecline,
+    required TResult Function() tbpApprove,
+    required TResult Function() tbpUnapprove,
+    required TResult Function(String reason) tbpDecline,
+    required TResult Function(List<ApproveTimesheetItem> items)
+        tbpSeniorBypassApprove,
   }) {
     return toggleSelection(id);
   }
@@ -524,7 +650,7 @@ class _$ToggleSelectionImpl implements _ToggleSelection {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(ApproveTimesheetRole role, int? employeeId)? init,
     TResult? Function()? toggleSelectionMode,
     TResult? Function(int id)? toggleSelection,
     TResult? Function(int tType)? toggleSelectGroup,
@@ -535,6 +661,10 @@ class _$ToggleSelectionImpl implements _ToggleSelection {
     TResult? Function()? seniorApprove,
     TResult? Function()? seniorUnapprove,
     TResult? Function(String reason)? seniorDecline,
+    TResult? Function()? tbpApprove,
+    TResult? Function()? tbpUnapprove,
+    TResult? Function(String reason)? tbpDecline,
+    TResult? Function(List<ApproveTimesheetItem> items)? tbpSeniorBypassApprove,
   }) {
     return toggleSelection?.call(id);
   }
@@ -542,7 +672,7 @@ class _$ToggleSelectionImpl implements _ToggleSelection {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(ApproveTimesheetRole role, int? employeeId)? init,
     TResult Function()? toggleSelectionMode,
     TResult Function(int id)? toggleSelection,
     TResult Function(int tType)? toggleSelectGroup,
@@ -553,6 +683,10 @@ class _$ToggleSelectionImpl implements _ToggleSelection {
     TResult Function()? seniorApprove,
     TResult Function()? seniorUnapprove,
     TResult Function(String reason)? seniorDecline,
+    TResult Function()? tbpApprove,
+    TResult Function()? tbpUnapprove,
+    TResult Function(String reason)? tbpDecline,
+    TResult Function(List<ApproveTimesheetItem> items)? tbpSeniorBypassApprove,
     required TResult orElse(),
   }) {
     if (toggleSelection != null) {
@@ -575,6 +709,11 @@ class _$ToggleSelectionImpl implements _ToggleSelection {
     required TResult Function(_SeniorApprove value) seniorApprove,
     required TResult Function(_SeniorUnapprove value) seniorUnapprove,
     required TResult Function(_SeniorDecline value) seniorDecline,
+    required TResult Function(_TbpApprove value) tbpApprove,
+    required TResult Function(_TbpUnapprove value) tbpUnapprove,
+    required TResult Function(_TbpDecline value) tbpDecline,
+    required TResult Function(_TbpSeniorBypassApprove value)
+        tbpSeniorBypassApprove,
   }) {
     return toggleSelection(this);
   }
@@ -593,6 +732,10 @@ class _$ToggleSelectionImpl implements _ToggleSelection {
     TResult? Function(_SeniorApprove value)? seniorApprove,
     TResult? Function(_SeniorUnapprove value)? seniorUnapprove,
     TResult? Function(_SeniorDecline value)? seniorDecline,
+    TResult? Function(_TbpApprove value)? tbpApprove,
+    TResult? Function(_TbpUnapprove value)? tbpUnapprove,
+    TResult? Function(_TbpDecline value)? tbpDecline,
+    TResult? Function(_TbpSeniorBypassApprove value)? tbpSeniorBypassApprove,
   }) {
     return toggleSelection?.call(this);
   }
@@ -611,6 +754,10 @@ class _$ToggleSelectionImpl implements _ToggleSelection {
     TResult Function(_SeniorApprove value)? seniorApprove,
     TResult Function(_SeniorUnapprove value)? seniorUnapprove,
     TResult Function(_SeniorDecline value)? seniorDecline,
+    TResult Function(_TbpApprove value)? tbpApprove,
+    TResult Function(_TbpUnapprove value)? tbpUnapprove,
+    TResult Function(_TbpDecline value)? tbpDecline,
+    TResult Function(_TbpSeniorBypassApprove value)? tbpSeniorBypassApprove,
     required TResult orElse(),
   }) {
     if (toggleSelection != null) {
@@ -694,7 +841,7 @@ class _$ToggleSelectGroupImpl implements _ToggleSelectGroup {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(ApproveTimesheetRole role, int? employeeId) init,
     required TResult Function() toggleSelectionMode,
     required TResult Function(int id) toggleSelection,
     required TResult Function(int tType) toggleSelectGroup,
@@ -705,6 +852,11 @@ class _$ToggleSelectGroupImpl implements _ToggleSelectGroup {
     required TResult Function() seniorApprove,
     required TResult Function() seniorUnapprove,
     required TResult Function(String reason) seniorDecline,
+    required TResult Function() tbpApprove,
+    required TResult Function() tbpUnapprove,
+    required TResult Function(String reason) tbpDecline,
+    required TResult Function(List<ApproveTimesheetItem> items)
+        tbpSeniorBypassApprove,
   }) {
     return toggleSelectGroup(tType);
   }
@@ -712,7 +864,7 @@ class _$ToggleSelectGroupImpl implements _ToggleSelectGroup {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(ApproveTimesheetRole role, int? employeeId)? init,
     TResult? Function()? toggleSelectionMode,
     TResult? Function(int id)? toggleSelection,
     TResult? Function(int tType)? toggleSelectGroup,
@@ -723,6 +875,10 @@ class _$ToggleSelectGroupImpl implements _ToggleSelectGroup {
     TResult? Function()? seniorApprove,
     TResult? Function()? seniorUnapprove,
     TResult? Function(String reason)? seniorDecline,
+    TResult? Function()? tbpApprove,
+    TResult? Function()? tbpUnapprove,
+    TResult? Function(String reason)? tbpDecline,
+    TResult? Function(List<ApproveTimesheetItem> items)? tbpSeniorBypassApprove,
   }) {
     return toggleSelectGroup?.call(tType);
   }
@@ -730,7 +886,7 @@ class _$ToggleSelectGroupImpl implements _ToggleSelectGroup {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(ApproveTimesheetRole role, int? employeeId)? init,
     TResult Function()? toggleSelectionMode,
     TResult Function(int id)? toggleSelection,
     TResult Function(int tType)? toggleSelectGroup,
@@ -741,6 +897,10 @@ class _$ToggleSelectGroupImpl implements _ToggleSelectGroup {
     TResult Function()? seniorApprove,
     TResult Function()? seniorUnapprove,
     TResult Function(String reason)? seniorDecline,
+    TResult Function()? tbpApprove,
+    TResult Function()? tbpUnapprove,
+    TResult Function(String reason)? tbpDecline,
+    TResult Function(List<ApproveTimesheetItem> items)? tbpSeniorBypassApprove,
     required TResult orElse(),
   }) {
     if (toggleSelectGroup != null) {
@@ -763,6 +923,11 @@ class _$ToggleSelectGroupImpl implements _ToggleSelectGroup {
     required TResult Function(_SeniorApprove value) seniorApprove,
     required TResult Function(_SeniorUnapprove value) seniorUnapprove,
     required TResult Function(_SeniorDecline value) seniorDecline,
+    required TResult Function(_TbpApprove value) tbpApprove,
+    required TResult Function(_TbpUnapprove value) tbpUnapprove,
+    required TResult Function(_TbpDecline value) tbpDecline,
+    required TResult Function(_TbpSeniorBypassApprove value)
+        tbpSeniorBypassApprove,
   }) {
     return toggleSelectGroup(this);
   }
@@ -781,6 +946,10 @@ class _$ToggleSelectGroupImpl implements _ToggleSelectGroup {
     TResult? Function(_SeniorApprove value)? seniorApprove,
     TResult? Function(_SeniorUnapprove value)? seniorUnapprove,
     TResult? Function(_SeniorDecline value)? seniorDecline,
+    TResult? Function(_TbpApprove value)? tbpApprove,
+    TResult? Function(_TbpUnapprove value)? tbpUnapprove,
+    TResult? Function(_TbpDecline value)? tbpDecline,
+    TResult? Function(_TbpSeniorBypassApprove value)? tbpSeniorBypassApprove,
   }) {
     return toggleSelectGroup?.call(this);
   }
@@ -799,6 +968,10 @@ class _$ToggleSelectGroupImpl implements _ToggleSelectGroup {
     TResult Function(_SeniorApprove value)? seniorApprove,
     TResult Function(_SeniorUnapprove value)? seniorUnapprove,
     TResult Function(_SeniorDecline value)? seniorDecline,
+    TResult Function(_TbpApprove value)? tbpApprove,
+    TResult Function(_TbpUnapprove value)? tbpUnapprove,
+    TResult Function(_TbpDecline value)? tbpDecline,
+    TResult Function(_TbpSeniorBypassApprove value)? tbpSeniorBypassApprove,
     required TResult orElse(),
   }) {
     if (toggleSelectGroup != null) {
@@ -855,7 +1028,7 @@ class _$ToggleSelectAllImpl implements _ToggleSelectAll {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(ApproveTimesheetRole role, int? employeeId) init,
     required TResult Function() toggleSelectionMode,
     required TResult Function(int id) toggleSelection,
     required TResult Function(int tType) toggleSelectGroup,
@@ -866,6 +1039,11 @@ class _$ToggleSelectAllImpl implements _ToggleSelectAll {
     required TResult Function() seniorApprove,
     required TResult Function() seniorUnapprove,
     required TResult Function(String reason) seniorDecline,
+    required TResult Function() tbpApprove,
+    required TResult Function() tbpUnapprove,
+    required TResult Function(String reason) tbpDecline,
+    required TResult Function(List<ApproveTimesheetItem> items)
+        tbpSeniorBypassApprove,
   }) {
     return toggleSelectAll();
   }
@@ -873,7 +1051,7 @@ class _$ToggleSelectAllImpl implements _ToggleSelectAll {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(ApproveTimesheetRole role, int? employeeId)? init,
     TResult? Function()? toggleSelectionMode,
     TResult? Function(int id)? toggleSelection,
     TResult? Function(int tType)? toggleSelectGroup,
@@ -884,6 +1062,10 @@ class _$ToggleSelectAllImpl implements _ToggleSelectAll {
     TResult? Function()? seniorApprove,
     TResult? Function()? seniorUnapprove,
     TResult? Function(String reason)? seniorDecline,
+    TResult? Function()? tbpApprove,
+    TResult? Function()? tbpUnapprove,
+    TResult? Function(String reason)? tbpDecline,
+    TResult? Function(List<ApproveTimesheetItem> items)? tbpSeniorBypassApprove,
   }) {
     return toggleSelectAll?.call();
   }
@@ -891,7 +1073,7 @@ class _$ToggleSelectAllImpl implements _ToggleSelectAll {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(ApproveTimesheetRole role, int? employeeId)? init,
     TResult Function()? toggleSelectionMode,
     TResult Function(int id)? toggleSelection,
     TResult Function(int tType)? toggleSelectGroup,
@@ -902,6 +1084,10 @@ class _$ToggleSelectAllImpl implements _ToggleSelectAll {
     TResult Function()? seniorApprove,
     TResult Function()? seniorUnapprove,
     TResult Function(String reason)? seniorDecline,
+    TResult Function()? tbpApprove,
+    TResult Function()? tbpUnapprove,
+    TResult Function(String reason)? tbpDecline,
+    TResult Function(List<ApproveTimesheetItem> items)? tbpSeniorBypassApprove,
     required TResult orElse(),
   }) {
     if (toggleSelectAll != null) {
@@ -924,6 +1110,11 @@ class _$ToggleSelectAllImpl implements _ToggleSelectAll {
     required TResult Function(_SeniorApprove value) seniorApprove,
     required TResult Function(_SeniorUnapprove value) seniorUnapprove,
     required TResult Function(_SeniorDecline value) seniorDecline,
+    required TResult Function(_TbpApprove value) tbpApprove,
+    required TResult Function(_TbpUnapprove value) tbpUnapprove,
+    required TResult Function(_TbpDecline value) tbpDecline,
+    required TResult Function(_TbpSeniorBypassApprove value)
+        tbpSeniorBypassApprove,
   }) {
     return toggleSelectAll(this);
   }
@@ -942,6 +1133,10 @@ class _$ToggleSelectAllImpl implements _ToggleSelectAll {
     TResult? Function(_SeniorApprove value)? seniorApprove,
     TResult? Function(_SeniorUnapprove value)? seniorUnapprove,
     TResult? Function(_SeniorDecline value)? seniorDecline,
+    TResult? Function(_TbpApprove value)? tbpApprove,
+    TResult? Function(_TbpUnapprove value)? tbpUnapprove,
+    TResult? Function(_TbpDecline value)? tbpDecline,
+    TResult? Function(_TbpSeniorBypassApprove value)? tbpSeniorBypassApprove,
   }) {
     return toggleSelectAll?.call(this);
   }
@@ -960,6 +1155,10 @@ class _$ToggleSelectAllImpl implements _ToggleSelectAll {
     TResult Function(_SeniorApprove value)? seniorApprove,
     TResult Function(_SeniorUnapprove value)? seniorUnapprove,
     TResult Function(_SeniorDecline value)? seniorDecline,
+    TResult Function(_TbpApprove value)? tbpApprove,
+    TResult Function(_TbpUnapprove value)? tbpUnapprove,
+    TResult Function(_TbpDecline value)? tbpDecline,
+    TResult Function(_TbpSeniorBypassApprove value)? tbpSeniorBypassApprove,
     required TResult orElse(),
   }) {
     if (toggleSelectAll != null) {
@@ -1044,7 +1243,7 @@ class _$SetSelectionByTypesImpl implements _SetSelectionByTypes {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(ApproveTimesheetRole role, int? employeeId) init,
     required TResult Function() toggleSelectionMode,
     required TResult Function(int id) toggleSelection,
     required TResult Function(int tType) toggleSelectGroup,
@@ -1055,6 +1254,11 @@ class _$SetSelectionByTypesImpl implements _SetSelectionByTypes {
     required TResult Function() seniorApprove,
     required TResult Function() seniorUnapprove,
     required TResult Function(String reason) seniorDecline,
+    required TResult Function() tbpApprove,
+    required TResult Function() tbpUnapprove,
+    required TResult Function(String reason) tbpDecline,
+    required TResult Function(List<ApproveTimesheetItem> items)
+        tbpSeniorBypassApprove,
   }) {
     return setSelectionByTypes(tTypes);
   }
@@ -1062,7 +1266,7 @@ class _$SetSelectionByTypesImpl implements _SetSelectionByTypes {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(ApproveTimesheetRole role, int? employeeId)? init,
     TResult? Function()? toggleSelectionMode,
     TResult? Function(int id)? toggleSelection,
     TResult? Function(int tType)? toggleSelectGroup,
@@ -1073,6 +1277,10 @@ class _$SetSelectionByTypesImpl implements _SetSelectionByTypes {
     TResult? Function()? seniorApprove,
     TResult? Function()? seniorUnapprove,
     TResult? Function(String reason)? seniorDecline,
+    TResult? Function()? tbpApprove,
+    TResult? Function()? tbpUnapprove,
+    TResult? Function(String reason)? tbpDecline,
+    TResult? Function(List<ApproveTimesheetItem> items)? tbpSeniorBypassApprove,
   }) {
     return setSelectionByTypes?.call(tTypes);
   }
@@ -1080,7 +1288,7 @@ class _$SetSelectionByTypesImpl implements _SetSelectionByTypes {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(ApproveTimesheetRole role, int? employeeId)? init,
     TResult Function()? toggleSelectionMode,
     TResult Function(int id)? toggleSelection,
     TResult Function(int tType)? toggleSelectGroup,
@@ -1091,6 +1299,10 @@ class _$SetSelectionByTypesImpl implements _SetSelectionByTypes {
     TResult Function()? seniorApprove,
     TResult Function()? seniorUnapprove,
     TResult Function(String reason)? seniorDecline,
+    TResult Function()? tbpApprove,
+    TResult Function()? tbpUnapprove,
+    TResult Function(String reason)? tbpDecline,
+    TResult Function(List<ApproveTimesheetItem> items)? tbpSeniorBypassApprove,
     required TResult orElse(),
   }) {
     if (setSelectionByTypes != null) {
@@ -1113,6 +1325,11 @@ class _$SetSelectionByTypesImpl implements _SetSelectionByTypes {
     required TResult Function(_SeniorApprove value) seniorApprove,
     required TResult Function(_SeniorUnapprove value) seniorUnapprove,
     required TResult Function(_SeniorDecline value) seniorDecline,
+    required TResult Function(_TbpApprove value) tbpApprove,
+    required TResult Function(_TbpUnapprove value) tbpUnapprove,
+    required TResult Function(_TbpDecline value) tbpDecline,
+    required TResult Function(_TbpSeniorBypassApprove value)
+        tbpSeniorBypassApprove,
   }) {
     return setSelectionByTypes(this);
   }
@@ -1131,6 +1348,10 @@ class _$SetSelectionByTypesImpl implements _SetSelectionByTypes {
     TResult? Function(_SeniorApprove value)? seniorApprove,
     TResult? Function(_SeniorUnapprove value)? seniorUnapprove,
     TResult? Function(_SeniorDecline value)? seniorDecline,
+    TResult? Function(_TbpApprove value)? tbpApprove,
+    TResult? Function(_TbpUnapprove value)? tbpUnapprove,
+    TResult? Function(_TbpDecline value)? tbpDecline,
+    TResult? Function(_TbpSeniorBypassApprove value)? tbpSeniorBypassApprove,
   }) {
     return setSelectionByTypes?.call(this);
   }
@@ -1149,6 +1370,10 @@ class _$SetSelectionByTypesImpl implements _SetSelectionByTypes {
     TResult Function(_SeniorApprove value)? seniorApprove,
     TResult Function(_SeniorUnapprove value)? seniorUnapprove,
     TResult Function(_SeniorDecline value)? seniorDecline,
+    TResult Function(_TbpApprove value)? tbpApprove,
+    TResult Function(_TbpUnapprove value)? tbpUnapprove,
+    TResult Function(_TbpDecline value)? tbpDecline,
+    TResult Function(_TbpSeniorBypassApprove value)? tbpSeniorBypassApprove,
     required TResult orElse(),
   }) {
     if (setSelectionByTypes != null) {
@@ -1239,7 +1464,7 @@ class _$SetFilterTTypesImpl implements _SetFilterTTypes {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(ApproveTimesheetRole role, int? employeeId) init,
     required TResult Function() toggleSelectionMode,
     required TResult Function(int id) toggleSelection,
     required TResult Function(int tType) toggleSelectGroup,
@@ -1250,6 +1475,11 @@ class _$SetFilterTTypesImpl implements _SetFilterTTypes {
     required TResult Function() seniorApprove,
     required TResult Function() seniorUnapprove,
     required TResult Function(String reason) seniorDecline,
+    required TResult Function() tbpApprove,
+    required TResult Function() tbpUnapprove,
+    required TResult Function(String reason) tbpDecline,
+    required TResult Function(List<ApproveTimesheetItem> items)
+        tbpSeniorBypassApprove,
   }) {
     return setFilterTTypes(tTypes);
   }
@@ -1257,7 +1487,7 @@ class _$SetFilterTTypesImpl implements _SetFilterTTypes {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(ApproveTimesheetRole role, int? employeeId)? init,
     TResult? Function()? toggleSelectionMode,
     TResult? Function(int id)? toggleSelection,
     TResult? Function(int tType)? toggleSelectGroup,
@@ -1268,6 +1498,10 @@ class _$SetFilterTTypesImpl implements _SetFilterTTypes {
     TResult? Function()? seniorApprove,
     TResult? Function()? seniorUnapprove,
     TResult? Function(String reason)? seniorDecline,
+    TResult? Function()? tbpApprove,
+    TResult? Function()? tbpUnapprove,
+    TResult? Function(String reason)? tbpDecline,
+    TResult? Function(List<ApproveTimesheetItem> items)? tbpSeniorBypassApprove,
   }) {
     return setFilterTTypes?.call(tTypes);
   }
@@ -1275,7 +1509,7 @@ class _$SetFilterTTypesImpl implements _SetFilterTTypes {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(ApproveTimesheetRole role, int? employeeId)? init,
     TResult Function()? toggleSelectionMode,
     TResult Function(int id)? toggleSelection,
     TResult Function(int tType)? toggleSelectGroup,
@@ -1286,6 +1520,10 @@ class _$SetFilterTTypesImpl implements _SetFilterTTypes {
     TResult Function()? seniorApprove,
     TResult Function()? seniorUnapprove,
     TResult Function(String reason)? seniorDecline,
+    TResult Function()? tbpApprove,
+    TResult Function()? tbpUnapprove,
+    TResult Function(String reason)? tbpDecline,
+    TResult Function(List<ApproveTimesheetItem> items)? tbpSeniorBypassApprove,
     required TResult orElse(),
   }) {
     if (setFilterTTypes != null) {
@@ -1308,6 +1546,11 @@ class _$SetFilterTTypesImpl implements _SetFilterTTypes {
     required TResult Function(_SeniorApprove value) seniorApprove,
     required TResult Function(_SeniorUnapprove value) seniorUnapprove,
     required TResult Function(_SeniorDecline value) seniorDecline,
+    required TResult Function(_TbpApprove value) tbpApprove,
+    required TResult Function(_TbpUnapprove value) tbpUnapprove,
+    required TResult Function(_TbpDecline value) tbpDecline,
+    required TResult Function(_TbpSeniorBypassApprove value)
+        tbpSeniorBypassApprove,
   }) {
     return setFilterTTypes(this);
   }
@@ -1326,6 +1569,10 @@ class _$SetFilterTTypesImpl implements _SetFilterTTypes {
     TResult? Function(_SeniorApprove value)? seniorApprove,
     TResult? Function(_SeniorUnapprove value)? seniorUnapprove,
     TResult? Function(_SeniorDecline value)? seniorDecline,
+    TResult? Function(_TbpApprove value)? tbpApprove,
+    TResult? Function(_TbpUnapprove value)? tbpUnapprove,
+    TResult? Function(_TbpDecline value)? tbpDecline,
+    TResult? Function(_TbpSeniorBypassApprove value)? tbpSeniorBypassApprove,
   }) {
     return setFilterTTypes?.call(this);
   }
@@ -1344,6 +1591,10 @@ class _$SetFilterTTypesImpl implements _SetFilterTTypes {
     TResult Function(_SeniorApprove value)? seniorApprove,
     TResult Function(_SeniorUnapprove value)? seniorUnapprove,
     TResult Function(_SeniorDecline value)? seniorDecline,
+    TResult Function(_TbpApprove value)? tbpApprove,
+    TResult Function(_TbpUnapprove value)? tbpUnapprove,
+    TResult Function(_TbpDecline value)? tbpDecline,
+    TResult Function(_TbpSeniorBypassApprove value)? tbpSeniorBypassApprove,
     required TResult orElse(),
   }) {
     if (setFilterTTypes != null) {
@@ -1400,7 +1651,7 @@ class _$ClearSelectionImpl implements _ClearSelection {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(ApproveTimesheetRole role, int? employeeId) init,
     required TResult Function() toggleSelectionMode,
     required TResult Function(int id) toggleSelection,
     required TResult Function(int tType) toggleSelectGroup,
@@ -1411,6 +1662,11 @@ class _$ClearSelectionImpl implements _ClearSelection {
     required TResult Function() seniorApprove,
     required TResult Function() seniorUnapprove,
     required TResult Function(String reason) seniorDecline,
+    required TResult Function() tbpApprove,
+    required TResult Function() tbpUnapprove,
+    required TResult Function(String reason) tbpDecline,
+    required TResult Function(List<ApproveTimesheetItem> items)
+        tbpSeniorBypassApprove,
   }) {
     return clearSelection();
   }
@@ -1418,7 +1674,7 @@ class _$ClearSelectionImpl implements _ClearSelection {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(ApproveTimesheetRole role, int? employeeId)? init,
     TResult? Function()? toggleSelectionMode,
     TResult? Function(int id)? toggleSelection,
     TResult? Function(int tType)? toggleSelectGroup,
@@ -1429,6 +1685,10 @@ class _$ClearSelectionImpl implements _ClearSelection {
     TResult? Function()? seniorApprove,
     TResult? Function()? seniorUnapprove,
     TResult? Function(String reason)? seniorDecline,
+    TResult? Function()? tbpApprove,
+    TResult? Function()? tbpUnapprove,
+    TResult? Function(String reason)? tbpDecline,
+    TResult? Function(List<ApproveTimesheetItem> items)? tbpSeniorBypassApprove,
   }) {
     return clearSelection?.call();
   }
@@ -1436,7 +1696,7 @@ class _$ClearSelectionImpl implements _ClearSelection {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(ApproveTimesheetRole role, int? employeeId)? init,
     TResult Function()? toggleSelectionMode,
     TResult Function(int id)? toggleSelection,
     TResult Function(int tType)? toggleSelectGroup,
@@ -1447,6 +1707,10 @@ class _$ClearSelectionImpl implements _ClearSelection {
     TResult Function()? seniorApprove,
     TResult Function()? seniorUnapprove,
     TResult Function(String reason)? seniorDecline,
+    TResult Function()? tbpApprove,
+    TResult Function()? tbpUnapprove,
+    TResult Function(String reason)? tbpDecline,
+    TResult Function(List<ApproveTimesheetItem> items)? tbpSeniorBypassApprove,
     required TResult orElse(),
   }) {
     if (clearSelection != null) {
@@ -1469,6 +1733,11 @@ class _$ClearSelectionImpl implements _ClearSelection {
     required TResult Function(_SeniorApprove value) seniorApprove,
     required TResult Function(_SeniorUnapprove value) seniorUnapprove,
     required TResult Function(_SeniorDecline value) seniorDecline,
+    required TResult Function(_TbpApprove value) tbpApprove,
+    required TResult Function(_TbpUnapprove value) tbpUnapprove,
+    required TResult Function(_TbpDecline value) tbpDecline,
+    required TResult Function(_TbpSeniorBypassApprove value)
+        tbpSeniorBypassApprove,
   }) {
     return clearSelection(this);
   }
@@ -1487,6 +1756,10 @@ class _$ClearSelectionImpl implements _ClearSelection {
     TResult? Function(_SeniorApprove value)? seniorApprove,
     TResult? Function(_SeniorUnapprove value)? seniorUnapprove,
     TResult? Function(_SeniorDecline value)? seniorDecline,
+    TResult? Function(_TbpApprove value)? tbpApprove,
+    TResult? Function(_TbpUnapprove value)? tbpUnapprove,
+    TResult? Function(_TbpDecline value)? tbpDecline,
+    TResult? Function(_TbpSeniorBypassApprove value)? tbpSeniorBypassApprove,
   }) {
     return clearSelection?.call(this);
   }
@@ -1505,6 +1778,10 @@ class _$ClearSelectionImpl implements _ClearSelection {
     TResult Function(_SeniorApprove value)? seniorApprove,
     TResult Function(_SeniorUnapprove value)? seniorUnapprove,
     TResult Function(_SeniorDecline value)? seniorDecline,
+    TResult Function(_TbpApprove value)? tbpApprove,
+    TResult Function(_TbpUnapprove value)? tbpUnapprove,
+    TResult Function(_TbpDecline value)? tbpDecline,
+    TResult Function(_TbpSeniorBypassApprove value)? tbpSeniorBypassApprove,
     required TResult orElse(),
   }) {
     if (clearSelection != null) {
@@ -1556,7 +1833,7 @@ class _$SeniorApproveImpl implements _SeniorApprove {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(ApproveTimesheetRole role, int? employeeId) init,
     required TResult Function() toggleSelectionMode,
     required TResult Function(int id) toggleSelection,
     required TResult Function(int tType) toggleSelectGroup,
@@ -1567,6 +1844,11 @@ class _$SeniorApproveImpl implements _SeniorApprove {
     required TResult Function() seniorApprove,
     required TResult Function() seniorUnapprove,
     required TResult Function(String reason) seniorDecline,
+    required TResult Function() tbpApprove,
+    required TResult Function() tbpUnapprove,
+    required TResult Function(String reason) tbpDecline,
+    required TResult Function(List<ApproveTimesheetItem> items)
+        tbpSeniorBypassApprove,
   }) {
     return seniorApprove();
   }
@@ -1574,7 +1856,7 @@ class _$SeniorApproveImpl implements _SeniorApprove {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(ApproveTimesheetRole role, int? employeeId)? init,
     TResult? Function()? toggleSelectionMode,
     TResult? Function(int id)? toggleSelection,
     TResult? Function(int tType)? toggleSelectGroup,
@@ -1585,6 +1867,10 @@ class _$SeniorApproveImpl implements _SeniorApprove {
     TResult? Function()? seniorApprove,
     TResult? Function()? seniorUnapprove,
     TResult? Function(String reason)? seniorDecline,
+    TResult? Function()? tbpApprove,
+    TResult? Function()? tbpUnapprove,
+    TResult? Function(String reason)? tbpDecline,
+    TResult? Function(List<ApproveTimesheetItem> items)? tbpSeniorBypassApprove,
   }) {
     return seniorApprove?.call();
   }
@@ -1592,7 +1878,7 @@ class _$SeniorApproveImpl implements _SeniorApprove {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(ApproveTimesheetRole role, int? employeeId)? init,
     TResult Function()? toggleSelectionMode,
     TResult Function(int id)? toggleSelection,
     TResult Function(int tType)? toggleSelectGroup,
@@ -1603,6 +1889,10 @@ class _$SeniorApproveImpl implements _SeniorApprove {
     TResult Function()? seniorApprove,
     TResult Function()? seniorUnapprove,
     TResult Function(String reason)? seniorDecline,
+    TResult Function()? tbpApprove,
+    TResult Function()? tbpUnapprove,
+    TResult Function(String reason)? tbpDecline,
+    TResult Function(List<ApproveTimesheetItem> items)? tbpSeniorBypassApprove,
     required TResult orElse(),
   }) {
     if (seniorApprove != null) {
@@ -1625,6 +1915,11 @@ class _$SeniorApproveImpl implements _SeniorApprove {
     required TResult Function(_SeniorApprove value) seniorApprove,
     required TResult Function(_SeniorUnapprove value) seniorUnapprove,
     required TResult Function(_SeniorDecline value) seniorDecline,
+    required TResult Function(_TbpApprove value) tbpApprove,
+    required TResult Function(_TbpUnapprove value) tbpUnapprove,
+    required TResult Function(_TbpDecline value) tbpDecline,
+    required TResult Function(_TbpSeniorBypassApprove value)
+        tbpSeniorBypassApprove,
   }) {
     return seniorApprove(this);
   }
@@ -1643,6 +1938,10 @@ class _$SeniorApproveImpl implements _SeniorApprove {
     TResult? Function(_SeniorApprove value)? seniorApprove,
     TResult? Function(_SeniorUnapprove value)? seniorUnapprove,
     TResult? Function(_SeniorDecline value)? seniorDecline,
+    TResult? Function(_TbpApprove value)? tbpApprove,
+    TResult? Function(_TbpUnapprove value)? tbpUnapprove,
+    TResult? Function(_TbpDecline value)? tbpDecline,
+    TResult? Function(_TbpSeniorBypassApprove value)? tbpSeniorBypassApprove,
   }) {
     return seniorApprove?.call(this);
   }
@@ -1661,6 +1960,10 @@ class _$SeniorApproveImpl implements _SeniorApprove {
     TResult Function(_SeniorApprove value)? seniorApprove,
     TResult Function(_SeniorUnapprove value)? seniorUnapprove,
     TResult Function(_SeniorDecline value)? seniorDecline,
+    TResult Function(_TbpApprove value)? tbpApprove,
+    TResult Function(_TbpUnapprove value)? tbpUnapprove,
+    TResult Function(_TbpDecline value)? tbpDecline,
+    TResult Function(_TbpSeniorBypassApprove value)? tbpSeniorBypassApprove,
     required TResult orElse(),
   }) {
     if (seniorApprove != null) {
@@ -1712,7 +2015,7 @@ class _$SeniorUnapproveImpl implements _SeniorUnapprove {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(ApproveTimesheetRole role, int? employeeId) init,
     required TResult Function() toggleSelectionMode,
     required TResult Function(int id) toggleSelection,
     required TResult Function(int tType) toggleSelectGroup,
@@ -1723,6 +2026,11 @@ class _$SeniorUnapproveImpl implements _SeniorUnapprove {
     required TResult Function() seniorApprove,
     required TResult Function() seniorUnapprove,
     required TResult Function(String reason) seniorDecline,
+    required TResult Function() tbpApprove,
+    required TResult Function() tbpUnapprove,
+    required TResult Function(String reason) tbpDecline,
+    required TResult Function(List<ApproveTimesheetItem> items)
+        tbpSeniorBypassApprove,
   }) {
     return seniorUnapprove();
   }
@@ -1730,7 +2038,7 @@ class _$SeniorUnapproveImpl implements _SeniorUnapprove {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(ApproveTimesheetRole role, int? employeeId)? init,
     TResult? Function()? toggleSelectionMode,
     TResult? Function(int id)? toggleSelection,
     TResult? Function(int tType)? toggleSelectGroup,
@@ -1741,6 +2049,10 @@ class _$SeniorUnapproveImpl implements _SeniorUnapprove {
     TResult? Function()? seniorApprove,
     TResult? Function()? seniorUnapprove,
     TResult? Function(String reason)? seniorDecline,
+    TResult? Function()? tbpApprove,
+    TResult? Function()? tbpUnapprove,
+    TResult? Function(String reason)? tbpDecline,
+    TResult? Function(List<ApproveTimesheetItem> items)? tbpSeniorBypassApprove,
   }) {
     return seniorUnapprove?.call();
   }
@@ -1748,7 +2060,7 @@ class _$SeniorUnapproveImpl implements _SeniorUnapprove {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(ApproveTimesheetRole role, int? employeeId)? init,
     TResult Function()? toggleSelectionMode,
     TResult Function(int id)? toggleSelection,
     TResult Function(int tType)? toggleSelectGroup,
@@ -1759,6 +2071,10 @@ class _$SeniorUnapproveImpl implements _SeniorUnapprove {
     TResult Function()? seniorApprove,
     TResult Function()? seniorUnapprove,
     TResult Function(String reason)? seniorDecline,
+    TResult Function()? tbpApprove,
+    TResult Function()? tbpUnapprove,
+    TResult Function(String reason)? tbpDecline,
+    TResult Function(List<ApproveTimesheetItem> items)? tbpSeniorBypassApprove,
     required TResult orElse(),
   }) {
     if (seniorUnapprove != null) {
@@ -1781,6 +2097,11 @@ class _$SeniorUnapproveImpl implements _SeniorUnapprove {
     required TResult Function(_SeniorApprove value) seniorApprove,
     required TResult Function(_SeniorUnapprove value) seniorUnapprove,
     required TResult Function(_SeniorDecline value) seniorDecline,
+    required TResult Function(_TbpApprove value) tbpApprove,
+    required TResult Function(_TbpUnapprove value) tbpUnapprove,
+    required TResult Function(_TbpDecline value) tbpDecline,
+    required TResult Function(_TbpSeniorBypassApprove value)
+        tbpSeniorBypassApprove,
   }) {
     return seniorUnapprove(this);
   }
@@ -1799,6 +2120,10 @@ class _$SeniorUnapproveImpl implements _SeniorUnapprove {
     TResult? Function(_SeniorApprove value)? seniorApprove,
     TResult? Function(_SeniorUnapprove value)? seniorUnapprove,
     TResult? Function(_SeniorDecline value)? seniorDecline,
+    TResult? Function(_TbpApprove value)? tbpApprove,
+    TResult? Function(_TbpUnapprove value)? tbpUnapprove,
+    TResult? Function(_TbpDecline value)? tbpDecline,
+    TResult? Function(_TbpSeniorBypassApprove value)? tbpSeniorBypassApprove,
   }) {
     return seniorUnapprove?.call(this);
   }
@@ -1817,6 +2142,10 @@ class _$SeniorUnapproveImpl implements _SeniorUnapprove {
     TResult Function(_SeniorApprove value)? seniorApprove,
     TResult Function(_SeniorUnapprove value)? seniorUnapprove,
     TResult Function(_SeniorDecline value)? seniorDecline,
+    TResult Function(_TbpApprove value)? tbpApprove,
+    TResult Function(_TbpUnapprove value)? tbpUnapprove,
+    TResult Function(_TbpDecline value)? tbpDecline,
+    TResult Function(_TbpSeniorBypassApprove value)? tbpSeniorBypassApprove,
     required TResult orElse(),
   }) {
     if (seniorUnapprove != null) {
@@ -1894,7 +2223,7 @@ class _$SeniorDeclineImpl implements _SeniorDecline {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(ApproveTimesheetRole role, int? employeeId) init,
     required TResult Function() toggleSelectionMode,
     required TResult Function(int id) toggleSelection,
     required TResult Function(int tType) toggleSelectGroup,
@@ -1905,6 +2234,11 @@ class _$SeniorDeclineImpl implements _SeniorDecline {
     required TResult Function() seniorApprove,
     required TResult Function() seniorUnapprove,
     required TResult Function(String reason) seniorDecline,
+    required TResult Function() tbpApprove,
+    required TResult Function() tbpUnapprove,
+    required TResult Function(String reason) tbpDecline,
+    required TResult Function(List<ApproveTimesheetItem> items)
+        tbpSeniorBypassApprove,
   }) {
     return seniorDecline(reason);
   }
@@ -1912,7 +2246,7 @@ class _$SeniorDeclineImpl implements _SeniorDecline {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(ApproveTimesheetRole role, int? employeeId)? init,
     TResult? Function()? toggleSelectionMode,
     TResult? Function(int id)? toggleSelection,
     TResult? Function(int tType)? toggleSelectGroup,
@@ -1923,6 +2257,10 @@ class _$SeniorDeclineImpl implements _SeniorDecline {
     TResult? Function()? seniorApprove,
     TResult? Function()? seniorUnapprove,
     TResult? Function(String reason)? seniorDecline,
+    TResult? Function()? tbpApprove,
+    TResult? Function()? tbpUnapprove,
+    TResult? Function(String reason)? tbpDecline,
+    TResult? Function(List<ApproveTimesheetItem> items)? tbpSeniorBypassApprove,
   }) {
     return seniorDecline?.call(reason);
   }
@@ -1930,7 +2268,7 @@ class _$SeniorDeclineImpl implements _SeniorDecline {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(ApproveTimesheetRole role, int? employeeId)? init,
     TResult Function()? toggleSelectionMode,
     TResult Function(int id)? toggleSelection,
     TResult Function(int tType)? toggleSelectGroup,
@@ -1941,6 +2279,10 @@ class _$SeniorDeclineImpl implements _SeniorDecline {
     TResult Function()? seniorApprove,
     TResult Function()? seniorUnapprove,
     TResult Function(String reason)? seniorDecline,
+    TResult Function()? tbpApprove,
+    TResult Function()? tbpUnapprove,
+    TResult Function(String reason)? tbpDecline,
+    TResult Function(List<ApproveTimesheetItem> items)? tbpSeniorBypassApprove,
     required TResult orElse(),
   }) {
     if (seniorDecline != null) {
@@ -1963,6 +2305,11 @@ class _$SeniorDeclineImpl implements _SeniorDecline {
     required TResult Function(_SeniorApprove value) seniorApprove,
     required TResult Function(_SeniorUnapprove value) seniorUnapprove,
     required TResult Function(_SeniorDecline value) seniorDecline,
+    required TResult Function(_TbpApprove value) tbpApprove,
+    required TResult Function(_TbpUnapprove value) tbpUnapprove,
+    required TResult Function(_TbpDecline value) tbpDecline,
+    required TResult Function(_TbpSeniorBypassApprove value)
+        tbpSeniorBypassApprove,
   }) {
     return seniorDecline(this);
   }
@@ -1981,6 +2328,10 @@ class _$SeniorDeclineImpl implements _SeniorDecline {
     TResult? Function(_SeniorApprove value)? seniorApprove,
     TResult? Function(_SeniorUnapprove value)? seniorUnapprove,
     TResult? Function(_SeniorDecline value)? seniorDecline,
+    TResult? Function(_TbpApprove value)? tbpApprove,
+    TResult? Function(_TbpUnapprove value)? tbpUnapprove,
+    TResult? Function(_TbpDecline value)? tbpDecline,
+    TResult? Function(_TbpSeniorBypassApprove value)? tbpSeniorBypassApprove,
   }) {
     return seniorDecline?.call(this);
   }
@@ -1999,6 +2350,10 @@ class _$SeniorDeclineImpl implements _SeniorDecline {
     TResult Function(_SeniorApprove value)? seniorApprove,
     TResult Function(_SeniorUnapprove value)? seniorUnapprove,
     TResult Function(_SeniorDecline value)? seniorDecline,
+    TResult Function(_TbpApprove value)? tbpApprove,
+    TResult Function(_TbpUnapprove value)? tbpUnapprove,
+    TResult Function(_TbpDecline value)? tbpDecline,
+    TResult Function(_TbpSeniorBypassApprove value)? tbpSeniorBypassApprove,
     required TResult orElse(),
   }) {
     if (seniorDecline != null) {
@@ -2015,4 +2370,806 @@ abstract class _SeniorDecline implements ApproveTimesheetEvent {
   @JsonKey(ignore: true)
   _$$SeniorDeclineImplCopyWith<_$SeniorDeclineImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$TbpApproveImplCopyWith<$Res> {
+  factory _$$TbpApproveImplCopyWith(
+          _$TbpApproveImpl value, $Res Function(_$TbpApproveImpl) then) =
+      __$$TbpApproveImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$TbpApproveImplCopyWithImpl<$Res>
+    extends _$ApproveTimesheetEventCopyWithImpl<$Res, _$TbpApproveImpl>
+    implements _$$TbpApproveImplCopyWith<$Res> {
+  __$$TbpApproveImplCopyWithImpl(
+      _$TbpApproveImpl _value, $Res Function(_$TbpApproveImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$TbpApproveImpl implements _TbpApprove {
+  const _$TbpApproveImpl();
+
+  @override
+  String toString() {
+    return 'ApproveTimesheetEvent.tbpApprove()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$TbpApproveImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(ApproveTimesheetRole role, int? employeeId) init,
+    required TResult Function() toggleSelectionMode,
+    required TResult Function(int id) toggleSelection,
+    required TResult Function(int tType) toggleSelectGroup,
+    required TResult Function() toggleSelectAll,
+    required TResult Function(Set<int> tTypes) setSelectionByTypes,
+    required TResult Function(Set<int> tTypes) setFilterTTypes,
+    required TResult Function() clearSelection,
+    required TResult Function() seniorApprove,
+    required TResult Function() seniorUnapprove,
+    required TResult Function(String reason) seniorDecline,
+    required TResult Function() tbpApprove,
+    required TResult Function() tbpUnapprove,
+    required TResult Function(String reason) tbpDecline,
+    required TResult Function(List<ApproveTimesheetItem> items)
+        tbpSeniorBypassApprove,
+  }) {
+    return tbpApprove();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(ApproveTimesheetRole role, int? employeeId)? init,
+    TResult? Function()? toggleSelectionMode,
+    TResult? Function(int id)? toggleSelection,
+    TResult? Function(int tType)? toggleSelectGroup,
+    TResult? Function()? toggleSelectAll,
+    TResult? Function(Set<int> tTypes)? setSelectionByTypes,
+    TResult? Function(Set<int> tTypes)? setFilterTTypes,
+    TResult? Function()? clearSelection,
+    TResult? Function()? seniorApprove,
+    TResult? Function()? seniorUnapprove,
+    TResult? Function(String reason)? seniorDecline,
+    TResult? Function()? tbpApprove,
+    TResult? Function()? tbpUnapprove,
+    TResult? Function(String reason)? tbpDecline,
+    TResult? Function(List<ApproveTimesheetItem> items)? tbpSeniorBypassApprove,
+  }) {
+    return tbpApprove?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(ApproveTimesheetRole role, int? employeeId)? init,
+    TResult Function()? toggleSelectionMode,
+    TResult Function(int id)? toggleSelection,
+    TResult Function(int tType)? toggleSelectGroup,
+    TResult Function()? toggleSelectAll,
+    TResult Function(Set<int> tTypes)? setSelectionByTypes,
+    TResult Function(Set<int> tTypes)? setFilterTTypes,
+    TResult Function()? clearSelection,
+    TResult Function()? seniorApprove,
+    TResult Function()? seniorUnapprove,
+    TResult Function(String reason)? seniorDecline,
+    TResult Function()? tbpApprove,
+    TResult Function()? tbpUnapprove,
+    TResult Function(String reason)? tbpDecline,
+    TResult Function(List<ApproveTimesheetItem> items)? tbpSeniorBypassApprove,
+    required TResult orElse(),
+  }) {
+    if (tbpApprove != null) {
+      return tbpApprove();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ToggleSelectionMode value) toggleSelectionMode,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_ToggleSelectGroup value) toggleSelectGroup,
+    required TResult Function(_ToggleSelectAll value) toggleSelectAll,
+    required TResult Function(_SetSelectionByTypes value) setSelectionByTypes,
+    required TResult Function(_SetFilterTTypes value) setFilterTTypes,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_SeniorApprove value) seniorApprove,
+    required TResult Function(_SeniorUnapprove value) seniorUnapprove,
+    required TResult Function(_SeniorDecline value) seniorDecline,
+    required TResult Function(_TbpApprove value) tbpApprove,
+    required TResult Function(_TbpUnapprove value) tbpUnapprove,
+    required TResult Function(_TbpDecline value) tbpDecline,
+    required TResult Function(_TbpSeniorBypassApprove value)
+        tbpSeniorBypassApprove,
+  }) {
+    return tbpApprove(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ToggleSelectionMode value)? toggleSelectionMode,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_ToggleSelectGroup value)? toggleSelectGroup,
+    TResult? Function(_ToggleSelectAll value)? toggleSelectAll,
+    TResult? Function(_SetSelectionByTypes value)? setSelectionByTypes,
+    TResult? Function(_SetFilterTTypes value)? setFilterTTypes,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_SeniorApprove value)? seniorApprove,
+    TResult? Function(_SeniorUnapprove value)? seniorUnapprove,
+    TResult? Function(_SeniorDecline value)? seniorDecline,
+    TResult? Function(_TbpApprove value)? tbpApprove,
+    TResult? Function(_TbpUnapprove value)? tbpUnapprove,
+    TResult? Function(_TbpDecline value)? tbpDecline,
+    TResult? Function(_TbpSeniorBypassApprove value)? tbpSeniorBypassApprove,
+  }) {
+    return tbpApprove?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ToggleSelectionMode value)? toggleSelectionMode,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_ToggleSelectGroup value)? toggleSelectGroup,
+    TResult Function(_ToggleSelectAll value)? toggleSelectAll,
+    TResult Function(_SetSelectionByTypes value)? setSelectionByTypes,
+    TResult Function(_SetFilterTTypes value)? setFilterTTypes,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_SeniorApprove value)? seniorApprove,
+    TResult Function(_SeniorUnapprove value)? seniorUnapprove,
+    TResult Function(_SeniorDecline value)? seniorDecline,
+    TResult Function(_TbpApprove value)? tbpApprove,
+    TResult Function(_TbpUnapprove value)? tbpUnapprove,
+    TResult Function(_TbpDecline value)? tbpDecline,
+    TResult Function(_TbpSeniorBypassApprove value)? tbpSeniorBypassApprove,
+    required TResult orElse(),
+  }) {
+    if (tbpApprove != null) {
+      return tbpApprove(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _TbpApprove implements ApproveTimesheetEvent {
+  const factory _TbpApprove() = _$TbpApproveImpl;
+}
+
+/// @nodoc
+abstract class _$$TbpUnapproveImplCopyWith<$Res> {
+  factory _$$TbpUnapproveImplCopyWith(
+          _$TbpUnapproveImpl value, $Res Function(_$TbpUnapproveImpl) then) =
+      __$$TbpUnapproveImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$TbpUnapproveImplCopyWithImpl<$Res>
+    extends _$ApproveTimesheetEventCopyWithImpl<$Res, _$TbpUnapproveImpl>
+    implements _$$TbpUnapproveImplCopyWith<$Res> {
+  __$$TbpUnapproveImplCopyWithImpl(
+      _$TbpUnapproveImpl _value, $Res Function(_$TbpUnapproveImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$TbpUnapproveImpl implements _TbpUnapprove {
+  const _$TbpUnapproveImpl();
+
+  @override
+  String toString() {
+    return 'ApproveTimesheetEvent.tbpUnapprove()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$TbpUnapproveImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(ApproveTimesheetRole role, int? employeeId) init,
+    required TResult Function() toggleSelectionMode,
+    required TResult Function(int id) toggleSelection,
+    required TResult Function(int tType) toggleSelectGroup,
+    required TResult Function() toggleSelectAll,
+    required TResult Function(Set<int> tTypes) setSelectionByTypes,
+    required TResult Function(Set<int> tTypes) setFilterTTypes,
+    required TResult Function() clearSelection,
+    required TResult Function() seniorApprove,
+    required TResult Function() seniorUnapprove,
+    required TResult Function(String reason) seniorDecline,
+    required TResult Function() tbpApprove,
+    required TResult Function() tbpUnapprove,
+    required TResult Function(String reason) tbpDecline,
+    required TResult Function(List<ApproveTimesheetItem> items)
+        tbpSeniorBypassApprove,
+  }) {
+    return tbpUnapprove();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(ApproveTimesheetRole role, int? employeeId)? init,
+    TResult? Function()? toggleSelectionMode,
+    TResult? Function(int id)? toggleSelection,
+    TResult? Function(int tType)? toggleSelectGroup,
+    TResult? Function()? toggleSelectAll,
+    TResult? Function(Set<int> tTypes)? setSelectionByTypes,
+    TResult? Function(Set<int> tTypes)? setFilterTTypes,
+    TResult? Function()? clearSelection,
+    TResult? Function()? seniorApprove,
+    TResult? Function()? seniorUnapprove,
+    TResult? Function(String reason)? seniorDecline,
+    TResult? Function()? tbpApprove,
+    TResult? Function()? tbpUnapprove,
+    TResult? Function(String reason)? tbpDecline,
+    TResult? Function(List<ApproveTimesheetItem> items)? tbpSeniorBypassApprove,
+  }) {
+    return tbpUnapprove?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(ApproveTimesheetRole role, int? employeeId)? init,
+    TResult Function()? toggleSelectionMode,
+    TResult Function(int id)? toggleSelection,
+    TResult Function(int tType)? toggleSelectGroup,
+    TResult Function()? toggleSelectAll,
+    TResult Function(Set<int> tTypes)? setSelectionByTypes,
+    TResult Function(Set<int> tTypes)? setFilterTTypes,
+    TResult Function()? clearSelection,
+    TResult Function()? seniorApprove,
+    TResult Function()? seniorUnapprove,
+    TResult Function(String reason)? seniorDecline,
+    TResult Function()? tbpApprove,
+    TResult Function()? tbpUnapprove,
+    TResult Function(String reason)? tbpDecline,
+    TResult Function(List<ApproveTimesheetItem> items)? tbpSeniorBypassApprove,
+    required TResult orElse(),
+  }) {
+    if (tbpUnapprove != null) {
+      return tbpUnapprove();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ToggleSelectionMode value) toggleSelectionMode,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_ToggleSelectGroup value) toggleSelectGroup,
+    required TResult Function(_ToggleSelectAll value) toggleSelectAll,
+    required TResult Function(_SetSelectionByTypes value) setSelectionByTypes,
+    required TResult Function(_SetFilterTTypes value) setFilterTTypes,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_SeniorApprove value) seniorApprove,
+    required TResult Function(_SeniorUnapprove value) seniorUnapprove,
+    required TResult Function(_SeniorDecline value) seniorDecline,
+    required TResult Function(_TbpApprove value) tbpApprove,
+    required TResult Function(_TbpUnapprove value) tbpUnapprove,
+    required TResult Function(_TbpDecline value) tbpDecline,
+    required TResult Function(_TbpSeniorBypassApprove value)
+        tbpSeniorBypassApprove,
+  }) {
+    return tbpUnapprove(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ToggleSelectionMode value)? toggleSelectionMode,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_ToggleSelectGroup value)? toggleSelectGroup,
+    TResult? Function(_ToggleSelectAll value)? toggleSelectAll,
+    TResult? Function(_SetSelectionByTypes value)? setSelectionByTypes,
+    TResult? Function(_SetFilterTTypes value)? setFilterTTypes,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_SeniorApprove value)? seniorApprove,
+    TResult? Function(_SeniorUnapprove value)? seniorUnapprove,
+    TResult? Function(_SeniorDecline value)? seniorDecline,
+    TResult? Function(_TbpApprove value)? tbpApprove,
+    TResult? Function(_TbpUnapprove value)? tbpUnapprove,
+    TResult? Function(_TbpDecline value)? tbpDecline,
+    TResult? Function(_TbpSeniorBypassApprove value)? tbpSeniorBypassApprove,
+  }) {
+    return tbpUnapprove?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ToggleSelectionMode value)? toggleSelectionMode,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_ToggleSelectGroup value)? toggleSelectGroup,
+    TResult Function(_ToggleSelectAll value)? toggleSelectAll,
+    TResult Function(_SetSelectionByTypes value)? setSelectionByTypes,
+    TResult Function(_SetFilterTTypes value)? setFilterTTypes,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_SeniorApprove value)? seniorApprove,
+    TResult Function(_SeniorUnapprove value)? seniorUnapprove,
+    TResult Function(_SeniorDecline value)? seniorDecline,
+    TResult Function(_TbpApprove value)? tbpApprove,
+    TResult Function(_TbpUnapprove value)? tbpUnapprove,
+    TResult Function(_TbpDecline value)? tbpDecline,
+    TResult Function(_TbpSeniorBypassApprove value)? tbpSeniorBypassApprove,
+    required TResult orElse(),
+  }) {
+    if (tbpUnapprove != null) {
+      return tbpUnapprove(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _TbpUnapprove implements ApproveTimesheetEvent {
+  const factory _TbpUnapprove() = _$TbpUnapproveImpl;
+}
+
+/// @nodoc
+abstract class _$$TbpDeclineImplCopyWith<$Res> {
+  factory _$$TbpDeclineImplCopyWith(
+          _$TbpDeclineImpl value, $Res Function(_$TbpDeclineImpl) then) =
+      __$$TbpDeclineImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String reason});
+}
+
+/// @nodoc
+class __$$TbpDeclineImplCopyWithImpl<$Res>
+    extends _$ApproveTimesheetEventCopyWithImpl<$Res, _$TbpDeclineImpl>
+    implements _$$TbpDeclineImplCopyWith<$Res> {
+  __$$TbpDeclineImplCopyWithImpl(
+      _$TbpDeclineImpl _value, $Res Function(_$TbpDeclineImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? reason = null,
+  }) {
+    return _then(_$TbpDeclineImpl(
+      null == reason
+          ? _value.reason
+          : reason // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$TbpDeclineImpl implements _TbpDecline {
+  const _$TbpDeclineImpl(this.reason);
+
+  @override
+  final String reason;
+
+  @override
+  String toString() {
+    return 'ApproveTimesheetEvent.tbpDecline(reason: $reason)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TbpDeclineImpl &&
+            (identical(other.reason, reason) || other.reason == reason));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, reason);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TbpDeclineImplCopyWith<_$TbpDeclineImpl> get copyWith =>
+      __$$TbpDeclineImplCopyWithImpl<_$TbpDeclineImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(ApproveTimesheetRole role, int? employeeId) init,
+    required TResult Function() toggleSelectionMode,
+    required TResult Function(int id) toggleSelection,
+    required TResult Function(int tType) toggleSelectGroup,
+    required TResult Function() toggleSelectAll,
+    required TResult Function(Set<int> tTypes) setSelectionByTypes,
+    required TResult Function(Set<int> tTypes) setFilterTTypes,
+    required TResult Function() clearSelection,
+    required TResult Function() seniorApprove,
+    required TResult Function() seniorUnapprove,
+    required TResult Function(String reason) seniorDecline,
+    required TResult Function() tbpApprove,
+    required TResult Function() tbpUnapprove,
+    required TResult Function(String reason) tbpDecline,
+    required TResult Function(List<ApproveTimesheetItem> items)
+        tbpSeniorBypassApprove,
+  }) {
+    return tbpDecline(reason);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(ApproveTimesheetRole role, int? employeeId)? init,
+    TResult? Function()? toggleSelectionMode,
+    TResult? Function(int id)? toggleSelection,
+    TResult? Function(int tType)? toggleSelectGroup,
+    TResult? Function()? toggleSelectAll,
+    TResult? Function(Set<int> tTypes)? setSelectionByTypes,
+    TResult? Function(Set<int> tTypes)? setFilterTTypes,
+    TResult? Function()? clearSelection,
+    TResult? Function()? seniorApprove,
+    TResult? Function()? seniorUnapprove,
+    TResult? Function(String reason)? seniorDecline,
+    TResult? Function()? tbpApprove,
+    TResult? Function()? tbpUnapprove,
+    TResult? Function(String reason)? tbpDecline,
+    TResult? Function(List<ApproveTimesheetItem> items)? tbpSeniorBypassApprove,
+  }) {
+    return tbpDecline?.call(reason);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(ApproveTimesheetRole role, int? employeeId)? init,
+    TResult Function()? toggleSelectionMode,
+    TResult Function(int id)? toggleSelection,
+    TResult Function(int tType)? toggleSelectGroup,
+    TResult Function()? toggleSelectAll,
+    TResult Function(Set<int> tTypes)? setSelectionByTypes,
+    TResult Function(Set<int> tTypes)? setFilterTTypes,
+    TResult Function()? clearSelection,
+    TResult Function()? seniorApprove,
+    TResult Function()? seniorUnapprove,
+    TResult Function(String reason)? seniorDecline,
+    TResult Function()? tbpApprove,
+    TResult Function()? tbpUnapprove,
+    TResult Function(String reason)? tbpDecline,
+    TResult Function(List<ApproveTimesheetItem> items)? tbpSeniorBypassApprove,
+    required TResult orElse(),
+  }) {
+    if (tbpDecline != null) {
+      return tbpDecline(reason);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ToggleSelectionMode value) toggleSelectionMode,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_ToggleSelectGroup value) toggleSelectGroup,
+    required TResult Function(_ToggleSelectAll value) toggleSelectAll,
+    required TResult Function(_SetSelectionByTypes value) setSelectionByTypes,
+    required TResult Function(_SetFilterTTypes value) setFilterTTypes,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_SeniorApprove value) seniorApprove,
+    required TResult Function(_SeniorUnapprove value) seniorUnapprove,
+    required TResult Function(_SeniorDecline value) seniorDecline,
+    required TResult Function(_TbpApprove value) tbpApprove,
+    required TResult Function(_TbpUnapprove value) tbpUnapprove,
+    required TResult Function(_TbpDecline value) tbpDecline,
+    required TResult Function(_TbpSeniorBypassApprove value)
+        tbpSeniorBypassApprove,
+  }) {
+    return tbpDecline(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ToggleSelectionMode value)? toggleSelectionMode,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_ToggleSelectGroup value)? toggleSelectGroup,
+    TResult? Function(_ToggleSelectAll value)? toggleSelectAll,
+    TResult? Function(_SetSelectionByTypes value)? setSelectionByTypes,
+    TResult? Function(_SetFilterTTypes value)? setFilterTTypes,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_SeniorApprove value)? seniorApprove,
+    TResult? Function(_SeniorUnapprove value)? seniorUnapprove,
+    TResult? Function(_SeniorDecline value)? seniorDecline,
+    TResult? Function(_TbpApprove value)? tbpApprove,
+    TResult? Function(_TbpUnapprove value)? tbpUnapprove,
+    TResult? Function(_TbpDecline value)? tbpDecline,
+    TResult? Function(_TbpSeniorBypassApprove value)? tbpSeniorBypassApprove,
+  }) {
+    return tbpDecline?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ToggleSelectionMode value)? toggleSelectionMode,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_ToggleSelectGroup value)? toggleSelectGroup,
+    TResult Function(_ToggleSelectAll value)? toggleSelectAll,
+    TResult Function(_SetSelectionByTypes value)? setSelectionByTypes,
+    TResult Function(_SetFilterTTypes value)? setFilterTTypes,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_SeniorApprove value)? seniorApprove,
+    TResult Function(_SeniorUnapprove value)? seniorUnapprove,
+    TResult Function(_SeniorDecline value)? seniorDecline,
+    TResult Function(_TbpApprove value)? tbpApprove,
+    TResult Function(_TbpUnapprove value)? tbpUnapprove,
+    TResult Function(_TbpDecline value)? tbpDecline,
+    TResult Function(_TbpSeniorBypassApprove value)? tbpSeniorBypassApprove,
+    required TResult orElse(),
+  }) {
+    if (tbpDecline != null) {
+      return tbpDecline(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _TbpDecline implements ApproveTimesheetEvent {
+  const factory _TbpDecline(final String reason) = _$TbpDeclineImpl;
+
+  String get reason;
+  @JsonKey(ignore: true)
+  _$$TbpDeclineImplCopyWith<_$TbpDeclineImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$TbpSeniorBypassApproveImplCopyWith<$Res> {
+  factory _$$TbpSeniorBypassApproveImplCopyWith(
+          _$TbpSeniorBypassApproveImpl value,
+          $Res Function(_$TbpSeniorBypassApproveImpl) then) =
+      __$$TbpSeniorBypassApproveImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<ApproveTimesheetItem> items});
+}
+
+/// @nodoc
+class __$$TbpSeniorBypassApproveImplCopyWithImpl<$Res>
+    extends _$ApproveTimesheetEventCopyWithImpl<$Res,
+        _$TbpSeniorBypassApproveImpl>
+    implements _$$TbpSeniorBypassApproveImplCopyWith<$Res> {
+  __$$TbpSeniorBypassApproveImplCopyWithImpl(
+      _$TbpSeniorBypassApproveImpl _value,
+      $Res Function(_$TbpSeniorBypassApproveImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? items = null,
+  }) {
+    return _then(_$TbpSeniorBypassApproveImpl(
+      null == items
+          ? _value._items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<ApproveTimesheetItem>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$TbpSeniorBypassApproveImpl implements _TbpSeniorBypassApprove {
+  const _$TbpSeniorBypassApproveImpl(final List<ApproveTimesheetItem> items)
+      : _items = items;
+
+  final List<ApproveTimesheetItem> _items;
+  @override
+  List<ApproveTimesheetItem> get items {
+    if (_items is EqualUnmodifiableListView) return _items;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_items);
+  }
+
+  @override
+  String toString() {
+    return 'ApproveTimesheetEvent.tbpSeniorBypassApprove(items: $items)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TbpSeniorBypassApproveImpl &&
+            const DeepCollectionEquality().equals(other._items, _items));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_items));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TbpSeniorBypassApproveImplCopyWith<_$TbpSeniorBypassApproveImpl>
+      get copyWith => __$$TbpSeniorBypassApproveImplCopyWithImpl<
+          _$TbpSeniorBypassApproveImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(ApproveTimesheetRole role, int? employeeId) init,
+    required TResult Function() toggleSelectionMode,
+    required TResult Function(int id) toggleSelection,
+    required TResult Function(int tType) toggleSelectGroup,
+    required TResult Function() toggleSelectAll,
+    required TResult Function(Set<int> tTypes) setSelectionByTypes,
+    required TResult Function(Set<int> tTypes) setFilterTTypes,
+    required TResult Function() clearSelection,
+    required TResult Function() seniorApprove,
+    required TResult Function() seniorUnapprove,
+    required TResult Function(String reason) seniorDecline,
+    required TResult Function() tbpApprove,
+    required TResult Function() tbpUnapprove,
+    required TResult Function(String reason) tbpDecline,
+    required TResult Function(List<ApproveTimesheetItem> items)
+        tbpSeniorBypassApprove,
+  }) {
+    return tbpSeniorBypassApprove(items);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(ApproveTimesheetRole role, int? employeeId)? init,
+    TResult? Function()? toggleSelectionMode,
+    TResult? Function(int id)? toggleSelection,
+    TResult? Function(int tType)? toggleSelectGroup,
+    TResult? Function()? toggleSelectAll,
+    TResult? Function(Set<int> tTypes)? setSelectionByTypes,
+    TResult? Function(Set<int> tTypes)? setFilterTTypes,
+    TResult? Function()? clearSelection,
+    TResult? Function()? seniorApprove,
+    TResult? Function()? seniorUnapprove,
+    TResult? Function(String reason)? seniorDecline,
+    TResult? Function()? tbpApprove,
+    TResult? Function()? tbpUnapprove,
+    TResult? Function(String reason)? tbpDecline,
+    TResult? Function(List<ApproveTimesheetItem> items)? tbpSeniorBypassApprove,
+  }) {
+    return tbpSeniorBypassApprove?.call(items);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(ApproveTimesheetRole role, int? employeeId)? init,
+    TResult Function()? toggleSelectionMode,
+    TResult Function(int id)? toggleSelection,
+    TResult Function(int tType)? toggleSelectGroup,
+    TResult Function()? toggleSelectAll,
+    TResult Function(Set<int> tTypes)? setSelectionByTypes,
+    TResult Function(Set<int> tTypes)? setFilterTTypes,
+    TResult Function()? clearSelection,
+    TResult Function()? seniorApprove,
+    TResult Function()? seniorUnapprove,
+    TResult Function(String reason)? seniorDecline,
+    TResult Function()? tbpApprove,
+    TResult Function()? tbpUnapprove,
+    TResult Function(String reason)? tbpDecline,
+    TResult Function(List<ApproveTimesheetItem> items)? tbpSeniorBypassApprove,
+    required TResult orElse(),
+  }) {
+    if (tbpSeniorBypassApprove != null) {
+      return tbpSeniorBypassApprove(items);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ToggleSelectionMode value) toggleSelectionMode,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_ToggleSelectGroup value) toggleSelectGroup,
+    required TResult Function(_ToggleSelectAll value) toggleSelectAll,
+    required TResult Function(_SetSelectionByTypes value) setSelectionByTypes,
+    required TResult Function(_SetFilterTTypes value) setFilterTTypes,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_SeniorApprove value) seniorApprove,
+    required TResult Function(_SeniorUnapprove value) seniorUnapprove,
+    required TResult Function(_SeniorDecline value) seniorDecline,
+    required TResult Function(_TbpApprove value) tbpApprove,
+    required TResult Function(_TbpUnapprove value) tbpUnapprove,
+    required TResult Function(_TbpDecline value) tbpDecline,
+    required TResult Function(_TbpSeniorBypassApprove value)
+        tbpSeniorBypassApprove,
+  }) {
+    return tbpSeniorBypassApprove(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ToggleSelectionMode value)? toggleSelectionMode,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_ToggleSelectGroup value)? toggleSelectGroup,
+    TResult? Function(_ToggleSelectAll value)? toggleSelectAll,
+    TResult? Function(_SetSelectionByTypes value)? setSelectionByTypes,
+    TResult? Function(_SetFilterTTypes value)? setFilterTTypes,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_SeniorApprove value)? seniorApprove,
+    TResult? Function(_SeniorUnapprove value)? seniorUnapprove,
+    TResult? Function(_SeniorDecline value)? seniorDecline,
+    TResult? Function(_TbpApprove value)? tbpApprove,
+    TResult? Function(_TbpUnapprove value)? tbpUnapprove,
+    TResult? Function(_TbpDecline value)? tbpDecline,
+    TResult? Function(_TbpSeniorBypassApprove value)? tbpSeniorBypassApprove,
+  }) {
+    return tbpSeniorBypassApprove?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ToggleSelectionMode value)? toggleSelectionMode,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_ToggleSelectGroup value)? toggleSelectGroup,
+    TResult Function(_ToggleSelectAll value)? toggleSelectAll,
+    TResult Function(_SetSelectionByTypes value)? setSelectionByTypes,
+    TResult Function(_SetFilterTTypes value)? setFilterTTypes,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_SeniorApprove value)? seniorApprove,
+    TResult Function(_SeniorUnapprove value)? seniorUnapprove,
+    TResult Function(_SeniorDecline value)? seniorDecline,
+    TResult Function(_TbpApprove value)? tbpApprove,
+    TResult Function(_TbpUnapprove value)? tbpUnapprove,
+    TResult Function(_TbpDecline value)? tbpDecline,
+    TResult Function(_TbpSeniorBypassApprove value)? tbpSeniorBypassApprove,
+    required TResult orElse(),
+  }) {
+    if (tbpSeniorBypassApprove != null) {
+      return tbpSeniorBypassApprove(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _TbpSeniorBypassApprove implements ApproveTimesheetEvent {
+  const factory _TbpSeniorBypassApprove(
+      final List<ApproveTimesheetItem> items) = _$TbpSeniorBypassApproveImpl;
+
+  List<ApproveTimesheetItem> get items;
+  @JsonKey(ignore: true)
+  _$$TbpSeniorBypassApproveImplCopyWith<_$TbpSeniorBypassApproveImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

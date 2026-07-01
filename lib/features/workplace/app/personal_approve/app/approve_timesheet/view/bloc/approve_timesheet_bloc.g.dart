@@ -15,6 +15,8 @@ abstract class _$ApproveTimesheetStateCWProxy {
 
   ApproveTimesheetState seniorItems(List<UserTeamItem>? seniorItems);
 
+  ApproveTimesheetState role(ApproveTimesheetRole role);
+
   ApproveTimesheetState selectionMode(bool selectionMode);
 
   ApproveTimesheetState selectedIds(Set<int> selectedIds);
@@ -24,6 +26,10 @@ abstract class _$ApproveTimesheetStateCWProxy {
   ApproveTimesheetState seniorId(int? seniorId);
 
   ApproveTimesheetState isSeniorApproving(bool isSeniorApproving);
+
+  ApproveTimesheetState tbpApproverEmployeeId(int? tbpApproverEmployeeId);
+
+  ApproveTimesheetState isTbpApproving(bool isTbpApproving);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ApproveTimesheetState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -36,11 +42,14 @@ abstract class _$ApproveTimesheetStateCWProxy {
     String? message,
     List<ApproveTimesheetItem>? items,
     List<UserTeamItem>? seniorItems,
+    ApproveTimesheetRole? role,
     bool? selectionMode,
     Set<int>? selectedIds,
     Set<int>? filteredTTypes,
     int? seniorId,
     bool? isSeniorApproving,
+    int? tbpApproverEmployeeId,
+    bool? isTbpApproving,
   });
 }
 
@@ -66,6 +75,9 @@ class _$ApproveTimesheetStateCWProxyImpl
       this(seniorItems: seniorItems);
 
   @override
+  ApproveTimesheetState role(ApproveTimesheetRole role) => this(role: role);
+
+  @override
   ApproveTimesheetState selectionMode(bool selectionMode) =>
       this(selectionMode: selectionMode);
 
@@ -85,6 +97,14 @@ class _$ApproveTimesheetStateCWProxyImpl
       this(isSeniorApproving: isSeniorApproving);
 
   @override
+  ApproveTimesheetState tbpApproverEmployeeId(int? tbpApproverEmployeeId) =>
+      this(tbpApproverEmployeeId: tbpApproverEmployeeId);
+
+  @override
+  ApproveTimesheetState isTbpApproving(bool isTbpApproving) =>
+      this(isTbpApproving: isTbpApproving);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ApproveTimesheetState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -97,11 +117,14 @@ class _$ApproveTimesheetStateCWProxyImpl
     Object? message = const $CopyWithPlaceholder(),
     Object? items = const $CopyWithPlaceholder(),
     Object? seniorItems = const $CopyWithPlaceholder(),
+    Object? role = const $CopyWithPlaceholder(),
     Object? selectionMode = const $CopyWithPlaceholder(),
     Object? selectedIds = const $CopyWithPlaceholder(),
     Object? filteredTTypes = const $CopyWithPlaceholder(),
     Object? seniorId = const $CopyWithPlaceholder(),
     Object? isSeniorApproving = const $CopyWithPlaceholder(),
+    Object? tbpApproverEmployeeId = const $CopyWithPlaceholder(),
+    Object? isTbpApproving = const $CopyWithPlaceholder(),
   }) {
     return ApproveTimesheetState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -120,6 +143,10 @@ class _$ApproveTimesheetStateCWProxyImpl
           ? _value.seniorItems
           // ignore: cast_nullable_to_non_nullable
           : seniorItems as List<UserTeamItem>?,
+      role: role == const $CopyWithPlaceholder() || role == null
+          ? _value.role
+          // ignore: cast_nullable_to_non_nullable
+          : role as ApproveTimesheetRole,
       selectionMode:
           selectionMode == const $CopyWithPlaceholder() || selectionMode == null
               ? _value.selectionMode
@@ -144,6 +171,16 @@ class _$ApproveTimesheetStateCWProxyImpl
           ? _value.isSeniorApproving
           // ignore: cast_nullable_to_non_nullable
           : isSeniorApproving as bool,
+      tbpApproverEmployeeId:
+          tbpApproverEmployeeId == const $CopyWithPlaceholder()
+              ? _value.tbpApproverEmployeeId
+              // ignore: cast_nullable_to_non_nullable
+              : tbpApproverEmployeeId as int?,
+      isTbpApproving: isTbpApproving == const $CopyWithPlaceholder() ||
+              isTbpApproving == null
+          ? _value.isTbpApproving
+          // ignore: cast_nullable_to_non_nullable
+          : isTbpApproving as bool,
     );
   }
 }

@@ -815,6 +815,98 @@ class DialogService {
     );
   }
 
+  /// Dialog xác nhận TBP duyệt / huỷ duyệt hàng loạt.
+  /// Trả về `true` nếu user bấm Đồng ý, `false` nếu bấm Huỷ.
+  static Future<bool> showConfirmTBPApprove({
+    required BuildContext context,
+    required int count,
+    required bool isApproved,
+  }) async {
+    bool confirmed = false;
+
+    await BaseDialog.twoOptionVerticalDialog(
+      context: context,
+      image: Icon(
+        isApproved ? Icons.check_circle_outline : Icons.cancel_outlined,
+        size: 56,
+        color: isApproved
+            ? AppColors.stateSuccessColor
+            : AppColors.stateErrorColor,
+      ),
+      title: isApproved ? 'Xác nhận duyệt' : 'Xác nhận huỷ duyệt',
+      description:
+          'Bạn có chắc chắn muốn ${isApproved ? 'phê duyệt' : 'huỷ duyệt'} $count phiếu không?',
+      contentTopButton: 'Đồng ý',
+      topButtonFunc: () {
+        confirmed = true;
+        onBack(context);
+      },
+      contentBottomButton: 'Huỷ',
+      bottomButtonFunc: () {
+        confirmed = false;
+        onBack(context);
+      },
+    );
+
+    return confirmed;
+  }
+
+  /// Dialog nhập lý do từ chối (TBP) trước khi gọi API.
+  /// Trả về chuỗi lý do nếu user bấm Lưu, `null` nếu huỷ.
+  static Future<String?> showTBPDeclineReason({
+    required BuildContext context,
+    required int count,
+  }) async {
+    final formKey = GlobalKey<FormBuilderState>();
+
+    return await BaseDialog.twoOptionVerticalDialog(
+      context: context,
+      image: const Icon(
+        Icons.cancel_outlined,
+        size: 56,
+        color: AppColors.stateErrorColor,
+      ),
+      title: 'Lý do từ chối',
+      descriptionWidget: FormBuilder(
+        key: formKey,
+        child: FormInputField(
+          nameForm: 'decline_reason_form',
+          nameTextField: 'decline_reason_field',
+          label: 'Nhập lý do từ chối',
+          icon: Icons.edit_note,
+          isRequired: true,
+          maxLines: 4,
+          autoExpand: true,
+          textInputAction: TextInputAction.newline,
+          maxLength: 500,
+          validator: FormBuilderValidators.compose([
+            FormBuilderValidators.required(
+              errorText: 'Vui lòng nhập lý do từ chối',
+            ),
+            FormBuilderValidators.minLength(
+              3,
+              errorText: 'Lý do phải có ít nhất 3 ký tự',
+            ),
+          ]),
+        ),
+      ),
+      description:
+          'Bạn sắp từ chối $count phiếu. Vui lòng nhập lý do để gửi kèm phiếu.',
+      contentTopButton: 'Lưu',
+      topButtonFunc: () {
+        final state = formKey.currentState;
+        if (state?.saveAndValidate() ?? false) {
+          final value = state!.value['decline_reason_field'] as String;
+          context.pop(value);
+        }
+      },
+      contentBottomButton: 'Huỷ',
+      bottomButtonFunc: () {
+        context.pop();
+      },
+    );
+  }
+
   static Future<void> showCancelBooking({
     required BuildContext context,
     VoidCallback? onConfirm,

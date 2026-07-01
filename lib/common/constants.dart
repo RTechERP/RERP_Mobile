@@ -413,4 +413,6 @@ class ApiEndPoint {
       '/home/get-user-team-link-by-leader-id';
   // Senior approve/reject
   static const String approveSeniorNew = '/Approve/approve-senior-new';
+  // TBP approve/reject
+  static const String approveTBPNew = '/Approve/approve-tbp-new';
 }
