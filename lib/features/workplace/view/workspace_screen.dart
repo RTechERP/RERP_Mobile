@@ -160,7 +160,7 @@ class _WorkPlaceScreenState
                 children: [
                   WpFavoriteAdd(onAddTap: () => context.push('/favorites')),
 
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 16),
 
                   WpActionCard(
                     onItemTap: (item) {
