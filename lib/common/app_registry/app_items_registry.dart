@@ -379,8 +379,8 @@ class AppItemRegistry {
   ];
   static final List<AppItemModel> all = [
     ...regwork,
-    ...weekplan,
     ...reggeneral,
+    // ...weekplan,
     // ...summaryword,
     // ...generalforms,
     // ...reports,

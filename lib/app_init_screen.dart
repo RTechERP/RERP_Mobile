@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:rtc_erp/routes/route_names.dart';
 
 import 'common/app_theme/app_colors.dart';
+import 'common/config/app_version_config.dart';
+import 'common/utils/dialog/dialog_service.dart';
 import 'features/auth/data/repository/auth_repository.dart';
 
 class AppInitScreen extends StatefulWidget {
@@ -24,6 +26,12 @@ class _AppInitScreenState extends State<AppInitScreen> {
 
 
   Future<void> _init() async {
+    if (AppVersionConfig.isForceUpdateRequired()) {
+      if (!mounted) return;
+      await DialogService.showForceUpdate(context: context);
+      return;
+    }
+
     final isLoggedIn = await AuthRepository.checkLogin();
 
     if (!mounted) return;

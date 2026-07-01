@@ -191,6 +191,13 @@ class _WorkPlaceScreenState
                     expandable: true,
                     collapsedItemCount: 11,
                     items: [
+                      // AppItemModel(
+                      //   id: 'general_forms',
+                      //   iconCodePoint: Icons.file_copy_outlined.codePoint,
+                      //   name: 'applications.general_forms'.tr(),
+                      //   route: '/general_forms',
+                      //   imageUrl: AppImages.app_menu_general_form,
+                      // ),
                       AppItemModel(
                         id: 'reg_work',
                         iconCodePoint: Icons.person_pin_outlined.codePoint,
