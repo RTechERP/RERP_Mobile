@@ -20,7 +20,7 @@ class InOutItem with _$InOutItem {
     @JsonKey(name: 'UpdatedBy') String? updatedBy,
     @JsonKey(name: 'ApprovedTP') int? approvedTP,
     @JsonKey(name: 'IsApprovedTP') bool? isApprovedTP,
-    @JsonKey(name: 'DecilineApprove') String? decilineApprove,
+    @JsonKey(name: 'DecilineApprove') int? decilineApprove,
     @JsonKey(name: 'DateStart') DateTime? dateStart,
     @JsonKey(name: 'DateEnd') DateTime? dateEnd,
     @JsonKey(name: 'ReasonDeciline') String? reasonDeciline,

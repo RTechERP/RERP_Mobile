@@ -49,7 +49,7 @@ mixin _$InOutItem {
   @JsonKey(name: 'IsApprovedTP')
   bool? get isApprovedTP => throw _privateConstructorUsedError;
   @JsonKey(name: 'DecilineApprove')
-  String? get decilineApprove => throw _privateConstructorUsedError;
+  int? get decilineApprove => throw _privateConstructorUsedError;
   @JsonKey(name: 'DateStart')
   DateTime? get dateStart => throw _privateConstructorUsedError;
   @JsonKey(name: 'DateEnd')
@@ -127,7 +127,7 @@ abstract class $InOutItemCopyWith<$Res> {
       @JsonKey(name: 'UpdatedBy') String? updatedBy,
       @JsonKey(name: 'ApprovedTP') int? approvedTP,
       @JsonKey(name: 'IsApprovedTP') bool? isApprovedTP,
-      @JsonKey(name: 'DecilineApprove') String? decilineApprove,
+      @JsonKey(name: 'DecilineApprove') int? decilineApprove,
       @JsonKey(name: 'DateStart') DateTime? dateStart,
       @JsonKey(name: 'DateEnd') DateTime? dateEnd,
       @JsonKey(name: 'ReasonDeciline') String? reasonDeciline,
@@ -269,7 +269,7 @@ class _$InOutItemCopyWithImpl<$Res, $Val extends InOutItem>
       decilineApprove: freezed == decilineApprove
           ? _value.decilineApprove
           : decilineApprove // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       dateStart: freezed == dateStart
           ? _value.dateStart
           : dateStart // ignore: cast_nullable_to_non_nullable
@@ -397,7 +397,7 @@ abstract class _$$InOutItemImplCopyWith<$Res>
       @JsonKey(name: 'UpdatedBy') String? updatedBy,
       @JsonKey(name: 'ApprovedTP') int? approvedTP,
       @JsonKey(name: 'IsApprovedTP') bool? isApprovedTP,
-      @JsonKey(name: 'DecilineApprove') String? decilineApprove,
+      @JsonKey(name: 'DecilineApprove') int? decilineApprove,
       @JsonKey(name: 'DateStart') DateTime? dateStart,
       @JsonKey(name: 'DateEnd') DateTime? dateEnd,
       @JsonKey(name: 'ReasonDeciline') String? reasonDeciline,
@@ -537,7 +537,7 @@ class __$$InOutItemImplCopyWithImpl<$Res>
       decilineApprove: freezed == decilineApprove
           ? _value.decilineApprove
           : decilineApprove // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       dateStart: freezed == dateStart
           ? _value.dateStart
           : dateStart // ignore: cast_nullable_to_non_nullable
@@ -734,7 +734,7 @@ class _$InOutItemImpl implements _InOutItem {
   final bool? isApprovedTP;
   @override
   @JsonKey(name: 'DecilineApprove')
-  final String? decilineApprove;
+  final int? decilineApprove;
   @override
   @JsonKey(name: 'DateStart')
   final DateTime? dateStart;
@@ -971,7 +971,7 @@ abstract class _InOutItem implements InOutItem {
       @JsonKey(name: 'UpdatedBy') final String? updatedBy,
       @JsonKey(name: 'ApprovedTP') final int? approvedTP,
       @JsonKey(name: 'IsApprovedTP') final bool? isApprovedTP,
-      @JsonKey(name: 'DecilineApprove') final String? decilineApprove,
+      @JsonKey(name: 'DecilineApprove') final int? decilineApprove,
       @JsonKey(name: 'DateStart') final DateTime? dateStart,
       @JsonKey(name: 'DateEnd') final DateTime? dateEnd,
       @JsonKey(name: 'ReasonDeciline') final String? reasonDeciline,
@@ -1045,7 +1045,7 @@ abstract class _InOutItem implements InOutItem {
   bool? get isApprovedTP;
   @override
   @JsonKey(name: 'DecilineApprove')
-  String? get decilineApprove;
+  int? get decilineApprove;
   @override
   @JsonKey(name: 'DateStart')
   DateTime? get dateStart;
