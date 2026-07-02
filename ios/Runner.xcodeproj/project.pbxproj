@@ -545,7 +545,7 @@
 				DEVELOPMENT_TEAM = FL5T32TBJR;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = RERP;
+				INFOPLIST_KEY_CFBundleDisplayName = "R-ERP";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -692,7 +692,7 @@
 				DEVELOPMENT_TEAM = FL5T32TBJR;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = RERP;
+				INFOPLIST_KEY_CFBundleDisplayName = "R-ERP";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -803,7 +803,7 @@
 				DEVELOPMENT_TEAM = FL5T32TBJR;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = RERP;
+				INFOPLIST_KEY_CFBundleDisplayName = "R-ERP";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -909,7 +909,7 @@
 				DEVELOPMENT_TEAM = FL5T32TBJR;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = RERP;
+				INFOPLIST_KEY_CFBundleDisplayName = "R-ERP";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1075,7 +1075,7 @@
 				DEVELOPMENT_TEAM = FL5T32TBJR;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = RERP;
+				INFOPLIST_KEY_CFBundleDisplayName = "R-ERP";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1112,7 +1112,7 @@
 				DEVELOPMENT_TEAM = FL5T32TBJR;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = RERP;
+				INFOPLIST_KEY_CFBundleDisplayName = "R-ERP";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
