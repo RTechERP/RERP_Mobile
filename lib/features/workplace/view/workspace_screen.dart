@@ -10,7 +10,6 @@ import "package:rtc_erp/common/constants/app_image.dart";
 import "../../../base/bloc/index.dart";
 import "../../../base/widgets/base_widget.dart";
 import "../../../common/enums/role_enum.dart";
-import "../../../common/models/index.dart";
 import "../../../common/services/permissions/role_groups.dart";
 import "../../../common/services/permissions/role_resolver.dart";
 import "../../../common/utils/dialog/index.dart";
@@ -18,6 +17,7 @@ import "../../../common/utils/dialog/index.dart";
 import "../../../routes/route_names.dart";
 import "../../auth/data/datasource/models/user_model.dart";
 
+import "../data/datasource/models/index.dart";
 import "bloc/workspace_bloc.dart";
 import "widgets/wp_action_card.dart";
 import "widgets/wp_favorite_add.dart";

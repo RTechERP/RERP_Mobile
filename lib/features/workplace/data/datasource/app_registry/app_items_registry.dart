@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import '../../routes/route_names.dart';
-import '../constants/index.dart';
-import '../models/index.dart';
+
 import 'package:easy_localization/easy_localization.dart';
+
+import '../../../../../common/constants/index.dart';
+import '../../../../../routes/route_names.dart';
+import '../models/index.dart';
 
 class AppItemRegistry {
   static final List<AppItemModel> regwork = [

@@ -3,7 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
-import '../../../../../../../common/models/index.dart';
+import '../../../../../data/datasource/models/index.dart';
 
 /// Widget row hiển thị một item trong danh sách.
 ///

@@ -1,6 +1,6 @@
 #include "Generated.xcconfig"
 
-FLUTTER_TARGET=lib/main_production.dart
+FLUTTER_TARGET=lib/main/main_production.dart
 APP_ENV=production
 
 PRODUCT_BUNDLE_IDENTIFIER=com.erp.rtc

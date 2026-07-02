@@ -23,7 +23,7 @@ import '../../../routes/route_names.dart';
 import '../../app_theme/index.dart';
 import '../../constants/index.dart';
 import '../../services/custom_toast.dart';
-import '../../services/force_update_service.dart';
+import '../../services/update/force_update_service.dart';
 
 import '../../widgets/form/index.dart';
 import '../navigation/navigation_utils.dart';
@@ -179,8 +179,8 @@ class DialogService {
       ),
       title: 'Cập nhật phiên bản mới',
       description:
-          'Vui lòng cập nhật phiên bản mới từ store để tiếp tục sử dụng.',
-      contentTopButton: 'Cập nhật ngay',
+          'Vui lòng cập nhật phiên bản mới để tiếp tục sử dụng.',
+      contentTopButton: 'Cập nhật',
       topButtonFunc: () {
         Navigator.of(context, rootNavigator: true).pop();
         ForceUpdateService.openStoreAndExit();
@@ -727,6 +727,29 @@ class DialogService {
     vehicleTypes: vehicleTypes,
     initialEntries: initialEntries,
   );
+
+  static Future<bool> showConfirmExit({required BuildContext context}) async {
+    bool confirmed = false;
+
+    await BaseDialog.twoOptionVerticalDialog(
+      context: context,
+      image: const Icon(Icons.exit_to_app, size: 64, color: Colors.orange),
+      title: 'Thoát ứng dụng',
+      description: 'Bạn có chắc muốn thoát ứng dụng?',
+      contentTopButton: 'Thoát',
+      topButtonFunc: () {
+        confirmed = true;
+        onBack(context);
+      },
+      contentBottomButton: 'Huỷ',
+      bottomButtonFunc: () {
+        confirmed = false;
+        onBack(context);
+      },
+    );
+
+    return confirmed;
+  }
 
   static Future<bool> showConfirmDelete({required BuildContext context}) async {
     bool confirmed = false;

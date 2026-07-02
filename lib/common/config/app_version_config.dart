@@ -2,33 +2,32 @@ import 'dart:io';
 
 import 'package:package_info_plus/package_info_plus.dart';
 
-class AppVersionConfig {
-  /// Phiên bản tối thiểu mà thiết bị phải có để tiếp tục sử dụng app.
-  /// TODO: thay bằng API backend khi có.
-  static const String minSupportedVersion = '1.1.0';
+import '../../base/bloc/index.dart';
+import '../../di/injection.dart';
+import '../../features/version/view/bloc/app_version_bloc.dart';
 
-  /// URL store Android (Google Play).
+class AppVersionConfig {
   static const String androidStoreUrl =
       'https://play.google.com/store/apps/details?id=com.rtc.erp';
 
-  /// URL store iOS (App Store).
   static const String iosStoreUrl =
       'https://apps.apple.com/us/app/rerp/id6781107264';
 
   static String? _cachedAppVersion;
+  static String _minSupportedVersion = '1.1.0';
 
   static String get currentStoreUrl =>
       Platform.isIOS ? iosStoreUrl : androidStoreUrl;
 
   static String get currentAppVersion => _cachedAppVersion ?? '0.0.0';
 
-  /// Cache version của thiết bị. Gọi 1 lần ở AppInitializer.
+  static String get minSupportedVersion => _minSupportedVersion;
+
   static Future<void> preloadCurrentVersion() async {
     final info = await PackageInfo.fromPlatform();
     _cachedAppVersion = info.version;
   }
 
-  /// So sánh 2 version dạng x.y.z. Trả về true nếu [current] < [min].
   static bool _isOlderThan(String current, String min) {
     final c = current.split('.').map(int.tryParse).toList();
     final m = min.split('.').map(int.tryParse).toList();
@@ -43,6 +42,21 @@ class AppVersionConfig {
   }
 
   static bool isForceUpdateRequired() {
-    return _isOlderThan(currentAppVersion, minSupportedVersion);
+    return _isOlderThan(currentAppVersion, _minSupportedVersion);
+  }
+
+  static Future<void> loadMinSupportedVersion() async {
+    final bloc = getIt<AppVersionBloc>();
+    bloc.add(const AppVersionEvent.init());
+
+    await for (final state in bloc.stream) {
+      if (state.status == BaseStateStatus.success && state.appVersion != null) {
+        _minSupportedVersion = state.appVersion!.minSupportedVersion ?? '';
+        break;
+      }
+      if (state.status == BaseStateStatus.failed) {
+        break;
+      }
+    }
   }
 }

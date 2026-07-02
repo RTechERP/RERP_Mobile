@@ -6,6 +6,8 @@ import '../common/config/api_config.dart';
 import '../common/local_data/shared_pref.dart';
 import '../common/logger/index.dart';
 import '../common/utils/snack_bar_helper.dart';
+
+
 import '../features/auth/data/datasource/service/auth_service.dart';
 import '../features/auth/data/repository/auth_repo.dart';
 import '../features/auth/data/repository/auth_repo_impl.dart';
@@ -18,6 +20,10 @@ import '../features/dashboard/view/newsfeed/data/datasource/service/newsfeed_ser
 import '../features/dashboard/view/newsfeed/data/repository/newsfeed_repo.dart';
 import '../features/dashboard/view/newsfeed/data/repository/newsfeed_repository.dart';
 import '../features/dashboard/view/newsfeed/view/bloc/newsfeed_bloc.dart';
+import '../features/version/data/datasource/service/app_version_service.dart';
+import '../features/version/data/repository/app_version_repo.dart';
+import '../features/version/data/repository/app_version_repo_impl.dart';
+import '../features/version/view/bloc/app_version_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/datasource/service/booking_vehicle_service.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repo_impl.dart';
@@ -237,6 +243,10 @@ void configureDependencies() {
     () => NewsfeedService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<AppVersionService>(
+    () => AppVersionService(getIt<Dio>()),
+  );
+
   /// ===== REPOSITORY =====
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImpl(
@@ -334,6 +344,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<NewsfeedRepo>(
     () => NewsfeedRepoImpl(getIt<NewsfeedService>()),
+  );
+
+  getIt.registerLazySingleton<AppVersionRepo>(
+    () => AppVersionRepoImpl(getIt<AppVersionService>()),
   );
 
   /// ===== BLOCS =====
@@ -534,6 +548,10 @@ void configureDependencies() {
       getIt<NewsfeedRepo>(),
       getIt<LogUtils>(),
     ),
+  );
+
+  getIt.registerFactory<AppVersionBloc>(
+    () => AppVersionBloc(getIt<AppVersionRepo>(), getIt<LogUtils>()),
   );
 
   getIt.registerFactory<AccountantBloc>(

@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rtc_erp/base/widgets/base_scaffold.dart';
 
-import '../../../../../common/app_registry/app_items_registry.dart';
 import '../../../../../common/app_theme/index.dart';
 import '../../../../../common/services/permissions/permission_service.dart';
 import '../../../../../common/utils/dialog/index.dart';
+import '../../../data/datasource/app_registry/app_items_registry.dart';
 import '../../../view/widgets/wp_action_card.dart';
 
 class ReportScreen extends StatelessWidget {

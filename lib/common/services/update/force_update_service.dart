@@ -1,9 +1,8 @@
-import 'dart:io';
-
-import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../config/app_version_config.dart';
+import '../../config/index.dart';
+import '../../utils/app_exit_handler.dart';
+
 
 class ForceUpdateService {
   /// Mở Google Play / App Store tương ứng với platform.
@@ -12,14 +11,8 @@ class ForceUpdateService {
     await launchUrl(uri, mode: LaunchMode.externalApplication);
   }
 
-  /// Thoát app ngay lập tức.
-  static void exitApp() {
-    if (Platform.isAndroid) {
-      SystemNavigator.pop();
-    } else if (Platform.isIOS) {
-      exit(0);
-    }
-  }
+  /// Thoát app ngay lập tức, hoàn toàn.
+  static void exitApp() => AppExitHandler.exitApp();
 
   /// Mở store rồi thoát app.
   static Future<void> openStoreAndExit() async {

@@ -12,5 +12,6 @@ class AppInitializer {
     configureDependencies();
     await FirebaseInitializer.init();
     await AppVersionConfig.preloadCurrentVersion();
+    await AppVersionConfig.loadMinSupportedVersion();
   }
 }
