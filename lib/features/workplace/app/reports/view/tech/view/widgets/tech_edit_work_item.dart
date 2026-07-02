@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -37,6 +39,47 @@ class _TechEditWorkItemState extends State<TechEditWorkItem> {
 
   late TextEditingController _missionController;
 
+  /// Parse hour string (accept both '.' and ',' as decimal separator) → double.
+  static double _parseHour(String? raw) {
+    if (raw == null || raw.trim().isEmpty) return 0;
+    return double.tryParse(raw.trim().replaceAll(',', '.')) ?? 0;
+  }
+
+  /// Format double hour → display string using platform decimal separator.
+  /// iOS uses ',' (e.g. "6,5"), Android/desktop uses '.' (e.g. "6.5").
+  /// Integer values shown without decimal (e.g. "8").
+  static String _formatHour(double value) {
+    final sep = Platform.isIOS ? ',' : '.';
+    if (value == value.toInt()) return value.toInt().toString();
+    return value.toString().replaceFirst('.', sep);
+  }
+
+  /// Validate hour: must be > 0, ≤ 24, only 1 digit after decimal allowed (0–9).
+  static String? _validateHour(String? raw, {bool required = true}) {
+    if (raw == null || raw.trim().isEmpty) {
+      return required ? 'Nhập số giờ' : null;
+    }
+    final v = raw.trim().replaceAll(',', '.');
+    final parts = v.split('.');
+    if (parts.isEmpty) return 'Giá trị không hợp lệ';
+    if (double.tryParse(parts[0]) == null) return 'Giá trị không hợp lệ';
+    // Chỉ cho phép tối đa 1 chữ số sau dấu .
+    if (parts.length > 2 || (parts.length == 2 && parts[1].length > 1)) {
+      return 'Chỉ cho phép tối đa 1 chữ số thập phân';
+    }
+    if (parts.length == 2 && parts[1].isNotEmpty) {
+      final digit = parts[1];
+      // digit phải là 1 chữ số từ 0–9
+      if (digit.length != 1 || !RegExp(r'^[0-9]$').hasMatch(digit)) {
+        return 'Giá trị không hợp lệ';
+      }
+    }
+    final val = double.tryParse(v) ?? 0;
+    if (required && val <= 0) return 'Số giờ phải > 0';
+    if (val > 24) return 'Số giờ không > 24';
+    return null;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -46,11 +89,11 @@ class _TechEditWorkItemState extends State<TechEditWorkItem> {
     );
 
     _totalController = TextEditingController(
-      text: widget.report.totalHours.toInt().toString(),
+      text: _formatHour(widget.report.totalHours),
     );
 
     _otController = TextEditingController(
-      text: (widget.report.totalHourOT ?? 0).toInt().toString(),
+      text: _formatHour(widget.report.totalHourOT ?? 0),
     );
 
     _contentController = TextEditingController(
@@ -92,12 +135,12 @@ class _TechEditWorkItemState extends State<TechEditWorkItem> {
 
     updateController(
       _totalController,
-      widget.report.totalHours.toInt().toString(),
+      _formatHour(widget.report.totalHours),
     );
 
     updateController(
       _otController,
-      (widget.report.totalHourOT ?? 0).toInt().toString(),
+      _formatHour(widget.report.totalHourOT ?? 0),
     );
 
     updateController(
@@ -208,22 +251,15 @@ class _TechEditWorkItemState extends State<TechEditWorkItem> {
                     nameTextField:
                     'edit_total_${widget.report.id}',
                     label: 'Tổng giờ',
-                    keyboardType: TextInputType.number,
+                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
                     controller: _totalController,
                     isRequired: true,
-                    validator: (v) {
-                      if (v == null || v.trim().isEmpty) return 'Nhập tổng giờ';
-                      final total = double.tryParse(v) ?? 0;
-                      if (total <= 0) return 'Tổng giờ phải > 0';
-                      if (total > 24) return 'Tổng giờ không > 24';
-                      return null;
-                    },
+                    validator: (v) => _validateHour(v),
                     onChanged: (v) {
                       context.read<TechBloc>().add(
                         TechEvent.updateWork(
                           index: widget.index,
-                          totalHours:
-                          double.tryParse(v ?? '') ?? 0,
+                          totalHours: _parseHour(v),
                         ),
                       );
                     },
@@ -237,14 +273,14 @@ class _TechEditWorkItemState extends State<TechEditWorkItem> {
                     nameTextField:
                     'edit_ot_${widget.report.id}',
                     label: 'OT',
-                    keyboardType: TextInputType.number,
+                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
                     controller: _otController,
+                    validator: (v) => _validateHour(v, required: false),
                     onChanged: (v) {
                       context.read<TechBloc>().add(
                         TechEvent.updateWork(
                           index: widget.index,
-                          totalHourOT:
-                          double.tryParse(v ?? '') ?? 0,
+                          totalHourOT: _parseHour(v),
                         ),
                       );
                     },
@@ -298,6 +334,9 @@ class _TechEditWorkItemState extends State<TechEditWorkItem> {
               icon: Icons.note_outlined,
               label: 'Nội dung công việc',
               autoExpand: true,
+              keyboardType: TextInputType.multiline,
+              textInputAction: TextInputAction
+                  .newline,
               controller: _contentController,
               isRequired: true,
               validator: (v) {
@@ -327,6 +366,9 @@ class _TechEditWorkItemState extends State<TechEditWorkItem> {
               icon: Icons.note_outlined,
               label: 'Kết quả',
               autoExpand: true,
+              keyboardType: TextInputType.multiline,
+              textInputAction: TextInputAction
+                  .newline,
               controller: _resultController,
               isRequired: true,
               validator: (v) {

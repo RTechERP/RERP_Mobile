@@ -353,6 +353,7 @@ class _PropertyTabBody extends StatelessWidget {
             return PersonalPropertyCard(
               item: item,
               isApproving: state.isApproving,
+              departmentId: state.departmentId,
               onApprove: (approveType) {
                 final deliverId = item.deliverId;
                 final assetId = item.assetId;

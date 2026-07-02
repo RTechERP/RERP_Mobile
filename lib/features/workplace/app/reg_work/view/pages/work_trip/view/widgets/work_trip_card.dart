@@ -20,19 +20,17 @@ class WorkTripCard extends StatelessWidget {
   static final _dateFmt = DateFormat('dd/MM/yyyy');
 
   static bool canDelete(WorkTripItem item) {
-    final tbpPending = (item.isApprovedTbp ?? 0) == 0 &&
-        (item.statusTbp ?? 0) == 0;
-    final hrPending = (item.isApprovedHr ?? 0) == 0 &&
-        (item.statusHr ?? 0) == 0;
+    final tbpPending = item.isApprovedTbp != true && (item.statusTbp ?? 0) == 0;
+    final hrPending = item.isApprovedHr != true && (item.statusHr ?? 0) == 0;
     return tbpPending && hrPending;
   }
 
   String _formatDate(DateTime? d) =>
       d == null ? '--/--/----' : _dateFmt.format(d.toLocal());
 
-  ApprovalStatus _mapStatus(int? isApproved, int? status, String? statusText) {
-    if (isApproved == 1) return ApprovalStatus.approved;
-    if (isApproved == 2) return ApprovalStatus.cancelled;
+  ApprovalStatus _mapStatus(bool? isApproved, int? status, String? statusText) {
+    if (isApproved == true) return ApprovalStatus.approved;
+    if (isApproved == false && status == 2) return ApprovalStatus.cancelled;
     final text = (statusText ?? '').toLowerCase();
     if (text.contains('huỷ') ||
         text.contains('hủy') ||

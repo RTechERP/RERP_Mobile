@@ -27,6 +27,8 @@ abstract class _$PersonalAssetStateCWProxy {
 
   PersonalAssetState assetSearchQuery(String assetSearchQuery);
 
+  PersonalAssetState departmentId(int? departmentId);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PersonalAssetState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -43,6 +45,7 @@ abstract class _$PersonalAssetStateCWProxy {
     bool? isDetailLoading,
     int? propertyCategoryFilter,
     String? assetSearchQuery,
+    int? departmentId,
   });
 }
 
@@ -89,6 +92,10 @@ class _$PersonalAssetStateCWProxyImpl implements _$PersonalAssetStateCWProxy {
       this(assetSearchQuery: assetSearchQuery);
 
   @override
+  PersonalAssetState departmentId(int? departmentId) =>
+      this(departmentId: departmentId);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PersonalAssetState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -106,6 +113,7 @@ class _$PersonalAssetStateCWProxyImpl implements _$PersonalAssetStateCWProxy {
     Object? isDetailLoading = const $CopyWithPlaceholder(),
     Object? propertyCategoryFilter = const $CopyWithPlaceholder(),
     Object? assetSearchQuery = const $CopyWithPlaceholder(),
+    Object? departmentId = const $CopyWithPlaceholder(),
   }) {
     return PersonalAssetState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -153,6 +161,10 @@ class _$PersonalAssetStateCWProxyImpl implements _$PersonalAssetStateCWProxy {
           ? _value.assetSearchQuery
           // ignore: cast_nullable_to_non_nullable
           : assetSearchQuery as String,
+      departmentId: departmentId == const $CopyWithPlaceholder()
+          ? _value.departmentId
+          // ignore: cast_nullable_to_non_nullable
+          : departmentId as int?,
     );
   }
 }

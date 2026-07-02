@@ -20,6 +20,9 @@ class RoleResolver {
     final hasSalePermission = permissions.any(
       (p) => PermissionGroups.saleAdminReports.contains(p),
     );
+    final hasAccountingPermission = permissions.any(
+      (p) => PermissionGroups.accountantAdminReports.contains(p),
+    );
 
     /// ===== HR =====
     if (DepartmentGroups.hr.contains(deptId) ||
@@ -56,6 +59,12 @@ class RoleResolver {
     /// ===== MARKETING =====
     if (DepartmentGroups.marketing.contains(deptId)) {
       roles.add(AppRole.marketing);
+    }
+
+    /// ===== ACCOUNTANT =====
+    if (DepartmentGroups.accountant.contains(deptId) ||
+        hasAccountingPermission) {
+      roles.add(AppRole.accountant);
     }
 
     if (roles.isEmpty) {

@@ -1,37 +1,3 @@
-import 'package:flutter/material.dart';
-
-import '../models/app_info.dart';
-
-class AppInfoConstants {
-  static final AppInfoConstants instance = AppInfoConstants._();
-
-  static late final AppInfo _appInfo;
-
-  AppInfoConstants._();
-
-  static void initialize(Map<String, dynamic> appInfoJson) {
-    try {
-      _appInfo = AppInfo.fromJson(appInfoJson);
-      print('app info: ${_appInfo.appId}');
-    } catch (e) {
-      debugPrint('Error initializing app info: $e');
-    }
-    return;
-  }
-
-  static String get appId => _appInfo.appId;
-
-  static String get appStoreUrl => _appInfo.appStoreUrl;
-
-  static String get googlePlayUrl => _appInfo.googlePlayUrl;
-
-  static String get termsAndConditions => _appInfo.termsAndConditions;
-
-  static String get termsOfService => _appInfo.termsOfService;
-
-  static String get privacyPolicy => _appInfo.privacyPolicy;
-}
-
 class NotificationConfig {
   static const highImportance = "High Importance channel";
   static const highChannelId = "flutter_channel_id_0";
@@ -72,6 +38,8 @@ class FireBaseLog {
 }
 
 class ApiEndPoint {
+  static const String version = '/appmobileversion';
+
   static const String login = '/home/login';
 
   static const String loginMobile = '/homemobile/login-mobile';
@@ -148,6 +116,9 @@ class ApiEndPoint {
 
   static const String saveSaleAdminReport = '/DailyReportSaleAdmin/save-data';
 
+  static const String saveReportAccounting =
+      '/DailyReportAccounting/save-data';
+
   static const String getAdminTypeReport =
       '/DailyReportSaleAdmin/get-reporttypes';
 
@@ -158,6 +129,16 @@ class ApiEndPoint {
   static const String getAdminReport = '/DailyReportSaleAdmin/load-data';
 
   static const String getSaleAdminById = '/DailyReportSaleAdmin/get-details';
+
+  // Accountant
+  static const String getAccountantReport =
+      '/DailyReportAccounting/get-data';
+
+  static const String deleteReportAccounting =
+      '/DailyReportAccounting/delete';
+
+  static const String getAccountantById =
+      '/DailyReportAccounting/get-by-id';
 
   static const String getMeetingRoom = '/bookingroom/get-booking-room';
 
@@ -221,11 +202,12 @@ class ApiEndPoint {
   static const String getLeaveTime =
       '/employeeonleave/list-summary-employee-on-leave';
 
-  static const String saveMultiLeave= '/EmployeeOnLeave/SaveMultiPhase';
+  static const String saveMultiLeave = '/EmployeeOnLeave/SaveMultiPhase';
 
   static const String getEmployeeLeave = '/Employee';
 
-  static const String getOvertime = '/EmployeeOverTime/get-over-time-by-employee';
+  static const String getOvertime =
+      '/EmployeeOverTime/get-over-time-by-employee';
 
   static const String getOvertimeType = '/EmployeeTypeOverTime';
 
@@ -237,9 +219,10 @@ class ApiEndPoint {
 
   static const String getApproverOvertime = '/EmployeeOverTime/get-approver';
 
-  static const String getWorkTrip = '/EmployeeBussiness/get-employee-bussinesss-person';
+  static const String getWorkTrip =
+      '/EmployeeBussiness/get-employee-bussinesss-person';
 
-  static const String getWorkTripProject ='/project/get-project-modal';
+  static const String getWorkTripProject = '/project/get-project-modal';
 
   static const String getWorkTripTypeBussiness = '/EmployeeTypeBussiness';
 
@@ -249,13 +232,15 @@ class ApiEndPoint {
 
   static const String getWorkTripById = '/EmployeeBussiness/get-by-id';
 
-  static const String getOvernight = '/EmployeeNightShift/get-employee-night-shift';
+  static const String getOvernight =
+      '/EmployeeNightShift/get-employee-night-shift';
 
   static const String saveOvernight = '/EmployeeNightShift/save-data';
 
   // TODO: Thay đường dẫn API thực tế của Backend tại đây
 
-  static const String getWorkCategory = '/projectitemnew/get-project-item-person';
+  static const String getWorkCategory =
+      '/projectitemnew/get-project-item-person';
 
   static const String getWorkProjectType = '/WorkItem/get-type-project-item';
 
@@ -266,9 +251,10 @@ class ApiEndPoint {
   static const String saveWorkCategory = '/projectitemnew/save-data-person';
 
   static const String getWorkCategoryDetail = '/projectitemnew/get-by-id';
-  
-  static const String getWorkCategoryProblem = '/ProjectItem/get-project-item-problem';
-  
+
+  static const String getWorkCategoryProblem =
+      '/ProjectItem/get-project-item-problem';
+
   static const String saveWorkCategoryProblem = '/ProjectItem/save-problem';
 
   static const String getFillAprrover = '/employeeonleave/get-approve-id';
@@ -277,18 +263,117 @@ class ApiEndPoint {
 
   static const String getPersonalProperty = '/Assets/get-personal-properties';
 
-  static const String getPersonalPropertyDetail = '/Assets/get-personal-property-details';
+  static const String getPersonalPropertyDetail =
+      '/Assets/get-personal-property-details';
 
   static const String savePersonalProperty = '/Assets/save-personal-property';
 
-  static const String getTypeNotification = '/notificationtype/get-data-by-userid';
+  static const String getTypeNotification =
+      '/notificationtype/get-data-by-userid';
 
   static const String saveNotificationType = '/notificationtype/save-data';
 
-  static const String getStationery = '/OfficeSupplyRequests/get-office-supply-request';
+  static const String getStationery =
+      '/OfficeSupplyRequests/get-office-supply-request';
   static const String getStationerySupply = '/officesupply/get-office-supply';
 
-  static const String getStationeryDetail = '/OfficeSupplyRequests/get-office-supply-request-detail';
+  static const String getStationeryDetail =
+      '/OfficeSupplyRequests/get-office-supply-request-detail';
 
   static const String saveStationery = '/OfficeSupplyRequests/save-data';
+
+  // Week Plan
+  static const String getProjectTask = '/ProjectTask';
+  static const String getProjectTaskType = '/ProjectTask/project-task-type';
+  static const String projectTaskAttendance = '/ProjectTask/attendance';
+  static const String saveProjectTask = '/ProjectTask/SaveData';
+  static const String projectTaskFiles = '/ProjectTask/Files';
+  static const String projectTaskChecklists = '/ProjectTask/Checklists';
+  static const String projectTaskChecklistsGet =
+      '/ProjectTask/{taskId}/Checklists';
+  static const String projectTaskChecklistsUpdate =
+      '/ProjectTask/Checklists/{id}';
+  static const String projectTaskLinks = '/ProjectTask/Links';
+  static const String projectTaskChild = '/ProjectTask/project-task-child';
+  static const String projectTaskAdditional = '/ProjectTask/Additional';
+
+  static const String getAllProjectTask = '/ProjectTask/get-all-project';
+  static const String listProjectTask = '/ProjectTask/list-project-task';
+  static const String projectTaskDetail = '/ProjectTask';
+  static const String projectTaskEmployee = '/ProjectTask/employee';
+
+  static const String projectTaskTimelineByTeam =
+      '/ProjectTask/project-task-timeline-by-team';
+
+  static const String projectTaskDayOff = '/ProjectTask/day-off';
+
+  static const String getEmployees = '/Employee';
+
+  // Salary
+  static const String getPersonalSyntheticByMonth =
+      '/Home/get-personal-synthetic-by-month';
+
+  // PIN
+  static const String checkPin = '/PinAuth/check-pin-status';
+  static const String setPin = '/Account/set-pin';
+  static const String verifyPin = '/PinAuth/verify-pin';
+  static const String requestPin = '/Account/request-pin';
+  static const String requestResetPin = '/PinAuth/request-reset-pin';
+  static const String validateToken = '/PinAuth/validate-token';
+  static const String resetPin = '/PinAuth/reset-pin';
+
+  // Timekeeping
+  static const String getTimekeeping = '/ChamCong';
+  static const String getTimekeepingDays = '/ChamCong/get-days';
+
+  // Contract
+  static const String getContract = '/RegisterContract/get-all-data';
+  static const String getDocumentType = '/RegisterContract/get-document-type';
+  static const String getTaxCompany = '/RegisterContract/get-tax-company';
+  static const String saveContract = '/registercontract/save-data';
+  static const String getContractById = '/registercontract/get-data-by-id';
+  static const String sendEmailNewContract =
+      '/RegisterContract/send-email-new-contract';
+  static const String approveOrCancel = '/RegisterContract/approve-or-cancel';
+
+  // Job requirement
+  static const String getWorkRequirement =
+      '/jobrequirement/get-job-requirement-personal';
+  static const String saveWorkRequirement = '/jobrequirement/save-data';
+  static const String getWorkRequirementDepartment =
+      '/handover/get-departments';
+  static const String getWorkRequirementApprover =
+      '/EmployeeWFH/get-employee-approver';
+  static const String getWorkRequirementDetail = '/jobrequirement/details';
+  static const String deleteWorkRequirement = '/jobrequirement/delete';
+
+  // Idea Registration
+  static const String getIdeaRegistration = '/RegisterIdea/get-ideas';
+  static const String getCourseCatalog = '/RegisterIdea/get-course-catalog';
+  static const String saveIdea = '/RegisterIdea/save-idea';
+  static const String deleteIdea = '/RegisterIdea/delete-idea';
+  static const String getIdeaDetail = '/RegisterIdea/get-idea-detail';
+
+  // Stamp Registration
+  static const String getStamp = '/TrackingMarks/get-all';
+  static const String saveStamp = '/TrackingMarks/save';
+  static const String getStampEmployees = '/TrackingMarks/get-employees';
+  static const String getStampSealRegulations =
+      '/TrackingMarks/seal-regulations';
+  static const String getStampDocumentTypes = '/TrackingMarks/document-types';
+  static const String getStampTaxCompanies = '/TrackingMarks/tax-companies';
+
+  // Poll
+  static const String getPolls = '/pollform/all';
+  static const String getDetailPoll = '/pollform';
+  static const String getPollMyResponse = '/pollform';
+  static const String submitPoll = '/pollform/respond';
+  static const String submitPollBulk = '/pollform';
+
+  // Newsfeed
+  static const String getNewsletter = '/newsletter/get-limit-newsletter';
+  static const String getNewsletterById = '/newsletter/get-newsletter-by-id';
+  static const String getNewsletterFileByNewsletterId =
+      '/newsletter/get-newsletter-file-by-newsletterid';
+  static const String getCalendar = '/Holiday';
 }

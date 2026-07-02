@@ -45,7 +45,7 @@
     "reg_work": "Đăng ký công",
     "reg_general": "Đăng ký chung",
     "report": "Báo cáo CV",
-    "week_plan": "Kế hoạch tuần",
+    "week_plan": "Công việc",
     "stock": "Tồn kho theo SP"
   },
   "general_forms": {
@@ -62,26 +62,28 @@
   "reg_work": {
     "lunch": "Cơm ca",
     "leave": "Đăng ký nghỉ",
-    "in_out": "Đi muộn - về sớm",
+    "in_out": "Đ.muộn - v.sớm",
     "overtime": "Làm thêm",
     "overnight": "Làm đêm",
     "work_trip": "Công tác",
     "wfh": "WFH",
-    "missed": "Quên chấm công",
-    "sum_personal": "Tổng hợp cá nhân"
+    "missed": "Q.chấm công",
+    "sum_personal": "Tổng hợp cá nhân",
+    "sum_salary": "T.H công lương"
   },
   "reg_general": {
     "meeting_room": "Phòng họp",
     "booking_car":"Đặt xe",
     "purchase": "Đề nghị thanh toán",
     "special_purchase": "Đề nghị thanh toán ĐB",
-    "work_request": "Yêu cầu công việc",
-    "idea": "Đăng ký ý tưởng",
-    "contract": "Đăng ký hợp đồng",
+    "work_request": "Y.c công việc",
+    "idea": "Đ.ký ý tưởng",
+    "contract": "Đ.ký hợp đồng",
     "stationery": "VPP",
     "work_category": "Hạng mục công việc",
     "personal_asset": "Tài sản cá nhân",
-    "stamp": "Đăng ký đóng dấu"
+    "stamp": "Đ.ký đóng dấu",
+    "poll": "Bình chọn"
   },
   "report": {
     "sale": "Sale",
@@ -93,7 +95,9 @@
     "agv": "AGV - Cơ khí",
     "hr": "Nhân sự",
     "thr": "Hành chính - IT",
+    "abod": "Trợ lý BOD",
     "lxcp": "Lái xe - cắt phim",
+    "accountant": "Kế toán",
     "project": "Dự án",
     "main_location": "VP RTC",
     "other_location": "Địa điểm khác",

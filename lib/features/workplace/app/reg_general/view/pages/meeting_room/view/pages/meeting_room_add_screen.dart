@@ -341,7 +341,8 @@ class _MeetingRoomAddScreenState
                                     nameForm: 'title',
                                     nameTextField: 'title_text',
                                     label: 'Nội dung cuộc họp',
-                                    maxLines: 3,
+                                    textInputAction: TextInputAction.newline,
+                                    autoExpand: true,
                                     controller: _contentController,
                                     isRequired: true,
                                     validator: (v) {
@@ -406,7 +407,7 @@ class _MeetingRoomAddScreenState
               child: AbsorbPointer(
                 absorbing: true,
                 child: Container(
-                  color: Colors.black.withOpacity(0.45),
+                  color: Colors.black.withValues(alpha:0.45),
                   alignment: Alignment.center,
                   child: Lottie.asset(
                     'assets/lotties/Loading.json',

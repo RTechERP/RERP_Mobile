@@ -129,6 +129,22 @@ Map<String, dynamic> buildBookingVehicleEditFormPatch(
     _prefillPassengerGoLike(m, item, includeDepartReturn: true);
   }
 
+  if ((item.approvedTBP ?? 0) > 0) {
+    m['approver'] = item.approvedTBP!.toString();
+  }
+  final approverName = (item.fullNameTBP ?? '').trim();
+  if (approverName.isNotEmpty) {
+    m['approver_text'] = approverName;
+    m['approver_field'] = approverName;
+  }
+
+  final problemArises = (item.problemArises ?? '').trim();
+  if (problemArises.isNotEmpty) {
+    m['problem_rule_reason'] = problemArises;
+    m['problem_rule_reason_text'] = problemArises;
+    m['problem_field'] = problemArises;
+  }
+
   return m;
 }
 

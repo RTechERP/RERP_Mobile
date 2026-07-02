@@ -120,6 +120,22 @@ class InOutBloc extends BaseBloc<InOutEvent, InOutState> {
           emit(state.copyWith(status: BaseStateStatus.success, approvers: r));
         },
       );
+
+      // Auto-fill loại + khung giờ mặc định cho form.
+      // - Đi muộn: 08:00 → 09:00
+      // - Về sớm: 16:30 → 17:30
+      // Screen sẽ đọc state.suggestedType / suggestedFrom / suggestedTo
+      // để setValue form → UI chắc chắn render text.
+      const String defaultType = 'late_personal';
+      const int lateFromH = 8, lateFromM = 0, lateToH = 9, lateToM = 0;
+
+      final now = DateTime.now();
+      final today = DateTime(now.year, now.month, now.day);
+      emit(state.copyWith(
+        suggestedType: defaultType,
+        suggestedFrom: DateTime(today.year, today.month, today.day, lateFromH, lateFromM),
+        suggestedTo: DateTime(today.year, today.month, today.day, lateToH, lateToM),
+      ));
     } finally {
       _isInitAddInFlight = false;
     }

@@ -10,7 +10,6 @@ import "package:rtc_erp/common/constants/app_image.dart";
 import "../../../base/bloc/index.dart";
 import "../../../base/widgets/base_widget.dart";
 import "../../../common/enums/role_enum.dart";
-import "../../../common/models/index.dart";
 import "../../../common/services/permissions/role_groups.dart";
 import "../../../common/services/permissions/role_resolver.dart";
 import "../../../common/utils/dialog/index.dart";
@@ -18,6 +17,7 @@ import "../../../common/utils/dialog/index.dart";
 import "../../../routes/route_names.dart";
 import "../../auth/data/datasource/models/user_model.dart";
 
+import "../data/datasource/models/index.dart";
 import "bloc/workspace_bloc.dart";
 import "widgets/wp_action_card.dart";
 import "widgets/wp_favorite_add.dart";
@@ -105,6 +105,10 @@ class _WorkPlaceScreenState
       return RouteNames.reportMarketingdepart;
     }
 
+    if (roles.contains(AppRole.accountant)) {
+      return RouteNames.reportAccountant;
+    }
+
     return null;
   }
 
@@ -156,7 +160,7 @@ class _WorkPlaceScreenState
                 children: [
                   WpFavoriteAdd(onAddTap: () => context.push('/favorites')),
 
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 16),
 
                   WpActionCard(
                     onItemTap: (item) {
@@ -187,6 +191,13 @@ class _WorkPlaceScreenState
                     expandable: true,
                     collapsedItemCount: 11,
                     items: [
+                      // AppItemModel(
+                      //   id: 'general_forms',
+                      //   iconCodePoint: Icons.file_copy_outlined.codePoint,
+                      //   name: 'applications.general_forms'.tr(),
+                      //   route: '/general_forms',
+                      //   imageUrl: AppImages.app_menu_general_form,
+                      // ),
                       AppItemModel(
                         id: 'reg_work',
                         iconCodePoint: Icons.person_pin_outlined.codePoint,
@@ -208,31 +219,32 @@ class _WorkPlaceScreenState
                         route: '/report',
                         imageUrl: AppImages.app_menu_report,
                       ),
-                      AppItemModel(
-                        id: 'general_forms',
-                        name: 'applications.general_forms'.tr(),
-                        iconCodePoint: Icons.assignment_outlined.codePoint,
-                        imageUrl: AppImages.app_menu_general_form,
-                      ),
-                      AppItemModel(
-                        id: 'summary_work',
-                        iconCodePoint:
-                            Icons.content_paste_search_outlined.codePoint,
-                        name: 'applications.summary_work'.tr(),
-                        imageUrl: AppImages.app_menu_summary_work,
-                      ),
-                      AppItemModel(
-                        id: 'week_plan',
-                        iconCodePoint: Icons.newspaper_outlined.codePoint,
-                        name: 'applications.week_plan'.tr(),
-                        imageUrl: AppImages.app_menu_week_plan,
-                      ),
-                      AppItemModel(
-                        id: 'stock',
-                        iconCodePoint: Icons.shopping_cart_outlined.codePoint,
-                        name: 'applications.stock'.tr(),
-                        imageUrl: AppImages.app_menu_stock,
-                      ),
+                      // AppItemModel(
+                      //   id: 'general_forms',
+                      //   name: 'applications.general_forms'.tr(),
+                      //   iconCodePoint: Icons.assignment_outlined.codePoint,
+                      //   imageUrl: AppImages.app_menu_general_form,
+                      // ),
+                      // AppItemModel(
+                      //   id: 'summary_work',
+                      //   iconCodePoint:
+                      //       Icons.content_paste_search_outlined.codePoint,
+                      //   name: 'applications.summary_work'.tr(),
+                      //   imageUrl: AppImages.app_menu_summary_work,
+                      // ),
+                      // AppItemModel(
+                      //   id: 'week_plan',
+                      //   iconCodePoint: Icons.newspaper_outlined.codePoint,
+                      //   name: 'applications.week_plan'.tr(),
+                      //   route: '/week_plan',
+                      //   imageUrl: AppImages.app_menu_week_plan,
+                      // ),
+                      // AppItemModel(
+                      //   id: 'stock',
+                      //   iconCodePoint: Icons.shopping_cart_outlined.codePoint,
+                      //   name: 'applications.stock'.tr(),
+                      //   imageUrl: AppImages.app_menu_stock,
+                      // ),
                     ],
                   ),
 

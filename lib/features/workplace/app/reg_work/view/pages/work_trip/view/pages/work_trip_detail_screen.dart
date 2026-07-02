@@ -344,7 +344,7 @@ class _WorkTripDetailScreenState
                   return Positioned.fill(
                     child: AbsorbPointer(
                       child: Container(
-                        color: Colors.black.withOpacity(0.45),
+                        color: Colors.black.withValues(alpha:0.45),
                         alignment: Alignment.center,
                         child: Lottie.asset(
                           'assets/lotties/Loading.json',
@@ -501,7 +501,7 @@ class _WorkTripDetailScreenState
             label: 'Lý do công tác',
             icon: Icons.note_alt_outlined,
             initialValue: detail.reason ?? '',
-            maxLines: 2,
+            autoExpand: true,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             isRequired: true,
             validator: (v) {
@@ -640,7 +640,8 @@ class _WorkTripDetailScreenState
             label: 'Ghi chú',
             icon: Icons.edit_note_outlined,
             initialValue: detail.note ?? '',
-            maxLines: 2,
+            textInputAction: TextInputAction.newline,
+            autoExpand: true,
             autovalidateMode: AutovalidateMode.disabled,
           ),
         ],

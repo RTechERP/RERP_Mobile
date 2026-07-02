@@ -91,11 +91,7 @@ IconData _bookingTypeIcon(BookingVehicleItem item) {
 //---(Card Widget)---//
 
 class BookingVehicleCard extends StatelessWidget {
-  const BookingVehicleCard({
-    super.key,
-    required this.item,
-    this.onTap,
-  });
+  const BookingVehicleCard({super.key, required this.item, this.onTap});
 
   final BookingVehicleItem item;
   final VoidCallback? onTap;
@@ -135,7 +131,7 @@ class BookingVehicleCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(14),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha:0.06),
+            color: Colors.black.withValues(alpha: 0.06),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -169,7 +165,7 @@ class BookingVehicleCard extends StatelessWidget {
                         Container(
                           padding: const EdgeInsets.all(8),
                           decoration: BoxDecoration(
-                            color: effectiveColor.withValues(alpha:0.1),
+                            color: effectiveColor.withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: Icon(
@@ -326,10 +322,10 @@ class BookingVehicleCard extends StatelessWidget {
                 onConfirm: () {
                   if (!context.mounted) return;
                   context.read<BookingVehicleBloc>().add(
-                        BookingVehicleEvent.cancelBookingVehicle(
-                          vehicleBookingId: bookingId,
-                        ),
-                      );
+                    BookingVehicleEvent.cancelBookingVehicle(
+                      vehicleBookingId: bookingId,
+                    ),
+                  );
                 },
               );
             },
@@ -348,9 +344,11 @@ class BookingVehicleCard extends StatelessWidget {
     final rows = <Widget>[];
     final isPassengerReturn =
         item.category == BookingVehicleApiCategory.passengerReturn;
-    final isCargoDelivery = item.category == BookingVehicleApiCategory.commercialDelivery ||
+    final isCargoDelivery =
+        item.category == BookingVehicleApiCategory.commercialDelivery ||
         item.category == BookingVehicleApiCategory.demoExhibitionDelivery;
-    final isCargoPickup = item.category == BookingVehicleApiCategory.commercialPickup ||
+    final isCargoPickup =
+        item.category == BookingVehicleApiCategory.commercialPickup ||
         item.category == BookingVehicleApiCategory.demoExhibitionPickup;
 
     if (isPassengerReturn) {
@@ -531,10 +529,22 @@ class _CopyButton extends StatelessWidget {
       projects: bloc.state.projects,
     );
 
+    final approvedTbp = item.approvedTBP;
+    final approverLabel = (item.fullNameTBP ?? '').trim();
+    final problemArises = (item.problemArises ?? '').trim();
+
     final cache = <String, dynamic>{
       ...patch,
       '_copied_item_id': item.id,
       '_copied_booking_type_group': groupNum,
+      if (approvedTbp != null && approvedTbp > 0)
+        'approver': approvedTbp.toString(),
+      if (approverLabel.isNotEmpty) 'approver_text': approverLabel,
+      if (approverLabel.isNotEmpty) 'approver_field': approverLabel,
+      if (approverLabel.isNotEmpty) '_prefill_approver_name': approverLabel,
+      if (problemArises.isNotEmpty) 'problem_rule_reason': problemArises,
+      if (problemArises.isNotEmpty) 'problem_rule_reason_text': problemArises,
+      if (problemArises.isNotEmpty) 'problem_field': problemArises,
     };
 
     if (!context.mounted) return;
@@ -587,7 +597,7 @@ class _PersonStrip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
       decoration: BoxDecoration(
-        color: color.withValues(alpha:0.06),
+        color: color.withValues(alpha: 0.06),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
@@ -692,8 +702,8 @@ class _TinyBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final safeText = text.trim().isEmpty ? '-' : text.trim();
-    final bg = color.withValues(alpha:0.12);
-    final border = color.withValues(alpha:0.4);
+    final bg = color.withValues(alpha: 0.12);
+    final border = color.withValues(alpha: 0.4);
 
     return Container(
       constraints: const BoxConstraints(maxWidth: 80),

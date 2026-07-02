@@ -69,53 +69,65 @@ class WpFavoriteAdd extends StatelessWidget {
             );
           }
 
-          return Container(
-            padding: innerPadding,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: Colors.grey.shade300),
-            ),
-            child: GridView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: favorites.length + 1,
-              gridDelegate:
-              const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                crossAxisSpacing: 12,
-                mainAxisSpacing: 12,
-                childAspectRatio: 1,
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Ưa thích',
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),
-              itemBuilder: (_, index) {
-                if (index == favorites.length) {
-                  return ActionIconTile(
-                    icon: Icons.add,
-                    title: 'Thêm',
-                    iconColor: Colors.orange,
-                    onTap: onAddTap,
-                  );
-                }
-
-                final item = favorites[index];
-                return ActionIconTile(
-                  icon: IconData(
-                    item.iconCodePoint ?? 0,
-                    fontFamily: 'MaterialIcons',
+              const SizedBox(height: 8),
+              Container(
+                padding: innerPadding,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: Colors.grey.shade300),
+                ),
+                child: GridView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: favorites.length + 1,
+                  gridDelegate:
+                  const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    crossAxisSpacing: 12,
+                    mainAxisSpacing: 12,
+                    childAspectRatio: 1,
                   ),
-                  title: item.name,
-                  onTap: () {
-                    if (item.route != null && item.route!.isNotEmpty) {
-                      context.push(item.route!);
+                  itemBuilder: (_, index) {
+                    if (index == favorites.length) {
+                      return ActionIconTile(
+                        icon: Icons.add,
+                        title: 'Thêm',
+                        iconColor: Colors.orange,
+                        onTap: onAddTap,
+                      );
                     }
+
+                    final item = favorites[index];
+                    return ActionIconTile(
+                      icon: item.imageUrl?.isNotEmpty == true
+                          ? null
+                          : IconData(
+                        item.iconCodePoint ?? 0,
+                        fontFamily: 'MaterialIcons',
+                      ),
+                      imageUrl: item.imageUrl,
+                      title: item.name,
+                      onTap: () {
+                        if (item.route != null && item.route!.isNotEmpty) {
+                          context.push(item.route!);
+                        }
+                      },
+                    );
                   },
-                );
-              },
-            ),
+                ),
+              ),
+            ],
           );
         },
       ),
     );
   }
 }
-

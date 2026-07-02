@@ -164,6 +164,12 @@ class AppColors {
   static const Color matchaA200 = Color(0xFFE3FFB5);
   static const Color matchaA100 = Color(0xFFF1FFD2);
 
+  static const Color tealA700 = Color(0xFF00897B);
+  static const Color tealA400 = Color(0xFF26A69A);
+  static const Color tealA300 = Color(0xFF80CBC4);
+  static const Color tealA200 = Color(0xFFB2DFDB);
+  static const Color tealA100 = Color(0xFFE0F2F1);
+
   static const Color blueA500 = Color(0xFF3B82F6);
   static const Color blueA400 = Color(0xFF5EABFF);
   static const Color blueA300 = Color(0xFF8DC7FF);

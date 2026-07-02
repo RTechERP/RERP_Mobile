@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 
@@ -11,7 +12,6 @@ import '../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../common/enums/index.dart';
-import '../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../common/widgets/form/index.dart';
 import '../bloc/marketing_bloc.dart';
@@ -124,6 +124,7 @@ class _MarketingEditScreenState
                                 nameForm: 'marketing_edit_date',
                                 nameTimePicker: 'date_time',
                                 label: 'Ngày báo cáo',
+                                isRequired: true,
                                 inputType: InputType.date,
                                 format:
                                 DateFormat('dd/MM/yyyy'),
@@ -136,14 +137,17 @@ class _MarketingEditScreenState
 
                             /// CONTENT
                             FormCard(
-                              title: 'Nội dung công việc',
                               child: FormInputField(
                                 icon: Icons.note_alt_outlined,
                                 nameForm:
                                 'marketing_edit_content',
                                 nameTextField: 'content',
                                 label: 'Nội dung công việc',
-                                maxLines: 4,
+                                autoExpand: true,
+                                isRequired: true,
+                                validator: FormBuilderValidators.required(
+                                  errorText: 'Vui lòng nhập nội dung công việc',
+                                ),
                                 controller:
                                 _contentController,
                                 onChanged: (v) {
@@ -160,14 +164,17 @@ class _MarketingEditScreenState
 
                             /// RESULT
                             FormCard(
-                              title: 'Kết quả',
                               child: FormInputField(
                                 icon: Icons.task_alt_outlined,
                                 nameForm:
                                 'marketing_edit_result',
                                 nameTextField: 'result',
-                                label: 'Kết quả đạt được',
-                                maxLines: 4,
+                                label: 'Kết quả công việc',
+                                autoExpand: true,
+                                isRequired: true,
+                                validator: FormBuilderValidators.required(
+                                  errorText: 'Vui lòng nhập kết quả công việc',
+                                ),
                                 controller:
                                 _resultController,
                                 onChanged: (v) {
@@ -184,8 +191,6 @@ class _MarketingEditScreenState
 
                             /// NEXT PLAN
                             FormCard(
-                              title:
-                              'Kế hoạch ngày tiếp theo',
                               child: FormInputField(
                                 icon:
                                 Icons.next_plan_outlined,
@@ -195,7 +200,11 @@ class _MarketingEditScreenState
                                 'next_plan',
                                 label:
                                 'Kế hoạch ngày tiếp theo',
-                                maxLines: 3,
+                                autoExpand: true,
+                                isRequired: true,
+                                validator: FormBuilderValidators.required(
+                                  errorText: 'Vui lòng nhập kế hoạch tiếp theo',
+                                ),
                                 controller:
                                 _planController,
                                 onChanged: (v) {
@@ -212,8 +221,6 @@ class _MarketingEditScreenState
 
                             /// NOTE
                             FormCard(
-                              title:
-                              'Đề xuất cải tiến',
                               child: FormInputField(
                                 icon:
                                 Icons.lightbulb_outline,
@@ -223,7 +230,7 @@ class _MarketingEditScreenState
                                 'note',
                                 label:
                                 'Đề xuất cải tiến',
-                                maxLines: 4,
+                                autoExpand: true,
                                 controller:
                                 _noteController,
                                 onChanged: (v) {
@@ -334,21 +341,21 @@ class _MarketingEditScreenState
                           if (pickedDate == null) return;
 
                           /// VALIDATE BUSINESS
-                          final error = ValidateHelper.validateMarketingReport(
-                            date: pickedDate,
-                            content: state.content ?? '',
-                            result: state.results ?? '',
-                            planNextDay: state.planNextDay ?? '',
-                          );
-
-                          if (error != null) {
-                            showMessage(
-                              context,
-                              error,
-                              type: SnackBarType.error,
-                            );
-                            return;
-                          }
+                          // final error = ValidateHelper.validateMarketingReport(
+                          //   date: pickedDate,
+                          //   content: state.content ?? '',
+                          //   result: state.results ?? '',
+                          //   planNextDay: state.planNextDay ?? '',
+                          // );
+                          //
+                          // if (error != null) {
+                          //   showMessage(
+                          //     context,
+                          //     error,
+                          //     type: SnackBarType.error,
+                          //   );
+                          //   return;
+                          // }
 
                           /// Nếu có file đang upload thì chặn
                           if (state.isUploadingFile) {
@@ -390,7 +397,7 @@ class _MarketingEditScreenState
                 absorbing: true,
                 child: Container(
                   color: Colors.black
-                      .withOpacity(0.45),
+                      .withValues(alpha: 0.45),
                   alignment: Alignment.center,
                   child: Lottie.asset(
                     'assets/lotties/Loading.json',

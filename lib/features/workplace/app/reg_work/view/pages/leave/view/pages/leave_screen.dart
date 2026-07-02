@@ -13,10 +13,10 @@ import '../../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../../common/utils/dialog/index.dart';
 import '../../../../../../../../../common/utils/snack_bar_helper.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import '../../../../../../../../../common/widgets/date_header.dart';
 import '../../../../../../../../../routes/route_names.dart';
 import '../../../../../../../../../common/utils/formatter/date_formatter.dart';
-import '../../../../../../reg_general/view/pages/booking_vehicle/view/widgets/date_header.dart';
-import '../../../../../../reg_general/view/pages/booking_vehicle/view/widgets/date_range_picker.dart';
+import '../../../../../../../../../common/widgets/date_range_picker.dart';
 import '../../data/datasource/models/leave_model.dart';
 
 import '../../leave_detail_route_args.dart';
@@ -90,6 +90,7 @@ class _LeaveScreenPageState
       listener: (context, state) {
         if (state.deleteSuccess) {
           showMessage(context, 'Xoá thành công', type: SnackBarType.success);
+          bloc.add(const LeaveEvent.init());
           return;
         }
         if ((state.message ?? '').isNotEmpty) {

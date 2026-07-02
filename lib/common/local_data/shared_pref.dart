@@ -23,6 +23,10 @@ abstract class LocalStorage {
 
   Future<bool> getBool(String key);
   Future<void> setBool(String key, bool value);
+
+  Future<void> saveProjectList(String key, List<Map<String, dynamic>> projects);
+  Future<List<Map<String, dynamic>>?> getProjectList(String key);
+  Future<void> removeProjectList(String key);
 }
 
 @Injectable(as: LocalStorage)
@@ -130,6 +134,30 @@ class LocalStorageImpl extends LocalStorage {
     return await _doWork((pref) async {
       await pref.setBool(key, value);
     }).catchError((e) => throw Exception(e));
+  }
+
+  @override
+  Future<void> saveProjectList(
+      String key, List<Map<String, dynamic>> projects) async {
+    final jsonString = jsonEncode(projects);
+    await _doWork((pref) => pref.setString(key, jsonString))
+        .catchError((e) => throw Exception(e));
+  }
+
+  @override
+  Future<List<Map<String, dynamic>>?> getProjectList(String key) async {
+    return await _doWork((pref) {
+      final jsonString = pref.getString(key);
+      if (jsonString == null) return null;
+      final decoded = jsonDecode(jsonString) as List;
+      return decoded.cast<Map<String, dynamic>>();
+    }).catchError((e) => null);
+  }
+
+  @override
+  Future<void> removeProjectList(String key) async {
+    await _doWork((pref) => pref.remove(key))
+        .catchError((e) => throw Exception(e));
   }
 }
 

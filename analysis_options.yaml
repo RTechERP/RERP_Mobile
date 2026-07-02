@@ -5,6 +5,21 @@
 # IDEs (https://dart.dev/tools#ides-and-editors). The analyzer can also be
 # invoked from the command line by running `flutter analyze`.
 
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/*.gen.dart"
+    - "**/*.config.dart"
+  errors:
+    # Required when using json_serializable together with freezed /
+    # copy_with_extension: @JsonKey can only legally target fields/getters,
+    # but the annotation appears on freezed-generated code that the analyzer
+    # cannot yet reason about. This is a known false-positive from
+    # json_serializable + meta, see:
+    # https://pub.dev/packages/freezed#disabling-invalid_annotation_target-warning-and-warning-in-generates-files
+    invalid_annotation_target: ignore
+
 # The following line activates a set of recommended lints for Flutter apps,
 # packages, and plugins designed to encourage good coding practices.
 include: package:flutter_lints/flutter.yaml

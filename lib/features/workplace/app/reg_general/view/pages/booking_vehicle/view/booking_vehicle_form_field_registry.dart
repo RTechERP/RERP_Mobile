@@ -26,6 +26,10 @@ const Set<String> kBookingVehicleFormFieldNames = {
   'pickup_province',
   'pickup_address',
   'pickup_address_text',
+  'approver',
+  'approver_text',
+  'approver_field',
+  'problem_rule_reason',
 };
 
 /// Tách [raw] (thường là `FormBuilderState.value`) thành map Form / Info.

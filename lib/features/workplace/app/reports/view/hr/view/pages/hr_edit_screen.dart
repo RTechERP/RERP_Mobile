@@ -2,17 +2,15 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../common/app_theme/app_bar_common.dart';
 import '../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../common/enums/index.dart';
-import '../../../../../../../../common/helpers/index.dart';
-import '../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../common/widgets/form/index.dart';
 import '../bloc/hr_bloc.dart';
 
@@ -28,7 +26,6 @@ class HrEditScreen extends StatefulWidget {
 
 class _HrEditScreenState
     extends BaseState<HrEditScreen, HrEvent, HrState, HrBloc> {
-
   @override
   void initState() {
     super.initState();
@@ -59,7 +56,8 @@ class _HrEditScreenState
         ),
         BlocBuilder<HrBloc, HrState>(
           buildWhen: (p, c) =>
-          p.detailReport != c.detailReport || p.saveSuccess != c.saveSuccess,
+              p.detailReport != c.detailReport ||
+              p.saveSuccess != c.saveSuccess,
           builder: (context, state) {
             if (!state.saveSuccess) {
               return const SizedBox.shrink();
@@ -69,7 +67,7 @@ class _HrEditScreenState
               child: AbsorbPointer(
                 absorbing: true,
                 child: Container(
-                  color: Colors.black.withOpacity(0.45),
+                  color: Colors.black.withValues(alpha:0.45),
                   alignment: Alignment.center,
                   child: Lottie.asset(
                     'assets/lotties/Loading.json',
@@ -146,7 +144,6 @@ class _HrEditAdminViewState extends State<_HrEditAdminView> {
           return const Center(child: Text('Không có dữ liệu'));
         }
 
-
         return Column(
           children: [
             Expanded(
@@ -162,6 +159,10 @@ class _HrEditAdminViewState extends State<_HrEditAdminView> {
                         nameForm: 'hr_edit_date',
                         nameTimePicker: 'date_time',
                         label: 'Ngày báo cáo',
+                        isRequired: true,
+                        validator: FormBuilderValidators.required(
+                          errorText: 'Vui lòng chọn ngày báo cáo',
+                        ),
                         inputType: InputType.date,
                         format: DateFormat('dd/MM/yyyy'),
                         initialValue: DateTime.tryParse(detail.dateReport),
@@ -177,7 +178,11 @@ class _HrEditAdminViewState extends State<_HrEditAdminView> {
                         nameForm: 'hr_edit_content',
                         nameTextField: 'content',
                         label: 'Nội dung công việc',
-                        maxLines: 4,
+                        isRequired: true,
+                        validator: FormBuilderValidators.required(
+                          errorText: 'Vui lòng nhập nội dung công việc',
+                        ),
+                        autoExpand: true,
                         controller: _contentController,
                         onChanged: (v) {
                           bloc.add(HrEvent.updateWork(content: v));
@@ -194,7 +199,11 @@ class _HrEditAdminViewState extends State<_HrEditAdminView> {
                         nameForm: 'hr_edit_result',
                         nameTextField: 'result',
                         label: 'Kết quả đạt được',
-                        maxLines: 4,
+                        isRequired: true,
+                        validator: FormBuilderValidators.required(
+                          errorText: 'Vui lòng nhập kết quả công việc',
+                        ),
+                        autoExpand: true,
                         controller: _resultController,
                         onChanged: (v) {
                           bloc.add(HrEvent.updateWork(results: v));
@@ -211,7 +220,11 @@ class _HrEditAdminViewState extends State<_HrEditAdminView> {
                         nameForm: 'hr_edit_next_plan',
                         nameTextField: 'next_plan',
                         label: 'Kế hoạch ngày tiếp theo',
-                        maxLines: 4,
+                        isRequired: true,
+                        validator: FormBuilderValidators.required(
+                          errorText: 'Vui lòng nhập kế hoạch tiếp theo',
+                        ),
+                        autoExpand: true,
                         controller: _planController,
                         onChanged: (v) {
                           bloc.add(HrEvent.updateWork(planNextDay: v));
@@ -248,7 +261,7 @@ class _HrEditAdminViewState extends State<_HrEditAdminView> {
                               nameForm: 'hr_edit_blocking',
                               nameTextField: 'blocking',
                               label: 'Tồn đọng',
-                              maxLines: 2,
+                              autoExpand: true,
                               controller: _backlogController,
                               onChanged: (v) {
                                 bloc.add(HrEvent.updateWork(backlog: v));
@@ -262,7 +275,7 @@ class _HrEditAdminViewState extends State<_HrEditAdminView> {
                               nameForm: 'hr_edit_note',
                               nameTextField: 'blocking_reason',
                               label: 'Ghi chú',
-                              maxLines: 2,
+                              autoExpand: true,
                               controller: _noteController,
                               onChanged: (v) {
                                 bloc.add(HrEvent.updateWork(note: v));
@@ -298,17 +311,17 @@ class _HrEditAdminViewState extends State<_HrEditAdminView> {
                   if (pickedDate == null) return;
 
                   /// VALIDATE BUSINESS
-                  final error = ValidateHelper.validateMarketingReport(
-                    date: pickedDate,
-                    content: state.content ?? '',
-                    result: state.results ?? '',
-                    planNextDay: state.planNextDay ?? '',
-                  );
-
-                  if (error != null) {
-                    context.showMessage(error, type: SnackBarType.error);
-                    return;
-                  }
+                  // final error = ValidateHelper.validateMarketingReport(
+                  //   date: pickedDate,
+                  //   content: state.content ?? '',
+                  //   result: state.results ?? '',
+                  //   planNextDay: state.planNextDay ?? '',
+                  // );
+                  //
+                  // if (error != null) {
+                  //   context.showMessage(error, type: SnackBarType.error);
+                  //   return;
+                  // }
 
                   bloc.add(
                     HrEvent.submitEditReport(pickedDate, widget.dailyId),

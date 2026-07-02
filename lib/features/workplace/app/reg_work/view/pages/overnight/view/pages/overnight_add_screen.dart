@@ -38,8 +38,13 @@ class OvernightAddScreen extends StatefulWidget {
 }
 
 class _OvernightAddScreenState
-    extends BaseState<OvernightAddScreen, OvernightEvent, OvernightState,
-        OvernightBloc> {
+    extends
+        BaseState<
+          OvernightAddScreen,
+          OvernightEvent,
+          OvernightState,
+          OvernightBloc
+        > {
   final _formKey = GlobalKey<FormBuilderState>();
 
   late final List<_SlipMeta> _slips;
@@ -62,8 +67,7 @@ class _OvernightAddScreenState
     });
   }
 
-  static DateTime _dateOnly(DateTime d) =>
-      DateTime(d.year, d.month, d.day);
+  static DateTime _dateOnly(DateTime d) => DateTime(d.year, d.month, d.day);
 
   // ── Slip management ─────────────────────────────────────────────────────
   int get _safeSlipIndex {
@@ -111,12 +115,13 @@ class _OvernightAddScreenState
     if (form == null) return null;
     final start =
         form.fields['on_slip_${slip.key}_time_start']?.value as DateTime?;
-    final end =
-        form.fields['on_slip_${slip.key}_time_end']?.value as DateTime?;
+    final end = form.fields['on_slip_${slip.key}_time_end']?.value as DateTime?;
     if (start == null || end == null) return null;
 
-    final breakHours = double.tryParse(
-            '${form.fields['on_slip_${slip.key}_break_hours']?.value ?? '0'}') ??
+    final breakHours =
+        double.tryParse(
+          '${form.fields['on_slip_${slip.key}_break_hours']?.value ?? '0'}',
+        ) ??
         0;
     final diff = end.difference(start).inMinutes / 60.0;
     if (diff <= 0) return null; // end không sau start
@@ -137,9 +142,9 @@ class _OvernightAddScreenState
       // Reset field về ngày slip hiện tại
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (!mounted) return;
-        _formKey.currentState
-            ?.fields['on_slip_${slip.key}_date']
-            ?.didChange(slip.date);
+        _formKey.currentState?.fields['on_slip_${slip.key}_date']?.didChange(
+          slip.date,
+        );
       });
       return;
     }
@@ -154,8 +159,9 @@ class _OvernightAddScreenState
     final form = _formKey.currentState;
     if (form == null) return;
 
-    final items =
-        bloc.state.approvers.where((e) => e.isDeleted != true).toList();
+    final items = bloc.state.approvers
+        .where((e) => e.isDeleted != true)
+        .toList();
     if (items.isEmpty) {
       context.showMessage('Chưa có người kiểm duyệt', type: SnackBarType.error);
       return;
@@ -183,8 +189,9 @@ class _OvernightAddScreenState
     if (formState == null) return;
 
     if (!formState.validate()) {
-      bool hasSlipError = formState.fields.entries
-          .any((e) => e.key.startsWith('on_slip_') && e.value.hasError);
+      bool hasSlipError = formState.fields.entries.any(
+        (e) => e.key.startsWith('on_slip_') && e.value.hasError,
+      );
 
       if (hasSlipError && _slips.length >= 2) {
         context.showMessage(
@@ -248,8 +255,7 @@ class _OvernightAddScreenState
       return;
     }
 
-    final approvedId =
-        int.tryParse('${v['on_approver_id'] ?? ''}') ?? 0;
+    final approvedId = int.tryParse('${v['on_approver_id'] ?? ''}') ?? 0;
     final dateRegister = _slips.first.date;
 
     final payloadSlips = <OvernightSubmitSlip>[];
@@ -268,12 +274,14 @@ class _OvernightAddScreenState
       ));
     }
 
-    bloc.add(OvernightEvent.submitBatch(
-      approvedId: approvedId,
-      dateRegister: dateRegister,
-      isProblem: isProblem,
-      slips: payloadSlips,
-    ));
+    bloc.add(
+      OvernightEvent.submitBatch(
+        approvedId: approvedId,
+        dateRegister: dateRegister,
+        isProblem: isProblem,
+        slips: payloadSlips,
+      ),
+    );
   }
 
   // ── UI ──────────────────────────────────────────────────────────────────
@@ -295,7 +303,10 @@ class _OvernightAddScreenState
                   context.showMessage(state.message!, type: SnackBarType.error);
                 }
                 if ((state.message ?? '').isNotEmpty && state.submitSuccess) {
-                  context.showMessage(state.message!, type: SnackBarType.success);
+                  context.showMessage(
+                    state.message!,
+                    type: SnackBarType.success,
+                  );
                 }
                 if (state.submitSuccess) {
                   bloc.add(const OvernightEvent.clearSubmitState());
@@ -313,20 +324,21 @@ class _OvernightAddScreenState
                   if (form == null) return;
 
                   final targetId = state.approveId!.approveId;
-                  final match = state.approvers.cast<ApproverItem?>().firstWhere(
-                    (a) {
-                      if (a == null || a.isDeleted == true) return false;
-                      final idValue = a.employeeId ?? a.id;
-                      return idValue == targetId;
-                    },
-                    orElse: () => null,
-                  );
+                  final match = state.approvers
+                      .cast<ApproverItem?>()
+                      .firstWhere((a) {
+                        if (a == null || a.isDeleted == true) return false;
+                        final idValue = a.employeeId ?? a.id;
+                        return idValue == targetId;
+                      }, orElse: () => null);
 
                   if (match != null) {
                     final idValue = match.employeeId ?? match.id;
-                    final line =
-                        '${match.code ?? ''} - ${match.fullName ?? ''}'.trim();
-                    form.fields['on_approver_id']?.didChange(idValue.toString());
+                    final line = '${match.code ?? ''} - ${match.fullName ?? ''}'
+                        .trim();
+                    form.fields['on_approver_id']?.didChange(
+                      idValue.toString(),
+                    );
                     form.fields['on_approver_text']?.didChange(line);
                     setState(() {});
                   }
@@ -371,8 +383,7 @@ class _OvernightAddScreenState
                                         initialValue: '',
                                         autovalidateMode:
                                             AutovalidateMode.onUserInteraction,
-                                        builder: (_) =>
-                                            const SizedBox.shrink(),
+                                        builder: (_) => const SizedBox.shrink(),
                                       ),
 
                                       FormInputField(
@@ -382,9 +393,14 @@ class _OvernightAddScreenState
                                         label: 'Người duyệt',
                                         icon: Icons.person_outlined,
                                         initialValue: '',
-                                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                                        autovalidateMode:
+                                            AutovalidateMode.onUserInteraction,
                                         isRequired: true,
-                                        onTap: state.status == BaseStateStatus.loading ? null : _openApproverSheet,
+                                        onTap:
+                                            state.status ==
+                                                BaseStateStatus.loading
+                                            ? null
+                                            : _openApproverSheet,
                                         validator: (v) {
                                           if (v == null || v.isEmpty) {
                                             return 'Vui lòng chọn người duyệt';
@@ -407,11 +423,12 @@ class _OvernightAddScreenState
                                                   .isSupplementaryRegistrationOpen) {
                                             WidgetsBinding.instance
                                                 .addPostFrameCallback((_) {
-                                              if (!mounted) return;
-                                              _formKey.currentState
-                                                  ?.fields['on_is_problem']
-                                                  ?.didChange(false);
-                                            });
+                                                  if (!mounted) return;
+                                                  _formKey
+                                                      .currentState
+                                                      ?.fields['on_is_problem']
+                                                      ?.didChange(false);
+                                                });
                                             context.showMessage(
                                               'Nhân sự chưa mở đăng ký bổ sung',
                                               type: SnackBarType.error,
@@ -457,8 +474,9 @@ class _OvernightAddScreenState
                                             _OvernightSlipFormFields(
                                               key: ValueKey(slip.key),
                                               slip: slip,
-                                              computedHours:
-                                                  _computeSlipHours(slip),
+                                              computedHours: _computeSlipHours(
+                                                slip,
+                                              ),
                                               isProblem: _isProblem,
                                               onDateChanged: _onDateChanged,
                                               onTimeChanged: _onTimeChanged,
@@ -520,8 +538,7 @@ class _OvernightAddScreenState
 // ═══════════════════════════════════════════════════════════════════════════
 
 class _SlipMeta {
-  _SlipMeta({required this.date})
-      : key = 'k_${date.millisecondsSinceEpoch}';
+  _SlipMeta({required this.date}) : key = 'k_${date.millisecondsSinceEpoch}';
 
   final String key;
   DateTime date;
@@ -559,7 +576,9 @@ class _OvernightSlipTabsBar extends StatelessWidget {
                 onTap: () => onSelect(i),
                 child: Container(
                   padding: const EdgeInsets.symmetric(
-                      horizontal: 12, vertical: 8),
+                    horizontal: 12,
+                    vertical: 8,
+                  ),
                   decoration: BoxDecoration(
                     color: i == selectedIndex
                         ? AppColors.primaryERP.withValues(alpha: 0.1)
@@ -747,15 +766,16 @@ class _OvernightSlipFormFieldsState extends State<_OvernightSlipFormFields> {
             initialDate: widget.slip.date,
             // Giới hạn chọn: chỉ trong ngày đăng ký (không qua đêm cho start)
             firstDate: widget.slip.date,
-            lastDate: widget.slip.date
-                .add(const Duration(hours: 23, minutes: 59)),
+            lastDate: widget.slip.date.add(
+              const Duration(hours: 23, minutes: 59),
+            ),
             autovalidateMode: AutovalidateMode.onUserInteraction,
             onChanged: (_) => widget.onTimeChanged(widget.slip),
             isRequired: true,
             validator: (v) {
               if (v == null) return 'Vui lòng chọn thời gian bắt đầu';
               return null;
-            }
+            },
           ),
           const SizedBox(height: 12),
 
@@ -782,7 +802,7 @@ class _OvernightSlipFormFieldsState extends State<_OvernightSlipFormFields> {
             validator: (v) {
               if (v == null) return 'Vui lòng chọn thời gian kết thúc';
               return null;
-            }
+            },
           ),
           const SizedBox(height: 12),
 
@@ -812,11 +832,14 @@ class _OvernightSlipFormFieldsState extends State<_OvernightSlipFormFields> {
                     final formState = FormBuilder.of(context);
                     if (formState != null) {
                       final start =
-                          formState.fields['${_pref}_time_start']?.value as DateTime?;
+                          formState.fields['${_pref}_time_start']?.value
+                              as DateTime?;
                       final end =
-                          formState.fields['${_pref}_time_end']?.value as DateTime?;
+                          formState.fields['${_pref}_time_end']?.value
+                              as DateTime?;
                       if (start != null && end != null) {
-                        final diffHours = end.difference(start).inMinutes / 60.0;
+                        final diffHours =
+                            end.difference(start).inMinutes / 60.0;
                         if (breakHours >= diffHours && diffHours > 0) {
                           return 'Giờ nghỉ phải nhỏ hơn thời gian làm';
                         }
@@ -829,10 +852,12 @@ class _OvernightSlipFormFieldsState extends State<_OvernightSlipFormFields> {
                       controller: _breakController,
                       focusNode: _breakFocusNode,
                       keyboardType: const TextInputType.numberWithOptions(
-                          decimal: true),
+                        decimal: true,
+                      ),
                       inputFormatters: [
                         FilteringTextInputFormatter.allow(
-                            RegExp(r'^\d*\.?\d{0,2}')),
+                          RegExp(r'^\d*\.?\d{0,2}'),
+                        ),
                       ],
                       decoration: formInputDecoration(
                         context,
@@ -879,7 +904,8 @@ class _OvernightSlipFormFieldsState extends State<_OvernightSlipFormFields> {
             nameForm: '${_pref}_location',
             nameTextField: '${_pref}_location_tf',
             icon: Icons.location_on_outlined,
-            maxLines: 1,
+            textInputAction: TextInputAction.newline,
+            autoExpand: true,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             isRequired: true,
             validator: (v) {
@@ -887,7 +913,7 @@ class _OvernightSlipFormFieldsState extends State<_OvernightSlipFormFields> {
                 return 'Vui lòng nhập địa điểm';
               }
               return null;
-            }
+            },
           ),
           const SizedBox(height: 12),
 
@@ -897,7 +923,8 @@ class _OvernightSlipFormFieldsState extends State<_OvernightSlipFormFields> {
             nameForm: '${_pref}_note',
             nameTextField: '${_pref}_note_tf',
             icon: Icons.note_alt_outlined,
-            maxLines: 3,
+            textInputAction: TextInputAction.newline,
+            autoExpand: true,
             autovalidateMode: AutovalidateMode.onUserInteraction,
           ),
         ],

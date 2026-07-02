@@ -701,4 +701,92 @@ class ReportRepoImpl implements ReportRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, List<AccountantItem>>> getAccountantReport({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+    int page = 1,
+    int size = 50,
+    String filterText = '',
+    int? employeeId,
+  }) async {
+    try {
+      final res = await _service.getAccountantReport(
+        dateStart: dateStart,
+        dateEnd: dateEnd,
+        page: page,
+        size: size,
+        filterText: filterText,
+        employeeId: employeeId,
+      );
+
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, String>> saveReportAccounting({
+    required List<Map<String, dynamic>> payload,
+  }) async {
+    try {
+      final res = await _service.saveReportAccounting(payload: payload);
+
+      if (res.status == 1) {
+        return right(res.message ?? 'Lưu dữ liệu thành công');
+      } else {
+        return left(
+          BaseError.httpInternalServerError(
+            res.message ?? 'Lưu dữ liệu thất bại',
+          ),
+        );
+      }
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, String>> deleteReportAccounting({
+    required int id,
+  }) async {
+    try {
+      final res = await _service.deleteReportAccounting(id: id);
+
+      if (res.status == 1) {
+        return right(res.message ?? 'Xoá báo cáo thành công');
+      } else {
+        return left(
+          BaseError.httpInternalServerError(
+            res.message ?? 'Xoá dữ liệu thất bại',
+          ),
+        );
+      }
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, AccountantItem>> getAccountantById({
+    required int id,
+  }) async {
+    try {
+      final res = await _service.getAccountantById(id: id);
+
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      } else {
+        return left(
+          BaseError.httpInternalServerError(
+            res.message ?? 'Lấy chi tiết báo cáo thất bại',
+          ),
+        );
+      }
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

@@ -320,7 +320,34 @@ class _LeaveDetailScreenPageState extends BaseState<LeaveDetailScreenPage,
     if (_pastSessionDeadline(values, state)) return;
     if (_slipReadOnly(state)) return;
 
+    // --- Lấy thông tin phiếu gốc và phiếu mới ---
+    final base = state.detailPhaseAllSlips.firstWhere(
+      (s) => s.detailId == widget.detailId,
+      orElse: () => _focusedSlip(state)!,
+    );
+
+    final date = values['leave_slip_${_kDetailSlipKey}_date'] as DateTime;
+    final sessionRaw =
+        '${values['leave_slip_${_kDetailSlipKey}_session'] ?? ''}';
+    final editedSession = int.parse(sessionRaw.trim());
+    final typeRaw = '${values['leave_slip_${_kDetailSlipKey}_type'] ?? ''}';
+    final typeParsed = int.parse(typeRaw.trim());
+
+    // --- Kiểm tra số dư phép: dùng delta thay vì toàn bộ ---
     final stat2 = _firstLeaveTime(state);
+    final balErr = ValidateHelper.validateLeaveEditAnnualBalance(
+      totalDayRemain: stat2?.totalDayRemain,
+      newTimeRegister: editedSession,
+      newType: typeParsed,
+      originalTimeRegister: base.timeRegister,
+      originalType: base.type,
+    );
+    if (balErr != null) {
+      context.showMessage(balErr, type: SnackBarType.error);
+      return;
+    }
+
+    // --- Validate form cơ bản ---
     final err = ValidateHelper.validateLeaveAddSubmit(
       departmentName: '${values['leave_add_department'] ?? ''}',
       employeeDisplay: '${values['leave_add_employee'] ?? ''}',
@@ -328,7 +355,7 @@ class _LeaveDetailScreenPageState extends BaseState<LeaveDetailScreenPage,
       slips: _collectOneSlipRow(values),
       todayStart: _todayStart,
       bypassDateRules: state.skipLeaveDateConstraints,
-      totalDayRemain: stat2?.totalDayRemain,
+      totalDayRemain: null, // Đã kiểm tra ở trên bằng delta
       clock: DateTime.now(),
     );
     if (err != null) {
@@ -336,11 +363,7 @@ class _LeaveDetailScreenPageState extends BaseState<LeaveDetailScreenPage,
       return;
     }
 
-    final date = values['leave_slip_${_kDetailSlipKey}_date'] as DateTime;
-    final sessionRaw =
-        '${values['leave_slip_${_kDetailSlipKey}_session'] ?? ''}';
-    final editedSession = int.parse(sessionRaw.trim());
-
+    // --- Kiểm tra trùng buổi ---
     final dupAcrossPhase = ValidateHelper.validateLeaveSlipsDuplicateSessions(
       _phaseRowsAfterEdit(
         allSlips: state.detailPhaseAllSlips,
@@ -359,16 +382,9 @@ class _LeaveDetailScreenPageState extends BaseState<LeaveDetailScreenPage,
         ) ??
         0;
 
-    final typeRaw = '${values['leave_slip_${_kDetailSlipKey}_type'] ?? ''}';
     final reason =
         '${values['leave_slip_${_kDetailSlipKey}_reason'] ?? ''}'.trim();
 
-    final base = state.detailPhaseAllSlips.firstWhere(
-      (s) => s.detailId == widget.detailId,
-      orElse: () => _focusedSlip(state)!,
-    );
-
-    final typeParsed = int.parse(typeRaw.trim());
     final edited = LeaveEditSlip(
       detailId: base.detailId,
       date: date,
@@ -620,7 +636,7 @@ class _LeaveDetailScreenPageState extends BaseState<LeaveDetailScreenPage,
             return Positioned.fill(
               child: AbsorbPointer(
                 child: Container(
-                  color: Colors.black.withOpacity(0.45),
+                  color: Colors.black.withValues(alpha:0.45),
                   alignment: Alignment.center,
                   child: Lottie.asset(
                     'assets/lotties/Loading.json',

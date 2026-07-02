@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
+
 import '../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../common/widgets/form/index.dart';
 import '../../../../data/datasource/models/report_model.dart';
@@ -240,6 +242,11 @@ class _CpAddWorkItemState extends State<CpAddWorkItem> {
                   label: film?.workContent1?.isNotEmpty == true
                       ? film!.workContent1!
                       : 'Nội dung công việc',
+                  isRequired: true,
+                  autoExpand: true,
+                  validator: FormBuilderValidators.required(
+                    errorText: 'Vui lòng chọn nội dung công việc',
+                  ),
                   readOnly: true,
                   icon: Icons.category_outlined,
                 ),
@@ -255,7 +262,11 @@ class _CpAddWorkItemState extends State<CpAddWorkItem> {
               nameForm: 'cp_add_quantity_${widget.report.id}',
               nameTextField: 'quantity_${widget.report.id}',
               label: 'Số lượng',
-              maxLines: 1,
+              isRequired: true,
+              autoExpand: true,
+              validator: FormBuilderValidators.required(
+                errorText: 'Vui lòng nhập số lượng',
+              ),
               keyboardType: TextInputType.number,
               onChanged: (v) {
                 context.read<HrBloc>().add(
@@ -276,7 +287,11 @@ class _CpAddWorkItemState extends State<CpAddWorkItem> {
               nameForm: 'cp_add_timeActual_${widget.report.id}',
               nameTextField: 'timeActual_${widget.report.id}',
               label: 'Thời gian (phút)',
-              maxLines: 1,
+              isRequired: true,
+              autoExpand: true,
+              validator: FormBuilderValidators.required(
+                errorText: 'Vui lòng nhập thời gian',
+              ),
               keyboardType: TextInputType.number,
               onChanged: (v) {
                 context.read<HrBloc>().add(

@@ -23,9 +23,9 @@ mixin _$WorkTripItem {
   @JsonKey(name: 'ID')
   int get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'IsApprovedTBP')
-  int? get isApprovedTbp => throw _privateConstructorUsedError;
+  bool? get isApprovedTbp => throw _privateConstructorUsedError;
   @JsonKey(name: 'IsApprovedHR')
-  int? get isApprovedHr => throw _privateConstructorUsedError;
+  bool? get isApprovedHr => throw _privateConstructorUsedError;
   @JsonKey(name: 'IsApprovedText')
   String? get isApprovedText => throw _privateConstructorUsedError;
   @JsonKey(name: 'EmployeeName')
@@ -111,8 +111,8 @@ abstract class $WorkTripItemCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'ID') int id,
-      @JsonKey(name: 'IsApprovedTBP') int? isApprovedTbp,
-      @JsonKey(name: 'IsApprovedHR') int? isApprovedHr,
+      @JsonKey(name: 'IsApprovedTBP') bool? isApprovedTbp,
+      @JsonKey(name: 'IsApprovedHR') bool? isApprovedHr,
       @JsonKey(name: 'IsApprovedText') String? isApprovedText,
       @JsonKey(name: 'EmployeeName') String? employeeName,
       @JsonKey(name: 'ApprovedName') String? approvedName,
@@ -210,11 +210,11 @@ class _$WorkTripItemCopyWithImpl<$Res, $Val extends WorkTripItem>
       isApprovedTbp: freezed == isApprovedTbp
           ? _value.isApprovedTbp
           : isApprovedTbp // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as bool?,
       isApprovedHr: freezed == isApprovedHr
           ? _value.isApprovedHr
           : isApprovedHr // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as bool?,
       isApprovedText: freezed == isApprovedText
           ? _value.isApprovedText
           : isApprovedText // ignore: cast_nullable_to_non_nullable
@@ -369,8 +369,8 @@ abstract class _$$WorkTripItemImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'ID') int id,
-      @JsonKey(name: 'IsApprovedTBP') int? isApprovedTbp,
-      @JsonKey(name: 'IsApprovedHR') int? isApprovedHr,
+      @JsonKey(name: 'IsApprovedTBP') bool? isApprovedTbp,
+      @JsonKey(name: 'IsApprovedHR') bool? isApprovedHr,
       @JsonKey(name: 'IsApprovedText') String? isApprovedText,
       @JsonKey(name: 'EmployeeName') String? employeeName,
       @JsonKey(name: 'ApprovedName') String? approvedName,
@@ -466,11 +466,11 @@ class __$$WorkTripItemImplCopyWithImpl<$Res>
       isApprovedTbp: freezed == isApprovedTbp
           ? _value.isApprovedTbp
           : isApprovedTbp // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as bool?,
       isApprovedHr: freezed == isApprovedHr
           ? _value.isApprovedHr
           : isApprovedHr // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as bool?,
       isApprovedText: freezed == isApprovedText
           ? _value.isApprovedText
           : isApprovedText // ignore: cast_nullable_to_non_nullable
@@ -666,10 +666,10 @@ class _$WorkTripItemImpl implements _WorkTripItem {
   final int id;
   @override
   @JsonKey(name: 'IsApprovedTBP')
-  final int? isApprovedTbp;
+  final bool? isApprovedTbp;
   @override
   @JsonKey(name: 'IsApprovedHR')
-  final int? isApprovedHr;
+  final bool? isApprovedHr;
   @override
   @JsonKey(name: 'IsApprovedText')
   final String? isApprovedText;
@@ -922,8 +922,8 @@ class _$WorkTripItemImpl implements _WorkTripItem {
 abstract class _WorkTripItem implements WorkTripItem {
   const factory _WorkTripItem(
       {@JsonKey(name: 'ID') required final int id,
-      @JsonKey(name: 'IsApprovedTBP') final int? isApprovedTbp,
-      @JsonKey(name: 'IsApprovedHR') final int? isApprovedHr,
+      @JsonKey(name: 'IsApprovedTBP') final bool? isApprovedTbp,
+      @JsonKey(name: 'IsApprovedHR') final bool? isApprovedHr,
       @JsonKey(name: 'IsApprovedText') final String? isApprovedText,
       @JsonKey(name: 'EmployeeName') final String? employeeName,
       @JsonKey(name: 'ApprovedName') final String? approvedName,
@@ -969,10 +969,10 @@ abstract class _WorkTripItem implements WorkTripItem {
   int get id;
   @override
   @JsonKey(name: 'IsApprovedTBP')
-  int? get isApprovedTbp;
+  bool? get isApprovedTbp;
   @override
   @JsonKey(name: 'IsApprovedHR')
-  int? get isApprovedHr;
+  bool? get isApprovedHr;
   @override
   @JsonKey(name: 'IsApprovedText')
   String? get isApprovedText;

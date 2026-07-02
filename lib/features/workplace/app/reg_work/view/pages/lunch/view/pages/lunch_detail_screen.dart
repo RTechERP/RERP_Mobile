@@ -234,7 +234,7 @@ class _LunchDetailScreenState extends BaseState<
                                     nameTextField: 'regwork_lunch_add_note_field',
                                     label: 'Ghi chú',
                                     icon: Icons.note_alt_outlined,
-                                    maxLines: 3,
+                                    autoExpand: true,
                                     initialValue: item.note ?? '',
                                   ),
                                 ],
@@ -293,7 +293,7 @@ class _LunchDetailScreenState extends BaseState<
             return Positioned.fill(
               child: AbsorbPointer(
                 child: Container(
-                  color: Colors.black.withOpacity(0.45),
+                  color: Colors.black.withValues(alpha:0.45),
                   alignment: Alignment.center,
                   child: Lottie.asset(
                     'assets/lotties/Loading.json',

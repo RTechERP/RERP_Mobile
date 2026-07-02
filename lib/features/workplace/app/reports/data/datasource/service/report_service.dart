@@ -388,6 +388,19 @@ class ReportService extends DioBaseApiService {
     );
   }
 
+  /// Lưu báo cáo phòng Kế toán (Accountant)
+  Future<BaseData<void>> saveReportAccounting({
+    required List<Map<String, dynamic>> payload,
+  }) async {
+    final body = payload;
+
+    return post<BaseData<void>>(
+      ApiEndPoint.saveReportAccounting,
+      body: body,
+      parser: (json) => BaseData<void>.fromJson(json, (_) => null),
+    );
+  }
+
   /// Danh sách chi tiết phim
   Future<BaseData<List<FilmDetailResponse>>> getFilmDetail() async {
     return get<BaseData<List<FilmDetailResponse>>>(
@@ -597,6 +610,42 @@ class ReportService extends DioBaseApiService {
     );
   }
 
+  Future<BaseData<List<AccountantItem>>> getAccountantReport({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+    int page = 1,
+    int size = 50,
+    String filterText = '',
+    int? employeeId,
+  }) async {
+    final query = <String, dynamic>{
+      'page': page,
+      'size': size,
+      'dateStart': '${dateStart.year}-${dateStart.month.toString().padLeft(2, '0')}-${dateStart.day.toString().padLeft(2, '0')}T${dateStart.hour.toString().padLeft(2, '0')}:${dateStart.minute.toString().padLeft(2, '0')}:${dateStart.second.toString().padLeft(2, '0')}',
+      'dateEnd': '${dateEnd.year}-${dateEnd.month.toString().padLeft(2, '0')}-${dateEnd.day.toString().padLeft(2, '0')}T${dateEnd.hour.toString().padLeft(2, '0')}:${dateEnd.minute.toString().padLeft(2, '0')}:${dateEnd.second.toString().padLeft(2, '0')}',
+      'filterText': filterText,
+    };
+    if (employeeId != null) {
+      query['EmployeeID'] = employeeId;
+    }
+
+    return get<BaseData<List<AccountantItem>>>(
+      ApiEndPoint.getAccountantReport,
+      query: query,
+      parser: (json) {
+        final map = json as Map<String, dynamic>;
+        final innerMap = map['data'] as Map<String, dynamic>;
+        final dataList = innerMap['data'] as List<dynamic>;
+        return BaseData<List<AccountantItem>>.fromJson(
+          {'status': 1, 'data': dataList},
+          (data) => (data as List)
+              .map((e) => AccountantItem.fromJson(e as Map<String, dynamic>))
+              .toList(),
+        );
+      },
+    );
+  }
+
   Future<BaseData<void>> saveReportSaleAdmin({
     required Map<String, dynamic> payload,
   }) async {
@@ -731,6 +780,27 @@ class ReportService extends DioBaseApiService {
                   SaleAdminCustomerResponse.fromJson(e as Map<String, dynamic>),
             )
             .toList(),
+      ),
+    );
+  }
+
+  /// Xoá báo cáo phòng Kế toán theo ID
+  Future<BaseData<void>> deleteReportAccounting({required int id}) async {
+    return post<BaseData<void>>(
+      ApiEndPoint.deleteReportAccounting,
+      query: {'id': id},
+      parser: (json) => BaseData<void>.fromJson(json, (_) {}),
+    );
+  }
+
+  /// Lấy chi tiết báo cáo phòng Kế toán theo ID
+  Future<BaseData<AccountantItem>> getAccountantById({required int id}) async {
+    return get<BaseData<AccountantItem>>(
+      ApiEndPoint.getAccountantById,
+      query: {'id': id},
+      parser: (json) => BaseData<AccountantItem>.fromJson(
+        json,
+        (data) => AccountantItem.fromJson(data as Map<String, dynamic>),
       ),
     );
   }

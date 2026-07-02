@@ -6,6 +6,8 @@ import '../common/config/api_config.dart';
 import '../common/local_data/shared_pref.dart';
 import '../common/logger/index.dart';
 import '../common/utils/snack_bar_helper.dart';
+
+
 import '../features/auth/data/datasource/service/auth_service.dart';
 import '../features/auth/data/repository/auth_repo.dart';
 import '../features/auth/data/repository/auth_repo_impl.dart';
@@ -14,10 +16,22 @@ import '../features/more/data/datasource/service/more_service.dart';
 import '../features/more/data/repository/more_repo.dart';
 import '../features/more/data/repository/more_repo_impl.dart';
 import '../features/more/view/settings/notification/bloc/notification_bloc.dart';
+import '../features/dashboard/view/newsfeed/data/datasource/service/newsfeed_service.dart';
+import '../features/dashboard/view/newsfeed/data/repository/newsfeed_repo.dart';
+import '../features/dashboard/view/newsfeed/data/repository/newsfeed_repository.dart';
+import '../features/dashboard/view/newsfeed/view/bloc/newsfeed_bloc.dart';
+import '../features/version/data/datasource/service/app_version_service.dart';
+import '../features/version/data/repository/app_version_repo.dart';
+import '../features/version/data/repository/app_version_repo_impl.dart';
+import '../features/version/view/bloc/app_version_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/datasource/service/booking_vehicle_service.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repo_impl.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/bloc/booking_vehicle_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/contract_registration/data/datasource/service/contract_registration_service.dart';
+import '../features/workplace/app/reg_general/view/pages/contract_registration/data/repository/contract_registration_repo.dart';
+import '../features/workplace/app/reg_general/view/pages/contract_registration/data/repository/contract_registration_repo_impl.dart';
+import '../features/workplace/app/reg_general/view/pages/contract_registration/view/bloc/contract_registration_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/data/datasource/service/meeting_room_service.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/data/repository/meeting_room_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/data/repository/meeting_room_repo_impl.dart';
@@ -26,10 +40,26 @@ import '../features/workplace/app/reg_general/view/pages/personal_assets/data/da
 import '../features/workplace/app/reg_general/view/pages/personal_assets/data/repository/personal_asset_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/personal_assets/data/repository/pesonal_asset_repo_impl.dart';
 import '../features/workplace/app/reg_general/view/pages/personal_assets/view/bloc/personal_asset_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/poll/data/datasource/service/poll_service.dart';
+import '../features/workplace/app/reg_general/view/pages/poll/data/repository/poll_repo.dart';
+import '../features/workplace/app/reg_general/view/pages/poll/data/repository/poll_repository.dart';
+import '../features/workplace/app/reg_general/view/pages/poll/view/bloc/poll_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/stationery/data/datasource/service/stationery_service.dart';
 import '../features/workplace/app/reg_general/view/pages/stationery/data/repository/stationery_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/stationery/data/repository/stationery_repo_impl.dart';
 import '../features/workplace/app/reg_general/view/pages/stationery/view/bloc/stationery_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/stamp/data/datasource/service/stamp_service.dart';
+import '../features/workplace/app/reg_general/view/pages/stamp/data/repository/stamp_repo.dart';
+import '../features/workplace/app/reg_general/view/pages/stamp/data/repository/stamp_repo_impl.dart';
+import '../features/workplace/app/reg_general/view/pages/stamp/view/bloc/stamp_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/work_requirement/data/datasource/service/work_requirement_service.dart';
+import '../features/workplace/app/reg_general/view/pages/work_requirement/data/repository/work_requirement_repo.dart';
+import '../features/workplace/app/reg_general/view/pages/work_requirement/data/repository/work_requirement_repo_impl.dart';
+import '../features/workplace/app/reg_general/view/pages/work_requirement/view/bloc/work_requirement_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/idea_registration/data/datasource/service/idea_registration_service.dart';
+import '../features/workplace/app/reg_general/view/pages/idea_registration/data/repository/idea_registration_repo.dart';
+import '../features/workplace/app/reg_general/view/pages/idea_registration/data/repository/idea_registration_repo_impl.dart';
+import '../features/workplace/app/reg_general/view/pages/idea_registration/view/bloc/idea_registration_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/data/datasource/service/work_category_service.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/data/repository/work_category_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/data/repository/work_category_repo_impl.dart';
@@ -72,9 +102,22 @@ import '../features/workplace/app/reports/data/repository/report_repo_impl.dart'
 import '../features/workplace/app/reports/view/ad/view/bloc/ad_bloc.dart';
 import '../features/workplace/app/reports/view/agv/view/bloc/agv_bloc.dart';
 import '../features/workplace/app/reports/view/hr/view/bloc/hr_bloc.dart';
+import '../features/workplace/app/reports/view/accountant/view/bloc/accountant_bloc.dart';
 import '../features/workplace/app/reports/view/marketing/view/bloc/marketing_bloc.dart';
 import '../features/workplace/app/reports/view/sale/view/bloc/sale_bloc.dart';
 import '../features/workplace/app/reports/view/tech/view/bloc/tech_bloc.dart';
+import '../features/workplace/app/week_plan/data/datasource/service/week_plan_service.dart';
+import '../features/workplace/app/week_plan/data/repository/week_plan_repo.dart';
+import '../features/workplace/app/week_plan/data/repository/week_plan_repo_impl.dart';
+import '../features/workplace/app/week_plan/view/bloc/week_plan_bloc.dart';
+import '../features/workplace/app/reg_work/view/pages/salary/data/datasource/service/salary_service.dart';
+import '../features/workplace/app/reg_work/view/pages/salary/data/datasource/service/salary_pin_service.dart';
+import '../features/workplace/app/reg_work/view/pages/salary/data/repository/salary_repo.dart';
+import '../features/workplace/app/reg_work/view/pages/salary/data/repository/salary_repo_impl.dart';
+import '../features/workplace/app/reg_work/view/pages/salary/data/repository/salary_pin_repo.dart';
+import '../features/workplace/app/reg_work/view/pages/salary/data/repository/salary_pin_repo_impl.dart';
+import '../features/workplace/app/reg_work/view/pages/salary/view/bloc/salary_bloc.dart';
+import '../features/workplace/app/reg_work/view/pages/salary/view/bloc/timekeeping_bloc.dart';
 import '../features/workplace/view/bloc/workspace_bloc.dart';
 
 final getIt = GetIt.instance;
@@ -168,6 +211,42 @@ void configureDependencies() {
     () => StationeryService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<StampService>(
+    () => StampService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<WorkRequirementService>(
+    () => WorkRequirementService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<IdeaRegistrationService>(
+    () => IdeaRegistrationService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<ContractRegistrationService>(
+    () => ContractRegistrationService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<WeekPlanService>(
+    () => WeekPlanService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<SalaryService>(
+    () => SalaryService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<PollService>(
+    () => PollService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<NewsfeedService>(
+    () => NewsfeedService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<AppVersionService>(
+    () => AppVersionService(getIt<Dio>()),
+  );
+
   /// ===== REPOSITORY =====
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImpl(
@@ -233,6 +312,42 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<StationeryRepo>(
     () => StationeryRepoImpl(getIt<StationeryService>()),
+  );
+
+  getIt.registerLazySingleton<StampRepo>(
+    () => StampRepoImpl(getIt<StampService>()),
+  );
+
+  getIt.registerLazySingleton<WorkRequirementRepo>(
+    () => WorkRequirementRepoImpl(getIt<WorkRequirementService>()),
+  );
+
+  getIt.registerLazySingleton<IdeaRegistrationRepo>(
+    () => IdeaRegistrationRepoImpl(getIt<IdeaRegistrationService>()),
+  );
+
+  getIt.registerLazySingleton<ContractRegistrationRepo>(
+    () => ContractRegistrationRepoImpl(getIt<ContractRegistrationService>()),
+  );
+
+  getIt.registerLazySingleton<WeekPlanRepo>(
+    () => WeekPlanRepoImpl(getIt<WeekPlanService>()),
+  );
+
+  getIt.registerLazySingleton<SalaryRepo>(
+    () => SalaryRepoImpl(getIt<SalaryService>()),
+  );
+
+  getIt.registerLazySingleton<PollRepo>(
+    () => PollRepoImpl(getIt<PollService>()),
+  );
+
+  getIt.registerLazySingleton<NewsfeedRepo>(
+    () => NewsfeedRepoImpl(getIt<NewsfeedService>()),
+  );
+
+  getIt.registerLazySingleton<AppVersionRepo>(
+    () => AppVersionRepoImpl(getIt<AppVersionService>()),
   );
 
   /// ===== BLOCS =====
@@ -349,10 +464,101 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<StationeryBloc>(
-      () => StationeryBloc(
-        getIt<StationeryRepo>(),
-        getIt<AuthRepo>(),
-        getIt<LogUtils>(),
-      ),
+    () => StationeryBloc(
+      getIt<StationeryRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<WorkRequirementBloc>(
+    () => WorkRequirementBloc(
+      getIt<WorkRequirementRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<IdeaRegistrationBloc>(
+    () => IdeaRegistrationBloc(
+      getIt<IdeaRegistrationRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<ContractRegistrationBloc>(
+    () => ContractRegistrationBloc(
+      getIt<ContractRegistrationRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<StampBloc>(
+    () => StampBloc(
+      getIt<StampRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<WeekPlanBloc>(
+    () => WeekPlanBloc(
+      getIt<WeekPlanRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+      getIt<LocalStorage>(),
+    ),
+  );
+
+  getIt.registerLazySingleton<SalaryPinService>(
+    () => SalaryPinService(getIt<Dio>()),
+  );
+  getIt.registerLazySingleton<SalaryPinRepo>(
+    () => SalaryPinRepoImpl(getIt<SalaryPinService>()),
+  );
+
+  getIt.registerFactory<SalaryBloc>(
+    () => SalaryBloc(
+      getIt<SalaryRepo>(),
+      getIt<SalaryPinRepo>(),
+      getIt<AuthRepo>(),
+      getIt<OvertimeRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<TimekeepingBloc>(
+    () => TimekeepingBloc(
+      getIt<SalaryRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<PollBloc>(
+    () => PollBloc(
+      getIt<PollRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+  getIt.registerFactory<NewsfeedBloc>(
+    () => NewsfeedBloc(
+      getIt<NewsfeedRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<AppVersionBloc>(
+    () => AppVersionBloc(getIt<AppVersionRepo>(), getIt<LogUtils>()),
+  );
+
+  getIt.registerFactory<AccountantBloc>(
+    () => AccountantBloc(
+      getIt<ReportRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
   );
 }

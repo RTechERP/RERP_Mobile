@@ -4,6 +4,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/contract_registration/view/bloc/contract_registration_bloc.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/contract_registration/view/pages/contract_registration_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/contract_registration/view/pages/contract_registration_add_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/contract_registration/view/pages/contract_registration_detail_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/stamp/data/datasource/models/stamp_model.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/stamp/view/bloc/stamp_bloc.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/stamp/view/pages/stamp_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/stamp/view/pages/stamp_add_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/stamp/view/pages/stamp_detail_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/data/datasource/models/booking_vehicle_model.dart';
 import 'package:rtc_erp/features/workplace/app/favorites/view/pages/favorites_adding_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/view/bloc/booking_vehicle_bloc.dart';
@@ -29,6 +38,7 @@ import '../features/more/view/settings/notification/page/notification_settings_s
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_add_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_edit_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_detail_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/contract_registration/data/datasource/models/contract_registration_model.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/view/bloc/meeting_room_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/view/pages/meeting_room_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/meeting_room/view/pages/meeting_room_edit_screen.dart';
@@ -37,6 +47,10 @@ import '../features/workplace/app/reg_general/view/pages/personal_assets/view/bl
 import '../features/workplace/app/reg_general/view/pages/personal_assets/view/pages/personal_asset_detail_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/personal_assets/view/pages/personal_asset_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/personal_assets/view/pages/personal_property_detail_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/poll/data/datasource/models/poll_model.dart';
+import '../features/workplace/app/reg_general/view/pages/poll/view/bloc/poll_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/poll/view/pages/poll_detail_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/poll/view/pages/poll_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/stationery/data/datasource/models/stationery_model.dart';
 import '../features/workplace/app/reg_general/view/pages/stationery/stationery_edit_route_args.dart';
 import '../features/workplace/app/reg_general/view/pages/stationery/view/bloc/stationery_bloc.dart';
@@ -48,6 +62,17 @@ import '../features/workplace/app/reg_general/view/pages/work_category/view/bloc
 import '../features/workplace/app/reg_general/view/pages/work_category/data/datasource/models/work_category_model.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/view/pages/work_category_add_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/view/pages/work_category_detail_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/work_requirement/data/datasource/models/work_requirement_model.dart';
+import '../features/workplace/app/reg_general/view/pages/work_requirement/view/bloc/work_requirement_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/work_requirement/view/pages/work_requirement_add_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/work_requirement/view/pages/work_requirement_detail_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/work_requirement/view/pages/work_requirement_edit_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/work_requirement/view/pages/work_requirement_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/idea_registration/view/bloc/idea_registration_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/idea_registration/view/pages/idea_registration_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/idea_registration/view/pages/idea_registration_add_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/idea_registration/view/pages/idea_registration_edit_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/idea_registration/data/datasource/models/idea_registration_model.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/view/pages/in_out_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/view/pages/in_out_detail_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/view/pages/in_out_screen.dart';
@@ -73,6 +98,8 @@ import '../features/workplace/app/reg_work/view/pages/overtime/view/pages/overti
 import '../features/workplace/app/reg_work/view/pages/overtime/view/pages/overtime_detail_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/overtime/view/pages/overtime_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/overtime/data/datasource/models/overtime_model.dart';
+import '../features/workplace/app/reg_work/view/pages/salary/view/pages/finger_print_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/salary/view/pages/overview_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/wfh/view/bloc/wfh_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/wfh/view/pages/wfh_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/wfh/view/pages/wfh_detail_screen.dart';
@@ -81,7 +108,18 @@ import '../features/workplace/app/reg_work/view/pages/work_trip/data/datasource/
 import '../features/workplace/app/reg_work/view/pages/work_trip/view/bloc/work_trip_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/work_trip/view/pages/work_trip_add_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/work_trip/view/pages/work_trip_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/salary/view/bloc/salary_bloc.dart';
+import '../features/workplace/app/reg_work/view/pages/salary/view/bloc/timekeeping_bloc.dart';
+import '../features/workplace/app/reg_work/view/pages/salary/view/pages/salary_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/salary/view/pages/salary_menu_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/salary/view/pages/timekeeping_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/salary/view/pages/forgot_pin_screen.dart';
+import '../features/workplace/app/reg_work/view/pages/salary/view/pages/salary_card_detail_screen.dart';
 import '../features/workplace/app/reports/data/datasource/models/report_model.dart';
+import '../features/workplace/app/reports/view/accountant/view/bloc/accountant_bloc.dart';
+import '../features/workplace/app/reports/view/accountant/view/pages/accountant_add_screen.dart';
+import '../features/workplace/app/reports/view/accountant/view/pages/accountant_edit_screen.dart';
+import '../features/workplace/app/reports/view/accountant/view/pages/accountant_screen.dart';
 import '../features/workplace/app/reports/view/ad/view/bloc/ad_bloc.dart';
 import '../features/workplace/app/reports/view/ad/view/pages/ad_add_screen.dart';
 import '../features/workplace/app/reports/view/ad/view/pages/ad_detail_screen.dart';
@@ -120,6 +158,16 @@ import '../features/workplace/app/reports/view/tech/view/pages/tech_add_screen.d
 import '../features/workplace/app/reports/view/tech/view/pages/tech_detail_screen.dart';
 import '../features/workplace/app/reports/view/tech/view/pages/tech_edit_screen.dart';
 import '../features/workplace/app/reports/view/tech/view/pages/tech_screen.dart';
+import '../features/workplace/app/week_plan/view/bloc/week_plan_bloc.dart';
+import '../features/workplace/app/week_plan/view/pages/week_plan_add_screen.dart';
+import '../features/workplace/app/week_plan/view/pages/week_plan_all_screen.dart';
+import '../features/workplace/app/week_plan/view/pages/week_plan_assigned_screen.dart';
+import '../features/workplace/app/week_plan/view/pages/week_plan_dashboard_screen.dart';
+import '../features/workplace/app/week_plan/view/pages/week_plan_detail_screen.dart';
+import '../features/workplace/app/week_plan/view/pages/week_plan_menu_screen.dart';
+import '../features/workplace/app/week_plan/view/pages/week_plan_my_task_screen.dart';
+import '../features/workplace/app/week_plan/view/pages/week_plan_related_screen.dart';
+import '../features/workplace/app/week_plan/view/pages/week_plan_timeline_screen.dart';
 import '../features/workplace/view/bloc/workspace_bloc.dart';
 
 class AppRouter {
@@ -384,6 +432,63 @@ class AppRouter {
           GoRoute(
             path: RouteNames.regworkOvernightAdd,
             builder: (context, state) => const OvernightAddScreen(),
+          ),
+        ],
+      ),
+
+      //---(Salary)---//
+      ShellRoute(
+        builder: (context, state, child) {
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider.value(value: getIt<SalaryBloc>()),
+              BlocProvider.value(value: getIt<TimekeepingBloc>()),
+              // BlocProvider.value(value: getIt<FingerPrintBloc>()),
+
+            ],
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.salaryMenu,
+            builder: (context, state) => const SalaryMenuScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.salaryPayslip,
+            builder: (context, state) => const SalaryScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.salarySummary,
+            builder: (context, state) => const SalaryOverviewScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.salaryFingerprint,
+            builder: (context, state) => const FingerPrintScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.salaryAttendance,
+            builder: (context, state) => const TimekeepingScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.salaryForgotPin,
+            builder: (context, state) => const ForgotPinScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.salaryCardDetail,
+            builder: (context, state) {
+              final extra = state.extra as Map<String, dynamic>?;
+              SalaryCardType? cardType;
+              DateTime? month;
+              if (extra != null) {
+                cardType = extra['cardType'] as SalaryCardType?;
+                month = extra['month'] as DateTime?;
+              }
+              return SalaryCardDetailScreen(
+                cardType: cardType,
+                month: month,
+              );
+            },
           ),
         ],
       ),
@@ -687,7 +792,8 @@ class AppRouter {
               final extra = state.extra as Map<String, dynamic>?;
               return BookingVehicleAddScreen(
                 copiedItemId: extra?['_copied_item_id'] as int?,
-                copiedBookingTypeGroup: extra?['_copied_booking_type_group'] as int?,
+                copiedBookingTypeGroup:
+                    extra?['_copied_booking_type_group'] as int?,
                 copiedData: extra,
               );
             },
@@ -910,6 +1016,277 @@ class AppRouter {
                 appBar: AppBar(title: const Text('Sửa đăng ký VPP')),
                 body: const Center(child: Text('Không có dữ liệu VPP.')),
               );
+            },
+          ),
+        ],
+      ),
+
+      //---(ContractRegistration)---//
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(
+            value: getIt<ContractRegistrationBloc>(),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.contractRegistration,
+            builder: (context, state) => const ContractRegistrationScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.contractRegistrationAdd,
+            builder: (context, state) => const ContractRegistrationAddScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.contractRegistrationDetail,
+            builder: (context, state) {
+              final extra = state.extra;
+              if (extra is ContractResponseItem) {
+                return ContractRegistrationDetailScreen(item: extra);
+              }
+              return Scaffold(
+                appBar: AppBar(title: const Text('Chi tiết hợp đồng')),
+                body: const Center(
+                  child: Text('Không có dữ liệu. Vui lòng mở từ danh sách.'),
+                ),
+              );
+            },
+          ),
+        ],
+      ),
+
+      //---(WorkRequirement)---//
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(
+            value: getIt<WorkRequirementBloc>(),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.workRequirement,
+            builder: (context, state) => const WorkRequirementScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.workRequirementAdd,
+            builder: (context, state) => const WorkRequirementAddScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.workRequirementDetail,
+            builder: (context, state) {
+              final extra = state.extra;
+              if (extra is WorkRequirementItem) {
+                return WorkRequirementDetailScreen(item: extra);
+              }
+              return const WorkRequirementDetailScreen(itemId: 0);
+            },
+          ),
+          GoRoute(
+            path: RouteNames.workRequirementEdit,
+            builder: (context, state) {
+              final extra = state.extra;
+              if (extra is WorkRequirementItem) {
+                return WorkRequirementEditScreen(item: extra);
+              }
+              return const WorkRequirementEditScreen(itemId: 0);
+            },
+          ),
+        ],
+      ),
+
+      //---(IdeaRegistration)---//
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(
+            value: getIt<IdeaRegistrationBloc>(),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.ideaRegistration,
+            builder: (context, state) => const IdeaRegistrationScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.ideaRegistrationAdd,
+            builder: (context, state) => const IdeaRegistrationAddScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.ideaRegistrationEdit,
+            builder: (context, state) {
+              final item = state.extra as IdeaItem?;
+              return IdeaRegistrationEditScreen(
+                id: item?.id ?? 0,
+                item: item ?? const IdeaItem(),
+              );
+            },
+          ),
+        ],
+      ),
+
+      //---(Stamp)---//
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(
+            value: getIt<StampBloc>(),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.stamp,
+            builder: (context, state) => const StampScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.stampAdd,
+            builder: (context, state) {
+              final extra = state.extra;
+              if (extra is StampRoutePayload) {
+                return StampAddScreen(payload: extra);
+              }
+              if (extra is StampItem) {
+                return StampAddScreen(
+                  payload: StampRoutePayload(item: extra),
+                );
+              }
+              return const StampAddScreen();
+            },
+          ),
+          GoRoute(
+            path: RouteNames.stampDetail,
+            builder: (context, state) {
+              final extra = state.extra;
+              if (extra is StampRoutePayload) {
+                return StampDetailScreen(payload: extra);
+              }
+              if (extra is StampItem) {
+                return StampDetailScreen(payload: StampRoutePayload(item: extra));
+              }
+              return const StampDetailScreen(payload: StampRoutePayload());
+            },
+          ),
+        ],
+      ),
+
+      //---(Week Plan)---//
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(
+            value: getIt<WeekPlanBloc>(),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.weekplanMenu,
+            builder: (context, state) => const WeekPlanMenuScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.weekplanMyTask,
+            builder: (context, state) => const WeekPlanMyTaskScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.weekplanRelated,
+            builder: (context, state) => const WeekPlanRelatedScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.weekplanAssigned,
+            builder: (context, state) => const WeekPlanAssignedScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.weekplanAll,
+            builder: (context, state) => const WeekPlanAllScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.weekplanDashboard,
+            builder: (context, state) => const WeekPlanDashboardScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.weekplanTimeline,
+            builder: (context, state) => const WeekPlanTimelineScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.weekplanAdd,
+            builder: (context, state) => WeekPlanAddScreen(
+              extra: state.extra,
+            ),
+          ),
+          GoRoute(
+            path: RouteNames.weekplanDetail,
+            builder: (context, state) {
+              final extra = state.extra;
+              int taskId = 0;
+              Object? addExtra;
+              if (extra is Map) {
+                taskId = extra['taskId'] as int? ?? 0;
+                addExtra = extra['addExtra'];
+              } else if (extra is int) {
+                taskId = extra;
+              }
+              return WeekPlanDetailScreen(
+                taskId: taskId,
+                extra: addExtra,
+              );
+            },
+          ),
+          // Legacy route - redirect to menu
+          GoRoute(
+            path: RouteNames.weekplan,
+            builder: (context, state) => const WeekPlanMenuScreen(),
+          ),
+        ],
+      ),
+
+      // Poll
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(
+            value: getIt<PollBloc>(),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.poll,
+            builder: (context, state) => const PollScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.pollDetail,
+            builder: (context, state) {
+              final item = state.extra;
+              if (item is! PollItem) {
+                return const PollScreen();
+              }
+              return PollDetailScreen(item: item);
+            },
+          ),
+        ],
+      ),
+
+      // Accountant Report
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(
+            value: getIt<AccountantBloc>(),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.reportAccountant,
+            builder: (context, state) => const AccountantScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.reportAccountantAdd,
+            builder: (context, state) => const AccountantAddScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.reportAccountantEdit,
+            builder: (context, state) {
+              final id = state.extra as int? ?? 0;
+              return AccountantEditScreen(reportId: id);
             },
           ),
         ],

@@ -106,9 +106,6 @@ class ValidateHelper {
       if (total - ot > 8) {
         return '${prefix}Số giờ hành chính không được lớn hơn 8h';
       }
-      if (total - ot <= 0) {
-        return '${prefix}Số giờ hành chính phải lớn hơn 0';
-      }
 
       final percent = getPercent(work);
       if (percent <= 0 || percent > 100) {
@@ -309,10 +306,6 @@ class ValidateHelper {
 
       if (total - ot > 8) {
         return '${prefix}Số giờ hành chính không được lớn hơn 8h';
-      }
-
-      if (total - ot <= 0) {
-        return '${prefix}Số giờ hành chính phải lớn hơn 0';
       }
 
       if (getContent(work).trim().isEmpty) {
@@ -1137,8 +1130,36 @@ class ValidateHelper {
   static const String leaveAnnualBalanceInsufficientMessage =
       'Số dư phép không đủ';
 
+  /// Validate số dư phép khi CHỈNH SỬA phiếu trong phase.
+  /// So sánh delta giữa phiếu mới và phiếu gốc, không phải toàn bộ số ngày mới.
+  static String? validateLeaveEditAnnualBalance({
+    required num? totalDayRemain,
+    required int newTimeRegister,
+    required int newType,
+    required int originalTimeRegister,
+    required int originalType,
+  }) {
+    if (totalDayRemain == null) return null;
+    // Chỉ kiểm tra nếu loại nghỉ là nghỉ phép (type == 2)
+    if (newType != leaveTypeAnnual) return null;
+
+    final newUnits = leaveDayUnitsForSession(newTimeRegister);
+    final originalUnits = leaveDayUnitsForSession(originalTimeRegister);
+    final delta = newUnits - originalUnits;
+
+    // Nếu tăng số ngày (delta > 0) mà vượt số dư → lỗi
+    if (delta > 0 && delta > totalDayRemain) {
+      return leaveAnnualBalanceInsufficientMessage;
+    }
+    return null;
+  }
+
   static const String leavePast19hTomorrowMessage =
       'Đã qua 19h00, không thể đăng ký nghỉ cho ngày mai.';
+
+  /// Mã loại nghỉ = Nghỉ phép (annual leave). Trùng với [kLeaveTypeOptions]
+  /// trong `leave_add_constants.dart` — chỉ loại này mới bị rule 19:00 chặn ngày mai.
+  static const int leaveTypeAnnual = 2;
 
   /// Sáng/Chiều = 0.5 ngày, Cả ngày = 1.0 ([timeRegister]: 1,2,3).
   static double leaveDayUnitsForSession(int timeRegister) {
@@ -1173,11 +1194,14 @@ class ValidateHelper {
     return null;
   }
 
-  /// Chặn quá khứ; sau 19:00 chặn ngày mai (trừ [bypassDateRules]).
+  /// Chặn quá khứ; sau 19:00 chặn ngày mai **chỉ khi loại nghỉ là Nghỉ phép**
+  /// ([leaveTypeAnnual]). Các loại nghỉ khác vẫn cho phép chọn ngày mai
+  /// (trừ [bypassDateRules] = admin/HR).
   static String? validateLeaveDateField(
     DateTime? value, {
     required DateTime todayStart,
     required bool bypassDateRules,
+    int? leaveType,
     DateTime? clock,
   }) {
     if (value == null) return 'Vui lòng chọn Ngày nghỉ';
@@ -1186,30 +1210,37 @@ class ValidateHelper {
     if (d.isBefore(todayStart)) {
       return 'Không được chọn ngày quá khứ';
     }
-    final now = clock ?? DateTime.now();
-    final tomorrow = todayStart.add(const Duration(days: 1));
-    if (_leaveSameCalendarDate(d, tomorrow) &&
-        leaveIsDeviceTimePastSevenPm(now)) {
-      return leavePast19hTomorrowMessage;
+    if (leaveType == leaveTypeAnnual) {
+      final now = clock ?? DateTime.now();
+      final tomorrow = todayStart.add(const Duration(days: 1));
+      if (_leaveSameCalendarDate(d, tomorrow) &&
+          leaveIsDeviceTimePastSevenPm(now)) {
+        return leavePast19hTomorrowMessage;
+      }
     }
     return null;
   }
 
   /// Dùng cho [FormDateTimePicker.selectableDayPredicate].
+  /// Sau 19:00 chặn ngày mai **chỉ khi loại nghỉ là Nghỉ phép**
+  /// ([leaveTypeAnnual]) — các loại khác vẫn hiện ngày mai để chọn.
   static bool leaveDateSelectable(
     DateTime day, {
     required DateTime todayStart,
     required bool bypassDateRules,
+    int? leaveType,
     DateTime? clock,
   }) {
     if (bypassDateRules) return true;
     final d = DateTime(day.year, day.month, day.day);
     if (d.isBefore(todayStart)) return false;
-    final now = clock ?? DateTime.now();
-    final tomorrow = todayStart.add(const Duration(days: 1));
-    if (_leaveSameCalendarDate(d, tomorrow) &&
-        leaveIsDeviceTimePastSevenPm(now)) {
-      return false;
+    if (leaveType == leaveTypeAnnual) {
+      final now = clock ?? DateTime.now();
+      final tomorrow = todayStart.add(const Duration(days: 1));
+      if (_leaveSameCalendarDate(d, tomorrow) &&
+          leaveIsDeviceTimePastSevenPm(now)) {
+        return false;
+      }
     }
     return true;
   }
@@ -1249,7 +1280,7 @@ class ValidateHelper {
 
   /// Chỉ khi loại nghỉ == nghỉ phép (2). [totalDayRemain] null = bỏ qua kiểm tra.
   static String? validateLeaveAnnualBalance({
-    required int? totalDayRemain,
+    required num? totalDayRemain,
     required List<({int type, int timeRegister})> slips,
   }) {
     if (totalDayRemain == null) return null;
@@ -1270,7 +1301,7 @@ class ValidateHelper {
     required List<LeaveAddSlipRow> slips,
     required DateTime todayStart,
     required bool bypassDateRules,
-    required int? totalDayRemain,
+    required num? totalDayRemain,
     DateTime? clock,
   }) {
     final deptErr = validateLeaveRequiredText(departmentName, 'Phòng ban');
@@ -1294,6 +1325,7 @@ class ValidateHelper {
         s.date,
         todayStart: todayStart,
         bypassDateRules: bypassDateRules,
+        leaveType: s.type,
         clock: clock,
       );
       if (dateErr != null) return '$prefix$dateErr';

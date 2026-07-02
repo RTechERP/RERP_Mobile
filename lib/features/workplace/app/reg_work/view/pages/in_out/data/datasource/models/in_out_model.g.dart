@@ -28,7 +28,7 @@ _$InOutItemImpl _$$InOutItemImplFromJson(Map<String, dynamic> json) =>
       updatedBy: json['UpdatedBy'] as String?,
       approvedTP: (json['ApprovedTP'] as num?)?.toInt(),
       isApprovedTP: json['IsApprovedTP'] as bool?,
-      decilineApprove: json['DecilineApprove'] as String?,
+      decilineApprove: (json['DecilineApprove'] as num?)?.toInt(),
       dateStart: json['DateStart'] == null
           ? null
           : DateTime.parse(json['DateStart'] as String),
@@ -52,12 +52,8 @@ _$InOutItemImpl _$$InOutItemImplFromJson(Map<String, dynamic> json) =>
       approvedSeniorName: json['ApprovedSđreniorName'] as String?,
       fileName: json['FileName'] as String?,
       filePath: json['FilePath'] as String?,
-      checkIn: json['CheckIn'] == null
-          ? null
-          : DateTime.parse(json['CheckIn'] as String),
-      checkOut: json['CheckOut'] == null
-          ? null
-          : DateTime.parse(json['CheckOut'] as String),
+      checkIn: json['CheckIn'] as String?,
+      checkOut: json['CheckOut'] as String?,
       isNotValid: (json['IsNotValid'] as num?)?.toInt(),
       statusText: json['StatusText'] as String?,
       statusHRText: json['StatusHRText'] as String?,
@@ -100,8 +96,8 @@ Map<String, dynamic> _$$InOutItemImplToJson(_$InOutItemImpl instance) =>
       'ApprovedSđreniorName': instance.approvedSeniorName,
       'FileName': instance.fileName,
       'FilePath': instance.filePath,
-      'CheckIn': instance.checkIn?.toIso8601String(),
-      'CheckOut': instance.checkOut?.toIso8601String(),
+      'CheckIn': instance.checkIn,
+      'CheckOut': instance.checkOut,
       'IsNotValid': instance.isNotValid,
       'StatusText': instance.statusText,
       'StatusHRText': instance.statusHRText,

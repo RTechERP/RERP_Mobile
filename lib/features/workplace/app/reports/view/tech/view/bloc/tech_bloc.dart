@@ -855,8 +855,8 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
             'PlanNextDay': state.planNextDay,
             'Note': state.note ?? '',
             'Backlog': state.backlog ?? '',
-            'TotalHours': work.totalHours.toInt(),
-            'TotalHourOT': (work.totalHourOT ?? 0).toInt(),
+            'TotalHours': work.totalHours,
+            'TotalHourOT': work.totalHourOT ?? 0,
             'PercentComplete': work.percentComplete.toInt(),
             'Location': state.location ?? 'report.project'.tr(),
             'Type': 0,
@@ -888,9 +888,6 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
           }
         }
       }
-
-      // ignore: avoid_print
-      print('DEBUG BLOC: pendingShareText length = ${DialogService.buildMailPreviewText(state, safeDate).length}');
       emit(state.copyWith(isSubmitting: false, submitSuccess: true, pendingMailDate: safeDate, pendingShareText: DialogService.buildMailPreviewText(state, safeDate)));
     } catch (e) {
       emit(state.copyWith(isSubmitting: false, submitSuccess: false));
@@ -1124,8 +1121,8 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
         'PlanNextDay': state.planNextDay,
         'Note': work.note ?? '',
         'Backlog': work.backlog ?? '',
-        'TotalHours': work.totalHours.toInt(),
-        'TotalHourOT': (work.totalHourOT ?? 0).toInt(),
+        'TotalHours': work.totalHours,
+        'TotalHourOT': work.totalHourOT ?? 0,
         'PercentComplete': work.percentComplete.toInt(),
         'Location': state.location ?? 'report.project'.tr(),
         'Type': 0,

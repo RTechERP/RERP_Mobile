@@ -64,6 +64,9 @@ class BookingVehicleState extends BaseBlocState {
   /// (tránh `buildWhen` không trigger khi chỉ `setState` local ở screen).
   final int bookingTypeGroup;
 
+  /// Approver được chọn từ bottom sheet — dùng thẳng cho ApprovedTBP payload.
+  final int? selectedApproverEmployeeId;
+
   const BookingVehicleState({
     required super.status,
     super.message,
@@ -98,6 +101,7 @@ class BookingVehicleState extends BaseBlocState {
     this.formFieldValues = const {},
     this.infoFieldValues = const {},
     this.bookingTypeGroup = 0,
+    this.selectedApproverEmployeeId,
   });
 
   factory BookingVehicleState.init() => const BookingVehicleState(
@@ -131,6 +135,7 @@ class BookingVehicleState extends BaseBlocState {
     formFieldValues: {},
     infoFieldValues: {},
     bookingTypeGroup: 0,
+    selectedApproverEmployeeId: null,
   );
 
   @override
@@ -166,5 +171,6 @@ class BookingVehicleState extends BaseBlocState {
     formFieldValues,
     infoFieldValues,
     bookingTypeGroup,
+    selectedApproverEmployeeId,
   ];
 }

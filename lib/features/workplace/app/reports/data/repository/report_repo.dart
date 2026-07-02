@@ -176,5 +176,24 @@ abstract class ReportRepo {
 
   Future<Either<BaseError, String>> deleteSaleAdminReport({required int dailyID});
 
+  /// Lấy danh sách báo cáo phòng Kế toán (Accountant)
+  Future<Either<BaseError, List<AccountantItem>>> getAccountantReport({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+    int page,
+    int size,
+    String filterText,
+    int? employeeId,
+  });
 
+  /// Lưu báo cáo phòng Kế toán (Accountant)
+  Future<Either<BaseError, String>> saveReportAccounting({
+    required List<Map<String, dynamic>> payload,
+  });
+
+  /// Xoá báo cáo phòng Kế toán theo ID
+  Future<Either<BaseError, String>> deleteReportAccounting({required int id});
+
+  /// Lấy chi tiết báo cáo phòng Kế toán theo ID
+  Future<Either<BaseError, AccountantItem>> getAccountantById({required int id});
 }

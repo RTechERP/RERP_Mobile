@@ -394,7 +394,8 @@ class _WfhDetailScreenState
                                     nameTextField: 'wfh_detail_content_tf',
                                     label: 'Nội dung/Kế hoạch',
                                     icon: Icons.content_paste,
-                                    maxLines: 4,
+                                    textInputAction: TextInputAction.newline,
+                                    autoExpand: true,
                                     initialValue: item.contentWork ?? '',
                                     isRequired: true,
                                     validator: (v) {
@@ -411,7 +412,8 @@ class _WfhDetailScreenState
                                     nameTextField: 'wfh_detail_reason_tf',
                                     label: 'Lý do',
                                     icon: Icons.note_alt_outlined,
-                                    maxLines: 3,
+                                    textInputAction: TextInputAction.newline,
+                                    autoExpand: true,
                                     initialValue: item.reason ?? '',
                                     isRequired: true,
                                     validator: (v) {
@@ -428,7 +430,8 @@ class _WfhDetailScreenState
                                     nameTextField: 'wfh_detail_note_tf',
                                     label: 'Ghi chú',
                                     icon: Icons.comment_outlined,
-                                    maxLines: 3,
+                                    textInputAction: TextInputAction.newline,
+                                    autoExpand: true,
                                     initialValue: item.note ?? '',
                                   ),
                                 ],
@@ -510,7 +513,7 @@ class _WfhDetailScreenState
             return Positioned.fill(
               child: AbsorbPointer(
                 child: Container(
-                  color: Colors.black.withOpacity(0.45),
+                  color: Colors.black.withValues(alpha:0.45),
                   alignment: Alignment.center,
                   child: Lottie.asset(
                     'assets/lotties/Loading.json',

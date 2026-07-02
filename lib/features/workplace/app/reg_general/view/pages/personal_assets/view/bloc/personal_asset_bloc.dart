@@ -45,6 +45,17 @@ class PersonalAssetBloc extends BaseBloc<PersonalAssetEvent, PersonalAssetState>
   //---(Init)---//
   Future<void> _onInit(Emitter<PersonalAssetState> emit) async {
     emit(state.copyWith(status: BaseStateStatus.loading));
+
+    final userRes = await _authRepo.getCurrentUser();
+    await userRes.fold(
+      (err) async {
+        _log.logE('Get current user failed: $err');
+      },
+      (user) async {
+        emit(state.copyWith(departmentId: user?.departmentId));
+      },
+    );
+
     await Future.wait([
       _onFetchAssets(emit),
       _onFetchProperties(emit),
@@ -232,8 +243,9 @@ class PersonalAssetBloc extends BaseBloc<PersonalAssetEvent, PersonalAssetState>
     final payload = <String, dynamic>{
       'DeliverID': deliverId,
       'AssetID': assetId,
-      'IsApproveAccountant': approveType == 2,
       'IsApprovedPersonalProperty': approveType == 1,
+      'IsApproveAccountant': approveType == 2,
+      'IsApproved': approveType == 3,
     };
 
     _log.logI('📋 Approve payload: $payload');

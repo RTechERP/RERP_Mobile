@@ -76,6 +76,9 @@ abstract class _$BookingVehicleStateCWProxy {
 
   BookingVehicleState bookingTypeGroup(int bookingTypeGroup);
 
+  BookingVehicleState selectedApproverEmployeeId(
+      int? selectedApproverEmployeeId);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BookingVehicleState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -114,6 +117,7 @@ abstract class _$BookingVehicleStateCWProxy {
     Map<String, dynamic>? formFieldValues,
     Map<String, dynamic>? infoFieldValues,
     int? bookingTypeGroup,
+    int? selectedApproverEmployeeId,
   });
 }
 
@@ -256,6 +260,11 @@ class _$BookingVehicleStateCWProxyImpl implements _$BookingVehicleStateCWProxy {
       this(bookingTypeGroup: bookingTypeGroup);
 
   @override
+  BookingVehicleState selectedApproverEmployeeId(
+          int? selectedApproverEmployeeId) =>
+      this(selectedApproverEmployeeId: selectedApproverEmployeeId);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BookingVehicleState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -296,6 +305,7 @@ class _$BookingVehicleStateCWProxyImpl implements _$BookingVehicleStateCWProxy {
     Object? formFieldValues = const $CopyWithPlaceholder(),
     Object? infoFieldValues = const $CopyWithPlaceholder(),
     Object? bookingTypeGroup = const $CopyWithPlaceholder(),
+    Object? selectedApproverEmployeeId = const $CopyWithPlaceholder(),
   }) {
     return BookingVehicleState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -451,6 +461,11 @@ class _$BookingVehicleStateCWProxyImpl implements _$BookingVehicleStateCWProxy {
           ? _value.bookingTypeGroup
           // ignore: cast_nullable_to_non_nullable
           : bookingTypeGroup as int,
+      selectedApproverEmployeeId:
+          selectedApproverEmployeeId == const $CopyWithPlaceholder()
+              ? _value.selectedApproverEmployeeId
+              // ignore: cast_nullable_to_non_nullable
+              : selectedApproverEmployeeId as int?,
     );
   }
 }

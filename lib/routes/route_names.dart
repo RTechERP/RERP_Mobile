@@ -20,6 +20,15 @@ class RouteNames {
   static const reggeneral = '/reg_general';
   static const report = '/report';
   static const weekplan = '/week_plan';
+  static const weekplanMenu = '/week_plan/menu';
+  static const weekplanMyTask = '/week_plan/my_task';
+  static const weekplanRelated = '/week_plan/related';
+  static const weekplanAssigned = '/week_plan/assigned';
+  static const weekplanAll = '/week_plan/all';
+  static const weekplanAdd = '/week_plan/add';
+  static const weekplanDetail = '/week_plan/detail';
+  static const weekplanDashboard = '/week_plan/dashboard';
+  static const weekplanTimeline = '/week_plan/timeline';
   static const stock = '/stock';
 
   static const regworkLunch = '/regwork/lunch';
@@ -124,6 +133,12 @@ class RouteNames {
 
   static const reportADdepartEdit = '/report/ad/edit';
 
+  ///*** Accountant Department ***///
+  static const reportAccountant = '/report/accountant';
+  static const reportAccountantDetail = '/report/accountant/detail';
+  static const reportAccountantAdd = '/report/accountant/add';
+  static const reportAccountantEdit = '/report/accountant/edit';
+
   // Favorites
   static const favorites = '/favorites';
 
@@ -163,6 +178,40 @@ class RouteNames {
   static const stationeryDetail = '/reg_general/stationery/detail';
   static const stationeryEdit = '/reg_general/stationery/edit';
 
+  // Contract Registration
+  static const contractRegistration = '/reg_general/contract_registration';
+  static const contractRegistrationAdd = '/reg_general/contract_registration/add';
+  static const contractRegistrationDetail = '/reg_general/contract_registration/detail';
+
+  // Work Requirement
+  static const workRequirement = '/reg_general/work_requirement';
+  static const workRequirementAdd = '/reg_general/work_requirement/add';
+  static const workRequirementDetail = '/reg_general/work_requirement/detail';
+  static const workRequirementEdit = '/reg_general/work_requirement/edit';
+
+  // Idea Registration
+  static const ideaRegistration = '/reg_general/idea_registration';
+  static const ideaRegistrationAdd = '/reg_general/idea_registration/add';
+  static const ideaRegistrationEdit = '/reg_general/idea_registration/edit';
+
+  // Stamp Registration
+  static const String stamp = '/reg_general/stamp';
+  static const String stampAdd = '/reg_general/stamp/add';
+  static const String stampDetail = '/reg_general/stamp/detail';
+
   // More - Settings
   static const notificationSettings = '/more/notification_settings';
+
+  // Salary
+  static const salaryMenu = '/salary';
+  static const salarySummary = '/salary/summary';
+  static const salaryFingerprint = '/salary/fingerprint';
+  static const salaryAttendance = '/salary/attendance';
+  static const salaryPayslip = '/salary/payslip';
+  static const salaryForgotPin = '/salary/forgot_pin';
+  static const salaryCardDetail = '/salary/card_detail';
+
+  // Poll
+  static const poll = '/poll';
+  static const pollDetail = '/poll/detail';
 }

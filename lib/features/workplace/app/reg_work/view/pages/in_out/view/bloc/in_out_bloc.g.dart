@@ -33,6 +33,12 @@ abstract class _$InOutStateCWProxy {
 
   InOutState approveId(FillApproverItem? approveId);
 
+  InOutState suggestedType(String? suggestedType);
+
+  InOutState suggestedFrom(DateTime? suggestedFrom);
+
+  InOutState suggestedTo(DateTime? suggestedTo);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `InOutState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -53,6 +59,9 @@ abstract class _$InOutStateCWProxy {
     DateTime? dateStart,
     DateTime? dateEnd,
     FillApproverItem? approveId,
+    String? suggestedType,
+    DateTime? suggestedFrom,
+    DateTime? suggestedTo,
   });
 }
 
@@ -107,6 +116,18 @@ class _$InOutStateCWProxyImpl implements _$InOutStateCWProxy {
       this(approveId: approveId);
 
   @override
+  InOutState suggestedType(String? suggestedType) =>
+      this(suggestedType: suggestedType);
+
+  @override
+  InOutState suggestedFrom(DateTime? suggestedFrom) =>
+      this(suggestedFrom: suggestedFrom);
+
+  @override
+  InOutState suggestedTo(DateTime? suggestedTo) =>
+      this(suggestedTo: suggestedTo);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `InOutState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -128,6 +149,9 @@ class _$InOutStateCWProxyImpl implements _$InOutStateCWProxy {
     Object? dateStart = const $CopyWithPlaceholder(),
     Object? dateEnd = const $CopyWithPlaceholder(),
     Object? approveId = const $CopyWithPlaceholder(),
+    Object? suggestedType = const $CopyWithPlaceholder(),
+    Object? suggestedFrom = const $CopyWithPlaceholder(),
+    Object? suggestedTo = const $CopyWithPlaceholder(),
   }) {
     return InOutState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -186,6 +210,18 @@ class _$InOutStateCWProxyImpl implements _$InOutStateCWProxy {
           ? _value.approveId
           // ignore: cast_nullable_to_non_nullable
           : approveId as FillApproverItem?,
+      suggestedType: suggestedType == const $CopyWithPlaceholder()
+          ? _value.suggestedType
+          // ignore: cast_nullable_to_non_nullable
+          : suggestedType as String?,
+      suggestedFrom: suggestedFrom == const $CopyWithPlaceholder()
+          ? _value.suggestedFrom
+          // ignore: cast_nullable_to_non_nullable
+          : suggestedFrom as DateTime?,
+      suggestedTo: suggestedTo == const $CopyWithPlaceholder()
+          ? _value.suggestedTo
+          // ignore: cast_nullable_to_non_nullable
+          : suggestedTo as DateTime?,
     );
   }
 }

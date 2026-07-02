@@ -341,8 +341,8 @@ class DetailReportNullResponse with _$DetailReportNullResponse {
     @JsonKey(name: 'ProjectID') required int projectId,
     @JsonKey(name: 'Content') required String content,
     @JsonKey(name: 'Results') required String results,
-    @JsonKey(name: 'Problem') required String problem,
-    @JsonKey(name: 'ProblemSolve') required String problemSolve,
+    @JsonKey(name: 'Problem') String? problem,
+    @JsonKey(name: 'ProblemSolve') String? problemSolve,
     @JsonKey(name: 'PlanNextDay') required String planNextDay,
     @JsonKey(name: 'Note') required String note,
     @JsonKey(name: 'Confirm') required bool confirm,
@@ -361,7 +361,7 @@ class DetailReportNullResponse with _$DetailReportNullResponse {
     @JsonKey(name: 'ProjectItemID') int? projectItemId,
     @JsonKey(name: 'PercentComplete') int? percentComplete,
     @JsonKey(name: 'TotalHourOT') required double totalHourOT,
-    @JsonKey(name: 'Location') required String location,
+    @JsonKey(name: 'Location') String? location,
   }) = _DetailReportNullResponse;
 
   factory DetailReportNullResponse.fromJson(Map<String, dynamic> json) =>
@@ -1386,4 +1386,57 @@ class DetailSaleAdminReportResponse with _$DetailSaleAdminReportResponse {
   factory DetailSaleAdminReportResponse.fromJson(
       Map<String, dynamic> json,
       ) => _$DetailSaleAdminReportResponseFromJson(json);
+}
+
+@freezed
+class AccountantItem with _$AccountantItem {
+  const factory AccountantItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'EmployeeID') int? employeeId,
+    @JsonKey(name: 'ReportDate') DateTime? reportDate,
+    @JsonKey(name: 'Content') String? content,
+    @JsonKey(name: 'Result') String? result,
+    @JsonKey(name: 'NextPlan') String? nextPlan,
+    @JsonKey(name: 'PendingIssues') String? pendingIssues,
+    @JsonKey(name: 'Urgent') String? urgent,
+    @JsonKey(name: 'MistakeOrViolation') String? mistakeOrViolation,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+    @JsonKey(name: 'FullName') String? fullName,
+    @JsonKey(name: 'ChucVu') String? chucVu,
+    @JsonKey(name: 'RowNum') int? rowNum,
+  }) = _AccountantItem;
+
+  factory AccountantItem.fromJson(
+      Map<String, dynamic> json,
+      ) =>
+      _$AccountantItemFromJson(json);
+}
+
+@freezed
+class AccountantDetailItem with _$AccountantDetailItem {
+  const factory AccountantDetailItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'EmployeeID') int? employeeId,
+    @JsonKey(name: 'ReportDate') DateTime? reportDate,
+    @JsonKey(name: 'Content') String? content,
+    @JsonKey(name: 'Result') String? result,
+    @JsonKey(name: 'NextPlan') String? nextPlan,
+    @JsonKey(name: 'PendingIssues') String? pendingIssues,
+    @JsonKey(name: 'Urgent') String? urgent,
+    @JsonKey(name: 'MistakeOrViolation') String? mistakeOrViolation,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+  }) = _AccountantDetailItem;
+
+  factory AccountantDetailItem.fromJson(
+      Map<String, dynamic> json,
+      ) =>
+      _$AccountantDetailItemFromJson(json);
 }

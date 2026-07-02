@@ -57,26 +57,58 @@ class FirebaseInitializer {
       NotificationService.instance.handleNotificationTap(message);
     });
 
-    // App launched from terminated state via notification
-    final initialMessage = await FirebaseMessaging.instance.getInitialMessage();
-    if (initialMessage != null) {
-      NotificationService.instance.handleNotificationTap(initialMessage);
-    }
-
-    // Lấy & in FCM token
+    // Lấy FCM token — iOS cần gọi getAPNSToken/getToken TRƯỚC getInitialMessage
+    // để SDK hoàn tất registration với APNS.
     try {
       if (Platform.isIOS) {
-        // Trên iOS (đặc biệt là simulator), cần đợi hệ thống cấp APNS token trước khi lấy FCM token
-        await FirebaseMessaging.instance.getAPNSToken();
+        String? apnsToken;
+        try {
+          apnsToken = await FirebaseMessaging.instance.getAPNSToken();
+          if (kDebugMode) {
+            print('[FCM] APNS Token: $apnsToken');
+          }
+        } catch (e) {
+          if (kDebugMode) {
+            print('[FCM] Loi lay APNS token: $e');
+          }
+        }
+        if (apnsToken == null) {
+          if (kDebugMode) {
+            print('[FCM] APNS token null, cho 3s...');
+          }
+          await Future<void>.delayed(const Duration(seconds: 3));
+          try {
+            apnsToken = await FirebaseMessaging.instance.getAPNSToken();
+            if (kDebugMode) {
+              print('[FCM] APNS Token (retry): $apnsToken');
+            }
+          } catch (e) {
+            if (kDebugMode) {
+              print('[FCM] Loi lay APNS token (retry): $e');
+            }
+          }
+        }
+
+        // Check permission status
+        final settings = await FirebaseMessaging.instance.getNotificationSettings();
+        if (kDebugMode) {
+          print('[FCM] Notification settings: ${settings.authorizationStatus}');
+        }
       }
       final token = await FirebaseMessaging.instance.getToken();
       if (kDebugMode) {
-        print('[FCM] Token: $token');
+        print('[FCM] FCM Token: $token');
       }
     } catch (e) {
       if (kDebugMode) {
-        print('[FCM] Lỗi lấy token (Thường xảy ra trên iOS Simulator): $e');
+        print('[FCM] Loi lay token: $e');
       }
+    }
+
+    // App launched from terminated state via notification — gọi SAU khi có token
+    final initialMessage = await FirebaseMessaging.instance.getInitialMessage();
+    if (initialMessage != null) {
+      NotificationService.instance.handleNotificationTap(initialMessage);
     }
 
     // Lắng nghe khi token được refresh — lưu vào SharedPreferences.

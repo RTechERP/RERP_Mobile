@@ -1,7 +1,7 @@
 #include "Generated.xcconfig"
 
-FLUTTER_TARGET=lib/main_debug.dart
+FLUTTER_TARGET=lib/main/main_debug.dart
 APP_ENV=debug
 
-PRODUCT_BUNDLE_IDENTIFIER=vn.rtc.erp.debug
+PRODUCT_BUNDLE_IDENTIFIER=com.erp.rtc.debug
 PRODUCT_NAME=RTC ERP Debug

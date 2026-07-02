@@ -60,6 +60,10 @@ _$LeaveItemImpl _$$LeaveItemImplFromJson(Map<String, dynamic> json) =>
       decilineApproveSenior: (json['DecilineApproveSenior'] as num?)?.toInt(),
       reasonDecilineSenior: json['ReasonDecilineSenior'] as String?,
       employeeOnLeavePhaseId: (json['EmployeeOnLeavePhaseID'] as num?)?.toInt(),
+      phaseCode: json['PhaseCode'] as String?,
+      dateRegister: json['DateRegister'] == null
+          ? null
+          : DateTime.parse(json['DateRegister'] as String),
       code: json['Code'] as String?,
       fullName: json['FullName'] as String?,
       idApprovedTP: (json['IDApprovedTP'] as num?)?.toInt(),
@@ -116,6 +120,8 @@ Map<String, dynamic> _$$LeaveItemImplToJson(_$LeaveItemImpl instance) =>
       'DecilineApproveSenior': instance.decilineApproveSenior,
       'ReasonDecilineSenior': instance.reasonDecilineSenior,
       'EmployeeOnLeavePhaseID': instance.employeeOnLeavePhaseId,
+      'PhaseCode': instance.phaseCode,
+      'DateRegister': instance.dateRegister?.toIso8601String(),
       'Code': instance.code,
       'FullName': instance.fullName,
       'IDApprovedTP': instance.idApprovedTP,
@@ -135,17 +141,18 @@ Map<String, dynamic> _$$LeaveItemImplToJson(_$LeaveItemImpl instance) =>
 _$LeaveTimeItemImpl _$$LeaveTimeItemImplFromJson(Map<String, dynamic> json) =>
     _$LeaveTimeItemImpl(
       fullName: json['FullName'] as String?,
-      totalDay: (json['TotalToday'] as num?)?.toInt(),
-      totalDayApproved: (json['TotalDayApproved'] as num?)?.toInt(),
-      totalDayOnleaveActual: (json['TotalDayOnleaveActual'] as num?)?.toInt(),
-      totalDayRemain: (json['TotalDayRemain'] as num?)?.toInt(),
-      totalDayUnApproved: (json['TotalDayUnApproved'] as num?)?.toInt(),
+      totalDay: (json['TotalDay'] as num?)?.toDouble(),
+      totalDayApproved: (json['TotalDayApproved'] as num?)?.toDouble(),
+      totalDayOnleaveActual:
+          (json['TotalDayOnleaveActual'] as num?)?.toDouble(),
+      totalDayRemain: (json['TotalDayRemain'] as num?)?.toDouble(),
+      totalDayUnApproved: (json['TotalDayUnApproved'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$$LeaveTimeItemImplToJson(_$LeaveTimeItemImpl instance) =>
     <String, dynamic>{
       'FullName': instance.fullName,
-      'TotalToday': instance.totalDay,
+      'TotalDay': instance.totalDay,
       'TotalDayApproved': instance.totalDayApproved,
       'TotalDayOnleaveActual': instance.totalDayOnleaveActual,
       'TotalDayRemain': instance.totalDayRemain,

@@ -7,6 +7,7 @@ import 'package:rtc_erp/features/auth/data/repository/auth_repository.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/data/datasource/models/booking_vehicle_model.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repo.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repository.dart';
+import '../../../../../../../../../common/helpers/index.dart';
 import '../booking_vehicle_package_image_form.dart';
 import '../booking_vehicle_passenger_go_payload.dart';
 import '../booking_vehicle_upload_sub_path.dart';
@@ -67,6 +68,9 @@ class BookingVehicleBloc
         updateInfo: (values) async {
           _onUpdateInfo(values, emit);
         },
+        selectApprover: (employeeId) async {
+          emit(state.copyWith(selectedApproverEmployeeId: employeeId));
+        },
         submitPassengerGo: (formValues, existingBookingId) async {
           await _onSubmitPassengerGo(
             formValues,
@@ -122,6 +126,7 @@ class BookingVehicleBloc
                 expandedPassengerGoIndex: 0,
                 commercialReceiverLineCount: 0,
                 pickupGiverLineCount: 0,
+                selectedApproverEmployeeId: null,
               ));
               break;
             case 2:
@@ -131,6 +136,7 @@ class BookingVehicleBloc
                 commercialReceiverLineCount: 1,
                 expandedCommercialDeliveryReceiverIndex: 0,
                 pickupGiverLineCount: 0,
+                selectedApproverEmployeeId: null,
               ));
               break;
             case 3:
@@ -140,10 +146,14 @@ class BookingVehicleBloc
                 commercialReceiverLineCount: 0,
                 pickupGiverLineCount: 1,
                 expandedPickupGiverIndex: 0,
+                selectedApproverEmployeeId: null,
               ));
               break;
             default:
-              emit(state.copyWith(bookingTypeGroup: group));
+              emit(state.copyWith(
+                bookingTypeGroup: group,
+                selectedApproverEmployeeId: null,
+              ));
           }
         },
       );
@@ -864,6 +874,20 @@ class BookingVehicleBloc
       }
     }
 
+    final approvedTBP =
+        state.selectedApproverEmployeeId ??
+        bookingVehicleParseApproverId(formValues['approver']);
+    final timeNeedPresent = bookingVehicleParseFormDateTime(
+      formValues['time_need_present'],
+    );
+    final isProblemArises = ValidateHelper.bookingVehicleShouldShowProblemArisesCard(
+      timeNeedPresent,
+      null,
+    );
+    final problemArises = bookingVehicleTrimFormValue(
+      formValues['problem_rule_reason'],
+    );
+
     final payloads = buildAllPassengerGoCreatePayloads(
       formValues: formValues,
       bookerEmployeeId: employeeId,
@@ -872,6 +896,9 @@ class BookingVehicleBloc
       employees: state.employee,
       passengerLineCount: n,
       existingBookingId: existingBookingId,
+      approvedTBP: approvedTBP,
+      isProblemArises: isProblemArises,
+      problemArises: problemArises.isEmpty ? null : problemArises,
     );
 
     for (final payload in payloads) {
@@ -1006,6 +1033,20 @@ class BookingVehicleBloc
       }
     }
 
+    final approvedTBP =
+        state.selectedApproverEmployeeId ??
+        bookingVehicleParseApproverId(formValues['approver']);
+    final timeNeedPresent = bookingVehicleParseFormDateTime(
+      formValues['time_need_present'],
+    );
+    final isProblemArises = ValidateHelper.bookingVehicleShouldShowProblemArisesCard(
+      timeNeedPresent,
+      null,
+    );
+    final problemArises = bookingVehicleTrimFormValue(
+      formValues['problem_rule_reason'],
+    );
+
     final payloads = buildAllPassengerReturnCreatePayloads(
       formValues: formValues,
       bookerEmployeeId: employeeId,
@@ -1014,6 +1055,9 @@ class BookingVehicleBloc
       employees: state.employee,
       passengerLineCount: n,
       existingBookingId: existingBookingId,
+      approvedTBP: approvedTBP,
+      isProblemArises: isProblemArises,
+      problemArises: problemArises.isEmpty ? null : problemArises,
     );
 
     for (final payload in payloads) {
@@ -1233,6 +1277,20 @@ class BookingVehicleBloc
       }
     }
 
+    final approvedTBP =
+        state.selectedApproverEmployeeId ??
+        bookingVehicleParseApproverId(formValues['approver']);
+    final timeNeedPresent = bookingVehicleParseFormDateTime(
+      formValues['time_need_present'],
+    );
+    final isProblemArises = ValidateHelper.bookingVehicleShouldShowProblemArisesCard(
+      timeNeedPresent,
+      null,
+    );
+    final problemArises = bookingVehicleTrimFormValue(
+      formValues['problem_rule_reason'],
+    );
+
     final payloads = buildAllCommercialDeliveryCreatePayloads(
       formValues: formValues,
       bookerEmployeeId: employeeId,
@@ -1242,6 +1300,9 @@ class BookingVehicleBloc
       receiverLineCount: n,
       apiCategory: apiCategory,
       existingBookingId: existingBookingId,
+      approvedTBP: approvedTBP,
+      isProblemArises: isProblemArises,
+      problemArises: problemArises.isEmpty ? null : problemArises,
     );
 
     for (var i = 0; i < payloads.length; i++) {
@@ -1531,6 +1592,20 @@ class BookingVehicleBloc
       }
       }
 
+    final approvedTBP =
+        state.selectedApproverEmployeeId ??
+        bookingVehicleParseApproverId(formValues['approver']);
+    final timeNeedPresent = bookingVehicleParseFormDateTime(
+      formValues['pickup_need_arrive_time'],
+    );
+    final isProblemArises = ValidateHelper.bookingVehicleShouldShowProblemArisesCard(
+      timeNeedPresent,
+      null,
+    );
+    final problemArises = bookingVehicleTrimFormValue(
+      formValues['problem_rule_reason'],
+    );
+
     final payloads = buildAllCommercialPickupCreatePayloads(
       formValues: formValues,
       bookerEmployeeId: employeeId,
@@ -1540,6 +1615,9 @@ class BookingVehicleBloc
       giverLineCount: n,
       apiCategory: apiCategory,
       existingBookingId: existingBookingId,
+      approvedTBP: approvedTBP,
+      isProblemArises: isProblemArises,
+      problemArises: problemArises.isEmpty ? null : problemArises,
     );
 
     for (var i = 0; i < payloads.length; i++) {

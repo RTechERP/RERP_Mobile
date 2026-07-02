@@ -18,30 +18,16 @@ import '../bloc/in_out_bloc.dart';
 
 int _approverPayloadValue(ApproverItem item) => item.employeeId ?? item.id;
 
-class _InOutDetailTypeOption {
-  const _InOutDetailTypeOption({required this.key, required this.label});
-
-  final String key;
-  final String label;
-}
-
-const _kInOutDetailTypeOptions = <_InOutDetailTypeOption>[
-  _InOutDetailTypeOption(key: 'early_company', label: 'Về sớm việc công ty'),
-  _InOutDetailTypeOption(key: 'early_personal', label: 'Về sớm việc cá nhân'),
-  _InOutDetailTypeOption(key: 'late_company', label: 'Đi muộn việc công ty'),
-  _InOutDetailTypeOption(key: 'late_personal', label: 'Đi muộn việc cá nhân'),
-];
-
 String? _typeKeyFromInt(int? t) {
   switch (t) {
     case 1:
-      return 'late_company';
-    case 2:
-      return 'early_company';
-    case 3:
       return 'late_personal';
-    case 4:
+    case 2:
       return 'early_personal';
+    case 3:
+      return 'early_company';
+    case 4:
+      return 'late_company';
     default:
       return null;
   }
@@ -49,13 +35,13 @@ String? _typeKeyFromInt(int? t) {
 
 int _mapType(String? raw) {
   switch (raw) {
-    case 'late_company':
-      return 1;
-    case 'early_company':
-      return 2;
     case 'late_personal':
-      return 3;
+      return 1;
     case 'early_personal':
+      return 2;
+    case 'early_company':
+      return 3;
+    case 'late_company':
       return 4;
     default:
       return 0;
@@ -67,10 +53,10 @@ String _typeLabel(InOutItem item) {
   if (text.isNotEmpty) return text;
   final key = _typeKeyFromInt(item.type);
   return switch (key) {
-    'early_company' => 'Về sớm việc công ty',
-    'early_personal' => 'Về sớm việc cá nhân',
-    'late_company' => 'Đi muộn việc công ty',
     'late_personal' => 'Đi muộn việc cá nhân',
+    'early_personal' => 'Về sớm việc cá nhân',
+    'early_company' => 'Về sớm việc công ty',
+    'late_company' => 'Đi muộn việc công ty',
     _ => '--',
   };
 }
@@ -108,7 +94,33 @@ class _InOutDetailScreenPageState extends BaseState<
     InOutEvent,
     InOutState,
     InOutBloc> {
+
+  static const List<FormChoiceOption<String>> _inOutTypes = [
+    FormChoiceOption(
+      value: 'late_personal',
+      label: 'Đi muộn việc cá nhân',
+      selectedColor: AppColors.primaryERP,
+    ),
+    FormChoiceOption(
+      value: 'late_company',
+      label: 'Đi muộn việc công ty',
+      selectedColor: AppColors.primaryERP,
+    ),
+    FormChoiceOption(
+      value: 'early_personal',
+      label: 'Về sớm việc cá nhân',
+      selectedColor: AppColors.primaryERP,
+    ),
+    FormChoiceOption(
+      value: 'early_company',
+      label: 'Về sớm việc công ty',
+      selectedColor: AppColors.primaryERP,
+    ),
+  ];
   final _formKey = GlobalKey<FormBuilderState>();
+  final _typeFieldKey = GlobalKey<FormBuilderFieldState>();
+  final _fromPickerKey = GlobalKey<FormDateTimePickerState>();
+  final _toPickerKey = GlobalKey<FormDateTimePickerState>();
 
   InOutItem? _item;
   bool _invalidRoute = false;
@@ -162,48 +174,29 @@ class _InOutDetailScreenPageState extends BaseState<
     });
   }
 
-  void _autoSetTimeByType(String? value) {
-    if (!_canEdit || value == null) return;
-
-    final form = _formKey.currentState;
-    if (form == null) return;
-
-    final day = _selectedDate;
+  void _autoSetTimeByType(String? type) {
+    if (!_canEdit || type == null || type.isEmpty) return;
 
     DateTime time(int h, int m) =>
-        DateTime(day.year, day.month, day.day, h, m);
+        DateTime(_selectedDate.year, _selectedDate.month, _selectedDate.day, h, m);
 
-    if (value.contains('early')) {
-      form.fields['regwork_inout_detail_from']?.didChange(time(16, 30));
-      form.fields['inout_detail_from']?.didChange(time(16, 30));
-      form.fields['regwork_inout_detail_to']?.didChange(time(17, 30));
-      form.fields['inout_detail_to']?.didChange(time(17, 30));
+    late final DateTime from;
+    late final DateTime to;
+    if (type.contains('early')) {
+      from = time(16, 30);
+      to = time(17, 30);
+    } else if (type.contains('late')) {
+      from = time(8, 0);
+      to = time(9, 0);
+    } else {
+      return;
     }
 
-    if (value.contains('late')) {
-      form.fields['regwork_inout_detail_from']?.didChange(time(8, 0));
-      form.fields['inout_detail_from']?.didChange(time(8, 0));
-      form.fields['regwork_inout_detail_to']?.didChange(time(9, 0));
-      form.fields['inout_detail_to']?.didChange(time(9, 0));
-    }
-  }
-
-  Future<void> _openTypeSheet() async {
-    if (!_canEdit) return;
-    final form = _formKey.currentState;
-    if (form == null) return;
-
-    await openSelectBottomSheet<_InOutDetailTypeOption>(
-      context: context,
-      title: 'Chọn loại',
-      items: _kInOutDetailTypeOptions,
-      displayText: (o) => o.label,
-      onSelected: (o) {
-        form.fields['regwork_inout_detail_type']?.didChange(o.key);
-        form.fields['regwork_inout_detail_type_text']?.didChange(o.label);
-        _autoSetTimeByType(o.key);
-      },
-    );
+    // Dùng pickerKey.setValue() — method này gọi didChange cả inner+outer
+    // kèm setState trên FormDateTimePicker state để TextField chắc chắn
+    // rebuild UI.
+    _fromPickerKey.currentState?.setValue(from);
+    _toPickerKey.currentState?.setValue(to);
   }
 
   Future<void> _openApproverSheet() async {
@@ -302,191 +295,175 @@ class _InOutDetailScreenPageState extends BaseState<
                 return Column(
                   children: [
                     Expanded(
-                      child: FormBuilder(
-                        key: _formKey,
-                        child: ListView(
-                          padding: const EdgeInsets.all(16),
-                          children: [
-                            if (showDecline) ...[
-                              FormCard(
-                                title: 'Lý do không đồng ý duyệt',
-                                child: FormInputField(
-                                  enabled: false,
-                                  nameForm: 'inout_reason_not_approved',
-                                  nameTextField:
-                                      'regwork_inout_detail_reason_not_approved',
-                                  label: 'Lý do',
-                                  icon: Icons.note_alt_outlined,
-                                  maxLines: 3,
-                                  initialValue: decline,
-                                ),
-                              ),
-                              const SizedBox(height: 8),
-                            ],
-                            FormCard(
-                              title: 'Thông tin đi muộn - về sớm',
-                              child: Column(
-                                children: [
-                                  if (_canEdit) ...[
-                                    FormBuilderField<String>(
-                                      name: 'regwork_inout_detail_type',
-                                      initialValue: typeKey ?? '',
-                                      builder: (_) => const SizedBox.shrink(),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: FormBuilder(
+                          key: _formKey,
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                if (showDecline) ...[
+                                  FormCard(
+                                    title: 'Lý do không đồng ý duyệt',
+                                    child: FormInputField(
+                                      enabled: false,
+                                      nameForm: 'inout_reason_not_approved',
+                                      nameTextField:
+                                          'regwork_inout_detail_reason_not_approved',
+                                      label: 'Lý do',
+                                      icon: Icons.note_alt_outlined,
+                                      maxLines: 3,
+                                      initialValue: decline,
                                     ),
-                                    GestureDetector(
-                                      onTap: _openTypeSheet,
-                                      child: AbsorbPointer(
-                                        child: FormInputField(
-                                          readOnly: true,
-                                          nameForm:
-                                              'regwork_inout_detail_type_text',
-                                          nameTextField:
-                                              'regwork_inout_detail_type_text_field',
+                                  ),
+                                  const SizedBox(height: 12),
+                                ],
+                                FormCard(
+                                  child: Column(
+                                    children: [
+                                      FormBuilderField<String>(
+                                        name: 'regwork_inout_detail_approver',
+                                        initialValue: approverValue ?? '',
+                                        builder: (_) =>
+                                            const SizedBox.shrink(),
+                                      ),
+                                      GestureDetector(
+                                        onTap: _canEdit ? _openApproverSheet : null,
+                                        child: AbsorbPointer(
+                                          absorbing: !_canEdit,
+                                          child: FormInputField(
+                                            readOnly: true,
+                                            nameForm:
+                                                'regwork_inout_detail_approver_text',
+                                            nameTextField:
+                                                'regwork_inout_detail_approver_text_field',
+                                            label: 'Người duyệt',
+                                            icon: Icons
+                                                .supervisor_account_outlined,
+                                            initialValue:
+                                                _approverDisplayLine(item),
+                                            isRequired: true,
+                                            validator: (v) {
+                                              if (!_canEdit) return null;
+                                              if (v == null || v.trim().isEmpty) {
+                                                return 'Vui lòng chọn người duyệt';
+                                              }
+                                              return null;
+                                            },
+                                            autovalidateMode: AutovalidateMode.onUserInteraction,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 8),
+                                      FormDateTimePicker(
+                                        nameForm: 'regwork_inout_detail_date',
+                                        nameTimePicker: 'inout_detail_date_time',
+                                        label: 'Ngày',
+                                        icon: Icons.date_range_outlined,
+                                        inputType: InputType.date,
+                                        format: DateFormat('dd/MM/yyyy'),
+                                        initialValue: day,
+                                        firstDate: DateTime(2000),
+                                        enabled: _canEdit,
+                                        onChanged: (v) {
+                                          if (v == null) return;
+                                          final safe =
+                                              DateTime(v.year, v.month, v.day);
+                                          if (safe == _selectedDate) return;
+                                          setState(() => _selectedDate = safe);
+                                        },
+                                      ),
+                                      const SizedBox(height: 12),
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                            child: FormDateTimePicker(
+                                              key: _fromPickerKey,
+                                              nameForm:
+                                                  'regwork_inout_detail_from',
+                                              nameTimePicker: 'inout_detail_from',
+                                              label: 'Từ',
+                                              icon: Icons.schedule_outlined,
+                                              inputType: InputType.time,
+                                              format: DateFormat('HH:mm'),
+                                              initialValue: fromInitial,
+                                              enabled: _canEdit,
+                                            ),
+                                          ),
+                                          const SizedBox(width: 12),
+                                          Expanded(
+                                            child: FormDateTimePicker(
+                                              key: _toPickerKey,
+                                              nameForm: 'regwork_inout_detail_to',
+                                              nameTimePicker: 'inout_detail_to',
+                                              label: 'Đến',
+                                              icon: Icons.schedule_outlined,
+                                              inputType: InputType.time,
+                                              format: DateFormat('HH:mm'),
+                                              initialValue: toInitial,
+                                              enabled: _canEdit,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(height: 12),
+                                      if (_canEdit)
+                                        FormChoiceGroup<String>(
+                                          fieldKey: _typeFieldKey,
+                                          name: 'regwork_inout_detail_type',
+                                          label: 'Loại',
+                                          icon: Icons.swap_vert_outlined,
+                                          options: _inOutTypes,
+                                          columns: 2,
+                                          initialValue: typeKey ?? 'late_personal',
+                                          onChanged: (value) {
+                                            _autoSetTimeByType(value);
+                                          },
+                                        )
+                                      else
+                                        FormReadonlyField(
+                                          name: 'regwork_inout_detail_type_readonly',
                                           label: 'Loại',
                                           icon: Icons.swap_vert_outlined,
                                           initialValue: _typeLabel(item),
                                         ),
-                                      ),
-                                    ),
-                                  ] else
-                                    FormReadonlyField(
-                                      name: 'regwork_inout_detail_type_readonly',
-                                      label: 'Loại',
-                                      icon: Icons.swap_vert_outlined,
-                                      initialValue: _typeLabel(item),
-                                    ),
-                                  const SizedBox(height: 12),
-                                  FormDateTimePicker(
-                                    nameForm: 'regwork_inout_detail_date',
-                                    nameTimePicker: 'inout_detail_date_time',
-                                    label: 'Ngày',
-                                    icon: Icons.date_range_outlined,
-                                    inputType: InputType.date,
-                                    format: DateFormat('dd/MM/yyyy'),
-                                    initialValue: day,
-                                    firstDate: DateTime(2000),
-                                    enabled: _canEdit,
-                                    onChanged: (v) {
-                                      if (v == null) return;
-                                      final safe =
-                                          DateTime(v.year, v.month, v.day);
-                                      if (safe == _selectedDate) return;
-                                      setState(() => _selectedDate = safe);
-                                    },
-                                  ),
-                                  const SizedBox(height: 12),
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: FormDateTimePicker(
-                                          nameForm: 'regwork_inout_detail_from',
-                                          nameTimePicker: 'inout_detail_from',
-                                          label: 'Từ',
-                                          icon: Icons.schedule_outlined,
-                                          inputType: InputType.time,
-                                          format: DateFormat('HH:mm'),
-                                          initialValue: fromInitial,
-                                          enabled: _canEdit,
-                                        ),
-                                      ),
-                                      const SizedBox(width: 12),
-                                      Expanded(
-                                        child: FormDateTimePicker(
-                                          nameForm: 'regwork_inout_detail_to',
-                                          nameTimePicker: 'inout_detail_to',
-                                          label: 'Đến',
-                                          icon: Icons.schedule_outlined,
-                                          inputType: InputType.time,
-                                          format: DateFormat('HH:mm'),
-                                          initialValue: toInitial,
-                                          enabled: _canEdit,
-                                        ),
+                                      const SizedBox(height: 12),
+                                      FormInputField(
+                                        enabled: _canEdit,
+                                        nameForm: 'regwork_inout_detail_reason',
+                                        nameTextField:
+                                            'regwork_inout_detail_reason_field',
+                                        label: 'Lý do',
+                                        icon: Icons.note_alt_outlined,
+                                        textInputAction: TextInputAction.newline,
+                                        autoExpand: true,
+                                        initialValue: item.reason ?? '',
+                                        isRequired: true,
+                                        validator: (v) {
+                                          if (!_canEdit) return null;
+                                          if (v == null || v.trim().isEmpty) {
+                                            return 'Vui lòng nhập lý do';
+                                          }
+                                          return null;
+                                        },
+                                        autovalidateMode: AutovalidateMode.onUserInteraction,
                                       ),
                                     ],
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                            const SizedBox(height: 8),
-                            FormCard(
-                              child: _canEdit
-                                  ? Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.stretch,
-                                      children: [
-                                        FormBuilderField<String>(
-                                          name: 'regwork_inout_detail_approver',
-                                          initialValue: approverValue ?? '',
-                                          builder: (_) =>
-                                              const SizedBox.shrink(),
-                                        ),
-                                        GestureDetector(
-                                          onTap: _openApproverSheet,
-                                          child: AbsorbPointer(
-                                            child: FormInputField(
-                                              readOnly: true,
-                                              nameForm:
-                                                  'regwork_inout_detail_approver_text',
-                                              nameTextField:
-                                                  'regwork_inout_detail_approver_text_field',
-                                              label: 'Người duyệt',
-                                              icon: Icons
-                                                  .supervisor_account_outlined,
-                                              initialValue:
-                                                  _approverDisplayLine(item),
-                                              isRequired: true,
-                                              validator: (v) {
-                                                if (v == null || v.trim().isEmpty) return 'Vui lòng chọn người duyệt';
-                                                return null;
-                                              },
-                                              autovalidateMode: AutovalidateMode.onUserInteraction,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    )
-                                  : FormReadonlyField(
-                                      name: 'regwork_inout_detail_approver_readonly',
-                                      label: 'Người kiểm duyệt',
-                                      icon: Icons.supervisor_account_outlined,
-                                      initialValue: _approverDisplayLine(item),
-                                    ),
-                            ),
-                            const SizedBox(height: 8),
-                            FormCard(
-                              child: FormInputField(
-                                enabled: _canEdit,
-                                nameForm: 'regwork_inout_detail_reason',
-                                nameTextField:
-                                    'regwork_inout_detail_reason_field',
-                                label: 'Lý do',
-                                icon: Icons.note_alt_outlined,
-                                maxLines: 3,
-                                initialValue: item.reason ?? '',
-                                isRequired: true,
-                                validator: (v) {
-                                  if (v == null || v.trim().isEmpty) return 'Vui lòng nhập lý do';
-                                  return null;
-                                },
-                                autovalidateMode: AutovalidateMode.onUserInteraction,
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
                       ),
                     ),
                     if (_showFormActions)
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
-                          vertical: 8,
-                        ),
-                        child: FormActions(
-                          mode: FormActionMode.edit,
-                          onCancel: () => context.pop(false),
-                          onSave: (!_canEdit || state.isSubmitting)
-                              ? null
-                              : () {
+                      FormActions(
+                        mode: FormActionMode.edit,
+                        onCancel: () => context.pop(false),
+                        onSave: (!_canEdit || state.isSubmitting)
+                            ? null
+                            : () {
                                 FocusScope.of(context).unfocus();
 
                                 final formState = _formKey.currentState;
@@ -568,7 +545,6 @@ class _InOutDetailScreenPageState extends BaseState<
                                   ),
                                 );
                               },
-                        ),
                       ),
                   ],
                 );
@@ -583,7 +559,7 @@ class _InOutDetailScreenPageState extends BaseState<
             return Positioned.fill(
               child: AbsorbPointer(
                 child: Container(
-                  color: Colors.black.withOpacity(0.45),
+                  color: Colors.black.withValues(alpha:0.45),
                   alignment: Alignment.center,
                   child: Lottie.asset(
                     'assets/lotties/Loading.json',

@@ -380,6 +380,7 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
               employeeDisplayLine: displayLine,
               skipLeaveDateConstraints: skipDateRules,
               detailPhaseId: dto.phaseId,
+              detailPhaseCode: dto.phaseCode,
               detailPhaseDateRegister: dto.dateRegister,
               detailApprovedTP: mergedApprovedTp,
               detailEditSlips: picked,
@@ -429,6 +430,7 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
       state.copyWith(
         isDetailLoading: false,
         detailPhaseId: null,
+        detailPhaseCode: null,
         detailPhaseDateRegister: null,
         detailApprovedTP: null,
         detailEditSlips: const [],
@@ -661,6 +663,8 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
   }) {
     final details = <Map<String, dynamic>>[];
     var totalDayPhase = 0.0;
+    DateTime? firstStart;
+    DateTime? lastEnd;
 
     for (final s in slips) {
       final y = s.date.year, m = s.date.month, d = s.date.day;
@@ -687,6 +691,13 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
           dayFrac = 1;
       }
       totalDayPhase += dayFrac;
+
+      if (firstStart == null || start.isBefore(firstStart)) {
+        firstStart = start;
+      }
+      if (lastEnd == null || end.isAfter(lastEnd)) {
+        lastEnd = end;
+      }
 
       details.add({
         'ID': 0,
@@ -714,6 +725,8 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
         'EmployeeID': employeeId,
         'DateRegister': DateTime.now().toIso8601String(),
         'Reason': '',
+        'StartDate': firstStart?.toIso8601String(),
+        'EndDate': lastEnd?.toIso8601String(),
         'TotalDay': totalDayPhase,
         'IsDeleted': false,
       },
@@ -725,6 +738,7 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
   Map<String, dynamic> _leaveEditSubmitBody({
     required int employeeId,
     required int phaseId,
+    required String phaseCode,
     required DateTime? phaseDateRegister,
     required int approvedTP,
     required List<LeaveEditSlip> slips,
@@ -732,6 +746,9 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
     final details = <Map<String, dynamic>>[];
     var totalDayPhase = 0.0;
     final regIso = (phaseDateRegister ?? DateTime.now()).toIso8601String();
+
+    DateTime? firstStart;
+    DateTime? lastEnd;
 
     for (final s in slips) {
       final y = s.date.year, m = s.date.month, d = s.date.day;
@@ -759,6 +776,13 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
       }
       totalDayPhase += dayFrac;
 
+      if (firstStart == null || start.isBefore(firstStart)) {
+        firstStart = start;
+      }
+      if (lastEnd == null || end.isAfter(lastEnd)) {
+        lastEnd = end;
+      }
+
       details.add({
         'ID': s.detailId,
         'StartDate': start.toIso8601String(),
@@ -766,7 +790,6 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
         'TimeOnLeave': s.timeRegister,
         'Type': s.type,
         'TypeIsReal': s.type,
-        'Reason': s.reason,
         'EmployeeID': employeeId,
         'ApprovedTP': approvedTP,
         'TotalTime': totalTime,
@@ -781,10 +804,11 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
     return {
       'Phase': {
         'ID': phaseId,
-        'Code': '',
+        'Code': phaseCode,
         'EmployeeID': employeeId,
         'DateRegister': regIso,
-        'Reason': '',
+        'StartDate': firstStart?.toIso8601String(),
+        'EndDate': lastEnd?.toIso8601String(),
         'TotalDay': totalDayPhase,
         'IsDeleted': false,
       },
@@ -997,6 +1021,7 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
         // Ưu tiên employeeId trong state (admin/HR đại diện sửa).
         employeeId: state.employeeId ?? user.employeeId,
         phaseId: phaseId,
+        phaseCode: state.detailPhaseCode ?? '',
         phaseDateRegister: state.detailPhaseDateRegister,
         approvedTP: approvedTP,
         slips: slips,

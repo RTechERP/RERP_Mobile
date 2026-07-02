@@ -5,5 +5,5 @@ enum AppPermission {
   viewMarketingReport,
   viewAgvReport,
   viewAdReport,
-
+  viewAccountingReport,
 }

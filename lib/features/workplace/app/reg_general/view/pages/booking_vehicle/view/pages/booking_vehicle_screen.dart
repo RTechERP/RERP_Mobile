@@ -8,13 +8,13 @@ import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/constants/index.dart';
 import '../../../../../../../../../common/utils/navigation/navigation_utils.dart';
 import '../../../../../../../../../common/utils/snack_bar_helper.dart';
+import '../../../../../../../../../common/widgets/date_header.dart';
 import '../../../../../../../../../routes/route_names.dart';
 import '../../data/datasource/models/booking_vehicle_model.dart';
 import '../../data/repository/booking_vehicle_repository.dart';
 import '../bloc/booking_vehicle_bloc.dart';
 import '../widgets/booking_vehicle_card.dart';
-import '../widgets/date_header.dart';
-import '../widgets/date_range_picker.dart';
+import '../../../../../../../../../common/widgets/date_range_picker.dart';
 
 class BookingVehicleScreen extends StatefulWidget {
   const BookingVehicleScreen({super.key});

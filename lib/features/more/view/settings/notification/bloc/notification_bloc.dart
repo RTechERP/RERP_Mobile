@@ -200,10 +200,6 @@ class NotificationBloc extends BaseBloc<NotificationEvent, NotificationState> {
       }
     } else {
       await openAppSettings();
-      await Future.delayed(const Duration(milliseconds: 800));
-      if (!isClosed) {
-        await _onInit(emit);
-      }
     }
   }
 }

@@ -15,12 +15,14 @@ class PersonalPropertyCard extends StatelessWidget {
     required this.item,
     this.onTap,
     this.isApproving = false,
+    this.departmentId,
     this.onApprove,
   });
 
   final PersonalPropertyItem item;
   final VoidCallback? onTap;
   final bool isApproving;
+  final int? departmentId;
   final void Function(int approveType)? onApprove;
 
   static final _dateFmt = DateFormat('dd/MM/yyyy');
@@ -159,6 +161,7 @@ class PersonalPropertyCard extends StatelessWidget {
                 isApprovedPersonal: item.isApprovedPersonalProperty ?? false,
                 isApprovedAccountant: item.isApproveAccountant ?? false,
                 isApproving: isApproving,
+                departmentId: departmentId,
                 onApprove: onApprove,
               ),
             ],
@@ -179,6 +182,7 @@ class _ApproveStatusSection extends StatelessWidget {
     required this.isApprovedPersonal,
     required this.isApprovedAccountant,
     required this.isApproving,
+    required this.departmentId,
     required this.onApprove,
   });
 
@@ -186,7 +190,11 @@ class _ApproveStatusSection extends StatelessWidget {
   final bool isApprovedPersonal;
   final bool isApprovedAccountant;
   final bool isApproving;
+  final int? departmentId;
   final void Function(int approveType)? onApprove;
+
+  bool get _canApproveHr => departmentId == 6 && !isApprovedHr;
+  bool get _canApproveAccountant => departmentId == 5 && !isApprovedAccountant;
 
   @override
   Widget build(BuildContext context) {
@@ -210,17 +218,28 @@ class _ApproveStatusSection extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           _ApproveRow(
-            label: 'Hr',
+            label: 'Bản thân',
+            isApproved: isApprovedPersonal,
+            isApproving: isApproving,
+            onApprove: onApprove != null && !isApprovedPersonal
+                ? () => onApprove!(1)
+                : null,
+          ),
+          const SizedBox(height: 8),
+          _ApproveRow(
+            label: 'HR',
             isApproved: isApprovedHr,
             isApproving: isApproving,
-            onApprove: onApprove != null ? () => onApprove!(1) : null,
+            onApprove: _canApproveHr ? () => onApprove!(3) : null,
           ),
           const SizedBox(height: 8),
           _ApproveRow(
             label: 'Kế toán',
             isApproved: isApprovedAccountant,
             isApproving: isApproving,
-            onApprove: onApprove != null ? () => onApprove!(2) : null,
+            onApprove: _canApproveAccountant
+                ? () => onApprove!(2)
+                : null,
           ),
         ],
       ),

@@ -79,11 +79,22 @@ class LeaveSlipFormFields extends StatelessWidget {
             firstDate: _pickerFirstDate,
             selectableDayPredicate: bypassDateRules || readOnly
                 ? null
-                : (day) => ValidateHelper.leaveDateSelectable(
+                : (day) {
+                    // Đọc loại nghỉ hiện tại từ form để áp dụng rule 19:00
+                    // chỉ cho Nghỉ phép (type == 2). Các loại khác vẫn cho
+                    // chọn ngày mai.
+                    final typeRaw = FormBuilder.of(context)
+                        ?.fields['leave_slip_${slipKey}_type']
+                        ?.value;
+                    final leaveType =
+                        int.tryParse('$typeRaw') ?? 0;
+                    return ValidateHelper.leaveDateSelectable(
                       day,
                       todayStart: todayStart,
                       bypassDateRules: false,
-                    ),
+                      leaveType: leaveType,
+                    );
+                  },
             isRequired: true,
             onChanged: onDateChanged,
             validator: (v) {
@@ -136,7 +147,8 @@ class LeaveSlipFormFields extends StatelessWidget {
             nameForm: 'leave_slip_${slipKey}_reason',
             nameTextField: 'leave_slip_${slipKey}_reason_tf',
             icon: Icons.note_alt_outlined,
-            maxLines: 2,
+            autoExpand: true,
+            textInputAction: TextInputAction.newline,
             readOnly: readOnly,
             initialValue: initialReason,
             isRequired: true,

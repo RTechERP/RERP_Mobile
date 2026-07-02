@@ -2,16 +2,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../common/enums/index.dart';
-import '../../../../../../../../common/helpers/index.dart';
-import '../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../common/widgets/buttons/custom_text_button.dart';
 import '../../../../../../../../common/widgets/form/index.dart';
 import '../bloc/hr_bloc.dart';
@@ -70,7 +68,7 @@ class _HrAddScreenState
               child: AbsorbPointer(
                 absorbing: true,
                 child: Container(
-                  color: Colors.black.withOpacity(0.45),
+                  color: Colors.black.withValues(alpha:0.45),
                   alignment: Alignment.center,
                   child: Lottie.asset(
                     'assets/lotties/Loading.json',
@@ -150,6 +148,10 @@ class _HrAddAdminViewState extends State<_HrAddAdminView> {
                         nameTimePicker: 'date_time',
                         label: 'Ngày báo cáo',
                         inputType: InputType.date,
+                        isRequired: true,
+                        validator: FormBuilderValidators.required(
+                          errorText: 'Vui lòng chọn ngày báo cáo',
+                        ),
                         initialValue: _initialReportDate(),
                         format: DateFormat('dd/MM/yyyy'),
                       ),
@@ -165,7 +167,11 @@ class _HrAddAdminViewState extends State<_HrAddAdminView> {
                         nameForm: 'hr_admin_add_content',
                         nameTextField: 'content',
                         label: 'Nội dung công việc',
-                        maxLines: 3,
+                        isRequired: true,
+                        validator: FormBuilderValidators.required(
+                          errorText: 'Vui lòng nhập nội dung công việc',
+                        ),
+                        autoExpand: true,
                         keyboardType: TextInputType.multiline,
                         textInputAction:
                             TextInputAction.newline, // ⬅ Enter xuống dòng
@@ -185,7 +191,11 @@ class _HrAddAdminViewState extends State<_HrAddAdminView> {
                         nameForm: 'hr_admin_add_result',
                         nameTextField: 'result',
                         label: 'Kết quả đạt được',
-                        maxLines: 3,
+                        isRequired: true,
+                        validator: FormBuilderValidators.required(
+                          errorText: 'Vui lòng nhập kết quả công việc',
+                        ),
+                        autoExpand: true,
                         keyboardType: TextInputType.multiline,
                         textInputAction:
                             TextInputAction.newline, // ⬅ Enter xuống dòng
@@ -205,7 +215,11 @@ class _HrAddAdminViewState extends State<_HrAddAdminView> {
                         nameForm: 'hr_admin_add_next_plan',
                         nameTextField: 'next_plan',
                         label: 'Kế hoạch ngày tiếp theo',
-                        maxLines: 3,
+                        isRequired: true,
+                        validator: FormBuilderValidators.required(
+                          errorText: 'Vui lòng nhập kế hoạch tiếp theo',
+                        ),
+                        autoExpand: true,
                         keyboardType: TextInputType.multiline,
                         textInputAction:
                             TextInputAction.newline, // ⬅ Enter xuống dòng
@@ -261,7 +275,7 @@ class _HrAddAdminViewState extends State<_HrAddAdminView> {
                               nameForm: 'hr_admin_add_blocking',
                               nameTextField: 'blocking',
                               label: 'Tồn đọng (nếu có)',
-                              maxLines: 2,
+                              autoExpand: true,
                               keyboardType: TextInputType.multiline,
                               textInputAction:
                                   TextInputAction.newline, // ⬅ Enter xuống dòng
@@ -276,7 +290,7 @@ class _HrAddAdminViewState extends State<_HrAddAdminView> {
                               nameForm: 'hr_admin__blocking_reason',
                               nameTextField: 'blocking_reason',
                               label: 'Ghi chú / Lý do tồn đọng',
-                              maxLines: 2,
+                              autoExpand: true,
                               keyboardType: TextInputType.multiline,
                               textInputAction:
                                   TextInputAction.newline, // ⬅ Enter xuống dòng
@@ -315,17 +329,17 @@ class _HrAddAdminViewState extends State<_HrAddAdminView> {
 
                   final values = formState.value;
 
-                  final error = ValidateHelper.validateMarketingReport(
-                    date: values['hr_add_date'] as DateTime?,
-                    content: state.content ?? '',
-                    result: state.results ?? '',
-                    planNextDay: state.planNextDay ?? '',
-                  );
-
-                  if (error != null) {
-                    context.showMessage(error, type: SnackBarType.error);
-                    return;
-                  }
+                  // final error = ValidateHelper.validateMarketingReport(
+                  //   date: values['hr_add_date'] as DateTime?,
+                  //   content: state.content ?? '',
+                  //   result: state.results ?? '',
+                  //   planNextDay: state.planNextDay ?? '',
+                  // );
+                  //
+                  // if (error != null) {
+                  //   context.showMessage(error, type: SnackBarType.error);
+                  //   return;
+                  // }
 
                   final pickedDate = values['hr_add_date'] as DateTime?;
 
@@ -422,7 +436,11 @@ class _HrAddLxcpViewState extends State<_HrAddLxcpView> {
                     icon: Icons.add_road_outlined,
                     nameForm: 'lx_add_km',
                     nameTextField: 'km',
-                    maxLines: 1,
+                    isRequired: true,
+                    autoExpand: true,
+                    validator: FormBuilderValidators.required(
+                      errorText: 'Vui lòng nhập số Km',
+                    ),
                     keyboardType: TextInputType.number,
                     onChanged: (v) => bloc.add(
                       HrEvent.lxcpUpdateWork(
@@ -442,7 +460,11 @@ class _HrAddLxcpViewState extends State<_HrAddLxcpView> {
                     icon: Icons.car_crash_outlined,
                     nameForm: 'lx_add_late_car',
                     nameTextField: 'late_car',
-                    maxLines: 1,
+                    isRequired: true,
+                    autoExpand: true,
+                    validator: FormBuilderValidators.required(
+                      errorText: 'Vui lòng nhập số cuốc xe muộn',
+                    ),
                     keyboardType: TextInputType.number,
                     onChanged: (v) => bloc.add(
                       HrEvent.lxcpUpdateWork(
@@ -462,7 +484,11 @@ class _HrAddLxcpViewState extends State<_HrAddLxcpView> {
                     icon: Icons.access_time_outlined,
                     nameForm: 'lx_add_late_minute',
                     nameTextField: 'late_minute',
-                    maxLines: 1,
+                    isRequired: true,
+                    autoExpand: true,
+                    validator: FormBuilderValidators.required(
+                      errorText: 'Vui lòng nhập tổng số phút chậm',
+                    ),
                     keyboardType: TextInputType.number,
                     onChanged: (v) => bloc.add(
                       HrEvent.lxcpUpdateWork(
@@ -481,7 +507,11 @@ class _HrAddLxcpViewState extends State<_HrAddLxcpView> {
                     icon: Icons.question_mark_outlined,
                     nameForm: 'lx_add_late_reason',
                     nameTextField: 'late_reason',
-                    maxLines: 3,
+                    isRequired: true,
+                    autoExpand: true,
+                    validator: FormBuilderValidators.required(
+                      errorText: 'Vui lòng nhập lý do muộn',
+                    ),
                     keyboardType: TextInputType.multiline,
                     textInputAction:
                         TextInputAction.newline, // ⬅ Enter xuống dòng
@@ -529,7 +559,7 @@ class _HrAddLxcpViewState extends State<_HrAddLxcpView> {
                           icon: Icons.next_plan_outlined,
                           nameForm: 'lx_add_status',
                           nameTextField: 'status',
-                          maxLines: 3,
+                          autoExpand: true,
                           keyboardType: TextInputType.multiline,
                           textInputAction: TextInputAction.newline,
                           onChanged: (v) => bloc.add(
@@ -542,7 +572,7 @@ class _HrAddLxcpViewState extends State<_HrAddLxcpView> {
                           icon: Icons.next_plan_outlined,
                           nameForm: 'lx_add_propose',
                           nameTextField: 'propose',
-                          maxLines: 3,
+                          autoExpand: true,
                           keyboardType: TextInputType.multiline,
                           textInputAction: TextInputAction.newline,
                           onChanged: (v) => bloc.add(
@@ -696,17 +726,17 @@ class _HrAddLxcpViewState extends State<_HrAddLxcpView> {
     final values = formState.value;
     final work = state.works.isNotEmpty ? state.works.first : null;
 
-    final error = ValidateHelper.validateLxReport(
-      date: values['lx_add_date'] as DateTime?,
-      kmNumber: work?.kmNumber,
-      totalLate: work?.totalLate,
-      totalTimeLate: work?.totalTimeLate,
-    );
-
-    if (error != null) {
-      context.showMessage(error, type: SnackBarType.error);
-      return;
-    }
+    // final error = ValidateHelper.validateLxReport(
+    //   date: values['lx_add_date'] as DateTime?,
+    //   kmNumber: work?.kmNumber,
+    //   totalLate: work?.totalLate,
+    //   totalTimeLate: work?.totalTimeLate,
+    // );
+    //
+    // if (error != null) {
+    //   context.showMessage(error, type: SnackBarType.error);
+    //   return;
+    // }
 
     final pickedDate = values['lx_add_date'] as DateTime?;
     if (pickedDate == null) return;
@@ -725,21 +755,21 @@ class _HrAddLxcpViewState extends State<_HrAddLxcpView> {
 
     final values = formState.value;
 
-    final error = ValidateHelper.validateCpReport(
-      date: values['cp_add_date'] as DateTime?,
-      works: state.works,
-
-      getFilmId: (w) => w.filmManagementDetailId,
-      getQuantity: (w) => w.quantity,
-      getActualTime: (w) => w.timeActual,
-      getPerformanceActual: (w) => w.performanceActual,
-      getPercentage: (w) => w.percentage,
-    );
-
-    if (error != null) {
-      context.showMessage(error, type: SnackBarType.error);
-      return;
-    }
+    // final error = ValidateHelper.validateCpReport(
+    //   date: values['cp_add_date'] as DateTime?,
+    //   works: state.works,
+    //
+    //   getFilmId: (w) => w.filmManagementDetailId,
+    //   getQuantity: (w) => w.quantity,
+    //   getActualTime: (w) => w.timeActual,
+    //   getPerformanceActual: (w) => w.performanceActual,
+    //   getPercentage: (w) => w.percentage,
+    // );
+    //
+    // if (error != null) {
+    //   context.showMessage(error, type: SnackBarType.error);
+    //   return;
+    // }
 
     final pickedDate = values['cp_add_date'] as DateTime?;
     if (pickedDate == null) return;

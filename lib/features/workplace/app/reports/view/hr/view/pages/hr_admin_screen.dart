@@ -14,13 +14,13 @@ import '../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../common/constants/index.dart';
 import '../../../../../../../../common/enums/index.dart';
-import '../../../../../../../../common/utils/card/index.dart';
 import '../../../../../../../../common/utils/dialog/index.dart';
 import '../../../../../../../../common/utils/navigation/navigation_utils.dart';
 import '../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../routes/route_names.dart';
 import '../../../../data/datasource/models/report_model.dart';
 import '../bloc/hr_bloc.dart';
+import '../widgets/hr_report_card.dart';
 
 class HrAdminScreen extends StatefulWidget {
   const HrAdminScreen({super.key});
@@ -213,21 +213,28 @@ class _HrAdminScreenState
       },
       child: BaseScaffold(
         appBar: AppBarCommon(
-          title: _isSearching
-              ? TextField(
-                  controller: _searchController,
-                  autofocus: true,
-                  decoration: const InputDecoration(
-                    hintText: 'Tìm theo mã hoặc tên dự án',
-                    border: InputBorder.none,
+          title: BlocBuilder<HrBloc, HrState>(
+            buildWhen: (p, c) => p.departmentId != c.departmentId,
+            builder: (context, s) => _isSearching
+                ? TextField(
+                    controller: _searchController,
+                    autofocus: true,
+                    decoration: const InputDecoration(
+                      hintText: 'Tìm theo mã hoặc tên dự án',
+                      border: InputBorder.none,
+                    ),
+                    onChanged: (value) {
+                      setState(() {
+                        _filterReports(value, s.reports);
+                      });
+                    },
+                  )
+                : Text(
+                    s.departmentId == 22
+                        ? 'report.abod'.tr()
+                        : 'report.thr'.tr(),
                   ),
-                  onChanged: (value) {
-                    setState(() {
-                      _filterReports(value, bloc.state.reports);
-                    });
-                  },
-                )
-              : Text('report.thr'.tr()),
+          ),
           onBackTap: () => onBack(context),
           actions: [
             IconButton(
@@ -298,56 +305,80 @@ class _HrAdminScreenState
                             (s) => s.status != BaseStateStatus.loading,
                       );
                     },
-                    child: ListView.builder(
-                      padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
-                      itemCount: displayList.length,
-                      itemBuilder: (context, index) {
-                        final r = displayList[index];
-                        final parsedDate = DateTime.tryParse(r.dateReport);
+                      child: SlidableAutoCloseBehavior(
+                      closeWhenOpened: true,
+                      closeWhenTapped: true,
+                      child: ListView.builder(
+                        padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
+                        itemCount: displayList.length,
+                        itemBuilder: (context, index) {
+                          final r = displayList[index];
 
-                        return Slidable(
-                          key: ValueKey(r.id),
-                          endActionPane: ActionPane(
-                            motion: const DrawerMotion(),
-                            extentRatio: 0.25,
-                            children: [
-                              SlidableAction(
-                                onPressed: (_) async {
-                                  final confirmed =
-                                  await DialogService.showConfirmDelete(
-                                    context: context,
-                                  );
-                                  if (!confirmed) return;
+                          final missionEmpty =
+                              (r.mission.trim().isEmpty) &&
+                              (r.results.trim().isEmpty) &&
+                              (r.planNextDay.trim().isEmpty) &&
+                              (r.content.trim().isEmpty);
+                          final noData = missionEmpty;
 
-                                  bloc.add(HrEvent.deleteReport(r.id));
-                                },
-                                backgroundColor: Colors.red,
-                                foregroundColor: Colors.white,
-                                icon: Icons.delete,
-                                label: 'Xoá',
+                          Widget buildCard() {
+                            return HrReportCard(
+                              report: r,
+                              onTap: noData
+                                  ? null
+                                  : () async {
+                                      final reload = await context.push(
+                                        RouteNames.reportHRAdminDetail,
+                                        extra: r.id,
+                                      );
+
+                                      if (reload == true) {
+                                        bloc.add(const HrEvent.initAd());
+                                      }
+                                    },
+                            );
+                          }
+
+                          if (noData) {
+                            return Padding(
+                              padding: const EdgeInsets.only(bottom: 12),
+                              child: Opacity(
+                                opacity: 0.45,
+                                child: buildCard(),
                               ),
-                            ],
-                          ),
-                          child: AppCardReport(
-                            category: state.departmentName,
-                            employeeName: r.fullName,
-                            position: state.positionName,
-                            planNextDay: r.planNextDay,
-                            time: parsedDate,
-                            showProgress: false,
-                            onTap: () async {
-                              final reload = await context.push(
-                                RouteNames.reportHRAdminDetail,
-                                extra: r.id,
-                              );
+                            );
+                          }
 
-                              if (reload == true) {
-                                bloc.add(const HrEvent.initAd());
-                              }
-                            },
-                          ),
-                        );
-                      },
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 12),
+                            child: Slidable(
+                              key: ValueKey(r.id),
+                              endActionPane: ActionPane(
+                                motion: const DrawerMotion(),
+                                extentRatio: 0.28,
+                                children: [
+                                  SlidableAction(
+                                    onPressed: (actionContext) async {
+                                      Slidable.of(actionContext)?.close();
+                                      final confirmed =
+                                          await DialogService.showConfirmDelete(
+                                        context: context,
+                                      );
+                                      if (!confirmed) return;
+                                      bloc.add(HrEvent.deleteReport(r.id));
+                                    },
+                                    backgroundColor: AppColors.alert,
+                                    foregroundColor: Colors.white,
+                                    icon: Icons.delete_outline,
+                                    label: 'Xoá',
+                                  ),
+                                ],
+                              ),
+                              child: buildCard(),
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ),
                 ),

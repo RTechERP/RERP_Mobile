@@ -311,6 +311,8 @@ class OvertimeSlipFormFields extends StatelessWidget {
             nameTextField: 'ot_slip_${slipKey}_reason_tf',
             icon: Icons.note_alt_outlined,
             maxLines: 3,
+            textInputAction: TextInputAction.newline,
+            autoExpand: true,
             readOnly: readOnly,
             initialValue: initialReason,
 

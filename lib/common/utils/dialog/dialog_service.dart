@@ -12,6 +12,9 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:go_router/go_router.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../../di/injection.dart';
+import '../../../features/workplace/app/reg_work/view/pages/salary/view/bloc/salary_bloc.dart';
+
 import '../../../features/workplace/app/reg_work/view/pages/work_trip/data/datasource/models/work_trip_model.dart';
 import '../../../features/workplace/app/reg_work/view/pages/work_trip/view/widgets/work_trip_add_constants.dart';
 import '../../../features/workplace/app/reg_work/view/pages/work_trip/view/widgets/work_trip_vehicle_dialog.dart';
@@ -20,15 +23,112 @@ import '../../../routes/route_names.dart';
 import '../../app_theme/index.dart';
 import '../../constants/index.dart';
 import '../../services/custom_toast.dart';
+import '../../services/update/force_update_service.dart';
 
 import '../../widgets/form/index.dart';
 import '../navigation/navigation_utils.dart';
 import 'base_dialog/base_dialog.dart';
 import '../../../features/workplace/app/reg_general/view/pages/work_category/view/widgets/work_problem_dialog.dart';
+import '../../../features/workplace/app/reg_work/view/pages/salary/pincode/pincode.dart';
 
 class DialogService {
   static DateTime? _lastToastTime;
   static const int _toastCooldownSeconds = 3;
+  static const int _maxPinRetry = 3;
+  static int _pinFailedCount = 0;
+  static bool _isPinDialogShown = false;
+
+  static void resetPinFailedCount() {
+    _pinFailedCount = 0;
+  }
+
+  static Future<bool?> showPinDialog({
+    required BuildContext context,
+    bool isLoading = false,
+    String? errorMessage,
+  }) async {
+    if (_isPinDialogShown) return null;
+    _isPinDialogShown = true;
+
+    bool? confirmed;
+    bool _waitingScreenResult = false;
+    final Completer<bool?> _screenResultCompleter = Completer<bool?>();
+
+    final controller = PinInputController();
+    int currentRetryCount = _pinFailedCount;
+    bool isLocked = _pinFailedCount >= _maxPinRetry;
+
+    await showDialog<bool?>(
+      context: context,
+      barrierDismissible: false,
+      builder: (dialogContext) {
+        return BlocProvider(
+          create: (_) => getIt<SalaryBloc>(),
+          child: BlocConsumer<SalaryBloc, SalaryState>(
+            listenWhen: (prev, curr) =>
+                prev.pinVerified != curr.pinVerified ||
+                prev.pinError != curr.pinError ||
+                prev.isVerifyingPin != curr.isVerifyingPin,
+            listener: (blocContext, state) {
+              if (state.pinVerified) {
+                confirmed = true;
+                _pinFailedCount = 0;
+                Navigator.of(dialogContext).pop(true);
+                return;
+              }
+              if (state.pinError != null && !state.isVerifyingPin) {
+                currentRetryCount = _pinFailedCount + 1;
+                _pinFailedCount = currentRetryCount;
+                isLocked = _pinFailedCount >= _maxPinRetry;
+                controller.setError();
+              }
+            },
+            builder: (blocContext, state) {
+              return PinDialogWidget(
+                controller: controller,
+                state: state,
+                pinRetryCount: currentRetryCount,
+                isPinLocked: isLocked,
+                onSubmit: (pin) {
+                  if (isLocked) return;
+                  blocContext.read<SalaryBloc>().add(
+                    SalaryEvent.verifyPin(pin),
+                  );
+                },
+                onCancel: () {
+                  _pinFailedCount = 0;
+                  confirmed = false;
+                  Navigator.of(dialogContext).pop(false);
+                  context.pop();
+                },
+                onForgotPin: () {
+                  _pinFailedCount = 0;
+                  confirmed = null;
+                  _waitingScreenResult = true;
+                  Navigator.of(dialogContext).pop(null);
+                  context.push<bool>(RouteNames.salaryForgotPin).then((result) {
+                    confirmed = result == true ? true : false;
+                    _isPinDialogShown = false;
+                    _waitingScreenResult = false;
+                    if (!_screenResultCompleter.isCompleted) {
+                      _screenResultCompleter.complete(confirmed);
+                    }
+                  });
+                },
+              );
+            },
+          ),
+        );
+      },
+    );
+
+    if (_waitingScreenResult) {
+      return _screenResultCompleter.future;
+    }
+
+    _isPinDialogShown = false;
+    return confirmed;
+  }
 
   /// Toast error
   static void showToastFailed({
@@ -66,6 +166,33 @@ class DialogService {
     );
   }
 
+  /// Dialog bắt buộc cập nhật phiên bản mới.
+  /// - Cập nhật ngay: mở store.
+  /// - Huỷ: thoát app.
+  static Future<void> showForceUpdate({required BuildContext context}) {
+    return BaseDialog.twoOptionVerticalDialog(
+      context: context,
+      image: const Icon(
+        Icons.system_update,
+        size: 64,
+        color: AppColors.main,
+      ),
+      title: 'Cập nhật phiên bản mới',
+      description:
+          'Vui lòng cập nhật phiên bản mới để tiếp tục sử dụng.',
+      contentTopButton: 'Cập nhật',
+      topButtonFunc: () {
+        Navigator.of(context, rootNavigator: true).pop();
+        ForceUpdateService.openStoreAndExit();
+      },
+      contentBottomButton: 'Huỷ',
+      bottomButtonFunc: () {
+        Navigator.of(context, rootNavigator: true).pop();
+        ForceUpdateService.exitApp();
+      },
+    );
+  }
+
   static Future<void> showOverall({
     required BuildContext context,
     required contentWidget,
@@ -75,6 +202,38 @@ class DialogService {
       haveCancelBottomBtn: false,
       contentWidget: contentWidget,
       barrierDismissible: true,
+    );
+  }
+
+  static Future<T?> showFullscreen<T>({
+    required BuildContext context,
+    required Widget child,
+    bool barrierDismissible = true,
+    Color barrierColor = const Color(0x99000000),
+  }) {
+    return showGeneralDialog<T>(
+      context: context,
+      barrierDismissible: barrierDismissible,
+      barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
+      barrierColor: barrierColor,
+      pageBuilder: (_, __, ___) => child,
+      transitionBuilder: (context, animation, secondaryAnimation, dialogChild) {
+        final curved = CurvedAnimation(
+          parent: animation,
+          curve: Curves.easeOutCubic,
+          reverseCurve: Curves.easeInCubic,
+        );
+        return FadeTransition(
+          opacity: curved,
+          child: SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(0, 0.04),
+              end: Offset.zero,
+            ).animate(curved),
+            child: dialogChild,
+          ),
+        );
+      },
     );
   }
 
@@ -93,7 +252,6 @@ class DialogService {
       ),
     );
   }
-
 
   static Future<void> showMailReport({
     required BuildContext context,
@@ -168,16 +326,16 @@ class DialogService {
       final box = context.findRenderObject() as RenderBox?;
       if (box != null) {
         await SharePlus.instance.share(
-            ShareParams(
-              subject: 'Báo cáo công việc',
-              text: text,
-              sharePositionOrigin: Rect.fromLTWH(
-                0,
-                0,
-                MediaQuery.of(context).size.width,
-                MediaQuery.of(context).size.height / 2,
-              ),
+          ShareParams(
+            subject: 'Báo cáo công việc',
+            text: text,
+            sharePositionOrigin: Rect.fromLTWH(
+              0,
+              0,
+              MediaQuery.of(context).size.width,
+              MediaQuery.of(context).size.height / 2,
             ),
+          ),
         );
       }
 
@@ -201,7 +359,8 @@ class DialogService {
 
   /// Chờ sendMailSuccess = true từ bloc.
   static Future<void> waitUntilMailSuccess(TechBloc bloc) async {
-    await bloc.stream.firstWhere((s) => s.sendMailSuccess == true)
+    await bloc.stream
+        .firstWhere((s) => s.sendMailSuccess == true)
         .timeout(const Duration(seconds: 30));
   }
 
@@ -563,12 +722,34 @@ class DialogService {
     required BuildContext context,
     required List<WorkTripTypeVehicle> vehicleTypes,
     List<WorkTripVehicleEntry> initialEntries = const [],
-  }) =>
-      showWorkTripVehicleDialog(
-        context: context,
-        vehicleTypes: vehicleTypes,
-        initialEntries: initialEntries,
-      );
+  }) => showWorkTripVehicleDialog(
+    context: context,
+    vehicleTypes: vehicleTypes,
+    initialEntries: initialEntries,
+  );
+
+  static Future<bool> showConfirmExit({required BuildContext context}) async {
+    bool confirmed = false;
+
+    await BaseDialog.twoOptionVerticalDialog(
+      context: context,
+      image: const Icon(Icons.exit_to_app, size: 64, color: Colors.orange),
+      title: 'Thoát ứng dụng',
+      description: 'Bạn có chắc muốn thoát ứng dụng?',
+      contentTopButton: 'Thoát',
+      topButtonFunc: () {
+        confirmed = true;
+        onBack(context);
+      },
+      contentBottomButton: 'Huỷ',
+      bottomButtonFunc: () {
+        confirmed = false;
+        onBack(context);
+      },
+    );
+
+    return confirmed;
+  }
 
   static Future<bool> showConfirmDelete({required BuildContext context}) async {
     bool confirmed = false;
@@ -631,11 +812,7 @@ class DialogService {
         borderWidth: 4,
         child: RichText(
           text: const TextSpan(
-            style: TextStyle(
-              fontSize: 13,
-              color: Colors.black87,
-              height: 1.4,
-            ),
+            style: TextStyle(fontSize: 13, color: Colors.black87, height: 1.4),
             children: [
               TextSpan(
                 text: '• Nghỉ phép (P): ',
@@ -643,7 +820,7 @@ class DialogService {
               ),
               TextSpan(
                 text:
-                'Đăng ký trên ứng dụng trước 19h ngày liền trước ngày nghỉ, '
+                    'Đăng ký trên ứng dụng trước 19h ngày liền trước ngày nghỉ, '
                     'quỹ phép phải còn dương tại thời điểm xin nghỉ (không ứng phép). '
                     'Nhân sự đang thử việc được tính phép nhưng chưa được sử dụng, '
                     'không hoàn phép nếu không ký HĐLĐ chính thức.\n\n',
@@ -654,7 +831,7 @@ class DialogService {
               ),
               TextSpan(
                 text:
-                'Xin nghỉ sau 19h của ngày liền trước ngày nghỉ hoặc khi không còn phép.\n\n',
+                    'Xin nghỉ sau 19h của ngày liền trước ngày nghỉ hoặc khi không còn phép.\n\n',
               ),
               TextSpan(
                 text: '• Nghỉ việc riêng có hưởng lương (R): ',
@@ -662,18 +839,14 @@ class DialogService {
               ),
               TextSpan(
                 text:
-                'NLĐ kết hôn (03 ngày); Con NLĐ kết hôn (01 ngày); '
+                    'NLĐ kết hôn (03 ngày); Con NLĐ kết hôn (01 ngày); '
                     'Cha/Mẹ/Vợ/Chồng/Con mất (03 ngày).',
               ),
             ],
           ),
         ),
       ),
-      image: Image.asset(
-        AppImages.logo_login,
-        width: 40,
-        height: 40,
-      ),
+      image: Image.asset(AppImages.logo_login, width: 40, height: 40),
       topButtonFunc: () {
         onBack(context);
         onConfirm?.call();
@@ -698,30 +871,22 @@ class DialogService {
         borderWidth: 4,
         child: RichText(
           text: const TextSpan(
-            style: TextStyle(
-              fontSize: 13,
-              color: Colors.black87,
-              height: 1.4,
-            ),
+            style: TextStyle(fontSize: 13, color: Colors.black87, height: 1.4),
             children: [
               TextSpan(
                 text:
-                '• Thời gian làm thêm không tính thời gian ăn ca, nghỉ giữa giờ, đợi xe, '
-                'ngồi trên xe khi đi công tác (không bao gồm Lái xe).\n\n'
-                '• Thời gian làm thêm tại văn phòng được tính từ 18:00.\n\n'
-                '• Làm thêm đến 20:00 được hưởng phụ cấp ăn tối.\n\n'
-                '• CBNV cần khai báo đúng quy định. Trường hợp quên khai báo công có thể '
-                'khai báo bổ sung. Nếu quên khai báo/chấm công từ 3 lần/tháng sẽ bị trừ 100% PCCC.',
+                    '• Thời gian làm thêm không tính thời gian ăn ca, nghỉ giữa giờ, đợi xe, '
+                    'ngồi trên xe khi đi công tác (không bao gồm Lái xe).\n\n'
+                    '• Thời gian làm thêm tại văn phòng được tính từ 18:00.\n\n'
+                    '• Làm thêm đến 20:00 được hưởng phụ cấp ăn tối.\n\n'
+                    '• CBNV cần khai báo đúng quy định. Trường hợp quên khai báo công có thể '
+                    'khai báo bổ sung. Nếu quên khai báo/chấm công từ 3 lần/tháng sẽ bị trừ 100% PCCC.',
               ),
             ],
           ),
         ),
       ),
-      image: Image.asset(
-        AppImages.logo_login,
-        width: 40,
-        height: 40,
-      ),
+      image: Image.asset(AppImages.logo_login, width: 40, height: 40),
       topButtonFunc: () {
         onBack(context);
         onConfirm?.call();

@@ -2,8 +2,8 @@
 // Nội dung/Chức năng: Quản lý favorites - load, save, toggle, sort items theo thứ tự ưu tiên
 
 import 'package:hive/hive.dart';
-import '../../../../../../../common/app_registry/app_items_registry.dart';
-import '../../../../../../../common/models/index.dart';
+import '../../../../../data/datasource/app_registry/app_items_registry.dart';
+import '../../../../../data/datasource/models/index.dart';
 
 const String favoriteBox = 'favorites';
 const String favoriteKey = 'local_favorites';

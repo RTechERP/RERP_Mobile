@@ -295,7 +295,8 @@ class _WfhAddScreenState
                                         nameTextField: 'wfh_add_content_tf',
                                         label: 'Nội dung/Kế hoạch',
                                         icon: Icons.content_paste,
-                                        maxLines: 4,
+                                        textInputAction: TextInputAction.newline,
+                                        autoExpand: true,
                                         isRequired: true,
                                         validator: (v) {
                                           if (v == null || v.trim().isEmpty) return 'Vui lòng nhập nội dung/kế hoạch';
@@ -310,7 +311,8 @@ class _WfhAddScreenState
                                         nameTextField: 'wfh_add_reason_tf',
                                         label: 'Lý do',
                                         icon: Icons.note_alt_outlined,
-                                        maxLines: 4,
+                                        textInputAction: TextInputAction.newline,
+                                        autoExpand: true,
                                         isRequired: true,
                                         validator: (v) {
                                           if (v == null || v.trim().isEmpty) return 'Vui lòng nhập lý do';
@@ -324,8 +326,9 @@ class _WfhAddScreenState
                                         nameForm: 'wfh_add_note',
                                         nameTextField: 'wfh_add_note_tf',
                                         label: 'Ghi chú',
+                                        textInputAction: TextInputAction.newline,
+                                        autoExpand: true,
                                         icon: Icons.comment_outlined,
-                                        maxLines: 1,
                                       ),
                                     ],
                                   ),
@@ -395,7 +398,7 @@ class _WfhAddScreenState
             return Positioned.fill(
               child: AbsorbPointer(
                 child: Container(
-                  color: Colors.black.withOpacity(0.45),
+                  color: Colors.black.withValues(alpha:0.45),
                   alignment: Alignment.center,
                   child: Lottie.asset(
                     'assets/lotties/Loading.json',

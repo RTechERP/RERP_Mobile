@@ -79,6 +79,11 @@ class BookingVehicleEvent with _$BookingVehicleEvent{
     required Map<String, dynamic> values,
   }) = _UpdateInfo;
 
+  /// Lưu ApproverID vào state khi user chọn từ bottom sheet — không phụ thuộc form field.
+  const factory BookingVehicleEvent.selectApprover({
+    required int employeeId,
+  }) = _SelectApprover;
+
   /// Gửi đăng ký **Người đi** — body map từ `FormBuilder.saveAndValidate().value`.
   const factory BookingVehicleEvent.submitPassengerGo({
     required Map<String, dynamic> formValues,
