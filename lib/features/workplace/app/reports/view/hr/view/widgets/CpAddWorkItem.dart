@@ -40,6 +40,7 @@ class _CpAddWorkItemState extends State<CpAddWorkItem> {
   late TextEditingController _percentController;
   late TextEditingController _performanceAvgController;
   late TextEditingController _performanceActualController;
+  late TextEditingController _workContentController;
 
 
   @override
@@ -61,6 +62,8 @@ class _CpAddWorkItemState extends State<CpAddWorkItem> {
     _performanceActualController = TextEditingController(
       text: widget.report.performanceActual?.toString() ?? '',
     );
+
+    _workContentController = TextEditingController();
   }
 
   @override
@@ -122,6 +125,7 @@ class _CpAddWorkItemState extends State<CpAddWorkItem> {
     _percentController.dispose();
     _performanceAvgController.dispose();
     _performanceActualController.dispose();
+    _workContentController.dispose();
     super.dispose();
   }
   @override
@@ -212,6 +216,17 @@ class _CpAddWorkItemState extends State<CpAddWorkItem> {
         } catch (_) {
           film = null;
         }
+
+        final workContentText = film?.workContent1 ?? '';
+        if (_workContentController.text != workContentText) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (!mounted) return;
+            _workContentController.value = TextEditingValue(
+              text: workContentText,
+              selection: TextSelection.collapsed(offset: workContentText.length),
+            );
+          });
+        }
         return Column(
           children: [
             /// ===== Nội dung công việc =====
@@ -235,20 +250,24 @@ class _CpAddWorkItemState extends State<CpAddWorkItem> {
                       );
                     },
               child: AbsorbPointer(
-                child: FormInputField(
-                  key: ValueKey('content_${widget.report.id}'),
-                  nameForm: 'cp_add_content_${widget.report.id}',
-                  nameTextField: 'content_${widget.report.id}',
-                  label: film?.workContent1?.isNotEmpty == true
-                      ? film!.workContent1!
-                      : 'Nội dung công việc',
-                  isRequired: true,
-                  autoExpand: true,
-                  validator: FormBuilderValidators.required(
-                    errorText: 'Vui lòng chọn nội dung công việc',
-                  ),
-                  readOnly: true,
-                  icon: Icons.category_outlined,
+                child: ValueListenableBuilder<TextEditingValue>(
+                  valueListenable: _workContentController,
+                  builder: (context, value, _) {
+                    return FormInputField(
+                      key: ValueKey('content_${widget.report.id}'),
+                      nameForm: 'cp_add_content_${widget.report.id}',
+                      nameTextField: 'content_${widget.report.id}',
+                      label: 'Nội dung công việc',
+                      isRequired: true,
+                      autoExpand: true,
+                      validator: FormBuilderValidators.required(
+                        errorText: 'Vui lòng chọn nội dung công việc',
+                      ),
+                      readOnly: true,
+                      icon: Icons.category_outlined,
+                      controller: _workContentController,
+                    );
+                  },
                 ),
               ),
             ),
