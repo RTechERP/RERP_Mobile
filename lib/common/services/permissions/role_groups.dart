@@ -1,6 +1,6 @@
 class DepartmentGroups {
   /// ===== DEPARTMENT =====
-  static const tech = [2, 11, 12, 13, 24, 25, 26, 27];
+  static const tech = [2, 11, 12, 13, 24, 25, 26, 27, 9, 10];
   static const agv = [9, 10];
   static const lrtk = [23];
   static const sale = [3, 12, 28, 29, 30];
@@ -12,7 +12,7 @@ class DepartmentGroups {
 class EmployeeIdGroups {
   static const employeeHrs = [586, 5];
 
-  static const employeeSaleHCM = [29, 42, 341, 641];
+  static const employeeSaleHCM = [29, 42, 341, 641, 222];
 }
 
 class UserIdGroups {
