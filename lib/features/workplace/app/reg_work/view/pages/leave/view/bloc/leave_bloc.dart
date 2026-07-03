@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:dartz/dartz.dart';
@@ -13,6 +15,7 @@ import '../../../../../../../../../common/utils/formatter/date_formatter.dart';
 import '../../../../../../../../auth/data/repository/auth_repo.dart';
 import '../../data/datasource/models/leave_model.dart';
 import '../../data/repository/leave_repo.dart';
+import '../../data/repository/leave_repository.dart';
 
 part 'leave_event.dart';
 part 'leave_state.dart';
@@ -30,8 +33,11 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
   bool _isSubmittingReport = false;
   bool _isInitAddInFlight = false;
 
-  LeaveBloc(this._leaveRepo, this._authRepo, this._log)
-      : super(LeaveState.init()) {
+  LeaveBloc(
+    this._leaveRepo,
+    this._authRepo,
+    this._log,
+  ) : super(LeaveState.init()) {
     on<LeaveEvent>((event, emit) async {
       await event.when(
         init: () => _onInit(emit),
@@ -83,7 +89,6 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
       final userRes = await _authRepo.getCurrentUser();
       final user = userRes.fold((_) => null, (u) => u);
 
-
       if (user == null) {
         _log.logE('❌ initAdd: no current user');
         emit(
@@ -94,109 +99,157 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
         );
         return;
       }
+
       final employeeID = user.employeeId;
-      final fillApproverRes = await _leaveRepo.getFillApprover(
-        employeeID: employeeID,
-        tableName: 'EmployeeOnLeave',
-      );
-      await fillApproverRes.fold(
-            (l) async {
-          _log.logE('❌ Get approverID failed: $l');
-          emit(
-            state.copyWith(
-              status: BaseStateStatus.failed,
-              // message: l.getErrorMessage,
-            ),
-          );
-        },
-            (r) async {
-          _log.logI('✅ Get approverID success');
-          emit(state.copyWith(status: BaseStateStatus.success, approveId: r));
-        },
-      );
-
       final roles = RoleResolver.resolve(user);
-      final skipDateRules = roles.contains(AppRole.admin) ||
-          roles.contains(AppRole.hr);
-
+      final skipDateRules =
+          roles.contains(AppRole.admin) || roles.contains(AppRole.hr);
       final todayStart = DateTime(
         DateTime.now().year,
         DateTime.now().month,
         DateTime.now().day,
       );
 
-      final approverRes = await _leaveRepo.getApprover();
-      final leaveTimeRes = await _leaveRepo.getLeaveTimeItem(
-        dateStart: todayStart,
-        employeeId: user.employeeId,
+      // ── 1. Đọc cache trước ──────────────────────────────────────────────
+      final cache = await LeaveRepository.getInitAddCache(
+        employeeId: employeeID,
+        log: _log,
       );
-      final employeeRes = await _leaveRepo.getEmployeeLeave();
-      BaseError? err;
-      List<ApproverItem> approvers = [];
-      List<LeaveTimeItem> leaveTimeItems = [];
-      List<EmployeeLeave> employeeItems = [];
+      final cachedApprovers = cache?.approvers ?? const [];
+      final cachedLeaveTime = cache?.leaveTime ?? const [];
+      final cachedEmployees = cache?.employees ?? const [];
+      final cachedApproveId = cache?.defaultApprover;
 
-      approverRes.fold(
-        (l) => err = l,
-        (r) => approvers = r,
-      );
-      if (err != null) {
-        _log.logE('❌ Get approver failed: $err');
-        emit(
-          state.copyWith(
-            status: BaseStateStatus.failed,
-            message: err!.getErrorMessage,
-          ),
-        );
-        return;
-      }
+      final hasApprovers = cachedApprovers.isNotEmpty;
+      final hasLeaveTime = cachedLeaveTime.isNotEmpty;
+      final hasEmployees = skipDateRules ? cachedEmployees.isNotEmpty : true;
 
-      leaveTimeRes.fold(
-        (l) => err = l,
-        (r) => leaveTimeItems = r,
+      _log.logI(
+        'ℹ️ initAdd cache: approvers=${cachedApprovers.length}, '
+        'leaveTime=${cachedLeaveTime.length}, '
+        'employees=${cachedEmployees.length}, '
+        'approveId=${cachedApproveId != null}, '
+        'skipDateRules=$skipDateRules',
       );
-      if (err != null) {
-        _log.logE('❌ Get leave time failed: $err');
-        emit(
-          state.copyWith(
-            status: BaseStateStatus.failed,
-            message: err!.getErrorMessage,
-          ),
-        );
-        return;
-      }
-      employeeRes.fold(
-            (l) => err = l,
-            (r) => employeeItems = r,
-      );
-      if (err != null) {
-        _log.logE('❌ Get employee failed: $err');
-        emit(
-          state.copyWith(
-            status: BaseStateStatus.failed,
-            message: err!.getErrorMessage,
-          ),
-        );
-        return;
-      }
 
-      _log.logI('✅ initAdd: approver + leaveTime + employee success');
+      // Emit cache ngay để UI hiển thị không loading.
       emit(
         state.copyWith(
           status: BaseStateStatus.success,
-          approvers: approvers,
-          leaveTime: leaveTimeItems,
-          employeeLeave: skipDateRules ? employeeItems : [],
-          employeeId: user.employeeId,
+          approvers: cachedApprovers,
+          leaveTime: cachedLeaveTime,
+          employeeLeave: skipDateRules ? cachedEmployees : [],
+          approveId: cachedApproveId,
+          employeeId: employeeID,
           loginName: user.loginName,
           departmentName: user.departmentName,
           employeeDisplayLine: '${user.code} - ${user.fullName}'.trim(),
           skipLeaveDateConstraints: skipDateRules,
         ),
       );
+
+      // ── 2. Backfill từ API nếu cache thiếu ───────────────────────────
+      final needApprovers = !hasApprovers;
+      final needLeaveTime = !hasLeaveTime;
+      final needEmployees = skipDateRules && !hasEmployees;
+      final needDefaultApprover = cachedApproveId == null;
+
+      if (needApprovers || needLeaveTime || needEmployees || needDefaultApprover) {
+        await _backfillInitAdd(
+          employeeId: employeeID,
+          todayStart: todayStart,
+          skipDateRules: skipDateRules,
+          needApprovers: needApprovers,
+          needLeaveTime: needLeaveTime,
+          needEmployees: needEmployees,
+          needDefaultApprover: needDefaultApprover,
+          existing: cache,
+          emit: emit,
+        );
+      }
+
+      _log.logI('✅ initAdd complete');
     } finally {
       _isInitAddInFlight = false;
     }
+  }
+
+  /// Backfill từng phần cache còn thiếu; ghi lại cache đầy đủ sau khi xong.
+  Future<void> _backfillInitAdd({
+    required int employeeId,
+    required DateTime todayStart,
+    required bool skipDateRules,
+    required bool needApprovers,
+    required bool needLeaveTime,
+    required bool needEmployees,
+    required bool needDefaultApprover,
+    required LeaveInitAddCache? existing,
+    required Emitter<LeaveState> emit,
+  }) async {
+    List<ApproverItem>? approvers;
+    List<LeaveTimeItem>? leaveTime;
+    List<EmployeeLeave>? employees;
+    FillApproverItem? defaultApprover;
+
+    if (needApprovers) {
+      final res = await _leaveRepo.getApprover();
+      res.fold(
+        (l) => _log.logE('❌ backfill getApprover failed: $l'),
+        (r) => approvers = r,
+      );
+    }
+
+    if (needLeaveTime) {
+      final res = await _leaveRepo.getLeaveTimeItem(
+        dateStart: todayStart,
+        employeeId: employeeId,
+      );
+      res.fold(
+        (l) => _log.logE('❌ backfill getLeaveTime failed: $l'),
+        (r) => leaveTime = r,
+      );
+    }
+
+    if (needEmployees) {
+      final res = await _leaveRepo.getEmployeeLeave();
+      res.fold(
+        (l) => _log.logE('❌ backfill getEmployeeLeave failed: $l'),
+        (r) => employees = r,
+      );
+    }
+
+    if (needDefaultApprover) {
+      final res = await _leaveRepo.getFillApprover(
+        employeeID: employeeId,
+        tableName: 'EmployeeOnLeave',
+      );
+      res.fold(
+        (l) => _log.logE('❌ backfill getFillApprover failed: $l'),
+        (r) => defaultApprover = r,
+      );
+    }
+
+    // Cập nhật state nếu còn mở.
+    if (!isClosed) {
+      emit(
+        state.copyWith(
+          approvers: approvers ?? state.approvers,
+          leaveTime: leaveTime ?? state.leaveTime,
+          employeeLeave: employees ?? state.employeeLeave,
+          approveId: defaultApprover ?? state.approveId,
+        ),
+      );
+    }
+
+    // Ghi lại cache đầy đủ.
+    await LeaveRepository.saveInitAddCache(
+      employeeId: employeeId,
+      approvers: approvers ?? existing?.approvers ?? const [],
+      leaveTime: leaveTime ?? existing?.leaveTime ?? const [],
+      employees: employees ?? existing?.employees ?? const [],
+      defaultApprover: defaultApprover ?? existing?.defaultApprover,
+      log: _log,
+    );
   }
 
   List<LeaveEditSlip> _pickDetailSlips({
@@ -537,6 +590,18 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
                 );
               },
                   (leaveTimeItem) async {
+                final roles = RoleResolver.resolve(user);
+
+                // Refresh cache để addScreen hiển thị ngay khi mở.
+                // Chạy song song, không block emit success.
+                unawaited(
+                  _refreshLeaveCache(
+                    employeeId: user.employeeId,
+                    roles: roles,
+                    todayStart: todayStart,
+                  ),
+                );
+
                 emit(
                   state.copyWith(
                     status: BaseStateStatus.success,
@@ -552,6 +617,68 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
           },
         );
       },
+    );
+  }
+
+  /// Background refresh cache (approvers / employees / leaveTime / default approver)
+  /// phục vụ màn Add. Không emit state, không fail màn List.
+  Future<void> _refreshLeaveCache({
+    required int employeeId,
+    required Set<AppRole> roles,
+    required DateTime todayStart,
+  }) async {
+    final skipDateRules =
+        roles.contains(AppRole.admin) || roles.contains(AppRole.hr);
+
+    List<ApproverItem>? approvers;
+    List<LeaveTimeItem>? leaveTime;
+    List<EmployeeLeave>? employees;
+    FillApproverItem? defaultApprover;
+
+    final approverRes = await _leaveRepo.getApprover();
+    approverRes.fold(
+      (l) => _log.logE('❌ refreshCache getApprover failed: $l'),
+      (r) => approvers = r,
+    );
+
+    final leaveTimeRes = await _leaveRepo.getLeaveTimeItem(
+      dateStart: todayStart,
+      employeeId: employeeId,
+    );
+    leaveTimeRes.fold(
+      (l) => _log.logE('❌ refreshCache getLeaveTime failed: $l'),
+      (r) => leaveTime = r,
+    );
+
+    if (skipDateRules) {
+      final employeeRes = await _leaveRepo.getEmployeeLeave();
+      employeeRes.fold(
+        (l) => _log.logE('❌ refreshCache getEmployeeLeave failed: $l'),
+        (r) => employees = r,
+      );
+    }
+
+    final fillApproverRes = await _leaveRepo.getFillApprover(
+      employeeID: employeeId,
+      tableName: 'EmployeeOnLeave',
+    );
+    fillApproverRes.fold(
+      (l) => _log.logE('❌ refreshCache getFillApprover failed: $l'),
+      (r) => defaultApprover = r,
+    );
+
+    if (approvers == null && leaveTime == null && employees == null) {
+      // Không có gì mới để ghi.
+      return;
+    }
+
+    await LeaveRepository.saveInitAddCache(
+      employeeId: employeeId,
+      approvers: approvers ?? const [],
+      leaveTime: leaveTime ?? const [],
+      employees: employees ?? const [],
+      defaultApprover: defaultApprover,
+      log: _log,
     );
   }
 

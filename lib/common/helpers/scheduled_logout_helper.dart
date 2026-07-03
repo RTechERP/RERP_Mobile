@@ -41,9 +41,9 @@ class AuthScheduledLogout {
     final today = AuthRepository.todayLocalDateString();
     if (anchor == today) return false;
 
-    log?.logI(
-      'Auth scheduled logout catch-up: anchor=$anchor today=$today → force logout',
-    );
+    // log?.logI(
+    //   'Auth scheduled logout catch-up: anchor=$anchor today=$today → force logout',
+    // );
     cancel();
     await _execute(log);
     return true;
@@ -55,9 +55,9 @@ class AuthScheduledLogout {
         ? testLogoutAfter
         : _delayUntilDailyCutoff();
     final at = DateTime.now().add(delay);
-    log?.logI(
-      'Auth scheduled logout: testMode=$authScheduledLogoutTestMode → fire at $at',
-    );
+    // log?.logI(
+    //   'Auth scheduled logout: testMode=$authScheduledLogoutTestMode → fire at $at',
+    // );
     _timer = Timer(delay, () => _run(log));
   }
 
@@ -82,7 +82,7 @@ class AuthScheduledLogout {
   }
 
   static Future<void> _execute(LogUtils? log) async {
-    log?.logI('Auth scheduled logout: executing');
+    // log?.logI('Auth scheduled logout: executing');
     await AuthRepository.clearAll(log: log);
     PermissionService.reset();
     AppRouter.router.go(RouteNames.login);

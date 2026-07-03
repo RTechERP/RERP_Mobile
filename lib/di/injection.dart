@@ -412,7 +412,11 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<LeaveBloc>(
-    () => LeaveBloc(getIt<LeaveRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
+    () => LeaveBloc(
+      getIt<LeaveRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
   );
 
   getIt.registerFactory<OvertimeBloc>(
