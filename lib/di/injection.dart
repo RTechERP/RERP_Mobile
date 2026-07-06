@@ -64,6 +64,10 @@ import '../features/workplace/app/reg_general/view/pages/work_category/data/data
 import '../features/workplace/app/reg_general/view/pages/work_category/data/repository/work_category_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/data/repository/work_category_repo_impl.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/view/bloc/work_category_bloc.dart';
+import '../features/workplace/app/general_form/data/datasource/service/general_form_service.dart';
+import '../features/workplace/app/general_form/data/repository/general_form_repo.dart';
+import '../features/workplace/app/general_form/data/repository/general_form_repo_impl.dart';
+import '../features/workplace/app/general_form/view/bloc/general_form_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/leave/data/datasource/service/leave_service.dart';
 import '../features/workplace/app/reg_work/view/pages/leave/data/repository/leave_repo.dart';
 import '../features/workplace/app/reg_work/view/pages/leave/data/repository/leave_repo_impl.dart';
@@ -239,6 +243,10 @@ void configureDependencies() {
     () => PollService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<GeneralFormService>(
+    () => GeneralFormService(getIt<Dio>()),
+  );
+
   getIt.registerLazySingleton<NewsfeedService>(
     () => NewsfeedService(getIt<Dio>()),
   );
@@ -340,6 +348,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<PollRepo>(
     () => PollRepoImpl(getIt<PollService>()),
+  );
+
+  getIt.registerLazySingleton<GeneralFormRepo>(
+    () => GeneralFormRepoImpl(getIt<GeneralFormService>()),
   );
 
   getIt.registerLazySingleton<NewsfeedRepo>(
@@ -562,6 +574,13 @@ void configureDependencies() {
     () => AccountantBloc(
       getIt<ReportRepo>(),
       getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<GeneralFormBloc>(
+    () => GeneralFormBloc(
+      getIt<GeneralFormRepo>(),
       getIt<LogUtils>(),
     ),
   );

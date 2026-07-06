@@ -214,4 +214,6 @@ class RouteNames {
   // Poll
   static const poll = '/poll';
   static const pollDetail = '/poll/detail';
+
+  // General Form
 }

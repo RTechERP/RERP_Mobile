@@ -376,4 +376,8 @@ class ApiEndPoint {
   static const String getNewsletterFileByNewsletterId =
       '/newsletter/get-newsletter-file-by-newsletterid';
   static const String getCalendar = '/Holiday';
+
+  // General Form
+  static const String departForm = '/document/get-departments';
+  static const String getGeneralForm = '/document/get-document-admin-sale';
 }

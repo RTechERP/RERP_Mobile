@@ -89,17 +89,19 @@ class _WorkPlaceScreenState
       return RouteNames.reportSaledepart;
     }
 
-    if (roles.contains(AppRole.tech)) {
+    if (roles.contains(AppRole.tech) ||
+        roles.contains(AppRole.agv) ||
+        roles.contains(AppRole.agv)) {
       return RouteNames.reportITdepart;
     }
 
-    if (roles.contains(AppRole.agv)) {
-      return RouteNames.reportAGVdepart;
-    }
-
-    if (roles.contains(AppRole.ad)) {
-      return RouteNames.reportADdepart;
-    }
+    // if (roles.contains(AppRole.agv)) {
+    //   return RouteNames.reportAGVdepart;
+    // }
+    //
+    // if (roles.contains(AppRole.ad)) {
+    //   return RouteNames.reportADdepart;
+    // }
 
     if (roles.contains(AppRole.marketing)) {
       return RouteNames.reportMarketingdepart;
@@ -191,13 +193,13 @@ class _WorkPlaceScreenState
                     expandable: true,
                     collapsedItemCount: 11,
                     items: [
-                      // AppItemModel(
-                      //   id: 'general_forms',
-                      //   iconCodePoint: Icons.file_copy_outlined.codePoint,
-                      //   name: 'applications.general_forms'.tr(),
-                      //   route: '/general_forms',
-                      //   imageUrl: AppImages.app_menu_general_form,
-                      // ),
+                      AppItemModel(
+                        id: 'general_forms',
+                        iconCodePoint: Icons.file_copy_outlined.codePoint,
+                        name: 'applications.general_forms'.tr(),
+                        route: RouteNames.generalforms,
+                        imageUrl: AppImages.app_menu_general_form,
+                      ),
                       AppItemModel(
                         id: 'reg_work',
                         iconCodePoint: Icons.person_pin_outlined.codePoint,
@@ -216,7 +218,7 @@ class _WorkPlaceScreenState
                         id: 'report',
                         iconCodePoint: Icons.description_outlined.codePoint,
                         name: 'applications.report'.tr(),
-                        route: '/report',
+                        route: RouteNames.report,
                         imageUrl: AppImages.app_menu_report,
                       ),
                       // AppItemModel(

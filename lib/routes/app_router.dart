@@ -35,6 +35,7 @@ import '../features/auth/view/pages/login_screen.dart';
 import '../features/dashboard/view/dashboard_screen.dart';
 import '../features/more/view/settings/notification/bloc/notification_bloc.dart';
 import '../features/more/view/settings/notification/page/notification_settings_screen.dart';
+import '../features/workplace/app/general_form/view/bloc/general_form_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_add_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_edit_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_detail_screen.dart';
@@ -115,6 +116,7 @@ import '../features/workplace/app/reg_work/view/pages/salary/view/pages/salary_m
 import '../features/workplace/app/reg_work/view/pages/salary/view/pages/timekeeping_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/salary/view/pages/forgot_pin_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/salary/view/pages/salary_card_detail_screen.dart';
+import '../features/workplace/app/general_form/view/pages/general_form_screen.dart';
 import '../features/workplace/app/reports/data/datasource/models/report_model.dart';
 import '../features/workplace/app/reports/view/accountant/view/bloc/accountant_bloc.dart';
 import '../features/workplace/app/reports/view/accountant/view/pages/accountant_add_screen.dart';
@@ -1261,6 +1263,22 @@ class AppRouter {
               }
               return PollDetailScreen(item: item);
             },
+          ),
+        ],
+      ),
+
+      // General Form
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(
+            value: getIt<GeneralFormBloc>(),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.generalforms,
+            builder: (context, state) => const GeneralFormScreen(),
           ),
         ],
       ),

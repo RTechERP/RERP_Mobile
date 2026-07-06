@@ -1,6 +1,6 @@
 class DepartmentGroups {
   /// ===== DEPARTMENT =====
-  static const tech = [2, 11, 12, 13, 24, 25, 26, 27, 9, 10];
+  static const tech = [2, 11, 12, 13, 24, 25, 26, 27];
   static const agv = [9, 10];
   static const lrtk = [23];
   static const sale = [3, 12, 28, 29, 30];
