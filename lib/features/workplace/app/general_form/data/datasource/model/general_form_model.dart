@@ -22,3 +22,18 @@ class FormItem with _$FormItem {
   factory FormItem.fromJson(Map<String, dynamic> json) =>
       _$FormItemFromJson(json);
 }
+
+@freezed
+class FormDetailItem with _$FormDetailItem {
+  const factory FormDetailItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'FileName') String? fileName,
+    @JsonKey(name: 'FilePath') String? filePath,
+    @JsonKey(name: 'DocumentID') int? documentId,
+    @JsonKey(name: 'FileNameOrigin') String? fileNameOrigin,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+  }) = _FormDetailItem;
+
+  factory FormDetailItem.fromJson(Map<String, dynamic> json) =>
+      _$FormDetailItemFromJson(json);
+}

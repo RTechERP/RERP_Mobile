@@ -16,4 +16,10 @@ class GeneralFormEvent with _$GeneralFormEvent {
   const factory GeneralFormEvent.changeKeyword({
     required String keyword,
   }) = _ChangeKeyword;
+  const factory GeneralFormEvent.fetchDetail({
+    required int documentId,
+  }) = _FetchDetail;
+  const factory GeneralFormEvent.downloadFile({
+    required String fileName,
+  }) = _DownloadFile;
 }

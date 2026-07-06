@@ -91,7 +91,7 @@ class _WorkPlaceScreenState
 
     if (roles.contains(AppRole.tech) ||
         roles.contains(AppRole.agv) ||
-        roles.contains(AppRole.agv)) {
+        roles.contains(AppRole.ad)) {
       return RouteNames.reportITdepart;
     }
 

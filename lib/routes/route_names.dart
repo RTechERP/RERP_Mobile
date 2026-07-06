@@ -216,4 +216,6 @@ class RouteNames {
   static const pollDetail = '/poll/detail';
 
   // General Form
+  static const generalForms = '/general_forms';
+  static const generalFormDetail = '/general_forms/detail';
 }

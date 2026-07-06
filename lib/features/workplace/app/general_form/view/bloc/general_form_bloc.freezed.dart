@@ -23,6 +23,8 @@ mixin _$GeneralFormEvent {
     required TResult Function(String? keyword, int? departmentId) search,
     required TResult Function(int departmentId) changeDepartment,
     required TResult Function(String keyword) changeKeyword,
+    required TResult Function(int documentId) fetchDetail,
+    required TResult Function(String fileName) downloadFile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +34,8 @@ mixin _$GeneralFormEvent {
     TResult? Function(String? keyword, int? departmentId)? search,
     TResult? Function(int departmentId)? changeDepartment,
     TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(int documentId)? fetchDetail,
+    TResult? Function(String fileName)? downloadFile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,6 +45,8 @@ mixin _$GeneralFormEvent {
     TResult Function(String? keyword, int? departmentId)? search,
     TResult Function(int departmentId)? changeDepartment,
     TResult Function(String keyword)? changeKeyword,
+    TResult Function(int documentId)? fetchDetail,
+    TResult Function(String fileName)? downloadFile,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -51,6 +57,8 @@ mixin _$GeneralFormEvent {
     required TResult Function(_Search value) search,
     required TResult Function(_ChangeDepartment value) changeDepartment,
     required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_FetchDetail value) fetchDetail,
+    required TResult Function(_DownloadFile value) downloadFile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +68,8 @@ mixin _$GeneralFormEvent {
     TResult? Function(_Search value)? search,
     TResult? Function(_ChangeDepartment value)? changeDepartment,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_FetchDetail value)? fetchDetail,
+    TResult? Function(_DownloadFile value)? downloadFile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +79,8 @@ mixin _$GeneralFormEvent {
     TResult Function(_Search value)? search,
     TResult Function(_ChangeDepartment value)? changeDepartment,
     TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_FetchDetail value)? fetchDetail,
+    TResult Function(_DownloadFile value)? downloadFile,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -134,6 +146,8 @@ class _$InitImpl implements _Init {
     required TResult Function(String? keyword, int? departmentId) search,
     required TResult Function(int departmentId) changeDepartment,
     required TResult Function(String keyword) changeKeyword,
+    required TResult Function(int documentId) fetchDetail,
+    required TResult Function(String fileName) downloadFile,
   }) {
     return init();
   }
@@ -146,6 +160,8 @@ class _$InitImpl implements _Init {
     TResult? Function(String? keyword, int? departmentId)? search,
     TResult? Function(int departmentId)? changeDepartment,
     TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(int documentId)? fetchDetail,
+    TResult? Function(String fileName)? downloadFile,
   }) {
     return init?.call();
   }
@@ -158,6 +174,8 @@ class _$InitImpl implements _Init {
     TResult Function(String? keyword, int? departmentId)? search,
     TResult Function(int departmentId)? changeDepartment,
     TResult Function(String keyword)? changeKeyword,
+    TResult Function(int documentId)? fetchDetail,
+    TResult Function(String fileName)? downloadFile,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -174,6 +192,8 @@ class _$InitImpl implements _Init {
     required TResult Function(_Search value) search,
     required TResult Function(_ChangeDepartment value) changeDepartment,
     required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_FetchDetail value) fetchDetail,
+    required TResult Function(_DownloadFile value) downloadFile,
   }) {
     return init(this);
   }
@@ -186,6 +206,8 @@ class _$InitImpl implements _Init {
     TResult? Function(_Search value)? search,
     TResult? Function(_ChangeDepartment value)? changeDepartment,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_FetchDetail value)? fetchDetail,
+    TResult? Function(_DownloadFile value)? downloadFile,
   }) {
     return init?.call(this);
   }
@@ -198,6 +220,8 @@ class _$InitImpl implements _Init {
     TResult Function(_Search value)? search,
     TResult Function(_ChangeDepartment value)? changeDepartment,
     TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_FetchDetail value)? fetchDetail,
+    TResult Function(_DownloadFile value)? downloadFile,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -282,6 +306,8 @@ class _$FetchByDepartmentImpl implements _FetchByDepartment {
     required TResult Function(String? keyword, int? departmentId) search,
     required TResult Function(int departmentId) changeDepartment,
     required TResult Function(String keyword) changeKeyword,
+    required TResult Function(int documentId) fetchDetail,
+    required TResult Function(String fileName) downloadFile,
   }) {
     return fetchByDepartment(departmentId);
   }
@@ -294,6 +320,8 @@ class _$FetchByDepartmentImpl implements _FetchByDepartment {
     TResult? Function(String? keyword, int? departmentId)? search,
     TResult? Function(int departmentId)? changeDepartment,
     TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(int documentId)? fetchDetail,
+    TResult? Function(String fileName)? downloadFile,
   }) {
     return fetchByDepartment?.call(departmentId);
   }
@@ -306,6 +334,8 @@ class _$FetchByDepartmentImpl implements _FetchByDepartment {
     TResult Function(String? keyword, int? departmentId)? search,
     TResult Function(int departmentId)? changeDepartment,
     TResult Function(String keyword)? changeKeyword,
+    TResult Function(int documentId)? fetchDetail,
+    TResult Function(String fileName)? downloadFile,
     required TResult orElse(),
   }) {
     if (fetchByDepartment != null) {
@@ -322,6 +352,8 @@ class _$FetchByDepartmentImpl implements _FetchByDepartment {
     required TResult Function(_Search value) search,
     required TResult Function(_ChangeDepartment value) changeDepartment,
     required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_FetchDetail value) fetchDetail,
+    required TResult Function(_DownloadFile value) downloadFile,
   }) {
     return fetchByDepartment(this);
   }
@@ -334,6 +366,8 @@ class _$FetchByDepartmentImpl implements _FetchByDepartment {
     TResult? Function(_Search value)? search,
     TResult? Function(_ChangeDepartment value)? changeDepartment,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_FetchDetail value)? fetchDetail,
+    TResult? Function(_DownloadFile value)? downloadFile,
   }) {
     return fetchByDepartment?.call(this);
   }
@@ -346,6 +380,8 @@ class _$FetchByDepartmentImpl implements _FetchByDepartment {
     TResult Function(_Search value)? search,
     TResult Function(_ChangeDepartment value)? changeDepartment,
     TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_FetchDetail value)? fetchDetail,
+    TResult Function(_DownloadFile value)? downloadFile,
     required TResult orElse(),
   }) {
     if (fetchByDepartment != null) {
@@ -443,6 +479,8 @@ class _$SearchImpl implements _Search {
     required TResult Function(String? keyword, int? departmentId) search,
     required TResult Function(int departmentId) changeDepartment,
     required TResult Function(String keyword) changeKeyword,
+    required TResult Function(int documentId) fetchDetail,
+    required TResult Function(String fileName) downloadFile,
   }) {
     return search(keyword, departmentId);
   }
@@ -455,6 +493,8 @@ class _$SearchImpl implements _Search {
     TResult? Function(String? keyword, int? departmentId)? search,
     TResult? Function(int departmentId)? changeDepartment,
     TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(int documentId)? fetchDetail,
+    TResult? Function(String fileName)? downloadFile,
   }) {
     return search?.call(keyword, departmentId);
   }
@@ -467,6 +507,8 @@ class _$SearchImpl implements _Search {
     TResult Function(String? keyword, int? departmentId)? search,
     TResult Function(int departmentId)? changeDepartment,
     TResult Function(String keyword)? changeKeyword,
+    TResult Function(int documentId)? fetchDetail,
+    TResult Function(String fileName)? downloadFile,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -483,6 +525,8 @@ class _$SearchImpl implements _Search {
     required TResult Function(_Search value) search,
     required TResult Function(_ChangeDepartment value) changeDepartment,
     required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_FetchDetail value) fetchDetail,
+    required TResult Function(_DownloadFile value) downloadFile,
   }) {
     return search(this);
   }
@@ -495,6 +539,8 @@ class _$SearchImpl implements _Search {
     TResult? Function(_Search value)? search,
     TResult? Function(_ChangeDepartment value)? changeDepartment,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_FetchDetail value)? fetchDetail,
+    TResult? Function(_DownloadFile value)? downloadFile,
   }) {
     return search?.call(this);
   }
@@ -507,6 +553,8 @@ class _$SearchImpl implements _Search {
     TResult Function(_Search value)? search,
     TResult Function(_ChangeDepartment value)? changeDepartment,
     TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_FetchDetail value)? fetchDetail,
+    TResult Function(_DownloadFile value)? downloadFile,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -598,6 +646,8 @@ class _$ChangeDepartmentImpl implements _ChangeDepartment {
     required TResult Function(String? keyword, int? departmentId) search,
     required TResult Function(int departmentId) changeDepartment,
     required TResult Function(String keyword) changeKeyword,
+    required TResult Function(int documentId) fetchDetail,
+    required TResult Function(String fileName) downloadFile,
   }) {
     return changeDepartment(departmentId);
   }
@@ -610,6 +660,8 @@ class _$ChangeDepartmentImpl implements _ChangeDepartment {
     TResult? Function(String? keyword, int? departmentId)? search,
     TResult? Function(int departmentId)? changeDepartment,
     TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(int documentId)? fetchDetail,
+    TResult? Function(String fileName)? downloadFile,
   }) {
     return changeDepartment?.call(departmentId);
   }
@@ -622,6 +674,8 @@ class _$ChangeDepartmentImpl implements _ChangeDepartment {
     TResult Function(String? keyword, int? departmentId)? search,
     TResult Function(int departmentId)? changeDepartment,
     TResult Function(String keyword)? changeKeyword,
+    TResult Function(int documentId)? fetchDetail,
+    TResult Function(String fileName)? downloadFile,
     required TResult orElse(),
   }) {
     if (changeDepartment != null) {
@@ -638,6 +692,8 @@ class _$ChangeDepartmentImpl implements _ChangeDepartment {
     required TResult Function(_Search value) search,
     required TResult Function(_ChangeDepartment value) changeDepartment,
     required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_FetchDetail value) fetchDetail,
+    required TResult Function(_DownloadFile value) downloadFile,
   }) {
     return changeDepartment(this);
   }
@@ -650,6 +706,8 @@ class _$ChangeDepartmentImpl implements _ChangeDepartment {
     TResult? Function(_Search value)? search,
     TResult? Function(_ChangeDepartment value)? changeDepartment,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_FetchDetail value)? fetchDetail,
+    TResult? Function(_DownloadFile value)? downloadFile,
   }) {
     return changeDepartment?.call(this);
   }
@@ -662,6 +720,8 @@ class _$ChangeDepartmentImpl implements _ChangeDepartment {
     TResult Function(_Search value)? search,
     TResult Function(_ChangeDepartment value)? changeDepartment,
     TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_FetchDetail value)? fetchDetail,
+    TResult Function(_DownloadFile value)? downloadFile,
     required TResult orElse(),
   }) {
     if (changeDepartment != null) {
@@ -750,6 +810,8 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     required TResult Function(String? keyword, int? departmentId) search,
     required TResult Function(int departmentId) changeDepartment,
     required TResult Function(String keyword) changeKeyword,
+    required TResult Function(int documentId) fetchDetail,
+    required TResult Function(String fileName) downloadFile,
   }) {
     return changeKeyword(keyword);
   }
@@ -762,6 +824,8 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult? Function(String? keyword, int? departmentId)? search,
     TResult? Function(int departmentId)? changeDepartment,
     TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(int documentId)? fetchDetail,
+    TResult? Function(String fileName)? downloadFile,
   }) {
     return changeKeyword?.call(keyword);
   }
@@ -774,6 +838,8 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult Function(String? keyword, int? departmentId)? search,
     TResult Function(int departmentId)? changeDepartment,
     TResult Function(String keyword)? changeKeyword,
+    TResult Function(int documentId)? fetchDetail,
+    TResult Function(String fileName)? downloadFile,
     required TResult orElse(),
   }) {
     if (changeKeyword != null) {
@@ -790,6 +856,8 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     required TResult Function(_Search value) search,
     required TResult Function(_ChangeDepartment value) changeDepartment,
     required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_FetchDetail value) fetchDetail,
+    required TResult Function(_DownloadFile value) downloadFile,
   }) {
     return changeKeyword(this);
   }
@@ -802,6 +870,8 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult? Function(_Search value)? search,
     TResult? Function(_ChangeDepartment value)? changeDepartment,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_FetchDetail value)? fetchDetail,
+    TResult? Function(_DownloadFile value)? downloadFile,
   }) {
     return changeKeyword?.call(this);
   }
@@ -814,6 +884,8 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult Function(_Search value)? search,
     TResult Function(_ChangeDepartment value)? changeDepartment,
     TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_FetchDetail value)? fetchDetail,
+    TResult Function(_DownloadFile value)? downloadFile,
     required TResult orElse(),
   }) {
     if (changeKeyword != null) {
@@ -830,5 +902,335 @@ abstract class _ChangeKeyword implements GeneralFormEvent {
   String get keyword;
   @JsonKey(ignore: true)
   _$$ChangeKeywordImplCopyWith<_$ChangeKeywordImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FetchDetailImplCopyWith<$Res> {
+  factory _$$FetchDetailImplCopyWith(
+          _$FetchDetailImpl value, $Res Function(_$FetchDetailImpl) then) =
+      __$$FetchDetailImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int documentId});
+}
+
+/// @nodoc
+class __$$FetchDetailImplCopyWithImpl<$Res>
+    extends _$GeneralFormEventCopyWithImpl<$Res, _$FetchDetailImpl>
+    implements _$$FetchDetailImplCopyWith<$Res> {
+  __$$FetchDetailImplCopyWithImpl(
+      _$FetchDetailImpl _value, $Res Function(_$FetchDetailImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? documentId = null,
+  }) {
+    return _then(_$FetchDetailImpl(
+      documentId: null == documentId
+          ? _value.documentId
+          : documentId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FetchDetailImpl implements _FetchDetail {
+  const _$FetchDetailImpl({required this.documentId});
+
+  @override
+  final int documentId;
+
+  @override
+  String toString() {
+    return 'GeneralFormEvent.fetchDetail(documentId: $documentId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FetchDetailImpl &&
+            (identical(other.documentId, documentId) ||
+                other.documentId == documentId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, documentId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FetchDetailImplCopyWith<_$FetchDetailImpl> get copyWith =>
+      __$$FetchDetailImplCopyWithImpl<_$FetchDetailImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(int departmentId) fetchByDepartment,
+    required TResult Function(String? keyword, int? departmentId) search,
+    required TResult Function(int departmentId) changeDepartment,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function(int documentId) fetchDetail,
+    required TResult Function(String fileName) downloadFile,
+  }) {
+    return fetchDetail(documentId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(int departmentId)? fetchByDepartment,
+    TResult? Function(String? keyword, int? departmentId)? search,
+    TResult? Function(int departmentId)? changeDepartment,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(int documentId)? fetchDetail,
+    TResult? Function(String fileName)? downloadFile,
+  }) {
+    return fetchDetail?.call(documentId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(int departmentId)? fetchByDepartment,
+    TResult Function(String? keyword, int? departmentId)? search,
+    TResult Function(int departmentId)? changeDepartment,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function(int documentId)? fetchDetail,
+    TResult Function(String fileName)? downloadFile,
+    required TResult orElse(),
+  }) {
+    if (fetchDetail != null) {
+      return fetchDetail(documentId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_FetchByDepartment value) fetchByDepartment,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ChangeDepartment value) changeDepartment,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_FetchDetail value) fetchDetail,
+    required TResult Function(_DownloadFile value) downloadFile,
+  }) {
+    return fetchDetail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_FetchByDepartment value)? fetchByDepartment,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ChangeDepartment value)? changeDepartment,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_FetchDetail value)? fetchDetail,
+    TResult? Function(_DownloadFile value)? downloadFile,
+  }) {
+    return fetchDetail?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_FetchByDepartment value)? fetchByDepartment,
+    TResult Function(_Search value)? search,
+    TResult Function(_ChangeDepartment value)? changeDepartment,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_FetchDetail value)? fetchDetail,
+    TResult Function(_DownloadFile value)? downloadFile,
+    required TResult orElse(),
+  }) {
+    if (fetchDetail != null) {
+      return fetchDetail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FetchDetail implements GeneralFormEvent {
+  const factory _FetchDetail({required final int documentId}) =
+      _$FetchDetailImpl;
+
+  int get documentId;
+  @JsonKey(ignore: true)
+  _$$FetchDetailImplCopyWith<_$FetchDetailImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DownloadFileImplCopyWith<$Res> {
+  factory _$$DownloadFileImplCopyWith(
+          _$DownloadFileImpl value, $Res Function(_$DownloadFileImpl) then) =
+      __$$DownloadFileImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String fileName});
+}
+
+/// @nodoc
+class __$$DownloadFileImplCopyWithImpl<$Res>
+    extends _$GeneralFormEventCopyWithImpl<$Res, _$DownloadFileImpl>
+    implements _$$DownloadFileImplCopyWith<$Res> {
+  __$$DownloadFileImplCopyWithImpl(
+      _$DownloadFileImpl _value, $Res Function(_$DownloadFileImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? fileName = null,
+  }) {
+    return _then(_$DownloadFileImpl(
+      fileName: null == fileName
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DownloadFileImpl implements _DownloadFile {
+  const _$DownloadFileImpl({required this.fileName});
+
+  @override
+  final String fileName;
+
+  @override
+  String toString() {
+    return 'GeneralFormEvent.downloadFile(fileName: $fileName)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DownloadFileImpl &&
+            (identical(other.fileName, fileName) ||
+                other.fileName == fileName));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, fileName);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DownloadFileImplCopyWith<_$DownloadFileImpl> get copyWith =>
+      __$$DownloadFileImplCopyWithImpl<_$DownloadFileImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(int departmentId) fetchByDepartment,
+    required TResult Function(String? keyword, int? departmentId) search,
+    required TResult Function(int departmentId) changeDepartment,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function(int documentId) fetchDetail,
+    required TResult Function(String fileName) downloadFile,
+  }) {
+    return downloadFile(fileName);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(int departmentId)? fetchByDepartment,
+    TResult? Function(String? keyword, int? departmentId)? search,
+    TResult? Function(int departmentId)? changeDepartment,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(int documentId)? fetchDetail,
+    TResult? Function(String fileName)? downloadFile,
+  }) {
+    return downloadFile?.call(fileName);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(int departmentId)? fetchByDepartment,
+    TResult Function(String? keyword, int? departmentId)? search,
+    TResult Function(int departmentId)? changeDepartment,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function(int documentId)? fetchDetail,
+    TResult Function(String fileName)? downloadFile,
+    required TResult orElse(),
+  }) {
+    if (downloadFile != null) {
+      return downloadFile(fileName);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_FetchByDepartment value) fetchByDepartment,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ChangeDepartment value) changeDepartment,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_FetchDetail value) fetchDetail,
+    required TResult Function(_DownloadFile value) downloadFile,
+  }) {
+    return downloadFile(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_FetchByDepartment value)? fetchByDepartment,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ChangeDepartment value)? changeDepartment,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_FetchDetail value)? fetchDetail,
+    TResult? Function(_DownloadFile value)? downloadFile,
+  }) {
+    return downloadFile?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_FetchByDepartment value)? fetchByDepartment,
+    TResult Function(_Search value)? search,
+    TResult Function(_ChangeDepartment value)? changeDepartment,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_FetchDetail value)? fetchDetail,
+    TResult Function(_DownloadFile value)? downloadFile,
+    required TResult orElse(),
+  }) {
+    if (downloadFile != null) {
+      return downloadFile(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DownloadFile implements GeneralFormEvent {
+  const factory _DownloadFile({required final String fileName}) =
+      _$DownloadFileImpl;
+
+  String get fileName;
+  @JsonKey(ignore: true)
+  _$$DownloadFileImplCopyWith<_$DownloadFileImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

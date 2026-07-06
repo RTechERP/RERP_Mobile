@@ -122,6 +122,20 @@ class GeneralFormCard extends StatelessWidget {
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                             ),
+                            if (item.code != null && item.code!.isNotEmpty) ...[
+                              const SizedBox(height: 4),
+                              Text(
+                                item.code!,
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.primaryERP,
+                                  height: 1.2,
+                                ),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ],
                             const SizedBox(height: 6),
                             // Date row
                             Row(

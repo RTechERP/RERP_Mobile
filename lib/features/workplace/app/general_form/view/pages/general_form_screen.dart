@@ -14,6 +14,7 @@ import 'package:rtc_erp/features/workplace/app/general_form/data/datasource/mode
 import 'package:rtc_erp/features/workplace/app/general_form/view/bloc/general_form_bloc.dart';
 import 'package:rtc_erp/features/workplace/app/general_form/view/widgets/general_form_card.dart';
 import 'package:rtc_erp/features/workplace/app/reports/data/datasource/models/report_model.dart';
+import 'package:rtc_erp/routes/route_names.dart';
 
 class GeneralFormScreen extends StatefulWidget {
   const GeneralFormScreen({super.key});
@@ -349,6 +350,13 @@ class _GeneralFormScreenState
             child: GeneralFormCard(
               item: items[i],
               onTap: () {
+                context.push(
+                  RouteNames.generalFormDetail,
+                  extra: {
+                    'documentId': items[i].id ?? 0,
+                    'documentName': items[i].nameDocument ?? 'Chi tiết biểu mẫu',
+                  },
+                );
               },
             ),
           );

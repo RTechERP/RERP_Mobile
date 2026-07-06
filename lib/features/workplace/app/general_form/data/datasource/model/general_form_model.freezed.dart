@@ -406,3 +406,269 @@ abstract class _FormItem implements FormItem {
   _$$FormItemImplCopyWith<_$FormItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+FormDetailItem _$FormDetailItemFromJson(Map<String, dynamic> json) {
+  return _FormDetailItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$FormDetailItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FileName')
+  String? get fileName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FilePath')
+  String? get filePath => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DocumentID')
+  int? get documentId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FileNameOrigin')
+  String? get fileNameOrigin => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $FormDetailItemCopyWith<FormDetailItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $FormDetailItemCopyWith<$Res> {
+  factory $FormDetailItemCopyWith(
+          FormDetailItem value, $Res Function(FormDetailItem) then) =
+      _$FormDetailItemCopyWithImpl<$Res, FormDetailItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'FileName') String? fileName,
+      @JsonKey(name: 'FilePath') String? filePath,
+      @JsonKey(name: 'DocumentID') int? documentId,
+      @JsonKey(name: 'FileNameOrigin') String? fileNameOrigin,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted});
+}
+
+/// @nodoc
+class _$FormDetailItemCopyWithImpl<$Res, $Val extends FormDetailItem>
+    implements $FormDetailItemCopyWith<$Res> {
+  _$FormDetailItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? fileName = freezed,
+    Object? filePath = freezed,
+    Object? documentId = freezed,
+    Object? fileNameOrigin = freezed,
+    Object? isDeleted = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fileName: freezed == fileName
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      filePath: freezed == filePath
+          ? _value.filePath
+          : filePath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      documentId: freezed == documentId
+          ? _value.documentId
+          : documentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fileNameOrigin: freezed == fileNameOrigin
+          ? _value.fileNameOrigin
+          : fileNameOrigin // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$FormDetailItemImplCopyWith<$Res>
+    implements $FormDetailItemCopyWith<$Res> {
+  factory _$$FormDetailItemImplCopyWith(_$FormDetailItemImpl value,
+          $Res Function(_$FormDetailItemImpl) then) =
+      __$$FormDetailItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'FileName') String? fileName,
+      @JsonKey(name: 'FilePath') String? filePath,
+      @JsonKey(name: 'DocumentID') int? documentId,
+      @JsonKey(name: 'FileNameOrigin') String? fileNameOrigin,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted});
+}
+
+/// @nodoc
+class __$$FormDetailItemImplCopyWithImpl<$Res>
+    extends _$FormDetailItemCopyWithImpl<$Res, _$FormDetailItemImpl>
+    implements _$$FormDetailItemImplCopyWith<$Res> {
+  __$$FormDetailItemImplCopyWithImpl(
+      _$FormDetailItemImpl _value, $Res Function(_$FormDetailItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? fileName = freezed,
+    Object? filePath = freezed,
+    Object? documentId = freezed,
+    Object? fileNameOrigin = freezed,
+    Object? isDeleted = freezed,
+  }) {
+    return _then(_$FormDetailItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fileName: freezed == fileName
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      filePath: freezed == filePath
+          ? _value.filePath
+          : filePath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      documentId: freezed == documentId
+          ? _value.documentId
+          : documentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fileNameOrigin: freezed == fileNameOrigin
+          ? _value.fileNameOrigin
+          : fileNameOrigin // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$FormDetailItemImpl implements _FormDetailItem {
+  const _$FormDetailItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'FileName') this.fileName,
+      @JsonKey(name: 'FilePath') this.filePath,
+      @JsonKey(name: 'DocumentID') this.documentId,
+      @JsonKey(name: 'FileNameOrigin') this.fileNameOrigin,
+      @JsonKey(name: 'IsDeleted') this.isDeleted});
+
+  factory _$FormDetailItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$FormDetailItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'FileName')
+  final String? fileName;
+  @override
+  @JsonKey(name: 'FilePath')
+  final String? filePath;
+  @override
+  @JsonKey(name: 'DocumentID')
+  final int? documentId;
+  @override
+  @JsonKey(name: 'FileNameOrigin')
+  final String? fileNameOrigin;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  final bool? isDeleted;
+
+  @override
+  String toString() {
+    return 'FormDetailItem(id: $id, fileName: $fileName, filePath: $filePath, documentId: $documentId, fileNameOrigin: $fileNameOrigin, isDeleted: $isDeleted)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FormDetailItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.fileName, fileName) ||
+                other.fileName == fileName) &&
+            (identical(other.filePath, filePath) ||
+                other.filePath == filePath) &&
+            (identical(other.documentId, documentId) ||
+                other.documentId == documentId) &&
+            (identical(other.fileNameOrigin, fileNameOrigin) ||
+                other.fileNameOrigin == fileNameOrigin) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, fileName, filePath,
+      documentId, fileNameOrigin, isDeleted);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FormDetailItemImplCopyWith<_$FormDetailItemImpl> get copyWith =>
+      __$$FormDetailItemImplCopyWithImpl<_$FormDetailItemImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$FormDetailItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _FormDetailItem implements FormDetailItem {
+  const factory _FormDetailItem(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'FileName') final String? fileName,
+          @JsonKey(name: 'FilePath') final String? filePath,
+          @JsonKey(name: 'DocumentID') final int? documentId,
+          @JsonKey(name: 'FileNameOrigin') final String? fileNameOrigin,
+          @JsonKey(name: 'IsDeleted') final bool? isDeleted}) =
+      _$FormDetailItemImpl;
+
+  factory _FormDetailItem.fromJson(Map<String, dynamic> json) =
+      _$FormDetailItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'FileName')
+  String? get fileName;
+  @override
+  @JsonKey(name: 'FilePath')
+  String? get filePath;
+  @override
+  @JsonKey(name: 'DocumentID')
+  int? get documentId;
+  @override
+  @JsonKey(name: 'FileNameOrigin')
+  String? get fileNameOrigin;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted;
+  @override
+  @JsonKey(ignore: true)
+  _$$FormDetailItemImplCopyWith<_$FormDetailItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

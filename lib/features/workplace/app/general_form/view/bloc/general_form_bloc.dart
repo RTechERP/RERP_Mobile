@@ -1,13 +1,14 @@
 import 'package:bloc/bloc.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:file_saver/file_saver.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rtc_erp/base/bloc/index.dart';
 import 'package:rtc_erp/base/network/errors/extension.dart';
 import 'package:rtc_erp/common/logger/index.dart';
-import 'package:rtc_erp/features/workplace/app/reports/data/datasource/models/report_model.dart';
-import 'package:rtc_erp/features/workplace/app/general_form/data/repository/general_form_repo.dart';
 import 'package:rtc_erp/features/workplace/app/general_form/data/datasource/model/general_form_model.dart';
+import 'package:rtc_erp/features/workplace/app/general_form/data/repository/general_form_repo.dart';
+import 'package:rtc_erp/features/workplace/app/reports/data/datasource/models/report_model.dart';
 
 part 'general_form_event.dart';
 part 'general_form_state.dart';
@@ -33,6 +34,9 @@ class GeneralFormBloc extends BaseBloc<GeneralFormEvent, GeneralFormState> {
         changeDepartment: (departmentId) =>
             _onChangeDepartment(emit, departmentId: departmentId),
         changeKeyword: (keyword) => _onChangeKeyword(emit, keyword: keyword),
+        fetchDetail: (documentId) => _onFetchDetail(emit, documentId: documentId),
+        downloadFile: (fileName) =>
+            _onDownloadFile(emit, fileName: fileName),
       );
     });
   }
@@ -215,5 +219,96 @@ class GeneralFormBloc extends BaseBloc<GeneralFormEvent, GeneralFormState> {
 
   Future<void> _onChangeKeyword(Emitter<GeneralFormState> emit, {required String keyword}) async {
     emit(state.copyWith(searchKeyword: keyword));
+  }
+
+  Future<void> _onFetchDetail(Emitter<GeneralFormState> emit, {required int documentId}) async {
+    emit(state.copyWith(isDetailLoading: true));
+
+    final res = await _generalFormRepo.getDocumentFile(documentId: documentId);
+
+    await res.fold(
+      (l) async {
+        _log.logE('❌ GeneralFormBloc _onFetchDetail API failed: $l');
+        emit(state.copyWith(
+          isDetailLoading: false,
+        ));
+      },
+      (r) async {
+        _log.logI('✅ GeneralFormBloc _onFetchDetail success, files: ${r.length}');
+        emit(state.copyWith(
+          isDetailLoading: false,
+          detailFiles: r,
+        ));
+      },
+    );
+  }
+
+  Future<void> _onDownloadFile(Emitter<GeneralFormState> emit, {required String fileName}) async {
+    emit(state.copyWith(isDownloading: true));
+
+    final res = await _generalFormRepo.downloadFile(
+      key: 'Document',
+      fileName: fileName,
+    );
+
+    await res.fold(
+      (l) async {
+        _log.logE('❌ GeneralFormBloc _onDownloadFile failed: $l');
+        emit(state.copyWith(
+          isDownloading: false,
+          downloadMessage: l.getErrorMessage,
+        ));
+      },
+      (bytes) async {
+        if (bytes.isEmpty) {
+          _log.logE('❌ GeneralFormBloc _onDownloadFile: file empty');
+          emit(state.copyWith(
+            isDownloading: false,
+            downloadMessage: 'File rỗng',
+          ));
+          return;
+        }
+
+        final sanitizedFileName = fileName.replaceAll('/', '_');
+        final dotIndex = sanitizedFileName.lastIndexOf('.');
+        final name = dotIndex > 0 ? sanitizedFileName.substring(0, dotIndex) : sanitizedFileName;
+        final extension = dotIndex > 0 ? sanitizedFileName.substring(dotIndex + 1) : '';
+
+        await FileSaver.instance.saveFile(
+          name: name,
+          bytes: bytes,
+          mimeType: _mimeTypeFromExtension(extension),
+        );
+
+        _log.logI('✅ GeneralFormBloc _onDownloadFile success: $fileName');
+        emit(state.copyWith(
+          isDownloading: false,
+          downloadMessage: 'Tải file thành công',
+        ));
+      },
+    );
+  }
+
+  MimeType _mimeTypeFromExtension(String extension) {
+    switch (extension.toLowerCase()) {
+      case 'pdf':
+        return MimeType.pdf;
+      case 'doc':
+      case 'docx':
+        return MimeType.microsoftWord;
+      case 'xls':
+      case 'xlsx':
+        return MimeType.microsoftExcel;
+      case 'png':
+        return MimeType.png;
+      case 'jpg':
+      case 'jpeg':
+        return MimeType.jpeg;
+      case 'ppt':
+      case 'pptx':
+        return MimeType.microsoftPresentation;
+      default:
+        return MimeType.other;
+    }
   }
 }

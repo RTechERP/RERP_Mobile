@@ -117,6 +117,7 @@ import '../features/workplace/app/reg_work/view/pages/salary/view/pages/timekeep
 import '../features/workplace/app/reg_work/view/pages/salary/view/pages/forgot_pin_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/salary/view/pages/salary_card_detail_screen.dart';
 import '../features/workplace/app/general_form/view/pages/general_form_screen.dart';
+import '../features/workplace/app/general_form/view/pages/general_form_detail_screen.dart';
 import '../features/workplace/app/reports/data/datasource/models/report_model.dart';
 import '../features/workplace/app/reports/view/accountant/view/bloc/accountant_bloc.dart';
 import '../features/workplace/app/reports/view/accountant/view/pages/accountant_add_screen.dart';
@@ -1279,6 +1280,18 @@ class AppRouter {
           GoRoute(
             path: RouteNames.generalforms,
             builder: (context, state) => const GeneralFormScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.generalFormDetail,
+            builder: (context, state) {
+              final extra = state.extra as Map<String, dynamic>?;
+              final documentId = extra?['documentId'] as int? ?? 0;
+              final documentName = extra?['documentName'] as String? ?? 'Chi tiết biểu mẫu';
+              return GeneralFormDetailScreen(
+                documentId: documentId,
+                documentName: documentName,
+              );
+            },
           ),
         ],
       ),

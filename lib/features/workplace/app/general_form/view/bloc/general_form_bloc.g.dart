@@ -19,6 +19,14 @@ abstract class _$GeneralFormStateCWProxy {
 
   GeneralFormState searchKeyword(String searchKeyword);
 
+  GeneralFormState detailFiles(List<FormDetailItem> detailFiles);
+
+  GeneralFormState isDetailLoading(bool isDetailLoading);
+
+  GeneralFormState isDownloading(bool isDownloading);
+
+  GeneralFormState downloadMessage(String? downloadMessage);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GeneralFormState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -32,6 +40,10 @@ abstract class _$GeneralFormStateCWProxy {
     List<DepartResponse>? departments,
     int? selectedDepartmentId,
     String? searchKeyword,
+    List<FormDetailItem>? detailFiles,
+    bool? isDetailLoading,
+    bool? isDownloading,
+    String? downloadMessage,
   });
 }
 
@@ -64,6 +76,22 @@ class _$GeneralFormStateCWProxyImpl implements _$GeneralFormStateCWProxy {
       this(searchKeyword: searchKeyword);
 
   @override
+  GeneralFormState detailFiles(List<FormDetailItem> detailFiles) =>
+      this(detailFiles: detailFiles);
+
+  @override
+  GeneralFormState isDetailLoading(bool isDetailLoading) =>
+      this(isDetailLoading: isDetailLoading);
+
+  @override
+  GeneralFormState isDownloading(bool isDownloading) =>
+      this(isDownloading: isDownloading);
+
+  @override
+  GeneralFormState downloadMessage(String? downloadMessage) =>
+      this(downloadMessage: downloadMessage);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GeneralFormState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -78,6 +106,10 @@ class _$GeneralFormStateCWProxyImpl implements _$GeneralFormStateCWProxy {
     Object? departments = const $CopyWithPlaceholder(),
     Object? selectedDepartmentId = const $CopyWithPlaceholder(),
     Object? searchKeyword = const $CopyWithPlaceholder(),
+    Object? detailFiles = const $CopyWithPlaceholder(),
+    Object? isDetailLoading = const $CopyWithPlaceholder(),
+    Object? isDownloading = const $CopyWithPlaceholder(),
+    Object? downloadMessage = const $CopyWithPlaceholder(),
   }) {
     return GeneralFormState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -106,6 +138,25 @@ class _$GeneralFormStateCWProxyImpl implements _$GeneralFormStateCWProxy {
               ? _value.searchKeyword
               // ignore: cast_nullable_to_non_nullable
               : searchKeyword as String,
+      detailFiles:
+          detailFiles == const $CopyWithPlaceholder() || detailFiles == null
+              ? _value.detailFiles
+              // ignore: cast_nullable_to_non_nullable
+              : detailFiles as List<FormDetailItem>,
+      isDetailLoading: isDetailLoading == const $CopyWithPlaceholder() ||
+              isDetailLoading == null
+          ? _value.isDetailLoading
+          // ignore: cast_nullable_to_non_nullable
+          : isDetailLoading as bool,
+      isDownloading:
+          isDownloading == const $CopyWithPlaceholder() || isDownloading == null
+              ? _value.isDownloading
+              // ignore: cast_nullable_to_non_nullable
+              : isDownloading as bool,
+      downloadMessage: downloadMessage == const $CopyWithPlaceholder()
+          ? _value.downloadMessage
+          // ignore: cast_nullable_to_non_nullable
+          : downloadMessage as String?,
     );
   }
 }

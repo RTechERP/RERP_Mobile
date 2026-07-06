@@ -39,3 +39,24 @@ Map<String, dynamic> _$$FormItemImplToJson(_$FormItemImpl instance) =>
       'DepartmentID': instance.departmentId,
       'DepartmentCode1': instance.departmentCode1,
     };
+
+_$FormDetailItemImpl _$$FormDetailItemImplFromJson(Map<String, dynamic> json) =>
+    _$FormDetailItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      fileName: json['FileName'] as String?,
+      filePath: json['FilePath'] as String?,
+      documentId: (json['DocumentID'] as num?)?.toInt(),
+      fileNameOrigin: json['FileNameOrigin'] as String?,
+      isDeleted: json['IsDeleted'] as bool?,
+    );
+
+Map<String, dynamic> _$$FormDetailItemImplToJson(
+        _$FormDetailItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'FileName': instance.fileName,
+      'FilePath': instance.filePath,
+      'DocumentID': instance.documentId,
+      'FileNameOrigin': instance.fileNameOrigin,
+      'IsDeleted': instance.isDeleted,
+    };

@@ -7,6 +7,14 @@ class GeneralFormState extends BaseBlocState {
   final int? selectedDepartmentId;
   final String searchKeyword;
 
+  // Detail state
+  final List<FormDetailItem> detailFiles;
+  final bool isDetailLoading;
+
+  // Download state
+  final bool isDownloading;
+  final String? downloadMessage;
+
   const GeneralFormState({
     required super.status,
     super.message,
@@ -14,6 +22,10 @@ class GeneralFormState extends BaseBlocState {
     this.departments = const [],
     this.selectedDepartmentId,
     this.searchKeyword = '',
+    this.detailFiles = const [],
+    this.isDetailLoading = false,
+    this.isDownloading = false,
+    this.downloadMessage,
   });
 
   factory GeneralFormState.init() => const GeneralFormState(
@@ -22,6 +34,10 @@ class GeneralFormState extends BaseBlocState {
         departments: [],
         selectedDepartmentId: null,
         searchKeyword: '',
+        detailFiles: [],
+        isDetailLoading: false,
+        isDownloading: false,
+        downloadMessage: null,
       );
 
   List<FormItem> get filteredItems {
@@ -59,5 +75,16 @@ class GeneralFormState extends BaseBlocState {
   }
 
   @override
-  List get props => [status, message, formItems, departments, selectedDepartmentId, searchKeyword];
+  List get props => [
+        status,
+        message,
+        formItems,
+        departments,
+        selectedDepartmentId,
+        searchKeyword,
+        detailFiles,
+        isDetailLoading,
+        isDownloading,
+        downloadMessage,
+      ];
 }
