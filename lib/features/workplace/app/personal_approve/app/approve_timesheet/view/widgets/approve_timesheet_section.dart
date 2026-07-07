@@ -424,83 +424,50 @@ class _Pipeline extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final stages = ApproveTimesheetStages.fromItem(item);
-    if (!showSeniorStage) {
-      return Row(
-        children: [
-          _PipelineStage(
-            label: 'HR',
-            shortLabel: 'H',
-            state: stages.hr,
-            statusText: item.statusHRText,
-          ),
-          _PipelineConnector(approved: stages.hr == ApproveTimesheetStageState.approved),
-          _PipelineStage(
-            label: 'TBP',
-            shortLabel: 'T',
-            state: stages.tbp,
-            statusText: item.statusText,
-          ),
-          _PipelineConnector(approved: stages.tbp == ApproveTimesheetStageState.approved),
-          _PipelineStage(
-            label: 'BGD',
-            shortLabel: 'B',
-            state: stages.bgd,
-            statusText: item.statusBGDText,
-          ),
-        ],
-      );
-    }
-    return Row(
+    final stageConfigs = [
+      _StageConfig(label: 'Senior', state: stages.senior, statusText: item.isSeniorApprovedText),
+      _StageConfig(label: 'HR', state: stages.hr, statusText: item.statusHRText),
+      _StageConfig(label: 'TBP', state: stages.tbp, statusText: item.statusText),
+      _StageConfig(label: 'BGĐ', state: stages.bgd, statusText: item.statusBGDText),
+    ];
+    return Wrap(
+      spacing: 6,
+      runSpacing: 4,
+      crossAxisAlignment: WrapCrossAlignment.center,
       children: [
-        _PipelineStage(
-          label: 'Senior',
-          shortLabel: 'S',
-          state: stages.senior,
-          statusText: item.isSeniorApprovedText,
-        ),
-        _PipelineConnector(approved: stages.senior == ApproveTimesheetStageState.approved),
-        _PipelineStage(
-          label: 'HR',
-          shortLabel: 'H',
-          state: stages.hr,
-          statusText: item.statusHRText,
-        ),
-        _PipelineConnector(approved: stages.hr == ApproveTimesheetStageState.approved),
-        _PipelineStage(
-          label: 'TBP',
-          shortLabel: 'T',
-          state: stages.tbp,
-          statusText: item.statusText,
-        ),
-        _PipelineConnector(approved: stages.tbp == ApproveTimesheetStageState.approved),
-        _PipelineStage(
-          label: 'BGD',
-          shortLabel: 'B',
-          state: stages.bgd,
-          statusText: item.statusBGDText,
-        ),
+        for (var i = 0; i < stageConfigs.length; i++) ...[
+          if (i > 0)
+            Container(
+              width: 12,
+              height: 1.5,
+              color: AppColors.gray.withValues(alpha: 0.4),
+            ),
+          _PipelineStage(config: stageConfigs[i]),
+        ],
       ],
     );
   }
 }
 
-class _PipelineStage extends StatelessWidget {
-  const _PipelineStage({
+class _StageConfig {
+  const _StageConfig({
     required this.label,
-    required this.shortLabel,
     required this.state,
-    required this.statusText,
+    this.statusText,
   });
 
   final String label;
-  final String shortLabel;
   final ApproveTimesheetStageState state;
   final String? statusText;
+}
 
-  bool get isPending => state == ApproveTimesheetStageState.pending;
+class _PipelineStage extends StatelessWidget {
+  const _PipelineStage({required this.config});
+
+  final _StageConfig config;
 
   Color get _color {
-    switch (state) {
+    switch (config.state) {
       case ApproveTimesheetStageState.approved:
         return AppColors.stateSuccessColor;
       case ApproveTimesheetStageState.declined:
@@ -510,51 +477,33 @@ class _PipelineStage extends StatelessWidget {
     }
   }
 
+  String get _statusText => config.statusText?.trim().isNotEmpty == true
+      ? config.statusText!
+      : config.state == ApproveTimesheetStageState.approved
+          ? "Đã duyệt"
+          : config.state == ApproveTimesheetStageState.declined
+              ? "Không duyệt"
+              : "Chờ duyệt";
+
   @override
   Widget build(BuildContext context) {
-    final color = _color;
-    final tooltipMsg = statusText?.trim().isNotEmpty == true
-        ? '$label - $statusText'
-        : '$label - ${state == ApproveTimesheetStageState.approved ? "Đã duyệt" : state == ApproveTimesheetStageState.declined ? "Không duyệt" : "Chờ duyệt"}';
     return Tooltip(
-      message: tooltipMsg,
+      message: '${config.label} - $_statusText',
       child: Container(
-        width: 22,
-        height: 22,
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         decoration: BoxDecoration(
-          color: isPending
-              ? AppColors.stateWarningColor.withValues(alpha: 0.15)
-              : color.withValues(alpha: 0.15),
-          shape: BoxShape.circle,
-          border: Border.all(color: color, width: 1.2),
+          color: _color.withValues(alpha: 0.15),
+          borderRadius: BorderRadius.circular(6),
+          border: Border.all(color: _color, width: 1.2),
         ),
-        child: Center(
-          child: Text(
-            shortLabel,
-            style: TextStyle(
-              fontSize: 9,
-              fontWeight: FontWeight.w700,
-              color: color,
-            ),
+        child: Text(
+          config.label,
+          style: TextStyle(
+            fontSize: 10,
+            fontWeight: FontWeight.w700,
+            color: _color,
           ),
         ),
-      ),
-    );
-  }
-}
-
-class _PipelineConnector extends StatelessWidget {
-  const _PipelineConnector({required this.approved});
-
-  final bool approved;
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        height: 1.5,
-        margin: const EdgeInsets.symmetric(horizontal: 4),
-        color: AppColors.gray.withValues(alpha: 0.3),
       ),
     );
   }

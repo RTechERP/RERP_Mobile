@@ -19,6 +19,10 @@ class ApproveTimesheetState extends BaseBlocState {
   /// Tập `tType` đang được filter hiển thị. Rỗng/không có → hiển thị tất cả nhóm.
   final Set<int> filteredTTypes;
 
+  /// Filter trạng thái duyệt TBP (chỉ dùng cho TBP).
+  /// null = tất cả, 0 = chưa duyệt, 1 = đã duyệt.
+  final int? filteredStatus;
+
   /// ID của Senior (dùng khi gửi duyệt/từ chối).
   final int? seniorId;
 
@@ -45,6 +49,7 @@ class ApproveTimesheetState extends BaseBlocState {
     this.isSeniorApproving = false,
     this.tbpApproverEmployeeId,
     this.isTbpApproving = false,
+    this.filteredStatus,
   });
 
   factory ApproveTimesheetState.init() => const ApproveTimesheetState(
@@ -112,5 +117,6 @@ class ApproveTimesheetState extends BaseBlocState {
         isSeniorApproving,
         tbpApproverEmployeeId,
         isTbpApproving,
+        filteredStatus,
       ];
 }

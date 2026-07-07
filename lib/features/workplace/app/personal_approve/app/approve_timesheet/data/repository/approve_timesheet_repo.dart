@@ -32,14 +32,14 @@ abstract class ApproveTimesheetRepo{
   // Duyệt / huỷ duyệt hàng loạt (TBP)
   Future<Either<BaseError, bool>> approveTBP({
     required List<ApproveTimesheetItem> items,
-    required int approverEmployeeId,
     required bool isApproved,
+    int? approverEmployeeId,
   });
 
   // TBP từ chối hàng loạt kèm lý do (ghi DecilineApprove + ReasonDeciline).
   Future<Either<BaseError, bool>> declineTBP({
     required List<ApproveTimesheetItem> items,
-    required int approverEmployeeId,
     required String reason,
+    int? approverEmployeeId,
   });
 }

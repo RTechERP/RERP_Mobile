@@ -26,7 +26,7 @@ class ApproveTimesheetBloc
       : super(ApproveTimesheetState.init()) {
     on<ApproveTimesheetEvent>((event, emit) async {
       await event.when(
-        init: (role, employeeId) => _onInit(emit, role, employeeId),
+        init: (role, employeeId, status) => _onInit(emit, role, employeeId, status),
         toggleSelectionMode: () => _onToggleSelectionMode(emit),
         toggleSelection: (id) => _onToggleSelection(emit, id),
         toggleSelectGroup: (tType) => _onToggleSelectGroup(emit, tType),
@@ -34,6 +34,7 @@ class ApproveTimesheetBloc
         setSelectionByTypes: (tTypes) =>
             _onSetSelectionByTypes(emit, tTypes),
         setFilterTTypes: (tTypes) => _onSetFilterTTypes(emit, tTypes),
+        setFilterStatus: (status) => _onSetFilterStatus(emit, status),
         clearSelection: () => _onClearSelection(emit),
         seniorApprove: () => _onSeniorApprove(emit),
         seniorUnapprove: () => _onSeniorUnapprove(emit),
@@ -41,8 +42,8 @@ class ApproveTimesheetBloc
         tbpApprove: () => _onTbpApprove(emit),
         tbpUnapprove: () => _onTbpUnapprove(emit),
         tbpDecline: (reason) => _onTbpDecline(emit, reason),
-        tbpSeniorBypassApprove: (items) =>
-            _onTbpSeniorBypassApprove(emit, items),
+        tbpSeniorBypassApprove: (items, isApproved) =>
+            _onTbpSeniorBypassApprove(emit, items, isApproved),
       );
     });
   }
@@ -51,10 +52,12 @@ class ApproveTimesheetBloc
     Emitter<ApproveTimesheetState> emit,
     ApproveTimesheetRole role,
     int? employeeId,
+    int? status,
   ) async {
     emit(state.copyWith(
       status: BaseStateStatus.loading,
       role: role,
+      filteredStatus: status,
     ));
 
     if (role == ApproveTimesheetRole.tbp) {
@@ -169,6 +172,7 @@ class ApproveTimesheetBloc
   Map<String, dynamic> _buildApprovePayload({
     required int seniorId,
     required int approvedTpEmployeeId,
+    int? status,
   }) {
     final now = DateTime.now();
     final startOfMonth = DateTime(now.year, now.month, 1);
@@ -178,7 +182,7 @@ class ApproveTimesheetBloc
       "DateStart": startOfMonth.toUtc().toIso8601String(),
       "DateEnd": endOfMonth.toUtc().toIso8601String(),
       "IDApprovedTP": approvedTpEmployeeId,
-      "Status": 0,
+      "Status": status ?? -1,
       "DeleteFlag": 0,
       "EmployeeID": 0,
       "TType": 0,
@@ -233,8 +237,8 @@ class ApproveTimesheetBloc
     emit(state.copyWith(isTbpApproving: true));
     final result = await _approveTimesheetRepo.approveTBP(
       items: state.selectedItems,
-      approverEmployeeId: state.tbpApproverEmployeeId!,
       isApproved: true,
+      approverEmployeeId: state.tbpApproverEmployeeId,
     );
     _onBatchResult(emit, result, isSeniorFlow: false);
   }
@@ -246,8 +250,8 @@ class ApproveTimesheetBloc
     emit(state.copyWith(isTbpApproving: true));
     final result = await _approveTimesheetRepo.approveTBP(
       items: state.selectedItems,
-      approverEmployeeId: state.tbpApproverEmployeeId!,
       isApproved: false,
+      approverEmployeeId: state.tbpApproverEmployeeId,
     );
     _onBatchResult(emit, result, isSeniorFlow: false);
   }
@@ -262,17 +266,18 @@ class ApproveTimesheetBloc
     emit(state.copyWith(isTbpApproving: true));
     final result = await _approveTimesheetRepo.declineTBP(
       items: state.selectedItems,
-      approverEmployeeId: state.tbpApproverEmployeeId!,
       reason: reason,
+      approverEmployeeId: state.tbpApproverEmployeeId,
     );
     _onBatchResult(emit, result, isSeniorFlow: false);
   }
 
   /// Bypass Senior: duyệt Senior hộ cho các phiếu user chọn (chưa Senior duyệt)
-  /// → submit `/approve-senior-new` với IsSeniorApproved=true. Reload danh sách.
+  /// → submit `/approve-senior-new` với IsSeniorApproved=true → reload → submit TBP approve.
   Future<void> _onTbpSeniorBypassApprove(
     Emitter<ApproveTimesheetState> emit,
     List<ApproveTimesheetItem> items,
+    bool isApproved,
   ) async {
     if (state.seniorId == null || items.isEmpty) return;
     emit(state.copyWith(isTbpApproving: true));
@@ -281,7 +286,22 @@ class ApproveTimesheetBloc
       isApproved: true,
       seniorId: state.seniorId!,
     );
-    _onBatchResult(emit, result, isSeniorFlow: false);
+    result.fold(
+      (error) => emit(state.copyWith(
+        isTbpApproving: false,
+        status: BaseStateStatus.failed,
+        message: error.getErrorMessage,
+      )),
+      (_) async {
+        // Sau khi bypass thành công, submit TBP approve/unapprove
+        final tbpResult = await _approveTimesheetRepo.approveTBP(
+          items: items,
+          isApproved: isApproved,
+          approverEmployeeId: state.tbpApproverEmployeeId,
+        );
+        _onBatchResult(emit, tbpResult, isSeniorFlow: false);
+      },
+    );
   }
 
   void _onBatchResult(
@@ -412,5 +432,16 @@ class ApproveTimesheetBloc
     Set<int> tTypes,
   ) async {
     emit(state.copyWith(filteredTTypes: tTypes));
+  }
+
+  Future<void> _onSetFilterStatus(
+    Emitter<ApproveTimesheetState> emit,
+    int? status,
+  ) async {
+    emit(state.copyWith(filteredStatus: status));
+    add(ApproveTimesheetEvent.init(
+      role: state.role,
+      employeeId: state.tbpApproverEmployeeId,
+    ));
   }
 }

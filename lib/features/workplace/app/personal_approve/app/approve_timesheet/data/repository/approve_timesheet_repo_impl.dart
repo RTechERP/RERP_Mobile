@@ -151,12 +151,12 @@ class ApproveTimesheetRepoImpl implements ApproveTimesheetRepo {
   }
 
   // Duyệt / huỷ duyệt hàng loạt (TBP)
-  // FieldName = IsApprovedTP, ghi IDApprovedTP = approverEmployeeId.
+  // FieldName = IsApproved, ghi IDApprovedTP = approverEmployeeId.
   @override
   Future<Either<BaseError, bool>> approveTBP({
     required List<ApproveTimesheetItem> items,
-    required int approverEmployeeId,
     required bool isApproved,
+    int? approverEmployeeId,
   }) async {
     try {
       final now = DateTime.now().toUtc();
@@ -164,20 +164,20 @@ class ApproveTimesheetRepoImpl implements ApproveTimesheetRepo {
         return {
           'Id': item.id,
           'TableName': item.tableName ?? kApproveTimesheetTypeMap[item.tType ?? 0]?.tableName,
-          'FieldName': 'IsApprovedTP',
+          'FieldName': 'IsApproved',
           'FullName': item.fullName,
           'DeleteFlag': false,
-          'IsApprovedHR': item.isApprovedHR ?? false,
+          'IsApprovedHR': false,
           'IsCancelRegister': -1,
           'IsApprovedTP': isApproved,
           'IsApprovedBGD': null,
-          'IsSeniorApproved': item.isSeniorApproved ?? false,
+          'IsSeniorApproved': true,
           'ValueUpdatedDate': now.toIso8601String(),
-          'ValueDecilineApprove': isApproved ? '1' : '1',
-          'EvaluateResults': item.evaluateResults ?? '',
+          'ValueDecilineApprove': '1',
+          'EvaluateResults': '',
           'EmployeeID': item.employeeId,
           'TType': item.tType,
-          'IDApprovedTP': approverEmployeeId,
+          if (approverEmployeeId != null) 'IDApprovedTP': approverEmployeeId,
         };
       }).toList();
 
@@ -199,8 +199,8 @@ class ApproveTimesheetRepoImpl implements ApproveTimesheetRepo {
   @override
   Future<Either<BaseError, bool>> declineTBP({
     required List<ApproveTimesheetItem> items,
-    required int approverEmployeeId,
     required String reason,
+    int? approverEmployeeId,
   }) async {
     try {
       final now = DateTime.now().toUtc();
@@ -208,20 +208,20 @@ class ApproveTimesheetRepoImpl implements ApproveTimesheetRepo {
         return {
           'Id': item.id,
           'TableName': item.tableName ?? kApproveTimesheetTypeMap[item.tType ?? 0]?.tableName,
-          'FieldName': 'IsApprovedTP',
+          'FieldName': 'IsApproved',
           'FullName': item.fullName,
           'DeleteFlag': false,
-          'IsApprovedHR': item.isApprovedHR ?? false,
+          'IsApprovedHR': false,
           'IsCancelRegister': -1,
           'IsApprovedTP': false,
           'IsApprovedBGD': null,
-          'IsSeniorApproved': item.isSeniorApproved ?? false,
+          'IsSeniorApproved': true,
           'ValueUpdatedDate': now.toIso8601String(),
           'ValueDecilineApprove': '1',
-          'EvaluateResults': item.evaluateResults ?? '',
+          'EvaluateResults': '',
           'EmployeeID': item.employeeId,
           'TType': item.tType,
-          'IDApprovedTP': approverEmployeeId,
+          if (approverEmployeeId != null) 'IDApprovedTP': approverEmployeeId,
           'DecilineApprove': 2,
           'ReasonDeciline': reason,
         };

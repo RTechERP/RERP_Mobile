@@ -8,6 +8,7 @@ class ApproveTimesheetEvent with _$ApproveTimesheetEvent {
   const factory ApproveTimesheetEvent.init({
     @Default(ApproveTimesheetRole.senior) ApproveTimesheetRole role,
     int? employeeId,
+    @Default(0) int? status,
   }) = _Init;
 
   /// Bật / tắt chế độ chọn nhiều.
@@ -34,6 +35,11 @@ class ApproveTimesheetEvent with _$ApproveTimesheetEvent {
   const factory ApproveTimesheetEvent.setFilterTTypes(Set<int> tTypes) =
       _SetFilterTTypes;
 
+  /// Lọc theo trạng thái duyệt (chỉ dùng cho TBP).
+  /// -1 = tất cả, 0 = chưa duyệt, 1 = đã duyệt.
+  const factory ApproveTimesheetEvent.setFilterStatus(int? status) =
+      _SetFilterStatus;
+
   /// Xoá toàn bộ lựa chọn + thoát selection mode.
   const factory ApproveTimesheetEvent.clearSelection() = _ClearSelection;
 
@@ -59,9 +65,10 @@ class ApproveTimesheetEvent with _$ApproveTimesheetEvent {
   /// Duyệt Senior hộ cho các phiếu chưa Senior duyệt (TBP bypass).
   /// Items là subset của `state.items` đã được user chọn trong bottom sheet.
   /// Items này sẽ được submit `/approve-senior-new` với IsSeniorApproved=true,
-  /// trước khi submit TBP approve.
+  /// sau đó submit TBP approve/unapprove cho đúng phiếu.
   const factory ApproveTimesheetEvent.tbpSeniorBypassApprove(
     List<ApproveTimesheetItem> items,
+    bool isApproved,
   ) = _TbpSeniorBypassApprove;
 }
 
