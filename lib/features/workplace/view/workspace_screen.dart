@@ -10,7 +10,6 @@ import "package:rtc_erp/common/constants/app_image.dart";
 import "../../../base/bloc/index.dart";
 import "../../../base/widgets/base_widget.dart";
 import "../../../common/enums/role_enum.dart";
-import "../../../common/models/index.dart";
 import "../../../common/services/permissions/role_groups.dart";
 import "../../../common/services/permissions/role_resolver.dart";
 import "../../../common/utils/dialog/index.dart";
@@ -18,6 +17,7 @@ import "../../../common/utils/dialog/index.dart";
 import "../../../routes/route_names.dart";
 import "../../auth/data/datasource/models/user_model.dart";
 
+import "../data/datasource/models/index.dart";
 import "bloc/workspace_bloc.dart";
 import "widgets/wp_action_card.dart";
 import "widgets/wp_favorite_add.dart";
@@ -89,17 +89,19 @@ class _WorkPlaceScreenState
       return RouteNames.reportSaledepart;
     }
 
-    if (roles.contains(AppRole.tech)) {
+    if (roles.contains(AppRole.tech) ||
+        roles.contains(AppRole.agv) ||
+        roles.contains(AppRole.ad)) {
       return RouteNames.reportITdepart;
     }
 
-    if (roles.contains(AppRole.agv)) {
-      return RouteNames.reportAGVdepart;
-    }
-
-    if (roles.contains(AppRole.ad)) {
-      return RouteNames.reportADdepart;
-    }
+    // if (roles.contains(AppRole.agv)) {
+    //   return RouteNames.reportAGVdepart;
+    // }
+    //
+    // if (roles.contains(AppRole.ad)) {
+    //   return RouteNames.reportADdepart;
+    // }
 
     if (roles.contains(AppRole.marketing)) {
       return RouteNames.reportMarketingdepart;
@@ -160,7 +162,7 @@ class _WorkPlaceScreenState
                 children: [
                   WpFavoriteAdd(onAddTap: () => context.push('/favorites')),
 
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 16),
 
                   WpActionCard(
                     onItemTap: (item) async {
@@ -203,6 +205,13 @@ class _WorkPlaceScreenState
                     collapsedItemCount: 11,
                     items: [
                       AppItemModel(
+                        id: 'general_forms',
+                        iconCodePoint: Icons.file_copy_outlined.codePoint,
+                        name: 'applications.general_forms'.tr(),
+                        route: RouteNames.generalforms,
+                        imageUrl: AppImages.app_menu_general_form,
+                      ),
+                      AppItemModel(
                         id: 'reg_work',
                         iconCodePoint: Icons.person_pin_outlined.codePoint,
                         name: 'applications.reg_work'.tr(),
@@ -220,7 +229,7 @@ class _WorkPlaceScreenState
                         id: 'report',
                         iconCodePoint: Icons.description_outlined.codePoint,
                         name: 'applications.report'.tr(),
-                        route: '/report',
+                        route: RouteNames.report,
                         imageUrl: AppImages.app_menu_report,
                       ),
                       // AppItemModel(

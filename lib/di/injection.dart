@@ -6,6 +6,8 @@ import '../common/config/api_config.dart';
 import '../common/local_data/shared_pref.dart';
 import '../common/logger/index.dart';
 import '../common/utils/snack_bar_helper.dart';
+
+
 import '../features/auth/data/datasource/service/auth_service.dart';
 import '../features/auth/data/repository/auth_repo.dart';
 import '../features/auth/data/repository/auth_repo_impl.dart';
@@ -23,6 +25,10 @@ import '../features/workplace/app/personal_approve/app/approve_timesheet/data/re
 import '../features/workplace/app/personal_approve/app/approve_timesheet/data/repository/approve_timesheet_repo_impl.dart';
 import '../features/workplace/app/personal_approve/app/approve_timesheet/view/bloc/approve_timesheet_bloc.dart';
 import '../features/workplace/app/personal_approve/view/bloc/personal_approve_menu_bloc.dart';
+import '../features/version/data/datasource/service/app_version_service.dart';
+import '../features/version/data/repository/app_version_repo.dart';
+import '../features/version/data/repository/app_version_repo_impl.dart';
+import '../features/version/view/bloc/app_version_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/datasource/service/booking_vehicle_service.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repo_impl.dart';
@@ -63,6 +69,10 @@ import '../features/workplace/app/reg_general/view/pages/work_category/data/data
 import '../features/workplace/app/reg_general/view/pages/work_category/data/repository/work_category_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/data/repository/work_category_repo_impl.dart';
 import '../features/workplace/app/reg_general/view/pages/work_category/view/bloc/work_category_bloc.dart';
+import '../features/workplace/app/general_form/data/datasource/service/general_form_service.dart';
+import '../features/workplace/app/general_form/data/repository/general_form_repo.dart';
+import '../features/workplace/app/general_form/data/repository/general_form_repo_impl.dart';
+import '../features/workplace/app/general_form/view/bloc/general_form_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/leave/data/datasource/service/leave_service.dart';
 import '../features/workplace/app/reg_work/view/pages/leave/data/repository/leave_repo.dart';
 import '../features/workplace/app/reg_work/view/pages/leave/data/repository/leave_repo_impl.dart';
@@ -210,7 +220,9 @@ void configureDependencies() {
     () => StationeryService(getIt<Dio>()),
   );
 
-  getIt.registerLazySingleton<StampService>(() => StampService(getIt<Dio>()));
+  getIt.registerLazySingleton<StampService>(
+    () => StampService(getIt<Dio>()),
+  );
 
   getIt.registerLazySingleton<WorkRequirementService>(
     () => WorkRequirementService(getIt<Dio>()),
@@ -232,8 +244,16 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<PollService>(() => PollService(getIt<Dio>()));
 
+  getIt.registerLazySingleton<GeneralFormService>(
+    () => GeneralFormService(getIt<Dio>()),
+  );
+
   getIt.registerLazySingleton<NewsfeedService>(
     () => NewsfeedService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<AppVersionService>(
+    () => AppVersionService(getIt<Dio>()),
   );
 
   getIt.registerLazySingleton<ApproveTimeSheetService>(
@@ -335,8 +355,16 @@ void configureDependencies() {
     () => PollRepoImpl(getIt<PollService>()),
   );
 
+  getIt.registerLazySingleton<GeneralFormRepo>(
+    () => GeneralFormRepoImpl(getIt<GeneralFormService>()),
+  );
+
   getIt.registerLazySingleton<NewsfeedRepo>(
     () => NewsfeedRepoImpl(getIt<NewsfeedService>()),
+  );
+
+  getIt.registerLazySingleton<AppVersionRepo>(
+    () => AppVersionRepoImpl(getIt<AppVersionService>()),
   );
 
   getIt.registerLazySingleton<ApproveTimesheetRepo>(
@@ -410,7 +438,11 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<LeaveBloc>(
-    () => LeaveBloc(getIt<LeaveRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
+    () => LeaveBloc(
+      getIt<LeaveRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
   );
 
   getIt.registerFactory<OvertimeBloc>(
@@ -538,6 +570,10 @@ void configureDependencies() {
     () => NewsfeedBloc(getIt<NewsfeedRepo>(), getIt<LogUtils>()),
   );
 
+  getIt.registerFactory<AppVersionBloc>(
+    () => AppVersionBloc(getIt<AppVersionRepo>(), getIt<LogUtils>()),
+  );
+
   getIt.registerFactory<AccountantBloc>(
     () => AccountantBloc(
       getIt<ReportRepo>(),
@@ -555,5 +591,12 @@ void configureDependencies() {
 
   getIt.registerFactory<PersonalApproveMenuBloc>(
     () => PersonalApproveMenuBloc(getIt<AuthRepo>(), getIt<LogUtils>()),
+  );
+
+  getIt.registerFactory<GeneralFormBloc>(
+    () => GeneralFormBloc(
+      getIt<GeneralFormRepo>(),
+      getIt<LogUtils>(),
+    ),
   );
 }

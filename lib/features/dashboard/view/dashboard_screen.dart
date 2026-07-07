@@ -7,7 +7,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
+import '../../../common/utils/app_exit_handler.dart';
 import '../../../common/utils/bottom_bar.dart';
+import '../../../common/utils/dialog/dialog_service.dart';
 import '../../../routes/route_names.dart';
 import '../../auth/view/bloc/auth_bloc.dart';
 import '../../more/view/more_screen.dart';
@@ -35,6 +37,23 @@ class _DashboardScreenState extends State<DashboardScreen> {
     _tabController = PersistentTabController(initialIndex: 0);
   }
 
+  /// Xử lý nút back trên Android.
+  /// Nếu đang ở tab đầu tiên (root), hiển thị dialog xác nhận thoát app.
+  /// Nếu đang ở tab khác, chuyển về tab đầu tiên.
+  Future<bool> _handleBack() async {
+    if (_tabController.index != 0) {
+      _tabController.jumpToTab(0);
+      return false; // không pop, chỉ chuyển tab
+    }
+
+    // Đang ở tab đầu tiên (root) → hỏi user có muốn thoát app
+    final shouldExit = await DialogService.showConfirmExit(context: context);
+    if (shouldExit) {
+      AppExitHandler.exitApp();
+    }
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
@@ -45,43 +64,50 @@ class _DashboardScreenState extends State<DashboardScreen> {
           context.go(RouteNames.login);
         }
       },
-      child: BottomBarDashboard(
-        context: context,
-        controller: _tabController,
-        screens: [
-          // MessageScreen(),
-          const WorkPlaceScreen(),
-          const NewsFeedScreen(),
-          // ContactScreen(),
-          const MoreScreen(),
-        ],
-        items: [
-          // navItem(
-          //   Icons.message_outlined,
-          //   'dashboard.chat'.tr(),
-          //   activeColorPrimary: Colors.deepOrange,
-          // ),
-          navItem(
-            Icons.keyboard_command_key_outlined,
-            'dashboard.workplace'.tr(),
-            activeColorPrimary: Colors.deepOrange,
-          ),
-          navItem(
-            Icons.dashboard,
-            'dashboard.feeds'.tr(),
-            activeColorPrimary: Colors.deepOrange,
-          ),
-          // navItem(
-          //   Icons.contact_phone_outlined,
-          //   'dashboard.contacts'.tr(),
-          //   activeColorPrimary: Colors.deepOrange,
-          // ),
-          navItem(
-            Icons.person,
-            'dashboard.personal'.tr(),
-            activeColorPrimary: Colors.deepOrange,
-          ),
-        ],
+      child: PopScope(
+        canPop: false,
+        onPopInvokedWithResult: (didPop, result) async {
+          if (didPop) return;
+          await _handleBack();
+        },
+        child: BottomBarDashboard(
+          context: context,
+          controller: _tabController,
+          screens: [
+            // MessageScreen(),
+            const WorkPlaceScreen(),
+            const NewsFeedScreen(),
+            // ContactScreen(),
+            const MoreScreen(),
+          ],
+          items: [
+            // navItem(
+            //   Icons.message_outlined,
+            //   'dashboard.chat'.tr(),
+            //   activeColorPrimary: Colors.deepOrange,
+            // ),
+            navItem(
+              Icons.keyboard_command_key_outlined,
+              'dashboard.workplace'.tr(),
+              activeColorPrimary: Colors.deepOrange,
+            ),
+            navItem(
+              Icons.dashboard,
+              'dashboard.feeds'.tr(),
+              activeColorPrimary: Colors.deepOrange,
+            ),
+            // navItem(
+            //   Icons.contact_phone_outlined,
+            //   'dashboard.contacts'.tr(),
+            //   activeColorPrimary: Colors.deepOrange,
+            // ),
+            navItem(
+              Icons.person,
+              'dashboard.personal'.tr(),
+              activeColorPrimary: Colors.deepOrange,
+            ),
+          ],
+        ),
       ),
     );
   }

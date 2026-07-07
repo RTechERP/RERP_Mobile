@@ -1,7 +1,7 @@
 import '../../../features/auth/data/repository/auth_repository.dart';
+import '../../../features/workplace/data/datasource/models/index.dart';
 import '../../enums/permission_enum.dart';
 import '../../enums/role_enum.dart';
-import '../../models/app_item_model.dart';
 import 'role_permission_map.dart';
 import 'role_resolver.dart';
 

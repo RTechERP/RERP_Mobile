@@ -53,8 +53,8 @@ class AuthRepository {
       _localDateString(DateTime.now()),
     );
 
-    log?.logI('AccessToken saved');
-    log?.logD('Token expires at: $expires');
+    // log?.logI('AccessToken saved');
+    // log?.logD('Token expires at: $expires');
   }
 
   //====================================//
@@ -66,9 +66,9 @@ class AuthRepository {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(_tokenKey);
 
-    token != null
-        ? log?.logD('Get accessToken')
-        : log?.logW('Get accessToken: null');
+    // token != null
+    //     ? log?.logD('Get accessToken')
+    //     : log?.logW('Get accessToken: null');
 
     return token;
   }
@@ -83,12 +83,12 @@ class AuthRepository {
     final raw = prefs.getString(_expiresKey);
 
     if (raw == null) {
-      log?.logW('Get expires: null');
+      // log?.logW('Get expires: null');
       return null;
     }
 
     final expires = DateTime.parse(raw).toUtc();
-    log?.logD('Get expires: $expires');
+    // log?.logD('Get expires: $expires');
 
     return expires;
   }
@@ -104,7 +104,7 @@ class AuthRepository {
     await prefs.remove(_expiresKey);
     await prefs.remove(_sessionAnchorLocalDateKey);
 
-    log?.logI('AccessToken cleared');
+    // log?.logI('AccessToken cleared');
   }
 
   /// Lấy ngày anchor local (đã lưu khi login).
@@ -121,7 +121,7 @@ class AuthRepository {
       _sessionAnchorLocalDateKey,
       _localDateString(DateTime.now()),
     );
-    log?.logI('Session anchor date initialized (legacy / first run)');
+    // log?.logI('Session anchor date initialized (legacy / first run)');
   }
 
   //====================================//
@@ -134,16 +134,16 @@ class AuthRepository {
     final expires = await getExpires(log: log);
 
     if (token == null || expires == null) {
-      log?.logI('Check login: false (missing token/expires)');
+      // log?.logI('Check login: false (missing token/expires)');
       return false;
     }
 
     final now = DateTime.now().toUtc();
     final isExpired = now.isAfter(expires);
 
-    log?.logI('Now: $now');
-    log?.logI('Expires: $expires');
-    log?.logI('Expired: $isExpired');
+    // log?.logI('Now: $now');
+    // log?.logI('Expires: $expires');
+    // log?.logI('Expired: $isExpired');
 
     if (isExpired) {
       await clearToken(log: log);
@@ -166,7 +166,7 @@ class AuthRepository {
 
     await prefs.setString(_userKey, jsonEncode(user.toJson()));
 
-    log?.logI('Current user saved');
+    // log?.logI('Current user saved');
   }
 
   /// Lấy user từ SharedPreferences, parse JSON → User model.
@@ -176,18 +176,18 @@ class AuthRepository {
     final raw = prefs.getString(_userKey);
 
     if (raw == null) {
-      log?.logW('Get current user: null');
+      // log?.logW('Get current user: null');
       return null;
     }
 
     try {
       final user = User.fromJson(jsonDecode(raw));
-      log?.logD(
-        'Get current user: ${user.fullName} & ${user.departmentId} & ${user.departmentName}',
-      );
+      // log?.logD(
+      //   'Get current user: ${user.fullName} & ${user.departmentId} & ${user.departmentName}',
+      // );
       return user;
     } catch (e) {
-      log?.logE('Parse cached user failed → clear cache');
+      // log?.logE('Parse cached user failed → clear cache');
       await prefs.remove(_userKey);
       return null;
     }
@@ -197,7 +197,7 @@ class AuthRepository {
   static Future<void> clearUser({LogUtils? log}) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_userKey);
-    log?.logI('Current user cleared');
+    // log?.logI('Current user cleared');
   }
 
   /// Fetch user từ API và lưu vào cache.
@@ -211,7 +211,7 @@ class AuthRepository {
       if (!forceRefresh) {
         final cached = await getCurrentUser(log: log);
         if (cached != null) {
-          log?.logI('Use cached current user');
+          // log?.logI('Use cached current user');
           return cached;
         }
       }
@@ -226,7 +226,7 @@ class AuthRepository {
           l.when(
             httpInternalServerError: (_) {},
             httpUnAuthorizedError: () async {
-              log?.logW('Unauthorized → clear all');
+              // log?.logW('Unauthorized → clear all');
               await clearAll(log: log);
             },
             httpUnknownError: (_) {},
@@ -236,7 +236,7 @@ class AuthRepository {
         },
         (user) async {
           if (user == null) {
-            log?.logW('User is null, skip save');
+            // log?.logW('User is null, skip save');
             return null;
           }
 
@@ -245,8 +245,8 @@ class AuthRepository {
         },
       );
     } catch (e, s) {
-      log?.logE('Fetch user exception: $e');
-      log?.logD('$s');
+      // log?.logE('Fetch user exception: $e');
+      // log?.logD('$s');
       return null;
     }
   }
@@ -257,7 +257,7 @@ class AuthRepository {
     final expires = await getExpires(log: log);
 
     if (token == null || expires == null) {
-      log?.logI('Auth invalid: missing token/expires');
+      // log?.logI('Auth invalid: missing token/expires');
       return false;
     }
 
@@ -265,7 +265,7 @@ class AuthRepository {
     final isExpired = now.isAfter(expires);
 
     if (isExpired) {
-      log?.logW('Auth expired → clear all');
+      // log?.logW('Auth expired → clear all');
       await clearAll(log: log);
       return false;
     }

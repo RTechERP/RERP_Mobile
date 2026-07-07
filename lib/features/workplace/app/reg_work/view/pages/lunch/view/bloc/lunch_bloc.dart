@@ -71,11 +71,8 @@ class LunchBloc extends BaseBloc<LunchEvent, LunchState> {
       },
       (user) async {
         final now = DateTime.now();
-        final todayStart = DateTime(now.year, now.month, now.day);
-        final tomorrow = todayStart.add(const Duration(days: 1));
-
-        final startCandidate = state.dateStart ?? todayStart;
-        final endCandidate = state.dateEnd ?? tomorrow;
+        final startCandidate = state.dateStart ?? DateTime(now.year, now.month, 1);
+        final endCandidate = state.dateEnd ?? DateTime(now.year, now.month + 1, 0);
 
         // Chuẩn hoá thứ tự (tránh trường hợp user/flow set ngược).
         final effectiveStart =
@@ -264,7 +261,7 @@ class LunchBloc extends BaseBloc<LunchEvent, LunchState> {
               submitSuccess: true,
               status: BaseStateStatus.success,
               employeeId: employeeId,
-              message: 'Tạo cơm ca thành công',
+              message: 'Đặt cơm thành công',
             ),
           );
         },

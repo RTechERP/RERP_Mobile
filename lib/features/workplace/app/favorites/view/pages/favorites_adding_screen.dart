@@ -8,9 +8,10 @@ import 'package:rtc_erp/features/workplace/app/favorites/view/pages/widgets/fav_
 import 'package:rtc_erp/features/workplace/app/favorites/view/pages/widgets/fav_catalog_drawer.dart';
 import 'package:rtc_erp/features/workplace/app/favorites/view/pages/widgets/fav_tab_drawer.dart';
 
-import '../../../../../../common/app_registry/app_items_registry.dart';
 import '../../../../../../common/app_theme/index.dart';
-import '../../../../../../common/models/index.dart';
+
+import '../../../../data/datasource/app_registry/app_items_registry.dart';
+import '../../../../data/datasource/models/index.dart';
 import '../../data/datasource/service/favorites_service.dart';
 import '../model/favorite_tabs.dart';
 

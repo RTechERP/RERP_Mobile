@@ -28,7 +28,7 @@ _$InOutItemImpl _$$InOutItemImplFromJson(Map<String, dynamic> json) =>
       updatedBy: json['UpdatedBy'] as String?,
       approvedTP: (json['ApprovedTP'] as num?)?.toInt(),
       isApprovedTP: json['IsApprovedTP'] as bool?,
-      decilineApprove: json['DecilineApprove'] as String?,
+      decilineApprove: (json['DecilineApprove'] as num?)?.toInt(),
       dateStart: json['DateStart'] == null
           ? null
           : DateTime.parse(json['DateStart'] as String),

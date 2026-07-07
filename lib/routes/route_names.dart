@@ -217,6 +217,10 @@ class RouteNames {
   static const poll = '/poll';
   static const pollDetail = '/poll/detail';
 
+  // General Form
+  static const generalForms = '/general_forms';
+  static const generalFormDetail = '/general_forms/detail';
+
   // Personal Approve
   static const personalApprove = '/personal_approve';
   static const personalApproveTimesheet = '/personal_approve/approve_timesheet/timesheet';

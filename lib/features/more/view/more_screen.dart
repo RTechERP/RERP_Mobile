@@ -113,33 +113,33 @@ class MoreScreen extends StatelessWidget {
 
                       //---(Hỗ trợ)---//
 
-                      _SectionCard(
-                        title: 'Hỗ trợ',
-                        icon: Icons.help_outline,
-                        children: [
-                          // _SettingsTile(
-                          //   icon: Icons.menu_book_outlined,
-                          //   title: 'Hướng dẫn sử dụng',
-                          //   subtitle: 'Tìm hiểu các tính năng',
-                          //   onTap: () {},
-                          // ),
-                          _SettingsTile(
-                            icon: Icons.chat_bubble_outline_outlined,
-                            title: 'Liên hệ hỗ trợ',
-                            subtitle: ' Hotline: 1900 xxxx',
-                            onTap: () {},
-                          ),
-                          _SettingsTile(
-                            icon: Icons.info_outline,
-                            title: 'Giới thiệu ứng dụng',
-                            subtitle: 'RERP 1.0.0',
-                            onTap: () {},
-                            showDivider: false,
-                          ),
-                        ],
-                      ),
-
-                      const SizedBox(height: 14),
+                      // _SectionCard(
+                      //   title: 'Hỗ trợ',
+                      //   icon: Icons.help_outline,
+                      //   children: [
+                      //     // _SettingsTile(
+                      //     //   icon: Icons.menu_book_outlined,
+                      //     //   title: 'Hướng dẫn sử dụng',
+                      //     //   subtitle: 'Tìm hiểu các tính năng',
+                      //     //   onTap: () {},
+                      //     // ),
+                      //     _SettingsTile(
+                      //       icon: Icons.chat_bubble_outline_outlined,
+                      //       title: 'Liên hệ hỗ trợ',
+                      //       subtitle: ' Hotline: 1900 xxxx',
+                      //       onTap: () {},
+                      //     ),
+                      //     _SettingsTile(
+                      //       icon: Icons.info_outline,
+                      //       title: 'Giới thiệu ứng dụng',
+                      //       subtitle: 'RERP 1.0.0',
+                      //       onTap: () {},
+                      //       showDivider: false,
+                      //     ),
+                      //   ],
+                      // ),
+                      //
+                      // const SizedBox(height: 14),
                     ],
                   ),
                 ),

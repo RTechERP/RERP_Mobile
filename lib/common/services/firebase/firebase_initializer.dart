@@ -44,7 +44,7 @@ class FirebaseInitializer {
     // Lắng nghe foreground messages
     FirebaseMessaging.onMessage.listen((message) async {
       if (kDebugMode) {
-        print('[FCM] Foreground message: ${message.messageId}');
+        // print('[FCM] Foreground message: ${message.messageId}');
       }
       await NotificationService.instance.showNotification(message);
     });
@@ -52,7 +52,7 @@ class FirebaseInitializer {
     // App opened from background notification tap
     FirebaseMessaging.onMessageOpenedApp.listen((message) {
       if (kDebugMode) {
-        print('[FCM] onMessageOpenedApp: ${message.messageId}');
+        // print('[FCM] onMessageOpenedApp: ${message.messageId}');
       }
       NotificationService.instance.handleNotificationTap(message);
     });
@@ -65,26 +65,26 @@ class FirebaseInitializer {
         try {
           apnsToken = await FirebaseMessaging.instance.getAPNSToken();
           if (kDebugMode) {
-            print('[FCM] APNS Token: $apnsToken');
+            // print('[FCM] APNS Token: $apnsToken');
           }
         } catch (e) {
           if (kDebugMode) {
-            print('[FCM] Loi lay APNS token: $e');
+            // print('[FCM] Loi lay APNS token: $e');
           }
         }
         if (apnsToken == null) {
           if (kDebugMode) {
-            print('[FCM] APNS token null, cho 3s...');
+            // print('[FCM] APNS token null, cho 3s...');
           }
           await Future<void>.delayed(const Duration(seconds: 3));
           try {
             apnsToken = await FirebaseMessaging.instance.getAPNSToken();
             if (kDebugMode) {
-              print('[FCM] APNS Token (retry): $apnsToken');
+              // print('[FCM] APNS Token (retry): $apnsToken');
             }
           } catch (e) {
             if (kDebugMode) {
-              print('[FCM] Loi lay APNS token (retry): $e');
+              // print('[FCM] Loi lay APNS token (retry): $e');
             }
           }
         }
@@ -92,16 +92,16 @@ class FirebaseInitializer {
         // Check permission status
         final settings = await FirebaseMessaging.instance.getNotificationSettings();
         if (kDebugMode) {
-          print('[FCM] Notification settings: ${settings.authorizationStatus}');
+          // print('[FCM] Notification settings: ${settings.authorizationStatus}');
         }
       }
       final token = await FirebaseMessaging.instance.getToken();
       if (kDebugMode) {
-        print('[FCM] FCM Token: $token');
+        // print('[FCM] FCM Token: $token');
       }
     } catch (e) {
       if (kDebugMode) {
-        print('[FCM] Loi lay token: $e');
+        // print('[FCM] Loi lay token: $e');
       }
     }
 
@@ -115,7 +115,7 @@ class FirebaseInitializer {
     // AuthBloc sẽ gửi token này lên server khi user login tiếp theo.
     FirebaseMessaging.instance.onTokenRefresh.listen((newToken) async {
       if (kDebugMode) {
-        print('[FCM] Token refreshed: $newToken');
+        // print('[FCM] Token refreshed: $newToken');
       }
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString(SharedKeys.savedFcmToken, newToken);

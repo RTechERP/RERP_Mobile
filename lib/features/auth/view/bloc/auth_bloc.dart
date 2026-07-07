@@ -247,9 +247,9 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
       ),
     );
 
-    _log.logI('rememberMe=$rememberMe');
-    _log.logI('savedUsername=$savedUsername');
-    _log.logI('savedPassword=$savedPassword');
+    // _log.logI('rememberMe=$rememberMe');
+    // _log.logI('savedUsername=$savedUsername');
+    // _log.logI('savedPassword=$savedPassword');
   }
 
   //---(RememberMe)---//

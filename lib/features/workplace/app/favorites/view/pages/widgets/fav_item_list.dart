@@ -2,8 +2,8 @@
 // Nội dung/Chức năng: Widget hiển thị danh sách items theo tab - lọc, sắp xếp, tìm kiếm
 
 import 'package:flutter/material.dart';
-import '../../../../../../../common/models/index.dart';
 
+import '../../../../../data/datasource/models/index.dart';
 import '../../../data/datasource/service/favorites_service.dart';
 import '../../model/favorite_tabs.dart';
 import 'fav_item_row.dart';

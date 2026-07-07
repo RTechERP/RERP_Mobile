@@ -1,6 +1,7 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import '../../di/injection.dart';
+import '../config/app_version_config.dart';
 import '../services/firebase/firebase_initializer.dart';
 import 'app_config.dart';
 
@@ -10,5 +11,7 @@ class AppInitializer {
     await AppConfig.load();
     configureDependencies();
     await FirebaseInitializer.init();
+    await AppVersionConfig.preloadCurrentVersion();
+    await AppVersionConfig.loadMinSupportedVersion();
   }
 }

@@ -4,7 +4,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/contract_registration/view/bloc/contract_registration_bloc.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/contract_registration/view/pages/contract_registration_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/contract_registration/view/pages/contract_registration_add_screen.dart';
@@ -43,6 +42,7 @@ import '../features/workplace/app/personal_approve/app/approve_timesheet/view/pa
 import '../features/workplace/app/personal_approve/app/approve_timesheet/data/datasource/models/approve_timesheet_model.dart';
 import '../features/workplace/app/personal_approve/view/bloc/personal_approve_menu_bloc.dart';
 import '../features/workplace/app/personal_approve/view/pages/personal_approve_menu_screen.dart';
+import '../features/workplace/app/general_form/view/bloc/general_form_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_add_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_edit_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_detail_screen.dart';
@@ -123,6 +123,8 @@ import '../features/workplace/app/reg_work/view/pages/salary/view/pages/salary_m
 import '../features/workplace/app/reg_work/view/pages/salary/view/pages/timekeeping_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/salary/view/pages/forgot_pin_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/salary/view/pages/salary_card_detail_screen.dart';
+import '../features/workplace/app/general_form/view/pages/general_form_screen.dart';
+import '../features/workplace/app/general_form/view/pages/general_form_detail_screen.dart';
 import '../features/workplace/app/reports/data/datasource/models/report_model.dart';
 import '../features/workplace/app/reports/view/accountant/view/bloc/accountant_bloc.dart';
 import '../features/workplace/app/reports/view/accountant/view/pages/accountant_add_screen.dart';
@@ -451,8 +453,8 @@ class AppRouter {
             providers: [
               BlocProvider.value(value: getIt<SalaryBloc>()),
               BlocProvider.value(value: getIt<TimekeepingBloc>()),
-
               // BlocProvider.value(value: getIt<FingerPrintBloc>()),
+
             ],
             child: child,
           );
@@ -492,7 +494,10 @@ class AppRouter {
                 cardType = extra['cardType'] as SalaryCardType?;
                 month = extra['month'] as DateTime?;
               }
-              return SalaryCardDetailScreen(cardType: cardType, month: month);
+              return SalaryCardDetailScreen(
+                cardType: cardType,
+                month: month,
+              );
             },
           ),
         ],
@@ -1134,7 +1139,10 @@ class AppRouter {
       //---(Stamp)---//
       ShellRoute(
         builder: (context, state, child) {
-          return BlocProvider.value(value: getIt<StampBloc>(), child: child);
+          return BlocProvider.value(
+            value: getIt<StampBloc>(),
+            child: child,
+          );
         },
         routes: [
           GoRoute(
@@ -1149,7 +1157,9 @@ class AppRouter {
                 return StampAddScreen(payload: extra);
               }
               if (extra is StampItem) {
-                return StampAddScreen(payload: StampRoutePayload(item: extra));
+                return StampAddScreen(
+                  payload: StampRoutePayload(item: extra),
+                );
               }
               return const StampAddScreen();
             },
@@ -1162,9 +1172,7 @@ class AppRouter {
                 return StampDetailScreen(payload: extra);
               }
               if (extra is StampItem) {
-                return StampDetailScreen(
-                  payload: StampRoutePayload(item: extra),
-                );
+                return StampDetailScreen(payload: StampRoutePayload(item: extra));
               }
               return const StampDetailScreen(payload: StampRoutePayload());
             },
@@ -1175,7 +1183,10 @@ class AppRouter {
       //---(Week Plan)---//
       ShellRoute(
         builder: (context, state, child) {
-          return BlocProvider.value(value: getIt<WeekPlanBloc>(), child: child);
+          return BlocProvider.value(
+            value: getIt<WeekPlanBloc>(),
+            child: child,
+          );
         },
         routes: [
           GoRoute(
@@ -1208,7 +1219,9 @@ class AppRouter {
           ),
           GoRoute(
             path: RouteNames.weekplanAdd,
-            builder: (context, state) => WeekPlanAddScreen(extra: state.extra),
+            builder: (context, state) => WeekPlanAddScreen(
+              extra: state.extra,
+            ),
           ),
           GoRoute(
             path: RouteNames.weekplanDetail,
@@ -1222,7 +1235,10 @@ class AppRouter {
               } else if (extra is int) {
                 taskId = extra;
               }
-              return WeekPlanDetailScreen(taskId: taskId, extra: addExtra);
+              return WeekPlanDetailScreen(
+                taskId: taskId,
+                extra: addExtra,
+              );
             },
           ),
           // Legacy route - redirect to menu
@@ -1236,7 +1252,10 @@ class AppRouter {
       // Poll
       ShellRoute(
         builder: (context, state, child) {
-          return BlocProvider.value(value: getIt<PollBloc>(), child: child);
+          return BlocProvider.value(
+            value: getIt<PollBloc>(),
+            child: child,
+          );
         },
         routes: [
           GoRoute(
@@ -1251,6 +1270,34 @@ class AppRouter {
                 return const PollScreen();
               }
               return PollDetailScreen(item: item);
+            },
+          ),
+        ],
+      ),
+
+      // General Form
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(
+            value: getIt<GeneralFormBloc>(),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.generalforms,
+            builder: (context, state) => const GeneralFormScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.generalFormDetail,
+            builder: (context, state) {
+              final extra = state.extra as Map<String, dynamic>?;
+              final documentId = extra?['documentId'] as int? ?? 0;
+              final documentName = extra?['documentName'] as String? ?? 'Chi tiết biểu mẫu';
+              return GeneralFormDetailScreen(
+                documentId: documentId,
+                documentName: documentName,
+              );
             },
           ),
         ],

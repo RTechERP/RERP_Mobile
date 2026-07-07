@@ -26,18 +26,23 @@ class LunchState extends BaseBlocState {
     this.dateEnd,
   });
 
-  factory LunchState.init() => const LunchState(
-    status: BaseStateStatus.init,
-    isSubmitting: false,
-    submitSuccess: false,
-    deleteSuccess: false,
-    isDeleting: false,
-    lunch: [],
-    employeeId: null,
-    loginName: null,
-    dateStart: null,
-    dateEnd: null,
-  );
+  factory LunchState.init() {
+    final now = DateTime.now();
+    final firstDayOfMonth = DateTime(now.year, now.month, 1);
+    final lastDayOfMonth = DateTime(now.year, now.month + 1, 0);
+    return LunchState(
+      status: BaseStateStatus.init,
+      isSubmitting: false,
+      submitSuccess: false,
+      deleteSuccess: false,
+      isDeleting: false,
+      lunch: const [],
+      employeeId: null,
+      loginName: null,
+      dateStart: firstDayOfMonth,
+      dateEnd: lastDayOfMonth,
+    );
+  }
 
   @override
   List get props => [

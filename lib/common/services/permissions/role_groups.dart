@@ -11,7 +11,7 @@ class DepartmentGroups {
 
 class EmployeeIdGroups {
   static const employeeHrs = [586, 5];
-  static const employeeSaleHCM = [29, 42, 341, 641];
+  static const employeeSaleHCM = [29, 42, 341, 641, 222];
   static const employeeBOD = [54];
 }
 

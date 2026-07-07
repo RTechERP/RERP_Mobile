@@ -5,6 +5,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rtc_erp/base/bloc/index.dart';
 import 'package:rtc_erp/base/widgets/base_scaffold.dart';
+import 'package:rtc_erp/features/auth/data/repository/auth_repo.dart';
 
 import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
@@ -16,6 +17,7 @@ import '../../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../../common/widgets/date_header.dart';
 import '../../../../../../../../../routes/route_names.dart';
 import '../../../../../../../../../common/widgets/date_range_picker.dart';
+import '../../../../../../../../../di/injection.dart';
 import '../bloc/lunch_bloc.dart';
 
 class LunchScreen extends StatefulWidget {
@@ -41,6 +43,105 @@ class _LunchScreenState
   DateTime _dateOnly(DateTime date) =>
       DateTime(date.year, date.month, date.day);
 
+  /// Đặt cơm nhanh: sau 10h (theo yêu cầu nghiệp vụ) sẽ khoá nút.
+  /// Riêng nhân viên đặc biệt (employeeId == 4) luôn được phép đặt nhanh.
+  bool _isQuickBookDisabled(int? employeeId) {
+    final now = DateTime.now();
+    final todayStart = DateTime(now.year, now.month, now.day);
+    final deadline = DateTime(
+      todayStart.year,
+      todayStart.month,
+      todayStart.day,
+      10,
+      00,
+    );
+    if (employeeId == 4) return false;
+    return !now.isBefore(deadline);
+  }
+
+  Future<void> _quickBookLunch() async {
+    // Lấy employeeId hiện tại để áp dụng đúng rule 10h.
+    final userRes = await getIt.get<AuthRepo>().getCurrentUser();
+    final user = userRes.getOrElse(() => null);
+    if (!mounted) return;
+
+    if (_isQuickBookDisabled(user?.employeeId)) {
+      showMessage(
+        context,
+        'Đã quá 10:00, vui lòng đặt cơm trước 10h hàng ngày',
+        type: SnackBarType.error,
+      );
+      return;
+    }
+
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+
+    // Payload mặc định: ngày hiện tại - số lượng 1 - địa điểm VP Hà Nội (location = 1).
+    bloc.add(
+      LunchEvent.submit(
+        quantity: 1,
+        location: 1,
+        note: '',
+        dateOrder: today,
+      ),
+    );
+  }
+
+  /// Row 2 nút ở dưới cùng màn hình: Thêm (mở form chi tiết) +
+  /// Đặt nhanh (gửi thẳng payload mặc định).
+  Widget _buildActionButtons(BuildContext context) {
+    return SafeArea(
+      top: false,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
+        child: Row(
+          children: [
+            Expanded(
+              child: ElevatedButton.icon(
+                onPressed: () async {
+                  final reload = await context.push<bool?>(
+                    RouteNames.regworkLunchAdd,
+                  );
+                  if (!mounted) return;
+                  if (reload == true) {
+                    bloc.add(const LunchEvent.init());
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.primaryERP,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                icon: const Icon(Icons.add),
+                label: const Text('Thêm'),
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: ElevatedButton.icon(
+                onPressed: _quickBookLunch,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.primaryERP,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                icon: const Icon(Icons.fastfood_outlined),
+                label: const Text('Đặt nhanh'),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -51,22 +152,32 @@ class _LunchScreenState
   Widget renderUI(BuildContext context) {
     return BlocListener<LunchBloc, LunchState>(
       listenWhen: (prev, curr) =>
-          prev.deleteSuccess != curr.deleteSuccess ||
+          (curr.deleteSuccess && !prev.deleteSuccess) ||
+          (curr.submitSuccess && !prev.submitSuccess) ||
           (curr.message != null &&
               curr.message!.isNotEmpty &&
               prev.message != curr.message &&
-              !curr.isDeleting),
+              !curr.isDeleting &&
+              !curr.deleteSuccess &&
+              !curr.submitSuccess),
       listener: (context, state) {
-        if (state.deleteSuccess) {
+        if (state.deleteSuccess && !state.submitSuccess) {
           showMessage(
             context,
             'Hủy đặt cơm thành công',
             type: SnackBarType.success,
           );
-        }
-        if (state.message != null &&
-            state.message!.isNotEmpty &&
-            !state.isDeleting) {
+          bloc.add(const LunchEvent.init());
+        } else if (state.submitSuccess && !state.isDeleting) {
+          bloc.add(const LunchEvent.init());
+          showMessage(
+            context,
+            'Đặt cơm thành công',
+            type: SnackBarType.success,
+          );
+          bloc.add(const LunchEvent.clearSubmitState());
+        } else if (state.message != null &&
+            state.message!.isNotEmpty) {
           showMessage(context, state.message!, type: SnackBarType.error);
         }
       },
@@ -103,24 +214,12 @@ class _LunchScreenState
           ],
           onBackTap: () => context.pop(),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () async {
-            final reload = await context.push<bool?>(
-              RouteNames.regworkLunchAdd,
-            );
-            if (!mounted) return;
-            if (reload == true) {
-              bloc.add(const LunchEvent.init());
-            }
-          },
-          backgroundColor: AppColors.primaryERP,
-          elevation: 6,
-          shape: const CircleBorder(),
-          child: const Icon(Icons.add, color: Colors.white, size: 28),
-        ),
 
-        body: BlocBuilder<LunchBloc, LunchState>(
-          builder: (context, state) {
+        body: Column(
+          children: [
+            Expanded(
+              child: BlocBuilder<LunchBloc, LunchState>(
+                builder: (context, state) {
             if (state.status == BaseStateStatus.loading) {
               return const Center(child: CircularProgressIndicator());
             }
@@ -328,7 +427,11 @@ class _LunchScreenState
                 ),
               ],
             );
-          },
+                },
+              ),
+            ),
+            _buildActionButtons(context),
+          ],
         ),
       ),
     );

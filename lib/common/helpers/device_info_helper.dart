@@ -20,14 +20,13 @@ class DeviceInfoHelper {
         final iosInfo = await _deviceInfo.iosInfo;
         // Sử dụng identifierForVendor cho iOS
         if(kDebugMode){
-          print('iOS Identifier: ${iosInfo.identifierForVendor}');
-
+          // print('iOS Identifier: ${iosInfo.identifierForVendor}');
         }
         return iosInfo.identifierForVendor ?? 'unknown_ios_device';
       }
     } catch (e) {
       if(kDebugMode){
-        print('Error getting device ID: $e');
+        // print('Error getting device ID: $e');
       }
     }
     return 'unknown_device';
