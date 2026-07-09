@@ -1047,15 +1047,15 @@ class ValidateHelper {
     DateTime? earliestSelectableDay,
   }) {
     if (value == null) return 'Vui lòng chọn ngày';
-    if (earliestSelectableDay != null) {
-      final picked = DateTime(value.year, value.month, value.day);
-      final min = DateTime(
-        earliestSelectableDay.year,
-        earliestSelectableDay.month,
-        earliestSelectableDay.day,
-      );
-      if (picked.isBefore(min)) return 'Không được chọn ngày quá khứ';
-    }
+    // if (earliestSelectableDay != null) {
+    //   final picked = DateTime(value.year, value.month, value.day);
+    //   final min = DateTime(
+    //     earliestSelectableDay.year,
+    //     earliestSelectableDay.month,
+    //     earliestSelectableDay.day,
+    //   );
+    //   if (picked.isBefore(min)) return 'Không được chọn ngày quá khứ';
+    // }
     return null;
   }
 
