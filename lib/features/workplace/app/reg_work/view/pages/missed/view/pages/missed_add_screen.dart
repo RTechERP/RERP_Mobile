@@ -179,7 +179,7 @@ class _MissedAddScreenState
                                 initialDate: _todayStart,
                                 // firstDate: _todayStart,
                                 // lastDate: _lastSelectableDate,
-                                lastDate: _todayStart,
+                                // lastDate: _todayStart,
                               ),
                               const SizedBox(height: 12),
                               FormBuilderField<String>(
@@ -208,20 +208,39 @@ class _MissedAddScreenState
                                 ),
                               ),
                               const SizedBox(height: 12),
-                              FormRadioGroup(
+                              // FormRadioGroup(
+                              //   name: 'regwork_missed_add_type',
+                              //   label: 'Loại',
+                              //   initialValue: 'check_in',
+                              //   options: const [
+                              //     FormRadioOption(
+                              //       value: 'check_in',
+                              //       icon: Icons.login_rounded,
+                              //       label: 'Quên lúc đến',
+                              //     ),
+                              //     FormRadioOption(
+                              //       value: 'check_out',
+                              //       icon: Icons.logout_rounded,
+                              //       label: 'Quên lúc về',
+                              //     ),
+                              //   ],
+                              // ),
+                              FormChoiceGroup<String>(
                                 name: 'regwork_missed_add_type',
                                 label: 'Loại',
+                                icon: Icons.punch_clock_outlined,
                                 initialValue: 'check_in',
-                                options: const [
-                                  FormRadioOption(
+                                columns: 2,
+                                options: [
+                                  FormChoiceOption(
                                     value: 'check_in',
-                                    icon: Icons.login_rounded,
                                     label: 'Quên lúc đến',
+                                    selectedColor: AppColors.primaryERP,
                                   ),
-                                  FormRadioOption(
+                                  FormChoiceOption(
                                     value: 'check_out',
-                                    icon: Icons.logout_rounded,
                                     label: 'Quên lúc về',
+                                    selectedColor: AppColors.primaryERP,
                                   ),
                                 ],
                               ),
