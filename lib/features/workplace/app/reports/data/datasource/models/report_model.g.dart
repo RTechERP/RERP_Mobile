@@ -521,7 +521,7 @@ _$DetailReportNullResponseImpl _$$DetailReportNullResponseImplFromJson(
       planNextDay: json['PlanNextDay'] as String,
       note: json['Note'] as String,
       confirm: json['Confirm'] as bool,
-      backlog: json['Backlog'] as String,
+      backlog: json['Backlog'] as String?,
       deleteFlag: (json['DeleteFlag'] as num).toInt(),
       createdDate: DateTime.parse(json['CreatedDate'] as String),
       type: (json['Type'] as num).toInt(),

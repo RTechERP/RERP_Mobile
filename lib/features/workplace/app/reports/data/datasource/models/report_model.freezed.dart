@@ -5969,7 +5969,7 @@ mixin _$DetailReportNullResponse {
   @JsonKey(name: 'Confirm')
   bool get confirm => throw _privateConstructorUsedError;
   @JsonKey(name: 'Backlog')
-  String get backlog => throw _privateConstructorUsedError;
+  String? get backlog => throw _privateConstructorUsedError;
   @JsonKey(name: 'DeleteFlag')
   int get deleteFlag => throw _privateConstructorUsedError;
   @JsonKey(name: 'CreatedDate')
@@ -6026,7 +6026,7 @@ abstract class $DetailReportNullResponseCopyWith<$Res> {
       @JsonKey(name: 'PlanNextDay') String planNextDay,
       @JsonKey(name: 'Note') String note,
       @JsonKey(name: 'Confirm') bool confirm,
-      @JsonKey(name: 'Backlog') String backlog,
+      @JsonKey(name: 'Backlog') String? backlog,
       @JsonKey(name: 'DeleteFlag') int deleteFlag,
       @JsonKey(name: 'CreatedDate') DateTime createdDate,
       @JsonKey(name: 'Type') int type,
@@ -6070,7 +6070,7 @@ class _$DetailReportNullResponseCopyWithImpl<$Res,
     Object? planNextDay = null,
     Object? note = null,
     Object? confirm = null,
-    Object? backlog = null,
+    Object? backlog = freezed,
     Object? deleteFlag = null,
     Object? createdDate = null,
     Object? type = null,
@@ -6136,10 +6136,10 @@ class _$DetailReportNullResponseCopyWithImpl<$Res,
           ? _value.confirm
           : confirm // ignore: cast_nullable_to_non_nullable
               as bool,
-      backlog: null == backlog
+      backlog: freezed == backlog
           ? _value.backlog
           : backlog // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       deleteFlag: null == deleteFlag
           ? _value.deleteFlag
           : deleteFlag // ignore: cast_nullable_to_non_nullable
@@ -6226,7 +6226,7 @@ abstract class _$$DetailReportNullResponseImplCopyWith<$Res>
       @JsonKey(name: 'PlanNextDay') String planNextDay,
       @JsonKey(name: 'Note') String note,
       @JsonKey(name: 'Confirm') bool confirm,
-      @JsonKey(name: 'Backlog') String backlog,
+      @JsonKey(name: 'Backlog') String? backlog,
       @JsonKey(name: 'DeleteFlag') int deleteFlag,
       @JsonKey(name: 'CreatedDate') DateTime createdDate,
       @JsonKey(name: 'Type') int type,
@@ -6269,7 +6269,7 @@ class __$$DetailReportNullResponseImplCopyWithImpl<$Res>
     Object? planNextDay = null,
     Object? note = null,
     Object? confirm = null,
-    Object? backlog = null,
+    Object? backlog = freezed,
     Object? deleteFlag = null,
     Object? createdDate = null,
     Object? type = null,
@@ -6335,10 +6335,10 @@ class __$$DetailReportNullResponseImplCopyWithImpl<$Res>
           ? _value.confirm
           : confirm // ignore: cast_nullable_to_non_nullable
               as bool,
-      backlog: null == backlog
+      backlog: freezed == backlog
           ? _value.backlog
           : backlog // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       deleteFlag: null == deleteFlag
           ? _value.deleteFlag
           : deleteFlag // ignore: cast_nullable_to_non_nullable
@@ -6419,7 +6419,7 @@ class _$DetailReportNullResponseImpl implements _DetailReportNullResponse {
       @JsonKey(name: 'PlanNextDay') required this.planNextDay,
       @JsonKey(name: 'Note') required this.note,
       @JsonKey(name: 'Confirm') required this.confirm,
-      @JsonKey(name: 'Backlog') required this.backlog,
+      @JsonKey(name: 'Backlog') this.backlog,
       @JsonKey(name: 'DeleteFlag') required this.deleteFlag,
       @JsonKey(name: 'CreatedDate') required this.createdDate,
       @JsonKey(name: 'Type') required this.type,
@@ -6477,7 +6477,7 @@ class _$DetailReportNullResponseImpl implements _DetailReportNullResponse {
   final bool confirm;
   @override
   @JsonKey(name: 'Backlog')
-  final String backlog;
+  final String? backlog;
   @override
   @JsonKey(name: 'DeleteFlag')
   final int deleteFlag;
@@ -6647,7 +6647,7 @@ abstract class _DetailReportNullResponse implements DetailReportNullResponse {
       @JsonKey(name: 'PlanNextDay') required final String planNextDay,
       @JsonKey(name: 'Note') required final String note,
       @JsonKey(name: 'Confirm') required final bool confirm,
-      @JsonKey(name: 'Backlog') required final String backlog,
+      @JsonKey(name: 'Backlog') final String? backlog,
       @JsonKey(name: 'DeleteFlag') required final int deleteFlag,
       @JsonKey(name: 'CreatedDate') required final DateTime createdDate,
       @JsonKey(name: 'Type') required final int type,
@@ -6706,7 +6706,7 @@ abstract class _DetailReportNullResponse implements DetailReportNullResponse {
   bool get confirm;
   @override
   @JsonKey(name: 'Backlog')
-  String get backlog;
+  String? get backlog;
   @override
   @JsonKey(name: 'DeleteFlag')
   int get deleteFlag;
