@@ -176,6 +176,10 @@ class _MoreScreenState extends State<MoreScreen> {
   Future<void> _showAvatarSourceSheet(BuildContext context) async {
     final source = await showModalBottomSheet<ImageSource>(
       context: context,
+      // Đẩy modal route lên root navigator (ngoài các tab) để:
+      //  - Che toàn màn hình, kể cả khi user chuyển sang tab khác.
+      //  - Không bị "treo" trong navigator của tab More khi IndexedStack ẩn.
+      useRootNavigator: true,
       backgroundColor: AppColors.white,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
