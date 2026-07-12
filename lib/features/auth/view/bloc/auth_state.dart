@@ -20,6 +20,13 @@ class AuthState extends BaseBlocState {
   /// Password đã lưu (khi rememberMe = true).
   final String? savedPassword;
 
+  /// True khi đang upload avatar lên server.
+  final bool isUploadingAvatar;
+
+  /// Timestamp vừa upload xong — dùng để trigger rebuild đồng bộ avatar
+  /// trên mọi màn hình sau khi server đã cập nhật imagePath.
+  final DateTime? avatarUploadedAt;
+
   const AuthState({
     required super.status,
     super.message,
@@ -28,6 +35,8 @@ class AuthState extends BaseBlocState {
     this.rememberMe = false,
     this.savedUsername,
     this.savedPassword,
+    this.isUploadingAvatar = false,
+    this.avatarUploadedAt,
   });
 
   factory AuthState.init() => const AuthState(
@@ -37,6 +46,8 @@ class AuthState extends BaseBlocState {
         rememberMe: false,
         savedUsername: null,
         savedPassword: null,
+        isUploadingAvatar: false,
+        avatarUploadedAt: null,
       );
 
   /// True khi accessToken tồn tại và không rỗng.
@@ -54,5 +65,7 @@ class AuthState extends BaseBlocState {
         rememberMe,
         savedUsername,
         savedPassword,
+        isUploadingAvatar,
+        avatarUploadedAt,
       ];
 }

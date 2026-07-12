@@ -850,3 +850,153 @@ abstract class _User implements User {
   _$$UserImplCopyWith<_$UserImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+UploadAvatarResponse _$UploadAvatarResponseFromJson(Map<String, dynamic> json) {
+  return _UploadAvatarResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$UploadAvatarResponse {
+  /// Tên file server đã lưu (vd: `avatar_emp_689_20260712172859.jpeg`).
+  @JsonKey(name: 'SavedFileName')
+  String get savedFileName => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $UploadAvatarResponseCopyWith<UploadAvatarResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UploadAvatarResponseCopyWith<$Res> {
+  factory $UploadAvatarResponseCopyWith(UploadAvatarResponse value,
+          $Res Function(UploadAvatarResponse) then) =
+      _$UploadAvatarResponseCopyWithImpl<$Res, UploadAvatarResponse>;
+  @useResult
+  $Res call({@JsonKey(name: 'SavedFileName') String savedFileName});
+}
+
+/// @nodoc
+class _$UploadAvatarResponseCopyWithImpl<$Res,
+        $Val extends UploadAvatarResponse>
+    implements $UploadAvatarResponseCopyWith<$Res> {
+  _$UploadAvatarResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? savedFileName = null,
+  }) {
+    return _then(_value.copyWith(
+      savedFileName: null == savedFileName
+          ? _value.savedFileName
+          : savedFileName // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$UploadAvatarResponseImplCopyWith<$Res>
+    implements $UploadAvatarResponseCopyWith<$Res> {
+  factory _$$UploadAvatarResponseImplCopyWith(_$UploadAvatarResponseImpl value,
+          $Res Function(_$UploadAvatarResponseImpl) then) =
+      __$$UploadAvatarResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({@JsonKey(name: 'SavedFileName') String savedFileName});
+}
+
+/// @nodoc
+class __$$UploadAvatarResponseImplCopyWithImpl<$Res>
+    extends _$UploadAvatarResponseCopyWithImpl<$Res, _$UploadAvatarResponseImpl>
+    implements _$$UploadAvatarResponseImplCopyWith<$Res> {
+  __$$UploadAvatarResponseImplCopyWithImpl(_$UploadAvatarResponseImpl _value,
+      $Res Function(_$UploadAvatarResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? savedFileName = null,
+  }) {
+    return _then(_$UploadAvatarResponseImpl(
+      savedFileName: null == savedFileName
+          ? _value.savedFileName
+          : savedFileName // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$UploadAvatarResponseImpl implements _UploadAvatarResponse {
+  const _$UploadAvatarResponseImpl(
+      {@JsonKey(name: 'SavedFileName') this.savedFileName = ''});
+
+  factory _$UploadAvatarResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UploadAvatarResponseImplFromJson(json);
+
+  /// Tên file server đã lưu (vd: `avatar_emp_689_20260712172859.jpeg`).
+  @override
+  @JsonKey(name: 'SavedFileName')
+  final String savedFileName;
+
+  @override
+  String toString() {
+    return 'UploadAvatarResponse(savedFileName: $savedFileName)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UploadAvatarResponseImpl &&
+            (identical(other.savedFileName, savedFileName) ||
+                other.savedFileName == savedFileName));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, savedFileName);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UploadAvatarResponseImplCopyWith<_$UploadAvatarResponseImpl>
+      get copyWith =>
+          __$$UploadAvatarResponseImplCopyWithImpl<_$UploadAvatarResponseImpl>(
+              this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$UploadAvatarResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _UploadAvatarResponse implements UploadAvatarResponse {
+  const factory _UploadAvatarResponse(
+          {@JsonKey(name: 'SavedFileName') final String savedFileName}) =
+      _$UploadAvatarResponseImpl;
+
+  factory _UploadAvatarResponse.fromJson(Map<String, dynamic> json) =
+      _$UploadAvatarResponseImpl.fromJson;
+
+  @override
+
+  /// Tên file server đã lưu (vd: `avatar_emp_689_20260712172859.jpeg`).
+  @JsonKey(name: 'SavedFileName')
+  String get savedFileName;
+  @override
+  @JsonKey(ignore: true)
+  _$$UploadAvatarResponseImplCopyWith<_$UploadAvatarResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}

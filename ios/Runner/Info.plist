@@ -41,6 +41,10 @@
 	</dict>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Ứng dụng cần truy cập thư viện ảnh để đính kèm hình ảnh trong báo cáo công việc, đăng ký xe và các đơn đăng ký khác.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Ứng dụng cần truy cập camera để bạn chụp ảnh đính kèm vào báo cáo, đơn đăng ký và cập nhật ảnh đại diện.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Ứng dụng cần quyền truy cập micro để quay video khi đính kèm vào báo cáo.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UIBackgroundModes</key>

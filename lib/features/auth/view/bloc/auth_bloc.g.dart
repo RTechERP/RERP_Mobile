@@ -21,6 +21,10 @@ abstract class _$AuthStateCWProxy {
 
   AuthState savedPassword(String? savedPassword);
 
+  AuthState isUploadingAvatar(bool isUploadingAvatar);
+
+  AuthState avatarUploadedAt(DateTime? avatarUploadedAt);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AuthState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -35,6 +39,8 @@ abstract class _$AuthStateCWProxy {
     bool? rememberMe,
     String? savedUsername,
     String? savedPassword,
+    bool? isUploadingAvatar,
+    DateTime? avatarUploadedAt,
   });
 }
 
@@ -69,6 +75,14 @@ class _$AuthStateCWProxyImpl implements _$AuthStateCWProxy {
       this(savedPassword: savedPassword);
 
   @override
+  AuthState isUploadingAvatar(bool isUploadingAvatar) =>
+      this(isUploadingAvatar: isUploadingAvatar);
+
+  @override
+  AuthState avatarUploadedAt(DateTime? avatarUploadedAt) =>
+      this(avatarUploadedAt: avatarUploadedAt);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AuthState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -84,6 +98,8 @@ class _$AuthStateCWProxyImpl implements _$AuthStateCWProxy {
     Object? rememberMe = const $CopyWithPlaceholder(),
     Object? savedUsername = const $CopyWithPlaceholder(),
     Object? savedPassword = const $CopyWithPlaceholder(),
+    Object? isUploadingAvatar = const $CopyWithPlaceholder(),
+    Object? avatarUploadedAt = const $CopyWithPlaceholder(),
   }) {
     return AuthState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -115,6 +131,15 @@ class _$AuthStateCWProxyImpl implements _$AuthStateCWProxy {
           ? _value.savedPassword
           // ignore: cast_nullable_to_non_nullable
           : savedPassword as String?,
+      isUploadingAvatar: isUploadingAvatar == const $CopyWithPlaceholder() ||
+              isUploadingAvatar == null
+          ? _value.isUploadingAvatar
+          // ignore: cast_nullable_to_non_nullable
+          : isUploadingAvatar as bool,
+      avatarUploadedAt: avatarUploadedAt == const $CopyWithPlaceholder()
+          ? _value.avatarUploadedAt
+          // ignore: cast_nullable_to_non_nullable
+          : avatarUploadedAt as DateTime?,
     );
   }
 }

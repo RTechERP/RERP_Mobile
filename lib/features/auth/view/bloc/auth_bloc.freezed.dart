@@ -24,6 +24,7 @@ mixin _$AuthEvent {
         login,
     required TResult Function() logout,
     required TResult Function(bool value) toggleRememberMe,
+    required TResult Function(String filePath) uploadAvatar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -33,6 +34,7 @@ mixin _$AuthEvent {
         login,
     TResult? Function()? logout,
     TResult? Function(bool value)? toggleRememberMe,
+    TResult? Function(String filePath)? uploadAvatar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -42,6 +44,7 @@ mixin _$AuthEvent {
         login,
     TResult Function()? logout,
     TResult Function(bool value)? toggleRememberMe,
+    TResult Function(String filePath)? uploadAvatar,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -51,6 +54,7 @@ mixin _$AuthEvent {
     required TResult Function(_Login value) login,
     required TResult Function(_Logout value) logout,
     required TResult Function(_ToggleRememberMe value) toggleRememberMe,
+    required TResult Function(_UploadAvatar value) uploadAvatar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -59,6 +63,7 @@ mixin _$AuthEvent {
     TResult? Function(_Login value)? login,
     TResult? Function(_Logout value)? logout,
     TResult? Function(_ToggleRememberMe value)? toggleRememberMe,
+    TResult? Function(_UploadAvatar value)? uploadAvatar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -67,6 +72,7 @@ mixin _$AuthEvent {
     TResult Function(_Login value)? login,
     TResult Function(_Logout value)? logout,
     TResult Function(_ToggleRememberMe value)? toggleRememberMe,
+    TResult Function(_UploadAvatar value)? uploadAvatar,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -132,6 +138,7 @@ class _$InitImpl implements _Init {
         login,
     required TResult Function() logout,
     required TResult Function(bool value) toggleRememberMe,
+    required TResult Function(String filePath) uploadAvatar,
   }) {
     return init();
   }
@@ -144,6 +151,7 @@ class _$InitImpl implements _Init {
         login,
     TResult? Function()? logout,
     TResult? Function(bool value)? toggleRememberMe,
+    TResult? Function(String filePath)? uploadAvatar,
   }) {
     return init?.call();
   }
@@ -156,6 +164,7 @@ class _$InitImpl implements _Init {
         login,
     TResult Function()? logout,
     TResult Function(bool value)? toggleRememberMe,
+    TResult Function(String filePath)? uploadAvatar,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -171,6 +180,7 @@ class _$InitImpl implements _Init {
     required TResult Function(_Login value) login,
     required TResult Function(_Logout value) logout,
     required TResult Function(_ToggleRememberMe value) toggleRememberMe,
+    required TResult Function(_UploadAvatar value) uploadAvatar,
   }) {
     return init(this);
   }
@@ -182,6 +192,7 @@ class _$InitImpl implements _Init {
     TResult? Function(_Login value)? login,
     TResult? Function(_Logout value)? logout,
     TResult? Function(_ToggleRememberMe value)? toggleRememberMe,
+    TResult? Function(_UploadAvatar value)? uploadAvatar,
   }) {
     return init?.call(this);
   }
@@ -193,6 +204,7 @@ class _$InitImpl implements _Init {
     TResult Function(_Login value)? login,
     TResult Function(_Logout value)? logout,
     TResult Function(_ToggleRememberMe value)? toggleRememberMe,
+    TResult Function(_UploadAvatar value)? uploadAvatar,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -296,6 +308,7 @@ class _$LoginImpl implements _Login {
         login,
     required TResult Function() logout,
     required TResult Function(bool value) toggleRememberMe,
+    required TResult Function(String filePath) uploadAvatar,
   }) {
     return login(loginName, passwordHash, rememberMe);
   }
@@ -308,6 +321,7 @@ class _$LoginImpl implements _Login {
         login,
     TResult? Function()? logout,
     TResult? Function(bool value)? toggleRememberMe,
+    TResult? Function(String filePath)? uploadAvatar,
   }) {
     return login?.call(loginName, passwordHash, rememberMe);
   }
@@ -320,6 +334,7 @@ class _$LoginImpl implements _Login {
         login,
     TResult Function()? logout,
     TResult Function(bool value)? toggleRememberMe,
+    TResult Function(String filePath)? uploadAvatar,
     required TResult orElse(),
   }) {
     if (login != null) {
@@ -335,6 +350,7 @@ class _$LoginImpl implements _Login {
     required TResult Function(_Login value) login,
     required TResult Function(_Logout value) logout,
     required TResult Function(_ToggleRememberMe value) toggleRememberMe,
+    required TResult Function(_UploadAvatar value) uploadAvatar,
   }) {
     return login(this);
   }
@@ -346,6 +362,7 @@ class _$LoginImpl implements _Login {
     TResult? Function(_Login value)? login,
     TResult? Function(_Logout value)? logout,
     TResult? Function(_ToggleRememberMe value)? toggleRememberMe,
+    TResult? Function(_UploadAvatar value)? uploadAvatar,
   }) {
     return login?.call(this);
   }
@@ -357,6 +374,7 @@ class _$LoginImpl implements _Login {
     TResult Function(_Login value)? login,
     TResult Function(_Logout value)? logout,
     TResult Function(_ToggleRememberMe value)? toggleRememberMe,
+    TResult Function(_UploadAvatar value)? uploadAvatar,
     required TResult orElse(),
   }) {
     if (login != null) {
@@ -422,6 +440,7 @@ class _$LogoutImpl implements _Logout {
         login,
     required TResult Function() logout,
     required TResult Function(bool value) toggleRememberMe,
+    required TResult Function(String filePath) uploadAvatar,
   }) {
     return logout();
   }
@@ -434,6 +453,7 @@ class _$LogoutImpl implements _Logout {
         login,
     TResult? Function()? logout,
     TResult? Function(bool value)? toggleRememberMe,
+    TResult? Function(String filePath)? uploadAvatar,
   }) {
     return logout?.call();
   }
@@ -446,6 +466,7 @@ class _$LogoutImpl implements _Logout {
         login,
     TResult Function()? logout,
     TResult Function(bool value)? toggleRememberMe,
+    TResult Function(String filePath)? uploadAvatar,
     required TResult orElse(),
   }) {
     if (logout != null) {
@@ -461,6 +482,7 @@ class _$LogoutImpl implements _Logout {
     required TResult Function(_Login value) login,
     required TResult Function(_Logout value) logout,
     required TResult Function(_ToggleRememberMe value) toggleRememberMe,
+    required TResult Function(_UploadAvatar value) uploadAvatar,
   }) {
     return logout(this);
   }
@@ -472,6 +494,7 @@ class _$LogoutImpl implements _Logout {
     TResult? Function(_Login value)? login,
     TResult? Function(_Logout value)? logout,
     TResult? Function(_ToggleRememberMe value)? toggleRememberMe,
+    TResult? Function(_UploadAvatar value)? uploadAvatar,
   }) {
     return logout?.call(this);
   }
@@ -483,6 +506,7 @@ class _$LogoutImpl implements _Logout {
     TResult Function(_Login value)? login,
     TResult Function(_Logout value)? logout,
     TResult Function(_ToggleRememberMe value)? toggleRememberMe,
+    TResult Function(_UploadAvatar value)? uploadAvatar,
     required TResult orElse(),
   }) {
     if (logout != null) {
@@ -567,6 +591,7 @@ class _$ToggleRememberMeImpl implements _ToggleRememberMe {
         login,
     required TResult Function() logout,
     required TResult Function(bool value) toggleRememberMe,
+    required TResult Function(String filePath) uploadAvatar,
   }) {
     return toggleRememberMe(value);
   }
@@ -579,6 +604,7 @@ class _$ToggleRememberMeImpl implements _ToggleRememberMe {
         login,
     TResult? Function()? logout,
     TResult? Function(bool value)? toggleRememberMe,
+    TResult? Function(String filePath)? uploadAvatar,
   }) {
     return toggleRememberMe?.call(value);
   }
@@ -591,6 +617,7 @@ class _$ToggleRememberMeImpl implements _ToggleRememberMe {
         login,
     TResult Function()? logout,
     TResult Function(bool value)? toggleRememberMe,
+    TResult Function(String filePath)? uploadAvatar,
     required TResult orElse(),
   }) {
     if (toggleRememberMe != null) {
@@ -606,6 +633,7 @@ class _$ToggleRememberMeImpl implements _ToggleRememberMe {
     required TResult Function(_Login value) login,
     required TResult Function(_Logout value) logout,
     required TResult Function(_ToggleRememberMe value) toggleRememberMe,
+    required TResult Function(_UploadAvatar value) uploadAvatar,
   }) {
     return toggleRememberMe(this);
   }
@@ -617,6 +645,7 @@ class _$ToggleRememberMeImpl implements _ToggleRememberMe {
     TResult? Function(_Login value)? login,
     TResult? Function(_Logout value)? logout,
     TResult? Function(_ToggleRememberMe value)? toggleRememberMe,
+    TResult? Function(_UploadAvatar value)? uploadAvatar,
   }) {
     return toggleRememberMe?.call(this);
   }
@@ -628,6 +657,7 @@ class _$ToggleRememberMeImpl implements _ToggleRememberMe {
     TResult Function(_Login value)? login,
     TResult Function(_Logout value)? logout,
     TResult Function(_ToggleRememberMe value)? toggleRememberMe,
+    TResult Function(_UploadAvatar value)? uploadAvatar,
     required TResult orElse(),
   }) {
     if (toggleRememberMe != null) {
@@ -643,5 +673,161 @@ abstract class _ToggleRememberMe implements AuthEvent {
   bool get value;
   @JsonKey(ignore: true)
   _$$ToggleRememberMeImplCopyWith<_$ToggleRememberMeImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UploadAvatarImplCopyWith<$Res> {
+  factory _$$UploadAvatarImplCopyWith(
+          _$UploadAvatarImpl value, $Res Function(_$UploadAvatarImpl) then) =
+      __$$UploadAvatarImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String filePath});
+}
+
+/// @nodoc
+class __$$UploadAvatarImplCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$UploadAvatarImpl>
+    implements _$$UploadAvatarImplCopyWith<$Res> {
+  __$$UploadAvatarImplCopyWithImpl(
+      _$UploadAvatarImpl _value, $Res Function(_$UploadAvatarImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filePath = null,
+  }) {
+    return _then(_$UploadAvatarImpl(
+      null == filePath
+          ? _value.filePath
+          : filePath // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UploadAvatarImpl implements _UploadAvatar {
+  const _$UploadAvatarImpl(this.filePath);
+
+  @override
+  final String filePath;
+
+  @override
+  String toString() {
+    return 'AuthEvent.uploadAvatar(filePath: $filePath)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UploadAvatarImpl &&
+            (identical(other.filePath, filePath) ||
+                other.filePath == filePath));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, filePath);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UploadAvatarImplCopyWith<_$UploadAvatarImpl> get copyWith =>
+      __$$UploadAvatarImplCopyWithImpl<_$UploadAvatarImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(
+            String loginName, String passwordHash, bool rememberMe)
+        login,
+    required TResult Function() logout,
+    required TResult Function(bool value) toggleRememberMe,
+    required TResult Function(String filePath) uploadAvatar,
+  }) {
+    return uploadAvatar(filePath);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(String loginName, String passwordHash, bool rememberMe)?
+        login,
+    TResult? Function()? logout,
+    TResult? Function(bool value)? toggleRememberMe,
+    TResult? Function(String filePath)? uploadAvatar,
+  }) {
+    return uploadAvatar?.call(filePath);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(String loginName, String passwordHash, bool rememberMe)?
+        login,
+    TResult Function()? logout,
+    TResult Function(bool value)? toggleRememberMe,
+    TResult Function(String filePath)? uploadAvatar,
+    required TResult orElse(),
+  }) {
+    if (uploadAvatar != null) {
+      return uploadAvatar(filePath);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Login value) login,
+    required TResult Function(_Logout value) logout,
+    required TResult Function(_ToggleRememberMe value) toggleRememberMe,
+    required TResult Function(_UploadAvatar value) uploadAvatar,
+  }) {
+    return uploadAvatar(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Login value)? login,
+    TResult? Function(_Logout value)? logout,
+    TResult? Function(_ToggleRememberMe value)? toggleRememberMe,
+    TResult? Function(_UploadAvatar value)? uploadAvatar,
+  }) {
+    return uploadAvatar?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Login value)? login,
+    TResult Function(_Logout value)? logout,
+    TResult Function(_ToggleRememberMe value)? toggleRememberMe,
+    TResult Function(_UploadAvatar value)? uploadAvatar,
+    required TResult orElse(),
+  }) {
+    if (uploadAvatar != null) {
+      return uploadAvatar(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UploadAvatar implements AuthEvent {
+  const factory _UploadAvatar(final String filePath) = _$UploadAvatarImpl;
+
+  String get filePath;
+  @JsonKey(ignore: true)
+  _$$UploadAvatarImplCopyWith<_$UploadAvatarImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

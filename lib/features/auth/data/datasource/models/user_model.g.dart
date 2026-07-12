@@ -70,3 +70,15 @@ Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
       'TaxCompanyID': instance.taxCompanyId,
       'ImagePath': instance.imagePath,
     };
+
+_$UploadAvatarResponseImpl _$$UploadAvatarResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$UploadAvatarResponseImpl(
+      savedFileName: json['SavedFileName'] as String? ?? '',
+    );
+
+Map<String, dynamic> _$$UploadAvatarResponseImplToJson(
+        _$UploadAvatarResponseImpl instance) =>
+    <String, dynamic>{
+      'SavedFileName': instance.savedFileName,
+    };

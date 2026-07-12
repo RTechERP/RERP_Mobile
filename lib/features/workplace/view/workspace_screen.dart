@@ -3,6 +3,7 @@
 
 import "package:easy_localization/easy_localization.dart";
 import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
 import "package:go_router/go_router.dart";
 import "package:rtc_erp/base/widgets/base_scaffold.dart";
 import "package:rtc_erp/common/constants/app_image.dart";
@@ -17,6 +18,7 @@ import "../../../common/utils/dialog/index.dart";
 
 import "../../../routes/route_names.dart";
 import "../../auth/data/datasource/models/user_model.dart";
+import "../../auth/view/bloc/auth_bloc.dart";
 
 import "../data/datasource/models/index.dart";
 import "bloc/workspace_bloc.dart";
@@ -127,22 +129,35 @@ class _WorkPlaceScreenState
         backgroundColor: Colors.white,
         surfaceTintColor: Colors.white,
 
-        title: blocBuilder((context, state) {
-          final user = state.user;
+        title: BlocBuilder<AuthBloc, AuthState>(
+          buildWhen: (p, n) =>
+              p.user != n.user ||
+              p.status != n.status ||
+              p.avatarUploadedAt != n.avatarUploadedAt,
+          builder: (context, authState) {
+            final user = authState.user;
 
-          if (state.status == BaseStateStatus.loading && user == null) {
-            return const SizedBox(
-              height: 36,
-              child: Center(child: CircularProgressIndicator(strokeWidth: 2)),
+            // URL dùng `user.imagePath` (server field `ImagePath`) làm cache-bust.
+            // Sau upload, AuthBloc re-fetch user → user.imagePath đổi → URL đổi
+            // → CachedNetworkImage fetch ảnh mới đồng bộ trên mọi màn đang
+            // nghe AuthBloc (more_screen, workspace_screen, ...).
+            //
+            // Ngoài ra thêm `cacheBust` (epoch ms) để chắc chắn cache bị bust
+            // kể cả khi server trả về cùng imagePath (server có thể reuse filename).
+            final avatarUrl = _resolveAvatarUrl(
+              user?.employeeId,
+              imagePath: user?.imagePath,
+              cacheBust:
+                  authState.avatarUploadedAt?.millisecondsSinceEpoch,
             );
-          }
 
-          return WpInfoCard(
-            avatarUrl: _resolveAvatarUrl(user?.employeeId),
-            name: user?.fullName ?? '---',
-            code: user?.code ?? '---',
-          );
-        }, buildWhen: (p, n) => p.user != n.user || p.status != n.status),
+            return WpInfoCard(
+              avatarUrl: avatarUrl,
+              name: user?.fullName ?? '---',
+              code: user?.code ?? '---',
+            );
+          },
+        ),
       ),
 
       body: blocBuilder((context, state) {
@@ -283,7 +298,18 @@ class _WorkPlaceScreenState
   }
 
   /// Resolve full URL cho avatar qua endpoint /api/home/avatar.
-  String? _resolveAvatarUrl(int? employeeId) {
+  ///
+  /// [imagePath] (server field `ImagePath`) thay đổi mỗi lần user upload avatar mới,
+  /// dùng làm query param để cache-bust đồng bộ trên mọi màn.
+  ///
+  /// [cacheBust] là epoch ms của lần fetch hiện tại — bắt buộc phải có sau khi
+  /// upload để tránh cache CachedNetworkImage trả ảnh cũ khi server trả về
+  /// cùng `imagePath` (server có thể reuse filename).
+  String? _resolveAvatarUrl(
+    int? employeeId, {
+    String? imagePath,
+    int? cacheBust,
+  }) {
     if (employeeId == null) return null;
 
     final baseUrl = AppConfig.baseUrl.trim();
@@ -299,6 +325,9 @@ class _WorkPlaceScreenState
       );
     }
 
-    return '$normalizedBaseUrl/api/home/avatar?employeeId=$employeeId';
+    final extra =
+        imagePath != null && imagePath.isNotEmpty ? '&v=$imagePath' : '';
+    final bust = cacheBust != null ? '&_t=$cacheBust' : '';
+    return '$normalizedBaseUrl/api/home/avatar?employeeId=$employeeId$extra$bust';
   }
 }

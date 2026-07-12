@@ -53,6 +53,16 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
+  Future<Either<BaseError, UploadAvatarResponse>> uploadAvatar(String filePath) async {
+    try {
+      final res = await _service.uploadAvatar(filePath);
+      return right(res);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
   Future<void> initDefaultNotificationsForNewUser({required int userId}) async {
     final key = 'notification_defaults_set_$userId';
     final alreadySet = await _localStorage.getBool(key);

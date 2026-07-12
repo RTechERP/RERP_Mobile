@@ -34,6 +34,18 @@
     "help": "Trợ giúp",
     "about": "Thông tin"
   },
+  "more": {
+    "change_avatar": "Đổi ảnh đại diện",
+    "change_avatar_hint": "Chọn nguồn ảnh để cập nhật ảnh đại diện của bạn",
+    "pick_from_gallery": "Chọn ảnh từ thư viện",
+    "take_photo": "Chụp ảnh mới",
+    "upload_avatar_success": "Cập nhật ảnh đại diện thành công",
+    "upload_avatar_failed": "Cập nhật ảnh đại diện thất bại",
+    "avatar_permission_title": "Cần cấp quyền truy cập",
+    "avatar_permission_open_settings": "Để thay đổi ảnh đại diện, bạn cần cấp quyền truy cập ảnh hoặc camera. Mở Cài đặt để cấp quyền?",
+    "open_settings": "Mở Cài đặt",
+    "crop_avatar_title": "Chỉnh sửa ảnh đại diện"
+  },
   "tab": {
     "applications": "Ứng dụng",
     "features": "Tính năng"
