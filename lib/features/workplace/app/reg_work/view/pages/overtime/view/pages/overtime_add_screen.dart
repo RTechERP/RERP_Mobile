@@ -294,25 +294,6 @@ class _OvertimeAddScreenPageState
     );
   }
 
-  Future<void> _openLocationSheet(String slipKey) async {
-    final form = _formKey.currentState;
-    if (form == null) return;
-
-    await openSelectBottomSheet<OvertimeLocationOption>(
-      context: context,
-      title: 'Chọn địa điểm',
-      items: kOvertimeLocationOptions,
-      displayText: (o) => o.label,
-      onSelected: (o) {
-        form.fields['ot_slip_${slipKey}_location_id']
-            ?.didChange(o.value.toString());
-        form.fields['ot_slip_${slipKey}_location_text']
-            ?.didChange(o.label);
-        setState(() {});
-      },
-    );
-  }
-
   Future<void> _openProjectSheet(String slipKey) async {
     FocusScope.of(context).unfocus();
     final form = _formKey.currentState;
@@ -647,7 +628,6 @@ class _OvertimeAddScreenPageState
                                               slipKey: key,
                                               dateRegister: _getDateRegister(),
                                               onTypeTap: _openTypeSheet,
-                                              onLocationTap: _openLocationSheet,
                                               onProjectTap: _openProjectSheet,
                                               computedHours:
                                                   _computeSlipHours(key),

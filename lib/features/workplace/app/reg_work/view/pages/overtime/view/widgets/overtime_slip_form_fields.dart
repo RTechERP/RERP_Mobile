@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/widgets/form/form_checkbox.dart';
+import '../../../../../../../../../common/widgets/form/form_choice_group.dart';
 import '../../../../../../../../../common/widgets/form/form_date_time_picker.dart';
 import '../../../../../../../../../common/widgets/form/form_input_field.dart';
 import 'overtime_add_constants.dart';
@@ -18,8 +19,7 @@ import 'overtime_add_constants.dart';
 ///   ot_slip_${slipKey}_type_text    → String (hiển thị tên loại)
 ///   ot_slip_${slipKey}_project_id   → String (ẩn, lưu int)
 ///   ot_slip_${slipKey}_project_text → String (hiển thị tên dự án)
-///   ot_slip_${slipKey}_location_id  → String (ẩn, lưu int)
-///   ot_slip_${slipKey}_location_text→ String (hiển thị tên địa điểm)
+///   ot_slip_${slipKey}_location_id  → int (lưu trực tiếp vào FormChoiceGroup)
 ///   ot_slip_${slipKey}_reason       → String
 class OvertimeSlipFormFields extends StatelessWidget {
   const OvertimeSlipFormFields({
@@ -27,7 +27,6 @@ class OvertimeSlipFormFields extends StatelessWidget {
     required this.slipKey,
     required this.dateRegister,
     required this.onTypeTap,
-    required this.onLocationTap,
     required this.onProjectTap,
     this.computedHours,
     this.readOnly = false,
@@ -36,7 +35,6 @@ class OvertimeSlipFormFields extends StatelessWidget {
     this.initialTypeId,
     this.initialTypeLabel,
     this.initialLocationId,
-    this.initialLocationLabel,
     this.initialProjectId,
     this.initialProjectLabel,
     this.initialReason,
@@ -49,7 +47,6 @@ class OvertimeSlipFormFields extends StatelessWidget {
   final String slipKey;
   final DateTime dateRegister;
   final void Function(String slipKey) onTypeTap;
-  final void Function(String slipKey) onLocationTap;
   final void Function(String slipKey) onProjectTap;
 
   /// Số giờ tính toán từ màn hình cha (EndTime - TimeStart).
@@ -61,7 +58,6 @@ class OvertimeSlipFormFields extends StatelessWidget {
   final int? initialTypeId;
   final String? initialTypeLabel;
   final int? initialLocationId;
-  final String? initialLocationLabel;
   final int? initialProjectId;
   final String? initialProjectLabel;
   final String? initialReason;
@@ -80,14 +76,6 @@ class OvertimeSlipFormFields extends StatelessWidget {
   static String _fmtDouble(double h) {
     final s = h.toStringAsFixed(2).replaceAll(RegExp(r'0+$'), '');
     return s.endsWith('.') ? s.substring(0, s.length - 1) : s;
-  }
-
-  String get _defaultLocationLabel {
-    if (initialLocationId == null) return '';
-    for (final o in kOvertimeLocationOptions) {
-      if (o.value == initialLocationId) return o.label;
-    }
-    return '';
   }
 
   @override
@@ -278,27 +266,23 @@ class OvertimeSlipFormFields extends StatelessWidget {
           const SizedBox(height: 12),
 
           // ── Địa điểm ────────────────────────────────────────────────
-          FormBuilderField<String>(
+          FormChoiceGroup<int>(
             name: 'ot_slip_${slipKey}_location_id',
-            initialValue: initialLocationId != null
-                ? initialLocationId.toString()
-                : '',
-
-            builder: (_) => const SizedBox.shrink(),
-          ),
-          FormInputField(
-            readOnly: true,
-            nameForm: 'ot_slip_${slipKey}_location_text',
-            nameTextField: 'ot_slip_${slipKey}_location_text_tf',
             label: 'Địa điểm',
+            columns: 2,
             icon: Icons.location_on_outlined,
-            initialValue:
-                initialLocationLabel ?? _defaultLocationLabel,
-
-            isRequired: true,
-            onTap: readOnly ? null : () => onLocationTap(slipKey),
+            enabled: !readOnly,
+            initialValue: initialLocationId ?? kOvertimeLocationOptions.first.value,
+            options: [
+              for (final o in kOvertimeLocationOptions)
+                FormChoiceOption(
+                  value: o.value,
+                  label: o.label,
+                  selectedColor: AppColors.primaryERP,
+                ),
+            ],
             validator: (v) {
-              if (v == null || v.isEmpty) return 'Vui lòng chọn địa điểm';
+              if (v == null) return 'Vui lòng chọn địa điểm';
               return null;
             },
           ),
