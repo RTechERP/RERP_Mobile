@@ -70,6 +70,14 @@ mixin _$User {
   String get permissions => throw _privateConstructorUsedError;
   @JsonKey(name: 'Name')
   String get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PasswordHash')
+  String get passwordHash => throw _privateConstructorUsedError;
+  @JsonKey(name: 'LeaderID')
+  int get leaderId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TaxCompanyID')
+  int get taxCompanyId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ImagePath')
+  String? get imagePath => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -106,7 +114,11 @@ abstract class $UserCopyWith<$Res> {
       @JsonKey(name: 'IsLeader') int isLeader,
       @JsonKey(name: 'TeamOfUser') int teamOfUser,
       @JsonKey(name: 'Permissions') String permissions,
-      @JsonKey(name: 'Name') String name});
+      @JsonKey(name: 'Name') String name,
+      @JsonKey(name: 'PasswordHash') String passwordHash,
+      @JsonKey(name: 'LeaderID') int leaderId,
+      @JsonKey(name: 'TaxCompanyID') int taxCompanyId,
+      @JsonKey(name: 'ImagePath') String? imagePath});
 }
 
 /// @nodoc
@@ -147,6 +159,10 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? teamOfUser = null,
     Object? permissions = null,
     Object? name = null,
+    Object? passwordHash = null,
+    Object? leaderId = null,
+    Object? taxCompanyId = null,
+    Object? imagePath = freezed,
   }) {
     return _then(_value.copyWith(
       employeeId: null == employeeId
@@ -249,6 +265,22 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      passwordHash: null == passwordHash
+          ? _value.passwordHash
+          : passwordHash // ignore: cast_nullable_to_non_nullable
+              as String,
+      leaderId: null == leaderId
+          ? _value.leaderId
+          : leaderId // ignore: cast_nullable_to_non_nullable
+              as int,
+      taxCompanyId: null == taxCompanyId
+          ? _value.taxCompanyId
+          : taxCompanyId // ignore: cast_nullable_to_non_nullable
+              as int,
+      imagePath: freezed == imagePath
+          ? _value.imagePath
+          : imagePath // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -285,7 +317,11 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       @JsonKey(name: 'IsLeader') int isLeader,
       @JsonKey(name: 'TeamOfUser') int teamOfUser,
       @JsonKey(name: 'Permissions') String permissions,
-      @JsonKey(name: 'Name') String name});
+      @JsonKey(name: 'Name') String name,
+      @JsonKey(name: 'PasswordHash') String passwordHash,
+      @JsonKey(name: 'LeaderID') int leaderId,
+      @JsonKey(name: 'TaxCompanyID') int taxCompanyId,
+      @JsonKey(name: 'ImagePath') String? imagePath});
 }
 
 /// @nodoc
@@ -323,6 +359,10 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? teamOfUser = null,
     Object? permissions = null,
     Object? name = null,
+    Object? passwordHash = null,
+    Object? leaderId = null,
+    Object? taxCompanyId = null,
+    Object? imagePath = freezed,
   }) {
     return _then(_$UserImpl(
       employeeId: null == employeeId
@@ -425,6 +465,22 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      passwordHash: null == passwordHash
+          ? _value.passwordHash
+          : passwordHash // ignore: cast_nullable_to_non_nullable
+              as String,
+      leaderId: null == leaderId
+          ? _value.leaderId
+          : leaderId // ignore: cast_nullable_to_non_nullable
+              as int,
+      taxCompanyId: null == taxCompanyId
+          ? _value.taxCompanyId
+          : taxCompanyId // ignore: cast_nullable_to_non_nullable
+              as int,
+      imagePath: freezed == imagePath
+          ? _value.imagePath
+          : imagePath // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -457,7 +513,11 @@ class _$UserImpl implements _User {
       @JsonKey(name: 'IsLeader') required this.isLeader,
       @JsonKey(name: 'TeamOfUser') required this.teamOfUser,
       @JsonKey(name: 'Permissions') required this.permissions,
-      @JsonKey(name: 'Name') required this.name});
+      @JsonKey(name: 'Name') required this.name,
+      @JsonKey(name: 'PasswordHash') required this.passwordHash,
+      @JsonKey(name: 'LeaderID') required this.leaderId,
+      @JsonKey(name: 'TaxCompanyID') required this.taxCompanyId,
+      @JsonKey(name: 'ImagePath') this.imagePath});
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImplFromJson(json);
@@ -537,10 +597,22 @@ class _$UserImpl implements _User {
   @override
   @JsonKey(name: 'Name')
   final String name;
+  @override
+  @JsonKey(name: 'PasswordHash')
+  final String passwordHash;
+  @override
+  @JsonKey(name: 'LeaderID')
+  final int leaderId;
+  @override
+  @JsonKey(name: 'TaxCompanyID')
+  final int taxCompanyId;
+  @override
+  @JsonKey(name: 'ImagePath')
+  final String? imagePath;
 
   @override
   String toString() {
-    return 'User(employeeId: $employeeId, id: $id, departmentId: $departmentId, code: $code, fullName: $fullName, loginName: $loginName, isAdmin: $isAdmin, isAdminSale: $isAdminSale, mainViewId: $mainViewId, departmentName: $departmentName, headofDepartment: $headofDepartment, avatar: $avatar, statusEmployee: $statusEmployee, statusUser: $statusUser, positionName: $positionName, userGroupId: $userGroupId, positionId: $positionId, gioiTinh: $gioiTinh, positionCode: $positionCode, departmentCode: $departmentCode, isBusinessCost: $isBusinessCost, isLeader: $isLeader, teamOfUser: $teamOfUser, permissions: $permissions, name: $name)';
+    return 'User(employeeId: $employeeId, id: $id, departmentId: $departmentId, code: $code, fullName: $fullName, loginName: $loginName, isAdmin: $isAdmin, isAdminSale: $isAdminSale, mainViewId: $mainViewId, departmentName: $departmentName, headofDepartment: $headofDepartment, avatar: $avatar, statusEmployee: $statusEmployee, statusUser: $statusUser, positionName: $positionName, userGroupId: $userGroupId, positionId: $positionId, gioiTinh: $gioiTinh, positionCode: $positionCode, departmentCode: $departmentCode, isBusinessCost: $isBusinessCost, isLeader: $isLeader, teamOfUser: $teamOfUser, permissions: $permissions, name: $name, passwordHash: $passwordHash, leaderId: $leaderId, taxCompanyId: $taxCompanyId, imagePath: $imagePath)';
   }
 
   @override
@@ -592,7 +664,15 @@ class _$UserImpl implements _User {
                 other.teamOfUser == teamOfUser) &&
             (identical(other.permissions, permissions) ||
                 other.permissions == permissions) &&
-            (identical(other.name, name) || other.name == name));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.passwordHash, passwordHash) ||
+                other.passwordHash == passwordHash) &&
+            (identical(other.leaderId, leaderId) ||
+                other.leaderId == leaderId) &&
+            (identical(other.taxCompanyId, taxCompanyId) ||
+                other.taxCompanyId == taxCompanyId) &&
+            (identical(other.imagePath, imagePath) ||
+                other.imagePath == imagePath));
   }
 
   @JsonKey(ignore: true)
@@ -623,7 +703,11 @@ class _$UserImpl implements _User {
         isLeader,
         teamOfUser,
         permissions,
-        name
+        name,
+        passwordHash,
+        leaderId,
+        taxCompanyId,
+        imagePath
       ]);
 
   @JsonKey(ignore: true)
@@ -666,7 +750,11 @@ abstract class _User implements User {
       @JsonKey(name: 'IsLeader') required final int isLeader,
       @JsonKey(name: 'TeamOfUser') required final int teamOfUser,
       @JsonKey(name: 'Permissions') required final String permissions,
-      @JsonKey(name: 'Name') required final String name}) = _$UserImpl;
+      @JsonKey(name: 'Name') required final String name,
+      @JsonKey(name: 'PasswordHash') required final String passwordHash,
+      @JsonKey(name: 'LeaderID') required final int leaderId,
+      @JsonKey(name: 'TaxCompanyID') required final int taxCompanyId,
+      @JsonKey(name: 'ImagePath') final String? imagePath}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
@@ -745,6 +833,18 @@ abstract class _User implements User {
   @override
   @JsonKey(name: 'Name')
   String get name;
+  @override
+  @JsonKey(name: 'PasswordHash')
+  String get passwordHash;
+  @override
+  @JsonKey(name: 'LeaderID')
+  int get leaderId;
+  @override
+  @JsonKey(name: 'TaxCompanyID')
+  int get taxCompanyId;
+  @override
+  @JsonKey(name: 'ImagePath')
+  String? get imagePath;
   @override
   @JsonKey(ignore: true)
   _$$UserImplCopyWith<_$UserImpl> get copyWith =>

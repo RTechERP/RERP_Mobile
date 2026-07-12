@@ -6,6 +6,7 @@ import "package:flutter/material.dart";
 import "package:go_router/go_router.dart";
 import "package:rtc_erp/base/widgets/base_scaffold.dart";
 import "package:rtc_erp/common/constants/app_image.dart";
+import "../../../common/app/app_config.dart";
 
 import "../../../base/bloc/index.dart";
 import "../../../base/widgets/base_widget.dart";
@@ -137,7 +138,7 @@ class _WorkPlaceScreenState
           }
 
           return WpInfoCard(
-            avatarUrl: user?.avatar ?? 'https://i.pravatar.cc/150',
+            avatarUrl: _resolveAvatarUrl(user?.employeeId),
             name: user?.fullName ?? '---',
             code: user?.code ?? '---',
           );
@@ -279,5 +280,25 @@ class _WorkPlaceScreenState
         );
       }, buildWhen: (p, n) => p.status != n.status || p.user != n.user),
     );
+  }
+
+  /// Resolve full URL cho avatar qua endpoint /api/home/avatar.
+  String? _resolveAvatarUrl(int? employeeId) {
+    if (employeeId == null) return null;
+
+    final baseUrl = AppConfig.baseUrl.trim();
+    if (baseUrl.isEmpty) return null;
+
+    var normalizedBaseUrl = baseUrl.endsWith('/')
+        ? baseUrl.substring(0, baseUrl.length - 1)
+        : baseUrl;
+    if (normalizedBaseUrl.endsWith('/api')) {
+      normalizedBaseUrl = normalizedBaseUrl.substring(
+        0,
+        normalizedBaseUrl.length - 4,
+      );
+    }
+
+    return '$normalizedBaseUrl/api/home/avatar?employeeId=$employeeId';
   }
 }

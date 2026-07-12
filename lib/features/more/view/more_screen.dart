@@ -14,6 +14,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../common/app_theme/index.dart';
+import '../../../../common/app/app_config.dart';
 import '../../../../base/bloc/bloc_status.dart';
 import '../../../../routes/route_names.dart';
 import '../../auth/view/bloc/auth_bloc.dart';
@@ -59,6 +60,7 @@ class MoreScreen extends StatelessWidget {
             final name = user?.fullName ?? 'User Name';
             final email = user?.loginName ?? 'user@rtc.edu.vn';
             final department = user?.departmentName ?? 'Phòng ban';
+            final avatarUrl = _resolveAvatarUrl(user?.employeeId);
 
             final isLoading = state.status == BaseStateStatus.loading;
 
@@ -75,6 +77,7 @@ class MoreScreen extends StatelessWidget {
                         name: name,
                         email: email,
                         department: department,
+                        avatarUrl: avatarUrl,
                       ),
 
                       const SizedBox(height: 20),
@@ -156,6 +159,26 @@ class MoreScreen extends StatelessWidget {
       ),
     );
   }
+
+  /// Resolve full URL cho avatar qua endpoint /api/home/avatar.
+  String? _resolveAvatarUrl(int? employeeId) {
+    if (employeeId == null) return null;
+
+    final baseUrl = AppConfig.baseUrl.trim();
+    if (baseUrl.isEmpty) return null;
+
+    var normalizedBaseUrl = baseUrl.endsWith('/')
+        ? baseUrl.substring(0, baseUrl.length - 1)
+        : baseUrl;
+    if (normalizedBaseUrl.endsWith('/api')) {
+      normalizedBaseUrl = normalizedBaseUrl.substring(
+        0,
+        normalizedBaseUrl.length - 4,
+      );
+    }
+
+    return '$normalizedBaseUrl/api/home/avatar?employeeId=$employeeId';
+  }
 }
 
 //---(Profile)---//
@@ -167,12 +190,13 @@ class _ProfileCard extends StatelessWidget {
   final String name;
   final String email;
   final String department;
+  final String? avatarUrl;
 
   const _ProfileCard({
     required this.name,
     required this.email,
     required this.department,
-
+    this.avatarUrl,
   });
 
   @override
@@ -192,32 +216,8 @@ class _ProfileCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          // Avatar gradient
-          Container(
-            width: 72,
-            height: 72,
-            decoration: BoxDecoration(
-              gradient: AppColors.gradientERP,
-              borderRadius: BorderRadius.circular(18),
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.primaryERP.withValues(alpha: 0.25),
-                  blurRadius: 10,
-                  offset: const Offset(0, 4),
-                ),
-              ],
-            ),
-            child: Center(
-              child: Text(
-                _initials(name),
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 26,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ),
-          ),
+          // Avatar
+          _buildAvatar(),
 
           const SizedBox(width: 16),
 
@@ -274,6 +274,61 @@ class _ProfileCard extends StatelessWidget {
     final first = parts.first.isNotEmpty ? parts.first[0] : '';
     final last = parts.last.isNotEmpty ? parts.last[0] : '';
     return '$first$last'.toUpperCase();
+  }
+
+  /// Build avatar — ưu tiên hiển thị [avatarUrl] nếu có, fallback gradient + initials.
+  Widget _buildAvatar() {
+    const size = 72.0;
+    final hasAvatar = avatarUrl != null && avatarUrl!.isNotEmpty;
+
+    return Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        gradient: hasAvatar ? null : AppColors.gradientERP,
+        borderRadius: BorderRadius.circular(18),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.primaryERP.withValues(alpha: 0.25),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      clipBehavior: Clip.antiAlias,
+      child: hasAvatar
+          ? Image.network(
+              avatarUrl!,
+              width: size,
+              height: size,
+              fit: BoxFit.cover,
+              errorBuilder: (_, __, ___) => _initialsFallback(),
+              loadingBuilder: (context, child, progress) {
+                if (progress == null) return child;
+                return const Center(
+                  child: SizedBox(
+                    width: 20,
+                    height: 20,
+                    child: CircularProgressIndicator(strokeWidth: 2),
+                  ),
+                );
+              },
+            )
+          : _initialsFallback(),
+    );
+  }
+
+  Widget _initialsFallback() {
+    return Center(
+      child: Text(
+        _initials(name),
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 26,
+          fontWeight: FontWeight.w700,
+        ),
+      ),
+    );
   }
 }
 
