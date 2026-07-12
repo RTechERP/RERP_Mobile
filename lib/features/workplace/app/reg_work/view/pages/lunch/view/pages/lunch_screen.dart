@@ -10,15 +10,14 @@ import 'package:rtc_erp/features/auth/data/repository/auth_repo.dart';
 import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/constants/index.dart';
-import '../../../../../../../../../common/enums/index.dart';
 import '../../../../../../../../../common/utils/dialog/index.dart';
-import '../../../../../../../../../common/utils/card/index.dart';
 import '../../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../../common/widgets/date_header.dart';
 import '../../../../../../../../../routes/route_names.dart';
 import '../../../../../../../../../common/widgets/date_range_picker.dart';
 import '../../../../../../../../../di/injection.dart';
 import '../bloc/lunch_bloc.dart';
+import '../widgets/lunch_card.dart';
 
 class LunchScreen extends StatefulWidget {
   const LunchScreen({super.key});
@@ -29,17 +28,6 @@ class LunchScreen extends StatefulWidget {
 
 class _LunchScreenState
     extends BaseState<LunchScreen, LunchEvent, LunchState, LunchBloc> {
-  ApprovalStatus _mapApprovalStatus(bool? isApproved) {
-    if (isApproved == true) return ApprovalStatus.approved;
-    if (isApproved == false) return ApprovalStatus.pending;
-    return ApprovalStatus.prepare;
-  }
-
-  String _formatDate(DateTime? date) {
-    if (date == null) return '--/--/----';
-    return DateFormat('dd/MM/yyyy').format(date);
-  }
-
   DateTime _dateOnly(DateTime date) =>
       DateTime(date.year, date.month, date.day);
 
@@ -286,35 +274,11 @@ class _LunchScreenState
               final dayItems = grouped[day]!;
               listWidgets.addAll(
                 dayItems.map((item) {
-                  final status = _mapApprovalStatus(item.isApproved);
-                  final employeeDisplay = item.code?.toString() ?? '--';
-                  final quantityDisplay = item.quantity?.toString() ?? '0';
-                  final locationText = item.locationText ?? '';
-
                   final canSwipeDelete = item.isApproved == false;
 
                   if (!canSwipeDelete) {
-                    return AppCardItem(
-                      status: status,
-                      useStatusBackground: false,
-                      useStatusBorder: false,
-                      content: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Mã nhân viên: $employeeDisplay',
-                            style: const TextStyle(fontWeight: FontWeight.w600),
-                          ),
-                          const SizedBox(height: 4),
-                          Text('Ngày: ${_formatDate(item.dateOrder)}'),
-                          const SizedBox(height: 4),
-                          Text('Số lượng: $quantityDisplay'),
-                          if (locationText.isNotEmpty) ...[
-                            const SizedBox(height: 4),
-                            Text('Địa điểm: $locationText'),
-                          ],
-                        ],
-                      ),
+                    return LunchCard(
+                      item: item,
                       onTap: () async {
                         final reload = await context.push<bool?>(
                           RouteNames.regworkLunchDetail,
@@ -356,28 +320,8 @@ class _LunchScreenState
                       ],
                     ),
                     child: Builder(
-                      builder: (slidableCtx) => AppCardItem(
-                        status: status,
-                        useStatusBackground: false,
-                        useStatusBorder: false,
-                        content: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Mã nhân viên: $employeeDisplay',
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.w600),
-                            ),
-                            const SizedBox(height: 4),
-                            Text('Ngày: ${_formatDate(item.dateOrder)}'),
-                            const SizedBox(height: 4),
-                            Text('Số lượng: $quantityDisplay'),
-                            if (locationText.isNotEmpty) ...[
-                              const SizedBox(height: 4),
-                              Text('Địa điểm: $locationText'),
-                            ],
-                          ],
-                        ),
+                      builder: (slidableCtx) => LunchCard(
+                        item: item,
                         onTap: () async {
                           // Đóng Slidable trước khi điều hướng để tránh tình trạng
                           // vuốt vẫn còn lộ action sau khi chạm vào nội dung.
@@ -394,7 +338,7 @@ class _LunchScreenState
                       ),
                     ),
                   );
-                }),
+                }).toList(),
               );
             }
 
