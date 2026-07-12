@@ -272,11 +272,18 @@ class _MoreScreenState extends State<MoreScreen> {
   /// 4. AuthBloc.add(AuthEvent.uploadAvatar(filePath))
   /// 5. AuthBloc tự refetch user → imagePath đổi → UI tự rebuild ảnh mới
   Future<void> _pickCropAndUploadAvatar(ImageSource source) async {
-    // 1. Xin quyền
+    // 1. Xin quyền qua permission_handler (hiển thị native dialog
+    // của iOS hoặc Android runtime permission).
     final granted = await _requestPermissionFor(source);
     if (!granted) {
       if (!mounted) return;
-      await _showPermissionDialog();
+
+      // Nếu đã bị từ chối vĩnh viễn (iOS: 2 lần trở lên, Android: "Don't ask again")
+      // → tự mở Settings app luôn để user cấp lại.
+      final isPermanently = await _isPermanentlyDenied(source);
+      if (isPermanently) {
+        await openAppSettings();
+      }
       return;
     }
 
@@ -298,7 +305,7 @@ class _MoreScreenState extends State<MoreScreen> {
     if (picked == null) return; // user huỷ
     if (!mounted) return;
 
-    // 3. Crop 1:1
+    // 3. Crop tròn (circular) — phù hợp với avatar hiển thị dạng ClipOval.
     final cropped = await ImageCropper().cropImage(
       sourcePath: picked.path,
       uiSettings: [
@@ -306,17 +313,24 @@ class _MoreScreenState extends State<MoreScreen> {
           toolbarTitle: 'more.crop_avatar_title'.tr(),
           toolbarColor: AppColors.primaryERP,
           toolbarWidgetColor: Colors.white,
+          // Crop hình tròn, không có background nền.
+          cropStyle: CropStyle.circle,
+          // Ẩn các nút thừa dưới đáy, chỉ giữ Done / Cancel trên toolbar.
+          hideBottomControls: true,
           lockAspectRatio: true,
-          hideBottomControls: false,
           aspectRatioPresets: const [
             CropAspectRatioPreset.square,
           ],
         ),
         IOSUiSettings(
           title: 'more.crop_avatar_title'.tr(),
+          // iOS native cropper chỉ hiển thị Done / Cancel — không có
+          // rotate/reset/extra button. Giữ aspect ratio 1:1.
           aspectRatioLockEnabled: true,
           resetAspectRatioEnabled: false,
           aspectRatioPickerButtonHidden: true,
+          rotateButtonsHidden: true,
+          resetButtonHidden: true,
         ),
       ],
     );
@@ -333,6 +347,7 @@ class _MoreScreenState extends State<MoreScreen> {
     if (source == ImageSource.camera) {
       var status = await Permission.camera.status;
       if (status.isGranted || status.isLimited) return true;
+      if (status.isPermanentlyDenied) return false;
       status = await Permission.camera.request();
       return status.isGranted || status.isLimited;
     }
@@ -343,6 +358,7 @@ class _MoreScreenState extends State<MoreScreen> {
 
     var photos = await Permission.photos.status;
     if (photos.isGranted || photos.isLimited) return true;
+    if (photos.isPermanentlyDenied) return false;
     photos = await Permission.photos.request();
     if (photos.isGranted || photos.isLimited) return true;
 
@@ -353,27 +369,17 @@ class _MoreScreenState extends State<MoreScreen> {
     return storage.isGranted;
   }
 
-  Future<void> _showPermissionDialog() async {
-    final openSettings = await showDialog<bool>(
-      context: context,
-      builder: (dialogContext) => AlertDialog(
-        title: Text('more.avatar_permission_title'.tr()),
-        content: Text('more.avatar_permission_open_settings'.tr()),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(dialogContext).pop(false),
-            child: const Text('Hủy'),
-          ),
-          TextButton(
-            onPressed: () => Navigator.of(dialogContext).pop(true),
-            child: Text('more.open_settings'.tr()),
-          ),
-        ],
-      ),
-    );
-    if (openSettings == true) {
-      await openAppSettings();
+  /// Kiểm tra permission hiện tại có bị từ chối vĩnh viễn không.
+  /// - iOS: sau khi user từ chối 2 lần trở lên → permanentlyDenied
+  /// - Android: sau khi user chọn "Don't ask again" → permanentlyDenied
+  /// Dùng để phân biệt message giữa "vừa từ chối" vs "đã chặn vĩnh viễn".
+  Future<bool> _isPermanentlyDenied(ImageSource source) async {
+    if (source == ImageSource.camera) {
+      return (await Permission.camera.status).isPermanentlyDenied;
     }
+    if (Platform.isIOS) return false;
+    if ((await Permission.photos.status).isPermanentlyDenied) return true;
+    return (await Permission.storage.status).isPermanentlyDenied;
   }
 
   /// Resolve full URL cho avatar qua endpoint /api/home/avatar.
