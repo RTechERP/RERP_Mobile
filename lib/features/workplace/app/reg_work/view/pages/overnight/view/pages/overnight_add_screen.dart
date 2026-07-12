@@ -26,6 +26,22 @@ import '../bloc/overnight_bloc.dart';
 
 const _kStartHourMin = ValidateHelper.overnightStartHourMin;
 
+/// Parse giờ nghỉ — chấp nhận cả dấu `.` lẫn `,` làm dấu thập phân
+/// (`1.50`, `1,50`, `2.0`, `2,0` đều OK). Trả về `null` nếu không hợp lệ.
+double? _parseBreakHours(String? raw) {
+  if (raw == null) return null;
+  final s = raw.trim();
+  if (s.isEmpty) return null;
+  final normalized = (s.contains('.') && s.contains(','))
+      ? s
+      : s.replaceAll(',', '.');
+  return double.tryParse(normalized);
+}
+
+/// Parse giờ nghỉ — trả về `fallback` khi input rỗng / không hợp lệ.
+double parseBreakHoursOr(String? raw, double fallback) =>
+    _parseBreakHours(raw) ?? fallback;
+
 // ─────────────────────────────────────────────────────────────────────────────
 // Main screen
 // ─────────────────────────────────────────────────────────────────────────────
@@ -50,7 +66,7 @@ class _OvernightAddScreenState
   late final List<_SlipMeta> _slips;
   int _selectedSlipIndex = 0;
 
-  // ── isProblem getter ────────────────────────────────────────────────────
+  /// Đăng ký bổ sung = cho phép chọn ngày quá khứ (trong tháng hiện tại).
   bool get _isProblem =>
       (_formKey.currentState?.fields['on_is_problem']?.value as bool?) ?? false;
 
@@ -118,11 +134,10 @@ class _OvernightAddScreenState
     final end = form.fields['on_slip_${slip.key}_time_end']?.value as DateTime?;
     if (start == null || end == null) return null;
 
-    final breakHours =
-        double.tryParse(
+    final breakHours = parseBreakHoursOr(
           '${form.fields['on_slip_${slip.key}_break_hours']?.value ?? '0'}',
-        ) ??
-        0;
+          0,
+        );
     final diff = end.difference(start).inMinutes / 60.0;
     if (diff <= 0) return null; // end không sau start
     return (diff - breakHours).clamp(0.0, diff);
@@ -217,8 +232,10 @@ class _OvernightAddScreenState
     // Xây danh sách phiếu để validate business rules
     final rows = <OvernightAddSlipRow>[];
     for (final slip in _slips) {
-      final breakRaw = v['on_slip_${slip.key}_break_hours'];
-      final breakHours = double.tryParse('${breakRaw ?? '0'}') ?? 0;
+      final breakHours = parseBreakHoursOr(
+        '${v['on_slip_${slip.key}_break_hours'] ?? '0'}',
+        0,
+      );
       rows.add((
         date: slip.date,
         timeStart: v['on_slip_${slip.key}_time_start'] as DateTime?,
@@ -260,8 +277,10 @@ class _OvernightAddScreenState
 
     final payloadSlips = <OvernightSubmitSlip>[];
     for (final slip in _slips) {
-      final breakRaw = v['on_slip_${slip.key}_break_hours'];
-      final breakHours = double.tryParse('${breakRaw ?? '0'}') ?? 0;
+      final breakHours = parseBreakHoursOr(
+        '${v['on_slip_${slip.key}_break_hours'] ?? '0'}',
+        0,
+      );
       final location = '${v['on_slip_${slip.key}_location'] ?? ''}';
       final note = '${v['on_slip_${slip.key}_note'] ?? ''}';
 
@@ -681,9 +700,10 @@ class _OvernightSlipFormFieldsState extends State<_OvernightSlipFormFields> {
         extentOffset: _breakController.text.length,
       );
     } else {
-      // Restore '0.00' nếu bỏ trống
+      // Restore '0.00' nếu bỏ trống hoặc nhập không parse được
+      // (cho phép cả dấu `.` lẫn `,`).
       final v = _breakController.text.trim();
-      if (v.isEmpty || double.tryParse(v) == null) {
+      if (v.isEmpty || _parseBreakHours(v) == null) {
         _breakController.text = '0.00';
       }
     }
@@ -703,19 +723,28 @@ class _OvernightSlipFormFieldsState extends State<_OvernightSlipFormFields> {
     return DateTime(n.year, n.month, n.day);
   }
 
-  /// firstDate cho ô ngày:
-  /// - isProblem = true → đầu tháng hiện tại.
-  /// - isProblem = false → chỉ hôm nay.
-  DateTime get _firstDateAllowed =>
-      widget.isProblem ? DateTime(_today.year, _today.month, 1) : _today;
+  /// Ngày mở picker cho giờ bắt đầu / kết thúc:
+  /// - Về cơ bản lấy theo slip.date (form Ngày).
+  /// - Nếu slip.date < hôm nay thì kéo về hôm nay để picker không mở
+  ///   ngày quá khứ (mặc định giờ cũng sẽ được đẩy về hôm nay 20:00).
+  DateTime get _timeFirstDate =>
+      widget.slip.date.isBefore(_today) ? _today : widget.slip.date;
 
-  /// lastDate = hôm nay (không cho chọn tương lai).
-  DateTime get _lastDateAllowed => _today;
+  DateTime get _timeLastDate => _today.add(const Duration(days: 365));
 
-  // ── firstDate cho ô giờ kết thúc (cho phép sang ngày hôm sau) ──────────
-  DateTime get _endFirstDate => widget.slip.date;
-  DateTime get _endLastDate =>
-      widget.slip.date.add(const Duration(days: 1, hours: 8));
+  /// Predicate dùng cho [FormBuilderDateTimePicker.selectableDayPredicate]:
+  /// chỉ cho phép chọn ngày >= [_timeFirstDate] (chặn quá khứ).
+  bool _isFutureOrToday(DateTime day) {
+    final d = DateTime(day.year, day.month, day.day);
+    return !d.isBefore(_timeFirstDate);
+  }
+
+  /// Giờ bắt đầu mặc định: 20:00 ngày [_timeFirstDate] — luôn tương lai
+  /// và hợp lệ theo rule [ValidateHelper.overnightStartHourMin].
+  DateTime _defaultStart() {
+    final t = _timeFirstDate;
+    return DateTime(t.year, t.month, t.day, _kStartHourMin);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -737,8 +766,6 @@ class _OvernightSlipFormFieldsState extends State<_OvernightSlipFormFields> {
             inputType: InputType.date,
             format: dateFmt,
             initialValue: widget.slip.date,
-            firstDate: _firstDateAllowed,
-            lastDate: _lastDateAllowed,
             decoration: formInputDecoration(
               context,
               label: 'Ngày',
@@ -749,7 +776,7 @@ class _OvernightSlipFormFieldsState extends State<_OvernightSlipFormFields> {
           ),
           const SizedBox(height: 12),
 
-          // ── Thời gian bắt đầu (>= 20:00, cùng ngày DateRegister) ────────
+          // Thời gian bắt đầu (>= 20:00, không cho phép ngày quá khứ).
           FormDateTimePicker(
             nameForm: '${_pref}_time_start',
             nameTimePicker: '${_pref}_time_start_inner',
@@ -757,18 +784,11 @@ class _OvernightSlipFormFieldsState extends State<_OvernightSlipFormFields> {
             icon: Icons.access_time_outlined,
             inputType: InputType.both,
             format: bothFmt,
-            initialValue: DateTime(
-              widget.slip.date.year,
-              widget.slip.date.month,
-              widget.slip.date.day,
-              _kStartHourMin,
-            ),
-            initialDate: widget.slip.date,
-            // Giới hạn chọn: chỉ trong ngày đăng ký (không qua đêm cho start)
-            firstDate: widget.slip.date,
-            lastDate: widget.slip.date.add(
-              const Duration(hours: 23, minutes: 59),
-            ),
+            initialValue: _defaultStart(),
+            initialDate: _timeFirstDate,
+            firstDate: _timeFirstDate,
+            lastDate: _timeLastDate,
+            selectableDayPredicate: _isFutureOrToday,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             onChanged: (_) => widget.onTimeChanged(widget.slip),
             isRequired: true,
@@ -779,7 +799,7 @@ class _OvernightSlipFormFieldsState extends State<_OvernightSlipFormFields> {
           ),
           const SizedBox(height: 12),
 
-          // ── Thời gian kết thúc (> start, có thể sang ngày hôm sau) ──────
+          // Thời gian kết thúc (cùng ràng buộc với thời gian bắt đầu).
           FormDateTimePicker(
             nameForm: '${_pref}_time_end',
             nameTimePicker: '${_pref}_time_end_inner',
@@ -787,15 +807,8 @@ class _OvernightSlipFormFieldsState extends State<_OvernightSlipFormFields> {
             icon: Icons.access_time_filled_outlined,
             inputType: InputType.both,
             format: bothFmt,
-            initialValue: DateTime(
-              widget.slip.date.year,
-              widget.slip.date.month,
-              widget.slip.date.day,
-              _kStartHourMin,
-            ),
-            initialDate: widget.slip.date,
-            firstDate: _endFirstDate,
-            lastDate: _endLastDate, // tối đa +1 ngày +8h
+            lastDate: _timeLastDate,
+            selectableDayPredicate: _isFutureOrToday,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             onChanged: (_) => widget.onTimeChanged(widget.slip),
             isRequired: true,
@@ -821,7 +834,7 @@ class _OvernightSlipFormFieldsState extends State<_OvernightSlipFormFields> {
                     if (v == null || v.isEmpty) {
                       return 'Vui lòng nhập giờ nghỉ';
                     }
-                    final breakHours = double.tryParse(v);
+                    final breakHours = _parseBreakHours(v);
                     if (breakHours == null || breakHours < 0) {
                       return 'Giờ nghỉ không hợp lệ';
                     }
@@ -856,7 +869,7 @@ class _OvernightSlipFormFieldsState extends State<_OvernightSlipFormFields> {
                       ),
                       inputFormatters: [
                         FilteringTextInputFormatter.allow(
-                          RegExp(r'^\d*\.?\d{0,2}'),
+                          RegExp(r'^\d*([.,]?\d{0,2})?'),
                         ),
                       ],
                       decoration: formInputDecoration(
