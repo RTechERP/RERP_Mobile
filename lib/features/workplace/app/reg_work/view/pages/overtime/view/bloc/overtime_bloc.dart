@@ -6,6 +6,7 @@ import 'package:injectable/injectable.dart';
 import '../../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../../common/logger/index.dart';
+import '../../../../../../../../../common/services/permissions/role_groups.dart';
 import '../../../../../../../../auth/data/repository/auth_repo.dart';
 import '../../data/datasource/models/overtime_model.dart';
 import '../../data/repository/overtime_repo.dart';
@@ -164,6 +165,9 @@ class OvertimeBloc extends BaseBloc<OvertimeEvent, OvertimeState> {
         return;
       }
 
+      final isProjectRequired = DepartmentGroups.overtimeDepartmentID
+          .contains(user.departmentId);
+
       final approverRes = await _overtimeRepo.getApprover();
       final typeRes = await _overtimeRepo.getOvertimeType();
       final projectRes = await _overtimeRepo.getOvertimeProject();
@@ -230,6 +234,7 @@ class OvertimeBloc extends BaseBloc<OvertimeEvent, OvertimeState> {
           employeeId: user.employeeId,
           loginName: user.loginName,
           approveId: fillApprover,
+          isProjectRequired: isProjectRequired,
         ),
       );
     } finally {

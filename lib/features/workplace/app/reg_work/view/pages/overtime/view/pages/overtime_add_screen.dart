@@ -639,6 +639,8 @@ class _OvertimeAddScreenPageState
                                                   _onSlipEndTimeChanged,
                                               onOvernightChanged:
                                                   _onSlipOvernightChanged,
+                                              isProjectRequired:
+                                                  state.isProjectRequired,
                                             ),
                                         ],
                                       ),

@@ -535,6 +535,7 @@ class _OvertimeDetailScreenPageState
                                     onTimeStartChanged: _onSlipTimeStartChanged,
                                     onEndTimeChanged: _onSlipEndTimeChanged,
                                     onOvernightChanged: _onSlipOvernightChanged,
+                                    isProjectRequired: state.isProjectRequired,
                                   ),
                                 ],
                               ),

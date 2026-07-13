@@ -42,6 +42,7 @@ class OvertimeSlipFormFields extends StatelessWidget {
     this.onTimeStartChanged,
     this.onEndTimeChanged,
     this.onOvernightChanged,
+    this.isProjectRequired = true,
   });
 
   final String slipKey;
@@ -71,6 +72,9 @@ class OvertimeSlipFormFields extends StatelessWidget {
 
   /// Callback khi checkbox "Phụ cấp ăn tối" thay đổi — parent kiểm tra giờ.
   final void Function(String slipKey, bool? value)? onOvernightChanged;
+
+  /// Whether project field is required (based on department).
+  final bool isProjectRequired;
 
   /// Format double: bỏ ".0" nếu chẵn, hiện 1 chữ số thập phân nếu lẻ.
   static String _fmtDouble(double h) {
@@ -103,6 +107,33 @@ class OvertimeSlipFormFields extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          // ── Dự án ───────────────────────────────────────────────────
+          FormBuilderField<String>(
+            name: 'ot_slip_${slipKey}_project_id',
+            initialValue:
+            initialProjectId != null ? initialProjectId.toString() : '',
+
+            builder: (_) => const SizedBox.shrink(),
+          ),
+          FormInputField(
+            readOnly: true,
+            nameForm: 'ot_slip_${slipKey}_project_text',
+            nameTextField: 'ot_slip_${slipKey}_project_text_tf',
+            label: 'Dự án',
+            icon: Icons.work_outline,
+            initialValue: initialProjectLabel ?? '',
+
+            isRequired: isProjectRequired,
+            onTap: readOnly ? null : () => onProjectTap(slipKey),
+            validator: (v) {
+              if (isProjectRequired && (v == null || v.isEmpty)) {
+                return 'Vui lòng chọn dự án';
+              }
+              return null;
+            },
+          ),
+          const SizedBox(height: 12),
+
           // Thời gian bắt đầu
           FormDateTimePicker(
             nameForm: 'ot_slip_${slipKey}_time_start',
@@ -235,31 +266,6 @@ class OvertimeSlipFormFields extends StatelessWidget {
             onTap: readOnly ? null : () => onTypeTap(slipKey),
             validator: (v) {
               if (v == null || v.isEmpty) return 'Vui lòng chọn loại làm thêm';
-              return null;
-            },
-          ),
-          const SizedBox(height: 12),
-
-          // ── Dự án ───────────────────────────────────────────────────
-          FormBuilderField<String>(
-            name: 'ot_slip_${slipKey}_project_id',
-            initialValue:
-                initialProjectId != null ? initialProjectId.toString() : '',
-
-            builder: (_) => const SizedBox.shrink(),
-          ),
-          FormInputField(
-            readOnly: true,
-            nameForm: 'ot_slip_${slipKey}_project_text',
-            nameTextField: 'ot_slip_${slipKey}_project_text_tf',
-            label: 'Dự án',
-            icon: Icons.work_outline,
-            initialValue: initialProjectLabel ?? '',
-
-            isRequired: true,
-            onTap: readOnly ? null : () => onProjectTap(slipKey),
-            validator: (v) {
-              if (v == null || v.isEmpty) return 'Vui lòng chọn dự án';
               return null;
             },
           ),

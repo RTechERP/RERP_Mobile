@@ -21,6 +21,10 @@ class OvertimeState extends BaseBlocState {
   final bool editSuccess;
 
   final FillApproverItem? approveId;
+
+  /// Whether project field is required (based on user's department).
+  final bool isProjectRequired;
+
   const OvertimeState({
     required super.status,
     super.message,
@@ -41,6 +45,7 @@ class OvertimeState extends BaseBlocState {
     this.isFetchingDetail = false,
     this.editSuccess = false,
     this.approveId,
+    this.isProjectRequired = true,
   });
 
   factory OvertimeState.init() => const OvertimeState(
@@ -62,6 +67,7 @@ class OvertimeState extends BaseBlocState {
     isFetchingDetail: false,
     editSuccess: false,
     approveId: null,
+    isProjectRequired: true,
   );
 
   @override
@@ -85,5 +91,6 @@ class OvertimeState extends BaseBlocState {
     isFetchingDetail,
     editSuccess,
     approveId,
+    isProjectRequired,
   ];
 }
