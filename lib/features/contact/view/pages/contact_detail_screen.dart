@@ -11,18 +11,22 @@
 
 import 'package:flutter/material.dart';
 
-import '../../../../../common/app_theme/index.dart';
-import 'models/contact_model.dart';
+import '../../../../../../common/app_theme/index.dart';
+import '../../data/datasource/models/contact_model.dart';
 
 /// Màn hình chi tiết liên hệ.
 ///
-/// Hiển thị thông tin đầy đủ của một liên hệ: avatar, chức vụ, phòng ban,
+/// Hiển thị thông tin đầy đủ của một liên hệ từ API: avatar, chức vụ, phòng ban,
 /// thông tin liên lạc (điện thoại, email), thông tin công ty (mã NV, ngày vào làm).
 /// Có các nút hành động: gọi điện, nhắn tin, gửi email.
 class ContactDetailScreen extends StatelessWidget {
-  final ContactData contact;
+  final ContactPersonalItem contact;
 
   const ContactDetailScreen({super.key, required this.contact});
+
+  String get _displayEmail => contact.emailCongTy?.trim() ?? '--';
+  String get _displayPhone => contact.sdtCaNhan?.trim() ?? '--';
+  String get _displayCode => contact.code?.trim() ?? '--';
 
   @override
   Widget build(BuildContext context) {
@@ -44,24 +48,15 @@ class ContactDetailScreen extends StatelessWidget {
             fontWeight: FontWeight.w700,
           ),
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.more_vert_outlined, color: AppColors.heading),
-            onPressed: () {},
-          ),
-          const SizedBox(width: 4),
-        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            // Profile header
             _ProfileHeader(contact: contact),
 
             const SizedBox(height: 20),
 
-            // Action buttons
             _ActionButtons(contact: contact),
 
             const SizedBox(height: 20),
@@ -74,40 +69,47 @@ class ContactDetailScreen extends StatelessWidget {
                 _InfoRow(
                   icon: Icons.phone_outlined,
                   label: 'Điện thoại',
-                  value: contact.phone,
-                  onTap: () {},
+                  value: _displayPhone,
+                  onTap: _displayPhone != '--'
+                      ? () async {}
+                      : null,
                 ),
+
                 _InfoRow(
                   icon: Icons.email_outlined,
                   label: 'Email',
-                  value: contact.email,
-                  onTap: () {},
+                  value: _displayEmail,
+                  onTap: _displayEmail != '--'
+                      ? () async {}
+                      : null,
                 ),
               ],
             ),
 
             const SizedBox(height: 14),
 
-            // Thông tin công ty
+            // Thông tin nhân viên
             _InfoCard(
-              title: 'Thông tin công ty',
+              title: 'Thông tin nhân viên',
               icon: Icons.business_outlined,
               children: [
                 _InfoRow(
                   icon: Icons.badge_outlined,
                   label: 'Mã nhân viên',
-                  value: 'NV${contact.id.padLeft(4, '0')}',
+                  value: _displayCode,
                 ),
-                _InfoRow(
-                  icon: Icons.location_city_outlined,
-                  label: 'Phòng ban',
-                  value: contact.department,
-                ),
-                _InfoRow(
-                  icon: Icons.work_outline,
-                  label: 'Chức vụ',
-                  value: contact.position,
-                ),
+                if ((contact.departmentName?.trim() ?? '').isNotEmpty)
+                  _InfoRow(
+                    icon: Icons.location_city_outlined,
+                    label: 'Phòng ban',
+                    value: contact.departmentName!.trim(),
+                  ),
+                if ((contact.chucVu?.trim() ?? '').isNotEmpty)
+                  _InfoRow(
+                    icon: Icons.work_outline,
+                    label: 'Chức vụ',
+                    value: contact.chucVu!.trim(),
+                  ),
               ],
             ),
           ],
@@ -119,12 +121,18 @@ class ContactDetailScreen extends StatelessWidget {
 
 /// Header hiển thị avatar và tên.
 class _ProfileHeader extends StatelessWidget {
-  final ContactData contact;
+  final ContactPersonalItem contact;
 
   const _ProfileHeader({required this.contact});
 
   @override
   Widget build(BuildContext context) {
+    final avatarText = contact.fullName?.trim().isNotEmpty == true
+        ? contact.fullName!.trim()[0].toUpperCase()
+        : '?';
+
+    final avatarColor = _resolveColor(avatarText);
+
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -140,57 +148,35 @@ class _ProfileHeader extends StatelessWidget {
       ),
       child: Column(
         children: [
-          // Avatar lớn với online indicator
-          Stack(
-            clipBehavior: Clip.none,
-            children: [
-              Container(
-                width: 90,
-                height: 90,
-                decoration: BoxDecoration(
-                  color: contact.avatarColor,
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: contact.avatarColor.withValues(alpha: 0.3),
-                      blurRadius: 12,
-                      offset: const Offset(0, 4),
-                    ),
-                  ],
+          Container(
+            width: 90,
+            height: 90,
+            decoration: BoxDecoration(
+              color: avatarColor,
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  color: avatarColor.withValues(alpha: 0.3),
+                  blurRadius: 12,
+                  offset: const Offset(0, 4),
                 ),
-                alignment: Alignment.center,
-                child: Text(
-                  contact.avatar,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 28,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
+              ],
+            ),
+            alignment: Alignment.center,
+            child: Text(
+              avatarText,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 28,
+                fontWeight: FontWeight.w700,
               ),
-              Positioned(
-                right: 2,
-                bottom: 2,
-                child: Container(
-                  width: 20,
-                  height: 20,
-                  decoration: BoxDecoration(
-                    color: contact.isOnline
-                        ? const Color(0xFF41B339)
-                        : AppColors.gray.withValues(alpha: 0.5),
-                    shape: BoxShape.circle,
-                    border: Border.all(color: AppColors.white, width: 3),
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
 
           const SizedBox(height: 14),
 
-          // Tên
           Text(
-            contact.fullName,
+            contact.fullName?.trim() ?? '--',
             style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w700,
@@ -200,45 +186,57 @@ class _ProfileHeader extends StatelessWidget {
 
           const SizedBox(height: 4),
 
-          // Chức vụ & phòng ban
-          Text(
-            '${contact.position} • ${contact.department}',
-            style: const TextStyle(
-              fontSize: 14,
-              color: AppColors.gray,
-            ),
-          ),
-
-          const SizedBox(height: 8),
-
-          // Trạng thái online
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-            decoration: BoxDecoration(
-              color: (contact.isOnline ? const Color(0xFF41B339) : AppColors.gray)
-                  .withValues(alpha: 0.1),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Text(
-              contact.isOnline ? 'Đang hoạt động' : 'Offline',
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
-                color: contact.isOnline
-                    ? const Color(0xFF41B339)
-                    : AppColors.gray,
+          if (contact.chucVu != null && contact.chucVu!.isNotEmpty)
+            Text(
+              [
+                contact.code?.trim(),
+                contact.chucVu?.trim(),
+              ].where((e) => e != null && e.isNotEmpty).join(' - '),
+              style: const TextStyle(
+                fontSize: 14,
+                color: AppColors.gray,
               ),
             ),
-          ),
         ],
       ),
     );
+  }
+
+  Color _resolveColor(String letter) {
+    const colors = {
+      'A': Color(0xFF2957A6),
+      'B': Color(0xFFEE4623),
+      'C': Color(0xFF41B339),
+      'D': Color(0xFFF0891A),
+      'E': Color(0xFF853EFD),
+      'F': Color(0xFF2F80ED),
+      'G': Color(0xFF009688),
+      'H': Color(0xFFE91E63),
+      'I': Color(0xFF795548),
+      'J': Color(0xFFFF5722),
+      'K': Color(0xFF607D8B),
+      'L': Color(0xFF9C27B0),
+      'M': Color(0xFF3F51B5),
+      'N': Color(0xFF00BCD4),
+      'O': Color(0xFF8BC34A),
+      'P': Color(0xFFFF9800),
+      'Q': Color(0xFF673AB7),
+      'R': Color(0xFF4CAF50),
+      'S': Color(0xFFCDDC39),
+      'T': Color(0xFF03A9F4),
+      'U': Color(0xFFF44336),
+      'V': Color(0xFF009688),
+      'W': Color(0xFFFFC107),
+      'X': Color(0xFF9E9E9E),
+      'Y': Color(0xFF607D8B),
+    };
+    return colors[letter.toUpperCase()] ?? AppColors.primaryERP;
   }
 }
 
 /// Các nút hành động: gọi, nhắn tin, email.
 class _ActionButtons extends StatelessWidget {
-  final ContactData contact;
+  final ContactPersonalItem contact;
 
   const _ActionButtons({required this.contact});
 
@@ -254,24 +252,15 @@ class _ActionButtons extends StatelessWidget {
             onTap: () {},
           ),
         ),
-        const SizedBox(width: 12),
-        Expanded(
-          child: _ActionButton(
-            icon: Icons.chat_outlined,
-            label: 'Nhắn tin',
-            color: AppColors.primaryERP,
-            onTap: () {},
-          ),
-        ),
-        const SizedBox(width: 12),
-        Expanded(
-          child: _ActionButton(
-            icon: Icons.email_outlined,
-            label: 'Email',
-            color: const Color(0xFF2957A6),
-            onTap: () {},
-          ),
-        ),
+        // const SizedBox(width: 12),
+        // Expanded(
+        //   child: _ActionButton(
+        //     icon: Icons.chat_outlined,
+        //     label: 'Nhắn tin',
+        //     color: AppColors.primaryERP,
+        //     onTap: () {},
+        //   ),
+        // ),
       ],
     );
   }
@@ -365,7 +354,6 @@ class _InfoCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Title
           Container(
             padding: const EdgeInsets.fromLTRB(16, 14, 16, 10),
             decoration: const BoxDecoration(
@@ -388,7 +376,6 @@ class _InfoCard extends StatelessWidget {
               ],
             ),
           ),
-          // Children
           ...children,
         ],
       ),
@@ -443,12 +430,6 @@ class _InfoRow extends StatelessWidget {
                 ],
               ),
             ),
-            if (onTap != null)
-              const Icon(
-                Icons.arrow_forward_ios,
-                size: 14,
-                color: AppColors.gray,
-              ),
           ],
         ),
       ),

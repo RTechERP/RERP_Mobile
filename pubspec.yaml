@@ -183,6 +183,7 @@ flutter:
     - assets/images/icons/apps/report/Sale.png
     - assets/images/icons/apps/report/Saler.png
     - assets/images/icons/apps/report/Tech.png
+    - assets/images/icons/apps/poll_form/poll.png
 
     # Trans
     - assets/trans/vi-VN.json

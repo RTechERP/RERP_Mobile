@@ -226,7 +226,7 @@ class AppItemRegistry {
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_general',
       route: RouteNames.poll,
-      imageUrl: '',
+      imageUrl: AppImages.reg_general_poll_form,
     ),
   ];
 

@@ -385,4 +385,7 @@ class ApiEndPoint {
   static const String getGeneralForm = '/document/get-document-admin-sale';
   static const String getDocumentFile = '/document/get-document-file';
   static const String downloadByKey = '/home/download-by-key';
+
+  // Contact
+  static const String getContact = '/Home/get-all-contact';
 }
