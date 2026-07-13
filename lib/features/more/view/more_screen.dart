@@ -516,7 +516,7 @@ class _ProfileCard extends StatelessWidget {
                 Text(
                   name,
                   style: const TextStyle(
-                    fontSize: 18,
+                    fontSize: 16,
                     fontWeight: FontWeight.w700,
                     color: AppColors.heading,
                   ),

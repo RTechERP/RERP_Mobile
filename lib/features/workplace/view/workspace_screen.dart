@@ -142,6 +142,9 @@ class _WorkPlaceScreenState
             // → CachedNetworkImage fetch ảnh mới đồng bộ trên mọi màn đang
             // nghe AuthBloc (more_screen, workspace_screen, ...).
             //
+            // Nếu `imagePath` rỗng (chưa upload) thì trả null → WpInfoCard
+            // hiển thị icon person default.
+            //
             // Ngoài ra thêm `cacheBust` (epoch ms) để chắc chắn cache bị bust
             // kể cả khi server trả về cùng imagePath (server có thể reuse filename).
             final avatarUrl = _resolveAvatarUrl(
@@ -299,8 +302,14 @@ class _WorkPlaceScreenState
 
   /// Resolve full URL cho avatar qua endpoint /api/home/avatar.
   ///
-  /// [imagePath] (server field `ImagePath`) thay đổi mỗi lần user upload avatar mới,
-  /// dùng làm query param để cache-bust đồng bộ trên mọi màn.
+  /// Trả về `null` khi:
+  ///  - Chưa có `employeeId`.
+  ///  - Chưa có `imagePath` (server field `ImagePath`) — user chưa upload
+  ///    avatar lần nào → caller render icon person default.
+  ///  - Chưa cấu hình `baseUrl`.
+  ///
+  /// [imagePath] thay đổi mỗi lần user upload avatar mới, dùng làm query
+  /// param để cache-bust đồng bộ trên mọi màn.
   ///
   /// [cacheBust] là epoch ms của lần fetch hiện tại — bắt buộc phải có sau khi
   /// upload để tránh cache CachedNetworkImage trả ảnh cũ khi server trả về
@@ -310,7 +319,10 @@ class _WorkPlaceScreenState
     String? imagePath,
     int? cacheBust,
   }) {
+    // Chưa có employeeId hoặc chưa có imagePath (server chưa upload avatar)
+    // → để WpInfoCard render icon person default.
     if (employeeId == null) return null;
+    if (imagePath == null || imagePath.isEmpty) return null;
 
     final baseUrl = AppConfig.baseUrl.trim();
     if (baseUrl.isEmpty) return null;
@@ -325,9 +337,7 @@ class _WorkPlaceScreenState
       );
     }
 
-    final extra =
-        imagePath != null && imagePath.isNotEmpty ? '&v=$imagePath' : '';
     final bust = cacheBust != null ? '&_t=$cacheBust' : '';
-    return '$normalizedBaseUrl/api/home/avatar?employeeId=$employeeId$extra$bust';
+    return '$normalizedBaseUrl/api/home/avatar?employeeId=$employeeId&v=$imagePath$bust';
   }
 }
