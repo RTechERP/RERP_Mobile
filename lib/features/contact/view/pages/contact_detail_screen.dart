@@ -10,6 +10,7 @@
 //   - Các nút hành động: Gọi điện, Nhắn tin, Gửi Email
 
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../../common/app_theme/index.dart';
 import '../../data/datasource/models/contact_model.dart';
@@ -71,7 +72,15 @@ class ContactDetailScreen extends StatelessWidget {
                   label: 'Điện thoại',
                   value: _displayPhone,
                   onTap: _displayPhone != '--'
-                      ? () async {}
+                      ? () async {
+                          final phone = contact.sdtCaNhan?.trim() ?? '';
+                          if (phone.isNotEmpty) {
+                            final uri = Uri(scheme: 'tel', path: phone);
+                            if (await canLaunchUrl(uri)) {
+                              await launchUrl(uri);
+                            }
+                          }
+                        }
                       : null,
                 ),
 
@@ -240,8 +249,17 @@ class _ActionButtons extends StatelessWidget {
 
   const _ActionButtons({required this.contact});
 
+  Future<void> _makePhoneCall(String phoneNumber) async {
+    final uri = Uri(scheme: 'tel', path: phoneNumber);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final phone = contact.sdtCaNhan?.trim() ?? '';
+
     return Row(
       children: [
         Expanded(
@@ -249,7 +267,11 @@ class _ActionButtons extends StatelessWidget {
             icon: Icons.phone_outlined,
             label: 'Gọi điện',
             color: const Color(0xFF41B339),
-            onTap: () {},
+            onTap: () {
+              if (phone.isNotEmpty) {
+                _makePhoneCall(phone);
+              }
+            },
           ),
         ),
         // const SizedBox(width: 12),
