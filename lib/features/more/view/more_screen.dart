@@ -565,20 +565,19 @@ class _ProfileCard extends StatelessWidget {
 
   /// Build avatar — ưu tiên hiển thị [avatarUrl] nếu có, fallback gradient + initials.
   Widget _buildAvatar() {
-    const size = 72.0;
+    const size = 80.0;
     final hasAvatar = avatarUrl != null && avatarUrl!.isNotEmpty;
 
     return Container(
       width: size,
       height: size,
       decoration: BoxDecoration(
-        gradient: hasAvatar ? null : AppColors.gradientERP,
+        color: hasAvatar ? null : AppColors.primaryERP,
+        border: Border.all(color: Colors.white, width: 2),
         borderRadius: BorderRadius.circular(18),
         boxShadow: [
           BoxShadow(
-            color: AppColors.primaryERP.withValues(alpha: 0.25),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
+            color: AppColors.primaryERP,
           ),
         ],
       ),
