@@ -182,11 +182,7 @@ class _BookingVehicleAddScreenState
     }
 
     final needArrive = bvState.formFieldValues[needArriveField] as DateTime?;
-    if (needArrive == null) return false;
-    final today = DateTime.now();
-    return needArrive.year == today.year &&
-        needArrive.month == today.month &&
-        needArrive.day == today.day;
+    return ValidateHelper.bookingVehicleProblemArisesCardVisibleForUi(needArrive);
   }
 
   int _bookingTypeGroupFromLabel(String label) {

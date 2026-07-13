@@ -273,6 +273,7 @@ class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
             icon: Icons.directions_car_outlined,
             options: _vehicleTypes,
             isRequired: true,
+            columns: 2,
             validator: FormBuilderValidators.required(
               errorText: 'Vui lòng chọn loại phương tiện',
             ),

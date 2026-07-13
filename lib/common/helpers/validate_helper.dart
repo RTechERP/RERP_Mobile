@@ -618,8 +618,11 @@ class ValidateHelper {
     );
   }
 
-  /// **Chỉ UI:** hiện card «Vấn đề phát sinh / TBP» khi mốc cần đến (ngày lịch) trùng **hôm nay**.
-  /// Người dùng có thể điền sớm; bắt buộc TBP/lý do vẫn theo [bookingVehicleIsProblemArises] + [validateBookingVehicle].
+  /// Hiển thị card «Vấn đề phát sinh / TBP» khi:
+  /// - Ngày đặt (cần đến) là hôm nay → luôn hiển thị.
+  /// - Hoặc ngày đặt là hôm sau/tương lai VÀ giờ hiện tại >= 20:00.
+  ///
+  /// Áp dụng cho cả hiển thị UI và validation submit.
   static bool bookingVehicleProblemArisesCardVisibleForUi(DateTime? timeNeedPresent) {
     if (timeNeedPresent == null) return false;
     final n = DateTime.now();
@@ -629,7 +632,9 @@ class ValidateHelper {
       timeNeedPresent.month,
       timeNeedPresent.day,
     );
-    return needDay == today;
+    if (needDay == today) return true;
+    if (needDay.isAfter(today)) return n.hour >= 20;
+    return false;
   }
 
   /// Validate tổng hợp form đặt xe trước khi gửi bloc/API.
