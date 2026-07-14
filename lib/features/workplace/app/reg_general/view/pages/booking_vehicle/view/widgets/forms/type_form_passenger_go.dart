@@ -8,6 +8,7 @@ import '../../../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../../../common/widgets/form/index.dart';
 
 import '../../../data/datasource/models/booking_vehicle_model.dart';
+import '../../../data/repository/booking_vehicle_repository.dart';
 
 class TypeFormPassengerGo extends StatefulWidget {
   const TypeFormPassengerGo({
@@ -40,7 +41,14 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
   bool get _isReturnPointOther =>
       _returnPointValue.trim() == _otherPointLabel;
 
-  List<BookingVehicleProjectItem> get _projects => widget.projects;
+  /// Đọc danh sách dự án: ưu tiên in-memory repository cache (đã được
+  /// hydrate lúc vào màn list hoặc app start). Fallback [widget.projects]
+  /// từ BlocBuilder nếu cache rỗng (rất hiếm).
+  List<BookingVehicleProjectItem> get _projects {
+    final fromCache = BookingVehicleRepository.projectsSync;
+    if (fromCache.isNotEmpty) return fromCache;
+    return widget.projects;
+  }
   List<ProvinceDepartureItem> get _departureProvinces =>
       widget.departureProvinces;
   List<ProvinceArrivesItem> get _arrivalProvinces => widget.arrivalProvinces;

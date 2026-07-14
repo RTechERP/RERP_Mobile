@@ -237,6 +237,21 @@ class BookingVehicleBloc
         emit(state.copyWith(status: BaseStateStatus.failed));
       },
           (user) async {
+        // ── 1. Hydrate projects cache từ SharedPreferences trước ──────────
+        // Nếu app đã mở lần trước có cache → đọc ngay, không cần gọi API.
+        // Sau đó mới fire API để refresh (fire-and-forget).
+        final cachedProjects = await BookingVehicleRepository
+            .loadProjectsCacheToMemory(log: _log);
+        if (cachedProjects.isNotEmpty && state.projects.isEmpty) {
+          emit(state.copyWith(projects: cachedProjects));
+          _log.logI(
+              '✅ _onInit: projects hydrated from cache (${cachedProjects.length})');
+        }
+
+        // ── 2. Refresh từ API (fire-and-forget) ────────────────────────────
+        // ignore: unawaited_futures
+        _loadAndCacheProjects();
+
         final now = DateTime.now();
         // Theo tuần của tháng: T1→CN.
         final (todayStart, weekEnd) = _weekBoundsOfMonth(now);
@@ -368,7 +383,6 @@ class BookingVehicleBloc
     Emitter<BookingVehicleState> emit, {
     required bool silent,
   }) async {
-    // Chặn bắn API trùng khi UI re-render nhanh.
     if (_isInitAddInFlight) {
       _log.logI('ℹ️ initAdd skipped: request in-flight');
       return;
@@ -382,46 +396,13 @@ class BookingVehicleBloc
       return;
     }
 
-    // Luôn ưu tiên dữ liệu cache để UI có dữ liệu tức thì.
-    final cache = await BookingVehicleRepository.getInitAddCache(log: _log);
-    if (cache != null && cache.employeeId == employeeId) {
-      // Reset flag để lần gọi tiếp theo (preloadInitAdd / lần copy sau) không bị skip.
-      _isInitAddInFlight = false;
-      emit(
-        state.copyWith(
-          status: BaseStateStatus.success,
-          employeeId: employeeId,
-          provinceArrives: cache.provinceArrives,
-          provinceDeparture: cache.provinceDeparture,
-          employee: cache.employees,
-          projects: cache.projects,
-          approver: cache.approvers,
-          currentEmployee: cache.currentEmployee,
-          passengerGoFirstRowIsCurrentUserSlot: true,
-        ),
-      );
-      _log.logI('✅ initAdd served from SharedPreferences cache');
-      return;
-    }
-
-    _isInitAddInFlight = true;
     if (!silent) {
       emit(state.copyWith(status: BaseStateStatus.loading));
     }
 
-    try {
-      await _runInitAddQueueUntilSuccess(
-        employeeId: employeeId,
-        emit: emit,
-      );
-    } catch (e) {
-      _log.logE('❌ Exception: $e');
-      if (!silent) {
-        emit(state.copyWith(status: BaseStateStatus.failed));
-      }
-    } finally {
-      _isInitAddInFlight = false;
-    }
+    // Delegate sang _loadAndCacheLookupData (cache-first + parallel + tolerant),
+    // pattern giống WorkTripBloc._loadAndCacheLookupData.
+    await _loadAndCacheLookupData(employeeId);
   }
 
   Future<int?> _resolveEmployeeId() async {
@@ -440,114 +421,179 @@ class BookingVehicleBloc
     );
   }
 
-  Future<void> _runInitAddQueueUntilSuccess({
-    required int employeeId,
-    required Emitter<BookingVehicleState> emit,
-  }) async {
-    var attempt = 0;
-    List<ProvinceArrivesItem>? provinceArrives;
-    List<ProvinceDepartureItem>? provinceDeparture;
-    List<BookingVehiclePersonalItem>? employees;
-    List<BookingVehicleProjectItem>? projects;
-    List<ApproverItem>? approvers;
-    BookingVehiclePersonalItem? currentEmployee;
-    var currentEmployeeFetched = false;
-
-    while (true) {
-      attempt += 1;
-      _log.logI('🔁 initAdd queue attempt: $attempt');
-
-      try {
-        // API nào đã thành công thì giữ lại, không gọi lại.
-        provinceArrives ??= await _mustGetProvinceArrives(employeeId);
-        provinceDeparture ??= await _mustGetProvinceDeparture(employeeId);
-        employees ??= await _mustGetEmployees();
-        projects ??= await _mustGetProjects();
-        approvers ??= await _mustGetApprovers();
-        if (!currentEmployeeFetched) {
-          currentEmployee = await _mustGetEmployeeById(employeeId);
-          currentEmployeeFetched = true;
-        }
-
-        await BookingVehicleRepository.saveInitAddCache(
-          employeeId: employeeId,
-          provinceArrives: provinceArrives,
-          provinceDeparture: provinceDeparture,
-          employees: employees,
-          projects: projects,
-          approvers: approvers,
-          currentEmployee: currentEmployee,
-          log: _log,
-        );
-
-        emit(
-          state.copyWith(
-            status: BaseStateStatus.success,
-            employeeId: employeeId,
-            provinceArrives: provinceArrives,
-            provinceDeparture: provinceDeparture,
-            employee: employees,
-            projects: projects,
-            approver: approvers,
-            currentEmployee: currentEmployee,
-          ),
-        );
-        return;
-      } catch (e) {
-        _log.logE('❌ initAdd queue failed at attempt $attempt: $e');
-        await Future<void>.delayed(const Duration(milliseconds: 900));
-      }
+  /// Preload riêng `getProject` từ màn list, lưu vào
+  /// [BookingVehicleRepository.saveProjectsCache] **và emit ngay vào state**
+  /// để màn Add/Edit (nếu đang mở) hoặc mở sau đều hiển thị được dropdown dự án.
+  Future<void> _loadAndCacheProjects() async {
+    try {
+      final res = await _bookingVehicleRepo.getProject();
+      await res.fold(
+        (l) async => _log.logE('❌ preload getProject failed: $l'),
+        (r) async {
+          if (r.isEmpty) {
+            _log.logW('⚠️ preload getProject returned empty');
+            return;
+          }
+          await BookingVehicleRepository.saveProjectsCache(
+            projects: r,
+            log: _log,
+          );
+          // Emit ngay vào state — nếu state.projects đang rỗng thì dropdown
+          // form Add/Edit sẽ tự động hiển thị data mà không cần đợi initAdd.
+          if (state.projects.length != r.length ||
+              state.projects.isEmpty) {
+            emit(state.copyWith(projects: r));
+            _log.logI(
+                '✅ preload getProject done — ${r.length} items emitted to state');
+          } else {
+            _log.logI('✅ preload getProject done — projects already in state');
+          }
+        },
+      );
+    } catch (e) {
+      _log.logE('❌ preload getProject exception: $e');
     }
   }
 
-  Future<List<ProvinceArrivesItem>> _mustGetProvinceArrives(int employeeId) async {
-    final res = await _bookingVehicleRepo.getProvinceArrives(employeeId: employeeId);
-    return res.fold(
-      (l) => throw Exception('Get province arrives failed: ${l.getErrorMessage}'),
-      (r) => r,
-    );
-  }
+  /// Tải lookup data (trừ project) từ API song song + emit vào state.
+  /// Project được load riêng qua [_loadAndCacheProjects] từ màn list và
+  /// đọc lại từ [BookingVehicleRepository.getProjectsCache] tại đây.
+  Future<void> _loadAndCacheLookupData(int employeeId) async {
+    if (_isInitAddInFlight) {
+      _log.logI('ℹ️ lookup preload skipped: in-flight');
+      return;
+    }
 
-  Future<List<ProvinceDepartureItem>> _mustGetProvinceDeparture(int employeeId) async {
-    final res =
-        await _bookingVehicleRepo.getProvinceDeparture(employeeId: employeeId);
-    return res.fold(
-      (l) =>
-          throw Exception('Get province departure failed: ${l.getErrorMessage}'),
-      (r) => r,
+    // Đọc project từ cache riêng (đã được preload từ màn list).
+    final projectsCache = await BookingVehicleRepository.getProjectsCache(
+      log: _log,
     );
-  }
+    final projects = projectsCache?.projects ?? <BookingVehicleProjectItem>[];
 
-  Future<List<BookingVehiclePersonalItem>> _mustGetEmployees() async {
-    final res = await _bookingVehicleRepo.getEmployee();
-    return res.fold(
-      (l) => throw Exception('Get employee failed: ${l.getErrorMessage}'),
-      (r) => r,
-    );
-  }
+    final initAddCache =
+        await BookingVehicleRepository.getInitAddCache(log: _log);
+    final restValid = initAddCache != null &&
+        initAddCache.employeeId == employeeId &&
+        initAddCache.provinceArrives.isNotEmpty &&
+        initAddCache.provinceDeparture.isNotEmpty &&
+        initAddCache.employees.isNotEmpty &&
+        initAddCache.approvers.isNotEmpty;
 
-  Future<List<BookingVehicleProjectItem>> _mustGetProjects() async {
-    final res = await _bookingVehicleRepo.getProject();
-    return res.fold(
-      (l) => throw Exception('Get project failed: ${l.getErrorMessage}'),
-      (r) => r,
-    );
-  }
+    if (restValid && projects.isNotEmpty) {
+      _log.logI('✅ initAdd cache hit for user=$employeeId');
+      emit(
+        state.copyWith(
+          status: BaseStateStatus.success,
+          employeeId: employeeId,
+          provinceArrives: initAddCache.provinceArrives,
+          provinceDeparture: initAddCache.provinceDeparture,
+          employee: initAddCache.employees,
+          projects: projects,
+          approver: initAddCache.approvers,
+          currentEmployee: initAddCache.currentEmployee,
+        ),
+      );
+      return;
+    }
 
-  Future<List<ApproverItem>> _mustGetApprovers() async {
-    final res = await _bookingVehicleRepo.getApprover();
-    return res.fold(
-      (l) => throw Exception('Get approver failed: ${l.getErrorMessage}'),
-      (r) => r,
-    );
-  }
+    _log.logI('🔄 initAdd cache miss for user=$employeeId — fetching API');
+    _isInitAddInFlight = true;
+    try {
+      // Bắn 5 API song song (đã bỏ getProject vì lấy từ cache riêng).
+      final provinceArrivesFut =
+          _bookingVehicleRepo.getProvinceArrives(employeeId: employeeId);
+      final provinceDepartureFut =
+          _bookingVehicleRepo.getProvinceDeparture(employeeId: employeeId);
+      final employeesFut = _bookingVehicleRepo.getEmployee();
+      final approversFut = _bookingVehicleRepo.getApprover();
+      final currentEmployeeFut =
+          _bookingVehicleRepo.getEmployeeById(employeeId: employeeId);
 
-  Future<BookingVehiclePersonalItem?> _mustGetEmployeeById(int employeeId) async {
-    final res = await _bookingVehicleRepo.getEmployeeById(employeeId: employeeId);
-    return res.fold(
-      (l) => throw Exception('Get employeeById failed: ${l.getErrorMessage}'),
-      (r) => r,
-    );
+      // Nếu project cache rỗng, bắn thêm getProject song song với 5 API trên.
+      final projectsFut = projects.isEmpty
+          ? _bookingVehicleRepo.getProject()
+          : null;
+
+      List<ProvinceArrivesItem> provinceArrives = [];
+      List<ProvinceDepartureItem> provinceDeparture = [];
+      List<BookingVehiclePersonalItem> employees = [];
+      List<BookingVehicleProjectItem> fetchedProjects = [];
+      List<ApproverItem> approvers = [];
+      BookingVehiclePersonalItem? currentEmployee;
+
+      final provinceArrivesRes = await provinceArrivesFut;
+      final provinceDepartureRes = await provinceDepartureFut;
+      final employeesRes = await employeesFut;
+      final approversRes = await approversFut;
+      final currentEmployeeRes = await currentEmployeeFut;
+
+      provinceArrivesRes.fold(
+        (l) => _log.logE('getProvinceArrives failed: $l'),
+        (r) => provinceArrives = r,
+      );
+      provinceDepartureRes.fold(
+        (l) => _log.logE('getProvinceDeparture failed: $l'),
+        (r) => provinceDeparture = r,
+      );
+      employeesRes.fold(
+        (l) => _log.logE('getEmployee failed: $l'),
+        (r) => employees = r,
+      );
+      approversRes.fold(
+        (l) => _log.logE('getApprover failed: $l'),
+        (r) => approvers = r,
+      );
+      currentEmployeeRes.fold(
+        (l) => _log.logE('getEmployeeById failed: $l'),
+        (r) => currentEmployee = r,
+      );
+
+      if (projectsFut != null) {
+        final projectsRes = await projectsFut;
+        projectsRes.fold(
+          (l) => _log.logE('getProject failed: $l'),
+          (r) => fetchedProjects = r,
+        );
+        // Lưu luôn vào cache riêng để các lần sau không phải gọi lại.
+        if (fetchedProjects.isNotEmpty) {
+          await BookingVehicleRepository.saveProjectsCache(
+            projects: fetchedProjects,
+            log: _log,
+          );
+        }
+      }
+
+      final finalProjects =
+          fetchedProjects.isNotEmpty ? fetchedProjects : projects;
+
+      await BookingVehicleRepository.saveInitAddCache(
+        employeeId: employeeId,
+        provinceArrives: provinceArrives,
+        provinceDeparture: provinceDeparture,
+        employees: employees,
+        projects: finalProjects,
+        approvers: approvers,
+        currentEmployee: currentEmployee,
+        log: _log,
+      );
+
+      emit(
+        state.copyWith(
+          status: BaseStateStatus.success,
+          employeeId: employeeId,
+          provinceArrives: provinceArrives,
+          provinceDeparture: provinceDeparture,
+          employee: employees,
+          projects: finalProjects,
+          approver: approvers,
+          currentEmployee: currentEmployee,
+        ),
+      );
+    } catch (e) {
+      _log.logE('❌ initAdd exception: $e');
+    } finally {
+      _isInitAddInFlight = false;
+    }
   }
 
   Future<void> _onInitPassengerGoInfos(

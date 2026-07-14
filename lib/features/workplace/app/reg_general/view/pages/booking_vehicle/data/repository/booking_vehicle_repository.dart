@@ -12,6 +12,30 @@ class BookingVehicleRepository {
   static const _cacheVersion = 2;
   static const _initAddCacheKey = 'booking_vehicle_init_add_cache_v1';
   static const _currentUserCacheKey = 'booking_vehicle_current_user_cache_v1';
+  static const _projectsCacheKey = 'booking_vehicle_projects_cache_v1';
+
+  //---(Projects in-memory cache)---//
+  // Cho phép form đọc cache ngay lập tức (sync) — không cần qua state/projects
+  // cũng không cần FutureBuilder. Preload 1 lần qua [loadProjectsCacheToMemory].
+  static List<BookingVehicleProjectItem> _cachedProjects = const [];
+  static bool _projectsCacheLoaded = false;
+
+  /// Sync getter — trả về list đã được hydrate từ SharedPreferences.
+  /// Trả `const []` nếu chưa load hoặc cache rỗng.
+  static List<BookingVehicleProjectItem> get projectsSync => _cachedProjects;
+
+  /// Hydrate in-memory cache từ SharedPreferences (an toàn gọi nhiều lần).
+  /// Trả về list sau khi load — phù hợp cho [fire-and-await 1 lần ở _onInit].
+  static Future<List<BookingVehicleProjectItem>>
+      loadProjectsCacheToMemory({LogUtils? log}) async {
+    if (_projectsCacheLoaded) return _cachedProjects;
+    final cache = await getProjectsCache(log: log);
+    _cachedProjects = cache?.projects ?? const [];
+    _projectsCacheLoaded = true;
+    log?.logI(
+        'Booking vehicle projects in-memory cache hydrated: ${_cachedProjects.length} items');
+    return _cachedProjects;
+  }
 
   static Future<void> saveInitAddCache({
     required int employeeId,
@@ -171,6 +195,80 @@ class BookingVehicleRepository {
     if (cache.employeeId != employeeId) return false;
     return DateTime.now().toUtc().difference(cache.fetchedAt) <= ttl;
   }
+
+  //---(Projects cache)---//
+  // Cache riêng cho getProject — preload từ màn list, màn Add/Edit chỉ đọc.
+  // Độc lập với initAddCache để dễ invalidate / refresh riêng.
+
+  static Future<void> saveProjectsCache({
+    required List<BookingVehicleProjectItem> projects,
+    DateTime? fetchedAt,
+    LogUtils? log,
+  }) async {
+    final prefs = await SharedPreferences.getInstance();
+
+    final payload = <String, dynamic>{
+      'version': _cacheVersion,
+      'fetchedAt': (fetchedAt ?? DateTime.now().toUtc()).toIso8601String(),
+      'projects': projects.map((e) => e.toJson()).toList(),
+    };
+
+    await prefs.setString(_projectsCacheKey, jsonEncode(payload));
+    // Cập nhật in-memory cache để form đọc ngay không cần đợi load.
+    _cachedProjects = List.unmodifiable(projects);
+    _projectsCacheLoaded = true;
+    log?.logI('Booking vehicle projects cache saved: ${projects.length} items');
+  }
+
+  static Future<BookingVehicleProjectsCache?> getProjectsCache({
+    LogUtils? log,
+  }) async {
+    final prefs = await SharedPreferences.getInstance();
+    final raw = prefs.getString(_projectsCacheKey);
+
+    if (raw == null) {
+      log?.logW('Booking vehicle projects cache: null');
+      return null;
+    }
+
+    try {
+      final map = jsonDecode(raw) as Map<String, dynamic>;
+      final version = map['version'] as int? ?? 1;
+      if (version != _cacheVersion) {
+        await prefs.remove(_projectsCacheKey);
+        log?.logW('Booking vehicle projects cache version mismatch -> removed');
+        return null;
+      }
+
+      final fetchedAtRaw = map['fetchedAt'] as String?;
+      if (fetchedAtRaw == null) {
+        await prefs.remove(_projectsCacheKey);
+        log?.logW('Booking vehicle projects cache invalid -> removed');
+        return null;
+      }
+
+      final projects = (map['projects'] as List? ?? const [])
+          .map((e) => BookingVehicleProjectItem.fromJson(Map<String, dynamic>.from(e)))
+          .toList();
+
+      return BookingVehicleProjectsCache(
+        fetchedAt: DateTime.parse(fetchedAtRaw).toUtc(),
+        projects: projects,
+      );
+    } catch (e) {
+      await prefs.remove(_projectsCacheKey);
+      log?.logE('Parse booking vehicle projects cache failed -> removed: $e');
+      return null;
+    }
+  }
+
+  static Future<void> clearProjectsCache({LogUtils? log}) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_projectsCacheKey);
+    _cachedProjects = const [];
+    _projectsCacheLoaded = true; // đã "loaded", chỉ là rỗng
+    log?.logI('Booking vehicle projects cache cleared');
+  }
 }
 
 class BookingVehicleInitAddCache {
@@ -192,6 +290,18 @@ class BookingVehicleInitAddCache {
     required this.projects,
     required this.approvers,
     required this.currentEmployee,
+  });
+}
+
+/// DTO cache riêng cho danh sách dự án (BookingVehicleProjectItem).
+/// Preload từ màn list, màn Add/Edit chỉ việc đọc từ cache.
+class BookingVehicleProjectsCache {
+  final DateTime fetchedAt;
+  final List<BookingVehicleProjectItem> projects;
+
+  const BookingVehicleProjectsCache({
+    required this.fetchedAt,
+    required this.projects,
   });
 }
 

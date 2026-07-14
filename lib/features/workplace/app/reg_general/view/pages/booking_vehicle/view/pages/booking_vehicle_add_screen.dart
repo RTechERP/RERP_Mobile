@@ -208,6 +208,9 @@ class _BookingVehicleAddScreenState
   /// Chặn apply edit prefill nhiều lần.
   bool _editPrefillApplied = false;
 
+  /// Chặn apply copy nhiều lần.
+  bool _copyApplied = false;
+
   bool get _isEditMode => widget.existingBookingItem != null;
 
   int? get _existingBookingId {
@@ -310,30 +313,30 @@ class _BookingVehicleAddScreenState
   }
 
   void _applyCopyFromExtra(Map<String, dynamic> copiedData) {
-    if (_editPrefillApplied) return;
+    if (_copyApplied) return;
 
-    // Retry cho đến khi data sẵn sàng (projects đã load xong)
-    _retryApplyCopy(copiedData);
-  }
-
-  void _retryApplyCopy(Map<String, dynamic> copiedData) {
-    if (!mounted || _editPrefillApplied) return;
-    if (bloc.state.status != BaseStateStatus.success ||
-        bloc.state.projects.isEmpty) {
-      Future.delayed(const Duration(milliseconds: 100), () {
-        if (mounted && !_editPrefillApplied) {
-          _retryApplyCopy(copiedData);
-        }
-      });
+    // Nếu projects đã load xong → apply ngay (reactive flow của work_trip).
+    if (bloc.state.status == BaseStateStatus.success &&
+        bloc.state.projects.isNotEmpty) {
+      _doApplyCopy(copiedData);
       return;
     }
 
-    _editPrefillApplied = true;
+    // Fallback: retry cho đến khi data sẵn sàng.
+    _retryApplyCopy(copiedData);
+  }
+
+  void _doApplyCopy(Map<String, dynamic> copiedData) {
+    _copyApplied = true;
     final patch = Map<String, dynamic>.from(copiedData);
 
     // Fire booking type group TRƯỚC khi patch form (để vehicle type dropdown hiển thị đúng)
     final groupRaw = patch.remove('_copied_booking_type_group');
     patch.remove('_copied_item_id');
+
+    if (groupRaw is int) {
+      bloc.add(BookingVehicleEvent.changeBookingTypeGroup(group: groupRaw));
+    }
 
     // Đợi 1 frame để TypeForm mount xong rồi patchValue + force didChange.
     Future.delayed(Duration.zero, () {
@@ -352,10 +355,22 @@ class _BookingVehicleAddScreenState
         (_typeTransportKey.currentState as dynamic)?.didChange(tv);
       }
     });
+  }
 
-    if (groupRaw is int) {
-      bloc.add(BookingVehicleEvent.changeBookingTypeGroup(group: groupRaw));
+  /// Fallback khi chưa có data: retry mỗi 100ms cho đến khi projects load xong.
+  void _retryApplyCopy(Map<String, dynamic> copiedData) {
+    if (!mounted || _copyApplied) return;
+    if (bloc.state.status != BaseStateStatus.success ||
+        bloc.state.projects.isEmpty) {
+      Future.delayed(const Duration(milliseconds: 100), () {
+        if (mounted && !_copyApplied) {
+          _retryApplyCopy(copiedData);
+        }
+      });
+      return;
     }
+
+    _doApplyCopy(copiedData);
   }
 
   @override
@@ -501,12 +516,23 @@ class _BookingVehicleAddScreenState
       children: [
         BlocListener<BookingVehicleBloc, BookingVehicleState>(
           listenWhen: (previous, current) =>
-              widget.existingBookingItem != null &&
-              !_editPrefillApplied &&
-              current.status == BaseStateStatus.success &&
-              current.projects.isNotEmpty,
+              previous.projects.length != current.projects.length ||
+              previous.status != current.status,
           listener: (context, state) {
-            _tryApplyEditPrefill(context, state);
+            // Apply edit prefill khi projects đã load (pattern giống work_trip).
+            if (!_editPrefillApplied &&
+                widget.existingBookingItem != null &&
+                state.status == BaseStateStatus.success &&
+                state.projects.isNotEmpty) {
+              _tryApplyEditPrefill(context, state);
+            }
+            // Apply copy prefill khi projects đã load (pattern giống work_trip).
+            if (!_copyApplied &&
+                widget.copiedData != null &&
+                state.status == BaseStateStatus.success &&
+                state.projects.isNotEmpty) {
+              _applyCopyFromExtra(widget.copiedData!);
+            }
           },
           child: BlocListener<BookingVehicleBloc, BookingVehicleState>(
             listenWhen: (previous, current) =>

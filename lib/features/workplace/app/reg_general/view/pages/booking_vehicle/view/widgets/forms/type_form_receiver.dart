@@ -8,6 +8,7 @@ import '../../../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../../../common/widgets/form/index.dart';
 
 import '../../../data/datasource/models/booking_vehicle_model.dart';
+import '../../../data/repository/booking_vehicle_repository.dart';
 
 /// Form chung: Đăng ký lấy hàng thương mại + Đăng ký lấy hàng Demo/triển lãm.
 class TypeFormReceiver extends StatefulWidget {
@@ -29,7 +30,11 @@ class TypeFormReceiver extends StatefulWidget {
 }
 
 class _TypeFormReceiverState extends State<TypeFormReceiver> {
-  List<BookingVehicleProjectItem> get _projects => widget.projects;
+  List<BookingVehicleProjectItem> get _projects {
+    final fromCache = BookingVehicleRepository.projectsSync;
+    if (fromCache.isNotEmpty) return fromCache;
+    return widget.projects;
+  }
   List<ProvinceArrivesItem> get _arrivalProvinces => widget.arrivalProvinces;
 
   static const List<FormChoiceOption<String>> _vehicleTypes = [
