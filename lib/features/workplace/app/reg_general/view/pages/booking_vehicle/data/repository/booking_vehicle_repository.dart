@@ -14,6 +14,7 @@ class BookingVehicleRepository {
   static const _currentUserCacheKey = 'booking_vehicle_current_user_cache_v1';
   static const _projectsCacheKey = 'booking_vehicle_projects_cache_v1';
   static const _approversCacheKey = 'booking_vehicle_approvers_cache_v1';
+  static const _employeesCacheKey = 'booking_vehicle_employees_cache_v1';
 
   //---(Projects in-memory cache)---//
   // Cho phép form đọc cache ngay lập tức (sync) — không cần qua state/projects
@@ -57,6 +58,26 @@ class BookingVehicleRepository {
     log?.logI(
         'Booking vehicle approvers in-memory cache hydrated: ${_cachedApprovers.length} items');
     return _cachedApprovers;
+  }
+
+  //---(Employees in-memory cache)---//
+  // Cùng pattern với projects/approvers — preload từ màn list, form đọc sync.
+  static List<BookingVehiclePersonalItem> _cachedEmployees = const [];
+  static bool _employeesCacheLoaded = false;
+
+  /// Sync getter — trả về list nhân viên đã hydrate từ SharedPreferences.
+  static List<BookingVehiclePersonalItem> get employeesSync => _cachedEmployees;
+
+  /// Hydrate in-memory cache employees từ SharedPreferences.
+  static Future<List<BookingVehiclePersonalItem>>
+      loadEmployeesCacheToMemory({LogUtils? log}) async {
+    if (_employeesCacheLoaded) return _cachedEmployees;
+    final cache = await getEmployeesCache(log: log);
+    _cachedEmployees = cache?.employees ?? const [];
+    _employeesCacheLoaded = true;
+    log?.logI(
+        'Booking vehicle employees in-memory cache hydrated: ${_cachedEmployees.length} items');
+    return _cachedEmployees;
   }
 
   static Future<void> saveInitAddCache({
@@ -363,6 +384,79 @@ class BookingVehicleRepository {
     _approversCacheLoaded = true;
     log?.logI('Booking vehicle approvers cache cleared');
   }
+
+  //---(Employees persistence)---//
+
+  static Future<void> saveEmployeesCache({
+    required List<BookingVehiclePersonalItem> employees,
+    DateTime? fetchedAt,
+    LogUtils? log,
+  }) async {
+    final prefs = await SharedPreferences.getInstance();
+
+    final payload = <String, dynamic>{
+      'version': _cacheVersion,
+      'fetchedAt': (fetchedAt ?? DateTime.now().toUtc()).toIso8601String(),
+      'employees': employees.map((e) => e.toJson()).toList(),
+    };
+
+    await prefs.setString(_employeesCacheKey, jsonEncode(payload));
+    // Đồng bộ in-memory cache.
+    _cachedEmployees = List.unmodifiable(employees);
+    _employeesCacheLoaded = true;
+    log?.logI(
+        'Booking vehicle employees cache saved: ${employees.length} items');
+  }
+
+  static Future<BookingVehicleEmployeesCache?> getEmployeesCache({
+    LogUtils? log,
+  }) async {
+    final prefs = await SharedPreferences.getInstance();
+    final raw = prefs.getString(_employeesCacheKey);
+
+    if (raw == null) {
+      log?.logW('Booking vehicle employees cache: null');
+      return null;
+    }
+
+    try {
+      final map = jsonDecode(raw) as Map<String, dynamic>;
+      final version = map['version'] as int? ?? 1;
+      if (version != _cacheVersion) {
+        await prefs.remove(_employeesCacheKey);
+        log?.logW('Booking vehicle employees cache version mismatch -> removed');
+        return null;
+      }
+
+      final fetchedAtRaw = map['fetchedAt'] as String?;
+      if (fetchedAtRaw == null) {
+        await prefs.remove(_employeesCacheKey);
+        log?.logW('Booking vehicle employees cache invalid -> removed');
+        return null;
+      }
+
+      final employees = (map['employees'] as List? ?? const [])
+          .map((e) => BookingVehiclePersonalItem.fromJson(Map<String, dynamic>.from(e)))
+          .toList();
+
+      return BookingVehicleEmployeesCache(
+        fetchedAt: DateTime.parse(fetchedAtRaw).toUtc(),
+        employees: employees,
+      );
+    } catch (e) {
+      await prefs.remove(_employeesCacheKey);
+      log?.logE('Parse booking vehicle employees cache failed -> removed: $e');
+      return null;
+    }
+  }
+
+  static Future<void> clearEmployeesCache({LogUtils? log}) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_employeesCacheKey);
+    _cachedEmployees = const [];
+    _employeesCacheLoaded = true;
+    log?.logI('Booking vehicle employees cache cleared');
+  }
 }
 
 class BookingVehicleInitAddCache {
@@ -408,6 +502,18 @@ class BookingVehicleApproversCache {
   const BookingVehicleApproversCache({
     required this.fetchedAt,
     required this.approvers,
+  });
+}
+
+/// DTO cache riêng cho danh sách nhân viên (BookingVehiclePersonalItem).
+/// Preload từ màn list, màn Add/Edit chỉ việc đọc từ cache.
+class BookingVehicleEmployeesCache {
+  final DateTime fetchedAt;
+  final List<BookingVehiclePersonalItem> employees;
+
+  const BookingVehicleEmployeesCache({
+    required this.fetchedAt,
+    required this.employees,
   });
 }
 
