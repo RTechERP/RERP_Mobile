@@ -717,10 +717,19 @@ class _BookingVehicleAddScreenState
                                               /// --- Người duyệt ---
                                               GestureDetector(
                                                 onTap: () {
+                                                  // Ưu tiên in-memory cache (đã hydrate
+                                                  // từ màn list), fallback state.
+                                                  final fromCache =
+                                                      BookingVehicleRepository
+                                                          .approversSync;
+                                                  final approvers = fromCache
+                                                          .isNotEmpty
+                                                      ? fromCache
+                                                      : bvState.approver;
                                                   openSelectBottomSheet(
                                                     context: context,
                                                     title: 'Chọn người duyệt',
-                                                    items: bvState.approver,
+                                                    items: approvers,
                                                     onSelected: (item) {
                                                       final approverName =
                                                           item.fullName ?? '';

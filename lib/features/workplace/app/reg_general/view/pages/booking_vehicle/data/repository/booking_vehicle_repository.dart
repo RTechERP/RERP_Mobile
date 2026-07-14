@@ -13,6 +13,7 @@ class BookingVehicleRepository {
   static const _initAddCacheKey = 'booking_vehicle_init_add_cache_v1';
   static const _currentUserCacheKey = 'booking_vehicle_current_user_cache_v1';
   static const _projectsCacheKey = 'booking_vehicle_projects_cache_v1';
+  static const _approversCacheKey = 'booking_vehicle_approvers_cache_v1';
 
   //---(Projects in-memory cache)---//
   // Cho phép form đọc cache ngay lập tức (sync) — không cần qua state/projects
@@ -35,6 +36,27 @@ class BookingVehicleRepository {
     log?.logI(
         'Booking vehicle projects in-memory cache hydrated: ${_cachedProjects.length} items');
     return _cachedProjects;
+  }
+
+  //---(Approvers in-memory cache)---//
+  // Cùng pattern với projects — preload từ màn list, form đọc sync tại Add/Edit.
+  static List<ApproverItem> _cachedApprovers = const [];
+  static bool _approversCacheLoaded = false;
+
+  /// Sync getter — trả về list người duyệt đã hydrate từ SharedPreferences.
+  static List<ApproverItem> get approversSync => _cachedApprovers;
+
+  /// Hydrate in-memory cache approvers từ SharedPreferences.
+  static Future<List<ApproverItem>> loadApproversCacheToMemory({
+    LogUtils? log,
+  }) async {
+    if (_approversCacheLoaded) return _cachedApprovers;
+    final cache = await getApproversCache(log: log);
+    _cachedApprovers = cache?.approvers ?? const [];
+    _approversCacheLoaded = true;
+    log?.logI(
+        'Booking vehicle approvers in-memory cache hydrated: ${_cachedApprovers.length} items');
+    return _cachedApprovers;
   }
 
   static Future<void> saveInitAddCache({
@@ -269,6 +291,78 @@ class BookingVehicleRepository {
     _projectsCacheLoaded = true; // đã "loaded", chỉ là rỗng
     log?.logI('Booking vehicle projects cache cleared');
   }
+
+  //---(Approvers persistence)---//
+
+  static Future<void> saveApproversCache({
+    required List<ApproverItem> approvers,
+    DateTime? fetchedAt,
+    LogUtils? log,
+  }) async {
+    final prefs = await SharedPreferences.getInstance();
+
+    final payload = <String, dynamic>{
+      'version': _cacheVersion,
+      'fetchedAt': (fetchedAt ?? DateTime.now().toUtc()).toIso8601String(),
+      'approvers': approvers.map((e) => e.toJson()).toList(),
+    };
+
+    await prefs.setString(_approversCacheKey, jsonEncode(payload));
+    // Đồng bộ in-memory cache.
+    _cachedApprovers = List.unmodifiable(approvers);
+    _approversCacheLoaded = true;
+    log?.logI('Booking vehicle approvers cache saved: ${approvers.length} items');
+  }
+
+  static Future<BookingVehicleApproversCache?> getApproversCache({
+    LogUtils? log,
+  }) async {
+    final prefs = await SharedPreferences.getInstance();
+    final raw = prefs.getString(_approversCacheKey);
+
+    if (raw == null) {
+      log?.logW('Booking vehicle approvers cache: null');
+      return null;
+    }
+
+    try {
+      final map = jsonDecode(raw) as Map<String, dynamic>;
+      final version = map['version'] as int? ?? 1;
+      if (version != _cacheVersion) {
+        await prefs.remove(_approversCacheKey);
+        log?.logW('Booking vehicle approvers cache version mismatch -> removed');
+        return null;
+      }
+
+      final fetchedAtRaw = map['fetchedAt'] as String?;
+      if (fetchedAtRaw == null) {
+        await prefs.remove(_approversCacheKey);
+        log?.logW('Booking vehicle approvers cache invalid -> removed');
+        return null;
+      }
+
+      final approvers = (map['approvers'] as List? ?? const [])
+          .map((e) => ApproverItem.fromJson(Map<String, dynamic>.from(e)))
+          .toList();
+
+      return BookingVehicleApproversCache(
+        fetchedAt: DateTime.parse(fetchedAtRaw).toUtc(),
+        approvers: approvers,
+      );
+    } catch (e) {
+      await prefs.remove(_approversCacheKey);
+      log?.logE('Parse booking vehicle approvers cache failed -> removed: $e');
+      return null;
+    }
+  }
+
+  static Future<void> clearApproversCache({LogUtils? log}) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_approversCacheKey);
+    _cachedApprovers = const [];
+    _approversCacheLoaded = true;
+    log?.logI('Booking vehicle approvers cache cleared');
+  }
 }
 
 class BookingVehicleInitAddCache {
@@ -302,6 +396,18 @@ class BookingVehicleProjectsCache {
   const BookingVehicleProjectsCache({
     required this.fetchedAt,
     required this.projects,
+  });
+}
+
+/// DTO cache riêng cho danh sách người duyệt (ApproverItem).
+/// Preload từ màn list, màn Add/Edit chỉ việc đọc từ cache.
+class BookingVehicleApproversCache {
+  final DateTime fetchedAt;
+  final List<ApproverItem> approvers;
+
+  const BookingVehicleApproversCache({
+    required this.fetchedAt,
+    required this.approvers,
   });
 }
 
