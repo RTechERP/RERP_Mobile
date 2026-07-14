@@ -1451,16 +1451,6 @@ class ValidateHelper {
       final ts = s.timeStart!;
       final te = s.endTime!;
 
-      // timeStart phải nằm trong ngày đăng ký.
-      if (ts.isBefore(dayStart) || !ts.isBefore(dayEnd)) {
-        return '${prefix}Thời gian bắt đầu phải nằm trong ngày đăng ký';
-      }
-      // endTime cho phép qua đêm đến tối đa 5:00 sáng ngày hôm sau.
-      final dayEndOvernight = dayEnd.add(const Duration(hours: 5));
-      if (te.isBefore(dayStart) || te.isAfter(dayEndOvernight)) {
-        return '${prefix}Thời gian kết thúc tối đa đến 5:00 sáng ngày hôm sau';
-      }
-
       if (!te.isAfter(ts)) {
         return '${prefix}Thời gian kết thúc phải lớn hơn thời gian bắt đầu';
       }
@@ -1477,9 +1467,9 @@ class ValidateHelper {
       if (s.overnight) overnightCount++;
     }
 
-    if (overnightCount > 1) {
-      return 'Chỉ được chọn một khoảng thời gian hưởng phụ cấp ăn tối';
-    }
+    // if (overnightCount > 1) {
+    //   return 'Chỉ được chọn một khoảng thời gian hưởng phụ cấp ăn tối';
+    // }
 
     for (var i = 0; i < slips.length; i++) {
       for (var j = i + 1; j < slips.length; j++) {

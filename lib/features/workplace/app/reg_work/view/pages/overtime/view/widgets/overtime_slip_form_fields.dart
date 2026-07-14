@@ -84,17 +84,15 @@ class OvertimeSlipFormFields extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Tính toán ngày giới hạn dựa trên dateRegister đã chọn
+    final registerDayStart = DateTime(
+        dateRegister.year, dateRegister.month, dateRegister.day);
+    final nextDayStart =
+        registerDayStart.add(const Duration(days: 1));
+
     final defaultStart = initialTimeStart ??
         DateTime(
             dateRegister.year, dateRegister.month, dateRegister.day, 18, 0);
-    // "Từ": chỉ hôm qua hoặc hôm nay.
-    // "Đến": cho phép qua đêm đến hết ngày mai (hỗ trợ ca qua nửa đêm).
-    final now = DateTime.now();
-    final todayStart = DateTime(now.year, now.month, now.day);
-    final yesterdayStart = todayStart.subtract(const Duration(days: 1));
-    final tomorrowStart = todayStart.add(const Duration(days: 1));
-    // Cho phép "Đến" qua đêm đến tối đa 5:00 sáng ngày mai.
-    final endDateMax = tomorrowStart.add(const Duration(hours: 5));
 
     final hoursText = computedHours != null
         ? computedHours! < 0
@@ -143,10 +141,10 @@ class OvertimeSlipFormFields extends StatelessWidget {
             inputType: InputType.both,
             format: DateFormat('dd/MM/yyyy HH:mm'),
             initialValue: defaultStart,
-            initialDate: dateRegister,
+            initialDate: registerDayStart,
             enabled: !readOnly,
-            firstDate: yesterdayStart,
-            lastDate: tomorrowStart,
+            firstDate: registerDayStart,
+            lastDate: nextDayStart,
 
             isRequired: true,
             onChanged: onTimeStartChanged == null
@@ -168,10 +166,10 @@ class OvertimeSlipFormFields extends StatelessWidget {
             inputType: InputType.both,
             format: DateFormat('dd/MM/yyyy HH:mm'),
             initialValue: initialTimeEnd,
-            initialDate: dateRegister,
+            initialDate: registerDayStart,
             enabled: !readOnly,
-            firstDate: yesterdayStart,
-            lastDate: endDateMax,
+            firstDate: registerDayStart,
+            lastDate: nextDayStart.add(const Duration(hours: 5)),
 
             isRequired: true,
             onChanged: onEndTimeChanged == null

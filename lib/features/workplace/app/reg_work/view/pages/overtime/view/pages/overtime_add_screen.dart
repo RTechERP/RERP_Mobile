@@ -36,14 +36,22 @@ class _OvertimeAddScreenPageState
   bool _autoValidate = false;
 
   late final DateTime _todayStart;
+  late final DateTime _yesterdayStart;
   late final List<String> _slipKeys;
   int _selectedSlipIndex = 0;
+
+  /// Predicate để giới hạn ngày đăng ký chỉ có hôm qua và hôm nay.
+  bool _isYesterdayOrToday(DateTime day) {
+    final d = DateTime(day.year, day.month, day.day);
+    return !d.isBefore(_yesterdayStart) && !d.isAfter(_todayStart);
+  }
 
   @override
   void initState() {
     super.initState();
     final now = DateTime.now();
     _todayStart = DateTime(now.year, now.month, now.day);
+    _yesterdayStart = _todayStart.subtract(const Duration(days: 1));
     _slipKeys = ['k_${now.millisecondsSinceEpoch}'];
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -511,6 +519,9 @@ class _OvertimeAddScreenPageState
                                         format: DateFormat('dd/MM/yyyy'),
                                         initialValue: _todayStart,
                                         initialDate: _todayStart,
+                                        firstDate: _yesterdayStart,
+                                        lastDate: _todayStart,
+                                        selectableDayPredicate: _isYesterdayOrToday,
                                         autovalidateMode: _autoValidate
                                             ? AutovalidateMode.onUserInteraction
                                             : AutovalidateMode.disabled,

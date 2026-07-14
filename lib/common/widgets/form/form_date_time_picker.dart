@@ -132,7 +132,10 @@ class FormDateTimePickerState extends State<FormDateTimePicker> {
     if (!_isSameDateTime(widget.initialValue, oldWidget.initialValue)) {
       final current = _fieldKey.currentState?.value;
       if (!_isSameDateTime(current, widget.initialValue)) {
-        _syncValue(widget.initialValue);
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (!mounted) return;
+          _syncValue(widget.initialValue);
+        });
       }
     }
   }
