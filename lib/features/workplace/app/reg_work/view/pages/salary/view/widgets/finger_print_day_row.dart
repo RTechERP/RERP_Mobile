@@ -250,8 +250,18 @@ class _FingerPrintDayRowState extends State<FingerPrintDayRow> {
     );
   }
 
+  String _formatTime(String? time) {
+    if (time == null || time.isEmpty) return '--:--';
+    // Handle both HH:mm and HH:mm:ss formats
+    if (time.length >= 5) {
+      return time.substring(0, 5);
+    }
+    return time;
+  }
+
   Widget _buildTimeCell(String label, String? time, bool? isHighlight) {
-    final hasTime = time != null && time.isNotEmpty;
+    final formattedTime = _formatTime(time);
+    final hasTime = formattedTime != '--:--';
     final color = isHighlight == true
         ? AppColors.alert
         : hasTime
@@ -272,7 +282,7 @@ class _FingerPrintDayRowState extends State<FingerPrintDayRow> {
         FittedBox(
           fit: BoxFit.scaleDown,
           child: Text(
-            hasTime ? time : '--:--',
+            formattedTime,
             style: AppStyles.subtitle3.copyWith(
               color: color,
               fontWeight: FontWeight.w700,
