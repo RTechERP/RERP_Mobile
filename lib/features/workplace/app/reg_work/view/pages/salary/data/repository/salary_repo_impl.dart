@@ -4,6 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'package:rtc_erp/base/network/errors/error.dart';
 import '../../../../../../../../../base/network/errors/extension.dart';
 import '../datasource/models/salary_model.dart';
+import '../datasource/models/salary_calendar.dart';
 import '../datasource/service/salary_service.dart';
 import 'salary_repo.dart';
 
@@ -22,6 +23,27 @@ class SalaryRepoImpl implements SalaryRepo {
       final res = await _service.getPersonalSyntheticByMonth(
         year: year,
         month: month,
+      );
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(res.message ?? 'Co loi xay ra'),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, SalaryCalendarItem>> getCalendar({
+    required int month,
+    required int year,
+  }) async {
+    try {
+      final res = await _service.getCalendar(
+        month: month,
+        year: year,
       );
       if (res.status == 1 && res.data != null) {
         return right(res.data!);

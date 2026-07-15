@@ -157,6 +157,10 @@ abstract class _$SalaryStateCWProxy {
 
   SalaryState overnightItems(List<OvertimeItem> overnightItems);
 
+  SalaryState holidays(List<DateTime> holidays);
+
+  SalaryState workSaturdays(List<DateTime> workSaturdays);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SalaryState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -239,6 +243,8 @@ abstract class _$SalaryStateCWProxy {
     DateTime? selectedFingerMonthDt,
     List<OvertimeItem>? overtimeItems,
     List<OvertimeItem>? overnightItems,
+    List<DateTime>? holidays,
+    List<DateTime>? workSaturdays,
   });
 }
 
@@ -520,6 +526,13 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
       this(overnightItems: overnightItems);
 
   @override
+  SalaryState holidays(List<DateTime> holidays) => this(holidays: holidays);
+
+  @override
+  SalaryState workSaturdays(List<DateTime> workSaturdays) =>
+      this(workSaturdays: workSaturdays);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SalaryState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -603,6 +616,8 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
     Object? selectedFingerMonthDt = const $CopyWithPlaceholder(),
     Object? overtimeItems = const $CopyWithPlaceholder(),
     Object? overnightItems = const $CopyWithPlaceholder(),
+    Object? holidays = const $CopyWithPlaceholder(),
+    Object? workSaturdays = const $CopyWithPlaceholder(),
   }) {
     return SalaryState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -953,6 +968,15 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
           ? _value.overnightItems
           // ignore: cast_nullable_to_non_nullable
           : overnightItems as List<OvertimeItem>,
+      holidays: holidays == const $CopyWithPlaceholder() || holidays == null
+          ? _value.holidays
+          // ignore: cast_nullable_to_non_nullable
+          : holidays as List<DateTime>,
+      workSaturdays:
+          workSaturdays == const $CopyWithPlaceholder() || workSaturdays == null
+              ? _value.workSaturdays
+              // ignore: cast_nullable_to_non_nullable
+              : workSaturdays as List<DateTime>,
     );
   }
 }

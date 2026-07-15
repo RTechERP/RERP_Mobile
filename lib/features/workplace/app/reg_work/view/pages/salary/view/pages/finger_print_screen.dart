@@ -63,7 +63,12 @@ class _FingerPrintScreenState
             SliverList(
               delegate: SliverChildBuilderDelegate(
                 (context, index) =>
-                    FingerPrintDayRow(detail: details[index], index: index),
+                    FingerPrintDayRow(
+                      detail: details[index],
+                      index: index,
+                      holidays: state.holidays,
+                      workSaturdays: state.workSaturdays,
+                    ),
                 childCount: details.length,
               ),
             ),

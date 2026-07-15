@@ -237,8 +237,6 @@ class ApiEndPoint {
 
   static const String saveOvernight = '/EmployeeNightShift/save-data';
 
-  // TODO: Thay đường dẫn API thực tế của Backend tại đây
-
   static const String getWorkCategory =
       '/projectitemnew/get-project-item-person';
 

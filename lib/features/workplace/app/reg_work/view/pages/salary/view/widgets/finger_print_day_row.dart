@@ -7,11 +7,15 @@ import '../../data/datasource/models/salary_model.dart';
 class FingerPrintDayRow extends StatefulWidget {
   final SalaryFingerDetail detail;
   final int index;
+  final List<DateTime> holidays;
+  final List<DateTime> workSaturdays;
 
   const FingerPrintDayRow({
     super.key,
     required this.detail,
     required this.index,
+    required this.holidays,
+    required this.workSaturdays,
   });
 
   @override
@@ -23,10 +27,17 @@ class _FingerPrintDayRowState extends State<FingerPrintDayRow> {
 
   static const _weekdayLabels = ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'];
 
-  bool get _isWeekend {
+  bool get _isHolidayOrWeekend {
     final d = widget.detail.attendanceDate;
     if (d == null) return false;
-    return d.weekday == 7;
+    // Sunday is always weekend
+    if (d.weekday == DateTime.sunday) return true;
+    // Saturday: red if in workSaturdays (work Saturday), black if not (normal Saturday)
+    if (d.weekday == DateTime.saturday) {
+      return widget.workSaturdays.any((ws) => DateUtils.isSameDay(ws, d));
+    }
+    // T2-T6: only red if in holidays list
+    return widget.holidays.any((h) => DateUtils.isSameDay(h, d));
   }
 
   bool get _isToday {
@@ -122,9 +133,9 @@ class _FingerPrintDayRowState extends State<FingerPrintDayRow> {
           decoration: BoxDecoration(
             color: _isToday
                 ? AppColors.primaryERP.withValues(alpha: 0.05)
-                : widget.index.isEven
-                    ? AppColors.white
-                    : AppColors.bgCard,
+                : (_isHolidayOrWeekend)
+                    ? AppColors.bgCard
+                    : AppColors.white,
             borderRadius: BorderRadius.circular(10),
             border: _isToday
                 ? Border.all(color: AppColors.primaryERP.withValues(alpha: 0.3), width: 1)
@@ -159,7 +170,9 @@ class _FingerPrintDayRowState extends State<FingerPrintDayRow> {
                     Text(
                       dayStr,
                       style: AppStyles.subtitle1.copyWith(
-                        color: _isWeekend ? AppColors.alert : AppColors.heading,
+                        color: (_isHolidayOrWeekend)
+                            ? AppColors.alert
+                            : AppColors.heading,
                         fontWeight: FontWeight.w800,
                         fontSize: 18,
                       ),
@@ -178,7 +191,7 @@ class _FingerPrintDayRowState extends State<FingerPrintDayRow> {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                   decoration: BoxDecoration(
-                    color: _isWeekend
+                    color: (_isHolidayOrWeekend)
                         ? AppColors.alert.withValues(alpha: 0.1)
                         : Colors.transparent,
                     borderRadius: BorderRadius.circular(4),
@@ -186,7 +199,9 @@ class _FingerPrintDayRowState extends State<FingerPrintDayRow> {
                   child: Text(
                     _dayOfWeekLabel,
                     style: AppStyles.caption2.copyWith(
-                      color: _isWeekend ? AppColors.alert : AppColors.gray,
+                      color: (_isHolidayOrWeekend)
+                          ? AppColors.alert
+                          : AppColors.gray,
                       fontWeight: FontWeight.w600,
                       fontSize: 11,
                     ),
@@ -274,60 +289,25 @@ class _FingerPrintDayRowState extends State<FingerPrintDayRow> {
     final colors = _activeTags.map((t) => t.color).toList();
     final uniqueColors = colors.toSet().toList();
 
-    if (uniqueColors.length == 1) {
-      return Container(
-        width: 32,
-        height: 32,
-        decoration: BoxDecoration(
-          color: uniqueColors.first.withValues(alpha: 0.12),
-          shape: BoxShape.circle,
-        ),
-        child: Center(
-          child: Text(
-            '$count',
-            style: AppStyles.subtitle3.copyWith(
-              color: uniqueColors.first,
-              fontWeight: FontWeight.w800,
-            ),
+    final color = uniqueColors.length == 1
+        ? uniqueColors.first
+        : AppColors.stateErrorColor;
+
+    return Container(
+      width: 28,
+      height: 28,
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.12),
+        shape: BoxShape.circle,
+      ),
+      child: Center(
+        child: Text(
+          '$count',
+          style: AppStyles.subtitle3.copyWith(
+            color: color,
+            fontWeight: FontWeight.w800,
           ),
         ),
-      );
-    }
-
-    return SizedBox(
-      width: 32,
-      height: 32,
-      child: Stack(
-        children: [
-          for (int i = 0; i < count.clamp(0, 3); i++)
-            Positioned(
-              left: i * 8.0,
-              child: Container(
-                width: 24,
-                height: 24,
-                decoration: BoxDecoration(
-                  color: colors[i].withValues(alpha: 0.15),
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: colors[i].withValues(alpha: 0.5),
-                    width: 1.5,
-                  ),
-                ),
-                child: Center(
-                  child: i == 0
-                      ? Text(
-                          '$count',
-                          style: TextStyle(
-                            color: colors[i],
-                            fontSize: 10,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        )
-                      : null,
-                ),
-              ),
-            ),
-        ],
       ),
     );
   }

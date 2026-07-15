@@ -469,6 +469,46 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
     );
   }
 
+  Future<void> _fetchHolidays(
+    Emitter<SalaryState> emit,
+    int year,
+    int month,
+  ) async {
+    final res = await _salaryRepo.getCalendar(month: month, year: year);
+    await res.fold(
+      (err) async {
+        _log.logE('Get holidays failed: $err');
+      },
+      (data) async {
+        final holidays = (data.holidays ?? const [])
+            .where((h) => h.holidayDate != null)
+            .map((h) => DateTime(
+                  h.holidayDate!.year,
+                  h.holidayDate!.month,
+                  h.holidayDate!.day,
+                ))
+            .toList();
+
+        final workSaturdays = (data.scheduleWorkSaturdays ?? const [])
+            .where((s) => s.dateValue != null)
+            .map((s) => DateTime(
+                  s.dateValue!.year,
+                  s.dateValue!.month,
+                  s.dateValue!.day,
+                ))
+            .toList();
+
+        _log.logI('Get holidays success - holidays: ${holidays.length}, workSaturdays: ${workSaturdays.length}');
+        emit(
+          state.copyWith(
+            holidays: holidays,
+            workSaturdays: workSaturdays,
+          ),
+        );
+      },
+    );
+  }
+
   Future<void> _onInit(Emitter<SalaryState> emit) async {
     emit(state.copyWith(status: BaseStateStatus.loading, selectedMonth: DateTime.now()));
 
@@ -492,6 +532,7 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
         ));
 
         await _onFetchPayroll(emit, now.year, now.month);
+        await _fetchHolidays(emit, now.year, now.month);
 
         emit(state.copyWith(status: BaseStateStatus.success));
       },
@@ -510,6 +551,7 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
     ));
 
     await _onFetchPayroll(emit, month.year, month.month);
+    await _fetchHolidays(emit, month.year, month.month);
 
     emit(state.copyWith(status: BaseStateStatus.success));
   }

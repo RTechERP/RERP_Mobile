@@ -108,7 +108,14 @@ class LunchBloc extends BaseBloc<LunchEvent, LunchState> {
           "pageSize": 10,
         };
 
-        _log.logI('Payload: $payload'); // debug thêm
+        // final payload = {
+        //   "departmentId": 0,
+        //   "employeeId": user!.employeeId,
+        //   "keyWord": '',
+        //   "location": 0,
+        //   "month": now.month,
+        //   "year": now.year,
+        // };
 
         final res = await _lunchRepo.getLunch(payload: payload);
 

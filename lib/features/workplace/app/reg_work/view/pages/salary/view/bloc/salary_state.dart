@@ -103,6 +103,10 @@ class SalaryState extends BaseBlocState {
   final List<OvertimeItem> overtimeItems;
   final List<OvertimeItem> overnightItems;
 
+  // Holiday data from newsfeed calendar API
+  final List<DateTime> holidays;
+  final List<DateTime> workSaturdays;
+
   const SalaryState({
     required super.status,
     super.message,
@@ -179,6 +183,8 @@ class SalaryState extends BaseBlocState {
     this.selectedFingerMonthDt,
     this.overtimeItems = const [],
     this.overnightItems = const [],
+    this.holidays = const [],
+    this.workSaturdays = const [],
   });
 
   factory SalaryState.init() => const SalaryState(
@@ -262,5 +268,7 @@ class SalaryState extends BaseBlocState {
         selectedFingerMonthDt,
         overtimeItems,
         overnightItems,
+        holidays,
+        workSaturdays,
       ];
 }

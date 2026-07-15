@@ -77,15 +77,6 @@ class LunchCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
-                    children: [
-                      const SizedBox(width: 8),
-                      _ApprovalBadge(role: 'TBP', status: status),
-                    ],
-                  ),
-
-                  const SizedBox(height: 14),
-
-                  Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Expanded(
