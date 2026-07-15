@@ -177,10 +177,10 @@ class ApiEndPoint {
   static const String uploadBookingVehicleFile =
       '/vehiclebookingmanagement/upload-file';
 
-  static const String getLunch = '/EmployeeFoodOrder';
+  static const String getLunch = '/EmployeeFoodOrder/get-foodorder-personal';
   static const String saveLunch = '/EmployeeFoodOrder/save-data';
 
-  static const String getEarlyLate = '/EmployeeEarlyLate';
+  static const String getEarlyLate = '/EmployeeEarlyLate/person';
   static const String saveEarlyLate = '/EmployeeEarlyLate/save-data';
   static const String getApprover = '/Employee/get-approve';
 
@@ -188,14 +188,14 @@ class ApiEndPoint {
   static const String saveWfh = '/EmployeeWFH/save-data';
 
   static const String getMissed =
-      '/EmployeeNoFingerprint/get-employee-no-fingerprint';
+      '/EmployeeNoFingerprint/person';
 
   static const String saveMissed = '/EmployeeNoFingerprint/savedata';
 
   static const String checkDuplicateEnfMissed =
       '/EmployeeNoFingerprint/check-duplicate-enf';
 
-  static const String getLeave = '/EmployeeOnLeave';
+  static const String getLeave = '/EmployeeOnLeave/get-onleave-person';
   static const String getLeavePhaseMulti = '/EmployeeOnLeave/get-multi';
   static const String saveLeave = '/EmployeeOnLeave/save-data';
 
@@ -233,7 +233,7 @@ class ApiEndPoint {
   static const String getWorkTripById = '/EmployeeBussiness/get-by-id';
 
   static const String getOvernight =
-      '/EmployeeNightShift/get-employee-night-shift';
+      '/EmployeeNightShift/person';
 
   static const String saveOvernight = '/EmployeeNightShift/save-data';
 
