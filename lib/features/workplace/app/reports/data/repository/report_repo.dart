@@ -29,7 +29,10 @@ abstract class ReportRepo {
   });
 
   /// Lưu báo cáo công việc "Phòng Kỹ thuật"
-  Future<Either<BaseError, String>> saveReportTech({
+  ///
+  /// Trả về danh sách ID báo cáo vừa tạo/cập nhật. Nếu response trả về
+  /// `status == 1` nhưng `data` rỗng thì coi như lưu thất bại.
+  Future<Either<BaseError, List<int>>> saveReportTech({
     required Map<String, dynamic> payload,
   });
 

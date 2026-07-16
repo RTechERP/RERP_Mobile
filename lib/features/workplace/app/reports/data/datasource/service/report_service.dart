@@ -98,14 +98,19 @@ class ReportService extends DioBaseApiService {
   }
 
   /// Lưu báo cáo công việc "Phòng Kỹ thuật"
-  Future<BaseData<void>> saveReportTech({
+  Future<BaseData<List<int>>> saveReportTech({
     required Map<String, dynamic> payload,
   }) async {
     final body = [payload]; // ✅ root là mảng
-    return post<BaseData<void>>(
+    return post<BaseData<List<int>>>(
       ApiEndPoint.saveReportTech,
       body: body, // nếu wrapper không encode thì đổi thành jsonEncode(body)
-      parser: (json) => BaseData<void>.fromJson(json, (_) => null),
+      parser: (json) => BaseData<List<int>>.fromJson(
+        json,
+        (data) => (data as List)
+            .map((e) => (e as num).toInt())
+            .toList(),
+      ),
     );
   }
 
