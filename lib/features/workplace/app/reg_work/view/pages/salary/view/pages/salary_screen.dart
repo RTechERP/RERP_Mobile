@@ -17,6 +17,7 @@ import '../widgets/salary_net_salary_card.dart';
 import '../widgets/salary_note_card.dart';
 import '../widgets/salary_other_additions_card.dart';
 import '../widgets/salary_overtime_card.dart';
+import '../widgets/salary_penalty_card.dart';
 import '../widgets/salary_standard_income_card.dart';
 import '../widgets/salary_total_taxable_card.dart';
 
@@ -101,6 +102,10 @@ class _SalaryScreenState
                       ),
                       const SizedBox(height: 12),
                       SalaryNetSalaryCard(
+                        state: state,
+                      ),
+                      const SizedBox(height: 12),
+                      SalaryPenaltyCard(
                         state: state,
                       ),
                       const SizedBox(height: 12),

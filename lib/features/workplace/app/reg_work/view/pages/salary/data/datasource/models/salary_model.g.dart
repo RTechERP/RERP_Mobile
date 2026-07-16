@@ -460,6 +460,19 @@ _$SalaryPayrollItemImpl _$$SalaryPayrollItemImplFromJson(
       taxCompanyName: json['TaxCompanyName'] as String?,
       statusContract: json['StatusContract'] as String?,
       taxDeduction: (json['TaxDeduction'] as num?)?.toDouble(),
+      penaltyLateEarlyQty: (json['PenaltyLateEarlyQty'] as num?)?.toInt(),
+      penaltyLateEarlyAmount:
+          (json['PenaltyLateEarlyAmount'] as num?)?.toDouble(),
+      penaltyMissingAttendanceQty:
+          (json['PenaltyMissingAttendanceQty'] as num?)?.toInt(),
+      penaltyMissingAttendanceAmount:
+          (json['PenaltyMissingAttendanceAmount'] as num?)?.toDouble(),
+      penaltyLeaveOver2DaysQty:
+          (json['PenaltyLeaveOver2DaysQty'] as num?)?.toInt(),
+      penaltyLeaveOver2DaysAmount:
+          (json['PenaltyLeaveOver2DaysAmount'] as num?)?.toDouble(),
+      penaltyTotalAmount: (json['PenaltyTotalAmount'] as num?)?.toDouble(),
+      regulationViolation: (json['RegulationViolation'] as num?)?.toDouble(),
       stt: (json['STT'] as num?)?.toInt(),
       realSalary: (json['RealSalary'] as num?)?.toDouble(),
       actualAmountReceived: (json['ActualAmountReceived'] as num?)?.toDouble(),
@@ -524,6 +537,14 @@ Map<String, dynamic> _$$SalaryPayrollItemImplToJson(
       'TaxCompanyName': instance.taxCompanyName,
       'StatusContract': instance.statusContract,
       'TaxDeduction': instance.taxDeduction,
+      'PenaltyLateEarlyQty': instance.penaltyLateEarlyQty,
+      'PenaltyLateEarlyAmount': instance.penaltyLateEarlyAmount,
+      'PenaltyMissingAttendanceQty': instance.penaltyMissingAttendanceQty,
+      'PenaltyMissingAttendanceAmount': instance.penaltyMissingAttendanceAmount,
+      'PenaltyLeaveOver2DaysQty': instance.penaltyLeaveOver2DaysQty,
+      'PenaltyLeaveOver2DaysAmount': instance.penaltyLeaveOver2DaysAmount,
+      'PenaltyTotalAmount': instance.penaltyTotalAmount,
+      'RegulationViolation': instance.regulationViolation,
       'STT': instance.stt,
       'RealSalary': instance.realSalary,
       'ActualAmountReceived': instance.actualAmountReceived,

@@ -91,6 +91,8 @@ abstract class _$SalaryStateCWProxy {
 
   SalaryState mealUse(int mealUse);
 
+  SalaryState regulationViolation(double regulationViolation);
+
   SalaryState otherDeduction(double otherDeduction);
 
   SalaryState totalDeduction(double totalDeduction);
@@ -114,6 +116,21 @@ abstract class _$SalaryStateCWProxy {
   SalaryState netSalary(double netSalary);
 
   SalaryState note(String? note);
+
+  SalaryState penaltyLateEarlyQty(int penaltyLateEarlyQty);
+
+  SalaryState penaltyLateEarlyAmount(double penaltyLateEarlyAmount);
+
+  SalaryState penaltyMissingAttendanceQty(int penaltyMissingAttendanceQty);
+
+  SalaryState penaltyMissingAttendanceAmount(
+      double penaltyMissingAttendanceAmount);
+
+  SalaryState penaltyLeaveOver2DaysQty(int penaltyLeaveOver2DaysQty);
+
+  SalaryState penaltyLeaveOver2DaysAmount(double penaltyLeaveOver2DaysAmount);
+
+  SalaryState penaltyTotalAmount(double penaltyTotalAmount);
 
   SalaryState hasPin(bool hasPin);
 
@@ -210,6 +227,7 @@ abstract class _$SalaryStateCWProxy {
     double? parkingMoney,
     double? punish5S,
     int? mealUse,
+    double? regulationViolation,
     double? otherDeduction,
     double? totalDeduction,
     double? taxSalaryOT,
@@ -222,6 +240,13 @@ abstract class _$SalaryStateCWProxy {
     double? taxDeduction,
     double? netSalary,
     String? note,
+    int? penaltyLateEarlyQty,
+    double? penaltyLateEarlyAmount,
+    int? penaltyMissingAttendanceQty,
+    double? penaltyMissingAttendanceAmount,
+    int? penaltyLeaveOver2DaysQty,
+    double? penaltyLeaveOver2DaysAmount,
+    double? penaltyTotalAmount,
     bool? hasPin,
     bool? pinVerified,
     bool? isVerifyingPin,
@@ -404,6 +429,10 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
   SalaryState mealUse(int mealUse) => this(mealUse: mealUse);
 
   @override
+  SalaryState regulationViolation(double regulationViolation) =>
+      this(regulationViolation: regulationViolation);
+
+  @override
   SalaryState otherDeduction(double otherDeduction) =>
       this(otherDeduction: otherDeduction);
 
@@ -447,6 +476,35 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
 
   @override
   SalaryState note(String? note) => this(note: note);
+
+  @override
+  SalaryState penaltyLateEarlyQty(int penaltyLateEarlyQty) =>
+      this(penaltyLateEarlyQty: penaltyLateEarlyQty);
+
+  @override
+  SalaryState penaltyLateEarlyAmount(double penaltyLateEarlyAmount) =>
+      this(penaltyLateEarlyAmount: penaltyLateEarlyAmount);
+
+  @override
+  SalaryState penaltyMissingAttendanceQty(int penaltyMissingAttendanceQty) =>
+      this(penaltyMissingAttendanceQty: penaltyMissingAttendanceQty);
+
+  @override
+  SalaryState penaltyMissingAttendanceAmount(
+          double penaltyMissingAttendanceAmount) =>
+      this(penaltyMissingAttendanceAmount: penaltyMissingAttendanceAmount);
+
+  @override
+  SalaryState penaltyLeaveOver2DaysQty(int penaltyLeaveOver2DaysQty) =>
+      this(penaltyLeaveOver2DaysQty: penaltyLeaveOver2DaysQty);
+
+  @override
+  SalaryState penaltyLeaveOver2DaysAmount(double penaltyLeaveOver2DaysAmount) =>
+      this(penaltyLeaveOver2DaysAmount: penaltyLeaveOver2DaysAmount);
+
+  @override
+  SalaryState penaltyTotalAmount(double penaltyTotalAmount) =>
+      this(penaltyTotalAmount: penaltyTotalAmount);
 
   @override
   SalaryState hasPin(bool hasPin) => this(hasPin: hasPin);
@@ -583,6 +641,7 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
     Object? parkingMoney = const $CopyWithPlaceholder(),
     Object? punish5S = const $CopyWithPlaceholder(),
     Object? mealUse = const $CopyWithPlaceholder(),
+    Object? regulationViolation = const $CopyWithPlaceholder(),
     Object? otherDeduction = const $CopyWithPlaceholder(),
     Object? totalDeduction = const $CopyWithPlaceholder(),
     Object? taxSalaryOT = const $CopyWithPlaceholder(),
@@ -595,6 +654,13 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
     Object? taxDeduction = const $CopyWithPlaceholder(),
     Object? netSalary = const $CopyWithPlaceholder(),
     Object? note = const $CopyWithPlaceholder(),
+    Object? penaltyLateEarlyQty = const $CopyWithPlaceholder(),
+    Object? penaltyLateEarlyAmount = const $CopyWithPlaceholder(),
+    Object? penaltyMissingAttendanceQty = const $CopyWithPlaceholder(),
+    Object? penaltyMissingAttendanceAmount = const $CopyWithPlaceholder(),
+    Object? penaltyLeaveOver2DaysQty = const $CopyWithPlaceholder(),
+    Object? penaltyLeaveOver2DaysAmount = const $CopyWithPlaceholder(),
+    Object? penaltyTotalAmount = const $CopyWithPlaceholder(),
     Object? hasPin = const $CopyWithPlaceholder(),
     Object? pinVerified = const $CopyWithPlaceholder(),
     Object? isVerifyingPin = const $CopyWithPlaceholder(),
@@ -814,6 +880,12 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
           ? _value.mealUse
           // ignore: cast_nullable_to_non_nullable
           : mealUse as int,
+      regulationViolation:
+          regulationViolation == const $CopyWithPlaceholder() ||
+                  regulationViolation == null
+              ? _value.regulationViolation
+              // ignore: cast_nullable_to_non_nullable
+              : regulationViolation as double,
       otherDeduction: otherDeduction == const $CopyWithPlaceholder() ||
               otherDeduction == null
           ? _value.otherDeduction
@@ -874,6 +946,47 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
           ? _value.note
           // ignore: cast_nullable_to_non_nullable
           : note as String?,
+      penaltyLateEarlyQty:
+          penaltyLateEarlyQty == const $CopyWithPlaceholder() ||
+                  penaltyLateEarlyQty == null
+              ? _value.penaltyLateEarlyQty
+              // ignore: cast_nullable_to_non_nullable
+              : penaltyLateEarlyQty as int,
+      penaltyLateEarlyAmount:
+          penaltyLateEarlyAmount == const $CopyWithPlaceholder() ||
+                  penaltyLateEarlyAmount == null
+              ? _value.penaltyLateEarlyAmount
+              // ignore: cast_nullable_to_non_nullable
+              : penaltyLateEarlyAmount as double,
+      penaltyMissingAttendanceQty:
+          penaltyMissingAttendanceQty == const $CopyWithPlaceholder() ||
+                  penaltyMissingAttendanceQty == null
+              ? _value.penaltyMissingAttendanceQty
+              // ignore: cast_nullable_to_non_nullable
+              : penaltyMissingAttendanceQty as int,
+      penaltyMissingAttendanceAmount:
+          penaltyMissingAttendanceAmount == const $CopyWithPlaceholder() ||
+                  penaltyMissingAttendanceAmount == null
+              ? _value.penaltyMissingAttendanceAmount
+              // ignore: cast_nullable_to_non_nullable
+              : penaltyMissingAttendanceAmount as double,
+      penaltyLeaveOver2DaysQty:
+          penaltyLeaveOver2DaysQty == const $CopyWithPlaceholder() ||
+                  penaltyLeaveOver2DaysQty == null
+              ? _value.penaltyLeaveOver2DaysQty
+              // ignore: cast_nullable_to_non_nullable
+              : penaltyLeaveOver2DaysQty as int,
+      penaltyLeaveOver2DaysAmount:
+          penaltyLeaveOver2DaysAmount == const $CopyWithPlaceholder() ||
+                  penaltyLeaveOver2DaysAmount == null
+              ? _value.penaltyLeaveOver2DaysAmount
+              // ignore: cast_nullable_to_non_nullable
+              : penaltyLeaveOver2DaysAmount as double,
+      penaltyTotalAmount: penaltyTotalAmount == const $CopyWithPlaceholder() ||
+              penaltyTotalAmount == null
+          ? _value.penaltyTotalAmount
+          // ignore: cast_nullable_to_non_nullable
+          : penaltyTotalAmount as double,
       hasPin: hasPin == const $CopyWithPlaceholder() || hasPin == null
           ? _value.hasPin
           // ignore: cast_nullable_to_non_nullable

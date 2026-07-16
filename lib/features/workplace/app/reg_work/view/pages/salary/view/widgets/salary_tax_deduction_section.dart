@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../../../../common/app_theme/index.dart';
+import '../../../../../../../../../common/helpers/index.dart';
 import '../bloc/salary_bloc.dart';
 import 'salary_card.dart';
 
@@ -33,9 +34,7 @@ class _SalaryTaxDeductionSectionState extends State<SalaryTaxDeductionSection> {
 
   @override
   Widget build(BuildContext context) {
-    final nf = widget.nf;
     final state = widget.state;
-    String f(num n) => '${nf.format(n.round())}đ';
 
     return Container(
       decoration: BoxDecoration(
@@ -92,7 +91,7 @@ class _SalaryTaxDeductionSectionState extends State<SalaryTaxDeductionSection> {
                         Expanded(
                           flex: 4,
                           child: Text(
-                            '(40) → (44)',
+                            '(40) → (45)',
                             textAlign: TextAlign.end,
                             style: AppStyles.body2.copyWith(
                               color: AppColors.stateInfoColor,
@@ -137,20 +136,20 @@ class _SalaryTaxDeductionSectionState extends State<SalaryTaxDeductionSection> {
                           items: [
                             SalaryRowItem(
                               label: 'Lương BHXH (10.5%)',
-                              value: f(state.insurances),
-                              formula: '(39)',
-                              highlightBg: false,
-                            ),
-                            SalaryRowItem(
-                              label: 'Lương làm thêm',
-                              value: f(state.taxSalaryOT),
+                              value: fDecimal(state.insurances),
                               formula: '(40)',
                               highlightBg: false,
                             ),
                             SalaryRowItem(
-                              label: 'PC cơm ca',
-                              value: f(state.taxSalaryMeal),
+                              label: 'Lương làm thêm',
+                              value: fDecimal(state.taxSalaryOT),
                               formula: '(41)',
+                              highlightBg: false,
+                            ),
+                            SalaryRowItem(
+                              label: 'PC cơm ca',
+                              value: fDecimal(state.taxSalaryMeal),
+                              formula: '(42)',
                               highlightBg: false,
                             ),
 
@@ -165,20 +164,20 @@ class _SalaryTaxDeductionSectionState extends State<SalaryTaxDeductionSection> {
                           items: [
                             SalaryRowItem(
                               label: 'PC điện thoại',
-                              value: f(state.taxSalaryPhone),
-                              formula: '(42)',
-                              highlightBg: false,
-                            ),
-                            SalaryRowItem(
-                              label: 'Giảm trừ bản thân',
-                              value: f(state.taxPersonalDeduction),
+                              value: fDecimal(state.taxSalaryPhone),
                               formula: '(43)',
                               highlightBg: false,
                             ),
                             SalaryRowItem(
-                              label: 'Giảm trừ người phụ thuộc',
-                              value: f(state.taxDependentsDeduction),
+                              label: 'Giảm trừ bản thân',
+                              value: fDecimal(state.taxPersonalDeduction),
                               formula: '(44)',
+                              highlightBg: false,
+                            ),
+                            SalaryRowItem(
+                              label: 'Giảm trừ người phụ thuộc',
+                              value: fDecimal(state.taxDependentsDeduction),
+                              formula: '(45)',
                               highlightBg: false,
                             ),
                           ],

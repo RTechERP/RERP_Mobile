@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import '../../../../../../../../../common/app_theme/index.dart';
+import '../../../../../../../../../common/helpers/index.dart';
 import '../bloc/salary_bloc.dart';
 import 'salary_card.dart';
 import 'salary_section_header.dart';
@@ -18,9 +18,6 @@ class SalaryOtherAdditionsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final nf = NumberFormat('#,##0', 'vi_VN');
-    String f(num n) => '${nf.format(n.round())}đ';
-
     return SalaryCard(
       accentColor: AppColors.greenA500,
       title: 'Các khoản cộng khác & Tổng thu nhập tính thuế',
@@ -43,19 +40,19 @@ class SalaryOtherAdditionsCard extends StatelessWidget {
             items: [
               SalaryRowItem(
                 label: 'Công tác phí',
-                value: f(state.bussinessMoney),
+                value: fDecimal(state.bussinessMoney),
                 formula: '(20)',
                 highlightBg: false,
               ),
               SalaryRowItem(
                 label: 'Làm đêm',
-                value: f(state.nightShiftMoney),
+                value: fDecimal(state.nightShiftMoney),
                 formula: '(21)',
                 highlightBg: false,
               ),
               SalaryRowItem(
                 label: 'Phương tiện công tác',
-                value: f(state.costVehicleBussiness),
+                value: fDecimal(state.costVehicleBussiness),
                 formula: '(22)',
                 highlightBg: false,
               ),
@@ -70,13 +67,13 @@ class SalaryOtherAdditionsCard extends StatelessWidget {
             items: [
               SalaryRowItem(
                 label: 'KPIs / doanh số',
-                value: f(state.bonus),
+                value: fDecimal(state.bonus),
                 formula: '(23)',
                 highlightBg: false,
               ),
               SalaryRowItem(
                 label: 'Khác',
-                value: f(state.other),
+                value: fDecimal(state.other),
                 formula: '(24)',
                 highlightBg: false,
               ),
@@ -89,7 +86,7 @@ class SalaryOtherAdditionsCard extends StatelessWidget {
             items: [
               SalaryRowItem(
                 label: 'Tổng phụ cấp',
-                value: f(state.totalBonus),
+                value: fDecimal(state.totalBonus),
                 formula: '(25) = (20) + (21) + (22) + (23) + (24)',
               ),
             ],
@@ -108,19 +105,19 @@ class SalaryOtherAdditionsCard extends StatelessWidget {
             items: [
               SalaryRowItem(
                 label: 'Lương',
-                value: f(state.totalSalaryByDay),
+                value: fDecimal(state.totalSalaryByDay),
                 formula: '(6)',
                 highlightBg: false,
               ),
               SalaryRowItem(
                 label: 'Tổng làm thêm',
-                value: f(state.otTotalSalary),
+                value: fDecimal(state.otTotalSalary),
                 formula: '(14)',
                 highlightBg: false,
               ),
               SalaryRowItem(
                 label: 'Tổng phụ cấp',
-                value: f(state.totalAllowance),
+                value: fDecimal(state.totalAllowance),
                 formula: '(19)',
                 highlightBg: false,
               ),
@@ -134,7 +131,7 @@ class SalaryOtherAdditionsCard extends StatelessWidget {
             items: [
               SalaryRowItem(
                 label: 'Các khoản cộng khác',
-                value: f(state.totalBonus),
+                value: fDecimal(state.totalBonus),
                 formula: '(25)',
                 highlightBg: false,
               ),
@@ -149,7 +146,7 @@ class SalaryOtherAdditionsCard extends StatelessWidget {
             items: [
               SalaryRowItem(
                 label: 'Tổng thu nhập tính thuế',
-                value: f(state.totalTaxableIncome),
+                value: fDecimal(state.totalTaxableIncome),
                 formula: '(26) = (6) + (14) + (19) + (25)',
               ),
             ],

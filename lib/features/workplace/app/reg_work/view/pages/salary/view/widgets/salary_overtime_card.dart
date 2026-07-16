@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import '../../../../../../../../../common/app_theme/index.dart';
+import '../../../../../../../../../common/helpers/index.dart';
 import '../bloc/salary_bloc.dart';
 import 'salary_card.dart';
 
@@ -13,9 +13,6 @@ class SalaryOvertimeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final nf = NumberFormat('#,##0', 'vi_VN');
-    String f(num n) => '${nf.format(n.round())}đ';
-
     return SalaryCard(
       accentColor: AppColors.warning,
       title: 'Làm thêm',
@@ -31,13 +28,13 @@ class SalaryOvertimeCard extends StatelessWidget {
               const SalaryRowItem(label: 'Ngày thường', value: ''),
               SalaryRowItem(
                 label: 'Số giờ',
-                value: f(state.otHourWD),
+                value: state.otHourWD.toString(),
                 formula: '(8)',
                 highlightBg: false,
               ),
               SalaryRowItem(
                 label: 'Thành tiền',
-                value: f(state.otMoneyWD),
+                value: fDecimal(state.otMoneyWD),
                 formula: '(9) = (8)*(7)*1,5',
                 highlightBg: false,
               ),
@@ -50,13 +47,13 @@ class SalaryOvertimeCard extends StatelessWidget {
               const SalaryRowItem(label: 'Cuối tuần', value: ''),
               SalaryRowItem(
                 label: 'Số giờ',
-                value: f(state.otHourWK),
+                value: state.otHourWK.toString(),
                 formula: '(10)',
                 highlightBg: false,
               ),
               SalaryRowItem(
                 label: 'Thành tiền',
-                value: f(state.otMoneyWK),
+                value: fDecimal(state.otMoneyWK),
                 formula: '(11) = (10)*(7)*2',
                 highlightBg: false,
               ),
@@ -69,13 +66,13 @@ class SalaryOvertimeCard extends StatelessWidget {
               const SalaryRowItem(label: 'Lễ, Tết', value: ''),
               SalaryRowItem(
                 label: 'Số giờ',
-                value: f(state.otHourHD),
+                value: state.otHourHD.toString(),
                 formula: '(12)',
                 highlightBg: false,
               ),
               SalaryRowItem(
                 label: 'Thành tiền',
-                value: f(state.otMoneyHD),
+                value: fDecimal(state.otMoneyHD),
                 formula: '(13) = (12)*(7)*3',
                 highlightBg: false,
               ),
@@ -86,7 +83,7 @@ class SalaryOvertimeCard extends StatelessWidget {
             items: [
               SalaryRowItem(
                 label: 'Tổng làm thêm',
-                value: f(state.otTotalSalary),
+                value: fDecimal(state.otTotalSalary),
                 formula: '(14) = (9)+(11)+(13)',
               ),
             ],

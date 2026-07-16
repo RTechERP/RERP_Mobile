@@ -289,17 +289,26 @@ class SalaryPayrollItem with _$SalaryPayrollItem {
     @JsonKey(name: 'TaxSalaryMeal') double? taxSalaryMeal,
     @JsonKey(name: 'TaxSalaryPhone') double? taxSalaryPhone,
     @JsonKey(name: 'TaxPersonalDeduction') double? taxPersonalDeduction,
-    @JsonKey(name: 'TaxDependentsDeduction')
-    double? taxDependentsDeduction,
+    @JsonKey(name: 'TaxDependentsDeduction') double? taxDependentsDeduction,
     @JsonKey(name: 'TotalTaxDeduction') double? totalTaxDeduction,
     @JsonKey(name: 'TaxAbleIncome') double? taxAbleIncome,
     @JsonKey(name: 'TaxCompanyName') String? taxCompanyName,
     @JsonKey(name: 'StatusContract') String? statusContract,
     @JsonKey(name: 'TaxDeduction') double? taxDeduction,
+    @JsonKey(name: 'PenaltyLateEarlyQty') int? penaltyLateEarlyQty,
+    @JsonKey(name: 'PenaltyLateEarlyAmount') double? penaltyLateEarlyAmount,
+    @JsonKey(name: 'PenaltyMissingAttendanceQty')
+    int? penaltyMissingAttendanceQty,
+    @JsonKey(name: 'PenaltyMissingAttendanceAmount')
+    double? penaltyMissingAttendanceAmount,
+    @JsonKey(name: 'PenaltyLeaveOver2DaysQty') int? penaltyLeaveOver2DaysQty,
+    @JsonKey(name: 'PenaltyLeaveOver2DaysAmount')
+    double? penaltyLeaveOver2DaysAmount,
+    @JsonKey(name: 'PenaltyTotalAmount') double? penaltyTotalAmount,
+    @JsonKey(name: 'RegulationViolation') double? regulationViolation,
     @JsonKey(name: 'STT') int? stt,
     @JsonKey(name: 'RealSalary') double? realSalary,
-    @JsonKey(name: 'ActualAmountReceived')
-    double? actualAmountReceived,
+    @JsonKey(name: 'ActualAmountReceived') double? actualAmountReceived,
   }) = _SalaryPayrollItem;
 
   factory SalaryPayrollItem.fromJson(Map<String, dynamic> json) =>

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import '../../../../../../../../../common/app_theme/index.dart';
+import '../../../../../../../../../common/helpers/index.dart';
 import '../bloc/salary_bloc.dart';
 import 'salary_card.dart';
 
@@ -13,9 +13,6 @@ class SalaryAllowanceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final nf = NumberFormat('#,##0', 'vi_VN');
-    String f(num n) => '${nf.format(n.round())}đ';
-
     return SalaryCard(
       accentColor: AppColors.purpleA500,
       title: 'Phụ cấp',
@@ -32,13 +29,13 @@ class SalaryAllowanceCard extends StatelessWidget {
             items: [
               SalaryRowItem(
                 label: 'Cơm ca sau 20H/theo loại công tác',
-                value: f(state.allowanceMeal),
+                value: fDecimal(state.allowanceMeal),
                 formula: '(17)',
                 highlightBg: false,
               ),
               SalaryRowItem(
                 label: 'Đi làm trước 7h15',
-                value: f(state.allowanceOTEarly),
+                value: fDecimal(state.allowanceOTEarly),
                 formula: '(18)',
                 highlightBg: false,
               ),
@@ -51,7 +48,7 @@ class SalaryAllowanceCard extends StatelessWidget {
             items: [
               SalaryRowItem(
                 label: 'Tổng phụ cấp',
-                value: f(state.totalAllowance),
+                value: fDecimal(state.totalAllowance),
                 formula: '(19) = (17)+(18)',
               ),
             ],

@@ -417,7 +417,7 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
           otMoneyWKNightWeekend: calcOtMoneyWKNightWeekend,
           otHourHD: p?.otHourHD ?? calcOtHourHD,
           otMoneyHD: p?.otMoneyHD ?? calcOtMoneyHD,
-          otTotalSalary: calcOtTotal,
+          otTotalSalary: p?.otTotalSalary ?? calcOtTotal,
           // Card phụ cấp
           allowanceMeal: p?.allowanceMeal ?? 0,
           allowanceOTEarly: p?.allowanceOTEarly ?? 0,
@@ -431,7 +431,7 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
           totalBonus: p?.totalBonus ?? 0,
           // Card tổng thu nhập
           totalTaxableIncome: (p?.totalSalaryByDay ?? 0) +
-              calcOtTotal +
+              (p?.otTotalSalary ?? calcOtTotal) +
               (p?.totalAllowance ?? 0) +
               (p?.totalBonus ?? 0),
           // Card các khoản phải trừ
@@ -443,6 +443,7 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
           parkingMoney: p?.parkingMoney ?? 0,
           punish5S: p?.punish5S ?? 0,
           mealUse: p?.mealUse ?? 0,
+          regulationViolation: p?.regulationViolation ?? 0,
           otherDeduction: p?.otherDeduction ?? 0,
           totalDeduction: p?.totalDeduction ?? 0,
           // Card giảm trừ thuế
@@ -454,6 +455,14 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
           totalTaxDeduction: p?.totalTaxDeduction ?? 0,
           taxAbleIncome: p?.taxAbleIncome ?? 0,
           taxDeduction: p?.taxDeduction ?? 0,
+          // Card tổng hợp phạt
+          penaltyLateEarlyQty: p?.penaltyLateEarlyQty ?? 0,
+          penaltyLateEarlyAmount: p?.penaltyLateEarlyAmount ?? 0,
+          penaltyMissingAttendanceQty: p?.penaltyMissingAttendanceQty ?? 0,
+          penaltyMissingAttendanceAmount: p?.penaltyMissingAttendanceAmount ?? 0,
+          penaltyLeaveOver2DaysQty: p?.penaltyLeaveOver2DaysQty ?? 0,
+          penaltyLeaveOver2DaysAmount: p?.penaltyLeaveOver2DaysAmount ?? 0,
+          penaltyTotalAmount: p?.penaltyTotalAmount ?? 0,
           // Thực lĩnh & Ghi chú
           netSalary: p?.actualAmountReceived ?? p?.realSalary ?? 0,
           note: p?.note,
