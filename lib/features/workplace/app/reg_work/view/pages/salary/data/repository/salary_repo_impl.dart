@@ -55,4 +55,22 @@ class SalaryRepoImpl implements SalaryRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, ConfirmPayrollResponse>> confirmPayroll({
+    required int id,
+    required bool sign,
+  }) async {
+    try {
+      final res = await _service.confirmPayroll(id: id, sign: sign);
+      if (res.status == 1) {
+        return right(ConfirmPayrollResponse(message: res.message));
+      }
+      return left(
+        BaseError.httpInternalServerError(res.message ?? 'Co loi xay ra'),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

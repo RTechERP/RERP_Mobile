@@ -34,4 +34,15 @@ class SalaryService extends DioBaseApiService {
       ),
     );
   }
+
+  Future<BaseData<void>> confirmPayroll({
+    required int id,
+    required bool sign,
+  }) async {
+    return post<BaseData<void>>(
+      ApiEndPoint.confirmPayroll,
+      body: {'Id': id, 'Sign': sign},
+      parser: (json) => BaseData<void>.fromJson(json, (_) {}),
+    );
+  }
 }

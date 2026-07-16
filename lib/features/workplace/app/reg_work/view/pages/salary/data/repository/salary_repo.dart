@@ -13,4 +13,9 @@ abstract class SalaryRepo {
     required int month,
     required int year,
   });
+
+  Future<Either<BaseError, ConfirmPayrollResponse>> confirmPayroll({
+    required int id,
+    required bool sign,
+  });
 }

@@ -54,6 +54,11 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
             _onForgotResetPin(emit, newPin, confirmPin),
         forgotUpdateStep: (step) => _onForgotUpdateStep(emit, step),
         clearForgotState: () => _onClearForgotState(emit),
+        // Confirm Payroll
+        confirmPayroll: (payrollId) => _onConfirmPayroll(emit, payrollId),
+        cancelPayroll: (payrollId) => _onCancelPayroll(emit, payrollId),
+        clearConfirmState: () => _onClearConfirmState(emit),
+        confirmInit: () => _onConfirmInit(emit),
       );
     });
   }
@@ -563,5 +568,104 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
     await _fetchHolidays(emit, month.year, month.month);
 
     emit(state.copyWith(status: BaseStateStatus.success));
+  }
+
+  //---(Confirm Payroll)---//
+  Future<void> _onConfirmPayroll(Emitter<SalaryState> emit, int payrollId) async {
+    emit(state.copyWith(isConfirmingPayroll: true, confirmMessage: null));
+
+    final res = await _salaryRepo.confirmPayroll(id: payrollId, sign: true);
+    res.fold(
+      (err) {
+        _log.logE('Confirm payroll failed: $err');
+        emit(state.copyWith(
+          isConfirmingPayroll: false,
+          confirmSuccess: false,
+          confirmMessage: err.getErrorMessage,
+        ));
+      },
+      (data) async {
+        _log.logI('Confirm payroll success: ${data.message}');
+        emit(state.copyWith(
+          isConfirmingPayroll: false,
+          confirmSuccess: true,
+          confirmMessage: data.message,
+        ));
+        // Update payroll sign status immediately without re-fetching
+        final updatedPayroll = state.payroll.map((p) {
+          if (p.id == payrollId) {
+            return p.copyWith(sign: true);
+          }
+          return p;
+        }).toList();
+        emit(state.copyWith(payroll: updatedPayroll));
+      },
+    );
+  }
+
+  //---(Cancel Payroll)---//
+  Future<void> _onCancelPayroll(Emitter<SalaryState> emit, int payrollId) async {
+    emit(state.copyWith(isConfirmingPayroll: true, confirmMessage: null));
+
+    final res = await _salaryRepo.confirmPayroll(id: payrollId, sign: false);
+    res.fold(
+      (err) {
+        _log.logE('Cancel payroll failed: $err');
+        emit(state.copyWith(
+          isConfirmingPayroll: false,
+          confirmSuccess: false,
+          confirmMessage: err.getErrorMessage,
+        ));
+      },
+      (data) async {
+        _log.logI('Cancel payroll success: ${data.message}');
+        emit(state.copyWith(
+          isConfirmingPayroll: false,
+          confirmSuccess: true,
+          confirmMessage: data.message,
+        ));
+        // Update payroll sign status immediately without re-fetching
+        final updatedPayroll = state.payroll.map((p) {
+          if (p.id == payrollId) {
+            return p.copyWith(sign: false);
+          }
+          return p;
+        }).toList();
+        emit(state.copyWith(payroll: updatedPayroll));
+      },
+    );
+  }
+
+  //---(Confirm Init)---//
+  Future<void> _onConfirmInit(Emitter<SalaryState> emit) async {
+    emit(state.copyWith(status: BaseStateStatus.loading));
+
+    // final userRes = await _authRepo.getCurrentUser();
+    // await userRes.fold(
+    //   (err) async {
+    //     _log.logE('Get current user failed: $err');
+    //   },
+    //   (user) async {
+    //     _log.logI('Get current user success');
+    //     if (user != null) {
+    //       emit(state.copyWith(
+    //         userId: user.id,
+    //         userName: user.fullName,
+    //         employeeId: user.employeeId,
+    //       ));
+    //     }
+    //   },
+    // );
+
+    final selectedMonth = state.selectedMonth ?? DateTime.now();
+    await _onFetchPayroll(emit, selectedMonth.year, selectedMonth.month);
+  }
+
+   _onClearConfirmState(Emitter<SalaryState> emit) {
+    emit(state.copyWith(
+      isConfirmingPayroll: false,
+      confirmSuccess: null,
+      confirmMessage: null,
+    ));
   }
 }

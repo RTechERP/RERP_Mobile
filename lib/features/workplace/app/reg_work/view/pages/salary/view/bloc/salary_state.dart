@@ -117,6 +117,11 @@ class SalaryState extends BaseBlocState {
   final List<DateTime> holidays;
   final List<DateTime> workSaturdays;
 
+  // Confirm Payroll
+  final bool isConfirmingPayroll;
+  final bool? confirmSuccess;
+  final String? confirmMessage;
+
   const SalaryState({
     required super.status,
     super.message,
@@ -203,6 +208,9 @@ class SalaryState extends BaseBlocState {
     this.overnightItems = const [],
     this.holidays = const [],
     this.workSaturdays = const [],
+    this.isConfirmingPayroll = false,
+    this.confirmSuccess,
+    this.confirmMessage,
   });
 
   factory SalaryState.init() => const SalaryState(
@@ -296,5 +304,8 @@ class SalaryState extends BaseBlocState {
         overnightItems,
         holidays,
         workSaturdays,
+        isConfirmingPayroll,
+        confirmSuccess,
+        confirmMessage,
       ];
 }

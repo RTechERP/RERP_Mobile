@@ -178,6 +178,12 @@ abstract class _$SalaryStateCWProxy {
 
   SalaryState workSaturdays(List<DateTime> workSaturdays);
 
+  SalaryState isConfirmingPayroll(bool isConfirmingPayroll);
+
+  SalaryState confirmSuccess(bool? confirmSuccess);
+
+  SalaryState confirmMessage(String? confirmMessage);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SalaryState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -270,6 +276,9 @@ abstract class _$SalaryStateCWProxy {
     List<OvertimeItem>? overnightItems,
     List<DateTime>? holidays,
     List<DateTime>? workSaturdays,
+    bool? isConfirmingPayroll,
+    bool? confirmSuccess,
+    String? confirmMessage,
   });
 }
 
@@ -591,6 +600,18 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
       this(workSaturdays: workSaturdays);
 
   @override
+  SalaryState isConfirmingPayroll(bool isConfirmingPayroll) =>
+      this(isConfirmingPayroll: isConfirmingPayroll);
+
+  @override
+  SalaryState confirmSuccess(bool? confirmSuccess) =>
+      this(confirmSuccess: confirmSuccess);
+
+  @override
+  SalaryState confirmMessage(String? confirmMessage) =>
+      this(confirmMessage: confirmMessage);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SalaryState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -684,6 +705,9 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
     Object? overnightItems = const $CopyWithPlaceholder(),
     Object? holidays = const $CopyWithPlaceholder(),
     Object? workSaturdays = const $CopyWithPlaceholder(),
+    Object? isConfirmingPayroll = const $CopyWithPlaceholder(),
+    Object? confirmSuccess = const $CopyWithPlaceholder(),
+    Object? confirmMessage = const $CopyWithPlaceholder(),
   }) {
     return SalaryState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -1090,6 +1114,20 @@ class _$SalaryStateCWProxyImpl implements _$SalaryStateCWProxy {
               ? _value.workSaturdays
               // ignore: cast_nullable_to_non_nullable
               : workSaturdays as List<DateTime>,
+      isConfirmingPayroll:
+          isConfirmingPayroll == const $CopyWithPlaceholder() ||
+                  isConfirmingPayroll == null
+              ? _value.isConfirmingPayroll
+              // ignore: cast_nullable_to_non_nullable
+              : isConfirmingPayroll as bool,
+      confirmSuccess: confirmSuccess == const $CopyWithPlaceholder()
+          ? _value.confirmSuccess
+          // ignore: cast_nullable_to_non_nullable
+          : confirmSuccess as bool?,
+      confirmMessage: confirmMessage == const $CopyWithPlaceholder()
+          ? _value.confirmMessage
+          // ignore: cast_nullable_to_non_nullable
+          : confirmMessage as String?,
     );
   }
 }

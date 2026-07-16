@@ -310,6 +310,7 @@ class ApiEndPoint {
   // Salary
   static const String getPersonalSyntheticByMonth =
       '/Home/get-personal-synthetic-by-month';
+  static const String confirmPayroll = '/Home/confirm-payroll';
 
   // PIN
   static const String checkPin = '/PinAuth/check-pin-status';

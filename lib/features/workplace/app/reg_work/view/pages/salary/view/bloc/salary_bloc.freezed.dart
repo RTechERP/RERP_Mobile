@@ -33,6 +33,10 @@ mixin _$SalaryEvent {
     required TResult Function(String newPin, String confirmPin) forgotResetPin,
     required TResult Function(int step) forgotUpdateStep,
     required TResult Function() clearForgotState,
+    required TResult Function(int payrollId) confirmPayroll,
+    required TResult Function(int payrollId) cancelPayroll,
+    required TResult Function() clearConfirmState,
+    required TResult Function() confirmInit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -52,6 +56,10 @@ mixin _$SalaryEvent {
     TResult? Function(String newPin, String confirmPin)? forgotResetPin,
     TResult? Function(int step)? forgotUpdateStep,
     TResult? Function()? clearForgotState,
+    TResult? Function(int payrollId)? confirmPayroll,
+    TResult? Function(int payrollId)? cancelPayroll,
+    TResult? Function()? clearConfirmState,
+    TResult? Function()? confirmInit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -71,6 +79,10 @@ mixin _$SalaryEvent {
     TResult Function(String newPin, String confirmPin)? forgotResetPin,
     TResult Function(int step)? forgotUpdateStep,
     TResult Function()? clearForgotState,
+    TResult Function(int payrollId)? confirmPayroll,
+    TResult Function(int payrollId)? cancelPayroll,
+    TResult Function()? clearConfirmState,
+    TResult Function()? confirmInit,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -91,6 +103,10 @@ mixin _$SalaryEvent {
     required TResult Function(_ForgotResetPin value) forgotResetPin,
     required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
     required TResult Function(_ClearForgotState value) clearForgotState,
+    required TResult Function(_ConfirmPayroll value) confirmPayroll,
+    required TResult Function(_CancelPayroll value) cancelPayroll,
+    required TResult Function(_ClearConfirmState value) clearConfirmState,
+    required TResult Function(_ConfirmInit value) confirmInit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -110,6 +126,10 @@ mixin _$SalaryEvent {
     TResult? Function(_ForgotResetPin value)? forgotResetPin,
     TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
     TResult? Function(_ClearForgotState value)? clearForgotState,
+    TResult? Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult? Function(_CancelPayroll value)? cancelPayroll,
+    TResult? Function(_ClearConfirmState value)? clearConfirmState,
+    TResult? Function(_ConfirmInit value)? confirmInit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -129,6 +149,10 @@ mixin _$SalaryEvent {
     TResult Function(_ForgotResetPin value)? forgotResetPin,
     TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
     TResult Function(_ClearForgotState value)? clearForgotState,
+    TResult Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult Function(_CancelPayroll value)? cancelPayroll,
+    TResult Function(_ClearConfirmState value)? clearConfirmState,
+    TResult Function(_ConfirmInit value)? confirmInit,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -204,6 +228,10 @@ class _$InitImpl implements _Init {
     required TResult Function(String newPin, String confirmPin) forgotResetPin,
     required TResult Function(int step) forgotUpdateStep,
     required TResult Function() clearForgotState,
+    required TResult Function(int payrollId) confirmPayroll,
+    required TResult Function(int payrollId) cancelPayroll,
+    required TResult Function() clearConfirmState,
+    required TResult Function() confirmInit,
   }) {
     return init();
   }
@@ -226,6 +254,10 @@ class _$InitImpl implements _Init {
     TResult? Function(String newPin, String confirmPin)? forgotResetPin,
     TResult? Function(int step)? forgotUpdateStep,
     TResult? Function()? clearForgotState,
+    TResult? Function(int payrollId)? confirmPayroll,
+    TResult? Function(int payrollId)? cancelPayroll,
+    TResult? Function()? clearConfirmState,
+    TResult? Function()? confirmInit,
   }) {
     return init?.call();
   }
@@ -248,6 +280,10 @@ class _$InitImpl implements _Init {
     TResult Function(String newPin, String confirmPin)? forgotResetPin,
     TResult Function(int step)? forgotUpdateStep,
     TResult Function()? clearForgotState,
+    TResult Function(int payrollId)? confirmPayroll,
+    TResult Function(int payrollId)? cancelPayroll,
+    TResult Function()? clearConfirmState,
+    TResult Function()? confirmInit,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -274,6 +310,10 @@ class _$InitImpl implements _Init {
     required TResult Function(_ForgotResetPin value) forgotResetPin,
     required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
     required TResult Function(_ClearForgotState value) clearForgotState,
+    required TResult Function(_ConfirmPayroll value) confirmPayroll,
+    required TResult Function(_CancelPayroll value) cancelPayroll,
+    required TResult Function(_ClearConfirmState value) clearConfirmState,
+    required TResult Function(_ConfirmInit value) confirmInit,
   }) {
     return init(this);
   }
@@ -296,6 +336,10 @@ class _$InitImpl implements _Init {
     TResult? Function(_ForgotResetPin value)? forgotResetPin,
     TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
     TResult? Function(_ClearForgotState value)? clearForgotState,
+    TResult? Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult? Function(_CancelPayroll value)? cancelPayroll,
+    TResult? Function(_ClearConfirmState value)? clearConfirmState,
+    TResult? Function(_ConfirmInit value)? confirmInit,
   }) {
     return init?.call(this);
   }
@@ -318,6 +362,10 @@ class _$InitImpl implements _Init {
     TResult Function(_ForgotResetPin value)? forgotResetPin,
     TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
     TResult Function(_ClearForgotState value)? clearForgotState,
+    TResult Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult Function(_CancelPayroll value)? cancelPayroll,
+    TResult Function(_ClearConfirmState value)? clearConfirmState,
+    TResult Function(_ConfirmInit value)? confirmInit,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -418,6 +466,10 @@ class _$FetchPayrollImpl implements _FetchPayroll {
     required TResult Function(String newPin, String confirmPin) forgotResetPin,
     required TResult Function(int step) forgotUpdateStep,
     required TResult Function() clearForgotState,
+    required TResult Function(int payrollId) confirmPayroll,
+    required TResult Function(int payrollId) cancelPayroll,
+    required TResult Function() clearConfirmState,
+    required TResult Function() confirmInit,
   }) {
     return fetchPayroll(year, month);
   }
@@ -440,6 +492,10 @@ class _$FetchPayrollImpl implements _FetchPayroll {
     TResult? Function(String newPin, String confirmPin)? forgotResetPin,
     TResult? Function(int step)? forgotUpdateStep,
     TResult? Function()? clearForgotState,
+    TResult? Function(int payrollId)? confirmPayroll,
+    TResult? Function(int payrollId)? cancelPayroll,
+    TResult? Function()? clearConfirmState,
+    TResult? Function()? confirmInit,
   }) {
     return fetchPayroll?.call(year, month);
   }
@@ -462,6 +518,10 @@ class _$FetchPayrollImpl implements _FetchPayroll {
     TResult Function(String newPin, String confirmPin)? forgotResetPin,
     TResult Function(int step)? forgotUpdateStep,
     TResult Function()? clearForgotState,
+    TResult Function(int payrollId)? confirmPayroll,
+    TResult Function(int payrollId)? cancelPayroll,
+    TResult Function()? clearConfirmState,
+    TResult Function()? confirmInit,
     required TResult orElse(),
   }) {
     if (fetchPayroll != null) {
@@ -488,6 +548,10 @@ class _$FetchPayrollImpl implements _FetchPayroll {
     required TResult Function(_ForgotResetPin value) forgotResetPin,
     required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
     required TResult Function(_ClearForgotState value) clearForgotState,
+    required TResult Function(_ConfirmPayroll value) confirmPayroll,
+    required TResult Function(_CancelPayroll value) cancelPayroll,
+    required TResult Function(_ClearConfirmState value) clearConfirmState,
+    required TResult Function(_ConfirmInit value) confirmInit,
   }) {
     return fetchPayroll(this);
   }
@@ -510,6 +574,10 @@ class _$FetchPayrollImpl implements _FetchPayroll {
     TResult? Function(_ForgotResetPin value)? forgotResetPin,
     TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
     TResult? Function(_ClearForgotState value)? clearForgotState,
+    TResult? Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult? Function(_CancelPayroll value)? cancelPayroll,
+    TResult? Function(_ClearConfirmState value)? clearConfirmState,
+    TResult? Function(_ConfirmInit value)? confirmInit,
   }) {
     return fetchPayroll?.call(this);
   }
@@ -532,6 +600,10 @@ class _$FetchPayrollImpl implements _FetchPayroll {
     TResult Function(_ForgotResetPin value)? forgotResetPin,
     TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
     TResult Function(_ClearForgotState value)? clearForgotState,
+    TResult Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult Function(_CancelPayroll value)? cancelPayroll,
+    TResult Function(_ClearConfirmState value)? clearConfirmState,
+    TResult Function(_ConfirmInit value)? confirmInit,
     required TResult orElse(),
   }) {
     if (fetchPayroll != null) {
@@ -605,6 +677,10 @@ class _$InitMenuImpl implements _InitMenu {
     required TResult Function(String newPin, String confirmPin) forgotResetPin,
     required TResult Function(int step) forgotUpdateStep,
     required TResult Function() clearForgotState,
+    required TResult Function(int payrollId) confirmPayroll,
+    required TResult Function(int payrollId) cancelPayroll,
+    required TResult Function() clearConfirmState,
+    required TResult Function() confirmInit,
   }) {
     return initMenu();
   }
@@ -627,6 +703,10 @@ class _$InitMenuImpl implements _InitMenu {
     TResult? Function(String newPin, String confirmPin)? forgotResetPin,
     TResult? Function(int step)? forgotUpdateStep,
     TResult? Function()? clearForgotState,
+    TResult? Function(int payrollId)? confirmPayroll,
+    TResult? Function(int payrollId)? cancelPayroll,
+    TResult? Function()? clearConfirmState,
+    TResult? Function()? confirmInit,
   }) {
     return initMenu?.call();
   }
@@ -649,6 +729,10 @@ class _$InitMenuImpl implements _InitMenu {
     TResult Function(String newPin, String confirmPin)? forgotResetPin,
     TResult Function(int step)? forgotUpdateStep,
     TResult Function()? clearForgotState,
+    TResult Function(int payrollId)? confirmPayroll,
+    TResult Function(int payrollId)? cancelPayroll,
+    TResult Function()? clearConfirmState,
+    TResult Function()? confirmInit,
     required TResult orElse(),
   }) {
     if (initMenu != null) {
@@ -675,6 +759,10 @@ class _$InitMenuImpl implements _InitMenu {
     required TResult Function(_ForgotResetPin value) forgotResetPin,
     required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
     required TResult Function(_ClearForgotState value) clearForgotState,
+    required TResult Function(_ConfirmPayroll value) confirmPayroll,
+    required TResult Function(_CancelPayroll value) cancelPayroll,
+    required TResult Function(_ClearConfirmState value) clearConfirmState,
+    required TResult Function(_ConfirmInit value) confirmInit,
   }) {
     return initMenu(this);
   }
@@ -697,6 +785,10 @@ class _$InitMenuImpl implements _InitMenu {
     TResult? Function(_ForgotResetPin value)? forgotResetPin,
     TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
     TResult? Function(_ClearForgotState value)? clearForgotState,
+    TResult? Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult? Function(_CancelPayroll value)? cancelPayroll,
+    TResult? Function(_ClearConfirmState value)? clearConfirmState,
+    TResult? Function(_ConfirmInit value)? confirmInit,
   }) {
     return initMenu?.call(this);
   }
@@ -719,6 +811,10 @@ class _$InitMenuImpl implements _InitMenu {
     TResult Function(_ForgotResetPin value)? forgotResetPin,
     TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
     TResult Function(_ClearForgotState value)? clearForgotState,
+    TResult Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult Function(_CancelPayroll value)? cancelPayroll,
+    TResult Function(_ClearConfirmState value)? clearConfirmState,
+    TResult Function(_ConfirmInit value)? confirmInit,
     required TResult orElse(),
   }) {
     if (initMenu != null) {
@@ -785,6 +881,10 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(String newPin, String confirmPin) forgotResetPin,
     required TResult Function(int step) forgotUpdateStep,
     required TResult Function() clearForgotState,
+    required TResult Function(int payrollId) confirmPayroll,
+    required TResult Function(int payrollId) cancelPayroll,
+    required TResult Function() clearConfirmState,
+    required TResult Function() confirmInit,
   }) {
     return refresh();
   }
@@ -807,6 +907,10 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(String newPin, String confirmPin)? forgotResetPin,
     TResult? Function(int step)? forgotUpdateStep,
     TResult? Function()? clearForgotState,
+    TResult? Function(int payrollId)? confirmPayroll,
+    TResult? Function(int payrollId)? cancelPayroll,
+    TResult? Function()? clearConfirmState,
+    TResult? Function()? confirmInit,
   }) {
     return refresh?.call();
   }
@@ -829,6 +933,10 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(String newPin, String confirmPin)? forgotResetPin,
     TResult Function(int step)? forgotUpdateStep,
     TResult Function()? clearForgotState,
+    TResult Function(int payrollId)? confirmPayroll,
+    TResult Function(int payrollId)? cancelPayroll,
+    TResult Function()? clearConfirmState,
+    TResult Function()? confirmInit,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -855,6 +963,10 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_ForgotResetPin value) forgotResetPin,
     required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
     required TResult Function(_ClearForgotState value) clearForgotState,
+    required TResult Function(_ConfirmPayroll value) confirmPayroll,
+    required TResult Function(_CancelPayroll value) cancelPayroll,
+    required TResult Function(_ClearConfirmState value) clearConfirmState,
+    required TResult Function(_ConfirmInit value) confirmInit,
   }) {
     return refresh(this);
   }
@@ -877,6 +989,10 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_ForgotResetPin value)? forgotResetPin,
     TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
     TResult? Function(_ClearForgotState value)? clearForgotState,
+    TResult? Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult? Function(_CancelPayroll value)? cancelPayroll,
+    TResult? Function(_ClearConfirmState value)? clearConfirmState,
+    TResult? Function(_ConfirmInit value)? confirmInit,
   }) {
     return refresh?.call(this);
   }
@@ -899,6 +1015,10 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_ForgotResetPin value)? forgotResetPin,
     TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
     TResult Function(_ClearForgotState value)? clearForgotState,
+    TResult Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult Function(_CancelPayroll value)? cancelPayroll,
+    TResult Function(_ClearConfirmState value)? clearConfirmState,
+    TResult Function(_ConfirmInit value)? confirmInit,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -991,6 +1111,10 @@ class _$ChangeMonthImpl implements _ChangeMonth {
     required TResult Function(String newPin, String confirmPin) forgotResetPin,
     required TResult Function(int step) forgotUpdateStep,
     required TResult Function() clearForgotState,
+    required TResult Function(int payrollId) confirmPayroll,
+    required TResult Function(int payrollId) cancelPayroll,
+    required TResult Function() clearConfirmState,
+    required TResult Function() confirmInit,
   }) {
     return changeMonth(month);
   }
@@ -1013,6 +1137,10 @@ class _$ChangeMonthImpl implements _ChangeMonth {
     TResult? Function(String newPin, String confirmPin)? forgotResetPin,
     TResult? Function(int step)? forgotUpdateStep,
     TResult? Function()? clearForgotState,
+    TResult? Function(int payrollId)? confirmPayroll,
+    TResult? Function(int payrollId)? cancelPayroll,
+    TResult? Function()? clearConfirmState,
+    TResult? Function()? confirmInit,
   }) {
     return changeMonth?.call(month);
   }
@@ -1035,6 +1163,10 @@ class _$ChangeMonthImpl implements _ChangeMonth {
     TResult Function(String newPin, String confirmPin)? forgotResetPin,
     TResult Function(int step)? forgotUpdateStep,
     TResult Function()? clearForgotState,
+    TResult Function(int payrollId)? confirmPayroll,
+    TResult Function(int payrollId)? cancelPayroll,
+    TResult Function()? clearConfirmState,
+    TResult Function()? confirmInit,
     required TResult orElse(),
   }) {
     if (changeMonth != null) {
@@ -1061,6 +1193,10 @@ class _$ChangeMonthImpl implements _ChangeMonth {
     required TResult Function(_ForgotResetPin value) forgotResetPin,
     required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
     required TResult Function(_ClearForgotState value) clearForgotState,
+    required TResult Function(_ConfirmPayroll value) confirmPayroll,
+    required TResult Function(_CancelPayroll value) cancelPayroll,
+    required TResult Function(_ClearConfirmState value) clearConfirmState,
+    required TResult Function(_ConfirmInit value) confirmInit,
   }) {
     return changeMonth(this);
   }
@@ -1083,6 +1219,10 @@ class _$ChangeMonthImpl implements _ChangeMonth {
     TResult? Function(_ForgotResetPin value)? forgotResetPin,
     TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
     TResult? Function(_ClearForgotState value)? clearForgotState,
+    TResult? Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult? Function(_CancelPayroll value)? cancelPayroll,
+    TResult? Function(_ClearConfirmState value)? clearConfirmState,
+    TResult? Function(_ConfirmInit value)? confirmInit,
   }) {
     return changeMonth?.call(this);
   }
@@ -1105,6 +1245,10 @@ class _$ChangeMonthImpl implements _ChangeMonth {
     TResult Function(_ForgotResetPin value)? forgotResetPin,
     TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
     TResult Function(_ClearForgotState value)? clearForgotState,
+    TResult Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult Function(_CancelPayroll value)? cancelPayroll,
+    TResult Function(_ClearConfirmState value)? clearConfirmState,
+    TResult Function(_ConfirmInit value)? confirmInit,
     required TResult orElse(),
   }) {
     if (changeMonth != null) {
@@ -1176,6 +1320,10 @@ class _$CheckPinImpl implements _CheckPin {
     required TResult Function(String newPin, String confirmPin) forgotResetPin,
     required TResult Function(int step) forgotUpdateStep,
     required TResult Function() clearForgotState,
+    required TResult Function(int payrollId) confirmPayroll,
+    required TResult Function(int payrollId) cancelPayroll,
+    required TResult Function() clearConfirmState,
+    required TResult Function() confirmInit,
   }) {
     return checkPin();
   }
@@ -1198,6 +1346,10 @@ class _$CheckPinImpl implements _CheckPin {
     TResult? Function(String newPin, String confirmPin)? forgotResetPin,
     TResult? Function(int step)? forgotUpdateStep,
     TResult? Function()? clearForgotState,
+    TResult? Function(int payrollId)? confirmPayroll,
+    TResult? Function(int payrollId)? cancelPayroll,
+    TResult? Function()? clearConfirmState,
+    TResult? Function()? confirmInit,
   }) {
     return checkPin?.call();
   }
@@ -1220,6 +1372,10 @@ class _$CheckPinImpl implements _CheckPin {
     TResult Function(String newPin, String confirmPin)? forgotResetPin,
     TResult Function(int step)? forgotUpdateStep,
     TResult Function()? clearForgotState,
+    TResult Function(int payrollId)? confirmPayroll,
+    TResult Function(int payrollId)? cancelPayroll,
+    TResult Function()? clearConfirmState,
+    TResult Function()? confirmInit,
     required TResult orElse(),
   }) {
     if (checkPin != null) {
@@ -1246,6 +1402,10 @@ class _$CheckPinImpl implements _CheckPin {
     required TResult Function(_ForgotResetPin value) forgotResetPin,
     required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
     required TResult Function(_ClearForgotState value) clearForgotState,
+    required TResult Function(_ConfirmPayroll value) confirmPayroll,
+    required TResult Function(_CancelPayroll value) cancelPayroll,
+    required TResult Function(_ClearConfirmState value) clearConfirmState,
+    required TResult Function(_ConfirmInit value) confirmInit,
   }) {
     return checkPin(this);
   }
@@ -1268,6 +1428,10 @@ class _$CheckPinImpl implements _CheckPin {
     TResult? Function(_ForgotResetPin value)? forgotResetPin,
     TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
     TResult? Function(_ClearForgotState value)? clearForgotState,
+    TResult? Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult? Function(_CancelPayroll value)? cancelPayroll,
+    TResult? Function(_ClearConfirmState value)? clearConfirmState,
+    TResult? Function(_ConfirmInit value)? confirmInit,
   }) {
     return checkPin?.call(this);
   }
@@ -1290,6 +1454,10 @@ class _$CheckPinImpl implements _CheckPin {
     TResult Function(_ForgotResetPin value)? forgotResetPin,
     TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
     TResult Function(_ClearForgotState value)? clearForgotState,
+    TResult Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult Function(_CancelPayroll value)? cancelPayroll,
+    TResult Function(_ClearConfirmState value)? clearConfirmState,
+    TResult Function(_ConfirmInit value)? confirmInit,
     required TResult orElse(),
   }) {
     if (checkPin != null) {
@@ -1382,6 +1550,10 @@ class _$VerifyPinImpl implements _VerifyPin {
     required TResult Function(String newPin, String confirmPin) forgotResetPin,
     required TResult Function(int step) forgotUpdateStep,
     required TResult Function() clearForgotState,
+    required TResult Function(int payrollId) confirmPayroll,
+    required TResult Function(int payrollId) cancelPayroll,
+    required TResult Function() clearConfirmState,
+    required TResult Function() confirmInit,
   }) {
     return verifyPin(pin);
   }
@@ -1404,6 +1576,10 @@ class _$VerifyPinImpl implements _VerifyPin {
     TResult? Function(String newPin, String confirmPin)? forgotResetPin,
     TResult? Function(int step)? forgotUpdateStep,
     TResult? Function()? clearForgotState,
+    TResult? Function(int payrollId)? confirmPayroll,
+    TResult? Function(int payrollId)? cancelPayroll,
+    TResult? Function()? clearConfirmState,
+    TResult? Function()? confirmInit,
   }) {
     return verifyPin?.call(pin);
   }
@@ -1426,6 +1602,10 @@ class _$VerifyPinImpl implements _VerifyPin {
     TResult Function(String newPin, String confirmPin)? forgotResetPin,
     TResult Function(int step)? forgotUpdateStep,
     TResult Function()? clearForgotState,
+    TResult Function(int payrollId)? confirmPayroll,
+    TResult Function(int payrollId)? cancelPayroll,
+    TResult Function()? clearConfirmState,
+    TResult Function()? confirmInit,
     required TResult orElse(),
   }) {
     if (verifyPin != null) {
@@ -1452,6 +1632,10 @@ class _$VerifyPinImpl implements _VerifyPin {
     required TResult Function(_ForgotResetPin value) forgotResetPin,
     required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
     required TResult Function(_ClearForgotState value) clearForgotState,
+    required TResult Function(_ConfirmPayroll value) confirmPayroll,
+    required TResult Function(_CancelPayroll value) cancelPayroll,
+    required TResult Function(_ClearConfirmState value) clearConfirmState,
+    required TResult Function(_ConfirmInit value) confirmInit,
   }) {
     return verifyPin(this);
   }
@@ -1474,6 +1658,10 @@ class _$VerifyPinImpl implements _VerifyPin {
     TResult? Function(_ForgotResetPin value)? forgotResetPin,
     TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
     TResult? Function(_ClearForgotState value)? clearForgotState,
+    TResult? Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult? Function(_CancelPayroll value)? cancelPayroll,
+    TResult? Function(_ClearConfirmState value)? clearConfirmState,
+    TResult? Function(_ConfirmInit value)? confirmInit,
   }) {
     return verifyPin?.call(this);
   }
@@ -1496,6 +1684,10 @@ class _$VerifyPinImpl implements _VerifyPin {
     TResult Function(_ForgotResetPin value)? forgotResetPin,
     TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
     TResult Function(_ClearForgotState value)? clearForgotState,
+    TResult Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult Function(_CancelPayroll value)? cancelPayroll,
+    TResult Function(_ClearConfirmState value)? clearConfirmState,
+    TResult Function(_ConfirmInit value)? confirmInit,
     required TResult orElse(),
   }) {
     if (verifyPin != null) {
@@ -1593,6 +1785,10 @@ class _$SetPinImpl implements _SetPin {
     required TResult Function(String newPin, String confirmPin) forgotResetPin,
     required TResult Function(int step) forgotUpdateStep,
     required TResult Function() clearForgotState,
+    required TResult Function(int payrollId) confirmPayroll,
+    required TResult Function(int payrollId) cancelPayroll,
+    required TResult Function() clearConfirmState,
+    required TResult Function() confirmInit,
   }) {
     return setPin(pin);
   }
@@ -1615,6 +1811,10 @@ class _$SetPinImpl implements _SetPin {
     TResult? Function(String newPin, String confirmPin)? forgotResetPin,
     TResult? Function(int step)? forgotUpdateStep,
     TResult? Function()? clearForgotState,
+    TResult? Function(int payrollId)? confirmPayroll,
+    TResult? Function(int payrollId)? cancelPayroll,
+    TResult? Function()? clearConfirmState,
+    TResult? Function()? confirmInit,
   }) {
     return setPin?.call(pin);
   }
@@ -1637,6 +1837,10 @@ class _$SetPinImpl implements _SetPin {
     TResult Function(String newPin, String confirmPin)? forgotResetPin,
     TResult Function(int step)? forgotUpdateStep,
     TResult Function()? clearForgotState,
+    TResult Function(int payrollId)? confirmPayroll,
+    TResult Function(int payrollId)? cancelPayroll,
+    TResult Function()? clearConfirmState,
+    TResult Function()? confirmInit,
     required TResult orElse(),
   }) {
     if (setPin != null) {
@@ -1663,6 +1867,10 @@ class _$SetPinImpl implements _SetPin {
     required TResult Function(_ForgotResetPin value) forgotResetPin,
     required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
     required TResult Function(_ClearForgotState value) clearForgotState,
+    required TResult Function(_ConfirmPayroll value) confirmPayroll,
+    required TResult Function(_CancelPayroll value) cancelPayroll,
+    required TResult Function(_ClearConfirmState value) clearConfirmState,
+    required TResult Function(_ConfirmInit value) confirmInit,
   }) {
     return setPin(this);
   }
@@ -1685,6 +1893,10 @@ class _$SetPinImpl implements _SetPin {
     TResult? Function(_ForgotResetPin value)? forgotResetPin,
     TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
     TResult? Function(_ClearForgotState value)? clearForgotState,
+    TResult? Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult? Function(_CancelPayroll value)? cancelPayroll,
+    TResult? Function(_ClearConfirmState value)? clearConfirmState,
+    TResult? Function(_ConfirmInit value)? confirmInit,
   }) {
     return setPin?.call(this);
   }
@@ -1707,6 +1919,10 @@ class _$SetPinImpl implements _SetPin {
     TResult Function(_ForgotResetPin value)? forgotResetPin,
     TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
     TResult Function(_ClearForgotState value)? clearForgotState,
+    TResult Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult Function(_CancelPayroll value)? cancelPayroll,
+    TResult Function(_ClearConfirmState value)? clearConfirmState,
+    TResult Function(_ConfirmInit value)? confirmInit,
     required TResult orElse(),
   }) {
     if (setPin != null) {
@@ -1778,6 +1994,10 @@ class _$SetPinVerifiedImpl implements _SetPinVerified {
     required TResult Function(String newPin, String confirmPin) forgotResetPin,
     required TResult Function(int step) forgotUpdateStep,
     required TResult Function() clearForgotState,
+    required TResult Function(int payrollId) confirmPayroll,
+    required TResult Function(int payrollId) cancelPayroll,
+    required TResult Function() clearConfirmState,
+    required TResult Function() confirmInit,
   }) {
     return setPinVerified();
   }
@@ -1800,6 +2020,10 @@ class _$SetPinVerifiedImpl implements _SetPinVerified {
     TResult? Function(String newPin, String confirmPin)? forgotResetPin,
     TResult? Function(int step)? forgotUpdateStep,
     TResult? Function()? clearForgotState,
+    TResult? Function(int payrollId)? confirmPayroll,
+    TResult? Function(int payrollId)? cancelPayroll,
+    TResult? Function()? clearConfirmState,
+    TResult? Function()? confirmInit,
   }) {
     return setPinVerified?.call();
   }
@@ -1822,6 +2046,10 @@ class _$SetPinVerifiedImpl implements _SetPinVerified {
     TResult Function(String newPin, String confirmPin)? forgotResetPin,
     TResult Function(int step)? forgotUpdateStep,
     TResult Function()? clearForgotState,
+    TResult Function(int payrollId)? confirmPayroll,
+    TResult Function(int payrollId)? cancelPayroll,
+    TResult Function()? clearConfirmState,
+    TResult Function()? confirmInit,
     required TResult orElse(),
   }) {
     if (setPinVerified != null) {
@@ -1848,6 +2076,10 @@ class _$SetPinVerifiedImpl implements _SetPinVerified {
     required TResult Function(_ForgotResetPin value) forgotResetPin,
     required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
     required TResult Function(_ClearForgotState value) clearForgotState,
+    required TResult Function(_ConfirmPayroll value) confirmPayroll,
+    required TResult Function(_CancelPayroll value) cancelPayroll,
+    required TResult Function(_ClearConfirmState value) clearConfirmState,
+    required TResult Function(_ConfirmInit value) confirmInit,
   }) {
     return setPinVerified(this);
   }
@@ -1870,6 +2102,10 @@ class _$SetPinVerifiedImpl implements _SetPinVerified {
     TResult? Function(_ForgotResetPin value)? forgotResetPin,
     TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
     TResult? Function(_ClearForgotState value)? clearForgotState,
+    TResult? Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult? Function(_CancelPayroll value)? cancelPayroll,
+    TResult? Function(_ClearConfirmState value)? clearConfirmState,
+    TResult? Function(_ConfirmInit value)? confirmInit,
   }) {
     return setPinVerified?.call(this);
   }
@@ -1892,6 +2128,10 @@ class _$SetPinVerifiedImpl implements _SetPinVerified {
     TResult Function(_ForgotResetPin value)? forgotResetPin,
     TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
     TResult Function(_ClearForgotState value)? clearForgotState,
+    TResult Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult Function(_CancelPayroll value)? cancelPayroll,
+    TResult Function(_ClearConfirmState value)? clearConfirmState,
+    TResult Function(_ConfirmInit value)? confirmInit,
     required TResult orElse(),
   }) {
     if (setPinVerified != null) {
@@ -1958,6 +2198,10 @@ class _$ForgotRequestOtpImpl implements _ForgotRequestOtp {
     required TResult Function(String newPin, String confirmPin) forgotResetPin,
     required TResult Function(int step) forgotUpdateStep,
     required TResult Function() clearForgotState,
+    required TResult Function(int payrollId) confirmPayroll,
+    required TResult Function(int payrollId) cancelPayroll,
+    required TResult Function() clearConfirmState,
+    required TResult Function() confirmInit,
   }) {
     return forgotRequestOtp();
   }
@@ -1980,6 +2224,10 @@ class _$ForgotRequestOtpImpl implements _ForgotRequestOtp {
     TResult? Function(String newPin, String confirmPin)? forgotResetPin,
     TResult? Function(int step)? forgotUpdateStep,
     TResult? Function()? clearForgotState,
+    TResult? Function(int payrollId)? confirmPayroll,
+    TResult? Function(int payrollId)? cancelPayroll,
+    TResult? Function()? clearConfirmState,
+    TResult? Function()? confirmInit,
   }) {
     return forgotRequestOtp?.call();
   }
@@ -2002,6 +2250,10 @@ class _$ForgotRequestOtpImpl implements _ForgotRequestOtp {
     TResult Function(String newPin, String confirmPin)? forgotResetPin,
     TResult Function(int step)? forgotUpdateStep,
     TResult Function()? clearForgotState,
+    TResult Function(int payrollId)? confirmPayroll,
+    TResult Function(int payrollId)? cancelPayroll,
+    TResult Function()? clearConfirmState,
+    TResult Function()? confirmInit,
     required TResult orElse(),
   }) {
     if (forgotRequestOtp != null) {
@@ -2028,6 +2280,10 @@ class _$ForgotRequestOtpImpl implements _ForgotRequestOtp {
     required TResult Function(_ForgotResetPin value) forgotResetPin,
     required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
     required TResult Function(_ClearForgotState value) clearForgotState,
+    required TResult Function(_ConfirmPayroll value) confirmPayroll,
+    required TResult Function(_CancelPayroll value) cancelPayroll,
+    required TResult Function(_ClearConfirmState value) clearConfirmState,
+    required TResult Function(_ConfirmInit value) confirmInit,
   }) {
     return forgotRequestOtp(this);
   }
@@ -2050,6 +2306,10 @@ class _$ForgotRequestOtpImpl implements _ForgotRequestOtp {
     TResult? Function(_ForgotResetPin value)? forgotResetPin,
     TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
     TResult? Function(_ClearForgotState value)? clearForgotState,
+    TResult? Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult? Function(_CancelPayroll value)? cancelPayroll,
+    TResult? Function(_ClearConfirmState value)? clearConfirmState,
+    TResult? Function(_ConfirmInit value)? confirmInit,
   }) {
     return forgotRequestOtp?.call(this);
   }
@@ -2072,6 +2332,10 @@ class _$ForgotRequestOtpImpl implements _ForgotRequestOtp {
     TResult Function(_ForgotResetPin value)? forgotResetPin,
     TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
     TResult Function(_ClearForgotState value)? clearForgotState,
+    TResult Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult Function(_CancelPayroll value)? cancelPayroll,
+    TResult Function(_ClearConfirmState value)? clearConfirmState,
+    TResult Function(_ConfirmInit value)? confirmInit,
     required TResult orElse(),
   }) {
     if (forgotRequestOtp != null) {
@@ -2165,6 +2429,10 @@ class _$ForgotValidateOtpImpl implements _ForgotValidateOtp {
     required TResult Function(String newPin, String confirmPin) forgotResetPin,
     required TResult Function(int step) forgotUpdateStep,
     required TResult Function() clearForgotState,
+    required TResult Function(int payrollId) confirmPayroll,
+    required TResult Function(int payrollId) cancelPayroll,
+    required TResult Function() clearConfirmState,
+    required TResult Function() confirmInit,
   }) {
     return forgotValidateOtp(otp);
   }
@@ -2187,6 +2455,10 @@ class _$ForgotValidateOtpImpl implements _ForgotValidateOtp {
     TResult? Function(String newPin, String confirmPin)? forgotResetPin,
     TResult? Function(int step)? forgotUpdateStep,
     TResult? Function()? clearForgotState,
+    TResult? Function(int payrollId)? confirmPayroll,
+    TResult? Function(int payrollId)? cancelPayroll,
+    TResult? Function()? clearConfirmState,
+    TResult? Function()? confirmInit,
   }) {
     return forgotValidateOtp?.call(otp);
   }
@@ -2209,6 +2481,10 @@ class _$ForgotValidateOtpImpl implements _ForgotValidateOtp {
     TResult Function(String newPin, String confirmPin)? forgotResetPin,
     TResult Function(int step)? forgotUpdateStep,
     TResult Function()? clearForgotState,
+    TResult Function(int payrollId)? confirmPayroll,
+    TResult Function(int payrollId)? cancelPayroll,
+    TResult Function()? clearConfirmState,
+    TResult Function()? confirmInit,
     required TResult orElse(),
   }) {
     if (forgotValidateOtp != null) {
@@ -2235,6 +2511,10 @@ class _$ForgotValidateOtpImpl implements _ForgotValidateOtp {
     required TResult Function(_ForgotResetPin value) forgotResetPin,
     required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
     required TResult Function(_ClearForgotState value) clearForgotState,
+    required TResult Function(_ConfirmPayroll value) confirmPayroll,
+    required TResult Function(_CancelPayroll value) cancelPayroll,
+    required TResult Function(_ClearConfirmState value) clearConfirmState,
+    required TResult Function(_ConfirmInit value) confirmInit,
   }) {
     return forgotValidateOtp(this);
   }
@@ -2257,6 +2537,10 @@ class _$ForgotValidateOtpImpl implements _ForgotValidateOtp {
     TResult? Function(_ForgotResetPin value)? forgotResetPin,
     TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
     TResult? Function(_ClearForgotState value)? clearForgotState,
+    TResult? Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult? Function(_CancelPayroll value)? cancelPayroll,
+    TResult? Function(_ClearConfirmState value)? clearConfirmState,
+    TResult? Function(_ConfirmInit value)? confirmInit,
   }) {
     return forgotValidateOtp?.call(this);
   }
@@ -2279,6 +2563,10 @@ class _$ForgotValidateOtpImpl implements _ForgotValidateOtp {
     TResult Function(_ForgotResetPin value)? forgotResetPin,
     TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
     TResult Function(_ClearForgotState value)? clearForgotState,
+    TResult Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult Function(_CancelPayroll value)? cancelPayroll,
+    TResult Function(_ClearConfirmState value)? clearConfirmState,
+    TResult Function(_ConfirmInit value)? confirmInit,
     required TResult orElse(),
   }) {
     if (forgotValidateOtp != null) {
@@ -2350,6 +2638,10 @@ class _$ForgotResendOtpImpl implements _ForgotResendOtp {
     required TResult Function(String newPin, String confirmPin) forgotResetPin,
     required TResult Function(int step) forgotUpdateStep,
     required TResult Function() clearForgotState,
+    required TResult Function(int payrollId) confirmPayroll,
+    required TResult Function(int payrollId) cancelPayroll,
+    required TResult Function() clearConfirmState,
+    required TResult Function() confirmInit,
   }) {
     return forgotResendOtp();
   }
@@ -2372,6 +2664,10 @@ class _$ForgotResendOtpImpl implements _ForgotResendOtp {
     TResult? Function(String newPin, String confirmPin)? forgotResetPin,
     TResult? Function(int step)? forgotUpdateStep,
     TResult? Function()? clearForgotState,
+    TResult? Function(int payrollId)? confirmPayroll,
+    TResult? Function(int payrollId)? cancelPayroll,
+    TResult? Function()? clearConfirmState,
+    TResult? Function()? confirmInit,
   }) {
     return forgotResendOtp?.call();
   }
@@ -2394,6 +2690,10 @@ class _$ForgotResendOtpImpl implements _ForgotResendOtp {
     TResult Function(String newPin, String confirmPin)? forgotResetPin,
     TResult Function(int step)? forgotUpdateStep,
     TResult Function()? clearForgotState,
+    TResult Function(int payrollId)? confirmPayroll,
+    TResult Function(int payrollId)? cancelPayroll,
+    TResult Function()? clearConfirmState,
+    TResult Function()? confirmInit,
     required TResult orElse(),
   }) {
     if (forgotResendOtp != null) {
@@ -2420,6 +2720,10 @@ class _$ForgotResendOtpImpl implements _ForgotResendOtp {
     required TResult Function(_ForgotResetPin value) forgotResetPin,
     required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
     required TResult Function(_ClearForgotState value) clearForgotState,
+    required TResult Function(_ConfirmPayroll value) confirmPayroll,
+    required TResult Function(_CancelPayroll value) cancelPayroll,
+    required TResult Function(_ClearConfirmState value) clearConfirmState,
+    required TResult Function(_ConfirmInit value) confirmInit,
   }) {
     return forgotResendOtp(this);
   }
@@ -2442,6 +2746,10 @@ class _$ForgotResendOtpImpl implements _ForgotResendOtp {
     TResult? Function(_ForgotResetPin value)? forgotResetPin,
     TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
     TResult? Function(_ClearForgotState value)? clearForgotState,
+    TResult? Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult? Function(_CancelPayroll value)? cancelPayroll,
+    TResult? Function(_ClearConfirmState value)? clearConfirmState,
+    TResult? Function(_ConfirmInit value)? confirmInit,
   }) {
     return forgotResendOtp?.call(this);
   }
@@ -2464,6 +2772,10 @@ class _$ForgotResendOtpImpl implements _ForgotResendOtp {
     TResult Function(_ForgotResetPin value)? forgotResetPin,
     TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
     TResult Function(_ClearForgotState value)? clearForgotState,
+    TResult Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult Function(_CancelPayroll value)? cancelPayroll,
+    TResult Function(_ClearConfirmState value)? clearConfirmState,
+    TResult Function(_ConfirmInit value)? confirmInit,
     required TResult orElse(),
   }) {
     if (forgotResendOtp != null) {
@@ -2566,6 +2878,10 @@ class _$ForgotResetPinImpl implements _ForgotResetPin {
     required TResult Function(String newPin, String confirmPin) forgotResetPin,
     required TResult Function(int step) forgotUpdateStep,
     required TResult Function() clearForgotState,
+    required TResult Function(int payrollId) confirmPayroll,
+    required TResult Function(int payrollId) cancelPayroll,
+    required TResult Function() clearConfirmState,
+    required TResult Function() confirmInit,
   }) {
     return forgotResetPin(newPin, confirmPin);
   }
@@ -2588,6 +2904,10 @@ class _$ForgotResetPinImpl implements _ForgotResetPin {
     TResult? Function(String newPin, String confirmPin)? forgotResetPin,
     TResult? Function(int step)? forgotUpdateStep,
     TResult? Function()? clearForgotState,
+    TResult? Function(int payrollId)? confirmPayroll,
+    TResult? Function(int payrollId)? cancelPayroll,
+    TResult? Function()? clearConfirmState,
+    TResult? Function()? confirmInit,
   }) {
     return forgotResetPin?.call(newPin, confirmPin);
   }
@@ -2610,6 +2930,10 @@ class _$ForgotResetPinImpl implements _ForgotResetPin {
     TResult Function(String newPin, String confirmPin)? forgotResetPin,
     TResult Function(int step)? forgotUpdateStep,
     TResult Function()? clearForgotState,
+    TResult Function(int payrollId)? confirmPayroll,
+    TResult Function(int payrollId)? cancelPayroll,
+    TResult Function()? clearConfirmState,
+    TResult Function()? confirmInit,
     required TResult orElse(),
   }) {
     if (forgotResetPin != null) {
@@ -2636,6 +2960,10 @@ class _$ForgotResetPinImpl implements _ForgotResetPin {
     required TResult Function(_ForgotResetPin value) forgotResetPin,
     required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
     required TResult Function(_ClearForgotState value) clearForgotState,
+    required TResult Function(_ConfirmPayroll value) confirmPayroll,
+    required TResult Function(_CancelPayroll value) cancelPayroll,
+    required TResult Function(_ClearConfirmState value) clearConfirmState,
+    required TResult Function(_ConfirmInit value) confirmInit,
   }) {
     return forgotResetPin(this);
   }
@@ -2658,6 +2986,10 @@ class _$ForgotResetPinImpl implements _ForgotResetPin {
     TResult? Function(_ForgotResetPin value)? forgotResetPin,
     TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
     TResult? Function(_ClearForgotState value)? clearForgotState,
+    TResult? Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult? Function(_CancelPayroll value)? cancelPayroll,
+    TResult? Function(_ClearConfirmState value)? clearConfirmState,
+    TResult? Function(_ConfirmInit value)? confirmInit,
   }) {
     return forgotResetPin?.call(this);
   }
@@ -2680,6 +3012,10 @@ class _$ForgotResetPinImpl implements _ForgotResetPin {
     TResult Function(_ForgotResetPin value)? forgotResetPin,
     TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
     TResult Function(_ClearForgotState value)? clearForgotState,
+    TResult Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult Function(_CancelPayroll value)? cancelPayroll,
+    TResult Function(_ClearConfirmState value)? clearConfirmState,
+    TResult Function(_ConfirmInit value)? confirmInit,
     required TResult orElse(),
   }) {
     if (forgotResetPin != null) {
@@ -2781,6 +3117,10 @@ class _$ForgotUpdateStepImpl implements _ForgotUpdateStep {
     required TResult Function(String newPin, String confirmPin) forgotResetPin,
     required TResult Function(int step) forgotUpdateStep,
     required TResult Function() clearForgotState,
+    required TResult Function(int payrollId) confirmPayroll,
+    required TResult Function(int payrollId) cancelPayroll,
+    required TResult Function() clearConfirmState,
+    required TResult Function() confirmInit,
   }) {
     return forgotUpdateStep(step);
   }
@@ -2803,6 +3143,10 @@ class _$ForgotUpdateStepImpl implements _ForgotUpdateStep {
     TResult? Function(String newPin, String confirmPin)? forgotResetPin,
     TResult? Function(int step)? forgotUpdateStep,
     TResult? Function()? clearForgotState,
+    TResult? Function(int payrollId)? confirmPayroll,
+    TResult? Function(int payrollId)? cancelPayroll,
+    TResult? Function()? clearConfirmState,
+    TResult? Function()? confirmInit,
   }) {
     return forgotUpdateStep?.call(step);
   }
@@ -2825,6 +3169,10 @@ class _$ForgotUpdateStepImpl implements _ForgotUpdateStep {
     TResult Function(String newPin, String confirmPin)? forgotResetPin,
     TResult Function(int step)? forgotUpdateStep,
     TResult Function()? clearForgotState,
+    TResult Function(int payrollId)? confirmPayroll,
+    TResult Function(int payrollId)? cancelPayroll,
+    TResult Function()? clearConfirmState,
+    TResult Function()? confirmInit,
     required TResult orElse(),
   }) {
     if (forgotUpdateStep != null) {
@@ -2851,6 +3199,10 @@ class _$ForgotUpdateStepImpl implements _ForgotUpdateStep {
     required TResult Function(_ForgotResetPin value) forgotResetPin,
     required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
     required TResult Function(_ClearForgotState value) clearForgotState,
+    required TResult Function(_ConfirmPayroll value) confirmPayroll,
+    required TResult Function(_CancelPayroll value) cancelPayroll,
+    required TResult Function(_ClearConfirmState value) clearConfirmState,
+    required TResult Function(_ConfirmInit value) confirmInit,
   }) {
     return forgotUpdateStep(this);
   }
@@ -2873,6 +3225,10 @@ class _$ForgotUpdateStepImpl implements _ForgotUpdateStep {
     TResult? Function(_ForgotResetPin value)? forgotResetPin,
     TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
     TResult? Function(_ClearForgotState value)? clearForgotState,
+    TResult? Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult? Function(_CancelPayroll value)? cancelPayroll,
+    TResult? Function(_ClearConfirmState value)? clearConfirmState,
+    TResult? Function(_ConfirmInit value)? confirmInit,
   }) {
     return forgotUpdateStep?.call(this);
   }
@@ -2895,6 +3251,10 @@ class _$ForgotUpdateStepImpl implements _ForgotUpdateStep {
     TResult Function(_ForgotResetPin value)? forgotResetPin,
     TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
     TResult Function(_ClearForgotState value)? clearForgotState,
+    TResult Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult Function(_CancelPayroll value)? cancelPayroll,
+    TResult Function(_ClearConfirmState value)? clearConfirmState,
+    TResult Function(_ConfirmInit value)? confirmInit,
     required TResult orElse(),
   }) {
     if (forgotUpdateStep != null) {
@@ -2966,6 +3326,10 @@ class _$ClearForgotStateImpl implements _ClearForgotState {
     required TResult Function(String newPin, String confirmPin) forgotResetPin,
     required TResult Function(int step) forgotUpdateStep,
     required TResult Function() clearForgotState,
+    required TResult Function(int payrollId) confirmPayroll,
+    required TResult Function(int payrollId) cancelPayroll,
+    required TResult Function() clearConfirmState,
+    required TResult Function() confirmInit,
   }) {
     return clearForgotState();
   }
@@ -2988,6 +3352,10 @@ class _$ClearForgotStateImpl implements _ClearForgotState {
     TResult? Function(String newPin, String confirmPin)? forgotResetPin,
     TResult? Function(int step)? forgotUpdateStep,
     TResult? Function()? clearForgotState,
+    TResult? Function(int payrollId)? confirmPayroll,
+    TResult? Function(int payrollId)? cancelPayroll,
+    TResult? Function()? clearConfirmState,
+    TResult? Function()? confirmInit,
   }) {
     return clearForgotState?.call();
   }
@@ -3010,6 +3378,10 @@ class _$ClearForgotStateImpl implements _ClearForgotState {
     TResult Function(String newPin, String confirmPin)? forgotResetPin,
     TResult Function(int step)? forgotUpdateStep,
     TResult Function()? clearForgotState,
+    TResult Function(int payrollId)? confirmPayroll,
+    TResult Function(int payrollId)? cancelPayroll,
+    TResult Function()? clearConfirmState,
+    TResult Function()? confirmInit,
     required TResult orElse(),
   }) {
     if (clearForgotState != null) {
@@ -3036,6 +3408,10 @@ class _$ClearForgotStateImpl implements _ClearForgotState {
     required TResult Function(_ForgotResetPin value) forgotResetPin,
     required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
     required TResult Function(_ClearForgotState value) clearForgotState,
+    required TResult Function(_ConfirmPayroll value) confirmPayroll,
+    required TResult Function(_CancelPayroll value) cancelPayroll,
+    required TResult Function(_ClearConfirmState value) clearConfirmState,
+    required TResult Function(_ConfirmInit value) confirmInit,
   }) {
     return clearForgotState(this);
   }
@@ -3058,6 +3434,10 @@ class _$ClearForgotStateImpl implements _ClearForgotState {
     TResult? Function(_ForgotResetPin value)? forgotResetPin,
     TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
     TResult? Function(_ClearForgotState value)? clearForgotState,
+    TResult? Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult? Function(_CancelPayroll value)? cancelPayroll,
+    TResult? Function(_ClearConfirmState value)? clearConfirmState,
+    TResult? Function(_ConfirmInit value)? confirmInit,
   }) {
     return clearForgotState?.call(this);
   }
@@ -3080,6 +3460,10 @@ class _$ClearForgotStateImpl implements _ClearForgotState {
     TResult Function(_ForgotResetPin value)? forgotResetPin,
     TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
     TResult Function(_ClearForgotState value)? clearForgotState,
+    TResult Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult Function(_CancelPayroll value)? cancelPayroll,
+    TResult Function(_ClearConfirmState value)? clearConfirmState,
+    TResult Function(_ConfirmInit value)? confirmInit,
     required TResult orElse(),
   }) {
     if (clearForgotState != null) {
@@ -3091,4 +3475,885 @@ class _$ClearForgotStateImpl implements _ClearForgotState {
 
 abstract class _ClearForgotState implements SalaryEvent {
   const factory _ClearForgotState() = _$ClearForgotStateImpl;
+}
+
+/// @nodoc
+abstract class _$$ConfirmPayrollImplCopyWith<$Res> {
+  factory _$$ConfirmPayrollImplCopyWith(_$ConfirmPayrollImpl value,
+          $Res Function(_$ConfirmPayrollImpl) then) =
+      __$$ConfirmPayrollImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int payrollId});
+}
+
+/// @nodoc
+class __$$ConfirmPayrollImplCopyWithImpl<$Res>
+    extends _$SalaryEventCopyWithImpl<$Res, _$ConfirmPayrollImpl>
+    implements _$$ConfirmPayrollImplCopyWith<$Res> {
+  __$$ConfirmPayrollImplCopyWithImpl(
+      _$ConfirmPayrollImpl _value, $Res Function(_$ConfirmPayrollImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? payrollId = null,
+  }) {
+    return _then(_$ConfirmPayrollImpl(
+      null == payrollId
+          ? _value.payrollId
+          : payrollId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ConfirmPayrollImpl implements _ConfirmPayroll {
+  const _$ConfirmPayrollImpl(this.payrollId);
+
+  @override
+  final int payrollId;
+
+  @override
+  String toString() {
+    return 'SalaryEvent.confirmPayroll(payrollId: $payrollId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ConfirmPayrollImpl &&
+            (identical(other.payrollId, payrollId) ||
+                other.payrollId == payrollId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, payrollId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ConfirmPayrollImplCopyWith<_$ConfirmPayrollImpl> get copyWith =>
+      __$$ConfirmPayrollImplCopyWithImpl<_$ConfirmPayrollImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(int year, int month) fetchPayroll,
+    required TResult Function() initMenu,
+    required TResult Function() refresh,
+    required TResult Function(DateTime month) changeMonth,
+    required TResult Function() checkPin,
+    required TResult Function(String pin) verifyPin,
+    required TResult Function(String pin) setPin,
+    required TResult Function() setPinVerified,
+    required TResult Function() forgotRequestOtp,
+    required TResult Function(String otp) forgotValidateOtp,
+    required TResult Function() forgotResendOtp,
+    required TResult Function(String newPin, String confirmPin) forgotResetPin,
+    required TResult Function(int step) forgotUpdateStep,
+    required TResult Function() clearForgotState,
+    required TResult Function(int payrollId) confirmPayroll,
+    required TResult Function(int payrollId) cancelPayroll,
+    required TResult Function() clearConfirmState,
+    required TResult Function() confirmInit,
+  }) {
+    return confirmPayroll(payrollId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(int year, int month)? fetchPayroll,
+    TResult? Function()? initMenu,
+    TResult? Function()? refresh,
+    TResult? Function(DateTime month)? changeMonth,
+    TResult? Function()? checkPin,
+    TResult? Function(String pin)? verifyPin,
+    TResult? Function(String pin)? setPin,
+    TResult? Function()? setPinVerified,
+    TResult? Function()? forgotRequestOtp,
+    TResult? Function(String otp)? forgotValidateOtp,
+    TResult? Function()? forgotResendOtp,
+    TResult? Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult? Function(int step)? forgotUpdateStep,
+    TResult? Function()? clearForgotState,
+    TResult? Function(int payrollId)? confirmPayroll,
+    TResult? Function(int payrollId)? cancelPayroll,
+    TResult? Function()? clearConfirmState,
+    TResult? Function()? confirmInit,
+  }) {
+    return confirmPayroll?.call(payrollId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(int year, int month)? fetchPayroll,
+    TResult Function()? initMenu,
+    TResult Function()? refresh,
+    TResult Function(DateTime month)? changeMonth,
+    TResult Function()? checkPin,
+    TResult Function(String pin)? verifyPin,
+    TResult Function(String pin)? setPin,
+    TResult Function()? setPinVerified,
+    TResult Function()? forgotRequestOtp,
+    TResult Function(String otp)? forgotValidateOtp,
+    TResult Function()? forgotResendOtp,
+    TResult Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult Function(int step)? forgotUpdateStep,
+    TResult Function()? clearForgotState,
+    TResult Function(int payrollId)? confirmPayroll,
+    TResult Function(int payrollId)? cancelPayroll,
+    TResult Function()? clearConfirmState,
+    TResult Function()? confirmInit,
+    required TResult orElse(),
+  }) {
+    if (confirmPayroll != null) {
+      return confirmPayroll(payrollId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_FetchPayroll value) fetchPayroll,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ChangeMonth value) changeMonth,
+    required TResult Function(_CheckPin value) checkPin,
+    required TResult Function(_VerifyPin value) verifyPin,
+    required TResult Function(_SetPin value) setPin,
+    required TResult Function(_SetPinVerified value) setPinVerified,
+    required TResult Function(_ForgotRequestOtp value) forgotRequestOtp,
+    required TResult Function(_ForgotValidateOtp value) forgotValidateOtp,
+    required TResult Function(_ForgotResendOtp value) forgotResendOtp,
+    required TResult Function(_ForgotResetPin value) forgotResetPin,
+    required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
+    required TResult Function(_ClearForgotState value) clearForgotState,
+    required TResult Function(_ConfirmPayroll value) confirmPayroll,
+    required TResult Function(_CancelPayroll value) cancelPayroll,
+    required TResult Function(_ClearConfirmState value) clearConfirmState,
+    required TResult Function(_ConfirmInit value) confirmInit,
+  }) {
+    return confirmPayroll(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_FetchPayroll value)? fetchPayroll,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ChangeMonth value)? changeMonth,
+    TResult? Function(_CheckPin value)? checkPin,
+    TResult? Function(_VerifyPin value)? verifyPin,
+    TResult? Function(_SetPin value)? setPin,
+    TResult? Function(_SetPinVerified value)? setPinVerified,
+    TResult? Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult? Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult? Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult? Function(_ForgotResetPin value)? forgotResetPin,
+    TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult? Function(_ClearForgotState value)? clearForgotState,
+    TResult? Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult? Function(_CancelPayroll value)? cancelPayroll,
+    TResult? Function(_ClearConfirmState value)? clearConfirmState,
+    TResult? Function(_ConfirmInit value)? confirmInit,
+  }) {
+    return confirmPayroll?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_FetchPayroll value)? fetchPayroll,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ChangeMonth value)? changeMonth,
+    TResult Function(_CheckPin value)? checkPin,
+    TResult Function(_VerifyPin value)? verifyPin,
+    TResult Function(_SetPin value)? setPin,
+    TResult Function(_SetPinVerified value)? setPinVerified,
+    TResult Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult Function(_ForgotResetPin value)? forgotResetPin,
+    TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult Function(_ClearForgotState value)? clearForgotState,
+    TResult Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult Function(_CancelPayroll value)? cancelPayroll,
+    TResult Function(_ClearConfirmState value)? clearConfirmState,
+    TResult Function(_ConfirmInit value)? confirmInit,
+    required TResult orElse(),
+  }) {
+    if (confirmPayroll != null) {
+      return confirmPayroll(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ConfirmPayroll implements SalaryEvent {
+  const factory _ConfirmPayroll(final int payrollId) = _$ConfirmPayrollImpl;
+
+  int get payrollId;
+  @JsonKey(ignore: true)
+  _$$ConfirmPayrollImplCopyWith<_$ConfirmPayrollImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CancelPayrollImplCopyWith<$Res> {
+  factory _$$CancelPayrollImplCopyWith(
+          _$CancelPayrollImpl value, $Res Function(_$CancelPayrollImpl) then) =
+      __$$CancelPayrollImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int payrollId});
+}
+
+/// @nodoc
+class __$$CancelPayrollImplCopyWithImpl<$Res>
+    extends _$SalaryEventCopyWithImpl<$Res, _$CancelPayrollImpl>
+    implements _$$CancelPayrollImplCopyWith<$Res> {
+  __$$CancelPayrollImplCopyWithImpl(
+      _$CancelPayrollImpl _value, $Res Function(_$CancelPayrollImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? payrollId = null,
+  }) {
+    return _then(_$CancelPayrollImpl(
+      null == payrollId
+          ? _value.payrollId
+          : payrollId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CancelPayrollImpl implements _CancelPayroll {
+  const _$CancelPayrollImpl(this.payrollId);
+
+  @override
+  final int payrollId;
+
+  @override
+  String toString() {
+    return 'SalaryEvent.cancelPayroll(payrollId: $payrollId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CancelPayrollImpl &&
+            (identical(other.payrollId, payrollId) ||
+                other.payrollId == payrollId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, payrollId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CancelPayrollImplCopyWith<_$CancelPayrollImpl> get copyWith =>
+      __$$CancelPayrollImplCopyWithImpl<_$CancelPayrollImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(int year, int month) fetchPayroll,
+    required TResult Function() initMenu,
+    required TResult Function() refresh,
+    required TResult Function(DateTime month) changeMonth,
+    required TResult Function() checkPin,
+    required TResult Function(String pin) verifyPin,
+    required TResult Function(String pin) setPin,
+    required TResult Function() setPinVerified,
+    required TResult Function() forgotRequestOtp,
+    required TResult Function(String otp) forgotValidateOtp,
+    required TResult Function() forgotResendOtp,
+    required TResult Function(String newPin, String confirmPin) forgotResetPin,
+    required TResult Function(int step) forgotUpdateStep,
+    required TResult Function() clearForgotState,
+    required TResult Function(int payrollId) confirmPayroll,
+    required TResult Function(int payrollId) cancelPayroll,
+    required TResult Function() clearConfirmState,
+    required TResult Function() confirmInit,
+  }) {
+    return cancelPayroll(payrollId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(int year, int month)? fetchPayroll,
+    TResult? Function()? initMenu,
+    TResult? Function()? refresh,
+    TResult? Function(DateTime month)? changeMonth,
+    TResult? Function()? checkPin,
+    TResult? Function(String pin)? verifyPin,
+    TResult? Function(String pin)? setPin,
+    TResult? Function()? setPinVerified,
+    TResult? Function()? forgotRequestOtp,
+    TResult? Function(String otp)? forgotValidateOtp,
+    TResult? Function()? forgotResendOtp,
+    TResult? Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult? Function(int step)? forgotUpdateStep,
+    TResult? Function()? clearForgotState,
+    TResult? Function(int payrollId)? confirmPayroll,
+    TResult? Function(int payrollId)? cancelPayroll,
+    TResult? Function()? clearConfirmState,
+    TResult? Function()? confirmInit,
+  }) {
+    return cancelPayroll?.call(payrollId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(int year, int month)? fetchPayroll,
+    TResult Function()? initMenu,
+    TResult Function()? refresh,
+    TResult Function(DateTime month)? changeMonth,
+    TResult Function()? checkPin,
+    TResult Function(String pin)? verifyPin,
+    TResult Function(String pin)? setPin,
+    TResult Function()? setPinVerified,
+    TResult Function()? forgotRequestOtp,
+    TResult Function(String otp)? forgotValidateOtp,
+    TResult Function()? forgotResendOtp,
+    TResult Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult Function(int step)? forgotUpdateStep,
+    TResult Function()? clearForgotState,
+    TResult Function(int payrollId)? confirmPayroll,
+    TResult Function(int payrollId)? cancelPayroll,
+    TResult Function()? clearConfirmState,
+    TResult Function()? confirmInit,
+    required TResult orElse(),
+  }) {
+    if (cancelPayroll != null) {
+      return cancelPayroll(payrollId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_FetchPayroll value) fetchPayroll,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ChangeMonth value) changeMonth,
+    required TResult Function(_CheckPin value) checkPin,
+    required TResult Function(_VerifyPin value) verifyPin,
+    required TResult Function(_SetPin value) setPin,
+    required TResult Function(_SetPinVerified value) setPinVerified,
+    required TResult Function(_ForgotRequestOtp value) forgotRequestOtp,
+    required TResult Function(_ForgotValidateOtp value) forgotValidateOtp,
+    required TResult Function(_ForgotResendOtp value) forgotResendOtp,
+    required TResult Function(_ForgotResetPin value) forgotResetPin,
+    required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
+    required TResult Function(_ClearForgotState value) clearForgotState,
+    required TResult Function(_ConfirmPayroll value) confirmPayroll,
+    required TResult Function(_CancelPayroll value) cancelPayroll,
+    required TResult Function(_ClearConfirmState value) clearConfirmState,
+    required TResult Function(_ConfirmInit value) confirmInit,
+  }) {
+    return cancelPayroll(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_FetchPayroll value)? fetchPayroll,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ChangeMonth value)? changeMonth,
+    TResult? Function(_CheckPin value)? checkPin,
+    TResult? Function(_VerifyPin value)? verifyPin,
+    TResult? Function(_SetPin value)? setPin,
+    TResult? Function(_SetPinVerified value)? setPinVerified,
+    TResult? Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult? Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult? Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult? Function(_ForgotResetPin value)? forgotResetPin,
+    TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult? Function(_ClearForgotState value)? clearForgotState,
+    TResult? Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult? Function(_CancelPayroll value)? cancelPayroll,
+    TResult? Function(_ClearConfirmState value)? clearConfirmState,
+    TResult? Function(_ConfirmInit value)? confirmInit,
+  }) {
+    return cancelPayroll?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_FetchPayroll value)? fetchPayroll,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ChangeMonth value)? changeMonth,
+    TResult Function(_CheckPin value)? checkPin,
+    TResult Function(_VerifyPin value)? verifyPin,
+    TResult Function(_SetPin value)? setPin,
+    TResult Function(_SetPinVerified value)? setPinVerified,
+    TResult Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult Function(_ForgotResetPin value)? forgotResetPin,
+    TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult Function(_ClearForgotState value)? clearForgotState,
+    TResult Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult Function(_CancelPayroll value)? cancelPayroll,
+    TResult Function(_ClearConfirmState value)? clearConfirmState,
+    TResult Function(_ConfirmInit value)? confirmInit,
+    required TResult orElse(),
+  }) {
+    if (cancelPayroll != null) {
+      return cancelPayroll(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CancelPayroll implements SalaryEvent {
+  const factory _CancelPayroll(final int payrollId) = _$CancelPayrollImpl;
+
+  int get payrollId;
+  @JsonKey(ignore: true)
+  _$$CancelPayrollImplCopyWith<_$CancelPayrollImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ClearConfirmStateImplCopyWith<$Res> {
+  factory _$$ClearConfirmStateImplCopyWith(_$ClearConfirmStateImpl value,
+          $Res Function(_$ClearConfirmStateImpl) then) =
+      __$$ClearConfirmStateImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearConfirmStateImplCopyWithImpl<$Res>
+    extends _$SalaryEventCopyWithImpl<$Res, _$ClearConfirmStateImpl>
+    implements _$$ClearConfirmStateImplCopyWith<$Res> {
+  __$$ClearConfirmStateImplCopyWithImpl(_$ClearConfirmStateImpl _value,
+      $Res Function(_$ClearConfirmStateImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ClearConfirmStateImpl implements _ClearConfirmState {
+  const _$ClearConfirmStateImpl();
+
+  @override
+  String toString() {
+    return 'SalaryEvent.clearConfirmState()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ClearConfirmStateImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(int year, int month) fetchPayroll,
+    required TResult Function() initMenu,
+    required TResult Function() refresh,
+    required TResult Function(DateTime month) changeMonth,
+    required TResult Function() checkPin,
+    required TResult Function(String pin) verifyPin,
+    required TResult Function(String pin) setPin,
+    required TResult Function() setPinVerified,
+    required TResult Function() forgotRequestOtp,
+    required TResult Function(String otp) forgotValidateOtp,
+    required TResult Function() forgotResendOtp,
+    required TResult Function(String newPin, String confirmPin) forgotResetPin,
+    required TResult Function(int step) forgotUpdateStep,
+    required TResult Function() clearForgotState,
+    required TResult Function(int payrollId) confirmPayroll,
+    required TResult Function(int payrollId) cancelPayroll,
+    required TResult Function() clearConfirmState,
+    required TResult Function() confirmInit,
+  }) {
+    return clearConfirmState();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(int year, int month)? fetchPayroll,
+    TResult? Function()? initMenu,
+    TResult? Function()? refresh,
+    TResult? Function(DateTime month)? changeMonth,
+    TResult? Function()? checkPin,
+    TResult? Function(String pin)? verifyPin,
+    TResult? Function(String pin)? setPin,
+    TResult? Function()? setPinVerified,
+    TResult? Function()? forgotRequestOtp,
+    TResult? Function(String otp)? forgotValidateOtp,
+    TResult? Function()? forgotResendOtp,
+    TResult? Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult? Function(int step)? forgotUpdateStep,
+    TResult? Function()? clearForgotState,
+    TResult? Function(int payrollId)? confirmPayroll,
+    TResult? Function(int payrollId)? cancelPayroll,
+    TResult? Function()? clearConfirmState,
+    TResult? Function()? confirmInit,
+  }) {
+    return clearConfirmState?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(int year, int month)? fetchPayroll,
+    TResult Function()? initMenu,
+    TResult Function()? refresh,
+    TResult Function(DateTime month)? changeMonth,
+    TResult Function()? checkPin,
+    TResult Function(String pin)? verifyPin,
+    TResult Function(String pin)? setPin,
+    TResult Function()? setPinVerified,
+    TResult Function()? forgotRequestOtp,
+    TResult Function(String otp)? forgotValidateOtp,
+    TResult Function()? forgotResendOtp,
+    TResult Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult Function(int step)? forgotUpdateStep,
+    TResult Function()? clearForgotState,
+    TResult Function(int payrollId)? confirmPayroll,
+    TResult Function(int payrollId)? cancelPayroll,
+    TResult Function()? clearConfirmState,
+    TResult Function()? confirmInit,
+    required TResult orElse(),
+  }) {
+    if (clearConfirmState != null) {
+      return clearConfirmState();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_FetchPayroll value) fetchPayroll,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ChangeMonth value) changeMonth,
+    required TResult Function(_CheckPin value) checkPin,
+    required TResult Function(_VerifyPin value) verifyPin,
+    required TResult Function(_SetPin value) setPin,
+    required TResult Function(_SetPinVerified value) setPinVerified,
+    required TResult Function(_ForgotRequestOtp value) forgotRequestOtp,
+    required TResult Function(_ForgotValidateOtp value) forgotValidateOtp,
+    required TResult Function(_ForgotResendOtp value) forgotResendOtp,
+    required TResult Function(_ForgotResetPin value) forgotResetPin,
+    required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
+    required TResult Function(_ClearForgotState value) clearForgotState,
+    required TResult Function(_ConfirmPayroll value) confirmPayroll,
+    required TResult Function(_CancelPayroll value) cancelPayroll,
+    required TResult Function(_ClearConfirmState value) clearConfirmState,
+    required TResult Function(_ConfirmInit value) confirmInit,
+  }) {
+    return clearConfirmState(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_FetchPayroll value)? fetchPayroll,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ChangeMonth value)? changeMonth,
+    TResult? Function(_CheckPin value)? checkPin,
+    TResult? Function(_VerifyPin value)? verifyPin,
+    TResult? Function(_SetPin value)? setPin,
+    TResult? Function(_SetPinVerified value)? setPinVerified,
+    TResult? Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult? Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult? Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult? Function(_ForgotResetPin value)? forgotResetPin,
+    TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult? Function(_ClearForgotState value)? clearForgotState,
+    TResult? Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult? Function(_CancelPayroll value)? cancelPayroll,
+    TResult? Function(_ClearConfirmState value)? clearConfirmState,
+    TResult? Function(_ConfirmInit value)? confirmInit,
+  }) {
+    return clearConfirmState?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_FetchPayroll value)? fetchPayroll,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ChangeMonth value)? changeMonth,
+    TResult Function(_CheckPin value)? checkPin,
+    TResult Function(_VerifyPin value)? verifyPin,
+    TResult Function(_SetPin value)? setPin,
+    TResult Function(_SetPinVerified value)? setPinVerified,
+    TResult Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult Function(_ForgotResetPin value)? forgotResetPin,
+    TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult Function(_ClearForgotState value)? clearForgotState,
+    TResult Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult Function(_CancelPayroll value)? cancelPayroll,
+    TResult Function(_ClearConfirmState value)? clearConfirmState,
+    TResult Function(_ConfirmInit value)? confirmInit,
+    required TResult orElse(),
+  }) {
+    if (clearConfirmState != null) {
+      return clearConfirmState(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearConfirmState implements SalaryEvent {
+  const factory _ClearConfirmState() = _$ClearConfirmStateImpl;
+}
+
+/// @nodoc
+abstract class _$$ConfirmInitImplCopyWith<$Res> {
+  factory _$$ConfirmInitImplCopyWith(
+          _$ConfirmInitImpl value, $Res Function(_$ConfirmInitImpl) then) =
+      __$$ConfirmInitImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ConfirmInitImplCopyWithImpl<$Res>
+    extends _$SalaryEventCopyWithImpl<$Res, _$ConfirmInitImpl>
+    implements _$$ConfirmInitImplCopyWith<$Res> {
+  __$$ConfirmInitImplCopyWithImpl(
+      _$ConfirmInitImpl _value, $Res Function(_$ConfirmInitImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ConfirmInitImpl implements _ConfirmInit {
+  const _$ConfirmInitImpl();
+
+  @override
+  String toString() {
+    return 'SalaryEvent.confirmInit()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ConfirmInitImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(int year, int month) fetchPayroll,
+    required TResult Function() initMenu,
+    required TResult Function() refresh,
+    required TResult Function(DateTime month) changeMonth,
+    required TResult Function() checkPin,
+    required TResult Function(String pin) verifyPin,
+    required TResult Function(String pin) setPin,
+    required TResult Function() setPinVerified,
+    required TResult Function() forgotRequestOtp,
+    required TResult Function(String otp) forgotValidateOtp,
+    required TResult Function() forgotResendOtp,
+    required TResult Function(String newPin, String confirmPin) forgotResetPin,
+    required TResult Function(int step) forgotUpdateStep,
+    required TResult Function() clearForgotState,
+    required TResult Function(int payrollId) confirmPayroll,
+    required TResult Function(int payrollId) cancelPayroll,
+    required TResult Function() clearConfirmState,
+    required TResult Function() confirmInit,
+  }) {
+    return confirmInit();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(int year, int month)? fetchPayroll,
+    TResult? Function()? initMenu,
+    TResult? Function()? refresh,
+    TResult? Function(DateTime month)? changeMonth,
+    TResult? Function()? checkPin,
+    TResult? Function(String pin)? verifyPin,
+    TResult? Function(String pin)? setPin,
+    TResult? Function()? setPinVerified,
+    TResult? Function()? forgotRequestOtp,
+    TResult? Function(String otp)? forgotValidateOtp,
+    TResult? Function()? forgotResendOtp,
+    TResult? Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult? Function(int step)? forgotUpdateStep,
+    TResult? Function()? clearForgotState,
+    TResult? Function(int payrollId)? confirmPayroll,
+    TResult? Function(int payrollId)? cancelPayroll,
+    TResult? Function()? clearConfirmState,
+    TResult? Function()? confirmInit,
+  }) {
+    return confirmInit?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(int year, int month)? fetchPayroll,
+    TResult Function()? initMenu,
+    TResult Function()? refresh,
+    TResult Function(DateTime month)? changeMonth,
+    TResult Function()? checkPin,
+    TResult Function(String pin)? verifyPin,
+    TResult Function(String pin)? setPin,
+    TResult Function()? setPinVerified,
+    TResult Function()? forgotRequestOtp,
+    TResult Function(String otp)? forgotValidateOtp,
+    TResult Function()? forgotResendOtp,
+    TResult Function(String newPin, String confirmPin)? forgotResetPin,
+    TResult Function(int step)? forgotUpdateStep,
+    TResult Function()? clearForgotState,
+    TResult Function(int payrollId)? confirmPayroll,
+    TResult Function(int payrollId)? cancelPayroll,
+    TResult Function()? clearConfirmState,
+    TResult Function()? confirmInit,
+    required TResult orElse(),
+  }) {
+    if (confirmInit != null) {
+      return confirmInit();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_FetchPayroll value) fetchPayroll,
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ChangeMonth value) changeMonth,
+    required TResult Function(_CheckPin value) checkPin,
+    required TResult Function(_VerifyPin value) verifyPin,
+    required TResult Function(_SetPin value) setPin,
+    required TResult Function(_SetPinVerified value) setPinVerified,
+    required TResult Function(_ForgotRequestOtp value) forgotRequestOtp,
+    required TResult Function(_ForgotValidateOtp value) forgotValidateOtp,
+    required TResult Function(_ForgotResendOtp value) forgotResendOtp,
+    required TResult Function(_ForgotResetPin value) forgotResetPin,
+    required TResult Function(_ForgotUpdateStep value) forgotUpdateStep,
+    required TResult Function(_ClearForgotState value) clearForgotState,
+    required TResult Function(_ConfirmPayroll value) confirmPayroll,
+    required TResult Function(_CancelPayroll value) cancelPayroll,
+    required TResult Function(_ClearConfirmState value) clearConfirmState,
+    required TResult Function(_ConfirmInit value) confirmInit,
+  }) {
+    return confirmInit(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_FetchPayroll value)? fetchPayroll,
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ChangeMonth value)? changeMonth,
+    TResult? Function(_CheckPin value)? checkPin,
+    TResult? Function(_VerifyPin value)? verifyPin,
+    TResult? Function(_SetPin value)? setPin,
+    TResult? Function(_SetPinVerified value)? setPinVerified,
+    TResult? Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult? Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult? Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult? Function(_ForgotResetPin value)? forgotResetPin,
+    TResult? Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult? Function(_ClearForgotState value)? clearForgotState,
+    TResult? Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult? Function(_CancelPayroll value)? cancelPayroll,
+    TResult? Function(_ClearConfirmState value)? clearConfirmState,
+    TResult? Function(_ConfirmInit value)? confirmInit,
+  }) {
+    return confirmInit?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_FetchPayroll value)? fetchPayroll,
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ChangeMonth value)? changeMonth,
+    TResult Function(_CheckPin value)? checkPin,
+    TResult Function(_VerifyPin value)? verifyPin,
+    TResult Function(_SetPin value)? setPin,
+    TResult Function(_SetPinVerified value)? setPinVerified,
+    TResult Function(_ForgotRequestOtp value)? forgotRequestOtp,
+    TResult Function(_ForgotValidateOtp value)? forgotValidateOtp,
+    TResult Function(_ForgotResendOtp value)? forgotResendOtp,
+    TResult Function(_ForgotResetPin value)? forgotResetPin,
+    TResult Function(_ForgotUpdateStep value)? forgotUpdateStep,
+    TResult Function(_ClearForgotState value)? clearForgotState,
+    TResult Function(_ConfirmPayroll value)? confirmPayroll,
+    TResult Function(_CancelPayroll value)? cancelPayroll,
+    TResult Function(_ClearConfirmState value)? clearConfirmState,
+    TResult Function(_ConfirmInit value)? confirmInit,
+    required TResult orElse(),
+  }) {
+    if (confirmInit != null) {
+      return confirmInit(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ConfirmInit implements SalaryEvent {
+  const factory _ConfirmInit() = _$ConfirmInitImpl;
 }

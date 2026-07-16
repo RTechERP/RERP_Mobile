@@ -338,3 +338,11 @@ class TimekeepingDayItem with _$TimekeepingDayItem {
   factory TimekeepingDayItem.fromJson(Map<String, dynamic> json) =>
       _$TimekeepingDayItemFromJson(json);
 }
+
+//---(ConfirmPayrollResponse)---//
+
+class ConfirmPayrollResponse {
+  final String? message;
+
+  ConfirmPayrollResponse({this.message});
+}
