@@ -184,6 +184,8 @@ class _FingerPrintScreenState
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 14),
       child: FingerPrintSummaryCard(
+        holidays: state.holidays,
+        workSaturdays: state.workSaturdays,
         items: [
           FingerPrintSummaryItem(
             'Đi muộn', lateCount, AppColors.alert, Icons.arrow_upward,

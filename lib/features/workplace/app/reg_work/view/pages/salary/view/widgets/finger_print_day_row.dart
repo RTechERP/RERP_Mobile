@@ -57,7 +57,10 @@ class _FingerPrintDayRowState extends State<FingerPrintDayRow> {
     final d = widget.detail;
     final tags = <_TagItem>[];
 
-    if (d.isLate == true) {
+    final isHoliday = _isHolidayOrWeekend;
+
+    // Đi muộn: chỉ hiển thị khi isLate = true VÀ KHÔNG phải ngày nghỉ
+    if (d.isLate == true && !isHoliday) {
       tags.add(_TagItem(
         'Đi muộn',
         d.timeLate != null && d.timeLate! > 0
@@ -65,9 +68,11 @@ class _FingerPrintDayRowState extends State<FingerPrintDayRow> {
             : null,
         AppColors.alert,
         Icons.arrow_upward,
+        _TagGroup.red,
       ));
     }
-    if (d.isEarly == true) {
+    // Về sớm: chỉ hiển thị khi isEarly = true VÀ KHÔNG phải ngày nghỉ
+    if (d.isEarly == true && !isHoliday) {
       tags.add(_TagItem(
         'Về sớm',
         d.timeEarly != null && d.timeEarly! > 0
@@ -75,20 +80,23 @@ class _FingerPrintDayRowState extends State<FingerPrintDayRow> {
             : null,
         AppColors.warning,
         Icons.arrow_downward,
+        _TagGroup.red,
       ));
     }
     if (d.overtime == true) {
-      tags.add(_TagItem('Làm thêm', null, AppColors.stateInfoColor, Icons.access_time));
+      tags.add(_TagItem('Làm thêm', null, AppColors.stateInfoColor, Icons.access_time, _TagGroup.blue));
     }
     if (d.bussiness == true) {
-      tags.add(_TagItem('Công tác', null, AppColors.secondaryERP, Icons.directions_car));
+      tags.add(_TagItem('Công tác', null, AppColors.secondaryERP, Icons.directions_car, _TagGroup.blue));
     }
-    if (d.isLateRegister == true || d.isEarlyRegister == true) {
+    // Khai báo quên: chỉ hiển thị khi đã đăng ký VÀ noFingerprint = true
+    if ((d.isLateRegister == true || d.isEarlyRegister == true) && d.noFingerprint == true) {
       tags.add(_TagItem(
-        'Khai báo quen',
+        'Khai báo quên',
         null,
         AppColors.primaryERP,
         Icons.warning_amber,
+        _TagGroup.red,
       ));
     }
     if (d.onLeave == true) {
@@ -97,6 +105,7 @@ class _FingerPrintDayRowState extends State<FingerPrintDayRow> {
         d.totalDay != null ? '${d.totalDay} Ngày' : null,
         AppColors.gray,
         Icons.event_busy,
+        _TagGroup.gray,
       ));
     }
     if (d.wfh == true) {
@@ -105,10 +114,12 @@ class _FingerPrintDayRowState extends State<FingerPrintDayRow> {
         d.totalDay != null ? '${d.totalDay} Ngày' : null,
         AppColors.stateSuccessColor,
         Icons.home_work,
+        _TagGroup.blue,
       ));
     }
+    // Quên CC: dựa vào response model (noFingerprint, isNoFinger, isNoCheckIn, isNoCheckOut)
     if (d.noFingerprint == true || d.isNoFinger == 1 || d.isNoCheckIn == 1 || d.isNoCheckOut == 1) {
-      tags.add(_TagItem('Quên CC', null, AppColors.alert, Icons.fingerprint));
+      tags.add(_TagItem('Quên CC', null, AppColors.alert, Icons.fingerprint, _TagGroup.red));
     }
 
     return tags;
@@ -262,7 +273,10 @@ class _FingerPrintDayRowState extends State<FingerPrintDayRow> {
   Widget _buildTimeCell(String label, String? time, bool? isHighlight) {
     final formattedTime = _formatTime(time);
     final hasTime = formattedTime != '--:--';
-    final color = isHighlight == true
+    final isHoliday = _isHolidayOrWeekend;
+    // Không hiển thị màu đỏ cho thời gian khi là ngày nghỉ
+    final effectiveHighlight = isHighlight == true && !isHoliday ? true : false;
+    final color = effectiveHighlight
         ? AppColors.alert
         : hasTime
             ? AppColors.heading
@@ -295,13 +309,21 @@ class _FingerPrintDayRowState extends State<FingerPrintDayRow> {
   }
 
   Widget _buildStatusIndicator() {
-    final count = _activeTags.length;
-    final colors = _activeTags.map((t) => t.color).toList();
-    final uniqueColors = colors.toSet().toList();
+    final tags = _activeTags;
+    final count = tags.length;
 
-    final color = uniqueColors.length == 1
-        ? uniqueColors.first
-        : AppColors.stateErrorColor;
+    // Ưu tiên hiển thị theo nhóm: đỏ > xanh nước biển > xám
+    final hasRed = tags.any((t) => t.group == _TagGroup.red);
+    final hasBlue = tags.any((t) => t.group == _TagGroup.blue);
+
+    Color color;
+    if (hasRed) {
+      color = AppColors.alert;
+    } else if (hasBlue) {
+      color = AppColors.stateInfoColor;
+    } else {
+      color = AppColors.gray;
+    }
 
     return Container(
       width: 28,
@@ -382,11 +404,14 @@ class _FingerPrintDayRowState extends State<FingerPrintDayRow> {
   }
 }
 
+enum _TagGroup { red, blue, gray }
+
 class _TagItem {
   final String label;
   final String? subLabel;
   final Color color;
   final IconData icon;
+  final _TagGroup group;
 
-  const _TagItem(this.label, this.subLabel, this.color, this.icon);
+  const _TagItem(this.label, this.subLabel, this.color, this.icon, this.group);
 }

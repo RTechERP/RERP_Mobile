@@ -180,7 +180,7 @@ class ApiEndPoint {
   static const String getLunch = '/EmployeeFoodOrder/get-foodorder-personal';
   static const String saveLunch = '/EmployeeFoodOrder/save-data';
 
-  static const String getEarlyLate = '/EmployeeEarlyLate/person';
+  static const String getEarlyLate = '/EmployeeEarlyLate';
   static const String saveEarlyLate = '/EmployeeEarlyLate/save-data';
   static const String getApprover = '/Employee/get-approve';
 
@@ -188,7 +188,7 @@ class ApiEndPoint {
   static const String saveWfh = '/EmployeeWFH/save-data';
 
   static const String getMissed =
-      '/EmployeeNoFingerprint/person';
+      '/EmployeeNoFingerprint/get-employee-no-fingerprint';
 
   static const String saveMissed = '/EmployeeNoFingerprint/savedata';
 
