@@ -96,6 +96,8 @@ abstract class _$SaleStateCWProxy {
 
   SaleState planNextDay(String? planNextDay);
 
+  SaleState isSaleAdmin(bool isSaleAdmin);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SaleState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -146,6 +148,7 @@ abstract class _$SaleStateCWProxy {
     SaleProjectResponse? selectedProject,
     DetailSaleAdminReportResponse? selectedReportAdminDetail,
     String? planNextDay,
+    bool? isSaleAdmin,
   });
 }
 
@@ -311,6 +314,9 @@ class _$SaleStateCWProxyImpl implements _$SaleStateCWProxy {
   SaleState planNextDay(String? planNextDay) => this(planNextDay: planNextDay);
 
   @override
+  SaleState isSaleAdmin(bool isSaleAdmin) => this(isSaleAdmin: isSaleAdmin);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SaleState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -362,6 +368,7 @@ class _$SaleStateCWProxyImpl implements _$SaleStateCWProxy {
     Object? selectedProject = const $CopyWithPlaceholder(),
     Object? selectedReportAdminDetail = const $CopyWithPlaceholder(),
     Object? planNextDay = const $CopyWithPlaceholder(),
+    Object? isSaleAdmin = const $CopyWithPlaceholder(),
   }) {
     return SaleState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -554,6 +561,11 @@ class _$SaleStateCWProxyImpl implements _$SaleStateCWProxy {
           ? _value.planNextDay
           // ignore: cast_nullable_to_non_nullable
           : planNextDay as String?,
+      isSaleAdmin:
+          isSaleAdmin == const $CopyWithPlaceholder() || isSaleAdmin == null
+              ? _value.isSaleAdmin
+              // ignore: cast_nullable_to_non_nullable
+              : isSaleAdmin as bool,
     );
   }
 }

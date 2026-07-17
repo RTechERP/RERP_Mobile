@@ -11,6 +11,7 @@ import 'package:intl/intl.dart';
 import '../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../common/logger/index.dart';
+import '../../../../../../../../common/services/permissions/role_groups.dart';
 import '../../../../../../../auth/data/repository/auth_repo.dart';
 import '../../../../data/datasource/models/report_model.dart';
 import '../../../../data/repository/report_repo.dart';
@@ -176,11 +177,18 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
     required DateTime end,
     required Emitter<SaleState> emit,
   }) async {
+    final userId = state.employeeID;
+
+    if (userId == null) {
+      emit(state.copyWith(status: BaseStateStatus.failed));
+      return;
+    }
+
     final res = await _reportRepo.getSaleAdminDailyReport(
       dateStart: start,
       dateEnd: end,
       customerId: 0,
-      userId: 0,
+      userId: userId,
       keyword: "",
     );
     res.fold(
@@ -253,6 +261,11 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
           return;
         }
 
+        final permissions = user.permissions.split(',');
+        final isSaleAdmin = permissions.any(
+          (p) => PermissionGroups.saleAdminReports.contains(p),
+        );
+
         emit(
           state.copyWith(
             userId: user.id,
@@ -263,6 +276,7 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
             positionName: user.positionName,
             departmentName: user.departmentName,
             positionId: user.positionId,
+            isSaleAdmin: isSaleAdmin,
 
             /// auto có sẵn công việc 1
             staffWorks: [
@@ -306,11 +320,16 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
 
         final now = DateTime.now();
 
-        final start = DateTime(now.year, now.month, now.day);
+        final startMonth = now.month == 1 ? 12 : now.month - 1;
+        final startYear = now.month == 1 ? now.year - 1 : now.year;
+        final start = DateTime(startYear, startMonth, now.day);
         final end = DateTime(now.year, now.month, now.day, 23, 59, 59);
 
-        await _loadDailyReport(start: start, end: end, emit: emit);
-        await _loadAdminDailyReport(start: start, end: end, emit: emit);
+        if (isSaleAdmin) {
+          await _loadAdminDailyReport(start: start, end: end, emit: emit);
+        } else {
+          await _loadDailyReport(start: start, end: end, emit: emit);
+        }
       },
     );
   }
@@ -783,7 +802,11 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
 
     emit(state.copyWith(status: BaseStateStatus.loading));
 
-    await _loadDailyReport(start: start, end: end, emit: emit);
+    if (state.isSaleAdmin) {
+      await _loadAdminDailyReport(start: start, end: end, emit: emit);
+    } else {
+      await _loadDailyReport(start: start, end: end, emit: emit);
+    }
   }
 
   Future<void> _onSelectReport(

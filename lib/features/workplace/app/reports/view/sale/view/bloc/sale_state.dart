@@ -59,6 +59,7 @@ class SaleState extends BaseBlocState {
   final DateTime? dateReport;
 
   final String? planNextDay;
+  final bool isSaleAdmin;
   const SaleState({
     required super.status,
     super.message,
@@ -103,6 +104,7 @@ class SaleState extends BaseBlocState {
     this.selectedProject,
     this.selectedReportAdminDetail,
     this.planNextDay,
+    this.isSaleAdmin = false,
   });
 
   factory SaleState.init() => const SaleState(
@@ -149,6 +151,7 @@ class SaleState extends BaseBlocState {
     saveSuccess: false,
     selectedReportAdminDetail: null,
     planNextDay: null,
+    isSaleAdmin: false,
   );
 
   @override
@@ -196,5 +199,6 @@ class SaleState extends BaseBlocState {
     adminReports,
     selectedReportAdminDetail,
     planNextDay,
+    isSaleAdmin,
   ];
 }

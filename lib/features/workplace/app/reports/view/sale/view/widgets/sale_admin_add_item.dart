@@ -356,7 +356,9 @@ class _SaleAdminAddItemState extends State<SaleAdminAddItem> {
               nameTextField: 'content_${widget.index}',
               label: 'Nội dung báo cáo',
               controller: _contentController,
-              maxLines: 3,
+              keyboardType: TextInputType.multiline,
+              textInputAction: TextInputAction.newline,
+              autoExpand: true,
               onChanged: (v) {
                 context.read<SaleBloc>().add(
                   SaleEvent.updateAdminWork(
@@ -376,7 +378,9 @@ class _SaleAdminAddItemState extends State<SaleAdminAddItem> {
               nameTextField: 'result_${widget.index}',
               label: 'Kết quả xử lý',
               controller: _resultController,
-              maxLines: 3,
+              keyboardType: TextInputType.multiline,
+              textInputAction: TextInputAction.newline,
+              autoExpand: true,
               onChanged: (v) {
                 context.read<SaleBloc>().add(
                   SaleEvent.updateAdminWork(index: widget.index, result: v),
@@ -393,7 +397,9 @@ class _SaleAdminAddItemState extends State<SaleAdminAddItem> {
               nameTextField: 'plan_${widget.index}',
               label: 'Kế hoạch ngày tiếp theo',
               controller: _planController,
-              maxLines: 3,
+              keyboardType: TextInputType.multiline,
+              textInputAction: TextInputAction.newline,
+              autoExpand: true,
               onChanged: (v) {
                 context.read<SaleBloc>().add(
                   SaleEvent.updateAdminWork(
@@ -413,7 +419,9 @@ class _SaleAdminAddItemState extends State<SaleAdminAddItem> {
               nameTextField: 'blocking_${widget.index}',
               label: 'Vấn đề tồn đọng',
               controller: _blockingController,
-              maxLines: 2,
+              keyboardType: TextInputType.multiline,
+              textInputAction: TextInputAction.newline,
+              autoExpand: true,
               onChanged: (v) {
                 context.read<SaleBloc>().add(
                   SaleEvent.updateAdminWork(index: widget.index, problem: v),
@@ -430,7 +438,9 @@ class _SaleAdminAddItemState extends State<SaleAdminAddItem> {
               nameTextField: 'solution_${widget.index}',
               label: 'Giải quyết vấn đề',
               controller: _solutionController,
-              maxLines: 2,
+              keyboardType: TextInputType.multiline,
+              textInputAction: TextInputAction.newline,
+              autoExpand: true,
               onChanged: (v) {
                 context.read<SaleBloc>().add(
                   SaleEvent.updateAdminWork(
