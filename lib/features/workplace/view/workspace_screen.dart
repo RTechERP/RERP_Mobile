@@ -212,13 +212,6 @@ class _WorkPlaceScreenState
                     expandable: true,
                     collapsedItemCount: 11,
                     items: [
-                      // AppItemModel(
-                      //   id: 'general_forms',
-                      //   iconCodePoint: Icons.file_copy_outlined.codePoint,
-                      //   name: 'applications.general_forms'.tr(),
-                      //   route: RouteNames.generalforms,
-                      //   imageUrl: AppImages.app_menu_general_form,
-                      // ),
                       AppItemModel(
                         id: 'reg_work',
                         iconCodePoint: Icons.person_pin_outlined.codePoint,
@@ -240,12 +233,13 @@ class _WorkPlaceScreenState
                         route: RouteNames.report,
                         imageUrl: AppImages.app_menu_report,
                       ),
-                      // AppItemModel(
-                      //   id: 'general_forms',
-                      //   name: 'applications.general_forms'.tr(),
-                      //   iconCodePoint: Icons.assignment_outlined.codePoint,
-                      //   imageUrl: AppImages.app_menu_general_form,
-                      // ),
+                      AppItemModel(
+                        id: 'general_forms',
+                        iconCodePoint: Icons.file_copy_outlined.codePoint,
+                        name: 'applications.general_forms'.tr(),
+                        route: RouteNames.generalforms,
+                        imageUrl: AppImages.app_menu_general_form,
+                      ),
                       // AppItemModel(
                       //   id: 'summary_work',
                       //   iconCodePoint:
