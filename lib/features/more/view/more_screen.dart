@@ -347,6 +347,7 @@ class _MoreScreenState extends State<MoreScreen> {
 
   /// Xin quyền tương ứng với nguồn ảnh.
   /// Trả về `true` nếu user đã cấp quyền (kể cả limited).
+  /// Android 13+ dùng Photo Picker không cần quyền → luôn trả về true.
   Future<bool> _requestPermissionFor(ImageSource source) async {
     if (source == ImageSource.camera) {
       var status = await Permission.camera.status;
@@ -356,21 +357,19 @@ class _MoreScreenState extends State<MoreScreen> {
       return status.isGranted || status.isLimited;
     }
 
-    // Gallery: Android 13+ dùng READ_MEDIA_IMAGES, cũ hơn dùng storage.
-    // Trên iOS image_picker tự xin quyền qua NSPhotoLibraryUsageDescription.
+    // iOS: image_picker tự xin quyền qua NSPhotoLibraryUsageDescription.
     if (Platform.isIOS) return true;
 
-    var photos = await Permission.photos.status;
-    if (photos.isGranted || photos.isLimited) return true;
-    if (photos.isPermanentlyDenied) return false;
-    photos = await Permission.photos.request();
-    if (photos.isGranted || photos.isLimited) return true;
+    // Android: Photo Picker (API 33+) không cần quyền.
+    // Android < 13 cần READ_EXTERNAL_STORAGE (đã khai báo trong manifest).
+    final photosStatus = await Permission.photos.status;
+    if (photosStatus.isGranted || photosStatus.isLimited) return true;
+    if (photosStatus.isPermanentlyDenied) return false;
 
-    // Fallback cho Android < 13
-    var storage = await Permission.storage.status;
-    if (storage.isGranted) return true;
-    storage = await Permission.storage.request();
-    return storage.isGranted;
+    // Photos permission chưa được cấp:
+    // - Android 13+ (API 33+): Photo Picker hoạt động không cần quyền → return true
+    // - Android < 13: image_picker dùng READ_EXTERNAL_STORAGE → return true
+    return true;
   }
 
   /// Kiểm tra permission hiện tại có bị từ chối vĩnh viễn không.

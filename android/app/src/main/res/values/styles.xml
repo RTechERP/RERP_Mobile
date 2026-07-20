@@ -19,4 +19,17 @@
     <style name="NormalTheme" parent="@android:style/Theme.Light.NoTitleBar">
         <item name="android:windowBackground">?android:colorBackground</item>
     </style>
+
+    <!-- Theme cho image_cropper UCropActivity - hỗ trợ display cutout (tai thỏ) -->
+    <style name="Theme.AppCompat.Light.NoActionBar.UCrop" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <!-- Topbar cao hơn để tránh tai thỏ -->
+        <item name="android:actionBarSize">56dp</item>
+    </style>
 </resources>

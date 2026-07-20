@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Theme cho image_cropper UCropActivity - Android 13+ (API 33+)
+         Android 13 mặc định bật edge-to-edge nên status bar trong suốt.
+         Phải tự xử lý để toolbar UCrop không dính tai thỏ. -->
+    <style name="Theme.AppCompat.Light.NoActionBar.UCrop" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+        <item name="android:enforceNavigationBarContrast">false</item>
+        <item name="android:enforceStatusBarContrast">false</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    </style>
+</resources>
