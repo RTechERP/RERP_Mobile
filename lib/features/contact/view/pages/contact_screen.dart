@@ -12,6 +12,8 @@
 //
 // Dữ liệu từ API /Home/get-all-contact.
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -54,6 +56,18 @@ class _ContactViewState extends State<_ContactView>
   String _searchQuery = '';
   bool _isSearchVisible = false;
   final TextEditingController _searchController = TextEditingController();
+  Timer? _debounceTimer;
+
+  // Cache for filtered contacts
+  List<ContactPersonalItem> _cachedFilteredContacts = [];
+  String _cachedSearchQuery = '';
+
+  // Pre-computed order map for faster sorting
+  static final Map<String, int> _alphabetOrder = {
+    'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'G': 5, 'H': 6, 'I': 7,
+    'K': 8, 'L': 9, 'M': 10, 'N': 11, 'O': 12, 'P': 13, 'Q': 14, 'R': 15,
+    'S': 16, 'T': 17, 'U': 18, 'V': 19, 'X': 20, 'Y': 21,
+  };
 
   static const List<String> _alphabet = [
     'A', 'B', 'C', 'D', 'E', 'G', 'H', 'I', 'K', 'L', 'M',
@@ -102,16 +116,23 @@ class _ContactViewState extends State<_ContactView>
   void dispose() {
     _tabController.dispose();
     _searchController.dispose();
+    _debounceTimer?.cancel();
     super.dispose();
   }
 
   List<ContactPersonalItem> get _filteredContacts {
     final contacts = context.read<ContactBloc>().state.contacts;
 
+    // Return cached if search query hasn't changed
+    if (_searchQuery == _cachedSearchQuery && _cachedFilteredContacts.isNotEmpty) {
+      return _cachedFilteredContacts;
+    }
+
     // Lọc theo từ khóa
+    List<ContactPersonalItem> filtered;
     if (_searchQuery.isNotEmpty) {
       final q = _searchQuery.toLowerCase();
-      return contacts
+      filtered = contacts
           .where(
             (c) =>
                 (c.fullName?.toLowerCase().contains(q) ?? false) ||
@@ -120,9 +141,14 @@ class _ContactViewState extends State<_ContactView>
                 (c.code?.toLowerCase().contains(q) ?? false),
           )
           .toList();
+    } else {
+      filtered = contacts;
     }
 
-    return contacts;
+    // Cache the result
+    _cachedSearchQuery = _searchQuery;
+    _cachedFilteredContacts = filtered;
+    return filtered;
   }
 
   String _getFirstLetter(String name) {
@@ -141,15 +167,11 @@ class _ContactViewState extends State<_ContactView>
       if (letter.isEmpty) continue;
       grouped.putIfAbsent(letter, () => []).add(c);
     }
-    // Sắp xếp theo thứ tự bảng chữ cái
-    const order = 'ABCDEGHIKLMNOPQRSUTVXY';
+    // Sắp xếp theo thứ tự bảng chữ cái dùng Map lookup O(1)
     final sortedKeys = grouped.keys.toList()
       ..sort((a, b) {
-        final ai = order.indexOf(a);
-        final bi = order.indexOf(b);
-        if (ai == -1 && bi == -1) return a.compareTo(b);
-        if (ai == -1) return 1;
-        if (bi == -1) return -1;
+        final ai = _alphabetOrder[a] ?? 999;
+        final bi = _alphabetOrder[b] ?? 999;
         return ai.compareTo(bi);
       });
     final result = <String, List<ContactPersonalItem>>{};
@@ -162,6 +184,10 @@ class _ContactViewState extends State<_ContactView>
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ContactBloc, ContactState>(
+      buildWhen: (previous, current) =>
+          previous.status != current.status ||
+          previous.contacts != current.contacts ||
+          previous.keyword != current.keyword,
       builder: (context, state) {
         return Scaffold(
           backgroundColor: const Color(0xFFF0F2F5),
@@ -301,8 +327,13 @@ class _ContactViewState extends State<_ContactView>
                 ),
               ),
               onChanged: (value) {
-                setState(() {
-                  _searchQuery = value.trim();
+                _debounceTimer?.cancel();
+                _debounceTimer = Timer(const Duration(milliseconds: 400), () {
+                  setState(() {
+                    _searchQuery = value.trim();
+                    _cachedSearchQuery = '';
+                    _cachedFilteredContacts = [];
+                  });
                 });
               },
             ),
@@ -310,9 +341,12 @@ class _ContactViewState extends State<_ContactView>
           const SizedBox(width: 8),
           GestureDetector(
             onTap: () {
+              _debounceTimer?.cancel();
               setState(() {
                 _isSearchVisible = false;
                 _searchQuery = '';
+                _cachedSearchQuery = '';
+                _cachedFilteredContacts = [];
                 _searchController.clear();
               });
             },
@@ -760,7 +794,7 @@ class _DepartmentTileState extends State<_DepartmentTile> {
                         ),
                         const SizedBox(height: 3),
                         Text(
-                          '${widget.memberCount} nhân sự',
+                          '${widget.memberCount} thành viên',
                           style: const TextStyle(fontSize: 13, color: AppColors.gray),
                         ),
                       ],
