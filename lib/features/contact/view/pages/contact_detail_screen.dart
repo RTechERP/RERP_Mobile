@@ -10,9 +10,12 @@
 //   - Các nút hành động: Gọi điện, Nhắn tin, Gửi Email
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../../common/app_theme/index.dart';
+import '../../../../base/network/errors/extension.dart';
+import '../../../../common/utils/snack_bar_helper.dart';
 import '../../data/datasource/models/contact_model.dart';
 
 /// Màn hình chi tiết liên hệ.
@@ -71,23 +74,14 @@ class ContactDetailScreen extends StatelessWidget {
                   icon: Icons.phone_outlined,
                   label: 'Điện thoại',
                   value: _displayPhone,
-                  onTap: _displayPhone != '--'
-                      ? () async {
-                          final phone = contact.sdtCaNhan?.trim() ?? '';
-                          if (phone.isNotEmpty) {
-                            final uri = Uri(scheme: 'tel', path: phone);
-                            if (await canLaunchUrl(uri)) {
-                              await launchUrl(uri);
-                            }
-                          }
-                        }
-                      : null,
+                  showCopy: _displayPhone != '--',
                 ),
 
                 _InfoRow(
                   icon: Icons.email_outlined,
                   label: 'Email',
                   value: _displayEmail,
+                  showCopy: _displayEmail != '--',
                   onTap: _displayEmail != '--'
                       ? () async {}
                       : null,
@@ -266,7 +260,7 @@ class _ActionButtons extends StatelessWidget {
           child: _ActionButton(
             icon: Icons.phone_outlined,
             label: 'Gọi điện',
-            color: const Color(0xFF41B339),
+            color: AppColors.primaryERP,
             onTap: () {
               if (phone.isNotEmpty) {
                 _makePhoneCall(phone);
@@ -411,13 +405,20 @@ class _InfoRow extends StatelessWidget {
   final String label;
   final String value;
   final VoidCallback? onTap;
+  final bool showCopy;
 
   const _InfoRow({
     required this.icon,
     required this.label,
     required this.value,
     this.onTap,
+    this.showCopy = false,
   });
+
+  void _copyToClipboard(BuildContext context) {
+    Clipboard.setData(ClipboardData(text: value));
+    context.showMessage('Đã sao chép $label', type: SnackBarType.success);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -452,6 +453,18 @@ class _InfoRow extends StatelessWidget {
                 ],
               ),
             ),
+            if (showCopy && value != '--')
+              GestureDetector(
+                onTap: () => _copyToClipboard(context),
+                child: Container(
+                  padding: const EdgeInsets.all(6),
+                  child: const Icon(
+                    Icons.copy_outlined,
+                    size: 18,
+                    color: AppColors.gray,
+                  ),
+                ),
+              ),
           ],
         ),
       ),

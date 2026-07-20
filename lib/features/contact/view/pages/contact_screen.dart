@@ -412,8 +412,7 @@ class _ContactViewState extends State<_ContactView>
       }
     }
 
-    final deptList = departments.entries.toList()
-      ..sort((a, b) => a.key.compareTo(b.key));
+    final deptList = departments.entries.toList();
 
     if (deptList.isEmpty) {
       return Center(
@@ -761,7 +760,7 @@ class _DepartmentTileState extends State<_DepartmentTile> {
                         ),
                         const SizedBox(height: 3),
                         Text(
-                          '${widget.memberCount} thành viên',
+                          '${widget.memberCount} nhân sự',
                           style: const TextStyle(fontSize: 13, color: AppColors.gray),
                         ),
                       ],
@@ -871,15 +870,15 @@ class _DepartmentTileState extends State<_DepartmentTile> {
                                       }
                                     },
                                     child: Container(
-                                      width: 36,
-                                      height: 36,
+                                      width: 45,
+                                      height: 45,
                                       decoration: BoxDecoration(
-                                        color: const Color(0xFF41B339).withValues(alpha: 0.1),
+                                        color: AppColors.primaryERP.withValues(alpha: 0.1),
                                         shape: BoxShape.circle,
                                       ),
                                       child: const Icon(
                                         Icons.phone_outlined,
-                                        color: Color(0xFF41B339),
+                                        color: AppColors.primaryERP,
                                         size: 18,
                                       ),
                                     ),
