@@ -307,6 +307,8 @@ class ApiEndPoint {
 
   static const String getEmployees = '/Employee';
 
+  static const String getWeekPlanFilter = '/ProjectTask/project-task-status';
+
   // Salary
   static const String getPersonalSyntheticByMonth =
       '/Home/get-personal-synthetic-by-month';

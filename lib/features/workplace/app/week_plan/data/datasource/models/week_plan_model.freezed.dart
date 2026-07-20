@@ -12546,3 +12546,422 @@ abstract class _DayOffItem implements DayOffItem {
   _$$DayOffItemImplCopyWith<_$DayOffItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+WeekPlanFilterItem _$WeekPlanFilterItemFromJson(Map<String, dynamic> json) {
+  return _WeekPlanFilterItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$WeekPlanFilterItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'No')
+  int? get no => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Title')
+  String? get title => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Description')
+  String? get description => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Type')
+  int? get type => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ColorBackground')
+  String? get colorBackground => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ColorFont')
+  String? get colorFont => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $WeekPlanFilterItemCopyWith<WeekPlanFilterItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $WeekPlanFilterItemCopyWith<$Res> {
+  factory $WeekPlanFilterItemCopyWith(
+          WeekPlanFilterItem value, $Res Function(WeekPlanFilterItem) then) =
+      _$WeekPlanFilterItemCopyWithImpl<$Res, WeekPlanFilterItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'No') int? no,
+      @JsonKey(name: 'Title') String? title,
+      @JsonKey(name: 'Description') String? description,
+      @JsonKey(name: 'Type') int? type,
+      @JsonKey(name: 'ColorBackground') String? colorBackground,
+      @JsonKey(name: 'ColorFont') String? colorFont,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted});
+}
+
+/// @nodoc
+class _$WeekPlanFilterItemCopyWithImpl<$Res, $Val extends WeekPlanFilterItem>
+    implements $WeekPlanFilterItemCopyWith<$Res> {
+  _$WeekPlanFilterItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? no = freezed,
+    Object? title = freezed,
+    Object? description = freezed,
+    Object? type = freezed,
+    Object? colorBackground = freezed,
+    Object? colorFont = freezed,
+    Object? createdDate = freezed,
+    Object? createdBy = freezed,
+    Object? updatedDate = freezed,
+    Object? updatedBy = freezed,
+    Object? isDeleted = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      no: freezed == no
+          ? _value.no
+          : no // ignore: cast_nullable_to_non_nullable
+              as int?,
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as int?,
+      colorBackground: freezed == colorBackground
+          ? _value.colorBackground
+          : colorBackground // ignore: cast_nullable_to_non_nullable
+              as String?,
+      colorFont: freezed == colorFont
+          ? _value.colorFont
+          : colorFont // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$WeekPlanFilterItemImplCopyWith<$Res>
+    implements $WeekPlanFilterItemCopyWith<$Res> {
+  factory _$$WeekPlanFilterItemImplCopyWith(_$WeekPlanFilterItemImpl value,
+          $Res Function(_$WeekPlanFilterItemImpl) then) =
+      __$$WeekPlanFilterItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'No') int? no,
+      @JsonKey(name: 'Title') String? title,
+      @JsonKey(name: 'Description') String? description,
+      @JsonKey(name: 'Type') int? type,
+      @JsonKey(name: 'ColorBackground') String? colorBackground,
+      @JsonKey(name: 'ColorFont') String? colorFont,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted});
+}
+
+/// @nodoc
+class __$$WeekPlanFilterItemImplCopyWithImpl<$Res>
+    extends _$WeekPlanFilterItemCopyWithImpl<$Res, _$WeekPlanFilterItemImpl>
+    implements _$$WeekPlanFilterItemImplCopyWith<$Res> {
+  __$$WeekPlanFilterItemImplCopyWithImpl(_$WeekPlanFilterItemImpl _value,
+      $Res Function(_$WeekPlanFilterItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? no = freezed,
+    Object? title = freezed,
+    Object? description = freezed,
+    Object? type = freezed,
+    Object? colorBackground = freezed,
+    Object? colorFont = freezed,
+    Object? createdDate = freezed,
+    Object? createdBy = freezed,
+    Object? updatedDate = freezed,
+    Object? updatedBy = freezed,
+    Object? isDeleted = freezed,
+  }) {
+    return _then(_$WeekPlanFilterItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      no: freezed == no
+          ? _value.no
+          : no // ignore: cast_nullable_to_non_nullable
+              as int?,
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as int?,
+      colorBackground: freezed == colorBackground
+          ? _value.colorBackground
+          : colorBackground // ignore: cast_nullable_to_non_nullable
+              as String?,
+      colorFont: freezed == colorFont
+          ? _value.colorFont
+          : colorFont // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$WeekPlanFilterItemImpl implements _WeekPlanFilterItem {
+  const _$WeekPlanFilterItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'No') this.no,
+      @JsonKey(name: 'Title') this.title,
+      @JsonKey(name: 'Description') this.description,
+      @JsonKey(name: 'Type') this.type,
+      @JsonKey(name: 'ColorBackground') this.colorBackground,
+      @JsonKey(name: 'ColorFont') this.colorFont,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate,
+      @JsonKey(name: 'UpdatedBy') this.updatedBy,
+      @JsonKey(name: 'IsDeleted') this.isDeleted});
+
+  factory _$WeekPlanFilterItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$WeekPlanFilterItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'No')
+  final int? no;
+  @override
+  @JsonKey(name: 'Title')
+  final String? title;
+  @override
+  @JsonKey(name: 'Description')
+  final String? description;
+  @override
+  @JsonKey(name: 'Type')
+  final int? type;
+  @override
+  @JsonKey(name: 'ColorBackground')
+  final String? colorBackground;
+  @override
+  @JsonKey(name: 'ColorFont')
+  final String? colorFont;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  final String? createdBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final DateTime? updatedDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  final String? updatedBy;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  final bool? isDeleted;
+
+  @override
+  String toString() {
+    return 'WeekPlanFilterItem(id: $id, no: $no, title: $title, description: $description, type: $type, colorBackground: $colorBackground, colorFont: $colorFont, createdDate: $createdDate, createdBy: $createdBy, updatedDate: $updatedDate, updatedBy: $updatedBy, isDeleted: $isDeleted)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$WeekPlanFilterItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.no, no) || other.no == no) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.colorBackground, colorBackground) ||
+                other.colorBackground == colorBackground) &&
+            (identical(other.colorFont, colorFont) ||
+                other.colorFont == colorFont) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      no,
+      title,
+      description,
+      type,
+      colorBackground,
+      colorFont,
+      createdDate,
+      createdBy,
+      updatedDate,
+      updatedBy,
+      isDeleted);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$WeekPlanFilterItemImplCopyWith<_$WeekPlanFilterItemImpl> get copyWith =>
+      __$$WeekPlanFilterItemImplCopyWithImpl<_$WeekPlanFilterItemImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$WeekPlanFilterItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _WeekPlanFilterItem implements WeekPlanFilterItem {
+  const factory _WeekPlanFilterItem(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'No') final int? no,
+          @JsonKey(name: 'Title') final String? title,
+          @JsonKey(name: 'Description') final String? description,
+          @JsonKey(name: 'Type') final int? type,
+          @JsonKey(name: 'ColorBackground') final String? colorBackground,
+          @JsonKey(name: 'ColorFont') final String? colorFont,
+          @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+          @JsonKey(name: 'CreatedBy') final String? createdBy,
+          @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
+          @JsonKey(name: 'UpdatedBy') final String? updatedBy,
+          @JsonKey(name: 'IsDeleted') final bool? isDeleted}) =
+      _$WeekPlanFilterItemImpl;
+
+  factory _WeekPlanFilterItem.fromJson(Map<String, dynamic> json) =
+      _$WeekPlanFilterItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'No')
+  int? get no;
+  @override
+  @JsonKey(name: 'Title')
+  String? get title;
+  @override
+  @JsonKey(name: 'Description')
+  String? get description;
+  @override
+  @JsonKey(name: 'Type')
+  int? get type;
+  @override
+  @JsonKey(name: 'ColorBackground')
+  String? get colorBackground;
+  @override
+  @JsonKey(name: 'ColorFont')
+  String? get colorFont;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted;
+  @override
+  @JsonKey(ignore: true)
+  _$$WeekPlanFilterItemImplCopyWith<_$WeekPlanFilterItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

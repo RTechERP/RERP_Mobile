@@ -168,6 +168,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
         clearUploadedFiles: () => _onClearUploadedFiles(emit),
         fetchTimelineData: (dateStart, dateEnd) =>
             _onFetchTimelineData(emit, dateStart, dateEnd),
+        fetchProjectTaskStatuses: () => _onFetchProjectTaskStatuses(emit),
       );
     });
   }
@@ -226,6 +227,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
           List<ProjectTaskItem> projects = state.projects;
           List<TaskTypeItem> taskTypes = state.taskTypes;
           List<EmployeeTaskItem> employees = state.employees;
+          List<WeekPlanFilterItem> projectTaskStatuses = state.projectTaskStatuses;
 
           if (projects.isEmpty) {
             final projRes = await _weekPlanRepo.getProjects();
@@ -254,6 +256,17 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
             ) {
               employees = data;
               _log.logI('Fetch employees: ${employees.length}');
+            });
+          }
+
+          // Fetch project task statuses nếu chưa có
+          if (projectTaskStatuses.isEmpty) {
+            final statusRes = await _weekPlanRepo.getProjectTaskStatuses();
+            statusRes.fold((err) => _log.logE('Fetch project task statuses failed: $err'), (
+              data,
+            ) {
+              projectTaskStatuses = data;
+              _log.logI('Fetch project task statuses: ${projectTaskStatuses.length}');
             });
           }
 
@@ -341,6 +354,7 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
               projects: projects,
               taskTypes: taskTypes,
               employees: employees,
+              projectTaskStatuses: projectTaskStatuses,
               dateStart: dateStart,
               dateEnd: dateEnd,
               myTasks: myTasks,
@@ -2137,5 +2151,19 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
         message: 'Lỗi khi tải dữ liệu timeline',
       ));
     }
+  }
+
+  Future<void> _onFetchProjectTaskStatuses(Emitter<WeekPlanState> emit) async {
+    final res = await _weekPlanRepo.getProjectTaskStatuses();
+
+    await res.fold(
+      (err) async {
+        _log.logE('Fetch project task statuses failed: $err');
+      },
+      (statuses) async {
+        _log.logI('Fetch project task statuses success: ${statuses.length}');
+        emit(state.copyWith(projectTaskStatuses: statuses));
+      },
+    );
   }
 }

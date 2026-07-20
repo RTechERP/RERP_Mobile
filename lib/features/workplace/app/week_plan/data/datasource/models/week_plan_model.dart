@@ -680,3 +680,24 @@ class DayOffItem with _$DayOffItem {
   factory DayOffItem.fromJson(Map<String, dynamic> json) =>
       _$DayOffItemFromJson(json);
 }
+
+@freezed
+class WeekPlanFilterItem with _$WeekPlanFilterItem {
+  const factory WeekPlanFilterItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'No') int? no,
+    @JsonKey(name: 'Title') String? title,
+    @JsonKey(name: 'Description') String? description,
+    @JsonKey(name: 'Type') int? type,
+    @JsonKey(name: 'ColorBackground') String? colorBackground,
+    @JsonKey(name: 'ColorFont') String? colorFont,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+  }) = _WeekPlanFilterItem;
+
+  factory WeekPlanFilterItem.fromJson(Map<String, dynamic> json) =>
+      _$WeekPlanFilterItemFromJson(json);
+}

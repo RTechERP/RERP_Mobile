@@ -153,6 +153,9 @@ abstract class _$WeekPlanStateCWProxy {
 
   WeekPlanState dayOffDates(List<DayOffItem> dayOffDates);
 
+  WeekPlanState projectTaskStatuses(
+      List<WeekPlanFilterItem> projectTaskStatuses);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WeekPlanState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -231,6 +234,7 @@ abstract class _$WeekPlanStateCWProxy {
     bool? isDeadlineLocked,
     List<ProjectTaskTimelineResponse>? timelineTasks,
     List<DayOffItem>? dayOffDates,
+    List<WeekPlanFilterItem>? projectTaskStatuses,
   });
 }
 
@@ -521,6 +525,11 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
       this(dayOffDates: dayOffDates);
 
   @override
+  WeekPlanState projectTaskStatuses(
+          List<WeekPlanFilterItem> projectTaskStatuses) =>
+      this(projectTaskStatuses: projectTaskStatuses);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WeekPlanState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -600,6 +609,7 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
     Object? isDeadlineLocked = const $CopyWithPlaceholder(),
     Object? timelineTasks = const $CopyWithPlaceholder(),
     Object? dayOffDates = const $CopyWithPlaceholder(),
+    Object? projectTaskStatuses = const $CopyWithPlaceholder(),
   }) {
     return WeekPlanState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -922,6 +932,12 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
               ? _value.dayOffDates
               // ignore: cast_nullable_to_non_nullable
               : dayOffDates as List<DayOffItem>,
+      projectTaskStatuses:
+          projectTaskStatuses == const $CopyWithPlaceholder() ||
+                  projectTaskStatuses == null
+              ? _value.projectTaskStatuses
+              // ignore: cast_nullable_to_non_nullable
+              : projectTaskStatuses as List<WeekPlanFilterItem>,
     );
   }
 }

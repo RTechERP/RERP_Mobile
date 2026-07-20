@@ -255,4 +255,7 @@ class WeekPlanEvent with _$WeekPlanEvent {
     required DateTime dateStart,
     required DateTime dateEnd,
   }) = _FetchTimelineData;
+
+  // Filter statuses
+  const factory WeekPlanEvent.fetchProjectTaskStatuses() = _FetchProjectTaskStatuses;
 }

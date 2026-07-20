@@ -127,6 +127,9 @@ class WeekPlanState extends BaseBlocState {
   final List<ProjectTaskTimelineResponse> timelineTasks;
   final List<DayOffItem> dayOffDates;
 
+  /// Danh sách trạng thái công việc từ API (dùng cho filter BottomSheet).
+  final List<WeekPlanFilterItem> projectTaskStatuses;
+
   const WeekPlanState({
     required super.status,
     super.message,
@@ -209,9 +212,10 @@ class WeekPlanState extends BaseBlocState {
     this.detailTaskId,
     this.pauseReason,
     this.isDeadlineLocked = false,
-    this.timelineTasks = const [],
-    this.dayOffDates = const [],
-  });
+        this.timelineTasks = const [],
+        this.dayOffDates = const [],
+        this.projectTaskStatuses = const [],
+      });
 
   factory WeekPlanState.init() => const WeekPlanState(
         status: BaseStateStatus.init,
@@ -263,6 +267,7 @@ class WeekPlanState extends BaseBlocState {
         isDeadlineLocked: false,
         timelineTasks: const [],
         dayOffDates: const [],
+        projectTaskStatuses: const [],
       );
 
   @override
@@ -349,5 +354,6 @@ class WeekPlanState extends BaseBlocState {
         isDeadlineLocked,
         timelineTasks,
         dayOffDates,
+        projectTaskStatuses,
       ];
 }

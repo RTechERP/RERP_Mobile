@@ -108,5 +108,7 @@ abstract class WeekPlanRepo {
     required DateTime dateEnd,
   });
 
+  /// Lấy danh sách trạng thái công việc từ API /ProjectTask/project-task-status.
+  Future<Either<BaseError, List<WeekPlanFilterItem>>> getProjectTaskStatuses();
 }
 
