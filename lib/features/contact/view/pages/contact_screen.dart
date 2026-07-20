@@ -14,6 +14,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../../base/bloc/index.dart';
 import '../../../../../../common/app_theme/index.dart';
@@ -591,35 +592,59 @@ class _ContactTile extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 2),
-                  Text(
-                    '${data.chucVu ?? ''}${data.chucVu != null && data.chucVu!.isNotEmpty && data.departmentName != null && data.departmentName!.isNotEmpty ? ' • ' : ''}${data.departmentName ?? ''}',
-                    style: const TextStyle(fontSize: 12, color: AppColors.gray),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (data.chucVu != null && data.chucVu!.trim().isNotEmpty)
+                        Text(
+                          data.chucVu!.trim(),
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: AppColors.gray,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+
+                      if (data.departmentName != null &&
+                          data.departmentName!.trim().isNotEmpty)
+                        Text(
+                          data.departmentName!.trim(),
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: AppColors.gray,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                    ],
+                  )
                 ],
               ),
             ),
 
             // Icon gọi điện
-            InkWell(
+            GestureDetector(
               onTap: () async {
                 final phone = data.sdtCaNhan;
                 if (phone != null && phone.isNotEmpty) {
-                  // Launch phone call
+                  final uri = Uri(scheme: 'tel', path: phone);
+                  if (await canLaunchUrl(uri)) {
+                    await launchUrl(uri);
+                  }
                 }
               },
               child: Container(
-                width: 34,
-                height: 34,
+                width: 55,
+                height: 55,
                 decoration: BoxDecoration(
                   color: AppColors.primaryERP.withValues(alpha: 0.1),
                   shape: BoxShape.circle,
                 ),
-                child: Icon(
+                child: const Icon(
                   Icons.phone_outlined,
                   color: AppColors.primaryERP,
-                  size: 18,
+                  size: 22,
                 ),
               ),
             ),
@@ -835,10 +860,29 @@ class _DepartmentTileState extends State<_DepartmentTile> {
                                       ],
                                     ),
                                   ),
-                                  const Icon(
-                                    Icons.chevron_right,
-                                    color: AppColors.gray,
-                                    size: 20,
+                                  GestureDetector(
+                                    onTap: () async {
+                                      final phone = c.sdtCaNhan;
+                                      if (phone != null && phone.isNotEmpty) {
+                                        final uri = Uri(scheme: 'tel', path: phone);
+                                        if (await canLaunchUrl(uri)) {
+                                          await launchUrl(uri);
+                                        }
+                                      }
+                                    },
+                                    child: Container(
+                                      width: 36,
+                                      height: 36,
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xFF41B339).withValues(alpha: 0.1),
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: const Icon(
+                                        Icons.phone_outlined,
+                                        color: Color(0xFF41B339),
+                                        size: 18,
+                                      ),
+                                    ),
                                   ),
                                 ],
                               ),
