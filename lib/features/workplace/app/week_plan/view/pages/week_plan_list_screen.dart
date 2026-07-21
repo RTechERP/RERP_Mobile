@@ -429,7 +429,15 @@ class _StatusFilterSheetState extends State<_StatusFilterSheet> {
   void initState() {
     super.initState();
     _selected = List<String>.from(widget.selected);
-    _fetchStatuses();
+
+    // Check if data already available (fetched during initScreenWithView)
+    final bloc = context.read<WeekPlanBloc>();
+    if (bloc.state.projectTaskStatuses.isNotEmpty) {
+      _statuses = bloc.state.projectTaskStatuses;
+      _isLoading = false;
+    } else {
+      _fetchStatuses();
+    }
   }
 
   void _fetchStatuses() {
@@ -495,8 +503,7 @@ class _StatusFilterSheetState extends State<_StatusFilterSheet> {
   Widget build(BuildContext context) {
     return BlocListener<WeekPlanBloc, WeekPlanState>(
       listenWhen: (prev, curr) =>
-          prev.projectTaskStatuses != curr.projectTaskStatuses &&
-          curr.projectTaskStatuses.isNotEmpty,
+          curr.projectTaskStatuses.isNotEmpty && _isLoading,
       listener: (context, state) {
         setState(() {
           _statuses = state.projectTaskStatuses;

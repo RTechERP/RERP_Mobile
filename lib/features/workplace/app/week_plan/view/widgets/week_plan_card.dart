@@ -1,12 +1,9 @@
-// Date: 28/04/2026
-// Nội dung/Chức năng: Week Plan card - hiển thị công việc theo trạng thái
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../../../../common/app_theme/index.dart';
-import '../../../../../../../../../common/widgets/form/form_left_border_card.dart';
+import '../../../../../../common/widgets/form/index.dart';
 import '../../data/datasource/models/week_plan_model.dart';
 import '../bloc/week_plan_bloc.dart';
 import '../week_plan_helper.dart';
@@ -97,27 +94,33 @@ class WeekPlanCard extends StatelessWidget {
     bool showCheckIn,
   ) {
     final approvalStatus = task.approvalStatus;
+    final isDone = task.status == 2;
+
+    String label;
+    Color color;
+
+    if (isDone && approvalStatus == true) {
+      label = 'Done';
+      color = AppColors.stateSuccessColor;
+    } else if (isDone) {
+      label = 'Awaiting Approval';
+      color = AppColors.stateSuccessColor;
+    } else {
+      label = statusLabel;
+      color = statusColor;
+    }
 
     return Column(
       children: [
         Row(
           children: [
-            _StatusChip(color: statusColor, label: statusLabel),
+            _StatusChip(color: color, label: label),
             const SizedBox(width: 4),
             if (typeName.isNotEmpty)
               _TypeBadge(text: typeName, color: typeColor),
             const Spacer(),
             if (showCheckIn)
               _CheckinButton(task: task, isCheckedIn: isCheckedIn),
-          ],
-        ),
-        const SizedBox(height: 6),
-        Row(
-          children: [
-            if (approvalStatus != null) ...[
-              _ApprovalChip(isApproved: approvalStatus),
-              const SizedBox(width: 8),
-            ],
           ],
         ),
       ],
@@ -146,7 +149,7 @@ class WeekPlanCard extends StatelessWidget {
   Widget _buildProjectInfo() {
     return Row(
       children: [
-        if ((task.projectCode ?? '').isNotEmpty) ...[
+        if ((task.code ?? '').isNotEmpty) ...[
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
             decoration: BoxDecoration(
@@ -154,7 +157,7 @@ class WeekPlanCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(4),
             ),
             child: Text(
-              task.projectCode!,
+              task.code!,
               style: const TextStyle(
                 fontSize: 11,
                 fontWeight: FontWeight.w600,
@@ -301,46 +304,6 @@ class _TypeBadge extends StatelessWidget {
   }
 }
 
-//---(_ApprovalChip)---//
-class _ApprovalChip extends StatelessWidget {
-  const _ApprovalChip({required this.isApproved});
-
-  final bool isApproved;
-
-  @override
-  Widget build(BuildContext context) {
-    final color = isApproved ? AppColors.stateSuccessColor : AppColors.warning;
-    final label = isApproved ? 'Đã duyệt' : 'Chưa duyệt';
-    final icon = isApproved
-        ? Icons.check_circle_outline
-        : Icons.pending_outlined;
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-      decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(6),
-        border: Border.all(color: color.withValues(alpha: 0.3)),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(icon, size: 12, color: color),
-          const SizedBox(width: 4),
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: 11,
-              fontWeight: FontWeight.w600,
-              color: color,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 //---(_CheckinButton)---//
 class _CheckinButton extends StatelessWidget {
   const _CheckinButton({required this.task, required this.isCheckedIn});
@@ -379,7 +342,7 @@ class _CheckinButton extends StatelessWidget {
           isCheckedIn
               ? 'Đã điểm danh'
               : isPending
-              ? 'Tạm hoãn'
+              ? 'Pending'
               : isDone
               ? 'Hoàn thành'
               : 'Điểm danh',
