@@ -49,6 +49,8 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
         search: (keyword) => _onSearch(emit, keyword),
         clearSearch: () => _onClearSearch(emit),
         filterByStatuses: (statuses) => _onFilterByStatuses(emit, statuses),
+        filterByStatusNos: (statusNos, approveNos) =>
+            _onFilterByStatusNos(emit, statusNos, approveNos),
         changeDateRange: (dateStart, dateEnd) =>
             _onChangeDateRange(emit, dateStart, dateEnd),
         clearDateFilter: () => _onClearDateFilter(emit),
@@ -276,8 +278,14 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
           final monthEnd = DateTime(now.year, now.month + 1, 0);
           final dateStart = state.dateStart ?? monthStart;
           final dateEnd = state.dateEnd ?? monthEnd;
-          final statusFilter = -1;
-          final isApprove = -1;
+          // status: chuyển List<int> sang comma-separated string, mặc định "-1"
+          final statusFilter = state.selectedStatusNos.isNotEmpty
+              ? state.selectedStatusNos.join(',')
+              : '-1';
+          // isApprove: lấy giá trị đầu tiên, mặc định -1
+          final isApprove = state.selectedApproveNos.isNotEmpty
+              ? state.selectedApproveNos.first
+              : -1;
 
           List<WeekPlanTaskItem> myTasks = state.myTasks;
           List<WeekPlanTaskItem> relatedTasks = state.relatedTasks;
@@ -413,6 +421,18 @@ class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {
     List<String> statuses,
   ) async {
     emit(state.copyWith(selectedStatuses: statuses));
+  }
+
+  Future<void> _onFilterByStatusNos(
+    Emitter<WeekPlanState> emit,
+    List<int> statusNos,
+    List<int> approveNos,
+  ) async {
+    emit(state.copyWith(
+      selectedStatusNos: statusNos,
+      selectedApproveNos: approveNos,
+    ));
+    await _onInitScreen(emit);
   }
 
   Future<void> _onChangeDateRange(

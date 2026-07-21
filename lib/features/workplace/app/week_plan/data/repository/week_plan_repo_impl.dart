@@ -23,7 +23,7 @@ class WeekPlanRepoImpl implements WeekPlanRepo {
   Future<Either<BaseError, List<WeekPlanTaskItem>>> getTasks({
     required DateTime dateStart,
     required DateTime dateEnd,
-    required int status,
+    String? status,
     required int isApprove,
     required int viewNumber,
   }) async {

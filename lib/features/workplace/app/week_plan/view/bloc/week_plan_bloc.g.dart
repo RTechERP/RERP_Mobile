@@ -25,6 +25,10 @@ abstract class _$WeekPlanStateCWProxy {
 
   WeekPlanState selectedStatuses(List<String> selectedStatuses);
 
+  WeekPlanState selectedStatusNos(List<int> selectedStatusNos);
+
+  WeekPlanState selectedApproveNos(List<int> selectedApproveNos);
+
   WeekPlanState dateStart(DateTime? dateStart);
 
   WeekPlanState dateEnd(DateTime? dateEnd);
@@ -172,6 +176,8 @@ abstract class _$WeekPlanStateCWProxy {
     List<WeekPlanTaskItem>? allTasks,
     String? searchKeyword,
     List<String>? selectedStatuses,
+    List<int>? selectedStatusNos,
+    List<int>? selectedApproveNos,
     DateTime? dateStart,
     DateTime? dateEnd,
     int? employeeId,
@@ -276,6 +282,14 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
   @override
   WeekPlanState selectedStatuses(List<String> selectedStatuses) =>
       this(selectedStatuses: selectedStatuses);
+
+  @override
+  WeekPlanState selectedStatusNos(List<int> selectedStatusNos) =>
+      this(selectedStatusNos: selectedStatusNos);
+
+  @override
+  WeekPlanState selectedApproveNos(List<int> selectedApproveNos) =>
+      this(selectedApproveNos: selectedApproveNos);
 
   @override
   WeekPlanState dateStart(DateTime? dateStart) => this(dateStart: dateStart);
@@ -547,6 +561,8 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
     Object? allTasks = const $CopyWithPlaceholder(),
     Object? searchKeyword = const $CopyWithPlaceholder(),
     Object? selectedStatuses = const $CopyWithPlaceholder(),
+    Object? selectedStatusNos = const $CopyWithPlaceholder(),
+    Object? selectedApproveNos = const $CopyWithPlaceholder(),
     Object? dateStart = const $CopyWithPlaceholder(),
     Object? dateEnd = const $CopyWithPlaceholder(),
     Object? employeeId = const $CopyWithPlaceholder(),
@@ -653,6 +669,16 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
           ? _value.selectedStatuses
           // ignore: cast_nullable_to_non_nullable
           : selectedStatuses as List<String>,
+      selectedStatusNos: selectedStatusNos == const $CopyWithPlaceholder() ||
+              selectedStatusNos == null
+          ? _value.selectedStatusNos
+          // ignore: cast_nullable_to_non_nullable
+          : selectedStatusNos as List<int>,
+      selectedApproveNos: selectedApproveNos == const $CopyWithPlaceholder() ||
+              selectedApproveNos == null
+          ? _value.selectedApproveNos
+          // ignore: cast_nullable_to_non_nullable
+          : selectedApproveNos as List<int>,
       dateStart: dateStart == const $CopyWithPlaceholder()
           ? _value.dateStart
           // ignore: cast_nullable_to_non_nullable

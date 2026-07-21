@@ -105,7 +105,9 @@ class _WeekPlanListScreenState extends BaseState<
           ),
           BlocBuilder<WeekPlanBloc, WeekPlanState>(
             buildWhen: (prev, curr) =>
-                prev.selectedStatuses != curr.selectedStatuses,
+                prev.selectedStatuses != curr.selectedStatuses ||
+                prev.selectedStatusNos.length != curr.selectedStatusNos.length ||
+                prev.selectedApproveNos.length != curr.selectedApproveNos.length,
             builder: (context, s) => IconButton(
               icon: const Icon(Icons.filter_list),
               tooltip: 'Lọc trạng thái',
@@ -361,17 +363,20 @@ class _WeekPlanListScreenState extends BaseState<
 
   //---(_Dialogs)---//
   void _showStatusFilter() {
-    final selected = List<String>.from(bloc.state.selectedStatuses);
-
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
       builder: (sheetContext) {
         return _StatusFilterSheet(
-          selected: selected,
-          onApply: (statuses) {
-            bloc.add(WeekPlanEvent.filterByStatuses(statuses));
+          selectedStatuses: bloc.state.selectedStatuses,
+          selectedStatusNos: bloc.state.selectedStatusNos,
+          selectedApproveNos: bloc.state.selectedApproveNos,
+          onApply: (statusNos, approveNos) {
+            bloc.add(WeekPlanEvent.filterByStatusNos(
+              statusNos: statusNos,
+              approveNos: approveNos,
+            ));
           },
         );
       },
@@ -409,26 +414,32 @@ class _WeekPlanListScreenState extends BaseState<
 //---(_StatusFilterSheet)---//
 class _StatusFilterSheet extends StatefulWidget {
   const _StatusFilterSheet({
-    required this.selected,
+    required this.selectedStatuses,
+    required this.selectedStatusNos,
+    required this.selectedApproveNos,
     required this.onApply,
   });
 
-  final List<String> selected;
-  final void Function(List<String>) onApply;
+  final List<String> selectedStatuses;
+  final List<int> selectedStatusNos;
+  final List<int> selectedApproveNos;
+  final void Function(List<int> statusNos, List<int> approveNos) onApply;
 
   @override
   State<_StatusFilterSheet> createState() => _StatusFilterSheetState();
 }
 
 class _StatusFilterSheetState extends State<_StatusFilterSheet> {
-  late List<String> _selected;
+  late List<int> _selectedStatusNos;
+  late List<int> _selectedApproveNos;
   List<WeekPlanFilterItem> _statuses = [];
   bool _isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    _selected = List<String>.from(widget.selected);
+    _selectedStatusNos = List<int>.from(widget.selectedStatusNos);
+    _selectedApproveNos = List<int>.from(widget.selectedApproveNos);
 
     // Check if data already available (fetched during initScreenWithView)
     final bloc = context.read<WeekPlanBloc>();
@@ -452,24 +463,33 @@ class _StatusFilterSheetState extends State<_StatusFilterSheet> {
     return ListView(
       shrinkWrap: true,
       children: [
-        ...type1Items.map((item) => _buildStatusTile(item)),
+        ...type1Items.map((item) => _buildStatusTile(item, isApprove: false)),
         if (type1Items.isNotEmpty && type2Items.isNotEmpty)
           const Divider(height: 1, indent: 16, endIndent: 16),
-        ...type2Items.map((item) => _buildStatusTile(item)),
+        ...type2Items.map((item) => _buildStatusTile(item, isApprove: true)),
       ],
     );
   }
 
-  Widget _buildStatusTile(WeekPlanFilterItem item) {
-    final isSelected = _selected.contains(item.title);
+  Widget _buildStatusTile(WeekPlanFilterItem item, {required bool isApprove}) {
+    final selectedNos = isApprove ? _selectedApproveNos : _selectedStatusNos;
+    final isSelected = selectedNos.contains(item.no);
 
     return ListTile(
       onTap: () {
         setState(() {
-          if (isSelected) {
-            _selected.remove(item.title);
+          if (isApprove) {
+            if (isSelected) {
+              _selectedApproveNos.remove(item.no);
+            } else {
+              _selectedApproveNos.add(item.no ?? 0);
+            }
           } else {
-            _selected.add(item.title ?? '');
+            if (isSelected) {
+              _selectedStatusNos.remove(item.no);
+            } else {
+              _selectedStatusNos.add(item.no ?? 0);
+            }
           }
         });
       },
@@ -557,7 +577,7 @@ class _StatusFilterSheetState extends State<_StatusFilterSheet> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      widget.onApply(_selected);
+                      widget.onApply(_selectedStatusNos, _selectedApproveNos);
                       Navigator.pop(context);
                     },
                     style: ElevatedButton.styleFrom(

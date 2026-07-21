@@ -13,6 +13,10 @@ class WeekPlanState extends BaseBlocState {
 
   final String searchKeyword;
   final List<String> selectedStatuses;
+  /// Các No được chọn từ filter type=1 (trạng thái công việc).
+  final List<int> selectedStatusNos;
+  /// Các No được chọn từ filter type=2 (trạng thái duyệt).
+  final List<int> selectedApproveNos;
   final DateTime? dateStart;
   final DateTime? dateEnd;
 
@@ -140,6 +144,8 @@ class WeekPlanState extends BaseBlocState {
     this.allTasks = const [],
     this.searchKeyword = '',
     this.selectedStatuses = const [],
+    this.selectedStatusNos = const [],
+    this.selectedApproveNos = const [],
     this.dateStart,
     this.dateEnd,
     this.employeeId,
@@ -226,6 +232,8 @@ class WeekPlanState extends BaseBlocState {
         allTasks: [],
         searchKeyword: '',
         selectedStatuses: const [],
+        selectedStatusNos: const [],
+        selectedApproveNos: const [],
         isSubmitting: false,
         submitSuccess: false,
         checkInSuccess: false,
@@ -281,6 +289,8 @@ class WeekPlanState extends BaseBlocState {
         allTasks,
         searchKeyword,
         selectedStatuses,
+        selectedStatusNos,
+        selectedApproveNos,
         dateStart,
         dateEnd,
         employeeId,

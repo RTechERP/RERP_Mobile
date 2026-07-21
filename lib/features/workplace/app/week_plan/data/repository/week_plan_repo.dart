@@ -10,10 +10,11 @@ abstract class WeekPlanRepo {
   ///
   /// [viewNumber] — 1: Công việc của tôi, 2: Công việc liên quan,
   ///                 3: Công việc tôi giao, -1: Tổng công việc.
+  /// [status] — comma-separated string (VD: "1,2") hoặc null.
   Future<Either<BaseError, List<WeekPlanTaskItem>>> getTasks({
     required DateTime dateStart,
     required DateTime dateEnd,
-    required int status,
+    String? status,
     required int isApprove,
     required int viewNumber,
   });
