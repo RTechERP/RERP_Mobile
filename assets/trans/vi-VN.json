@@ -42,6 +42,7 @@
     "upload_avatar_success": "Cập nhật ảnh đại diện thành công",
     "upload_avatar_failed": "Cập nhật ảnh đại diện thất bại",
     "cancel": "Hủy",
+    "view_avatar": "Xem ảnh đại diện",
     "avatar_permission_title": "Cần cấp quyền truy cập",
     "avatar_permission_open_settings": "Để thay đổi ảnh đại diện, bạn cần cấp quyền truy cập ảnh hoặc camera. Mở Cài đặt để cấp quyền?",
     "avatar_camera_permission_title": "Cần cấp quyền Camera",

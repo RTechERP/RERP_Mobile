@@ -35,6 +35,7 @@ import '../features/auth/view/pages/login_screen.dart';
 import '../features/dashboard/view/dashboard_screen.dart';
 import '../features/more/view/settings/notification/bloc/notification_bloc.dart';
 import '../features/more/view/settings/notification/page/notification_settings_screen.dart';
+import '../features/more/view/pages/avatar_viewer_screen.dart';
 import '../features/workplace/app/general_form/view/bloc/general_form_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_add_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_edit_screen.dart';
@@ -929,6 +930,18 @@ class AppRouter {
           GoRoute(
             path: RouteNames.notificationSettings,
             builder: (context, state) => const NotificationSettingsScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.avatarViewer,
+            builder: (context, state) {
+              final extra = state.extra as Map<String, dynamic>?;
+              final avatarUrl = extra?['avatarUrl'] as String? ?? '';
+              final userName = extra?['userName'] as String? ?? '';
+              return AvatarViewerScreen(
+                avatarUrl: avatarUrl,
+                userName: userName,
+              );
+            },
           ),
         ],
       ),

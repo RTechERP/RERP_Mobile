@@ -201,6 +201,7 @@ class RouteNames {
 
   // More - Settings
   static const notificationSettings = '/more/notification_settings';
+  static const avatarViewer = '/more/avatar_viewer';
 
   // Salary
   static const salaryMenu = '/salary';

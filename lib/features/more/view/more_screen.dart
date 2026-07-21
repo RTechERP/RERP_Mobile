@@ -19,6 +19,7 @@ import 'package:go_router/go_router.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:rtc_erp/base/network/errors/extension.dart';
 
 import '../../../../common/app_theme/index.dart';
 import '../../../../common/app/app_config.dart';
@@ -81,11 +82,11 @@ class _MoreScreenState extends State<MoreScreen> {
             _wasUploadingAvatar = false;
             final msg = state.message;
             if (msg != null && msg.isNotEmpty) {
-              getIt<SnackBarHelper>().showError(context, msg);
+              context.showMessage(msg, type: SnackBarType.error);
             } else {
-              getIt<SnackBarHelper>().showSuccess(
-                context,
+              context.showMessage(
                 'more.upload_avatar_success'.tr(),
+                type: SnackBarType.success,
               );
             }
           } else if (state.isUploadingAvatar) {
@@ -135,7 +136,7 @@ class _MoreScreenState extends State<MoreScreen> {
                       avatarUrl: avatarUrl,
                       isUploading: isUploading,
                       onTapChangeAvatar: () =>
-                          _showAvatarSourceSheet(context),
+                          _showAvatarSourceSheet(context, avatarUrl: avatarUrl),
                     ),
 
                     const SizedBox(height: 20),
@@ -173,7 +174,10 @@ class _MoreScreenState extends State<MoreScreen> {
   }
 
   /// Hiển thị bottom sheet cho user chọn nguồn ảnh (gallery / camera).
-  Future<void> _showAvatarSourceSheet(BuildContext context) async {
+  Future<void> _showAvatarSourceSheet(
+    BuildContext context, {
+    String? avatarUrl,
+  }) async {
     final source = await showModalBottomSheet<ImageSource>(
       context: context,
       // Đẩy modal route lên root navigator (ngoài các tab) để:
@@ -185,6 +189,8 @@ class _MoreScreenState extends State<MoreScreen> {
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
       builder: (sheetContext) {
+        final hasAvatar = avatarUrl != null && avatarUrl.isNotEmpty;
+
         return SafeArea(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -199,8 +205,10 @@ class _MoreScreenState extends State<MoreScreen> {
                 ),
               ),
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 4,
+                ),
                 child: Text(
                   'more.change_avatar'.tr(),
                   style: const TextStyle(
@@ -211,18 +219,40 @@ class _MoreScreenState extends State<MoreScreen> {
                 ),
               ),
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 4,
+                ),
                 child: Text(
                   'more.change_avatar_hint'.tr(),
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 13,
-                    color: AppColors.gray,
-                  ),
+                  style: const TextStyle(fontSize: 13, color: AppColors.gray),
                 ),
               ),
               const SizedBox(height: 12),
+              if (hasAvatar)
+                ListTile(
+                  leading: Container(
+                    width: 38,
+                    height: 38,
+                    decoration: BoxDecoration(
+                      color: AppColors.primaryERP.withValues(alpha: 0.1),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: const Icon(
+                      Icons.visibility_outlined,
+                      color: AppColors.primaryERP,
+                    ),
+                  ),
+                  title: Text('more.view_avatar'.tr()),
+                  onTap: () async {
+                    sheetContext.pop();
+                    await Future.delayed(const Duration(milliseconds: 300));
+                    if (context.mounted) {
+                      _showAvatarViewer(context, avatarUrl);
+                    }
+                  },
+                ),
               ListTile(
                 leading: Container(
                   width: 38,
@@ -238,7 +268,7 @@ class _MoreScreenState extends State<MoreScreen> {
                 ),
                 title: Text('more.pick_from_gallery'.tr()),
                 onTap: () =>
-                    Navigator.of(sheetContext).pop(ImageSource.gallery),
+                    sheetContext.pop(ImageSource.gallery),
               ),
               ListTile(
                 leading: Container(
@@ -254,7 +284,7 @@ class _MoreScreenState extends State<MoreScreen> {
                   ),
                 ),
                 title: Text('more.take_photo'.tr()),
-                onTap: () => Navigator.of(sheetContext).pop(ImageSource.camera),
+                onTap: () => sheetContext.pop(ImageSource.camera),
               ),
               const SizedBox(height: 8),
             ],
@@ -265,6 +295,18 @@ class _MoreScreenState extends State<MoreScreen> {
 
     if (source == null) return;
     await _pickCropAndUploadAvatar(source);
+  }
+
+  /// Hiển thị ảnh đại diện full màn hình với khả năng zoom.
+  Future<void> _showAvatarViewer(
+    BuildContext context,
+    String avatarUrl,
+  ) async {
+    final userName = context.read<AuthBloc>().state.user?.fullName ?? '';
+    await context.push(
+      RouteNames.avatarViewer,
+      extra: {'avatarUrl': avatarUrl, 'userName': userName},
+    );
   }
 
   /// Flow chọn ảnh → crop → upload lên server.
@@ -303,8 +345,8 @@ class _MoreScreenState extends State<MoreScreen> {
       );
     } catch (e) {
       if (!mounted) return;
-    getIt<SnackBarHelper>().showError(context, e.toString());
-    return;
+      getIt<SnackBarHelper>().showError(context, e.toString());
+      return;
     }
     if (picked == null) return; // user huỷ
     if (!mounted) return;
@@ -322,9 +364,7 @@ class _MoreScreenState extends State<MoreScreen> {
           // Ẩn các nút thừa dưới đáy, chỉ giữ Done / Cancel trên toolbar.
           hideBottomControls: true,
           lockAspectRatio: true,
-          aspectRatioPresets: const [
-            CropAspectRatioPreset.square,
-          ],
+          aspectRatioPresets: const [CropAspectRatioPreset.square],
         ),
         IOSUiSettings(
           title: 'more.crop_avatar_title'.tr(),
@@ -414,8 +454,9 @@ class _MoreScreenState extends State<MoreScreen> {
       );
     }
 
-    final extra =
-        imagePath != null && imagePath.isNotEmpty ? '&v=$imagePath' : '';
+    final extra = imagePath != null && imagePath.isNotEmpty
+        ? '&v=$imagePath'
+        : '';
     final bust = cacheBust != null ? '&_t=$cacheBust' : '';
     return '$normalizedBaseUrl/api/home/avatar?employeeId=$employeeId$extra$bust';
   }
@@ -525,10 +566,7 @@ class _ProfileCard extends StatelessWidget {
                 const SizedBox(height: 4),
                 Text(
                   email,
-                  style: const TextStyle(
-                    fontSize: 13,
-                    color: AppColors.gray,
-                  ),
+                  style: const TextStyle(fontSize: 13, color: AppColors.gray),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -538,10 +576,7 @@ class _ProfileCard extends StatelessWidget {
                   spacing: 6,
                   runSpacing: 4,
                   children: [
-                    _InfoChip(
-                      icon: Icons.business_outlined,
-                      label: department,
-                    ),
+                    _InfoChip(icon: Icons.business_outlined, label: department),
                   ],
                 ),
               ],
@@ -574,11 +609,7 @@ class _ProfileCard extends StatelessWidget {
         color: hasAvatar ? null : AppColors.primaryERP,
         border: Border.all(color: Colors.white, width: 2),
         borderRadius: BorderRadius.circular(18),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.primaryERP,
-          ),
-        ],
+        boxShadow: [BoxShadow(color: AppColors.primaryERP)],
       ),
       clipBehavior: Clip.antiAlias,
       child: hasAvatar
@@ -831,11 +862,7 @@ class _LogoutButton extends StatelessWidget {
               ),
               const SizedBox(width: 10),
             ] else ...[
-              const Icon(
-                Icons.logout,
-                size: 18,
-                color: AppColors.alert,
-              ),
+              const Icon(Icons.logout, size: 18, color: AppColors.alert),
               const SizedBox(width: 8),
             ],
             const Text(
