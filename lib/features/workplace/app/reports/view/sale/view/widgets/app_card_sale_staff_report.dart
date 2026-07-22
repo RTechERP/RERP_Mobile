@@ -122,6 +122,8 @@ class AppCardSaleStaffReport extends StatelessWidget {
                                   color: Colors.grey[800],
                                 ),
                                 overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
+                                softWrap: true,
                               ),
                             ),
                           ],

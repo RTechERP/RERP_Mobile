@@ -1052,9 +1052,9 @@ class SaleReportItem with _$SaleReportItem {
     @JsonKey(name: 'DateStart') required DateTime dateStart,
     @JsonKey(name: 'DateEnd') required DateTime dateEnd,
 
-    @JsonKey(name: 'Telesale') int? telesale,
-    @JsonKey(name: 'Visit') int? visit,
-    @JsonKey(name: 'Demo') int? demo,
+    @JsonKey(name: 'Telesale') String? telesale,
+    @JsonKey(name: 'Visit') String? visit,
+    @JsonKey(name: 'Demo') String? demo,
 
     @JsonKey(name: 'Result') String? result,
     @JsonKey(name: 'ProblemBacklog') String? problemBacklog,

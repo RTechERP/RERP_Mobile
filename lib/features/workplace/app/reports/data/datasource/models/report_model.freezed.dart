@@ -18556,11 +18556,11 @@ mixin _$SaleReportItem {
   @JsonKey(name: 'DateEnd')
   DateTime get dateEnd => throw _privateConstructorUsedError;
   @JsonKey(name: 'Telesale')
-  int? get telesale => throw _privateConstructorUsedError;
+  String? get telesale => throw _privateConstructorUsedError;
   @JsonKey(name: 'Visit')
-  int? get visit => throw _privateConstructorUsedError;
+  String? get visit => throw _privateConstructorUsedError;
   @JsonKey(name: 'Demo')
-  int? get demo => throw _privateConstructorUsedError;
+  String? get demo => throw _privateConstructorUsedError;
   @JsonKey(name: 'Result')
   String? get result => throw _privateConstructorUsedError;
   @JsonKey(name: 'ProblemBacklog')
@@ -18649,9 +18649,9 @@ abstract class $SaleReportItemCopyWith<$Res> {
       @JsonKey(name: 'ContacID') int contacId,
       @JsonKey(name: 'DateStart') DateTime dateStart,
       @JsonKey(name: 'DateEnd') DateTime dateEnd,
-      @JsonKey(name: 'Telesale') int? telesale,
-      @JsonKey(name: 'Visit') int? visit,
-      @JsonKey(name: 'Demo') int? demo,
+      @JsonKey(name: 'Telesale') String? telesale,
+      @JsonKey(name: 'Visit') String? visit,
+      @JsonKey(name: 'Demo') String? demo,
       @JsonKey(name: 'Result') String? result,
       @JsonKey(name: 'ProblemBacklog') String? problemBacklog,
       @JsonKey(name: 'PlanNext') String? planNext,
@@ -18773,15 +18773,15 @@ class _$SaleReportItemCopyWithImpl<$Res, $Val extends SaleReportItem>
       telesale: freezed == telesale
           ? _value.telesale
           : telesale // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       visit: freezed == visit
           ? _value.visit
           : visit // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       demo: freezed == demo
           ? _value.demo
           : demo // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       result: freezed == result
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
@@ -18937,9 +18937,9 @@ abstract class _$$SaleReportItemImplCopyWith<$Res>
       @JsonKey(name: 'ContacID') int contacId,
       @JsonKey(name: 'DateStart') DateTime dateStart,
       @JsonKey(name: 'DateEnd') DateTime dateEnd,
-      @JsonKey(name: 'Telesale') int? telesale,
-      @JsonKey(name: 'Visit') int? visit,
-      @JsonKey(name: 'Demo') int? demo,
+      @JsonKey(name: 'Telesale') String? telesale,
+      @JsonKey(name: 'Visit') String? visit,
+      @JsonKey(name: 'Demo') String? demo,
       @JsonKey(name: 'Result') String? result,
       @JsonKey(name: 'ProblemBacklog') String? problemBacklog,
       @JsonKey(name: 'PlanNext') String? planNext,
@@ -19059,15 +19059,15 @@ class __$$SaleReportItemImplCopyWithImpl<$Res>
       telesale: freezed == telesale
           ? _value.telesale
           : telesale // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       visit: freezed == visit
           ? _value.visit
           : visit // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       demo: freezed == demo
           ? _value.demo
           : demo // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       result: freezed == result
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
@@ -19279,13 +19279,13 @@ class _$SaleReportItemImpl implements _SaleReportItem {
   final DateTime dateEnd;
   @override
   @JsonKey(name: 'Telesale')
-  final int? telesale;
+  final String? telesale;
   @override
   @JsonKey(name: 'Visit')
-  final int? visit;
+  final String? visit;
   @override
   @JsonKey(name: 'Demo')
-  final int? demo;
+  final String? demo;
   @override
   @JsonKey(name: 'Result')
   final String? result;
@@ -19546,9 +19546,9 @@ abstract class _SaleReportItem implements SaleReportItem {
           @JsonKey(name: 'ContacID') required final int contacId,
           @JsonKey(name: 'DateStart') required final DateTime dateStart,
           @JsonKey(name: 'DateEnd') required final DateTime dateEnd,
-          @JsonKey(name: 'Telesale') final int? telesale,
-          @JsonKey(name: 'Visit') final int? visit,
-          @JsonKey(name: 'Demo') final int? demo,
+          @JsonKey(name: 'Telesale') final String? telesale,
+          @JsonKey(name: 'Visit') final String? visit,
+          @JsonKey(name: 'Demo') final String? demo,
           @JsonKey(name: 'Result') final String? result,
           @JsonKey(name: 'ProblemBacklog') final String? problemBacklog,
           @JsonKey(name: 'PlanNext') final String? planNext,
@@ -19608,13 +19608,13 @@ abstract class _SaleReportItem implements SaleReportItem {
   DateTime get dateEnd;
   @override
   @JsonKey(name: 'Telesale')
-  int? get telesale;
+  String? get telesale;
   @override
   @JsonKey(name: 'Visit')
-  int? get visit;
+  String? get visit;
   @override
   @JsonKey(name: 'Demo')
-  int? get demo;
+  String? get demo;
   @override
   @JsonKey(name: 'Result')
   String? get result;

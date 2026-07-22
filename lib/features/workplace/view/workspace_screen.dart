@@ -73,6 +73,12 @@ class _WorkPlaceScreenState
     final deptId = user.departmentId;
     final posId = user.positionId;
 
+    if (roles.contains(AppRole.tech) ||
+        roles.contains(AppRole.agv) ||
+        roles.contains(AppRole.ad)) {
+      return RouteNames.reportITdepart;
+    }
+
     if (roles.contains(AppRole.hr)) {
       if (employeeId == 5) return RouteNames.reportHRAdmin;
 
@@ -90,12 +96,6 @@ class _WorkPlaceScreenState
 
     if (roles.contains(AppRole.sale)) {
       return RouteNames.reportSaledepart;
-    }
-
-    if (roles.contains(AppRole.tech) ||
-        roles.contains(AppRole.agv) ||
-        roles.contains(AppRole.ad)) {
-      return RouteNames.reportITdepart;
     }
 
     // if (roles.contains(AppRole.agv)) {
