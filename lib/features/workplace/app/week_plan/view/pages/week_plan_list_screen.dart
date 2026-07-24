@@ -856,58 +856,190 @@ class _StatusFilterSheetState extends State<_StatusFilterSheet> {
 
     return ListView(
       shrinkWrap: true,
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       children: [
-        ...type1Items.map((item) => _buildStatusTile(item, isApprove: false)),
+        // Type 1: Work Status
+        if (type1Items.isNotEmpty) ...[
+          const SizedBox(height: 8),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'Trạng thái công việc',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.heading,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: type1Items.map((item) => _buildWorkStatusChip(item)).toList(),
+          ),
+        ],
+        // Divider
         if (type1Items.isNotEmpty && type2Items.isNotEmpty)
-          const Divider(height: 1, indent: 16, endIndent: 16),
-        ...type2Items.map((item) => _buildStatusTile(item, isApprove: true)),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 16),
+            child: Divider(height: 1),
+          ),
+        // Type 2: Approval Status
+        if (type2Items.isNotEmpty) ...[
+          const SizedBox(height: 8),
+          const Text(
+            'Trạng thái duyệt',
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: AppColors.heading,
+            ),
+          ),
+          const SizedBox(height: 12),
+          Row(
+            children: type2Items.map((item) {
+              final isSelected = _selectedApproveNos.contains(item.no);
+              return Expanded(
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    right: item == type2Items.last ? 0 : 8,
+                  ),
+                  child: _buildApprovalChip(item, isSelected),
+                ),
+              );
+            }).toList(),
+          ),
+        ],
       ],
     );
   }
 
-  Widget _buildStatusTile(WeekPlanFilterItem item, {required bool isApprove}) {
-    final selectedNos = isApprove ? _selectedApproveNos : _selectedStatusNos;
-    final isSelected = selectedNos.contains(item.no);
+  Widget _buildWorkStatusChip(WeekPlanFilterItem item) {
+    final isSelected = _selectedStatusNos.contains(item.no);
 
-    return ListTile(
+    return GestureDetector(
       onTap: () {
         setState(() {
-          if (isApprove) {
-            if (isSelected) {
-              _selectedApproveNos.remove(item.no);
-            } else {
-              _selectedApproveNos.add(item.no ?? 0);
-            }
+          if (isSelected) {
+            _selectedStatusNos.remove(item.no);
           } else {
-            if (isSelected) {
-              _selectedStatusNos.remove(item.no);
-            } else {
-              _selectedStatusNos.add(item.no ?? 0);
-            }
+            _selectedStatusNos.add(item.no ?? 0);
           }
         });
       },
-      leading: Container(
-        width: 24,
-        height: 24,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         decoration: BoxDecoration(
-          shape: BoxShape.circle,
+          color: isSelected
+              ? AppColors.primaryERP.withValues(alpha: 0.1)
+              : AppColors.background,
+          borderRadius: BorderRadius.circular(20),
           border: Border.all(
             color: isSelected ? AppColors.primaryERP : AppColors.borderColor,
-            width: 2,
+            width: 1,
           ),
-          color: isSelected ? AppColors.primaryERP : Colors.transparent,
         ),
-        child: isSelected
-            ? const Icon(Icons.check, size: 14, color: Colors.white)
-            : null,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 18,
+              height: 18,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: isSelected ? AppColors.primaryERP : Colors.transparent,
+                border: Border.all(
+                  color: isSelected ? AppColors.primaryERP : AppColors.borderColor,
+                  width: 1.5,
+                ),
+              ),
+              child: isSelected
+                  ? const Icon(Icons.check, size: 12, color: Colors.white)
+                  : null,
+            ),
+            const SizedBox(width: 8),
+            Flexible(
+              child: Text(
+                item.title ?? '',
+                style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
+                  color: AppColors.heading,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
-      title: Text(
-        item.title ?? '',
-        style: TextStyle(
-          fontSize: 14,
-          fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
-          color: AppColors.heading,
+    );
+  }
+
+  Widget _buildApprovalChip(WeekPlanFilterItem item, bool isSelected) {
+    String displayTitle = item.title ?? '';
+    if (displayTitle == 'Done') {
+      displayTitle = 'Approved';
+    } else if (displayTitle == 'Reject') {
+      displayTitle = 'Pending';
+    }
+
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          if (isSelected) {
+            _selectedApproveNos.remove(item.no);
+          } else {
+            _selectedApproveNos.clear();
+            _selectedApproveNos.add(item.no ?? 0);
+          }
+        });
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+        decoration: BoxDecoration(
+          color: isSelected
+              ? AppColors.primaryERP.withValues(alpha: 0.1)
+              : AppColors.background,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+            color: isSelected ? AppColors.primaryERP : AppColors.borderColor,
+            width: 1,
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 18,
+              height: 18,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: isSelected ? AppColors.primaryERP : Colors.transparent,
+                border: Border.all(
+                  color: isSelected ? AppColors.primaryERP : AppColors.borderColor,
+                  width: 1.5,
+                ),
+              ),
+              child: isSelected
+                  ? const Icon(Icons.check, size: 12, color: Colors.white)
+                  : null,
+            ),
+            const SizedBox(width: 6),
+            Flexible(
+              child: Text(
+                displayTitle,
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+                  color: AppColors.heading,
+                ),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ],
         ),
       ),
     );
