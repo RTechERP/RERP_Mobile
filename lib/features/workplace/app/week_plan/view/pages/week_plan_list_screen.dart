@@ -259,112 +259,185 @@ class _WeekPlanListScreenState
 
     return Column(
       children: [
-        if (widget.viewNumber == 3 && pendingTasks.isNotEmpty)
-          Container(
-            margin: const EdgeInsets.fromLTRB(16, 8, 16, 8),
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(
-                color: AppColors.primaryERP.withValues(alpha: 0.2),
-                width: 1,
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.primaryERP.withValues(alpha: 0.08),
-                  blurRadius: 8,
-                  offset: const Offset(0, 2),
-                ),
-              ],
-            ),
-            child: Row(
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    final allIds = pendingTasks.map((t) => t.id ?? 0).toSet();
-                    if (hasSelection) {
-                      context.read<WeekPlanApprovalBloc>().add(
-                        const WeekPlanApprovalEvent.clearSelection(),
-                      );
-                    } else {
-                      for (final id in allIds) {
-                        context.read<WeekPlanApprovalBloc>().add(
-                          WeekPlanApprovalEvent.toggleSelectTask(id),
-                        );
-                      }
-                    }
-                  },
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 26,
-                        height: 26,
-                        padding: const EdgeInsets.all(3),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: hasSelection
-                                ? AppColors.primaryERP
-                                : AppColors.borderColor,
-                            width: 2,
-                          ),
-                          color: hasSelection
-                              ? AppColors.primaryERP
-                              : Colors.transparent,
-                        ),
-                        child: hasSelection
-                            ? const Icon(
-                                Icons.check,
-                                size: 16,
-                                color: Colors.white,
-                              )
-                            : null,
-                      ),
-                      const SizedBox(width: 10),
-                      Text(
-                        hasSelection ? 'Bỏ chọn tất cả' : 'Chọn tất cả',
-                        style: const TextStyle(
-                          color: AppColors.primaryERP,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 14,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const Spacer(),
-                Container(
+        if (widget.viewNumber == 1 || widget.viewNumber == 3)
+          Builder(
+            builder: (context) {
+              if (widget.viewNumber == 1) {
+                // Count incomplete (not done = status 0 or 1) and overdue tasks
+                final incompleteTasks = filtered
+                    .where((t) => t.status == 0 || t.status == 1)
+                    .toList();
+                final now = DateTime.now();
+                final today = DateTime(now.year, now.month, now.day);
+                final overdueTasks = filtered.where((t) {
+                  if (t.status != 0 && t.status != 1) return false;
+                  final deadlineDate = t.deadline;
+                  return deadlineDate != null && deadlineDate.isBefore(today);
+                }).toList();
+
+                return Container(
+                  margin: const EdgeInsets.fromLTRB(16, 8, 16, 8),
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 6,
+                    horizontal: 16,
+                    vertical: 12,
                   ),
                   decoration: BoxDecoration(
-                    color: AppColors.primaryERP.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: AppColors.primaryERP.withValues(alpha: 0.2),
+                      width: 1,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.primaryERP.withValues(alpha: 0.08),
+                        blurRadius: 8,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
                   ),
                   child: Row(
-                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Icon(
-                        Icons.schedule,
-                        size: 16,
-                        color: AppColors.primaryERP,
+                      Expanded(
+                        child: _buildStatItem(
+                          icon: Icons.assignment_outlined,
+                          label: 'Chưa hoàn thành',
+                          count: incompleteTasks.length,
+                          color: AppColors.warning,
+                        ),
                       ),
-                      const SizedBox(width: 6),
-                      Text(
-                        '${pendingTasks.length} chờ duyệt',
-                        style: const TextStyle(
-                          color: AppColors.primaryERP,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 12,
+                      Container(
+                        width: 1,
+                        height: 40,
+                        color: AppColors.borderColor.withValues(alpha: 0.5),
+                        margin: const EdgeInsets.symmetric(horizontal: 12),
+                      ),
+                      Expanded(
+                        child: _buildStatItem(
+                          icon: Icons.warning_amber_rounded,
+                          label: 'Quá hạn',
+                          count: overdueTasks.length,
+                          color: AppColors.red,
                         ),
                       ),
                     ],
                   ),
-                ),
-              ],
-            ),
+                );
+              } else if (widget.viewNumber == 3 && pendingTasks.isNotEmpty) {
+                return Container(
+                  margin: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 10,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: AppColors.primaryERP.withValues(alpha: 0.2),
+                      width: 1,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.primaryERP.withValues(alpha: 0.08),
+                        blurRadius: 8,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          final allIds = pendingTasks
+                              .map((t) => t.id ?? 0)
+                              .toSet();
+                          if (hasSelection) {
+                            context.read<WeekPlanApprovalBloc>().add(
+                              const WeekPlanApprovalEvent.clearSelection(),
+                            );
+                          } else {
+                            for (final id in allIds) {
+                              context.read<WeekPlanApprovalBloc>().add(
+                                WeekPlanApprovalEvent.toggleSelectTask(id),
+                              );
+                            }
+                          }
+                        },
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 26,
+                              height: 26,
+                              padding: const EdgeInsets.all(3),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: hasSelection
+                                      ? AppColors.primaryERP
+                                      : AppColors.borderColor,
+                                  width: 2,
+                                ),
+                                color: hasSelection
+                                    ? AppColors.primaryERP
+                                    : Colors.transparent,
+                              ),
+                              child: hasSelection
+                                  ? const Icon(
+                                      Icons.check,
+                                      size: 16,
+                                      color: Colors.white,
+                                    )
+                                  : null,
+                            ),
+                            const SizedBox(width: 10),
+                            Text(
+                              hasSelection ? 'Bỏ chọn tất cả' : 'Chọn tất cả',
+                              style: const TextStyle(
+                                color: AppColors.primaryERP,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 14,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Spacer(),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 6,
+                        ),
+                        decoration: BoxDecoration(
+                          color: AppColors.primaryERP.withValues(alpha: 0.1),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Icon(
+                              Icons.schedule,
+                              size: 16,
+                              color: AppColors.primaryERP,
+                            ),
+                            const SizedBox(width: 6),
+                            Text(
+                              '${pendingTasks.length} chờ duyệt',
+                              style: const TextStyle(
+                                color: AppColors.primaryERP,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }
+              return const SizedBox.shrink();
+            },
           ),
         Expanded(
           child: Column(
@@ -405,11 +478,12 @@ class _WeekPlanListScreenState
                             viewNumber: widget.viewNumber,
                             isSelectionMode: widget.viewNumber == 3,
                             isSelected: isSelected,
-                            onSelect: () => context.read<WeekPlanApprovalBloc>().add(
-                              WeekPlanApprovalEvent.toggleSelectTask(
-                                task.id ?? 0,
-                              ),
-                            ),
+                            onSelect: () =>
+                                context.read<WeekPlanApprovalBloc>().add(
+                                  WeekPlanApprovalEvent.toggleSelectTask(
+                                    task.id ?? 0,
+                                  ),
+                                ),
                             onTap: () async {
                               final result = await context.push<bool>(
                                 RouteNames.weekplanDetail,
@@ -612,6 +686,50 @@ class _WeekPlanListScreenState
     );
   }
 
+  Widget _buildStatItem({
+    required IconData icon,
+    required String label,
+    required int count,
+    required Color color,
+  }) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: color.withValues(alpha: 0.1),
+            shape: BoxShape.circle,
+          ),
+          child: Icon(icon, size: 18, color: color),
+        ),
+        const SizedBox(width: 10),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              '$count',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w700,
+                color: color,
+              ),
+            ),
+            Text(
+              label,
+              style: const TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.w500,
+                color: AppColors.textSecondaryColor,
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
   //---(_BulkActions)---//
   Widget _buildBulkActionBar(
     BuildContext context,
@@ -779,12 +897,18 @@ class _WeekPlanListScreenState
       onConfirm: (rating, comment) {
         context.read<WeekPlanApprovalBloc>().add(
           WeekPlanApprovalEvent.bulkApproveTasks(
-            taskIds: context.read<WeekPlanApprovalBloc>().state.selectedTaskIds.toList(),
+            taskIds: context
+                .read<WeekPlanApprovalBloc>()
+                .state
+                .selectedTaskIds
+                .toList(),
             review: comment,
             completionRating: rating,
           ),
         );
-        context.read<WeekPlanApprovalBloc>().add(const WeekPlanApprovalEvent.clearSelection());
+        context.read<WeekPlanApprovalBloc>().add(
+          const WeekPlanApprovalEvent.clearSelection(),
+        );
       },
     );
   }
@@ -795,11 +919,17 @@ class _WeekPlanListScreenState
       onConfirm: (reason) {
         context.read<WeekPlanApprovalBloc>().add(
           WeekPlanApprovalEvent.bulkRejectTasks(
-            taskIds: context.read<WeekPlanApprovalBloc>().state.selectedTaskIds.toList(),
+            taskIds: context
+                .read<WeekPlanApprovalBloc>()
+                .state
+                .selectedTaskIds
+                .toList(),
             reason: reason,
           ),
         );
-        context.read<WeekPlanApprovalBloc>().add(const WeekPlanApprovalEvent.clearSelection());
+        context.read<WeekPlanApprovalBloc>().add(
+          const WeekPlanApprovalEvent.clearSelection(),
+        );
       },
     );
   }
@@ -878,7 +1008,9 @@ class _StatusFilterSheetState extends State<_StatusFilterSheet> {
           Wrap(
             spacing: 8,
             runSpacing: 8,
-            children: type1Items.map((item) => _buildWorkStatusChip(item)).toList(),
+            children: type1Items
+                .map((item) => _buildWorkStatusChip(item))
+                .toList(),
           ),
         ],
         // Divider
@@ -952,7 +1084,9 @@ class _StatusFilterSheetState extends State<_StatusFilterSheet> {
                 shape: BoxShape.circle,
                 color: isSelected ? AppColors.primaryERP : Colors.transparent,
                 border: Border.all(
-                  color: isSelected ? AppColors.primaryERP : AppColors.borderColor,
+                  color: isSelected
+                      ? AppColors.primaryERP
+                      : AppColors.borderColor,
                   width: 1.5,
                 ),
               ),
@@ -1019,7 +1153,9 @@ class _StatusFilterSheetState extends State<_StatusFilterSheet> {
                 shape: BoxShape.circle,
                 color: isSelected ? AppColors.primaryERP : Colors.transparent,
                 border: Border.all(
-                  color: isSelected ? AppColors.primaryERP : AppColors.borderColor,
+                  color: isSelected
+                      ? AppColors.primaryERP
+                      : AppColors.borderColor,
                   width: 1.5,
                 ),
               ),
