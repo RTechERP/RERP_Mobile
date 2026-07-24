@@ -520,4 +520,36 @@ class WeekPlanRepoImpl implements WeekPlanRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, WeekPlanApproveResponse>> approveProjectTask({
+    required List<int> projectTaskIds,
+    required bool isApproved,
+    String? review,
+    int? completionRating,
+  }) async {
+    try {
+      final res = await _service.approveProjectTask(
+        projectTaskIds: projectTaskIds,
+        isApproved: isApproved,
+        review: review,
+        completionRating: completionRating,
+      );
+
+      if (res.status == 1) {
+        final first = res.data?.isNotEmpty == true
+            ? res.data!.first
+            : const WeekPlanApproveResponse();
+        return right(first);
+      }
+
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? res.msg ?? 'Có lỗi xảy ra',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

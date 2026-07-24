@@ -503,4 +503,62 @@ class WeekPlanService extends DioBaseApiService {
       },
     );
   }
+
+  /// PUT /ProjectTask/Approve
+  ///
+  /// Body: [int, int, ...]  (raw list of projectTaskIDs)
+  /// Query params: isApproved, review, completionRating
+  /// Response: { status: 1, data: [WeekPlanApproveResponse, ...] }
+  Future<BaseData<List<WeekPlanApproveResponse>>> approveProjectTask({
+    required List<int> projectTaskIds,
+    required bool isApproved,
+    String? review,
+    int? completionRating,
+  }) async {
+    return post<BaseData<List<WeekPlanApproveResponse>>>(
+      ApiEndPoint.approveProjectTask,
+      body: projectTaskIds,
+      query: {
+        'isApproved': isApproved,
+        if (review != null && review.isNotEmpty) 'review': review,
+        if (completionRating != null) 'completionRating': completionRating,
+      },
+      parser: (json) => _parseList<WeekPlanApproveResponse>(
+        json,
+        WeekPlanApproveResponse.fromJson,
+      ),
+    );
+  }
+
+  BaseData<List<T>> _parseList<T>(
+      dynamic json,
+      T Function(Map<String, dynamic>) fromJson,
+      ) {
+    if (json is List) {
+      return BaseData<List<T>>.fromJson(
+        {'status': 1, 'data': json},
+            (data) => (data as List)
+            .map((e) => fromJson(e as Map<String, dynamic>))
+            .toList(),
+      );
+    }
+
+    return BaseData<List<T>>.fromJson(
+      json as Map<String, dynamic>,
+          (data) {
+        if (data is List) {
+          return data.map((e) => fromJson(e as Map<String, dynamic>)).toList();
+        }
+        if (data is Map) {
+          final items = (data as Map<String, dynamic>).values
+              .whereType<List>()
+              .expand((e) => e)
+              .map((e) => fromJson(e as Map<String, dynamic>))
+              .toList();
+          if (items.isNotEmpty) return items;
+        }
+        return <T>[];
+      },
+    );
+  }
 }

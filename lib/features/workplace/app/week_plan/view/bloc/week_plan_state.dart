@@ -27,6 +27,7 @@ class WeekPlanState extends BaseBlocState {
   final int? checkInTaskId;
   final bool? checkInTaskNewValue;
 
+
   // Step 1: Thông tin dự án
   final int? headerProjectId;
   final String? headerProjectName;

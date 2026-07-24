@@ -309,6 +309,10 @@ class ApiEndPoint {
 
   static const String getWeekPlanFilter = '/ProjectTask/project-task-status';
 
+  // Approve/Reject ProjectTask
+  static const String approveProjectTask = '/ProjectTask/Approve';
+  static const String rejectProjectTask = '/ProjectTask/reject';
+
   // Salary
   static const String getPersonalSyntheticByMonth =
       '/Home/get-personal-synthetic-by-month';

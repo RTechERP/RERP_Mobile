@@ -111,5 +111,13 @@ abstract class WeekPlanRepo {
 
   /// Lấy danh sách trạng thái công việc từ API /ProjectTask/project-task-status.
   Future<Either<BaseError, List<WeekPlanFilterItem>>> getProjectTaskStatuses();
+
+  /// Duyệt hoặc từ chối công việc.
+  Future<Either<BaseError, WeekPlanApproveResponse>> approveProjectTask({
+    required List<int> projectTaskIds,
+    required bool isApproved,
+    String? review,
+    int? completionRating,
+  });
 }
 

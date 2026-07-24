@@ -117,6 +117,7 @@ import '../features/workplace/app/reports/view/tech/view/bloc/tech_bloc.dart';
 import '../features/workplace/app/week_plan/data/datasource/service/week_plan_service.dart';
 import '../features/workplace/app/week_plan/data/repository/week_plan_repo.dart';
 import '../features/workplace/app/week_plan/data/repository/week_plan_repo_impl.dart';
+import '../features/workplace/app/week_plan/view/bloc/week_plan_approval_bloc.dart';
 import '../features/workplace/app/week_plan/view/bloc/week_plan_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/salary/data/datasource/service/salary_service.dart';
 import '../features/workplace/app/reg_work/view/pages/salary/data/datasource/service/salary_pin_service.dart';
@@ -533,6 +534,13 @@ void configureDependencies() {
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
       getIt<LocalStorage>(),
+    ),
+  );
+
+  getIt.registerFactory<WeekPlanApprovalBloc>(
+    () => WeekPlanApprovalBloc(
+      getIt<WeekPlanRepo>(),
+      getIt<LogUtils>(),
     ),
   );
 
