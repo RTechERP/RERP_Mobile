@@ -160,6 +160,8 @@ abstract class _$WeekPlanStateCWProxy {
   WeekPlanState projectTaskStatuses(
       List<WeekPlanFilterItem> projectTaskStatuses);
 
+  WeekPlanState selectedTaskIds(Set<int> selectedTaskIds);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WeekPlanState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -241,6 +243,7 @@ abstract class _$WeekPlanStateCWProxy {
     List<ProjectTaskTimelineResponse>? timelineTasks,
     List<DayOffItem>? dayOffDates,
     List<WeekPlanFilterItem>? projectTaskStatuses,
+    Set<int>? selectedTaskIds,
   });
 }
 
@@ -544,6 +547,10 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
       this(projectTaskStatuses: projectTaskStatuses);
 
   @override
+  WeekPlanState selectedTaskIds(Set<int> selectedTaskIds) =>
+      this(selectedTaskIds: selectedTaskIds);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WeekPlanState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -626,6 +633,7 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
     Object? timelineTasks = const $CopyWithPlaceholder(),
     Object? dayOffDates = const $CopyWithPlaceholder(),
     Object? projectTaskStatuses = const $CopyWithPlaceholder(),
+    Object? selectedTaskIds = const $CopyWithPlaceholder(),
   }) {
     return WeekPlanState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -964,6 +972,11 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
               ? _value.projectTaskStatuses
               // ignore: cast_nullable_to_non_nullable
               : projectTaskStatuses as List<WeekPlanFilterItem>,
+      selectedTaskIds: selectedTaskIds == const $CopyWithPlaceholder() ||
+              selectedTaskIds == null
+          ? _value.selectedTaskIds
+          // ignore: cast_nullable_to_non_nullable
+          : selectedTaskIds as Set<int>,
     );
   }
 }

@@ -18,47 +18,75 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$WeekPlanApprovalEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(int taskId) toggleSelectTask,
+    required TResult Function() clearSelection,
     required TResult Function(int taskId, String? review, int? completionRating)
         approveTask,
     required TResult Function(int taskId, String reason) rejectTask,
+    required TResult Function(
+            List<int> taskIds, String? review, int? completionRating)
+        bulkApproveTasks,
+    required TResult Function(List<int> taskIds, String reason) bulkRejectTasks,
     required TResult Function() clearApprovalState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int taskId)? toggleSelectTask,
+    TResult? Function()? clearSelection,
     TResult? Function(int taskId, String? review, int? completionRating)?
         approveTask,
     TResult? Function(int taskId, String reason)? rejectTask,
+    TResult? Function(List<int> taskIds, String? review, int? completionRating)?
+        bulkApproveTasks,
+    TResult? Function(List<int> taskIds, String reason)? bulkRejectTasks,
     TResult? Function()? clearApprovalState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int taskId)? toggleSelectTask,
+    TResult Function()? clearSelection,
     TResult Function(int taskId, String? review, int? completionRating)?
         approveTask,
     TResult Function(int taskId, String reason)? rejectTask,
+    TResult Function(List<int> taskIds, String? review, int? completionRating)?
+        bulkApproveTasks,
+    TResult Function(List<int> taskIds, String reason)? bulkRejectTasks,
     TResult Function()? clearApprovalState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_ToggleSelectTask value) toggleSelectTask,
+    required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_ApproveTask value) approveTask,
     required TResult Function(_RejectTask value) rejectTask,
+    required TResult Function(_BulkApproveTasks value) bulkApproveTasks,
+    required TResult Function(_BulkRejectTasks value) bulkRejectTasks,
     required TResult Function(_ClearApprovalState value) clearApprovalState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ToggleSelectTask value)? toggleSelectTask,
+    TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_ApproveTask value)? approveTask,
     TResult? Function(_RejectTask value)? rejectTask,
+    TResult? Function(_BulkApproveTasks value)? bulkApproveTasks,
+    TResult? Function(_BulkRejectTasks value)? bulkRejectTasks,
     TResult? Function(_ClearApprovalState value)? clearApprovalState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ToggleSelectTask value)? toggleSelectTask,
+    TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_ApproveTask value)? approveTask,
     TResult Function(_RejectTask value)? rejectTask,
+    TResult Function(_BulkApproveTasks value)? bulkApproveTasks,
+    TResult Function(_BulkRejectTasks value)? bulkRejectTasks,
     TResult Function(_ClearApprovalState value)? clearApprovalState,
     required TResult orElse(),
   }) =>
@@ -82,6 +110,316 @@ class _$WeekPlanApprovalEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$ToggleSelectTaskImplCopyWith<$Res> {
+  factory _$$ToggleSelectTaskImplCopyWith(_$ToggleSelectTaskImpl value,
+          $Res Function(_$ToggleSelectTaskImpl) then) =
+      __$$ToggleSelectTaskImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int taskId});
+}
+
+/// @nodoc
+class __$$ToggleSelectTaskImplCopyWithImpl<$Res>
+    extends _$WeekPlanApprovalEventCopyWithImpl<$Res, _$ToggleSelectTaskImpl>
+    implements _$$ToggleSelectTaskImplCopyWith<$Res> {
+  __$$ToggleSelectTaskImplCopyWithImpl(_$ToggleSelectTaskImpl _value,
+      $Res Function(_$ToggleSelectTaskImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? taskId = null,
+  }) {
+    return _then(_$ToggleSelectTaskImpl(
+      null == taskId
+          ? _value.taskId
+          : taskId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ToggleSelectTaskImpl implements _ToggleSelectTask {
+  const _$ToggleSelectTaskImpl(this.taskId);
+
+  @override
+  final int taskId;
+
+  @override
+  String toString() {
+    return 'WeekPlanApprovalEvent.toggleSelectTask(taskId: $taskId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ToggleSelectTaskImpl &&
+            (identical(other.taskId, taskId) || other.taskId == taskId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, taskId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ToggleSelectTaskImplCopyWith<_$ToggleSelectTaskImpl> get copyWith =>
+      __$$ToggleSelectTaskImplCopyWithImpl<_$ToggleSelectTaskImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int taskId) toggleSelectTask,
+    required TResult Function() clearSelection,
+    required TResult Function(int taskId, String? review, int? completionRating)
+        approveTask,
+    required TResult Function(int taskId, String reason) rejectTask,
+    required TResult Function(
+            List<int> taskIds, String? review, int? completionRating)
+        bulkApproveTasks,
+    required TResult Function(List<int> taskIds, String reason) bulkRejectTasks,
+    required TResult Function() clearApprovalState,
+  }) {
+    return toggleSelectTask(taskId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int taskId)? toggleSelectTask,
+    TResult? Function()? clearSelection,
+    TResult? Function(int taskId, String? review, int? completionRating)?
+        approveTask,
+    TResult? Function(int taskId, String reason)? rejectTask,
+    TResult? Function(List<int> taskIds, String? review, int? completionRating)?
+        bulkApproveTasks,
+    TResult? Function(List<int> taskIds, String reason)? bulkRejectTasks,
+    TResult? Function()? clearApprovalState,
+  }) {
+    return toggleSelectTask?.call(taskId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int taskId)? toggleSelectTask,
+    TResult Function()? clearSelection,
+    TResult Function(int taskId, String? review, int? completionRating)?
+        approveTask,
+    TResult Function(int taskId, String reason)? rejectTask,
+    TResult Function(List<int> taskIds, String? review, int? completionRating)?
+        bulkApproveTasks,
+    TResult Function(List<int> taskIds, String reason)? bulkRejectTasks,
+    TResult Function()? clearApprovalState,
+    required TResult orElse(),
+  }) {
+    if (toggleSelectTask != null) {
+      return toggleSelectTask(taskId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ToggleSelectTask value) toggleSelectTask,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_ApproveTask value) approveTask,
+    required TResult Function(_RejectTask value) rejectTask,
+    required TResult Function(_BulkApproveTasks value) bulkApproveTasks,
+    required TResult Function(_BulkRejectTasks value) bulkRejectTasks,
+    required TResult Function(_ClearApprovalState value) clearApprovalState,
+  }) {
+    return toggleSelectTask(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ToggleSelectTask value)? toggleSelectTask,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_ApproveTask value)? approveTask,
+    TResult? Function(_RejectTask value)? rejectTask,
+    TResult? Function(_BulkApproveTasks value)? bulkApproveTasks,
+    TResult? Function(_BulkRejectTasks value)? bulkRejectTasks,
+    TResult? Function(_ClearApprovalState value)? clearApprovalState,
+  }) {
+    return toggleSelectTask?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ToggleSelectTask value)? toggleSelectTask,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_ApproveTask value)? approveTask,
+    TResult Function(_RejectTask value)? rejectTask,
+    TResult Function(_BulkApproveTasks value)? bulkApproveTasks,
+    TResult Function(_BulkRejectTasks value)? bulkRejectTasks,
+    TResult Function(_ClearApprovalState value)? clearApprovalState,
+    required TResult orElse(),
+  }) {
+    if (toggleSelectTask != null) {
+      return toggleSelectTask(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ToggleSelectTask implements WeekPlanApprovalEvent {
+  const factory _ToggleSelectTask(final int taskId) = _$ToggleSelectTaskImpl;
+
+  int get taskId;
+  @JsonKey(ignore: true)
+  _$$ToggleSelectTaskImplCopyWith<_$ToggleSelectTaskImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ClearSelectionImplCopyWith<$Res> {
+  factory _$$ClearSelectionImplCopyWith(_$ClearSelectionImpl value,
+          $Res Function(_$ClearSelectionImpl) then) =
+      __$$ClearSelectionImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearSelectionImplCopyWithImpl<$Res>
+    extends _$WeekPlanApprovalEventCopyWithImpl<$Res, _$ClearSelectionImpl>
+    implements _$$ClearSelectionImplCopyWith<$Res> {
+  __$$ClearSelectionImplCopyWithImpl(
+      _$ClearSelectionImpl _value, $Res Function(_$ClearSelectionImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ClearSelectionImpl implements _ClearSelection {
+  const _$ClearSelectionImpl();
+
+  @override
+  String toString() {
+    return 'WeekPlanApprovalEvent.clearSelection()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ClearSelectionImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int taskId) toggleSelectTask,
+    required TResult Function() clearSelection,
+    required TResult Function(int taskId, String? review, int? completionRating)
+        approveTask,
+    required TResult Function(int taskId, String reason) rejectTask,
+    required TResult Function(
+            List<int> taskIds, String? review, int? completionRating)
+        bulkApproveTasks,
+    required TResult Function(List<int> taskIds, String reason) bulkRejectTasks,
+    required TResult Function() clearApprovalState,
+  }) {
+    return clearSelection();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int taskId)? toggleSelectTask,
+    TResult? Function()? clearSelection,
+    TResult? Function(int taskId, String? review, int? completionRating)?
+        approveTask,
+    TResult? Function(int taskId, String reason)? rejectTask,
+    TResult? Function(List<int> taskIds, String? review, int? completionRating)?
+        bulkApproveTasks,
+    TResult? Function(List<int> taskIds, String reason)? bulkRejectTasks,
+    TResult? Function()? clearApprovalState,
+  }) {
+    return clearSelection?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int taskId)? toggleSelectTask,
+    TResult Function()? clearSelection,
+    TResult Function(int taskId, String? review, int? completionRating)?
+        approveTask,
+    TResult Function(int taskId, String reason)? rejectTask,
+    TResult Function(List<int> taskIds, String? review, int? completionRating)?
+        bulkApproveTasks,
+    TResult Function(List<int> taskIds, String reason)? bulkRejectTasks,
+    TResult Function()? clearApprovalState,
+    required TResult orElse(),
+  }) {
+    if (clearSelection != null) {
+      return clearSelection();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ToggleSelectTask value) toggleSelectTask,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_ApproveTask value) approveTask,
+    required TResult Function(_RejectTask value) rejectTask,
+    required TResult Function(_BulkApproveTasks value) bulkApproveTasks,
+    required TResult Function(_BulkRejectTasks value) bulkRejectTasks,
+    required TResult Function(_ClearApprovalState value) clearApprovalState,
+  }) {
+    return clearSelection(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ToggleSelectTask value)? toggleSelectTask,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_ApproveTask value)? approveTask,
+    TResult? Function(_RejectTask value)? rejectTask,
+    TResult? Function(_BulkApproveTasks value)? bulkApproveTasks,
+    TResult? Function(_BulkRejectTasks value)? bulkRejectTasks,
+    TResult? Function(_ClearApprovalState value)? clearApprovalState,
+  }) {
+    return clearSelection?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ToggleSelectTask value)? toggleSelectTask,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_ApproveTask value)? approveTask,
+    TResult Function(_RejectTask value)? rejectTask,
+    TResult Function(_BulkApproveTasks value)? bulkApproveTasks,
+    TResult Function(_BulkRejectTasks value)? bulkRejectTasks,
+    TResult Function(_ClearApprovalState value)? clearApprovalState,
+    required TResult orElse(),
+  }) {
+    if (clearSelection != null) {
+      return clearSelection(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearSelection implements WeekPlanApprovalEvent {
+  const factory _ClearSelection() = _$ClearSelectionImpl;
 }
 
 /// @nodoc
@@ -167,9 +505,15 @@ class _$ApproveTaskImpl implements _ApproveTask {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(int taskId) toggleSelectTask,
+    required TResult Function() clearSelection,
     required TResult Function(int taskId, String? review, int? completionRating)
         approveTask,
     required TResult Function(int taskId, String reason) rejectTask,
+    required TResult Function(
+            List<int> taskIds, String? review, int? completionRating)
+        bulkApproveTasks,
+    required TResult Function(List<int> taskIds, String reason) bulkRejectTasks,
     required TResult Function() clearApprovalState,
   }) {
     return approveTask(taskId, review, completionRating);
@@ -178,9 +522,14 @@ class _$ApproveTaskImpl implements _ApproveTask {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int taskId)? toggleSelectTask,
+    TResult? Function()? clearSelection,
     TResult? Function(int taskId, String? review, int? completionRating)?
         approveTask,
     TResult? Function(int taskId, String reason)? rejectTask,
+    TResult? Function(List<int> taskIds, String? review, int? completionRating)?
+        bulkApproveTasks,
+    TResult? Function(List<int> taskIds, String reason)? bulkRejectTasks,
     TResult? Function()? clearApprovalState,
   }) {
     return approveTask?.call(taskId, review, completionRating);
@@ -189,9 +538,14 @@ class _$ApproveTaskImpl implements _ApproveTask {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int taskId)? toggleSelectTask,
+    TResult Function()? clearSelection,
     TResult Function(int taskId, String? review, int? completionRating)?
         approveTask,
     TResult Function(int taskId, String reason)? rejectTask,
+    TResult Function(List<int> taskIds, String? review, int? completionRating)?
+        bulkApproveTasks,
+    TResult Function(List<int> taskIds, String reason)? bulkRejectTasks,
     TResult Function()? clearApprovalState,
     required TResult orElse(),
   }) {
@@ -204,8 +558,12 @@ class _$ApproveTaskImpl implements _ApproveTask {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_ToggleSelectTask value) toggleSelectTask,
+    required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_ApproveTask value) approveTask,
     required TResult Function(_RejectTask value) rejectTask,
+    required TResult Function(_BulkApproveTasks value) bulkApproveTasks,
+    required TResult Function(_BulkRejectTasks value) bulkRejectTasks,
     required TResult Function(_ClearApprovalState value) clearApprovalState,
   }) {
     return approveTask(this);
@@ -214,8 +572,12 @@ class _$ApproveTaskImpl implements _ApproveTask {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ToggleSelectTask value)? toggleSelectTask,
+    TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_ApproveTask value)? approveTask,
     TResult? Function(_RejectTask value)? rejectTask,
+    TResult? Function(_BulkApproveTasks value)? bulkApproveTasks,
+    TResult? Function(_BulkRejectTasks value)? bulkRejectTasks,
     TResult? Function(_ClearApprovalState value)? clearApprovalState,
   }) {
     return approveTask?.call(this);
@@ -224,8 +586,12 @@ class _$ApproveTaskImpl implements _ApproveTask {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ToggleSelectTask value)? toggleSelectTask,
+    TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_ApproveTask value)? approveTask,
     TResult Function(_RejectTask value)? rejectTask,
+    TResult Function(_BulkApproveTasks value)? bulkApproveTasks,
+    TResult Function(_BulkRejectTasks value)? bulkRejectTasks,
     TResult Function(_ClearApprovalState value)? clearApprovalState,
     required TResult orElse(),
   }) {
@@ -322,9 +688,15 @@ class _$RejectTaskImpl implements _RejectTask {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(int taskId) toggleSelectTask,
+    required TResult Function() clearSelection,
     required TResult Function(int taskId, String? review, int? completionRating)
         approveTask,
     required TResult Function(int taskId, String reason) rejectTask,
+    required TResult Function(
+            List<int> taskIds, String? review, int? completionRating)
+        bulkApproveTasks,
+    required TResult Function(List<int> taskIds, String reason) bulkRejectTasks,
     required TResult Function() clearApprovalState,
   }) {
     return rejectTask(taskId, reason);
@@ -333,9 +705,14 @@ class _$RejectTaskImpl implements _RejectTask {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int taskId)? toggleSelectTask,
+    TResult? Function()? clearSelection,
     TResult? Function(int taskId, String? review, int? completionRating)?
         approveTask,
     TResult? Function(int taskId, String reason)? rejectTask,
+    TResult? Function(List<int> taskIds, String? review, int? completionRating)?
+        bulkApproveTasks,
+    TResult? Function(List<int> taskIds, String reason)? bulkRejectTasks,
     TResult? Function()? clearApprovalState,
   }) {
     return rejectTask?.call(taskId, reason);
@@ -344,9 +721,14 @@ class _$RejectTaskImpl implements _RejectTask {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int taskId)? toggleSelectTask,
+    TResult Function()? clearSelection,
     TResult Function(int taskId, String? review, int? completionRating)?
         approveTask,
     TResult Function(int taskId, String reason)? rejectTask,
+    TResult Function(List<int> taskIds, String? review, int? completionRating)?
+        bulkApproveTasks,
+    TResult Function(List<int> taskIds, String reason)? bulkRejectTasks,
     TResult Function()? clearApprovalState,
     required TResult orElse(),
   }) {
@@ -359,8 +741,12 @@ class _$RejectTaskImpl implements _RejectTask {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_ToggleSelectTask value) toggleSelectTask,
+    required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_ApproveTask value) approveTask,
     required TResult Function(_RejectTask value) rejectTask,
+    required TResult Function(_BulkApproveTasks value) bulkApproveTasks,
+    required TResult Function(_BulkRejectTasks value) bulkRejectTasks,
     required TResult Function(_ClearApprovalState value) clearApprovalState,
   }) {
     return rejectTask(this);
@@ -369,8 +755,12 @@ class _$RejectTaskImpl implements _RejectTask {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ToggleSelectTask value)? toggleSelectTask,
+    TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_ApproveTask value)? approveTask,
     TResult? Function(_RejectTask value)? rejectTask,
+    TResult? Function(_BulkApproveTasks value)? bulkApproveTasks,
+    TResult? Function(_BulkRejectTasks value)? bulkRejectTasks,
     TResult? Function(_ClearApprovalState value)? clearApprovalState,
   }) {
     return rejectTask?.call(this);
@@ -379,8 +769,12 @@ class _$RejectTaskImpl implements _RejectTask {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ToggleSelectTask value)? toggleSelectTask,
+    TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_ApproveTask value)? approveTask,
     TResult Function(_RejectTask value)? rejectTask,
+    TResult Function(_BulkApproveTasks value)? bulkApproveTasks,
+    TResult Function(_BulkRejectTasks value)? bulkRejectTasks,
     TResult Function(_ClearApprovalState value)? clearApprovalState,
     required TResult orElse(),
   }) {
@@ -400,6 +794,399 @@ abstract class _RejectTask implements WeekPlanApprovalEvent {
   String get reason;
   @JsonKey(ignore: true)
   _$$RejectTaskImplCopyWith<_$RejectTaskImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$BulkApproveTasksImplCopyWith<$Res> {
+  factory _$$BulkApproveTasksImplCopyWith(_$BulkApproveTasksImpl value,
+          $Res Function(_$BulkApproveTasksImpl) then) =
+      __$$BulkApproveTasksImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<int> taskIds, String? review, int? completionRating});
+}
+
+/// @nodoc
+class __$$BulkApproveTasksImplCopyWithImpl<$Res>
+    extends _$WeekPlanApprovalEventCopyWithImpl<$Res, _$BulkApproveTasksImpl>
+    implements _$$BulkApproveTasksImplCopyWith<$Res> {
+  __$$BulkApproveTasksImplCopyWithImpl(_$BulkApproveTasksImpl _value,
+      $Res Function(_$BulkApproveTasksImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? taskIds = null,
+    Object? review = freezed,
+    Object? completionRating = freezed,
+  }) {
+    return _then(_$BulkApproveTasksImpl(
+      taskIds: null == taskIds
+          ? _value._taskIds
+          : taskIds // ignore: cast_nullable_to_non_nullable
+              as List<int>,
+      review: freezed == review
+          ? _value.review
+          : review // ignore: cast_nullable_to_non_nullable
+              as String?,
+      completionRating: freezed == completionRating
+          ? _value.completionRating
+          : completionRating // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$BulkApproveTasksImpl implements _BulkApproveTasks {
+  const _$BulkApproveTasksImpl(
+      {required final List<int> taskIds, this.review, this.completionRating})
+      : _taskIds = taskIds;
+
+  final List<int> _taskIds;
+  @override
+  List<int> get taskIds {
+    if (_taskIds is EqualUnmodifiableListView) return _taskIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_taskIds);
+  }
+
+  @override
+  final String? review;
+  @override
+  final int? completionRating;
+
+  @override
+  String toString() {
+    return 'WeekPlanApprovalEvent.bulkApproveTasks(taskIds: $taskIds, review: $review, completionRating: $completionRating)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BulkApproveTasksImpl &&
+            const DeepCollectionEquality().equals(other._taskIds, _taskIds) &&
+            (identical(other.review, review) || other.review == review) &&
+            (identical(other.completionRating, completionRating) ||
+                other.completionRating == completionRating));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_taskIds), review, completionRating);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BulkApproveTasksImplCopyWith<_$BulkApproveTasksImpl> get copyWith =>
+      __$$BulkApproveTasksImplCopyWithImpl<_$BulkApproveTasksImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int taskId) toggleSelectTask,
+    required TResult Function() clearSelection,
+    required TResult Function(int taskId, String? review, int? completionRating)
+        approveTask,
+    required TResult Function(int taskId, String reason) rejectTask,
+    required TResult Function(
+            List<int> taskIds, String? review, int? completionRating)
+        bulkApproveTasks,
+    required TResult Function(List<int> taskIds, String reason) bulkRejectTasks,
+    required TResult Function() clearApprovalState,
+  }) {
+    return bulkApproveTasks(taskIds, review, completionRating);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int taskId)? toggleSelectTask,
+    TResult? Function()? clearSelection,
+    TResult? Function(int taskId, String? review, int? completionRating)?
+        approveTask,
+    TResult? Function(int taskId, String reason)? rejectTask,
+    TResult? Function(List<int> taskIds, String? review, int? completionRating)?
+        bulkApproveTasks,
+    TResult? Function(List<int> taskIds, String reason)? bulkRejectTasks,
+    TResult? Function()? clearApprovalState,
+  }) {
+    return bulkApproveTasks?.call(taskIds, review, completionRating);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int taskId)? toggleSelectTask,
+    TResult Function()? clearSelection,
+    TResult Function(int taskId, String? review, int? completionRating)?
+        approveTask,
+    TResult Function(int taskId, String reason)? rejectTask,
+    TResult Function(List<int> taskIds, String? review, int? completionRating)?
+        bulkApproveTasks,
+    TResult Function(List<int> taskIds, String reason)? bulkRejectTasks,
+    TResult Function()? clearApprovalState,
+    required TResult orElse(),
+  }) {
+    if (bulkApproveTasks != null) {
+      return bulkApproveTasks(taskIds, review, completionRating);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ToggleSelectTask value) toggleSelectTask,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_ApproveTask value) approveTask,
+    required TResult Function(_RejectTask value) rejectTask,
+    required TResult Function(_BulkApproveTasks value) bulkApproveTasks,
+    required TResult Function(_BulkRejectTasks value) bulkRejectTasks,
+    required TResult Function(_ClearApprovalState value) clearApprovalState,
+  }) {
+    return bulkApproveTasks(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ToggleSelectTask value)? toggleSelectTask,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_ApproveTask value)? approveTask,
+    TResult? Function(_RejectTask value)? rejectTask,
+    TResult? Function(_BulkApproveTasks value)? bulkApproveTasks,
+    TResult? Function(_BulkRejectTasks value)? bulkRejectTasks,
+    TResult? Function(_ClearApprovalState value)? clearApprovalState,
+  }) {
+    return bulkApproveTasks?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ToggleSelectTask value)? toggleSelectTask,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_ApproveTask value)? approveTask,
+    TResult Function(_RejectTask value)? rejectTask,
+    TResult Function(_BulkApproveTasks value)? bulkApproveTasks,
+    TResult Function(_BulkRejectTasks value)? bulkRejectTasks,
+    TResult Function(_ClearApprovalState value)? clearApprovalState,
+    required TResult orElse(),
+  }) {
+    if (bulkApproveTasks != null) {
+      return bulkApproveTasks(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _BulkApproveTasks implements WeekPlanApprovalEvent {
+  const factory _BulkApproveTasks(
+      {required final List<int> taskIds,
+      final String? review,
+      final int? completionRating}) = _$BulkApproveTasksImpl;
+
+  List<int> get taskIds;
+  String? get review;
+  int? get completionRating;
+  @JsonKey(ignore: true)
+  _$$BulkApproveTasksImplCopyWith<_$BulkApproveTasksImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$BulkRejectTasksImplCopyWith<$Res> {
+  factory _$$BulkRejectTasksImplCopyWith(_$BulkRejectTasksImpl value,
+          $Res Function(_$BulkRejectTasksImpl) then) =
+      __$$BulkRejectTasksImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<int> taskIds, String reason});
+}
+
+/// @nodoc
+class __$$BulkRejectTasksImplCopyWithImpl<$Res>
+    extends _$WeekPlanApprovalEventCopyWithImpl<$Res, _$BulkRejectTasksImpl>
+    implements _$$BulkRejectTasksImplCopyWith<$Res> {
+  __$$BulkRejectTasksImplCopyWithImpl(
+      _$BulkRejectTasksImpl _value, $Res Function(_$BulkRejectTasksImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? taskIds = null,
+    Object? reason = null,
+  }) {
+    return _then(_$BulkRejectTasksImpl(
+      taskIds: null == taskIds
+          ? _value._taskIds
+          : taskIds // ignore: cast_nullable_to_non_nullable
+              as List<int>,
+      reason: null == reason
+          ? _value.reason
+          : reason // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$BulkRejectTasksImpl implements _BulkRejectTasks {
+  const _$BulkRejectTasksImpl(
+      {required final List<int> taskIds, required this.reason})
+      : _taskIds = taskIds;
+
+  final List<int> _taskIds;
+  @override
+  List<int> get taskIds {
+    if (_taskIds is EqualUnmodifiableListView) return _taskIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_taskIds);
+  }
+
+  @override
+  final String reason;
+
+  @override
+  String toString() {
+    return 'WeekPlanApprovalEvent.bulkRejectTasks(taskIds: $taskIds, reason: $reason)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BulkRejectTasksImpl &&
+            const DeepCollectionEquality().equals(other._taskIds, _taskIds) &&
+            (identical(other.reason, reason) || other.reason == reason));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_taskIds), reason);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BulkRejectTasksImplCopyWith<_$BulkRejectTasksImpl> get copyWith =>
+      __$$BulkRejectTasksImplCopyWithImpl<_$BulkRejectTasksImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int taskId) toggleSelectTask,
+    required TResult Function() clearSelection,
+    required TResult Function(int taskId, String? review, int? completionRating)
+        approveTask,
+    required TResult Function(int taskId, String reason) rejectTask,
+    required TResult Function(
+            List<int> taskIds, String? review, int? completionRating)
+        bulkApproveTasks,
+    required TResult Function(List<int> taskIds, String reason) bulkRejectTasks,
+    required TResult Function() clearApprovalState,
+  }) {
+    return bulkRejectTasks(taskIds, reason);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int taskId)? toggleSelectTask,
+    TResult? Function()? clearSelection,
+    TResult? Function(int taskId, String? review, int? completionRating)?
+        approveTask,
+    TResult? Function(int taskId, String reason)? rejectTask,
+    TResult? Function(List<int> taskIds, String? review, int? completionRating)?
+        bulkApproveTasks,
+    TResult? Function(List<int> taskIds, String reason)? bulkRejectTasks,
+    TResult? Function()? clearApprovalState,
+  }) {
+    return bulkRejectTasks?.call(taskIds, reason);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int taskId)? toggleSelectTask,
+    TResult Function()? clearSelection,
+    TResult Function(int taskId, String? review, int? completionRating)?
+        approveTask,
+    TResult Function(int taskId, String reason)? rejectTask,
+    TResult Function(List<int> taskIds, String? review, int? completionRating)?
+        bulkApproveTasks,
+    TResult Function(List<int> taskIds, String reason)? bulkRejectTasks,
+    TResult Function()? clearApprovalState,
+    required TResult orElse(),
+  }) {
+    if (bulkRejectTasks != null) {
+      return bulkRejectTasks(taskIds, reason);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ToggleSelectTask value) toggleSelectTask,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_ApproveTask value) approveTask,
+    required TResult Function(_RejectTask value) rejectTask,
+    required TResult Function(_BulkApproveTasks value) bulkApproveTasks,
+    required TResult Function(_BulkRejectTasks value) bulkRejectTasks,
+    required TResult Function(_ClearApprovalState value) clearApprovalState,
+  }) {
+    return bulkRejectTasks(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ToggleSelectTask value)? toggleSelectTask,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_ApproveTask value)? approveTask,
+    TResult? Function(_RejectTask value)? rejectTask,
+    TResult? Function(_BulkApproveTasks value)? bulkApproveTasks,
+    TResult? Function(_BulkRejectTasks value)? bulkRejectTasks,
+    TResult? Function(_ClearApprovalState value)? clearApprovalState,
+  }) {
+    return bulkRejectTasks?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ToggleSelectTask value)? toggleSelectTask,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_ApproveTask value)? approveTask,
+    TResult Function(_RejectTask value)? rejectTask,
+    TResult Function(_BulkApproveTasks value)? bulkApproveTasks,
+    TResult Function(_BulkRejectTasks value)? bulkRejectTasks,
+    TResult Function(_ClearApprovalState value)? clearApprovalState,
+    required TResult orElse(),
+  }) {
+    if (bulkRejectTasks != null) {
+      return bulkRejectTasks(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _BulkRejectTasks implements WeekPlanApprovalEvent {
+  const factory _BulkRejectTasks(
+      {required final List<int> taskIds,
+      required final String reason}) = _$BulkRejectTasksImpl;
+
+  List<int> get taskIds;
+  String get reason;
+  @JsonKey(ignore: true)
+  _$$BulkRejectTasksImplCopyWith<_$BulkRejectTasksImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -441,9 +1228,15 @@ class _$ClearApprovalStateImpl implements _ClearApprovalState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(int taskId) toggleSelectTask,
+    required TResult Function() clearSelection,
     required TResult Function(int taskId, String? review, int? completionRating)
         approveTask,
     required TResult Function(int taskId, String reason) rejectTask,
+    required TResult Function(
+            List<int> taskIds, String? review, int? completionRating)
+        bulkApproveTasks,
+    required TResult Function(List<int> taskIds, String reason) bulkRejectTasks,
     required TResult Function() clearApprovalState,
   }) {
     return clearApprovalState();
@@ -452,9 +1245,14 @@ class _$ClearApprovalStateImpl implements _ClearApprovalState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int taskId)? toggleSelectTask,
+    TResult? Function()? clearSelection,
     TResult? Function(int taskId, String? review, int? completionRating)?
         approveTask,
     TResult? Function(int taskId, String reason)? rejectTask,
+    TResult? Function(List<int> taskIds, String? review, int? completionRating)?
+        bulkApproveTasks,
+    TResult? Function(List<int> taskIds, String reason)? bulkRejectTasks,
     TResult? Function()? clearApprovalState,
   }) {
     return clearApprovalState?.call();
@@ -463,9 +1261,14 @@ class _$ClearApprovalStateImpl implements _ClearApprovalState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int taskId)? toggleSelectTask,
+    TResult Function()? clearSelection,
     TResult Function(int taskId, String? review, int? completionRating)?
         approveTask,
     TResult Function(int taskId, String reason)? rejectTask,
+    TResult Function(List<int> taskIds, String? review, int? completionRating)?
+        bulkApproveTasks,
+    TResult Function(List<int> taskIds, String reason)? bulkRejectTasks,
     TResult Function()? clearApprovalState,
     required TResult orElse(),
   }) {
@@ -478,8 +1281,12 @@ class _$ClearApprovalStateImpl implements _ClearApprovalState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_ToggleSelectTask value) toggleSelectTask,
+    required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_ApproveTask value) approveTask,
     required TResult Function(_RejectTask value) rejectTask,
+    required TResult Function(_BulkApproveTasks value) bulkApproveTasks,
+    required TResult Function(_BulkRejectTasks value) bulkRejectTasks,
     required TResult Function(_ClearApprovalState value) clearApprovalState,
   }) {
     return clearApprovalState(this);
@@ -488,8 +1295,12 @@ class _$ClearApprovalStateImpl implements _ClearApprovalState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ToggleSelectTask value)? toggleSelectTask,
+    TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_ApproveTask value)? approveTask,
     TResult? Function(_RejectTask value)? rejectTask,
+    TResult? Function(_BulkApproveTasks value)? bulkApproveTasks,
+    TResult? Function(_BulkRejectTasks value)? bulkRejectTasks,
     TResult? Function(_ClearApprovalState value)? clearApprovalState,
   }) {
     return clearApprovalState?.call(this);
@@ -498,8 +1309,12 @@ class _$ClearApprovalStateImpl implements _ClearApprovalState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ToggleSelectTask value)? toggleSelectTask,
+    TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_ApproveTask value)? approveTask,
     TResult Function(_RejectTask value)? rejectTask,
+    TResult Function(_BulkApproveTasks value)? bulkApproveTasks,
+    TResult Function(_BulkRejectTasks value)? bulkRejectTasks,
     TResult Function(_ClearApprovalState value)? clearApprovalState,
     required TResult orElse(),
   }) {

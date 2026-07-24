@@ -9,6 +9,7 @@ import '../../../../../../../../../routes/route_names.dart';
 import '../../../../../../base/network/errors/extension.dart';
 import '../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../base/widgets/base_widget.dart';
+import '../../../../../../common/utils/dialog/index.dart';
 import '../../../../../../common/utils/navigation/navigation_utils.dart';
 import '../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../common/widgets/date_header.dart';
@@ -187,38 +188,38 @@ class _WeekPlanListScreenState
                   prev.taskTypes.length != curr.taskTypes.length ||
                   prev.projectTypes.length != curr.projectTypes.length ||
                   prev.employees.length != curr.employees.length,
-              builder: (context, state) => _buildBody(context, state),
+              builder: (context, state) =>
+                  BlocBuilder<WeekPlanApprovalBloc, WeekPlanApprovalState>(
+                    buildWhen: (prev, curr) =>
+                        prev.selectedTaskIds.length !=
+                            curr.selectedTaskIds.length ||
+                        prev.selectedTaskIds != curr.selectedTaskIds,
+                    builder: (context, approvalState) =>
+                        _buildBody(context, state, approvalState),
+                  ),
             ),
-            floatingActionButton: BlocBuilder<WeekPlanBloc, WeekPlanState>(
-              buildWhen: (prev, curr) =>
-                  prev.projects.length != curr.projects.length ||
-                  prev.taskTypes.length != curr.taskTypes.length ||
-                  prev.projectTypes.length != curr.projectTypes.length ||
-                  prev.employees.length != curr.employees.length,
-              builder: (context, state) {
-                if (widget.viewNumber == 1 || widget.viewNumber == 3) {
-                  return FloatingActionButton(
-                    onPressed: () async {
-                      final result = await context.push<bool>(
-                        RouteNames.weekplanAdd,
-                        extra: WeekPlanAddExtra(
-                          projects: state.projects,
-                          taskTypes: state.taskTypes,
-                          projectTypes: state.projectTypes,
-                          employees: state.employees,
-                        ),
-                      );
-                      if (result == true) {
-                        bloc.add(const WeekPlanEvent.refresh());
-                      }
-                    },
-                    backgroundColor: AppColors.primaryERP,
-                    child: const Icon(Icons.add, color: Colors.white),
-                  );
-                }
-                return const SizedBox.shrink();
-              },
-            ),
+            floatingActionButton: widget.viewNumber != 3
+                ? (widget.viewNumber == 1 || widget.viewNumber == -1)
+                      ? FloatingActionButton(
+                          onPressed: () async {
+                            final result = await context.push<bool>(
+                              RouteNames.weekplanAdd,
+                              extra: WeekPlanAddExtra(
+                                projects: bloc.state.projects,
+                                taskTypes: bloc.state.taskTypes,
+                                projectTypes: bloc.state.projectTypes,
+                                employees: bloc.state.employees,
+                              ),
+                            );
+                            if (result == true) {
+                              bloc.add(const WeekPlanEvent.refresh());
+                            }
+                          },
+                          backgroundColor: AppColors.primaryERP,
+                          child: const Icon(Icons.add, color: Colors.white),
+                        )
+                      : null
+                : null,
           ),
         ),
       ),
@@ -226,7 +227,11 @@ class _WeekPlanListScreenState
   }
 
   //---(_Screen)---//
-  Widget _buildBody(BuildContext context, WeekPlanState state) {
+  Widget _buildBody(
+    BuildContext context,
+    WeekPlanState state,
+    WeekPlanApprovalState approvalState,
+  ) {
     if (state.status == BaseStateStatus.loading) {
       return const Center(child: CircularProgressIndicator());
     }
@@ -246,66 +251,196 @@ class _WeekPlanListScreenState
 
     final tasks = _getTasks(state);
     final filtered = _filterTasks(tasks, state);
+    // Đếm task đang chờ duyệt (status=2, chưa approve/reject)
+    final pendingTasks = filtered
+        .where((t) => t.status == 2 && t.approvalStatus == null)
+        .toList();
+    final hasSelection = approvalState.selectedTaskIds.isNotEmpty;
 
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
-          child: DateHeader(dateStart: state.dateStart, dateEnd: state.dateEnd),
-        ),
-        // _buildSummaryBar(tasks),
-        Expanded(
-          child: filtered.isEmpty
-              ? Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
+        if (widget.viewNumber == 3 && pendingTasks.isNotEmpty)
+          Container(
+            margin: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(
+                color: AppColors.primaryERP.withValues(alpha: 0.2),
+                width: 1,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.primaryERP.withValues(alpha: 0.08),
+                  blurRadius: 8,
+                  offset: const Offset(0, 2),
+                ),
+              ],
+            ),
+            child: Row(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    final allIds = pendingTasks.map((t) => t.id ?? 0).toSet();
+                    if (hasSelection) {
+                      context.read<WeekPlanApprovalBloc>().add(
+                        const WeekPlanApprovalEvent.clearSelection(),
+                      );
+                    } else {
+                      for (final id in allIds) {
+                        context.read<WeekPlanApprovalBloc>().add(
+                          WeekPlanApprovalEvent.toggleSelectTask(id),
+                        );
+                      }
+                    }
+                  },
+                  child: Row(
                     children: [
-                      Image.asset(AppImages.missing, width: 320),
-                      const SizedBox(height: 12),
-                      const Text('Không có công việc'),
+                      Container(
+                        width: 26,
+                        height: 26,
+                        padding: const EdgeInsets.all(3),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: hasSelection
+                                ? AppColors.primaryERP
+                                : AppColors.borderColor,
+                            width: 2,
+                          ),
+                          color: hasSelection
+                              ? AppColors.primaryERP
+                              : Colors.transparent,
+                        ),
+                        child: hasSelection
+                            ? const Icon(
+                                Icons.check,
+                                size: 16,
+                                color: Colors.white,
+                              )
+                            : null,
+                      ),
+                      const SizedBox(width: 10),
+                      Text(
+                        hasSelection ? 'Bỏ chọn tất cả' : 'Chọn tất cả',
+                        style: const TextStyle(
+                          color: AppColors.primaryERP,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 14,
+                        ),
+                      ),
                     ],
                   ),
-                )
-              : ListView.separated(
-                  padding: const EdgeInsets.all(12),
-                  itemCount: filtered.length,
-                  separatorBuilder: (_, __) => const SizedBox(height: 10),
-                  itemBuilder: (context, index) {
-                    final task = filtered[index];
-                    return WeekPlanCard(
-                      approvalBloc: context.read<WeekPlanApprovalBloc>(),
-                      task: task,
-                      isAssigned: widget.isAssigned,
-                      showCheckIn:
-                          widget.viewNumber != 2 && widget.viewNumber != 3,
-                      showApproval: widget.viewNumber == 3,
-                      viewNumber: widget.viewNumber,
-                      onTap: () async {
-                        final result = await context.push<bool>(
-                          RouteNames.weekplanDetail,
-                          extra: {
-                            'taskId': task.id,
-                            'addExtra': WeekPlanAddExtra(
-                              projects: state.projects,
-                              taskTypes: state.taskTypes,
-                              projectTypes: state.projectTypes,
-                              employees: state.employees,
-                            ),
-                          },
-                        );
-                        if (result == true) {
-                          bloc.add(const WeekPlanEvent.refresh());
-                        }
-                      },
-                    );
-                  },
                 ),
+                const Spacer(),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 6,
+                  ),
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryERP.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(
+                        Icons.schedule,
+                        size: 16,
+                        color: AppColors.primaryERP,
+                      ),
+                      const SizedBox(width: 6),
+                      Text(
+                        '${pendingTasks.length} chờ duyệt',
+                        style: const TextStyle(
+                          color: AppColors.primaryERP,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        Expanded(
+          child: Column(
+            children: [
+              // Padding(
+              //   padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
+              //   child: DateHeader(dateStart: state.dateStart, dateEnd: state.dateEnd),
+              // ),
+              // _buildSummaryBar(tasks),
+              Expanded(
+                child: filtered.isEmpty
+                    ? Center(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Image.asset(AppImages.missing, width: 320),
+                            const SizedBox(height: 12),
+                            const Text('Không có công việc'),
+                          ],
+                        ),
+                      )
+                    : ListView.separated(
+                        padding: const EdgeInsets.fromLTRB(12, 12, 12, 100),
+                        itemCount: filtered.length,
+                        separatorBuilder: (_, __) => const SizedBox(height: 10),
+                        itemBuilder: (context, index) {
+                          final task = filtered[index];
+                          final isSelected = approvalState.selectedTaskIds
+                              .contains(task.id);
+                          return WeekPlanCard(
+                            approvalBloc: context.read<WeekPlanApprovalBloc>(),
+                            task: task,
+                            isAssigned: widget.isAssigned,
+                            showCheckIn:
+                                widget.viewNumber != 2 &&
+                                widget.viewNumber != 3,
+                            showApproval: widget.viewNumber == 3,
+                            viewNumber: widget.viewNumber,
+                            isSelectionMode: widget.viewNumber == 3,
+                            isSelected: isSelected,
+                            onSelect: () => context.read<WeekPlanApprovalBloc>().add(
+                              WeekPlanApprovalEvent.toggleSelectTask(
+                                task.id ?? 0,
+                              ),
+                            ),
+                            onTap: () async {
+                              final result = await context.push<bool>(
+                                RouteNames.weekplanDetail,
+                                extra: {
+                                  'taskId': task.id,
+                                  'addExtra': WeekPlanAddExtra(
+                                    projects: state.projects,
+                                    taskTypes: state.taskTypes,
+                                    projectTypes: state.projectTypes,
+                                    employees: state.employees,
+                                  ),
+                                },
+                              );
+                              if (result == true) {
+                                bloc.add(const WeekPlanEvent.refresh());
+                              }
+                            },
+                          );
+                        },
+                      ),
+              ),
+            ],
+          ),
         ),
+        if (widget.viewNumber == 3 && hasSelection)
+          _buildBulkActionBar(context, state, approvalState),
       ],
     );
   }
 
-  //---(_Screen)---//
+  //---(_BulkActions)---//
   List<WeekPlanTaskItem> _getTasks(WeekPlanState state) {
     switch (widget.viewNumber) {
       case 1:
@@ -364,6 +499,20 @@ class _WeekPlanListScreenState
         if (end != null && t.deadline!.isAfter(end)) return false;
         return true;
       }).toList();
+    }
+
+    // Với viewNumber == 3, sắp xếp task cần duyệt lên đầu
+    if (widget.viewNumber == 3 && result.isNotEmpty) {
+      final pending = <WeekPlanTaskItem>[];
+      final others = <WeekPlanTaskItem>[];
+      for (final t in result) {
+        if (t.status == 2 && t.approvalStatus == null) {
+          pending.add(t);
+        } else {
+          others.add(t);
+        }
+      }
+      result = [...pending, ...others];
     }
 
     return result;
@@ -460,6 +609,198 @@ class _WeekPlanListScreenState
           ),
         ),
       ),
+    );
+  }
+
+  //---(_BulkActions)---//
+  Widget _buildBulkActionBar(
+    BuildContext context,
+    WeekPlanState state,
+    WeekPlanApprovalState approvalState,
+  ) {
+    return Container(
+      padding: EdgeInsets.fromLTRB(
+        16,
+        12,
+        16,
+        MediaQuery.of(context).padding.bottom + 12,
+      ),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.12),
+            blurRadius: 16,
+            offset: const Offset(0, -4),
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 40,
+            height: 4,
+            decoration: BoxDecoration(
+              color: AppColors.borderColor,
+              borderRadius: BorderRadius.circular(2),
+            ),
+          ),
+          const SizedBox(height: 12),
+          Row(
+            children: [
+              Text(
+                'Đã chọn ${approvalState.selectedTaskIds.length} công việc',
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.heading,
+                ),
+              ),
+              const Spacer(),
+              GestureDetector(
+                onTap: () => context.read<WeekPlanApprovalBloc>().add(
+                  const WeekPlanApprovalEvent.clearSelection(),
+                ),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 6,
+                  ),
+                  decoration: BoxDecoration(
+                    color: AppColors.textSecondaryColor.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: const Text(
+                    'Bỏ chọn',
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.textSecondaryColor,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          Row(
+            children: [
+              Expanded(
+                child: Container(
+                  height: 48,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: AppColors.stateErrorColor.withValues(alpha: 0.5),
+                    ),
+                  ),
+                  child: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(12),
+                      onTap: () => _onBulkReject(context, state),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.close,
+                            color: AppColors.stateErrorColor,
+                            size: 20,
+                          ),
+                          const SizedBox(width: 6),
+                          const Text(
+                            'Từ chối',
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.stateErrorColor,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Container(
+                  height: 48,
+                  decoration: BoxDecoration(
+                    color: AppColors.stateSuccessColor,
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.stateSuccessColor.withValues(
+                          alpha: 0.3,
+                        ),
+                        blurRadius: 8,
+                        offset: const Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  child: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(12),
+                      onTap: () => _onBulkApprove(context, state),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(Icons.check, color: Colors.white, size: 20),
+                          SizedBox(width: 6),
+                          Text(
+                            'Duyệt',
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _onBulkApprove(BuildContext context, WeekPlanState state) {
+    DialogService.showApproveTask(
+      context: context,
+      onConfirm: (rating, comment) {
+        context.read<WeekPlanApprovalBloc>().add(
+          WeekPlanApprovalEvent.bulkApproveTasks(
+            taskIds: context.read<WeekPlanApprovalBloc>().state.selectedTaskIds.toList(),
+            review: comment,
+            completionRating: rating,
+          ),
+        );
+        context.read<WeekPlanApprovalBloc>().add(const WeekPlanApprovalEvent.clearSelection());
+      },
+    );
+  }
+
+  void _onBulkReject(BuildContext context, WeekPlanState state) {
+    DialogService.showRejectTask(
+      context: context,
+      onConfirm: (reason) {
+        context.read<WeekPlanApprovalBloc>().add(
+          WeekPlanApprovalEvent.bulkRejectTasks(
+            taskIds: context.read<WeekPlanApprovalBloc>().state.selectedTaskIds.toList(),
+            reason: reason,
+          ),
+        );
+        context.read<WeekPlanApprovalBloc>().add(const WeekPlanApprovalEvent.clearSelection());
+      },
     );
   }
 }

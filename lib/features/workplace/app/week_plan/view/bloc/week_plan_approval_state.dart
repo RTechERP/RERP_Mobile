@@ -9,12 +9,14 @@ class WeekPlanApprovalState extends BaseBlocState {
     this.approvalTaskId,
     this.approvalIsApprove,
     this.needsRefresh = false,
+    this.selectedTaskIds = const {},
   });
 
   final bool approvalSuccess;
   final int? approvalTaskId;
   final bool? approvalIsApprove;
   final bool needsRefresh;
+  final Set<int> selectedTaskIds;
 
   factory WeekPlanApprovalState.init() => const WeekPlanApprovalState(
     status: BaseStateStatus.init,
@@ -22,6 +24,7 @@ class WeekPlanApprovalState extends BaseBlocState {
     approvalTaskId: null,
     approvalIsApprove: null,
     needsRefresh: false,
+    selectedTaskIds: {},
   );
 
   @override
@@ -32,5 +35,6 @@ class WeekPlanApprovalState extends BaseBlocState {
     approvalTaskId,
     approvalIsApprove,
     needsRefresh,
+    selectedTaskIds,
   ];
 }

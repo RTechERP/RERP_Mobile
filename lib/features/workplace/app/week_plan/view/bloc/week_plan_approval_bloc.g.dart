@@ -19,6 +19,8 @@ abstract class _$WeekPlanApprovalStateCWProxy {
 
   WeekPlanApprovalState needsRefresh(bool needsRefresh);
 
+  WeekPlanApprovalState selectedTaskIds(Set<int> selectedTaskIds);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WeekPlanApprovalState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -32,6 +34,7 @@ abstract class _$WeekPlanApprovalStateCWProxy {
     int? approvalTaskId,
     bool? approvalIsApprove,
     bool? needsRefresh,
+    Set<int>? selectedTaskIds,
   });
 }
 
@@ -65,6 +68,10 @@ class _$WeekPlanApprovalStateCWProxyImpl
       this(needsRefresh: needsRefresh);
 
   @override
+  WeekPlanApprovalState selectedTaskIds(Set<int> selectedTaskIds) =>
+      this(selectedTaskIds: selectedTaskIds);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WeekPlanApprovalState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -79,6 +86,7 @@ class _$WeekPlanApprovalStateCWProxyImpl
     Object? approvalTaskId = const $CopyWithPlaceholder(),
     Object? approvalIsApprove = const $CopyWithPlaceholder(),
     Object? needsRefresh = const $CopyWithPlaceholder(),
+    Object? selectedTaskIds = const $CopyWithPlaceholder(),
   }) {
     return WeekPlanApprovalState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -107,6 +115,11 @@ class _$WeekPlanApprovalStateCWProxyImpl
               ? _value.needsRefresh
               // ignore: cast_nullable_to_non_nullable
               : needsRefresh as bool,
+      selectedTaskIds: selectedTaskIds == const $CopyWithPlaceholder() ||
+              selectedTaskIds == null
+          ? _value.selectedTaskIds
+          // ignore: cast_nullable_to_non_nullable
+          : selectedTaskIds as Set<int>,
     );
   }
 }

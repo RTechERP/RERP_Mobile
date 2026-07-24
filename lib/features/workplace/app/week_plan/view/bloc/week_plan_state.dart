@@ -135,6 +135,9 @@ class WeekPlanState extends BaseBlocState {
   /// Danh sách trạng thái công việc từ API (dùng cho filter BottomSheet).
   final List<WeekPlanFilterItem> projectTaskStatuses;
 
+  /// Các task ID được chọn để bulk approve/reject.
+  final Set<int> selectedTaskIds;
+
   const WeekPlanState({
     required super.status,
     super.message,
@@ -222,6 +225,7 @@ class WeekPlanState extends BaseBlocState {
         this.timelineTasks = const [],
         this.dayOffDates = const [],
         this.projectTaskStatuses = const [],
+        this.selectedTaskIds = const {},
       });
 
   factory WeekPlanState.init() => const WeekPlanState(
@@ -277,6 +281,7 @@ class WeekPlanState extends BaseBlocState {
         timelineTasks: const [],
         dayOffDates: const [],
         projectTaskStatuses: const [],
+        selectedTaskIds: const {},
       );
 
   @override
@@ -366,5 +371,6 @@ class WeekPlanState extends BaseBlocState {
         timelineTasks,
         dayOffDates,
         projectTaskStatuses,
+        selectedTaskIds,
       ];
 }

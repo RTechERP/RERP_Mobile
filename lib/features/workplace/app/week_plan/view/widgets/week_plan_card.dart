@@ -22,6 +22,9 @@ class WeekPlanCard extends StatefulWidget {
     this.showApproval = false,
     this.viewNumber = 1,
     this.onTap,
+    this.isSelectionMode = false,
+    this.isSelected = false,
+    this.onSelect,
   });
 
   final WeekPlanTaskItem task;
@@ -31,6 +34,9 @@ class WeekPlanCard extends StatefulWidget {
   final bool showApproval;
   final int viewNumber;
   final VoidCallback? onTap;
+  final bool isSelectionMode;
+  final bool isSelected;
+  final VoidCallback? onSelect;
 
   static final DateFormat _df = DateFormat('dd/MM/yyyy');
 
@@ -146,17 +152,49 @@ class _WeekPlanCardState extends State<WeekPlanCard> {
     }
 
     final showApprovalButtons = widget.showApproval && !isApprovedOrRejected;
+    // Chỉ show checkbox khi đang ở selection mode VÀ task đang chờ duyệt
+    final canSelect = widget.isSelectionMode && isDone && widget.task.approvalStatus == null;
+    final showCheckbox = widget.isSelectionMode && canSelect;
 
     return Column(
       children: [
         Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            if (showCheckbox) ...[
+              GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: widget.onSelect,
+                child: Container(
+                  width: 32,
+                  height: 32,
+                  padding: const EdgeInsets.all(4),
+                  margin: const EdgeInsets.only(right: 10),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: widget.isSelected
+                          ? AppColors.primaryERP
+                          : AppColors.borderColor,
+                      width: 2.5,
+                    ),
+                    color: widget.isSelected
+                        ? AppColors.primaryERP
+                        : Colors.transparent,
+                  ),
+                  child: widget.isSelected
+                      ? const Icon(Icons.check, size: 18, color: Colors.white)
+                      : null,
+                ),
+              ),
+            ],
             _StatusChip(color: color, label: label),
-            const SizedBox(width: 4),
-            if (typeName.isNotEmpty)
+            if (typeName.isNotEmpty) ...[
+              const SizedBox(width: 6),
               _TypeBadge(text: typeName, color: typeColor),
+            ],
             const Spacer(),
-            if (showApprovalButtons) ...[
+            if (!widget.isSelectionMode && showApprovalButtons) ...[
               _ApprovalButton(
                 label: 'Từ chối',
                 color: AppColors.stateErrorColor,
