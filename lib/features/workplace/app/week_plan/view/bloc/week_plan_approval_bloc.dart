@@ -5,10 +5,8 @@ import 'package:copy_with_extension/copy_with_extension.dart';
 
 import '../../../../../../../../../common/logger/index.dart';
 import '../../../../../../base/bloc/index.dart';
-import '../../../../../../../../di/injection.dart';
 import '../../../../../../base/network/errors/extension.dart';
 import '../../data/repository/week_plan_repo.dart';
-import 'week_plan_bloc.dart';
 
 part 'week_plan_approval_state.dart';
 part 'week_plan_approval_event.dart';
@@ -66,8 +64,8 @@ class WeekPlanApprovalBloc
           approvalSuccess: true,
           approvalTaskId: taskId,
           approvalIsApprove: true,
+          needsRefresh: true,
         ));
-        _refreshList();
       },
     );
   }
@@ -100,29 +98,13 @@ class WeekPlanApprovalBloc
           approvalSuccess: true,
           approvalTaskId: taskId,
           approvalIsApprove: false,
+          needsRefresh: true,
         ));
-        _refreshList();
       },
     );
   }
 
-  _refreshList() {
-    final now = DateTime.now();
-    final startOfMonth = DateTime(now.year, now.month, 1);
-    final endOfMonth = DateTime(now.year, now.month + 1, 0);
-    getIt<WeekPlanBloc>().add(
-      WeekPlanEvent.changeDateRange(
-        dateStart: startOfMonth,
-        dateEnd: endOfMonth,
-      ),
-    );
-  }
-
   _onClearApprovalState(Emitter<WeekPlanApprovalState> emit) {
-    emit(state.copyWith(
-      approvalSuccess: false,
-      approvalTaskId: null,
-      approvalIsApprove: null,
-    ));
+    emit(WeekPlanApprovalState.init());
   }
 }

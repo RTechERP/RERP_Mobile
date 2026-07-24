@@ -17,6 +17,8 @@ abstract class _$WeekPlanApprovalStateCWProxy {
 
   WeekPlanApprovalState approvalIsApprove(bool? approvalIsApprove);
 
+  WeekPlanApprovalState needsRefresh(bool needsRefresh);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WeekPlanApprovalState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -29,6 +31,7 @@ abstract class _$WeekPlanApprovalStateCWProxy {
     bool? approvalSuccess,
     int? approvalTaskId,
     bool? approvalIsApprove,
+    bool? needsRefresh,
   });
 }
 
@@ -58,6 +61,10 @@ class _$WeekPlanApprovalStateCWProxyImpl
       this(approvalIsApprove: approvalIsApprove);
 
   @override
+  WeekPlanApprovalState needsRefresh(bool needsRefresh) =>
+      this(needsRefresh: needsRefresh);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WeekPlanApprovalState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -71,6 +78,7 @@ class _$WeekPlanApprovalStateCWProxyImpl
     Object? approvalSuccess = const $CopyWithPlaceholder(),
     Object? approvalTaskId = const $CopyWithPlaceholder(),
     Object? approvalIsApprove = const $CopyWithPlaceholder(),
+    Object? needsRefresh = const $CopyWithPlaceholder(),
   }) {
     return WeekPlanApprovalState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -94,6 +102,11 @@ class _$WeekPlanApprovalStateCWProxyImpl
           ? _value.approvalIsApprove
           // ignore: cast_nullable_to_non_nullable
           : approvalIsApprove as bool?,
+      needsRefresh:
+          needsRefresh == const $CopyWithPlaceholder() || needsRefresh == null
+              ? _value.needsRefresh
+              // ignore: cast_nullable_to_non_nullable
+              : needsRefresh as bool,
     );
   }
 }

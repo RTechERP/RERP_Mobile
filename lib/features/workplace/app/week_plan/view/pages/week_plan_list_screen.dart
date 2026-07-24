@@ -89,7 +89,8 @@ class _WeekPlanListScreenState
       ],
       child: BlocListener<WeekPlanApprovalBloc, WeekPlanApprovalState>(
         listenWhen: (prev, curr) =>
-            prev.approvalSuccess != curr.approvalSuccess,
+            prev.approvalSuccess != curr.approvalSuccess ||
+            prev.needsRefresh != curr.needsRefresh,
         listener: (context, state) {
           if (state.approvalSuccess) {
             if (state.approvalIsApprove == true) {
@@ -103,6 +104,9 @@ class _WeekPlanListScreenState
                 type: SnackBarType.success,
               );
             }
+          }
+          if (state.needsRefresh) {
+            bloc.add(const WeekPlanEvent.refresh());
           }
           if (state.status == BaseStateStatus.failed && state.message != null) {
             context.showMessage(state.message!, type: SnackBarType.error);
