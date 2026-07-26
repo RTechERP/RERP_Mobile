@@ -26,15 +26,18 @@ class WeekPlanDashboardScreen extends StatefulWidget {
   const WeekPlanDashboardScreen({super.key});
 
   @override
-  State<WeekPlanDashboardScreen> createState() => _WeekPlanDashboardScreenState();
+  State<WeekPlanDashboardScreen> createState() =>
+      _WeekPlanDashboardScreenState();
 }
 
 class _WeekPlanDashboardScreenState
-    extends BaseState<
-        WeekPlanDashboardScreen,
-        WeekPlanEvent,
-        WeekPlanState,
-        WeekPlanBloc> {
+    extends
+        BaseState<
+          WeekPlanDashboardScreen,
+          WeekPlanEvent,
+          WeekPlanState,
+          WeekPlanBloc
+        > {
   @override
   void initState() {
     super.initState();
@@ -53,7 +56,7 @@ class _WeekPlanDashboardScreenState
         actions: [
           BlocBuilder<WeekPlanBloc, WeekPlanState>(
             buildWhen: (prev, curr) =>
-            prev.dateStart != curr.dateStart ||
+                prev.dateStart != curr.dateStart ||
                 prev.dateEnd != curr.dateEnd,
             builder: (context, s) => IconButton(
               icon: const Icon(Icons.calendar_month),
@@ -73,8 +76,7 @@ class _WeekPlanDashboardScreenState
               state.myTasks.isEmpty) {
             return const Center(child: CircularProgressIndicator());
           }
-          if (state.status == BaseStateStatus.failed &&
-              state.myTasks.isEmpty) {
+          if (state.status == BaseStateStatus.failed && state.myTasks.isEmpty) {
             return _ErrorView(
               message: state.message,
               onRetry: () => bloc.add(const WeekPlanEvent.initDashboard()),
@@ -103,7 +105,6 @@ class _WeekPlanDashboardScreenState
                 WeekPlanDashboardTaskTypeTable(stats: taskTypeStats),
                 const SizedBox(height: 16),
                 WeekPlanDashboardPieChart(stats: stats),
-
               ],
             ),
           );
@@ -116,17 +117,25 @@ class _WeekPlanDashboardScreenState
   // STATS HELPERS
   //===============================================================
 
+  /// Chỉ công việc đã hoàn thành nhưng chưa có kết quả duyệt mới chờ duyệt.
+  bool _isAwaitingApproval(WeekPlanTaskItem task) =>
+      task.status == 2 && task.approvalStatus == null;
+
+  /// Chỉ công việc đã hoàn thành bị đánh trượt mới được tính là từ chối.
+  bool _isRejected(WeekPlanTaskItem task) =>
+      task.status == 2 && task.approvalStatus == false;
+
+  /// Quá hạn trên dashboard chỉ áp dụng cho công việc chưa hoàn thành hoặc
+  /// đang chờ duyệt; công việc đã duyệt hoàn thành không còn là việc tồn đọng.
+  bool _isDashboardOverdue(WeekPlanTaskItem task) {
+    if (task.isDeleted == true) return false;
+
+    final isTrackable =
+        task.status == 0 || task.status == 1 || _isAwaitingApproval(task);
+    return isTrackable && weekPlanIsOverdue(task);
+  }
+
   /// Tính toán số liệu thống kê theo từng trạng thái từ danh sách task.
-  ///
-  /// Status enum (theo `WeekPlanTaskItem.status`):
-  ///   0 = Chưa làm, 1 = Đang làm, 2 = Hoàn thành, 3 = Pending (Tạm hoãn)
-  ///
-  /// `approvalStatus`:
-  ///   - true  = Đã phê duyệt
-  ///   - false = Chờ phê duyệt / Từ chối (tách theo trạng thái cha)
-  ///
-  /// `isDeleted`:
-  ///   - true  = Huỷ
   DashboardStats _computeStats(List<WeekPlanTaskItem> tasks) {
     var chuaBatDau = 0;
     var chuaBatDauQuaHan = 0;
@@ -145,45 +154,28 @@ class _WeekPlanDashboardScreenState
         continue;
       }
 
-      final isOverdue = weekPlanIsOverdue(t);
-      final isPending = t.status == 3;
-      final approval = t.approvalStatus;
+      final isOverdue = _isDashboardOverdue(t);
+      final isAwaitingApproval = _isAwaitingApproval(t);
 
-      // Tạm hoãn: status == 3
-      if (isPending) {
+      if (t.status == 3) {
         tamHoan++;
         continue;
       }
 
-      // Từ chối: approvalStatus == false với status 0/1
-      if (approval == false && (t.status == 0 || t.status == 1)) {
-        tuChoi++;
-        continue;
-      }
-
-      // Chờ phê duyệt (chưa duyệt)
-      if (approval == null || approval == false) {
-        // Task cá nhân (needApprove = false) → tính vào Chưa làm / Đang làm
-        // Task cần duyệt mà chưa có approvalStatus → tính vào "Chờ phê duyệt"
-        if (t.isPersonalProject == true) {
-          if (t.status == 0) {
-            chuaBatDau++;
-          } else if (t.status == 1) {
-            dangLam++;
-          } else if (t.status == 2) {
-            hoanThanh++;
-          }
+      if (isAwaitingApproval) {
+        if (isOverdue) {
+          choPheDuyetQuaHan++;
         } else {
-          if (isOverdue) {
-            choPheDuyetQuaHan++;
-          } else {
-            choPheDuyet++;
-          }
+          choPheDuyet++;
         }
         continue;
       }
 
-      // approval == true
+      if (_isRejected(t)) {
+        tuChoi++;
+        continue;
+      }
+
       switch (t.status) {
         case 0:
           if (isOverdue) {
@@ -208,9 +200,7 @@ class _WeekPlanDashboardScreenState
     }
 
     final total = tasks.length;
-    final totalOverdue = chuaBatDauQuaHan +
-        dangLamQuaHan +
-        choPheDuyetQuaHan;
+    final totalOverdue = chuaBatDauQuaHan + dangLamQuaHan + choPheDuyetQuaHan;
 
     return DashboardStats(
       total: total,
@@ -228,34 +218,38 @@ class _WeekPlanDashboardScreenState
     );
   }
 
-  /// Thống kê số lượng công việc theo từng loại (projectTaskTypeName).
+  /// Thống kê các chỉ số theo loại công việc dùng cùng quy tắc với dashboard.
   List<DashboardTaskTypeStat> _computeTaskTypeStats(
-      List<WeekPlanTaskItem> tasks) {
+    List<WeekPlanTaskItem> tasks,
+  ) {
     final map = <String, DashboardTaskTypeStat>{};
     for (final t in tasks) {
       final name = t.projectTaskTypeName ?? 'Khác';
-      final isOverdue = weekPlanIsOverdue(t);
-      final stat = map[name] ??
+      final isActive = t.isDeleted != true;
+      final isAwaitingApproval = isActive && _isAwaitingApproval(t);
+      final isRejected = isActive && _isRejected(t);
+      final isApproved = isActive && t.status == 2 && t.approvalStatus == true;
+      final isOverdue = isActive && _isDashboardOverdue(t);
+      final stat =
+          map[name] ??
           DashboardTaskTypeStat(
             typeName: name,
             total: 0,
-            hoanThanh: 0,
+            duyet: 0,
+            tuChoi: 0,
             dangLam: 0,
             quaHan: 0,
             choDuyet: 0,
           );
       map[name] = DashboardTaskTypeStat(
         typeName: stat.typeName,
-        total: stat.total + 1,
-        hoanThanh: stat.hoanThanh + ((t.status == 2) ? 1 : 0),
-        dangLam: stat.dangLam +
-            ((t.status == 1 && weekPlanIsOverdue(t) == false) ? 1 : 0),
+        total: stat.total + (isActive ? 1 : 0),
+        duyet: stat.duyet + (isApproved ? 1 : 0),
+        tuChoi: stat.tuChoi + (isRejected ? 1 : 0),
+        dangLam:
+            stat.dangLam + ((isActive && t.status == 1 && !isOverdue) ? 1 : 0),
         quaHan: stat.quaHan + (isOverdue ? 1 : 0),
-        choDuyet: stat.choDuyet +
-            (((t.approvalStatus == null || t.approvalStatus == false) &&
-                    t.isPersonalProject != true)
-                ? 1
-                : 0),
+        choDuyet: stat.choDuyet + (isAwaitingApproval ? 1 : 0),
       );
     }
     final list = map.values.toList();
@@ -278,10 +272,9 @@ class _WeekPlanDashboardScreenState
             initialStart: bloc.state.dateStart,
             initialEnd: bloc.state.dateEnd,
             onApply: (start, end) {
-              bloc.add(WeekPlanEvent.changeDateRange(
-                dateStart: start,
-                dateEnd: end,
-              ));
+              bloc.add(
+                WeekPlanEvent.changeDateRange(dateStart: start, dateEnd: end),
+              );
             },
           ),
         ),
@@ -334,5 +327,3 @@ class _ErrorView extends StatelessWidget {
     );
   }
 }
-
-
