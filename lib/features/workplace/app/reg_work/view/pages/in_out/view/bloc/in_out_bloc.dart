@@ -2,9 +2,11 @@ import 'package:bloc/bloc.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+
 import '../../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../../common/logger/index.dart';
+import '../../../../../../../../../common/utils/datetime_utils.dart';
 import '../../../../../../../../auth/data/repository/auth_repo.dart';
 import '../../data/datasource/models/in_out_model.dart';
 import '../../data/repository/in_out_repo.dart';
@@ -327,9 +329,9 @@ class InOutBloc extends BaseBloc<InOutEvent, InOutState> {
         "ID": 0,
         "ApprovedID": 0,
         "ApprovedTP": approvedTP,
-        "DateEnd": dateEnd.toIso8601String(),
-        "DateRegister": dateRegister.toIso8601String(),
-        "DateStart": dateStart.toIso8601String(),
+        "DateEnd": toVnIso8601(dateEnd),
+        "DateRegister": toVnIso8601(dateRegister),
+        "DateStart": toVnIso8601(dateStart),
         "EmployeeID": employeeId,
         "IsApproved": false,
         "IsDeleted": false,
@@ -428,8 +430,8 @@ class InOutBloc extends BaseBloc<InOutEvent, InOutState> {
         "ID": id,
         "ApprovedID": 0,
         "ApprovedTP": approvedTP,
-        "DateEnd": dateEnd.toIso8601String(),
-        "DateRegister": DateTime(
+        "DateEnd": toVnIso8601(dateEnd),
+        "DateRegister": toVnIso8601(DateTime(
           dateStart.year,
           dateStart.month,
           dateStart.day,
@@ -437,8 +439,8 @@ class InOutBloc extends BaseBloc<InOutEvent, InOutState> {
           DateTime.now().minute,
           DateTime.now().second,
           DateTime.now().millisecond,
-        ).toIso8601String(),
-        "DateStart": dateStart.toIso8601String(),
+        )),
+        "DateStart": toVnIso8601(dateStart),
         "EmployeeID": user.employeeId,
         "IsApproved": false,
         "IsDeleted": false,
@@ -541,11 +543,11 @@ class InOutBloc extends BaseBloc<InOutEvent, InOutState> {
         "ID": id,
         "ApprovedID": item?.approvedId ?? 0,
         "ApprovedTP": item?.approvedTP ?? 0,
-        "DateEnd": dateEnd.toIso8601String(),
-        "DateRegister":
-            item?.dateRegister?.toIso8601String() ??
-            DateTime.now().toIso8601String(),
-        "DateStart": dateStart.toIso8601String(),
+        "DateEnd": toVnIso8601(dateEnd),
+        "DateRegister": item?.dateRegister != null
+            ? toVnIso8601(item!.dateRegister!)
+            : toVnIso8601(DateTime.now()),
+        "DateStart": toVnIso8601(dateStart),
         "EmployeeID": user.employeeId,
         "IsApproved": false,
         "IsDeleted": true,

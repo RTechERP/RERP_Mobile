@@ -6,6 +6,7 @@ import 'package:injectable/injectable.dart';
 import '../../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../../common/logger/index.dart';
+import '../../../../../../../../../common/utils/datetime_utils.dart';
 import '../../../../../../../../auth/data/repository/auth_repo.dart';
 import '../../data/datasource/models/overnight_model.dart';
 import '../../data/repository/overnight_repo.dart';
@@ -259,25 +260,9 @@ class OvernightBloc extends BaseBloc<OvernightEvent, OvernightState> {
     );
   }
 
-  static DateTime _normalizeToMinute(DateTime dt) =>
-      DateTime(dt.year, dt.month, dt.day, dt.hour, dt.minute);
 
-  /// Format DateTime thành ISO 8601 có timezone offset (VD: 2026-03-31T18:00:00.000+07:00)
-  static String _toLocalIso8601(DateTime dt) {
-    final local = dt.isUtc ? dt.toLocal() : dt;
-    final offset = local.timeZoneOffset;
-    final sign = offset.isNegative ? '-' : '+';
-    final oh = offset.inHours.abs().toString().padLeft(2, '0');
-    final om = (offset.inMinutes.abs() % 60).toString().padLeft(2, '0');
-    final ms = local.millisecond.toString().padLeft(3, '0');
-    return '${local.year.toString().padLeft(4, '0')}-'
-        '${local.month.toString().padLeft(2, '0')}-'
-        '${local.day.toString().padLeft(2, '0')}T'
-        '${local.hour.toString().padLeft(2, '0')}:'
-        '${local.minute.toString().padLeft(2, '0')}:'
-        '${local.second.toString().padLeft(2, '0')}.'
-        '$ms$sign$oh:$om';
-  }
+DateTime _normalizeToMinute(DateTime dt) =>
+    DateTime(dt.year, dt.month, dt.day, dt.hour, dt.minute);
 
   Future<void> _onSubmitBatch(
       Emitter<OvernightState> emit, {
@@ -318,7 +303,7 @@ class OvernightBloc extends BaseBloc<OvernightEvent, OvernightState> {
       }
 
       final dateRegisterStr =
-      _toLocalIso8601(_normalizeToMinute(dateRegister));
+      toVnIso8601(_normalizeToMinute(dateRegister));
 
       final slipList = slips;
 
@@ -366,8 +351,8 @@ class OvernightBloc extends BaseBloc<OvernightEvent, OvernightState> {
           'EmployeeID': employeeId,
           'ApprovedTBP': approvedId,
           'DateRegister': dateRegisterStr,
-          'DateStart': _toLocalIso8601(start),
-          'DateEnd': _toLocalIso8601(end),
+          'DateStart': toVnIso8601(start),
+          'DateEnd': toVnIso8601(end),
           'TotalHours':
           totalHours % 1 == 0 ? totalHours.toInt() : totalHours,
           'BreaksTime': breaksTime,
@@ -572,7 +557,7 @@ class OvernightBloc extends BaseBloc<OvernightEvent, OvernightState> {
         return;
       }
 
-      final dateRegisterStr = _toLocalIso8601(_normalizeToMinute(dateRegister));
+      final dateRegisterStr = toVnIso8601(_normalizeToMinute(dateRegister));
 
       final start = _normalizeToMinute(slip.timeStart);
       final end = _normalizeToMinute(slip.endTime);
@@ -599,8 +584,8 @@ class OvernightBloc extends BaseBloc<OvernightEvent, OvernightState> {
         'EmployeeID': employeeId,
         'ApprovedTBP': approvedId,
         'DateRegister': dateRegisterStr,
-        'DateStart': _toLocalIso8601(start),
-        'DateEnd': _toLocalIso8601(end),
+        'DateStart': toVnIso8601(start),
+        'DateEnd': toVnIso8601(end),
         'TotalHours': totalHours % 1 == 0 ? totalHours.toInt() : totalHours,
         'BreaksTime': breaksTime,
         'Location': slip.location,

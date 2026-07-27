@@ -6,6 +6,7 @@ import 'package:injectable/injectable.dart';
 import '../../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../../common/logger/index.dart';
+import '../../../../../../../../../common/utils/datetime_utils.dart';
 import '../../../../../../../../auth/data/repository/auth_repo.dart';
 import '../../data/datasource/models/work_trip_model.dart';
 import '../../data/repository/work_trip_repo.dart';
@@ -68,24 +69,9 @@ class WorkTripBloc extends BaseBloc<WorkTripEvent, WorkTripState> {
     };
   }
 
-  static DateTime _normalizeToMinute(DateTime dt) =>
-      DateTime(dt.year, dt.month, dt.day, dt.hour, dt.minute);
+DateTime _normalizeToMinute(DateTime dt) =>
+    DateTime(dt.year, dt.month, dt.day, dt.hour, dt.minute);
 
-  static String _toLocalIso8601(DateTime dt) {
-    final local = dt.isUtc ? dt.toLocal() : dt;
-    final offset = local.timeZoneOffset;
-    final sign = offset.isNegative ? '-' : '+';
-    final oh = offset.inHours.abs().toString().padLeft(2, '0');
-    final om = (offset.inMinutes.abs() % 60).toString().padLeft(2, '0');
-    final ms = local.millisecond.toString().padLeft(3, '0');
-    return '${local.year.toString().padLeft(4, '0')}-'
-        '${local.month.toString().padLeft(2, '0')}-'
-        '${local.day.toString().padLeft(2, '0')}T'
-        '${local.hour.toString().padLeft(2, '0')}:'
-        '${local.minute.toString().padLeft(2, '0')}:'
-        '${local.second.toString().padLeft(2, '0')}.'
-        '$ms$sign$oh:$om';
-  }
 
   Future<void> _onInit(Emitter<WorkTripState> emit) async {
     emit(state.copyWith(status: BaseStateStatus.loading));
@@ -391,7 +377,7 @@ class WorkTripBloc extends BaseBloc<WorkTripEvent, WorkTripState> {
           data.costBussiness + costVehicle + costWorkEarly + costOvernight;
 
       final dayStr =
-          _toLocalIso8601(_normalizeToMinute(data.dayBussiness));
+          toVnIso8601(_normalizeToMinute(data.dayBussiness));
 
       // VehicleID = 0 khi gửi qua employeeBussinessVehicle (xe máy / khác),
       // ngược lại dùng ID thực của phương tiện đã chọn.
@@ -595,7 +581,7 @@ class WorkTripBloc extends BaseBloc<WorkTripEvent, WorkTripState> {
       final totalMoney =
           data.costBussiness + costVehicle + costWorkEarly + costOvernight;
 
-      final dayStr = _toLocalIso8601(_normalizeToMinute(data.dayBussiness));
+      final dayStr = toVnIso8601(_normalizeToMinute(data.dayBussiness));
 
       final bussinessObject = <String, dynamic>{
         'ID': id,

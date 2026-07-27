@@ -11,6 +11,7 @@ import '../../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../../common/enums/role_enum.dart';
 import '../../../../../../../../../common/logger/index.dart';
 import '../../../../../../../../../common/services/permissions/role_resolver.dart';
+import '../../../../../../../../../common/utils/datetime_utils.dart';
 import '../../../../../../../../../common/utils/formatter/date_formatter.dart';
 import '../../../../../../../../auth/data/repository/auth_repo.dart';
 import '../../data/datasource/models/leave_model.dart';
@@ -21,8 +22,6 @@ part 'leave_event.dart';
 part 'leave_state.dart';
 part 'leave_bloc.g.dart';
 part 'leave_bloc.freezed.dart';
-
-
 
 @injectable
 class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
@@ -767,9 +766,9 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
       "ID": id,
       "ApprovedID": 0,
       "ApprovedTP": approvedTP,
-      "DateEnd": dateEnd.toIso8601String(),
-      "DateRegister": dateRegister.toIso8601String(),
-      "DateStart": dateStart.toIso8601String(),
+      "DateEnd": toVnIso8601(dateEnd),
+      "DateRegister": toVnIso8601(dateRegister),
+      "DateStart": toVnIso8601(dateStart),
       "EmployeeID": employeeId,
       "IsApproved": false,
       "IsDeleted": false,
@@ -828,8 +827,8 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
 
       details.add({
         'ID': 0,
-        'StartDate': start.toIso8601String(),
-        'EndDate': end.toIso8601String(),
+        'StartDate': toVnIso8601(start),
+        'EndDate': toVnIso8601(end),
         'TimeOnLeave': s.timeRegister,
         'Type': s.type,
         'TypeIsReal': s.type,
@@ -850,10 +849,10 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
         'ID': 0,
         'Code': '',
         'EmployeeID': employeeId,
-        'DateRegister': DateTime.now().toIso8601String(),
+        'DateRegister': toVnIso8601(DateTime.now()),
         'Reason': '',
-        'StartDate': firstStart?.toIso8601String(),
-        'EndDate': lastEnd?.toIso8601String(),
+        'StartDate': firstStart == null ? null : toVnIso8601(firstStart!),
+        'EndDate': lastEnd == null ? null : toVnIso8601(lastEnd!),
         'TotalDay': totalDayPhase,
         'IsDeleted': false,
       },
@@ -872,7 +871,7 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
   }) {
     final details = <Map<String, dynamic>>[];
     var totalDayPhase = 0.0;
-    final regIso = (phaseDateRegister ?? DateTime.now()).toIso8601String();
+    final regIso = toVnIso8601(phaseDateRegister ?? DateTime.now());
 
     DateTime? firstStart;
     DateTime? lastEnd;
@@ -912,8 +911,8 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
 
       details.add({
         'ID': s.detailId,
-        'StartDate': start.toIso8601String(),
-        'EndDate': end.toIso8601String(),
+        'StartDate': toVnIso8601(start),
+        'EndDate': toVnIso8601(end),
         'TimeOnLeave': s.timeRegister,
         'Type': s.type,
         'TypeIsReal': s.type,
@@ -934,8 +933,8 @@ class LeaveBloc extends BaseBloc<LeaveEvent, LeaveState> {
         'Code': phaseCode,
         'EmployeeID': employeeId,
         'DateRegister': regIso,
-        'StartDate': firstStart?.toIso8601String(),
-        'EndDate': lastEnd?.toIso8601String(),
+        'StartDate': firstStart == null ? null : toVnIso8601(firstStart!),
+        'EndDate': lastEnd == null ? null : toVnIso8601(lastEnd!),
         'TotalDay': totalDayPhase,
         'IsDeleted': false,
       },
