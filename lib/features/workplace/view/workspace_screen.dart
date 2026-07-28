@@ -73,7 +73,7 @@ class _WorkPlaceScreenState
     final deptId = user.departmentId;
     final posId = user.positionId;
 
-    if (roles.contains(AppRole.tech) ||
+    if (roles.contains(AppRole.tech) && employeeId != 271 ||
         roles.contains(AppRole.agv) ||
         roles.contains(AppRole.ad)) {
       return RouteNames.reportITdepart;
