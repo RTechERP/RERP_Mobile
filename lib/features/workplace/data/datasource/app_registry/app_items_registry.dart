@@ -388,7 +388,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.warehouse_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'warehouse',
-      route: RouteNames.warehouseArea,
+      route: RouteNames.warehouseSaleArea,
     ),
     AppItemModel(
       id: 'warehouse:demo',
@@ -396,7 +396,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.warehouse_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'warehouse',
-      route: RouteNames.warehouseDemo,
+      route: RouteNames.warehouseDemoArea,
     ),
     AppItemModel(
       id: 'warehouse:agv',
@@ -404,7 +404,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.warehouse_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'warehouse',
-      route: RouteNames.warehouseAgv,
+      route: RouteNames.warehouseAgvArea,
     ),
     AppItemModel(
       id: 'warehouse:project',
@@ -412,7 +412,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.warehouse_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'warehouse',
-      route: RouteNames.warehouseProject,
+      route: RouteNames.warehouseProjectArea,
     ),
     AppItemModel(
       id: 'warehouse:test',
@@ -420,7 +420,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.warehouse_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'warehouse',
-      route: RouteNames.warehouseTest,
+      route: RouteNames.warehouseTestArea,
     ),
   ];
 

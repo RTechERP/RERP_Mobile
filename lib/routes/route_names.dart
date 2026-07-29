@@ -223,6 +223,11 @@ class RouteNames {
 
   // Warehouse
   static const warehouseArea = '/warehouse_area';
+  static const warehouseSaleArea = '/warehouse_sale_area';
+  static const warehouseDemoArea = '/warehouse_demo_area';
+  static const warehouseAgvArea = '/warehouse_agv_area';
+  static const warehouseProjectArea = '/warehouse_project_area';
+  static const warehouseTestArea = '/warehouse_test_area';
   static const warehouseSale = '/warehouse_sale';
   static const warehouseDemo = '/warehouse_demo';
   static const warehouseAgv = '/warehouse_agv';

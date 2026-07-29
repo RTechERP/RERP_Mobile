@@ -4,17 +4,17 @@ import 'package:flutter/material.dart';
 import '../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../common/app_theme/index.dart';
 
-class WarehouseSaleScreen extends StatelessWidget {
+class WarehouseDemoScreen extends StatelessWidget {
   final String areaId;
   final String areaName;
 
-  const WarehouseSaleScreen({
+  const WarehouseDemoScreen({
     super.key,
     required this.areaId,
     required this.areaName,
   });
 
-  String get title => '${'warehouse.sale'.tr()} - $areaName';
+  String get title => '${'warehouse.demo'.tr()} - $areaName';
 
   @override
   Widget build(BuildContext context) {
