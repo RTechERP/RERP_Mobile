@@ -66,7 +66,8 @@
     "reg_general": "Đăng ký chung",
     "report": "Báo cáo CV",
     "week_plan": "Công việc",
-    "stock": "Tồn kho theo SP"
+    "stock": "Tồn kho theo SP",
+    "warehouse": "Kho"
   },
   "general_forms": {
 
@@ -141,6 +142,24 @@
   },
   "dialog_service": {
     "an_error_occurred_please_try_again": "Có lỗi xảy ra, vui lòng thử lại"
+  },
+  "warehouse": {
+    "list": "Danh sách kho",
+    "function": "Chức năng",
+    "sale": "Kho sale",
+    "demo": "Kho demo",
+    "agv": "Kho AGV",
+    "project": "Kho dự án",
+    "test": "Kho test",
+    "area": "Khu vực",
+    "ha_noi": "Hà Nội",
+    "ho_chi_minh": "Hồ Chí Minh",
+    "bac_ninh": "Bắc Ninh",
+    "dan_phuong": "Đan Phượng"
+  },
+  "warehouse_sale": {
+    "grn": "Phiếu nhập",
+    "gdn": "Phiếu xuất"
   },
   "dio": {
     "cancel_request": "Request was cancelled",

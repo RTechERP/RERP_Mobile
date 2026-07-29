@@ -30,6 +30,7 @@ class RouteNames {
   static const weekplanDashboard = '/week_plan/dashboard';
   static const weekplanTimeline = '/week_plan/timeline';
   static const stock = '/stock';
+  static const warehouse = '/warehouse';
 
   static const regworkLunch = '/regwork/lunch';
 
@@ -219,4 +220,12 @@ class RouteNames {
   // General Form
   static const generalForms = '/general_forms';
   static const generalFormDetail = '/general_forms/detail';
+
+  // Warehouse
+  static const warehouseArea = '/warehouse_area';
+  static const warehouseSale = '/warehouse_sale';
+  static const warehouseDemo = '/warehouse_demo';
+  static const warehouseAgv = '/warehouse_agv';
+  static const warehouseProject = '/warehouse_project';
+  static const warehouseTest = '/warehouse_test';
 }
