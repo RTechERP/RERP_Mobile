@@ -379,6 +379,86 @@ class AppItemRegistry {
       route: '/week-plan/summary',
     ),
   ];
+
+  static final List<AppItemModel> warehouse = [
+    /// ================= WAREHOUSE =================
+    AppItemModel(
+      id: 'warehouse:sale',
+      name: 'warehouse.sale'.tr(),
+      iconCodePoint: Icons.warehouse_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'warehouse',
+      route: RouteNames.warehouseArea,
+    ),
+    AppItemModel(
+      id: 'warehouse:demo',
+      name: 'warehouse.demo'.tr(),
+      iconCodePoint: Icons.warehouse_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'warehouse',
+      route: RouteNames.warehouseDemo,
+    ),
+    AppItemModel(
+      id: 'warehouse:agv',
+      name: 'warehouse.agv'.tr(),
+      iconCodePoint: Icons.warehouse_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'warehouse',
+      route: RouteNames.warehouseAgv,
+    ),
+    AppItemModel(
+      id: 'warehouse:project',
+      name: 'warehouse.project'.tr(),
+      iconCodePoint: Icons.warehouse_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'warehouse',
+      route: RouteNames.warehouseProject,
+    ),
+    AppItemModel(
+      id: 'warehouse:test',
+      name: 'warehouse.test'.tr(),
+      iconCodePoint: Icons.warehouse_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'warehouse',
+      route: RouteNames.warehouseTest,
+    ),
+  ];
+
+  static final List<AppItemModel> warehouse_area = [
+    /// ================= WAREHOUSE AREA =================
+    AppItemModel(
+      id: 'warehouse_area:ha_noi',
+      name: 'warehouse.ha_noi'.tr(),
+      iconCodePoint: Icons.warehouse_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'warehouse',
+      route: RouteNames.warehouseSale,
+    ),
+    AppItemModel(
+      id: 'warehouse_area:ho_chi_minh',
+      name: 'warehouse.ho_chi_minh'.tr(),
+      iconCodePoint: Icons.warehouse_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'warehouse',
+      route: RouteNames.warehouseDemo,
+    ),
+    AppItemModel(
+      id: 'warehouse_area:bac_ninh',
+      name: 'warehouse.bac_ninh'.tr(),
+      iconCodePoint: Icons.warehouse_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'warehouse',
+      route: RouteNames.warehouseAgv,
+    ),
+    AppItemModel(
+      id: 'warehouse_area:dan_phuong',
+      name: 'warehouse.dan_phuong'.tr(),
+      iconCodePoint: Icons.warehouse_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'warehouse',
+      route: RouteNames.warehouseProject,
+    ),
+  ];
   static final List<AppItemModel> all = [
     ...regwork,
     ...reggeneral,
