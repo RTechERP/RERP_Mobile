@@ -162,6 +162,9 @@ import '../features/workplace/app/reports/view/tech/view/pages/tech_add_screen.d
 import '../features/workplace/app/reports/view/tech/view/pages/tech_detail_screen.dart';
 import '../features/workplace/app/reports/view/tech/view/pages/tech_edit_screen.dart';
 import '../features/workplace/app/reports/view/tech/view/pages/tech_screen.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_area_screen.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/warehouse_sale_screen.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_screen.dart';
 import '../features/workplace/app/week_plan/view/bloc/week_plan_bloc.dart';
 import '../features/workplace/app/week_plan/view/pages/week_plan_add_screen.dart';
 import '../features/workplace/app/week_plan/view/pages/week_plan_all_screen.dart';
@@ -1334,6 +1337,17 @@ class AppRouter {
             },
           ),
         ],
+      ),
+
+      //---(Warehouse)---//
+      GoRoute(
+        path: RouteNames.warehouse,
+        builder: (context, state) => const WarehouseScreen(),
+      ),
+
+      GoRoute(
+        path: RouteNames.warehouseArea,
+        builder: (context, state) => const WarehouseAreaScreen(),
       ),
     ],
   );

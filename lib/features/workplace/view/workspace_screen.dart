@@ -150,8 +150,7 @@ class _WorkPlaceScreenState
             final avatarUrl = _resolveAvatarUrl(
               user?.employeeId,
               imagePath: user?.imagePath,
-              cacheBust:
-                  authState.avatarUploadedAt?.millisecondsSinceEpoch,
+              cacheBust: authState.avatarUploadedAt?.millisecondsSinceEpoch,
             );
 
             return WpInfoCard(
@@ -251,7 +250,7 @@ class _WorkPlaceScreenState
                         id: 'week_plan',
                         iconCodePoint: Icons.newspaper_outlined.codePoint,
                         name: 'applications.week_plan'.tr(),
-                        route: '/week_plan',
+                        route: RouteNames.weekplan,
                         imageUrl: AppImages.app_menu_week_plan,
                       ),
                       // AppItemModel(
@@ -260,6 +259,12 @@ class _WorkPlaceScreenState
                       //   name: 'applications.stock'.tr(),
                       //   imageUrl: AppImages.app_menu_stock,
                       // ),
+                      AppItemModel(
+                        id: 'warehouse',
+                        iconCodePoint: Icons.warehouse_outlined.codePoint,
+                        name: 'applications.warehouse'.tr(),
+                        route: RouteNames.warehouse,
+                      ),
                     ],
                   ),
 
