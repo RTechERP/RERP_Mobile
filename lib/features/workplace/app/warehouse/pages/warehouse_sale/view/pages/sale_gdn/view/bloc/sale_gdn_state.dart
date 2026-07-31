@@ -18,6 +18,15 @@ class SaleGdnState extends BaseBlocState {
   /// Trạng thái loading riêng cho tìm kiếm.
   final bool isSearching;
 
+  /// Danh sách loại kho từ API.
+  final List<TypeWarehouseResponse> warehouseTypes;
+
+  /// Danh sách ID loại kho đang chọn (rỗng = chọn tất cả).
+  final List<int> selectedWarehouseTypeIds;
+
+  /// Trạng thái đang chọn (-1 = tất cả).
+  final int selectedStatus;
+
   const SaleGdnState({
     required super.status,
     super.message,
@@ -27,6 +36,9 @@ class SaleGdnState extends BaseBlocState {
     this.dateStart,
     this.dateEnd,
     this.warehouseCode = 'HN',
+    this.warehouseTypes = const [],
+    this.selectedWarehouseTypeIds = const [],
+    this.selectedStatus = -1,
   });
 
   factory SaleGdnState.init() {
@@ -48,5 +60,8 @@ class SaleGdnState extends BaseBlocState {
         dateStart,
         dateEnd,
         warehouseCode,
+        warehouseTypes,
+        selectedWarehouseTypeIds,
+        selectedStatus,
       ];
 }

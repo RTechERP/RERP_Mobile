@@ -29,6 +29,11 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
             _searchByVoucherNumber(emit, voucherNumber),
         clearSearch: () => _clearSearch(emit),
         scanQrCode: (code) => _scanQrCode(emit, code),
+        fetchWarehouseTypes: () => _fetchWarehouseTypes(emit),
+        filterByWarehouseType: (warehouseTypeId) =>
+            _filterByWarehouseType(emit, warehouseTypeId),
+        filterByStatus: (status) => _filterByStatus(emit, status),
+        clearFilters: () => _clearFilters(emit),
       );
     });
   }
@@ -54,10 +59,12 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
       'DateEnd': '$_dateEndString.999+07:00',
       'DateStart': '$_dateStartString.000+07:00',
       'FilterText': filterText,
-      'KhoType': _defaultKhoType,
+      'KhoType': state.selectedWarehouseTypeIds.isEmpty
+          ? _defaultKhoType
+          : state.selectedWarehouseTypeIds.join(','),
       'PageNumber': 1,
       'PageSize': 99999999,
-      'Status': -1,
+      'Status': state.selectedStatus,
       'WarehouseCode': state.warehouseCode,
       'checkedAll': false,
     };
@@ -206,5 +213,41 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
         ));
       },
     );
+  }
+
+  Future<void> _fetchWarehouseTypes(Emitter<SaleGdnState> emit) async {
+    final res = await _repo.getProductGroups(
+      isAdmin: false,
+      departmentId: 24,
+    );
+
+    await res.fold(
+      (l) async {
+        _log.logE('❌ getProductGroups failed: $l');
+      },
+      (r) async {
+        _log.logI('✅ getProductGroups success - total: ${r.length}');
+        emit(state.copyWith(warehouseTypes: r));
+      },
+    );
+  }
+
+  Future<void> _filterByWarehouseType(
+      Emitter<SaleGdnState> emit, List<int> warehouseTypeIds) async {
+    emit(state.copyWith(selectedWarehouseTypeIds: warehouseTypeIds));
+    await _fetchGdns(emit);
+  }
+
+  Future<void> _filterByStatus(Emitter<SaleGdnState> emit, int status) async {
+    emit(state.copyWith(selectedStatus: status));
+    await _fetchGdns(emit);
+  }
+
+  Future<void> _clearFilters(Emitter<SaleGdnState> emit) async {
+    emit(state.copyWith(
+      selectedWarehouseTypeIds: [],
+      selectedStatus: -1,
+    ));
+    await _fetchGdns(emit);
   }
 }

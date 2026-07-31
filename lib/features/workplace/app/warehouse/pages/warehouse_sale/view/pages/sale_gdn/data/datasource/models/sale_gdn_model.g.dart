@@ -115,3 +115,27 @@ Map<String, dynamic> _$$BillExporResponseImplToJson(
       'IsIncurredApproved': instance.isIncurredApproved,
       'ReceiverFullName': instance.receiverFullName,
     };
+
+_$TypeWarehouseResponseImpl _$$TypeWarehouseResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$TypeWarehouseResponseImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      productGroupId: json['ProductGroupID'] as String?,
+      productGroupName: json['ProductGroupName'] as String?,
+      isVisible: json['IsVisible'] as bool?,
+      employeeId: (json['EmployeeID'] as num?)?.toInt(),
+      parentId: (json['ParentID'] as num?)?.toInt(),
+      stt: (json['STT'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$TypeWarehouseResponseImplToJson(
+        _$TypeWarehouseResponseImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'ProductGroupID': instance.productGroupId,
+      'ProductGroupName': instance.productGroupName,
+      'IsVisible': instance.isVisible,
+      'EmployeeID': instance.employeeId,
+      'ParentID': instance.parentId,
+      'STT': instance.stt,
+    };

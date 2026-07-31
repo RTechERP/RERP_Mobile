@@ -6,4 +6,9 @@ abstract class SaleGdnRepo {
   Future<Either<BaseError, List<BillExporResponse>>> getBillExports({
     required Map<String, dynamic> payload,
   });
+
+  Future<Either<BaseError, List<TypeWarehouseResponse>>> getProductGroups({
+    required bool isAdmin,
+    required int departmentId,
+  });
 }

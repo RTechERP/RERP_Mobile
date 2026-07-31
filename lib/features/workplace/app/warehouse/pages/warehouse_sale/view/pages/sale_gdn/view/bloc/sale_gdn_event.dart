@@ -8,4 +8,8 @@ class SaleGdnEvent with _$SaleGdnEvent {
   const factory SaleGdnEvent.searchByVoucherNumber(String voucherNumber) = _SearchByVoucherNumber;
   const factory SaleGdnEvent.clearSearch() = _ClearSearch;
   const factory SaleGdnEvent.scanQrCode(String code) = _ScanQrCode;
+  const factory SaleGdnEvent.fetchWarehouseTypes() = _FetchWarehouseTypes;
+  const factory SaleGdnEvent.filterByWarehouseType(List<int> warehouseTypeIds) = _FilterByWarehouseType;
+  const factory SaleGdnEvent.filterByStatus(int status) = _FilterByStatus;
+  const factory SaleGdnEvent.clearFilters() = _ClearFilters;
 }

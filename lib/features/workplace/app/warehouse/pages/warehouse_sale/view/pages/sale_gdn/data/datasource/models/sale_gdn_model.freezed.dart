@@ -1378,3 +1378,295 @@ abstract class _BillExporResponse implements BillExporResponse {
   _$$BillExporResponseImplCopyWith<_$BillExporResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+TypeWarehouseResponse _$TypeWarehouseResponseFromJson(
+    Map<String, dynamic> json) {
+  return _TypeWarehouseResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$TypeWarehouseResponse {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProductGroupID')
+  String? get productGroupId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProductGroupName')
+  String? get productGroupName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsVisible')
+  bool? get isVisible => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ParentID')
+  int? get parentId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'STT')
+  int? get stt => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $TypeWarehouseResponseCopyWith<TypeWarehouseResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TypeWarehouseResponseCopyWith<$Res> {
+  factory $TypeWarehouseResponseCopyWith(TypeWarehouseResponse value,
+          $Res Function(TypeWarehouseResponse) then) =
+      _$TypeWarehouseResponseCopyWithImpl<$Res, TypeWarehouseResponse>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'ProductGroupID') String? productGroupId,
+      @JsonKey(name: 'ProductGroupName') String? productGroupName,
+      @JsonKey(name: 'IsVisible') bool? isVisible,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'ParentID') int? parentId,
+      @JsonKey(name: 'STT') int? stt});
+}
+
+/// @nodoc
+class _$TypeWarehouseResponseCopyWithImpl<$Res,
+        $Val extends TypeWarehouseResponse>
+    implements $TypeWarehouseResponseCopyWith<$Res> {
+  _$TypeWarehouseResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? productGroupId = freezed,
+    Object? productGroupName = freezed,
+    Object? isVisible = freezed,
+    Object? employeeId = freezed,
+    Object? parentId = freezed,
+    Object? stt = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      productGroupId: freezed == productGroupId
+          ? _value.productGroupId
+          : productGroupId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productGroupName: freezed == productGroupName
+          ? _value.productGroupName
+          : productGroupName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isVisible: freezed == isVisible
+          ? _value.isVisible
+          : isVisible // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      parentId: freezed == parentId
+          ? _value.parentId
+          : parentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$TypeWarehouseResponseImplCopyWith<$Res>
+    implements $TypeWarehouseResponseCopyWith<$Res> {
+  factory _$$TypeWarehouseResponseImplCopyWith(
+          _$TypeWarehouseResponseImpl value,
+          $Res Function(_$TypeWarehouseResponseImpl) then) =
+      __$$TypeWarehouseResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'ProductGroupID') String? productGroupId,
+      @JsonKey(name: 'ProductGroupName') String? productGroupName,
+      @JsonKey(name: 'IsVisible') bool? isVisible,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'ParentID') int? parentId,
+      @JsonKey(name: 'STT') int? stt});
+}
+
+/// @nodoc
+class __$$TypeWarehouseResponseImplCopyWithImpl<$Res>
+    extends _$TypeWarehouseResponseCopyWithImpl<$Res,
+        _$TypeWarehouseResponseImpl>
+    implements _$$TypeWarehouseResponseImplCopyWith<$Res> {
+  __$$TypeWarehouseResponseImplCopyWithImpl(_$TypeWarehouseResponseImpl _value,
+      $Res Function(_$TypeWarehouseResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? productGroupId = freezed,
+    Object? productGroupName = freezed,
+    Object? isVisible = freezed,
+    Object? employeeId = freezed,
+    Object? parentId = freezed,
+    Object? stt = freezed,
+  }) {
+    return _then(_$TypeWarehouseResponseImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      productGroupId: freezed == productGroupId
+          ? _value.productGroupId
+          : productGroupId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productGroupName: freezed == productGroupName
+          ? _value.productGroupName
+          : productGroupName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isVisible: freezed == isVisible
+          ? _value.isVisible
+          : isVisible // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      parentId: freezed == parentId
+          ? _value.parentId
+          : parentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$TypeWarehouseResponseImpl implements _TypeWarehouseResponse {
+  const _$TypeWarehouseResponseImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'ProductGroupID') this.productGroupId,
+      @JsonKey(name: 'ProductGroupName') this.productGroupName,
+      @JsonKey(name: 'IsVisible') this.isVisible,
+      @JsonKey(name: 'EmployeeID') this.employeeId,
+      @JsonKey(name: 'ParentID') this.parentId,
+      @JsonKey(name: 'STT') this.stt});
+
+  factory _$TypeWarehouseResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TypeWarehouseResponseImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'ProductGroupID')
+  final String? productGroupId;
+  @override
+  @JsonKey(name: 'ProductGroupName')
+  final String? productGroupName;
+  @override
+  @JsonKey(name: 'IsVisible')
+  final bool? isVisible;
+  @override
+  @JsonKey(name: 'EmployeeID')
+  final int? employeeId;
+  @override
+  @JsonKey(name: 'ParentID')
+  final int? parentId;
+  @override
+  @JsonKey(name: 'STT')
+  final int? stt;
+
+  @override
+  String toString() {
+    return 'TypeWarehouseResponse(id: $id, productGroupId: $productGroupId, productGroupName: $productGroupName, isVisible: $isVisible, employeeId: $employeeId, parentId: $parentId, stt: $stt)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TypeWarehouseResponseImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.productGroupId, productGroupId) ||
+                other.productGroupId == productGroupId) &&
+            (identical(other.productGroupName, productGroupName) ||
+                other.productGroupName == productGroupName) &&
+            (identical(other.isVisible, isVisible) ||
+                other.isVisible == isVisible) &&
+            (identical(other.employeeId, employeeId) ||
+                other.employeeId == employeeId) &&
+            (identical(other.parentId, parentId) ||
+                other.parentId == parentId) &&
+            (identical(other.stt, stt) || other.stt == stt));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, productGroupId,
+      productGroupName, isVisible, employeeId, parentId, stt);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TypeWarehouseResponseImplCopyWith<_$TypeWarehouseResponseImpl>
+      get copyWith => __$$TypeWarehouseResponseImplCopyWithImpl<
+          _$TypeWarehouseResponseImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$TypeWarehouseResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _TypeWarehouseResponse implements TypeWarehouseResponse {
+  const factory _TypeWarehouseResponse(
+      {@JsonKey(name: 'ID') final int? id,
+      @JsonKey(name: 'ProductGroupID') final String? productGroupId,
+      @JsonKey(name: 'ProductGroupName') final String? productGroupName,
+      @JsonKey(name: 'IsVisible') final bool? isVisible,
+      @JsonKey(name: 'EmployeeID') final int? employeeId,
+      @JsonKey(name: 'ParentID') final int? parentId,
+      @JsonKey(name: 'STT') final int? stt}) = _$TypeWarehouseResponseImpl;
+
+  factory _TypeWarehouseResponse.fromJson(Map<String, dynamic> json) =
+      _$TypeWarehouseResponseImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'ProductGroupID')
+  String? get productGroupId;
+  @override
+  @JsonKey(name: 'ProductGroupName')
+  String? get productGroupName;
+  @override
+  @JsonKey(name: 'IsVisible')
+  bool? get isVisible;
+  @override
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId;
+  @override
+  @JsonKey(name: 'ParentID')
+  int? get parentId;
+  @override
+  @JsonKey(name: 'STT')
+  int? get stt;
+  @override
+  @JsonKey(ignore: true)
+  _$$TypeWarehouseResponseImplCopyWith<_$TypeWarehouseResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}

@@ -61,3 +61,19 @@ class BillExporResponse with _$BillExporResponse {
   factory BillExporResponse.fromJson(Map<String, dynamic> json) =>
       _$BillExporResponseFromJson(json);
 }
+
+@freezed
+class TypeWarehouseResponse with _$TypeWarehouseResponse {
+  const factory TypeWarehouseResponse({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'ProductGroupID') String? productGroupId,
+    @JsonKey(name: 'ProductGroupName') String? productGroupName,
+    @JsonKey(name: 'IsVisible') bool? isVisible,
+    @JsonKey(name: 'EmployeeID') int? employeeId,
+    @JsonKey(name: 'ParentID') int? parentId,
+    @JsonKey(name: 'STT') int? stt,
+  }) = _TypeWarehouseResponse;
+
+  factory TypeWarehouseResponse.fromJson(Map<String, dynamic> json) =>
+      _$TypeWarehouseResponseFromJson(json);
+}

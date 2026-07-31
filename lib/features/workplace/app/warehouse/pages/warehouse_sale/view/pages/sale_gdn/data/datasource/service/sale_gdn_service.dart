@@ -39,4 +39,40 @@ class SaleGdnService extends DioBaseApiService {
       },
     );
   }
+
+  Future<BaseData<List<TypeWarehouseResponse>>> getProductGroups({
+    required bool isAdmin,
+    required int departmentId,
+  }) async {
+    return get<BaseData<List<TypeWarehouseResponse>>>(
+      ApiEndPoint.getProductGroup,
+      query: {
+        'isAdmin': isAdmin,
+        'departmentID': departmentId,
+      },
+      parser: (json) {
+        if (json is! Map<String, dynamic>) {
+          return BaseData<List<TypeWarehouseResponse>>(
+            status: 0,
+            data: [],
+          );
+        }
+
+        final status = json['status'] as int?;
+        final dataJson = json['data'];
+
+        List<TypeWarehouseResponse> items = [];
+        if (dataJson is List) {
+          items = dataJson
+              .map((e) => TypeWarehouseResponse.fromJson(e as Map<String, dynamic>))
+              .toList();
+        }
+
+        return BaseData<List<TypeWarehouseResponse>>(
+          status: status,
+          data: items,
+        );
+      },
+    );
+  }
 }

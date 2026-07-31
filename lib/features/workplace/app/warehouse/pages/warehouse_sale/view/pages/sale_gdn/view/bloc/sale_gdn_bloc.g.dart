@@ -23,6 +23,12 @@ abstract class _$SaleGdnStateCWProxy {
 
   SaleGdnState warehouseCode(String warehouseCode);
 
+  SaleGdnState warehouseTypes(List<TypeWarehouseResponse> warehouseTypes);
+
+  SaleGdnState selectedWarehouseTypeIds(List<int> selectedWarehouseTypeIds);
+
+  SaleGdnState selectedStatus(int selectedStatus);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SaleGdnState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -38,6 +44,9 @@ abstract class _$SaleGdnStateCWProxy {
     DateTime? dateStart,
     DateTime? dateEnd,
     String? warehouseCode,
+    List<TypeWarehouseResponse>? warehouseTypes,
+    List<int>? selectedWarehouseTypeIds,
+    int? selectedStatus,
   });
 }
 
@@ -74,6 +83,18 @@ class _$SaleGdnStateCWProxyImpl implements _$SaleGdnStateCWProxy {
       this(warehouseCode: warehouseCode);
 
   @override
+  SaleGdnState warehouseTypes(List<TypeWarehouseResponse> warehouseTypes) =>
+      this(warehouseTypes: warehouseTypes);
+
+  @override
+  SaleGdnState selectedWarehouseTypeIds(List<int> selectedWarehouseTypeIds) =>
+      this(selectedWarehouseTypeIds: selectedWarehouseTypeIds);
+
+  @override
+  SaleGdnState selectedStatus(int selectedStatus) =>
+      this(selectedStatus: selectedStatus);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SaleGdnState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -90,6 +111,9 @@ class _$SaleGdnStateCWProxyImpl implements _$SaleGdnStateCWProxy {
     Object? dateStart = const $CopyWithPlaceholder(),
     Object? dateEnd = const $CopyWithPlaceholder(),
     Object? warehouseCode = const $CopyWithPlaceholder(),
+    Object? warehouseTypes = const $CopyWithPlaceholder(),
+    Object? selectedWarehouseTypeIds = const $CopyWithPlaceholder(),
+    Object? selectedStatus = const $CopyWithPlaceholder(),
   }) {
     return SaleGdnState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -127,6 +151,22 @@ class _$SaleGdnStateCWProxyImpl implements _$SaleGdnStateCWProxy {
               ? _value.warehouseCode
               // ignore: cast_nullable_to_non_nullable
               : warehouseCode as String,
+      warehouseTypes: warehouseTypes == const $CopyWithPlaceholder() ||
+              warehouseTypes == null
+          ? _value.warehouseTypes
+          // ignore: cast_nullable_to_non_nullable
+          : warehouseTypes as List<TypeWarehouseResponse>,
+      selectedWarehouseTypeIds:
+          selectedWarehouseTypeIds == const $CopyWithPlaceholder() ||
+                  selectedWarehouseTypeIds == null
+              ? _value.selectedWarehouseTypeIds
+              // ignore: cast_nullable_to_non_nullable
+              : selectedWarehouseTypeIds as List<int>,
+      selectedStatus: selectedStatus == const $CopyWithPlaceholder() ||
+              selectedStatus == null
+          ? _value.selectedStatus
+          // ignore: cast_nullable_to_non_nullable
+          : selectedStatus as int,
     );
   }
 }

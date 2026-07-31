@@ -29,4 +29,25 @@ class SaleGdnRepoImpl implements SaleGdnRepo {
       return left(BaseError.httpInternalServerError(e.toString()));
     }
   }
+
+  @override
+  Future<Either<BaseError, List<TypeWarehouseResponse>>> getProductGroups({
+    required bool isAdmin,
+    required int departmentId,
+  }) async {
+    try {
+      final res = await _service.getProductGroups(
+        isAdmin: isAdmin,
+        departmentId: departmentId,
+      );
+      if (res.status != 1) {
+        return left(BaseError.httpInternalServerError(res.message ?? 'Lỗi'));
+      }
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
 }
