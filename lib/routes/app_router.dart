@@ -165,6 +165,8 @@ import '../features/workplace/app/reports/view/tech/view/pages/tech_screen.dart'
 import '../features/workplace/app/warehouse/enums/warehouse_type.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_area_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/warehouse_demo_screen.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/bloc/sale_gdn_bloc.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/pages/sale_gdn_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/warehouse_sale_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_agv/view/pages/warehouse_agv_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_project/view/pages/warehouse_project_screen.dart';
@@ -1400,6 +1402,21 @@ class AppRouter {
             areaName: extra?['areaName'] as String? ?? '',
           );
         },
+      ),
+
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(
+            value: getIt<SaleGdnBloc>(),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.warehouseSaleGdn,
+            builder: (context, state) => const SaleGdnScreen(),
+          ),
+        ],
       ),
 
       // Warehouse Demo

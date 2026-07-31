@@ -393,4 +393,7 @@ class ApiEndPoint {
 
   // Contact
   static const String getContact = '/Home/get-all-contact';
+
+  // Warehouse
+  static const String getBillExport = '/BillExport';
 }

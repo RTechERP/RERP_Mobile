@@ -233,4 +233,5 @@ class RouteNames {
   static const warehouseAgv = '/warehouse_agv';
   static const warehouseProject = '/warehouse_project';
   static const warehouseTest = '/warehouse_test';
+  static const warehouseSaleGdn = '/warehouse_sale_gdn';
 }

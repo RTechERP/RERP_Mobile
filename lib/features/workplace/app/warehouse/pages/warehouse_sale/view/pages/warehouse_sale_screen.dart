@@ -1,8 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:rtc_erp/features/workplace/data/datasource/app_registry/app_items_registry.dart';
 
 import '../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../common/app_theme/index.dart';
+import '../../../../../../view/widgets/wp_action_card.dart';
 
 class WarehouseSaleScreen extends StatelessWidget {
   final String areaId;
@@ -18,6 +21,7 @@ class WarehouseSaleScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final items = AppItemRegistry.warehouse_sale;
     return BaseScaffold(
       appBar: AppBarCommon(
         title: Text(
@@ -25,32 +29,25 @@ class WarehouseSaleScreen extends StatelessWidget {
           style: AppStyles.headingTitle2,
         ),
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.warehouse_outlined,
-                size: 64,
-                color: AppColors.secondaryColor,
-              ),
-              const SizedBox(height: 16),
-              Text(
-                title,
-                style: AppStyles.body1,
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 8),
-              Text(
-                'Area ID: $areaId',
-                style: AppStyles.body2.copyWith(
-                  color: AppColors.secondaryColor,
+      body: Padding(
+        padding: const EdgeInsets.only(top: 16),
+        child: SingleChildScrollView(
+          child: SafeArea(
+            child: Column(
+              children: [
+                WpActionCard(
+                  title: 'warehouse.sale'.tr(),
+                  expandable: true,
+                  collapsedItemCount: 11,
+                  items: items,
+                  onItemTap: (item) {
+                    if (item.route != null) {
+                      context.push(item.route!);
+                    }
+                  },
                 ),
-                textAlign: TextAlign.center,
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
