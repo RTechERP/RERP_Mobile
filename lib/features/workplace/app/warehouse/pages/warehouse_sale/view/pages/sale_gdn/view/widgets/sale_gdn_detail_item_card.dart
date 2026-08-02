@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:rtc_erp/common/app_theme/index.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/models/sale_gdn_model.dart';
@@ -8,10 +10,18 @@ class SaleGdnDetailItemCard extends StatelessWidget {
     super.key,
     required this.item,
     required this.index,
+    required this.onAddImages,
+    required this.onRemoveImage,
   });
 
   final DetailGDNResponse item;
   final int index;
+
+  /// Callback mở flow chọn ảnh (camera/gallery) cho dòng này.
+  final Future<void> Function() onAddImages;
+
+  /// Callback xoá 1 ảnh theo chỉ số trong dòng này.
+  final void Function(int imageIndex) onRemoveImage;
 
   @override
   Widget build(BuildContext context) {
@@ -150,6 +160,15 @@ class SaleGdnDetailItemCard extends StatelessWidget {
               value: item.projectCodeExport,
             ),
           ],
+          const SizedBox(height: 12),
+          const Divider(height: 1),
+          const SizedBox(height: 10),
+          // Khu vực ảnh
+          _PhotoSection(
+            paths: item.localImagePaths,
+            onAdd: onAddImages,
+            onRemove: onRemoveImage,
+          ),
         ],
       ),
     );
@@ -266,6 +285,194 @@ class _MetricCell extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Photo section (nút thêm + lưới thumbnail)
+// ---------------------------------------------------------------------------
+
+class _PhotoSection extends StatelessWidget {
+  const _PhotoSection({
+    required this.paths,
+    required this.onAdd,
+    required this.onRemove,
+  });
+
+  final List<String> paths;
+  final Future<void> Function() onAdd;
+  final void Function(int imageIndex) onRemove;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Ảnh',
+          style: TextStyle(
+            fontSize: 11,
+            color: AppColors.gray,
+          ),
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (paths.isEmpty)
+                _buildEmpty(context)
+              else
+                _buildGrid(context),
+              const SizedBox(height: 6),
+              _buildCount(),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildEmpty(BuildContext context) {
+    return Wrap(
+      spacing: 8,
+      runSpacing: 8,
+      crossAxisAlignment: WrapCrossAlignment.center,
+      children: [
+        _AddPhotoButton(onTap: onAdd),
+        Text(
+          'Chưa có ảnh',
+          style: TextStyle(
+            fontSize: 12,
+            color: AppColors.gray,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildGrid(BuildContext context) {
+    return Wrap(
+      spacing: 8,
+      runSpacing: 8,
+      children: [
+        for (int i = 0; i < paths.length; i++)
+          _PhotoThumb(
+            path: paths[i],
+            onRemove: () => onRemove(i),
+          ),
+        _AddPhotoButton(onTap: onAdd),
+      ],
+    );
+  }
+
+  Widget _buildCount() {
+    return Text(
+      paths.isEmpty ? '0 ảnh' : '${paths.length} ảnh',
+      style: TextStyle(
+        fontSize: 11,
+        color: AppColors.gray,
+      ),
+    );
+  }
+}
+
+class _AddPhotoButton extends StatelessWidget {
+  const _AddPhotoButton({required this.onTap});
+
+  final Future<void> Function() onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      borderRadius: BorderRadius.circular(10),
+      onTap: () => onTap(),
+      child: Container(
+        width: 64,
+        height: 64,
+        decoration: BoxDecoration(
+          color: AppColors.primaryERP.withValues(alpha: 0.08),
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(
+            color: AppColors.primaryERP.withValues(alpha: 0.4),
+            style: BorderStyle.solid,
+            width: 1,
+          ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.add_a_photo_outlined,
+              size: 20,
+              color: AppColors.primaryERP,
+            ),
+            const SizedBox(height: 2),
+            Text(
+              'Thêm ảnh',
+              style: TextStyle(
+                fontSize: 9,
+                fontWeight: FontWeight.w600,
+                color: AppColors.primaryERP,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _PhotoThumb extends StatelessWidget {
+  const _PhotoThumb({required this.path, required this.onRemove});
+
+  final String path;
+  final VoidCallback onRemove;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Image.file(
+            File(path),
+            width: 64,
+            height: 64,
+            fit: BoxFit.cover,
+            errorBuilder: (_, _, _) => Container(
+              width: 64,
+              height: 64,
+              color: AppColors.gray.withValues(alpha: 0.2),
+              child: Icon(
+                Icons.broken_image_outlined,
+                color: AppColors.gray,
+                size: 20,
+              ),
+            ),
+          ),
+        ),
+        Positioned(
+          top: 2,
+          right: 2,
+          child: GestureDetector(
+            onTap: onRemove,
+            child: Container(
+              padding: const EdgeInsets.all(2),
+              decoration: const BoxDecoration(
+                color: Colors.black54,
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(
+                Icons.close,
+                size: 12,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

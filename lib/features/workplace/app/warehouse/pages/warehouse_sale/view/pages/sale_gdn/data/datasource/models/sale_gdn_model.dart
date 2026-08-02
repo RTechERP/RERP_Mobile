@@ -99,8 +99,13 @@ class DetailGDNResponse with _$DetailGDNResponse {
     @JsonKey(name: 'UnitPricePOKH') double? unitPricePOKH,
     @JsonKey(name: 'UnitPricePurchase') double? unitPricePurchase,
     @JsonKey(name: 'ProjectCodeExport') String? projectCodeExport,
+
+    /// Danh sách đường dẫn ảnh local (chưa upload) do người dùng chụp/chọn cho dòng chi tiết.
+    /// Không tham gia serialize JSON từ server — chỉ dùng để hiển thị trên UI.
+    @Default(<String>[]) List<String> localImagePaths,
   }) = _DetailGDNResponse;
 
   factory DetailGDNResponse.fromJson(Map<String, dynamic> json) =>
-      _$DetailGDNResponseFromJson(json);
+      _$DetailGDNResponseFromJson(Map<String, dynamic>.from(json)
+        ..['localImagePaths'] = const <String>[]);
 }

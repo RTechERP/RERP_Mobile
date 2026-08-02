@@ -84,6 +84,7 @@ dependencies:
   file_saver: ^0.2.14
   image_picker: ^1.2.3
   image_cropper: ^8.0.2
+  camerawesome: ^2.5.0
   cached_network_image: ^3.4.1
   flutter_cache_manager: ^3.4.1
   form_builder_file_picker: ^5.0.0

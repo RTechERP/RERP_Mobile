@@ -161,6 +161,10 @@ _$DetailGDNResponseImpl _$$DetailGDNResponseImplFromJson(
       unitPricePOKH: (json['UnitPricePOKH'] as num?)?.toDouble(),
       unitPricePurchase: (json['UnitPricePurchase'] as num?)?.toDouble(),
       projectCodeExport: json['ProjectCodeExport'] as String?,
+      localImagePaths: (json['localImagePaths'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const <String>[],
     );
 
 Map<String, dynamic> _$$DetailGDNResponseImplToJson(
@@ -184,4 +188,5 @@ Map<String, dynamic> _$$DetailGDNResponseImplToJson(
       'UnitPricePOKH': instance.unitPricePOKH,
       'UnitPricePurchase': instance.unitPricePurchase,
       'ProjectCodeExport': instance.projectCodeExport,
+      'localImagePaths': instance.localImagePaths,
     };

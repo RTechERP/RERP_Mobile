@@ -1714,6 +1714,10 @@ mixin _$DetailGDNResponse {
   @JsonKey(name: 'ProjectCodeExport')
   String? get projectCodeExport => throw _privateConstructorUsedError;
 
+  /// Danh sách đường dẫn ảnh local (chưa upload) do người dùng chụp/chọn cho dòng chi tiết.
+  /// Không tham gia serialize JSON từ server — chỉ dùng để hiển thị trên UI.
+  List<String> get localImagePaths => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $DetailGDNResponseCopyWith<DetailGDNResponse> get copyWith =>
@@ -1744,7 +1748,8 @@ abstract class $DetailGDNResponseCopyWith<$Res> {
       @JsonKey(name: 'BillCode') String? billCode,
       @JsonKey(name: 'UnitPricePOKH') double? unitPricePOKH,
       @JsonKey(name: 'UnitPricePurchase') double? unitPricePurchase,
-      @JsonKey(name: 'ProjectCodeExport') String? projectCodeExport});
+      @JsonKey(name: 'ProjectCodeExport') String? projectCodeExport,
+      List<String> localImagePaths});
 }
 
 /// @nodoc
@@ -1778,6 +1783,7 @@ class _$DetailGDNResponseCopyWithImpl<$Res, $Val extends DetailGDNResponse>
     Object? unitPricePOKH = freezed,
     Object? unitPricePurchase = freezed,
     Object? projectCodeExport = freezed,
+    Object? localImagePaths = null,
   }) {
     return _then(_value.copyWith(
       totalInventory: freezed == totalInventory
@@ -1852,6 +1858,10 @@ class _$DetailGDNResponseCopyWithImpl<$Res, $Val extends DetailGDNResponse>
           ? _value.projectCodeExport
           : projectCodeExport // ignore: cast_nullable_to_non_nullable
               as String?,
+      localImagePaths: null == localImagePaths
+          ? _value.localImagePaths
+          : localImagePaths // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -1882,7 +1892,8 @@ abstract class _$$DetailGDNResponseImplCopyWith<$Res>
       @JsonKey(name: 'BillCode') String? billCode,
       @JsonKey(name: 'UnitPricePOKH') double? unitPricePOKH,
       @JsonKey(name: 'UnitPricePurchase') double? unitPricePurchase,
-      @JsonKey(name: 'ProjectCodeExport') String? projectCodeExport});
+      @JsonKey(name: 'ProjectCodeExport') String? projectCodeExport,
+      List<String> localImagePaths});
 }
 
 /// @nodoc
@@ -1914,6 +1925,7 @@ class __$$DetailGDNResponseImplCopyWithImpl<$Res>
     Object? unitPricePOKH = freezed,
     Object? unitPricePurchase = freezed,
     Object? projectCodeExport = freezed,
+    Object? localImagePaths = null,
   }) {
     return _then(_$DetailGDNResponseImpl(
       totalInventory: freezed == totalInventory
@@ -1988,6 +2000,10 @@ class __$$DetailGDNResponseImplCopyWithImpl<$Res>
           ? _value.projectCodeExport
           : projectCodeExport // ignore: cast_nullable_to_non_nullable
               as String?,
+      localImagePaths: null == localImagePaths
+          ? _value._localImagePaths
+          : localImagePaths // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -2013,7 +2029,9 @@ class _$DetailGDNResponseImpl implements _DetailGDNResponse {
       @JsonKey(name: 'BillCode') this.billCode,
       @JsonKey(name: 'UnitPricePOKH') this.unitPricePOKH,
       @JsonKey(name: 'UnitPricePurchase') this.unitPricePurchase,
-      @JsonKey(name: 'ProjectCodeExport') this.projectCodeExport});
+      @JsonKey(name: 'ProjectCodeExport') this.projectCodeExport,
+      final List<String> localImagePaths = const <String>[]})
+      : _localImagePaths = localImagePaths;
 
   factory _$DetailGDNResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$DetailGDNResponseImplFromJson(json);
@@ -2073,9 +2091,23 @@ class _$DetailGDNResponseImpl implements _DetailGDNResponse {
   @JsonKey(name: 'ProjectCodeExport')
   final String? projectCodeExport;
 
+  /// Danh sách đường dẫn ảnh local (chưa upload) do người dùng chụp/chọn cho dòng chi tiết.
+  /// Không tham gia serialize JSON từ server — chỉ dùng để hiển thị trên UI.
+  final List<String> _localImagePaths;
+
+  /// Danh sách đường dẫn ảnh local (chưa upload) do người dùng chụp/chọn cho dòng chi tiết.
+  /// Không tham gia serialize JSON từ server — chỉ dùng để hiển thị trên UI.
+  @override
+  @JsonKey()
+  List<String> get localImagePaths {
+    if (_localImagePaths is EqualUnmodifiableListView) return _localImagePaths;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_localImagePaths);
+  }
+
   @override
   String toString() {
-    return 'DetailGDNResponse(totalInventory: $totalInventory, productFullName: $productFullName, qty: $qty, note: $note, stt: $stt, serialNumber: $serialNumber, productTypeText: $productTypeText, productCode: $productCode, productNewCode: $productNewCode, productName: $productName, unit: $unit, productGroupName: $productGroupName, projectNameText: $projectNameText, productCodeExport: $productCodeExport, billCode: $billCode, unitPricePOKH: $unitPricePOKH, unitPricePurchase: $unitPricePurchase, projectCodeExport: $projectCodeExport)';
+    return 'DetailGDNResponse(totalInventory: $totalInventory, productFullName: $productFullName, qty: $qty, note: $note, stt: $stt, serialNumber: $serialNumber, productTypeText: $productTypeText, productCode: $productCode, productNewCode: $productNewCode, productName: $productName, unit: $unit, productGroupName: $productGroupName, projectNameText: $projectNameText, productCodeExport: $productCodeExport, billCode: $billCode, unitPricePOKH: $unitPricePOKH, unitPricePurchase: $unitPricePurchase, projectCodeExport: $projectCodeExport, localImagePaths: $localImagePaths)';
   }
 
   @override
@@ -2114,31 +2146,35 @@ class _$DetailGDNResponseImpl implements _DetailGDNResponse {
             (identical(other.unitPricePurchase, unitPricePurchase) ||
                 other.unitPricePurchase == unitPricePurchase) &&
             (identical(other.projectCodeExport, projectCodeExport) ||
-                other.projectCodeExport == projectCodeExport));
+                other.projectCodeExport == projectCodeExport) &&
+            const DeepCollectionEquality()
+                .equals(other._localImagePaths, _localImagePaths));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      totalInventory,
-      productFullName,
-      qty,
-      note,
-      stt,
-      serialNumber,
-      productTypeText,
-      productCode,
-      productNewCode,
-      productName,
-      unit,
-      productGroupName,
-      projectNameText,
-      productCodeExport,
-      billCode,
-      unitPricePOKH,
-      unitPricePurchase,
-      projectCodeExport);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        totalInventory,
+        productFullName,
+        qty,
+        note,
+        stt,
+        serialNumber,
+        productTypeText,
+        productCode,
+        productNewCode,
+        productName,
+        unit,
+        productGroupName,
+        projectNameText,
+        productCodeExport,
+        billCode,
+        unitPricePOKH,
+        unitPricePurchase,
+        projectCodeExport,
+        const DeepCollectionEquality().hash(_localImagePaths)
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -2174,8 +2210,8 @@ abstract class _DetailGDNResponse implements DetailGDNResponse {
       @JsonKey(name: 'BillCode') final String? billCode,
       @JsonKey(name: 'UnitPricePOKH') final double? unitPricePOKH,
       @JsonKey(name: 'UnitPricePurchase') final double? unitPricePurchase,
-      @JsonKey(name: 'ProjectCodeExport')
-      final String? projectCodeExport}) = _$DetailGDNResponseImpl;
+      @JsonKey(name: 'ProjectCodeExport') final String? projectCodeExport,
+      final List<String> localImagePaths}) = _$DetailGDNResponseImpl;
 
   factory _DetailGDNResponse.fromJson(Map<String, dynamic> json) =
       _$DetailGDNResponseImpl.fromJson;
@@ -2234,6 +2270,11 @@ abstract class _DetailGDNResponse implements DetailGDNResponse {
   @override
   @JsonKey(name: 'ProjectCodeExport')
   String? get projectCodeExport;
+  @override
+
+  /// Danh sách đường dẫn ảnh local (chưa upload) do người dùng chụp/chọn cho dòng chi tiết.
+  /// Không tham gia serialize JSON từ server — chỉ dùng để hiển thị trên UI.
+  List<String> get localImagePaths;
   @override
   @JsonKey(ignore: true)
   _$$DetailGDNResponseImplCopyWith<_$DetailGDNResponseImpl> get copyWith =>

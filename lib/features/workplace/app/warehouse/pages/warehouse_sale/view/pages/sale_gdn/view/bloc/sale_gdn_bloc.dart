@@ -38,6 +38,9 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
         changeDateRange: (dateStart, dateEnd) =>
             _changeDateRange(emit, dateStart, dateEnd),
         initDetail: (id, bill) => _onInitDetail(emit, id: id, bill: bill),
+        addImages: (stt, paths) => _onAddImages(emit, stt, paths),
+        removeImage: (stt, imageIndex) =>
+            _onRemoveImage(emit, stt, imageIndex),
       );
     });
   }
@@ -310,5 +313,51 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
         ));
       },
     );
+  }
+
+  /// Thêm 1 hoặc nhiều ảnh local vào dòng chi tiết theo `stt`.
+  Future<void> _onAddImages(
+    Emitter<SaleGdnState> emit,
+    int stt,
+    List<String> imagePaths,
+  ) async {
+    if (imagePaths.isEmpty) return;
+    final current = state.detail;
+    if (current == null) return;
+
+    final updated = <DetailGDNResponse>[];
+    for (final d in current.details) {
+      if (d.stt == stt) {
+        updated.add(
+          d.copyWith(
+            localImagePaths: [...d.localImagePaths, ...imagePaths],
+          ),
+        );
+      } else {
+        updated.add(d);
+      }
+    }
+    emit(state.copyWith(detail: current.copyWith(details: updated)));
+  }
+
+  /// Xoá 1 ảnh khỏi dòng chi tiết theo `stt` và `imageIndex`.
+  Future<void> _onRemoveImage(
+    Emitter<SaleGdnState> emit,
+    int stt,
+    int imageIndex,
+  ) async {
+    final current = state.detail;
+    if (current == null) return;
+
+    final updated = <DetailGDNResponse>[];
+    for (final d in current.details) {
+      if (d.stt == stt) {
+        final next = [...d.localImagePaths]..removeAt(imageIndex);
+        updated.add(d.copyWith(localImagePaths: next));
+      } else {
+        updated.add(d);
+      }
+    }
+    emit(state.copyWith(detail: current.copyWith(details: updated)));
   }
 }

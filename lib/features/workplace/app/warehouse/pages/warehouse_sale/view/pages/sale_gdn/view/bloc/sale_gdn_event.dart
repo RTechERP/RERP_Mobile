@@ -25,4 +25,16 @@ class SaleGdnEvent with _$SaleGdnEvent {
     @Default(0) int id,
     BillExporResponse? bill,
   }) = _InitDetail;
+
+  /// Thêm 1 hoặc nhiều ảnh đã chọn (local path) vào dòng chi tiết theo `stt`.
+  const factory SaleGdnEvent.addImages({
+    required int stt,
+    required List<String> imagePaths,
+  }) = _AddImages;
+
+  /// Xoá 1 ảnh khỏi dòng chi tiết theo `stt` và `imageIndex`.
+  const factory SaleGdnEvent.removeImage({
+    required int stt,
+    required int imageIndex,
+  }) = _RemoveImage;
 }

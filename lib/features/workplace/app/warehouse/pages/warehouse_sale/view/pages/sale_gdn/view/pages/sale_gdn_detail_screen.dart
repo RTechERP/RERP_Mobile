@@ -7,6 +7,7 @@ import 'package:rtc_erp/common/app_theme/index.dart';
 import 'package:rtc_erp/di/injection.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/models/sale_gdn_model.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/bloc/sale_gdn_bloc.dart';
+import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/widgets/sale_gdn_detail_image_flow.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/widgets/sale_gdn_detail_item_card.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/widgets/sale_gdn_empty_view.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/widgets/sale_gdn_error_view.dart';
@@ -50,6 +51,23 @@ class _SaleGdnDetailView extends StatelessWidget {
         .add(SaleGdnEvent.initDetail(id: billId, bill: bill));
   }
 
+  /// Mở flow chọn ảnh cho dòng có `stt` tương ứng và dispatch AddImages.
+  Future<void> _addImages(BuildContext context, int stt) async {
+    final confirmed = await showSaleGdnDetailImageFlow(context);
+    if (confirmed == null || confirmed.isEmpty) return;
+    if (!context.mounted) return;
+    context
+        .read<SaleGdnBloc>()
+        .add(SaleGdnEvent.addImages(stt: stt, imagePaths: confirmed));
+  }
+
+  /// Xoá 1 ảnh theo `stt` và chỉ số ảnh trong dòng đó.
+  void _removeImage(BuildContext context, int stt, int imageIndex) {
+    context
+        .read<SaleGdnBloc>()
+        .add(SaleGdnEvent.removeImage(stt: stt, imageIndex: imageIndex));
+  }
+
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
@@ -86,9 +104,14 @@ class _SaleGdnDetailView extends StatelessWidget {
               itemCount: detail.details.length,
               separatorBuilder: (_, _) => const SizedBox(height: 12),
               itemBuilder: (context, index) {
+                final detailItem = detail.details[index];
+                final stt = detailItem.stt ?? (index + 1);
                 return SaleGdnDetailItemCard(
-                  item: detail.details[index],
+                  item: detailItem,
                   index: index + 1,
+                  onAddImages: () => _addImages(context, stt),
+                  onRemoveImage: (imageIndex) =>
+                      _removeImage(context, stt, imageIndex),
                 );
               },
             ),

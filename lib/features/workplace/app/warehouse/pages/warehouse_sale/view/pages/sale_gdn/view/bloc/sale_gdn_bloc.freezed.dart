@@ -31,6 +31,8 @@ mixin _$SaleGdnEvent {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(int stt, List<String> imagePaths) addImages,
+    required TResult Function(int stt, int imageIndex) removeImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,6 +49,8 @@ mixin _$SaleGdnEvent {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(int stt, List<String> imagePaths)? addImages,
+    TResult? Function(int stt, int imageIndex)? removeImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +67,8 @@ mixin _$SaleGdnEvent {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(int stt, List<String> imagePaths)? addImages,
+    TResult Function(int stt, int imageIndex)? removeImage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -82,6 +88,8 @@ mixin _$SaleGdnEvent {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -98,6 +106,8 @@ mixin _$SaleGdnEvent {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -114,6 +124,8 @@ mixin _$SaleGdnEvent {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -187,6 +199,8 @@ class _$InitImpl implements _Init {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(int stt, List<String> imagePaths) addImages,
+    required TResult Function(int stt, int imageIndex) removeImage,
   }) {
     return init();
   }
@@ -206,6 +220,8 @@ class _$InitImpl implements _Init {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(int stt, List<String> imagePaths)? addImages,
+    TResult? Function(int stt, int imageIndex)? removeImage,
   }) {
     return init?.call();
   }
@@ -225,6 +241,8 @@ class _$InitImpl implements _Init {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(int stt, List<String> imagePaths)? addImages,
+    TResult Function(int stt, int imageIndex)? removeImage,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -250,6 +268,8 @@ class _$InitImpl implements _Init {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
   }) {
     return init(this);
   }
@@ -269,6 +289,8 @@ class _$InitImpl implements _Init {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
   }) {
     return init?.call(this);
   }
@@ -288,6 +310,8 @@ class _$InitImpl implements _Init {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -352,6 +376,8 @@ class _$FetchGdnsImpl implements _FetchGdns {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(int stt, List<String> imagePaths) addImages,
+    required TResult Function(int stt, int imageIndex) removeImage,
   }) {
     return fetchGdns();
   }
@@ -371,6 +397,8 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(int stt, List<String> imagePaths)? addImages,
+    TResult? Function(int stt, int imageIndex)? removeImage,
   }) {
     return fetchGdns?.call();
   }
@@ -390,6 +418,8 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(int stt, List<String> imagePaths)? addImages,
+    TResult Function(int stt, int imageIndex)? removeImage,
     required TResult orElse(),
   }) {
     if (fetchGdns != null) {
@@ -415,6 +445,8 @@ class _$FetchGdnsImpl implements _FetchGdns {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
   }) {
     return fetchGdns(this);
   }
@@ -434,6 +466,8 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
   }) {
     return fetchGdns?.call(this);
   }
@@ -453,6 +487,8 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
     required TResult orElse(),
   }) {
     if (fetchGdns != null) {
@@ -544,6 +580,8 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(int stt, List<String> imagePaths) addImages,
+    required TResult Function(int stt, int imageIndex) removeImage,
   }) {
     return searchByKeyword(keyword);
   }
@@ -563,6 +601,8 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(int stt, List<String> imagePaths)? addImages,
+    TResult? Function(int stt, int imageIndex)? removeImage,
   }) {
     return searchByKeyword?.call(keyword);
   }
@@ -582,6 +622,8 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(int stt, List<String> imagePaths)? addImages,
+    TResult Function(int stt, int imageIndex)? removeImage,
     required TResult orElse(),
   }) {
     if (searchByKeyword != null) {
@@ -607,6 +649,8 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
   }) {
     return searchByKeyword(this);
   }
@@ -626,6 +670,8 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
   }) {
     return searchByKeyword?.call(this);
   }
@@ -645,6 +691,8 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
     required TResult orElse(),
   }) {
     if (searchByKeyword != null) {
@@ -743,6 +791,8 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(int stt, List<String> imagePaths) addImages,
+    required TResult Function(int stt, int imageIndex) removeImage,
   }) {
     return searchByVoucherNumber(voucherNumber);
   }
@@ -762,6 +812,8 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(int stt, List<String> imagePaths)? addImages,
+    TResult? Function(int stt, int imageIndex)? removeImage,
   }) {
     return searchByVoucherNumber?.call(voucherNumber);
   }
@@ -781,6 +833,8 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(int stt, List<String> imagePaths)? addImages,
+    TResult Function(int stt, int imageIndex)? removeImage,
     required TResult orElse(),
   }) {
     if (searchByVoucherNumber != null) {
@@ -806,6 +860,8 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
   }) {
     return searchByVoucherNumber(this);
   }
@@ -825,6 +881,8 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
   }) {
     return searchByVoucherNumber?.call(this);
   }
@@ -844,6 +902,8 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
     required TResult orElse(),
   }) {
     if (searchByVoucherNumber != null) {
@@ -914,6 +974,8 @@ class _$ClearSearchImpl implements _ClearSearch {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(int stt, List<String> imagePaths) addImages,
+    required TResult Function(int stt, int imageIndex) removeImage,
   }) {
     return clearSearch();
   }
@@ -933,6 +995,8 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(int stt, List<String> imagePaths)? addImages,
+    TResult? Function(int stt, int imageIndex)? removeImage,
   }) {
     return clearSearch?.call();
   }
@@ -952,6 +1016,8 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(int stt, List<String> imagePaths)? addImages,
+    TResult Function(int stt, int imageIndex)? removeImage,
     required TResult orElse(),
   }) {
     if (clearSearch != null) {
@@ -977,6 +1043,8 @@ class _$ClearSearchImpl implements _ClearSearch {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
   }) {
     return clearSearch(this);
   }
@@ -996,6 +1064,8 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
   }) {
     return clearSearch?.call(this);
   }
@@ -1015,6 +1085,8 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
     required TResult orElse(),
   }) {
     if (clearSearch != null) {
@@ -1105,6 +1177,8 @@ class _$ScanQrCodeImpl implements _ScanQrCode {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(int stt, List<String> imagePaths) addImages,
+    required TResult Function(int stt, int imageIndex) removeImage,
   }) {
     return scanQrCode(code);
   }
@@ -1124,6 +1198,8 @@ class _$ScanQrCodeImpl implements _ScanQrCode {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(int stt, List<String> imagePaths)? addImages,
+    TResult? Function(int stt, int imageIndex)? removeImage,
   }) {
     return scanQrCode?.call(code);
   }
@@ -1143,6 +1219,8 @@ class _$ScanQrCodeImpl implements _ScanQrCode {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(int stt, List<String> imagePaths)? addImages,
+    TResult Function(int stt, int imageIndex)? removeImage,
     required TResult orElse(),
   }) {
     if (scanQrCode != null) {
@@ -1168,6 +1246,8 @@ class _$ScanQrCodeImpl implements _ScanQrCode {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
   }) {
     return scanQrCode(this);
   }
@@ -1187,6 +1267,8 @@ class _$ScanQrCodeImpl implements _ScanQrCode {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
   }) {
     return scanQrCode?.call(this);
   }
@@ -1206,6 +1288,8 @@ class _$ScanQrCodeImpl implements _ScanQrCode {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
     required TResult orElse(),
   }) {
     if (scanQrCode != null) {
@@ -1276,6 +1360,8 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(int stt, List<String> imagePaths) addImages,
+    required TResult Function(int stt, int imageIndex) removeImage,
   }) {
     return fetchWarehouseTypes();
   }
@@ -1295,6 +1381,8 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(int stt, List<String> imagePaths)? addImages,
+    TResult? Function(int stt, int imageIndex)? removeImage,
   }) {
     return fetchWarehouseTypes?.call();
   }
@@ -1314,6 +1402,8 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(int stt, List<String> imagePaths)? addImages,
+    TResult Function(int stt, int imageIndex)? removeImage,
     required TResult orElse(),
   }) {
     if (fetchWarehouseTypes != null) {
@@ -1339,6 +1429,8 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
   }) {
     return fetchWarehouseTypes(this);
   }
@@ -1358,6 +1450,8 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
   }) {
     return fetchWarehouseTypes?.call(this);
   }
@@ -1377,6 +1471,8 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
     required TResult orElse(),
   }) {
     if (fetchWarehouseTypes != null) {
@@ -1478,6 +1574,8 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(int stt, List<String> imagePaths) addImages,
+    required TResult Function(int stt, int imageIndex) removeImage,
   }) {
     return filterByWarehouseType(warehouseTypeIds);
   }
@@ -1497,6 +1595,8 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(int stt, List<String> imagePaths)? addImages,
+    TResult? Function(int stt, int imageIndex)? removeImage,
   }) {
     return filterByWarehouseType?.call(warehouseTypeIds);
   }
@@ -1516,6 +1616,8 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(int stt, List<String> imagePaths)? addImages,
+    TResult Function(int stt, int imageIndex)? removeImage,
     required TResult orElse(),
   }) {
     if (filterByWarehouseType != null) {
@@ -1541,6 +1643,8 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
   }) {
     return filterByWarehouseType(this);
   }
@@ -1560,6 +1664,8 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
   }) {
     return filterByWarehouseType?.call(this);
   }
@@ -1579,6 +1685,8 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
     required TResult orElse(),
   }) {
     if (filterByWarehouseType != null) {
@@ -1676,6 +1784,8 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(int stt, List<String> imagePaths) addImages,
+    required TResult Function(int stt, int imageIndex) removeImage,
   }) {
     return filterByStatus(status);
   }
@@ -1695,6 +1805,8 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(int stt, List<String> imagePaths)? addImages,
+    TResult? Function(int stt, int imageIndex)? removeImage,
   }) {
     return filterByStatus?.call(status);
   }
@@ -1714,6 +1826,8 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(int stt, List<String> imagePaths)? addImages,
+    TResult Function(int stt, int imageIndex)? removeImage,
     required TResult orElse(),
   }) {
     if (filterByStatus != null) {
@@ -1739,6 +1853,8 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
   }) {
     return filterByStatus(this);
   }
@@ -1758,6 +1874,8 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
   }) {
     return filterByStatus?.call(this);
   }
@@ -1777,6 +1895,8 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
     required TResult orElse(),
   }) {
     if (filterByStatus != null) {
@@ -1846,6 +1966,8 @@ class _$ClearFiltersImpl implements _ClearFilters {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(int stt, List<String> imagePaths) addImages,
+    required TResult Function(int stt, int imageIndex) removeImage,
   }) {
     return clearFilters();
   }
@@ -1865,6 +1987,8 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(int stt, List<String> imagePaths)? addImages,
+    TResult? Function(int stt, int imageIndex)? removeImage,
   }) {
     return clearFilters?.call();
   }
@@ -1884,6 +2008,8 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(int stt, List<String> imagePaths)? addImages,
+    TResult Function(int stt, int imageIndex)? removeImage,
     required TResult orElse(),
   }) {
     if (clearFilters != null) {
@@ -1909,6 +2035,8 @@ class _$ClearFiltersImpl implements _ClearFilters {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
   }) {
     return clearFilters(this);
   }
@@ -1928,6 +2056,8 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
   }) {
     return clearFilters?.call(this);
   }
@@ -1947,6 +2077,8 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
     required TResult orElse(),
   }) {
     if (clearFilters != null) {
@@ -2047,6 +2179,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(int stt, List<String> imagePaths) addImages,
+    required TResult Function(int stt, int imageIndex) removeImage,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -2066,6 +2200,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(int stt, List<String> imagePaths)? addImages,
+    TResult? Function(int stt, int imageIndex)? removeImage,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -2085,6 +2221,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(int stt, List<String> imagePaths)? addImages,
+    TResult Function(int stt, int imageIndex)? removeImage,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -2110,6 +2248,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
   }) {
     return changeDateRange(this);
   }
@@ -2129,6 +2269,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
   }) {
     return changeDateRange?.call(this);
   }
@@ -2148,6 +2290,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -2269,6 +2413,8 @@ class _$InitDetailImpl implements _InitDetail {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(int stt, List<String> imagePaths) addImages,
+    required TResult Function(int stt, int imageIndex) removeImage,
   }) {
     return initDetail(id, bill);
   }
@@ -2288,6 +2434,8 @@ class _$InitDetailImpl implements _InitDetail {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(int stt, List<String> imagePaths)? addImages,
+    TResult? Function(int stt, int imageIndex)? removeImage,
   }) {
     return initDetail?.call(id, bill);
   }
@@ -2307,6 +2455,8 @@ class _$InitDetailImpl implements _InitDetail {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(int stt, List<String> imagePaths)? addImages,
+    TResult Function(int stt, int imageIndex)? removeImage,
     required TResult orElse(),
   }) {
     if (initDetail != null) {
@@ -2332,6 +2482,8 @@ class _$InitDetailImpl implements _InitDetail {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
   }) {
     return initDetail(this);
   }
@@ -2351,6 +2503,8 @@ class _$InitDetailImpl implements _InitDetail {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
   }) {
     return initDetail?.call(this);
   }
@@ -2370,6 +2524,8 @@ class _$InitDetailImpl implements _InitDetail {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
     required TResult orElse(),
   }) {
     if (initDetail != null) {
@@ -2387,5 +2543,453 @@ abstract class _InitDetail implements SaleGdnEvent {
   BillExporResponse? get bill;
   @JsonKey(ignore: true)
   _$$InitDetailImplCopyWith<_$InitDetailImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AddImagesImplCopyWith<$Res> {
+  factory _$$AddImagesImplCopyWith(
+          _$AddImagesImpl value, $Res Function(_$AddImagesImpl) then) =
+      __$$AddImagesImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int stt, List<String> imagePaths});
+}
+
+/// @nodoc
+class __$$AddImagesImplCopyWithImpl<$Res>
+    extends _$SaleGdnEventCopyWithImpl<$Res, _$AddImagesImpl>
+    implements _$$AddImagesImplCopyWith<$Res> {
+  __$$AddImagesImplCopyWithImpl(
+      _$AddImagesImpl _value, $Res Function(_$AddImagesImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? stt = null,
+    Object? imagePaths = null,
+  }) {
+    return _then(_$AddImagesImpl(
+      stt: null == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int,
+      imagePaths: null == imagePaths
+          ? _value._imagePaths
+          : imagePaths // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AddImagesImpl implements _AddImages {
+  const _$AddImagesImpl(
+      {required this.stt, required final List<String> imagePaths})
+      : _imagePaths = imagePaths;
+
+  @override
+  final int stt;
+  final List<String> _imagePaths;
+  @override
+  List<String> get imagePaths {
+    if (_imagePaths is EqualUnmodifiableListView) return _imagePaths;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_imagePaths);
+  }
+
+  @override
+  String toString() {
+    return 'SaleGdnEvent.addImages(stt: $stt, imagePaths: $imagePaths)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AddImagesImpl &&
+            (identical(other.stt, stt) || other.stt == stt) &&
+            const DeepCollectionEquality()
+                .equals(other._imagePaths, _imagePaths));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, stt, const DeepCollectionEquality().hash(_imagePaths));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddImagesImplCopyWith<_$AddImagesImpl> get copyWith =>
+      __$$AddImagesImplCopyWithImpl<_$AddImagesImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() fetchGdns,
+    required TResult Function(String keyword) searchByKeyword,
+    required TResult Function(String voucherNumber) searchByVoucherNumber,
+    required TResult Function() clearSearch,
+    required TResult Function(String code) scanQrCode,
+    required TResult Function() fetchWarehouseTypes,
+    required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
+    required TResult Function(int status) filterByStatus,
+    required TResult Function() clearFilters,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(int stt, List<String> imagePaths) addImages,
+    required TResult Function(int stt, int imageIndex) removeImage,
+  }) {
+    return addImages(stt, imagePaths);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? fetchGdns,
+    TResult? Function(String keyword)? searchByKeyword,
+    TResult? Function(String voucherNumber)? searchByVoucherNumber,
+    TResult? Function()? clearSearch,
+    TResult? Function(String code)? scanQrCode,
+    TResult? Function()? fetchWarehouseTypes,
+    TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
+    TResult? Function(int status)? filterByStatus,
+    TResult? Function()? clearFilters,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(int stt, List<String> imagePaths)? addImages,
+    TResult? Function(int stt, int imageIndex)? removeImage,
+  }) {
+    return addImages?.call(stt, imagePaths);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? fetchGdns,
+    TResult Function(String keyword)? searchByKeyword,
+    TResult Function(String voucherNumber)? searchByVoucherNumber,
+    TResult Function()? clearSearch,
+    TResult Function(String code)? scanQrCode,
+    TResult Function()? fetchWarehouseTypes,
+    TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
+    TResult Function(int status)? filterByStatus,
+    TResult Function()? clearFilters,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(int stt, List<String> imagePaths)? addImages,
+    TResult Function(int stt, int imageIndex)? removeImage,
+    required TResult orElse(),
+  }) {
+    if (addImages != null) {
+      return addImages(stt, imagePaths);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_FetchGdns value) fetchGdns,
+    required TResult Function(_SearchByKeyword value) searchByKeyword,
+    required TResult Function(_SearchByVoucherNumber value)
+        searchByVoucherNumber,
+    required TResult Function(_ClearSearch value) clearSearch,
+    required TResult Function(_ScanQrCode value) scanQrCode,
+    required TResult Function(_FetchWarehouseTypes value) fetchWarehouseTypes,
+    required TResult Function(_FilterByWarehouseType value)
+        filterByWarehouseType,
+    required TResult Function(_FilterByStatus value) filterByStatus,
+    required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
+  }) {
+    return addImages(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_FetchGdns value)? fetchGdns,
+    TResult? Function(_SearchByKeyword value)? searchByKeyword,
+    TResult? Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
+    TResult? Function(_ClearSearch value)? clearSearch,
+    TResult? Function(_ScanQrCode value)? scanQrCode,
+    TResult? Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
+    TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
+    TResult? Function(_FilterByStatus value)? filterByStatus,
+    TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
+  }) {
+    return addImages?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_FetchGdns value)? fetchGdns,
+    TResult Function(_SearchByKeyword value)? searchByKeyword,
+    TResult Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
+    TResult Function(_ClearSearch value)? clearSearch,
+    TResult Function(_ScanQrCode value)? scanQrCode,
+    TResult Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
+    TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
+    TResult Function(_FilterByStatus value)? filterByStatus,
+    TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
+    required TResult orElse(),
+  }) {
+    if (addImages != null) {
+      return addImages(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AddImages implements SaleGdnEvent {
+  const factory _AddImages(
+      {required final int stt,
+      required final List<String> imagePaths}) = _$AddImagesImpl;
+
+  int get stt;
+  List<String> get imagePaths;
+  @JsonKey(ignore: true)
+  _$$AddImagesImplCopyWith<_$AddImagesImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RemoveImageImplCopyWith<$Res> {
+  factory _$$RemoveImageImplCopyWith(
+          _$RemoveImageImpl value, $Res Function(_$RemoveImageImpl) then) =
+      __$$RemoveImageImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int stt, int imageIndex});
+}
+
+/// @nodoc
+class __$$RemoveImageImplCopyWithImpl<$Res>
+    extends _$SaleGdnEventCopyWithImpl<$Res, _$RemoveImageImpl>
+    implements _$$RemoveImageImplCopyWith<$Res> {
+  __$$RemoveImageImplCopyWithImpl(
+      _$RemoveImageImpl _value, $Res Function(_$RemoveImageImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? stt = null,
+    Object? imageIndex = null,
+  }) {
+    return _then(_$RemoveImageImpl(
+      stt: null == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int,
+      imageIndex: null == imageIndex
+          ? _value.imageIndex
+          : imageIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RemoveImageImpl implements _RemoveImage {
+  const _$RemoveImageImpl({required this.stt, required this.imageIndex});
+
+  @override
+  final int stt;
+  @override
+  final int imageIndex;
+
+  @override
+  String toString() {
+    return 'SaleGdnEvent.removeImage(stt: $stt, imageIndex: $imageIndex)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RemoveImageImpl &&
+            (identical(other.stt, stt) || other.stt == stt) &&
+            (identical(other.imageIndex, imageIndex) ||
+                other.imageIndex == imageIndex));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, stt, imageIndex);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RemoveImageImplCopyWith<_$RemoveImageImpl> get copyWith =>
+      __$$RemoveImageImplCopyWithImpl<_$RemoveImageImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() fetchGdns,
+    required TResult Function(String keyword) searchByKeyword,
+    required TResult Function(String voucherNumber) searchByVoucherNumber,
+    required TResult Function() clearSearch,
+    required TResult Function(String code) scanQrCode,
+    required TResult Function() fetchWarehouseTypes,
+    required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
+    required TResult Function(int status) filterByStatus,
+    required TResult Function() clearFilters,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(int stt, List<String> imagePaths) addImages,
+    required TResult Function(int stt, int imageIndex) removeImage,
+  }) {
+    return removeImage(stt, imageIndex);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? fetchGdns,
+    TResult? Function(String keyword)? searchByKeyword,
+    TResult? Function(String voucherNumber)? searchByVoucherNumber,
+    TResult? Function()? clearSearch,
+    TResult? Function(String code)? scanQrCode,
+    TResult? Function()? fetchWarehouseTypes,
+    TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
+    TResult? Function(int status)? filterByStatus,
+    TResult? Function()? clearFilters,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(int stt, List<String> imagePaths)? addImages,
+    TResult? Function(int stt, int imageIndex)? removeImage,
+  }) {
+    return removeImage?.call(stt, imageIndex);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? fetchGdns,
+    TResult Function(String keyword)? searchByKeyword,
+    TResult Function(String voucherNumber)? searchByVoucherNumber,
+    TResult Function()? clearSearch,
+    TResult Function(String code)? scanQrCode,
+    TResult Function()? fetchWarehouseTypes,
+    TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
+    TResult Function(int status)? filterByStatus,
+    TResult Function()? clearFilters,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(int stt, List<String> imagePaths)? addImages,
+    TResult Function(int stt, int imageIndex)? removeImage,
+    required TResult orElse(),
+  }) {
+    if (removeImage != null) {
+      return removeImage(stt, imageIndex);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_FetchGdns value) fetchGdns,
+    required TResult Function(_SearchByKeyword value) searchByKeyword,
+    required TResult Function(_SearchByVoucherNumber value)
+        searchByVoucherNumber,
+    required TResult Function(_ClearSearch value) clearSearch,
+    required TResult Function(_ScanQrCode value) scanQrCode,
+    required TResult Function(_FetchWarehouseTypes value) fetchWarehouseTypes,
+    required TResult Function(_FilterByWarehouseType value)
+        filterByWarehouseType,
+    required TResult Function(_FilterByStatus value) filterByStatus,
+    required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
+  }) {
+    return removeImage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_FetchGdns value)? fetchGdns,
+    TResult? Function(_SearchByKeyword value)? searchByKeyword,
+    TResult? Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
+    TResult? Function(_ClearSearch value)? clearSearch,
+    TResult? Function(_ScanQrCode value)? scanQrCode,
+    TResult? Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
+    TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
+    TResult? Function(_FilterByStatus value)? filterByStatus,
+    TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
+  }) {
+    return removeImage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_FetchGdns value)? fetchGdns,
+    TResult Function(_SearchByKeyword value)? searchByKeyword,
+    TResult Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
+    TResult Function(_ClearSearch value)? clearSearch,
+    TResult Function(_ScanQrCode value)? scanQrCode,
+    TResult Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
+    TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
+    TResult Function(_FilterByStatus value)? filterByStatus,
+    TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
+    required TResult orElse(),
+  }) {
+    if (removeImage != null) {
+      return removeImage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RemoveImage implements SaleGdnEvent {
+  const factory _RemoveImage(
+      {required final int stt,
+      required final int imageIndex}) = _$RemoveImageImpl;
+
+  int get stt;
+  int get imageIndex;
+  @JsonKey(ignore: true)
+  _$$RemoveImageImplCopyWith<_$RemoveImageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
