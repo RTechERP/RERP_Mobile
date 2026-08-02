@@ -77,3 +77,30 @@ class TypeWarehouseResponse with _$TypeWarehouseResponse {
   factory TypeWarehouseResponse.fromJson(Map<String, dynamic> json) =>
       _$TypeWarehouseResponseFromJson(json);
 }
+
+@freezed
+class DetailGDNResponse with _$DetailGDNResponse {
+  const factory DetailGDNResponse({
+    @JsonKey(name: 'TotalInventory') double? totalInventory,
+    @JsonKey(name: 'ProductFullName') String? productFullName,
+    @JsonKey(name: 'Qty') double? qty,
+    @JsonKey(name: 'Note') String? note,
+    @JsonKey(name: 'STT') int? stt,
+    @JsonKey(name: 'SerialNumber') String? serialNumber,
+    @JsonKey(name: 'ProductTypeText') String? productTypeText,
+    @JsonKey(name: 'ProductCode') String? productCode,
+    @JsonKey(name: 'ProductNewCode') String? productNewCode,
+    @JsonKey(name: 'ProductName') String? productName,
+    @JsonKey(name: 'Unit') String? unit,
+    @JsonKey(name: 'ProductGroupName') String? productGroupName,
+    @JsonKey(name: 'ProjectNameText') String? projectNameText,
+    @JsonKey(name: 'ProductCodeExport') String? productCodeExport,
+    @JsonKey(name: 'BillCode') String? billCode,
+    @JsonKey(name: 'UnitPricePOKH') double? unitPricePOKH,
+    @JsonKey(name: 'UnitPricePurchase') double? unitPricePurchase,
+    @JsonKey(name: 'ProjectCodeExport') String? projectCodeExport,
+  }) = _DetailGDNResponse;
+
+  factory DetailGDNResponse.fromJson(Map<String, dynamic> json) =>
+      _$DetailGDNResponseFromJson(json);
+}

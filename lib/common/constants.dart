@@ -397,4 +397,5 @@ class ApiEndPoint {
   // Warehouse
   static const String getBillExport = '/BillExport';
   static const String getProductGroup = '/BillExport/get-product-group';
+  static const String getViewExportDetail = '/BillExport/get-view-export-detail';
 }

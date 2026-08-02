@@ -11,4 +11,9 @@ abstract class SaleGdnRepo {
     required bool isAdmin,
     required int departmentId,
   });
+
+  /// Lấy chi tiết phiếu xuất kho theo ID.
+  Future<Either<BaseError, List<DetailGDNResponse>>> getViewExportDetail({
+    required int id,
+  });
 }

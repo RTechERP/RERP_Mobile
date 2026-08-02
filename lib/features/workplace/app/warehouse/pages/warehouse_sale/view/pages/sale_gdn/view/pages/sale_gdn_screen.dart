@@ -9,6 +9,7 @@ import 'package:rtc_erp/common/utils/navigation/navigation_utils.dart';
 import 'package:rtc_erp/base/widgets/qr_barcode_scanner_page.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/models/sale_gdn_model.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/bloc/sale_gdn_bloc.dart';
+import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/pages/sale_gdn_detail_screen.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/widgets/sale_gdn_card.dart';
 
 class SaleGdnScreen extends StatefulWidget {
@@ -126,13 +127,20 @@ class _SaleGdnScreenState
               final item = gdns[index];
               return SaleGdnCard(
                 item: item,
-                onTap: () {
-                },
+                onTap: () => _openDetail(item),
               );
             },
           ),
         );
       }),
+    );
+  }
+
+  void _openDetail(BillExporResponse item) {
+    final id = item.id;
+    if (id == null || id <= 0) return;
+    Navigator.of(context).push(
+      SaleGdnDetailScreen.route(billId: id, bill: item),
     );
   }
 

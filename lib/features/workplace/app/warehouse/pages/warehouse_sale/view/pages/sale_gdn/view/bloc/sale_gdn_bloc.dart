@@ -11,6 +11,7 @@ import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/vi
 
 part 'sale_gdn_event.dart';
 part 'sale_gdn_state.dart';
+part 'sale_gdn_detail_state.dart';
 part 'sale_gdn_bloc.g.dart';
 part 'sale_gdn_bloc.freezed.dart';
 
@@ -34,6 +35,7 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
             _filterByWarehouseType(emit, warehouseTypeId),
         filterByStatus: (status) => _filterByStatus(emit, status),
         clearFilters: () => _clearFilters(emit),
+        initDetail: (id, bill) => _onInitDetail(emit, id: id, bill: bill),
       );
     });
   }
@@ -249,5 +251,42 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
       selectedStatus: -1,
     ));
     await _fetchGdns(emit);
+  }
+
+  Future<void> _onInitDetail(
+    Emitter<SaleGdnState> emit, {
+    required int id,
+    BillExporResponse? bill,
+  }) async {
+    if (id <= 0) return;
+
+    emit(state.copyWith(detail: GdnDetailState.init(id: id, bill: bill)));
+
+    final res = await _repo.getViewExportDetail(id: id);
+
+    await res.fold(
+      (l) async {
+        _log.logE('❌ getViewExportDetail failed: $l');
+        final current = state.detail;
+        if (current == null) return;
+        emit(state.copyWith(
+          detail: current.copyWith(
+            status: BaseStateStatus.failed,
+            message: l.getErrorMessage,
+          ),
+        ));
+      },
+      (r) async {
+        _log.logI('✅ getViewExportDetail success - total: ${r.length}');
+        final current = state.detail;
+        if (current == null) return;
+        emit(state.copyWith(
+          detail: current.copyWith(
+            status: BaseStateStatus.success,
+            details: r,
+          ),
+        ));
+      },
+    );
   }
 }

@@ -28,6 +28,7 @@ mixin _$SaleGdnEvent {
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
     required TResult Function() clearFilters,
+    required TResult Function(int id, BillExporResponse? bill) initDetail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -42,6 +43,7 @@ mixin _$SaleGdnEvent {
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
     TResult? Function()? clearFilters,
+    TResult? Function(int id, BillExporResponse? bill)? initDetail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -56,6 +58,7 @@ mixin _$SaleGdnEvent {
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
     TResult Function()? clearFilters,
+    TResult Function(int id, BillExporResponse? bill)? initDetail,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -73,6 +76,7 @@ mixin _$SaleGdnEvent {
         filterByWarehouseType,
     required TResult Function(_FilterByStatus value) filterByStatus,
     required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_InitDetail value) initDetail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -87,6 +91,7 @@ mixin _$SaleGdnEvent {
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
     TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_InitDetail value)? initDetail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -101,6 +106,7 @@ mixin _$SaleGdnEvent {
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
     TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -171,6 +177,7 @@ class _$InitImpl implements _Init {
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
     required TResult Function() clearFilters,
+    required TResult Function(int id, BillExporResponse? bill) initDetail,
   }) {
     return init();
   }
@@ -188,6 +195,7 @@ class _$InitImpl implements _Init {
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
     TResult? Function()? clearFilters,
+    TResult? Function(int id, BillExporResponse? bill)? initDetail,
   }) {
     return init?.call();
   }
@@ -205,6 +213,7 @@ class _$InitImpl implements _Init {
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
     TResult Function()? clearFilters,
+    TResult Function(int id, BillExporResponse? bill)? initDetail,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -228,6 +237,7 @@ class _$InitImpl implements _Init {
         filterByWarehouseType,
     required TResult Function(_FilterByStatus value) filterByStatus,
     required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_InitDetail value) initDetail,
   }) {
     return init(this);
   }
@@ -245,6 +255,7 @@ class _$InitImpl implements _Init {
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
     TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_InitDetail value)? initDetail,
   }) {
     return init?.call(this);
   }
@@ -262,6 +273,7 @@ class _$InitImpl implements _Init {
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
     TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -323,6 +335,7 @@ class _$FetchGdnsImpl implements _FetchGdns {
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
     required TResult Function() clearFilters,
+    required TResult Function(int id, BillExporResponse? bill) initDetail,
   }) {
     return fetchGdns();
   }
@@ -340,6 +353,7 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
     TResult? Function()? clearFilters,
+    TResult? Function(int id, BillExporResponse? bill)? initDetail,
   }) {
     return fetchGdns?.call();
   }
@@ -357,6 +371,7 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
     TResult Function()? clearFilters,
+    TResult Function(int id, BillExporResponse? bill)? initDetail,
     required TResult orElse(),
   }) {
     if (fetchGdns != null) {
@@ -380,6 +395,7 @@ class _$FetchGdnsImpl implements _FetchGdns {
         filterByWarehouseType,
     required TResult Function(_FilterByStatus value) filterByStatus,
     required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_InitDetail value) initDetail,
   }) {
     return fetchGdns(this);
   }
@@ -397,6 +413,7 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
     TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_InitDetail value)? initDetail,
   }) {
     return fetchGdns?.call(this);
   }
@@ -414,6 +431,7 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
     TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) {
     if (fetchGdns != null) {
@@ -502,6 +520,7 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
     required TResult Function() clearFilters,
+    required TResult Function(int id, BillExporResponse? bill) initDetail,
   }) {
     return searchByKeyword(keyword);
   }
@@ -519,6 +538,7 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
     TResult? Function()? clearFilters,
+    TResult? Function(int id, BillExporResponse? bill)? initDetail,
   }) {
     return searchByKeyword?.call(keyword);
   }
@@ -536,6 +556,7 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
     TResult Function()? clearFilters,
+    TResult Function(int id, BillExporResponse? bill)? initDetail,
     required TResult orElse(),
   }) {
     if (searchByKeyword != null) {
@@ -559,6 +580,7 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
         filterByWarehouseType,
     required TResult Function(_FilterByStatus value) filterByStatus,
     required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_InitDetail value) initDetail,
   }) {
     return searchByKeyword(this);
   }
@@ -576,6 +598,7 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
     TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_InitDetail value)? initDetail,
   }) {
     return searchByKeyword?.call(this);
   }
@@ -593,6 +616,7 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
     TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) {
     if (searchByKeyword != null) {
@@ -688,6 +712,7 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
     required TResult Function() clearFilters,
+    required TResult Function(int id, BillExporResponse? bill) initDetail,
   }) {
     return searchByVoucherNumber(voucherNumber);
   }
@@ -705,6 +730,7 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
     TResult? Function()? clearFilters,
+    TResult? Function(int id, BillExporResponse? bill)? initDetail,
   }) {
     return searchByVoucherNumber?.call(voucherNumber);
   }
@@ -722,6 +748,7 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
     TResult Function()? clearFilters,
+    TResult Function(int id, BillExporResponse? bill)? initDetail,
     required TResult orElse(),
   }) {
     if (searchByVoucherNumber != null) {
@@ -745,6 +772,7 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
         filterByWarehouseType,
     required TResult Function(_FilterByStatus value) filterByStatus,
     required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_InitDetail value) initDetail,
   }) {
     return searchByVoucherNumber(this);
   }
@@ -762,6 +790,7 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
     TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_InitDetail value)? initDetail,
   }) {
     return searchByVoucherNumber?.call(this);
   }
@@ -779,6 +808,7 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
     TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) {
     if (searchByVoucherNumber != null) {
@@ -846,6 +876,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
     required TResult Function() clearFilters,
+    required TResult Function(int id, BillExporResponse? bill) initDetail,
   }) {
     return clearSearch();
   }
@@ -863,6 +894,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
     TResult? Function()? clearFilters,
+    TResult? Function(int id, BillExporResponse? bill)? initDetail,
   }) {
     return clearSearch?.call();
   }
@@ -880,6 +912,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
     TResult Function()? clearFilters,
+    TResult Function(int id, BillExporResponse? bill)? initDetail,
     required TResult orElse(),
   }) {
     if (clearSearch != null) {
@@ -903,6 +936,7 @@ class _$ClearSearchImpl implements _ClearSearch {
         filterByWarehouseType,
     required TResult Function(_FilterByStatus value) filterByStatus,
     required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_InitDetail value) initDetail,
   }) {
     return clearSearch(this);
   }
@@ -920,6 +954,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
     TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_InitDetail value)? initDetail,
   }) {
     return clearSearch?.call(this);
   }
@@ -937,6 +972,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
     TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) {
     if (clearSearch != null) {
@@ -1024,6 +1060,7 @@ class _$ScanQrCodeImpl implements _ScanQrCode {
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
     required TResult Function() clearFilters,
+    required TResult Function(int id, BillExporResponse? bill) initDetail,
   }) {
     return scanQrCode(code);
   }
@@ -1041,6 +1078,7 @@ class _$ScanQrCodeImpl implements _ScanQrCode {
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
     TResult? Function()? clearFilters,
+    TResult? Function(int id, BillExporResponse? bill)? initDetail,
   }) {
     return scanQrCode?.call(code);
   }
@@ -1058,6 +1096,7 @@ class _$ScanQrCodeImpl implements _ScanQrCode {
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
     TResult Function()? clearFilters,
+    TResult Function(int id, BillExporResponse? bill)? initDetail,
     required TResult orElse(),
   }) {
     if (scanQrCode != null) {
@@ -1081,6 +1120,7 @@ class _$ScanQrCodeImpl implements _ScanQrCode {
         filterByWarehouseType,
     required TResult Function(_FilterByStatus value) filterByStatus,
     required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_InitDetail value) initDetail,
   }) {
     return scanQrCode(this);
   }
@@ -1098,6 +1138,7 @@ class _$ScanQrCodeImpl implements _ScanQrCode {
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
     TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_InitDetail value)? initDetail,
   }) {
     return scanQrCode?.call(this);
   }
@@ -1115,6 +1156,7 @@ class _$ScanQrCodeImpl implements _ScanQrCode {
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
     TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) {
     if (scanQrCode != null) {
@@ -1182,6 +1224,7 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
     required TResult Function() clearFilters,
+    required TResult Function(int id, BillExporResponse? bill) initDetail,
   }) {
     return fetchWarehouseTypes();
   }
@@ -1199,6 +1242,7 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
     TResult? Function()? clearFilters,
+    TResult? Function(int id, BillExporResponse? bill)? initDetail,
   }) {
     return fetchWarehouseTypes?.call();
   }
@@ -1216,6 +1260,7 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
     TResult Function()? clearFilters,
+    TResult Function(int id, BillExporResponse? bill)? initDetail,
     required TResult orElse(),
   }) {
     if (fetchWarehouseTypes != null) {
@@ -1239,6 +1284,7 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
         filterByWarehouseType,
     required TResult Function(_FilterByStatus value) filterByStatus,
     required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_InitDetail value) initDetail,
   }) {
     return fetchWarehouseTypes(this);
   }
@@ -1256,6 +1302,7 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
     TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_InitDetail value)? initDetail,
   }) {
     return fetchWarehouseTypes?.call(this);
   }
@@ -1273,6 +1320,7 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
     TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) {
     if (fetchWarehouseTypes != null) {
@@ -1371,6 +1419,7 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
     required TResult Function() clearFilters,
+    required TResult Function(int id, BillExporResponse? bill) initDetail,
   }) {
     return filterByWarehouseType(warehouseTypeIds);
   }
@@ -1388,6 +1437,7 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
     TResult? Function()? clearFilters,
+    TResult? Function(int id, BillExporResponse? bill)? initDetail,
   }) {
     return filterByWarehouseType?.call(warehouseTypeIds);
   }
@@ -1405,6 +1455,7 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
     TResult Function()? clearFilters,
+    TResult Function(int id, BillExporResponse? bill)? initDetail,
     required TResult orElse(),
   }) {
     if (filterByWarehouseType != null) {
@@ -1428,6 +1479,7 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
         filterByWarehouseType,
     required TResult Function(_FilterByStatus value) filterByStatus,
     required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_InitDetail value) initDetail,
   }) {
     return filterByWarehouseType(this);
   }
@@ -1445,6 +1497,7 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
     TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_InitDetail value)? initDetail,
   }) {
     return filterByWarehouseType?.call(this);
   }
@@ -1462,6 +1515,7 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
     TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) {
     if (filterByWarehouseType != null) {
@@ -1556,6 +1610,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
     required TResult Function() clearFilters,
+    required TResult Function(int id, BillExporResponse? bill) initDetail,
   }) {
     return filterByStatus(status);
   }
@@ -1573,6 +1628,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
     TResult? Function()? clearFilters,
+    TResult? Function(int id, BillExporResponse? bill)? initDetail,
   }) {
     return filterByStatus?.call(status);
   }
@@ -1590,6 +1646,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
     TResult Function()? clearFilters,
+    TResult Function(int id, BillExporResponse? bill)? initDetail,
     required TResult orElse(),
   }) {
     if (filterByStatus != null) {
@@ -1613,6 +1670,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
         filterByWarehouseType,
     required TResult Function(_FilterByStatus value) filterByStatus,
     required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_InitDetail value) initDetail,
   }) {
     return filterByStatus(this);
   }
@@ -1630,6 +1688,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
     TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_InitDetail value)? initDetail,
   }) {
     return filterByStatus?.call(this);
   }
@@ -1647,6 +1706,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
     TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) {
     if (filterByStatus != null) {
@@ -1713,6 +1773,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
     required TResult Function() clearFilters,
+    required TResult Function(int id, BillExporResponse? bill) initDetail,
   }) {
     return clearFilters();
   }
@@ -1730,6 +1791,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
     TResult? Function()? clearFilters,
+    TResult? Function(int id, BillExporResponse? bill)? initDetail,
   }) {
     return clearFilters?.call();
   }
@@ -1747,6 +1809,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
     TResult Function()? clearFilters,
+    TResult Function(int id, BillExporResponse? bill)? initDetail,
     required TResult orElse(),
   }) {
     if (clearFilters != null) {
@@ -1770,6 +1833,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
         filterByWarehouseType,
     required TResult Function(_FilterByStatus value) filterByStatus,
     required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_InitDetail value) initDetail,
   }) {
     return clearFilters(this);
   }
@@ -1787,6 +1851,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
     TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_InitDetail value)? initDetail,
   }) {
     return clearFilters?.call(this);
   }
@@ -1804,6 +1869,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
     TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) {
     if (clearFilters != null) {
@@ -1815,4 +1881,218 @@ class _$ClearFiltersImpl implements _ClearFilters {
 
 abstract class _ClearFilters implements SaleGdnEvent {
   const factory _ClearFilters() = _$ClearFiltersImpl;
+}
+
+/// @nodoc
+abstract class _$$InitDetailImplCopyWith<$Res> {
+  factory _$$InitDetailImplCopyWith(
+          _$InitDetailImpl value, $Res Function(_$InitDetailImpl) then) =
+      __$$InitDetailImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id, BillExporResponse? bill});
+
+  $BillExporResponseCopyWith<$Res>? get bill;
+}
+
+/// @nodoc
+class __$$InitDetailImplCopyWithImpl<$Res>
+    extends _$SaleGdnEventCopyWithImpl<$Res, _$InitDetailImpl>
+    implements _$$InitDetailImplCopyWith<$Res> {
+  __$$InitDetailImplCopyWithImpl(
+      _$InitDetailImpl _value, $Res Function(_$InitDetailImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? bill = freezed,
+  }) {
+    return _then(_$InitDetailImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      bill: freezed == bill
+          ? _value.bill
+          : bill // ignore: cast_nullable_to_non_nullable
+              as BillExporResponse?,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BillExporResponseCopyWith<$Res>? get bill {
+    if (_value.bill == null) {
+      return null;
+    }
+
+    return $BillExporResponseCopyWith<$Res>(_value.bill!, (value) {
+      return _then(_value.copyWith(bill: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$InitDetailImpl implements _InitDetail {
+  const _$InitDetailImpl({this.id = 0, this.bill});
+
+  @override
+  @JsonKey()
+  final int id;
+  @override
+  final BillExporResponse? bill;
+
+  @override
+  String toString() {
+    return 'SaleGdnEvent.initDetail(id: $id, bill: $bill)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InitDetailImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.bill, bill) || other.bill == bill));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id, bill);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitDetailImplCopyWith<_$InitDetailImpl> get copyWith =>
+      __$$InitDetailImplCopyWithImpl<_$InitDetailImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() fetchGdns,
+    required TResult Function(String keyword) searchByKeyword,
+    required TResult Function(String voucherNumber) searchByVoucherNumber,
+    required TResult Function() clearSearch,
+    required TResult Function(String code) scanQrCode,
+    required TResult Function() fetchWarehouseTypes,
+    required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
+    required TResult Function(int status) filterByStatus,
+    required TResult Function() clearFilters,
+    required TResult Function(int id, BillExporResponse? bill) initDetail,
+  }) {
+    return initDetail(id, bill);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? fetchGdns,
+    TResult? Function(String keyword)? searchByKeyword,
+    TResult? Function(String voucherNumber)? searchByVoucherNumber,
+    TResult? Function()? clearSearch,
+    TResult? Function(String code)? scanQrCode,
+    TResult? Function()? fetchWarehouseTypes,
+    TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
+    TResult? Function(int status)? filterByStatus,
+    TResult? Function()? clearFilters,
+    TResult? Function(int id, BillExporResponse? bill)? initDetail,
+  }) {
+    return initDetail?.call(id, bill);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? fetchGdns,
+    TResult Function(String keyword)? searchByKeyword,
+    TResult Function(String voucherNumber)? searchByVoucherNumber,
+    TResult Function()? clearSearch,
+    TResult Function(String code)? scanQrCode,
+    TResult Function()? fetchWarehouseTypes,
+    TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
+    TResult Function(int status)? filterByStatus,
+    TResult Function()? clearFilters,
+    TResult Function(int id, BillExporResponse? bill)? initDetail,
+    required TResult orElse(),
+  }) {
+    if (initDetail != null) {
+      return initDetail(id, bill);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_FetchGdns value) fetchGdns,
+    required TResult Function(_SearchByKeyword value) searchByKeyword,
+    required TResult Function(_SearchByVoucherNumber value)
+        searchByVoucherNumber,
+    required TResult Function(_ClearSearch value) clearSearch,
+    required TResult Function(_ScanQrCode value) scanQrCode,
+    required TResult Function(_FetchWarehouseTypes value) fetchWarehouseTypes,
+    required TResult Function(_FilterByWarehouseType value)
+        filterByWarehouseType,
+    required TResult Function(_FilterByStatus value) filterByStatus,
+    required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_InitDetail value) initDetail,
+  }) {
+    return initDetail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_FetchGdns value)? fetchGdns,
+    TResult? Function(_SearchByKeyword value)? searchByKeyword,
+    TResult? Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
+    TResult? Function(_ClearSearch value)? clearSearch,
+    TResult? Function(_ScanQrCode value)? scanQrCode,
+    TResult? Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
+    TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
+    TResult? Function(_FilterByStatus value)? filterByStatus,
+    TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_InitDetail value)? initDetail,
+  }) {
+    return initDetail?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_FetchGdns value)? fetchGdns,
+    TResult Function(_SearchByKeyword value)? searchByKeyword,
+    TResult Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
+    TResult Function(_ClearSearch value)? clearSearch,
+    TResult Function(_ScanQrCode value)? scanQrCode,
+    TResult Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
+    TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
+    TResult Function(_FilterByStatus value)? filterByStatus,
+    TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_InitDetail value)? initDetail,
+    required TResult orElse(),
+  }) {
+    if (initDetail != null) {
+      return initDetail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InitDetail implements SaleGdnEvent {
+  const factory _InitDetail({final int id, final BillExporResponse? bill}) =
+      _$InitDetailImpl;
+
+  int get id;
+  BillExporResponse? get bill;
+  @JsonKey(ignore: true)
+  _$$InitDetailImplCopyWith<_$InitDetailImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

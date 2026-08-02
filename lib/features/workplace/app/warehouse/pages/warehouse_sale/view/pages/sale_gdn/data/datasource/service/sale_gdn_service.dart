@@ -75,4 +75,37 @@ class SaleGdnService extends DioBaseApiService {
       },
     );
   }
+
+  /// Lấy chi tiết phiếu xuất kho.
+  /// Endpoint: GET /BillExport/get-view-export-detail/{id}
+  Future<BaseData<List<DetailGDNResponse>>> getViewExportDetail({
+    required int id,
+  }) async {
+    return get<BaseData<List<DetailGDNResponse>>>(
+      '${ApiEndPoint.getViewExportDetail}/$id',
+      parser: (json) {
+        if (json is! Map<String, dynamic>) {
+          return BaseData<List<DetailGDNResponse>>(
+            status: 0,
+            data: [],
+          );
+        }
+
+        final status = json['status'] as int?;
+        final dataJson = json['data'];
+
+        List<DetailGDNResponse> items = [];
+        if (dataJson is List) {
+          items = dataJson
+              .map((e) => DetailGDNResponse.fromJson(e as Map<String, dynamic>))
+              .toList();
+        }
+
+        return BaseData<List<DetailGDNResponse>>(
+          status: status,
+          data: items,
+        );
+      },
+    );
+  }
 }

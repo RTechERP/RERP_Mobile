@@ -27,6 +27,9 @@ class SaleGdnState extends BaseBlocState {
   /// Trạng thái đang chọn (-1 = tất cả).
   final int selectedStatus;
 
+  /// Trạng thái màn chi tiết (nested). Khi chưa mở thì null.
+  final GdnDetailState? detail;
+
   const SaleGdnState({
     required super.status,
     super.message,
@@ -39,6 +42,7 @@ class SaleGdnState extends BaseBlocState {
     this.warehouseTypes = const [],
     this.selectedWarehouseTypeIds = const [],
     this.selectedStatus = -1,
+    this.detail,
   });
 
   factory SaleGdnState.init() {
@@ -63,5 +67,6 @@ class SaleGdnState extends BaseBlocState {
         warehouseTypes,
         selectedWarehouseTypeIds,
         selectedStatus,
+        detail,
       ];
 }
