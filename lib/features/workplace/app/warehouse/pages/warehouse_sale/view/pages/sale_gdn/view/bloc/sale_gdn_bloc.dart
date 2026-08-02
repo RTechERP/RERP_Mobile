@@ -29,7 +29,9 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
         searchByVoucherNumber: (voucherNumber) =>
             _searchByVoucherNumber(emit, voucherNumber),
         clearSearch: () => _clearSearch(emit),
-        scanQrCode: (code) => _scanQrCode(emit, code),
+        scanQrToDetail: (code) => _scanQrToDetail(emit, code),
+        clearOpenedDetail: () => _clearOpenedDetail(emit),
+        clearScanResultMessage: () => _clearScanResultMessage(emit),
         fetchWarehouseTypes: () => _fetchWarehouseTypes(emit),
         filterByWarehouseType: (warehouseTypeId) =>
             _filterByWarehouseType(emit, warehouseTypeId),
@@ -193,33 +195,101 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
     await _fetchGdns(emit);
   }
 
-  Future<void> _scanQrCode(Emitter<SaleGdnState> emit, String code) async {
+  /// Quét QR/Barcode với code là chuỗi → tìm phiếu để mở trang Detail.
+///
+/// Tối ưu:
+/// 1. Trước tiên dò trong danh sách hiện tại (`state.gdns`) theo `code` —
+///    nếu khớp đúng 1 phiếu thì emit `openedDetailBill` luôn (0 RTT).
+/// 2. Nếu không có trong list hiện tại → gọi API `getBillExports` với
+///    `FilterText` để tìm kiếm trên server (cache cũ cũng dùng payload này,
+///    nhưng gọi riêng không đồng thời với refresh nào khác).
+Future<void> _scanQrToDetail(
+    Emitter<SaleGdnState> emit, String code) async {
+  final trimmed = code.trim();
+  if (trimmed.isEmpty) return;
+
+  // Bước 1: dò nhanh trong list hiện tại trước (không phát spinner toàn list).
+  final local = _findGdnInList(trimmed);
+  if (local != null) {
     emit(state.copyWith(
-      status: BaseStateStatus.loading,
-      isSearching: true,
+      status: BaseStateStatus.success,
+      openedDetailBill: local,
     ));
+    return;
+  }
 
-    final res =
-        await _repo.getBillExports(payload: _buildPayload(filterText: code));
+  // Bước 2: fallback — search trên server.
+  emit(state.copyWith(
+    status: BaseStateStatus.loading,
+    isSearching: true,
+    openedDetailBill: null,
+    scanResultMessage: null,
+  ));
 
-    await res.fold(
-      (l) async {
-        _log.logE('❌ API failed: $l');
-        emit(state.copyWith(
-          status: BaseStateStatus.failed,
-          message: l.getErrorMessage,
-        ));
-      },
-      (r) async {
-        _log.logI('✅ API success - total: ${r.length}');
+  final res =
+      await _repo.getBillExports(payload: _buildPayload(filterText: trimmed));
+
+  await res.fold(
+    (l) async {
+      _log.logE('❌ scanQrToDetail failed: $l');
+      emit(state.copyWith(
+        status: BaseStateStatus.failed,
+        message: l.getErrorMessage,
+        isSearching: false,
+      ));
+    },
+    (r) async {
+      _log.logI('✅ scanQrToDetail - total: ${r.length}');
+      if (r.length == 1 && r.first.id != null && r.first.id! > 0) {
         emit(state.copyWith(
           status: BaseStateStatus.success,
           gdns: r,
-          searchKeyword: code,
+          searchKeyword: trimmed,
           isSearching: false,
+          openedDetailBill: r.first,
         ));
-      },
-    );
+      } else if (r.isEmpty) {
+        emit(state.copyWith(
+          status: BaseStateStatus.success,
+          gdns: r,
+          searchKeyword: trimmed,
+          isSearching: false,
+          scanResultMessage: 'Không tìm thấy phiếu với mã "$trimmed"',
+        ));
+      } else {
+        emit(state.copyWith(
+          status: BaseStateStatus.success,
+          gdns: r,
+          searchKeyword: trimmed,
+          isSearching: false,
+          scanResultMessage:
+              'Có ${r.length} phiếu trùng mã "$trimmed", vui lòng dùng tìm kiếm',
+        ));
+      }
+    },
+  );
+}
+
+/// Tìm phiếu trong `state.gdns` theo `code` (so khớp chính xác sau khi trim).
+/// Trả về phần tử đầu tiên khớp. Chuỗi là 1 phiếu duy nhất cho QR/Barcode.
+BillExporResponse? _findGdnInList(String code) {
+  final candidates =
+      state.gdns.where((b) => (b.code ?? '').trim() == code).toList();
+  if (candidates.isEmpty) return null;
+  final valid = candidates
+      .where((b) => b.id != null && b.id! > 0)
+      .toList();
+  return valid.isNotEmpty ? valid.first : null;
+}
+
+  /// Reset cờ one-shot `openedDetailBill` sau khi UI đã mở trang Detail.
+  Future<void> _clearOpenedDetail(Emitter<SaleGdnState> emit) async {
+    emit(state.copyWith(openedDetailBill: null));
+  }
+
+  /// Reset cờ one-shot `scanResultMessage` sau khi UI đã hiển thị snackbar.
+  Future<void> _clearScanResultMessage(Emitter<SaleGdnState> emit) async {
+    emit(state.copyWith(scanResultMessage: null));
   }
 
   Future<void> _fetchWarehouseTypes(Emitter<SaleGdnState> emit) async {

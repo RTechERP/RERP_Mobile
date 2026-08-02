@@ -23,7 +23,9 @@ mixin _$SaleGdnEvent {
     required TResult Function(String keyword) searchByKeyword,
     required TResult Function(String voucherNumber) searchByVoucherNumber,
     required TResult Function() clearSearch,
-    required TResult Function(String code) scanQrCode,
+    required TResult Function(String code) scanQrToDetail,
+    required TResult Function() clearOpenedDetail,
+    required TResult Function() clearScanResultMessage,
     required TResult Function() fetchWarehouseTypes,
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
@@ -42,7 +44,9 @@ mixin _$SaleGdnEvent {
     TResult? Function(String keyword)? searchByKeyword,
     TResult? Function(String voucherNumber)? searchByVoucherNumber,
     TResult? Function()? clearSearch,
-    TResult? Function(String code)? scanQrCode,
+    TResult? Function(String code)? scanQrToDetail,
+    TResult? Function()? clearOpenedDetail,
+    TResult? Function()? clearScanResultMessage,
     TResult? Function()? fetchWarehouseTypes,
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
@@ -60,7 +64,9 @@ mixin _$SaleGdnEvent {
     TResult Function(String keyword)? searchByKeyword,
     TResult Function(String voucherNumber)? searchByVoucherNumber,
     TResult Function()? clearSearch,
-    TResult Function(String code)? scanQrCode,
+    TResult Function(String code)? scanQrToDetail,
+    TResult Function()? clearOpenedDetail,
+    TResult Function()? clearScanResultMessage,
     TResult Function()? fetchWarehouseTypes,
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
@@ -80,7 +86,10 @@ mixin _$SaleGdnEvent {
     required TResult Function(_SearchByVoucherNumber value)
         searchByVoucherNumber,
     required TResult Function(_ClearSearch value) clearSearch,
-    required TResult Function(_ScanQrCode value) scanQrCode,
+    required TResult Function(_ScanQrToDetail value) scanQrToDetail,
+    required TResult Function(_ClearOpenedDetail value) clearOpenedDetail,
+    required TResult Function(_ClearScanResultMessage value)
+        clearScanResultMessage,
     required TResult Function(_FetchWarehouseTypes value) fetchWarehouseTypes,
     required TResult Function(_FilterByWarehouseType value)
         filterByWarehouseType,
@@ -99,7 +108,9 @@ mixin _$SaleGdnEvent {
     TResult? Function(_SearchByKeyword value)? searchByKeyword,
     TResult? Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
     TResult? Function(_ClearSearch value)? clearSearch,
-    TResult? Function(_ScanQrCode value)? scanQrCode,
+    TResult? Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult? Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult? Function(_ClearScanResultMessage value)? clearScanResultMessage,
     TResult? Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
@@ -117,7 +128,9 @@ mixin _$SaleGdnEvent {
     TResult Function(_SearchByKeyword value)? searchByKeyword,
     TResult Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
     TResult Function(_ClearSearch value)? clearSearch,
-    TResult Function(_ScanQrCode value)? scanQrCode,
+    TResult Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult Function(_ClearScanResultMessage value)? clearScanResultMessage,
     TResult Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
@@ -191,7 +204,9 @@ class _$InitImpl implements _Init {
     required TResult Function(String keyword) searchByKeyword,
     required TResult Function(String voucherNumber) searchByVoucherNumber,
     required TResult Function() clearSearch,
-    required TResult Function(String code) scanQrCode,
+    required TResult Function(String code) scanQrToDetail,
+    required TResult Function() clearOpenedDetail,
+    required TResult Function() clearScanResultMessage,
     required TResult Function() fetchWarehouseTypes,
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
@@ -213,7 +228,9 @@ class _$InitImpl implements _Init {
     TResult? Function(String keyword)? searchByKeyword,
     TResult? Function(String voucherNumber)? searchByVoucherNumber,
     TResult? Function()? clearSearch,
-    TResult? Function(String code)? scanQrCode,
+    TResult? Function(String code)? scanQrToDetail,
+    TResult? Function()? clearOpenedDetail,
+    TResult? Function()? clearScanResultMessage,
     TResult? Function()? fetchWarehouseTypes,
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
@@ -234,7 +251,9 @@ class _$InitImpl implements _Init {
     TResult Function(String keyword)? searchByKeyword,
     TResult Function(String voucherNumber)? searchByVoucherNumber,
     TResult Function()? clearSearch,
-    TResult Function(String code)? scanQrCode,
+    TResult Function(String code)? scanQrToDetail,
+    TResult Function()? clearOpenedDetail,
+    TResult Function()? clearScanResultMessage,
     TResult Function()? fetchWarehouseTypes,
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
@@ -260,7 +279,10 @@ class _$InitImpl implements _Init {
     required TResult Function(_SearchByVoucherNumber value)
         searchByVoucherNumber,
     required TResult Function(_ClearSearch value) clearSearch,
-    required TResult Function(_ScanQrCode value) scanQrCode,
+    required TResult Function(_ScanQrToDetail value) scanQrToDetail,
+    required TResult Function(_ClearOpenedDetail value) clearOpenedDetail,
+    required TResult Function(_ClearScanResultMessage value)
+        clearScanResultMessage,
     required TResult Function(_FetchWarehouseTypes value) fetchWarehouseTypes,
     required TResult Function(_FilterByWarehouseType value)
         filterByWarehouseType,
@@ -282,7 +304,9 @@ class _$InitImpl implements _Init {
     TResult? Function(_SearchByKeyword value)? searchByKeyword,
     TResult? Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
     TResult? Function(_ClearSearch value)? clearSearch,
-    TResult? Function(_ScanQrCode value)? scanQrCode,
+    TResult? Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult? Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult? Function(_ClearScanResultMessage value)? clearScanResultMessage,
     TResult? Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
@@ -303,7 +327,9 @@ class _$InitImpl implements _Init {
     TResult Function(_SearchByKeyword value)? searchByKeyword,
     TResult Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
     TResult Function(_ClearSearch value)? clearSearch,
-    TResult Function(_ScanQrCode value)? scanQrCode,
+    TResult Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult Function(_ClearScanResultMessage value)? clearScanResultMessage,
     TResult Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
@@ -368,7 +394,9 @@ class _$FetchGdnsImpl implements _FetchGdns {
     required TResult Function(String keyword) searchByKeyword,
     required TResult Function(String voucherNumber) searchByVoucherNumber,
     required TResult Function() clearSearch,
-    required TResult Function(String code) scanQrCode,
+    required TResult Function(String code) scanQrToDetail,
+    required TResult Function() clearOpenedDetail,
+    required TResult Function() clearScanResultMessage,
     required TResult Function() fetchWarehouseTypes,
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
@@ -390,7 +418,9 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult? Function(String keyword)? searchByKeyword,
     TResult? Function(String voucherNumber)? searchByVoucherNumber,
     TResult? Function()? clearSearch,
-    TResult? Function(String code)? scanQrCode,
+    TResult? Function(String code)? scanQrToDetail,
+    TResult? Function()? clearOpenedDetail,
+    TResult? Function()? clearScanResultMessage,
     TResult? Function()? fetchWarehouseTypes,
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
@@ -411,7 +441,9 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult Function(String keyword)? searchByKeyword,
     TResult Function(String voucherNumber)? searchByVoucherNumber,
     TResult Function()? clearSearch,
-    TResult Function(String code)? scanQrCode,
+    TResult Function(String code)? scanQrToDetail,
+    TResult Function()? clearOpenedDetail,
+    TResult Function()? clearScanResultMessage,
     TResult Function()? fetchWarehouseTypes,
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
@@ -437,7 +469,10 @@ class _$FetchGdnsImpl implements _FetchGdns {
     required TResult Function(_SearchByVoucherNumber value)
         searchByVoucherNumber,
     required TResult Function(_ClearSearch value) clearSearch,
-    required TResult Function(_ScanQrCode value) scanQrCode,
+    required TResult Function(_ScanQrToDetail value) scanQrToDetail,
+    required TResult Function(_ClearOpenedDetail value) clearOpenedDetail,
+    required TResult Function(_ClearScanResultMessage value)
+        clearScanResultMessage,
     required TResult Function(_FetchWarehouseTypes value) fetchWarehouseTypes,
     required TResult Function(_FilterByWarehouseType value)
         filterByWarehouseType,
@@ -459,7 +494,9 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult? Function(_SearchByKeyword value)? searchByKeyword,
     TResult? Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
     TResult? Function(_ClearSearch value)? clearSearch,
-    TResult? Function(_ScanQrCode value)? scanQrCode,
+    TResult? Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult? Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult? Function(_ClearScanResultMessage value)? clearScanResultMessage,
     TResult? Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
@@ -480,7 +517,9 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult Function(_SearchByKeyword value)? searchByKeyword,
     TResult Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
     TResult Function(_ClearSearch value)? clearSearch,
-    TResult Function(_ScanQrCode value)? scanQrCode,
+    TResult Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult Function(_ClearScanResultMessage value)? clearScanResultMessage,
     TResult Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
@@ -572,7 +611,9 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     required TResult Function(String keyword) searchByKeyword,
     required TResult Function(String voucherNumber) searchByVoucherNumber,
     required TResult Function() clearSearch,
-    required TResult Function(String code) scanQrCode,
+    required TResult Function(String code) scanQrToDetail,
+    required TResult Function() clearOpenedDetail,
+    required TResult Function() clearScanResultMessage,
     required TResult Function() fetchWarehouseTypes,
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
@@ -594,7 +635,9 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult? Function(String keyword)? searchByKeyword,
     TResult? Function(String voucherNumber)? searchByVoucherNumber,
     TResult? Function()? clearSearch,
-    TResult? Function(String code)? scanQrCode,
+    TResult? Function(String code)? scanQrToDetail,
+    TResult? Function()? clearOpenedDetail,
+    TResult? Function()? clearScanResultMessage,
     TResult? Function()? fetchWarehouseTypes,
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
@@ -615,7 +658,9 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult Function(String keyword)? searchByKeyword,
     TResult Function(String voucherNumber)? searchByVoucherNumber,
     TResult Function()? clearSearch,
-    TResult Function(String code)? scanQrCode,
+    TResult Function(String code)? scanQrToDetail,
+    TResult Function()? clearOpenedDetail,
+    TResult Function()? clearScanResultMessage,
     TResult Function()? fetchWarehouseTypes,
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
@@ -641,7 +686,10 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     required TResult Function(_SearchByVoucherNumber value)
         searchByVoucherNumber,
     required TResult Function(_ClearSearch value) clearSearch,
-    required TResult Function(_ScanQrCode value) scanQrCode,
+    required TResult Function(_ScanQrToDetail value) scanQrToDetail,
+    required TResult Function(_ClearOpenedDetail value) clearOpenedDetail,
+    required TResult Function(_ClearScanResultMessage value)
+        clearScanResultMessage,
     required TResult Function(_FetchWarehouseTypes value) fetchWarehouseTypes,
     required TResult Function(_FilterByWarehouseType value)
         filterByWarehouseType,
@@ -663,7 +711,9 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult? Function(_SearchByKeyword value)? searchByKeyword,
     TResult? Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
     TResult? Function(_ClearSearch value)? clearSearch,
-    TResult? Function(_ScanQrCode value)? scanQrCode,
+    TResult? Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult? Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult? Function(_ClearScanResultMessage value)? clearScanResultMessage,
     TResult? Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
@@ -684,7 +734,9 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult Function(_SearchByKeyword value)? searchByKeyword,
     TResult Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
     TResult Function(_ClearSearch value)? clearSearch,
-    TResult Function(_ScanQrCode value)? scanQrCode,
+    TResult Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult Function(_ClearScanResultMessage value)? clearScanResultMessage,
     TResult Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
@@ -783,7 +835,9 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     required TResult Function(String keyword) searchByKeyword,
     required TResult Function(String voucherNumber) searchByVoucherNumber,
     required TResult Function() clearSearch,
-    required TResult Function(String code) scanQrCode,
+    required TResult Function(String code) scanQrToDetail,
+    required TResult Function() clearOpenedDetail,
+    required TResult Function() clearScanResultMessage,
     required TResult Function() fetchWarehouseTypes,
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
@@ -805,7 +859,9 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult? Function(String keyword)? searchByKeyword,
     TResult? Function(String voucherNumber)? searchByVoucherNumber,
     TResult? Function()? clearSearch,
-    TResult? Function(String code)? scanQrCode,
+    TResult? Function(String code)? scanQrToDetail,
+    TResult? Function()? clearOpenedDetail,
+    TResult? Function()? clearScanResultMessage,
     TResult? Function()? fetchWarehouseTypes,
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
@@ -826,7 +882,9 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult Function(String keyword)? searchByKeyword,
     TResult Function(String voucherNumber)? searchByVoucherNumber,
     TResult Function()? clearSearch,
-    TResult Function(String code)? scanQrCode,
+    TResult Function(String code)? scanQrToDetail,
+    TResult Function()? clearOpenedDetail,
+    TResult Function()? clearScanResultMessage,
     TResult Function()? fetchWarehouseTypes,
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
@@ -852,7 +910,10 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     required TResult Function(_SearchByVoucherNumber value)
         searchByVoucherNumber,
     required TResult Function(_ClearSearch value) clearSearch,
-    required TResult Function(_ScanQrCode value) scanQrCode,
+    required TResult Function(_ScanQrToDetail value) scanQrToDetail,
+    required TResult Function(_ClearOpenedDetail value) clearOpenedDetail,
+    required TResult Function(_ClearScanResultMessage value)
+        clearScanResultMessage,
     required TResult Function(_FetchWarehouseTypes value) fetchWarehouseTypes,
     required TResult Function(_FilterByWarehouseType value)
         filterByWarehouseType,
@@ -874,7 +935,9 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult? Function(_SearchByKeyword value)? searchByKeyword,
     TResult? Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
     TResult? Function(_ClearSearch value)? clearSearch,
-    TResult? Function(_ScanQrCode value)? scanQrCode,
+    TResult? Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult? Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult? Function(_ClearScanResultMessage value)? clearScanResultMessage,
     TResult? Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
@@ -895,7 +958,9 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult Function(_SearchByKeyword value)? searchByKeyword,
     TResult Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
     TResult Function(_ClearSearch value)? clearSearch,
-    TResult Function(_ScanQrCode value)? scanQrCode,
+    TResult Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult Function(_ClearScanResultMessage value)? clearScanResultMessage,
     TResult Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
@@ -966,7 +1031,9 @@ class _$ClearSearchImpl implements _ClearSearch {
     required TResult Function(String keyword) searchByKeyword,
     required TResult Function(String voucherNumber) searchByVoucherNumber,
     required TResult Function() clearSearch,
-    required TResult Function(String code) scanQrCode,
+    required TResult Function(String code) scanQrToDetail,
+    required TResult Function() clearOpenedDetail,
+    required TResult Function() clearScanResultMessage,
     required TResult Function() fetchWarehouseTypes,
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
@@ -988,7 +1055,9 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function(String keyword)? searchByKeyword,
     TResult? Function(String voucherNumber)? searchByVoucherNumber,
     TResult? Function()? clearSearch,
-    TResult? Function(String code)? scanQrCode,
+    TResult? Function(String code)? scanQrToDetail,
+    TResult? Function()? clearOpenedDetail,
+    TResult? Function()? clearScanResultMessage,
     TResult? Function()? fetchWarehouseTypes,
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
@@ -1009,7 +1078,9 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function(String keyword)? searchByKeyword,
     TResult Function(String voucherNumber)? searchByVoucherNumber,
     TResult Function()? clearSearch,
-    TResult Function(String code)? scanQrCode,
+    TResult Function(String code)? scanQrToDetail,
+    TResult Function()? clearOpenedDetail,
+    TResult Function()? clearScanResultMessage,
     TResult Function()? fetchWarehouseTypes,
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
@@ -1035,7 +1106,10 @@ class _$ClearSearchImpl implements _ClearSearch {
     required TResult Function(_SearchByVoucherNumber value)
         searchByVoucherNumber,
     required TResult Function(_ClearSearch value) clearSearch,
-    required TResult Function(_ScanQrCode value) scanQrCode,
+    required TResult Function(_ScanQrToDetail value) scanQrToDetail,
+    required TResult Function(_ClearOpenedDetail value) clearOpenedDetail,
+    required TResult Function(_ClearScanResultMessage value)
+        clearScanResultMessage,
     required TResult Function(_FetchWarehouseTypes value) fetchWarehouseTypes,
     required TResult Function(_FilterByWarehouseType value)
         filterByWarehouseType,
@@ -1057,7 +1131,9 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function(_SearchByKeyword value)? searchByKeyword,
     TResult? Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
     TResult? Function(_ClearSearch value)? clearSearch,
-    TResult? Function(_ScanQrCode value)? scanQrCode,
+    TResult? Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult? Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult? Function(_ClearScanResultMessage value)? clearScanResultMessage,
     TResult? Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
@@ -1078,7 +1154,9 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function(_SearchByKeyword value)? searchByKeyword,
     TResult Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
     TResult Function(_ClearSearch value)? clearSearch,
-    TResult Function(_ScanQrCode value)? scanQrCode,
+    TResult Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult Function(_ClearScanResultMessage value)? clearScanResultMessage,
     TResult Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
@@ -1101,20 +1179,20 @@ abstract class _ClearSearch implements SaleGdnEvent {
 }
 
 /// @nodoc
-abstract class _$$ScanQrCodeImplCopyWith<$Res> {
-  factory _$$ScanQrCodeImplCopyWith(
-          _$ScanQrCodeImpl value, $Res Function(_$ScanQrCodeImpl) then) =
-      __$$ScanQrCodeImplCopyWithImpl<$Res>;
+abstract class _$$ScanQrToDetailImplCopyWith<$Res> {
+  factory _$$ScanQrToDetailImplCopyWith(_$ScanQrToDetailImpl value,
+          $Res Function(_$ScanQrToDetailImpl) then) =
+      __$$ScanQrToDetailImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String code});
 }
 
 /// @nodoc
-class __$$ScanQrCodeImplCopyWithImpl<$Res>
-    extends _$SaleGdnEventCopyWithImpl<$Res, _$ScanQrCodeImpl>
-    implements _$$ScanQrCodeImplCopyWith<$Res> {
-  __$$ScanQrCodeImplCopyWithImpl(
-      _$ScanQrCodeImpl _value, $Res Function(_$ScanQrCodeImpl) _then)
+class __$$ScanQrToDetailImplCopyWithImpl<$Res>
+    extends _$SaleGdnEventCopyWithImpl<$Res, _$ScanQrToDetailImpl>
+    implements _$$ScanQrToDetailImplCopyWith<$Res> {
+  __$$ScanQrToDetailImplCopyWithImpl(
+      _$ScanQrToDetailImpl _value, $Res Function(_$ScanQrToDetailImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1122,7 +1200,7 @@ class __$$ScanQrCodeImplCopyWithImpl<$Res>
   $Res call({
     Object? code = null,
   }) {
-    return _then(_$ScanQrCodeImpl(
+    return _then(_$ScanQrToDetailImpl(
       null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -1133,22 +1211,22 @@ class __$$ScanQrCodeImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ScanQrCodeImpl implements _ScanQrCode {
-  const _$ScanQrCodeImpl(this.code);
+class _$ScanQrToDetailImpl implements _ScanQrToDetail {
+  const _$ScanQrToDetailImpl(this.code);
 
   @override
   final String code;
 
   @override
   String toString() {
-    return 'SaleGdnEvent.scanQrCode(code: $code)';
+    return 'SaleGdnEvent.scanQrToDetail(code: $code)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ScanQrCodeImpl &&
+            other is _$ScanQrToDetailImpl &&
             (identical(other.code, code) || other.code == code));
   }
 
@@ -1158,8 +1236,9 @@ class _$ScanQrCodeImpl implements _ScanQrCode {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ScanQrCodeImplCopyWith<_$ScanQrCodeImpl> get copyWith =>
-      __$$ScanQrCodeImplCopyWithImpl<_$ScanQrCodeImpl>(this, _$identity);
+  _$$ScanQrToDetailImplCopyWith<_$ScanQrToDetailImpl> get copyWith =>
+      __$$ScanQrToDetailImplCopyWithImpl<_$ScanQrToDetailImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1169,7 +1248,9 @@ class _$ScanQrCodeImpl implements _ScanQrCode {
     required TResult Function(String keyword) searchByKeyword,
     required TResult Function(String voucherNumber) searchByVoucherNumber,
     required TResult Function() clearSearch,
-    required TResult Function(String code) scanQrCode,
+    required TResult Function(String code) scanQrToDetail,
+    required TResult Function() clearOpenedDetail,
+    required TResult Function() clearScanResultMessage,
     required TResult Function() fetchWarehouseTypes,
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
@@ -1180,7 +1261,7 @@ class _$ScanQrCodeImpl implements _ScanQrCode {
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int stt, int imageIndex) removeImage,
   }) {
-    return scanQrCode(code);
+    return scanQrToDetail(code);
   }
 
   @override
@@ -1191,7 +1272,9 @@ class _$ScanQrCodeImpl implements _ScanQrCode {
     TResult? Function(String keyword)? searchByKeyword,
     TResult? Function(String voucherNumber)? searchByVoucherNumber,
     TResult? Function()? clearSearch,
-    TResult? Function(String code)? scanQrCode,
+    TResult? Function(String code)? scanQrToDetail,
+    TResult? Function()? clearOpenedDetail,
+    TResult? Function()? clearScanResultMessage,
     TResult? Function()? fetchWarehouseTypes,
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
@@ -1201,7 +1284,7 @@ class _$ScanQrCodeImpl implements _ScanQrCode {
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int stt, int imageIndex)? removeImage,
   }) {
-    return scanQrCode?.call(code);
+    return scanQrToDetail?.call(code);
   }
 
   @override
@@ -1212,7 +1295,9 @@ class _$ScanQrCodeImpl implements _ScanQrCode {
     TResult Function(String keyword)? searchByKeyword,
     TResult Function(String voucherNumber)? searchByVoucherNumber,
     TResult Function()? clearSearch,
-    TResult Function(String code)? scanQrCode,
+    TResult Function(String code)? scanQrToDetail,
+    TResult Function()? clearOpenedDetail,
+    TResult Function()? clearScanResultMessage,
     TResult Function()? fetchWarehouseTypes,
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
@@ -1223,8 +1308,8 @@ class _$ScanQrCodeImpl implements _ScanQrCode {
     TResult Function(int stt, int imageIndex)? removeImage,
     required TResult orElse(),
   }) {
-    if (scanQrCode != null) {
-      return scanQrCode(code);
+    if (scanQrToDetail != null) {
+      return scanQrToDetail(code);
     }
     return orElse();
   }
@@ -1238,7 +1323,10 @@ class _$ScanQrCodeImpl implements _ScanQrCode {
     required TResult Function(_SearchByVoucherNumber value)
         searchByVoucherNumber,
     required TResult Function(_ClearSearch value) clearSearch,
-    required TResult Function(_ScanQrCode value) scanQrCode,
+    required TResult Function(_ScanQrToDetail value) scanQrToDetail,
+    required TResult Function(_ClearOpenedDetail value) clearOpenedDetail,
+    required TResult Function(_ClearScanResultMessage value)
+        clearScanResultMessage,
     required TResult Function(_FetchWarehouseTypes value) fetchWarehouseTypes,
     required TResult Function(_FilterByWarehouseType value)
         filterByWarehouseType,
@@ -1249,7 +1337,7 @@ class _$ScanQrCodeImpl implements _ScanQrCode {
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_RemoveImage value) removeImage,
   }) {
-    return scanQrCode(this);
+    return scanQrToDetail(this);
   }
 
   @override
@@ -1260,7 +1348,9 @@ class _$ScanQrCodeImpl implements _ScanQrCode {
     TResult? Function(_SearchByKeyword value)? searchByKeyword,
     TResult? Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
     TResult? Function(_ClearSearch value)? clearSearch,
-    TResult? Function(_ScanQrCode value)? scanQrCode,
+    TResult? Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult? Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult? Function(_ClearScanResultMessage value)? clearScanResultMessage,
     TResult? Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
@@ -1270,7 +1360,7 @@ class _$ScanQrCodeImpl implements _ScanQrCode {
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_RemoveImage value)? removeImage,
   }) {
-    return scanQrCode?.call(this);
+    return scanQrToDetail?.call(this);
   }
 
   @override
@@ -1281,7 +1371,9 @@ class _$ScanQrCodeImpl implements _ScanQrCode {
     TResult Function(_SearchByKeyword value)? searchByKeyword,
     TResult Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
     TResult Function(_ClearSearch value)? clearSearch,
-    TResult Function(_ScanQrCode value)? scanQrCode,
+    TResult Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult Function(_ClearScanResultMessage value)? clearScanResultMessage,
     TResult Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
@@ -1292,20 +1384,403 @@ class _$ScanQrCodeImpl implements _ScanQrCode {
     TResult Function(_RemoveImage value)? removeImage,
     required TResult orElse(),
   }) {
-    if (scanQrCode != null) {
-      return scanQrCode(this);
+    if (scanQrToDetail != null) {
+      return scanQrToDetail(this);
     }
     return orElse();
   }
 }
 
-abstract class _ScanQrCode implements SaleGdnEvent {
-  const factory _ScanQrCode(final String code) = _$ScanQrCodeImpl;
+abstract class _ScanQrToDetail implements SaleGdnEvent {
+  const factory _ScanQrToDetail(final String code) = _$ScanQrToDetailImpl;
 
   String get code;
   @JsonKey(ignore: true)
-  _$$ScanQrCodeImplCopyWith<_$ScanQrCodeImpl> get copyWith =>
+  _$$ScanQrToDetailImplCopyWith<_$ScanQrToDetailImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ClearOpenedDetailImplCopyWith<$Res> {
+  factory _$$ClearOpenedDetailImplCopyWith(_$ClearOpenedDetailImpl value,
+          $Res Function(_$ClearOpenedDetailImpl) then) =
+      __$$ClearOpenedDetailImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearOpenedDetailImplCopyWithImpl<$Res>
+    extends _$SaleGdnEventCopyWithImpl<$Res, _$ClearOpenedDetailImpl>
+    implements _$$ClearOpenedDetailImplCopyWith<$Res> {
+  __$$ClearOpenedDetailImplCopyWithImpl(_$ClearOpenedDetailImpl _value,
+      $Res Function(_$ClearOpenedDetailImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ClearOpenedDetailImpl implements _ClearOpenedDetail {
+  const _$ClearOpenedDetailImpl();
+
+  @override
+  String toString() {
+    return 'SaleGdnEvent.clearOpenedDetail()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ClearOpenedDetailImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() fetchGdns,
+    required TResult Function(String keyword) searchByKeyword,
+    required TResult Function(String voucherNumber) searchByVoucherNumber,
+    required TResult Function() clearSearch,
+    required TResult Function(String code) scanQrToDetail,
+    required TResult Function() clearOpenedDetail,
+    required TResult Function() clearScanResultMessage,
+    required TResult Function() fetchWarehouseTypes,
+    required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
+    required TResult Function(int status) filterByStatus,
+    required TResult Function() clearFilters,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(int stt, List<String> imagePaths) addImages,
+    required TResult Function(int stt, int imageIndex) removeImage,
+  }) {
+    return clearOpenedDetail();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? fetchGdns,
+    TResult? Function(String keyword)? searchByKeyword,
+    TResult? Function(String voucherNumber)? searchByVoucherNumber,
+    TResult? Function()? clearSearch,
+    TResult? Function(String code)? scanQrToDetail,
+    TResult? Function()? clearOpenedDetail,
+    TResult? Function()? clearScanResultMessage,
+    TResult? Function()? fetchWarehouseTypes,
+    TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
+    TResult? Function(int status)? filterByStatus,
+    TResult? Function()? clearFilters,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(int stt, List<String> imagePaths)? addImages,
+    TResult? Function(int stt, int imageIndex)? removeImage,
+  }) {
+    return clearOpenedDetail?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? fetchGdns,
+    TResult Function(String keyword)? searchByKeyword,
+    TResult Function(String voucherNumber)? searchByVoucherNumber,
+    TResult Function()? clearSearch,
+    TResult Function(String code)? scanQrToDetail,
+    TResult Function()? clearOpenedDetail,
+    TResult Function()? clearScanResultMessage,
+    TResult Function()? fetchWarehouseTypes,
+    TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
+    TResult Function(int status)? filterByStatus,
+    TResult Function()? clearFilters,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(int stt, List<String> imagePaths)? addImages,
+    TResult Function(int stt, int imageIndex)? removeImage,
+    required TResult orElse(),
+  }) {
+    if (clearOpenedDetail != null) {
+      return clearOpenedDetail();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_FetchGdns value) fetchGdns,
+    required TResult Function(_SearchByKeyword value) searchByKeyword,
+    required TResult Function(_SearchByVoucherNumber value)
+        searchByVoucherNumber,
+    required TResult Function(_ClearSearch value) clearSearch,
+    required TResult Function(_ScanQrToDetail value) scanQrToDetail,
+    required TResult Function(_ClearOpenedDetail value) clearOpenedDetail,
+    required TResult Function(_ClearScanResultMessage value)
+        clearScanResultMessage,
+    required TResult Function(_FetchWarehouseTypes value) fetchWarehouseTypes,
+    required TResult Function(_FilterByWarehouseType value)
+        filterByWarehouseType,
+    required TResult Function(_FilterByStatus value) filterByStatus,
+    required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
+  }) {
+    return clearOpenedDetail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_FetchGdns value)? fetchGdns,
+    TResult? Function(_SearchByKeyword value)? searchByKeyword,
+    TResult? Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
+    TResult? Function(_ClearSearch value)? clearSearch,
+    TResult? Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult? Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult? Function(_ClearScanResultMessage value)? clearScanResultMessage,
+    TResult? Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
+    TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
+    TResult? Function(_FilterByStatus value)? filterByStatus,
+    TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
+  }) {
+    return clearOpenedDetail?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_FetchGdns value)? fetchGdns,
+    TResult Function(_SearchByKeyword value)? searchByKeyword,
+    TResult Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
+    TResult Function(_ClearSearch value)? clearSearch,
+    TResult Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult Function(_ClearScanResultMessage value)? clearScanResultMessage,
+    TResult Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
+    TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
+    TResult Function(_FilterByStatus value)? filterByStatus,
+    TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
+    required TResult orElse(),
+  }) {
+    if (clearOpenedDetail != null) {
+      return clearOpenedDetail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearOpenedDetail implements SaleGdnEvent {
+  const factory _ClearOpenedDetail() = _$ClearOpenedDetailImpl;
+}
+
+/// @nodoc
+abstract class _$$ClearScanResultMessageImplCopyWith<$Res> {
+  factory _$$ClearScanResultMessageImplCopyWith(
+          _$ClearScanResultMessageImpl value,
+          $Res Function(_$ClearScanResultMessageImpl) then) =
+      __$$ClearScanResultMessageImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearScanResultMessageImplCopyWithImpl<$Res>
+    extends _$SaleGdnEventCopyWithImpl<$Res, _$ClearScanResultMessageImpl>
+    implements _$$ClearScanResultMessageImplCopyWith<$Res> {
+  __$$ClearScanResultMessageImplCopyWithImpl(
+      _$ClearScanResultMessageImpl _value,
+      $Res Function(_$ClearScanResultMessageImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ClearScanResultMessageImpl implements _ClearScanResultMessage {
+  const _$ClearScanResultMessageImpl();
+
+  @override
+  String toString() {
+    return 'SaleGdnEvent.clearScanResultMessage()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ClearScanResultMessageImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() fetchGdns,
+    required TResult Function(String keyword) searchByKeyword,
+    required TResult Function(String voucherNumber) searchByVoucherNumber,
+    required TResult Function() clearSearch,
+    required TResult Function(String code) scanQrToDetail,
+    required TResult Function() clearOpenedDetail,
+    required TResult Function() clearScanResultMessage,
+    required TResult Function() fetchWarehouseTypes,
+    required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
+    required TResult Function(int status) filterByStatus,
+    required TResult Function() clearFilters,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(int stt, List<String> imagePaths) addImages,
+    required TResult Function(int stt, int imageIndex) removeImage,
+  }) {
+    return clearScanResultMessage();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? fetchGdns,
+    TResult? Function(String keyword)? searchByKeyword,
+    TResult? Function(String voucherNumber)? searchByVoucherNumber,
+    TResult? Function()? clearSearch,
+    TResult? Function(String code)? scanQrToDetail,
+    TResult? Function()? clearOpenedDetail,
+    TResult? Function()? clearScanResultMessage,
+    TResult? Function()? fetchWarehouseTypes,
+    TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
+    TResult? Function(int status)? filterByStatus,
+    TResult? Function()? clearFilters,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(int stt, List<String> imagePaths)? addImages,
+    TResult? Function(int stt, int imageIndex)? removeImage,
+  }) {
+    return clearScanResultMessage?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? fetchGdns,
+    TResult Function(String keyword)? searchByKeyword,
+    TResult Function(String voucherNumber)? searchByVoucherNumber,
+    TResult Function()? clearSearch,
+    TResult Function(String code)? scanQrToDetail,
+    TResult Function()? clearOpenedDetail,
+    TResult Function()? clearScanResultMessage,
+    TResult Function()? fetchWarehouseTypes,
+    TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
+    TResult Function(int status)? filterByStatus,
+    TResult Function()? clearFilters,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(int stt, List<String> imagePaths)? addImages,
+    TResult Function(int stt, int imageIndex)? removeImage,
+    required TResult orElse(),
+  }) {
+    if (clearScanResultMessage != null) {
+      return clearScanResultMessage();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_FetchGdns value) fetchGdns,
+    required TResult Function(_SearchByKeyword value) searchByKeyword,
+    required TResult Function(_SearchByVoucherNumber value)
+        searchByVoucherNumber,
+    required TResult Function(_ClearSearch value) clearSearch,
+    required TResult Function(_ScanQrToDetail value) scanQrToDetail,
+    required TResult Function(_ClearOpenedDetail value) clearOpenedDetail,
+    required TResult Function(_ClearScanResultMessage value)
+        clearScanResultMessage,
+    required TResult Function(_FetchWarehouseTypes value) fetchWarehouseTypes,
+    required TResult Function(_FilterByWarehouseType value)
+        filterByWarehouseType,
+    required TResult Function(_FilterByStatus value) filterByStatus,
+    required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
+  }) {
+    return clearScanResultMessage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_FetchGdns value)? fetchGdns,
+    TResult? Function(_SearchByKeyword value)? searchByKeyword,
+    TResult? Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
+    TResult? Function(_ClearSearch value)? clearSearch,
+    TResult? Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult? Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult? Function(_ClearScanResultMessage value)? clearScanResultMessage,
+    TResult? Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
+    TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
+    TResult? Function(_FilterByStatus value)? filterByStatus,
+    TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
+  }) {
+    return clearScanResultMessage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_FetchGdns value)? fetchGdns,
+    TResult Function(_SearchByKeyword value)? searchByKeyword,
+    TResult Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
+    TResult Function(_ClearSearch value)? clearSearch,
+    TResult Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult Function(_ClearScanResultMessage value)? clearScanResultMessage,
+    TResult Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
+    TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
+    TResult Function(_FilterByStatus value)? filterByStatus,
+    TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
+    required TResult orElse(),
+  }) {
+    if (clearScanResultMessage != null) {
+      return clearScanResultMessage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearScanResultMessage implements SaleGdnEvent {
+  const factory _ClearScanResultMessage() = _$ClearScanResultMessageImpl;
 }
 
 /// @nodoc
@@ -1352,7 +1827,9 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     required TResult Function(String keyword) searchByKeyword,
     required TResult Function(String voucherNumber) searchByVoucherNumber,
     required TResult Function() clearSearch,
-    required TResult Function(String code) scanQrCode,
+    required TResult Function(String code) scanQrToDetail,
+    required TResult Function() clearOpenedDetail,
+    required TResult Function() clearScanResultMessage,
     required TResult Function() fetchWarehouseTypes,
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
@@ -1374,7 +1851,9 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult? Function(String keyword)? searchByKeyword,
     TResult? Function(String voucherNumber)? searchByVoucherNumber,
     TResult? Function()? clearSearch,
-    TResult? Function(String code)? scanQrCode,
+    TResult? Function(String code)? scanQrToDetail,
+    TResult? Function()? clearOpenedDetail,
+    TResult? Function()? clearScanResultMessage,
     TResult? Function()? fetchWarehouseTypes,
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
@@ -1395,7 +1874,9 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult Function(String keyword)? searchByKeyword,
     TResult Function(String voucherNumber)? searchByVoucherNumber,
     TResult Function()? clearSearch,
-    TResult Function(String code)? scanQrCode,
+    TResult Function(String code)? scanQrToDetail,
+    TResult Function()? clearOpenedDetail,
+    TResult Function()? clearScanResultMessage,
     TResult Function()? fetchWarehouseTypes,
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
@@ -1421,7 +1902,10 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     required TResult Function(_SearchByVoucherNumber value)
         searchByVoucherNumber,
     required TResult Function(_ClearSearch value) clearSearch,
-    required TResult Function(_ScanQrCode value) scanQrCode,
+    required TResult Function(_ScanQrToDetail value) scanQrToDetail,
+    required TResult Function(_ClearOpenedDetail value) clearOpenedDetail,
+    required TResult Function(_ClearScanResultMessage value)
+        clearScanResultMessage,
     required TResult Function(_FetchWarehouseTypes value) fetchWarehouseTypes,
     required TResult Function(_FilterByWarehouseType value)
         filterByWarehouseType,
@@ -1443,7 +1927,9 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult? Function(_SearchByKeyword value)? searchByKeyword,
     TResult? Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
     TResult? Function(_ClearSearch value)? clearSearch,
-    TResult? Function(_ScanQrCode value)? scanQrCode,
+    TResult? Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult? Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult? Function(_ClearScanResultMessage value)? clearScanResultMessage,
     TResult? Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
@@ -1464,7 +1950,9 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult Function(_SearchByKeyword value)? searchByKeyword,
     TResult Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
     TResult Function(_ClearSearch value)? clearSearch,
-    TResult Function(_ScanQrCode value)? scanQrCode,
+    TResult Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult Function(_ClearScanResultMessage value)? clearScanResultMessage,
     TResult Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
@@ -1566,7 +2054,9 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     required TResult Function(String keyword) searchByKeyword,
     required TResult Function(String voucherNumber) searchByVoucherNumber,
     required TResult Function() clearSearch,
-    required TResult Function(String code) scanQrCode,
+    required TResult Function(String code) scanQrToDetail,
+    required TResult Function() clearOpenedDetail,
+    required TResult Function() clearScanResultMessage,
     required TResult Function() fetchWarehouseTypes,
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
@@ -1588,7 +2078,9 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult? Function(String keyword)? searchByKeyword,
     TResult? Function(String voucherNumber)? searchByVoucherNumber,
     TResult? Function()? clearSearch,
-    TResult? Function(String code)? scanQrCode,
+    TResult? Function(String code)? scanQrToDetail,
+    TResult? Function()? clearOpenedDetail,
+    TResult? Function()? clearScanResultMessage,
     TResult? Function()? fetchWarehouseTypes,
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
@@ -1609,7 +2101,9 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult Function(String keyword)? searchByKeyword,
     TResult Function(String voucherNumber)? searchByVoucherNumber,
     TResult Function()? clearSearch,
-    TResult Function(String code)? scanQrCode,
+    TResult Function(String code)? scanQrToDetail,
+    TResult Function()? clearOpenedDetail,
+    TResult Function()? clearScanResultMessage,
     TResult Function()? fetchWarehouseTypes,
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
@@ -1635,7 +2129,10 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     required TResult Function(_SearchByVoucherNumber value)
         searchByVoucherNumber,
     required TResult Function(_ClearSearch value) clearSearch,
-    required TResult Function(_ScanQrCode value) scanQrCode,
+    required TResult Function(_ScanQrToDetail value) scanQrToDetail,
+    required TResult Function(_ClearOpenedDetail value) clearOpenedDetail,
+    required TResult Function(_ClearScanResultMessage value)
+        clearScanResultMessage,
     required TResult Function(_FetchWarehouseTypes value) fetchWarehouseTypes,
     required TResult Function(_FilterByWarehouseType value)
         filterByWarehouseType,
@@ -1657,7 +2154,9 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult? Function(_SearchByKeyword value)? searchByKeyword,
     TResult? Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
     TResult? Function(_ClearSearch value)? clearSearch,
-    TResult? Function(_ScanQrCode value)? scanQrCode,
+    TResult? Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult? Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult? Function(_ClearScanResultMessage value)? clearScanResultMessage,
     TResult? Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
@@ -1678,7 +2177,9 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult Function(_SearchByKeyword value)? searchByKeyword,
     TResult Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
     TResult Function(_ClearSearch value)? clearSearch,
-    TResult Function(_ScanQrCode value)? scanQrCode,
+    TResult Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult Function(_ClearScanResultMessage value)? clearScanResultMessage,
     TResult Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
@@ -1776,7 +2277,9 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     required TResult Function(String keyword) searchByKeyword,
     required TResult Function(String voucherNumber) searchByVoucherNumber,
     required TResult Function() clearSearch,
-    required TResult Function(String code) scanQrCode,
+    required TResult Function(String code) scanQrToDetail,
+    required TResult Function() clearOpenedDetail,
+    required TResult Function() clearScanResultMessage,
     required TResult Function() fetchWarehouseTypes,
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
@@ -1798,7 +2301,9 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult? Function(String keyword)? searchByKeyword,
     TResult? Function(String voucherNumber)? searchByVoucherNumber,
     TResult? Function()? clearSearch,
-    TResult? Function(String code)? scanQrCode,
+    TResult? Function(String code)? scanQrToDetail,
+    TResult? Function()? clearOpenedDetail,
+    TResult? Function()? clearScanResultMessage,
     TResult? Function()? fetchWarehouseTypes,
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
@@ -1819,7 +2324,9 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function(String keyword)? searchByKeyword,
     TResult Function(String voucherNumber)? searchByVoucherNumber,
     TResult Function()? clearSearch,
-    TResult Function(String code)? scanQrCode,
+    TResult Function(String code)? scanQrToDetail,
+    TResult Function()? clearOpenedDetail,
+    TResult Function()? clearScanResultMessage,
     TResult Function()? fetchWarehouseTypes,
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
@@ -1845,7 +2352,10 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     required TResult Function(_SearchByVoucherNumber value)
         searchByVoucherNumber,
     required TResult Function(_ClearSearch value) clearSearch,
-    required TResult Function(_ScanQrCode value) scanQrCode,
+    required TResult Function(_ScanQrToDetail value) scanQrToDetail,
+    required TResult Function(_ClearOpenedDetail value) clearOpenedDetail,
+    required TResult Function(_ClearScanResultMessage value)
+        clearScanResultMessage,
     required TResult Function(_FetchWarehouseTypes value) fetchWarehouseTypes,
     required TResult Function(_FilterByWarehouseType value)
         filterByWarehouseType,
@@ -1867,7 +2377,9 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult? Function(_SearchByKeyword value)? searchByKeyword,
     TResult? Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
     TResult? Function(_ClearSearch value)? clearSearch,
-    TResult? Function(_ScanQrCode value)? scanQrCode,
+    TResult? Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult? Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult? Function(_ClearScanResultMessage value)? clearScanResultMessage,
     TResult? Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
@@ -1888,7 +2400,9 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function(_SearchByKeyword value)? searchByKeyword,
     TResult Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
     TResult Function(_ClearSearch value)? clearSearch,
-    TResult Function(_ScanQrCode value)? scanQrCode,
+    TResult Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult Function(_ClearScanResultMessage value)? clearScanResultMessage,
     TResult Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
@@ -1958,7 +2472,9 @@ class _$ClearFiltersImpl implements _ClearFilters {
     required TResult Function(String keyword) searchByKeyword,
     required TResult Function(String voucherNumber) searchByVoucherNumber,
     required TResult Function() clearSearch,
-    required TResult Function(String code) scanQrCode,
+    required TResult Function(String code) scanQrToDetail,
+    required TResult Function() clearOpenedDetail,
+    required TResult Function() clearScanResultMessage,
     required TResult Function() fetchWarehouseTypes,
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
@@ -1980,7 +2496,9 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult? Function(String keyword)? searchByKeyword,
     TResult? Function(String voucherNumber)? searchByVoucherNumber,
     TResult? Function()? clearSearch,
-    TResult? Function(String code)? scanQrCode,
+    TResult? Function(String code)? scanQrToDetail,
+    TResult? Function()? clearOpenedDetail,
+    TResult? Function()? clearScanResultMessage,
     TResult? Function()? fetchWarehouseTypes,
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
@@ -2001,7 +2519,9 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult Function(String keyword)? searchByKeyword,
     TResult Function(String voucherNumber)? searchByVoucherNumber,
     TResult Function()? clearSearch,
-    TResult Function(String code)? scanQrCode,
+    TResult Function(String code)? scanQrToDetail,
+    TResult Function()? clearOpenedDetail,
+    TResult Function()? clearScanResultMessage,
     TResult Function()? fetchWarehouseTypes,
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
@@ -2027,7 +2547,10 @@ class _$ClearFiltersImpl implements _ClearFilters {
     required TResult Function(_SearchByVoucherNumber value)
         searchByVoucherNumber,
     required TResult Function(_ClearSearch value) clearSearch,
-    required TResult Function(_ScanQrCode value) scanQrCode,
+    required TResult Function(_ScanQrToDetail value) scanQrToDetail,
+    required TResult Function(_ClearOpenedDetail value) clearOpenedDetail,
+    required TResult Function(_ClearScanResultMessage value)
+        clearScanResultMessage,
     required TResult Function(_FetchWarehouseTypes value) fetchWarehouseTypes,
     required TResult Function(_FilterByWarehouseType value)
         filterByWarehouseType,
@@ -2049,7 +2572,9 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult? Function(_SearchByKeyword value)? searchByKeyword,
     TResult? Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
     TResult? Function(_ClearSearch value)? clearSearch,
-    TResult? Function(_ScanQrCode value)? scanQrCode,
+    TResult? Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult? Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult? Function(_ClearScanResultMessage value)? clearScanResultMessage,
     TResult? Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
@@ -2070,7 +2595,9 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult Function(_SearchByKeyword value)? searchByKeyword,
     TResult Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
     TResult Function(_ClearSearch value)? clearSearch,
-    TResult Function(_ScanQrCode value)? scanQrCode,
+    TResult Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult Function(_ClearScanResultMessage value)? clearScanResultMessage,
     TResult Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
@@ -2171,7 +2698,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(String keyword) searchByKeyword,
     required TResult Function(String voucherNumber) searchByVoucherNumber,
     required TResult Function() clearSearch,
-    required TResult Function(String code) scanQrCode,
+    required TResult Function(String code) scanQrToDetail,
+    required TResult Function() clearOpenedDetail,
+    required TResult Function() clearScanResultMessage,
     required TResult Function() fetchWarehouseTypes,
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
@@ -2193,7 +2722,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(String keyword)? searchByKeyword,
     TResult? Function(String voucherNumber)? searchByVoucherNumber,
     TResult? Function()? clearSearch,
-    TResult? Function(String code)? scanQrCode,
+    TResult? Function(String code)? scanQrToDetail,
+    TResult? Function()? clearOpenedDetail,
+    TResult? Function()? clearScanResultMessage,
     TResult? Function()? fetchWarehouseTypes,
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
@@ -2214,7 +2745,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(String keyword)? searchByKeyword,
     TResult Function(String voucherNumber)? searchByVoucherNumber,
     TResult Function()? clearSearch,
-    TResult Function(String code)? scanQrCode,
+    TResult Function(String code)? scanQrToDetail,
+    TResult Function()? clearOpenedDetail,
+    TResult Function()? clearScanResultMessage,
     TResult Function()? fetchWarehouseTypes,
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
@@ -2240,7 +2773,10 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_SearchByVoucherNumber value)
         searchByVoucherNumber,
     required TResult Function(_ClearSearch value) clearSearch,
-    required TResult Function(_ScanQrCode value) scanQrCode,
+    required TResult Function(_ScanQrToDetail value) scanQrToDetail,
+    required TResult Function(_ClearOpenedDetail value) clearOpenedDetail,
+    required TResult Function(_ClearScanResultMessage value)
+        clearScanResultMessage,
     required TResult Function(_FetchWarehouseTypes value) fetchWarehouseTypes,
     required TResult Function(_FilterByWarehouseType value)
         filterByWarehouseType,
@@ -2262,7 +2798,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_SearchByKeyword value)? searchByKeyword,
     TResult? Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
     TResult? Function(_ClearSearch value)? clearSearch,
-    TResult? Function(_ScanQrCode value)? scanQrCode,
+    TResult? Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult? Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult? Function(_ClearScanResultMessage value)? clearScanResultMessage,
     TResult? Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
@@ -2283,7 +2821,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_SearchByKeyword value)? searchByKeyword,
     TResult Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
     TResult Function(_ClearSearch value)? clearSearch,
-    TResult Function(_ScanQrCode value)? scanQrCode,
+    TResult Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult Function(_ClearScanResultMessage value)? clearScanResultMessage,
     TResult Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
@@ -2405,7 +2945,9 @@ class _$InitDetailImpl implements _InitDetail {
     required TResult Function(String keyword) searchByKeyword,
     required TResult Function(String voucherNumber) searchByVoucherNumber,
     required TResult Function() clearSearch,
-    required TResult Function(String code) scanQrCode,
+    required TResult Function(String code) scanQrToDetail,
+    required TResult Function() clearOpenedDetail,
+    required TResult Function() clearScanResultMessage,
     required TResult Function() fetchWarehouseTypes,
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
@@ -2427,7 +2969,9 @@ class _$InitDetailImpl implements _InitDetail {
     TResult? Function(String keyword)? searchByKeyword,
     TResult? Function(String voucherNumber)? searchByVoucherNumber,
     TResult? Function()? clearSearch,
-    TResult? Function(String code)? scanQrCode,
+    TResult? Function(String code)? scanQrToDetail,
+    TResult? Function()? clearOpenedDetail,
+    TResult? Function()? clearScanResultMessage,
     TResult? Function()? fetchWarehouseTypes,
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
@@ -2448,7 +2992,9 @@ class _$InitDetailImpl implements _InitDetail {
     TResult Function(String keyword)? searchByKeyword,
     TResult Function(String voucherNumber)? searchByVoucherNumber,
     TResult Function()? clearSearch,
-    TResult Function(String code)? scanQrCode,
+    TResult Function(String code)? scanQrToDetail,
+    TResult Function()? clearOpenedDetail,
+    TResult Function()? clearScanResultMessage,
     TResult Function()? fetchWarehouseTypes,
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
@@ -2474,7 +3020,10 @@ class _$InitDetailImpl implements _InitDetail {
     required TResult Function(_SearchByVoucherNumber value)
         searchByVoucherNumber,
     required TResult Function(_ClearSearch value) clearSearch,
-    required TResult Function(_ScanQrCode value) scanQrCode,
+    required TResult Function(_ScanQrToDetail value) scanQrToDetail,
+    required TResult Function(_ClearOpenedDetail value) clearOpenedDetail,
+    required TResult Function(_ClearScanResultMessage value)
+        clearScanResultMessage,
     required TResult Function(_FetchWarehouseTypes value) fetchWarehouseTypes,
     required TResult Function(_FilterByWarehouseType value)
         filterByWarehouseType,
@@ -2496,7 +3045,9 @@ class _$InitDetailImpl implements _InitDetail {
     TResult? Function(_SearchByKeyword value)? searchByKeyword,
     TResult? Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
     TResult? Function(_ClearSearch value)? clearSearch,
-    TResult? Function(_ScanQrCode value)? scanQrCode,
+    TResult? Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult? Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult? Function(_ClearScanResultMessage value)? clearScanResultMessage,
     TResult? Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
@@ -2517,7 +3068,9 @@ class _$InitDetailImpl implements _InitDetail {
     TResult Function(_SearchByKeyword value)? searchByKeyword,
     TResult Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
     TResult Function(_ClearSearch value)? clearSearch,
-    TResult Function(_ScanQrCode value)? scanQrCode,
+    TResult Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult Function(_ClearScanResultMessage value)? clearScanResultMessage,
     TResult Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
@@ -2632,7 +3185,9 @@ class _$AddImagesImpl implements _AddImages {
     required TResult Function(String keyword) searchByKeyword,
     required TResult Function(String voucherNumber) searchByVoucherNumber,
     required TResult Function() clearSearch,
-    required TResult Function(String code) scanQrCode,
+    required TResult Function(String code) scanQrToDetail,
+    required TResult Function() clearOpenedDetail,
+    required TResult Function() clearScanResultMessage,
     required TResult Function() fetchWarehouseTypes,
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
@@ -2654,7 +3209,9 @@ class _$AddImagesImpl implements _AddImages {
     TResult? Function(String keyword)? searchByKeyword,
     TResult? Function(String voucherNumber)? searchByVoucherNumber,
     TResult? Function()? clearSearch,
-    TResult? Function(String code)? scanQrCode,
+    TResult? Function(String code)? scanQrToDetail,
+    TResult? Function()? clearOpenedDetail,
+    TResult? Function()? clearScanResultMessage,
     TResult? Function()? fetchWarehouseTypes,
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
@@ -2675,7 +3232,9 @@ class _$AddImagesImpl implements _AddImages {
     TResult Function(String keyword)? searchByKeyword,
     TResult Function(String voucherNumber)? searchByVoucherNumber,
     TResult Function()? clearSearch,
-    TResult Function(String code)? scanQrCode,
+    TResult Function(String code)? scanQrToDetail,
+    TResult Function()? clearOpenedDetail,
+    TResult Function()? clearScanResultMessage,
     TResult Function()? fetchWarehouseTypes,
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
@@ -2701,7 +3260,10 @@ class _$AddImagesImpl implements _AddImages {
     required TResult Function(_SearchByVoucherNumber value)
         searchByVoucherNumber,
     required TResult Function(_ClearSearch value) clearSearch,
-    required TResult Function(_ScanQrCode value) scanQrCode,
+    required TResult Function(_ScanQrToDetail value) scanQrToDetail,
+    required TResult Function(_ClearOpenedDetail value) clearOpenedDetail,
+    required TResult Function(_ClearScanResultMessage value)
+        clearScanResultMessage,
     required TResult Function(_FetchWarehouseTypes value) fetchWarehouseTypes,
     required TResult Function(_FilterByWarehouseType value)
         filterByWarehouseType,
@@ -2723,7 +3285,9 @@ class _$AddImagesImpl implements _AddImages {
     TResult? Function(_SearchByKeyword value)? searchByKeyword,
     TResult? Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
     TResult? Function(_ClearSearch value)? clearSearch,
-    TResult? Function(_ScanQrCode value)? scanQrCode,
+    TResult? Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult? Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult? Function(_ClearScanResultMessage value)? clearScanResultMessage,
     TResult? Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
@@ -2744,7 +3308,9 @@ class _$AddImagesImpl implements _AddImages {
     TResult Function(_SearchByKeyword value)? searchByKeyword,
     TResult Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
     TResult Function(_ClearSearch value)? clearSearch,
-    TResult Function(_ScanQrCode value)? scanQrCode,
+    TResult Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult Function(_ClearScanResultMessage value)? clearScanResultMessage,
     TResult Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
@@ -2852,7 +3418,9 @@ class _$RemoveImageImpl implements _RemoveImage {
     required TResult Function(String keyword) searchByKeyword,
     required TResult Function(String voucherNumber) searchByVoucherNumber,
     required TResult Function() clearSearch,
-    required TResult Function(String code) scanQrCode,
+    required TResult Function(String code) scanQrToDetail,
+    required TResult Function() clearOpenedDetail,
+    required TResult Function() clearScanResultMessage,
     required TResult Function() fetchWarehouseTypes,
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
@@ -2874,7 +3442,9 @@ class _$RemoveImageImpl implements _RemoveImage {
     TResult? Function(String keyword)? searchByKeyword,
     TResult? Function(String voucherNumber)? searchByVoucherNumber,
     TResult? Function()? clearSearch,
-    TResult? Function(String code)? scanQrCode,
+    TResult? Function(String code)? scanQrToDetail,
+    TResult? Function()? clearOpenedDetail,
+    TResult? Function()? clearScanResultMessage,
     TResult? Function()? fetchWarehouseTypes,
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
@@ -2895,7 +3465,9 @@ class _$RemoveImageImpl implements _RemoveImage {
     TResult Function(String keyword)? searchByKeyword,
     TResult Function(String voucherNumber)? searchByVoucherNumber,
     TResult Function()? clearSearch,
-    TResult Function(String code)? scanQrCode,
+    TResult Function(String code)? scanQrToDetail,
+    TResult Function()? clearOpenedDetail,
+    TResult Function()? clearScanResultMessage,
     TResult Function()? fetchWarehouseTypes,
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
@@ -2921,7 +3493,10 @@ class _$RemoveImageImpl implements _RemoveImage {
     required TResult Function(_SearchByVoucherNumber value)
         searchByVoucherNumber,
     required TResult Function(_ClearSearch value) clearSearch,
-    required TResult Function(_ScanQrCode value) scanQrCode,
+    required TResult Function(_ScanQrToDetail value) scanQrToDetail,
+    required TResult Function(_ClearOpenedDetail value) clearOpenedDetail,
+    required TResult Function(_ClearScanResultMessage value)
+        clearScanResultMessage,
     required TResult Function(_FetchWarehouseTypes value) fetchWarehouseTypes,
     required TResult Function(_FilterByWarehouseType value)
         filterByWarehouseType,
@@ -2943,7 +3518,9 @@ class _$RemoveImageImpl implements _RemoveImage {
     TResult? Function(_SearchByKeyword value)? searchByKeyword,
     TResult? Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
     TResult? Function(_ClearSearch value)? clearSearch,
-    TResult? Function(_ScanQrCode value)? scanQrCode,
+    TResult? Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult? Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult? Function(_ClearScanResultMessage value)? clearScanResultMessage,
     TResult? Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
@@ -2964,7 +3541,9 @@ class _$RemoveImageImpl implements _RemoveImage {
     TResult Function(_SearchByKeyword value)? searchByKeyword,
     TResult Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
     TResult Function(_ClearSearch value)? clearSearch,
-    TResult Function(_ScanQrCode value)? scanQrCode,
+    TResult Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult Function(_ClearScanResultMessage value)? clearScanResultMessage,
     TResult Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,

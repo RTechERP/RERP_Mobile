@@ -32,6 +32,34 @@ class _SaleGdnScreenState
 
   @override
   Widget renderUI(BuildContext context) {
+    return BlocListener<SaleGdnBloc, SaleGdnState>(
+      listenWhen: (prev, curr) =>
+          prev.openedDetailBill != curr.openedDetailBill ||
+          prev.scanResultMessage != curr.scanResultMessage,
+      listener: (context, state) {
+        // Tự động mở trang Detail khi bloc tìm được đúng 1 phiếu từ QR/Barcode.
+        final bill = state.openedDetailBill;
+        if (bill != null && bill.id != null && bill.id! > 0) {
+          Navigator.of(context).push(
+            SaleGdnDetailScreen.route(billId: bill.id!, bill: bill),
+          );
+          bloc.add(const SaleGdnEvent.clearOpenedDetail());
+          bloc.add(const SaleGdnEvent.fetchGdns());
+        }
+        // Hiển thị snackbar khi không mở được Detail.
+        final msg = state.scanResultMessage;
+        if (msg != null && msg.isNotEmpty) {
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(SnackBar(content: Text(msg)));
+          bloc.add(const SaleGdnEvent.clearScanResultMessage());
+        }
+      },
+      child: _buildBody(context),
+    );
+  }
+
+  Widget _buildBody(BuildContext context) {
     return BaseScaffold(
       appBar: AppBarCommon(
         title: const Text('Phiếu xuất kho', style: TextStyle(fontSize: 17)),
@@ -407,7 +435,10 @@ class _SaleGdnScreenState
       scanMode: scanMode,
     );
     if (code == null || code.isEmpty || !mounted) return;
-    bloc.add(SaleGdnEvent.scanQrCode(code));
+
+    // Sau khi quét QR/Barcode (chuỗi mã phiếu) → bloc tìm theo FilterText.
+    // Nếu đúng 1 kết quả thì UI tự động mở trang Detail; ngược lại báo snackbar.
+    bloc.add(SaleGdnEvent.scanQrToDetail(code));
   }
 }
 

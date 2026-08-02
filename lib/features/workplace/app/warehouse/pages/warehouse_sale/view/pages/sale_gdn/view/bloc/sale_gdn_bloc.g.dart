@@ -31,6 +31,10 @@ abstract class _$SaleGdnStateCWProxy {
 
   SaleGdnState detail(GdnDetailState? detail);
 
+  SaleGdnState openedDetailBill(BillExporResponse? openedDetailBill);
+
+  SaleGdnState scanResultMessage(String? scanResultMessage);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SaleGdnState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -50,6 +54,8 @@ abstract class _$SaleGdnStateCWProxy {
     List<int>? selectedWarehouseTypeIds,
     int? selectedStatus,
     GdnDetailState? detail,
+    BillExporResponse? openedDetailBill,
+    String? scanResultMessage,
   });
 }
 
@@ -101,6 +107,14 @@ class _$SaleGdnStateCWProxyImpl implements _$SaleGdnStateCWProxy {
   SaleGdnState detail(GdnDetailState? detail) => this(detail: detail);
 
   @override
+  SaleGdnState openedDetailBill(BillExporResponse? openedDetailBill) =>
+      this(openedDetailBill: openedDetailBill);
+
+  @override
+  SaleGdnState scanResultMessage(String? scanResultMessage) =>
+      this(scanResultMessage: scanResultMessage);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SaleGdnState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -121,6 +135,8 @@ class _$SaleGdnStateCWProxyImpl implements _$SaleGdnStateCWProxy {
     Object? selectedWarehouseTypeIds = const $CopyWithPlaceholder(),
     Object? selectedStatus = const $CopyWithPlaceholder(),
     Object? detail = const $CopyWithPlaceholder(),
+    Object? openedDetailBill = const $CopyWithPlaceholder(),
+    Object? scanResultMessage = const $CopyWithPlaceholder(),
   }) {
     return SaleGdnState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -178,6 +194,14 @@ class _$SaleGdnStateCWProxyImpl implements _$SaleGdnStateCWProxy {
           ? _value.detail
           // ignore: cast_nullable_to_non_nullable
           : detail as GdnDetailState?,
+      openedDetailBill: openedDetailBill == const $CopyWithPlaceholder()
+          ? _value.openedDetailBill
+          // ignore: cast_nullable_to_non_nullable
+          : openedDetailBill as BillExporResponse?,
+      scanResultMessage: scanResultMessage == const $CopyWithPlaceholder()
+          ? _value.scanResultMessage
+          // ignore: cast_nullable_to_non_nullable
+          : scanResultMessage as String?,
     );
   }
 }

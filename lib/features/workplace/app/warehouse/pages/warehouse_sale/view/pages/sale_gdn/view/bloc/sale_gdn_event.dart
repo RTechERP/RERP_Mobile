@@ -7,7 +7,19 @@ class SaleGdnEvent with _$SaleGdnEvent {
   const factory SaleGdnEvent.searchByKeyword(String keyword) = _SearchByKeyword;
   const factory SaleGdnEvent.searchByVoucherNumber(String voucherNumber) = _SearchByVoucherNumber;
   const factory SaleGdnEvent.clearSearch() = _ClearSearch;
-  const factory SaleGdnEvent.scanQrCode(String code) = _ScanQrCode;
+
+  /// Quét QR/Barcode với code là chuỗi (mã phiếu/voucher…) → search theo
+  /// FilterText. Nếu đúng 1 kết quả thì emit `openedDetailBill` để UI mở
+  /// thẳng trang Detail; 0 hoặc >1 kết quả thì emit `scanResultMessage` để
+  /// UI hiển thị snackbar.
+  const factory SaleGdnEvent.scanQrToDetail(String code) = _ScanQrToDetail;
+
+  /// Reset cờ one-shot `openedDetailBill` sau khi UI đã mở trang Detail.
+  const factory SaleGdnEvent.clearOpenedDetail() = _ClearOpenedDetail;
+
+  /// Reset cờ one-shot `scanResultMessage` sau khi UI đã hiển thị snackbar.
+  const factory SaleGdnEvent.clearScanResultMessage() =
+      _ClearScanResultMessage;
   const factory SaleGdnEvent.fetchWarehouseTypes() = _FetchWarehouseTypes;
   const factory SaleGdnEvent.filterByWarehouseType(List<int> warehouseTypeIds) = _FilterByWarehouseType;
   const factory SaleGdnEvent.filterByStatus(int status) = _FilterByStatus;

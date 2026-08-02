@@ -30,6 +30,14 @@ class SaleGdnState extends BaseBlocState {
   /// Trạng thái màn chi tiết (nested). Khi chưa mở thì null.
   final GdnDetailState? detail;
 
+  /// One-shot: phiếu duy nhất tìm được từ quét QR/Barcode (code dạng chuỗi).
+  /// UI dùng để mở thẳng trang Detail, sau đó bloc reset về null để tránh mở lại.
+  final BillExporResponse? openedDetailBill;
+
+  /// One-shot: thông báo khi quét QR/Barcode không mở được Detail
+  /// (0 hoặc >1 kết quả). UI hiển thị snackbar rồi reset về null.
+  final String? scanResultMessage;
+
   const SaleGdnState({
     required super.status,
     super.message,
@@ -43,6 +51,8 @@ class SaleGdnState extends BaseBlocState {
     this.selectedWarehouseTypeIds = const [],
     this.selectedStatus = -1,
     this.detail,
+    this.openedDetailBill,
+    this.scanResultMessage,
   });
 
   factory SaleGdnState.init() {
@@ -75,5 +85,7 @@ class SaleGdnState extends BaseBlocState {
         selectedWarehouseTypeIds,
         selectedStatus,
         detail,
+        openedDetailBill,
+        scanResultMessage,
       ];
 }
