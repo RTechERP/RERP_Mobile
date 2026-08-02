@@ -5,8 +5,8 @@ import 'package:rtc_erp/base/bloc/bloc_status.dart';
 import 'package:rtc_erp/base/widgets/base_scaffold.dart';
 import 'package:rtc_erp/base/widgets/base_widget.dart';
 import 'package:rtc_erp/common/app_theme/index.dart';
-import 'package:rtc_erp/common/utils/dialog/dialog_service.dart';
 import 'package:rtc_erp/common/utils/navigation/navigation_utils.dart';
+import 'package:rtc_erp/base/widgets/qr_barcode_scanner_page.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/models/sale_gdn_model.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/bloc/sale_gdn_bloc.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/widgets/sale_gdn_card.dart';
@@ -57,7 +57,7 @@ class _SaleGdnScreenState
             },
           ),
           IconButton(
-            icon: const Icon(Icons.qr_code_scanner),
+            icon: const Icon(Icons.qr_code_scanner_outlined),
             onPressed: _onQrScan,
             tooltip: 'Quét QR',
           ),
@@ -271,7 +271,90 @@ class _SaleGdnScreenState
   }
 
   void _onQrScan() {
-    DialogService.showProcessing(context: context);
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (sheetContext) => Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        ),
+        child: SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                width: 40,
+                height: 4,
+                margin: const EdgeInsets.only(top: 12),
+                decoration: BoxDecoration(
+                  color: Colors.grey[300],
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.all(16),
+                child: Text(
+                  'Chọn chế độ quét',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+              ListTile(
+                leading: Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryERP.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: const Icon(
+                    Icons.qr_code_scanner,
+                    color: AppColors.primaryERP,
+                  ),
+                ),
+                title: const Text('Quét mã QR'),
+                subtitle: const Text('Quét mã QR từ phiếu xuất kho'),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  _openScanner(scanMode: ScanMode.qr);
+                },
+              ),
+              ListTile(
+                leading: Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: Colors.orange.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: const Icon(
+                    Icons.barcode_reader,
+                    color: Colors.orange,
+                  ),
+                ),
+                title: const Text('Quét mã vạch'),
+                subtitle: const Text('Quét mã vạch từ phiếu xuất kho'),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  _openScanner(scanMode: ScanMode.barcode);
+                },
+              ),
+              const SizedBox(height: 16),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future<void> _openScanner({required ScanMode scanMode}) async {
+    final code = await QrBarcodeScannerPage.open(
+      context,
+      scanMode: scanMode,
+    );
+    if (code == null || code.isEmpty || !mounted) return;
+    bloc.add(SaleGdnEvent.scanQrCode(code));
   }
 }
 
