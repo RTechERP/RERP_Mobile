@@ -28,6 +28,8 @@ mixin _$SaleGdnEvent {
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
     required TResult Function() clearFilters,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +45,7 @@ mixin _$SaleGdnEvent {
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
     TResult? Function()? clearFilters,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
   }) =>
       throw _privateConstructorUsedError;
@@ -58,6 +61,7 @@ mixin _$SaleGdnEvent {
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
     TResult Function()? clearFilters,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     required TResult orElse(),
   }) =>
@@ -76,6 +80,7 @@ mixin _$SaleGdnEvent {
         filterByWarehouseType,
     required TResult Function(_FilterByStatus value) filterByStatus,
     required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
   }) =>
       throw _privateConstructorUsedError;
@@ -91,6 +96,7 @@ mixin _$SaleGdnEvent {
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
     TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
   }) =>
       throw _privateConstructorUsedError;
@@ -106,6 +112,7 @@ mixin _$SaleGdnEvent {
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
     TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) =>
@@ -177,6 +184,8 @@ class _$InitImpl implements _Init {
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
     required TResult Function() clearFilters,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
   }) {
     return init();
@@ -195,6 +204,7 @@ class _$InitImpl implements _Init {
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
     TResult? Function()? clearFilters,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
   }) {
     return init?.call();
@@ -213,6 +223,7 @@ class _$InitImpl implements _Init {
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
     TResult Function()? clearFilters,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     required TResult orElse(),
   }) {
@@ -237,6 +248,7 @@ class _$InitImpl implements _Init {
         filterByWarehouseType,
     required TResult Function(_FilterByStatus value) filterByStatus,
     required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
   }) {
     return init(this);
@@ -255,6 +267,7 @@ class _$InitImpl implements _Init {
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
     TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
   }) {
     return init?.call(this);
@@ -273,6 +286,7 @@ class _$InitImpl implements _Init {
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
     TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) {
@@ -335,6 +349,8 @@ class _$FetchGdnsImpl implements _FetchGdns {
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
     required TResult Function() clearFilters,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
   }) {
     return fetchGdns();
@@ -353,6 +369,7 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
     TResult? Function()? clearFilters,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
   }) {
     return fetchGdns?.call();
@@ -371,6 +388,7 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
     TResult Function()? clearFilters,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     required TResult orElse(),
   }) {
@@ -395,6 +413,7 @@ class _$FetchGdnsImpl implements _FetchGdns {
         filterByWarehouseType,
     required TResult Function(_FilterByStatus value) filterByStatus,
     required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
   }) {
     return fetchGdns(this);
@@ -413,6 +432,7 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
     TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
   }) {
     return fetchGdns?.call(this);
@@ -431,6 +451,7 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
     TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) {
@@ -520,6 +541,8 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
     required TResult Function() clearFilters,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
   }) {
     return searchByKeyword(keyword);
@@ -538,6 +561,7 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
     TResult? Function()? clearFilters,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
   }) {
     return searchByKeyword?.call(keyword);
@@ -556,6 +580,7 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
     TResult Function()? clearFilters,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     required TResult orElse(),
   }) {
@@ -580,6 +605,7 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
         filterByWarehouseType,
     required TResult Function(_FilterByStatus value) filterByStatus,
     required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
   }) {
     return searchByKeyword(this);
@@ -598,6 +624,7 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
     TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
   }) {
     return searchByKeyword?.call(this);
@@ -616,6 +643,7 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
     TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) {
@@ -712,6 +740,8 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
     required TResult Function() clearFilters,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
   }) {
     return searchByVoucherNumber(voucherNumber);
@@ -730,6 +760,7 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
     TResult? Function()? clearFilters,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
   }) {
     return searchByVoucherNumber?.call(voucherNumber);
@@ -748,6 +779,7 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
     TResult Function()? clearFilters,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     required TResult orElse(),
   }) {
@@ -772,6 +804,7 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
         filterByWarehouseType,
     required TResult Function(_FilterByStatus value) filterByStatus,
     required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
   }) {
     return searchByVoucherNumber(this);
@@ -790,6 +823,7 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
     TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
   }) {
     return searchByVoucherNumber?.call(this);
@@ -808,6 +842,7 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
     TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) {
@@ -876,6 +911,8 @@ class _$ClearSearchImpl implements _ClearSearch {
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
     required TResult Function() clearFilters,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
   }) {
     return clearSearch();
@@ -894,6 +931,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
     TResult? Function()? clearFilters,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
   }) {
     return clearSearch?.call();
@@ -912,6 +950,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
     TResult Function()? clearFilters,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     required TResult orElse(),
   }) {
@@ -936,6 +975,7 @@ class _$ClearSearchImpl implements _ClearSearch {
         filterByWarehouseType,
     required TResult Function(_FilterByStatus value) filterByStatus,
     required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
   }) {
     return clearSearch(this);
@@ -954,6 +994,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
     TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
   }) {
     return clearSearch?.call(this);
@@ -972,6 +1013,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
     TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) {
@@ -1060,6 +1102,8 @@ class _$ScanQrCodeImpl implements _ScanQrCode {
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
     required TResult Function() clearFilters,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
   }) {
     return scanQrCode(code);
@@ -1078,6 +1122,7 @@ class _$ScanQrCodeImpl implements _ScanQrCode {
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
     TResult? Function()? clearFilters,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
   }) {
     return scanQrCode?.call(code);
@@ -1096,6 +1141,7 @@ class _$ScanQrCodeImpl implements _ScanQrCode {
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
     TResult Function()? clearFilters,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     required TResult orElse(),
   }) {
@@ -1120,6 +1166,7 @@ class _$ScanQrCodeImpl implements _ScanQrCode {
         filterByWarehouseType,
     required TResult Function(_FilterByStatus value) filterByStatus,
     required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
   }) {
     return scanQrCode(this);
@@ -1138,6 +1185,7 @@ class _$ScanQrCodeImpl implements _ScanQrCode {
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
     TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
   }) {
     return scanQrCode?.call(this);
@@ -1156,6 +1204,7 @@ class _$ScanQrCodeImpl implements _ScanQrCode {
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
     TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) {
@@ -1224,6 +1273,8 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
     required TResult Function() clearFilters,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
   }) {
     return fetchWarehouseTypes();
@@ -1242,6 +1293,7 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
     TResult? Function()? clearFilters,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
   }) {
     return fetchWarehouseTypes?.call();
@@ -1260,6 +1312,7 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
     TResult Function()? clearFilters,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     required TResult orElse(),
   }) {
@@ -1284,6 +1337,7 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
         filterByWarehouseType,
     required TResult Function(_FilterByStatus value) filterByStatus,
     required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
   }) {
     return fetchWarehouseTypes(this);
@@ -1302,6 +1356,7 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
     TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
   }) {
     return fetchWarehouseTypes?.call(this);
@@ -1320,6 +1375,7 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
     TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) {
@@ -1419,6 +1475,8 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
     required TResult Function() clearFilters,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
   }) {
     return filterByWarehouseType(warehouseTypeIds);
@@ -1437,6 +1495,7 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
     TResult? Function()? clearFilters,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
   }) {
     return filterByWarehouseType?.call(warehouseTypeIds);
@@ -1455,6 +1514,7 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
     TResult Function()? clearFilters,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     required TResult orElse(),
   }) {
@@ -1479,6 +1539,7 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
         filterByWarehouseType,
     required TResult Function(_FilterByStatus value) filterByStatus,
     required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
   }) {
     return filterByWarehouseType(this);
@@ -1497,6 +1558,7 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
     TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
   }) {
     return filterByWarehouseType?.call(this);
@@ -1515,6 +1577,7 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
     TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) {
@@ -1610,6 +1673,8 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
     required TResult Function() clearFilters,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
   }) {
     return filterByStatus(status);
@@ -1628,6 +1693,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
     TResult? Function()? clearFilters,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
   }) {
     return filterByStatus?.call(status);
@@ -1646,6 +1712,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
     TResult Function()? clearFilters,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     required TResult orElse(),
   }) {
@@ -1670,6 +1737,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
         filterByWarehouseType,
     required TResult Function(_FilterByStatus value) filterByStatus,
     required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
   }) {
     return filterByStatus(this);
@@ -1688,6 +1756,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
     TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
   }) {
     return filterByStatus?.call(this);
@@ -1706,6 +1775,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
     TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) {
@@ -1773,6 +1843,8 @@ class _$ClearFiltersImpl implements _ClearFilters {
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
     required TResult Function() clearFilters,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
   }) {
     return clearFilters();
@@ -1791,6 +1863,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
     TResult? Function()? clearFilters,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
   }) {
     return clearFilters?.call();
@@ -1809,6 +1882,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
     TResult Function()? clearFilters,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     required TResult orElse(),
   }) {
@@ -1833,6 +1907,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
         filterByWarehouseType,
     required TResult Function(_FilterByStatus value) filterByStatus,
     required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
   }) {
     return clearFilters(this);
@@ -1851,6 +1926,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
     TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
   }) {
     return clearFilters?.call(this);
@@ -1869,6 +1945,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
     TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) {
@@ -1881,6 +1958,215 @@ class _$ClearFiltersImpl implements _ClearFilters {
 
 abstract class _ClearFilters implements SaleGdnEvent {
   const factory _ClearFilters() = _$ClearFiltersImpl;
+}
+
+/// @nodoc
+abstract class _$$ChangeDateRangeImplCopyWith<$Res> {
+  factory _$$ChangeDateRangeImplCopyWith(_$ChangeDateRangeImpl value,
+          $Res Function(_$ChangeDateRangeImpl) then) =
+      __$$ChangeDateRangeImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DateTime dateStart, DateTime dateEnd});
+}
+
+/// @nodoc
+class __$$ChangeDateRangeImplCopyWithImpl<$Res>
+    extends _$SaleGdnEventCopyWithImpl<$Res, _$ChangeDateRangeImpl>
+    implements _$$ChangeDateRangeImplCopyWith<$Res> {
+  __$$ChangeDateRangeImplCopyWithImpl(
+      _$ChangeDateRangeImpl _value, $Res Function(_$ChangeDateRangeImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? dateStart = null,
+    Object? dateEnd = null,
+  }) {
+    return _then(_$ChangeDateRangeImpl(
+      dateStart: null == dateStart
+          ? _value.dateStart
+          : dateStart // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      dateEnd: null == dateEnd
+          ? _value.dateEnd
+          : dateEnd // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChangeDateRangeImpl implements _ChangeDateRange {
+  const _$ChangeDateRangeImpl({required this.dateStart, required this.dateEnd});
+
+  @override
+  final DateTime dateStart;
+  @override
+  final DateTime dateEnd;
+
+  @override
+  String toString() {
+    return 'SaleGdnEvent.changeDateRange(dateStart: $dateStart, dateEnd: $dateEnd)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangeDateRangeImpl &&
+            (identical(other.dateStart, dateStart) ||
+                other.dateStart == dateStart) &&
+            (identical(other.dateEnd, dateEnd) || other.dateEnd == dateEnd));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, dateStart, dateEnd);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangeDateRangeImplCopyWith<_$ChangeDateRangeImpl> get copyWith =>
+      __$$ChangeDateRangeImplCopyWithImpl<_$ChangeDateRangeImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() fetchGdns,
+    required TResult Function(String keyword) searchByKeyword,
+    required TResult Function(String voucherNumber) searchByVoucherNumber,
+    required TResult Function() clearSearch,
+    required TResult Function(String code) scanQrCode,
+    required TResult Function() fetchWarehouseTypes,
+    required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
+    required TResult Function(int status) filterByStatus,
+    required TResult Function() clearFilters,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int id, BillExporResponse? bill) initDetail,
+  }) {
+    return changeDateRange(dateStart, dateEnd);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? fetchGdns,
+    TResult? Function(String keyword)? searchByKeyword,
+    TResult? Function(String voucherNumber)? searchByVoucherNumber,
+    TResult? Function()? clearSearch,
+    TResult? Function(String code)? scanQrCode,
+    TResult? Function()? fetchWarehouseTypes,
+    TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
+    TResult? Function(int status)? filterByStatus,
+    TResult? Function()? clearFilters,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int id, BillExporResponse? bill)? initDetail,
+  }) {
+    return changeDateRange?.call(dateStart, dateEnd);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? fetchGdns,
+    TResult Function(String keyword)? searchByKeyword,
+    TResult Function(String voucherNumber)? searchByVoucherNumber,
+    TResult Function()? clearSearch,
+    TResult Function(String code)? scanQrCode,
+    TResult Function()? fetchWarehouseTypes,
+    TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
+    TResult Function(int status)? filterByStatus,
+    TResult Function()? clearFilters,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int id, BillExporResponse? bill)? initDetail,
+    required TResult orElse(),
+  }) {
+    if (changeDateRange != null) {
+      return changeDateRange(dateStart, dateEnd);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_FetchGdns value) fetchGdns,
+    required TResult Function(_SearchByKeyword value) searchByKeyword,
+    required TResult Function(_SearchByVoucherNumber value)
+        searchByVoucherNumber,
+    required TResult Function(_ClearSearch value) clearSearch,
+    required TResult Function(_ScanQrCode value) scanQrCode,
+    required TResult Function(_FetchWarehouseTypes value) fetchWarehouseTypes,
+    required TResult Function(_FilterByWarehouseType value)
+        filterByWarehouseType,
+    required TResult Function(_FilterByStatus value) filterByStatus,
+    required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_InitDetail value) initDetail,
+  }) {
+    return changeDateRange(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_FetchGdns value)? fetchGdns,
+    TResult? Function(_SearchByKeyword value)? searchByKeyword,
+    TResult? Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
+    TResult? Function(_ClearSearch value)? clearSearch,
+    TResult? Function(_ScanQrCode value)? scanQrCode,
+    TResult? Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
+    TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
+    TResult? Function(_FilterByStatus value)? filterByStatus,
+    TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_InitDetail value)? initDetail,
+  }) {
+    return changeDateRange?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_FetchGdns value)? fetchGdns,
+    TResult Function(_SearchByKeyword value)? searchByKeyword,
+    TResult Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
+    TResult Function(_ClearSearch value)? clearSearch,
+    TResult Function(_ScanQrCode value)? scanQrCode,
+    TResult Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
+    TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
+    TResult Function(_FilterByStatus value)? filterByStatus,
+    TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_InitDetail value)? initDetail,
+    required TResult orElse(),
+  }) {
+    if (changeDateRange != null) {
+      return changeDateRange(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangeDateRange implements SaleGdnEvent {
+  const factory _ChangeDateRange(
+      {required final DateTime dateStart,
+      required final DateTime dateEnd}) = _$ChangeDateRangeImpl;
+
+  DateTime get dateStart;
+  DateTime get dateEnd;
+  @JsonKey(ignore: true)
+  _$$ChangeDateRangeImplCopyWith<_$ChangeDateRangeImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1980,6 +2266,8 @@ class _$InitDetailImpl implements _InitDetail {
     required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
     required TResult Function(int status) filterByStatus,
     required TResult Function() clearFilters,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
   }) {
     return initDetail(id, bill);
@@ -1998,6 +2286,7 @@ class _$InitDetailImpl implements _InitDetail {
     TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult? Function(int status)? filterByStatus,
     TResult? Function()? clearFilters,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
   }) {
     return initDetail?.call(id, bill);
@@ -2016,6 +2305,7 @@ class _$InitDetailImpl implements _InitDetail {
     TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
     TResult Function(int status)? filterByStatus,
     TResult Function()? clearFilters,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     required TResult orElse(),
   }) {
@@ -2040,6 +2330,7 @@ class _$InitDetailImpl implements _InitDetail {
         filterByWarehouseType,
     required TResult Function(_FilterByStatus value) filterByStatus,
     required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
   }) {
     return initDetail(this);
@@ -2058,6 +2349,7 @@ class _$InitDetailImpl implements _InitDetail {
     TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult? Function(_FilterByStatus value)? filterByStatus,
     TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
   }) {
     return initDetail?.call(this);
@@ -2076,6 +2368,7 @@ class _$InitDetailImpl implements _InitDetail {
     TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
     TResult Function(_FilterByStatus value)? filterByStatus,
     TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
     required TResult orElse(),
   }) {

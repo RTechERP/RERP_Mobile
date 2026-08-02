@@ -35,6 +35,8 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
             _filterByWarehouseType(emit, warehouseTypeId),
         filterByStatus: (status) => _filterByStatus(emit, status),
         clearFilters: () => _clearFilters(emit),
+        changeDateRange: (dateStart, dateEnd) =>
+            _changeDateRange(emit, dateStart, dateEnd),
         initDetail: (id, bill) => _onInitDetail(emit, id: id, bill: bill),
       );
     });
@@ -250,6 +252,26 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
       selectedWarehouseTypeIds: [],
       selectedStatus: -1,
     ));
+    await _fetchGdns(emit);
+  }
+
+  /// Cập nhật khoảng thời gian lọc và fetch lại danh sách phiếu xuất.
+  Future<void> _changeDateRange(
+    Emitter<SaleGdnState> emit,
+    DateTime dateStart,
+    DateTime dateEnd,
+  ) async {
+    final start = DateTime(dateStart.year, dateStart.month, dateStart.day);
+    final end = DateTime(
+      dateEnd.year,
+      dateEnd.month,
+      dateEnd.day,
+      23,
+      59,
+      59,
+      999,
+    );
+    emit(state.copyWith(dateStart: start, dateEnd: end));
     await _fetchGdns(emit);
   }
 

@@ -46,11 +46,18 @@ class SaleGdnState extends BaseBlocState {
   });
 
   factory SaleGdnState.init() {
-    final now = DateTime.now();
+    final today = DateTime.now();
+    final dateOnly = DateTime(today.year, today.month, today.day);
+    // Mặc định: 1 tháng gần nhất tính đến hôm nay.
+    final monthStart = DateTime(
+      dateOnly.year,
+      dateOnly.month - 1,
+      dateOnly.day,
+    );
     return SaleGdnState(
       status: BaseStateStatus.init,
-      dateStart: DateTime(now.year, now.month, 1),
-      dateEnd: DateTime(now.year, now.month, now.day, 23, 59, 59, 999),
+      dateStart: monthStart,
+      dateEnd: dateOnly,
     );
   }
 

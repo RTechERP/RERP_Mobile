@@ -13,6 +13,12 @@ class SaleGdnEvent with _$SaleGdnEvent {
   const factory SaleGdnEvent.filterByStatus(int status) = _FilterByStatus;
   const factory SaleGdnEvent.clearFilters() = _ClearFilters;
 
+  /// Thay đổi khoảng thời gian lọc và fetch lại danh sách phiếu xuất kho.
+  const factory SaleGdnEvent.changeDateRange({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+  }) = _ChangeDateRange;
+
   /// Khởi tạo state chi tiết và fetch chi tiết phiếu xuất theo ID.
   /// Có thể gọi lại để tải lại.
   const factory SaleGdnEvent.initDetail({
