@@ -78,6 +78,13 @@ class BookingVehicleBloc
             existingBookingId: existingBookingId,
           );
         },
+        submitSelfVehicle: (formValues, existingBookingId) async {
+          await _onSubmitSelfVehicle(
+            formValues,
+            emit,
+            existingBookingId: existingBookingId,
+          );
+        },
         submitPassengerReturn: (formValues, existingBookingId) async {
           await _onSubmitPassengerReturn(
             formValues,
@@ -120,6 +127,7 @@ class BookingVehicleBloc
           switch (group) {
             case 0:
             case 1:
+            case 4: // Chủ động phương tiện
               emit(state.copyWith(
                 bookingTypeGroup: group,
                 passengerGoLineCount: 1,
@@ -1076,6 +1084,144 @@ class BookingVehicleBloc
         },
         (created) async {
           _log.logI('✅ createBookingVehicle OK id=${created.id}');
+          return false;
+        },
+      );
+
+      if (failed) return;
+    }
+
+    emit(
+      state.copyWith(
+        isSubmitting: false,
+        submitSuccess: true,
+        message: null,
+      ),
+    );
+  }
+
+  /// Submit **Chủ động phương tiện** — `Category` = 4.
+  Future<void> _onSubmitSelfVehicle(
+    Map<String, dynamic> formValues,
+    Emitter<BookingVehicleState> emit, {
+    int? existingBookingId,
+  }) async {
+    emit(
+      state.copyWith(
+        isSubmitting: true,
+        submitSuccess: false,
+        message: null,
+      ),
+    );
+
+    final employeeId = state.employeeId;
+    if (employeeId == null) {
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          message: 'Không xác định được nhân viên đăng ký.',
+        ),
+      );
+      return;
+    }
+
+    final n = bookingVehicleEffectivePassengerLineCount(
+      form: formValues,
+      stateCount: state.passengerGoLineCount,
+    );
+    if (n <= 0) {
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          message: 'Chưa có dòng người.',
+        ),
+      );
+      return;
+    }
+
+    final bookerName =
+        state.currentEmployee?.fullName?.trim() ?? '';
+
+    _log.logI('📋 Submit selfVehicle — project display: "${formValues['project']}"');
+
+    final projectId = resolveBookingVehicleProjectId(
+      formValues['project'],
+      state.projects,
+    );
+    if (projectId == 0) {
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          message: 'Vui lòng chọn dự án.',
+        ),
+      );
+      return;
+    }
+
+    // Validate passenger rows
+    for (var i = 0; i < n; i++) {
+      if (bookingVehicleIsPassengerRowEmpty(formValues, i)) continue;
+
+      final name = bookingVehicleTrimFormValue(
+        formValues['passenger_full_name_$i'],
+      );
+      final code = bookingVehicleTrimFormValue(formValues['passenger_code_$i']);
+      if (name.isEmpty && code.isEmpty) {
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            message: 'Vui lòng nhập thông tin người (dòng ${i + 1}).',
+          ),
+        );
+        return;
+      }
+    }
+
+    final approvedTBP =
+        state.selectedApproverEmployeeId ??
+        bookingVehicleParseApproverId(formValues['approver']);
+    final timeNeedPresent = bookingVehicleParseFormDateTime(
+      formValues['time_need_present'],
+    );
+    final isProblemArises = ValidateHelper.bookingVehicleShouldShowProblemArisesCard(
+      timeNeedPresent,
+      null,
+    );
+    final problemArises = bookingVehicleTrimFormValue(
+      formValues['problem_rule_reason'],
+    );
+
+    final payloads = buildAllSelfVehicleCreatePayloads(
+      formValues: formValues,
+      bookerEmployeeId: employeeId,
+      bookerFullName: bookerName,
+      projects: state.projects,
+      employees: state.employee,
+      passengerLineCount: n,
+      existingBookingId: existingBookingId,
+      approvedTBP: approvedTBP,
+      isProblemArises: isProblemArises,
+      problemArises: problemArises.isEmpty ? null : problemArises,
+    );
+
+    for (final payload in payloads) {
+      final res = await _bookingVehicleRepo.createBookingVehicle(
+        payload: payload,
+      );
+
+      final failed = await res.fold(
+        (err) async {
+          _log.logE('❌ createBookingVehicle (selfVehicle) failed: $err');
+          emit(
+            state.copyWith(
+              isSubmitting: false,
+              message: err.getErrorMessage,
+            ),
+          );
+          return true;
+        },
+        (created) async {
+          _log.logI('✅ createBookingVehicle (selfVehicle) OK id=${created.id}');
           return false;
         },
       );

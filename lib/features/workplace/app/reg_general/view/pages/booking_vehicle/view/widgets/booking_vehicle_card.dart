@@ -34,6 +34,7 @@ String bookingVehicleEditBookingTypeLabel(BookingVehicleItem item) {
     'Đăng ký lấy hàng thương mại',
     'Đăng ký giao hàng Demo/triển lãm',
     'Đăng ký lấy hàng Demo/triển lãm',
+    'Chủ động phương tiện',
   };
   final ct = (item.categoryText ?? '').trim();
   if (options.contains(ct)) return ct;
@@ -51,6 +52,8 @@ String bookingVehicleEditBookingTypeLabel(BookingVehicleItem item) {
       return 'Đăng ký lấy hàng thương mại';
     case BookingVehicleApiCategory.demoExhibitionPickup:
       return 'Đăng ký lấy hàng Demo/triển lãm';
+    case BookingVehicleApiCategory.selfVehicle:
+      return 'Chủ động phương tiện';
     default:
       return 'Đăng ký người đi';
   }
@@ -68,6 +71,8 @@ Color _bookingTypeColor(BookingVehicleItem item) {
     case BookingVehicleApiCategory.commercialPickup:
     case BookingVehicleApiCategory.demoExhibitionPickup:
       return const Color(0xFF9C27B0);
+    case BookingVehicleApiCategory.selfVehicle:
+      return AppColors.warning;
     default:
       return AppColors.primaryERP;
   }
@@ -85,6 +90,8 @@ IconData _bookingTypeIcon(BookingVehicleItem item) {
     case BookingVehicleApiCategory.commercialPickup:
     case BookingVehicleApiCategory.demoExhibitionPickup:
       return Icons.inbox;
+    case BookingVehicleApiCategory.selfVehicle:
+      return Icons.commute_outlined;
     default:
       return Icons.directions_car;
   }
@@ -167,10 +174,7 @@ class BookingVehicleCard extends StatelessWidget {
                       Row(
                         children: [
                           const SizedBox(width: 8),
-                          _TinyBadge(
-                            text: approvalBadge,
-                            color: approvalColor,
-                          ),
+                          _TinyBadge(text: approvalBadge, color: approvalColor),
                           const SizedBox(width: 6),
                           _TinyBadge(
                             text: arrangementBadge,
@@ -319,6 +323,8 @@ class BookingVehicleCard extends StatelessWidget {
       case 'Đăng ký lấy hàng thương mại':
       case 'Đăng ký lấy hàng Demo/triển lãm':
         return 3;
+      case 'Chủ động phương tiện':
+        return 4;
       default:
         return 0;
     }
@@ -326,6 +332,8 @@ class BookingVehicleCard extends StatelessWidget {
 
   List<Widget> _buildBodyRows() {
     final rows = <Widget>[];
+    final isSelfVehicle =
+        item.category == BookingVehicleApiCategory.selfVehicle;
     final isPassengerReturn =
         item.category == BookingVehicleApiCategory.passengerReturn;
     final isCargoDelivery =
@@ -335,7 +343,21 @@ class BookingVehicleCard extends StatelessWidget {
         item.category == BookingVehicleApiCategory.commercialPickup ||
         item.category == BookingVehicleApiCategory.demoExhibitionPickup;
 
-    if (isPassengerReturn) {
+    if (isSelfVehicle) {
+      rows.addAll([
+        _InfoRow(
+          icon: Icons.place_outlined,
+          label: 'Cần đến',
+          value: _fmt(item.timeNeedPresent),
+        ),
+        const SizedBox(height: 6),
+        _InfoRow(
+          icon: Icons.directions_car_outlined,
+          label: 'Xuất phát',
+          value: _fmt(item.departureDate),
+        ),
+      ]);
+    } else if (isPassengerReturn) {
       rows.addAll([
         _InfoRow(
           icon: Icons.place_outlined,
@@ -421,6 +443,8 @@ class BookingVehicleCard extends StatelessWidget {
 
   String _primaryTimeLabel() {
     switch (item.category) {
+      case BookingVehicleApiCategory.selfVehicle:
+        return 'Xuất phát';
       case BookingVehicleApiCategory.passengerGo:
         return 'Xuất phát';
       case BookingVehicleApiCategory.passengerReturn:
@@ -440,6 +464,8 @@ class BookingVehicleCard extends StatelessWidget {
 
   String _primaryTimeValue() {
     switch (item.category) {
+      case BookingVehicleApiCategory.selfVehicle:
+        return _fmt(item.departureDate);
       case BookingVehicleApiCategory.passengerGo:
         return _fmt(item.departureDate);
       case BookingVehicleApiCategory.passengerReturn:
@@ -496,10 +522,7 @@ class _TypeChip extends StatelessWidget {
       decoration: BoxDecoration(
         color: color.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(
-          color: color.withValues(alpha: 0.15),
-          width: 1,
-        ),
+        border: Border.all(color: color.withValues(alpha: 0.15), width: 1),
       ),
       child: Row(
         children: [
@@ -565,11 +588,7 @@ class _InfoRow extends StatelessWidget {
         const SizedBox(width: 6),
         Text(
           '$label: ',
-          style: TextStyle(
-            fontSize: 12,
-            color: AppColors.gray,
-            height: 1.2,
-          ),
+          style: TextStyle(fontSize: 12, color: AppColors.gray, height: 1.2),
         ),
         Expanded(
           child: Text(

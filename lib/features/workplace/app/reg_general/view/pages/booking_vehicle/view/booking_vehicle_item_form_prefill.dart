@@ -6,6 +6,7 @@ String bookingVehicleEditBookingTypeLabel(BookingVehicleItem item) {
   const options = <String>{
     'Đăng ký người đi',
     'Đăng ký người về',
+    'Chủ động phương tiện',
     'Đăng ký giao hàng thương mại',
     'Đăng ký lấy hàng thương mại',
     'Đăng ký giao hàng Demo/triển lãm',
@@ -19,6 +20,8 @@ String bookingVehicleEditBookingTypeLabel(BookingVehicleItem item) {
       return 'Đăng ký người đi';
     case BookingVehicleApiCategory.passengerReturn:
       return 'Đăng ký người về';
+    case BookingVehicleApiCategory.selfVehicle:
+      return 'Chủ động phương tiện';
     case BookingVehicleApiCategory.commercialDelivery:
       return 'Đăng ký giao hàng thương mại';
     case BookingVehicleApiCategory.demoExhibitionDelivery:
@@ -117,6 +120,9 @@ Map<String, dynamic> buildBookingVehicleEditFormPatch(
 
   if (cat == BookingVehicleApiCategory.passengerGo) {
     _prefillPassengerGoLike(m, item, includeDepartReturn: true);
+  } else if (cat == BookingVehicleApiCategory.selfVehicle) {
+    // Chủ động phương tiện: giống passengerGo nhưng không có return fields
+    _prefillPassengerGoLike(m, item, includeDepartReturn: false);
   } else if (cat == BookingVehicleApiCategory.passengerReturn) {
     _prefillPassengerReturnLike(m, item);
   } else if (cat == BookingVehicleApiCategory.commercialDelivery ||
@@ -160,14 +166,20 @@ void _prefillPassengerGoLike(
   if (includeDepartReturn) {
     _putDt(m, 'time_depart', item.departureDate);
     _putDt(m, 'time_return', item.timeReturn);
+  } else {
+    // Chủ động phương tiện: chỉ có time_depart, không có return fields
+    _putDt(m, 'time_depart', item.departureDate);
   }
 
   const hanoiOffice = 'VP Hà Nội';
   const other = 'Khác';
   m['starting_point'] = hanoiOffice;
   m['starting_point_text'] = hanoiOffice;
-  m['return_point'] = other;
-  m['return_point_text'] = hanoiOffice;
+  // Chủ động phương tiện: ẩn return_point và return_address
+  if (includeDepartReturn) {
+    m['return_point'] = other;
+    m['return_point_text'] = hanoiOffice;
+  }
   final dep = (item.departureAddressActual ??
           item.departureAddressText ??
           item.departureAddress ??
@@ -175,7 +187,9 @@ void _prefillPassengerGoLike(
       .trim();
   if (dep.isNotEmpty) {
     _putStr(m, 'destination_address', dep);
-    _putStr(m, 'return_address', dep);
+    if (includeDepartReturn) {
+      _putStr(m, 'return_address', dep);
+    }
   }
 
   _putPair(m, 'passenger_code_0', 'passenger_code_text_0', item.passengerCode);

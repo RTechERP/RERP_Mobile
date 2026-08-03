@@ -101,6 +101,25 @@ class _BookingVehicleAddScreenState
     'passenger_contact_phone_0',
   ];
 
+  /// selfVehicle (Chủ động phương tiện): giống passengerGo nhưng không có return fields.
+  static const List<String> _selfVehiclePriority = [
+    'project',
+    'time_need_present',
+    'location_address',
+    'provinces',
+    'address',
+    'time_depart',
+    'starting_point',
+    'destination_address',
+    'type_transport',
+    // passenger rows: employee pick, then manual fields
+    'passenger_employee_0',
+    'passenger_department_0',
+    'passenger_code_0',
+    'passenger_full_name_0',
+    'passenger_contact_phone_0',
+  ];
+
   /// commercialDelivery: main form → receiver/package rows (index 0..n).
   static const List<String> _commercialDeliveryPriority = [
     'project',
@@ -152,6 +171,8 @@ class _BookingVehicleAddScreenState
         return _BookingVehicleTypeGroup.commercialDelivery;
       case 3:
         return _BookingVehicleTypeGroup.commercialPickupAndDemoPickup;
+      case 4:
+        return _BookingVehicleTypeGroup.selfVehicle;
       default:
         return _BookingVehicleTypeGroup.passengerGo;
     }
@@ -199,13 +220,12 @@ class _BookingVehicleAddScreenState
       case 'Đăng ký lấy hàng thương mại':
       case 'Đăng ký lấy hàng Demo/triển lãm':
         return 3;
+      case 'Chủ động phương tiện':
+        return 4;
       default:
         return 0;
     }
   }
-
-  /// Lưu currentEmployee từ SharedPreferences để prefill form ngay lần render đầu.
-  BookingVehiclePersonalItem? _cachedCurrentEmployee;
 
   /// Chặn apply edit prefill nhiều lần.
   bool _editPrefillApplied = false;
@@ -219,6 +239,14 @@ class _BookingVehicleAddScreenState
     final id = widget.existingBookingItem?.id;
     if (id == null || id <= 0) return null;
     return id;
+  }
+
+  /// Kiểm tra currentUser có departmentId thuộc nhóm Sale không.
+  /// Các department được phép sử dụng "Chủ động phương tiện": [3, 28, 29, 30, 12, 13]
+  bool _canUseSelfVehicle(int? deptId) {
+    if (deptId == null) return false;
+    const saleDepartmentIds = [3, 28, 29, 30, 12, 13];
+    return saleDepartmentIds.contains(deptId);
   }
 
   @override
@@ -246,7 +274,6 @@ class _BookingVehicleAddScreenState
     // Đọc currentEmployee từ SharedPreferences NGAY
     BookingVehicleRepository.getCurrentUserCache().then((cached) {
       if (!mounted) return;
-      _cachedCurrentEmployee = cached;
       if (cached != null) {
         bloc.add(BookingVehicleEvent.prefillCurrentEmployee(employee: cached));
       }
@@ -283,6 +310,7 @@ class _BookingVehicleAddScreenState
     switch (_bookingTypeGroupEnum(group)) {
       case _BookingVehicleTypeGroup.passengerGo:
       case _BookingVehicleTypeGroup.passengerReturn:
+      case _BookingVehicleTypeGroup.selfVehicle:
         bloc.add(const BookingVehicleEvent.initPassengerGoInfosForEdit());
         break;
       case _BookingVehicleTypeGroup.commercialDelivery:
@@ -300,6 +328,7 @@ class _BookingVehicleAddScreenState
     switch (_bookingTypeGroupEnum(group)) {
       case _BookingVehicleTypeGroup.passengerGo:
       case _BookingVehicleTypeGroup.passengerReturn:
+      case _BookingVehicleTypeGroup.selfVehicle:
         bloc.add(const BookingVehicleEvent.initPassengerGoInfos());
         bloc.add(const BookingVehicleEvent.preloadInitAdd());
         break;
@@ -429,6 +458,8 @@ class _BookingVehicleAddScreenState
     switch (_bookingTypeGroupEnum(g)) {
       case _BookingVehicleTypeGroup.passengerGo:
         return _passengerGoPriority;
+      case _BookingVehicleTypeGroup.selfVehicle:
+        return _selfVehiclePriority;
       case _BookingVehicleTypeGroup.passengerReturn:
         return _passengerReturnPriority;
       case _BookingVehicleTypeGroup.commercialDelivery:
@@ -480,6 +511,14 @@ class _BookingVehicleAddScreenState
       case _BookingVehicleTypeGroup.passengerGo:
         bloc.add(
           BookingVehicleEvent.submitPassengerGo(
+            formValues: savedValues,
+            existingBookingId: editId,
+          ),
+        );
+        break;
+      case _BookingVehicleTypeGroup.selfVehicle:
+        bloc.add(
+          BookingVehicleEvent.submitSelfVehicle(
             formValues: savedValues,
             existingBookingId: editId,
           ),
@@ -633,17 +672,26 @@ class _BookingVehicleAddScreenState
                                 FormCard(
                                   child: GestureDetector(
                                     onTap: () {
+                                      final deptId = bloc
+                                          .state
+                                          .currentEmployee
+                                          ?.departmentId;
+
+                                      final bookingTypeOptions = [
+                                        'Đăng ký người đi',
+                                        'Đăng ký người về',
+                                        if (_canUseSelfVehicle(deptId))
+                                          'Chủ động phương tiện',
+                                        'Đăng ký giao hàng thương mại',
+                                        'Đăng ký lấy hàng thương mại',
+                                        'Đăng ký giao hàng Demo/triển lãm',
+                                        'Đăng ký lấy hàng Demo/triển lãm',
+                                      ];
+
                                       openSelectBottomSheet(
                                         context: context,
                                         title: 'Chọn hình thức đặt',
-                                        items: const [
-                                          'Đăng ký người đi',
-                                          'Đăng ký người về',
-                                          'Đăng ký giao hàng thương mại',
-                                          'Đăng ký lấy hàng thương mại',
-                                          'Đăng ký giao hàng Demo/triển lãm',
-                                          'Đăng ký lấy hàng Demo/triển lãm',
-                                        ],
+                                        items: bookingTypeOptions,
                                         onSelected: (item) {
                                           _bookingTypeField?.didChange(item);
                                           final groupNum =
@@ -654,7 +702,10 @@ class _BookingVehicleAddScreenState
                                             ),
                                           );
 
-                                          if (groupNum == 0 || groupNum == 1) {
+                                          // Group 0, 1, 4 dùng chung passengerGoInfos
+                                          if (groupNum == 0 ||
+                                              groupNum == 1 ||
+                                              groupNum == 4) {
                                             bloc.add(
                                               const BookingVehicleEvent.initPassengerGoInfos(),
                                             );
@@ -834,9 +885,14 @@ class _BookingVehicleAddScreenState
                                 const SizedBox(height: 6),
                                 ...[
                                   if (_bookingTypeGroupEnum(
-                                        state.bookingTypeGroup,
-                                      ) ==
-                                      _BookingVehicleTypeGroup.passengerGo)
+                                            state.bookingTypeGroup,
+                                          ) ==
+                                          _BookingVehicleTypeGroup
+                                              .passengerGo ||
+                                      _bookingTypeGroupEnum(
+                                            state.bookingTypeGroup,
+                                          ) ==
+                                          _BookingVehicleTypeGroup.selfVehicle)
                                     TypeFormPassengerGo(
                                       projects: state.projects,
                                       departureProvinces:
@@ -844,16 +900,31 @@ class _BookingVehicleAddScreenState
                                       arrivalProvinces: state.provinceArrives,
                                       formKey: _formKey,
                                       typeTransportKey: _typeTransportKey,
+                                      isSelfVehicle:
+                                          _bookingTypeGroupEnum(
+                                            state.bookingTypeGroup,
+                                          ) ==
+                                          _BookingVehicleTypeGroup.selfVehicle,
                                     ),
                                   if (_bookingTypeGroupEnum(
-                                        state.bookingTypeGroup,
-                                      ) ==
-                                      _BookingVehicleTypeGroup.passengerGo)
+                                            state.bookingTypeGroup,
+                                          ) ==
+                                          _BookingVehicleTypeGroup
+                                              .passengerGo ||
+                                      _bookingTypeGroupEnum(
+                                            state.bookingTypeGroup,
+                                          ) ==
+                                          _BookingVehicleTypeGroup.selfVehicle)
                                     const SizedBox(height: 12),
                                   if (_bookingTypeGroupEnum(
-                                        state.bookingTypeGroup,
-                                      ) ==
-                                      _BookingVehicleTypeGroup.passengerGo)
+                                            state.bookingTypeGroup,
+                                          ) ==
+                                          _BookingVehicleTypeGroup
+                                              .passengerGo ||
+                                      _bookingTypeGroupEnum(
+                                            state.bookingTypeGroup,
+                                          ) ==
+                                          _BookingVehicleTypeGroup.selfVehicle)
                                     BlocBuilder<
                                       BookingVehicleBloc,
                                       BookingVehicleState
@@ -1503,4 +1574,5 @@ enum _BookingVehicleTypeGroup {
   passengerReturn,
   commercialDelivery,
   commercialPickupAndDemoPickup,
+  selfVehicle,
 }
