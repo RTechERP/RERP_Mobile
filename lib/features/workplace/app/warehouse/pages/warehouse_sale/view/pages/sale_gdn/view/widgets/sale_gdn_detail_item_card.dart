@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:rtc_erp/common/app_theme/index.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/models/sale_gdn_model.dart';
 
@@ -44,7 +45,7 @@ class SaleGdnDetailItemCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Header: STT + Tên sản phẩm
+          // Header: STT + Tên sản phẩm + icon info
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -91,6 +92,23 @@ class SaleGdnDetailItemCard extends StatelessWidget {
                       ),
                     ],
                   ],
+                ),
+              ),
+              // Icon info — bấm vào hiển thị dialog thông tin chi tiết.
+              InkWell(
+                borderRadius: BorderRadius.circular(8),
+                onTap: () => _showInfoDialog(context, item),
+                child: Container(
+                  padding: const EdgeInsets.all(6),
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryERP.withValues(alpha: 0.08),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Icon(
+                    Icons.info_outline,
+                    size: 18,
+                    color: AppColors.primaryERP,
+                  ),
                 ),
               ),
             ],
@@ -152,14 +170,6 @@ class SaleGdnDetailItemCard extends StatelessWidget {
               ),
             ],
           ),
-          if (item.projectCodeExport != null &&
-              item.projectCodeExport!.isNotEmpty) ...[
-            const SizedBox(height: 10),
-            _CodeRow(
-              label: 'Mã dự án',
-              value: item.projectCodeExport,
-            ),
-          ],
           const SizedBox(height: 12),
           const Divider(height: 1),
           const SizedBox(height: 10),
@@ -176,8 +186,7 @@ class SaleGdnDetailItemCard extends StatelessWidget {
 
   String _formatNumber(double? v) {
     if (v == null) return '--';
-    if (v == v.roundToDouble()) return v.toInt().toString();
-    return v.toString();
+    return _toDecimal2(v);
   }
 
   String _formatCurrency(double? v) {
@@ -187,6 +196,18 @@ class SaleGdnDetailItemCard extends StatelessWidget {
           (m) => '${m[1]}.',
         );
     return '$formatted đ';
+  }
+
+  /// Chuẩn hoá số lượng → chuỗi với đúng 2 chữ số thập phân.
+  /// Ví dụ: 1.0 -> "1.00", 1.234 -> "1.23", 1000 -> "1000.00".
+  String _toDecimal2(double v) => v.toStringAsFixed(2);
+
+  /// Hiển thị dialog thông tin chi tiết của sản phẩm trong dòng phiếu xuất.
+  void _showInfoDialog(BuildContext context, DetailGDNResponse item) {
+    showDialog<void>(
+      context: context,
+      builder: (_) => _GdnItemInfoDialog(item: item),
+    );
   }
 }
 
@@ -473,6 +494,251 @@ class _PhotoThumb extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Dialog thông tin chi tiết của sản phẩm trong dòng phiếu xuất
+// ---------------------------------------------------------------------------
+
+class _GdnItemInfoDialog extends StatelessWidget {
+  const _GdnItemInfoDialog({required this.item});
+
+  final DetailGDNResponse item;
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      backgroundColor: Colors.white,
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          maxHeight: MediaQuery.of(context).size.height * 0.85,
+          maxWidth: 480,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _buildHeader(context),
+            const Divider(height: 1),
+            Flexible(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _InfoSectionTitle('Thông tin sản phẩm'),
+                    const SizedBox(height: 8),
+                    _InfoRow(
+                      label: 'Mã sản phẩm theo dự án',
+                      value: _firstNonEmpty([
+                        item.productCodeExport,
+                        item.productCode,
+                      ]),
+                    ),
+                    _InfoRow(
+                      label: 'SL còn lại',
+                      value: _formatQty(item.totalInventory),
+                    ),
+                    _InfoRow(
+                      label: 'Dự án',
+                      value: _firstNonEmpty([
+                        item.projectNameText,
+                        item.projectName,
+                      ]),
+                    ),
+                    _InfoRow(
+                      label: 'Mã dự án',
+                      value: _firstNonEmpty([
+                        item.projectCodeExport,
+                        item.projectCodeText,
+                      ]),
+                    ),
+                    const SizedBox(height: 12),
+                    _InfoSectionTitle('Ghi chú & đơn hàng'),
+                    const SizedBox(height: 8),
+                    _InfoRow(
+                      label: 'Ghi chú',
+                      value: item.note,
+                      multiline: true,
+                    ),
+                    _InfoRow(
+                      label: 'Mã đơn hàng',
+                      value: _firstNonEmpty([item.code, item.billCode]),
+                    ),
+                    const SizedBox(height: 12),
+                    _InfoSectionTitle('Thông số & phân loại'),
+                    const SizedBox(height: 8),
+                    _InfoRow(
+                      label: 'Thông số kỹ thuật',
+                      value: item.specifications,
+                      multiline: true,
+                    ),
+                    _InfoRow(
+                      label: 'Nhóm',
+                      value: item.productGroupName,
+                    ),
+                    const SizedBox(height: 12),
+                    _InfoSectionTitle('Khác'),
+                    const SizedBox(height: 8),
+                    _InfoRow(
+                      label: 'Người nhận',
+                      value: item.userReceiver,
+                    ),
+                    _InfoRow(
+                      label: 'Phản hồi KH',
+                      value: item.customerResponse,
+                      multiline: true,
+                    ),
+                    _InfoRow(
+                      label: 'Số PO',
+                      value: _firstNonEmpty([item.poNumber, item.poCode]),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildHeader(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 14, 8, 14),
+      child: Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: AppColors.primaryERP.withValues(alpha: 0.1),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Icon(
+              Icons.info_outline,
+              color: AppColors.primaryERP,
+              size: 20,
+            ),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Thông tin sản phẩm',
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.enableText,
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  item.productName ?? '--',
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: AppColors.gray,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
+          ),
+          IconButton(
+            onPressed: () => context.pop(),
+            icon: const Icon(Icons.close, size: 20),
+            tooltip: 'Đóng',
+          ),
+        ],
+      ),
+    );
+  }
+
+  String _formatQty(double? v) {
+    if (v == null) return '--';
+    return v.toStringAsFixed(2);
+  }
+
+  /// Trả về phần tử đầu tiên trong `values` không rỗng (sau trim); null nếu tất cả rỗng.
+  String? _firstNonEmpty(List<String?> values) {
+    for (final v in values) {
+      if (v != null && v.trim().isNotEmpty) return v.trim();
+    }
+    return null;
+  }
+}
+
+class _InfoSectionTitle extends StatelessWidget {
+  const _InfoSectionTitle(this.text);
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: TextStyle(
+        fontSize: 12,
+        fontWeight: FontWeight.w600,
+        color: AppColors.primaryERP,
+        letterSpacing: 0.2,
+      ),
+    );
+  }
+}
+
+class _InfoRow extends StatelessWidget {
+  const _InfoRow({
+    required this.label,
+    required this.value,
+    this.multiline = false,
+  });
+
+  final String label;
+  final String? value;
+  final bool multiline;
+
+  @override
+  Widget build(BuildContext context) {
+    final hasValue = value != null && value!.trim().isNotEmpty;
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            width: 130,
+            child: Text(
+              label,
+              style: TextStyle(
+                fontSize: 12,
+                color: AppColors.gray,
+                height: 1.4,
+              ),
+            ),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Text(
+              hasValue ? value! : '--',
+              style: TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.w500,
+                color: hasValue
+                    ? AppColors.enableText
+                    : AppColors.gray.withValues(alpha: 0.7),
+                height: 1.4,
+              ),
+              maxLines: multiline ? null : 2,
+              overflow: multiline ? null : TextOverflow.ellipsis,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
