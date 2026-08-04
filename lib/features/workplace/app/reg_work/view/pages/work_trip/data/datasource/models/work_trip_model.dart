@@ -204,30 +204,35 @@ class FillApproverItem with _$FillApproverItem {
 }
 
 /// Summary model for booking vehicle selection in work trip form.
+// (Replaced by WorkTripSelfVehicle — kept removed for API migration.)
+
 @freezed
-class BookingVehicleSummaryItem with _$BookingVehicleSummaryItem {
-  const factory BookingVehicleSummaryItem({
+class WorkTripSelfVehicle with _$WorkTripSelfVehicle {
+  const factory WorkTripSelfVehicle({
     @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'STT') int? stt,
-    @JsonKey(name: 'TimeNeedPresent') DateTime? timeNeedPresent,
-    @JsonKey(name: 'PassengerName') String? passengerName,
-    @JsonKey(name: 'PassengerPhoneNumber') String? passengerPhoneNumber,
-    @JsonKey(name: 'DepartureAddress') String? departureAddress,
-    @JsonKey(name: 'DepartureDate') DateTime? departureDate,
-    @JsonKey(name: 'Province') String? province,
-    @JsonKey(name: 'SpecificDestinationAddress') String? specificDestinationAddress,
-    @JsonKey(name: 'DriverName') String? driverName,
-    @JsonKey(name: 'DriverPhoneNumber') String? driverPhoneNumber,
-    @JsonKey(name: 'LicensePlate') String? licensePlate,
-    @JsonKey(name: 'NameVehicleCharge') String? nameVehicleCharge,
-    @JsonKey(name: 'CompanyNameArrives') String? companyNameArrives,
-    @JsonKey(name: 'VehicleInformation') String? vehicleInformation,
-    @JsonKey(name: 'Status') int? status,
-    @JsonKey(name: 'StatusText') String? statusText,
     @JsonKey(name: 'Category') int? category,
     @JsonKey(name: 'CategoryText') String? categoryText,
-  }) = _BookingVehicleSummaryItem;
+    @JsonKey(name: 'Status') int? status,
+    @JsonKey(name: 'StatusText') String? statusText,
+    @JsonKey(name: 'DepartureDate') DateTime? departureDate,
+    @JsonKey(name: 'DepartureDateText') String? departureDateText,
+    @JsonKey(name: 'DepartureAddress') String? departureAddress,
+    @JsonKey(name: 'SpecificDestinationAddress')
+    String? specificDestinationAddress,
+    @JsonKey(name: 'Province') String? province,
+    @JsonKey(name: 'CompanyNameArrives') String? companyNameArrives,
+    @JsonKey(name: 'EmployeeID') int? employeeId,
+    @JsonKey(name: 'EmployeeName') String? employeeName,
+    @JsonKey(name: 'EmployeeCode') String? employeeCode,
+    @JsonKey(name: 'BookerVehicles') String? bookerVehicles,
+    @JsonKey(name: 'PassengerName') String? passengerName,
+    @JsonKey(name: 'DeliverName') String? deliverName,
+    @JsonKey(name: 'Note') String? note,
+    @JsonKey(name: 'ProjectID') int? projectId,
+    @JsonKey(name: 'ProjectFullName') String? projectFullName,
+    @JsonKey(name: 'DisplayLabel') String? displayLabel,
+  }) = _WorkTripSelfVehicle;
 
-  factory BookingVehicleSummaryItem.fromJson(Map<String, dynamic> json) =>
-      _$BookingVehicleSummaryItemFromJson(json);
+  factory WorkTripSelfVehicle.fromJson(Map<String, dynamic> json) =>
+      _$WorkTripSelfVehicleFromJson(json);
 }

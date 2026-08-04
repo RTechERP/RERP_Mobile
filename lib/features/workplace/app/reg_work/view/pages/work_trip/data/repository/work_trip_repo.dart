@@ -27,5 +27,10 @@ abstract class WorkTripRepo {
     required String tableName,
   });
 
-  Future<Either<BaseError, List<BookingVehicleSummaryItem>>> getBookingVehicleList();
+  Future<Either<BaseError, List<WorkTripSelfVehicle>>>
+      getVehicleBookingsForBussiness({
+    required int employeeId,
+    required DateTime dateStart,
+    required DateTime dateEnd,
+  });
 }

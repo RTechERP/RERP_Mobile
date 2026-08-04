@@ -7,7 +7,7 @@ class WorkTripState extends BaseBlocState {
   final List<WorkTripTypeItem> workTripTypes;
   final List<WorkTripTypeVehicle> workTripVehicles;
   final List<WorkTripProject> workTripProjects;
-  final List<BookingVehicleSummaryItem> bookingVehicleList;
+  final List<WorkTripSelfVehicle> selfVehicleList;
   final bool isSubmitting;
   final bool submitSuccess;
   final bool deleteSuccess;
@@ -48,7 +48,7 @@ class WorkTripState extends BaseBlocState {
     this.workTripTypes = const [],
     this.workTripVehicles = const [],
     this.workTripProjects = const [],
-    this.bookingVehicleList = const [],
+    this.selfVehicleList = const [],
     this.isSubmitting = false,
     this.submitSuccess = false,
     this.deleteSuccess = false,
@@ -75,7 +75,7 @@ class WorkTripState extends BaseBlocState {
         workTripTypes: [],
         workTripVehicles: [],
         workTripProjects: [],
-        bookingVehicleList: const [],
+        selfVehicleList: const [],
         isSubmitting: false,
         submitSuccess: false,
         deleteSuccess: false,
@@ -104,7 +104,7 @@ class WorkTripState extends BaseBlocState {
         workTripTypes,
         workTripVehicles,
         workTripProjects,
-        bookingVehicleList,
+        selfVehicleList,
         isSubmitting,
         submitSuccess,
         deleteSuccess,

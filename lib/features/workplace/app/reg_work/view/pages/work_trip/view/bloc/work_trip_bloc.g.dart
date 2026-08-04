@@ -21,8 +21,7 @@ abstract class _$WorkTripStateCWProxy {
 
   WorkTripState workTripProjects(List<WorkTripProject> workTripProjects);
 
-  WorkTripState bookingVehicleList(
-      List<BookingVehicleSummaryItem> bookingVehicleList);
+  WorkTripState selfVehicleList(List<WorkTripSelfVehicle> selfVehicleList);
 
   WorkTripState isSubmitting(bool isSubmitting);
 
@@ -73,7 +72,7 @@ abstract class _$WorkTripStateCWProxy {
     List<WorkTripTypeItem>? workTripTypes,
     List<WorkTripTypeVehicle>? workTripVehicles,
     List<WorkTripProject>? workTripProjects,
-    List<BookingVehicleSummaryItem>? bookingVehicleList,
+    List<WorkTripSelfVehicle>? selfVehicleList,
     bool? isSubmitting,
     bool? submitSuccess,
     bool? deleteSuccess,
@@ -127,9 +126,8 @@ class _$WorkTripStateCWProxyImpl implements _$WorkTripStateCWProxy {
       this(workTripProjects: workTripProjects);
 
   @override
-  WorkTripState bookingVehicleList(
-          List<BookingVehicleSummaryItem> bookingVehicleList) =>
-      this(bookingVehicleList: bookingVehicleList);
+  WorkTripState selfVehicleList(List<WorkTripSelfVehicle> selfVehicleList) =>
+      this(selfVehicleList: selfVehicleList);
 
   @override
   WorkTripState isSubmitting(bool isSubmitting) =>
@@ -209,7 +207,7 @@ class _$WorkTripStateCWProxyImpl implements _$WorkTripStateCWProxy {
     Object? workTripTypes = const $CopyWithPlaceholder(),
     Object? workTripVehicles = const $CopyWithPlaceholder(),
     Object? workTripProjects = const $CopyWithPlaceholder(),
-    Object? bookingVehicleList = const $CopyWithPlaceholder(),
+    Object? selfVehicleList = const $CopyWithPlaceholder(),
     Object? isSubmitting = const $CopyWithPlaceholder(),
     Object? submitSuccess = const $CopyWithPlaceholder(),
     Object? deleteSuccess = const $CopyWithPlaceholder(),
@@ -260,11 +258,11 @@ class _$WorkTripStateCWProxyImpl implements _$WorkTripStateCWProxy {
           ? _value.workTripProjects
           // ignore: cast_nullable_to_non_nullable
           : workTripProjects as List<WorkTripProject>,
-      bookingVehicleList: bookingVehicleList == const $CopyWithPlaceholder() ||
-              bookingVehicleList == null
-          ? _value.bookingVehicleList
+      selfVehicleList: selfVehicleList == const $CopyWithPlaceholder() ||
+              selfVehicleList == null
+          ? _value.selfVehicleList
           // ignore: cast_nullable_to_non_nullable
-          : bookingVehicleList as List<BookingVehicleSummaryItem>,
+          : selfVehicleList as List<WorkTripSelfVehicle>,
       isSubmitting:
           isSubmitting == const $CopyWithPlaceholder() || isSubmitting == null
               ? _value.isSubmitting

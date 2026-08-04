@@ -88,6 +88,9 @@ class _WorkTripDetailScreenState
       if (bloc.state.approvers.isEmpty) {
         bloc.add(const WorkTripEvent.initAdd());
       }
+      if (bloc.state.selfVehicleList.isEmpty) {
+        bloc.add(const WorkTripEvent.loadBookingVehicleList());
+      }
       bloc.add(WorkTripEvent.fetchDetail(id: id));
     });
   }
@@ -107,8 +110,22 @@ class _WorkTripDetailScreenState
       _selectedProjectId = detail.projectId;
       _selectedProjectText = _projectName(state, detail.projectId);
       _bookingVehicleId = detail.bookingVehicleId;
-      _customerName = detail.customerName ?? '';
-      _companyName = detail.companyName ?? '';
+
+      // Lấy CompanyNameArrives từ danh sách phiếu đặt xe (cùng employee, cùng ngày).
+      // Nếu không tìm thấy (self-vehicle mới được tạo sau detail load) → fallback
+      // dùng giá trị customerName/companyName đã lưu trong detail.
+      final matchedVehicle = state.selfVehicleList.firstWhere(
+        (v) => v.id == detail.bookingVehicleId,
+        orElse: () => const WorkTripSelfVehicle(),
+      );
+      final companyNameArrives = matchedVehicle.companyNameArrives;
+      _customerName = (companyNameArrives != null && companyNameArrives.isNotEmpty)
+          ? companyNameArrives
+          : (detail.customerName ?? '');
+      _companyName = (companyNameArrives != null && companyNameArrives.isNotEmpty)
+          ? companyNameArrives
+          : (detail.companyName ?? '');
+
       _selfVehicle = detail.selfVehicle ?? false;
     });
   }
@@ -147,6 +164,37 @@ class _WorkTripDetailScreenState
     } catch (_) {
       return widget.item?.projectText ?? '';
     }
+  }
+
+  String _bookingVehicleLabel(WorkTripState state) {
+    if (!_hasBookingVehicle()) return '';
+    final matched = state.selfVehicleList.firstWhere(
+      (v) => v.id == _bookingVehicleId,
+      orElse: () => const WorkTripSelfVehicle(),
+    );
+    if (matched.displayLabel != null && matched.displayLabel!.isNotEmpty) {
+      return matched.displayLabel!;
+    }
+    return 'Phiếu #$_bookingVehicleId';
+  }
+
+  /// Đồng bộ customer/company từ `selfVehicleList` sau khi detail đã apply
+  /// (trong trường hợp danh sách phiếu đặt xe tải chậm hơn chi tiết).
+  void _syncBookingVehicleFields(WorkTripState state) {
+    if (!_hasBookingVehicle()) return;
+    final matched = state.selfVehicleList.firstWhere(
+      (v) => v.id == _bookingVehicleId,
+      orElse: () => const WorkTripSelfVehicle(),
+    );
+    final companyNameArrives = matched.companyNameArrives;
+    if (companyNameArrives == null || companyNameArrives.isEmpty) return;
+    if (_customerName == companyNameArrives && _companyName == companyNameArrives) {
+      return;
+    }
+    setState(() {
+      _customerName = companyNameArrives;
+      _companyName = companyNameArrives;
+    });
   }
 
   String _dinnerLabel(int overnightType) {
@@ -302,7 +350,8 @@ class _WorkTripDetailScreenState
           p.editSuccess != c.editSuccess ||
           p.message != c.message ||
           p.status != c.status ||
-          (p.detailItem == null && c.detailItem != null),
+          (p.detailItem == null && c.detailItem != null) ||
+          (p.selfVehicleList != c.selfVehicleList && _detailApplied),
       listener: (context, state) {
         if (state.status == BaseStateStatus.failed &&
             (state.message ?? '').isNotEmpty) {
@@ -317,6 +366,11 @@ class _WorkTripDetailScreenState
         }
         if (state.detailItem != null) {
           _applyDetail(state.detailItem!, state);
+        }
+        // Sau khi detail đã apply: nếu selfVehicleList vừa tải xong,
+        // re-sync customer/company/phiếu đặt xe từ danh sách mới nhất.
+        if (_detailApplied) {
+          _syncBookingVehicleFields(state);
         }
       },
       child: BlocBuilder<WorkTripBloc, WorkTripState>(
@@ -509,7 +563,7 @@ class _WorkTripDetailScreenState
               nameTextField: 'wtd_booking_vehicle_text_tf',
               label: 'Phiếu đặt xe',
               icon: Icons.confirmation_number_outlined,
-              initialValue: _hasBookingVehicle() ? 'Phiếu #$_bookingVehicleId' : '',
+              initialValue: _bookingVehicleLabel(state),
               autovalidateMode: AutovalidateMode.disabled,
             ),
             const SizedBox(height: 12),
@@ -523,7 +577,6 @@ class _WorkTripDetailScreenState
               initialValue: _customerName,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               isRequired: true,
-              readOnly: true,
               validator: (v) {
                 if (v == null || v.trim().isEmpty) {
                   return 'Vui lòng nhập tên khách hàng';
@@ -542,7 +595,6 @@ class _WorkTripDetailScreenState
               initialValue: _companyName,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               isRequired: true,
-              readOnly: true,
               validator: (v) {
                 if (v == null || v.trim().isEmpty) {
                   return 'Vui lòng nhập tên công ty';

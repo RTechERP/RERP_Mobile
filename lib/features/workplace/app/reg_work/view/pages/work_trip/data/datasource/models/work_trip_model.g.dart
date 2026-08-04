@@ -378,54 +378,56 @@ Map<String, dynamic> _$$FillApproverItemImplToJson(
       'ApproveID': instance.approveId,
     };
 
-_$BookingVehicleSummaryItemImpl _$$BookingVehicleSummaryItemImplFromJson(
+_$WorkTripSelfVehicleImpl _$$WorkTripSelfVehicleImplFromJson(
         Map<String, dynamic> json) =>
-    _$BookingVehicleSummaryItemImpl(
+    _$WorkTripSelfVehicleImpl(
       id: (json['ID'] as num?)?.toInt(),
-      stt: (json['STT'] as num?)?.toInt(),
-      timeNeedPresent: json['TimeNeedPresent'] == null
-          ? null
-          : DateTime.parse(json['TimeNeedPresent'] as String),
-      passengerName: json['PassengerName'] as String?,
-      passengerPhoneNumber: json['PassengerPhoneNumber'] as String?,
-      departureAddress: json['DepartureAddress'] as String?,
+      category: (json['Category'] as num?)?.toInt(),
+      categoryText: json['CategoryText'] as String?,
+      status: (json['Status'] as num?)?.toInt(),
+      statusText: json['StatusText'] as String?,
       departureDate: json['DepartureDate'] == null
           ? null
           : DateTime.parse(json['DepartureDate'] as String),
-      province: json['Province'] as String?,
+      departureDateText: json['DepartureDateText'] as String?,
+      departureAddress: json['DepartureAddress'] as String?,
       specificDestinationAddress: json['SpecificDestinationAddress'] as String?,
-      driverName: json['DriverName'] as String?,
-      driverPhoneNumber: json['DriverPhoneNumber'] as String?,
-      licensePlate: json['LicensePlate'] as String?,
-      nameVehicleCharge: json['NameVehicleCharge'] as String?,
+      province: json['Province'] as String?,
       companyNameArrives: json['CompanyNameArrives'] as String?,
-      vehicleInformation: json['VehicleInformation'] as String?,
-      status: (json['Status'] as num?)?.toInt(),
-      statusText: json['StatusText'] as String?,
-      category: (json['Category'] as num?)?.toInt(),
-      categoryText: json['CategoryText'] as String?,
+      employeeId: (json['EmployeeID'] as num?)?.toInt(),
+      employeeName: json['EmployeeName'] as String?,
+      employeeCode: json['EmployeeCode'] as String?,
+      bookerVehicles: json['BookerVehicles'] as String?,
+      passengerName: json['PassengerName'] as String?,
+      deliverName: json['DeliverName'] as String?,
+      note: json['Note'] as String?,
+      projectId: (json['ProjectID'] as num?)?.toInt(),
+      projectFullName: json['ProjectFullName'] as String?,
+      displayLabel: json['DisplayLabel'] as String?,
     );
 
-Map<String, dynamic> _$$BookingVehicleSummaryItemImplToJson(
-        _$BookingVehicleSummaryItemImpl instance) =>
+Map<String, dynamic> _$$WorkTripSelfVehicleImplToJson(
+        _$WorkTripSelfVehicleImpl instance) =>
     <String, dynamic>{
       'ID': instance.id,
-      'STT': instance.stt,
-      'TimeNeedPresent': instance.timeNeedPresent?.toIso8601String(),
-      'PassengerName': instance.passengerName,
-      'PassengerPhoneNumber': instance.passengerPhoneNumber,
-      'DepartureAddress': instance.departureAddress,
-      'DepartureDate': instance.departureDate?.toIso8601String(),
-      'Province': instance.province,
-      'SpecificDestinationAddress': instance.specificDestinationAddress,
-      'DriverName': instance.driverName,
-      'DriverPhoneNumber': instance.driverPhoneNumber,
-      'LicensePlate': instance.licensePlate,
-      'NameVehicleCharge': instance.nameVehicleCharge,
-      'CompanyNameArrives': instance.companyNameArrives,
-      'VehicleInformation': instance.vehicleInformation,
-      'Status': instance.status,
-      'StatusText': instance.statusText,
       'Category': instance.category,
       'CategoryText': instance.categoryText,
+      'Status': instance.status,
+      'StatusText': instance.statusText,
+      'DepartureDate': instance.departureDate?.toIso8601String(),
+      'DepartureDateText': instance.departureDateText,
+      'DepartureAddress': instance.departureAddress,
+      'SpecificDestinationAddress': instance.specificDestinationAddress,
+      'Province': instance.province,
+      'CompanyNameArrives': instance.companyNameArrives,
+      'EmployeeID': instance.employeeId,
+      'EmployeeName': instance.employeeName,
+      'EmployeeCode': instance.employeeCode,
+      'BookerVehicles': instance.bookerVehicles,
+      'PassengerName': instance.passengerName,
+      'DeliverName': instance.deliverName,
+      'Note': instance.note,
+      'ProjectID': instance.projectId,
+      'ProjectFullName': instance.projectFullName,
+      'DisplayLabel': instance.displayLabel,
     };

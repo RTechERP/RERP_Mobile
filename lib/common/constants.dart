@@ -232,6 +232,10 @@ class ApiEndPoint {
 
   static const String getWorkTripById = '/EmployeeBussiness/get-by-id';
 
+  /// Lấy phiếu đặt xe theo ngày cho work_trip.
+  static const String getVehicleBookingsForBussiness =
+      '/EmployeeBussiness/get-vehicle-bookings-for-bussiness';
+
   static const String getOvernight =
       '/EmployeeNightShift/person';
 

@@ -746,14 +746,35 @@ DateTime _normalizeToMinute(DateTime dt) =>
 
   Future<void> _onLoadBookingVehicleList(Emitter<WorkTripState> emit) async {
     try {
-      final res = await _workTripRepo.getBookingVehicleList();
+      // Lấy employeeId từ currentEmployee (đã được set trong _onInit / _onInitAdd);
+      // fallback gọi lại AuthRepo nếu currentEmployee chưa sẵn sàng.
+      var employeeId = state.currentEmployee?.employeeId;
+      if (employeeId == null) {
+        final userRes = await _authRepo.getCurrentUser();
+        final user = userRes.fold((_) => null, (u) => u);
+        employeeId = user?.employeeId;
+      }
+      if (employeeId == null) {
+        _log.logE('❌ WorkTripBloc loadBookingVehicleList: no employeeId');
+        return;
+      }
+
+      final now = DateTime.now();
+      final dayStart = DateTime(now.year, now.month, now.day);
+      final dayEnd = DateTime(now.year, now.month, now.day, 23, 59, 59);
+
+      final res = await _workTripRepo.getVehicleBookingsForBussiness(
+        employeeId: employeeId,
+        dateStart: dayStart,
+        dateEnd: dayEnd,
+      );
       res.fold(
         (l) {
           _log.logE('❌ WorkTripBloc loadBookingVehicleList failed: $l');
         },
         (list) {
           _log.logI('✅ WorkTripBloc loadBookingVehicleList success: ${list.length} items');
-          emit(state.copyWith(bookingVehicleList: list));
+          emit(state.copyWith(selfVehicleList: list));
         },
       );
     } catch (e) {

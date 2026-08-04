@@ -139,21 +139,30 @@ class WorkTripService extends DioBaseApiService {
     );
   }
 
-  Future<BaseData<List<BookingVehicleSummaryItem>>> getBookingVehicleList() {
-    return get<BaseData<List<BookingVehicleSummaryItem>>>(
-      ApiEndPoint.getBookingVehicle,
-      parser: (json) => BaseData<List<BookingVehicleSummaryItem>>.fromJson(
+  Future<BaseData<List<WorkTripSelfVehicle>>> getVehicleBookingsForBussiness({
+    required int employeeId,
+    required DateTime dateStart,
+    required DateTime dateEnd,
+  }) {
+    return get<BaseData<List<WorkTripSelfVehicle>>>(
+      ApiEndPoint.getVehicleBookingsForBussiness,
+      query: {
+        'employeeId': employeeId,
+        'dateStart': dateStart.toIso8601String(),
+        'dateEnd': dateEnd.toIso8601String(),
+      },
+      parser: (json) => BaseData<List<WorkTripSelfVehicle>>.fromJson(
         json,
-            (data) {
+        (data) {
           if (data is List) {
             return data
-                .map((e) => BookingVehicleSummaryItem.fromJson(e as Map<String, dynamic>))
+                .map((e) => WorkTripSelfVehicle.fromJson(e as Map<String, dynamic>))
                 .toList();
           }
           final list =
               (data as Map<String, dynamic>?)?['data'] as List? ?? [];
           return list
-              .map((e) => BookingVehicleSummaryItem.fromJson(e as Map<String, dynamic>))
+              .map((e) => WorkTripSelfVehicle.fromJson(e as Map<String, dynamic>))
               .toList();
         },
       ),

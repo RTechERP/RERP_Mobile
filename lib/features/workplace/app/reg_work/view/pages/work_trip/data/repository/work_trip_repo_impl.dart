@@ -149,10 +149,18 @@ class WorkTripRepoImpl implements WorkTripRepo {
   }
 
   @override
-  Future<Either<BaseError, List<BookingVehicleSummaryItem>>>
-      getBookingVehicleList() async {
+  Future<Either<BaseError, List<WorkTripSelfVehicle>>>
+      getVehicleBookingsForBussiness({
+    required int employeeId,
+    required DateTime dateStart,
+    required DateTime dateEnd,
+  }) async {
     try {
-      final res = await _service.getBookingVehicleList();
+      final res = await _service.getVehicleBookingsForBussiness(
+        employeeId: employeeId,
+        dateStart: dateStart,
+        dateEnd: dateEnd,
+      );
       if (res.status == 1 && res.data != null) {
         return right(res.data!);
       }
