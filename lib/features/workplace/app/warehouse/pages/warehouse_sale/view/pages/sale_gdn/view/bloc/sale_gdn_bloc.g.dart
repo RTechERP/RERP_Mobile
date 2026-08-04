@@ -223,6 +223,8 @@ abstract class _$GdnDetailStateCWProxy {
 
   GdnDetailState details(List<DetailGDNResponse> details);
 
+  GdnDetailState uploadedImages(List<UploadFileResponse> uploadedImages);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GdnDetailState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -235,6 +237,7 @@ abstract class _$GdnDetailStateCWProxy {
     int? billExportId,
     BillExporResponse? bill,
     List<DetailGDNResponse>? details,
+    List<UploadFileResponse>? uploadedImages,
   });
 }
 
@@ -262,6 +265,10 @@ class _$GdnDetailStateCWProxyImpl implements _$GdnDetailStateCWProxy {
       this(details: details);
 
   @override
+  GdnDetailState uploadedImages(List<UploadFileResponse> uploadedImages) =>
+      this(uploadedImages: uploadedImages);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GdnDetailState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -275,6 +282,7 @@ class _$GdnDetailStateCWProxyImpl implements _$GdnDetailStateCWProxy {
     Object? billExportId = const $CopyWithPlaceholder(),
     Object? bill = const $CopyWithPlaceholder(),
     Object? details = const $CopyWithPlaceholder(),
+    Object? uploadedImages = const $CopyWithPlaceholder(),
   }) {
     return GdnDetailState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -298,6 +306,11 @@ class _$GdnDetailStateCWProxyImpl implements _$GdnDetailStateCWProxy {
           ? _value.details
           // ignore: cast_nullable_to_non_nullable
           : details as List<DetailGDNResponse>,
+      uploadedImages: uploadedImages == const $CopyWithPlaceholder() ||
+              uploadedImages == null
+          ? _value.uploadedImages
+          // ignore: cast_nullable_to_non_nullable
+          : uploadedImages as List<UploadFileResponse>,
     );
   }
 }

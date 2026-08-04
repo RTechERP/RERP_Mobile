@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
@@ -57,6 +59,23 @@ class SaleGdnRepoImpl implements SaleGdnRepo {
   }) async {
     try {
       final res = await _service.getViewExportDetail(id: id);
+      if (res.status != 1) {
+        return left(BaseError.httpInternalServerError(res.message ?? 'Lỗi'));
+      }
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<UploadFileResponse>>> uploadBillExportFiles({
+    required List<File> files,
+  }) async {
+    try {
+      final res = await _service.uploadBillExportFiles(files: files);
       if (res.status != 1) {
         return left(BaseError.httpInternalServerError(res.message ?? 'Lỗi'));
       }

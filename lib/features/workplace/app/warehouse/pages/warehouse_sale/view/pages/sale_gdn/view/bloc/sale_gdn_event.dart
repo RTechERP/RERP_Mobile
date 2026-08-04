@@ -49,4 +49,7 @@ class SaleGdnEvent with _$SaleGdnEvent {
     required int stt,
     required int imageIndex,
   }) = _RemoveImage;
+
+  /// Upload tất cả ảnh local đã chọn lên server.
+  const factory SaleGdnEvent.submitImages() = _SubmitImages;
 }

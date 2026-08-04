@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rtc_erp/base/network/dio/dio_base_api_service.dart';
 import 'package:rtc_erp/base/network/models/base_data.dart';
@@ -106,6 +109,48 @@ class SaleGdnService extends DioBaseApiService {
           data: items,
         );
       },
+    );
+  }
+
+  /// Upload files for BillExport confirmation images.
+  /// Endpoint: POST /BillExport/upload-files
+  /// Key parameter: BillExport
+  Future<BaseData<List<UploadFileResponse>>> uploadBillExportFiles({
+    required List<File> files,
+  }) async {
+    final formData = FormData();
+
+    for (final file in files) {
+      formData.files.add(
+        MapEntry(
+          'files',
+          await MultipartFile.fromFile(
+            file.path,
+            filename: file.path.split('/').last,
+          ),
+        ),
+      );
+    }
+
+    formData.fields.addAll([
+      const MapEntry('key', 'BillExport'),
+    ]);
+
+    return post<BaseData<List<UploadFileResponse>>>(
+      ApiEndPoint.uploadBillExportFiles,
+      body: formData,
+      options: Options(contentType: 'multipart/form-data'),
+      parser: (json) => BaseData<List<UploadFileResponse>>.fromJson(
+        json,
+        (data) {
+          if (data is List) {
+            return data
+                .map((e) => UploadFileResponse.fromJson(e as Map<String, dynamic>))
+                .toList();
+          }
+          return <UploadFileResponse>[];
+        },
+      ),
     );
   }
 }

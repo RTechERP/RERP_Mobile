@@ -157,3 +157,19 @@ class DetailGDNResponse with _$DetailGDNResponse {
       _$DetailGDNResponseFromJson(Map<String, dynamic>.from(json)
         ..['localImagePaths'] = const <String>[]);
 }
+
+/// Upload file response model.
+@freezed
+class UploadFileResponse with _$UploadFileResponse {
+  const factory UploadFileResponse({
+    @JsonKey(name: 'OriginalFileName') required String originalFileName,
+    @JsonKey(name: 'SavedFileName') required String savedFileName,
+    @JsonKey(name: 'FilePath') required String filePath,
+    @JsonKey(name: 'FileSize') required int fileSize,
+    @JsonKey(name: 'ContentType') required String contentType,
+    @JsonKey(name: 'UploadTime') required DateTime uploadTime,
+  }) = _UploadFileResponse;
+
+  factory UploadFileResponse.fromJson(Map<String, dynamic> json) =>
+      _$UploadFileResponseFromJson(json);
+}

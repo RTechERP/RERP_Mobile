@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 import 'package:rtc_erp/base/network/errors/error.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/models/sale_gdn_model.dart';
@@ -15,5 +17,10 @@ abstract class SaleGdnRepo {
   /// Lấy chi tiết phiếu xuất kho theo ID.
   Future<Either<BaseError, List<DetailGDNResponse>>> getViewExportDetail({
     required int id,
+  });
+
+  /// Upload files for BillExport confirmation images.
+  Future<Either<BaseError, List<UploadFileResponse>>> uploadBillExportFiles({
+    required List<File> files,
   });
 }

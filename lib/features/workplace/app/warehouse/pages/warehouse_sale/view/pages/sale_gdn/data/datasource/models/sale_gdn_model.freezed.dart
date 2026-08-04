@@ -3461,3 +3461,271 @@ abstract class _DetailGDNResponse implements DetailGDNResponse {
   _$$DetailGDNResponseImplCopyWith<_$DetailGDNResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+UploadFileResponse _$UploadFileResponseFromJson(Map<String, dynamic> json) {
+  return _UploadFileResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$UploadFileResponse {
+  @JsonKey(name: 'OriginalFileName')
+  String get originalFileName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'SavedFileName')
+  String get savedFileName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FilePath')
+  String get filePath => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FileSize')
+  int get fileSize => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ContentType')
+  String get contentType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UploadTime')
+  DateTime get uploadTime => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $UploadFileResponseCopyWith<UploadFileResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UploadFileResponseCopyWith<$Res> {
+  factory $UploadFileResponseCopyWith(
+          UploadFileResponse value, $Res Function(UploadFileResponse) then) =
+      _$UploadFileResponseCopyWithImpl<$Res, UploadFileResponse>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'OriginalFileName') String originalFileName,
+      @JsonKey(name: 'SavedFileName') String savedFileName,
+      @JsonKey(name: 'FilePath') String filePath,
+      @JsonKey(name: 'FileSize') int fileSize,
+      @JsonKey(name: 'ContentType') String contentType,
+      @JsonKey(name: 'UploadTime') DateTime uploadTime});
+}
+
+/// @nodoc
+class _$UploadFileResponseCopyWithImpl<$Res, $Val extends UploadFileResponse>
+    implements $UploadFileResponseCopyWith<$Res> {
+  _$UploadFileResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? originalFileName = null,
+    Object? savedFileName = null,
+    Object? filePath = null,
+    Object? fileSize = null,
+    Object? contentType = null,
+    Object? uploadTime = null,
+  }) {
+    return _then(_value.copyWith(
+      originalFileName: null == originalFileName
+          ? _value.originalFileName
+          : originalFileName // ignore: cast_nullable_to_non_nullable
+              as String,
+      savedFileName: null == savedFileName
+          ? _value.savedFileName
+          : savedFileName // ignore: cast_nullable_to_non_nullable
+              as String,
+      filePath: null == filePath
+          ? _value.filePath
+          : filePath // ignore: cast_nullable_to_non_nullable
+              as String,
+      fileSize: null == fileSize
+          ? _value.fileSize
+          : fileSize // ignore: cast_nullable_to_non_nullable
+              as int,
+      contentType: null == contentType
+          ? _value.contentType
+          : contentType // ignore: cast_nullable_to_non_nullable
+              as String,
+      uploadTime: null == uploadTime
+          ? _value.uploadTime
+          : uploadTime // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$UploadFileResponseImplCopyWith<$Res>
+    implements $UploadFileResponseCopyWith<$Res> {
+  factory _$$UploadFileResponseImplCopyWith(_$UploadFileResponseImpl value,
+          $Res Function(_$UploadFileResponseImpl) then) =
+      __$$UploadFileResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'OriginalFileName') String originalFileName,
+      @JsonKey(name: 'SavedFileName') String savedFileName,
+      @JsonKey(name: 'FilePath') String filePath,
+      @JsonKey(name: 'FileSize') int fileSize,
+      @JsonKey(name: 'ContentType') String contentType,
+      @JsonKey(name: 'UploadTime') DateTime uploadTime});
+}
+
+/// @nodoc
+class __$$UploadFileResponseImplCopyWithImpl<$Res>
+    extends _$UploadFileResponseCopyWithImpl<$Res, _$UploadFileResponseImpl>
+    implements _$$UploadFileResponseImplCopyWith<$Res> {
+  __$$UploadFileResponseImplCopyWithImpl(_$UploadFileResponseImpl _value,
+      $Res Function(_$UploadFileResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? originalFileName = null,
+    Object? savedFileName = null,
+    Object? filePath = null,
+    Object? fileSize = null,
+    Object? contentType = null,
+    Object? uploadTime = null,
+  }) {
+    return _then(_$UploadFileResponseImpl(
+      originalFileName: null == originalFileName
+          ? _value.originalFileName
+          : originalFileName // ignore: cast_nullable_to_non_nullable
+              as String,
+      savedFileName: null == savedFileName
+          ? _value.savedFileName
+          : savedFileName // ignore: cast_nullable_to_non_nullable
+              as String,
+      filePath: null == filePath
+          ? _value.filePath
+          : filePath // ignore: cast_nullable_to_non_nullable
+              as String,
+      fileSize: null == fileSize
+          ? _value.fileSize
+          : fileSize // ignore: cast_nullable_to_non_nullable
+              as int,
+      contentType: null == contentType
+          ? _value.contentType
+          : contentType // ignore: cast_nullable_to_non_nullable
+              as String,
+      uploadTime: null == uploadTime
+          ? _value.uploadTime
+          : uploadTime // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$UploadFileResponseImpl implements _UploadFileResponse {
+  const _$UploadFileResponseImpl(
+      {@JsonKey(name: 'OriginalFileName') required this.originalFileName,
+      @JsonKey(name: 'SavedFileName') required this.savedFileName,
+      @JsonKey(name: 'FilePath') required this.filePath,
+      @JsonKey(name: 'FileSize') required this.fileSize,
+      @JsonKey(name: 'ContentType') required this.contentType,
+      @JsonKey(name: 'UploadTime') required this.uploadTime});
+
+  factory _$UploadFileResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UploadFileResponseImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'OriginalFileName')
+  final String originalFileName;
+  @override
+  @JsonKey(name: 'SavedFileName')
+  final String savedFileName;
+  @override
+  @JsonKey(name: 'FilePath')
+  final String filePath;
+  @override
+  @JsonKey(name: 'FileSize')
+  final int fileSize;
+  @override
+  @JsonKey(name: 'ContentType')
+  final String contentType;
+  @override
+  @JsonKey(name: 'UploadTime')
+  final DateTime uploadTime;
+
+  @override
+  String toString() {
+    return 'UploadFileResponse(originalFileName: $originalFileName, savedFileName: $savedFileName, filePath: $filePath, fileSize: $fileSize, contentType: $contentType, uploadTime: $uploadTime)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UploadFileResponseImpl &&
+            (identical(other.originalFileName, originalFileName) ||
+                other.originalFileName == originalFileName) &&
+            (identical(other.savedFileName, savedFileName) ||
+                other.savedFileName == savedFileName) &&
+            (identical(other.filePath, filePath) ||
+                other.filePath == filePath) &&
+            (identical(other.fileSize, fileSize) ||
+                other.fileSize == fileSize) &&
+            (identical(other.contentType, contentType) ||
+                other.contentType == contentType) &&
+            (identical(other.uploadTime, uploadTime) ||
+                other.uploadTime == uploadTime));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, originalFileName, savedFileName,
+      filePath, fileSize, contentType, uploadTime);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UploadFileResponseImplCopyWith<_$UploadFileResponseImpl> get copyWith =>
+      __$$UploadFileResponseImplCopyWithImpl<_$UploadFileResponseImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$UploadFileResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _UploadFileResponse implements UploadFileResponse {
+  const factory _UploadFileResponse(
+          {@JsonKey(name: 'OriginalFileName')
+          required final String originalFileName,
+          @JsonKey(name: 'SavedFileName') required final String savedFileName,
+          @JsonKey(name: 'FilePath') required final String filePath,
+          @JsonKey(name: 'FileSize') required final int fileSize,
+          @JsonKey(name: 'ContentType') required final String contentType,
+          @JsonKey(name: 'UploadTime') required final DateTime uploadTime}) =
+      _$UploadFileResponseImpl;
+
+  factory _UploadFileResponse.fromJson(Map<String, dynamic> json) =
+      _$UploadFileResponseImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'OriginalFileName')
+  String get originalFileName;
+  @override
+  @JsonKey(name: 'SavedFileName')
+  String get savedFileName;
+  @override
+  @JsonKey(name: 'FilePath')
+  String get filePath;
+  @override
+  @JsonKey(name: 'FileSize')
+  int get fileSize;
+  @override
+  @JsonKey(name: 'ContentType')
+  String get contentType;
+  @override
+  @JsonKey(name: 'UploadTime')
+  DateTime get uploadTime;
+  @override
+  @JsonKey(ignore: true)
+  _$$UploadFileResponseImplCopyWith<_$UploadFileResponseImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

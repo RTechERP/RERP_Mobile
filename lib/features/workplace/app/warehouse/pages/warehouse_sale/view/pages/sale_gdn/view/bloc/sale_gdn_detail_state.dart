@@ -12,12 +12,16 @@ class GdnDetailState extends BaseBlocState {
   /// Danh sách dòng chi tiết sản phẩm.
   final List<DetailGDNResponse> details;
 
+  /// Danh sách file đã upload thành công (từ API).
+  final List<UploadFileResponse> uploadedImages;
+
   const GdnDetailState({
     required super.status,
     super.message,
     this.billExportId = 0,
     this.bill,
     this.details = const [],
+    this.uploadedImages = const [],
   });
 
   factory GdnDetailState.init({required int id, BillExporResponse? bill}) {
@@ -35,5 +39,6 @@ class GdnDetailState extends BaseBlocState {
         billExportId,
         bill,
         details,
+        uploadedImages,
       ];
 }

@@ -294,3 +294,25 @@ Map<String, dynamic> _$$DetailGDNResponseImplToJson(
       'FileName': instance.fileName,
       'localImagePaths': instance.localImagePaths,
     };
+
+_$UploadFileResponseImpl _$$UploadFileResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$UploadFileResponseImpl(
+      originalFileName: json['OriginalFileName'] as String,
+      savedFileName: json['SavedFileName'] as String,
+      filePath: json['FilePath'] as String,
+      fileSize: (json['FileSize'] as num).toInt(),
+      contentType: json['ContentType'] as String,
+      uploadTime: DateTime.parse(json['UploadTime'] as String),
+    );
+
+Map<String, dynamic> _$$UploadFileResponseImplToJson(
+        _$UploadFileResponseImpl instance) =>
+    <String, dynamic>{
+      'OriginalFileName': instance.originalFileName,
+      'SavedFileName': instance.savedFileName,
+      'FilePath': instance.filePath,
+      'FileSize': instance.fileSize,
+      'ContentType': instance.contentType,
+      'UploadTime': instance.uploadTime.toIso8601String(),
+    };

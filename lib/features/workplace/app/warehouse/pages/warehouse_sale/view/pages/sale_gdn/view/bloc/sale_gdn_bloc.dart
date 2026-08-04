@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -43,6 +45,7 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
         addImages: (stt, paths) => _onAddImages(emit, stt, paths),
         removeImage: (stt, imageIndex) =>
             _onRemoveImage(emit, stt, imageIndex),
+        submitImages: () => _onSubmitImages(emit),
       );
     });
   }
@@ -429,5 +432,49 @@ BillExporResponse? _findGdnInList(String code) {
       }
     }
     emit(state.copyWith(detail: current.copyWith(details: updated)));
+  }
+
+  /// Upload tất cả ảnh local đã chọn lên server.
+  Future<void> _onSubmitImages(Emitter<SaleGdnState> emit) async {
+    final current = state.detail;
+    if (current == null) return;
+
+    // Collect all local image paths from all detail items
+    final allPaths = <String>[];
+    for (final d in current.details) {
+      allPaths.addAll(d.localImagePaths);
+    }
+
+    if (allPaths.isEmpty) return;
+
+    emit(state.copyWith(
+      detail: current.copyWith(status: BaseStateStatus.loading),
+    ));
+
+    // Convert paths to File objects
+    final files = allPaths.map((p) => File(p)).toList();
+
+    final res = await _repo.uploadBillExportFiles(files: files);
+
+    await res.fold(
+      (l) async {
+        _log.logE('❌ submitImages failed: $l');
+        emit(state.copyWith(
+          detail: current.copyWith(
+            status: BaseStateStatus.failed,
+            message: l.getErrorMessage,
+          ),
+        ));
+      },
+      (r) async {
+        _log.logI('✅ submitImages success - uploaded: ${r.length} files');
+        emit(state.copyWith(
+          detail: current.copyWith(
+            status: BaseStateStatus.success,
+            uploadedImages: r,
+          ),
+        ));
+      },
+    );
   }
 }
