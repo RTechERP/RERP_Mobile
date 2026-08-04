@@ -2985,6 +2985,14 @@ mixin _$WorkTripDetailItem {
   int? get decilineApproveSenior => throw _privateConstructorUsedError;
   @JsonKey(name: 'ReasonDecilineSenior')
   String? get reasonDecilineSenior => throw _privateConstructorUsedError;
+  @JsonKey(name: 'BookingVehicleID')
+  int? get bookingVehicleId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CustomerName')
+  String? get customerName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CompanyName')
+  String? get companyName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'SelfVehicle')
+  bool? get selfVehicle => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -3038,7 +3046,11 @@ abstract class $WorkTripDetailItemCopyWith<$Res> {
       @JsonKey(name: 'DateApprovedSenior') DateTime? dateApprovedSenior,
       @JsonKey(name: 'ProjectID') int? projectId,
       @JsonKey(name: 'DecilineApproveSenior') int? decilineApproveSenior,
-      @JsonKey(name: 'ReasonDecilineSenior') String? reasonDecilineSenior});
+      @JsonKey(name: 'ReasonDecilineSenior') String? reasonDecilineSenior,
+      @JsonKey(name: 'BookingVehicleID') int? bookingVehicleId,
+      @JsonKey(name: 'CustomerName') String? customerName,
+      @JsonKey(name: 'CompanyName') String? companyName,
+      @JsonKey(name: 'SelfVehicle') bool? selfVehicle});
 }
 
 /// @nodoc
@@ -3094,6 +3106,10 @@ class _$WorkTripDetailItemCopyWithImpl<$Res, $Val extends WorkTripDetailItem>
     Object? projectId = freezed,
     Object? decilineApproveSenior = freezed,
     Object? reasonDecilineSenior = freezed,
+    Object? bookingVehicleId = freezed,
+    Object? customerName = freezed,
+    Object? companyName = freezed,
+    Object? selfVehicle = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -3256,6 +3272,22 @@ class _$WorkTripDetailItemCopyWithImpl<$Res, $Val extends WorkTripDetailItem>
           ? _value.reasonDecilineSenior
           : reasonDecilineSenior // ignore: cast_nullable_to_non_nullable
               as String?,
+      bookingVehicleId: freezed == bookingVehicleId
+          ? _value.bookingVehicleId
+          : bookingVehicleId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      customerName: freezed == customerName
+          ? _value.customerName
+          : customerName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      companyName: freezed == companyName
+          ? _value.companyName
+          : companyName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      selfVehicle: freezed == selfVehicle
+          ? _value.selfVehicle
+          : selfVehicle // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 }
@@ -3308,7 +3340,11 @@ abstract class _$$WorkTripDetailItemImplCopyWith<$Res>
       @JsonKey(name: 'DateApprovedSenior') DateTime? dateApprovedSenior,
       @JsonKey(name: 'ProjectID') int? projectId,
       @JsonKey(name: 'DecilineApproveSenior') int? decilineApproveSenior,
-      @JsonKey(name: 'ReasonDecilineSenior') String? reasonDecilineSenior});
+      @JsonKey(name: 'ReasonDecilineSenior') String? reasonDecilineSenior,
+      @JsonKey(name: 'BookingVehicleID') int? bookingVehicleId,
+      @JsonKey(name: 'CustomerName') String? customerName,
+      @JsonKey(name: 'CompanyName') String? companyName,
+      @JsonKey(name: 'SelfVehicle') bool? selfVehicle});
 }
 
 /// @nodoc
@@ -3362,6 +3398,10 @@ class __$$WorkTripDetailItemImplCopyWithImpl<$Res>
     Object? projectId = freezed,
     Object? decilineApproveSenior = freezed,
     Object? reasonDecilineSenior = freezed,
+    Object? bookingVehicleId = freezed,
+    Object? customerName = freezed,
+    Object? companyName = freezed,
+    Object? selfVehicle = freezed,
   }) {
     return _then(_$WorkTripDetailItemImpl(
       id: null == id
@@ -3524,6 +3564,22 @@ class __$$WorkTripDetailItemImplCopyWithImpl<$Res>
           ? _value.reasonDecilineSenior
           : reasonDecilineSenior // ignore: cast_nullable_to_non_nullable
               as String?,
+      bookingVehicleId: freezed == bookingVehicleId
+          ? _value.bookingVehicleId
+          : bookingVehicleId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      customerName: freezed == customerName
+          ? _value.customerName
+          : customerName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      companyName: freezed == companyName
+          ? _value.companyName
+          : companyName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      selfVehicle: freezed == selfVehicle
+          ? _value.selfVehicle
+          : selfVehicle // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -3571,7 +3627,11 @@ class _$WorkTripDetailItemImpl implements _WorkTripDetailItem {
       @JsonKey(name: 'DateApprovedSenior') this.dateApprovedSenior,
       @JsonKey(name: 'ProjectID') this.projectId,
       @JsonKey(name: 'DecilineApproveSenior') this.decilineApproveSenior,
-      @JsonKey(name: 'ReasonDecilineSenior') this.reasonDecilineSenior});
+      @JsonKey(name: 'ReasonDecilineSenior') this.reasonDecilineSenior,
+      @JsonKey(name: 'BookingVehicleID') this.bookingVehicleId,
+      @JsonKey(name: 'CustomerName') this.customerName,
+      @JsonKey(name: 'CompanyName') this.companyName,
+      @JsonKey(name: 'SelfVehicle') this.selfVehicle});
 
   factory _$WorkTripDetailItemImpl.fromJson(Map<String, dynamic> json) =>
       _$$WorkTripDetailItemImplFromJson(json);
@@ -3696,10 +3756,22 @@ class _$WorkTripDetailItemImpl implements _WorkTripDetailItem {
   @override
   @JsonKey(name: 'ReasonDecilineSenior')
   final String? reasonDecilineSenior;
+  @override
+  @JsonKey(name: 'BookingVehicleID')
+  final int? bookingVehicleId;
+  @override
+  @JsonKey(name: 'CustomerName')
+  final String? customerName;
+  @override
+  @JsonKey(name: 'CompanyName')
+  final String? companyName;
+  @override
+  @JsonKey(name: 'SelfVehicle')
+  final bool? selfVehicle;
 
   @override
   String toString() {
-    return 'WorkTripDetailItem(id: $id, employeeId: $employeeId, isApproved: $isApproved, approvedId: $approvedId, dayBussiness: $dayBussiness, typeBusiness: $typeBusiness, location: $location, vehicleId: $vehicleId, costVehicle: $costVehicle, costBussiness: $costBussiness, totalMoney: $totalMoney, notChekIn: $notChekIn, note: $note, createdDate: $createdDate, createdBy: $createdBy, updatedDate: $updatedDate, updatedBy: $updatedBy, overnight: $overnight, costOvernight: $costOvernight, workEarly: $workEarly, costWorkEarly: $costWorkEarly, decilineApprove: $decilineApprove, approvedHr: $approvedHr, isApprovedHr: $isApprovedHr, reasonDeciline: $reasonDeciline, overnightType: $overnightType, reasonHrEdit: $reasonHrEdit, isProblem: $isProblem, reason: $reason, provinceId: $provinceId, isApprovedBgd: $isApprovedBgd, approvedBgdId: $approvedBgdId, dateApprovedBgd: $dateApprovedBgd, isDeleted: $isDeleted, isSeniorApproved: $isSeniorApproved, approvedSeniorId: $approvedSeniorId, dateApprovedSenior: $dateApprovedSenior, projectId: $projectId, decilineApproveSenior: $decilineApproveSenior, reasonDecilineSenior: $reasonDecilineSenior)';
+    return 'WorkTripDetailItem(id: $id, employeeId: $employeeId, isApproved: $isApproved, approvedId: $approvedId, dayBussiness: $dayBussiness, typeBusiness: $typeBusiness, location: $location, vehicleId: $vehicleId, costVehicle: $costVehicle, costBussiness: $costBussiness, totalMoney: $totalMoney, notChekIn: $notChekIn, note: $note, createdDate: $createdDate, createdBy: $createdBy, updatedDate: $updatedDate, updatedBy: $updatedBy, overnight: $overnight, costOvernight: $costOvernight, workEarly: $workEarly, costWorkEarly: $costWorkEarly, decilineApprove: $decilineApprove, approvedHr: $approvedHr, isApprovedHr: $isApprovedHr, reasonDeciline: $reasonDeciline, overnightType: $overnightType, reasonHrEdit: $reasonHrEdit, isProblem: $isProblem, reason: $reason, provinceId: $provinceId, isApprovedBgd: $isApprovedBgd, approvedBgdId: $approvedBgdId, dateApprovedBgd: $dateApprovedBgd, isDeleted: $isDeleted, isSeniorApproved: $isSeniorApproved, approvedSeniorId: $approvedSeniorId, dateApprovedSenior: $dateApprovedSenior, projectId: $projectId, decilineApproveSenior: $decilineApproveSenior, reasonDecilineSenior: $reasonDecilineSenior, bookingVehicleId: $bookingVehicleId, customerName: $customerName, companyName: $companyName, selfVehicle: $selfVehicle)';
   }
 
   @override
@@ -3783,7 +3855,15 @@ class _$WorkTripDetailItemImpl implements _WorkTripDetailItem {
             (identical(other.decilineApproveSenior, decilineApproveSenior) ||
                 other.decilineApproveSenior == decilineApproveSenior) &&
             (identical(other.reasonDecilineSenior, reasonDecilineSenior) ||
-                other.reasonDecilineSenior == reasonDecilineSenior));
+                other.reasonDecilineSenior == reasonDecilineSenior) &&
+            (identical(other.bookingVehicleId, bookingVehicleId) ||
+                other.bookingVehicleId == bookingVehicleId) &&
+            (identical(other.customerName, customerName) ||
+                other.customerName == customerName) &&
+            (identical(other.companyName, companyName) ||
+                other.companyName == companyName) &&
+            (identical(other.selfVehicle, selfVehicle) ||
+                other.selfVehicle == selfVehicle));
   }
 
   @JsonKey(ignore: true)
@@ -3829,7 +3909,11 @@ class _$WorkTripDetailItemImpl implements _WorkTripDetailItem {
         dateApprovedSenior,
         projectId,
         decilineApproveSenior,
-        reasonDecilineSenior
+        reasonDecilineSenior,
+        bookingVehicleId,
+        customerName,
+        companyName,
+        selfVehicle
       ]);
 
   @JsonKey(ignore: true)
@@ -3888,8 +3972,12 @@ abstract class _WorkTripDetailItem implements WorkTripDetailItem {
       @JsonKey(name: 'DateApprovedSenior') final DateTime? dateApprovedSenior,
       @JsonKey(name: 'ProjectID') final int? projectId,
       @JsonKey(name: 'DecilineApproveSenior') final int? decilineApproveSenior,
-      @JsonKey(name: 'ReasonDecilineSenior')
-      final String? reasonDecilineSenior}) = _$WorkTripDetailItemImpl;
+      @JsonKey(name: 'ReasonDecilineSenior') final String? reasonDecilineSenior,
+      @JsonKey(name: 'BookingVehicleID') final int? bookingVehicleId,
+      @JsonKey(name: 'CustomerName') final String? customerName,
+      @JsonKey(name: 'CompanyName') final String? companyName,
+      @JsonKey(name: 'SelfVehicle')
+      final bool? selfVehicle}) = _$WorkTripDetailItemImpl;
 
   factory _WorkTripDetailItem.fromJson(Map<String, dynamic> json) =
       _$WorkTripDetailItemImpl.fromJson;
@@ -4014,6 +4102,18 @@ abstract class _WorkTripDetailItem implements WorkTripDetailItem {
   @override
   @JsonKey(name: 'ReasonDecilineSenior')
   String? get reasonDecilineSenior;
+  @override
+  @JsonKey(name: 'BookingVehicleID')
+  int? get bookingVehicleId;
+  @override
+  @JsonKey(name: 'CustomerName')
+  String? get customerName;
+  @override
+  @JsonKey(name: 'CompanyName')
+  String? get companyName;
+  @override
+  @JsonKey(name: 'SelfVehicle')
+  bool? get selfVehicle;
   @override
   @JsonKey(ignore: true)
   _$$WorkTripDetailItemImplCopyWith<_$WorkTripDetailItemImpl> get copyWith =>
@@ -4162,4 +4262,611 @@ abstract class _FillApproverItem implements FillApproverItem {
   @JsonKey(ignore: true)
   _$$FillApproverItemImplCopyWith<_$FillApproverItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+BookingVehicleSummaryItem _$BookingVehicleSummaryItemFromJson(
+    Map<String, dynamic> json) {
+  return _BookingVehicleSummaryItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BookingVehicleSummaryItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'STT')
+  int? get stt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TimeNeedPresent')
+  DateTime? get timeNeedPresent => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PassengerName')
+  String? get passengerName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PassengerPhoneNumber')
+  String? get passengerPhoneNumber => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DepartureAddress')
+  String? get departureAddress => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DepartureDate')
+  DateTime? get departureDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Province')
+  String? get province => throw _privateConstructorUsedError;
+  @JsonKey(name: 'SpecificDestinationAddress')
+  String? get specificDestinationAddress => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DriverName')
+  String? get driverName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DriverPhoneNumber')
+  String? get driverPhoneNumber => throw _privateConstructorUsedError;
+  @JsonKey(name: 'LicensePlate')
+  String? get licensePlate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'NameVehicleCharge')
+  String? get nameVehicleCharge => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CompanyNameArrives')
+  String? get companyNameArrives => throw _privateConstructorUsedError;
+  @JsonKey(name: 'VehicleInformation')
+  String? get vehicleInformation => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Status')
+  int? get status => throw _privateConstructorUsedError;
+  @JsonKey(name: 'StatusText')
+  String? get statusText => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Category')
+  int? get category => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CategoryText')
+  String? get categoryText => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BookingVehicleSummaryItemCopyWith<BookingVehicleSummaryItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BookingVehicleSummaryItemCopyWith<$Res> {
+  factory $BookingVehicleSummaryItemCopyWith(BookingVehicleSummaryItem value,
+          $Res Function(BookingVehicleSummaryItem) then) =
+      _$BookingVehicleSummaryItemCopyWithImpl<$Res, BookingVehicleSummaryItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'TimeNeedPresent') DateTime? timeNeedPresent,
+      @JsonKey(name: 'PassengerName') String? passengerName,
+      @JsonKey(name: 'PassengerPhoneNumber') String? passengerPhoneNumber,
+      @JsonKey(name: 'DepartureAddress') String? departureAddress,
+      @JsonKey(name: 'DepartureDate') DateTime? departureDate,
+      @JsonKey(name: 'Province') String? province,
+      @JsonKey(name: 'SpecificDestinationAddress')
+      String? specificDestinationAddress,
+      @JsonKey(name: 'DriverName') String? driverName,
+      @JsonKey(name: 'DriverPhoneNumber') String? driverPhoneNumber,
+      @JsonKey(name: 'LicensePlate') String? licensePlate,
+      @JsonKey(name: 'NameVehicleCharge') String? nameVehicleCharge,
+      @JsonKey(name: 'CompanyNameArrives') String? companyNameArrives,
+      @JsonKey(name: 'VehicleInformation') String? vehicleInformation,
+      @JsonKey(name: 'Status') int? status,
+      @JsonKey(name: 'StatusText') String? statusText,
+      @JsonKey(name: 'Category') int? category,
+      @JsonKey(name: 'CategoryText') String? categoryText});
+}
+
+/// @nodoc
+class _$BookingVehicleSummaryItemCopyWithImpl<$Res,
+        $Val extends BookingVehicleSummaryItem>
+    implements $BookingVehicleSummaryItemCopyWith<$Res> {
+  _$BookingVehicleSummaryItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? stt = freezed,
+    Object? timeNeedPresent = freezed,
+    Object? passengerName = freezed,
+    Object? passengerPhoneNumber = freezed,
+    Object? departureAddress = freezed,
+    Object? departureDate = freezed,
+    Object? province = freezed,
+    Object? specificDestinationAddress = freezed,
+    Object? driverName = freezed,
+    Object? driverPhoneNumber = freezed,
+    Object? licensePlate = freezed,
+    Object? nameVehicleCharge = freezed,
+    Object? companyNameArrives = freezed,
+    Object? vehicleInformation = freezed,
+    Object? status = freezed,
+    Object? statusText = freezed,
+    Object? category = freezed,
+    Object? categoryText = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      timeNeedPresent: freezed == timeNeedPresent
+          ? _value.timeNeedPresent
+          : timeNeedPresent // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      passengerName: freezed == passengerName
+          ? _value.passengerName
+          : passengerName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      passengerPhoneNumber: freezed == passengerPhoneNumber
+          ? _value.passengerPhoneNumber
+          : passengerPhoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departureAddress: freezed == departureAddress
+          ? _value.departureAddress
+          : departureAddress // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departureDate: freezed == departureDate
+          ? _value.departureDate
+          : departureDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      province: freezed == province
+          ? _value.province
+          : province // ignore: cast_nullable_to_non_nullable
+              as String?,
+      specificDestinationAddress: freezed == specificDestinationAddress
+          ? _value.specificDestinationAddress
+          : specificDestinationAddress // ignore: cast_nullable_to_non_nullable
+              as String?,
+      driverName: freezed == driverName
+          ? _value.driverName
+          : driverName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      driverPhoneNumber: freezed == driverPhoneNumber
+          ? _value.driverPhoneNumber
+          : driverPhoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      licensePlate: freezed == licensePlate
+          ? _value.licensePlate
+          : licensePlate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nameVehicleCharge: freezed == nameVehicleCharge
+          ? _value.nameVehicleCharge
+          : nameVehicleCharge // ignore: cast_nullable_to_non_nullable
+              as String?,
+      companyNameArrives: freezed == companyNameArrives
+          ? _value.companyNameArrives
+          : companyNameArrives // ignore: cast_nullable_to_non_nullable
+              as String?,
+      vehicleInformation: freezed == vehicleInformation
+          ? _value.vehicleInformation
+          : vehicleInformation // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
+      statusText: freezed == statusText
+          ? _value.statusText
+          : statusText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      category: freezed == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as int?,
+      categoryText: freezed == categoryText
+          ? _value.categoryText
+          : categoryText // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$BookingVehicleSummaryItemImplCopyWith<$Res>
+    implements $BookingVehicleSummaryItemCopyWith<$Res> {
+  factory _$$BookingVehicleSummaryItemImplCopyWith(
+          _$BookingVehicleSummaryItemImpl value,
+          $Res Function(_$BookingVehicleSummaryItemImpl) then) =
+      __$$BookingVehicleSummaryItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'TimeNeedPresent') DateTime? timeNeedPresent,
+      @JsonKey(name: 'PassengerName') String? passengerName,
+      @JsonKey(name: 'PassengerPhoneNumber') String? passengerPhoneNumber,
+      @JsonKey(name: 'DepartureAddress') String? departureAddress,
+      @JsonKey(name: 'DepartureDate') DateTime? departureDate,
+      @JsonKey(name: 'Province') String? province,
+      @JsonKey(name: 'SpecificDestinationAddress')
+      String? specificDestinationAddress,
+      @JsonKey(name: 'DriverName') String? driverName,
+      @JsonKey(name: 'DriverPhoneNumber') String? driverPhoneNumber,
+      @JsonKey(name: 'LicensePlate') String? licensePlate,
+      @JsonKey(name: 'NameVehicleCharge') String? nameVehicleCharge,
+      @JsonKey(name: 'CompanyNameArrives') String? companyNameArrives,
+      @JsonKey(name: 'VehicleInformation') String? vehicleInformation,
+      @JsonKey(name: 'Status') int? status,
+      @JsonKey(name: 'StatusText') String? statusText,
+      @JsonKey(name: 'Category') int? category,
+      @JsonKey(name: 'CategoryText') String? categoryText});
+}
+
+/// @nodoc
+class __$$BookingVehicleSummaryItemImplCopyWithImpl<$Res>
+    extends _$BookingVehicleSummaryItemCopyWithImpl<$Res,
+        _$BookingVehicleSummaryItemImpl>
+    implements _$$BookingVehicleSummaryItemImplCopyWith<$Res> {
+  __$$BookingVehicleSummaryItemImplCopyWithImpl(
+      _$BookingVehicleSummaryItemImpl _value,
+      $Res Function(_$BookingVehicleSummaryItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? stt = freezed,
+    Object? timeNeedPresent = freezed,
+    Object? passengerName = freezed,
+    Object? passengerPhoneNumber = freezed,
+    Object? departureAddress = freezed,
+    Object? departureDate = freezed,
+    Object? province = freezed,
+    Object? specificDestinationAddress = freezed,
+    Object? driverName = freezed,
+    Object? driverPhoneNumber = freezed,
+    Object? licensePlate = freezed,
+    Object? nameVehicleCharge = freezed,
+    Object? companyNameArrives = freezed,
+    Object? vehicleInformation = freezed,
+    Object? status = freezed,
+    Object? statusText = freezed,
+    Object? category = freezed,
+    Object? categoryText = freezed,
+  }) {
+    return _then(_$BookingVehicleSummaryItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      timeNeedPresent: freezed == timeNeedPresent
+          ? _value.timeNeedPresent
+          : timeNeedPresent // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      passengerName: freezed == passengerName
+          ? _value.passengerName
+          : passengerName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      passengerPhoneNumber: freezed == passengerPhoneNumber
+          ? _value.passengerPhoneNumber
+          : passengerPhoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departureAddress: freezed == departureAddress
+          ? _value.departureAddress
+          : departureAddress // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departureDate: freezed == departureDate
+          ? _value.departureDate
+          : departureDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      province: freezed == province
+          ? _value.province
+          : province // ignore: cast_nullable_to_non_nullable
+              as String?,
+      specificDestinationAddress: freezed == specificDestinationAddress
+          ? _value.specificDestinationAddress
+          : specificDestinationAddress // ignore: cast_nullable_to_non_nullable
+              as String?,
+      driverName: freezed == driverName
+          ? _value.driverName
+          : driverName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      driverPhoneNumber: freezed == driverPhoneNumber
+          ? _value.driverPhoneNumber
+          : driverPhoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      licensePlate: freezed == licensePlate
+          ? _value.licensePlate
+          : licensePlate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nameVehicleCharge: freezed == nameVehicleCharge
+          ? _value.nameVehicleCharge
+          : nameVehicleCharge // ignore: cast_nullable_to_non_nullable
+              as String?,
+      companyNameArrives: freezed == companyNameArrives
+          ? _value.companyNameArrives
+          : companyNameArrives // ignore: cast_nullable_to_non_nullable
+              as String?,
+      vehicleInformation: freezed == vehicleInformation
+          ? _value.vehicleInformation
+          : vehicleInformation // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
+      statusText: freezed == statusText
+          ? _value.statusText
+          : statusText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      category: freezed == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as int?,
+      categoryText: freezed == categoryText
+          ? _value.categoryText
+          : categoryText // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$BookingVehicleSummaryItemImpl implements _BookingVehicleSummaryItem {
+  const _$BookingVehicleSummaryItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'STT') this.stt,
+      @JsonKey(name: 'TimeNeedPresent') this.timeNeedPresent,
+      @JsonKey(name: 'PassengerName') this.passengerName,
+      @JsonKey(name: 'PassengerPhoneNumber') this.passengerPhoneNumber,
+      @JsonKey(name: 'DepartureAddress') this.departureAddress,
+      @JsonKey(name: 'DepartureDate') this.departureDate,
+      @JsonKey(name: 'Province') this.province,
+      @JsonKey(name: 'SpecificDestinationAddress')
+      this.specificDestinationAddress,
+      @JsonKey(name: 'DriverName') this.driverName,
+      @JsonKey(name: 'DriverPhoneNumber') this.driverPhoneNumber,
+      @JsonKey(name: 'LicensePlate') this.licensePlate,
+      @JsonKey(name: 'NameVehicleCharge') this.nameVehicleCharge,
+      @JsonKey(name: 'CompanyNameArrives') this.companyNameArrives,
+      @JsonKey(name: 'VehicleInformation') this.vehicleInformation,
+      @JsonKey(name: 'Status') this.status,
+      @JsonKey(name: 'StatusText') this.statusText,
+      @JsonKey(name: 'Category') this.category,
+      @JsonKey(name: 'CategoryText') this.categoryText});
+
+  factory _$BookingVehicleSummaryItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BookingVehicleSummaryItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'STT')
+  final int? stt;
+  @override
+  @JsonKey(name: 'TimeNeedPresent')
+  final DateTime? timeNeedPresent;
+  @override
+  @JsonKey(name: 'PassengerName')
+  final String? passengerName;
+  @override
+  @JsonKey(name: 'PassengerPhoneNumber')
+  final String? passengerPhoneNumber;
+  @override
+  @JsonKey(name: 'DepartureAddress')
+  final String? departureAddress;
+  @override
+  @JsonKey(name: 'DepartureDate')
+  final DateTime? departureDate;
+  @override
+  @JsonKey(name: 'Province')
+  final String? province;
+  @override
+  @JsonKey(name: 'SpecificDestinationAddress')
+  final String? specificDestinationAddress;
+  @override
+  @JsonKey(name: 'DriverName')
+  final String? driverName;
+  @override
+  @JsonKey(name: 'DriverPhoneNumber')
+  final String? driverPhoneNumber;
+  @override
+  @JsonKey(name: 'LicensePlate')
+  final String? licensePlate;
+  @override
+  @JsonKey(name: 'NameVehicleCharge')
+  final String? nameVehicleCharge;
+  @override
+  @JsonKey(name: 'CompanyNameArrives')
+  final String? companyNameArrives;
+  @override
+  @JsonKey(name: 'VehicleInformation')
+  final String? vehicleInformation;
+  @override
+  @JsonKey(name: 'Status')
+  final int? status;
+  @override
+  @JsonKey(name: 'StatusText')
+  final String? statusText;
+  @override
+  @JsonKey(name: 'Category')
+  final int? category;
+  @override
+  @JsonKey(name: 'CategoryText')
+  final String? categoryText;
+
+  @override
+  String toString() {
+    return 'BookingVehicleSummaryItem(id: $id, stt: $stt, timeNeedPresent: $timeNeedPresent, passengerName: $passengerName, passengerPhoneNumber: $passengerPhoneNumber, departureAddress: $departureAddress, departureDate: $departureDate, province: $province, specificDestinationAddress: $specificDestinationAddress, driverName: $driverName, driverPhoneNumber: $driverPhoneNumber, licensePlate: $licensePlate, nameVehicleCharge: $nameVehicleCharge, companyNameArrives: $companyNameArrives, vehicleInformation: $vehicleInformation, status: $status, statusText: $statusText, category: $category, categoryText: $categoryText)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BookingVehicleSummaryItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.stt, stt) || other.stt == stt) &&
+            (identical(other.timeNeedPresent, timeNeedPresent) ||
+                other.timeNeedPresent == timeNeedPresent) &&
+            (identical(other.passengerName, passengerName) ||
+                other.passengerName == passengerName) &&
+            (identical(other.passengerPhoneNumber, passengerPhoneNumber) ||
+                other.passengerPhoneNumber == passengerPhoneNumber) &&
+            (identical(other.departureAddress, departureAddress) ||
+                other.departureAddress == departureAddress) &&
+            (identical(other.departureDate, departureDate) ||
+                other.departureDate == departureDate) &&
+            (identical(other.province, province) ||
+                other.province == province) &&
+            (identical(other.specificDestinationAddress,
+                    specificDestinationAddress) ||
+                other.specificDestinationAddress ==
+                    specificDestinationAddress) &&
+            (identical(other.driverName, driverName) ||
+                other.driverName == driverName) &&
+            (identical(other.driverPhoneNumber, driverPhoneNumber) ||
+                other.driverPhoneNumber == driverPhoneNumber) &&
+            (identical(other.licensePlate, licensePlate) ||
+                other.licensePlate == licensePlate) &&
+            (identical(other.nameVehicleCharge, nameVehicleCharge) ||
+                other.nameVehicleCharge == nameVehicleCharge) &&
+            (identical(other.companyNameArrives, companyNameArrives) ||
+                other.companyNameArrives == companyNameArrives) &&
+            (identical(other.vehicleInformation, vehicleInformation) ||
+                other.vehicleInformation == vehicleInformation) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.statusText, statusText) ||
+                other.statusText == statusText) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
+            (identical(other.categoryText, categoryText) ||
+                other.categoryText == categoryText));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        stt,
+        timeNeedPresent,
+        passengerName,
+        passengerPhoneNumber,
+        departureAddress,
+        departureDate,
+        province,
+        specificDestinationAddress,
+        driverName,
+        driverPhoneNumber,
+        licensePlate,
+        nameVehicleCharge,
+        companyNameArrives,
+        vehicleInformation,
+        status,
+        statusText,
+        category,
+        categoryText
+      ]);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BookingVehicleSummaryItemImplCopyWith<_$BookingVehicleSummaryItemImpl>
+      get copyWith => __$$BookingVehicleSummaryItemImplCopyWithImpl<
+          _$BookingVehicleSummaryItemImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BookingVehicleSummaryItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BookingVehicleSummaryItem implements BookingVehicleSummaryItem {
+  const factory _BookingVehicleSummaryItem(
+      {@JsonKey(name: 'ID') final int? id,
+      @JsonKey(name: 'STT') final int? stt,
+      @JsonKey(name: 'TimeNeedPresent') final DateTime? timeNeedPresent,
+      @JsonKey(name: 'PassengerName') final String? passengerName,
+      @JsonKey(name: 'PassengerPhoneNumber') final String? passengerPhoneNumber,
+      @JsonKey(name: 'DepartureAddress') final String? departureAddress,
+      @JsonKey(name: 'DepartureDate') final DateTime? departureDate,
+      @JsonKey(name: 'Province') final String? province,
+      @JsonKey(name: 'SpecificDestinationAddress')
+      final String? specificDestinationAddress,
+      @JsonKey(name: 'DriverName') final String? driverName,
+      @JsonKey(name: 'DriverPhoneNumber') final String? driverPhoneNumber,
+      @JsonKey(name: 'LicensePlate') final String? licensePlate,
+      @JsonKey(name: 'NameVehicleCharge') final String? nameVehicleCharge,
+      @JsonKey(name: 'CompanyNameArrives') final String? companyNameArrives,
+      @JsonKey(name: 'VehicleInformation') final String? vehicleInformation,
+      @JsonKey(name: 'Status') final int? status,
+      @JsonKey(name: 'StatusText') final String? statusText,
+      @JsonKey(name: 'Category') final int? category,
+      @JsonKey(name: 'CategoryText')
+      final String? categoryText}) = _$BookingVehicleSummaryItemImpl;
+
+  factory _BookingVehicleSummaryItem.fromJson(Map<String, dynamic> json) =
+      _$BookingVehicleSummaryItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'STT')
+  int? get stt;
+  @override
+  @JsonKey(name: 'TimeNeedPresent')
+  DateTime? get timeNeedPresent;
+  @override
+  @JsonKey(name: 'PassengerName')
+  String? get passengerName;
+  @override
+  @JsonKey(name: 'PassengerPhoneNumber')
+  String? get passengerPhoneNumber;
+  @override
+  @JsonKey(name: 'DepartureAddress')
+  String? get departureAddress;
+  @override
+  @JsonKey(name: 'DepartureDate')
+  DateTime? get departureDate;
+  @override
+  @JsonKey(name: 'Province')
+  String? get province;
+  @override
+  @JsonKey(name: 'SpecificDestinationAddress')
+  String? get specificDestinationAddress;
+  @override
+  @JsonKey(name: 'DriverName')
+  String? get driverName;
+  @override
+  @JsonKey(name: 'DriverPhoneNumber')
+  String? get driverPhoneNumber;
+  @override
+  @JsonKey(name: 'LicensePlate')
+  String? get licensePlate;
+  @override
+  @JsonKey(name: 'NameVehicleCharge')
+  String? get nameVehicleCharge;
+  @override
+  @JsonKey(name: 'CompanyNameArrives')
+  String? get companyNameArrives;
+  @override
+  @JsonKey(name: 'VehicleInformation')
+  String? get vehicleInformation;
+  @override
+  @JsonKey(name: 'Status')
+  int? get status;
+  @override
+  @JsonKey(name: 'StatusText')
+  String? get statusText;
+  @override
+  @JsonKey(name: 'Category')
+  int? get category;
+  @override
+  @JsonKey(name: 'CategoryText')
+  String? get categoryText;
+  @override
+  @JsonKey(ignore: true)
+  _$$BookingVehicleSummaryItemImplCopyWith<_$BookingVehicleSummaryItemImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

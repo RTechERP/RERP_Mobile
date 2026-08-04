@@ -21,6 +21,9 @@ abstract class _$WorkTripStateCWProxy {
 
   WorkTripState workTripProjects(List<WorkTripProject> workTripProjects);
 
+  WorkTripState bookingVehicleList(
+      List<BookingVehicleSummaryItem> bookingVehicleList);
+
   WorkTripState isSubmitting(bool isSubmitting);
 
   WorkTripState submitSuccess(bool submitSuccess);
@@ -54,6 +57,8 @@ abstract class _$WorkTripStateCWProxy {
 
   WorkTripState approveId(FillApproverItem? approveId);
 
+  WorkTripState currentEmployee(User? currentEmployee);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WorkTripState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -68,6 +73,7 @@ abstract class _$WorkTripStateCWProxy {
     List<WorkTripTypeItem>? workTripTypes,
     List<WorkTripTypeVehicle>? workTripVehicles,
     List<WorkTripProject>? workTripProjects,
+    List<BookingVehicleSummaryItem>? bookingVehicleList,
     bool? isSubmitting,
     bool? submitSuccess,
     bool? deleteSuccess,
@@ -84,6 +90,7 @@ abstract class _$WorkTripStateCWProxy {
     WorkTripDetailItem? copyData,
     bool? isFetchingCopy,
     FillApproverItem? approveId,
+    User? currentEmployee,
   });
 }
 
@@ -118,6 +125,11 @@ class _$WorkTripStateCWProxyImpl implements _$WorkTripStateCWProxy {
   @override
   WorkTripState workTripProjects(List<WorkTripProject> workTripProjects) =>
       this(workTripProjects: workTripProjects);
+
+  @override
+  WorkTripState bookingVehicleList(
+          List<BookingVehicleSummaryItem> bookingVehicleList) =>
+      this(bookingVehicleList: bookingVehicleList);
 
   @override
   WorkTripState isSubmitting(bool isSubmitting) =>
@@ -178,6 +190,10 @@ class _$WorkTripStateCWProxyImpl implements _$WorkTripStateCWProxy {
       this(approveId: approveId);
 
   @override
+  WorkTripState currentEmployee(User? currentEmployee) =>
+      this(currentEmployee: currentEmployee);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WorkTripState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -193,6 +209,7 @@ class _$WorkTripStateCWProxyImpl implements _$WorkTripStateCWProxy {
     Object? workTripTypes = const $CopyWithPlaceholder(),
     Object? workTripVehicles = const $CopyWithPlaceholder(),
     Object? workTripProjects = const $CopyWithPlaceholder(),
+    Object? bookingVehicleList = const $CopyWithPlaceholder(),
     Object? isSubmitting = const $CopyWithPlaceholder(),
     Object? submitSuccess = const $CopyWithPlaceholder(),
     Object? deleteSuccess = const $CopyWithPlaceholder(),
@@ -209,6 +226,7 @@ class _$WorkTripStateCWProxyImpl implements _$WorkTripStateCWProxy {
     Object? copyData = const $CopyWithPlaceholder(),
     Object? isFetchingCopy = const $CopyWithPlaceholder(),
     Object? approveId = const $CopyWithPlaceholder(),
+    Object? currentEmployee = const $CopyWithPlaceholder(),
   }) {
     return WorkTripState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -242,6 +260,11 @@ class _$WorkTripStateCWProxyImpl implements _$WorkTripStateCWProxy {
           ? _value.workTripProjects
           // ignore: cast_nullable_to_non_nullable
           : workTripProjects as List<WorkTripProject>,
+      bookingVehicleList: bookingVehicleList == const $CopyWithPlaceholder() ||
+              bookingVehicleList == null
+          ? _value.bookingVehicleList
+          // ignore: cast_nullable_to_non_nullable
+          : bookingVehicleList as List<BookingVehicleSummaryItem>,
       isSubmitting:
           isSubmitting == const $CopyWithPlaceholder() || isSubmitting == null
               ? _value.isSubmitting
@@ -315,6 +338,10 @@ class _$WorkTripStateCWProxyImpl implements _$WorkTripStateCWProxy {
           ? _value.approveId
           // ignore: cast_nullable_to_non_nullable
           : approveId as FillApproverItem?,
+      currentEmployee: currentEmployee == const $CopyWithPlaceholder()
+          ? _value.currentEmployee
+          // ignore: cast_nullable_to_non_nullable
+          : currentEmployee as User?,
     );
   }
 }

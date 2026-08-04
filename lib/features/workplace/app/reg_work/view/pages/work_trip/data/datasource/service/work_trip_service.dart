@@ -138,4 +138,25 @@ class WorkTripService extends DioBaseApiService {
       ),
     );
   }
+
+  Future<BaseData<List<BookingVehicleSummaryItem>>> getBookingVehicleList() {
+    return get<BaseData<List<BookingVehicleSummaryItem>>>(
+      ApiEndPoint.getBookingVehicle,
+      parser: (json) => BaseData<List<BookingVehicleSummaryItem>>.fromJson(
+        json,
+            (data) {
+          if (data is List) {
+            return data
+                .map((e) => BookingVehicleSummaryItem.fromJson(e as Map<String, dynamic>))
+                .toList();
+          }
+          final list =
+              (data as Map<String, dynamic>?)?['data'] as List? ?? [];
+          return list
+              .map((e) => BookingVehicleSummaryItem.fromJson(e as Map<String, dynamic>))
+              .toList();
+        },
+      ),
+    );
+  }
 }

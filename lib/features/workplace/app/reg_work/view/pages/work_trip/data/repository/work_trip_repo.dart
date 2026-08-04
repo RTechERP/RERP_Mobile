@@ -26,4 +26,6 @@ abstract class WorkTripRepo {
     required int employeeID,
     required String tableName,
   });
+
+  Future<Either<BaseError, List<BookingVehicleSummaryItem>>> getBookingVehicleList();
 }

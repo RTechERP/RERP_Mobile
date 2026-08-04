@@ -147,4 +147,20 @@ class WorkTripRepoImpl implements WorkTripRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, List<BookingVehicleSummaryItem>>>
+      getBookingVehicleList() async {
+    try {
+      final res = await _service.getBookingVehicleList();
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

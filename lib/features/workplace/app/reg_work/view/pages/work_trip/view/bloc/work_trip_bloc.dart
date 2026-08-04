@@ -7,6 +7,7 @@ import '../../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../../common/logger/index.dart';
 import '../../../../../../../../../common/utils/datetime_utils.dart';
+import '../../../../../../../../auth/data/datasource/models/user_model.dart';
 import '../../../../../../../../auth/data/repository/auth_repo.dart';
 import '../../data/datasource/models/work_trip_model.dart';
 import '../../data/repository/work_trip_repo.dart';
@@ -47,6 +48,7 @@ class WorkTripBloc extends BaseBloc<WorkTripEvent, WorkTripState> {
         fetchCopy: (id) => _onFetchCopy(emit, id: id),
         clearCopyData: () async =>
             emit(state.copyWith(copyData: null, isFetchingCopy: false)),
+        loadBookingVehicleList: () => _onLoadBookingVehicleList(emit),
       );
     });
   }
@@ -130,6 +132,7 @@ DateTime _normalizeToMinute(DateTime dt) =>
               dateEnd: rangeEnd,
               employeeId: user?.employeeId,
               loginName: user?.loginName,
+              currentEmployee: user,
             ));
           },
         );
@@ -292,6 +295,7 @@ DateTime _normalizeToMinute(DateTime dt) =>
         employeeId: user.employeeId,
         loginName: user.loginName,
         approveId: fillApprover,
+        currentEmployee: user,
       ));
     } finally {
       _isInitAddInFlight = false;
@@ -372,7 +376,7 @@ DateTime _normalizeToMinute(DateTime dt) =>
       final costWorkEarly = data.workEarly ? 50000.0 : 0.0;
       final costOvernight = data.overnightType > 0 ? 35000.0 : 0.0;
       final overnight = data.overnightType > 0;
-      final costVehicle = data.costVehicle;
+      final costVehicle = data.selfVehicle ? 0.0 : data.costVehicle;
       final totalMoney =
           data.costBussiness + costVehicle + costWorkEarly + costOvernight;
 
@@ -406,6 +410,10 @@ DateTime _normalizeToMinute(DateTime dt) =>
         'OvernightType': data.overnightType,
         'IsProblem': data.isProblem,
         'Reason': data.reason.isEmpty ? ' ' : data.reason,
+        'BookingVehicleID': data.bookingVehicleId ?? 0,
+        'CustomerName': data.customerName ?? '',
+        'CompanyName': data.companyName ?? '',
+        'SelfVehicle': data.selfVehicle,
       };
 
       final payload = <String, dynamic>{
@@ -733,6 +741,23 @@ DateTime _normalizeToMinute(DateTime dt) =>
         status: BaseStateStatus.failed,
         message: 'Không tải được chi tiết đơn',
       ));
+    }
+  }
+
+  Future<void> _onLoadBookingVehicleList(Emitter<WorkTripState> emit) async {
+    try {
+      final res = await _workTripRepo.getBookingVehicleList();
+      res.fold(
+        (l) {
+          _log.logE('❌ WorkTripBloc loadBookingVehicleList failed: $l');
+        },
+        (list) {
+          _log.logI('✅ WorkTripBloc loadBookingVehicleList success: ${list.length} items');
+          emit(state.copyWith(bookingVehicleList: list));
+        },
+      );
+    } catch (e) {
+      _log.logE('❌ WorkTripBloc loadBookingVehicleList exception: $e');
     }
   }
 }

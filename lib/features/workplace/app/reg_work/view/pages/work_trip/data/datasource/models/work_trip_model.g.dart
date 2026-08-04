@@ -311,6 +311,10 @@ _$WorkTripDetailItemImpl _$$WorkTripDetailItemImplFromJson(
       projectId: (json['ProjectID'] as num?)?.toInt(),
       decilineApproveSenior: (json['DecilineApproveSenior'] as num?)?.toInt(),
       reasonDecilineSenior: json['ReasonDecilineSenior'] as String?,
+      bookingVehicleId: (json['BookingVehicleID'] as num?)?.toInt(),
+      customerName: json['CustomerName'] as String?,
+      companyName: json['CompanyName'] as String?,
+      selfVehicle: json['SelfVehicle'] as bool?,
     );
 
 Map<String, dynamic> _$$WorkTripDetailItemImplToJson(
@@ -356,6 +360,10 @@ Map<String, dynamic> _$$WorkTripDetailItemImplToJson(
       'ProjectID': instance.projectId,
       'DecilineApproveSenior': instance.decilineApproveSenior,
       'ReasonDecilineSenior': instance.reasonDecilineSenior,
+      'BookingVehicleID': instance.bookingVehicleId,
+      'CustomerName': instance.customerName,
+      'CompanyName': instance.companyName,
+      'SelfVehicle': instance.selfVehicle,
     };
 
 _$FillApproverItemImpl _$$FillApproverItemImplFromJson(
@@ -368,4 +376,56 @@ Map<String, dynamic> _$$FillApproverItemImplToJson(
         _$FillApproverItemImpl instance) =>
     <String, dynamic>{
       'ApproveID': instance.approveId,
+    };
+
+_$BookingVehicleSummaryItemImpl _$$BookingVehicleSummaryItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$BookingVehicleSummaryItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      stt: (json['STT'] as num?)?.toInt(),
+      timeNeedPresent: json['TimeNeedPresent'] == null
+          ? null
+          : DateTime.parse(json['TimeNeedPresent'] as String),
+      passengerName: json['PassengerName'] as String?,
+      passengerPhoneNumber: json['PassengerPhoneNumber'] as String?,
+      departureAddress: json['DepartureAddress'] as String?,
+      departureDate: json['DepartureDate'] == null
+          ? null
+          : DateTime.parse(json['DepartureDate'] as String),
+      province: json['Province'] as String?,
+      specificDestinationAddress: json['SpecificDestinationAddress'] as String?,
+      driverName: json['DriverName'] as String?,
+      driverPhoneNumber: json['DriverPhoneNumber'] as String?,
+      licensePlate: json['LicensePlate'] as String?,
+      nameVehicleCharge: json['NameVehicleCharge'] as String?,
+      companyNameArrives: json['CompanyNameArrives'] as String?,
+      vehicleInformation: json['VehicleInformation'] as String?,
+      status: (json['Status'] as num?)?.toInt(),
+      statusText: json['StatusText'] as String?,
+      category: (json['Category'] as num?)?.toInt(),
+      categoryText: json['CategoryText'] as String?,
+    );
+
+Map<String, dynamic> _$$BookingVehicleSummaryItemImplToJson(
+        _$BookingVehicleSummaryItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'STT': instance.stt,
+      'TimeNeedPresent': instance.timeNeedPresent?.toIso8601String(),
+      'PassengerName': instance.passengerName,
+      'PassengerPhoneNumber': instance.passengerPhoneNumber,
+      'DepartureAddress': instance.departureAddress,
+      'DepartureDate': instance.departureDate?.toIso8601String(),
+      'Province': instance.province,
+      'SpecificDestinationAddress': instance.specificDestinationAddress,
+      'DriverName': instance.driverName,
+      'DriverPhoneNumber': instance.driverPhoneNumber,
+      'LicensePlate': instance.licensePlate,
+      'NameVehicleCharge': instance.nameVehicleCharge,
+      'CompanyNameArrives': instance.companyNameArrives,
+      'VehicleInformation': instance.vehicleInformation,
+      'Status': instance.status,
+      'StatusText': instance.statusText,
+      'Category': instance.category,
+      'CategoryText': instance.categoryText,
     };

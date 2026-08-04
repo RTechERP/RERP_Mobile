@@ -183,6 +183,10 @@ class WorkTripDetailItem with _$WorkTripDetailItem {
     @JsonKey(name: 'ProjectID') int? projectId,
     @JsonKey(name: 'DecilineApproveSenior') int? decilineApproveSenior,
     @JsonKey(name: 'ReasonDecilineSenior') String? reasonDecilineSenior,
+    @JsonKey(name: 'BookingVehicleID') int? bookingVehicleId,
+    @JsonKey(name: 'CustomerName') String? customerName,
+    @JsonKey(name: 'CompanyName') String? companyName,
+    @JsonKey(name: 'SelfVehicle') bool? selfVehicle,
   }) = _WorkTripDetailItem;
 
   factory WorkTripDetailItem.fromJson(Map<String, dynamic> json) =>
@@ -197,4 +201,33 @@ class FillApproverItem with _$FillApproverItem {
 
   factory FillApproverItem.fromJson(Map<String, dynamic> json) =>
       _$FillApproverItemFromJson(json);
+}
+
+/// Summary model for booking vehicle selection in work trip form.
+@freezed
+class BookingVehicleSummaryItem with _$BookingVehicleSummaryItem {
+  const factory BookingVehicleSummaryItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'STT') int? stt,
+    @JsonKey(name: 'TimeNeedPresent') DateTime? timeNeedPresent,
+    @JsonKey(name: 'PassengerName') String? passengerName,
+    @JsonKey(name: 'PassengerPhoneNumber') String? passengerPhoneNumber,
+    @JsonKey(name: 'DepartureAddress') String? departureAddress,
+    @JsonKey(name: 'DepartureDate') DateTime? departureDate,
+    @JsonKey(name: 'Province') String? province,
+    @JsonKey(name: 'SpecificDestinationAddress') String? specificDestinationAddress,
+    @JsonKey(name: 'DriverName') String? driverName,
+    @JsonKey(name: 'DriverPhoneNumber') String? driverPhoneNumber,
+    @JsonKey(name: 'LicensePlate') String? licensePlate,
+    @JsonKey(name: 'NameVehicleCharge') String? nameVehicleCharge,
+    @JsonKey(name: 'CompanyNameArrives') String? companyNameArrives,
+    @JsonKey(name: 'VehicleInformation') String? vehicleInformation,
+    @JsonKey(name: 'Status') int? status,
+    @JsonKey(name: 'StatusText') String? statusText,
+    @JsonKey(name: 'Category') int? category,
+    @JsonKey(name: 'CategoryText') String? categoryText,
+  }) = _BookingVehicleSummaryItem;
+
+  factory BookingVehicleSummaryItem.fromJson(Map<String, dynamic> json) =>
+      _$BookingVehicleSummaryItemFromJson(json);
 }
