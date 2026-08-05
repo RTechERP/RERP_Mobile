@@ -360,9 +360,10 @@ BillExporResponse? _findGdnInList(String code) {
 
     emit(state.copyWith(detail: GdnDetailState.init(id: id, bill: bill)));
 
-    final res = await _repo.getViewExportDetail(id: id);
+    // Bước 1: Gọi API view trước -> ViewGDNDetailResponse
+    final viewRes = await _repo.getViewExportDetail(id: id);
 
-    await res.fold(
+    await viewRes.fold(
       (l) async {
         _log.logE('❌ getViewExportDetail failed: $l');
         final current = state.detail;
@@ -374,16 +375,29 @@ BillExporResponse? _findGdnInList(String code) {
           ),
         ));
       },
-      (r) async {
-        _log.logI('✅ getViewExportDetail success - total: ${r.length}');
+      (viewData) async {
+        _log.logI('✅ getViewExportDetail success - total: ${viewData.length}');
         final current = state.detail;
         if (current == null) return;
-        emit(state.copyWith(
-          detail: current.copyWith(
-            status: BaseStateStatus.success,
-            details: r,
-          ),
-        ));
+
+        // Bước 2: Sau đó gọi API detail -> DetailGDNResponse
+        final detailRes = await _repo.getBillExportDetail(id: id);
+
+        await detailRes.fold(
+          (l) async {
+            _log.logE('❌ getBillExportDetail failed: $l');
+            // Vẫn hiển thị view data, chỉ log lỗi
+          },
+          (detailData) async {
+            _log.logI('✅ getBillExportDetail success - total: ${detailData.length}');
+            emit(state.copyWith(
+              detail: current.copyWith(
+                status: BaseStateStatus.success,
+                details: viewData, // TODO: merge viewData với detailData tuỳ logic
+              ),
+            ));
+          },
+        );
       },
     );
   }
@@ -398,19 +412,12 @@ BillExporResponse? _findGdnInList(String code) {
     final current = state.detail;
     if (current == null) return;
 
-    final updated = <DetailGDNResponse>[];
-    for (final d in current.details) {
-      if (d.stt == stt) {
-        updated.add(
-          d.copyWith(
-            localImagePaths: [...d.localImagePaths, ...imagePaths],
-          ),
-        );
-      } else {
-        updated.add(d);
-      }
-    }
-    emit(state.copyWith(detail: current.copyWith(details: updated)));
+    final existing = current.localImagePathsByStt[stt] ?? [];
+    final updated = Map<int, List<String>>.from(current.localImagePathsByStt);
+    updated[stt] = [...existing, ...imagePaths];
+    emit(state.copyWith(
+      detail: current.copyWith(localImagePathsByStt: updated),
+    ));
   }
 
   /// Xoá 1 ảnh khỏi dòng chi tiết theo `stt` và `imageIndex`.
@@ -422,16 +429,14 @@ BillExporResponse? _findGdnInList(String code) {
     final current = state.detail;
     if (current == null) return;
 
-    final updated = <DetailGDNResponse>[];
-    for (final d in current.details) {
-      if (d.stt == stt) {
-        final next = [...d.localImagePaths]..removeAt(imageIndex);
-        updated.add(d.copyWith(localImagePaths: next));
-      } else {
-        updated.add(d);
-      }
-    }
-    emit(state.copyWith(detail: current.copyWith(details: updated)));
+    final existing = current.localImagePathsByStt[stt] ?? [];
+    if (imageIndex >= existing.length) return;
+    final updated = Map<int, List<String>>.from(current.localImagePathsByStt);
+    final next = [...existing]..removeAt(imageIndex);
+    updated[stt] = next;
+    emit(state.copyWith(
+      detail: current.copyWith(localImagePathsByStt: updated),
+    ));
   }
 
   /// Upload tất cả ảnh local đã chọn lên server.
@@ -441,8 +446,8 @@ BillExporResponse? _findGdnInList(String code) {
 
     // Collect all local image paths from all detail items
     final allPaths = <String>[];
-    for (final d in current.details) {
-      allPaths.addAll(d.localImagePaths);
+    for (final paths in current.localImagePathsByStt.values) {
+      allPaths.addAll(paths);
     }
 
     if (allPaths.isEmpty) return;

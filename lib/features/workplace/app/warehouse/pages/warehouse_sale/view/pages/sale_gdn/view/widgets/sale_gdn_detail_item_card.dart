@@ -11,12 +11,14 @@ class SaleGdnDetailItemCard extends StatelessWidget {
     super.key,
     required this.item,
     required this.index,
+    required this.localImagePaths,
     required this.onAddImages,
     required this.onRemoveImage,
   });
 
-  final DetailGDNResponse item;
+  final ViewGDNDetailResponse item;
   final int index;
+  final List<String> localImagePaths;
 
   /// Callback mở flow chọn ảnh (camera/gallery) cho dòng này.
   final Future<void> Function() onAddImages;
@@ -175,7 +177,7 @@ class SaleGdnDetailItemCard extends StatelessWidget {
           const SizedBox(height: 10),
           // Khu vực ảnh
           _PhotoSection(
-            paths: item.localImagePaths,
+            paths: localImagePaths,
             onAdd: onAddImages,
             onRemove: onRemoveImage,
           ),
@@ -203,7 +205,7 @@ class SaleGdnDetailItemCard extends StatelessWidget {
   String _toDecimal2(double v) => v.toStringAsFixed(2);
 
   /// Hiển thị dialog thông tin chi tiết của sản phẩm trong dòng phiếu xuất.
-  void _showInfoDialog(BuildContext context, DetailGDNResponse item) {
+  void _showInfoDialog(BuildContext context, ViewGDNDetailResponse item) {
     showDialog<void>(
       context: context,
       builder: (_) => _GdnItemInfoDialog(item: item),
@@ -505,7 +507,7 @@ class _PhotoThumb extends StatelessWidget {
 class _GdnItemInfoDialog extends StatelessWidget {
   const _GdnItemInfoDialog({required this.item});
 
-  final DetailGDNResponse item;
+  final ViewGDNDetailResponse item;
 
   @override
   Widget build(BuildContext context) {
@@ -531,29 +533,20 @@ class _GdnItemInfoDialog extends StatelessWidget {
                     _InfoSectionTitle('Thông tin sản phẩm'),
                     const SizedBox(height: 8),
                     _InfoRow(
-                      label: 'Mã sản phẩm theo dự án',
-                      value: _firstNonEmpty([
-                        item.productCodeExport,
-                        item.productCode,
-                      ]),
+                      label: 'Mã sản phẩm',
+                      value: item.productCode,
                     ),
                     _InfoRow(
-                      label: 'SL còn lại',
+                      label: 'Mã nội bộ',
+                      value: item.productNewCode,
+                    ),
+                    _InfoRow(
+                      label: 'SL tồn',
                       value: _formatQty(item.totalInventory),
                     ),
                     _InfoRow(
-                      label: 'Dự án',
-                      value: _firstNonEmpty([
-                        item.projectNameText,
-                        item.projectName,
-                      ]),
-                    ),
-                    _InfoRow(
-                      label: 'Mã dự án',
-                      value: _firstNonEmpty([
-                        item.projectCodeExport,
-                        item.projectCodeText,
-                      ]),
+                      label: 'Số lượng',
+                      value: _formatQty(item.qty),
                     ),
                     const SizedBox(height: 12),
                     _InfoSectionTitle('Ghi chú & đơn hàng'),
@@ -565,35 +558,22 @@ class _GdnItemInfoDialog extends StatelessWidget {
                     ),
                     _InfoRow(
                       label: 'Mã đơn hàng',
-                      value: _firstNonEmpty([item.code, item.billCode]),
+                      value: item.billCode,
                     ),
                     const SizedBox(height: 12),
                     _InfoSectionTitle('Thông số & phân loại'),
                     const SizedBox(height: 8),
                     _InfoRow(
-                      label: 'Thông số kỹ thuật',
-                      value: item.specifications,
-                      multiline: true,
+                      label: 'Loại sản phẩm',
+                      value: item.productTypeText,
                     ),
                     _InfoRow(
                       label: 'Nhóm',
                       value: item.productGroupName,
                     ),
-                    const SizedBox(height: 12),
-                    _InfoSectionTitle('Khác'),
-                    const SizedBox(height: 8),
                     _InfoRow(
-                      label: 'Người nhận',
-                      value: item.userReceiver,
-                    ),
-                    _InfoRow(
-                      label: 'Phản hồi KH',
-                      value: item.customerResponse,
-                      multiline: true,
-                    ),
-                    _InfoRow(
-                      label: 'Số PO',
-                      value: _firstNonEmpty([item.poNumber, item.poCode]),
+                      label: 'Đơn vị',
+                      value: item.unit,
                     ),
                   ],
                 ),
@@ -661,14 +641,6 @@ class _GdnItemInfoDialog extends StatelessWidget {
   String _formatQty(double? v) {
     if (v == null) return '--';
     return v.toStringAsFixed(2);
-  }
-
-  /// Trả về phần tử đầu tiên trong `values` không rỗng (sau trim); null nếu tất cả rỗng.
-  String? _firstNonEmpty(List<String?> values) {
-    for (final v in values) {
-      if (v != null && v.trim().isNotEmpty) return v.trim();
-    }
-    return null;
   }
 }
 

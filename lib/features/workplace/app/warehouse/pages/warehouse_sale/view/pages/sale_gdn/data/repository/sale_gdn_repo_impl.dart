@@ -54,7 +54,24 @@ class SaleGdnRepoImpl implements SaleGdnRepo {
   }
 
   @override
-  Future<Either<BaseError, List<DetailGDNResponse>>> getViewExportDetail({
+  Future<Either<BaseError, List<DetailGDNResponse>>> getBillExportDetail({
+    required int id,
+  }) async {
+    try {
+      final res = await _service.getBillExportDetail(id: id);
+      if (res.status != 1) {
+        return left(BaseError.httpInternalServerError(res.message ?? 'Lỗi'));
+      }
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<ViewGDNDetailResponse>>> getViewExportDetail({
     required int id,
   }) async {
     try {

@@ -116,7 +116,6 @@ class _SaleGdnDetailView extends StatelessWidget {
         return Stack(
           children: [
             BaseScaffold(
-              extendBodyBehindAppBar: true,
               appBar: AppBarCommon(
                 title: Text(bill?.code ?? 'Chi tiết phiếu xuất'),
                 onBackTap: () => context.pop(),
@@ -182,6 +181,7 @@ class _SaleGdnDetailView extends StatelessWidget {
           return SaleGdnDetailItemCard(
             item: detailItem,
             index: index + 1,
+            localImagePaths: detail.localImagePathsByStt[stt] ?? [],
             onAddImages: () => _addImages(context, stt),
             onRemoveImage: (imageIndex) =>
                 _removeImage(context, stt, imageIndex),

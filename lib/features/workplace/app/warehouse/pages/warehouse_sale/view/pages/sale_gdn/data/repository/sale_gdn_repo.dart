@@ -14,8 +14,13 @@ abstract class SaleGdnRepo {
     required int departmentId,
   });
 
+  /// Lấy chi tiết phiếu xuất kho theo ID (API chính cho trang detail).
+  Future<Either<BaseError, List<DetailGDNResponse>>> getBillExportDetail({
+    required int id,
+  });
+
   /// Lấy chi tiết phiếu xuất kho theo ID.
-  Future<Either<BaseError, List<DetailGDNResponse>>> getViewExportDetail({
+  Future<Either<BaseError, List<ViewGDNDetailResponse>>> getViewExportDetail({
     required int id,
   });
 

@@ -140,6 +140,52 @@ Map<String, dynamic> _$$TypeWarehouseResponseImplToJson(
       'STT': instance.stt,
     };
 
+_$ViewGDNDetailResponseImpl _$$ViewGDNDetailResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ViewGDNDetailResponseImpl(
+      totalInventory: (json['TotalInventory'] as num?)?.toDouble(),
+      productFullName: json['ProductFullName'] as String?,
+      qty: (json['Qty'] as num?)?.toDouble(),
+      note: json['Note'] as String?,
+      stt: (json['STT'] as num?)?.toInt(),
+      serialNumber: json['SerialNumber'] as String?,
+      productTypeText: json['ProductTypeText'] as String?,
+      productCode: json['ProductCode'] as String?,
+      productNewCode: json['ProductNewCode'] as String?,
+      productName: json['ProductName'] as String?,
+      unit: json['Unit'] as String?,
+      productGroupName: json['ProductGroupName'] as String?,
+      projectNameText: json['ProjectNameText'] as String?,
+      productCodeExport: json['ProductCodeExport'] as String?,
+      billCode: json['BillCode'] as String?,
+      unitPricePOKH: (json['UnitPricePOKH'] as num?)?.toDouble(),
+      unitPricePurchase: (json['UnitPricePurchase'] as num?)?.toDouble(),
+      projectCodeExport: json['ProjectCodeExport'] as String?,
+    );
+
+Map<String, dynamic> _$$ViewGDNDetailResponseImplToJson(
+        _$ViewGDNDetailResponseImpl instance) =>
+    <String, dynamic>{
+      'TotalInventory': instance.totalInventory,
+      'ProductFullName': instance.productFullName,
+      'Qty': instance.qty,
+      'Note': instance.note,
+      'STT': instance.stt,
+      'SerialNumber': instance.serialNumber,
+      'ProductTypeText': instance.productTypeText,
+      'ProductCode': instance.productCode,
+      'ProductNewCode': instance.productNewCode,
+      'ProductName': instance.productName,
+      'Unit': instance.unit,
+      'ProductGroupName': instance.productGroupName,
+      'ProjectNameText': instance.projectNameText,
+      'ProductCodeExport': instance.productCodeExport,
+      'BillCode': instance.billCode,
+      'UnitPricePOKH': instance.unitPricePOKH,
+      'UnitPricePurchase': instance.unitPricePurchase,
+      'ProjectCodeExport': instance.projectCodeExport,
+    };
+
 _$DetailGDNResponseImpl _$$DetailGDNResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$DetailGDNResponseImpl(
@@ -298,21 +344,17 @@ Map<String, dynamic> _$$DetailGDNResponseImplToJson(
 _$UploadFileResponseImpl _$$UploadFileResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$UploadFileResponseImpl(
-      originalFileName: json['OriginalFileName'] as String,
-      savedFileName: json['SavedFileName'] as String,
-      filePath: json['FilePath'] as String,
-      fileSize: (json['FileSize'] as num).toInt(),
-      contentType: json['ContentType'] as String,
-      uploadTime: DateTime.parse(json['UploadTime'] as String),
+      fileID: (json['fileID'] as num).toInt(),
+      filePath: json['filePath'] as String,
+      serverPath: json['ServerPath'] as String,
+      fileName: json['fileName'] as String,
     );
 
 Map<String, dynamic> _$$UploadFileResponseImplToJson(
         _$UploadFileResponseImpl instance) =>
     <String, dynamic>{
-      'OriginalFileName': instance.originalFileName,
-      'SavedFileName': instance.savedFileName,
-      'FilePath': instance.filePath,
-      'FileSize': instance.fileSize,
-      'ContentType': instance.contentType,
-      'UploadTime': instance.uploadTime.toIso8601String(),
+      'fileID': instance.fileID,
+      'filePath': instance.filePath,
+      'ServerPath': instance.serverPath,
+      'fileName': instance.fileName,
     };

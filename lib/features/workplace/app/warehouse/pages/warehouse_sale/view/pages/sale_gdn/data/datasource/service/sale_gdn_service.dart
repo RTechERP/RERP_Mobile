@@ -79,13 +79,14 @@ class SaleGdnService extends DioBaseApiService {
     );
   }
 
-  /// Lấy chi tiết phiếu xuất kho.
-  /// Endpoint: GET /BillExport/get-view-export-detail/{id}
-  Future<BaseData<List<DetailGDNResponse>>> getViewExportDetail({
+  /// Lấy chi tiết phiếu xuất kho theo ID (API chính cho trang detail).
+  /// Endpoint: GET /BillExport/{id}
+  /// Response: List<DetailGDNResponse>
+  Future<BaseData<List<DetailGDNResponse>>> getBillExportDetail({
     required int id,
   }) async {
     return get<BaseData<List<DetailGDNResponse>>>(
-      '${ApiEndPoint.getViewExportDetail}/$id',
+      ApiEndPoint.getBillExportDetail.replaceAll('{id}', id.toString()),
       parser: (json) {
         if (json is! Map<String, dynamic>) {
           return BaseData<List<DetailGDNResponse>>(
@@ -105,6 +106,39 @@ class SaleGdnService extends DioBaseApiService {
         }
 
         return BaseData<List<DetailGDNResponse>>(
+          status: status,
+          data: items,
+        );
+      },
+    );
+  }
+
+  /// Lấy chi tiết phiếu xuất kho (API phụ, dùng cho view).
+  /// Endpoint: GET /BillExport/get-view-export-detail/{id}
+  Future<BaseData<List<ViewGDNDetailResponse>>> getViewExportDetail({
+    required int id,
+  }) async {
+    return get<BaseData<List<ViewGDNDetailResponse>>>(
+      '${ApiEndPoint.getViewExportDetail}/$id',
+      parser: (json) {
+        if (json is! Map<String, dynamic>) {
+          return BaseData<List<ViewGDNDetailResponse>>(
+            status: 0,
+            data: [],
+          );
+        }
+
+        final status = json['status'] as int?;
+        final dataJson = json['data'];
+
+        List<ViewGDNDetailResponse> items = [];
+        if (dataJson is List) {
+          items = dataJson
+              .map((e) => ViewGDNDetailResponse.fromJson(e as Map<String, dynamic>))
+              .toList();
+        }
+
+        return BaseData<List<ViewGDNDetailResponse>>(
           status: status,
           data: items,
         );

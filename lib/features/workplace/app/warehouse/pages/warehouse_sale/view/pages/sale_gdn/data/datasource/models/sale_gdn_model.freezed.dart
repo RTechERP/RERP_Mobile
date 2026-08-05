@@ -1671,6 +1671,579 @@ abstract class _TypeWarehouseResponse implements TypeWarehouseResponse {
       get copyWith => throw _privateConstructorUsedError;
 }
 
+ViewGDNDetailResponse _$ViewGDNDetailResponseFromJson(
+    Map<String, dynamic> json) {
+  return _ViewGDNDetailResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ViewGDNDetailResponse {
+  @JsonKey(name: 'TotalInventory')
+  double? get totalInventory => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProductFullName')
+  String? get productFullName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Qty')
+  double? get qty => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Note')
+  String? get note => throw _privateConstructorUsedError;
+  @JsonKey(name: 'STT')
+  int? get stt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'SerialNumber')
+  String? get serialNumber => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProductTypeText')
+  String? get productTypeText => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProductCode')
+  String? get productCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProductNewCode')
+  String? get productNewCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProductName')
+  String? get productName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Unit')
+  String? get unit => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProductGroupName')
+  String? get productGroupName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectNameText')
+  String? get projectNameText => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProductCodeExport')
+  String? get productCodeExport => throw _privateConstructorUsedError;
+  @JsonKey(name: 'BillCode')
+  String? get billCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UnitPricePOKH')
+  double? get unitPricePOKH => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UnitPricePurchase')
+  double? get unitPricePurchase => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectCodeExport')
+  String? get projectCodeExport => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ViewGDNDetailResponseCopyWith<ViewGDNDetailResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ViewGDNDetailResponseCopyWith<$Res> {
+  factory $ViewGDNDetailResponseCopyWith(ViewGDNDetailResponse value,
+          $Res Function(ViewGDNDetailResponse) then) =
+      _$ViewGDNDetailResponseCopyWithImpl<$Res, ViewGDNDetailResponse>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'TotalInventory') double? totalInventory,
+      @JsonKey(name: 'ProductFullName') String? productFullName,
+      @JsonKey(name: 'Qty') double? qty,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'SerialNumber') String? serialNumber,
+      @JsonKey(name: 'ProductTypeText') String? productTypeText,
+      @JsonKey(name: 'ProductCode') String? productCode,
+      @JsonKey(name: 'ProductNewCode') String? productNewCode,
+      @JsonKey(name: 'ProductName') String? productName,
+      @JsonKey(name: 'Unit') String? unit,
+      @JsonKey(name: 'ProductGroupName') String? productGroupName,
+      @JsonKey(name: 'ProjectNameText') String? projectNameText,
+      @JsonKey(name: 'ProductCodeExport') String? productCodeExport,
+      @JsonKey(name: 'BillCode') String? billCode,
+      @JsonKey(name: 'UnitPricePOKH') double? unitPricePOKH,
+      @JsonKey(name: 'UnitPricePurchase') double? unitPricePurchase,
+      @JsonKey(name: 'ProjectCodeExport') String? projectCodeExport});
+}
+
+/// @nodoc
+class _$ViewGDNDetailResponseCopyWithImpl<$Res,
+        $Val extends ViewGDNDetailResponse>
+    implements $ViewGDNDetailResponseCopyWith<$Res> {
+  _$ViewGDNDetailResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? totalInventory = freezed,
+    Object? productFullName = freezed,
+    Object? qty = freezed,
+    Object? note = freezed,
+    Object? stt = freezed,
+    Object? serialNumber = freezed,
+    Object? productTypeText = freezed,
+    Object? productCode = freezed,
+    Object? productNewCode = freezed,
+    Object? productName = freezed,
+    Object? unit = freezed,
+    Object? productGroupName = freezed,
+    Object? projectNameText = freezed,
+    Object? productCodeExport = freezed,
+    Object? billCode = freezed,
+    Object? unitPricePOKH = freezed,
+    Object? unitPricePurchase = freezed,
+    Object? projectCodeExport = freezed,
+  }) {
+    return _then(_value.copyWith(
+      totalInventory: freezed == totalInventory
+          ? _value.totalInventory
+          : totalInventory // ignore: cast_nullable_to_non_nullable
+              as double?,
+      productFullName: freezed == productFullName
+          ? _value.productFullName
+          : productFullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      qty: freezed == qty
+          ? _value.qty
+          : qty // ignore: cast_nullable_to_non_nullable
+              as double?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      serialNumber: freezed == serialNumber
+          ? _value.serialNumber
+          : serialNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productTypeText: freezed == productTypeText
+          ? _value.productTypeText
+          : productTypeText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productCode: freezed == productCode
+          ? _value.productCode
+          : productCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productNewCode: freezed == productNewCode
+          ? _value.productNewCode
+          : productNewCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productName: freezed == productName
+          ? _value.productName
+          : productName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      unit: freezed == unit
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productGroupName: freezed == productGroupName
+          ? _value.productGroupName
+          : productGroupName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectNameText: freezed == projectNameText
+          ? _value.projectNameText
+          : projectNameText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productCodeExport: freezed == productCodeExport
+          ? _value.productCodeExport
+          : productCodeExport // ignore: cast_nullable_to_non_nullable
+              as String?,
+      billCode: freezed == billCode
+          ? _value.billCode
+          : billCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      unitPricePOKH: freezed == unitPricePOKH
+          ? _value.unitPricePOKH
+          : unitPricePOKH // ignore: cast_nullable_to_non_nullable
+              as double?,
+      unitPricePurchase: freezed == unitPricePurchase
+          ? _value.unitPricePurchase
+          : unitPricePurchase // ignore: cast_nullable_to_non_nullable
+              as double?,
+      projectCodeExport: freezed == projectCodeExport
+          ? _value.projectCodeExport
+          : projectCodeExport // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ViewGDNDetailResponseImplCopyWith<$Res>
+    implements $ViewGDNDetailResponseCopyWith<$Res> {
+  factory _$$ViewGDNDetailResponseImplCopyWith(
+          _$ViewGDNDetailResponseImpl value,
+          $Res Function(_$ViewGDNDetailResponseImpl) then) =
+      __$$ViewGDNDetailResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'TotalInventory') double? totalInventory,
+      @JsonKey(name: 'ProductFullName') String? productFullName,
+      @JsonKey(name: 'Qty') double? qty,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'SerialNumber') String? serialNumber,
+      @JsonKey(name: 'ProductTypeText') String? productTypeText,
+      @JsonKey(name: 'ProductCode') String? productCode,
+      @JsonKey(name: 'ProductNewCode') String? productNewCode,
+      @JsonKey(name: 'ProductName') String? productName,
+      @JsonKey(name: 'Unit') String? unit,
+      @JsonKey(name: 'ProductGroupName') String? productGroupName,
+      @JsonKey(name: 'ProjectNameText') String? projectNameText,
+      @JsonKey(name: 'ProductCodeExport') String? productCodeExport,
+      @JsonKey(name: 'BillCode') String? billCode,
+      @JsonKey(name: 'UnitPricePOKH') double? unitPricePOKH,
+      @JsonKey(name: 'UnitPricePurchase') double? unitPricePurchase,
+      @JsonKey(name: 'ProjectCodeExport') String? projectCodeExport});
+}
+
+/// @nodoc
+class __$$ViewGDNDetailResponseImplCopyWithImpl<$Res>
+    extends _$ViewGDNDetailResponseCopyWithImpl<$Res,
+        _$ViewGDNDetailResponseImpl>
+    implements _$$ViewGDNDetailResponseImplCopyWith<$Res> {
+  __$$ViewGDNDetailResponseImplCopyWithImpl(_$ViewGDNDetailResponseImpl _value,
+      $Res Function(_$ViewGDNDetailResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? totalInventory = freezed,
+    Object? productFullName = freezed,
+    Object? qty = freezed,
+    Object? note = freezed,
+    Object? stt = freezed,
+    Object? serialNumber = freezed,
+    Object? productTypeText = freezed,
+    Object? productCode = freezed,
+    Object? productNewCode = freezed,
+    Object? productName = freezed,
+    Object? unit = freezed,
+    Object? productGroupName = freezed,
+    Object? projectNameText = freezed,
+    Object? productCodeExport = freezed,
+    Object? billCode = freezed,
+    Object? unitPricePOKH = freezed,
+    Object? unitPricePurchase = freezed,
+    Object? projectCodeExport = freezed,
+  }) {
+    return _then(_$ViewGDNDetailResponseImpl(
+      totalInventory: freezed == totalInventory
+          ? _value.totalInventory
+          : totalInventory // ignore: cast_nullable_to_non_nullable
+              as double?,
+      productFullName: freezed == productFullName
+          ? _value.productFullName
+          : productFullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      qty: freezed == qty
+          ? _value.qty
+          : qty // ignore: cast_nullable_to_non_nullable
+              as double?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      serialNumber: freezed == serialNumber
+          ? _value.serialNumber
+          : serialNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productTypeText: freezed == productTypeText
+          ? _value.productTypeText
+          : productTypeText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productCode: freezed == productCode
+          ? _value.productCode
+          : productCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productNewCode: freezed == productNewCode
+          ? _value.productNewCode
+          : productNewCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productName: freezed == productName
+          ? _value.productName
+          : productName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      unit: freezed == unit
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productGroupName: freezed == productGroupName
+          ? _value.productGroupName
+          : productGroupName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectNameText: freezed == projectNameText
+          ? _value.projectNameText
+          : projectNameText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productCodeExport: freezed == productCodeExport
+          ? _value.productCodeExport
+          : productCodeExport // ignore: cast_nullable_to_non_nullable
+              as String?,
+      billCode: freezed == billCode
+          ? _value.billCode
+          : billCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      unitPricePOKH: freezed == unitPricePOKH
+          ? _value.unitPricePOKH
+          : unitPricePOKH // ignore: cast_nullable_to_non_nullable
+              as double?,
+      unitPricePurchase: freezed == unitPricePurchase
+          ? _value.unitPricePurchase
+          : unitPricePurchase // ignore: cast_nullable_to_non_nullable
+              as double?,
+      projectCodeExport: freezed == projectCodeExport
+          ? _value.projectCodeExport
+          : projectCodeExport // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ViewGDNDetailResponseImpl implements _ViewGDNDetailResponse {
+  const _$ViewGDNDetailResponseImpl(
+      {@JsonKey(name: 'TotalInventory') this.totalInventory,
+      @JsonKey(name: 'ProductFullName') this.productFullName,
+      @JsonKey(name: 'Qty') this.qty,
+      @JsonKey(name: 'Note') this.note,
+      @JsonKey(name: 'STT') this.stt,
+      @JsonKey(name: 'SerialNumber') this.serialNumber,
+      @JsonKey(name: 'ProductTypeText') this.productTypeText,
+      @JsonKey(name: 'ProductCode') this.productCode,
+      @JsonKey(name: 'ProductNewCode') this.productNewCode,
+      @JsonKey(name: 'ProductName') this.productName,
+      @JsonKey(name: 'Unit') this.unit,
+      @JsonKey(name: 'ProductGroupName') this.productGroupName,
+      @JsonKey(name: 'ProjectNameText') this.projectNameText,
+      @JsonKey(name: 'ProductCodeExport') this.productCodeExport,
+      @JsonKey(name: 'BillCode') this.billCode,
+      @JsonKey(name: 'UnitPricePOKH') this.unitPricePOKH,
+      @JsonKey(name: 'UnitPricePurchase') this.unitPricePurchase,
+      @JsonKey(name: 'ProjectCodeExport') this.projectCodeExport});
+
+  factory _$ViewGDNDetailResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ViewGDNDetailResponseImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'TotalInventory')
+  final double? totalInventory;
+  @override
+  @JsonKey(name: 'ProductFullName')
+  final String? productFullName;
+  @override
+  @JsonKey(name: 'Qty')
+  final double? qty;
+  @override
+  @JsonKey(name: 'Note')
+  final String? note;
+  @override
+  @JsonKey(name: 'STT')
+  final int? stt;
+  @override
+  @JsonKey(name: 'SerialNumber')
+  final String? serialNumber;
+  @override
+  @JsonKey(name: 'ProductTypeText')
+  final String? productTypeText;
+  @override
+  @JsonKey(name: 'ProductCode')
+  final String? productCode;
+  @override
+  @JsonKey(name: 'ProductNewCode')
+  final String? productNewCode;
+  @override
+  @JsonKey(name: 'ProductName')
+  final String? productName;
+  @override
+  @JsonKey(name: 'Unit')
+  final String? unit;
+  @override
+  @JsonKey(name: 'ProductGroupName')
+  final String? productGroupName;
+  @override
+  @JsonKey(name: 'ProjectNameText')
+  final String? projectNameText;
+  @override
+  @JsonKey(name: 'ProductCodeExport')
+  final String? productCodeExport;
+  @override
+  @JsonKey(name: 'BillCode')
+  final String? billCode;
+  @override
+  @JsonKey(name: 'UnitPricePOKH')
+  final double? unitPricePOKH;
+  @override
+  @JsonKey(name: 'UnitPricePurchase')
+  final double? unitPricePurchase;
+  @override
+  @JsonKey(name: 'ProjectCodeExport')
+  final String? projectCodeExport;
+
+  @override
+  String toString() {
+    return 'ViewGDNDetailResponse(totalInventory: $totalInventory, productFullName: $productFullName, qty: $qty, note: $note, stt: $stt, serialNumber: $serialNumber, productTypeText: $productTypeText, productCode: $productCode, productNewCode: $productNewCode, productName: $productName, unit: $unit, productGroupName: $productGroupName, projectNameText: $projectNameText, productCodeExport: $productCodeExport, billCode: $billCode, unitPricePOKH: $unitPricePOKH, unitPricePurchase: $unitPricePurchase, projectCodeExport: $projectCodeExport)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ViewGDNDetailResponseImpl &&
+            (identical(other.totalInventory, totalInventory) ||
+                other.totalInventory == totalInventory) &&
+            (identical(other.productFullName, productFullName) ||
+                other.productFullName == productFullName) &&
+            (identical(other.qty, qty) || other.qty == qty) &&
+            (identical(other.note, note) || other.note == note) &&
+            (identical(other.stt, stt) || other.stt == stt) &&
+            (identical(other.serialNumber, serialNumber) ||
+                other.serialNumber == serialNumber) &&
+            (identical(other.productTypeText, productTypeText) ||
+                other.productTypeText == productTypeText) &&
+            (identical(other.productCode, productCode) ||
+                other.productCode == productCode) &&
+            (identical(other.productNewCode, productNewCode) ||
+                other.productNewCode == productNewCode) &&
+            (identical(other.productName, productName) ||
+                other.productName == productName) &&
+            (identical(other.unit, unit) || other.unit == unit) &&
+            (identical(other.productGroupName, productGroupName) ||
+                other.productGroupName == productGroupName) &&
+            (identical(other.projectNameText, projectNameText) ||
+                other.projectNameText == projectNameText) &&
+            (identical(other.productCodeExport, productCodeExport) ||
+                other.productCodeExport == productCodeExport) &&
+            (identical(other.billCode, billCode) ||
+                other.billCode == billCode) &&
+            (identical(other.unitPricePOKH, unitPricePOKH) ||
+                other.unitPricePOKH == unitPricePOKH) &&
+            (identical(other.unitPricePurchase, unitPricePurchase) ||
+                other.unitPricePurchase == unitPricePurchase) &&
+            (identical(other.projectCodeExport, projectCodeExport) ||
+                other.projectCodeExport == projectCodeExport));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      totalInventory,
+      productFullName,
+      qty,
+      note,
+      stt,
+      serialNumber,
+      productTypeText,
+      productCode,
+      productNewCode,
+      productName,
+      unit,
+      productGroupName,
+      projectNameText,
+      productCodeExport,
+      billCode,
+      unitPricePOKH,
+      unitPricePurchase,
+      projectCodeExport);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ViewGDNDetailResponseImplCopyWith<_$ViewGDNDetailResponseImpl>
+      get copyWith => __$$ViewGDNDetailResponseImplCopyWithImpl<
+          _$ViewGDNDetailResponseImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ViewGDNDetailResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ViewGDNDetailResponse implements ViewGDNDetailResponse {
+  const factory _ViewGDNDetailResponse(
+      {@JsonKey(name: 'TotalInventory') final double? totalInventory,
+      @JsonKey(name: 'ProductFullName') final String? productFullName,
+      @JsonKey(name: 'Qty') final double? qty,
+      @JsonKey(name: 'Note') final String? note,
+      @JsonKey(name: 'STT') final int? stt,
+      @JsonKey(name: 'SerialNumber') final String? serialNumber,
+      @JsonKey(name: 'ProductTypeText') final String? productTypeText,
+      @JsonKey(name: 'ProductCode') final String? productCode,
+      @JsonKey(name: 'ProductNewCode') final String? productNewCode,
+      @JsonKey(name: 'ProductName') final String? productName,
+      @JsonKey(name: 'Unit') final String? unit,
+      @JsonKey(name: 'ProductGroupName') final String? productGroupName,
+      @JsonKey(name: 'ProjectNameText') final String? projectNameText,
+      @JsonKey(name: 'ProductCodeExport') final String? productCodeExport,
+      @JsonKey(name: 'BillCode') final String? billCode,
+      @JsonKey(name: 'UnitPricePOKH') final double? unitPricePOKH,
+      @JsonKey(name: 'UnitPricePurchase') final double? unitPricePurchase,
+      @JsonKey(name: 'ProjectCodeExport')
+      final String? projectCodeExport}) = _$ViewGDNDetailResponseImpl;
+
+  factory _ViewGDNDetailResponse.fromJson(Map<String, dynamic> json) =
+      _$ViewGDNDetailResponseImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'TotalInventory')
+  double? get totalInventory;
+  @override
+  @JsonKey(name: 'ProductFullName')
+  String? get productFullName;
+  @override
+  @JsonKey(name: 'Qty')
+  double? get qty;
+  @override
+  @JsonKey(name: 'Note')
+  String? get note;
+  @override
+  @JsonKey(name: 'STT')
+  int? get stt;
+  @override
+  @JsonKey(name: 'SerialNumber')
+  String? get serialNumber;
+  @override
+  @JsonKey(name: 'ProductTypeText')
+  String? get productTypeText;
+  @override
+  @JsonKey(name: 'ProductCode')
+  String? get productCode;
+  @override
+  @JsonKey(name: 'ProductNewCode')
+  String? get productNewCode;
+  @override
+  @JsonKey(name: 'ProductName')
+  String? get productName;
+  @override
+  @JsonKey(name: 'Unit')
+  String? get unit;
+  @override
+  @JsonKey(name: 'ProductGroupName')
+  String? get productGroupName;
+  @override
+  @JsonKey(name: 'ProjectNameText')
+  String? get projectNameText;
+  @override
+  @JsonKey(name: 'ProductCodeExport')
+  String? get productCodeExport;
+  @override
+  @JsonKey(name: 'BillCode')
+  String? get billCode;
+  @override
+  @JsonKey(name: 'UnitPricePOKH')
+  double? get unitPricePOKH;
+  @override
+  @JsonKey(name: 'UnitPricePurchase')
+  double? get unitPricePurchase;
+  @override
+  @JsonKey(name: 'ProjectCodeExport')
+  String? get projectCodeExport;
+  @override
+  @JsonKey(ignore: true)
+  _$$ViewGDNDetailResponseImplCopyWith<_$ViewGDNDetailResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
 DetailGDNResponse _$DetailGDNResponseFromJson(Map<String, dynamic> json) {
   return _DetailGDNResponse.fromJson(json);
 }
@@ -3468,18 +4041,14 @@ UploadFileResponse _$UploadFileResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UploadFileResponse {
-  @JsonKey(name: 'OriginalFileName')
-  String get originalFileName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'SavedFileName')
-  String get savedFileName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'FilePath')
+  @JsonKey(name: 'fileID')
+  int get fileID => throw _privateConstructorUsedError;
+  @JsonKey(name: 'filePath')
   String get filePath => throw _privateConstructorUsedError;
-  @JsonKey(name: 'FileSize')
-  int get fileSize => throw _privateConstructorUsedError;
-  @JsonKey(name: 'ContentType')
-  String get contentType => throw _privateConstructorUsedError;
-  @JsonKey(name: 'UploadTime')
-  DateTime get uploadTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ServerPath')
+  String get serverPath => throw _privateConstructorUsedError;
+  @JsonKey(name: 'fileName')
+  String get fileName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -3494,12 +4063,10 @@ abstract class $UploadFileResponseCopyWith<$Res> {
       _$UploadFileResponseCopyWithImpl<$Res, UploadFileResponse>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'OriginalFileName') String originalFileName,
-      @JsonKey(name: 'SavedFileName') String savedFileName,
-      @JsonKey(name: 'FilePath') String filePath,
-      @JsonKey(name: 'FileSize') int fileSize,
-      @JsonKey(name: 'ContentType') String contentType,
-      @JsonKey(name: 'UploadTime') DateTime uploadTime});
+      {@JsonKey(name: 'fileID') int fileID,
+      @JsonKey(name: 'filePath') String filePath,
+      @JsonKey(name: 'ServerPath') String serverPath,
+      @JsonKey(name: 'fileName') String fileName});
 }
 
 /// @nodoc
@@ -3515,38 +4082,28 @@ class _$UploadFileResponseCopyWithImpl<$Res, $Val extends UploadFileResponse>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? originalFileName = null,
-    Object? savedFileName = null,
+    Object? fileID = null,
     Object? filePath = null,
-    Object? fileSize = null,
-    Object? contentType = null,
-    Object? uploadTime = null,
+    Object? serverPath = null,
+    Object? fileName = null,
   }) {
     return _then(_value.copyWith(
-      originalFileName: null == originalFileName
-          ? _value.originalFileName
-          : originalFileName // ignore: cast_nullable_to_non_nullable
-              as String,
-      savedFileName: null == savedFileName
-          ? _value.savedFileName
-          : savedFileName // ignore: cast_nullable_to_non_nullable
-              as String,
+      fileID: null == fileID
+          ? _value.fileID
+          : fileID // ignore: cast_nullable_to_non_nullable
+              as int,
       filePath: null == filePath
           ? _value.filePath
           : filePath // ignore: cast_nullable_to_non_nullable
               as String,
-      fileSize: null == fileSize
-          ? _value.fileSize
-          : fileSize // ignore: cast_nullable_to_non_nullable
-              as int,
-      contentType: null == contentType
-          ? _value.contentType
-          : contentType // ignore: cast_nullable_to_non_nullable
+      serverPath: null == serverPath
+          ? _value.serverPath
+          : serverPath // ignore: cast_nullable_to_non_nullable
               as String,
-      uploadTime: null == uploadTime
-          ? _value.uploadTime
-          : uploadTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+      fileName: null == fileName
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -3560,12 +4117,10 @@ abstract class _$$UploadFileResponseImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'OriginalFileName') String originalFileName,
-      @JsonKey(name: 'SavedFileName') String savedFileName,
-      @JsonKey(name: 'FilePath') String filePath,
-      @JsonKey(name: 'FileSize') int fileSize,
-      @JsonKey(name: 'ContentType') String contentType,
-      @JsonKey(name: 'UploadTime') DateTime uploadTime});
+      {@JsonKey(name: 'fileID') int fileID,
+      @JsonKey(name: 'filePath') String filePath,
+      @JsonKey(name: 'ServerPath') String serverPath,
+      @JsonKey(name: 'fileName') String fileName});
 }
 
 /// @nodoc
@@ -3579,38 +4134,28 @@ class __$$UploadFileResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? originalFileName = null,
-    Object? savedFileName = null,
+    Object? fileID = null,
     Object? filePath = null,
-    Object? fileSize = null,
-    Object? contentType = null,
-    Object? uploadTime = null,
+    Object? serverPath = null,
+    Object? fileName = null,
   }) {
     return _then(_$UploadFileResponseImpl(
-      originalFileName: null == originalFileName
-          ? _value.originalFileName
-          : originalFileName // ignore: cast_nullable_to_non_nullable
-              as String,
-      savedFileName: null == savedFileName
-          ? _value.savedFileName
-          : savedFileName // ignore: cast_nullable_to_non_nullable
-              as String,
+      fileID: null == fileID
+          ? _value.fileID
+          : fileID // ignore: cast_nullable_to_non_nullable
+              as int,
       filePath: null == filePath
           ? _value.filePath
           : filePath // ignore: cast_nullable_to_non_nullable
               as String,
-      fileSize: null == fileSize
-          ? _value.fileSize
-          : fileSize // ignore: cast_nullable_to_non_nullable
-              as int,
-      contentType: null == contentType
-          ? _value.contentType
-          : contentType // ignore: cast_nullable_to_non_nullable
+      serverPath: null == serverPath
+          ? _value.serverPath
+          : serverPath // ignore: cast_nullable_to_non_nullable
               as String,
-      uploadTime: null == uploadTime
-          ? _value.uploadTime
-          : uploadTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+      fileName: null == fileName
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -3619,38 +4164,30 @@ class __$$UploadFileResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UploadFileResponseImpl implements _UploadFileResponse {
   const _$UploadFileResponseImpl(
-      {@JsonKey(name: 'OriginalFileName') required this.originalFileName,
-      @JsonKey(name: 'SavedFileName') required this.savedFileName,
-      @JsonKey(name: 'FilePath') required this.filePath,
-      @JsonKey(name: 'FileSize') required this.fileSize,
-      @JsonKey(name: 'ContentType') required this.contentType,
-      @JsonKey(name: 'UploadTime') required this.uploadTime});
+      {@JsonKey(name: 'fileID') required this.fileID,
+      @JsonKey(name: 'filePath') required this.filePath,
+      @JsonKey(name: 'ServerPath') required this.serverPath,
+      @JsonKey(name: 'fileName') required this.fileName});
 
   factory _$UploadFileResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$UploadFileResponseImplFromJson(json);
 
   @override
-  @JsonKey(name: 'OriginalFileName')
-  final String originalFileName;
+  @JsonKey(name: 'fileID')
+  final int fileID;
   @override
-  @JsonKey(name: 'SavedFileName')
-  final String savedFileName;
-  @override
-  @JsonKey(name: 'FilePath')
+  @JsonKey(name: 'filePath')
   final String filePath;
   @override
-  @JsonKey(name: 'FileSize')
-  final int fileSize;
+  @JsonKey(name: 'ServerPath')
+  final String serverPath;
   @override
-  @JsonKey(name: 'ContentType')
-  final String contentType;
-  @override
-  @JsonKey(name: 'UploadTime')
-  final DateTime uploadTime;
+  @JsonKey(name: 'fileName')
+  final String fileName;
 
   @override
   String toString() {
-    return 'UploadFileResponse(originalFileName: $originalFileName, savedFileName: $savedFileName, filePath: $filePath, fileSize: $fileSize, contentType: $contentType, uploadTime: $uploadTime)';
+    return 'UploadFileResponse(fileID: $fileID, filePath: $filePath, serverPath: $serverPath, fileName: $fileName)';
   }
 
   @override
@@ -3658,24 +4195,19 @@ class _$UploadFileResponseImpl implements _UploadFileResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UploadFileResponseImpl &&
-            (identical(other.originalFileName, originalFileName) ||
-                other.originalFileName == originalFileName) &&
-            (identical(other.savedFileName, savedFileName) ||
-                other.savedFileName == savedFileName) &&
+            (identical(other.fileID, fileID) || other.fileID == fileID) &&
             (identical(other.filePath, filePath) ||
                 other.filePath == filePath) &&
-            (identical(other.fileSize, fileSize) ||
-                other.fileSize == fileSize) &&
-            (identical(other.contentType, contentType) ||
-                other.contentType == contentType) &&
-            (identical(other.uploadTime, uploadTime) ||
-                other.uploadTime == uploadTime));
+            (identical(other.serverPath, serverPath) ||
+                other.serverPath == serverPath) &&
+            (identical(other.fileName, fileName) ||
+                other.fileName == fileName));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, originalFileName, savedFileName,
-      filePath, fileSize, contentType, uploadTime);
+  int get hashCode =>
+      Object.hash(runtimeType, fileID, filePath, serverPath, fileName);
 
   @JsonKey(ignore: true)
   @override
@@ -3694,36 +4226,27 @@ class _$UploadFileResponseImpl implements _UploadFileResponse {
 
 abstract class _UploadFileResponse implements UploadFileResponse {
   const factory _UploadFileResponse(
-          {@JsonKey(name: 'OriginalFileName')
-          required final String originalFileName,
-          @JsonKey(name: 'SavedFileName') required final String savedFileName,
-          @JsonKey(name: 'FilePath') required final String filePath,
-          @JsonKey(name: 'FileSize') required final int fileSize,
-          @JsonKey(name: 'ContentType') required final String contentType,
-          @JsonKey(name: 'UploadTime') required final DateTime uploadTime}) =
+          {@JsonKey(name: 'fileID') required final int fileID,
+          @JsonKey(name: 'filePath') required final String filePath,
+          @JsonKey(name: 'ServerPath') required final String serverPath,
+          @JsonKey(name: 'fileName') required final String fileName}) =
       _$UploadFileResponseImpl;
 
   factory _UploadFileResponse.fromJson(Map<String, dynamic> json) =
       _$UploadFileResponseImpl.fromJson;
 
   @override
-  @JsonKey(name: 'OriginalFileName')
-  String get originalFileName;
+  @JsonKey(name: 'fileID')
+  int get fileID;
   @override
-  @JsonKey(name: 'SavedFileName')
-  String get savedFileName;
-  @override
-  @JsonKey(name: 'FilePath')
+  @JsonKey(name: 'filePath')
   String get filePath;
   @override
-  @JsonKey(name: 'FileSize')
-  int get fileSize;
+  @JsonKey(name: 'ServerPath')
+  String get serverPath;
   @override
-  @JsonKey(name: 'ContentType')
-  String get contentType;
-  @override
-  @JsonKey(name: 'UploadTime')
-  DateTime get uploadTime;
+  @JsonKey(name: 'fileName')
+  String get fileName;
   @override
   @JsonKey(ignore: true)
   _$$UploadFileResponseImplCopyWith<_$UploadFileResponseImpl> get copyWith =>
