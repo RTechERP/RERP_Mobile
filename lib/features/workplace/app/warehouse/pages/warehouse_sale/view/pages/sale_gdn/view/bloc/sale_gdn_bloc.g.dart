@@ -223,10 +223,15 @@ abstract class _$GdnDetailStateCWProxy {
 
   GdnDetailState details(List<ViewGDNDetailResponse> details);
 
+  GdnDetailState detailFull(List<DetailGDNResponse> detailFull);
+
   GdnDetailState uploadedImages(List<UploadFileResponse> uploadedImages);
 
   GdnDetailState localImagePathsByStt(
       Map<int, List<String>> localImagePathsByStt);
+
+  GdnDetailState serverImagesByChildId(
+      Map<int, List<ReadFileResponse>> serverImagesByChildId);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GdnDetailState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -240,8 +245,10 @@ abstract class _$GdnDetailStateCWProxy {
     int? billExportId,
     BillExporResponse? bill,
     List<ViewGDNDetailResponse>? details,
+    List<DetailGDNResponse>? detailFull,
     List<UploadFileResponse>? uploadedImages,
     Map<int, List<String>>? localImagePathsByStt,
+    Map<int, List<ReadFileResponse>>? serverImagesByChildId,
   });
 }
 
@@ -269,6 +276,10 @@ class _$GdnDetailStateCWProxyImpl implements _$GdnDetailStateCWProxy {
       this(details: details);
 
   @override
+  GdnDetailState detailFull(List<DetailGDNResponse> detailFull) =>
+      this(detailFull: detailFull);
+
+  @override
   GdnDetailState uploadedImages(List<UploadFileResponse> uploadedImages) =>
       this(uploadedImages: uploadedImages);
 
@@ -276,6 +287,11 @@ class _$GdnDetailStateCWProxyImpl implements _$GdnDetailStateCWProxy {
   GdnDetailState localImagePathsByStt(
           Map<int, List<String>> localImagePathsByStt) =>
       this(localImagePathsByStt: localImagePathsByStt);
+
+  @override
+  GdnDetailState serverImagesByChildId(
+          Map<int, List<ReadFileResponse>> serverImagesByChildId) =>
+      this(serverImagesByChildId: serverImagesByChildId);
 
   @override
 
@@ -291,8 +307,10 @@ class _$GdnDetailStateCWProxyImpl implements _$GdnDetailStateCWProxy {
     Object? billExportId = const $CopyWithPlaceholder(),
     Object? bill = const $CopyWithPlaceholder(),
     Object? details = const $CopyWithPlaceholder(),
+    Object? detailFull = const $CopyWithPlaceholder(),
     Object? uploadedImages = const $CopyWithPlaceholder(),
     Object? localImagePathsByStt = const $CopyWithPlaceholder(),
+    Object? serverImagesByChildId = const $CopyWithPlaceholder(),
   }) {
     return GdnDetailState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -316,6 +334,11 @@ class _$GdnDetailStateCWProxyImpl implements _$GdnDetailStateCWProxy {
           ? _value.details
           // ignore: cast_nullable_to_non_nullable
           : details as List<ViewGDNDetailResponse>,
+      detailFull:
+          detailFull == const $CopyWithPlaceholder() || detailFull == null
+              ? _value.detailFull
+              // ignore: cast_nullable_to_non_nullable
+              : detailFull as List<DetailGDNResponse>,
       uploadedImages: uploadedImages == const $CopyWithPlaceholder() ||
               uploadedImages == null
           ? _value.uploadedImages
@@ -327,6 +350,12 @@ class _$GdnDetailStateCWProxyImpl implements _$GdnDetailStateCWProxy {
               ? _value.localImagePathsByStt
               // ignore: cast_nullable_to_non_nullable
               : localImagePathsByStt as Map<int, List<String>>,
+      serverImagesByChildId:
+          serverImagesByChildId == const $CopyWithPlaceholder() ||
+                  serverImagesByChildId == null
+              ? _value.serverImagesByChildId
+              // ignore: cast_nullable_to_non_nullable
+              : serverImagesByChildId as Map<int, List<ReadFileResponse>>,
     );
   }
 }

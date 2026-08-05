@@ -358,3 +358,37 @@ Map<String, dynamic> _$$UploadFileResponseImplToJson(
       'ServerPath': instance.serverPath,
       'fileName': instance.fileName,
     };
+
+_$ReadFileResponseImpl _$$ReadFileResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ReadFileResponseImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      billExportDetailId: (json['BillExportDetailID'] as num?)?.toInt(),
+      fileName: json['FileName'] as String?,
+      originPath: json['OriginPath'] as String?,
+      serverPath: json['ServerPath'] as String?,
+      createdBy: json['CreatedBy'] as String?,
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+      updatedBy: json['UpdatedBy'] as String?,
+      updatedDate: json['UpdatedDate'] == null
+          ? null
+          : DateTime.parse(json['UpdatedDate'] as String),
+      isDeleted: json['IsDeleted'] as bool?,
+    );
+
+Map<String, dynamic> _$$ReadFileResponseImplToJson(
+        _$ReadFileResponseImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'BillExportDetailID': instance.billExportDetailId,
+      'FileName': instance.fileName,
+      'OriginPath': instance.originPath,
+      'ServerPath': instance.serverPath,
+      'CreatedBy': instance.createdBy,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'UpdatedBy': instance.updatedBy,
+      'UpdatedDate': instance.updatedDate?.toIso8601String(),
+      'IsDeleted': instance.isDeleted,
+    };

@@ -12,6 +12,7 @@ class SaleGdnDetailItemCard extends StatelessWidget {
     required this.item,
     required this.index,
     required this.localImagePaths,
+    required this.serverImageUrls,
     required this.onAddImages,
     required this.onRemoveImage,
   });
@@ -19,12 +20,14 @@ class SaleGdnDetailItemCard extends StatelessWidget {
   final ViewGDNDetailResponse item;
   final int index;
   final List<String> localImagePaths;
+  final List<String> serverImageUrls;
 
   /// Callback mở flow chọn ảnh (camera/gallery) cho dòng này.
   final Future<void> Function() onAddImages;
 
   /// Callback xoá 1 ảnh theo chỉ số trong dòng này.
-  final void Function(int imageIndex) onRemoveImage;
+  /// Nếu `isLocal=true` thì xoá local, ngược lại xoá server.
+  final void Function(int imageIndex, bool isLocal) onRemoveImage;
 
   @override
   Widget build(BuildContext context) {
@@ -175,9 +178,10 @@ class SaleGdnDetailItemCard extends StatelessWidget {
           const SizedBox(height: 12),
           const Divider(height: 1),
           const SizedBox(height: 10),
-          // Khu vực ảnh
+          // Khu vực ảnh (server + local)
           _PhotoSection(
-            paths: localImagePaths,
+            localPaths: localImagePaths,
+            serverUrls: serverImageUrls,
             onAdd: onAddImages,
             onRemove: onRemoveImage,
           ),
@@ -318,17 +322,21 @@ class _MetricCell extends StatelessWidget {
 
 class _PhotoSection extends StatelessWidget {
   const _PhotoSection({
-    required this.paths,
+    required this.localPaths,
+    required this.serverUrls,
     required this.onAdd,
     required this.onRemove,
   });
 
-  final List<String> paths;
+  final List<String> localPaths;
+  final List<String> serverUrls;
   final Future<void> Function() onAdd;
-  final void Function(int imageIndex) onRemove;
+  final void Function(int imageIndex, bool isLocal) onRemove;
 
   @override
   Widget build(BuildContext context) {
+    final hasImages = localPaths.isNotEmpty || serverUrls.isNotEmpty;
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -344,7 +352,7 @@ class _PhotoSection extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (paths.isEmpty)
+              if (!hasImages)
                 _buildEmpty(context)
               else
                 _buildGrid(context),
@@ -380,10 +388,18 @@ class _PhotoSection extends StatelessWidget {
       spacing: 8,
       runSpacing: 8,
       children: [
-        for (int i = 0; i < paths.length; i++)
-          _PhotoThumb(
-            path: paths[i],
-            onRemove: () => onRemove(i),
+        // Server images (removable)
+        for (int i = 0; i < serverUrls.length; i++)
+          _ServerPhotoThumb(
+            url: serverUrls[i],
+            index: i,
+            onRemove: () => onRemove(i, false),
+          ),
+        // Local images (removable)
+        for (int i = 0; i < localPaths.length; i++)
+          _LocalPhotoThumb(
+            path: localPaths[i],
+            onRemove: () => onRemove(i, true),
           ),
         _AddPhotoButton(onTap: onAdd),
       ],
@@ -391,8 +407,9 @@ class _PhotoSection extends StatelessWidget {
   }
 
   Widget _buildCount() {
+    final total = localPaths.length + serverUrls.length;
     return Text(
-      paths.isEmpty ? '0 ảnh' : '${paths.length} ảnh',
+      '$total ảnh',
       style: TextStyle(
         fontSize: 11,
         color: AppColors.gray,
@@ -447,8 +464,8 @@ class _AddPhotoButton extends StatelessWidget {
   }
 }
 
-class _PhotoThumb extends StatelessWidget {
-  const _PhotoThumb({required this.path, required this.onRemove});
+class _LocalPhotoThumb extends StatelessWidget {
+  const _LocalPhotoThumb({required this.path, required this.onRemove});
 
   final String path;
   final VoidCallback onRemove;
@@ -457,21 +474,24 @@ class _PhotoThumb extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(10),
-          child: Image.file(
-            File(path),
-            width: 64,
-            height: 64,
-            fit: BoxFit.cover,
-            errorBuilder: (_, _, _) => Container(
+        GestureDetector(
+          onTap: () => _showFullscreen(context, [path], 0, isLocal: true),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Image.file(
+              File(path),
               width: 64,
               height: 64,
-              color: AppColors.gray.withValues(alpha: 0.2),
-              child: Icon(
-                Icons.broken_image_outlined,
-                color: AppColors.gray,
-                size: 20,
+              fit: BoxFit.cover,
+              errorBuilder: (_, _, _) => Container(
+                width: 64,
+                height: 64,
+                color: AppColors.gray.withValues(alpha: 0.2),
+                child: Icon(
+                  Icons.broken_image_outlined,
+                  color: AppColors.gray,
+                  size: 20,
+                ),
               ),
             ),
           ),
@@ -496,6 +516,113 @@ class _PhotoThumb extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  void _showFullscreen(
+    BuildContext context,
+    List<String> paths,
+    int initialIndex, {
+    required bool isLocal,
+  }) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        fullscreenDialog: true,
+        builder: (_) => _FullScreenImageViewer(
+          imagePaths: paths,
+          initialIndex: initialIndex,
+          isLocal: isLocal,
+        ),
+      ),
+    );
+  }
+}
+
+class _ServerPhotoThumb extends StatelessWidget {
+  const _ServerPhotoThumb({
+    required this.url,
+    required this.index,
+    required this.onRemove,
+  });
+
+  final String url;
+  final int index;
+  final VoidCallback onRemove;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        GestureDetector(
+          onTap: () => _showFullscreen(context),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Image.network(
+              url,
+              width: 64,
+              height: 64,
+              fit: BoxFit.cover,
+              loadingBuilder: (_, child, loadingProgress) {
+                if (loadingProgress == null) return child;
+                return Container(
+                  width: 64,
+                  height: 64,
+                  color: AppColors.gray.withValues(alpha: 0.1),
+                  child: const Center(
+                    child: SizedBox(
+                      width: 16,
+                      height: 16,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    ),
+                  ),
+                );
+              },
+              errorBuilder: (_, __, ___) => Container(
+                width: 64,
+                height: 64,
+                color: AppColors.gray.withValues(alpha: 0.2),
+                child: Icon(
+                  Icons.broken_image_outlined,
+                  color: AppColors.gray,
+                  size: 20,
+                ),
+              ),
+            ),
+          ),
+        ),
+        Positioned(
+          top: 2,
+          right: 2,
+          child: GestureDetector(
+            onTap: onRemove,
+            child: Container(
+              padding: const EdgeInsets.all(2),
+              decoration: const BoxDecoration(
+                color: Colors.black54,
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(
+                Icons.close,
+                size: 12,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  void _showFullscreen(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        fullscreenDialog: true,
+        builder: (_) => _FullScreenImageViewer(
+          imagePaths: [url],
+          initialIndex: 0,
+          isLocal: false,
+        ),
+      ),
     );
   }
 }
@@ -708,6 +835,113 @@ class _InfoRow extends StatelessWidget {
               maxLines: multiline ? null : 2,
               overflow: multiline ? null : TextOverflow.ellipsis,
             ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Full-screen image viewer widget
+// ---------------------------------------------------------------------------
+
+class _FullScreenImageViewer extends StatefulWidget {
+  const _FullScreenImageViewer({
+    required this.imagePaths,
+    required this.initialIndex,
+    required this.isLocal,
+  });
+
+  final List<String> imagePaths;
+  final int initialIndex;
+  final bool isLocal;
+
+  @override
+  State<_FullScreenImageViewer> createState() => _FullScreenImageViewerState();
+}
+
+class _FullScreenImageViewerState extends State<_FullScreenImageViewer> {
+  late PageController _pageController;
+  late int _currentIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentIndex = widget.initialIndex;
+    _pageController = PageController(initialPage: widget.initialIndex);
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        foregroundColor: Colors.white,
+        elevation: 0,
+        title: Text(
+          '${_currentIndex + 1} / ${widget.imagePaths.length}',
+          style: const TextStyle(fontSize: 16),
+        ),
+        centerTitle: true,
+      ),
+      body: PageView.builder(
+        controller: _pageController,
+        itemCount: widget.imagePaths.length,
+        onPageChanged: (index) => setState(() => _currentIndex = index),
+        itemBuilder: (context, index) {
+          final path = widget.imagePaths[index];
+          return InteractiveViewer(
+            minScale: 0.5,
+            maxScale: 4.0,
+            child: Center(
+              child: widget.isLocal
+                  ? Image.file(
+                      File(path),
+                      fit: BoxFit.contain,
+                      errorBuilder: (_, __, ___) => _errorPlaceholder(),
+                    )
+                  : Image.network(
+                      path,
+                      fit: BoxFit.contain,
+                      loadingBuilder: (_, child, loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return Center(
+                          child: CircularProgressIndicator(
+                            color: Colors.white,
+                            value: loadingProgress.expectedTotalBytes != null
+                                ? loadingProgress.cumulativeBytesLoaded /
+                                    loadingProgress.expectedTotalBytes!
+                                : null,
+                          ),
+                        );
+                      },
+                      errorBuilder: (_, __, ___) => _errorPlaceholder(),
+                    ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _errorPlaceholder() {
+    return const Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(Icons.broken_image_outlined, color: Colors.white54, size: 64),
+          SizedBox(height: 16),
+          Text(
+            'Không thể tải ảnh',
+            style: TextStyle(color: Colors.white54),
           ),
         ],
       ),

@@ -172,72 +172,182 @@ class _ImageConfirmPageState extends State<ImageConfirmPage> {
       itemBuilder: (context, index) {
         final path = _paths[index];
         final exists = File(path).existsSync();
-        return Stack(
-          children: [
-            Positioned.fill(
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: exists
-                    ? Image.file(File(path), fit: BoxFit.cover)
-                    : Container(
-                        color: AppColors.gray.withValues(alpha: 0.2),
-                        child: Icon(
-                          Icons.broken_image_outlined,
-                          color: AppColors.gray,
-                        ),
-                      ),
-              ),
-            ),
-            Positioned.fill(
-              child: Container(
-                decoration: BoxDecoration(
+        return GestureDetector(
+          onTap: () => _openFullscreen(index),
+          child: Stack(
+            children: [
+              Positioned.fill(
+                child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
-                  color: Colors.black.withValues(alpha: 0.25),
+                  child: exists
+                      ? Image.file(File(path), fit: BoxFit.cover)
+                      : Container(
+                          color: AppColors.gray.withValues(alpha: 0.2),
+                          child: Icon(
+                            Icons.broken_image_outlined,
+                            color: AppColors.gray,
+                          ),
+                        ),
                 ),
               ),
-            ),
-            Positioned(
-              top: 4,
-              right: 4,
-              child: GestureDetector(
-                onTap: () => setState(() => _paths.removeAt(index)),
+              Positioned.fill(
                 child: Container(
-                  padding: const EdgeInsets.all(4),
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.black.withValues(alpha: 0.25),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 4,
+                right: 4,
+                child: GestureDetector(
+                  onTap: () => setState(() => _paths.removeAt(index)),
+                  child: Container(
+                    padding: const EdgeInsets.all(4),
+                    decoration: const BoxDecoration(
+                      color: Colors.black54,
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.close,
+                      size: 14,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                left: 6,
+                bottom: 6,
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                  decoration: BoxDecoration(
                     color: Colors.black54,
-                    shape: BoxShape.circle,
+                    borderRadius: BorderRadius.circular(6),
                   ),
-                  child: const Icon(
-                    Icons.close,
-                    size: 14,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
-            Positioned(
-              left: 6,
-              bottom: 6,
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                decoration: BoxDecoration(
-                  color: Colors.black54,
-                  borderRadius: BorderRadius.circular(6),
-                ),
-                child: Text(
-                  '#${index + 1}',
-                  style: const TextStyle(
-                    fontSize: 10,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
+                  child: Text(
+                    '#${index + 1}',
+                    style: const TextStyle(
+                      fontSize: 10,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         );
       },
+    );
+  }
+
+  void _openFullscreen(int initialIndex) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        fullscreenDialog: true,
+        builder: (_) => _ConfirmPageFullscreenViewer(
+          paths: _paths,
+          initialIndex: initialIndex,
+        ),
+      ),
+    );
+  }
+}
+
+class _ConfirmPageFullscreenViewer extends StatefulWidget {
+  const _ConfirmPageFullscreenViewer({
+    required this.paths,
+    required this.initialIndex,
+  });
+
+  final List<String> paths;
+  final int initialIndex;
+
+  @override
+  State<_ConfirmPageFullscreenViewer> createState() =>
+      _ConfirmPageFullscreenViewerState();
+}
+
+class _ConfirmPageFullscreenViewerState
+    extends State<_ConfirmPageFullscreenViewer> {
+  late PageController _pageController;
+  late int _currentIndex;
+  late List<String> _paths;
+
+  @override
+  void initState() {
+    super.initState();
+    _paths = List<String>.from(widget.paths);
+    _currentIndex = widget.initialIndex;
+    _pageController = PageController(initialPage: widget.initialIndex);
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        foregroundColor: Colors.white,
+        elevation: 0,
+        title: Text(
+          '${_currentIndex + 1} / ${_paths.length}',
+          style: const TextStyle(fontSize: 16),
+        ),
+        centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(Icons.close),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.delete_outline),
+            onPressed: () {
+              setState(() {
+                if (_paths.length == 1) {
+                  Navigator.of(context).pop();
+                } else {
+                  _paths.removeAt(_currentIndex);
+                  if (_currentIndex >= _paths.length) {
+                    _currentIndex = _paths.length - 1;
+                  }
+                }
+              });
+            },
+          ),
+        ],
+      ),
+      body: PageView.builder(
+        controller: _pageController,
+        itemCount: _paths.length,
+        onPageChanged: (index) => setState(() => _currentIndex = index),
+        itemBuilder: (context, index) {
+          final path = _paths[index];
+          return InteractiveViewer(
+            minScale: 0.5,
+            maxScale: 4.0,
+            child: Center(
+              child: Image.file(
+                File(path),
+                fit: BoxFit.contain,
+                errorBuilder: (_, __, ___) => const Center(
+                  child: Icon(Icons.broken_image_outlined,
+                      color: Colors.white54, size: 64),
+                ),
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 }

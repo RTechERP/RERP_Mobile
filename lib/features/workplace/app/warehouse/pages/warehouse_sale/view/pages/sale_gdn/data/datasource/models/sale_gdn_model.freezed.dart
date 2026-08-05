@@ -4252,3 +4252,375 @@ abstract class _UploadFileResponse implements UploadFileResponse {
   _$$UploadFileResponseImplCopyWith<_$UploadFileResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+ReadFileResponse _$ReadFileResponseFromJson(Map<String, dynamic> json) {
+  return _ReadFileResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ReadFileResponse {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'BillExportDetailID')
+  int? get billExportDetailId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FileName')
+  String? get fileName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'OriginPath')
+  String? get originPath => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ServerPath')
+  String? get serverPath => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ReadFileResponseCopyWith<ReadFileResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ReadFileResponseCopyWith<$Res> {
+  factory $ReadFileResponseCopyWith(
+          ReadFileResponse value, $Res Function(ReadFileResponse) then) =
+      _$ReadFileResponseCopyWithImpl<$Res, ReadFileResponse>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'BillExportDetailID') int? billExportDetailId,
+      @JsonKey(name: 'FileName') String? fileName,
+      @JsonKey(name: 'OriginPath') String? originPath,
+      @JsonKey(name: 'ServerPath') String? serverPath,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted});
+}
+
+/// @nodoc
+class _$ReadFileResponseCopyWithImpl<$Res, $Val extends ReadFileResponse>
+    implements $ReadFileResponseCopyWith<$Res> {
+  _$ReadFileResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? billExportDetailId = freezed,
+    Object? fileName = freezed,
+    Object? originPath = freezed,
+    Object? serverPath = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+    Object? isDeleted = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      billExportDetailId: freezed == billExportDetailId
+          ? _value.billExportDetailId
+          : billExportDetailId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fileName: freezed == fileName
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      originPath: freezed == originPath
+          ? _value.originPath
+          : originPath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      serverPath: freezed == serverPath
+          ? _value.serverPath
+          : serverPath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ReadFileResponseImplCopyWith<$Res>
+    implements $ReadFileResponseCopyWith<$Res> {
+  factory _$$ReadFileResponseImplCopyWith(_$ReadFileResponseImpl value,
+          $Res Function(_$ReadFileResponseImpl) then) =
+      __$$ReadFileResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'BillExportDetailID') int? billExportDetailId,
+      @JsonKey(name: 'FileName') String? fileName,
+      @JsonKey(name: 'OriginPath') String? originPath,
+      @JsonKey(name: 'ServerPath') String? serverPath,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted});
+}
+
+/// @nodoc
+class __$$ReadFileResponseImplCopyWithImpl<$Res>
+    extends _$ReadFileResponseCopyWithImpl<$Res, _$ReadFileResponseImpl>
+    implements _$$ReadFileResponseImplCopyWith<$Res> {
+  __$$ReadFileResponseImplCopyWithImpl(_$ReadFileResponseImpl _value,
+      $Res Function(_$ReadFileResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? billExportDetailId = freezed,
+    Object? fileName = freezed,
+    Object? originPath = freezed,
+    Object? serverPath = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+    Object? isDeleted = freezed,
+  }) {
+    return _then(_$ReadFileResponseImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      billExportDetailId: freezed == billExportDetailId
+          ? _value.billExportDetailId
+          : billExportDetailId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fileName: freezed == fileName
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      originPath: freezed == originPath
+          ? _value.originPath
+          : originPath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      serverPath: freezed == serverPath
+          ? _value.serverPath
+          : serverPath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ReadFileResponseImpl implements _ReadFileResponse {
+  const _$ReadFileResponseImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'BillExportDetailID') this.billExportDetailId,
+      @JsonKey(name: 'FileName') this.fileName,
+      @JsonKey(name: 'OriginPath') this.originPath,
+      @JsonKey(name: 'ServerPath') this.serverPath,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'UpdatedBy') this.updatedBy,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate,
+      @JsonKey(name: 'IsDeleted') this.isDeleted});
+
+  factory _$ReadFileResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ReadFileResponseImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'BillExportDetailID')
+  final int? billExportDetailId;
+  @override
+  @JsonKey(name: 'FileName')
+  final String? fileName;
+  @override
+  @JsonKey(name: 'OriginPath')
+  final String? originPath;
+  @override
+  @JsonKey(name: 'ServerPath')
+  final String? serverPath;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  final String? createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  final String? updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final DateTime? updatedDate;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  final bool? isDeleted;
+
+  @override
+  String toString() {
+    return 'ReadFileResponse(id: $id, billExportDetailId: $billExportDetailId, fileName: $fileName, originPath: $originPath, serverPath: $serverPath, createdBy: $createdBy, createdDate: $createdDate, updatedBy: $updatedBy, updatedDate: $updatedDate, isDeleted: $isDeleted)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ReadFileResponseImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.billExportDetailId, billExportDetailId) ||
+                other.billExportDetailId == billExportDetailId) &&
+            (identical(other.fileName, fileName) ||
+                other.fileName == fileName) &&
+            (identical(other.originPath, originPath) ||
+                other.originPath == originPath) &&
+            (identical(other.serverPath, serverPath) ||
+                other.serverPath == serverPath) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      billExportDetailId,
+      fileName,
+      originPath,
+      serverPath,
+      createdBy,
+      createdDate,
+      updatedBy,
+      updatedDate,
+      isDeleted);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ReadFileResponseImplCopyWith<_$ReadFileResponseImpl> get copyWith =>
+      __$$ReadFileResponseImplCopyWithImpl<_$ReadFileResponseImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ReadFileResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ReadFileResponse implements ReadFileResponse {
+  const factory _ReadFileResponse(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'BillExportDetailID') final int? billExportDetailId,
+          @JsonKey(name: 'FileName') final String? fileName,
+          @JsonKey(name: 'OriginPath') final String? originPath,
+          @JsonKey(name: 'ServerPath') final String? serverPath,
+          @JsonKey(name: 'CreatedBy') final String? createdBy,
+          @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+          @JsonKey(name: 'UpdatedBy') final String? updatedBy,
+          @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
+          @JsonKey(name: 'IsDeleted') final bool? isDeleted}) =
+      _$ReadFileResponseImpl;
+
+  factory _ReadFileResponse.fromJson(Map<String, dynamic> json) =
+      _$ReadFileResponseImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'BillExportDetailID')
+  int? get billExportDetailId;
+  @override
+  @JsonKey(name: 'FileName')
+  String? get fileName;
+  @override
+  @JsonKey(name: 'OriginPath')
+  String? get originPath;
+  @override
+  @JsonKey(name: 'ServerPath')
+  String? get serverPath;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted;
+  @override
+  @JsonKey(ignore: true)
+  _$$ReadFileResponseImplCopyWith<_$ReadFileResponseImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

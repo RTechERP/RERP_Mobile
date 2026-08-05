@@ -45,9 +45,11 @@ class SaleGdnEvent with _$SaleGdnEvent {
   }) = _AddImages;
 
   /// Xoá 1 ảnh khỏi dòng chi tiết theo `stt` và `imageIndex`.
+  /// Nếu `isLocal=true` thì xoá local image, ngược lại xoá server image.
   const factory SaleGdnEvent.removeImage({
     required int stt,
     required int imageIndex,
+    @Default(true) bool isLocal,
   }) = _RemoveImage;
 
   /// Upload tất cả ảnh local đã chọn lên server.

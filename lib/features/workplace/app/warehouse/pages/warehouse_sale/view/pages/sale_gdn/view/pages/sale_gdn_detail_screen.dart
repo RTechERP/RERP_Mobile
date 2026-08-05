@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 import 'package:rtc_erp/base/bloc/bloc_status.dart';
@@ -69,9 +70,10 @@ class _SaleGdnDetailView extends StatelessWidget {
   }
 
   /// Xoá 1 ảnh theo `stt` và chỉ số ảnh trong dòng đó.
-  void _removeImage(BuildContext context, int stt, int imageIndex) {
+  /// Nếu `isLocal=true` thì xoá local, ngược lại xoá server.
+  void _removeImage(BuildContext context, int stt, int imageIndex, bool isLocal) {
     context.read<SaleGdnBloc>().add(
-      SaleGdnEvent.removeImage(stt: stt, imageIndex: imageIndex),
+      SaleGdnEvent.removeImage(stt: stt, imageIndex: imageIndex, isLocal: isLocal),
     );
   }
 
@@ -169,6 +171,15 @@ class _SaleGdnDetailView extends StatelessWidget {
       return const SaleGdnEmptyView();
     }
 
+    // Build stt -> childId map from detailFull
+    final sttToChildId = <int, int>{};
+    for (final full in detail.detailFull) {
+      final stt = full.stt ?? (detail.detailFull.indexOf(full) + 1);
+      if (full.childId != null && full.childId! > 0) {
+        sttToChildId[stt] = full.childId!;
+      }
+    }
+
     return RefreshIndicator(
       onRefresh: () async => _reload(context),
       child: ListView.separated(
@@ -178,16 +189,69 @@ class _SaleGdnDetailView extends StatelessWidget {
         itemBuilder: (context, index) {
           final detailItem = detail.details[index];
           final stt = detailItem.stt ?? (index + 1);
+          final childId = sttToChildId[stt];
+          final serverFiles = childId != null
+              ? detail.serverImagesByChildId[childId] ?? []
+              : <ReadFileResponse>[];
+          final serverUrls = serverFiles
+              .where((f) => f.serverPath != null && f.serverPath!.isNotEmpty)
+              .map((f) => _fixFileUrl('${f.serverPath}\\${f.fileName ?? ''}'))
+              .toList();
+
           return SaleGdnDetailItemCard(
             item: detailItem,
             index: index + 1,
             localImagePaths: detail.localImagePathsByStt[stt] ?? [],
+            serverImageUrls: serverUrls,
             onAddImages: () => _addImages(context, stt),
-            onRemoveImage: (imageIndex) =>
-                _removeImage(context, stt, imageIndex),
+            onRemoveImage: (imageIndex, isLocal) =>
+                _removeImage(context, stt, imageIndex, isLocal),
           );
         },
       ),
     );
+  }
+
+  String _fixFileUrl(String? path) {
+    if (path == null || path.isEmpty) return '';
+
+    final baseUrl = dotenv.env['BASE_URL'] ?? '';
+    final newPrefix = '${baseUrl.replaceFirst(RegExp(r'/$'), '')}/share';
+
+    // Bỏ prefix /api nếu có (để tránh /api/api/share)
+    var normalized = path;
+    if (normalized.startsWith('/api/')) {
+      normalized = normalized.substring(4);
+    }
+
+    // Thêm https: nếu thiếu scheme (//192.168.1.190/... → https://192.168.1.190/...)
+    if (normalized.startsWith('//')) {
+      normalized = 'https:$normalized';
+    }
+
+    // Chuẩn hóa backslash thành forward slash
+    normalized = normalized.replaceAll('\\', '/');
+
+    // Xử lý IP local: thay bằng baseUrl/share
+    if (normalized.contains('192.168.') || normalized.contains('10.')) {
+      final ipMatch = RegExp(r'[\d]+\.[\d]+\.[\d]+\.[\d]+[:\d]*').firstMatch(normalized);
+      if (ipMatch != null) {
+        final relative = normalized.substring(ipMatch.end);
+        return '$newPrefix$relative';
+      }
+    }
+
+    // Nếu là đường dẫn tuyệt đối có scheme
+    if (normalized.startsWith('http://') || normalized.startsWith('https://')) {
+      return normalized;
+    }
+
+    // Nếu đã có /share thì thêm baseUrl
+    if (normalized.startsWith('/share/')) {
+      return '$baseUrl$normalized';
+    }
+
+    // Ngược lại thêm prefix
+    return '$newPrefix/$normalized';
   }
 }

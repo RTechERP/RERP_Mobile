@@ -34,7 +34,8 @@ mixin _$SaleGdnEvent {
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
-    required TResult Function(int stt, int imageIndex) removeImage,
+    required TResult Function(int stt, int imageIndex, bool isLocal)
+        removeImage,
     required TResult Function() submitImages,
   }) =>
       throw _privateConstructorUsedError;
@@ -55,7 +56,7 @@ mixin _$SaleGdnEvent {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
-    TResult? Function(int stt, int imageIndex)? removeImage,
+    TResult? Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult? Function()? submitImages,
   }) =>
       throw _privateConstructorUsedError;
@@ -76,7 +77,7 @@ mixin _$SaleGdnEvent {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
-    TResult Function(int stt, int imageIndex)? removeImage,
+    TResult Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult Function()? submitImages,
     required TResult orElse(),
   }) =>
@@ -221,7 +222,8 @@ class _$InitImpl implements _Init {
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
-    required TResult Function(int stt, int imageIndex) removeImage,
+    required TResult Function(int stt, int imageIndex, bool isLocal)
+        removeImage,
     required TResult Function() submitImages,
   }) {
     return init();
@@ -245,7 +247,7 @@ class _$InitImpl implements _Init {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
-    TResult? Function(int stt, int imageIndex)? removeImage,
+    TResult? Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult? Function()? submitImages,
   }) {
     return init?.call();
@@ -269,7 +271,7 @@ class _$InitImpl implements _Init {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
-    TResult Function(int stt, int imageIndex)? removeImage,
+    TResult Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult Function()? submitImages,
     required TResult orElse(),
   }) {
@@ -417,7 +419,8 @@ class _$FetchGdnsImpl implements _FetchGdns {
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
-    required TResult Function(int stt, int imageIndex) removeImage,
+    required TResult Function(int stt, int imageIndex, bool isLocal)
+        removeImage,
     required TResult Function() submitImages,
   }) {
     return fetchGdns();
@@ -441,7 +444,7 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
-    TResult? Function(int stt, int imageIndex)? removeImage,
+    TResult? Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult? Function()? submitImages,
   }) {
     return fetchGdns?.call();
@@ -465,7 +468,7 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
-    TResult Function(int stt, int imageIndex)? removeImage,
+    TResult Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult Function()? submitImages,
     required TResult orElse(),
   }) {
@@ -640,7 +643,8 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
-    required TResult Function(int stt, int imageIndex) removeImage,
+    required TResult Function(int stt, int imageIndex, bool isLocal)
+        removeImage,
     required TResult Function() submitImages,
   }) {
     return searchByKeyword(keyword);
@@ -664,7 +668,7 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
-    TResult? Function(int stt, int imageIndex)? removeImage,
+    TResult? Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult? Function()? submitImages,
   }) {
     return searchByKeyword?.call(keyword);
@@ -688,7 +692,7 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
-    TResult Function(int stt, int imageIndex)? removeImage,
+    TResult Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult Function()? submitImages,
     required TResult orElse(),
   }) {
@@ -870,7 +874,8 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
-    required TResult Function(int stt, int imageIndex) removeImage,
+    required TResult Function(int stt, int imageIndex, bool isLocal)
+        removeImage,
     required TResult Function() submitImages,
   }) {
     return searchByVoucherNumber(voucherNumber);
@@ -894,7 +899,7 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
-    TResult? Function(int stt, int imageIndex)? removeImage,
+    TResult? Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult? Function()? submitImages,
   }) {
     return searchByVoucherNumber?.call(voucherNumber);
@@ -918,7 +923,7 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
-    TResult Function(int stt, int imageIndex)? removeImage,
+    TResult Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult Function()? submitImages,
     required TResult orElse(),
   }) {
@@ -1072,7 +1077,8 @@ class _$ClearSearchImpl implements _ClearSearch {
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
-    required TResult Function(int stt, int imageIndex) removeImage,
+    required TResult Function(int stt, int imageIndex, bool isLocal)
+        removeImage,
     required TResult Function() submitImages,
   }) {
     return clearSearch();
@@ -1096,7 +1102,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
-    TResult? Function(int stt, int imageIndex)? removeImage,
+    TResult? Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult? Function()? submitImages,
   }) {
     return clearSearch?.call();
@@ -1120,7 +1126,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
-    TResult Function(int stt, int imageIndex)? removeImage,
+    TResult Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult Function()? submitImages,
     required TResult orElse(),
   }) {
@@ -1295,7 +1301,8 @@ class _$ScanQrToDetailImpl implements _ScanQrToDetail {
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
-    required TResult Function(int stt, int imageIndex) removeImage,
+    required TResult Function(int stt, int imageIndex, bool isLocal)
+        removeImage,
     required TResult Function() submitImages,
   }) {
     return scanQrToDetail(code);
@@ -1319,7 +1326,7 @@ class _$ScanQrToDetailImpl implements _ScanQrToDetail {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
-    TResult? Function(int stt, int imageIndex)? removeImage,
+    TResult? Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult? Function()? submitImages,
   }) {
     return scanQrToDetail?.call(code);
@@ -1343,7 +1350,7 @@ class _$ScanQrToDetailImpl implements _ScanQrToDetail {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
-    TResult Function(int stt, int imageIndex)? removeImage,
+    TResult Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult Function()? submitImages,
     required TResult orElse(),
   }) {
@@ -1496,7 +1503,8 @@ class _$ClearOpenedDetailImpl implements _ClearOpenedDetail {
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
-    required TResult Function(int stt, int imageIndex) removeImage,
+    required TResult Function(int stt, int imageIndex, bool isLocal)
+        removeImage,
     required TResult Function() submitImages,
   }) {
     return clearOpenedDetail();
@@ -1520,7 +1528,7 @@ class _$ClearOpenedDetailImpl implements _ClearOpenedDetail {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
-    TResult? Function(int stt, int imageIndex)? removeImage,
+    TResult? Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult? Function()? submitImages,
   }) {
     return clearOpenedDetail?.call();
@@ -1544,7 +1552,7 @@ class _$ClearOpenedDetailImpl implements _ClearOpenedDetail {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
-    TResult Function(int stt, int imageIndex)? removeImage,
+    TResult Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult Function()? submitImages,
     required TResult orElse(),
   }) {
@@ -1695,7 +1703,8 @@ class _$ClearScanResultMessageImpl implements _ClearScanResultMessage {
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
-    required TResult Function(int stt, int imageIndex) removeImage,
+    required TResult Function(int stt, int imageIndex, bool isLocal)
+        removeImage,
     required TResult Function() submitImages,
   }) {
     return clearScanResultMessage();
@@ -1719,7 +1728,7 @@ class _$ClearScanResultMessageImpl implements _ClearScanResultMessage {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
-    TResult? Function(int stt, int imageIndex)? removeImage,
+    TResult? Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult? Function()? submitImages,
   }) {
     return clearScanResultMessage?.call();
@@ -1743,7 +1752,7 @@ class _$ClearScanResultMessageImpl implements _ClearScanResultMessage {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
-    TResult Function(int stt, int imageIndex)? removeImage,
+    TResult Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult Function()? submitImages,
     required TResult orElse(),
   }) {
@@ -1892,7 +1901,8 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
-    required TResult Function(int stt, int imageIndex) removeImage,
+    required TResult Function(int stt, int imageIndex, bool isLocal)
+        removeImage,
     required TResult Function() submitImages,
   }) {
     return fetchWarehouseTypes();
@@ -1916,7 +1926,7 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
-    TResult? Function(int stt, int imageIndex)? removeImage,
+    TResult? Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult? Function()? submitImages,
   }) {
     return fetchWarehouseTypes?.call();
@@ -1940,7 +1950,7 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
-    TResult Function(int stt, int imageIndex)? removeImage,
+    TResult Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult Function()? submitImages,
     required TResult orElse(),
   }) {
@@ -2125,7 +2135,8 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
-    required TResult Function(int stt, int imageIndex) removeImage,
+    required TResult Function(int stt, int imageIndex, bool isLocal)
+        removeImage,
     required TResult Function() submitImages,
   }) {
     return filterByWarehouseType(warehouseTypeIds);
@@ -2149,7 +2160,7 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
-    TResult? Function(int stt, int imageIndex)? removeImage,
+    TResult? Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult? Function()? submitImages,
   }) {
     return filterByWarehouseType?.call(warehouseTypeIds);
@@ -2173,7 +2184,7 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
-    TResult Function(int stt, int imageIndex)? removeImage,
+    TResult Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult Function()? submitImages,
     required TResult orElse(),
   }) {
@@ -2354,7 +2365,8 @@ class _$FilterByStatusImpl implements _FilterByStatus {
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
-    required TResult Function(int stt, int imageIndex) removeImage,
+    required TResult Function(int stt, int imageIndex, bool isLocal)
+        removeImage,
     required TResult Function() submitImages,
   }) {
     return filterByStatus(status);
@@ -2378,7 +2390,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
-    TResult? Function(int stt, int imageIndex)? removeImage,
+    TResult? Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult? Function()? submitImages,
   }) {
     return filterByStatus?.call(status);
@@ -2402,7 +2414,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
-    TResult Function(int stt, int imageIndex)? removeImage,
+    TResult Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult Function()? submitImages,
     required TResult orElse(),
   }) {
@@ -2555,7 +2567,8 @@ class _$ClearFiltersImpl implements _ClearFilters {
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
-    required TResult Function(int stt, int imageIndex) removeImage,
+    required TResult Function(int stt, int imageIndex, bool isLocal)
+        removeImage,
     required TResult Function() submitImages,
   }) {
     return clearFilters();
@@ -2579,7 +2592,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
-    TResult? Function(int stt, int imageIndex)? removeImage,
+    TResult? Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult? Function()? submitImages,
   }) {
     return clearFilters?.call();
@@ -2603,7 +2616,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
-    TResult Function(int stt, int imageIndex)? removeImage,
+    TResult Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult Function()? submitImages,
     required TResult orElse(),
   }) {
@@ -2787,7 +2800,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
-    required TResult Function(int stt, int imageIndex) removeImage,
+    required TResult Function(int stt, int imageIndex, bool isLocal)
+        removeImage,
     required TResult Function() submitImages,
   }) {
     return changeDateRange(dateStart, dateEnd);
@@ -2811,7 +2825,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
-    TResult? Function(int stt, int imageIndex)? removeImage,
+    TResult? Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult? Function()? submitImages,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
@@ -2835,7 +2849,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
-    TResult Function(int stt, int imageIndex)? removeImage,
+    TResult Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult Function()? submitImages,
     required TResult orElse(),
   }) {
@@ -3040,7 +3054,8 @@ class _$InitDetailImpl implements _InitDetail {
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
-    required TResult Function(int stt, int imageIndex) removeImage,
+    required TResult Function(int stt, int imageIndex, bool isLocal)
+        removeImage,
     required TResult Function() submitImages,
   }) {
     return initDetail(id, bill);
@@ -3064,7 +3079,7 @@ class _$InitDetailImpl implements _InitDetail {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
-    TResult? Function(int stt, int imageIndex)? removeImage,
+    TResult? Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult? Function()? submitImages,
   }) {
     return initDetail?.call(id, bill);
@@ -3088,7 +3103,7 @@ class _$InitDetailImpl implements _InitDetail {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
-    TResult Function(int stt, int imageIndex)? removeImage,
+    TResult Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult Function()? submitImages,
     required TResult orElse(),
   }) {
@@ -3286,7 +3301,8 @@ class _$AddImagesImpl implements _AddImages {
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
-    required TResult Function(int stt, int imageIndex) removeImage,
+    required TResult Function(int stt, int imageIndex, bool isLocal)
+        removeImage,
     required TResult Function() submitImages,
   }) {
     return addImages(stt, imagePaths);
@@ -3310,7 +3326,7 @@ class _$AddImagesImpl implements _AddImages {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
-    TResult? Function(int stt, int imageIndex)? removeImage,
+    TResult? Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult? Function()? submitImages,
   }) {
     return addImages?.call(stt, imagePaths);
@@ -3334,7 +3350,7 @@ class _$AddImagesImpl implements _AddImages {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
-    TResult Function(int stt, int imageIndex)? removeImage,
+    TResult Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult Function()? submitImages,
     required TResult orElse(),
   }) {
@@ -3442,7 +3458,7 @@ abstract class _$$RemoveImageImplCopyWith<$Res> {
           _$RemoveImageImpl value, $Res Function(_$RemoveImageImpl) then) =
       __$$RemoveImageImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int stt, int imageIndex});
+  $Res call({int stt, int imageIndex, bool isLocal});
 }
 
 /// @nodoc
@@ -3458,6 +3474,7 @@ class __$$RemoveImageImplCopyWithImpl<$Res>
   $Res call({
     Object? stt = null,
     Object? imageIndex = null,
+    Object? isLocal = null,
   }) {
     return _then(_$RemoveImageImpl(
       stt: null == stt
@@ -3468,6 +3485,10 @@ class __$$RemoveImageImplCopyWithImpl<$Res>
           ? _value.imageIndex
           : imageIndex // ignore: cast_nullable_to_non_nullable
               as int,
+      isLocal: null == isLocal
+          ? _value.isLocal
+          : isLocal // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -3475,16 +3496,20 @@ class __$$RemoveImageImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$RemoveImageImpl implements _RemoveImage {
-  const _$RemoveImageImpl({required this.stt, required this.imageIndex});
+  const _$RemoveImageImpl(
+      {required this.stt, required this.imageIndex, this.isLocal = true});
 
   @override
   final int stt;
   @override
   final int imageIndex;
+  @override
+  @JsonKey()
+  final bool isLocal;
 
   @override
   String toString() {
-    return 'SaleGdnEvent.removeImage(stt: $stt, imageIndex: $imageIndex)';
+    return 'SaleGdnEvent.removeImage(stt: $stt, imageIndex: $imageIndex, isLocal: $isLocal)';
   }
 
   @override
@@ -3494,11 +3519,12 @@ class _$RemoveImageImpl implements _RemoveImage {
             other is _$RemoveImageImpl &&
             (identical(other.stt, stt) || other.stt == stt) &&
             (identical(other.imageIndex, imageIndex) ||
-                other.imageIndex == imageIndex));
+                other.imageIndex == imageIndex) &&
+            (identical(other.isLocal, isLocal) || other.isLocal == isLocal));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, stt, imageIndex);
+  int get hashCode => Object.hash(runtimeType, stt, imageIndex, isLocal);
 
   @JsonKey(ignore: true)
   @override
@@ -3525,10 +3551,11 @@ class _$RemoveImageImpl implements _RemoveImage {
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
-    required TResult Function(int stt, int imageIndex) removeImage,
+    required TResult Function(int stt, int imageIndex, bool isLocal)
+        removeImage,
     required TResult Function() submitImages,
   }) {
-    return removeImage(stt, imageIndex);
+    return removeImage(stt, imageIndex, isLocal);
   }
 
   @override
@@ -3549,10 +3576,10 @@ class _$RemoveImageImpl implements _RemoveImage {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
-    TResult? Function(int stt, int imageIndex)? removeImage,
+    TResult? Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult? Function()? submitImages,
   }) {
-    return removeImage?.call(stt, imageIndex);
+    return removeImage?.call(stt, imageIndex, isLocal);
   }
 
   @override
@@ -3573,12 +3600,12 @@ class _$RemoveImageImpl implements _RemoveImage {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
-    TResult Function(int stt, int imageIndex)? removeImage,
+    TResult Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult Function()? submitImages,
     required TResult orElse(),
   }) {
     if (removeImage != null) {
-      return removeImage(stt, imageIndex);
+      return removeImage(stt, imageIndex, isLocal);
     }
     return orElse();
   }
@@ -3666,10 +3693,12 @@ class _$RemoveImageImpl implements _RemoveImage {
 abstract class _RemoveImage implements SaleGdnEvent {
   const factory _RemoveImage(
       {required final int stt,
-      required final int imageIndex}) = _$RemoveImageImpl;
+      required final int imageIndex,
+      final bool isLocal}) = _$RemoveImageImpl;
 
   int get stt;
   int get imageIndex;
+  bool get isLocal;
   @JsonKey(ignore: true)
   _$$RemoveImageImplCopyWith<_$RemoveImageImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -3729,7 +3758,8 @@ class _$SubmitImagesImpl implements _SubmitImages {
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
-    required TResult Function(int stt, int imageIndex) removeImage,
+    required TResult Function(int stt, int imageIndex, bool isLocal)
+        removeImage,
     required TResult Function() submitImages,
   }) {
     return submitImages();
@@ -3753,7 +3783,7 @@ class _$SubmitImagesImpl implements _SubmitImages {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
-    TResult? Function(int stt, int imageIndex)? removeImage,
+    TResult? Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult? Function()? submitImages,
   }) {
     return submitImages?.call();
@@ -3777,7 +3807,7 @@ class _$SubmitImagesImpl implements _SubmitImages {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
-    TResult Function(int stt, int imageIndex)? removeImage,
+    TResult Function(int stt, int imageIndex, bool isLocal)? removeImage,
     TResult Function()? submitImages,
     required TResult orElse(),
   }) {

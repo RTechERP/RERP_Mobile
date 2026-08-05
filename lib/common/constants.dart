@@ -396,8 +396,10 @@ class ApiEndPoint {
 
   // Warehouse
   static const String getBillExport = '/BillExport';
-  static const String getBillExportDetail = '/BillExport/{id}';
+  static const String getBillExportDetail = '/billexport/get-bill-detail/{id}';
   static const String getProductGroup = '/BillExport/get-product-group';
   static const String getViewExportDetail = '/BillExport/get-view-export-detail';
+  static const String getBillExportFiles = '/BillExport/files';
   static const String uploadBillExportFiles = '/BillExport/upload-files';
+  static const String deleteBillExportFile = '/BillExport/delete-file/{fileId}';
 }

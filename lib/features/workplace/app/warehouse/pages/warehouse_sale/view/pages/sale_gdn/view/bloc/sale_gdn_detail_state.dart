@@ -12,6 +12,9 @@ class GdnDetailState extends BaseBlocState {
   /// Danh sách dòng chi tiết sản phẩm (từ API view).
   final List<ViewGDNDetailResponse> details;
 
+  /// Danh sách chi tiết đầy đủ (từ API detail, chứa childId để map ảnh).
+  final List<DetailGDNResponse> detailFull;
+
   /// Danh sách file đã upload thành công (từ API).
   final List<UploadFileResponse> uploadedImages;
 
@@ -19,14 +22,20 @@ class GdnDetailState extends BaseBlocState {
   /// Key = stt, Value = danh sách đường dẫn ảnh local.
   final Map<int, List<String>> localImagePathsByStt;
 
+  /// Map lưu ảnh server theo ChildID (từ DetailGDNResponse.childId).
+  /// Key = childId, Value = danh sách ReadFileResponse.
+  final Map<int, List<ReadFileResponse>> serverImagesByChildId;
+
   const GdnDetailState({
     required super.status,
     super.message,
     this.billExportId = 0,
     this.bill,
     this.details = const [],
+    this.detailFull = const [],
     this.uploadedImages = const [],
     this.localImagePathsByStt = const {},
+    this.serverImagesByChildId = const {},
   });
 
   factory GdnDetailState.init({required int id, BillExporResponse? bill}) {
@@ -44,7 +53,9 @@ class GdnDetailState extends BaseBlocState {
         billExportId,
         bill,
         details,
+        detailFull,
         uploadedImages,
         localImagePathsByStt,
+        serverImagesByChildId,
       ];
 }

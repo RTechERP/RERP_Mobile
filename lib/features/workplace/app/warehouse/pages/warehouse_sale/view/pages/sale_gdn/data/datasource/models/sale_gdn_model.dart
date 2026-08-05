@@ -198,3 +198,23 @@ class UploadFileResponse with _$UploadFileResponse {
   factory UploadFileResponse.fromJson(Map<String, dynamic> json) =>
       _$UploadFileResponseFromJson(json);
 }
+
+/// Read file response model
+@freezed
+class ReadFileResponse with _$ReadFileResponse {
+  const factory ReadFileResponse({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'BillExportDetailID') int? billExportDetailId,
+    @JsonKey(name: 'FileName') String? fileName,
+    @JsonKey(name: 'OriginPath') String? originPath,
+    @JsonKey(name: 'ServerPath') String? serverPath,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+  }) = _ReadFileResponse;
+
+  factory ReadFileResponse.fromJson(Map<String, dynamic> json) =>
+      _$ReadFileResponseFromJson(json);
+}

@@ -28,4 +28,14 @@ abstract class SaleGdnRepo {
   Future<Either<BaseError, List<UploadFileResponse>>> uploadBillExportFiles({
     required List<File> files,
   });
+
+  /// Lấy danh sách file đính kèm theo billExportDetailId.
+  Future<Either<BaseError, List<ReadFileResponse>>> getBillExportFiles({
+    required int billExportDetailId,
+  });
+
+  /// Xoá file đính kèm theo fileId.
+  Future<Either<BaseError, bool>> deleteBillExportFile({
+    required int fileId,
+  });
 }

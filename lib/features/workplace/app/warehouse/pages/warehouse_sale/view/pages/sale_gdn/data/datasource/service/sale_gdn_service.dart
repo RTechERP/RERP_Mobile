@@ -187,4 +187,58 @@ class SaleGdnService extends DioBaseApiService {
       ),
     );
   }
+
+  /// Lấy danh sách file đính kèm theo billExportDetailId.
+  /// Endpoint: GET /BillExport/files?billExportDetailId={id}
+  /// Response: List<ReadFileResponse>
+  Future<BaseData<List<ReadFileResponse>>> getBillExportFiles({
+    required int billExportDetailId,
+  }) async {
+    return get<BaseData<List<ReadFileResponse>>>(
+      ApiEndPoint.getBillExportFiles,
+      query: {'billExportDetailId': billExportDetailId},
+      parser: (json) {
+        if (json is! Map<String, dynamic>) {
+          return BaseData<List<ReadFileResponse>>(
+            status: 0,
+            data: [],
+          );
+        }
+
+        final status = json['status'] as int?;
+        final dataJson = json['data'];
+
+        List<ReadFileResponse> items = [];
+        if (dataJson is List) {
+          items = dataJson
+              .map((e) => ReadFileResponse.fromJson(e as Map<String, dynamic>))
+              .toList();
+        }
+
+        return BaseData<List<ReadFileResponse>>(
+          status: status,
+          data: items,
+        );
+      },
+    );
+  }
+
+  /// Xoá file đính kèm theo fileId.
+  /// Endpoint: DELETE /BillExport/delete-file/{fileId}
+  Future<BaseData<bool>> deleteBillExportFile({
+    required int fileId,
+  }) async {
+    return delete<BaseData<bool>>(
+      ApiEndPoint.deleteBillExportFile.replaceAll('{fileId}', fileId.toString()),
+      parser: (json) {
+        if (json is! Map<String, dynamic>) {
+          return BaseData<bool>(status: 0, data: false);
+        }
+        return BaseData<bool>(
+          status: json['status'] as int?,
+          data: json['status'] == 1,
+        );
+      },
+    );
+  }
 }

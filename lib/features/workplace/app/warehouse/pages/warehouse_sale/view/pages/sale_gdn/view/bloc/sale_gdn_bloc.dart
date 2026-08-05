@@ -43,8 +43,8 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
             _changeDateRange(emit, dateStart, dateEnd),
         initDetail: (id, bill) => _onInitDetail(emit, id: id, bill: bill),
         addImages: (stt, paths) => _onAddImages(emit, stt, paths),
-        removeImage: (stt, imageIndex) =>
-            _onRemoveImage(emit, stt, imageIndex),
+        removeImage: (stt, imageIndex, isLocal) =>
+            _onRemoveImage(emit, stt, imageIndex, isLocal),
         submitImages: () => _onSubmitImages(emit),
       );
     });
@@ -380,20 +380,62 @@ BillExporResponse? _findGdnInList(String code) {
         final current = state.detail;
         if (current == null) return;
 
-        // Bước 2: Sau đó gọi API detail -> DetailGDNResponse
+        // Hiển thị view data trước
+        emit(state.copyWith(
+          detail: current.copyWith(
+            status: BaseStateStatus.loading,
+            details: viewData,
+          ),
+        ));
+
+        // Bước 2: Gọi API detail -> DetailGDNResponse
         final detailRes = await _repo.getBillExportDetail(id: id);
 
         await detailRes.fold(
           (l) async {
             _log.logE('❌ getBillExportDetail failed: $l');
-            // Vẫn hiển thị view data, chỉ log lỗi
           },
           (detailData) async {
             _log.logI('✅ getBillExportDetail success - total: ${detailData.length}');
+
+            // Debug: log childId của từng item
+            for (int i = 0; i < detailData.length; i++) {
+              _log.logI('🔍 detailData[$i] childId=${detailData[i].childId} stt=${detailData[i].stt}');
+            }
+
+            // Bước 3: Gọi API files cho từng childId
+            final serverImagesByChildId = <int, List<ReadFileResponse>>{};
+            for (final detail in detailData) {
+              final childId = detail.childId;
+              if (childId == null || childId <= 0) {
+                _log.logW('⚠️ childId is null or <= 0, skipping: $childId');
+                continue;
+              }
+
+              _log.logI('📞 Calling getBillExportFiles for childId=$childId');
+              final fileRes = await _repo.getBillExportFiles(
+                billExportDetailId: childId,
+              );
+
+              await fileRes.fold(
+                (l) async {
+                  _log.logE('❌ getBillExportFiles failed for childId=$childId: $l');
+                },
+                (files) async {
+                  _log.logI('✅ getBillExportFiles for childId=$childId: ${files.length} files');
+                  if (files.isNotEmpty) {
+                    serverImagesByChildId[childId] = files;
+                  }
+                },
+              );
+            }
+
             emit(state.copyWith(
               detail: current.copyWith(
                 status: BaseStateStatus.success,
-                details: viewData, // TODO: merge viewData với detailData tuỳ logic
+                details: viewData,
+                detailFull: detailData,
+                serverImagesByChildId: serverImagesByChildId,
               ),
             ));
           },
@@ -421,22 +463,64 @@ BillExporResponse? _findGdnInList(String code) {
   }
 
   /// Xoá 1 ảnh khỏi dòng chi tiết theo `stt` và `imageIndex`.
+  /// Nếu `isLocal=true` thì xoá local image, ngược lại xoá server image.
   Future<void> _onRemoveImage(
     Emitter<SaleGdnState> emit,
     int stt,
     int imageIndex,
+    bool isLocal,
   ) async {
     final current = state.detail;
     if (current == null) return;
 
-    final existing = current.localImagePathsByStt[stt] ?? [];
-    if (imageIndex >= existing.length) return;
-    final updated = Map<int, List<String>>.from(current.localImagePathsByStt);
-    final next = [...existing]..removeAt(imageIndex);
-    updated[stt] = next;
-    emit(state.copyWith(
-      detail: current.copyWith(localImagePathsByStt: updated),
-    ));
+    if (isLocal) {
+      // Xoá local image
+      final existing = current.localImagePathsByStt[stt] ?? [];
+      if (imageIndex >= existing.length) return;
+      final updatedLocal = Map<int, List<String>>.from(current.localImagePathsByStt);
+      final nextLocal = [...existing]..removeAt(imageIndex);
+      updatedLocal[stt] = nextLocal;
+      emit(state.copyWith(
+        detail: current.copyWith(localImagePathsByStt: updatedLocal),
+      ));
+    } else {
+      // Xoá server image - cần tìm childId từ stt
+      final detailItem = current.detailFull.firstWhere(
+        (d) => d.stt == stt,
+        orElse: () => DetailGDNResponse(),
+      );
+      final childId = detailItem.childId;
+      if (childId == null || childId <= 0) return;
+
+      final serverImages = current.serverImagesByChildId[childId] ?? [];
+      if (imageIndex >= serverImages.length) return;
+
+      // Gọi API xoá file trên server
+      final fileId = serverImages[imageIndex].id;
+      if (fileId != null && fileId > 0) {
+        final deleteRes = await _repo.deleteBillExportFile(fileId: fileId);
+        await deleteRes.fold(
+          (l) async {
+            _log.logE('❌ deleteBillExportFile failed: $l');
+          },
+          (r) async {
+            _log.logI('✅ deleteBillExportFile success');
+          },
+        );
+      }
+
+      // Cập nhật state sau khi xoá
+      final updatedServer = Map<int, List<ReadFileResponse>>.from(current.serverImagesByChildId);
+      final nextServer = [...serverImages]..removeAt(imageIndex);
+      if (nextServer.isEmpty) {
+        updatedServer.remove(childId);
+      } else {
+        updatedServer[childId] = nextServer;
+      }
+      emit(state.copyWith(
+        detail: current.copyWith(serverImagesByChildId: updatedServer),
+      ));
+    }
   }
 
   /// Upload tất cả ảnh local đã chọn lên server.
