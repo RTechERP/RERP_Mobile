@@ -233,6 +233,8 @@ abstract class _$GdnDetailStateCWProxy {
   GdnDetailState serverImagesByChildId(
       Map<int, List<ReadFileResponse>> serverImagesByChildId);
 
+  GdnDetailState uploadStatus(BaseStateStatus uploadStatus);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GdnDetailState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -249,6 +251,7 @@ abstract class _$GdnDetailStateCWProxy {
     List<UploadFileResponse>? uploadedImages,
     Map<int, List<String>>? localImagePathsByStt,
     Map<int, List<ReadFileResponse>>? serverImagesByChildId,
+    BaseStateStatus? uploadStatus,
   });
 }
 
@@ -294,6 +297,10 @@ class _$GdnDetailStateCWProxyImpl implements _$GdnDetailStateCWProxy {
       this(serverImagesByChildId: serverImagesByChildId);
 
   @override
+  GdnDetailState uploadStatus(BaseStateStatus uploadStatus) =>
+      this(uploadStatus: uploadStatus);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GdnDetailState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -311,6 +318,7 @@ class _$GdnDetailStateCWProxyImpl implements _$GdnDetailStateCWProxy {
     Object? uploadedImages = const $CopyWithPlaceholder(),
     Object? localImagePathsByStt = const $CopyWithPlaceholder(),
     Object? serverImagesByChildId = const $CopyWithPlaceholder(),
+    Object? uploadStatus = const $CopyWithPlaceholder(),
   }) {
     return GdnDetailState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -356,6 +364,11 @@ class _$GdnDetailStateCWProxyImpl implements _$GdnDetailStateCWProxy {
               ? _value.serverImagesByChildId
               // ignore: cast_nullable_to_non_nullable
               : serverImagesByChildId as Map<int, List<ReadFileResponse>>,
+      uploadStatus:
+          uploadStatus == const $CopyWithPlaceholder() || uploadStatus == null
+              ? _value.uploadStatus
+              // ignore: cast_nullable_to_non_nullable
+              : uploadStatus as BaseStateStatus,
     );
   }
 }

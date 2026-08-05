@@ -165,6 +165,8 @@ import '../features/workplace/app/reports/view/tech/view/pages/tech_screen.dart'
 import '../features/workplace/app/warehouse/enums/warehouse_type.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_area_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/warehouse_demo_screen.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/models/sale_gdn_model.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/pages/sale_gdn_detail_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/bloc/sale_gdn_bloc.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/pages/sale_gdn_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/warehouse_sale_screen.dart';
@@ -1415,6 +1417,15 @@ class AppRouter {
           GoRoute(
             path: RouteNames.warehouseSaleGdn,
             builder: (context, state) => const SaleGdnScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.warehouseSaleGdnDetail,
+            builder: (context, state) {
+              final extra = state.extra as Map<String, dynamic>?;
+              final billId = extra?['billId'] as int? ?? 0;
+              final bill = extra?['bill'] as BillExporResponse?;
+              return SaleGdnDetailScreen(billId: billId, bill: bill);
+            },
           ),
         ],
       ),

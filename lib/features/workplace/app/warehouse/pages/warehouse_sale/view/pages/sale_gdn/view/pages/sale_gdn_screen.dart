@@ -11,8 +11,8 @@ import 'package:rtc_erp/common/widgets/date_range_picker.dart';
 import 'package:rtc_erp/base/widgets/qr_barcode_scanner_page.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/models/sale_gdn_model.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/bloc/sale_gdn_bloc.dart';
-import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/pages/sale_gdn_detail_screen.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/widgets/sale_gdn_card.dart';
+import 'package:rtc_erp/routes/route_names.dart';
 
 class SaleGdnScreen extends StatefulWidget {
   const SaleGdnScreen({super.key});
@@ -40,9 +40,10 @@ class _SaleGdnScreenState
         // Tự động mở trang Detail khi bloc tìm được đúng 1 phiếu từ QR/Barcode.
         final bill = state.openedDetailBill;
         if (bill != null && bill.id != null && bill.id! > 0) {
-          Navigator.of(context).push(
-            SaleGdnDetailScreen.route(billId: bill.id!, bill: bill),
-          );
+          context.push(RouteNames.warehouseSaleGdnDetail, extra: {
+            'billId': bill.id,
+            'bill': bill,
+          });
           bloc.add(const SaleGdnEvent.clearOpenedDetail());
           bloc.add(const SaleGdnEvent.fetchGdns());
         }
@@ -189,9 +190,10 @@ class _SaleGdnScreenState
   void _openDetail(BillExporResponse item) {
     final id = item.id;
     if (id == null || id <= 0) return;
-    Navigator.of(context).push(
-      SaleGdnDetailScreen.route(billId: id, bill: item),
-    );
+    context.push(RouteNames.warehouseSaleGdnDetail, extra: {
+      'billId': id,
+      'bill': item,
+    });
   }
 
   /// Mở bottom sheet chọn khoảng ngày và dispatch ChangeDateRange khi user xác nhận.

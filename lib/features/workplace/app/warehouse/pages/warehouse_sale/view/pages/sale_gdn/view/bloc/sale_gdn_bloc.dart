@@ -537,7 +537,7 @@ BillExporResponse? _findGdnInList(String code) {
     if (allPaths.isEmpty) return;
 
     emit(state.copyWith(
-      detail: current.copyWith(status: BaseStateStatus.loading),
+      detail: current.copyWith(uploadStatus: BaseStateStatus.loading),
     ));
 
     // Convert paths to File objects
@@ -548,19 +548,28 @@ BillExporResponse? _findGdnInList(String code) {
     await res.fold(
       (l) async {
         _log.logE('❌ submitImages failed: $l');
+        final updated = state.detail;
+        if (updated == null) return;
         emit(state.copyWith(
-          detail: current.copyWith(
-            status: BaseStateStatus.failed,
+          detail: updated.copyWith(
+            uploadStatus: BaseStateStatus.failed,
             message: l.getErrorMessage,
           ),
         ));
       },
       (r) async {
         _log.logI('✅ submitImages success - uploaded: ${r.length} files');
+        final updated = state.detail;
+        if (updated == null) return;
+
+        // Xoá ảnh local sau khi upload thành công
+        final updatedLocal = <int, List<String>>{};
+
         emit(state.copyWith(
-          detail: current.copyWith(
-            status: BaseStateStatus.success,
+          detail: updated.copyWith(
+            uploadStatus: BaseStateStatus.success,
             uploadedImages: r,
+            localImagePathsByStt: updatedLocal,
           ),
         ));
       },

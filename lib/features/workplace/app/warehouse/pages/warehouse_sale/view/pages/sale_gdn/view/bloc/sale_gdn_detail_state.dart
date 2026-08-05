@@ -26,6 +26,9 @@ class GdnDetailState extends BaseBlocState {
   /// Key = childId, Value = danh sách ReadFileResponse.
   final Map<int, List<ReadFileResponse>> serverImagesByChildId;
 
+  /// Trạng thái upload ảnh (tách riêng với status để tránh conflict).
+  final BaseStateStatus uploadStatus;
+
   const GdnDetailState({
     required super.status,
     super.message,
@@ -36,6 +39,7 @@ class GdnDetailState extends BaseBlocState {
     this.uploadedImages = const [],
     this.localImagePathsByStt = const {},
     this.serverImagesByChildId = const {},
+    this.uploadStatus = BaseStateStatus.init,
   });
 
   factory GdnDetailState.init({required int id, BillExporResponse? bill}) {
@@ -57,5 +61,6 @@ class GdnDetailState extends BaseBlocState {
         uploadedImages,
         localImagePathsByStt,
         serverImagesByChildId,
+        uploadStatus,
       ];
 }
