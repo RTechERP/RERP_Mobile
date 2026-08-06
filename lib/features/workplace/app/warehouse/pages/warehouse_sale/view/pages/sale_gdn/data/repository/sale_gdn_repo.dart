@@ -38,4 +38,10 @@ abstract class SaleGdnRepo {
   Future<Either<BaseError, bool>> deleteBillExportFile({
     required int fileId,
   });
+
+  /// Lưu dữ liệu phiếu xuất kho sau khi upload ảnh.
+  /// Gán fileID vào detail tương ứng qua childId, rồi submit toàn bộ payload.
+  Future<Either<BaseError, SaveBillExportDataResponse>> saveBillExportData({
+    required Map<String, dynamic> payload,
+  });
 }

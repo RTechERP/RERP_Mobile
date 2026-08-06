@@ -41,7 +41,8 @@ class _SaleGdnDetailScreenState
   @override
   Widget renderUI(BuildContext context) {
     return BlocListener<SaleGdnBloc, SaleGdnState>(
-      listenWhen: (p, c) => p.detail?.status != c.detail?.status,
+      listenWhen: (p, c) =>
+          p.detail?.uploadStatus != c.detail?.uploadStatus,
       listener: (context, state) {
         final detail = state.detail;
         if (detail == null) return;
@@ -49,18 +50,21 @@ class _SaleGdnDetailScreenState
         // Upload thất bại
         if (detail.uploadStatus == BaseStateStatus.failed) {
           context.showMessage(
-            state.message ?? 'Upload thất bại',
+            detail.message ?? 'Upload thất bại',
             type: SnackBarType.error,
           );
+          // Clear status after showing message
+          bloc.add(SaleGdnEvent.clearUploadStatus());
         }
 
         // Upload thành công
-        if (detail.uploadStatus == BaseStateStatus.success &&
-            detail.uploadedImages.isNotEmpty) {
+        if (detail.uploadStatus == BaseStateStatus.success) {
           context.showMessage(
-            'Upload thành công ${detail.uploadedImages.length} ảnh',
+            'Upload thành công',
             type: SnackBarType.success,
           );
+          // Clear status after showing message
+          bloc.add(SaleGdnEvent.clearUploadStatus());
         }
       },
       child: _buildBody(context),
@@ -96,11 +100,16 @@ class _SaleGdnDetailScreenState
               return const SaleGdnEmptyView();
             }
 
-            final sttToChildId = <int, int>{};
+            // Map trực tiếp theo childId (cùng key với bloc dùng để gọi
+            // `getBillExportFiles(billExportDetailId: childId)`). Tránh phụ
+            // thuộc `stt` vối có thể khác giữa ViewGDNDetailResponse và
+            // DetailGDNResponse.
+            final childIdToServerFiles = <int, List<ReadFileResponse>>{};
             for (final full in detail.detailFull) {
-              final stt = full.stt ?? (detail.detailFull.indexOf(full) + 1);
-              if (full.childId != null && full.childId! > 0) {
-                sttToChildId[stt] = full.childId!;
+              final cid = full.childId;
+              if (cid != null && cid > 0) {
+                childIdToServerFiles[cid] =
+                    detail.serverImagesByChildId[cid] ?? [];
               }
             }
 
@@ -115,13 +124,29 @@ class _SaleGdnDetailScreenState
                 itemBuilder: (context, index) {
                   final detailItem = detail.details[index];
                   final stt = detailItem.stt ?? (index + 1);
-                  final childId = sttToChildId[stt];
-                  final serverFiles = childId != null
-                      ? detail.serverImagesByChildId[childId] ?? []
+                  // Tra `childId` từ DetailGDNResponse theo cùng vị trí `stt`.
+                  DetailGDNResponse? matchedFull;
+                  for (final f in detail.detailFull) {
+                    final fStt = f.stt ?? (detail.detailFull.indexOf(f) + 1);
+                    if (fStt == stt) {
+                      matchedFull = f;
+                      break;
+                    }
+                  }
+                  matchedFull ??= detail.detailFull.isNotEmpty
+                      ? detail.detailFull[index.clamp(0, detail.detailFull.length - 1)]
+                      : null;
+                  final childId = matchedFull?.childId;
+                  final serverFiles = childId != null && childId > 0
+                      ? childIdToServerFiles[childId] ?? []
                       : <ReadFileResponse>[];
                   final serverUrls = serverFiles
-                      .where((f) => f.serverPath != null && f.serverPath!.isNotEmpty)
-                      .map((f) => _fixFileUrl('${f.serverPath}\\${f.fileName ?? ''}'))
+                      .where((f) =>
+                          (f.serverPath ?? '').isNotEmpty &&
+                          (f.fileName ?? '').isNotEmpty)
+                      .map((f) =>
+                          _fixFileUrl('${f.serverPath}\\${f.fileName}'))
+                      .where((u) => u.isNotEmpty)
                       .toList();
 
                   return SaleGdnDetailItemCard(
@@ -174,9 +199,6 @@ class _SaleGdnDetailScreenState
     if (confirmed == null || confirmed.isEmpty) return;
 
     bloc.add(SaleGdnEvent.addImages(stt: stt, imagePaths: confirmed));
-
-    await Future.delayed(const Duration(milliseconds: 100));
-    bloc.add(SaleGdnEvent.submitImages());
   }
 
   void _removeImage(int stt, int imageIndex, bool isLocal) {
@@ -193,33 +215,18 @@ class _SaleGdnDetailScreenState
     final baseUrl = dotenv.env['BASE_URL'] ?? '';
     final newPrefix = '${baseUrl.replaceFirst(RegExp(r'/$'), '')}/share';
 
-    var normalized = path;
-    if (normalized.startsWith('/api/')) {
-      normalized = normalized.substring(4);
+    // Thêm http:// nếu thiếu scheme (//192.168.1.190/... → http://192.168.1.190/...)
+    final normalized = path.startsWith('//')
+        ? 'https:${path}'
+        : path;
+
+    if (normalized.contains('192.168.1.190')) {
+      final relative = normalized.split('192.168.1.190').last;
+      return '$newPrefix$relative';
     }
-
-    if (normalized.startsWith('//')) {
-      normalized = 'https:$normalized';
-    }
-
-    normalized = normalized.replaceAll('\\', '/');
-
-    if (normalized.contains('192.168.') || normalized.contains('10.')) {
-      final ipMatch = RegExp(r'[\d]+\.[\d]+\.[\d]+\.[\d]+[:\d]*').firstMatch(normalized);
-      if (ipMatch != null) {
-        final relative = normalized.substring(ipMatch.end);
-        return '$newPrefix$relative';
-      }
-    }
-
     if (normalized.startsWith('http://') || normalized.startsWith('https://')) {
       return normalized;
     }
-
-    if (normalized.startsWith('/share/')) {
-      return '$baseUrl$normalized';
-    }
-
-    return '$newPrefix/$normalized';
+    return 'http://$normalized';
   }
 }

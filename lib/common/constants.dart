@@ -402,4 +402,5 @@ class ApiEndPoint {
   static const String getBillExportFiles = '/BillExport/files';
   static const String uploadBillExportFiles = '/BillExport/upload-files';
   static const String deleteBillExportFile = '/BillExport/delete-file/{fileId}';
+  static const String saveBillExportData = '/BillExport/save-data';
 }

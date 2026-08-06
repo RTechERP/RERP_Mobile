@@ -130,7 +130,7 @@ class DetailGDNResponse with _$DetailGDNResponse {
     @JsonKey(name: 'IsInvoice') bool? isInvoice,
     @JsonKey(name: 'InvoiceNumber') String? invoiceNumber,
     @JsonKey(name: 'SerialNumber') String? serialNumber,
-    @JsonKey(name: 'ReturnedStatus') int? returnedStatus,
+    @JsonKey(name: 'ReturnedStatus') bool? returnedStatus,
     @JsonKey(name: 'ProjectPartListID') int? projectPartListId,
     @JsonKey(name: 'TradePriceDetailID') int? tradePriceDetailId,
     @JsonKey(name: 'POKHDetailID') int? pokhDetailId,
@@ -217,4 +217,125 @@ class ReadFileResponse with _$ReadFileResponse {
 
   factory ReadFileResponse.fromJson(Map<String, dynamic> json) =>
       _$ReadFileResponseFromJson(json);
+}
+
+/// Payload cho API /BillExport/save-data.
+/// `billExportDetail` chứa danh sách chi tiết sản phẩm, mỗi item có
+/// `FileIds` là danh sách fileID đã upload (ánh xạ qua childId).
+@freezed
+class SaveBillExportDataPayload with _$SaveBillExportDataPayload {
+  const factory SaveBillExportDataPayload({
+    @JsonKey(name: 'BillExport') required BillExportPayload billExport,
+    @JsonKey(name: 'billExportDetail')
+        required List<BillExportDetailPayload> billExportDetail,
+    @JsonKey(name: 'DeletedDetailIds') @Default([]) List<int> deletedDetailIds,
+    @JsonKey(name: 'DeletedFileIds') @Default([]) List<int> deletedFileIds,
+  }) = _SaveBillExportDataPayload;
+
+  factory SaveBillExportDataPayload.fromJson(Map<String, dynamic> json) =>
+      _$SaveBillExportDataPayloadFromJson(json);
+}
+
+/// BillExport object trong payload save-data.
+@freezed
+class BillExportPayload with _$BillExportPayload {
+  const factory BillExportPayload({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'TypeBill') bool? typeBill,
+    @JsonKey(name: 'SupplierID') int? supplierId,
+    @JsonKey(name: 'CustomerID') int? customerId,
+    @JsonKey(name: 'UserID') int? userId,
+    @JsonKey(name: 'SenderID') int? senderId,
+    @JsonKey(name: 'StockID') int? stockId,
+    @JsonKey(name: 'Description') String? description,
+    @JsonKey(name: 'Address') String? address,
+    @JsonKey(name: 'Status') int? status,
+    @JsonKey(name: 'GroupID') String? groupId,
+    @JsonKey(name: 'WarehouseType') String? warehouseType,
+    @JsonKey(name: 'KhoTypeID') int? khoTypeId,
+    @JsonKey(name: 'CreatDate') String? creatDate,
+    @JsonKey(name: 'CreatedDate') String? createdDate,
+    @JsonKey(name: 'UpdatedDate') String? updatedDate,
+    @JsonKey(name: 'ProductType') int? productType,
+    @JsonKey(name: 'AddressStockID') int? addressStockId,
+    @JsonKey(name: 'WarehouseID') int? warehouseId,
+    @JsonKey(name: 'RequestDate') String? requestDate,
+    @JsonKey(name: 'DeliveryTime') String? deliveryTime,
+    @JsonKey(name: 'IsAfterHours') bool? isAfterHours,
+    @JsonKey(name: 'BillDocumentExportType') int? billDocumentExportType,
+    @JsonKey(name: 'IsApproved') bool? isApproved,
+    @JsonKey(name: 'IsTransfer') bool? isTransfer,
+    @JsonKey(name: 'WareHouseTranferID') int? wareHouseTranferId,
+    @JsonKey(name: 'IsTransferInternal') bool? isTransferInternal,
+    @JsonKey(name: 'KhoTypeTransferID') int? khoTypeTransferId,
+    @JsonKey(name: 'ReceiverID') int? receiverId,
+    @JsonKey(name: 'IsPrepared') bool? isPrepared,
+    @JsonKey(name: 'IsReceived') bool? isReceived,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+  }) = _BillExportPayload;
+
+  factory BillExportPayload.fromJson(Map<String, dynamic> json) =>
+      _$BillExportPayloadFromJson(json);
+}
+
+/// BillExportDetail object trong payload save-data.
+/// `FileIds` chứa danh sách fileID của ảnh đã upload.
+@freezed
+class BillExportDetailPayload with _$BillExportDetailPayload {
+  const factory BillExportDetailPayload({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'ProductID') int? productId,
+    @JsonKey(name: 'ProductName') String? productName,
+    @JsonKey(name: 'ProductCode') String? productCode,
+    @JsonKey(name: 'ProductNewCode') String? productNewCode,
+    @JsonKey(name: 'ProductFullName') String? productFullName,
+    @JsonKey(name: 'Qty') num? qty,
+    @JsonKey(name: 'ProjectName') String? projectName,
+    @JsonKey(name: 'Note') String? note,
+    @JsonKey(name: 'STT') int? stt,
+    @JsonKey(name: 'TotalQty') num? totalQty,
+    @JsonKey(name: 'ProjectID') int? projectId,
+    @JsonKey(name: 'ProductType') int? productType,
+    @JsonKey(name: 'POKHID') int? pokhId,
+    @JsonKey(name: 'GroupExport') String? groupExport,
+    @JsonKey(name: 'IsInvoice') bool? isInvoice,
+    @JsonKey(name: 'InvoiceNumber') String? invoiceNumber,
+    @JsonKey(name: 'SerialNumber') String? serialNumber,
+    @JsonKey(name: 'ReturnedStatus') bool? returnedStatus,
+    @JsonKey(name: 'ProjectPartListID') int? projectPartListId,
+    @JsonKey(name: 'TradePriceDetailID') int? tradePriceDetailId,
+    @JsonKey(name: 'POKHDetailID') int? pokhDetailId,
+    @JsonKey(name: 'Specifications') String? specifications,
+    @JsonKey(name: 'BillImportDetailID') int? billImportDetailId,
+    @JsonKey(name: 'TotalInventory') num? totalInventory,
+    @JsonKey(name: 'ExpectReturnDate') String? expectReturnDate,
+    @JsonKey(name: 'CustomerResponse') String? customerResponse,
+    @JsonKey(name: 'POKHDetailIDActual') int? pokhDetailIdActual,
+    @JsonKey(name: 'PONumber') String? poNumber,
+    @JsonKey(name: 'ChosenInventoryProject') String? chosenInventoryProject,
+    @JsonKey(name: 'Unit') String? unit,
+    @JsonKey(name: 'UnitName') String? unitName,
+    @JsonKey(name: 'ChildID') int? childId,
+    @JsonKey(name: 'ImportDetailID') int? importDetailId,
+    @JsonKey(name: 'ForceReallocate') bool? forceReallocate,
+    @JsonKey(name: 'UnitPricePOKH') num? unitPricePOKH,
+    @JsonKey(name: 'UnitPricePurchase') num? unitPricePurchase,
+    @JsonKey(name: 'BillCode') String? billCode,
+    @JsonKey(name: 'FileIds') @Default([]) List<int> fileIds,
+  }) = _BillExportDetailPayload;
+
+  factory BillExportDetailPayload.fromJson(Map<String, dynamic> json) =>
+      _$BillExportDetailPayloadFromJson(json);
+}
+
+/// Response của API /BillExport/save-data.
+@freezed
+class SaveBillExportDataResponse with _$SaveBillExportDataResponse {
+  const factory SaveBillExportDataResponse({
+    @JsonKey(name: 'BillExportID') int? billExportId,
+  }) = _SaveBillExportDataResponse;
+
+  factory SaveBillExportDataResponse.fromJson(Map<String, dynamic> json) =>
+      _$SaveBillExportDataResponseFromJson(json);
 }

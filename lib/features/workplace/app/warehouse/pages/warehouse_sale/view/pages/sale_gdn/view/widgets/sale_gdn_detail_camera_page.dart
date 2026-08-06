@@ -206,6 +206,15 @@ class _CameraCapturePageState extends State<CameraCapturePage> {
   Future<void> _confirmAndExit() async {
     final result = await ImageConfirmPage.show(context, _captured);
     if (!mounted) return;
+    if (result == null) {
+      // "Chụp lại" → xoá toàn bộ ảnh đã chụp, quay về camera
+      setState(() => _captured.clear());
+      return;
+    }
+    if (result.isEmpty) {
+      // Không có ảnh nào sau khi confirm → về camera
+      return;
+    }
     Navigator.of(context).pop(result);
   }
 

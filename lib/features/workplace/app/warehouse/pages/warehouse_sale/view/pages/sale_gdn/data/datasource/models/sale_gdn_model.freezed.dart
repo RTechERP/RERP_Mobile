@@ -2295,7 +2295,7 @@ mixin _$DetailGDNResponse {
   @JsonKey(name: 'SerialNumber')
   String? get serialNumber => throw _privateConstructorUsedError;
   @JsonKey(name: 'ReturnedStatus')
-  int? get returnedStatus => throw _privateConstructorUsedError;
+  bool? get returnedStatus => throw _privateConstructorUsedError;
   @JsonKey(name: 'ProjectPartListID')
   int? get projectPartListId => throw _privateConstructorUsedError;
   @JsonKey(name: 'TradePriceDetailID')
@@ -2422,7 +2422,7 @@ abstract class $DetailGDNResponseCopyWith<$Res> {
       @JsonKey(name: 'IsInvoice') bool? isInvoice,
       @JsonKey(name: 'InvoiceNumber') String? invoiceNumber,
       @JsonKey(name: 'SerialNumber') String? serialNumber,
-      @JsonKey(name: 'ReturnedStatus') int? returnedStatus,
+      @JsonKey(name: 'ReturnedStatus') bool? returnedStatus,
       @JsonKey(name: 'ProjectPartListID') int? projectPartListId,
       @JsonKey(name: 'TradePriceDetailID') int? tradePriceDetailId,
       @JsonKey(name: 'POKHDetailID') int? pokhDetailId,
@@ -2642,7 +2642,7 @@ class _$DetailGDNResponseCopyWithImpl<$Res, $Val extends DetailGDNResponse>
       returnedStatus: freezed == returnedStatus
           ? _value.returnedStatus
           : returnedStatus // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as bool?,
       projectPartListId: freezed == projectPartListId
           ? _value.projectPartListId
           : projectPartListId // ignore: cast_nullable_to_non_nullable
@@ -2854,7 +2854,7 @@ abstract class _$$DetailGDNResponseImplCopyWith<$Res>
       @JsonKey(name: 'IsInvoice') bool? isInvoice,
       @JsonKey(name: 'InvoiceNumber') String? invoiceNumber,
       @JsonKey(name: 'SerialNumber') String? serialNumber,
-      @JsonKey(name: 'ReturnedStatus') int? returnedStatus,
+      @JsonKey(name: 'ReturnedStatus') bool? returnedStatus,
       @JsonKey(name: 'ProjectPartListID') int? projectPartListId,
       @JsonKey(name: 'TradePriceDetailID') int? tradePriceDetailId,
       @JsonKey(name: 'POKHDetailID') int? pokhDetailId,
@@ -3072,7 +3072,7 @@ class __$$DetailGDNResponseImplCopyWithImpl<$Res>
       returnedStatus: freezed == returnedStatus
           ? _value.returnedStatus
           : returnedStatus // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as bool?,
       projectPartListId: freezed == projectPartListId
           ? _value.projectPartListId
           : projectPartListId // ignore: cast_nullable_to_non_nullable
@@ -3397,7 +3397,7 @@ class _$DetailGDNResponseImpl implements _DetailGDNResponse {
   final String? serialNumber;
   @override
   @JsonKey(name: 'ReturnedStatus')
-  final int? returnedStatus;
+  final bool? returnedStatus;
   @override
   @JsonKey(name: 'ProjectPartListID')
   final int? projectPartListId;
@@ -3776,7 +3776,7 @@ abstract class _DetailGDNResponse implements DetailGDNResponse {
       @JsonKey(name: 'IsInvoice') final bool? isInvoice,
       @JsonKey(name: 'InvoiceNumber') final String? invoiceNumber,
       @JsonKey(name: 'SerialNumber') final String? serialNumber,
-      @JsonKey(name: 'ReturnedStatus') final int? returnedStatus,
+      @JsonKey(name: 'ReturnedStatus') final bool? returnedStatus,
       @JsonKey(name: 'ProjectPartListID') final int? projectPartListId,
       @JsonKey(name: 'TradePriceDetailID') final int? tradePriceDetailId,
       @JsonKey(name: 'POKHDetailID') final int? pokhDetailId,
@@ -3894,7 +3894,7 @@ abstract class _DetailGDNResponse implements DetailGDNResponse {
   String? get serialNumber;
   @override
   @JsonKey(name: 'ReturnedStatus')
-  int? get returnedStatus;
+  bool? get returnedStatus;
   @override
   @JsonKey(name: 'ProjectPartListID')
   int? get projectPartListId;
@@ -4623,4 +4623,2472 @@ abstract class _ReadFileResponse implements ReadFileResponse {
   @JsonKey(ignore: true)
   _$$ReadFileResponseImplCopyWith<_$ReadFileResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+SaveBillExportDataPayload _$SaveBillExportDataPayloadFromJson(
+    Map<String, dynamic> json) {
+  return _SaveBillExportDataPayload.fromJson(json);
+}
+
+/// @nodoc
+mixin _$SaveBillExportDataPayload {
+  @JsonKey(name: 'BillExport')
+  BillExportPayload get billExport => throw _privateConstructorUsedError;
+  @JsonKey(name: 'billExportDetail')
+  List<BillExportDetailPayload> get billExportDetail =>
+      throw _privateConstructorUsedError;
+  @JsonKey(name: 'DeletedDetailIds')
+  List<int> get deletedDetailIds => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DeletedFileIds')
+  List<int> get deletedFileIds => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $SaveBillExportDataPayloadCopyWith<SaveBillExportDataPayload> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SaveBillExportDataPayloadCopyWith<$Res> {
+  factory $SaveBillExportDataPayloadCopyWith(SaveBillExportDataPayload value,
+          $Res Function(SaveBillExportDataPayload) then) =
+      _$SaveBillExportDataPayloadCopyWithImpl<$Res, SaveBillExportDataPayload>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'BillExport') BillExportPayload billExport,
+      @JsonKey(name: 'billExportDetail')
+      List<BillExportDetailPayload> billExportDetail,
+      @JsonKey(name: 'DeletedDetailIds') List<int> deletedDetailIds,
+      @JsonKey(name: 'DeletedFileIds') List<int> deletedFileIds});
+
+  $BillExportPayloadCopyWith<$Res> get billExport;
+}
+
+/// @nodoc
+class _$SaveBillExportDataPayloadCopyWithImpl<$Res,
+        $Val extends SaveBillExportDataPayload>
+    implements $SaveBillExportDataPayloadCopyWith<$Res> {
+  _$SaveBillExportDataPayloadCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? billExport = null,
+    Object? billExportDetail = null,
+    Object? deletedDetailIds = null,
+    Object? deletedFileIds = null,
+  }) {
+    return _then(_value.copyWith(
+      billExport: null == billExport
+          ? _value.billExport
+          : billExport // ignore: cast_nullable_to_non_nullable
+              as BillExportPayload,
+      billExportDetail: null == billExportDetail
+          ? _value.billExportDetail
+          : billExportDetail // ignore: cast_nullable_to_non_nullable
+              as List<BillExportDetailPayload>,
+      deletedDetailIds: null == deletedDetailIds
+          ? _value.deletedDetailIds
+          : deletedDetailIds // ignore: cast_nullable_to_non_nullable
+              as List<int>,
+      deletedFileIds: null == deletedFileIds
+          ? _value.deletedFileIds
+          : deletedFileIds // ignore: cast_nullable_to_non_nullable
+              as List<int>,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BillExportPayloadCopyWith<$Res> get billExport {
+    return $BillExportPayloadCopyWith<$Res>(_value.billExport, (value) {
+      return _then(_value.copyWith(billExport: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$SaveBillExportDataPayloadImplCopyWith<$Res>
+    implements $SaveBillExportDataPayloadCopyWith<$Res> {
+  factory _$$SaveBillExportDataPayloadImplCopyWith(
+          _$SaveBillExportDataPayloadImpl value,
+          $Res Function(_$SaveBillExportDataPayloadImpl) then) =
+      __$$SaveBillExportDataPayloadImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'BillExport') BillExportPayload billExport,
+      @JsonKey(name: 'billExportDetail')
+      List<BillExportDetailPayload> billExportDetail,
+      @JsonKey(name: 'DeletedDetailIds') List<int> deletedDetailIds,
+      @JsonKey(name: 'DeletedFileIds') List<int> deletedFileIds});
+
+  @override
+  $BillExportPayloadCopyWith<$Res> get billExport;
+}
+
+/// @nodoc
+class __$$SaveBillExportDataPayloadImplCopyWithImpl<$Res>
+    extends _$SaveBillExportDataPayloadCopyWithImpl<$Res,
+        _$SaveBillExportDataPayloadImpl>
+    implements _$$SaveBillExportDataPayloadImplCopyWith<$Res> {
+  __$$SaveBillExportDataPayloadImplCopyWithImpl(
+      _$SaveBillExportDataPayloadImpl _value,
+      $Res Function(_$SaveBillExportDataPayloadImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? billExport = null,
+    Object? billExportDetail = null,
+    Object? deletedDetailIds = null,
+    Object? deletedFileIds = null,
+  }) {
+    return _then(_$SaveBillExportDataPayloadImpl(
+      billExport: null == billExport
+          ? _value.billExport
+          : billExport // ignore: cast_nullable_to_non_nullable
+              as BillExportPayload,
+      billExportDetail: null == billExportDetail
+          ? _value._billExportDetail
+          : billExportDetail // ignore: cast_nullable_to_non_nullable
+              as List<BillExportDetailPayload>,
+      deletedDetailIds: null == deletedDetailIds
+          ? _value._deletedDetailIds
+          : deletedDetailIds // ignore: cast_nullable_to_non_nullable
+              as List<int>,
+      deletedFileIds: null == deletedFileIds
+          ? _value._deletedFileIds
+          : deletedFileIds // ignore: cast_nullable_to_non_nullable
+              as List<int>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$SaveBillExportDataPayloadImpl implements _SaveBillExportDataPayload {
+  const _$SaveBillExportDataPayloadImpl(
+      {@JsonKey(name: 'BillExport') required this.billExport,
+      @JsonKey(name: 'billExportDetail')
+      required final List<BillExportDetailPayload> billExportDetail,
+      @JsonKey(name: 'DeletedDetailIds')
+      final List<int> deletedDetailIds = const [],
+      @JsonKey(name: 'DeletedFileIds')
+      final List<int> deletedFileIds = const []})
+      : _billExportDetail = billExportDetail,
+        _deletedDetailIds = deletedDetailIds,
+        _deletedFileIds = deletedFileIds;
+
+  factory _$SaveBillExportDataPayloadImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SaveBillExportDataPayloadImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'BillExport')
+  final BillExportPayload billExport;
+  final List<BillExportDetailPayload> _billExportDetail;
+  @override
+  @JsonKey(name: 'billExportDetail')
+  List<BillExportDetailPayload> get billExportDetail {
+    if (_billExportDetail is EqualUnmodifiableListView)
+      return _billExportDetail;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_billExportDetail);
+  }
+
+  final List<int> _deletedDetailIds;
+  @override
+  @JsonKey(name: 'DeletedDetailIds')
+  List<int> get deletedDetailIds {
+    if (_deletedDetailIds is EqualUnmodifiableListView)
+      return _deletedDetailIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_deletedDetailIds);
+  }
+
+  final List<int> _deletedFileIds;
+  @override
+  @JsonKey(name: 'DeletedFileIds')
+  List<int> get deletedFileIds {
+    if (_deletedFileIds is EqualUnmodifiableListView) return _deletedFileIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_deletedFileIds);
+  }
+
+  @override
+  String toString() {
+    return 'SaveBillExportDataPayload(billExport: $billExport, billExportDetail: $billExportDetail, deletedDetailIds: $deletedDetailIds, deletedFileIds: $deletedFileIds)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SaveBillExportDataPayloadImpl &&
+            (identical(other.billExport, billExport) ||
+                other.billExport == billExport) &&
+            const DeepCollectionEquality()
+                .equals(other._billExportDetail, _billExportDetail) &&
+            const DeepCollectionEquality()
+                .equals(other._deletedDetailIds, _deletedDetailIds) &&
+            const DeepCollectionEquality()
+                .equals(other._deletedFileIds, _deletedFileIds));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      billExport,
+      const DeepCollectionEquality().hash(_billExportDetail),
+      const DeepCollectionEquality().hash(_deletedDetailIds),
+      const DeepCollectionEquality().hash(_deletedFileIds));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SaveBillExportDataPayloadImplCopyWith<_$SaveBillExportDataPayloadImpl>
+      get copyWith => __$$SaveBillExportDataPayloadImplCopyWithImpl<
+          _$SaveBillExportDataPayloadImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$SaveBillExportDataPayloadImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _SaveBillExportDataPayload implements SaveBillExportDataPayload {
+  const factory _SaveBillExportDataPayload(
+      {@JsonKey(name: 'BillExport') required final BillExportPayload billExport,
+      @JsonKey(name: 'billExportDetail')
+      required final List<BillExportDetailPayload> billExportDetail,
+      @JsonKey(name: 'DeletedDetailIds') final List<int> deletedDetailIds,
+      @JsonKey(name: 'DeletedFileIds')
+      final List<int> deletedFileIds}) = _$SaveBillExportDataPayloadImpl;
+
+  factory _SaveBillExportDataPayload.fromJson(Map<String, dynamic> json) =
+      _$SaveBillExportDataPayloadImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'BillExport')
+  BillExportPayload get billExport;
+  @override
+  @JsonKey(name: 'billExportDetail')
+  List<BillExportDetailPayload> get billExportDetail;
+  @override
+  @JsonKey(name: 'DeletedDetailIds')
+  List<int> get deletedDetailIds;
+  @override
+  @JsonKey(name: 'DeletedFileIds')
+  List<int> get deletedFileIds;
+  @override
+  @JsonKey(ignore: true)
+  _$$SaveBillExportDataPayloadImplCopyWith<_$SaveBillExportDataPayloadImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+BillExportPayload _$BillExportPayloadFromJson(Map<String, dynamic> json) {
+  return _BillExportPayload.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BillExportPayload {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Code')
+  String? get code => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TypeBill')
+  bool? get typeBill => throw _privateConstructorUsedError;
+  @JsonKey(name: 'SupplierID')
+  int? get supplierId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CustomerID')
+  int? get customerId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UserID')
+  int? get userId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'SenderID')
+  int? get senderId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'StockID')
+  int? get stockId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Description')
+  String? get description => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Address')
+  String? get address => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Status')
+  int? get status => throw _privateConstructorUsedError;
+  @JsonKey(name: 'GroupID')
+  String? get groupId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'WarehouseType')
+  String? get warehouseType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'KhoTypeID')
+  int? get khoTypeId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatDate')
+  String? get creatDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  String? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDate')
+  String? get updatedDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProductType')
+  int? get productType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AddressStockID')
+  int? get addressStockId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'WarehouseID')
+  int? get warehouseId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'RequestDate')
+  String? get requestDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DeliveryTime')
+  String? get deliveryTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsAfterHours')
+  bool? get isAfterHours => throw _privateConstructorUsedError;
+  @JsonKey(name: 'BillDocumentExportType')
+  int? get billDocumentExportType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsApproved')
+  bool? get isApproved => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsTransfer')
+  bool? get isTransfer => throw _privateConstructorUsedError;
+  @JsonKey(name: 'WareHouseTranferID')
+  int? get wareHouseTranferId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsTransferInternal')
+  bool? get isTransferInternal => throw _privateConstructorUsedError;
+  @JsonKey(name: 'KhoTypeTransferID')
+  int? get khoTypeTransferId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ReceiverID')
+  int? get receiverId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsPrepared')
+  bool? get isPrepared => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsReceived')
+  bool? get isReceived => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BillExportPayloadCopyWith<BillExportPayload> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BillExportPayloadCopyWith<$Res> {
+  factory $BillExportPayloadCopyWith(
+          BillExportPayload value, $Res Function(BillExportPayload) then) =
+      _$BillExportPayloadCopyWithImpl<$Res, BillExportPayload>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'TypeBill') bool? typeBill,
+      @JsonKey(name: 'SupplierID') int? supplierId,
+      @JsonKey(name: 'CustomerID') int? customerId,
+      @JsonKey(name: 'UserID') int? userId,
+      @JsonKey(name: 'SenderID') int? senderId,
+      @JsonKey(name: 'StockID') int? stockId,
+      @JsonKey(name: 'Description') String? description,
+      @JsonKey(name: 'Address') String? address,
+      @JsonKey(name: 'Status') int? status,
+      @JsonKey(name: 'GroupID') String? groupId,
+      @JsonKey(name: 'WarehouseType') String? warehouseType,
+      @JsonKey(name: 'KhoTypeID') int? khoTypeId,
+      @JsonKey(name: 'CreatDate') String? creatDate,
+      @JsonKey(name: 'CreatedDate') String? createdDate,
+      @JsonKey(name: 'UpdatedDate') String? updatedDate,
+      @JsonKey(name: 'ProductType') int? productType,
+      @JsonKey(name: 'AddressStockID') int? addressStockId,
+      @JsonKey(name: 'WarehouseID') int? warehouseId,
+      @JsonKey(name: 'RequestDate') String? requestDate,
+      @JsonKey(name: 'DeliveryTime') String? deliveryTime,
+      @JsonKey(name: 'IsAfterHours') bool? isAfterHours,
+      @JsonKey(name: 'BillDocumentExportType') int? billDocumentExportType,
+      @JsonKey(name: 'IsApproved') bool? isApproved,
+      @JsonKey(name: 'IsTransfer') bool? isTransfer,
+      @JsonKey(name: 'WareHouseTranferID') int? wareHouseTranferId,
+      @JsonKey(name: 'IsTransferInternal') bool? isTransferInternal,
+      @JsonKey(name: 'KhoTypeTransferID') int? khoTypeTransferId,
+      @JsonKey(name: 'ReceiverID') int? receiverId,
+      @JsonKey(name: 'IsPrepared') bool? isPrepared,
+      @JsonKey(name: 'IsReceived') bool? isReceived,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted});
+}
+
+/// @nodoc
+class _$BillExportPayloadCopyWithImpl<$Res, $Val extends BillExportPayload>
+    implements $BillExportPayloadCopyWith<$Res> {
+  _$BillExportPayloadCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? code = freezed,
+    Object? typeBill = freezed,
+    Object? supplierId = freezed,
+    Object? customerId = freezed,
+    Object? userId = freezed,
+    Object? senderId = freezed,
+    Object? stockId = freezed,
+    Object? description = freezed,
+    Object? address = freezed,
+    Object? status = freezed,
+    Object? groupId = freezed,
+    Object? warehouseType = freezed,
+    Object? khoTypeId = freezed,
+    Object? creatDate = freezed,
+    Object? createdDate = freezed,
+    Object? updatedDate = freezed,
+    Object? productType = freezed,
+    Object? addressStockId = freezed,
+    Object? warehouseId = freezed,
+    Object? requestDate = freezed,
+    Object? deliveryTime = freezed,
+    Object? isAfterHours = freezed,
+    Object? billDocumentExportType = freezed,
+    Object? isApproved = freezed,
+    Object? isTransfer = freezed,
+    Object? wareHouseTranferId = freezed,
+    Object? isTransferInternal = freezed,
+    Object? khoTypeTransferId = freezed,
+    Object? receiverId = freezed,
+    Object? isPrepared = freezed,
+    Object? isReceived = freezed,
+    Object? isDeleted = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      typeBill: freezed == typeBill
+          ? _value.typeBill
+          : typeBill // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      supplierId: freezed == supplierId
+          ? _value.supplierId
+          : supplierId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      customerId: freezed == customerId
+          ? _value.customerId
+          : customerId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      senderId: freezed == senderId
+          ? _value.senderId
+          : senderId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stockId: freezed == stockId
+          ? _value.stockId
+          : stockId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
+      groupId: freezed == groupId
+          ? _value.groupId
+          : groupId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      warehouseType: freezed == warehouseType
+          ? _value.warehouseType
+          : warehouseType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      khoTypeId: freezed == khoTypeId
+          ? _value.khoTypeId
+          : khoTypeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      creatDate: freezed == creatDate
+          ? _value.creatDate
+          : creatDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productType: freezed == productType
+          ? _value.productType
+          : productType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      addressStockId: freezed == addressStockId
+          ? _value.addressStockId
+          : addressStockId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      warehouseId: freezed == warehouseId
+          ? _value.warehouseId
+          : warehouseId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      requestDate: freezed == requestDate
+          ? _value.requestDate
+          : requestDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      deliveryTime: freezed == deliveryTime
+          ? _value.deliveryTime
+          : deliveryTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isAfterHours: freezed == isAfterHours
+          ? _value.isAfterHours
+          : isAfterHours // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      billDocumentExportType: freezed == billDocumentExportType
+          ? _value.billDocumentExportType
+          : billDocumentExportType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isApproved: freezed == isApproved
+          ? _value.isApproved
+          : isApproved // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isTransfer: freezed == isTransfer
+          ? _value.isTransfer
+          : isTransfer // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      wareHouseTranferId: freezed == wareHouseTranferId
+          ? _value.wareHouseTranferId
+          : wareHouseTranferId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isTransferInternal: freezed == isTransferInternal
+          ? _value.isTransferInternal
+          : isTransferInternal // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      khoTypeTransferId: freezed == khoTypeTransferId
+          ? _value.khoTypeTransferId
+          : khoTypeTransferId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      receiverId: freezed == receiverId
+          ? _value.receiverId
+          : receiverId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isPrepared: freezed == isPrepared
+          ? _value.isPrepared
+          : isPrepared // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isReceived: freezed == isReceived
+          ? _value.isReceived
+          : isReceived // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$BillExportPayloadImplCopyWith<$Res>
+    implements $BillExportPayloadCopyWith<$Res> {
+  factory _$$BillExportPayloadImplCopyWith(_$BillExportPayloadImpl value,
+          $Res Function(_$BillExportPayloadImpl) then) =
+      __$$BillExportPayloadImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'TypeBill') bool? typeBill,
+      @JsonKey(name: 'SupplierID') int? supplierId,
+      @JsonKey(name: 'CustomerID') int? customerId,
+      @JsonKey(name: 'UserID') int? userId,
+      @JsonKey(name: 'SenderID') int? senderId,
+      @JsonKey(name: 'StockID') int? stockId,
+      @JsonKey(name: 'Description') String? description,
+      @JsonKey(name: 'Address') String? address,
+      @JsonKey(name: 'Status') int? status,
+      @JsonKey(name: 'GroupID') String? groupId,
+      @JsonKey(name: 'WarehouseType') String? warehouseType,
+      @JsonKey(name: 'KhoTypeID') int? khoTypeId,
+      @JsonKey(name: 'CreatDate') String? creatDate,
+      @JsonKey(name: 'CreatedDate') String? createdDate,
+      @JsonKey(name: 'UpdatedDate') String? updatedDate,
+      @JsonKey(name: 'ProductType') int? productType,
+      @JsonKey(name: 'AddressStockID') int? addressStockId,
+      @JsonKey(name: 'WarehouseID') int? warehouseId,
+      @JsonKey(name: 'RequestDate') String? requestDate,
+      @JsonKey(name: 'DeliveryTime') String? deliveryTime,
+      @JsonKey(name: 'IsAfterHours') bool? isAfterHours,
+      @JsonKey(name: 'BillDocumentExportType') int? billDocumentExportType,
+      @JsonKey(name: 'IsApproved') bool? isApproved,
+      @JsonKey(name: 'IsTransfer') bool? isTransfer,
+      @JsonKey(name: 'WareHouseTranferID') int? wareHouseTranferId,
+      @JsonKey(name: 'IsTransferInternal') bool? isTransferInternal,
+      @JsonKey(name: 'KhoTypeTransferID') int? khoTypeTransferId,
+      @JsonKey(name: 'ReceiverID') int? receiverId,
+      @JsonKey(name: 'IsPrepared') bool? isPrepared,
+      @JsonKey(name: 'IsReceived') bool? isReceived,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted});
+}
+
+/// @nodoc
+class __$$BillExportPayloadImplCopyWithImpl<$Res>
+    extends _$BillExportPayloadCopyWithImpl<$Res, _$BillExportPayloadImpl>
+    implements _$$BillExportPayloadImplCopyWith<$Res> {
+  __$$BillExportPayloadImplCopyWithImpl(_$BillExportPayloadImpl _value,
+      $Res Function(_$BillExportPayloadImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? code = freezed,
+    Object? typeBill = freezed,
+    Object? supplierId = freezed,
+    Object? customerId = freezed,
+    Object? userId = freezed,
+    Object? senderId = freezed,
+    Object? stockId = freezed,
+    Object? description = freezed,
+    Object? address = freezed,
+    Object? status = freezed,
+    Object? groupId = freezed,
+    Object? warehouseType = freezed,
+    Object? khoTypeId = freezed,
+    Object? creatDate = freezed,
+    Object? createdDate = freezed,
+    Object? updatedDate = freezed,
+    Object? productType = freezed,
+    Object? addressStockId = freezed,
+    Object? warehouseId = freezed,
+    Object? requestDate = freezed,
+    Object? deliveryTime = freezed,
+    Object? isAfterHours = freezed,
+    Object? billDocumentExportType = freezed,
+    Object? isApproved = freezed,
+    Object? isTransfer = freezed,
+    Object? wareHouseTranferId = freezed,
+    Object? isTransferInternal = freezed,
+    Object? khoTypeTransferId = freezed,
+    Object? receiverId = freezed,
+    Object? isPrepared = freezed,
+    Object? isReceived = freezed,
+    Object? isDeleted = freezed,
+  }) {
+    return _then(_$BillExportPayloadImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      typeBill: freezed == typeBill
+          ? _value.typeBill
+          : typeBill // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      supplierId: freezed == supplierId
+          ? _value.supplierId
+          : supplierId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      customerId: freezed == customerId
+          ? _value.customerId
+          : customerId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      senderId: freezed == senderId
+          ? _value.senderId
+          : senderId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stockId: freezed == stockId
+          ? _value.stockId
+          : stockId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
+      groupId: freezed == groupId
+          ? _value.groupId
+          : groupId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      warehouseType: freezed == warehouseType
+          ? _value.warehouseType
+          : warehouseType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      khoTypeId: freezed == khoTypeId
+          ? _value.khoTypeId
+          : khoTypeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      creatDate: freezed == creatDate
+          ? _value.creatDate
+          : creatDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productType: freezed == productType
+          ? _value.productType
+          : productType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      addressStockId: freezed == addressStockId
+          ? _value.addressStockId
+          : addressStockId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      warehouseId: freezed == warehouseId
+          ? _value.warehouseId
+          : warehouseId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      requestDate: freezed == requestDate
+          ? _value.requestDate
+          : requestDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      deliveryTime: freezed == deliveryTime
+          ? _value.deliveryTime
+          : deliveryTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isAfterHours: freezed == isAfterHours
+          ? _value.isAfterHours
+          : isAfterHours // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      billDocumentExportType: freezed == billDocumentExportType
+          ? _value.billDocumentExportType
+          : billDocumentExportType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isApproved: freezed == isApproved
+          ? _value.isApproved
+          : isApproved // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isTransfer: freezed == isTransfer
+          ? _value.isTransfer
+          : isTransfer // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      wareHouseTranferId: freezed == wareHouseTranferId
+          ? _value.wareHouseTranferId
+          : wareHouseTranferId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isTransferInternal: freezed == isTransferInternal
+          ? _value.isTransferInternal
+          : isTransferInternal // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      khoTypeTransferId: freezed == khoTypeTransferId
+          ? _value.khoTypeTransferId
+          : khoTypeTransferId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      receiverId: freezed == receiverId
+          ? _value.receiverId
+          : receiverId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isPrepared: freezed == isPrepared
+          ? _value.isPrepared
+          : isPrepared // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isReceived: freezed == isReceived
+          ? _value.isReceived
+          : isReceived // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$BillExportPayloadImpl implements _BillExportPayload {
+  const _$BillExportPayloadImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'Code') this.code,
+      @JsonKey(name: 'TypeBill') this.typeBill,
+      @JsonKey(name: 'SupplierID') this.supplierId,
+      @JsonKey(name: 'CustomerID') this.customerId,
+      @JsonKey(name: 'UserID') this.userId,
+      @JsonKey(name: 'SenderID') this.senderId,
+      @JsonKey(name: 'StockID') this.stockId,
+      @JsonKey(name: 'Description') this.description,
+      @JsonKey(name: 'Address') this.address,
+      @JsonKey(name: 'Status') this.status,
+      @JsonKey(name: 'GroupID') this.groupId,
+      @JsonKey(name: 'WarehouseType') this.warehouseType,
+      @JsonKey(name: 'KhoTypeID') this.khoTypeId,
+      @JsonKey(name: 'CreatDate') this.creatDate,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate,
+      @JsonKey(name: 'ProductType') this.productType,
+      @JsonKey(name: 'AddressStockID') this.addressStockId,
+      @JsonKey(name: 'WarehouseID') this.warehouseId,
+      @JsonKey(name: 'RequestDate') this.requestDate,
+      @JsonKey(name: 'DeliveryTime') this.deliveryTime,
+      @JsonKey(name: 'IsAfterHours') this.isAfterHours,
+      @JsonKey(name: 'BillDocumentExportType') this.billDocumentExportType,
+      @JsonKey(name: 'IsApproved') this.isApproved,
+      @JsonKey(name: 'IsTransfer') this.isTransfer,
+      @JsonKey(name: 'WareHouseTranferID') this.wareHouseTranferId,
+      @JsonKey(name: 'IsTransferInternal') this.isTransferInternal,
+      @JsonKey(name: 'KhoTypeTransferID') this.khoTypeTransferId,
+      @JsonKey(name: 'ReceiverID') this.receiverId,
+      @JsonKey(name: 'IsPrepared') this.isPrepared,
+      @JsonKey(name: 'IsReceived') this.isReceived,
+      @JsonKey(name: 'IsDeleted') this.isDeleted});
+
+  factory _$BillExportPayloadImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BillExportPayloadImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'Code')
+  final String? code;
+  @override
+  @JsonKey(name: 'TypeBill')
+  final bool? typeBill;
+  @override
+  @JsonKey(name: 'SupplierID')
+  final int? supplierId;
+  @override
+  @JsonKey(name: 'CustomerID')
+  final int? customerId;
+  @override
+  @JsonKey(name: 'UserID')
+  final int? userId;
+  @override
+  @JsonKey(name: 'SenderID')
+  final int? senderId;
+  @override
+  @JsonKey(name: 'StockID')
+  final int? stockId;
+  @override
+  @JsonKey(name: 'Description')
+  final String? description;
+  @override
+  @JsonKey(name: 'Address')
+  final String? address;
+  @override
+  @JsonKey(name: 'Status')
+  final int? status;
+  @override
+  @JsonKey(name: 'GroupID')
+  final String? groupId;
+  @override
+  @JsonKey(name: 'WarehouseType')
+  final String? warehouseType;
+  @override
+  @JsonKey(name: 'KhoTypeID')
+  final int? khoTypeId;
+  @override
+  @JsonKey(name: 'CreatDate')
+  final String? creatDate;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final String? createdDate;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final String? updatedDate;
+  @override
+  @JsonKey(name: 'ProductType')
+  final int? productType;
+  @override
+  @JsonKey(name: 'AddressStockID')
+  final int? addressStockId;
+  @override
+  @JsonKey(name: 'WarehouseID')
+  final int? warehouseId;
+  @override
+  @JsonKey(name: 'RequestDate')
+  final String? requestDate;
+  @override
+  @JsonKey(name: 'DeliveryTime')
+  final String? deliveryTime;
+  @override
+  @JsonKey(name: 'IsAfterHours')
+  final bool? isAfterHours;
+  @override
+  @JsonKey(name: 'BillDocumentExportType')
+  final int? billDocumentExportType;
+  @override
+  @JsonKey(name: 'IsApproved')
+  final bool? isApproved;
+  @override
+  @JsonKey(name: 'IsTransfer')
+  final bool? isTransfer;
+  @override
+  @JsonKey(name: 'WareHouseTranferID')
+  final int? wareHouseTranferId;
+  @override
+  @JsonKey(name: 'IsTransferInternal')
+  final bool? isTransferInternal;
+  @override
+  @JsonKey(name: 'KhoTypeTransferID')
+  final int? khoTypeTransferId;
+  @override
+  @JsonKey(name: 'ReceiverID')
+  final int? receiverId;
+  @override
+  @JsonKey(name: 'IsPrepared')
+  final bool? isPrepared;
+  @override
+  @JsonKey(name: 'IsReceived')
+  final bool? isReceived;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  final bool? isDeleted;
+
+  @override
+  String toString() {
+    return 'BillExportPayload(id: $id, code: $code, typeBill: $typeBill, supplierId: $supplierId, customerId: $customerId, userId: $userId, senderId: $senderId, stockId: $stockId, description: $description, address: $address, status: $status, groupId: $groupId, warehouseType: $warehouseType, khoTypeId: $khoTypeId, creatDate: $creatDate, createdDate: $createdDate, updatedDate: $updatedDate, productType: $productType, addressStockId: $addressStockId, warehouseId: $warehouseId, requestDate: $requestDate, deliveryTime: $deliveryTime, isAfterHours: $isAfterHours, billDocumentExportType: $billDocumentExportType, isApproved: $isApproved, isTransfer: $isTransfer, wareHouseTranferId: $wareHouseTranferId, isTransferInternal: $isTransferInternal, khoTypeTransferId: $khoTypeTransferId, receiverId: $receiverId, isPrepared: $isPrepared, isReceived: $isReceived, isDeleted: $isDeleted)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BillExportPayloadImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.typeBill, typeBill) ||
+                other.typeBill == typeBill) &&
+            (identical(other.supplierId, supplierId) ||
+                other.supplierId == supplierId) &&
+            (identical(other.customerId, customerId) ||
+                other.customerId == customerId) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.senderId, senderId) ||
+                other.senderId == senderId) &&
+            (identical(other.stockId, stockId) || other.stockId == stockId) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.groupId, groupId) || other.groupId == groupId) &&
+            (identical(other.warehouseType, warehouseType) ||
+                other.warehouseType == warehouseType) &&
+            (identical(other.khoTypeId, khoTypeId) ||
+                other.khoTypeId == khoTypeId) &&
+            (identical(other.creatDate, creatDate) ||
+                other.creatDate == creatDate) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.productType, productType) ||
+                other.productType == productType) &&
+            (identical(other.addressStockId, addressStockId) ||
+                other.addressStockId == addressStockId) &&
+            (identical(other.warehouseId, warehouseId) ||
+                other.warehouseId == warehouseId) &&
+            (identical(other.requestDate, requestDate) ||
+                other.requestDate == requestDate) &&
+            (identical(other.deliveryTime, deliveryTime) ||
+                other.deliveryTime == deliveryTime) &&
+            (identical(other.isAfterHours, isAfterHours) ||
+                other.isAfterHours == isAfterHours) &&
+            (identical(other.billDocumentExportType, billDocumentExportType) ||
+                other.billDocumentExportType == billDocumentExportType) &&
+            (identical(other.isApproved, isApproved) ||
+                other.isApproved == isApproved) &&
+            (identical(other.isTransfer, isTransfer) ||
+                other.isTransfer == isTransfer) &&
+            (identical(other.wareHouseTranferId, wareHouseTranferId) ||
+                other.wareHouseTranferId == wareHouseTranferId) &&
+            (identical(other.isTransferInternal, isTransferInternal) ||
+                other.isTransferInternal == isTransferInternal) &&
+            (identical(other.khoTypeTransferId, khoTypeTransferId) ||
+                other.khoTypeTransferId == khoTypeTransferId) &&
+            (identical(other.receiverId, receiverId) ||
+                other.receiverId == receiverId) &&
+            (identical(other.isPrepared, isPrepared) ||
+                other.isPrepared == isPrepared) &&
+            (identical(other.isReceived, isReceived) ||
+                other.isReceived == isReceived) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        code,
+        typeBill,
+        supplierId,
+        customerId,
+        userId,
+        senderId,
+        stockId,
+        description,
+        address,
+        status,
+        groupId,
+        warehouseType,
+        khoTypeId,
+        creatDate,
+        createdDate,
+        updatedDate,
+        productType,
+        addressStockId,
+        warehouseId,
+        requestDate,
+        deliveryTime,
+        isAfterHours,
+        billDocumentExportType,
+        isApproved,
+        isTransfer,
+        wareHouseTranferId,
+        isTransferInternal,
+        khoTypeTransferId,
+        receiverId,
+        isPrepared,
+        isReceived,
+        isDeleted
+      ]);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BillExportPayloadImplCopyWith<_$BillExportPayloadImpl> get copyWith =>
+      __$$BillExportPayloadImplCopyWithImpl<_$BillExportPayloadImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BillExportPayloadImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BillExportPayload implements BillExportPayload {
+  const factory _BillExportPayload(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'Code') final String? code,
+          @JsonKey(name: 'TypeBill') final bool? typeBill,
+          @JsonKey(name: 'SupplierID') final int? supplierId,
+          @JsonKey(name: 'CustomerID') final int? customerId,
+          @JsonKey(name: 'UserID') final int? userId,
+          @JsonKey(name: 'SenderID') final int? senderId,
+          @JsonKey(name: 'StockID') final int? stockId,
+          @JsonKey(name: 'Description') final String? description,
+          @JsonKey(name: 'Address') final String? address,
+          @JsonKey(name: 'Status') final int? status,
+          @JsonKey(name: 'GroupID') final String? groupId,
+          @JsonKey(name: 'WarehouseType') final String? warehouseType,
+          @JsonKey(name: 'KhoTypeID') final int? khoTypeId,
+          @JsonKey(name: 'CreatDate') final String? creatDate,
+          @JsonKey(name: 'CreatedDate') final String? createdDate,
+          @JsonKey(name: 'UpdatedDate') final String? updatedDate,
+          @JsonKey(name: 'ProductType') final int? productType,
+          @JsonKey(name: 'AddressStockID') final int? addressStockId,
+          @JsonKey(name: 'WarehouseID') final int? warehouseId,
+          @JsonKey(name: 'RequestDate') final String? requestDate,
+          @JsonKey(name: 'DeliveryTime') final String? deliveryTime,
+          @JsonKey(name: 'IsAfterHours') final bool? isAfterHours,
+          @JsonKey(name: 'BillDocumentExportType')
+          final int? billDocumentExportType,
+          @JsonKey(name: 'IsApproved') final bool? isApproved,
+          @JsonKey(name: 'IsTransfer') final bool? isTransfer,
+          @JsonKey(name: 'WareHouseTranferID') final int? wareHouseTranferId,
+          @JsonKey(name: 'IsTransferInternal') final bool? isTransferInternal,
+          @JsonKey(name: 'KhoTypeTransferID') final int? khoTypeTransferId,
+          @JsonKey(name: 'ReceiverID') final int? receiverId,
+          @JsonKey(name: 'IsPrepared') final bool? isPrepared,
+          @JsonKey(name: 'IsReceived') final bool? isReceived,
+          @JsonKey(name: 'IsDeleted') final bool? isDeleted}) =
+      _$BillExportPayloadImpl;
+
+  factory _BillExportPayload.fromJson(Map<String, dynamic> json) =
+      _$BillExportPayloadImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'Code')
+  String? get code;
+  @override
+  @JsonKey(name: 'TypeBill')
+  bool? get typeBill;
+  @override
+  @JsonKey(name: 'SupplierID')
+  int? get supplierId;
+  @override
+  @JsonKey(name: 'CustomerID')
+  int? get customerId;
+  @override
+  @JsonKey(name: 'UserID')
+  int? get userId;
+  @override
+  @JsonKey(name: 'SenderID')
+  int? get senderId;
+  @override
+  @JsonKey(name: 'StockID')
+  int? get stockId;
+  @override
+  @JsonKey(name: 'Description')
+  String? get description;
+  @override
+  @JsonKey(name: 'Address')
+  String? get address;
+  @override
+  @JsonKey(name: 'Status')
+  int? get status;
+  @override
+  @JsonKey(name: 'GroupID')
+  String? get groupId;
+  @override
+  @JsonKey(name: 'WarehouseType')
+  String? get warehouseType;
+  @override
+  @JsonKey(name: 'KhoTypeID')
+  int? get khoTypeId;
+  @override
+  @JsonKey(name: 'CreatDate')
+  String? get creatDate;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  String? get createdDate;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  String? get updatedDate;
+  @override
+  @JsonKey(name: 'ProductType')
+  int? get productType;
+  @override
+  @JsonKey(name: 'AddressStockID')
+  int? get addressStockId;
+  @override
+  @JsonKey(name: 'WarehouseID')
+  int? get warehouseId;
+  @override
+  @JsonKey(name: 'RequestDate')
+  String? get requestDate;
+  @override
+  @JsonKey(name: 'DeliveryTime')
+  String? get deliveryTime;
+  @override
+  @JsonKey(name: 'IsAfterHours')
+  bool? get isAfterHours;
+  @override
+  @JsonKey(name: 'BillDocumentExportType')
+  int? get billDocumentExportType;
+  @override
+  @JsonKey(name: 'IsApproved')
+  bool? get isApproved;
+  @override
+  @JsonKey(name: 'IsTransfer')
+  bool? get isTransfer;
+  @override
+  @JsonKey(name: 'WareHouseTranferID')
+  int? get wareHouseTranferId;
+  @override
+  @JsonKey(name: 'IsTransferInternal')
+  bool? get isTransferInternal;
+  @override
+  @JsonKey(name: 'KhoTypeTransferID')
+  int? get khoTypeTransferId;
+  @override
+  @JsonKey(name: 'ReceiverID')
+  int? get receiverId;
+  @override
+  @JsonKey(name: 'IsPrepared')
+  bool? get isPrepared;
+  @override
+  @JsonKey(name: 'IsReceived')
+  bool? get isReceived;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted;
+  @override
+  @JsonKey(ignore: true)
+  _$$BillExportPayloadImplCopyWith<_$BillExportPayloadImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+BillExportDetailPayload _$BillExportDetailPayloadFromJson(
+    Map<String, dynamic> json) {
+  return _BillExportDetailPayload.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BillExportDetailPayload {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProductID')
+  int? get productId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProductName')
+  String? get productName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProductCode')
+  String? get productCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProductNewCode')
+  String? get productNewCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProductFullName')
+  String? get productFullName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Qty')
+  num? get qty => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectName')
+  String? get projectName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Note')
+  String? get note => throw _privateConstructorUsedError;
+  @JsonKey(name: 'STT')
+  int? get stt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TotalQty')
+  num? get totalQty => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectID')
+  int? get projectId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProductType')
+  int? get productType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'POKHID')
+  int? get pokhId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'GroupExport')
+  String? get groupExport => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsInvoice')
+  bool? get isInvoice => throw _privateConstructorUsedError;
+  @JsonKey(name: 'InvoiceNumber')
+  String? get invoiceNumber => throw _privateConstructorUsedError;
+  @JsonKey(name: 'SerialNumber')
+  String? get serialNumber => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ReturnedStatus')
+  bool? get returnedStatus => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectPartListID')
+  int? get projectPartListId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TradePriceDetailID')
+  int? get tradePriceDetailId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'POKHDetailID')
+  int? get pokhDetailId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Specifications')
+  String? get specifications => throw _privateConstructorUsedError;
+  @JsonKey(name: 'BillImportDetailID')
+  int? get billImportDetailId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TotalInventory')
+  num? get totalInventory => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ExpectReturnDate')
+  String? get expectReturnDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CustomerResponse')
+  String? get customerResponse => throw _privateConstructorUsedError;
+  @JsonKey(name: 'POKHDetailIDActual')
+  int? get pokhDetailIdActual => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PONumber')
+  String? get poNumber => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ChosenInventoryProject')
+  String? get chosenInventoryProject => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Unit')
+  String? get unit => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UnitName')
+  String? get unitName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ChildID')
+  int? get childId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ImportDetailID')
+  int? get importDetailId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ForceReallocate')
+  bool? get forceReallocate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UnitPricePOKH')
+  num? get unitPricePOKH => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UnitPricePurchase')
+  num? get unitPricePurchase => throw _privateConstructorUsedError;
+  @JsonKey(name: 'BillCode')
+  String? get billCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FileIds')
+  List<int> get fileIds => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BillExportDetailPayloadCopyWith<BillExportDetailPayload> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BillExportDetailPayloadCopyWith<$Res> {
+  factory $BillExportDetailPayloadCopyWith(BillExportDetailPayload value,
+          $Res Function(BillExportDetailPayload) then) =
+      _$BillExportDetailPayloadCopyWithImpl<$Res, BillExportDetailPayload>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'ProductID') int? productId,
+      @JsonKey(name: 'ProductName') String? productName,
+      @JsonKey(name: 'ProductCode') String? productCode,
+      @JsonKey(name: 'ProductNewCode') String? productNewCode,
+      @JsonKey(name: 'ProductFullName') String? productFullName,
+      @JsonKey(name: 'Qty') num? qty,
+      @JsonKey(name: 'ProjectName') String? projectName,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'TotalQty') num? totalQty,
+      @JsonKey(name: 'ProjectID') int? projectId,
+      @JsonKey(name: 'ProductType') int? productType,
+      @JsonKey(name: 'POKHID') int? pokhId,
+      @JsonKey(name: 'GroupExport') String? groupExport,
+      @JsonKey(name: 'IsInvoice') bool? isInvoice,
+      @JsonKey(name: 'InvoiceNumber') String? invoiceNumber,
+      @JsonKey(name: 'SerialNumber') String? serialNumber,
+      @JsonKey(name: 'ReturnedStatus') bool? returnedStatus,
+      @JsonKey(name: 'ProjectPartListID') int? projectPartListId,
+      @JsonKey(name: 'TradePriceDetailID') int? tradePriceDetailId,
+      @JsonKey(name: 'POKHDetailID') int? pokhDetailId,
+      @JsonKey(name: 'Specifications') String? specifications,
+      @JsonKey(name: 'BillImportDetailID') int? billImportDetailId,
+      @JsonKey(name: 'TotalInventory') num? totalInventory,
+      @JsonKey(name: 'ExpectReturnDate') String? expectReturnDate,
+      @JsonKey(name: 'CustomerResponse') String? customerResponse,
+      @JsonKey(name: 'POKHDetailIDActual') int? pokhDetailIdActual,
+      @JsonKey(name: 'PONumber') String? poNumber,
+      @JsonKey(name: 'ChosenInventoryProject') String? chosenInventoryProject,
+      @JsonKey(name: 'Unit') String? unit,
+      @JsonKey(name: 'UnitName') String? unitName,
+      @JsonKey(name: 'ChildID') int? childId,
+      @JsonKey(name: 'ImportDetailID') int? importDetailId,
+      @JsonKey(name: 'ForceReallocate') bool? forceReallocate,
+      @JsonKey(name: 'UnitPricePOKH') num? unitPricePOKH,
+      @JsonKey(name: 'UnitPricePurchase') num? unitPricePurchase,
+      @JsonKey(name: 'BillCode') String? billCode,
+      @JsonKey(name: 'FileIds') List<int> fileIds});
+}
+
+/// @nodoc
+class _$BillExportDetailPayloadCopyWithImpl<$Res,
+        $Val extends BillExportDetailPayload>
+    implements $BillExportDetailPayloadCopyWith<$Res> {
+  _$BillExportDetailPayloadCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? productId = freezed,
+    Object? productName = freezed,
+    Object? productCode = freezed,
+    Object? productNewCode = freezed,
+    Object? productFullName = freezed,
+    Object? qty = freezed,
+    Object? projectName = freezed,
+    Object? note = freezed,
+    Object? stt = freezed,
+    Object? totalQty = freezed,
+    Object? projectId = freezed,
+    Object? productType = freezed,
+    Object? pokhId = freezed,
+    Object? groupExport = freezed,
+    Object? isInvoice = freezed,
+    Object? invoiceNumber = freezed,
+    Object? serialNumber = freezed,
+    Object? returnedStatus = freezed,
+    Object? projectPartListId = freezed,
+    Object? tradePriceDetailId = freezed,
+    Object? pokhDetailId = freezed,
+    Object? specifications = freezed,
+    Object? billImportDetailId = freezed,
+    Object? totalInventory = freezed,
+    Object? expectReturnDate = freezed,
+    Object? customerResponse = freezed,
+    Object? pokhDetailIdActual = freezed,
+    Object? poNumber = freezed,
+    Object? chosenInventoryProject = freezed,
+    Object? unit = freezed,
+    Object? unitName = freezed,
+    Object? childId = freezed,
+    Object? importDetailId = freezed,
+    Object? forceReallocate = freezed,
+    Object? unitPricePOKH = freezed,
+    Object? unitPricePurchase = freezed,
+    Object? billCode = freezed,
+    Object? fileIds = null,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      productId: freezed == productId
+          ? _value.productId
+          : productId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      productName: freezed == productName
+          ? _value.productName
+          : productName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productCode: freezed == productCode
+          ? _value.productCode
+          : productCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productNewCode: freezed == productNewCode
+          ? _value.productNewCode
+          : productNewCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productFullName: freezed == productFullName
+          ? _value.productFullName
+          : productFullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      qty: freezed == qty
+          ? _value.qty
+          : qty // ignore: cast_nullable_to_non_nullable
+              as num?,
+      projectName: freezed == projectName
+          ? _value.projectName
+          : projectName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      totalQty: freezed == totalQty
+          ? _value.totalQty
+          : totalQty // ignore: cast_nullable_to_non_nullable
+              as num?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      productType: freezed == productType
+          ? _value.productType
+          : productType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      pokhId: freezed == pokhId
+          ? _value.pokhId
+          : pokhId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      groupExport: freezed == groupExport
+          ? _value.groupExport
+          : groupExport // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isInvoice: freezed == isInvoice
+          ? _value.isInvoice
+          : isInvoice // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      invoiceNumber: freezed == invoiceNumber
+          ? _value.invoiceNumber
+          : invoiceNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      serialNumber: freezed == serialNumber
+          ? _value.serialNumber
+          : serialNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      returnedStatus: freezed == returnedStatus
+          ? _value.returnedStatus
+          : returnedStatus // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      projectPartListId: freezed == projectPartListId
+          ? _value.projectPartListId
+          : projectPartListId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      tradePriceDetailId: freezed == tradePriceDetailId
+          ? _value.tradePriceDetailId
+          : tradePriceDetailId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      pokhDetailId: freezed == pokhDetailId
+          ? _value.pokhDetailId
+          : pokhDetailId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      specifications: freezed == specifications
+          ? _value.specifications
+          : specifications // ignore: cast_nullable_to_non_nullable
+              as String?,
+      billImportDetailId: freezed == billImportDetailId
+          ? _value.billImportDetailId
+          : billImportDetailId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      totalInventory: freezed == totalInventory
+          ? _value.totalInventory
+          : totalInventory // ignore: cast_nullable_to_non_nullable
+              as num?,
+      expectReturnDate: freezed == expectReturnDate
+          ? _value.expectReturnDate
+          : expectReturnDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerResponse: freezed == customerResponse
+          ? _value.customerResponse
+          : customerResponse // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pokhDetailIdActual: freezed == pokhDetailIdActual
+          ? _value.pokhDetailIdActual
+          : pokhDetailIdActual // ignore: cast_nullable_to_non_nullable
+              as int?,
+      poNumber: freezed == poNumber
+          ? _value.poNumber
+          : poNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      chosenInventoryProject: freezed == chosenInventoryProject
+          ? _value.chosenInventoryProject
+          : chosenInventoryProject // ignore: cast_nullable_to_non_nullable
+              as String?,
+      unit: freezed == unit
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
+              as String?,
+      unitName: freezed == unitName
+          ? _value.unitName
+          : unitName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      childId: freezed == childId
+          ? _value.childId
+          : childId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      importDetailId: freezed == importDetailId
+          ? _value.importDetailId
+          : importDetailId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      forceReallocate: freezed == forceReallocate
+          ? _value.forceReallocate
+          : forceReallocate // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      unitPricePOKH: freezed == unitPricePOKH
+          ? _value.unitPricePOKH
+          : unitPricePOKH // ignore: cast_nullable_to_non_nullable
+              as num?,
+      unitPricePurchase: freezed == unitPricePurchase
+          ? _value.unitPricePurchase
+          : unitPricePurchase // ignore: cast_nullable_to_non_nullable
+              as num?,
+      billCode: freezed == billCode
+          ? _value.billCode
+          : billCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fileIds: null == fileIds
+          ? _value.fileIds
+          : fileIds // ignore: cast_nullable_to_non_nullable
+              as List<int>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$BillExportDetailPayloadImplCopyWith<$Res>
+    implements $BillExportDetailPayloadCopyWith<$Res> {
+  factory _$$BillExportDetailPayloadImplCopyWith(
+          _$BillExportDetailPayloadImpl value,
+          $Res Function(_$BillExportDetailPayloadImpl) then) =
+      __$$BillExportDetailPayloadImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'ProductID') int? productId,
+      @JsonKey(name: 'ProductName') String? productName,
+      @JsonKey(name: 'ProductCode') String? productCode,
+      @JsonKey(name: 'ProductNewCode') String? productNewCode,
+      @JsonKey(name: 'ProductFullName') String? productFullName,
+      @JsonKey(name: 'Qty') num? qty,
+      @JsonKey(name: 'ProjectName') String? projectName,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'TotalQty') num? totalQty,
+      @JsonKey(name: 'ProjectID') int? projectId,
+      @JsonKey(name: 'ProductType') int? productType,
+      @JsonKey(name: 'POKHID') int? pokhId,
+      @JsonKey(name: 'GroupExport') String? groupExport,
+      @JsonKey(name: 'IsInvoice') bool? isInvoice,
+      @JsonKey(name: 'InvoiceNumber') String? invoiceNumber,
+      @JsonKey(name: 'SerialNumber') String? serialNumber,
+      @JsonKey(name: 'ReturnedStatus') bool? returnedStatus,
+      @JsonKey(name: 'ProjectPartListID') int? projectPartListId,
+      @JsonKey(name: 'TradePriceDetailID') int? tradePriceDetailId,
+      @JsonKey(name: 'POKHDetailID') int? pokhDetailId,
+      @JsonKey(name: 'Specifications') String? specifications,
+      @JsonKey(name: 'BillImportDetailID') int? billImportDetailId,
+      @JsonKey(name: 'TotalInventory') num? totalInventory,
+      @JsonKey(name: 'ExpectReturnDate') String? expectReturnDate,
+      @JsonKey(name: 'CustomerResponse') String? customerResponse,
+      @JsonKey(name: 'POKHDetailIDActual') int? pokhDetailIdActual,
+      @JsonKey(name: 'PONumber') String? poNumber,
+      @JsonKey(name: 'ChosenInventoryProject') String? chosenInventoryProject,
+      @JsonKey(name: 'Unit') String? unit,
+      @JsonKey(name: 'UnitName') String? unitName,
+      @JsonKey(name: 'ChildID') int? childId,
+      @JsonKey(name: 'ImportDetailID') int? importDetailId,
+      @JsonKey(name: 'ForceReallocate') bool? forceReallocate,
+      @JsonKey(name: 'UnitPricePOKH') num? unitPricePOKH,
+      @JsonKey(name: 'UnitPricePurchase') num? unitPricePurchase,
+      @JsonKey(name: 'BillCode') String? billCode,
+      @JsonKey(name: 'FileIds') List<int> fileIds});
+}
+
+/// @nodoc
+class __$$BillExportDetailPayloadImplCopyWithImpl<$Res>
+    extends _$BillExportDetailPayloadCopyWithImpl<$Res,
+        _$BillExportDetailPayloadImpl>
+    implements _$$BillExportDetailPayloadImplCopyWith<$Res> {
+  __$$BillExportDetailPayloadImplCopyWithImpl(
+      _$BillExportDetailPayloadImpl _value,
+      $Res Function(_$BillExportDetailPayloadImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? productId = freezed,
+    Object? productName = freezed,
+    Object? productCode = freezed,
+    Object? productNewCode = freezed,
+    Object? productFullName = freezed,
+    Object? qty = freezed,
+    Object? projectName = freezed,
+    Object? note = freezed,
+    Object? stt = freezed,
+    Object? totalQty = freezed,
+    Object? projectId = freezed,
+    Object? productType = freezed,
+    Object? pokhId = freezed,
+    Object? groupExport = freezed,
+    Object? isInvoice = freezed,
+    Object? invoiceNumber = freezed,
+    Object? serialNumber = freezed,
+    Object? returnedStatus = freezed,
+    Object? projectPartListId = freezed,
+    Object? tradePriceDetailId = freezed,
+    Object? pokhDetailId = freezed,
+    Object? specifications = freezed,
+    Object? billImportDetailId = freezed,
+    Object? totalInventory = freezed,
+    Object? expectReturnDate = freezed,
+    Object? customerResponse = freezed,
+    Object? pokhDetailIdActual = freezed,
+    Object? poNumber = freezed,
+    Object? chosenInventoryProject = freezed,
+    Object? unit = freezed,
+    Object? unitName = freezed,
+    Object? childId = freezed,
+    Object? importDetailId = freezed,
+    Object? forceReallocate = freezed,
+    Object? unitPricePOKH = freezed,
+    Object? unitPricePurchase = freezed,
+    Object? billCode = freezed,
+    Object? fileIds = null,
+  }) {
+    return _then(_$BillExportDetailPayloadImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      productId: freezed == productId
+          ? _value.productId
+          : productId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      productName: freezed == productName
+          ? _value.productName
+          : productName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productCode: freezed == productCode
+          ? _value.productCode
+          : productCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productNewCode: freezed == productNewCode
+          ? _value.productNewCode
+          : productNewCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productFullName: freezed == productFullName
+          ? _value.productFullName
+          : productFullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      qty: freezed == qty
+          ? _value.qty
+          : qty // ignore: cast_nullable_to_non_nullable
+              as num?,
+      projectName: freezed == projectName
+          ? _value.projectName
+          : projectName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      totalQty: freezed == totalQty
+          ? _value.totalQty
+          : totalQty // ignore: cast_nullable_to_non_nullable
+              as num?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      productType: freezed == productType
+          ? _value.productType
+          : productType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      pokhId: freezed == pokhId
+          ? _value.pokhId
+          : pokhId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      groupExport: freezed == groupExport
+          ? _value.groupExport
+          : groupExport // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isInvoice: freezed == isInvoice
+          ? _value.isInvoice
+          : isInvoice // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      invoiceNumber: freezed == invoiceNumber
+          ? _value.invoiceNumber
+          : invoiceNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      serialNumber: freezed == serialNumber
+          ? _value.serialNumber
+          : serialNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      returnedStatus: freezed == returnedStatus
+          ? _value.returnedStatus
+          : returnedStatus // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      projectPartListId: freezed == projectPartListId
+          ? _value.projectPartListId
+          : projectPartListId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      tradePriceDetailId: freezed == tradePriceDetailId
+          ? _value.tradePriceDetailId
+          : tradePriceDetailId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      pokhDetailId: freezed == pokhDetailId
+          ? _value.pokhDetailId
+          : pokhDetailId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      specifications: freezed == specifications
+          ? _value.specifications
+          : specifications // ignore: cast_nullable_to_non_nullable
+              as String?,
+      billImportDetailId: freezed == billImportDetailId
+          ? _value.billImportDetailId
+          : billImportDetailId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      totalInventory: freezed == totalInventory
+          ? _value.totalInventory
+          : totalInventory // ignore: cast_nullable_to_non_nullable
+              as num?,
+      expectReturnDate: freezed == expectReturnDate
+          ? _value.expectReturnDate
+          : expectReturnDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerResponse: freezed == customerResponse
+          ? _value.customerResponse
+          : customerResponse // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pokhDetailIdActual: freezed == pokhDetailIdActual
+          ? _value.pokhDetailIdActual
+          : pokhDetailIdActual // ignore: cast_nullable_to_non_nullable
+              as int?,
+      poNumber: freezed == poNumber
+          ? _value.poNumber
+          : poNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      chosenInventoryProject: freezed == chosenInventoryProject
+          ? _value.chosenInventoryProject
+          : chosenInventoryProject // ignore: cast_nullable_to_non_nullable
+              as String?,
+      unit: freezed == unit
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
+              as String?,
+      unitName: freezed == unitName
+          ? _value.unitName
+          : unitName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      childId: freezed == childId
+          ? _value.childId
+          : childId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      importDetailId: freezed == importDetailId
+          ? _value.importDetailId
+          : importDetailId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      forceReallocate: freezed == forceReallocate
+          ? _value.forceReallocate
+          : forceReallocate // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      unitPricePOKH: freezed == unitPricePOKH
+          ? _value.unitPricePOKH
+          : unitPricePOKH // ignore: cast_nullable_to_non_nullable
+              as num?,
+      unitPricePurchase: freezed == unitPricePurchase
+          ? _value.unitPricePurchase
+          : unitPricePurchase // ignore: cast_nullable_to_non_nullable
+              as num?,
+      billCode: freezed == billCode
+          ? _value.billCode
+          : billCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fileIds: null == fileIds
+          ? _value._fileIds
+          : fileIds // ignore: cast_nullable_to_non_nullable
+              as List<int>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$BillExportDetailPayloadImpl implements _BillExportDetailPayload {
+  const _$BillExportDetailPayloadImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'ProductID') this.productId,
+      @JsonKey(name: 'ProductName') this.productName,
+      @JsonKey(name: 'ProductCode') this.productCode,
+      @JsonKey(name: 'ProductNewCode') this.productNewCode,
+      @JsonKey(name: 'ProductFullName') this.productFullName,
+      @JsonKey(name: 'Qty') this.qty,
+      @JsonKey(name: 'ProjectName') this.projectName,
+      @JsonKey(name: 'Note') this.note,
+      @JsonKey(name: 'STT') this.stt,
+      @JsonKey(name: 'TotalQty') this.totalQty,
+      @JsonKey(name: 'ProjectID') this.projectId,
+      @JsonKey(name: 'ProductType') this.productType,
+      @JsonKey(name: 'POKHID') this.pokhId,
+      @JsonKey(name: 'GroupExport') this.groupExport,
+      @JsonKey(name: 'IsInvoice') this.isInvoice,
+      @JsonKey(name: 'InvoiceNumber') this.invoiceNumber,
+      @JsonKey(name: 'SerialNumber') this.serialNumber,
+      @JsonKey(name: 'ReturnedStatus') this.returnedStatus,
+      @JsonKey(name: 'ProjectPartListID') this.projectPartListId,
+      @JsonKey(name: 'TradePriceDetailID') this.tradePriceDetailId,
+      @JsonKey(name: 'POKHDetailID') this.pokhDetailId,
+      @JsonKey(name: 'Specifications') this.specifications,
+      @JsonKey(name: 'BillImportDetailID') this.billImportDetailId,
+      @JsonKey(name: 'TotalInventory') this.totalInventory,
+      @JsonKey(name: 'ExpectReturnDate') this.expectReturnDate,
+      @JsonKey(name: 'CustomerResponse') this.customerResponse,
+      @JsonKey(name: 'POKHDetailIDActual') this.pokhDetailIdActual,
+      @JsonKey(name: 'PONumber') this.poNumber,
+      @JsonKey(name: 'ChosenInventoryProject') this.chosenInventoryProject,
+      @JsonKey(name: 'Unit') this.unit,
+      @JsonKey(name: 'UnitName') this.unitName,
+      @JsonKey(name: 'ChildID') this.childId,
+      @JsonKey(name: 'ImportDetailID') this.importDetailId,
+      @JsonKey(name: 'ForceReallocate') this.forceReallocate,
+      @JsonKey(name: 'UnitPricePOKH') this.unitPricePOKH,
+      @JsonKey(name: 'UnitPricePurchase') this.unitPricePurchase,
+      @JsonKey(name: 'BillCode') this.billCode,
+      @JsonKey(name: 'FileIds') final List<int> fileIds = const []})
+      : _fileIds = fileIds;
+
+  factory _$BillExportDetailPayloadImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BillExportDetailPayloadImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'ProductID')
+  final int? productId;
+  @override
+  @JsonKey(name: 'ProductName')
+  final String? productName;
+  @override
+  @JsonKey(name: 'ProductCode')
+  final String? productCode;
+  @override
+  @JsonKey(name: 'ProductNewCode')
+  final String? productNewCode;
+  @override
+  @JsonKey(name: 'ProductFullName')
+  final String? productFullName;
+  @override
+  @JsonKey(name: 'Qty')
+  final num? qty;
+  @override
+  @JsonKey(name: 'ProjectName')
+  final String? projectName;
+  @override
+  @JsonKey(name: 'Note')
+  final String? note;
+  @override
+  @JsonKey(name: 'STT')
+  final int? stt;
+  @override
+  @JsonKey(name: 'TotalQty')
+  final num? totalQty;
+  @override
+  @JsonKey(name: 'ProjectID')
+  final int? projectId;
+  @override
+  @JsonKey(name: 'ProductType')
+  final int? productType;
+  @override
+  @JsonKey(name: 'POKHID')
+  final int? pokhId;
+  @override
+  @JsonKey(name: 'GroupExport')
+  final String? groupExport;
+  @override
+  @JsonKey(name: 'IsInvoice')
+  final bool? isInvoice;
+  @override
+  @JsonKey(name: 'InvoiceNumber')
+  final String? invoiceNumber;
+  @override
+  @JsonKey(name: 'SerialNumber')
+  final String? serialNumber;
+  @override
+  @JsonKey(name: 'ReturnedStatus')
+  final bool? returnedStatus;
+  @override
+  @JsonKey(name: 'ProjectPartListID')
+  final int? projectPartListId;
+  @override
+  @JsonKey(name: 'TradePriceDetailID')
+  final int? tradePriceDetailId;
+  @override
+  @JsonKey(name: 'POKHDetailID')
+  final int? pokhDetailId;
+  @override
+  @JsonKey(name: 'Specifications')
+  final String? specifications;
+  @override
+  @JsonKey(name: 'BillImportDetailID')
+  final int? billImportDetailId;
+  @override
+  @JsonKey(name: 'TotalInventory')
+  final num? totalInventory;
+  @override
+  @JsonKey(name: 'ExpectReturnDate')
+  final String? expectReturnDate;
+  @override
+  @JsonKey(name: 'CustomerResponse')
+  final String? customerResponse;
+  @override
+  @JsonKey(name: 'POKHDetailIDActual')
+  final int? pokhDetailIdActual;
+  @override
+  @JsonKey(name: 'PONumber')
+  final String? poNumber;
+  @override
+  @JsonKey(name: 'ChosenInventoryProject')
+  final String? chosenInventoryProject;
+  @override
+  @JsonKey(name: 'Unit')
+  final String? unit;
+  @override
+  @JsonKey(name: 'UnitName')
+  final String? unitName;
+  @override
+  @JsonKey(name: 'ChildID')
+  final int? childId;
+  @override
+  @JsonKey(name: 'ImportDetailID')
+  final int? importDetailId;
+  @override
+  @JsonKey(name: 'ForceReallocate')
+  final bool? forceReallocate;
+  @override
+  @JsonKey(name: 'UnitPricePOKH')
+  final num? unitPricePOKH;
+  @override
+  @JsonKey(name: 'UnitPricePurchase')
+  final num? unitPricePurchase;
+  @override
+  @JsonKey(name: 'BillCode')
+  final String? billCode;
+  final List<int> _fileIds;
+  @override
+  @JsonKey(name: 'FileIds')
+  List<int> get fileIds {
+    if (_fileIds is EqualUnmodifiableListView) return _fileIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_fileIds);
+  }
+
+  @override
+  String toString() {
+    return 'BillExportDetailPayload(id: $id, productId: $productId, productName: $productName, productCode: $productCode, productNewCode: $productNewCode, productFullName: $productFullName, qty: $qty, projectName: $projectName, note: $note, stt: $stt, totalQty: $totalQty, projectId: $projectId, productType: $productType, pokhId: $pokhId, groupExport: $groupExport, isInvoice: $isInvoice, invoiceNumber: $invoiceNumber, serialNumber: $serialNumber, returnedStatus: $returnedStatus, projectPartListId: $projectPartListId, tradePriceDetailId: $tradePriceDetailId, pokhDetailId: $pokhDetailId, specifications: $specifications, billImportDetailId: $billImportDetailId, totalInventory: $totalInventory, expectReturnDate: $expectReturnDate, customerResponse: $customerResponse, pokhDetailIdActual: $pokhDetailIdActual, poNumber: $poNumber, chosenInventoryProject: $chosenInventoryProject, unit: $unit, unitName: $unitName, childId: $childId, importDetailId: $importDetailId, forceReallocate: $forceReallocate, unitPricePOKH: $unitPricePOKH, unitPricePurchase: $unitPricePurchase, billCode: $billCode, fileIds: $fileIds)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BillExportDetailPayloadImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.productId, productId) ||
+                other.productId == productId) &&
+            (identical(other.productName, productName) ||
+                other.productName == productName) &&
+            (identical(other.productCode, productCode) ||
+                other.productCode == productCode) &&
+            (identical(other.productNewCode, productNewCode) ||
+                other.productNewCode == productNewCode) &&
+            (identical(other.productFullName, productFullName) ||
+                other.productFullName == productFullName) &&
+            (identical(other.qty, qty) || other.qty == qty) &&
+            (identical(other.projectName, projectName) ||
+                other.projectName == projectName) &&
+            (identical(other.note, note) || other.note == note) &&
+            (identical(other.stt, stt) || other.stt == stt) &&
+            (identical(other.totalQty, totalQty) ||
+                other.totalQty == totalQty) &&
+            (identical(other.projectId, projectId) ||
+                other.projectId == projectId) &&
+            (identical(other.productType, productType) ||
+                other.productType == productType) &&
+            (identical(other.pokhId, pokhId) || other.pokhId == pokhId) &&
+            (identical(other.groupExport, groupExport) ||
+                other.groupExport == groupExport) &&
+            (identical(other.isInvoice, isInvoice) ||
+                other.isInvoice == isInvoice) &&
+            (identical(other.invoiceNumber, invoiceNumber) ||
+                other.invoiceNumber == invoiceNumber) &&
+            (identical(other.serialNumber, serialNumber) ||
+                other.serialNumber == serialNumber) &&
+            (identical(other.returnedStatus, returnedStatus) ||
+                other.returnedStatus == returnedStatus) &&
+            (identical(other.projectPartListId, projectPartListId) ||
+                other.projectPartListId == projectPartListId) &&
+            (identical(other.tradePriceDetailId, tradePriceDetailId) ||
+                other.tradePriceDetailId == tradePriceDetailId) &&
+            (identical(other.pokhDetailId, pokhDetailId) ||
+                other.pokhDetailId == pokhDetailId) &&
+            (identical(other.specifications, specifications) ||
+                other.specifications == specifications) &&
+            (identical(other.billImportDetailId, billImportDetailId) ||
+                other.billImportDetailId == billImportDetailId) &&
+            (identical(other.totalInventory, totalInventory) ||
+                other.totalInventory == totalInventory) &&
+            (identical(other.expectReturnDate, expectReturnDate) ||
+                other.expectReturnDate == expectReturnDate) &&
+            (identical(other.customerResponse, customerResponse) ||
+                other.customerResponse == customerResponse) &&
+            (identical(other.pokhDetailIdActual, pokhDetailIdActual) ||
+                other.pokhDetailIdActual == pokhDetailIdActual) &&
+            (identical(other.poNumber, poNumber) ||
+                other.poNumber == poNumber) &&
+            (identical(other.chosenInventoryProject, chosenInventoryProject) ||
+                other.chosenInventoryProject == chosenInventoryProject) &&
+            (identical(other.unit, unit) || other.unit == unit) &&
+            (identical(other.unitName, unitName) ||
+                other.unitName == unitName) &&
+            (identical(other.childId, childId) || other.childId == childId) &&
+            (identical(other.importDetailId, importDetailId) ||
+                other.importDetailId == importDetailId) &&
+            (identical(other.forceReallocate, forceReallocate) ||
+                other.forceReallocate == forceReallocate) &&
+            (identical(other.unitPricePOKH, unitPricePOKH) ||
+                other.unitPricePOKH == unitPricePOKH) &&
+            (identical(other.unitPricePurchase, unitPricePurchase) ||
+                other.unitPricePurchase == unitPricePurchase) &&
+            (identical(other.billCode, billCode) ||
+                other.billCode == billCode) &&
+            const DeepCollectionEquality().equals(other._fileIds, _fileIds));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        productId,
+        productName,
+        productCode,
+        productNewCode,
+        productFullName,
+        qty,
+        projectName,
+        note,
+        stt,
+        totalQty,
+        projectId,
+        productType,
+        pokhId,
+        groupExport,
+        isInvoice,
+        invoiceNumber,
+        serialNumber,
+        returnedStatus,
+        projectPartListId,
+        tradePriceDetailId,
+        pokhDetailId,
+        specifications,
+        billImportDetailId,
+        totalInventory,
+        expectReturnDate,
+        customerResponse,
+        pokhDetailIdActual,
+        poNumber,
+        chosenInventoryProject,
+        unit,
+        unitName,
+        childId,
+        importDetailId,
+        forceReallocate,
+        unitPricePOKH,
+        unitPricePurchase,
+        billCode,
+        const DeepCollectionEquality().hash(_fileIds)
+      ]);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BillExportDetailPayloadImplCopyWith<_$BillExportDetailPayloadImpl>
+      get copyWith => __$$BillExportDetailPayloadImplCopyWithImpl<
+          _$BillExportDetailPayloadImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BillExportDetailPayloadImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BillExportDetailPayload implements BillExportDetailPayload {
+  const factory _BillExportDetailPayload(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'ProductID') final int? productId,
+          @JsonKey(name: 'ProductName') final String? productName,
+          @JsonKey(name: 'ProductCode') final String? productCode,
+          @JsonKey(name: 'ProductNewCode') final String? productNewCode,
+          @JsonKey(name: 'ProductFullName') final String? productFullName,
+          @JsonKey(name: 'Qty') final num? qty,
+          @JsonKey(name: 'ProjectName') final String? projectName,
+          @JsonKey(name: 'Note') final String? note,
+          @JsonKey(name: 'STT') final int? stt,
+          @JsonKey(name: 'TotalQty') final num? totalQty,
+          @JsonKey(name: 'ProjectID') final int? projectId,
+          @JsonKey(name: 'ProductType') final int? productType,
+          @JsonKey(name: 'POKHID') final int? pokhId,
+          @JsonKey(name: 'GroupExport') final String? groupExport,
+          @JsonKey(name: 'IsInvoice') final bool? isInvoice,
+          @JsonKey(name: 'InvoiceNumber') final String? invoiceNumber,
+          @JsonKey(name: 'SerialNumber') final String? serialNumber,
+          @JsonKey(name: 'ReturnedStatus') final bool? returnedStatus,
+          @JsonKey(name: 'ProjectPartListID') final int? projectPartListId,
+          @JsonKey(name: 'TradePriceDetailID') final int? tradePriceDetailId,
+          @JsonKey(name: 'POKHDetailID') final int? pokhDetailId,
+          @JsonKey(name: 'Specifications') final String? specifications,
+          @JsonKey(name: 'BillImportDetailID') final int? billImportDetailId,
+          @JsonKey(name: 'TotalInventory') final num? totalInventory,
+          @JsonKey(name: 'ExpectReturnDate') final String? expectReturnDate,
+          @JsonKey(name: 'CustomerResponse') final String? customerResponse,
+          @JsonKey(name: 'POKHDetailIDActual') final int? pokhDetailIdActual,
+          @JsonKey(name: 'PONumber') final String? poNumber,
+          @JsonKey(name: 'ChosenInventoryProject')
+          final String? chosenInventoryProject,
+          @JsonKey(name: 'Unit') final String? unit,
+          @JsonKey(name: 'UnitName') final String? unitName,
+          @JsonKey(name: 'ChildID') final int? childId,
+          @JsonKey(name: 'ImportDetailID') final int? importDetailId,
+          @JsonKey(name: 'ForceReallocate') final bool? forceReallocate,
+          @JsonKey(name: 'UnitPricePOKH') final num? unitPricePOKH,
+          @JsonKey(name: 'UnitPricePurchase') final num? unitPricePurchase,
+          @JsonKey(name: 'BillCode') final String? billCode,
+          @JsonKey(name: 'FileIds') final List<int> fileIds}) =
+      _$BillExportDetailPayloadImpl;
+
+  factory _BillExportDetailPayload.fromJson(Map<String, dynamic> json) =
+      _$BillExportDetailPayloadImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'ProductID')
+  int? get productId;
+  @override
+  @JsonKey(name: 'ProductName')
+  String? get productName;
+  @override
+  @JsonKey(name: 'ProductCode')
+  String? get productCode;
+  @override
+  @JsonKey(name: 'ProductNewCode')
+  String? get productNewCode;
+  @override
+  @JsonKey(name: 'ProductFullName')
+  String? get productFullName;
+  @override
+  @JsonKey(name: 'Qty')
+  num? get qty;
+  @override
+  @JsonKey(name: 'ProjectName')
+  String? get projectName;
+  @override
+  @JsonKey(name: 'Note')
+  String? get note;
+  @override
+  @JsonKey(name: 'STT')
+  int? get stt;
+  @override
+  @JsonKey(name: 'TotalQty')
+  num? get totalQty;
+  @override
+  @JsonKey(name: 'ProjectID')
+  int? get projectId;
+  @override
+  @JsonKey(name: 'ProductType')
+  int? get productType;
+  @override
+  @JsonKey(name: 'POKHID')
+  int? get pokhId;
+  @override
+  @JsonKey(name: 'GroupExport')
+  String? get groupExport;
+  @override
+  @JsonKey(name: 'IsInvoice')
+  bool? get isInvoice;
+  @override
+  @JsonKey(name: 'InvoiceNumber')
+  String? get invoiceNumber;
+  @override
+  @JsonKey(name: 'SerialNumber')
+  String? get serialNumber;
+  @override
+  @JsonKey(name: 'ReturnedStatus')
+  bool? get returnedStatus;
+  @override
+  @JsonKey(name: 'ProjectPartListID')
+  int? get projectPartListId;
+  @override
+  @JsonKey(name: 'TradePriceDetailID')
+  int? get tradePriceDetailId;
+  @override
+  @JsonKey(name: 'POKHDetailID')
+  int? get pokhDetailId;
+  @override
+  @JsonKey(name: 'Specifications')
+  String? get specifications;
+  @override
+  @JsonKey(name: 'BillImportDetailID')
+  int? get billImportDetailId;
+  @override
+  @JsonKey(name: 'TotalInventory')
+  num? get totalInventory;
+  @override
+  @JsonKey(name: 'ExpectReturnDate')
+  String? get expectReturnDate;
+  @override
+  @JsonKey(name: 'CustomerResponse')
+  String? get customerResponse;
+  @override
+  @JsonKey(name: 'POKHDetailIDActual')
+  int? get pokhDetailIdActual;
+  @override
+  @JsonKey(name: 'PONumber')
+  String? get poNumber;
+  @override
+  @JsonKey(name: 'ChosenInventoryProject')
+  String? get chosenInventoryProject;
+  @override
+  @JsonKey(name: 'Unit')
+  String? get unit;
+  @override
+  @JsonKey(name: 'UnitName')
+  String? get unitName;
+  @override
+  @JsonKey(name: 'ChildID')
+  int? get childId;
+  @override
+  @JsonKey(name: 'ImportDetailID')
+  int? get importDetailId;
+  @override
+  @JsonKey(name: 'ForceReallocate')
+  bool? get forceReallocate;
+  @override
+  @JsonKey(name: 'UnitPricePOKH')
+  num? get unitPricePOKH;
+  @override
+  @JsonKey(name: 'UnitPricePurchase')
+  num? get unitPricePurchase;
+  @override
+  @JsonKey(name: 'BillCode')
+  String? get billCode;
+  @override
+  @JsonKey(name: 'FileIds')
+  List<int> get fileIds;
+  @override
+  @JsonKey(ignore: true)
+  _$$BillExportDetailPayloadImplCopyWith<_$BillExportDetailPayloadImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+SaveBillExportDataResponse _$SaveBillExportDataResponseFromJson(
+    Map<String, dynamic> json) {
+  return _SaveBillExportDataResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$SaveBillExportDataResponse {
+  @JsonKey(name: 'BillExportID')
+  int? get billExportId => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $SaveBillExportDataResponseCopyWith<SaveBillExportDataResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SaveBillExportDataResponseCopyWith<$Res> {
+  factory $SaveBillExportDataResponseCopyWith(SaveBillExportDataResponse value,
+          $Res Function(SaveBillExportDataResponse) then) =
+      _$SaveBillExportDataResponseCopyWithImpl<$Res,
+          SaveBillExportDataResponse>;
+  @useResult
+  $Res call({@JsonKey(name: 'BillExportID') int? billExportId});
+}
+
+/// @nodoc
+class _$SaveBillExportDataResponseCopyWithImpl<$Res,
+        $Val extends SaveBillExportDataResponse>
+    implements $SaveBillExportDataResponseCopyWith<$Res> {
+  _$SaveBillExportDataResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? billExportId = freezed,
+  }) {
+    return _then(_value.copyWith(
+      billExportId: freezed == billExportId
+          ? _value.billExportId
+          : billExportId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$SaveBillExportDataResponseImplCopyWith<$Res>
+    implements $SaveBillExportDataResponseCopyWith<$Res> {
+  factory _$$SaveBillExportDataResponseImplCopyWith(
+          _$SaveBillExportDataResponseImpl value,
+          $Res Function(_$SaveBillExportDataResponseImpl) then) =
+      __$$SaveBillExportDataResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({@JsonKey(name: 'BillExportID') int? billExportId});
+}
+
+/// @nodoc
+class __$$SaveBillExportDataResponseImplCopyWithImpl<$Res>
+    extends _$SaveBillExportDataResponseCopyWithImpl<$Res,
+        _$SaveBillExportDataResponseImpl>
+    implements _$$SaveBillExportDataResponseImplCopyWith<$Res> {
+  __$$SaveBillExportDataResponseImplCopyWithImpl(
+      _$SaveBillExportDataResponseImpl _value,
+      $Res Function(_$SaveBillExportDataResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? billExportId = freezed,
+  }) {
+    return _then(_$SaveBillExportDataResponseImpl(
+      billExportId: freezed == billExportId
+          ? _value.billExportId
+          : billExportId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$SaveBillExportDataResponseImpl implements _SaveBillExportDataResponse {
+  const _$SaveBillExportDataResponseImpl(
+      {@JsonKey(name: 'BillExportID') this.billExportId});
+
+  factory _$SaveBillExportDataResponseImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$SaveBillExportDataResponseImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'BillExportID')
+  final int? billExportId;
+
+  @override
+  String toString() {
+    return 'SaveBillExportDataResponse(billExportId: $billExportId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SaveBillExportDataResponseImpl &&
+            (identical(other.billExportId, billExportId) ||
+                other.billExportId == billExportId));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, billExportId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SaveBillExportDataResponseImplCopyWith<_$SaveBillExportDataResponseImpl>
+      get copyWith => __$$SaveBillExportDataResponseImplCopyWithImpl<
+          _$SaveBillExportDataResponseImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$SaveBillExportDataResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _SaveBillExportDataResponse
+    implements SaveBillExportDataResponse {
+  const factory _SaveBillExportDataResponse(
+          {@JsonKey(name: 'BillExportID') final int? billExportId}) =
+      _$SaveBillExportDataResponseImpl;
+
+  factory _SaveBillExportDataResponse.fromJson(Map<String, dynamic> json) =
+      _$SaveBillExportDataResponseImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'BillExportID')
+  int? get billExportId;
+  @override
+  @JsonKey(ignore: true)
+  _$$SaveBillExportDataResponseImplCopyWith<_$SaveBillExportDataResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

@@ -215,7 +215,7 @@ _$DetailGDNResponseImpl _$$DetailGDNResponseImplFromJson(
       isInvoice: json['IsInvoice'] as bool?,
       invoiceNumber: json['InvoiceNumber'] as String?,
       serialNumber: json['SerialNumber'] as String?,
-      returnedStatus: (json['ReturnedStatus'] as num?)?.toInt(),
+      returnedStatus: json['ReturnedStatus'] as bool?,
       projectPartListId: (json['ProjectPartListID'] as num?)?.toInt(),
       tradePriceDetailId: (json['TradePriceDetailID'] as num?)?.toInt(),
       pokhDetailId: (json['POKHDetailID'] as num?)?.toInt(),
@@ -391,4 +391,211 @@ Map<String, dynamic> _$$ReadFileResponseImplToJson(
       'UpdatedBy': instance.updatedBy,
       'UpdatedDate': instance.updatedDate?.toIso8601String(),
       'IsDeleted': instance.isDeleted,
+    };
+
+_$SaveBillExportDataPayloadImpl _$$SaveBillExportDataPayloadImplFromJson(
+        Map<String, dynamic> json) =>
+    _$SaveBillExportDataPayloadImpl(
+      billExport: BillExportPayload.fromJson(
+          json['BillExport'] as Map<String, dynamic>),
+      billExportDetail: (json['billExportDetail'] as List<dynamic>)
+          .map((e) =>
+              BillExportDetailPayload.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      deletedDetailIds: (json['DeletedDetailIds'] as List<dynamic>?)
+              ?.map((e) => (e as num).toInt())
+              .toList() ??
+          const [],
+      deletedFileIds: (json['DeletedFileIds'] as List<dynamic>?)
+              ?.map((e) => (e as num).toInt())
+              .toList() ??
+          const [],
+    );
+
+Map<String, dynamic> _$$SaveBillExportDataPayloadImplToJson(
+        _$SaveBillExportDataPayloadImpl instance) =>
+    <String, dynamic>{
+      'BillExport': instance.billExport,
+      'billExportDetail': instance.billExportDetail,
+      'DeletedDetailIds': instance.deletedDetailIds,
+      'DeletedFileIds': instance.deletedFileIds,
+    };
+
+_$BillExportPayloadImpl _$$BillExportPayloadImplFromJson(
+        Map<String, dynamic> json) =>
+    _$BillExportPayloadImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      code: json['Code'] as String?,
+      typeBill: json['TypeBill'] as bool?,
+      supplierId: (json['SupplierID'] as num?)?.toInt(),
+      customerId: (json['CustomerID'] as num?)?.toInt(),
+      userId: (json['UserID'] as num?)?.toInt(),
+      senderId: (json['SenderID'] as num?)?.toInt(),
+      stockId: (json['StockID'] as num?)?.toInt(),
+      description: json['Description'] as String?,
+      address: json['Address'] as String?,
+      status: (json['Status'] as num?)?.toInt(),
+      groupId: json['GroupID'] as String?,
+      warehouseType: json['WarehouseType'] as String?,
+      khoTypeId: (json['KhoTypeID'] as num?)?.toInt(),
+      creatDate: json['CreatDate'] as String?,
+      createdDate: json['CreatedDate'] as String?,
+      updatedDate: json['UpdatedDate'] as String?,
+      productType: (json['ProductType'] as num?)?.toInt(),
+      addressStockId: (json['AddressStockID'] as num?)?.toInt(),
+      warehouseId: (json['WarehouseID'] as num?)?.toInt(),
+      requestDate: json['RequestDate'] as String?,
+      deliveryTime: json['DeliveryTime'] as String?,
+      isAfterHours: json['IsAfterHours'] as bool?,
+      billDocumentExportType: (json['BillDocumentExportType'] as num?)?.toInt(),
+      isApproved: json['IsApproved'] as bool?,
+      isTransfer: json['IsTransfer'] as bool?,
+      wareHouseTranferId: (json['WareHouseTranferID'] as num?)?.toInt(),
+      isTransferInternal: json['IsTransferInternal'] as bool?,
+      khoTypeTransferId: (json['KhoTypeTransferID'] as num?)?.toInt(),
+      receiverId: (json['ReceiverID'] as num?)?.toInt(),
+      isPrepared: json['IsPrepared'] as bool?,
+      isReceived: json['IsReceived'] as bool?,
+      isDeleted: json['IsDeleted'] as bool?,
+    );
+
+Map<String, dynamic> _$$BillExportPayloadImplToJson(
+        _$BillExportPayloadImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'Code': instance.code,
+      'TypeBill': instance.typeBill,
+      'SupplierID': instance.supplierId,
+      'CustomerID': instance.customerId,
+      'UserID': instance.userId,
+      'SenderID': instance.senderId,
+      'StockID': instance.stockId,
+      'Description': instance.description,
+      'Address': instance.address,
+      'Status': instance.status,
+      'GroupID': instance.groupId,
+      'WarehouseType': instance.warehouseType,
+      'KhoTypeID': instance.khoTypeId,
+      'CreatDate': instance.creatDate,
+      'CreatedDate': instance.createdDate,
+      'UpdatedDate': instance.updatedDate,
+      'ProductType': instance.productType,
+      'AddressStockID': instance.addressStockId,
+      'WarehouseID': instance.warehouseId,
+      'RequestDate': instance.requestDate,
+      'DeliveryTime': instance.deliveryTime,
+      'IsAfterHours': instance.isAfterHours,
+      'BillDocumentExportType': instance.billDocumentExportType,
+      'IsApproved': instance.isApproved,
+      'IsTransfer': instance.isTransfer,
+      'WareHouseTranferID': instance.wareHouseTranferId,
+      'IsTransferInternal': instance.isTransferInternal,
+      'KhoTypeTransferID': instance.khoTypeTransferId,
+      'ReceiverID': instance.receiverId,
+      'IsPrepared': instance.isPrepared,
+      'IsReceived': instance.isReceived,
+      'IsDeleted': instance.isDeleted,
+    };
+
+_$BillExportDetailPayloadImpl _$$BillExportDetailPayloadImplFromJson(
+        Map<String, dynamic> json) =>
+    _$BillExportDetailPayloadImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      productId: (json['ProductID'] as num?)?.toInt(),
+      productName: json['ProductName'] as String?,
+      productCode: json['ProductCode'] as String?,
+      productNewCode: json['ProductNewCode'] as String?,
+      productFullName: json['ProductFullName'] as String?,
+      qty: json['Qty'] as num?,
+      projectName: json['ProjectName'] as String?,
+      note: json['Note'] as String?,
+      stt: (json['STT'] as num?)?.toInt(),
+      totalQty: json['TotalQty'] as num?,
+      projectId: (json['ProjectID'] as num?)?.toInt(),
+      productType: (json['ProductType'] as num?)?.toInt(),
+      pokhId: (json['POKHID'] as num?)?.toInt(),
+      groupExport: json['GroupExport'] as String?,
+      isInvoice: json['IsInvoice'] as bool?,
+      invoiceNumber: json['InvoiceNumber'] as String?,
+      serialNumber: json['SerialNumber'] as String?,
+      returnedStatus: json['ReturnedStatus'] as bool?,
+      projectPartListId: (json['ProjectPartListID'] as num?)?.toInt(),
+      tradePriceDetailId: (json['TradePriceDetailID'] as num?)?.toInt(),
+      pokhDetailId: (json['POKHDetailID'] as num?)?.toInt(),
+      specifications: json['Specifications'] as String?,
+      billImportDetailId: (json['BillImportDetailID'] as num?)?.toInt(),
+      totalInventory: json['TotalInventory'] as num?,
+      expectReturnDate: json['ExpectReturnDate'] as String?,
+      customerResponse: json['CustomerResponse'] as String?,
+      pokhDetailIdActual: (json['POKHDetailIDActual'] as num?)?.toInt(),
+      poNumber: json['PONumber'] as String?,
+      chosenInventoryProject: json['ChosenInventoryProject'] as String?,
+      unit: json['Unit'] as String?,
+      unitName: json['UnitName'] as String?,
+      childId: (json['ChildID'] as num?)?.toInt(),
+      importDetailId: (json['ImportDetailID'] as num?)?.toInt(),
+      forceReallocate: json['ForceReallocate'] as bool?,
+      unitPricePOKH: json['UnitPricePOKH'] as num?,
+      unitPricePurchase: json['UnitPricePurchase'] as num?,
+      billCode: json['BillCode'] as String?,
+      fileIds: (json['FileIds'] as List<dynamic>?)
+              ?.map((e) => (e as num).toInt())
+              .toList() ??
+          const [],
+    );
+
+Map<String, dynamic> _$$BillExportDetailPayloadImplToJson(
+        _$BillExportDetailPayloadImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'ProductID': instance.productId,
+      'ProductName': instance.productName,
+      'ProductCode': instance.productCode,
+      'ProductNewCode': instance.productNewCode,
+      'ProductFullName': instance.productFullName,
+      'Qty': instance.qty,
+      'ProjectName': instance.projectName,
+      'Note': instance.note,
+      'STT': instance.stt,
+      'TotalQty': instance.totalQty,
+      'ProjectID': instance.projectId,
+      'ProductType': instance.productType,
+      'POKHID': instance.pokhId,
+      'GroupExport': instance.groupExport,
+      'IsInvoice': instance.isInvoice,
+      'InvoiceNumber': instance.invoiceNumber,
+      'SerialNumber': instance.serialNumber,
+      'ReturnedStatus': instance.returnedStatus,
+      'ProjectPartListID': instance.projectPartListId,
+      'TradePriceDetailID': instance.tradePriceDetailId,
+      'POKHDetailID': instance.pokhDetailId,
+      'Specifications': instance.specifications,
+      'BillImportDetailID': instance.billImportDetailId,
+      'TotalInventory': instance.totalInventory,
+      'ExpectReturnDate': instance.expectReturnDate,
+      'CustomerResponse': instance.customerResponse,
+      'POKHDetailIDActual': instance.pokhDetailIdActual,
+      'PONumber': instance.poNumber,
+      'ChosenInventoryProject': instance.chosenInventoryProject,
+      'Unit': instance.unit,
+      'UnitName': instance.unitName,
+      'ChildID': instance.childId,
+      'ImportDetailID': instance.importDetailId,
+      'ForceReallocate': instance.forceReallocate,
+      'UnitPricePOKH': instance.unitPricePOKH,
+      'UnitPricePurchase': instance.unitPricePurchase,
+      'BillCode': instance.billCode,
+      'FileIds': instance.fileIds,
+    };
+
+_$SaveBillExportDataResponseImpl _$$SaveBillExportDataResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$SaveBillExportDataResponseImpl(
+      billExportId: (json['BillExportID'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$SaveBillExportDataResponseImplToJson(
+        _$SaveBillExportDataResponseImpl instance) =>
+    <String, dynamic>{
+      'BillExportID': instance.billExportId,
     };

@@ -54,4 +54,7 @@ class SaleGdnEvent with _$SaleGdnEvent {
 
   /// Upload tất cả ảnh local đã chọn lên server.
   const factory SaleGdnEvent.submitImages() = _SubmitImages;
+
+  /// Clear upload status sau khi đã show message.
+  const factory SaleGdnEvent.clearUploadStatus() = _ClearUploadStatus;
 }

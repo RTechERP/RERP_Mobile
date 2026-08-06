@@ -103,7 +103,7 @@ class _ImageConfirmPageState extends State<ImageConfirmPage> {
             children: [
               Expanded(
                 child: OutlinedButton(
-                  onPressed: () => Navigator.of(context).pop(),
+                  onPressed: () => Navigator.of(context).pop(null),
                   style: OutlinedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 14),
                     shape: RoundedRectangleBorder(
@@ -113,7 +113,7 @@ class _ImageConfirmPageState extends State<ImageConfirmPage> {
                       color: AppColors.gray.withValues(alpha: 0.4),
                     ),
                   ),
-                  child: const Text('Huỷ'),
+                  child: const Text('Chụp lại'),
                 ),
               ),
               const SizedBox(width: 12),

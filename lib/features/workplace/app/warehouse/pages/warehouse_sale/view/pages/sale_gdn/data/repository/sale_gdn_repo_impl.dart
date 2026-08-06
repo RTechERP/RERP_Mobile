@@ -92,7 +92,9 @@ class SaleGdnRepoImpl implements SaleGdnRepo {
     required List<File> files,
   }) async {
     try {
-      final res = await _service.uploadBillExportFiles(files: files);
+      final res = await _service.uploadBillExportFiles(
+        files: files,
+      );
       if (res.status != 1) {
         return left(BaseError.httpInternalServerError(res.message ?? 'Lỗi'));
       }
@@ -133,6 +135,23 @@ class SaleGdnRepoImpl implements SaleGdnRepo {
         return left(BaseError.httpInternalServerError(res.message ?? 'Lỗi'));
       }
       return right(true);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<BaseError, SaveBillExportDataResponse>> saveBillExportData({
+    required Map<String, dynamic> payload,
+  }) async {
+    try {
+      final res = await _service.saveBillExportData(payload: payload);
+      if (res.status != 1) {
+        return left(BaseError.httpInternalServerError(res.message ?? 'Lỗi'));
+      }
+      return right(res.data ?? const SaveBillExportDataResponse());
     } on DioException catch (e) {
       return left(e.baseError);
     } catch (e) {

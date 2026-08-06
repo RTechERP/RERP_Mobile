@@ -3,9 +3,10 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rtc_erp/base/network/dio/dio_base_api_service.dart';
-import 'package:rtc_erp/base/network/models/base_data.dart';
-import 'package:rtc_erp/common/constants.dart';
-import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/models/sale_gdn_model.dart';
+
+import '../../../../../../../../../../../../base/network/models/base_data.dart';
+import '../../../../../../../../../../../../common/constants.dart';
+import '../models/sale_gdn_model.dart';
 
 @injectable
 class SaleGdnService extends DioBaseApiService {
@@ -17,29 +18,14 @@ class SaleGdnService extends DioBaseApiService {
     return post<BaseData<List<BillExporResponse>>>(
       ApiEndPoint.getBillExport,
       body: payload,
-      parser: (json) {
-        if (json is! Map<String, dynamic>) {
-          return BaseData<List<BillExporResponse>>(
-            status: 0,
-            data: [],
-          );
-        }
-
-        final status = json['status'] as int?;
-        final dataJson = json['data'];
-
-        List<BillExporResponse> items = [];
-        if (dataJson is List) {
-          items = dataJson
-              .map((e) => BillExporResponse.fromJson(e as Map<String, dynamic>))
-              .toList();
-        }
-
-        return BaseData<List<BillExporResponse>>(
-          status: status,
-          data: items,
-        );
-      },
+      parser: (json) =>
+      BaseData<List<BillExporResponse>>.fromJson(
+        json,
+            (data) =>
+            ((data as List?) ?? const <dynamic>[])
+                .map((e) => BillExporResponse.fromJson(e as Map<String, dynamic>))
+                .toList(),
+      ),
     );
   }
 
@@ -49,196 +35,106 @@ class SaleGdnService extends DioBaseApiService {
   }) async {
     return get<BaseData<List<TypeWarehouseResponse>>>(
       ApiEndPoint.getProductGroup,
-      query: {
-        'isAdmin': isAdmin,
-        'departmentID': departmentId,
-      },
-      parser: (json) {
-        if (json is! Map<String, dynamic>) {
-          return BaseData<List<TypeWarehouseResponse>>(
-            status: 0,
-            data: [],
-          );
-        }
-
-        final status = json['status'] as int?;
-        final dataJson = json['data'];
-
-        List<TypeWarehouseResponse> items = [];
-        if (dataJson is List) {
-          items = dataJson
-              .map((e) => TypeWarehouseResponse.fromJson(e as Map<String, dynamic>))
-              .toList();
-        }
-
-        return BaseData<List<TypeWarehouseResponse>>(
-          status: status,
-          data: items,
-        );
-      },
+      query: {'isAdmin': isAdmin, 'departmentID': departmentId},
+      parser: (json) => BaseData<List<TypeWarehouseResponse>>.fromJson(
+        json,
+            (data) => ((data as List?) ?? const <dynamic>[])
+            .map((e) => TypeWarehouseResponse.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      ),
     );
   }
 
-  /// Lấy chi tiết phiếu xuất kho theo ID (API chính cho trang detail).
-  /// Endpoint: GET /BillExport/{id}
-  /// Response: List<DetailGDNResponse>
   Future<BaseData<List<DetailGDNResponse>>> getBillExportDetail({
     required int id,
   }) async {
     return get<BaseData<List<DetailGDNResponse>>>(
       ApiEndPoint.getBillExportDetail.replaceAll('{id}', id.toString()),
-      parser: (json) {
-        if (json is! Map<String, dynamic>) {
-          return BaseData<List<DetailGDNResponse>>(
-            status: 0,
-            data: [],
-          );
-        }
-
-        final status = json['status'] as int?;
-        final dataJson = json['data'];
-
-        List<DetailGDNResponse> items = [];
-        if (dataJson is List) {
-          items = dataJson
-              .map((e) => DetailGDNResponse.fromJson(e as Map<String, dynamic>))
-              .toList();
-        }
-
-        return BaseData<List<DetailGDNResponse>>(
-          status: status,
-          data: items,
-        );
-      },
+      parser: (json) => BaseData<List<DetailGDNResponse>>.fromJson(
+        json,
+            (data) => ((data as List?) ?? const <dynamic>[])
+            .map((e) => DetailGDNResponse.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      ),
     );
   }
 
-  /// Lấy chi tiết phiếu xuất kho (API phụ, dùng cho view).
-  /// Endpoint: GET /BillExport/get-view-export-detail/{id}
   Future<BaseData<List<ViewGDNDetailResponse>>> getViewExportDetail({
     required int id,
   }) async {
     return get<BaseData<List<ViewGDNDetailResponse>>>(
       '${ApiEndPoint.getViewExportDetail}/$id',
-      parser: (json) {
-        if (json is! Map<String, dynamic>) {
-          return BaseData<List<ViewGDNDetailResponse>>(
-            status: 0,
-            data: [],
-          );
-        }
-
-        final status = json['status'] as int?;
-        final dataJson = json['data'];
-
-        List<ViewGDNDetailResponse> items = [];
-        if (dataJson is List) {
-          items = dataJson
-              .map((e) => ViewGDNDetailResponse.fromJson(e as Map<String, dynamic>))
-              .toList();
-        }
-
-        return BaseData<List<ViewGDNDetailResponse>>(
-          status: status,
-          data: items,
-        );
-      },
-    );
-  }
-
-  /// Upload files for BillExport confirmation images.
-  /// Endpoint: POST /BillExport/upload-files
-  /// Key parameter: BillExport
-  Future<BaseData<List<UploadFileResponse>>> uploadBillExportFiles({
-    required List<File> files,
-  }) async {
-    final formData = FormData();
-
-    for (final file in files) {
-      formData.files.add(
-        MapEntry(
-          'files',
-          await MultipartFile.fromFile(
-            file.path,
-            filename: file.path.split('/').last,
-          ),
-        ),
-      );
-    }
-
-    formData.fields.addAll([
-      const MapEntry('key', 'BillExport'),
-    ]);
-
-    return post<BaseData<List<UploadFileResponse>>>(
-      ApiEndPoint.uploadBillExportFiles,
-      body: formData,
-      options: Options(contentType: 'multipart/form-data'),
-      parser: (json) => BaseData<List<UploadFileResponse>>.fromJson(
+      parser: (json) => BaseData<List<ViewGDNDetailResponse>>.fromJson(
         json,
-        (data) {
-          if (data is List) {
-            return data
-                .map((e) => UploadFileResponse.fromJson(e as Map<String, dynamic>))
-                .toList();
-          }
-          return <UploadFileResponse>[];
-        },
+            (data) => ((data as List?) ?? const <dynamic>[])
+            .map((e) => ViewGDNDetailResponse.fromJson(e as Map<String, dynamic>))
+            .toList(),
       ),
     );
   }
 
-  /// Lấy danh sách file đính kèm theo billExportDetailId.
-  /// Endpoint: GET /BillExport/files?billExportDetailId={id}
-  /// Response: List<ReadFileResponse>
+  Future<BaseData<List<UploadFileResponse>>> uploadBillExportFiles({
+    required List<File> files,
+  }) async {
+    final form = FormData();
+    form.fields.add(MapEntry('key', 'BillExport'));
+    for (final f in files) {
+      form.files.add(MapEntry(
+        'files',
+        await MultipartFile.fromFile(f.path),
+      ));
+    }
+
+    return post<BaseData<List<UploadFileResponse>>>(
+      ApiEndPoint.uploadBillExportFiles,
+      body: form,
+      options: Options(contentType: 'multipart/form-data'),
+      parser: (json) => BaseData<List<UploadFileResponse>>.fromJson(
+        json,
+            (data) => ((data as List?) ?? const <dynamic>[])
+            .map((e) => UploadFileResponse.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      ),
+    );
+  }
+
   Future<BaseData<List<ReadFileResponse>>> getBillExportFiles({
     required int billExportDetailId,
   }) async {
     return get<BaseData<List<ReadFileResponse>>>(
       ApiEndPoint.getBillExportFiles,
       query: {'billExportDetailId': billExportDetailId},
-      parser: (json) {
-        if (json is! Map<String, dynamic>) {
-          return BaseData<List<ReadFileResponse>>(
-            status: 0,
-            data: [],
-          );
-        }
-
-        final status = json['status'] as int?;
-        final dataJson = json['data'];
-
-        List<ReadFileResponse> items = [];
-        if (dataJson is List) {
-          items = dataJson
-              .map((e) => ReadFileResponse.fromJson(e as Map<String, dynamic>))
-              .toList();
-        }
-
-        return BaseData<List<ReadFileResponse>>(
-          status: status,
-          data: items,
-        );
-      },
+      parser: (json) => BaseData<List<ReadFileResponse>>.fromJson(
+        json,
+            (data) => ((data as List?) ?? const <dynamic>[])
+            .map((e) => ReadFileResponse.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      ),
     );
   }
 
-  /// Xoá file đính kèm theo fileId.
-  /// Endpoint: DELETE /BillExport/delete-file/{fileId}
   Future<BaseData<bool>> deleteBillExportFile({
     required int fileId,
   }) async {
     return delete<BaseData<bool>>(
       ApiEndPoint.deleteBillExportFile.replaceAll('{fileId}', fileId.toString()),
-      parser: (json) {
-        if (json is! Map<String, dynamic>) {
-          return BaseData<bool>(status: 0, data: false);
-        }
-        return BaseData<bool>(
-          status: json['status'] as int?,
-          data: json['status'] == 1,
-        );
-      },
+      parser: (json) => BaseData<bool>.fromJson(
+        json,
+            (data) => data as bool? ?? false,
+      ),
+    );
+  }
+
+  Future<BaseData<SaveBillExportDataResponse>> saveBillExportData({
+    required Map<String, dynamic> payload,
+  }) async {
+    return post<BaseData<SaveBillExportDataResponse>>(
+      ApiEndPoint.saveBillExportData,
+      body: payload,
+      parser: (json) => BaseData<SaveBillExportDataResponse>.fromJson(
+        json,
+            (data) => SaveBillExportDataResponse.fromJson(data as Map<String, dynamic>),
+      ),
     );
   }
 }

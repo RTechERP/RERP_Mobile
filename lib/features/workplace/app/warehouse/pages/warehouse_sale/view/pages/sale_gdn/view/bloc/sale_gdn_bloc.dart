@@ -46,8 +46,17 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
         removeImage: (stt, imageIndex, isLocal) =>
             _onRemoveImage(emit, stt, imageIndex, isLocal),
         submitImages: () => _onSubmitImages(emit),
+        clearUploadStatus: () => _onClearUploadStatus(emit),
       );
     });
+  }
+
+   _onClearUploadStatus(Emitter<SaleGdnState> emit) {
+    final current = state.detail;
+    if (current == null) return;
+    emit(state.copyWith(
+      detail: current.copyWith(uploadStatus: BaseStateStatus.init),
+    ));
   }
 
   /// KhoType mặc định theo yêu cầu.
@@ -394,6 +403,14 @@ BillExporResponse? _findGdnInList(String code) {
         await detailRes.fold(
           (l) async {
             _log.logE('❌ getBillExportDetail failed: $l');
+            final current = state.detail;
+            if (current == null) return;
+            emit(state.copyWith(
+              detail: current.copyWith(
+                status: BaseStateStatus.failed,
+                message: l.getErrorMessage,
+              ),
+            ));
           },
           (detailData) async {
             _log.logI('✅ getBillExportDetail success - total: ${detailData.length}');
@@ -423,6 +440,7 @@ BillExporResponse? _findGdnInList(String code) {
                 },
                 (files) async {
                   _log.logI('✅ getBillExportFiles for childId=$childId: ${files.length} files');
+                  print('files: ${files.length}');
                   if (files.isNotEmpty) {
                     serverImagesByChildId[childId] = files;
                   }
@@ -445,6 +463,7 @@ BillExporResponse? _findGdnInList(String code) {
   }
 
   /// Thêm 1 hoặc nhiều ảnh local vào dòng chi tiết theo `stt`.
+  /// Sau khi thêm, tự động gọi upload lên server.
   Future<void> _onAddImages(
     Emitter<SaleGdnState> emit,
     int stt,
@@ -460,6 +479,9 @@ BillExporResponse? _findGdnInList(String code) {
     emit(state.copyWith(
       detail: current.copyWith(localImagePathsByStt: updated),
     ));
+
+    // Tự động upload sau khi thêm ảnh
+    await _onSubmitImages(emit);
   }
 
   /// Xoá 1 ảnh khỏi dòng chi tiết theo `stt` và `imageIndex`.
@@ -524,55 +546,235 @@ BillExporResponse? _findGdnInList(String code) {
   }
 
   /// Upload tất cả ảnh local đã chọn lên server.
+  /// Sau khi upload thành công, build payload gán FileIds theo childId
+  /// và gọi API /BillExport/save-data để lưu liên kết file.
   Future<void> _onSubmitImages(Emitter<SaleGdnState> emit) async {
     final current = state.detail;
     if (current == null) return;
 
-    // Collect all local image paths from all detail items
-    final allPaths = <String>[];
-    for (final paths in current.localImagePathsByStt.values) {
-      allPaths.addAll(paths);
-    }
-
-    if (allPaths.isEmpty) return;
+    final localFilesByStt = current.localImagePathsByStt;
+    if (localFilesByStt.isEmpty) return;
 
     emit(state.copyWith(
       detail: current.copyWith(uploadStatus: BaseStateStatus.loading),
     ));
 
-    // Convert paths to File objects
-    final files = allPaths.map((p) => File(p)).toList();
+    // Bước 1: Upload tất cả file
+    final allFiles = <File>[];
+    for (final paths in localFilesByStt.values) {
+      for (final path in paths) {
+        allFiles.add(File(path));
+      }
+    }
+    if (allFiles.isEmpty) return;
 
-    final res = await _repo.uploadBillExportFiles(files: files);
+    _log.logI('📤 Uploading ${allFiles.length} files');
+    final uploadRes = await _repo.uploadBillExportFiles(files: allFiles);
 
-    await res.fold(
+    final updated = state.detail;
+    if (updated == null) return;
+
+    await uploadRes.fold(
       (l) async {
-        _log.logE('❌ submitImages failed: $l');
-        final updated = state.detail;
-        if (updated == null) return;
+        _log.logE('❌ upload failed: $l');
         emit(state.copyWith(
           detail: updated.copyWith(
             uploadStatus: BaseStateStatus.failed,
-            message: l.getErrorMessage,
+            message: l.toString(),
           ),
         ));
       },
-      (r) async {
-        _log.logI('✅ submitImages success - uploaded: ${r.length} files');
-        final updated = state.detail;
-        if (updated == null) return;
+      (uploadedFiles) async {
+        _log.logI('✅ upload success: ${uploadedFiles.length} files');
 
-        // Xoá ảnh local sau khi upload thành công
-        final updatedLocal = <int, List<String>>{};
+        // Bước 2: Map fileID → childId qua stt
+        // uploadedFiles order trùng với localFilesByStt.entries order.
+        final sttEntries = localFilesByStt.entries.toList();
+        final childIdToFileIds = <int, List<int>>{};
 
-        emit(state.copyWith(
-          detail: updated.copyWith(
-            uploadStatus: BaseStateStatus.success,
-            uploadedImages: r,
-            localImagePathsByStt: updatedLocal,
-          ),
-        ));
+        for (int i = 0; i < sttEntries.length; i++) {
+          final stt = sttEntries[i].key;
+          final detailItem = updated.detailFull.firstWhere(
+            (d) => d.stt == stt,
+            orElse: () => DetailGDNResponse(),
+          );
+          final childId = detailItem.childId;
+          if (childId == null || childId <= 0) continue;
+
+          // uploadedFiles[i] là file thứ i trong batch (trùng thứ tự với sttEntries[i])
+          final fileId = uploadedFiles[i].fileID;
+          if (fileId > 0) {
+            childIdToFileIds.putIfAbsent(childId, () => []).add(fileId);
+          }
+        }
+
+        // Bước 3: Build payload save-data
+        final payload = _buildSaveBillExportDataPayload(
+          bill: updated.bill,
+          detailFull: updated.detailFull,
+          childIdToFileIds: childIdToFileIds,
+        );
+
+        _log.logI('📤 Calling saveBillExportData...');
+        final saveRes = await _repo.saveBillExportData(payload: payload);
+
+        await saveRes.fold(
+          (l) async {
+            _log.logE('❌ saveBillExportData failed: $l');
+            emit(state.copyWith(
+              detail: updated.copyWith(
+                uploadStatus: BaseStateStatus.failed,
+                message: l.toString(),
+              ),
+            ));
+          },
+          (saveResult) async {
+            final billExportId = saveResult.billExportId;
+            _log.logI('✅ saveBillExportData success: BillExportID=$billExportId');
+
+            // Merge ảnh server vào state
+            final mergedServerImages =
+                Map<int, List<ReadFileResponse>>.from(updated.serverImagesByChildId);
+            for (final entry in childIdToFileIds.entries) {
+              final childId = entry.key;
+              final fileIds = entry.value;
+              final newOnes = <ReadFileResponse>[];
+              for (int i = 0; i < fileIds.length; i++) {
+                final uploadedFile = uploadedFiles.firstWhere(
+                  (f) => f.fileID == fileIds[i],
+                  orElse: () => UploadFileResponse(
+                    fileID: fileIds[i],
+                    filePath: '',
+                    serverPath: '',
+                    fileName: '',
+                  ),
+                );
+                newOnes.add(ReadFileResponse(
+                  id: uploadedFile.fileID,
+                  originPath: uploadedFile.filePath,
+                  serverPath: uploadedFile.serverPath,
+                  fileName: uploadedFile.fileName,
+                ));
+              }
+              mergedServerImages[childId] = [
+                ...(mergedServerImages[childId] ?? []),
+                ...newOnes,
+              ];
+            }
+
+            emit(state.copyWith(
+              detail: updated.copyWith(
+                uploadStatus: billExportId != null && billExportId > 0
+                    ? BaseStateStatus.success
+                    : BaseStateStatus.failed,
+                uploadedImages: uploadedFiles,
+                localImagePathsByStt: {},
+                serverImagesByChildId: mergedServerImages,
+              ),
+            ));
+          },
+        );
       },
     );
+  }
+
+  /// Build payload cho API /BillExport/save-data.
+  Map<String, dynamic> _buildSaveBillExportDataPayload({
+    required BillExporResponse? bill,
+    required List<DetailGDNResponse> detailFull,
+    required Map<int, List<int>> childIdToFileIds,
+  }) {
+    // BillExport header
+    final billExport = <String, dynamic>{
+      'ID': bill?.id,
+      'Code': bill?.code,
+      'TypeBill': bill?.typeBill,
+      'SupplierID': bill?.supplierId ?? 0,
+      'CustomerID': bill?.customerId ?? 0,
+      'UserID': bill?.userId ?? 0,
+      'SenderID': bill?.senderId ?? 0,
+      'StockID': bill?.stockId ?? 0,
+      'Description': bill?.description ?? '',
+      'Address': bill?.address ?? '',
+      'Status': bill?.status ?? 2,
+      'GroupID': bill?.groupId ?? '',
+      'WarehouseType': bill?.warehouseType ?? '',
+      'KhoTypeID': bill?.khoTypeId ?? 0,
+      'CreatDate': bill?.creatDate ?? DateTime.now().toIso8601String(),
+      'CreatedDate': bill?.createdDate ?? DateTime.now().toIso8601String(),
+      'UpdatedDate': DateTime.now().toIso8601String(),
+      'ProductType': bill?.productType ?? 0,
+      'AddressStockID': bill?.addressStockId ?? 0,
+      'WarehouseID': bill?.warehouseId ?? 0,
+      'RequestDate': bill?.requestDate ?? DateTime.now().toIso8601String(),
+      'DeliveryTime': bill?.deliveryTime ?? DateTime.now().toIso8601String(),
+      'IsAfterHours': bill?.isAfterHours ?? false,
+      'BillDocumentExportType': bill?.billDocumentExportType ?? 0,
+      'IsApproved': bill?.isApproved ?? false,
+      'IsTransfer': bill?.isTransfer ?? false,
+      'WareHouseTranferID': bill?.wareHouseTranferId,
+      'IsTransferInternal': true,
+      'KhoTypeTransferID': bill?.khoTypeId ?? 0,
+      'ReceiverID': 0,
+      'IsPrepared': bill?.isPrepared ?? false,
+      'IsReceived': bill?.isReceived ?? false,
+      'IsDeleted': false,
+    };
+
+    // Detail items
+    final billExportDetail = <Map<String, dynamic>>[];
+    for (final detail in detailFull) {
+      final childId = detail.childId;
+      final fileIds = childId != null ? (childIdToFileIds[childId] ?? []) : <int>[];
+
+      billExportDetail.add({
+        'ID': detail.id,
+        'ProductID': detail.productId,
+        'ProductName': detail.productName ?? '',
+        'ProductCode': detail.productCode ?? '',
+        'ProductNewCode': detail.productNewCode ?? '',
+        'ProductFullName': detail.productFullName ?? '',
+        'Qty': detail.qty ?? 0,
+        'ProjectName': detail.projectName ?? '',
+        'Note': detail.note ?? '',
+        'STT': detail.stt ?? 0,
+        'TotalQty': detail.totalQty ?? 0,
+        'ProjectID': detail.projectId ?? 0,
+        'ProductType': detail.productType ?? 0,
+        'POKHID': detail.pokhId ?? 0,
+        'GroupExport': detail.groupExport ?? '',
+        'IsInvoice': detail.isInvoice ?? false,
+        'InvoiceNumber': detail.invoiceNumber ?? '',
+        'SerialNumber': detail.serialNumber ?? '',
+        'ReturnedStatus': detail.returnedStatus ?? false,
+        'ProjectPartListID': detail.projectPartListId ?? 0,
+        'TradePriceDetailID': detail.tradePriceDetailId ?? 0,
+        'POKHDetailID': detail.pokhDetailId ?? 0,
+        'Specifications': detail.specifications ?? '',
+        'BillImportDetailID': detail.billImportDetailId ?? 0,
+        'TotalInventory': detail.totalInventory ?? 0,
+        'ExpectReturnDate': null,
+        'CustomerResponse': detail.customerResponse ?? '',
+        'POKHDetailIDActual': detail.pokhDetailIdActual ?? 0,
+        'PONumber': detail.poNumber ?? '',
+        'ChosenInventoryProject': detail.chosenInventoryProject ?? '',
+        'Unit': detail.unit ?? '',
+        'UnitName': detail.unit ?? '',
+        'ChildID': detail.childId,
+        'ImportDetailID': 0,
+        'ForceReallocate': false,
+        'UnitPricePOKH': detail.unitPricePOKH ?? 0,
+        'UnitPricePurchase': detail.unitPricePurchase ?? 0,
+        'BillCode': detail.billCode ?? '',
+        'FileIds': fileIds,
+      });
+    }
+
+    return {
+      'BillExport': billExport,
+      'billExportDetail': billExportDetail,
+      'DeletedDetailIds': <int>[],
+      'DeletedFileIds': <int>[],
+    };
   }
 }
