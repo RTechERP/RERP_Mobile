@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../../../../common/app_theme/index.dart';
+import '../../../../../../../../../common/helpers/index.dart';
 import '../bloc/salary_bloc.dart';
 import 'salary_card.dart';
 import 'salary_tax_deduction_section.dart';
@@ -17,13 +18,12 @@ class SalaryTotalTaxableCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final nf = NumberFormat('#,##0', 'vi_VN');
-    String f(num n) => '${nf.format(n.round())}đ';
 
     return SalaryCard(
       accentColor: AppColors.secondaryERP,
       title: 'Tổng thu nhập tính thuế',
       icon: Icons.receipt_long_outlined,
-      formula: '(39) → (47)',
+      formula: '(40) → (48)',
       child: Column(
         children: [
           SalaryTaxDeductionSection(
@@ -38,20 +38,20 @@ class SalaryTotalTaxableCard extends StatelessWidget {
             items: [
               SalaryRowItem(
                 label: 'Tổng khoản giảm trừ thuế TNCN',
-                value: f(state.totalTaxDeduction),
-                formula: '(45)',
-                highlightBg: false,
-              ),
-              SalaryRowItem(
-                label: 'Thu nhập tính thuế',
-                value: f(state.taxAbleIncome),
+                value: fDecimal(state.totalTaxDeduction),
                 formula: '(46)',
                 highlightBg: false,
               ),
               SalaryRowItem(
-                label: 'Khấu trừ Thuế TNCN',
-                value: f(state.taxDeduction),
+                label: 'Thu nhập tính thuế',
+                value: fDecimal(state.taxAbleIncome),
                 formula: '(47)',
+                highlightBg: false,
+              ),
+              SalaryRowItem(
+                label: 'Khấu trừ Thuế TNCN',
+                value: fDecimal(state.taxDeduction),
+                formula: '(48)',
                 highlightBg: false,
               ),
             ],

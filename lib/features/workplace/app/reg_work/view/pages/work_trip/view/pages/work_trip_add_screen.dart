@@ -38,6 +38,9 @@ class _WorkTripAddScreenPageState
   final _formKey = GlobalKey<FormBuilderState>();
   bool _autoValidate = false;
 
+  /// Timer ID để huỷ warning khi API hoàn tất trước ngưỡng timeout.
+  bool _timeoutWarningShown = false;
+
   late final DateTime _todayStart;
 
   // ── Reactive state ─────────────────────────────────────────────────────────
@@ -79,6 +82,21 @@ class _WorkTripAddScreenPageState
       if (!mounted) return;
       bloc.add(const WorkTripEvent.clearSubmitState());
       bloc.add(const WorkTripEvent.initAdd());
+    });
+  }
+
+  void _startTimeoutWarning() {
+    Future.delayed(const Duration(seconds: 5), () {
+      if (!mounted) return;
+      if (!_timeoutWarningShown && bloc.state.isSubmitting) {
+        _timeoutWarningShown = true;
+        if (mounted) {
+          context.showMessage(
+            'Yêu cầu đang được xử lý, vui lòng đợi...',
+            type: SnackBarType.info,
+          );
+        }
+      }
     });
   }
 
@@ -367,6 +385,7 @@ class _WorkTripAddScreenPageState
       fileInfo = {'fileName': f.name, 'originPath': f.path};
     }
 
+    _startTimeoutWarning();
     bloc.add(
       WorkTripEvent.submit(
         WorkTripSubmitData(
@@ -406,6 +425,10 @@ class _WorkTripAddScreenPageState
                   (p.approvers.isEmpty && c.approvers.isNotEmpty) ||
                   (p.workTripTypes.isEmpty && c.workTripTypes.isNotEmpty),
               listener: (context, state) {
+                // Reset timeout warning flag khi trạng thái submit thay đổi
+                if (!state.isSubmitting) {
+                  _timeoutWarningShown = false;
+                }
                 if (state.status == BaseStateStatus.failed &&
                     (state.message ?? '').isNotEmpty &&
                     !state.isSubmitting) {
@@ -414,7 +437,9 @@ class _WorkTripAddScreenPageState
                 if ((state.message ?? '').isNotEmpty && state.submitSuccess) {
                   context.showMessage(state.message!, type: SnackBarType.success);
                 }
-                if (state.submitSuccess) {
+                // Chỉ thoát khi submitSuccess và message chính xác
+                if (state.submitSuccess &&
+                    state.message == 'Tạo đơn công tác thành công') {
                   bloc.add(const WorkTripEvent.clearSubmitState());
                   context.pop(true);
                 }

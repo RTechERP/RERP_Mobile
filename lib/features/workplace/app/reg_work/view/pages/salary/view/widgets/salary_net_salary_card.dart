@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import '../../../../../../../../../common/app_theme/index.dart';
+import '../../../../../../../../../common/helpers/index.dart';
 import '../bloc/salary_bloc.dart';
 import 'salary_card.dart';
 
@@ -15,14 +15,11 @@ class SalaryNetSalaryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final nf = NumberFormat('#,##0', 'vi_VN');
-    String f(num n) => '${nf.format(n.round())}đ';
-
     return SalaryCard(
       accentColor: AppColors.stateSuccessColor,
       title: 'Thực lĩnh',
       icon: Icons.account_balance_wallet,
-      formula: '(48)',
+      formula: '(49)',
       child: Column(
         children: [
           SalaryRow(
@@ -30,8 +27,8 @@ class SalaryNetSalaryCard extends StatelessWidget {
             items: [
               SalaryRowItem(
                 label: 'Thực lĩnh',
-                value: f(state.netSalary),
-                formula: '(48) = (28) - (30) - (38) - (45)',
+                value: fDecimal(state.netSalary),
+                formula: '(49) = (28) - (30) - (38) - (46)',
               ),
             ],
           ),

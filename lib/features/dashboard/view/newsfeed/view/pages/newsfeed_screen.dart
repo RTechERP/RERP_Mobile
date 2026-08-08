@@ -95,7 +95,11 @@ class _NewsFeedViewState extends State<_NewsFeedView>
                   ),
                 ],
               ),
-              child: Icon(_tabIcons[_currentTabIndex], color: Colors.white, size: 18),
+              child: Icon(
+                _tabIcons[_currentTabIndex],
+                color: Colors.white,
+                size: 18,
+              ),
             ),
             const SizedBox(width: 10),
             Text(
@@ -150,10 +154,7 @@ class _NewsFeedViewState extends State<_NewsFeedView>
       ),
       body: TabBarView(
         controller: _tabController,
-        children: const [
-          _NewsfeedTab(),
-          _WorkingCalendarTab(),
-        ],
+        children: const [_NewsfeedTab(), _WorkingCalendarTab()],
       ),
     );
   }
@@ -166,14 +167,16 @@ class _NewsfeedTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<NewsfeedBloc, NewsfeedState>(
       builder: (context, state) {
-        if (state.status == BaseStateStatus.loading && state.newsfeeds.isEmpty) {
+        if (state.status == BaseStateStatus.loading &&
+            state.newsfeeds.isEmpty) {
           return const Center(child: CircularProgressIndicator());
         }
 
         if (state.status == BaseStateStatus.failed && state.newsfeeds.isEmpty) {
           return _NewsfeedError(
             message: state.message ?? 'Không tải được bảng tin',
-            onRetry: () => context.read<NewsfeedBloc>().add(const NewsfeedEvent.refresh()),
+            onRetry: () =>
+                context.read<NewsfeedBloc>().add(const NewsfeedEvent.refresh()),
           );
         }
 
@@ -189,8 +192,9 @@ class _NewsfeedTab extends StatelessWidget {
           child: ListView.separated(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             itemCount: state.newsfeeds.length + 1,
-            separatorBuilder: (_, index) =>
-                index == 0 ? const SizedBox(height: 10) : const SizedBox(height: 12),
+            separatorBuilder: (_, index) => index == 0
+                ? const SizedBox(height: 10)
+                : const SizedBox(height: 12),
             itemBuilder: (context, index) {
               if (index == 0) {
                 return const _SectionHeader();
@@ -222,7 +226,9 @@ class _WorkingCalendarTab extends StatelessWidget {
         return RefreshIndicator(
           color: AppColors.primaryERP,
           onRefresh: () async {
-            context.read<NewsfeedBloc>().add(const NewsfeedEvent.refreshCalendar());
+            context.read<NewsfeedBloc>().add(
+              const NewsfeedEvent.refreshCalendar(),
+            );
           },
           child: ListView(
             physics: const AlwaysScrollableScrollPhysics(),
@@ -232,31 +238,40 @@ class _WorkingCalendarTab extends StatelessWidget {
                 selectedMonth: state.selectedMonth,
                 selectedYear: state.selectedYear,
                 onPreviousMonth: () {
-                  final previous = DateTime(state.selectedYear, state.selectedMonth - 1);
+                  final previous = DateTime(
+                    state.selectedYear,
+                    state.selectedMonth - 1,
+                  );
                   context.read<NewsfeedBloc>().add(
-                        NewsfeedEvent.changeCalendarMonth(
-                          month: previous.month,
-                          year: previous.year,
-                        ),
-                      );
+                    NewsfeedEvent.changeCalendarMonth(
+                      month: previous.month,
+                      year: previous.year,
+                    ),
+                  );
                 },
                 onNextMonth: () {
-                  final next = DateTime(state.selectedYear, state.selectedMonth + 1);
+                  final next = DateTime(
+                    state.selectedYear,
+                    state.selectedMonth + 1,
+                  );
                   context.read<NewsfeedBloc>().add(
-                        NewsfeedEvent.changeCalendarMonth(
-                          month: next.month,
-                          year: next.year,
-                        ),
-                      );
+                    NewsfeedEvent.changeCalendarMonth(
+                      month: next.month,
+                      year: next.year,
+                    ),
+                  );
                 },
                 onPickMonthYear: () => _showMonthYearPicker(context, state),
               ),
               const SizedBox(height: 14),
-              if (state.calendarStatus == BaseStateStatus.failed && state.holidays.isEmpty)
+              if (state.calendarStatus == BaseStateStatus.failed &&
+                  state.holidays.isEmpty)
                 _NewsfeedError(
-                  message: state.calendarMessage ?? 'Không tải được lịch làm việc',
-                  onRetry: () =>
-                      context.read<NewsfeedBloc>().add(const NewsfeedEvent.refreshCalendar()),
+                  message:
+                      state.calendarMessage ?? 'Không tải được lịch làm việc',
+                  onRetry: () => context.read<NewsfeedBloc>().add(
+                    const NewsfeedEvent.refreshCalendar(),
+                  ),
                 )
               else ...[
                 HolidayLegend(count: state.holidays.length),
@@ -274,18 +289,21 @@ class _WorkingCalendarTab extends StatelessWidget {
     );
   }
 
-  Future<void> _showMonthYearPicker(BuildContext context, NewsfeedState state) async {
+  Future<void> _showMonthYearPicker(
+    BuildContext context,
+    NewsfeedState state,
+  ) async {
     await NewsfeedMonthPicker.show(
       context,
       selectedMonth: DateTime(state.selectedYear, state.selectedMonth),
       onApply: (month) {
         if (!context.mounted) return;
         context.read<NewsfeedBloc>().add(
-              NewsfeedEvent.changeCalendarMonth(
-                month: month.month,
-                year: month.year,
-              ),
-            );
+          NewsfeedEvent.changeCalendarMonth(
+            month: month.month,
+            year: month.year,
+          ),
+        );
       },
     );
   }
@@ -427,7 +445,9 @@ class _FeedCard extends StatelessWidget {
       child: InkWell(
         borderRadius: BorderRadius.circular(24),
         onTap: () async {
-          context.read<NewsfeedBloc>().add(NewsfeedEvent.loadNewsfeedDetail(item: item));
+          context.read<NewsfeedBloc>().add(
+            NewsfeedEvent.loadNewsfeedDetail(item: item),
+          );
           await DialogService.showFullscreen<void>(
             context: context,
             child: BlocProvider.value(
@@ -436,7 +456,9 @@ class _FeedCard extends StatelessWidget {
             ),
           );
           if (!context.mounted) return;
-          context.read<NewsfeedBloc>().add(const NewsfeedEvent.clearNewsfeedDetail());
+          context.read<NewsfeedBloc>().add(
+            const NewsfeedEvent.clearNewsfeedDetail(),
+          );
         },
         child: ClipRRect(
           borderRadius: BorderRadius.circular(24),
@@ -521,9 +543,7 @@ class _FeedCardHeader extends StatelessWidget {
           ],
         ),
         border: Border(
-          bottom: BorderSide(
-            color: Colors.white.withValues(alpha: 0.35),
-          ),
+          bottom: BorderSide(color: Colors.white.withValues(alpha: 0.35)),
         ),
       ),
       child: Row(
@@ -597,9 +617,7 @@ class _FeedCardHeader extends StatelessWidget {
 class _FeedCardContent extends StatelessWidget {
   final String title;
 
-  const _FeedCardContent({
-    required this.title,
-  });
+  const _FeedCardContent({required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -655,13 +673,17 @@ class _NewsfeedDetailDialogState extends State<_NewsfeedDetailDialog> {
 
     final apiShareIndex = lowerPath.indexOf('/api/api/share/');
     if (apiShareIndex >= 0) {
-      normalizedPath = normalizedPath.substring(apiShareIndex + '/api/api'.length);
+      normalizedPath = normalizedPath.substring(
+        apiShareIndex + '/api/api'.length,
+      );
     } else {
       final shareIndex = lowerPath.indexOf('/share/');
       if (shareIndex >= 0) {
         normalizedPath = normalizedPath.substring(shareIndex);
       } else {
-        final ipPathMatch = RegExp(r'^/(?:\d{1,3}\.){3}\d{1,3}/(.+)$').firstMatch(normalizedPath);
+        final ipPathMatch = RegExp(
+          r'^/(?:\d{1,3}\.){3}\d{1,3}/(.+)$',
+        ).firstMatch(normalizedPath);
         if (ipPathMatch != null) {
           normalizedPath = '/share/${ipPathMatch.group(1)!}';
         }
@@ -689,7 +711,9 @@ class _NewsfeedDetailDialogState extends State<_NewsfeedDetailDialog> {
       context: context,
       useSafeArea: false,
       builder: (_) => _NewsfeedFilePreviewDialog(
-        title: item.fileName?.trim().isNotEmpty == true ? item.fileName!.trim() : 'Xem file',
+        title: item.fileName?.trim().isNotEmpty == true
+            ? item.fileName!.trim()
+            : 'Xem file',
         url: url,
         fileName: item.fileName,
       ),
@@ -713,9 +737,14 @@ class _NewsfeedDetailDialogState extends State<_NewsfeedDetailDialog> {
         : 'newsletter_${item.id ?? DateTime.now().millisecondsSinceEpoch}';
     final sanitizedFileName = rawFileName.replaceAll('/', '_');
     final dotIndex = sanitizedFileName.lastIndexOf('.');
-    final hasExtension = dotIndex > 0 && dotIndex < sanitizedFileName.length - 1;
-    final name = hasExtension ? sanitizedFileName.substring(0, dotIndex) : sanitizedFileName;
-    final extension = hasExtension ? sanitizedFileName.substring(dotIndex + 1) : '';
+    final hasExtension =
+        dotIndex > 0 && dotIndex < sanitizedFileName.length - 1;
+    final name = hasExtension
+        ? sanitizedFileName.substring(0, dotIndex)
+        : sanitizedFileName;
+    final extension = hasExtension
+        ? sanitizedFileName.substring(dotIndex + 1)
+        : '';
 
     setState(() {
       _isDownloading = true;
@@ -852,8 +881,8 @@ class _NewsfeedDetailDialogState extends State<_NewsfeedDetailDialog> {
         final title = detail?.title?.trim().isNotEmpty == true
             ? detail!.title!.trim()
             : item?.title?.trim().isNotEmpty == true
-                ? item!.title!.trim()
-                : 'Chi tiết bản tin';
+            ? item!.title!.trim()
+            : 'Chi tiết bản tin';
 
         return Dialog.fullscreen(
           backgroundColor: const Color(0xFFF5F7FB),
@@ -894,7 +923,10 @@ class _NewsfeedDetailDialogState extends State<_NewsfeedDetailDialog> {
                             color: AppColors.background,
                             borderRadius: BorderRadius.circular(999),
                           ),
-                          child: const Icon(Icons.close, color: AppColors.heading),
+                          child: const Icon(
+                            Icons.close,
+                            color: AppColors.heading,
+                          ),
                         ),
                       ),
                     ],
@@ -903,69 +935,74 @@ class _NewsfeedDetailDialogState extends State<_NewsfeedDetailDialog> {
                 Expanded(
                   child: state.detailStatus == BaseStateStatus.loading
                       ? const Center(child: CircularProgressIndicator())
-                      : state.detailStatus == BaseStateStatus.failed && detail == null
-                          ? _NewsfeedError(
-                              message: state.detailMessage ?? 'Không tải được chi tiết bản tin',
-                              onRetry: () {
-                                if (item == null) return;
-                                context
-                                    .read<NewsfeedBloc>()
-                                    .add(NewsfeedEvent.loadNewsfeedDetail(item: item));
-                              },
-                            )
-                          : RefreshIndicator(
-                              color: AppColors.primaryERP,
-                              onRefresh: () async {
-                                final selected = state.selectedNewsfeed;
-                                if (selected == null) return;
-                                context
-                                    .read<NewsfeedBloc>()
-                                    .add(NewsfeedEvent.loadNewsfeedDetail(item: selected));
-                              },
-                              child: ListView(
-                                padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
-                                children: [
-                                  _DetailSectionCard(
-                                    title: 'Chi tiết',
-                                    icon: Icons.description_outlined,
-                                    child: _NewsfeedDetailContent(
-                                      detail: detail,
-                                      fallback: item,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 16),
-                                  _DetailSectionCard(
-                                    title: 'File đính kèm',
-                                    icon: Icons.attach_file,
-                                    trailing: _isDownloading
-                                        ? const SizedBox(
-                                            width: 18,
-                                            height: 18,
-                                            child: CircularProgressIndicator(strokeWidth: 2),
-                                          )
-                                        : null,
-                                    child: _NewsfeedFileList(
-                                      files: files,
-                                      onOpen: _openFilePreview,
-                                      onDownload: _downloadFile,
-                                    ),
-                                  ),
-                                  if (state.detailMessage != null &&
-                                      state.detailMessage!.isNotEmpty &&
-                                      detail != null) ...[
-                                    const SizedBox(height: 12),
-                                    Text(
-                                      state.detailMessage!,
-                                      style: const TextStyle(
-                                        fontSize: 13,
-                                        color: AppColors.alert,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ],
-                                ],
+                      : state.detailStatus == BaseStateStatus.failed &&
+                            detail == null
+                      ? _NewsfeedError(
+                          message:
+                              state.detailMessage ??
+                              'Không tải được chi tiết bản tin',
+                          onRetry: () {
+                            if (item == null) return;
+                            context.read<NewsfeedBloc>().add(
+                              NewsfeedEvent.loadNewsfeedDetail(item: item),
+                            );
+                          },
+                        )
+                      : RefreshIndicator(
+                          color: AppColors.primaryERP,
+                          onRefresh: () async {
+                            final selected = state.selectedNewsfeed;
+                            if (selected == null) return;
+                            context.read<NewsfeedBloc>().add(
+                              NewsfeedEvent.loadNewsfeedDetail(item: selected),
+                            );
+                          },
+                          child: ListView(
+                            padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
+                            children: [
+                              _DetailSectionCard(
+                                title: 'Chi tiết',
+                                icon: Icons.description_outlined,
+                                child: _NewsfeedDetailContent(
+                                  detail: detail,
+                                  fallback: item,
+                                ),
                               ),
-                            ),
+                              const SizedBox(height: 16),
+                              _DetailSectionCard(
+                                title: 'File đính kèm',
+                                icon: Icons.attach_file,
+                                trailing: _isDownloading
+                                    ? const SizedBox(
+                                        width: 18,
+                                        height: 18,
+                                        child: CircularProgressIndicator(
+                                          strokeWidth: 2,
+                                        ),
+                                      )
+                                    : null,
+                                child: _NewsfeedFileList(
+                                  files: files,
+                                  onOpen: _openFilePreview,
+                                  onDownload: _downloadFile,
+                                ),
+                              ),
+                              if (state.detailMessage != null &&
+                                  state.detailMessage!.isNotEmpty &&
+                                  detail != null) ...[
+                                const SizedBox(height: 12),
+                                Text(
+                                  state.detailMessage!,
+                                  style: const TextStyle(
+                                    fontSize: 13,
+                                    color: AppColors.alert,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],
+                            ],
+                          ),
+                        ),
                 ),
               ],
             ),
@@ -1035,10 +1072,7 @@ class _DetailSectionCard extends StatelessWidget {
             ),
           ),
           const Divider(height: 1, color: Color(0xFFEAEFF6)),
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: child,
-          ),
+          Padding(padding: const EdgeInsets.all(16), child: child),
         ],
       ),
     );
@@ -1046,10 +1080,7 @@ class _DetailSectionCard extends StatelessWidget {
 }
 
 class _NewsfeedDetailContent extends StatelessWidget {
-  const _NewsfeedDetailContent({
-    required this.detail,
-    required this.fallback,
-  });
+  const _NewsfeedDetailContent({required this.detail, required this.fallback});
 
   final NewsletterDetailItem? detail;
   final NewsletterItem? fallback;
@@ -1059,19 +1090,19 @@ class _NewsfeedDetailContent extends StatelessWidget {
     final title = detail?.title?.trim().isNotEmpty == true
         ? detail!.title!.trim()
         : fallback?.title?.trim().isNotEmpty == true
-            ? fallback!.title!.trim()
-            : 'Không có tiêu đề';
+        ? fallback!.title!.trim()
+        : 'Không có tiêu đề';
     final createdBy = detail?.createdBy?.trim().isNotEmpty == true
         ? detail!.createdBy!.trim()
         : fallback?.createdBy?.trim().isNotEmpty == true
-            ? fallback!.createdBy!.trim()
-            : '--';
+        ? fallback!.createdBy!.trim()
+        : '--';
     final createdDate = detail?.createdDate ?? fallback?.createdDate;
     final content = detail?.newsletterContent?.trim().isNotEmpty == true
         ? detail!.newsletterContent!.trim()
         : fallback?.newsletterContent?.trim().isNotEmpty == true
-            ? fallback!.newsletterContent!.trim()
-            : 'Không có nội dung';
+        ? fallback!.newsletterContent!.trim()
+        : 'Không có nội dung';
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -1225,7 +1256,10 @@ class _NewsfeedFileTile extends StatelessWidget {
                   color: AppColors.primaryERP.withValues(alpha: 0.12),
                   borderRadius: BorderRadius.circular(14),
                 ),
-                child: const Icon(Icons.insert_drive_file_outlined, color: AppColors.primaryERP),
+                child: const Icon(
+                  Icons.insert_drive_file_outlined,
+                  color: AppColors.primaryERP,
+                ),
               ),
               const SizedBox(width: 12),
               Expanded(
@@ -1260,25 +1294,18 @@ class _NewsfeedFileTile extends StatelessWidget {
                 onTap: onDownload,
                 borderRadius: BorderRadius.circular(999),
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 8,
+                  ),
                   decoration: BoxDecoration(
                     color: AppColors.primaryERP.withValues(alpha: 0.10),
                     borderRadius: BorderRadius.circular(999),
                   ),
-                  child: const Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(Icons.download_rounded, size: 16, color: AppColors.primaryERP),
-                      SizedBox(width: 4),
-                      Text(
-                        'Tải',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.primaryERP,
-                        ),
-                      ),
-                    ],
+                  child: Icon(
+                    Icons.download_rounded,
+                    size: 16,
+                    color: AppColors.primaryERP,
                   ),
                 ),
               ),
@@ -1302,10 +1329,12 @@ class _NewsfeedFilePreviewDialog extends StatefulWidget {
   final String? fileName;
 
   @override
-  State<_NewsfeedFilePreviewDialog> createState() => _NewsfeedFilePreviewDialogState();
+  State<_NewsfeedFilePreviewDialog> createState() =>
+      _NewsfeedFilePreviewDialogState();
 }
 
-class _NewsfeedFilePreviewDialogState extends State<_NewsfeedFilePreviewDialog> {
+class _NewsfeedFilePreviewDialogState
+    extends State<_NewsfeedFilePreviewDialog> {
   late final WebViewController _controller;
 
   Uri get _previewUri => Uri.parse(widget.url);
@@ -1325,9 +1354,7 @@ class _NewsfeedFilePreviewDialogState extends State<_NewsfeedFilePreviewDialog> 
       backgroundColor: Colors.black,
       child: Stack(
         children: [
-          Positioned.fill(
-            child: WebViewWidget(controller: _controller),
-          ),
+          Positioned.fill(child: WebViewWidget(controller: _controller)),
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
@@ -1335,7 +1362,10 @@ class _NewsfeedFilePreviewDialogState extends State<_NewsfeedFilePreviewDialog> 
                 children: [
                   Expanded(
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 14,
+                        vertical: 10,
+                      ),
                       decoration: BoxDecoration(
                         color: Colors.black54,
                         borderRadius: BorderRadius.circular(16),

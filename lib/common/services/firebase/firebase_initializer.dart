@@ -11,10 +11,17 @@ import '../notification/notification_service.dart';
 import '../../constants.dart';
 
 /// Background message handler – phải là top-level function.
+/// Chỉ hiển thị notification khi message là data-only (không có notification payload).
+/// Nếu message có notification payload, FCM SDK Android đã tự hiển thị rồi.
 @pragma('vm:entry-point')
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
-  await NotificationService.instance.showNotification(message);
+
+  // Chỉ hiển thị notification thủ công khi là data-only message
+  // (message.notification == null có nghĩa là không có notification payload)
+  if (message.notification == null) {
+    await NotificationService.instance.showNotification(message);
+  }
 }
 
 class FirebaseInitializer {

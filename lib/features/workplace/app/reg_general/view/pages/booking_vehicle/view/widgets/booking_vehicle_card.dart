@@ -1,6 +1,8 @@
 // Date: 16/04/2026 - Dev: NQHung
 // Nội dung/Chức năng: Card đặt xe chuyên nghiệp - hiển thị theo loại, hỗ trợ copy
 
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -115,191 +117,117 @@ class BookingVehicleCard extends StatelessWidget {
         ? AppColors.gray
         : typeColor;
 
-    // Định dạng project
     final projectLine = _formatProject(item.projectFullName);
-
-    // Body content theo loại
     final bodyRows = _buildBodyRows();
-
-    // Bottom: thời gian chính
     final bottomLabel = _primaryTimeLabel();
     final bottomTime = _primaryTimeValue();
 
-    final inner = Container(
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        borderRadius: BorderRadius.circular(14),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.06),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: IntrinsicHeight(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            // Left color border
-            Container(
-              width: 5,
-              decoration: BoxDecoration(
-                color: effectiveColor,
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(14),
-                  bottomLeft: Radius.circular(14),
-                ),
-              ),
-            ),
-            // Main content
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(14),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    // Header: icon + type + copy button
-                    Row(
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            color: effectiveColor.withValues(alpha: 0.1),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Icon(
-                            typeIcon,
-                            size: 20,
-                            color: effectiveColor,
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                typeLabel,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w700,
-                                  color: effectiveColor,
-                                ),
-                              ),
-                              if (projectLine.isNotEmpty) ...[
-                                const SizedBox(height: 2),
-                                Text(
-                                  projectLine,
-                                  style: const TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w500,
-                                    color: AppColors.textSecondaryColor,
-                                  ),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ],
-                            ],
-                          ),
-                        ),
-                        // Nút sao chép
-                        _CopyButton(item: item),
-                        const SizedBox(width: 6),
-                        // Status badges
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            _TinyBadge(
-                              text: approvalBadge,
-                              color: approvalColor,
-                            ),
-                            const SizedBox(height: 4),
-                            _TinyBadge(
-                              text: arrangementBadge,
-                              color: arrangementColor,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-
-                    if (bodyRows.isNotEmpty) ...[
-                      const SizedBox(height: 12),
-                      // Divider
-                      Container(
-                        height: 1,
-                        color: AppColors.borderColor.withValues(alpha: 0.6),
-                      ),
-                      const SizedBox(height: 10),
-                      // Body rows
-                      ...bodyRows,
+    final card = GestureDetector(
+      onTap: onTap,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(16),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+          child: Stack(
+            clipBehavior: Clip.none,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Colors.white.withValues(alpha: 0.9),
+                      Colors.white.withValues(alpha: 0.7),
                     ],
-
-                    if (bottomLabel.isNotEmpty && bottomTime.isNotEmpty) ...[
-                      const SizedBox(height: 10),
+                  ),
+                  border: Border.all(
+                    color: Colors.white.withValues(alpha: 0.6),
+                    width: 1.5,
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: effectiveColor.withValues(alpha: 0.08),
+                      blurRadius: 24,
+                      offset: const Offset(0, 8),
+                    ),
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.04),
+                      blurRadius: 8,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
                       Row(
                         children: [
-                          Icon(
-                            Icons.access_time,
-                            size: 14,
-                            color: AppColors.textTertiaryColor,
+                          const SizedBox(width: 8),
+                          _TinyBadge(
+                            text: approvalBadge,
+                            color: approvalColor,
                           ),
                           const SizedBox(width: 6),
-                          Expanded(
-                            child: RichText(
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              text: TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: '$bottomLabel: ',
-                                    style: const TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500,
-                                      color: AppColors.textTertiaryColor,
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text: bottomTime,
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600,
-                                      color: effectiveColor,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
+                          _TinyBadge(
+                            text: arrangementBadge,
+                            color: arrangementColor,
                           ),
                         ],
                       ),
+                      const SizedBox(height: 14),
+                      _TypeChip(
+                        icon: typeIcon,
+                        label: typeLabel,
+                        project: projectLine,
+                        color: effectiveColor,
+                      ),
+                      const SizedBox(height: 14),
+                      if (bodyRows.isNotEmpty) ...bodyRows,
+                      if (bottomLabel.isNotEmpty && bottomTime.isNotEmpty) ...[
+                        const SizedBox(height: 10),
+                        _InfoRow(
+                          icon: Icons.access_time,
+                          label: bottomLabel,
+                          value: bottomTime,
+                          valueColor: effectiveColor,
+                        ),
+                      ],
                     ],
-
-                    // Passenger / contact info strip
-                    // if (!_isCargoType(item)) ...[
-                    //   const SizedBox(height: 8),
-                    //   _PersonStrip(item: item, color: effectiveColor),
-                    // ],
-                  ],
+                  ),
                 ),
               ),
-            ),
-          ],
+              Positioned(
+                top: 8,
+                right: 8,
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    onTap: () => _onCopy(context),
+                    borderRadius: BorderRadius.circular(20),
+                    child: Container(
+                      padding: const EdgeInsets.all(6),
+                      decoration: BoxDecoration(
+                        color: AppColors.gray.withValues(alpha: 0.1),
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Icon(
+                        Icons.copy_outlined,
+                        size: 20,
+                        color: AppColors.gray,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
-
-    final card = onTap == null
-        ? inner
-        : Material(
-            color: Colors.transparent,
-            child: InkWell(
-              borderRadius: BorderRadius.circular(14),
-              onTap: onTap,
-              child: inner,
-            ),
-          );
 
     if (!_canShowCancelSlidable(item)) {
       return card;
@@ -338,6 +266,62 @@ class BookingVehicleCard extends StatelessWidget {
       ),
       child: card,
     );
+  }
+
+  void _onCopy(BuildContext context) async {
+    final bloc = context.read<BookingVehicleBloc>();
+    final label = bookingVehicleEditBookingTypeLabel(item);
+    final groupNum = _bookingTypeGroupFromLabel(label);
+
+    final patch = buildBookingVehicleEditFormPatch(
+      item,
+      projects: bloc.state.projects,
+    );
+
+    final approvedTbp = item.approvedTBP;
+    final approverLabel = (item.fullNameTBP ?? '').trim();
+    final problemArises = (item.problemArises ?? '').trim();
+
+    final cache = <String, dynamic>{
+      ...patch,
+      '_copied_item_id': item.id,
+      '_copied_booking_type_group': groupNum,
+      if (approvedTbp != null && approvedTbp > 0)
+        'approver': approvedTbp.toString(),
+      if (approverLabel.isNotEmpty) 'approver_text': approverLabel,
+      if (approverLabel.isNotEmpty) 'approver_field': approverLabel,
+      if (approverLabel.isNotEmpty) '_prefill_approver_name': approverLabel,
+      if (problemArises.isNotEmpty) 'problem_rule_reason': problemArises,
+      if (problemArises.isNotEmpty) 'problem_rule_reason_text': problemArises,
+      if (problemArises.isNotEmpty) 'problem_field': problemArises,
+    };
+
+    if (!context.mounted) return;
+    final result = await context.push<bool?>(
+      RouteNames.bookingVehicleAdd,
+      extra: cache,
+    );
+
+    if (result == true && context.mounted) {
+      bloc.add(const BookingVehicleEvent.init());
+    }
+  }
+
+  int _bookingTypeGroupFromLabel(String label) {
+    switch (label) {
+      case 'Đăng ký người đi':
+        return 0;
+      case 'Đăng ký người về':
+        return 1;
+      case 'Đăng ký giao hàng thương mại':
+      case 'Đăng ký giao hàng Demo/triển lãm':
+        return 2;
+      case 'Đăng ký lấy hàng thương mại':
+      case 'Đăng ký lấy hàng Demo/triển lãm':
+        return 3;
+      default:
+        return 0;
+    }
   }
 
   List<Widget> _buildBodyRows() {
@@ -484,160 +468,74 @@ class BookingVehicleCard extends StatelessWidget {
     return parts.join(' · ');
   }
 
-  bool _isCargoType(BookingVehicleItem item) {
-    return item.category == BookingVehicleApiCategory.commercialDelivery ||
-        item.category == BookingVehicleApiCategory.demoExhibitionDelivery ||
-        item.category == BookingVehicleApiCategory.commercialPickup ||
-        item.category == BookingVehicleApiCategory.demoExhibitionPickup;
-  }
-
   String _fmt(DateTime? dt) {
     if (dt == null) return '-';
     return _dateTimeFormat.format(dt);
   }
 }
 
-//---( Copy Button )---//
+//---( Type Chip )---//
 
-class _CopyButton extends StatelessWidget {
-  const _CopyButton({required this.item});
+class _TypeChip extends StatelessWidget {
+  const _TypeChip({
+    required this.icon,
+    required this.label,
+    required this.project,
+    required this.color,
+  });
 
-  final BookingVehicleItem item;
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () => _copyToAddScreen(context),
-      icon: const Icon(Icons.copy, size: 20),
-      tooltip: 'Sao chép tạo mới',
-      style: IconButton.styleFrom(
-        backgroundColor: AppColors.supportBtn,
-        foregroundColor: AppColors.textSecondaryColor,
-        padding: const EdgeInsets.all(8),
-        minimumSize: const Size(36, 36),
-      ),
-    );
-  }
-
-  void _copyToAddScreen(BuildContext context) async {
-    final bloc = context.read<BookingVehicleBloc>();
-    final label = bookingVehicleEditBookingTypeLabel(item);
-    final groupNum = _bookingTypeGroupFromLabel(label);
-
-    final patch = buildBookingVehicleEditFormPatch(
-      item,
-      projects: bloc.state.projects,
-    );
-
-    final approvedTbp = item.approvedTBP;
-    final approverLabel = (item.fullNameTBP ?? '').trim();
-    final problemArises = (item.problemArises ?? '').trim();
-
-    final cache = <String, dynamic>{
-      ...patch,
-      '_copied_item_id': item.id,
-      '_copied_booking_type_group': groupNum,
-      if (approvedTbp != null && approvedTbp > 0)
-        'approver': approvedTbp.toString(),
-      if (approverLabel.isNotEmpty) 'approver_text': approverLabel,
-      if (approverLabel.isNotEmpty) 'approver_field': approverLabel,
-      if (approverLabel.isNotEmpty) '_prefill_approver_name': approverLabel,
-      if (problemArises.isNotEmpty) 'problem_rule_reason': problemArises,
-      if (problemArises.isNotEmpty) 'problem_rule_reason_text': problemArises,
-      if (problemArises.isNotEmpty) 'problem_field': problemArises,
-    };
-
-    if (!context.mounted) return;
-    final result = await context.push<bool?>(
-      RouteNames.bookingVehicleAdd,
-      extra: cache,
-    );
-
-    if (result == true && context.mounted) {
-      bloc.add(const BookingVehicleEvent.init());
-    }
-  }
-
-  int _bookingTypeGroupFromLabel(String label) {
-    switch (label) {
-      case 'Đăng ký người đi':
-        return 0;
-      case 'Đăng ký người về':
-        return 1;
-      case 'Đăng ký giao hàng thương mại':
-      case 'Đăng ký giao hàng Demo/triển lãm':
-        return 2;
-      case 'Đăng ký lấy hàng thương mại':
-      case 'Đăng ký lấy hàng Demo/triển lãm':
-        return 3;
-      default:
-        return 0;
-    }
-  }
-}
-
-//---( Person Strip )---//
-
-class _PersonStrip extends StatelessWidget {
-  const _PersonStrip({required this.item, required this.color});
-
-  final BookingVehicleItem item;
+  final IconData icon;
+  final String label;
+  final String project;
   final Color color;
 
   @override
   Widget build(BuildContext context) {
-    final name = (item.passengerName ?? '').trim();
-    final dept = (item.passengerDepartment ?? '').trim();
-    final phone = (item.passengerPhoneNumber ?? '').trim();
-
-    if (name.isEmpty && dept.isEmpty && phone.isEmpty) {
-      return const SizedBox.shrink();
-    }
-
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.06),
-        borderRadius: BorderRadius.circular(8),
+        color: color.withValues(alpha: 0.08),
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(
+          color: color.withValues(alpha: 0.15),
+          width: 1,
+        ),
       ),
       child: Row(
         children: [
-          Icon(Icons.person_outline, size: 14, color: color),
-          const SizedBox(width: 6),
+          Icon(icon, size: 16, color: color),
+          const SizedBox(width: 8),
           Expanded(
-            child: Text(
-              name.isNotEmpty ? name : (dept.isNotEmpty ? dept : phone),
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
-                color: color,
-              ),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  label,
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                    color: color,
+                    height: 1,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                if (project.isNotEmpty) ...[
+                  const SizedBox(height: 2),
+                  Text(
+                    project,
+                    style: const TextStyle(
+                      fontSize: 10,
+                      color: AppColors.gray,
+                      height: 1,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ],
             ),
           ),
-          if (dept.isNotEmpty) ...[
-            const SizedBox(width: 6),
-            Text(
-              dept,
-              style: const TextStyle(
-                fontSize: 11,
-                color: AppColors.textTertiaryColor,
-              ),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ],
-          if (phone.isNotEmpty) ...[
-            const SizedBox(width: 6),
-            Text(
-              phone,
-              style: const TextStyle(
-                fontSize: 11,
-                color: AppColors.textTertiaryColor,
-              ),
-            ),
-          ],
         ],
       ),
     );
@@ -651,38 +549,38 @@ class _InfoRow extends StatelessWidget {
     required this.icon,
     required this.label,
     required this.value,
+    this.valueColor,
   });
 
   final IconData icon;
   final String label;
   final String value;
+  final Color? valueColor;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(icon, size: 14, color: AppColors.textTertiaryColor),
+        Icon(icon, size: 14, color: AppColors.gray),
         const SizedBox(width: 6),
-        SizedBox(
-          width: 90,
-          child: Text(
-            label,
-            style: const TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w500,
-              color: AppColors.textTertiaryColor,
-            ),
+        Text(
+          '$label: ',
+          style: TextStyle(
+            fontSize: 12,
+            color: AppColors.gray,
+            height: 1.2,
           ),
         ),
         Expanded(
           child: Text(
             value,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 12,
-              fontWeight: FontWeight.w600,
-              color: AppColors.text,
+              fontWeight: FontWeight.w500,
+              color: valueColor ?? AppColors.enableText,
+              height: 1.2,
             ),
-            maxLines: 1,
+            maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),
         ),

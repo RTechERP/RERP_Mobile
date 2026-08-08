@@ -20,21 +20,19 @@ class TimekeepingDayCell extends StatelessWidget {
     final checkIn = dayItem?.checkIn;
     final isX = checkIn == 'X';
     final isP = checkIn == 'P';
-    final isWeekend = date.weekday == DateTime.saturday || date.weekday == DateTime.sunday;
+    final isHoliday = dayItem?.status == 6;
 
     final Color bgColor = isX
         ? AppColors.stateSuccessColor.withValues(alpha: 0.12)
         : isP
             ? AppColors.warning.withValues(alpha: 0.15)
-            : isWeekend
-                ? AppColors.alert.withValues(alpha: 0.06)
-                : AppColors.white;
+            : AppColors.white;
 
     final Color textColor = isX
         ? AppColors.stateSuccessColor
         : isP
             ? AppColors.warning
-            : isWeekend
+            : isHoliday
                 ? AppColors.alert
                 : AppColors.text;
 

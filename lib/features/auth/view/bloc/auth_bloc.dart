@@ -12,6 +12,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../../../../base/bloc/index.dart';
 import '../../../../common/constants.dart';
+import '../../../../base/network/errors/extension.dart';
 
 import '../../../../common/helpers/index.dart';
 import '../../../../common/services/permissions/permission_service.dart';
@@ -39,6 +40,7 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
             _onLogin(loginName, passwordHash, rememberMe, emit),
         logout: () => _onLogout(emit),
         toggleRememberMe: (value) => _onToggleRememberMe(value, emit),
+        uploadAvatar: (filePath) => _onUploadAvatar(filePath, emit),
       );
     });
   }
@@ -257,5 +259,45 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
   /// Handles toggleRememberMe event - cập nhật flag rememberMe vào state (không gọi API).
   _onToggleRememberMe(bool value, Emitter<AuthState> emit) {
     emit(state.copyWith(rememberMe: value));
+  }
+
+  //---(UploadAvatar)---//
+
+  /// Handles uploadAvatar event - upload avatar lên server, refetch user để cập nhật imagePath.
+  Future<void> _onUploadAvatar(String filePath, Emitter<AuthState> emit) async {
+    emit(state.copyWith(isUploadingAvatar: true));
+
+    final res = await _authRepo.uploadAvatar(filePath);
+
+    await res.fold(
+      (l) async {
+        if (emit.isDone) return;
+        emit(state.copyWith(
+          isUploadingAvatar: false,
+          message: l.getErrorMessage,
+        ));
+      },
+      (r) async {
+        // Upload thành công → refetch user để server trả về imagePath mới.
+        // forceRefresh = true vì cached user vẫn còn trong SharedPreferences,
+        // không refetch thì sẽ trả về user cũ với imagePath cũ.
+        final user =
+            await AuthRepository.fetchAndSaveCurrentUser(
+          log: _log,
+          forceRefresh: true,
+        );
+
+        if (emit.isDone) return;
+
+        // avatarUploadedAt timestamp đảm bảo rebuild đồng bộ trên mọi màn
+        // (more_screen, workspace_screen) ngay cả khi user object không đổi
+        // reference vì server trả về cùng object.
+        emit(state.copyWith(
+          isUploadingAvatar: false,
+          user: user,
+          avatarUploadedAt: DateTime.now(),
+        ));
+      },
+    );
   }
 }

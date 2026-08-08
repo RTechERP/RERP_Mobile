@@ -41,6 +41,7 @@ class _TechAddWorkItemState extends State<TechAddWorkItem> {
   late TextEditingController _totalController;
   late TextEditingController _otController;
   late TextEditingController _categoryController;
+  late TextEditingController _contentController;
 
   /// Parse hour string (accept both '.' and ',' as decimal separator) → double.
   static double _parseHour(String? raw) {
@@ -99,6 +100,10 @@ class _TechAddWorkItemState extends State<TechAddWorkItem> {
 
     _otController = TextEditingController(
       text: _formatHour(widget.report.totalHourOT ?? 0),
+    );
+
+    _contentController = TextEditingController(
+      text: widget.report.content,
     );
   }
 
@@ -165,6 +170,21 @@ class _TechAddWorkItemState extends State<TechAddWorkItem> {
         }
       });
     }
+
+    if (oldWidget.report.content != widget.report.content) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+
+        final newText = widget.report.content;
+
+        if (_contentController.text != newText) {
+          _contentController.value = TextEditingValue(
+            text: newText,
+            selection: TextSelection.collapsed(offset: newText.length),
+          );
+        }
+      });
+    }
   }
 
   @override
@@ -173,6 +193,7 @@ class _TechAddWorkItemState extends State<TechAddWorkItem> {
     _percentController.dispose();
     _totalController.dispose();
     _otController.dispose();
+    _contentController.dispose();
     super.dispose();
   }
 
@@ -260,6 +281,21 @@ class _TechAddWorkItemState extends State<TechAddWorkItem> {
                         displayText: (v) => '${v.code} - ${v.mission}',
                         // onAdd: () => context.push(RouteNames.workCategoryAdd),
                         onSelected: (item) {
+                          final isPercentageZero = (item.percentageActual ?? 0) == 0;
+                          final oldMission = widget.report.mission;
+                          final currentContent = widget.report.content;
+
+                          String? newContent;
+                          if (isPercentageZero) {
+                            // percentageActual == 0: auto-fill with mission
+                            newContent = item.mission ?? '';
+                          } else {
+                            // percentageActual > 0: only clear if content was auto-filled from old mission
+                            final wasAutoFilled = oldMission.isNotEmpty &&
+                                oldMission == currentContent;
+                            newContent = wasAutoFilled ? '' : null;
+                          }
+
                           context.read<TechBloc>().add(
                             TechEvent.updateWork(
                               index: widget.index,
@@ -267,6 +303,7 @@ class _TechAddWorkItemState extends State<TechAddWorkItem> {
                               projectItemId: item.id,
                               code: item.code,
                               percentComplete: item.percentageActual,
+                              content: newContent,
                             ),
                           );
                         },
@@ -283,6 +320,7 @@ class _TechAddWorkItemState extends State<TechAddWorkItem> {
                   readOnly: true,
                   icon: Icons.category_outlined,
                   isRequired: true,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: (v) {
                     if (v == null || v.trim().isEmpty) return 'Vui lòng chọn hạng mục';
                     return null;
@@ -314,6 +352,7 @@ class _TechAddWorkItemState extends State<TechAddWorkItem> {
                       );
                     },
                     isRequired: true,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (v) => _validateHour(v),
                   ),
                 ),
@@ -334,6 +373,7 @@ class _TechAddWorkItemState extends State<TechAddWorkItem> {
                         ),
                       );
                     },
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (v) => _validateHour(v, required: false),
                   ),
                 ),
@@ -360,6 +400,7 @@ class _TechAddWorkItemState extends State<TechAddWorkItem> {
                 );
               },
               isRequired: true,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (v) {
                 if (v == null || v.trim().isEmpty) return 'Vui lòng nhập tiến độ hoàn thành';
                 final percent = double.tryParse(v) ?? 0;
@@ -382,7 +423,7 @@ class _TechAddWorkItemState extends State<TechAddWorkItem> {
               autoExpand: true,
               keyboardType: TextInputType.multiline,
               textInputAction: TextInputAction.newline,
-              initialValue: widget.report.content,
+              controller: _contentController,
               onChanged: (v) {
                 context.read<TechBloc>().add(
                   TechEvent.updateWork(index: widget.index, content: v),
@@ -415,6 +456,7 @@ class _TechAddWorkItemState extends State<TechAddWorkItem> {
                 );
               },
               isRequired: true,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (v) {
                 if (v == null || v.trim().isEmpty) return 'Vui lòng nhập kết quả';
                 return null;

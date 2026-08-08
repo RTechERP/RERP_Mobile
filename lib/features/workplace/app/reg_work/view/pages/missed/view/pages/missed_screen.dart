@@ -66,7 +66,7 @@ class _MissedScreenState
       },
       child: BaseScaffold(
         appBar: AppBarCommon(
-          title: Text('reg_work.missed'.tr(), style: AppStyles.headingTitle2),
+          title: Text('Quên chấm công', style: AppStyles.headingTitle2),
           onBackTap: () => context.pop(),
           actions: [
             IconButton(

@@ -8,6 +8,7 @@ import '../../../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../../../common/widgets/form/index.dart';
 
 import '../../../data/datasource/models/booking_vehicle_model.dart';
+import '../../../data/repository/booking_vehicle_repository.dart';
 
 class TypeFormPassengerReturn extends StatefulWidget {
   const TypeFormPassengerReturn({
@@ -40,7 +41,11 @@ class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
   bool get _isReturnPointOther =>
       _returnPointValue.trim() == _otherPointLabel;
 
-  List<BookingVehicleProjectItem> get _projects => widget.projects;
+  List<BookingVehicleProjectItem> get _projects {
+    final fromCache = BookingVehicleRepository.projectsSync;
+    if (fromCache.isNotEmpty) return fromCache;
+    return widget.projects;
+  }
   List<ProvinceDepartureItem> get _departureProvinces =>
       widget.departureProvinces;
   List<ProvinceArrivesItem> get _arrivalProvinces => widget.arrivalProvinces;
@@ -273,6 +278,7 @@ class _TypeFormPassengerReturnState extends State<TypeFormPassengerReturn> {
             icon: Icons.directions_car_outlined,
             options: _vehicleTypes,
             isRequired: true,
+            columns: 2,
             validator: FormBuilderValidators.required(
               errorText: 'Vui lòng chọn loại phương tiện',
             ),

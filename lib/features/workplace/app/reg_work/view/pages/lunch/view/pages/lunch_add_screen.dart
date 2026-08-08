@@ -27,7 +27,22 @@ class LunchAddScreen extends StatefulWidget {
 
 class _LunchAddScreenState
     extends BaseState<LunchAddScreen, LunchEvent, LunchState, LunchBloc> {
+  /// Danh sách lựa chọn địa điểm đặt cơm cho FormChoiceGroup.
+  static const List<FormChoiceOption<String>> _lunchLocations = [
+    FormChoiceOption(
+      value: 'hn',
+      label: 'VP Hà Nội',
+      selectedColor: AppColors.primaryERP,
+    ),
+    FormChoiceOption(
+      value: 'dp',
+      label: 'Xưởng Đan Phượng',
+      selectedColor: AppColors.primaryERP,
+    ),
+  ];
+
   final _formKey = GlobalKey<FormBuilderState>();
+  final _locationFieldKey = GlobalKey<FormBuilderFieldState>();
 
   late final DateTime _todayStart;
   late DateTime _selectedDate;
@@ -181,27 +196,21 @@ class _LunchAddScreenState
                                     },
                                   ),
                                   const SizedBox(height: 8),
-                                  FormRadioGroup(
+                                  FormChoiceGroup<String>(
+                                    fieldKey: _locationFieldKey,
                                     name: 'location',
                                     label: 'Địa điểm',
+                                    icon: Icons.location_on_outlined,
                                     initialValue: 'hn',
+                                    columns: 2,
                                     isRequired: true,
                                     validator: (v) {
-                                      if (v == null || v.isEmpty) return 'Vui lòng chọn địa điểm';
+                                      if (v == null || v.toString().isEmpty) {
+                                        return 'Vui lòng chọn địa điểm';
+                                      }
                                       return null;
                                     },
-                                    options: const [
-                                      FormRadioOption(
-                                        value: 'hn',
-                                        icon: Icons.location_city,
-                                        label: 'VP Hà Nội',
-                                      ),
-                                      FormRadioOption(
-                                        value: 'dp',
-                                        icon: Icons.factory_outlined,
-                                        label: 'Xưởng Đan Phượng',
-                                      ),
-                                    ],
+                                    options: _lunchLocations,
                                   ),
                                   const SizedBox(height: 8),
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -641,7 +642,8 @@ class _WorkRequirementDetailContent extends StatelessWidget {
   String _fixFileUrl(String? path) {
     if (path == null || path.isEmpty) return '';
 
-    const newPrefix = 'https://erp.rtc.edu.vn/api/api/share';
+    final baseUrl = dotenv.env['BASE_URL'] ?? '';
+    final newPrefix = '${baseUrl.replaceFirst(RegExp(r'/$'), '')}/share';
 
     // Thêm http:// nếu thiếu scheme (//192.168.1.190/... → http://192.168.1.190/...)
     final normalized = path.startsWith('//')
@@ -959,7 +961,8 @@ class _FullScreenMediaViewerState extends State<_FullScreenMediaViewer> {
   String _fixFileUrl(String? path) {
     if (path == null || path.isEmpty) return '';
 
-    const newPrefix = 'https://erp.rtc.edu.vn/api/api/share';
+    final baseUrl = dotenv.env['BASE_URL'] ?? '';
+    final newPrefix = '${baseUrl.replaceFirst(RegExp(r'/$'), '')}/share';
 
     // Thêm http:// nếu thiếu scheme (//192.168.1.190/... → http://192.168.1.190/...)
     final normalized = path.startsWith('//')

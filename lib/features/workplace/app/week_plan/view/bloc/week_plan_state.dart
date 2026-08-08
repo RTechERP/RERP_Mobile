@@ -13,6 +13,10 @@ class WeekPlanState extends BaseBlocState {
 
   final String searchKeyword;
   final List<String> selectedStatuses;
+  /// Các No được chọn từ filter type=1 (trạng thái công việc).
+  final List<int> selectedStatusNos;
+  /// Các No được chọn từ filter type=2 (trạng thái duyệt).
+  final List<int> selectedApproveNos;
   final DateTime? dateStart;
   final DateTime? dateEnd;
 
@@ -22,6 +26,7 @@ class WeekPlanState extends BaseBlocState {
   final bool checkInSuccess;
   final int? checkInTaskId;
   final bool? checkInTaskNewValue;
+
 
   // Step 1: Thông tin dự án
   final int? headerProjectId;
@@ -127,6 +132,12 @@ class WeekPlanState extends BaseBlocState {
   final List<ProjectTaskTimelineResponse> timelineTasks;
   final List<DayOffItem> dayOffDates;
 
+  /// Danh sách trạng thái công việc từ API (dùng cho filter BottomSheet).
+  final List<WeekPlanFilterItem> projectTaskStatuses;
+
+  /// Các task ID được chọn để bulk approve/reject.
+  final Set<int> selectedTaskIds;
+
   const WeekPlanState({
     required super.status,
     super.message,
@@ -136,7 +147,9 @@ class WeekPlanState extends BaseBlocState {
     this.assignedTasks = const [],
     this.allTasks = const [],
     this.searchKeyword = '',
-    this.selectedStatuses = const ['Chưa làm', 'Đang làm'],
+    this.selectedStatuses = const [],
+    this.selectedStatusNos = const [],
+    this.selectedApproveNos = const [],
     this.dateStart,
     this.dateEnd,
     this.employeeId,
@@ -209,9 +222,11 @@ class WeekPlanState extends BaseBlocState {
     this.detailTaskId,
     this.pauseReason,
     this.isDeadlineLocked = false,
-    this.timelineTasks = const [],
-    this.dayOffDates = const [],
-  });
+        this.timelineTasks = const [],
+        this.dayOffDates = const [],
+        this.projectTaskStatuses = const [],
+        this.selectedTaskIds = const {},
+      });
 
   factory WeekPlanState.init() => const WeekPlanState(
         status: BaseStateStatus.init,
@@ -221,7 +236,9 @@ class WeekPlanState extends BaseBlocState {
         assignedTasks: [],
         allTasks: [],
         searchKeyword: '',
-        selectedStatuses: const ['Chưa làm', 'Đang làm'],
+        selectedStatuses: const [],
+        selectedStatusNos: const [],
+        selectedApproveNos: const [],
         isSubmitting: false,
         submitSuccess: false,
         checkInSuccess: false,
@@ -263,6 +280,8 @@ class WeekPlanState extends BaseBlocState {
         isDeadlineLocked: false,
         timelineTasks: const [],
         dayOffDates: const [],
+        projectTaskStatuses: const [],
+        selectedTaskIds: const {},
       );
 
   @override
@@ -276,6 +295,8 @@ class WeekPlanState extends BaseBlocState {
         allTasks,
         searchKeyword,
         selectedStatuses,
+        selectedStatusNos,
+        selectedApproveNos,
         dateStart,
         dateEnd,
         employeeId,
@@ -349,5 +370,7 @@ class WeekPlanState extends BaseBlocState {
         isDeadlineLocked,
         timelineTasks,
         dayOffDates,
+        projectTaskStatuses,
+        selectedTaskIds,
       ];
 }

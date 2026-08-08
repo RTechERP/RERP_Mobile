@@ -17,12 +17,13 @@ class WeekPlanRepoImpl implements WeekPlanRepo {
   WeekPlanRepoImpl(this._service);
 
   final WeekPlanService _service;
+  List<WeekPlanFilterItem>? _cachedStatuses;
 
   @override
   Future<Either<BaseError, List<WeekPlanTaskItem>>> getTasks({
     required DateTime dateStart,
     required DateTime dateEnd,
-    required int status,
+    String? status,
     required int isApprove,
     required int viewNumber,
   }) async {
@@ -484,6 +485,62 @@ class WeekPlanRepoImpl implements WeekPlanRepo {
 
       if (res.status == 1) {
         return right(res.data ?? []);
+      }
+
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? res.msg ?? 'Có lỗi xảy ra',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<WeekPlanFilterItem>>> getProjectTaskStatuses() async {
+    if (_cachedStatuses != null) {
+      return right(_cachedStatuses!);
+    }
+
+    try {
+      final res = await _service.getProjectTaskStatus();
+
+      if (res.status == 1) {
+        _cachedStatuses = res.data ?? [];
+        return right(_cachedStatuses!);
+      }
+
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? res.msg ?? 'Có lỗi xảy ra',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, WeekPlanApproveResponse>> approveProjectTask({
+    required List<int> projectTaskIds,
+    required bool isApproved,
+    String? review,
+    int? completionRating,
+  }) async {
+    try {
+      final res = await _service.approveProjectTask(
+        projectTaskIds: projectTaskIds,
+        isApproved: isApproved,
+        review: review,
+        completionRating: completionRating,
+      );
+
+      if (res.status == 1) {
+        final first = res.data?.isNotEmpty == true
+            ? res.data!.first
+            : const WeekPlanApproveResponse();
+        return right(first);
       }
 
       return left(

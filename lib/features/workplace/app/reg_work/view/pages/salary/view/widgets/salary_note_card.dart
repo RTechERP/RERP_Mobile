@@ -17,7 +17,7 @@ class SalaryNoteCard extends StatelessWidget {
     return SalaryCard(
       accentColor: AppColors.gray,
       title: 'Ghi chú',
-      formula: '(49)',
+      formula: '(57)',
       icon: Icons.note_outlined,
       child: Text(
         state.note ?? 'Không có ghi chú',

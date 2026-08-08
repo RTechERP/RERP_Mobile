@@ -7,6 +7,9 @@ class DepartmentGroups {
   static const hr = [6, 22];
   static const marketing = [8];
   static const accountant = [5];
+
+  /// ===== DEPARTMENT OVERTIME =====
+  static const overtimeDepartmentID = [2, 24, 25, 26, 27, 32];
 }
 
 class EmployeeIdGroups {

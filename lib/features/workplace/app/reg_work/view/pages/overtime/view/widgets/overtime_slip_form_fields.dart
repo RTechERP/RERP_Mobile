@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/widgets/form/form_checkbox.dart';
+import '../../../../../../../../../common/widgets/form/form_choice_group.dart';
 import '../../../../../../../../../common/widgets/form/form_date_time_picker.dart';
 import '../../../../../../../../../common/widgets/form/form_input_field.dart';
 import 'overtime_add_constants.dart';
@@ -18,8 +19,7 @@ import 'overtime_add_constants.dart';
 ///   ot_slip_${slipKey}_type_text    → String (hiển thị tên loại)
 ///   ot_slip_${slipKey}_project_id   → String (ẩn, lưu int)
 ///   ot_slip_${slipKey}_project_text → String (hiển thị tên dự án)
-///   ot_slip_${slipKey}_location_id  → String (ẩn, lưu int)
-///   ot_slip_${slipKey}_location_text→ String (hiển thị tên địa điểm)
+///   ot_slip_${slipKey}_location_id  → int (lưu trực tiếp vào FormChoiceGroup)
 ///   ot_slip_${slipKey}_reason       → String
 class OvertimeSlipFormFields extends StatelessWidget {
   const OvertimeSlipFormFields({
@@ -27,7 +27,6 @@ class OvertimeSlipFormFields extends StatelessWidget {
     required this.slipKey,
     required this.dateRegister,
     required this.onTypeTap,
-    required this.onLocationTap,
     required this.onProjectTap,
     this.computedHours,
     this.readOnly = false,
@@ -36,7 +35,6 @@ class OvertimeSlipFormFields extends StatelessWidget {
     this.initialTypeId,
     this.initialTypeLabel,
     this.initialLocationId,
-    this.initialLocationLabel,
     this.initialProjectId,
     this.initialProjectLabel,
     this.initialReason,
@@ -44,12 +42,12 @@ class OvertimeSlipFormFields extends StatelessWidget {
     this.onTimeStartChanged,
     this.onEndTimeChanged,
     this.onOvernightChanged,
+    this.isProjectRequired = true,
   });
 
   final String slipKey;
   final DateTime dateRegister;
   final void Function(String slipKey) onTypeTap;
-  final void Function(String slipKey) onLocationTap;
   final void Function(String slipKey) onProjectTap;
 
   /// Số giờ tính toán từ màn hình cha (EndTime - TimeStart).
@@ -61,7 +59,6 @@ class OvertimeSlipFormFields extends StatelessWidget {
   final int? initialTypeId;
   final String? initialTypeLabel;
   final int? initialLocationId;
-  final String? initialLocationLabel;
   final int? initialProjectId;
   final String? initialProjectLabel;
   final String? initialReason;
@@ -76,33 +73,26 @@ class OvertimeSlipFormFields extends StatelessWidget {
   /// Callback khi checkbox "Phụ cấp ăn tối" thay đổi — parent kiểm tra giờ.
   final void Function(String slipKey, bool? value)? onOvernightChanged;
 
+  /// Whether project field is required (based on department).
+  final bool isProjectRequired;
+
   /// Format double: bỏ ".0" nếu chẵn, hiện 1 chữ số thập phân nếu lẻ.
   static String _fmtDouble(double h) {
     final s = h.toStringAsFixed(2).replaceAll(RegExp(r'0+$'), '');
     return s.endsWith('.') ? s.substring(0, s.length - 1) : s;
   }
 
-  String get _defaultLocationLabel {
-    if (initialLocationId == null) return '';
-    for (final o in kOvertimeLocationOptions) {
-      if (o.value == initialLocationId) return o.label;
-    }
-    return '';
-  }
-
   @override
   Widget build(BuildContext context) {
+    // Tính toán ngày giới hạn dựa trên dateRegister đã chọn
+    final registerDayStart = DateTime(
+        dateRegister.year, dateRegister.month, dateRegister.day);
+    final nextDayStart =
+        registerDayStart.add(const Duration(days: 1));
+
     final defaultStart = initialTimeStart ??
         DateTime(
             dateRegister.year, dateRegister.month, dateRegister.day, 18, 0);
-    // "Từ": chỉ hôm qua hoặc hôm nay.
-    // "Đến": cho phép qua đêm đến hết ngày mai (hỗ trợ ca qua nửa đêm).
-    final now = DateTime.now();
-    final todayStart = DateTime(now.year, now.month, now.day);
-    final yesterdayStart = todayStart.subtract(const Duration(days: 1));
-    final tomorrowStart = todayStart.add(const Duration(days: 1));
-    // Cho phép "Đến" qua đêm đến tối đa 5:00 sáng ngày mai.
-    final endDateMax = tomorrowStart.add(const Duration(hours: 5));
 
     final hoursText = computedHours != null
         ? computedHours! < 0
@@ -115,6 +105,33 @@ class OvertimeSlipFormFields extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          // ── Dự án ───────────────────────────────────────────────────
+          FormBuilderField<String>(
+            name: 'ot_slip_${slipKey}_project_id',
+            initialValue:
+            initialProjectId != null ? initialProjectId.toString() : '',
+
+            builder: (_) => const SizedBox.shrink(),
+          ),
+          FormInputField(
+            readOnly: true,
+            nameForm: 'ot_slip_${slipKey}_project_text',
+            nameTextField: 'ot_slip_${slipKey}_project_text_tf',
+            label: 'Dự án',
+            icon: Icons.work_outline,
+            initialValue: initialProjectLabel ?? '',
+
+            isRequired: isProjectRequired,
+            onTap: readOnly ? null : () => onProjectTap(slipKey),
+            validator: (v) {
+              if (isProjectRequired && (v == null || v.isEmpty)) {
+                return 'Vui lòng chọn dự án';
+              }
+              return null;
+            },
+          ),
+          const SizedBox(height: 12),
+
           // Thời gian bắt đầu
           FormDateTimePicker(
             nameForm: 'ot_slip_${slipKey}_time_start',
@@ -124,10 +141,10 @@ class OvertimeSlipFormFields extends StatelessWidget {
             inputType: InputType.both,
             format: DateFormat('dd/MM/yyyy HH:mm'),
             initialValue: defaultStart,
-            initialDate: dateRegister,
+            initialDate: registerDayStart,
             enabled: !readOnly,
-            firstDate: yesterdayStart,
-            lastDate: tomorrowStart,
+            firstDate: registerDayStart,
+            lastDate: nextDayStart,
 
             isRequired: true,
             onChanged: onTimeStartChanged == null
@@ -149,10 +166,10 @@ class OvertimeSlipFormFields extends StatelessWidget {
             inputType: InputType.both,
             format: DateFormat('dd/MM/yyyy HH:mm'),
             initialValue: initialTimeEnd,
-            initialDate: dateRegister,
+            initialDate: registerDayStart,
             enabled: !readOnly,
-            firstDate: yesterdayStart,
-            lastDate: endDateMax,
+            firstDate: registerDayStart,
+            lastDate: nextDayStart.add(const Duration(hours: 5)),
 
             isRequired: true,
             onChanged: onEndTimeChanged == null
@@ -252,53 +269,24 @@ class OvertimeSlipFormFields extends StatelessWidget {
           ),
           const SizedBox(height: 12),
 
-          // ── Dự án ───────────────────────────────────────────────────
-          FormBuilderField<String>(
-            name: 'ot_slip_${slipKey}_project_id',
-            initialValue:
-                initialProjectId != null ? initialProjectId.toString() : '',
-
-            builder: (_) => const SizedBox.shrink(),
-          ),
-          FormInputField(
-            readOnly: true,
-            nameForm: 'ot_slip_${slipKey}_project_text',
-            nameTextField: 'ot_slip_${slipKey}_project_text_tf',
-            label: 'Dự án',
-            icon: Icons.work_outline,
-            initialValue: initialProjectLabel ?? '',
-
-            isRequired: true,
-            onTap: readOnly ? null : () => onProjectTap(slipKey),
-            validator: (v) {
-              if (v == null || v.isEmpty) return 'Vui lòng chọn dự án';
-              return null;
-            },
-          ),
-          const SizedBox(height: 12),
-
           // ── Địa điểm ────────────────────────────────────────────────
-          FormBuilderField<String>(
+          FormChoiceGroup<int>(
             name: 'ot_slip_${slipKey}_location_id',
-            initialValue: initialLocationId != null
-                ? initialLocationId.toString()
-                : '',
-
-            builder: (_) => const SizedBox.shrink(),
-          ),
-          FormInputField(
-            readOnly: true,
-            nameForm: 'ot_slip_${slipKey}_location_text',
-            nameTextField: 'ot_slip_${slipKey}_location_text_tf',
             label: 'Địa điểm',
+            columns: 2,
             icon: Icons.location_on_outlined,
-            initialValue:
-                initialLocationLabel ?? _defaultLocationLabel,
-
-            isRequired: true,
-            onTap: readOnly ? null : () => onLocationTap(slipKey),
+            enabled: !readOnly,
+            initialValue: initialLocationId ?? kOvertimeLocationOptions.first.value,
+            options: [
+              for (final o in kOvertimeLocationOptions)
+                FormChoiceOption(
+                  value: o.value,
+                  label: o.label,
+                  selectedColor: AppColors.primaryERP,
+                ),
+            ],
             validator: (v) {
-              if (v == null || v.isEmpty) return 'Vui lòng chọn địa điểm';
+              if (v == null) return 'Vui lòng chọn địa điểm';
               return null;
             },
           ),

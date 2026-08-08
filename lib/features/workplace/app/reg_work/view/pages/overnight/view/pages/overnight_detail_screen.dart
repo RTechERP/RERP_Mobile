@@ -21,6 +21,22 @@ import '../bloc/overnight_bloc.dart';
 
 const _kStartHourMin = ValidateHelper.overnightStartHourMin;
 
+/// Parse giờ nghỉ — chấp nhận cả dấu `.` lẫn `,` làm dấu thập phân
+/// (`1.50`, `1,50`, `2.0`, `2,0` đều OK). Trả về `null` nếu không hợp lệ.
+double? _parseBreakHours(String? raw) {
+  if (raw == null) return null;
+  final s = raw.trim();
+  if (s.isEmpty) return null;
+  final normalized = (s.contains('.') && s.contains(','))
+      ? s
+      : s.replaceAll(',', '.');
+  return double.tryParse(normalized);
+}
+
+/// Parse giờ nghỉ — trả về `fallback` khi input rỗng / không hợp lệ.
+double parseBreakHoursOr(String? raw, double fallback) =>
+    _parseBreakHours(raw) ?? fallback;
+
 class OvernightDetailScreen extends StatefulWidget {
   const OvernightDetailScreen({super.key, this.item});
 
@@ -43,6 +59,11 @@ class _OvernightDetailScreenState extends BaseState<OvernightDetailScreen,
   late DateTime _slipDate;
   late DateTime _initialTimeStart;
   late DateTime _initialTimeEnd;
+
+  DateTime get _today {
+    final n = DateTime.now();
+    return DateTime(n.year, n.month, n.day);
+  }
 
   @override
   void initState() {
@@ -83,8 +104,10 @@ class _OvernightDetailScreenState extends BaseState<OvernightDetailScreen,
         extentOffset: _breakController.text.length,
       );
     } else {
+      // Restore '0.00' nếu bỏ trống hoặc nhập không parse được
+      // (cho phép cả dấu `.` lẫn `,`).
       final v = _breakController.text.trim();
-      if (v.isEmpty || double.tryParse(v) == null) {
+      if (v.isEmpty || _parseBreakHours(v) == null) {
         _breakController.text = '0.00';
       }
     }
@@ -119,7 +142,8 @@ class _OvernightDetailScreenState extends BaseState<OvernightDetailScreen,
     final end = form.fields['det_time_end']?.value as DateTime?;
     if (start == null || end == null) return null;
 
-    final breakHours = double.tryParse(_breakController.text) ?? 0;
+    final breakHours =
+        parseBreakHoursOr(_breakController.text, 0);
     final diff = end.difference(start).inMinutes / 60.0;
     if (diff <= 0) return null;
     return (diff - breakHours).clamp(0.0, diff);
@@ -190,7 +214,7 @@ class _OvernightDetailScreenState extends BaseState<OvernightDetailScreen,
     final v = formState.value;
 
     final isProblem = (v['det_is_problem'] as bool?) ?? false;
-    final breakHours = double.tryParse(_breakController.text) ?? 0;
+    final breakHours = parseBreakHoursOr(_breakController.text, 0);
 
     final row = (
       date: _slipDate,
@@ -291,11 +315,16 @@ class _OvernightDetailScreenState extends BaseState<OvernightDetailScreen,
                   final totalText =
                       (h != null && h >= 0) ? h.toStringAsFixed(2) : '0.00';
 
-                  final today = DateTime(DateTime.now().year,
-                      DateTime.now().month, DateTime.now().day);
-                  final firstDateAllowed = _isProblem
-                      ? DateTime(today.year, today.month, 1)
-                      : today;
+                  /// Form Thời gian bắt đầu / kết thúc: lấy theo form Ngày
+                  /// ([_slipDate]) nhưng tối thiểu là hôm nay để picker không
+                  /// mở ngày quá khứ.
+                  final firstDateForTime = _slipDate.isBefore(_today)
+                      ? _today
+                      : _slipDate;
+                  bool isFutureOrToday(DateTime day) {
+                    final d = DateTime(day.year, day.month, day.day);
+                    return !d.isBefore(firstDateForTime);
+                  }
 
                   final approvedId = widget.item!.approvedTbp ?? widget.item!.approvedHr;
                   final approverText = _approverText(state, approvedId);
@@ -400,8 +429,6 @@ class _OvernightDetailScreenState extends BaseState<OvernightDetailScreen,
                                         inputType: InputType.date,
                                         format: dateFmt,
                                         initialValue: _slipDate,
-                                        firstDate: firstDateAllowed,
-                                        lastDate: today,
                                         decoration: formInputDecoration(
                                           context,
                                           label: 'Ngày',
@@ -423,10 +450,12 @@ class _OvernightDetailScreenState extends BaseState<OvernightDetailScreen,
                                         inputType: InputType.both,
                                         format: bothFmt,
                                         initialValue: _initialTimeStart,
-                                        initialDate: _slipDate,
-                                        firstDate: _slipDate,
-                                        lastDate: _slipDate.add(const Duration(
-                                            hours: 23, minutes: 59)),
+                                        initialDate: firstDateForTime,
+                                        firstDate: firstDateForTime,
+                                        lastDate:
+                                            firstDateForTime.add(const Duration(
+                                                hours: 23, minutes: 59)),
+                                        selectableDayPredicate: isFutureOrToday,
                                         autovalidateMode:
                                             AutovalidateMode.onUserInteraction,
                                         isRequired: true,
@@ -445,10 +474,12 @@ class _OvernightDetailScreenState extends BaseState<OvernightDetailScreen,
                                         inputType: InputType.both,
                                         format: bothFmt,
                                         initialValue: _initialTimeEnd,
-                                        initialDate: _slipDate,
-                                        firstDate: _slipDate,
-                                        lastDate: _slipDate.add(const Duration(
-                                            days: 1, hours: 8)),
+                                        initialDate: firstDateForTime,
+                                        firstDate: firstDateForTime,
+                                        lastDate:
+                                            firstDateForTime.add(const Duration(
+                                                days: 1, hours: 8)),
+                                        selectableDayPredicate: isFutureOrToday,
                                         autovalidateMode:
                                             AutovalidateMode.onUserInteraction,
                                         isRequired: true,
@@ -474,7 +505,7 @@ class _OvernightDetailScreenState extends BaseState<OvernightDetailScreen,
                                                 if (v == null || v.isEmpty) {
                                                   return 'Vui lòng nhập giờ nghỉ';
                                                 }
-                                                final br = double.tryParse(v);
+                                                final br = _parseBreakHours(v);
                                                 if (br == null || br < 0) {
                                                   return 'Giờ nghỉ không hợp lệ';
                                                 }
@@ -505,7 +536,7 @@ class _OvernightDetailScreenState extends BaseState<OvernightDetailScreen,
                                                   inputFormatters: [
                                                     FilteringTextInputFormatter
                                                         .allow(RegExp(
-                                                            r'^\d*\.?\d{0,2}')),
+                                                            r'^\d*([.,]?\d{0,2})?')),
                                                   ],
                                                   decoration:
                                                       formInputDecoration(

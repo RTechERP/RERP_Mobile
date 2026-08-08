@@ -4,15 +4,13 @@ import '../../../../../../../../../common/app_theme/index.dart';
 import 'week_plan_dashboard_glass_container.dart';
 import '../../data/datasource/models/week_plan_dashboard_models.dart';
 
-/// Lưới 9 thẻ trạng thái:
-///  - Chưa bắt đầu / Đang làm / Đang làm quá hạn
+/// Lưới 10 thẻ trạng thái:
+///  - Chưa bắt đầu / Chưa bắt đầu quá hạn
+///  - Đang làm / Đang làm quá hạn
 ///  - Chờ phê duyệt / Chờ phê duyệt quá hạn
 ///  - Hoàn thành / Từ chối / Tạm hoãn / Huỷ
 class WeekPlanDashboardStatusGrid extends StatelessWidget {
-  const WeekPlanDashboardStatusGrid({
-    super.key,
-    required this.stats,
-  });
+  const WeekPlanDashboardStatusGrid({super.key, required this.stats});
 
   final DashboardStats stats;
 
@@ -24,6 +22,12 @@ class WeekPlanDashboardStatusGrid extends StatelessWidget {
         value: stats.chuaBatDau,
         color: const Color(0xFF8C96B1),
         icon: Icons.schedule_outlined,
+      ),
+      _StatusItem(
+        label: 'Chưa bắt đầu quá hạn',
+        value: stats.chuaBatDauQuaHan,
+        color: const Color(0xFFEB5757),
+        icon: Icons.error_outline,
       ),
       _StatusItem(
         label: 'Đang làm',
@@ -124,10 +128,7 @@ class _StatusItem {
 
 /// Một ô trạng thái trong lưới.
 class _WeekPlanDashboardStatusTile extends StatelessWidget {
-  const _WeekPlanDashboardStatusTile({
-    required this.item,
-    required this.total,
-  });
+  const _WeekPlanDashboardStatusTile({required this.item, required this.total});
 
   final _StatusItem item;
   final int total;
@@ -139,9 +140,7 @@ class _WeekPlanDashboardStatusTile extends StatelessWidget {
       decoration: BoxDecoration(
         color: item.color.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: item.color.withValues(alpha: 0.18),
-        ),
+        border: Border.all(color: item.color.withValues(alpha: 0.18)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

@@ -114,7 +114,7 @@ class _BookingVehicleScreenState
           buildWhen: (prev, curr) =>
               prev.status != curr.status ||
               prev.currentEmployee != curr.currentEmployee ||
-                  prev.bookingVehicle.length != curr.bookingVehicle.length,
+              prev.bookingVehicle.length != curr.bookingVehicle.length,
           builder: (context, state) {
             // Lưu currentEmployee vào SharedPreferences ngay khi có
             // (từ preloadInitAdd cache/API) để add_screen đọc trực tiếp.

@@ -36,14 +36,22 @@ class _OvertimeAddScreenPageState
   bool _autoValidate = false;
 
   late final DateTime _todayStart;
+  late final DateTime _yesterdayStart;
   late final List<String> _slipKeys;
   int _selectedSlipIndex = 0;
+
+  /// Predicate để giới hạn ngày đăng ký chỉ có hôm qua và hôm nay.
+  bool _isYesterdayOrToday(DateTime day) {
+    final d = DateTime(day.year, day.month, day.day);
+    return !d.isBefore(_yesterdayStart) && !d.isAfter(_todayStart);
+  }
 
   @override
   void initState() {
     super.initState();
     final now = DateTime.now();
     _todayStart = DateTime(now.year, now.month, now.day);
+    _yesterdayStart = _todayStart.subtract(const Duration(days: 1));
     _slipKeys = ['k_${now.millisecondsSinceEpoch}'];
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -294,25 +302,6 @@ class _OvertimeAddScreenPageState
     );
   }
 
-  Future<void> _openLocationSheet(String slipKey) async {
-    final form = _formKey.currentState;
-    if (form == null) return;
-
-    await openSelectBottomSheet<OvertimeLocationOption>(
-      context: context,
-      title: 'Chọn địa điểm',
-      items: kOvertimeLocationOptions,
-      displayText: (o) => o.label,
-      onSelected: (o) {
-        form.fields['ot_slip_${slipKey}_location_id']
-            ?.didChange(o.value.toString());
-        form.fields['ot_slip_${slipKey}_location_text']
-            ?.didChange(o.label);
-        setState(() {});
-      },
-    );
-  }
-
   Future<void> _openProjectSheet(String slipKey) async {
     FocusScope.of(context).unfocus();
     final form = _formKey.currentState;
@@ -530,6 +519,9 @@ class _OvertimeAddScreenPageState
                                         format: DateFormat('dd/MM/yyyy'),
                                         initialValue: _todayStart,
                                         initialDate: _todayStart,
+                                        firstDate: _yesterdayStart,
+                                        lastDate: _todayStart,
+                                        selectableDayPredicate: _isYesterdayOrToday,
                                         autovalidateMode: _autoValidate
                                             ? AutovalidateMode.onUserInteraction
                                             : AutovalidateMode.disabled,
@@ -647,7 +639,6 @@ class _OvertimeAddScreenPageState
                                               slipKey: key,
                                               dateRegister: _getDateRegister(),
                                               onTypeTap: _openTypeSheet,
-                                              onLocationTap: _openLocationSheet,
                                               onProjectTap: _openProjectSheet,
                                               computedHours:
                                                   _computeSlipHours(key),
@@ -659,6 +650,8 @@ class _OvertimeAddScreenPageState
                                                   _onSlipEndTimeChanged,
                                               onOvernightChanged:
                                                   _onSlipOvernightChanged,
+                                              isProjectRequired:
+                                                  state.isProjectRequired,
                                             ),
                                         ],
                                       ),

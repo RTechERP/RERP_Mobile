@@ -42,7 +42,7 @@ class RoleResolver {
     }
 
     /// ===== SALE =====
-    if (DepartmentGroups.sale.contains(deptId) &&
+    if (DepartmentGroups.sale.contains(deptId) ||
         (hasSalePermission ||
             EmployeeIdGroups.employeeSaleHCM.contains(empId) ||
             UserIdGroups.userAdminReportTech.contains(userId))) {

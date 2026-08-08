@@ -29,7 +29,22 @@ class _LunchDetailScreenState extends BaseState<
     LunchEvent,
     LunchState,
     LunchBloc> {
+  /// Danh sách lựa chọn địa điểm đặt cơm cho FormChoiceGroup.
+  static const List<FormChoiceOption<String>> _lunchLocations = [
+    FormChoiceOption(
+      value: 'hn',
+      label: 'VP Hà Nội',
+      selectedColor: AppColors.primaryERP,
+    ),
+    FormChoiceOption(
+      value: 'dp',
+      label: 'Xưởng Đan Phượng',
+      selectedColor: AppColors.primaryERP,
+    ),
+  ];
+
   final _formKey = GlobalKey<FormBuilderState>();
+  final _locationFieldKey = GlobalKey<FormBuilderFieldState>();
 
   LunchItem? _item;
   late DateTime _todayStart;
@@ -56,12 +71,12 @@ class _LunchDetailScreenState extends BaseState<
         _selectedDate = DateTime(baseDate.year, baseDate.month, baseDate.day);
       });
 
-      // Set giá trị mặc định cho location radio group sau khi FormBuilder
+      // Set giá trị mặc định cho location choice group sau khi FormBuilder
       // được mount (để tránh `fields[...]` trả về null).
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (!context.mounted) return;
         final locationRadio = _mapLocationRadio(item.location);
-        _formKey.currentState?.fields['location']?.didChange(locationRadio);
+        _locationFieldKey.currentState?.didChange(locationRadio);
       });
     });
 
@@ -204,27 +219,23 @@ class _LunchDetailScreenState extends BaseState<
                                     },
                                   ),
                                   const SizedBox(height: 8),
-                                  FormRadioGroup(
+                                  FormChoiceGroup<String>(
+                                    fieldKey: _locationFieldKey,
                                     name: 'location',
                                     label: 'Địa điểm',
+                                    icon: Icons.location_on_outlined,
+                                    initialValue: _mapLocationRadio(item.location),
                                     enabled: _canEdit,
+                                    columns: 2,
                                     isRequired: true,
                                     validator: (v) {
-                                      if (v == null || v.isEmpty) return 'Vui lòng chọn địa điểm';
+                                      if (!_canEdit) return null;
+                                      if (v == null || v.toString().isEmpty) {
+                                        return 'Vui lòng chọn địa điểm';
+                                      }
                                       return null;
                                     },
-                                    options: const [
-                                      FormRadioOption(
-                                        value: 'hn',
-                                        icon: Icons.location_city,
-                                        label: 'VP Hà Nội',
-                                      ),
-                                      FormRadioOption(
-                                        value: 'dp',
-                                        icon: Icons.factory_outlined,
-                                        label: 'Xưởng Đan Phượng',
-                                      ),
-                                    ],
+                                    options: _lunchLocations,
                                   ),
                                   const SizedBox(height: 8),
 

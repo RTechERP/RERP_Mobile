@@ -33,6 +33,7 @@ class _MissedAddScreenState
   final _formKey = GlobalKey<FormBuilderState>();
 
   late final DateTime _todayStart;
+
   /// Ngày muộn nhất có thể chọn trên lịch (cho phép đăng ký trước tương lai gần).
   late final DateTime _lastSelectableDate;
 
@@ -65,14 +66,12 @@ class _MissedAddScreenState
     final form = _formKey.currentState;
     if (form == null) return;
 
-    final items =
-        bloc.state.approvers.where((e) => e.isDeleted != true).toList();
+    final items = bloc.state.approvers
+        .where((e) => e.isDeleted != true)
+        .toList();
 
     if (items.isEmpty) {
-      context.showMessage(
-        'Chưa có người duyệt.',
-        type: SnackBarType.error,
-      );
+      context.showMessage('Chưa có người duyệt.', type: SnackBarType.error);
       return;
     }
 
@@ -127,19 +126,18 @@ class _MissedAddScreenState
                   if (form == null) return;
 
                   final targetId = state.approveId!.approveId;
-                  final match = state.approvers.cast<ApproverItem?>().firstWhere(
-                    (a) {
-                      if (a == null || a.isDeleted == true) return false;
-                      final idValue = _approvedMissedPayloadValue(a);
-                      return idValue == targetId;
-                    },
-                    orElse: () => null,
-                  );
+                  final match = state.approvers
+                      .cast<ApproverItem?>()
+                      .firstWhere((a) {
+                        if (a == null || a.isDeleted == true) return false;
+                        final idValue = _approvedMissedPayloadValue(a);
+                        return idValue == targetId;
+                      }, orElse: () => null);
 
                   if (match != null) {
                     final idValue = _approvedMissedPayloadValue(match);
-                    final line =
-                        '${match.code ?? ''} - ${match.fullName ?? ''}'.trim();
+                    final line = '${match.code ?? ''} - ${match.fullName ?? ''}'
+                        .trim();
                     form.fields['regwork_missed_add_approver_id']?.didChange(
                       idValue.toString(),
                     );
@@ -179,8 +177,9 @@ class _MissedAddScreenState
                                 format: DateFormat('dd/MM/yyyy'),
                                 initialValue: _todayStart,
                                 initialDate: _todayStart,
-                                firstDate: _todayStart,
-                                lastDate: _lastSelectableDate,
+                                // firstDate: _todayStart,
+                                // lastDate: _lastSelectableDate,
+                                // lastDate: _todayStart,
                               ),
                               const SizedBox(height: 12),
                               FormBuilderField<String>(
@@ -194,38 +193,57 @@ class _MissedAddScreenState
                                   child: FormInputField(
                                     readOnly: true,
                                     nameForm:
-                                    'regwork_missed_add_approver_text',
+                                        'regwork_missed_add_approver_text',
                                     nameTextField:
-                                    'regwork_missed_add_approver_text_field',
+                                        'regwork_missed_add_approver_text_field',
                                     label: 'Người duyệt',
                                     icon: Icons.supervisor_account_outlined,
                                     isRequired: true,
                                     validator: (v) {
-                                      if (v == null || v.trim().isEmpty) return 'Vui lòng chọn người duyệt';
+                                      if (v == null || v.trim().isEmpty)
+                                        return 'Vui lòng chọn người duyệt';
                                       return null;
-                                    }
+                                    },
                                   ),
                                 ),
                               ),
                               const SizedBox(height: 12),
-                              FormRadioGroup(
+                              // FormRadioGroup(
+                              //   name: 'regwork_missed_add_type',
+                              //   label: 'Loại',
+                              //   initialValue: 'check_in',
+                              //   options: const [
+                              //     FormRadioOption(
+                              //       value: 'check_in',
+                              //       icon: Icons.login_rounded,
+                              //       label: 'Quên lúc đến',
+                              //     ),
+                              //     FormRadioOption(
+                              //       value: 'check_out',
+                              //       icon: Icons.logout_rounded,
+                              //       label: 'Quên lúc về',
+                              //     ),
+                              //   ],
+                              // ),
+                              FormChoiceGroup<String>(
                                 name: 'regwork_missed_add_type',
                                 label: 'Loại',
+                                icon: Icons.punch_clock_outlined,
                                 initialValue: 'check_in',
-                                options: const [
-                                  FormRadioOption(
+                                columns: 2,
+                                options: [
+                                  FormChoiceOption(
                                     value: 'check_in',
-                                    icon: Icons.login_rounded,
                                     label: 'Quên lúc đến',
+                                    selectedColor: AppColors.primaryERP,
                                   ),
-                                  FormRadioOption(
+                                  FormChoiceOption(
                                     value: 'check_out',
-                                    icon: Icons.logout_rounded,
                                     label: 'Quên lúc về',
+                                    selectedColor: AppColors.primaryERP,
                                   ),
                                 ],
                               ),
-
                             ],
                           ),
                         ),
@@ -254,12 +272,13 @@ class _MissedAddScreenState
 
                                 final values = formState.value;
 
-                                final summaryErr =
-                                    ValidateHelper.validateMissed(
-                                  dateMissed: values['regwork_missed_add_date']
-                                      as DateTime?,
-                                  typeRaw: values['regwork_missed_add_type']
-                                      as String?,
+                                final summaryErr = ValidateHelper.validateMissed(
+                                  dateMissed:
+                                      values['regwork_missed_add_date']
+                                          as DateTime?,
+                                  typeRaw:
+                                      values['regwork_missed_add_type']
+                                          as String?,
                                   approverIdRaw:
                                       '${values['regwork_missed_add_approver_id'] ?? ''}',
                                   earliestSelectableDay: _todayStart,
@@ -273,8 +292,7 @@ class _MissedAddScreenState
                                 }
 
                                 final typeStr =
-                                    values['regwork_missed_add_type']
-                                        as String;
+                                    values['regwork_missed_add_type'] as String;
                                 final approvedId = int.parse(
                                   '${values['regwork_missed_add_approver_id']}'
                                       .trim(),
@@ -297,8 +315,9 @@ class _MissedAddScreenState
                                       dateMissed.month,
                                       dateMissed.day,
                                     ),
-                                    timeMissed:
-                                        _timeMissedMinutesForType(typeStr),
+                                    timeMissed: _timeMissedMinutesForType(
+                                      typeStr,
+                                    ),
                                     totalDay: 1.0,
                                     contentWork: typeStr,
                                     reason: reason,

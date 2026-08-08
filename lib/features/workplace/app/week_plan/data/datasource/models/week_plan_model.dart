@@ -680,3 +680,44 @@ class DayOffItem with _$DayOffItem {
   factory DayOffItem.fromJson(Map<String, dynamic> json) =>
       _$DayOffItemFromJson(json);
 }
+
+@freezed
+class WeekPlanFilterItem with _$WeekPlanFilterItem {
+  const factory WeekPlanFilterItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'No') int? no,
+    @JsonKey(name: 'Title') String? title,
+    @JsonKey(name: 'Description') String? description,
+    @JsonKey(name: 'Type') int? type,
+    @JsonKey(name: 'ColorBackground') String? colorBackground,
+    @JsonKey(name: 'ColorFont') String? colorFont,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+  }) = _WeekPlanFilterItem;
+
+  factory WeekPlanFilterItem.fromJson(Map<String, dynamic> json) =>
+      _$WeekPlanFilterItemFromJson(json);
+}
+
+@freezed
+class WeekPlanApproveResponse with _$WeekPlanApproveResponse {
+  const factory WeekPlanApproveResponse({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'ProjectTaskID') int? projectTaskId,
+    @JsonKey(name: 'EmployeeID') int? employeeId,
+    @JsonKey(name: 'IsApprove') bool? isApprove,
+    @JsonKey(name: 'Review') String? review,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+    @JsonKey(name: 'CompletionRating') double? completionRating,
+  }) = _WeekPlanApproveResponse;
+
+  factory WeekPlanApproveResponse.fromJson(Map<String, dynamic> json) =>
+      _$WeekPlanApproveResponseFromJson(json);
+}

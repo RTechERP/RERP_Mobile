@@ -3,9 +3,11 @@
 
 import "package:easy_localization/easy_localization.dart";
 import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
 import "package:go_router/go_router.dart";
 import "package:rtc_erp/base/widgets/base_scaffold.dart";
 import "package:rtc_erp/common/constants/app_image.dart";
+import "../../../common/app/app_config.dart";
 
 import "../../../base/bloc/index.dart";
 import "../../../base/widgets/base_widget.dart";
@@ -16,6 +18,7 @@ import "../../../common/utils/dialog/index.dart";
 
 import "../../../routes/route_names.dart";
 import "../../auth/data/datasource/models/user_model.dart";
+import "../../auth/view/bloc/auth_bloc.dart";
 
 import "../data/datasource/models/index.dart";
 import "bloc/workspace_bloc.dart";
@@ -70,6 +73,12 @@ class _WorkPlaceScreenState
     final deptId = user.departmentId;
     final posId = user.positionId;
 
+    if (roles.contains(AppRole.tech) && employeeId != 271 ||
+        roles.contains(AppRole.agv) ||
+        roles.contains(AppRole.ad)) {
+      return RouteNames.reportITdepart;
+    }
+
     if (roles.contains(AppRole.hr)) {
       if (employeeId == 5) return RouteNames.reportHRAdmin;
 
@@ -87,12 +96,6 @@ class _WorkPlaceScreenState
 
     if (roles.contains(AppRole.sale)) {
       return RouteNames.reportSaledepart;
-    }
-
-    if (roles.contains(AppRole.tech) ||
-        roles.contains(AppRole.agv) ||
-        roles.contains(AppRole.ad)) {
-      return RouteNames.reportITdepart;
     }
 
     // if (roles.contains(AppRole.agv)) {
@@ -126,22 +129,37 @@ class _WorkPlaceScreenState
         backgroundColor: Colors.white,
         surfaceTintColor: Colors.white,
 
-        title: blocBuilder((context, state) {
-          final user = state.user;
+        title: BlocBuilder<AuthBloc, AuthState>(
+          buildWhen: (p, n) =>
+              p.user != n.user ||
+              p.status != n.status ||
+              p.avatarUploadedAt != n.avatarUploadedAt,
+          builder: (context, authState) {
+            final user = authState.user;
 
-          if (state.status == BaseStateStatus.loading && user == null) {
-            return const SizedBox(
-              height: 36,
-              child: Center(child: CircularProgressIndicator(strokeWidth: 2)),
+            // URL dùng `user.imagePath` (server field `ImagePath`) làm cache-bust.
+            // Sau upload, AuthBloc re-fetch user → user.imagePath đổi → URL đổi
+            // → CachedNetworkImage fetch ảnh mới đồng bộ trên mọi màn đang
+            // nghe AuthBloc (more_screen, workspace_screen, ...).
+            //
+            // Nếu `imagePath` rỗng (chưa upload) thì trả null → WpInfoCard
+            // hiển thị icon person default.
+            //
+            // Ngoài ra thêm `cacheBust` (epoch ms) để chắc chắn cache bị bust
+            // kể cả khi server trả về cùng imagePath (server có thể reuse filename).
+            final avatarUrl = _resolveAvatarUrl(
+              user?.employeeId,
+              imagePath: user?.imagePath,
+              cacheBust: authState.avatarUploadedAt?.millisecondsSinceEpoch,
             );
-          }
 
-          return WpInfoCard(
-            avatarUrl: user?.avatar ?? 'https://i.pravatar.cc/150',
-            name: user?.fullName ?? '---',
-            code: user?.code ?? '---',
-          );
-        }, buildWhen: (p, n) => p.user != n.user || p.status != n.status),
+            return WpInfoCard(
+              avatarUrl: avatarUrl,
+              name: user?.fullName ?? '---',
+              code: user?.code ?? '---',
+            );
+          },
+        ),
       ),
 
       body: blocBuilder((context, state) {
@@ -205,13 +223,6 @@ class _WorkPlaceScreenState
                     collapsedItemCount: 11,
                     items: [
                       AppItemModel(
-                        id: 'general_forms',
-                        iconCodePoint: Icons.file_copy_outlined.codePoint,
-                        name: 'applications.general_forms'.tr(),
-                        route: RouteNames.generalforms,
-                        imageUrl: AppImages.app_menu_general_form,
-                      ),
-                      AppItemModel(
                         id: 'reg_work',
                         iconCodePoint: Icons.person_pin_outlined.codePoint,
                         name: 'applications.reg_work'.tr(),
@@ -232,12 +243,13 @@ class _WorkPlaceScreenState
                         route: RouteNames.report,
                         imageUrl: AppImages.app_menu_report,
                       ),
-                      // AppItemModel(
-                      //   id: 'general_forms',
-                      //   name: 'applications.general_forms'.tr(),
-                      //   iconCodePoint: Icons.assignment_outlined.codePoint,
-                      //   imageUrl: AppImages.app_menu_general_form,
-                      // ),
+                      AppItemModel(
+                        id: 'general_forms',
+                        iconCodePoint: Icons.file_copy_outlined.codePoint,
+                        name: 'applications.general_forms'.tr(),
+                        route: RouteNames.generalforms,
+                        imageUrl: AppImages.app_menu_general_form,
+                      ),
                       // AppItemModel(
                       //   id: 'summary_work',
                       //   iconCodePoint:
@@ -245,6 +257,13 @@ class _WorkPlaceScreenState
                       //   name: 'applications.summary_work'.tr(),
                       //   imageUrl: AppImages.app_menu_summary_work,
                       // ),
+                      AppItemModel(
+                        id: 'week_plan',
+                        iconCodePoint: Icons.newspaper_outlined.codePoint,
+                        name: 'applications.week_plan'.tr(),
+                        route: RouteNames.weekplan,
+                        imageUrl: AppImages.app_menu_week_plan,
+                      ),
                       // AppItemModel(
                       //   id: 'week_plan',
                       //   iconCodePoint: Icons.newspaper_outlined.codePoint,
@@ -265,6 +284,12 @@ class _WorkPlaceScreenState
                       //   name: 'applications.stock'.tr(),
                       //   imageUrl: AppImages.app_menu_stock,
                       // ),
+                      AppItemModel(
+                        id: 'warehouse',
+                        iconCodePoint: Icons.warehouse_outlined.codePoint,
+                        name: 'applications.warehouse'.tr(),
+                        route: RouteNames.warehouse,
+                      ),
                     ],
                   ),
 
@@ -297,5 +322,46 @@ class _WorkPlaceScreenState
         );
       }, buildWhen: (p, n) => p.status != n.status || p.user != n.user),
     );
+  }
+
+  /// Resolve full URL cho avatar qua endpoint /api/home/avatar.
+  ///
+  /// Trả về `null` khi:
+  ///  - Chưa có `employeeId`.
+  ///  - Chưa có `imagePath` (server field `ImagePath`) — user chưa upload
+  ///    avatar lần nào → caller render icon person default.
+  ///  - Chưa cấu hình `baseUrl`.
+  ///
+  /// [imagePath] thay đổi mỗi lần user upload avatar mới, dùng làm query
+  /// param để cache-bust đồng bộ trên mọi màn.
+  ///
+  /// [cacheBust] là epoch ms của lần fetch hiện tại — bắt buộc phải có sau khi
+  /// upload để tránh cache CachedNetworkImage trả ảnh cũ khi server trả về
+  /// cùng `imagePath` (server có thể reuse filename).
+  String? _resolveAvatarUrl(
+    int? employeeId, {
+    String? imagePath,
+    int? cacheBust,
+  }) {
+    // Chưa có employeeId hoặc chưa có imagePath (server chưa upload avatar)
+    // → để WpInfoCard render icon person default.
+    if (employeeId == null) return null;
+    if (imagePath == null || imagePath.isEmpty) return null;
+
+    final baseUrl = AppConfig.baseUrl.trim();
+    if (baseUrl.isEmpty) return null;
+
+    var normalizedBaseUrl = baseUrl.endsWith('/')
+        ? baseUrl.substring(0, baseUrl.length - 1)
+        : baseUrl;
+    if (normalizedBaseUrl.endsWith('/api')) {
+      normalizedBaseUrl = normalizedBaseUrl.substring(
+        0,
+        normalizedBaseUrl.length - 4,
+      );
+    }
+
+    final bust = cacheBust != null ? '&_t=$cacheBust' : '';
+    return '$normalizedBaseUrl/api/home/avatar?employeeId=$employeeId&v=$imagePath$bust';
   }
 }

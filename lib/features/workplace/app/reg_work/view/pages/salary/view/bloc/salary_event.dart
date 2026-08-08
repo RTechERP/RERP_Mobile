@@ -21,4 +21,9 @@ class SalaryEvent with _$SalaryEvent {
   }) = _ForgotResetPin;
   const factory SalaryEvent.forgotUpdateStep(int step) = _ForgotUpdateStep;
   const factory SalaryEvent.clearForgotState() = _ClearForgotState;
+  // Confirm Payroll
+  const factory SalaryEvent.confirmPayroll(int payrollId) = _ConfirmPayroll;
+  const factory SalaryEvent.cancelPayroll(int payrollId) = _CancelPayroll;
+  const factory SalaryEvent.clearConfirmState() = _ClearConfirmState;
+  const factory SalaryEvent.confirmInit() = _ConfirmInit;
 }

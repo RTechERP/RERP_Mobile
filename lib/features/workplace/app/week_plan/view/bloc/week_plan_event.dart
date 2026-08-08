@@ -24,6 +24,14 @@ class WeekPlanEvent with _$WeekPlanEvent {
 
   const factory WeekPlanEvent.filterByStatuses(List<String> statuses) = _FilterByStatuses;
 
+  /// Lọc theo trạng thái với No từ API.
+  /// [statusNos] — danh sách No từ type=1 (trạng thái công việc).
+  /// [approveNos] — danh sách No từ type=2 (trạng thái duyệt).
+  const factory WeekPlanEvent.filterByStatusNos({
+    required List<int> statusNos,
+    required List<int> approveNos,
+  }) = _FilterByStatusNos;
+
   const factory WeekPlanEvent.changeDateRange({
     required DateTime dateStart,
     required DateTime dateEnd,
@@ -255,4 +263,7 @@ class WeekPlanEvent with _$WeekPlanEvent {
     required DateTime dateStart,
     required DateTime dateEnd,
   }) = _FetchTimelineData;
+
+  // Filter statuses
+  const factory WeekPlanEvent.fetchProjectTaskStatuses() = _FetchProjectTaskStatuses;
 }

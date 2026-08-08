@@ -27,6 +27,8 @@ mixin _$WeekPlanEvent {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -117,6 +119,7 @@ mixin _$WeekPlanEvent {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -130,6 +133,8 @@ mixin _$WeekPlanEvent {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -211,6 +216,7 @@ mixin _$WeekPlanEvent {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -224,6 +230,8 @@ mixin _$WeekPlanEvent {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -304,6 +312,7 @@ mixin _$WeekPlanEvent {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -318,6 +327,7 @@ mixin _$WeekPlanEvent {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -396,6 +406,8 @@ mixin _$WeekPlanEvent {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -409,6 +421,7 @@ mixin _$WeekPlanEvent {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -480,6 +493,8 @@ mixin _$WeekPlanEvent {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -493,6 +508,7 @@ mixin _$WeekPlanEvent {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -560,6 +576,7 @@ mixin _$WeekPlanEvent {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -630,6 +647,8 @@ class _$InitMenuImpl implements _InitMenu {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -720,6 +739,7 @@ class _$InitMenuImpl implements _InitMenu {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return initMenu();
   }
@@ -736,6 +756,8 @@ class _$InitMenuImpl implements _InitMenu {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -817,6 +839,7 @@ class _$InitMenuImpl implements _InitMenu {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return initMenu?.call();
   }
@@ -833,6 +856,8 @@ class _$InitMenuImpl implements _InitMenu {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -913,6 +938,7 @@ class _$InitMenuImpl implements _InitMenu {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (initMenu != null) {
@@ -933,6 +959,7 @@ class _$InitMenuImpl implements _InitMenu {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -1011,6 +1038,8 @@ class _$InitMenuImpl implements _InitMenu {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return initMenu(this);
   }
@@ -1027,6 +1056,7 @@ class _$InitMenuImpl implements _InitMenu {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -1098,6 +1128,8 @@ class _$InitMenuImpl implements _InitMenu {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return initMenu?.call(this);
   }
@@ -1114,6 +1146,7 @@ class _$InitMenuImpl implements _InitMenu {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -1181,6 +1214,7 @@ class _$InitMenuImpl implements _InitMenu {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (initMenu != null) {
@@ -1241,6 +1275,8 @@ class _$InitScreenImpl implements _InitScreen {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -1331,6 +1367,7 @@ class _$InitScreenImpl implements _InitScreen {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return initScreen();
   }
@@ -1347,6 +1384,8 @@ class _$InitScreenImpl implements _InitScreen {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -1428,6 +1467,7 @@ class _$InitScreenImpl implements _InitScreen {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return initScreen?.call();
   }
@@ -1444,6 +1484,8 @@ class _$InitScreenImpl implements _InitScreen {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -1524,6 +1566,7 @@ class _$InitScreenImpl implements _InitScreen {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (initScreen != null) {
@@ -1544,6 +1587,7 @@ class _$InitScreenImpl implements _InitScreen {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -1622,6 +1666,8 @@ class _$InitScreenImpl implements _InitScreen {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return initScreen(this);
   }
@@ -1638,6 +1684,7 @@ class _$InitScreenImpl implements _InitScreen {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -1709,6 +1756,8 @@ class _$InitScreenImpl implements _InitScreen {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return initScreen?.call(this);
   }
@@ -1725,6 +1774,7 @@ class _$InitScreenImpl implements _InitScreen {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -1792,6 +1842,7 @@ class _$InitScreenImpl implements _InitScreen {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (initScreen != null) {
@@ -1852,6 +1903,8 @@ class _$InitDashboardImpl implements _InitDashboard {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -1942,6 +1995,7 @@ class _$InitDashboardImpl implements _InitDashboard {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return initDashboard();
   }
@@ -1958,6 +2012,8 @@ class _$InitDashboardImpl implements _InitDashboard {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -2039,6 +2095,7 @@ class _$InitDashboardImpl implements _InitDashboard {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return initDashboard?.call();
   }
@@ -2055,6 +2112,8 @@ class _$InitDashboardImpl implements _InitDashboard {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -2135,6 +2194,7 @@ class _$InitDashboardImpl implements _InitDashboard {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (initDashboard != null) {
@@ -2155,6 +2215,7 @@ class _$InitDashboardImpl implements _InitDashboard {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -2233,6 +2294,8 @@ class _$InitDashboardImpl implements _InitDashboard {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return initDashboard(this);
   }
@@ -2249,6 +2312,7 @@ class _$InitDashboardImpl implements _InitDashboard {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -2320,6 +2384,8 @@ class _$InitDashboardImpl implements _InitDashboard {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return initDashboard?.call(this);
   }
@@ -2336,6 +2402,7 @@ class _$InitDashboardImpl implements _InitDashboard {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -2403,6 +2470,7 @@ class _$InitDashboardImpl implements _InitDashboard {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (initDashboard != null) {
@@ -2491,6 +2559,8 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -2581,6 +2651,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return initScreenWithView(viewNumber);
   }
@@ -2597,6 +2668,8 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -2678,6 +2751,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return initScreenWithView?.call(viewNumber);
   }
@@ -2694,6 +2768,8 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -2774,6 +2850,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (initScreenWithView != null) {
@@ -2794,6 +2871,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -2872,6 +2950,8 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return initScreenWithView(this);
   }
@@ -2888,6 +2968,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -2959,6 +3040,8 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return initScreenWithView?.call(this);
   }
@@ -2975,6 +3058,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -3042,6 +3126,7 @@ class _$InitScreenWithViewImpl implements _InitScreenWithView {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (initScreenWithView != null) {
@@ -3135,6 +3220,8 @@ class _$ChangeViewImpl implements _ChangeView {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -3225,6 +3312,7 @@ class _$ChangeViewImpl implements _ChangeView {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return changeView(viewNumber);
   }
@@ -3241,6 +3329,8 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -3322,6 +3412,7 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return changeView?.call(viewNumber);
   }
@@ -3338,6 +3429,8 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -3418,6 +3511,7 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (changeView != null) {
@@ -3438,6 +3532,7 @@ class _$ChangeViewImpl implements _ChangeView {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -3516,6 +3611,8 @@ class _$ChangeViewImpl implements _ChangeView {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return changeView(this);
   }
@@ -3532,6 +3629,7 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -3603,6 +3701,8 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return changeView?.call(this);
   }
@@ -3619,6 +3719,7 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -3686,6 +3787,7 @@ class _$ChangeViewImpl implements _ChangeView {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (changeView != null) {
@@ -3751,6 +3853,8 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -3841,6 +3945,7 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return refresh();
   }
@@ -3857,6 +3962,8 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -3938,6 +4045,7 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return refresh?.call();
   }
@@ -3954,6 +4062,8 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -4034,6 +4144,7 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -4054,6 +4165,7 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -4132,6 +4244,8 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return refresh(this);
   }
@@ -4148,6 +4262,7 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -4219,6 +4334,8 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return refresh?.call(this);
   }
@@ -4235,6 +4352,7 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -4302,6 +4420,7 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -4388,6 +4507,8 @@ class _$SearchImpl implements _Search {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -4478,6 +4599,7 @@ class _$SearchImpl implements _Search {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return search(keyword);
   }
@@ -4494,6 +4616,8 @@ class _$SearchImpl implements _Search {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -4575,6 +4699,7 @@ class _$SearchImpl implements _Search {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return search?.call(keyword);
   }
@@ -4591,6 +4716,8 @@ class _$SearchImpl implements _Search {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -4671,6 +4798,7 @@ class _$SearchImpl implements _Search {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -4691,6 +4819,7 @@ class _$SearchImpl implements _Search {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -4769,6 +4898,8 @@ class _$SearchImpl implements _Search {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return search(this);
   }
@@ -4785,6 +4916,7 @@ class _$SearchImpl implements _Search {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -4856,6 +4988,8 @@ class _$SearchImpl implements _Search {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return search?.call(this);
   }
@@ -4872,6 +5006,7 @@ class _$SearchImpl implements _Search {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -4939,6 +5074,7 @@ class _$SearchImpl implements _Search {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -5004,6 +5140,8 @@ class _$ClearSearchImpl implements _ClearSearch {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -5094,6 +5232,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return clearSearch();
   }
@@ -5110,6 +5249,8 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -5191,6 +5332,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return clearSearch?.call();
   }
@@ -5207,6 +5349,8 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -5287,6 +5431,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (clearSearch != null) {
@@ -5307,6 +5452,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -5385,6 +5531,8 @@ class _$ClearSearchImpl implements _ClearSearch {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return clearSearch(this);
   }
@@ -5401,6 +5549,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -5472,6 +5621,8 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return clearSearch?.call(this);
   }
@@ -5488,6 +5639,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -5555,6 +5707,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (clearSearch != null) {
@@ -5649,6 +5802,8 @@ class _$FilterByStatusesImpl implements _FilterByStatuses {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -5739,6 +5894,7 @@ class _$FilterByStatusesImpl implements _FilterByStatuses {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return filterByStatuses(statuses);
   }
@@ -5755,6 +5911,8 @@ class _$FilterByStatusesImpl implements _FilterByStatuses {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -5836,6 +5994,7 @@ class _$FilterByStatusesImpl implements _FilterByStatuses {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return filterByStatuses?.call(statuses);
   }
@@ -5852,6 +6011,8 @@ class _$FilterByStatusesImpl implements _FilterByStatuses {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -5932,6 +6093,7 @@ class _$FilterByStatusesImpl implements _FilterByStatuses {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (filterByStatuses != null) {
@@ -5952,6 +6114,7 @@ class _$FilterByStatusesImpl implements _FilterByStatuses {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -6030,6 +6193,8 @@ class _$FilterByStatusesImpl implements _FilterByStatuses {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return filterByStatuses(this);
   }
@@ -6046,6 +6211,7 @@ class _$FilterByStatusesImpl implements _FilterByStatuses {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -6117,6 +6283,8 @@ class _$FilterByStatusesImpl implements _FilterByStatuses {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return filterByStatuses?.call(this);
   }
@@ -6133,6 +6301,7 @@ class _$FilterByStatusesImpl implements _FilterByStatuses {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -6200,6 +6369,7 @@ class _$FilterByStatusesImpl implements _FilterByStatuses {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (filterByStatuses != null) {
@@ -6216,6 +6386,696 @@ abstract class _FilterByStatuses implements WeekPlanEvent {
   List<String> get statuses;
   @JsonKey(ignore: true)
   _$$FilterByStatusesImplCopyWith<_$FilterByStatusesImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FilterByStatusNosImplCopyWith<$Res> {
+  factory _$$FilterByStatusNosImplCopyWith(_$FilterByStatusNosImpl value,
+          $Res Function(_$FilterByStatusNosImpl) then) =
+      __$$FilterByStatusNosImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<int> statusNos, List<int> approveNos});
+}
+
+/// @nodoc
+class __$$FilterByStatusNosImplCopyWithImpl<$Res>
+    extends _$WeekPlanEventCopyWithImpl<$Res, _$FilterByStatusNosImpl>
+    implements _$$FilterByStatusNosImplCopyWith<$Res> {
+  __$$FilterByStatusNosImplCopyWithImpl(_$FilterByStatusNosImpl _value,
+      $Res Function(_$FilterByStatusNosImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? statusNos = null,
+    Object? approveNos = null,
+  }) {
+    return _then(_$FilterByStatusNosImpl(
+      statusNos: null == statusNos
+          ? _value._statusNos
+          : statusNos // ignore: cast_nullable_to_non_nullable
+              as List<int>,
+      approveNos: null == approveNos
+          ? _value._approveNos
+          : approveNos // ignore: cast_nullable_to_non_nullable
+              as List<int>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FilterByStatusNosImpl implements _FilterByStatusNos {
+  const _$FilterByStatusNosImpl(
+      {required final List<int> statusNos, required final List<int> approveNos})
+      : _statusNos = statusNos,
+        _approveNos = approveNos;
+
+  final List<int> _statusNos;
+  @override
+  List<int> get statusNos {
+    if (_statusNos is EqualUnmodifiableListView) return _statusNos;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_statusNos);
+  }
+
+  final List<int> _approveNos;
+  @override
+  List<int> get approveNos {
+    if (_approveNos is EqualUnmodifiableListView) return _approveNos;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_approveNos);
+  }
+
+  @override
+  String toString() {
+    return 'WeekPlanEvent.filterByStatusNos(statusNos: $statusNos, approveNos: $approveNos)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FilterByStatusNosImpl &&
+            const DeepCollectionEquality()
+                .equals(other._statusNos, _statusNos) &&
+            const DeepCollectionEquality()
+                .equals(other._approveNos, _approveNos));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_statusNos),
+      const DeepCollectionEquality().hash(_approveNos));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FilterByStatusNosImplCopyWith<_$FilterByStatusNosImpl> get copyWith =>
+      __$$FilterByStatusNosImplCopyWithImpl<_$FilterByStatusNosImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function() initDashboard,
+    required TResult Function(int viewNumber) initScreenWithView,
+    required TResult Function(int viewNumber) changeView,
+    required TResult Function() refresh,
+    required TResult Function(String keyword) search,
+    required TResult Function() clearSearch,
+    required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() clearDateFilter,
+    required TResult Function(int taskId, bool isCheck) checkIn,
+    required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
+    required TResult Function(int step) changeStep,
+    required TResult Function(int projectId, String projectName)
+        updateHeaderProject,
+    required TResult Function(int parentTaskId, String parentTaskName)
+        updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
+    required TResult Function(bool isPersonal) updateHeaderPersonalTask,
+    required TResult Function(int complexity) updateHeaderComplexity,
+    required TResult Function(int priority) updateHeaderPriority,
+    required TResult Function(int statusId, String statusName)
+        updateHeaderStatus,
+    required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
+    required TResult Function(int categoryId, String categoryName)
+        updateHeaderTaskCategory,
+    required TResult Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)
+        updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
+    required TResult Function() fetchProjectTypes,
+    required TResult Function() fetchEmployees,
+    required TResult Function(int projectId, bool isPersonalProject)
+        fetchParentProjectTasks,
+    required TResult Function(String name) updateContentTaskName,
+    required TResult Function(int assigneeId, String assigneeName)
+        updateContentAssignee,
+    required TResult Function(int assignerId, String assignerName)
+        updateContentAssigner,
+    required TResult Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)
+        updateContentDates,
+    required TResult Function(String description) updateContentDescription,
+    required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
+    required TResult Function(int value, String? otherText)
+        updateContentWorkplace,
+    required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
+    required TResult Function(EmployeeTaskItem employee) addAssignee,
+    required TResult Function(int employeeId) removeAssignee,
+    required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
+    required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
+    required TResult Function(int employeeId) removeRelatedPerson,
+    required TResult Function(WeekPlanSubTaskItem subTask) addSubTaskWithData,
+    required TResult Function(int index, WeekPlanSubTaskItem subTask)
+        updateSubTask,
+    required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
+    required TResult Function(String item) addChecklistItem,
+    required TResult Function(int index, String item) updateChecklistItem,
+    required TResult Function(int index) toggleChecklistDone,
+    required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
+    required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
+    required TResult Function(int index) removeAttachment,
+    required TResult Function(WeekPlanLinkItem link) addLink,
+    required TResult Function(int index) removeLink,
+    required TResult Function() addIncident,
+    required TResult Function(int index, WeekPlanIncidentItem incident)
+        updateIncident,
+    required TResult Function(int index) removeIncident,
+    required TResult Function(int index) toggleIncidentExpand,
+    required TResult Function(String? reason) updatePauseReason,
+    required TResult Function(bool locked) setDeadlineLocked,
+    required TResult Function() createTask,
+    required TResult Function() editTask,
+    required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
+    required TResult Function(List<String> filePaths, String subPath)
+        uploadFiles,
+    required TResult Function() clearUploadedFiles,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
+  }) {
+    return filterByStatusNos(statusNos, approveNos);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
+    TResult? Function(int viewNumber)? initScreenWithView,
+    TResult? Function(int viewNumber)? changeView,
+    TResult? Function()? refresh,
+    TResult? Function(String keyword)? search,
+    TResult? Function()? clearSearch,
+    TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? clearDateFilter,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
+    TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
+    TResult? Function(int step)? changeStep,
+    TResult? Function(int projectId, String projectName)? updateHeaderProject,
+    TResult? Function(int parentTaskId, String parentTaskName)?
+        updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
+    TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
+    TResult? Function(int complexity)? updateHeaderComplexity,
+    TResult? Function(int priority)? updateHeaderPriority,
+    TResult? Function(int statusId, String statusName)? updateHeaderStatus,
+    TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
+    TResult? Function(int categoryId, String categoryName)?
+        updateHeaderTaskCategory,
+    TResult? Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)?
+        updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
+    TResult? Function()? fetchProjectTypes,
+    TResult? Function()? fetchEmployees,
+    TResult? Function(int projectId, bool isPersonalProject)?
+        fetchParentProjectTasks,
+    TResult? Function(String name)? updateContentTaskName,
+    TResult? Function(int assigneeId, String assigneeName)?
+        updateContentAssignee,
+    TResult? Function(int assignerId, String assignerName)?
+        updateContentAssigner,
+    TResult? Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)?
+        updateContentDates,
+    TResult? Function(String description)? updateContentDescription,
+    TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
+    TResult? Function(int value, String? otherText)? updateContentWorkplace,
+    TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
+    TResult? Function(EmployeeTaskItem employee)? addAssignee,
+    TResult? Function(int employeeId)? removeAssignee,
+    TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
+    TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
+    TResult? Function(int employeeId)? removeRelatedPerson,
+    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
+    TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
+    TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
+    TResult? Function(String item)? addChecklistItem,
+    TResult? Function(int index, String item)? updateChecklistItem,
+    TResult? Function(int index)? toggleChecklistDone,
+    TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
+    TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
+    TResult? Function(int index)? removeAttachment,
+    TResult? Function(WeekPlanLinkItem link)? addLink,
+    TResult? Function(int index)? removeLink,
+    TResult? Function()? addIncident,
+    TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
+    TResult? Function(int index)? removeIncident,
+    TResult? Function(int index)? toggleIncidentExpand,
+    TResult? Function(String? reason)? updatePauseReason,
+    TResult? Function(bool locked)? setDeadlineLocked,
+    TResult? Function()? createTask,
+    TResult? Function()? editTask,
+    TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
+    TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
+    TResult? Function()? clearUploadedFiles,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
+  }) {
+    return filterByStatusNos?.call(statusNos, approveNos);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function()? initDashboard,
+    TResult Function(int viewNumber)? initScreenWithView,
+    TResult Function(int viewNumber)? changeView,
+    TResult Function()? refresh,
+    TResult Function(String keyword)? search,
+    TResult Function()? clearSearch,
+    TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? clearDateFilter,
+    TResult Function(int taskId, bool isCheck)? checkIn,
+    TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
+    TResult Function(int step)? changeStep,
+    TResult Function(int projectId, String projectName)? updateHeaderProject,
+    TResult Function(int parentTaskId, String parentTaskName)?
+        updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
+    TResult Function(bool isPersonal)? updateHeaderPersonalTask,
+    TResult Function(int complexity)? updateHeaderComplexity,
+    TResult Function(int priority)? updateHeaderPriority,
+    TResult Function(int statusId, String statusName)? updateHeaderStatus,
+    TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
+    TResult Function(int categoryId, String categoryName)?
+        updateHeaderTaskCategory,
+    TResult Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)?
+        updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
+    TResult Function()? fetchProjectTypes,
+    TResult Function()? fetchEmployees,
+    TResult Function(int projectId, bool isPersonalProject)?
+        fetchParentProjectTasks,
+    TResult Function(String name)? updateContentTaskName,
+    TResult Function(int assigneeId, String assigneeName)?
+        updateContentAssignee,
+    TResult Function(int assignerId, String assignerName)?
+        updateContentAssigner,
+    TResult Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)?
+        updateContentDates,
+    TResult Function(String description)? updateContentDescription,
+    TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
+    TResult Function(int value, String? otherText)? updateContentWorkplace,
+    TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
+    TResult Function(EmployeeTaskItem employee)? addAssignee,
+    TResult Function(int employeeId)? removeAssignee,
+    TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
+    TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
+    TResult Function(int employeeId)? removeRelatedPerson,
+    TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
+    TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
+    TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
+    TResult Function(String item)? addChecklistItem,
+    TResult Function(int index, String item)? updateChecklistItem,
+    TResult Function(int index)? toggleChecklistDone,
+    TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
+    TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
+    TResult Function(int index)? removeAttachment,
+    TResult Function(WeekPlanLinkItem link)? addLink,
+    TResult Function(int index)? removeLink,
+    TResult Function()? addIncident,
+    TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
+    TResult Function(int index)? removeIncident,
+    TResult Function(int index)? toggleIncidentExpand,
+    TResult Function(String? reason)? updatePauseReason,
+    TResult Function(bool locked)? setDeadlineLocked,
+    TResult Function()? createTask,
+    TResult Function()? editTask,
+    TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
+    TResult Function(List<String> filePaths, String subPath)? uploadFiles,
+    TResult Function()? clearUploadedFiles,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
+    required TResult orElse(),
+  }) {
+    if (filterByStatusNos != null) {
+      return filterByStatusNos(statusNos, approveNos);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
+    required TResult Function(_ChangeView value) changeView,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ClearSearch value) clearSearch,
+    required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ClearDateFilter value) clearDateFilter,
+    required TResult Function(_CheckIn value) checkIn,
+    required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
+    required TResult Function(_ChangeStep value) changeStep,
+    required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
+    required TResult Function(_UpdateHeaderParentTask value)
+        updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
+    required TResult Function(_UpdateHeaderPersonalTask value)
+        updateHeaderPersonalTask,
+    required TResult Function(_UpdateHeaderComplexity value)
+        updateHeaderComplexity,
+    required TResult Function(_UpdateHeaderPriority value) updateHeaderPriority,
+    required TResult Function(_UpdateHeaderStatus value) updateHeaderStatus,
+    required TResult Function(_UpdateHeaderTimeEstimate value)
+        updateHeaderTimeEstimate,
+    required TResult Function(_UpdateHeaderTaskCategory value)
+        updateHeaderTaskCategory,
+    required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
+        updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
+    required TResult Function(_FetchProjectTypes value) fetchProjectTypes,
+    required TResult Function(_FetchEmployees value) fetchEmployees,
+    required TResult Function(_FetchParentProjectTasks value)
+        fetchParentProjectTasks,
+    required TResult Function(_UpdateContentTaskName value)
+        updateContentTaskName,
+    required TResult Function(_UpdateContentAssignee value)
+        updateContentAssignee,
+    required TResult Function(_UpdateContentAssigner value)
+        updateContentAssigner,
+    required TResult Function(_UpdateContentDates value) updateContentDates,
+    required TResult Function(_UpdateContentDescription value)
+        updateContentDescription,
+    required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
+    required TResult Function(_UpdateContentWorkplace value)
+        updateContentWorkplace,
+    required TResult Function(_SetAssignees value) setAssignees,
+    required TResult Function(_AddAssignee value) addAssignee,
+    required TResult Function(_RemoveAssignee value) removeAssignee,
+    required TResult Function(_SetRelatedPersons value) setRelatedPersons,
+    required TResult Function(_AddRelatedPerson value) addRelatedPerson,
+    required TResult Function(_RemoveRelatedPerson value) removeRelatedPerson,
+    required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
+    required TResult Function(_UpdateSubTask value) updateSubTask,
+    required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
+    required TResult Function(_AddChecklistItem value) addChecklistItem,
+    required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
+    required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
+    required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
+    required TResult Function(_AddAttachment value) addAttachment,
+    required TResult Function(_RemoveAttachment value) removeAttachment,
+    required TResult Function(_AddLink value) addLink,
+    required TResult Function(_RemoveLink value) removeLink,
+    required TResult Function(_AddIncident value) addIncident,
+    required TResult Function(_UpdateIncident value) updateIncident,
+    required TResult Function(_RemoveIncident value) removeIncident,
+    required TResult Function(_ToggleIncidentExpand value) toggleIncidentExpand,
+    required TResult Function(_UpdatePauseReason value) updatePauseReason,
+    required TResult Function(_SetDeadlineLocked value) setDeadlineLocked,
+    required TResult Function(_CreateTask value) createTask,
+    required TResult Function(_EditTask value) editTask,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
+    required TResult Function(_UploadFiles value) uploadFiles,
+    required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
+    required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
+  }) {
+    return filterByStatusNos(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
+    TResult? Function(_ChangeView value)? changeView,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ClearSearch value)? clearSearch,
+    TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ClearDateFilter value)? clearDateFilter,
+    TResult? Function(_CheckIn value)? checkIn,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
+    TResult? Function(_ChangeStep value)? changeStep,
+    TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
+    TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
+    TResult? Function(_UpdateHeaderPersonalTask value)?
+        updateHeaderPersonalTask,
+    TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
+    TResult? Function(_UpdateHeaderPriority value)? updateHeaderPriority,
+    TResult? Function(_UpdateHeaderStatus value)? updateHeaderStatus,
+    TResult? Function(_UpdateHeaderTimeEstimate value)?
+        updateHeaderTimeEstimate,
+    TResult? Function(_UpdateHeaderTaskCategory value)?
+        updateHeaderTaskCategory,
+    TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
+        updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
+    TResult? Function(_FetchProjectTypes value)? fetchProjectTypes,
+    TResult? Function(_FetchEmployees value)? fetchEmployees,
+    TResult? Function(_FetchParentProjectTasks value)? fetchParentProjectTasks,
+    TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
+    TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
+    TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
+    TResult? Function(_UpdateContentDates value)? updateContentDates,
+    TResult? Function(_UpdateContentDescription value)?
+        updateContentDescription,
+    TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
+    TResult? Function(_UpdateContentWorkplace value)? updateContentWorkplace,
+    TResult? Function(_SetAssignees value)? setAssignees,
+    TResult? Function(_AddAssignee value)? addAssignee,
+    TResult? Function(_RemoveAssignee value)? removeAssignee,
+    TResult? Function(_SetRelatedPersons value)? setRelatedPersons,
+    TResult? Function(_AddRelatedPerson value)? addRelatedPerson,
+    TResult? Function(_RemoveRelatedPerson value)? removeRelatedPerson,
+    TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
+    TResult? Function(_UpdateSubTask value)? updateSubTask,
+    TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
+    TResult? Function(_AddChecklistItem value)? addChecklistItem,
+    TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
+    TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
+    TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
+    TResult? Function(_AddAttachment value)? addAttachment,
+    TResult? Function(_RemoveAttachment value)? removeAttachment,
+    TResult? Function(_AddLink value)? addLink,
+    TResult? Function(_RemoveLink value)? removeLink,
+    TResult? Function(_AddIncident value)? addIncident,
+    TResult? Function(_UpdateIncident value)? updateIncident,
+    TResult? Function(_RemoveIncident value)? removeIncident,
+    TResult? Function(_ToggleIncidentExpand value)? toggleIncidentExpand,
+    TResult? Function(_UpdatePauseReason value)? updatePauseReason,
+    TResult? Function(_SetDeadlineLocked value)? setDeadlineLocked,
+    TResult? Function(_CreateTask value)? createTask,
+    TResult? Function(_EditTask value)? editTask,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
+    TResult? Function(_UploadFiles value)? uploadFiles,
+    TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
+    TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
+  }) {
+    return filterByStatusNos?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
+    TResult Function(_ChangeView value)? changeView,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_Search value)? search,
+    TResult Function(_ClearSearch value)? clearSearch,
+    TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ClearDateFilter value)? clearDateFilter,
+    TResult Function(_CheckIn value)? checkIn,
+    TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
+    TResult Function(_ChangeStep value)? changeStep,
+    TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
+    TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
+    TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
+    TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
+    TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
+    TResult Function(_UpdateHeaderStatus value)? updateHeaderStatus,
+    TResult Function(_UpdateHeaderTimeEstimate value)? updateHeaderTimeEstimate,
+    TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
+    TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
+        updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
+    TResult Function(_FetchProjectTypes value)? fetchProjectTypes,
+    TResult Function(_FetchEmployees value)? fetchEmployees,
+    TResult Function(_FetchParentProjectTasks value)? fetchParentProjectTasks,
+    TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
+    TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
+    TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
+    TResult Function(_UpdateContentDates value)? updateContentDates,
+    TResult Function(_UpdateContentDescription value)? updateContentDescription,
+    TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
+    TResult Function(_UpdateContentWorkplace value)? updateContentWorkplace,
+    TResult Function(_SetAssignees value)? setAssignees,
+    TResult Function(_AddAssignee value)? addAssignee,
+    TResult Function(_RemoveAssignee value)? removeAssignee,
+    TResult Function(_SetRelatedPersons value)? setRelatedPersons,
+    TResult Function(_AddRelatedPerson value)? addRelatedPerson,
+    TResult Function(_RemoveRelatedPerson value)? removeRelatedPerson,
+    TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
+    TResult Function(_UpdateSubTask value)? updateSubTask,
+    TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
+    TResult Function(_AddChecklistItem value)? addChecklistItem,
+    TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
+    TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
+    TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
+    TResult Function(_AddAttachment value)? addAttachment,
+    TResult Function(_RemoveAttachment value)? removeAttachment,
+    TResult Function(_AddLink value)? addLink,
+    TResult Function(_RemoveLink value)? removeLink,
+    TResult Function(_AddIncident value)? addIncident,
+    TResult Function(_UpdateIncident value)? updateIncident,
+    TResult Function(_RemoveIncident value)? removeIncident,
+    TResult Function(_ToggleIncidentExpand value)? toggleIncidentExpand,
+    TResult Function(_UpdatePauseReason value)? updatePauseReason,
+    TResult Function(_SetDeadlineLocked value)? setDeadlineLocked,
+    TResult Function(_CreateTask value)? createTask,
+    TResult Function(_EditTask value)? editTask,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
+    TResult Function(_UploadFiles value)? uploadFiles,
+    TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
+    TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
+    required TResult orElse(),
+  }) {
+    if (filterByStatusNos != null) {
+      return filterByStatusNos(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FilterByStatusNos implements WeekPlanEvent {
+  const factory _FilterByStatusNos(
+      {required final List<int> statusNos,
+      required final List<int> approveNos}) = _$FilterByStatusNosImpl;
+
+  List<int> get statusNos;
+  List<int> get approveNos;
+  @JsonKey(ignore: true)
+  _$$FilterByStatusNosImplCopyWith<_$FilterByStatusNosImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -6302,6 +7162,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -6392,6 +7254,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -6408,6 +7271,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -6489,6 +7354,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -6505,6 +7371,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -6585,6 +7453,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -6605,6 +7474,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -6683,6 +7553,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return changeDateRange(this);
   }
@@ -6699,6 +7571,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -6770,6 +7643,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return changeDateRange?.call(this);
   }
@@ -6786,6 +7661,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -6853,6 +7729,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -6921,6 +7798,8 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -7011,6 +7890,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return clearDateFilter();
   }
@@ -7027,6 +7907,8 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -7108,6 +7990,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return clearDateFilter?.call();
   }
@@ -7124,6 +8007,8 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -7204,6 +8089,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (clearDateFilter != null) {
@@ -7224,6 +8110,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -7302,6 +8189,8 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return clearDateFilter(this);
   }
@@ -7318,6 +8207,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -7389,6 +8279,8 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return clearDateFilter?.call(this);
   }
@@ -7405,6 +8297,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -7472,6 +8365,7 @@ class _$ClearDateFilterImpl implements _ClearDateFilter {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (clearDateFilter != null) {
@@ -7566,6 +8460,8 @@ class _$CheckInImpl implements _CheckIn {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -7656,6 +8552,7 @@ class _$CheckInImpl implements _CheckIn {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return checkIn(taskId, isCheck);
   }
@@ -7672,6 +8569,8 @@ class _$CheckInImpl implements _CheckIn {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -7753,6 +8652,7 @@ class _$CheckInImpl implements _CheckIn {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return checkIn?.call(taskId, isCheck);
   }
@@ -7769,6 +8669,8 @@ class _$CheckInImpl implements _CheckIn {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -7849,6 +8751,7 @@ class _$CheckInImpl implements _CheckIn {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (checkIn != null) {
@@ -7869,6 +8772,7 @@ class _$CheckInImpl implements _CheckIn {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -7947,6 +8851,8 @@ class _$CheckInImpl implements _CheckIn {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return checkIn(this);
   }
@@ -7963,6 +8869,7 @@ class _$CheckInImpl implements _CheckIn {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -8034,6 +8941,8 @@ class _$CheckInImpl implements _CheckIn {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return checkIn?.call(this);
   }
@@ -8050,6 +8959,7 @@ class _$CheckInImpl implements _CheckIn {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -8117,6 +9027,7 @@ class _$CheckInImpl implements _CheckIn {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (checkIn != null) {
@@ -8183,6 +9094,8 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -8273,6 +9186,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return initAddScreen();
   }
@@ -8289,6 +9203,8 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -8370,6 +9286,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return initAddScreen?.call();
   }
@@ -8386,6 +9303,8 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -8466,6 +9385,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (initAddScreen != null) {
@@ -8486,6 +9406,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -8564,6 +9485,8 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return initAddScreen(this);
   }
@@ -8580,6 +9503,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -8651,6 +9575,8 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return initAddScreen?.call(this);
   }
@@ -8667,6 +9593,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -8734,6 +9661,7 @@ class _$InitAddScreenImpl implements _InitAddScreen {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (initAddScreen != null) {
@@ -8821,6 +9749,8 @@ class _$InitDetailScreenImpl implements _InitDetailScreen {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -8911,6 +9841,7 @@ class _$InitDetailScreenImpl implements _InitDetailScreen {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return initDetailScreen(taskId);
   }
@@ -8927,6 +9858,8 @@ class _$InitDetailScreenImpl implements _InitDetailScreen {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -9008,6 +9941,7 @@ class _$InitDetailScreenImpl implements _InitDetailScreen {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return initDetailScreen?.call(taskId);
   }
@@ -9024,6 +9958,8 @@ class _$InitDetailScreenImpl implements _InitDetailScreen {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -9104,6 +10040,7 @@ class _$InitDetailScreenImpl implements _InitDetailScreen {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (initDetailScreen != null) {
@@ -9124,6 +10061,7 @@ class _$InitDetailScreenImpl implements _InitDetailScreen {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -9202,6 +10140,8 @@ class _$InitDetailScreenImpl implements _InitDetailScreen {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return initDetailScreen(this);
   }
@@ -9218,6 +10158,7 @@ class _$InitDetailScreenImpl implements _InitDetailScreen {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -9289,6 +10230,8 @@ class _$InitDetailScreenImpl implements _InitDetailScreen {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return initDetailScreen?.call(this);
   }
@@ -9305,6 +10248,7 @@ class _$InitDetailScreenImpl implements _InitDetailScreen {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -9372,6 +10316,7 @@ class _$InitDetailScreenImpl implements _InitDetailScreen {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (initDetailScreen != null) {
@@ -9464,6 +10409,8 @@ class _$ChangeStepImpl implements _ChangeStep {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -9554,6 +10501,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return changeStep(step);
   }
@@ -9570,6 +10518,8 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -9651,6 +10601,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return changeStep?.call(step);
   }
@@ -9667,6 +10618,8 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -9747,6 +10700,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (changeStep != null) {
@@ -9767,6 +10721,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -9845,6 +10800,8 @@ class _$ChangeStepImpl implements _ChangeStep {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return changeStep(this);
   }
@@ -9861,6 +10818,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -9932,6 +10890,8 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return changeStep?.call(this);
   }
@@ -9948,6 +10908,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -10015,6 +10976,7 @@ class _$ChangeStepImpl implements _ChangeStep {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (changeStep != null) {
@@ -10118,6 +11080,8 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -10208,6 +11172,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return updateHeaderProject(projectId, projectName);
   }
@@ -10224,6 +11189,8 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -10305,6 +11272,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return updateHeaderProject?.call(projectId, projectName);
   }
@@ -10321,6 +11289,8 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -10401,6 +11371,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateHeaderProject != null) {
@@ -10421,6 +11392,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -10499,6 +11471,8 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return updateHeaderProject(this);
   }
@@ -10515,6 +11489,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -10586,6 +11561,8 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return updateHeaderProject?.call(this);
   }
@@ -10602,6 +11579,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -10669,6 +11647,7 @@ class _$UpdateHeaderProjectImpl implements _UpdateHeaderProject {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateHeaderProject != null) {
@@ -10777,6 +11756,8 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -10867,6 +11848,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return updateHeaderParentTask(parentTaskId, parentTaskName);
   }
@@ -10883,6 +11865,8 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -10964,6 +11948,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return updateHeaderParentTask?.call(parentTaskId, parentTaskName);
   }
@@ -10980,6 +11965,8 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -11060,6 +12047,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateHeaderParentTask != null) {
@@ -11080,6 +12068,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -11158,6 +12147,8 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return updateHeaderParentTask(this);
   }
@@ -11174,6 +12165,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -11245,6 +12237,8 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return updateHeaderParentTask?.call(this);
   }
@@ -11261,6 +12255,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -11328,6 +12323,7 @@ class _$UpdateHeaderParentTaskImpl implements _UpdateHeaderParentTask {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateHeaderParentTask != null) {
@@ -11435,6 +12431,8 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -11525,6 +12523,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return updateHeaderAssigner(assignerId, assignerName);
   }
@@ -11541,6 +12540,8 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -11622,6 +12623,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return updateHeaderAssigner?.call(assignerId, assignerName);
   }
@@ -11638,6 +12640,8 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -11718,6 +12722,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateHeaderAssigner != null) {
@@ -11738,6 +12743,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -11816,6 +12822,8 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return updateHeaderAssigner(this);
   }
@@ -11832,6 +12840,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -11903,6 +12912,8 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return updateHeaderAssigner?.call(this);
   }
@@ -11919,6 +12930,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -11986,6 +12998,7 @@ class _$UpdateHeaderAssignerImpl implements _UpdateHeaderAssigner {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateHeaderAssigner != null) {
@@ -12084,6 +13097,8 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -12174,6 +13189,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return updateHeaderPersonalTask(isPersonal);
   }
@@ -12190,6 +13206,8 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -12271,6 +13289,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return updateHeaderPersonalTask?.call(isPersonal);
   }
@@ -12287,6 +13306,8 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -12367,6 +13388,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateHeaderPersonalTask != null) {
@@ -12387,6 +13409,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -12465,6 +13488,8 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return updateHeaderPersonalTask(this);
   }
@@ -12481,6 +13506,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -12552,6 +13578,8 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return updateHeaderPersonalTask?.call(this);
   }
@@ -12568,6 +13596,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -12635,6 +13664,7 @@ class _$UpdateHeaderPersonalTaskImpl implements _UpdateHeaderPersonalTask {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateHeaderPersonalTask != null) {
@@ -12731,6 +13761,8 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -12821,6 +13853,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return updateHeaderComplexity(complexity);
   }
@@ -12837,6 +13870,8 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -12918,6 +13953,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return updateHeaderComplexity?.call(complexity);
   }
@@ -12934,6 +13970,8 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -13014,6 +14052,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateHeaderComplexity != null) {
@@ -13034,6 +14073,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -13112,6 +14152,8 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return updateHeaderComplexity(this);
   }
@@ -13128,6 +14170,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -13199,6 +14242,8 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return updateHeaderComplexity?.call(this);
   }
@@ -13215,6 +14260,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -13282,6 +14328,7 @@ class _$UpdateHeaderComplexityImpl implements _UpdateHeaderComplexity {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateHeaderComplexity != null) {
@@ -13377,6 +14424,8 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -13467,6 +14516,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return updateHeaderPriority(priority);
   }
@@ -13483,6 +14533,8 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -13564,6 +14616,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return updateHeaderPriority?.call(priority);
   }
@@ -13580,6 +14633,8 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -13660,6 +14715,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateHeaderPriority != null) {
@@ -13680,6 +14736,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -13758,6 +14815,8 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return updateHeaderPriority(this);
   }
@@ -13774,6 +14833,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -13845,6 +14905,8 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return updateHeaderPriority?.call(this);
   }
@@ -13861,6 +14923,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -13928,6 +14991,7 @@ class _$UpdateHeaderPriorityImpl implements _UpdateHeaderPriority {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateHeaderPriority != null) {
@@ -14032,6 +15096,8 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -14122,6 +15188,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return updateHeaderStatus(statusId, statusName);
   }
@@ -14138,6 +15205,8 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -14219,6 +15288,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return updateHeaderStatus?.call(statusId, statusName);
   }
@@ -14235,6 +15305,8 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -14315,6 +15387,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateHeaderStatus != null) {
@@ -14335,6 +15408,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -14413,6 +15487,8 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return updateHeaderStatus(this);
   }
@@ -14429,6 +15505,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -14500,6 +15577,8 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return updateHeaderStatus?.call(this);
   }
@@ -14516,6 +15595,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -14583,6 +15663,7 @@ class _$UpdateHeaderStatusImpl implements _UpdateHeaderStatus {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateHeaderStatus != null) {
@@ -14681,6 +15762,8 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -14771,6 +15854,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return updateHeaderTimeEstimate(timeEstimate);
   }
@@ -14787,6 +15871,8 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -14868,6 +15954,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return updateHeaderTimeEstimate?.call(timeEstimate);
   }
@@ -14884,6 +15971,8 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -14964,6 +16053,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateHeaderTimeEstimate != null) {
@@ -14984,6 +16074,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -15062,6 +16153,8 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return updateHeaderTimeEstimate(this);
   }
@@ -15078,6 +16171,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -15149,6 +16243,8 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return updateHeaderTimeEstimate?.call(this);
   }
@@ -15165,6 +16261,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -15232,6 +16329,7 @@ class _$UpdateHeaderTimeEstimateImpl implements _UpdateHeaderTimeEstimate {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateHeaderTimeEstimate != null) {
@@ -15338,6 +16436,8 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -15428,6 +16528,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return updateHeaderTaskCategory(categoryId, categoryName);
   }
@@ -15444,6 +16545,8 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -15525,6 +16628,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return updateHeaderTaskCategory?.call(categoryId, categoryName);
   }
@@ -15541,6 +16645,8 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -15621,6 +16727,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateHeaderTaskCategory != null) {
@@ -15641,6 +16748,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -15719,6 +16827,8 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return updateHeaderTaskCategory(this);
   }
@@ -15735,6 +16845,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -15806,6 +16917,8 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return updateHeaderTaskCategory?.call(this);
   }
@@ -15822,6 +16935,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -15889,6 +17003,7 @@ class _$UpdateHeaderTaskCategoryImpl implements _UpdateHeaderTaskCategory {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateHeaderTaskCategory != null) {
@@ -16023,6 +17138,8 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -16113,6 +17230,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return updateHeaderWorkTypeAndStatus(
         workTypeId, workTypeName, statusId, statusName);
@@ -16130,6 +17248,8 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -16211,6 +17331,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return updateHeaderWorkTypeAndStatus?.call(
         workTypeId, workTypeName, statusId, statusName);
@@ -16228,6 +17349,8 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -16308,6 +17431,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateHeaderWorkTypeAndStatus != null) {
@@ -16329,6 +17453,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -16407,6 +17532,8 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return updateHeaderWorkTypeAndStatus(this);
   }
@@ -16423,6 +17550,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -16494,6 +17622,8 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return updateHeaderWorkTypeAndStatus?.call(this);
   }
@@ -16510,6 +17640,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -16577,6 +17708,7 @@ class _$UpdateHeaderWorkTypeAndStatusImpl
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateHeaderWorkTypeAndStatus != null) {
@@ -16650,6 +17782,8 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -16740,6 +17874,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return fetchTaskTypes();
   }
@@ -16756,6 +17891,8 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -16837,6 +17974,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return fetchTaskTypes?.call();
   }
@@ -16853,6 +17991,8 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -16933,6 +18073,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (fetchTaskTypes != null) {
@@ -16953,6 +18094,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -17031,6 +18173,8 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return fetchTaskTypes(this);
   }
@@ -17047,6 +18191,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -17118,6 +18263,8 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return fetchTaskTypes?.call(this);
   }
@@ -17134,6 +18281,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -17201,6 +18349,7 @@ class _$FetchTaskTypesImpl implements _FetchTaskTypes {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (fetchTaskTypes != null) {
@@ -17261,6 +18410,8 @@ class _$FetchProjectsImpl implements _FetchProjects {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -17351,6 +18502,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return fetchProjects();
   }
@@ -17367,6 +18519,8 @@ class _$FetchProjectsImpl implements _FetchProjects {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -17448,6 +18602,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return fetchProjects?.call();
   }
@@ -17464,6 +18619,8 @@ class _$FetchProjectsImpl implements _FetchProjects {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -17544,6 +18701,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (fetchProjects != null) {
@@ -17564,6 +18722,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -17642,6 +18801,8 @@ class _$FetchProjectsImpl implements _FetchProjects {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return fetchProjects(this);
   }
@@ -17658,6 +18819,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -17729,6 +18891,8 @@ class _$FetchProjectsImpl implements _FetchProjects {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return fetchProjects?.call(this);
   }
@@ -17745,6 +18909,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -17812,6 +18977,7 @@ class _$FetchProjectsImpl implements _FetchProjects {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (fetchProjects != null) {
@@ -17872,6 +19038,8 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -17962,6 +19130,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return fetchProjectTypes();
   }
@@ -17978,6 +19147,8 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -18059,6 +19230,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return fetchProjectTypes?.call();
   }
@@ -18075,6 +19247,8 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -18155,6 +19329,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (fetchProjectTypes != null) {
@@ -18175,6 +19350,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -18253,6 +19429,8 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return fetchProjectTypes(this);
   }
@@ -18269,6 +19447,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -18340,6 +19519,8 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return fetchProjectTypes?.call(this);
   }
@@ -18356,6 +19537,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -18423,6 +19605,7 @@ class _$FetchProjectTypesImpl implements _FetchProjectTypes {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (fetchProjectTypes != null) {
@@ -18483,6 +19666,8 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -18573,6 +19758,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return fetchEmployees();
   }
@@ -18589,6 +19775,8 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -18670,6 +19858,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return fetchEmployees?.call();
   }
@@ -18686,6 +19875,8 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -18766,6 +19957,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (fetchEmployees != null) {
@@ -18786,6 +19978,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -18864,6 +20057,8 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return fetchEmployees(this);
   }
@@ -18880,6 +20075,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -18951,6 +20147,8 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return fetchEmployees?.call(this);
   }
@@ -18967,6 +20165,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -19034,6 +20233,7 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (fetchEmployees != null) {
@@ -19134,6 +20334,8 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -19224,6 +20426,7 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return fetchParentProjectTasks(projectId, isPersonalProject);
   }
@@ -19240,6 +20443,8 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -19321,6 +20526,7 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return fetchParentProjectTasks?.call(projectId, isPersonalProject);
   }
@@ -19337,6 +20543,8 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -19417,6 +20625,7 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (fetchParentProjectTasks != null) {
@@ -19437,6 +20646,7 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -19515,6 +20725,8 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return fetchParentProjectTasks(this);
   }
@@ -19531,6 +20743,7 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -19602,6 +20815,8 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return fetchParentProjectTasks?.call(this);
   }
@@ -19618,6 +20833,7 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -19685,6 +20901,7 @@ class _$FetchParentProjectTasksImpl implements _FetchParentProjectTasks {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (fetchParentProjectTasks != null) {
@@ -19781,6 +20998,8 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -19871,6 +21090,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return updateContentTaskName(name);
   }
@@ -19887,6 +21107,8 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -19968,6 +21190,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return updateContentTaskName?.call(name);
   }
@@ -19984,6 +21207,8 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -20064,6 +21289,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateContentTaskName != null) {
@@ -20084,6 +21310,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -20162,6 +21389,8 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return updateContentTaskName(this);
   }
@@ -20178,6 +21407,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -20249,6 +21479,8 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return updateContentTaskName?.call(this);
   }
@@ -20265,6 +21497,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -20332,6 +21565,7 @@ class _$UpdateContentTaskNameImpl implements _UpdateContentTaskName {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateContentTaskName != null) {
@@ -20437,6 +21671,8 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -20527,6 +21763,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return updateContentAssignee(assigneeId, assigneeName);
   }
@@ -20543,6 +21780,8 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -20624,6 +21863,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return updateContentAssignee?.call(assigneeId, assigneeName);
   }
@@ -20640,6 +21880,8 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -20720,6 +21962,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateContentAssignee != null) {
@@ -20740,6 +21983,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -20818,6 +22062,8 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return updateContentAssignee(this);
   }
@@ -20834,6 +22080,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -20905,6 +22152,8 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return updateContentAssignee?.call(this);
   }
@@ -20921,6 +22170,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -20988,6 +22238,7 @@ class _$UpdateContentAssigneeImpl implements _UpdateContentAssignee {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateContentAssignee != null) {
@@ -21095,6 +22346,8 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -21185,6 +22438,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return updateContentAssigner(assignerId, assignerName);
   }
@@ -21201,6 +22455,8 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -21282,6 +22538,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return updateContentAssigner?.call(assignerId, assignerName);
   }
@@ -21298,6 +22555,8 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -21378,6 +22637,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateContentAssigner != null) {
@@ -21398,6 +22658,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -21476,6 +22737,8 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return updateContentAssigner(this);
   }
@@ -21492,6 +22755,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -21563,6 +22827,8 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return updateContentAssigner?.call(this);
   }
@@ -21579,6 +22845,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -21646,6 +22913,7 @@ class _$UpdateContentAssignerImpl implements _UpdateContentAssigner {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateContentAssigner != null) {
@@ -21788,6 +23056,8 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -21878,6 +23148,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return updateContentDates(
         startDate, endDate, actualStartDate, actualEndDate, deadline);
@@ -21895,6 +23166,8 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -21976,6 +23249,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return updateContentDates?.call(
         startDate, endDate, actualStartDate, actualEndDate, deadline);
@@ -21993,6 +23267,8 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -22073,6 +23349,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateContentDates != null) {
@@ -22094,6 +23371,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -22172,6 +23450,8 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return updateContentDates(this);
   }
@@ -22188,6 +23468,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -22259,6 +23540,8 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return updateContentDates?.call(this);
   }
@@ -22275,6 +23558,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -22342,6 +23626,7 @@ class _$UpdateContentDatesImpl implements _UpdateContentDates {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateContentDates != null) {
@@ -22446,6 +23731,8 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -22536,6 +23823,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return updateContentDescription(description);
   }
@@ -22552,6 +23840,8 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -22633,6 +23923,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return updateContentDescription?.call(description);
   }
@@ -22649,6 +23940,8 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -22729,6 +24022,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateContentDescription != null) {
@@ -22749,6 +24043,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -22827,6 +24122,8 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return updateContentDescription(this);
   }
@@ -22843,6 +24140,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -22914,6 +24212,8 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return updateContentDescription?.call(this);
   }
@@ -22930,6 +24230,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -22997,6 +24298,7 @@ class _$UpdateContentDescriptionImpl implements _UpdateContentDescription {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateContentDescription != null) {
@@ -23090,6 +24392,8 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -23180,6 +24484,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return updateContentResult(result);
   }
@@ -23196,6 +24501,8 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -23277,6 +24584,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return updateContentResult?.call(result);
   }
@@ -23293,6 +24601,8 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -23373,6 +24683,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateContentResult != null) {
@@ -23393,6 +24704,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -23471,6 +24783,8 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return updateContentResult(this);
   }
@@ -23487,6 +24801,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -23558,6 +24873,8 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return updateContentResult?.call(this);
   }
@@ -23574,6 +24891,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -23641,6 +24959,7 @@ class _$UpdateContentResultImpl implements _UpdateContentResult {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateContentResult != null) {
@@ -23738,6 +25057,8 @@ class _$UpdateContentReasonSolutionImpl
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -23828,6 +25149,7 @@ class _$UpdateContentReasonSolutionImpl
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return updateContentReasonSolution(reasonSolution);
   }
@@ -23844,6 +25166,8 @@ class _$UpdateContentReasonSolutionImpl
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -23925,6 +25249,7 @@ class _$UpdateContentReasonSolutionImpl
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return updateContentReasonSolution?.call(reasonSolution);
   }
@@ -23941,6 +25266,8 @@ class _$UpdateContentReasonSolutionImpl
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -24021,6 +25348,7 @@ class _$UpdateContentReasonSolutionImpl
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateContentReasonSolution != null) {
@@ -24041,6 +25369,7 @@ class _$UpdateContentReasonSolutionImpl
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -24119,6 +25448,8 @@ class _$UpdateContentReasonSolutionImpl
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return updateContentReasonSolution(this);
   }
@@ -24135,6 +25466,7 @@ class _$UpdateContentReasonSolutionImpl
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -24206,6 +25538,8 @@ class _$UpdateContentReasonSolutionImpl
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return updateContentReasonSolution?.call(this);
   }
@@ -24222,6 +25556,7 @@ class _$UpdateContentReasonSolutionImpl
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -24289,6 +25624,7 @@ class _$UpdateContentReasonSolutionImpl
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateContentReasonSolution != null) {
@@ -24393,6 +25729,8 @@ class _$UpdateContentWorkplaceImpl implements _UpdateContentWorkplace {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -24483,6 +25821,7 @@ class _$UpdateContentWorkplaceImpl implements _UpdateContentWorkplace {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return updateContentWorkplace(value, otherText);
   }
@@ -24499,6 +25838,8 @@ class _$UpdateContentWorkplaceImpl implements _UpdateContentWorkplace {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -24580,6 +25921,7 @@ class _$UpdateContentWorkplaceImpl implements _UpdateContentWorkplace {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return updateContentWorkplace?.call(value, otherText);
   }
@@ -24596,6 +25938,8 @@ class _$UpdateContentWorkplaceImpl implements _UpdateContentWorkplace {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -24676,6 +26020,7 @@ class _$UpdateContentWorkplaceImpl implements _UpdateContentWorkplace {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateContentWorkplace != null) {
@@ -24696,6 +26041,7 @@ class _$UpdateContentWorkplaceImpl implements _UpdateContentWorkplace {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -24774,6 +26120,8 @@ class _$UpdateContentWorkplaceImpl implements _UpdateContentWorkplace {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return updateContentWorkplace(this);
   }
@@ -24790,6 +26138,7 @@ class _$UpdateContentWorkplaceImpl implements _UpdateContentWorkplace {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -24861,6 +26210,8 @@ class _$UpdateContentWorkplaceImpl implements _UpdateContentWorkplace {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return updateContentWorkplace?.call(this);
   }
@@ -24877,6 +26228,7 @@ class _$UpdateContentWorkplaceImpl implements _UpdateContentWorkplace {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -24944,6 +26296,7 @@ class _$UpdateContentWorkplaceImpl implements _UpdateContentWorkplace {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateContentWorkplace != null) {
@@ -25046,6 +26399,8 @@ class _$SetAssigneesImpl implements _SetAssignees {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -25136,6 +26491,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return setAssignees(assignees);
   }
@@ -25152,6 +26508,8 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -25233,6 +26591,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return setAssignees?.call(assignees);
   }
@@ -25249,6 +26608,8 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -25329,6 +26690,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (setAssignees != null) {
@@ -25349,6 +26711,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -25427,6 +26790,8 @@ class _$SetAssigneesImpl implements _SetAssignees {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return setAssignees(this);
   }
@@ -25443,6 +26808,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -25514,6 +26880,8 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return setAssignees?.call(this);
   }
@@ -25530,6 +26898,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -25597,6 +26966,7 @@ class _$SetAssigneesImpl implements _SetAssignees {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (setAssignees != null) {
@@ -25700,6 +27070,8 @@ class _$AddAssigneeImpl implements _AddAssignee {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -25790,6 +27162,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return addAssignee(employee);
   }
@@ -25806,6 +27179,8 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -25887,6 +27262,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return addAssignee?.call(employee);
   }
@@ -25903,6 +27279,8 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -25983,6 +27361,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (addAssignee != null) {
@@ -26003,6 +27382,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -26081,6 +27461,8 @@ class _$AddAssigneeImpl implements _AddAssignee {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return addAssignee(this);
   }
@@ -26097,6 +27479,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -26168,6 +27551,8 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return addAssignee?.call(this);
   }
@@ -26184,6 +27569,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -26251,6 +27637,7 @@ class _$AddAssigneeImpl implements _AddAssignee {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (addAssignee != null) {
@@ -26345,6 +27732,8 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -26435,6 +27824,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return removeAssignee(employeeId);
   }
@@ -26451,6 +27841,8 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -26532,6 +27924,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return removeAssignee?.call(employeeId);
   }
@@ -26548,6 +27941,8 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -26628,6 +28023,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (removeAssignee != null) {
@@ -26648,6 +28044,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -26726,6 +28123,8 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return removeAssignee(this);
   }
@@ -26742,6 +28141,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -26813,6 +28213,8 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return removeAssignee?.call(this);
   }
@@ -26829,6 +28231,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -26896,6 +28299,7 @@ class _$RemoveAssigneeImpl implements _RemoveAssignee {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (removeAssignee != null) {
@@ -26995,6 +28399,8 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -27085,6 +28491,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return setRelatedPersons(persons);
   }
@@ -27101,6 +28508,8 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -27182,6 +28591,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return setRelatedPersons?.call(persons);
   }
@@ -27198,6 +28608,8 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -27278,6 +28690,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (setRelatedPersons != null) {
@@ -27298,6 +28711,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -27376,6 +28790,8 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return setRelatedPersons(this);
   }
@@ -27392,6 +28808,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -27463,6 +28880,8 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return setRelatedPersons?.call(this);
   }
@@ -27479,6 +28898,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -27546,6 +28966,7 @@ class _$SetRelatedPersonsImpl implements _SetRelatedPersons {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (setRelatedPersons != null) {
@@ -27650,6 +29071,8 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -27740,6 +29163,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return addRelatedPerson(employee);
   }
@@ -27756,6 +29180,8 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -27837,6 +29263,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return addRelatedPerson?.call(employee);
   }
@@ -27853,6 +29280,8 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -27933,6 +29362,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (addRelatedPerson != null) {
@@ -27953,6 +29383,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -28031,6 +29462,8 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return addRelatedPerson(this);
   }
@@ -28047,6 +29480,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -28118,6 +29552,8 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return addRelatedPerson?.call(this);
   }
@@ -28134,6 +29570,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -28201,6 +29638,7 @@ class _$AddRelatedPersonImpl implements _AddRelatedPerson {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (addRelatedPerson != null) {
@@ -28295,6 +29733,8 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -28385,6 +29825,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return removeRelatedPerson(employeeId);
   }
@@ -28401,6 +29842,8 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -28482,6 +29925,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return removeRelatedPerson?.call(employeeId);
   }
@@ -28498,6 +29942,8 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -28578,6 +30024,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (removeRelatedPerson != null) {
@@ -28598,6 +30045,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -28676,6 +30124,8 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return removeRelatedPerson(this);
   }
@@ -28692,6 +30142,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -28763,6 +30214,8 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return removeRelatedPerson?.call(this);
   }
@@ -28779,6 +30232,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -28846,6 +30300,7 @@ class _$RemoveRelatedPersonImpl implements _RemoveRelatedPerson {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (removeRelatedPerson != null) {
@@ -28949,6 +30404,8 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -29039,6 +30496,7 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return addSubTaskWithData(subTask);
   }
@@ -29055,6 +30513,8 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -29136,6 +30596,7 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return addSubTaskWithData?.call(subTask);
   }
@@ -29152,6 +30613,8 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -29232,6 +30695,7 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (addSubTaskWithData != null) {
@@ -29252,6 +30716,7 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -29330,6 +30795,8 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return addSubTaskWithData(this);
   }
@@ -29346,6 +30813,7 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -29417,6 +30885,8 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return addSubTaskWithData?.call(this);
   }
@@ -29433,6 +30903,7 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -29500,6 +30971,7 @@ class _$AddSubTaskWithDataImpl implements _AddSubTaskWithData {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (addSubTaskWithData != null) {
@@ -29610,6 +31082,8 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -29700,6 +31174,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return updateSubTask(index, subTask);
   }
@@ -29716,6 +31191,8 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -29797,6 +31274,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return updateSubTask?.call(index, subTask);
   }
@@ -29813,6 +31291,8 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -29893,6 +31373,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateSubTask != null) {
@@ -29913,6 +31394,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -29991,6 +31473,8 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return updateSubTask(this);
   }
@@ -30007,6 +31491,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -30078,6 +31563,8 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return updateSubTask?.call(this);
   }
@@ -30094,6 +31581,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -30161,6 +31649,7 @@ class _$UpdateSubTaskImpl implements _UpdateSubTask {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateSubTask != null) {
@@ -30254,6 +31743,8 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -30344,6 +31835,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return removeSubTask(index);
   }
@@ -30360,6 +31852,8 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -30441,6 +31935,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return removeSubTask?.call(index);
   }
@@ -30457,6 +31952,8 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -30537,6 +32034,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (removeSubTask != null) {
@@ -30557,6 +32055,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -30635,6 +32134,8 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return removeSubTask(this);
   }
@@ -30651,6 +32152,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -30722,6 +32224,8 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return removeSubTask?.call(this);
   }
@@ -30738,6 +32242,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -30805,6 +32310,7 @@ class _$RemoveSubTaskImpl implements _RemoveSubTask {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (removeSubTask != null) {
@@ -30897,6 +32403,8 @@ class _$FetchChecklistsImpl implements _FetchChecklists {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -30987,6 +32495,7 @@ class _$FetchChecklistsImpl implements _FetchChecklists {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return fetchChecklists(taskId);
   }
@@ -31003,6 +32512,8 @@ class _$FetchChecklistsImpl implements _FetchChecklists {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -31084,6 +32595,7 @@ class _$FetchChecklistsImpl implements _FetchChecklists {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return fetchChecklists?.call(taskId);
   }
@@ -31100,6 +32612,8 @@ class _$FetchChecklistsImpl implements _FetchChecklists {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -31180,6 +32694,7 @@ class _$FetchChecklistsImpl implements _FetchChecklists {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (fetchChecklists != null) {
@@ -31200,6 +32715,7 @@ class _$FetchChecklistsImpl implements _FetchChecklists {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -31278,6 +32794,8 @@ class _$FetchChecklistsImpl implements _FetchChecklists {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return fetchChecklists(this);
   }
@@ -31294,6 +32812,7 @@ class _$FetchChecklistsImpl implements _FetchChecklists {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -31365,6 +32884,8 @@ class _$FetchChecklistsImpl implements _FetchChecklists {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return fetchChecklists?.call(this);
   }
@@ -31381,6 +32902,7 @@ class _$FetchChecklistsImpl implements _FetchChecklists {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -31448,6 +32970,7 @@ class _$FetchChecklistsImpl implements _FetchChecklists {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (fetchChecklists != null) {
@@ -31576,6 +33099,8 @@ class _$UpdateDetailChecklistItemImpl implements _UpdateDetailChecklistItem {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -31666,6 +33191,7 @@ class _$UpdateDetailChecklistItemImpl implements _UpdateDetailChecklistItem {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return updateDetailChecklistItem(
         checklistId, checklistTitle, orderIndex, isDone);
@@ -31683,6 +33209,8 @@ class _$UpdateDetailChecklistItemImpl implements _UpdateDetailChecklistItem {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -31764,6 +33292,7 @@ class _$UpdateDetailChecklistItemImpl implements _UpdateDetailChecklistItem {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return updateDetailChecklistItem?.call(
         checklistId, checklistTitle, orderIndex, isDone);
@@ -31781,6 +33310,8 @@ class _$UpdateDetailChecklistItemImpl implements _UpdateDetailChecklistItem {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -31861,6 +33392,7 @@ class _$UpdateDetailChecklistItemImpl implements _UpdateDetailChecklistItem {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateDetailChecklistItem != null) {
@@ -31882,6 +33414,7 @@ class _$UpdateDetailChecklistItemImpl implements _UpdateDetailChecklistItem {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -31960,6 +33493,8 @@ class _$UpdateDetailChecklistItemImpl implements _UpdateDetailChecklistItem {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return updateDetailChecklistItem(this);
   }
@@ -31976,6 +33511,7 @@ class _$UpdateDetailChecklistItemImpl implements _UpdateDetailChecklistItem {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -32047,6 +33583,8 @@ class _$UpdateDetailChecklistItemImpl implements _UpdateDetailChecklistItem {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return updateDetailChecklistItem?.call(this);
   }
@@ -32063,6 +33601,7 @@ class _$UpdateDetailChecklistItemImpl implements _UpdateDetailChecklistItem {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -32130,6 +33669,7 @@ class _$UpdateDetailChecklistItemImpl implements _UpdateDetailChecklistItem {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateDetailChecklistItem != null) {
@@ -32265,6 +33805,8 @@ class _$UpdateChecklistItemOnServerImpl
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -32355,6 +33897,7 @@ class _$UpdateChecklistItemOnServerImpl
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return updateChecklistItemOnServer(
         checklistId, checklistTitle, orderIndex, isDone);
@@ -32372,6 +33915,8 @@ class _$UpdateChecklistItemOnServerImpl
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -32453,6 +33998,7 @@ class _$UpdateChecklistItemOnServerImpl
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return updateChecklistItemOnServer?.call(
         checklistId, checklistTitle, orderIndex, isDone);
@@ -32470,6 +34016,8 @@ class _$UpdateChecklistItemOnServerImpl
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -32550,6 +34098,7 @@ class _$UpdateChecklistItemOnServerImpl
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateChecklistItemOnServer != null) {
@@ -32571,6 +34120,7 @@ class _$UpdateChecklistItemOnServerImpl
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -32649,6 +34199,8 @@ class _$UpdateChecklistItemOnServerImpl
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return updateChecklistItemOnServer(this);
   }
@@ -32665,6 +34217,7 @@ class _$UpdateChecklistItemOnServerImpl
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -32736,6 +34289,8 @@ class _$UpdateChecklistItemOnServerImpl
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return updateChecklistItemOnServer?.call(this);
   }
@@ -32752,6 +34307,7 @@ class _$UpdateChecklistItemOnServerImpl
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -32819,6 +34375,7 @@ class _$UpdateChecklistItemOnServerImpl
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateChecklistItemOnServer != null) {
@@ -32918,6 +34475,8 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -33008,6 +34567,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return addChecklistItem(item);
   }
@@ -33024,6 +34584,8 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -33105,6 +34667,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return addChecklistItem?.call(item);
   }
@@ -33121,6 +34684,8 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -33201,6 +34766,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (addChecklistItem != null) {
@@ -33221,6 +34787,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -33299,6 +34866,8 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return addChecklistItem(this);
   }
@@ -33315,6 +34884,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -33386,6 +34956,8 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return addChecklistItem?.call(this);
   }
@@ -33402,6 +34974,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -33469,6 +35042,7 @@ class _$AddChecklistItemImpl implements _AddChecklistItem {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (addChecklistItem != null) {
@@ -33569,6 +35143,8 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -33659,6 +35235,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return updateChecklistItem(index, item);
   }
@@ -33675,6 +35252,8 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -33756,6 +35335,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return updateChecklistItem?.call(index, item);
   }
@@ -33772,6 +35352,8 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -33852,6 +35434,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateChecklistItem != null) {
@@ -33872,6 +35455,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -33950,6 +35534,8 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return updateChecklistItem(this);
   }
@@ -33966,6 +35552,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -34037,6 +35624,8 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return updateChecklistItem?.call(this);
   }
@@ -34053,6 +35642,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -34120,6 +35710,7 @@ class _$UpdateChecklistItemImpl implements _UpdateChecklistItem {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateChecklistItem != null) {
@@ -34214,6 +35805,8 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -34304,6 +35897,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return toggleChecklistDone(index);
   }
@@ -34320,6 +35914,8 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -34401,6 +35997,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return toggleChecklistDone?.call(index);
   }
@@ -34417,6 +36014,8 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -34497,6 +36096,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (toggleChecklistDone != null) {
@@ -34517,6 +36117,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -34595,6 +36196,8 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return toggleChecklistDone(this);
   }
@@ -34611,6 +36214,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -34682,6 +36286,8 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return toggleChecklistDone?.call(this);
   }
@@ -34698,6 +36304,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -34765,6 +36372,7 @@ class _$ToggleChecklistDoneImpl implements _ToggleChecklistDone {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (toggleChecklistDone != null) {
@@ -34858,6 +36466,8 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -34948,6 +36558,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return removeChecklistItem(index);
   }
@@ -34964,6 +36575,8 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -35045,6 +36658,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return removeChecklistItem?.call(index);
   }
@@ -35061,6 +36675,8 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -35141,6 +36757,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (removeChecklistItem != null) {
@@ -35161,6 +36778,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -35239,6 +36857,8 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return removeChecklistItem(this);
   }
@@ -35255,6 +36875,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -35326,6 +36947,8 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return removeChecklistItem?.call(this);
   }
@@ -35342,6 +36965,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -35409,6 +37033,7 @@ class _$RemoveChecklistItemImpl implements _RemoveChecklistItem {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (removeChecklistItem != null) {
@@ -35504,6 +37129,8 @@ class _$MarkChecklistDeletedImpl implements _MarkChecklistDeleted {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -35594,6 +37221,7 @@ class _$MarkChecklistDeletedImpl implements _MarkChecklistDeleted {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return markChecklistDeleted(checklistId);
   }
@@ -35610,6 +37238,8 @@ class _$MarkChecklistDeletedImpl implements _MarkChecklistDeleted {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -35691,6 +37321,7 @@ class _$MarkChecklistDeletedImpl implements _MarkChecklistDeleted {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return markChecklistDeleted?.call(checklistId);
   }
@@ -35707,6 +37338,8 @@ class _$MarkChecklistDeletedImpl implements _MarkChecklistDeleted {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -35787,6 +37420,7 @@ class _$MarkChecklistDeletedImpl implements _MarkChecklistDeleted {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (markChecklistDeleted != null) {
@@ -35807,6 +37441,7 @@ class _$MarkChecklistDeletedImpl implements _MarkChecklistDeleted {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -35885,6 +37520,8 @@ class _$MarkChecklistDeletedImpl implements _MarkChecklistDeleted {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return markChecklistDeleted(this);
   }
@@ -35901,6 +37538,7 @@ class _$MarkChecklistDeletedImpl implements _MarkChecklistDeleted {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -35972,6 +37610,8 @@ class _$MarkChecklistDeletedImpl implements _MarkChecklistDeleted {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return markChecklistDeleted?.call(this);
   }
@@ -35988,6 +37628,7 @@ class _$MarkChecklistDeletedImpl implements _MarkChecklistDeleted {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -36055,6 +37696,7 @@ class _$MarkChecklistDeletedImpl implements _MarkChecklistDeleted {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (markChecklistDeleted != null) {
@@ -36158,6 +37800,8 @@ class _$AddAttachmentImpl implements _AddAttachment {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -36248,6 +37892,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return addAttachment(attachment);
   }
@@ -36264,6 +37909,8 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -36345,6 +37992,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return addAttachment?.call(attachment);
   }
@@ -36361,6 +38009,8 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -36441,6 +38091,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (addAttachment != null) {
@@ -36461,6 +38112,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -36539,6 +38191,8 @@ class _$AddAttachmentImpl implements _AddAttachment {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return addAttachment(this);
   }
@@ -36555,6 +38209,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -36626,6 +38281,8 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return addAttachment?.call(this);
   }
@@ -36642,6 +38299,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -36709,6 +38367,7 @@ class _$AddAttachmentImpl implements _AddAttachment {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (addAttachment != null) {
@@ -36802,6 +38461,8 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -36892,6 +38553,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return removeAttachment(index);
   }
@@ -36908,6 +38570,8 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -36989,6 +38653,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return removeAttachment?.call(index);
   }
@@ -37005,6 +38670,8 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -37085,6 +38752,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (removeAttachment != null) {
@@ -37105,6 +38773,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -37183,6 +38852,8 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return removeAttachment(this);
   }
@@ -37199,6 +38870,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -37270,6 +38942,8 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return removeAttachment?.call(this);
   }
@@ -37286,6 +38960,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -37353,6 +39028,7 @@ class _$RemoveAttachmentImpl implements _RemoveAttachment {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (removeAttachment != null) {
@@ -37454,6 +39130,8 @@ class _$AddLinkImpl implements _AddLink {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -37544,6 +39222,7 @@ class _$AddLinkImpl implements _AddLink {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return addLink(link);
   }
@@ -37560,6 +39239,8 @@ class _$AddLinkImpl implements _AddLink {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -37641,6 +39322,7 @@ class _$AddLinkImpl implements _AddLink {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return addLink?.call(link);
   }
@@ -37657,6 +39339,8 @@ class _$AddLinkImpl implements _AddLink {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -37737,6 +39421,7 @@ class _$AddLinkImpl implements _AddLink {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (addLink != null) {
@@ -37757,6 +39442,7 @@ class _$AddLinkImpl implements _AddLink {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -37835,6 +39521,8 @@ class _$AddLinkImpl implements _AddLink {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return addLink(this);
   }
@@ -37851,6 +39539,7 @@ class _$AddLinkImpl implements _AddLink {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -37922,6 +39611,8 @@ class _$AddLinkImpl implements _AddLink {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return addLink?.call(this);
   }
@@ -37938,6 +39629,7 @@ class _$AddLinkImpl implements _AddLink {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -38005,6 +39697,7 @@ class _$AddLinkImpl implements _AddLink {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (addLink != null) {
@@ -38096,6 +39789,8 @@ class _$RemoveLinkImpl implements _RemoveLink {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -38186,6 +39881,7 @@ class _$RemoveLinkImpl implements _RemoveLink {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return removeLink(index);
   }
@@ -38202,6 +39898,8 @@ class _$RemoveLinkImpl implements _RemoveLink {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -38283,6 +39981,7 @@ class _$RemoveLinkImpl implements _RemoveLink {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return removeLink?.call(index);
   }
@@ -38299,6 +39998,8 @@ class _$RemoveLinkImpl implements _RemoveLink {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -38379,6 +40080,7 @@ class _$RemoveLinkImpl implements _RemoveLink {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (removeLink != null) {
@@ -38399,6 +40101,7 @@ class _$RemoveLinkImpl implements _RemoveLink {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -38477,6 +40180,8 @@ class _$RemoveLinkImpl implements _RemoveLink {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return removeLink(this);
   }
@@ -38493,6 +40198,7 @@ class _$RemoveLinkImpl implements _RemoveLink {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -38564,6 +40270,8 @@ class _$RemoveLinkImpl implements _RemoveLink {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return removeLink?.call(this);
   }
@@ -38580,6 +40288,7 @@ class _$RemoveLinkImpl implements _RemoveLink {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -38647,6 +40356,7 @@ class _$RemoveLinkImpl implements _RemoveLink {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (removeLink != null) {
@@ -38712,6 +40422,8 @@ class _$AddIncidentImpl implements _AddIncident {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -38802,6 +40514,7 @@ class _$AddIncidentImpl implements _AddIncident {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return addIncident();
   }
@@ -38818,6 +40531,8 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -38899,6 +40614,7 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return addIncident?.call();
   }
@@ -38915,6 +40631,8 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -38995,6 +40713,7 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (addIncident != null) {
@@ -39015,6 +40734,7 @@ class _$AddIncidentImpl implements _AddIncident {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -39093,6 +40813,8 @@ class _$AddIncidentImpl implements _AddIncident {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return addIncident(this);
   }
@@ -39109,6 +40831,7 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -39180,6 +40903,8 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return addIncident?.call(this);
   }
@@ -39196,6 +40921,7 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -39263,6 +40989,7 @@ class _$AddIncidentImpl implements _AddIncident {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (addIncident != null) {
@@ -39369,6 +41096,8 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -39459,6 +41188,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return updateIncident(index, incident);
   }
@@ -39475,6 +41205,8 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -39556,6 +41288,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return updateIncident?.call(index, incident);
   }
@@ -39572,6 +41305,8 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -39652,6 +41387,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateIncident != null) {
@@ -39672,6 +41408,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -39750,6 +41487,8 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return updateIncident(this);
   }
@@ -39766,6 +41505,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -39837,6 +41577,8 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return updateIncident?.call(this);
   }
@@ -39853,6 +41595,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -39920,6 +41663,7 @@ class _$UpdateIncidentImpl implements _UpdateIncident {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updateIncident != null) {
@@ -40015,6 +41759,8 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -40105,6 +41851,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return removeIncident(index);
   }
@@ -40121,6 +41868,8 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -40202,6 +41951,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return removeIncident?.call(index);
   }
@@ -40218,6 +41968,8 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -40298,6 +42050,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (removeIncident != null) {
@@ -40318,6 +42071,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -40396,6 +42150,8 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return removeIncident(this);
   }
@@ -40412,6 +42168,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -40483,6 +42240,8 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return removeIncident?.call(this);
   }
@@ -40499,6 +42258,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -40566,6 +42326,7 @@ class _$RemoveIncidentImpl implements _RemoveIncident {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (removeIncident != null) {
@@ -40659,6 +42420,8 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -40749,6 +42512,7 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return toggleIncidentExpand(index);
   }
@@ -40765,6 +42529,8 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -40846,6 +42612,7 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return toggleIncidentExpand?.call(index);
   }
@@ -40862,6 +42629,8 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -40942,6 +42711,7 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (toggleIncidentExpand != null) {
@@ -40962,6 +42732,7 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -41040,6 +42811,8 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return toggleIncidentExpand(this);
   }
@@ -41056,6 +42829,7 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -41127,6 +42901,8 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return toggleIncidentExpand?.call(this);
   }
@@ -41143,6 +42919,7 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -41210,6 +42987,7 @@ class _$ToggleIncidentExpandImpl implements _ToggleIncidentExpand {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (toggleIncidentExpand != null) {
@@ -41303,6 +43081,8 @@ class _$UpdatePauseReasonImpl implements _UpdatePauseReason {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -41393,6 +43173,7 @@ class _$UpdatePauseReasonImpl implements _UpdatePauseReason {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return updatePauseReason(reason);
   }
@@ -41409,6 +43190,8 @@ class _$UpdatePauseReasonImpl implements _UpdatePauseReason {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -41490,6 +43273,7 @@ class _$UpdatePauseReasonImpl implements _UpdatePauseReason {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return updatePauseReason?.call(reason);
   }
@@ -41506,6 +43290,8 @@ class _$UpdatePauseReasonImpl implements _UpdatePauseReason {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -41586,6 +43372,7 @@ class _$UpdatePauseReasonImpl implements _UpdatePauseReason {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updatePauseReason != null) {
@@ -41606,6 +43393,7 @@ class _$UpdatePauseReasonImpl implements _UpdatePauseReason {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -41684,6 +43472,8 @@ class _$UpdatePauseReasonImpl implements _UpdatePauseReason {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return updatePauseReason(this);
   }
@@ -41700,6 +43490,7 @@ class _$UpdatePauseReasonImpl implements _UpdatePauseReason {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -41771,6 +43562,8 @@ class _$UpdatePauseReasonImpl implements _UpdatePauseReason {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return updatePauseReason?.call(this);
   }
@@ -41787,6 +43580,7 @@ class _$UpdatePauseReasonImpl implements _UpdatePauseReason {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -41854,6 +43648,7 @@ class _$UpdatePauseReasonImpl implements _UpdatePauseReason {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (updatePauseReason != null) {
@@ -41947,6 +43742,8 @@ class _$SetDeadlineLockedImpl implements _SetDeadlineLocked {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -42037,6 +43834,7 @@ class _$SetDeadlineLockedImpl implements _SetDeadlineLocked {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return setDeadlineLocked(locked);
   }
@@ -42053,6 +43851,8 @@ class _$SetDeadlineLockedImpl implements _SetDeadlineLocked {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -42134,6 +43934,7 @@ class _$SetDeadlineLockedImpl implements _SetDeadlineLocked {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return setDeadlineLocked?.call(locked);
   }
@@ -42150,6 +43951,8 @@ class _$SetDeadlineLockedImpl implements _SetDeadlineLocked {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -42230,6 +44033,7 @@ class _$SetDeadlineLockedImpl implements _SetDeadlineLocked {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (setDeadlineLocked != null) {
@@ -42250,6 +44054,7 @@ class _$SetDeadlineLockedImpl implements _SetDeadlineLocked {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -42328,6 +44133,8 @@ class _$SetDeadlineLockedImpl implements _SetDeadlineLocked {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return setDeadlineLocked(this);
   }
@@ -42344,6 +44151,7 @@ class _$SetDeadlineLockedImpl implements _SetDeadlineLocked {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -42415,6 +44223,8 @@ class _$SetDeadlineLockedImpl implements _SetDeadlineLocked {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return setDeadlineLocked?.call(this);
   }
@@ -42431,6 +44241,7 @@ class _$SetDeadlineLockedImpl implements _SetDeadlineLocked {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -42498,6 +44309,7 @@ class _$SetDeadlineLockedImpl implements _SetDeadlineLocked {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (setDeadlineLocked != null) {
@@ -42563,6 +44375,8 @@ class _$CreateTaskImpl implements _CreateTask {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -42653,6 +44467,7 @@ class _$CreateTaskImpl implements _CreateTask {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return createTask();
   }
@@ -42669,6 +44484,8 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -42750,6 +44567,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return createTask?.call();
   }
@@ -42766,6 +44584,8 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -42846,6 +44666,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (createTask != null) {
@@ -42866,6 +44687,7 @@ class _$CreateTaskImpl implements _CreateTask {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -42944,6 +44766,8 @@ class _$CreateTaskImpl implements _CreateTask {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return createTask(this);
   }
@@ -42960,6 +44784,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -43031,6 +44856,8 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return createTask?.call(this);
   }
@@ -43047,6 +44874,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -43114,6 +44942,7 @@ class _$CreateTaskImpl implements _CreateTask {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (createTask != null) {
@@ -43174,6 +45003,8 @@ class _$EditTaskImpl implements _EditTask {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -43264,6 +45095,7 @@ class _$EditTaskImpl implements _EditTask {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return editTask();
   }
@@ -43280,6 +45112,8 @@ class _$EditTaskImpl implements _EditTask {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -43361,6 +45195,7 @@ class _$EditTaskImpl implements _EditTask {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return editTask?.call();
   }
@@ -43377,6 +45212,8 @@ class _$EditTaskImpl implements _EditTask {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -43457,6 +45294,7 @@ class _$EditTaskImpl implements _EditTask {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (editTask != null) {
@@ -43477,6 +45315,7 @@ class _$EditTaskImpl implements _EditTask {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -43555,6 +45394,8 @@ class _$EditTaskImpl implements _EditTask {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return editTask(this);
   }
@@ -43571,6 +45412,7 @@ class _$EditTaskImpl implements _EditTask {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -43642,6 +45484,8 @@ class _$EditTaskImpl implements _EditTask {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return editTask?.call(this);
   }
@@ -43658,6 +45502,7 @@ class _$EditTaskImpl implements _EditTask {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -43725,6 +45570,7 @@ class _$EditTaskImpl implements _EditTask {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (editTask != null) {
@@ -43785,6 +45631,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -43875,6 +45723,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return clearSubmitState();
   }
@@ -43891,6 +45740,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -43972,6 +45823,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return clearSubmitState?.call();
   }
@@ -43988,6 +45840,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -44068,6 +45922,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (clearSubmitState != null) {
@@ -44088,6 +45943,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -44166,6 +46022,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return clearSubmitState(this);
   }
@@ -44182,6 +46040,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -44253,6 +46112,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return clearSubmitState?.call(this);
   }
@@ -44269,6 +46130,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -44336,6 +46198,7 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (clearSubmitState != null) {
@@ -44396,6 +46259,8 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -44486,6 +46351,7 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return clearCheckInState();
   }
@@ -44502,6 +46368,8 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -44583,6 +46451,7 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return clearCheckInState?.call();
   }
@@ -44599,6 +46468,8 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -44679,6 +46550,7 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (clearCheckInState != null) {
@@ -44699,6 +46571,7 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -44777,6 +46650,8 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return clearCheckInState(this);
   }
@@ -44793,6 +46668,7 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -44864,6 +46740,8 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return clearCheckInState?.call(this);
   }
@@ -44880,6 +46758,7 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -44947,6 +46826,7 @@ class _$ClearCheckInStateImpl implements _ClearCheckInState {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (clearCheckInState != null) {
@@ -45051,6 +46931,8 @@ class _$UploadFilesImpl implements _UploadFiles {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -45141,6 +47023,7 @@ class _$UploadFilesImpl implements _UploadFiles {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return uploadFiles(filePaths, subPath);
   }
@@ -45157,6 +47040,8 @@ class _$UploadFilesImpl implements _UploadFiles {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -45238,6 +47123,7 @@ class _$UploadFilesImpl implements _UploadFiles {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return uploadFiles?.call(filePaths, subPath);
   }
@@ -45254,6 +47140,8 @@ class _$UploadFilesImpl implements _UploadFiles {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -45334,6 +47222,7 @@ class _$UploadFilesImpl implements _UploadFiles {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (uploadFiles != null) {
@@ -45354,6 +47243,7 @@ class _$UploadFilesImpl implements _UploadFiles {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -45432,6 +47322,8 @@ class _$UploadFilesImpl implements _UploadFiles {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return uploadFiles(this);
   }
@@ -45448,6 +47340,7 @@ class _$UploadFilesImpl implements _UploadFiles {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -45519,6 +47412,8 @@ class _$UploadFilesImpl implements _UploadFiles {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return uploadFiles?.call(this);
   }
@@ -45535,6 +47430,7 @@ class _$UploadFilesImpl implements _UploadFiles {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -45602,6 +47498,7 @@ class _$UploadFilesImpl implements _UploadFiles {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (uploadFiles != null) {
@@ -45670,6 +47567,8 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -45760,6 +47659,7 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return clearUploadedFiles();
   }
@@ -45776,6 +47676,8 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -45857,6 +47759,7 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return clearUploadedFiles?.call();
   }
@@ -45873,6 +47776,8 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -45953,6 +47858,7 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (clearUploadedFiles != null) {
@@ -45973,6 +47879,7 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -46051,6 +47958,8 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return clearUploadedFiles(this);
   }
@@ -46067,6 +47976,7 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -46138,6 +48048,8 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return clearUploadedFiles?.call(this);
   }
@@ -46154,6 +48066,7 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -46221,6 +48134,7 @@ class _$ClearUploadedFilesImpl implements _ClearUploadedFiles {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (clearUploadedFiles != null) {
@@ -46318,6 +48232,8 @@ class _$FetchTimelineDataImpl implements _FetchTimelineData {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearDateFilter,
@@ -46408,6 +48324,7 @@ class _$FetchTimelineDataImpl implements _FetchTimelineData {
     required TResult Function() clearUploadedFiles,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
   }) {
     return fetchTimelineData(dateStart, dateEnd);
   }
@@ -46424,6 +48341,8 @@ class _$FetchTimelineDataImpl implements _FetchTimelineData {
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
     TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearDateFilter,
     TResult? Function(int taskId, bool isCheck)? checkIn,
@@ -46505,6 +48424,7 @@ class _$FetchTimelineDataImpl implements _FetchTimelineData {
     TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult? Function()? clearUploadedFiles,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
   }) {
     return fetchTimelineData?.call(dateStart, dateEnd);
   }
@@ -46521,6 +48441,8 @@ class _$FetchTimelineDataImpl implements _FetchTimelineData {
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
     TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearDateFilter,
     TResult Function(int taskId, bool isCheck)? checkIn,
@@ -46601,6 +48523,7 @@ class _$FetchTimelineDataImpl implements _FetchTimelineData {
     TResult Function(List<String> filePaths, String subPath)? uploadFiles,
     TResult Function()? clearUploadedFiles,
     TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (fetchTimelineData != null) {
@@ -46621,6 +48544,7 @@ class _$FetchTimelineDataImpl implements _FetchTimelineData {
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ClearDateFilter value) clearDateFilter,
     required TResult Function(_CheckIn value) checkIn,
@@ -46699,6 +48623,8 @@ class _$FetchTimelineDataImpl implements _FetchTimelineData {
     required TResult Function(_UploadFiles value) uploadFiles,
     required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
     required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
   }) {
     return fetchTimelineData(this);
   }
@@ -46715,6 +48641,7 @@ class _$FetchTimelineDataImpl implements _FetchTimelineData {
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ClearDateFilter value)? clearDateFilter,
     TResult? Function(_CheckIn value)? checkIn,
@@ -46786,6 +48713,8 @@ class _$FetchTimelineDataImpl implements _FetchTimelineData {
     TResult? Function(_UploadFiles value)? uploadFiles,
     TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
   }) {
     return fetchTimelineData?.call(this);
   }
@@ -46802,6 +48731,7 @@ class _$FetchTimelineDataImpl implements _FetchTimelineData {
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
     TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ClearDateFilter value)? clearDateFilter,
     TResult Function(_CheckIn value)? checkIn,
@@ -46869,6 +48799,7 @@ class _$FetchTimelineDataImpl implements _FetchTimelineData {
     TResult Function(_UploadFiles value)? uploadFiles,
     TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
     TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
     required TResult orElse(),
   }) {
     if (fetchTimelineData != null) {
@@ -46888,4 +48819,635 @@ abstract class _FetchTimelineData implements WeekPlanEvent {
   @JsonKey(ignore: true)
   _$$FetchTimelineDataImplCopyWith<_$FetchTimelineDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FetchProjectTaskStatusesImplCopyWith<$Res> {
+  factory _$$FetchProjectTaskStatusesImplCopyWith(
+          _$FetchProjectTaskStatusesImpl value,
+          $Res Function(_$FetchProjectTaskStatusesImpl) then) =
+      __$$FetchProjectTaskStatusesImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$FetchProjectTaskStatusesImplCopyWithImpl<$Res>
+    extends _$WeekPlanEventCopyWithImpl<$Res, _$FetchProjectTaskStatusesImpl>
+    implements _$$FetchProjectTaskStatusesImplCopyWith<$Res> {
+  __$$FetchProjectTaskStatusesImplCopyWithImpl(
+      _$FetchProjectTaskStatusesImpl _value,
+      $Res Function(_$FetchProjectTaskStatusesImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$FetchProjectTaskStatusesImpl implements _FetchProjectTaskStatuses {
+  const _$FetchProjectTaskStatusesImpl();
+
+  @override
+  String toString() {
+    return 'WeekPlanEvent.fetchProjectTaskStatuses()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FetchProjectTaskStatusesImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initMenu,
+    required TResult Function() initScreen,
+    required TResult Function() initDashboard,
+    required TResult Function(int viewNumber) initScreenWithView,
+    required TResult Function(int viewNumber) changeView,
+    required TResult Function() refresh,
+    required TResult Function(String keyword) search,
+    required TResult Function() clearSearch,
+    required TResult Function(List<String> statuses) filterByStatuses,
+    required TResult Function(List<int> statusNos, List<int> approveNos)
+        filterByStatusNos,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() clearDateFilter,
+    required TResult Function(int taskId, bool isCheck) checkIn,
+    required TResult Function() initAddScreen,
+    required TResult Function(int taskId) initDetailScreen,
+    required TResult Function(int step) changeStep,
+    required TResult Function(int projectId, String projectName)
+        updateHeaderProject,
+    required TResult Function(int parentTaskId, String parentTaskName)
+        updateHeaderParentTask,
+    required TResult Function(int assignerId, String assignerName)
+        updateHeaderAssigner,
+    required TResult Function(bool isPersonal) updateHeaderPersonalTask,
+    required TResult Function(int complexity) updateHeaderComplexity,
+    required TResult Function(int priority) updateHeaderPriority,
+    required TResult Function(int statusId, String statusName)
+        updateHeaderStatus,
+    required TResult Function(double? timeEstimate) updateHeaderTimeEstimate,
+    required TResult Function(int categoryId, String categoryName)
+        updateHeaderTaskCategory,
+    required TResult Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)
+        updateHeaderWorkTypeAndStatus,
+    required TResult Function() fetchTaskTypes,
+    required TResult Function() fetchProjects,
+    required TResult Function() fetchProjectTypes,
+    required TResult Function() fetchEmployees,
+    required TResult Function(int projectId, bool isPersonalProject)
+        fetchParentProjectTasks,
+    required TResult Function(String name) updateContentTaskName,
+    required TResult Function(int assigneeId, String assigneeName)
+        updateContentAssignee,
+    required TResult Function(int assignerId, String assignerName)
+        updateContentAssigner,
+    required TResult Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)
+        updateContentDates,
+    required TResult Function(String description) updateContentDescription,
+    required TResult Function(String result) updateContentResult,
+    required TResult Function(String reasonSolution)
+        updateContentReasonSolution,
+    required TResult Function(int value, String? otherText)
+        updateContentWorkplace,
+    required TResult Function(List<EmployeeTaskItem> assignees) setAssignees,
+    required TResult Function(EmployeeTaskItem employee) addAssignee,
+    required TResult Function(int employeeId) removeAssignee,
+    required TResult Function(List<EmployeeTaskItem> persons) setRelatedPersons,
+    required TResult Function(EmployeeTaskItem employee) addRelatedPerson,
+    required TResult Function(int employeeId) removeRelatedPerson,
+    required TResult Function(WeekPlanSubTaskItem subTask) addSubTaskWithData,
+    required TResult Function(int index, WeekPlanSubTaskItem subTask)
+        updateSubTask,
+    required TResult Function(int index) removeSubTask,
+    required TResult Function(int taskId) fetchChecklists,
+    required TResult Function(int checklistId, String? checklistTitle,
+            int? orderIndex, bool? isDone)
+        updateDetailChecklistItem,
+    required TResult Function(
+            int checklistId, String checklistTitle, int orderIndex, bool isDone)
+        updateChecklistItemOnServer,
+    required TResult Function(String item) addChecklistItem,
+    required TResult Function(int index, String item) updateChecklistItem,
+    required TResult Function(int index) toggleChecklistDone,
+    required TResult Function(int index) removeChecklistItem,
+    required TResult Function(int checklistId) markChecklistDeleted,
+    required TResult Function(WeekPlanAttachmentItem attachment) addAttachment,
+    required TResult Function(int index) removeAttachment,
+    required TResult Function(WeekPlanLinkItem link) addLink,
+    required TResult Function(int index) removeLink,
+    required TResult Function() addIncident,
+    required TResult Function(int index, WeekPlanIncidentItem incident)
+        updateIncident,
+    required TResult Function(int index) removeIncident,
+    required TResult Function(int index) toggleIncidentExpand,
+    required TResult Function(String? reason) updatePauseReason,
+    required TResult Function(bool locked) setDeadlineLocked,
+    required TResult Function() createTask,
+    required TResult Function() editTask,
+    required TResult Function() clearSubmitState,
+    required TResult Function() clearCheckInState,
+    required TResult Function(List<String> filePaths, String subPath)
+        uploadFiles,
+    required TResult Function() clearUploadedFiles,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        fetchTimelineData,
+    required TResult Function() fetchProjectTaskStatuses,
+  }) {
+    return fetchProjectTaskStatuses();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initMenu,
+    TResult? Function()? initScreen,
+    TResult? Function()? initDashboard,
+    TResult? Function(int viewNumber)? initScreenWithView,
+    TResult? Function(int viewNumber)? changeView,
+    TResult? Function()? refresh,
+    TResult? Function(String keyword)? search,
+    TResult? Function()? clearSearch,
+    TResult? Function(List<String> statuses)? filterByStatuses,
+    TResult? Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? clearDateFilter,
+    TResult? Function(int taskId, bool isCheck)? checkIn,
+    TResult? Function()? initAddScreen,
+    TResult? Function(int taskId)? initDetailScreen,
+    TResult? Function(int step)? changeStep,
+    TResult? Function(int projectId, String projectName)? updateHeaderProject,
+    TResult? Function(int parentTaskId, String parentTaskName)?
+        updateHeaderParentTask,
+    TResult? Function(int assignerId, String assignerName)?
+        updateHeaderAssigner,
+    TResult? Function(bool isPersonal)? updateHeaderPersonalTask,
+    TResult? Function(int complexity)? updateHeaderComplexity,
+    TResult? Function(int priority)? updateHeaderPriority,
+    TResult? Function(int statusId, String statusName)? updateHeaderStatus,
+    TResult? Function(double? timeEstimate)? updateHeaderTimeEstimate,
+    TResult? Function(int categoryId, String categoryName)?
+        updateHeaderTaskCategory,
+    TResult? Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)?
+        updateHeaderWorkTypeAndStatus,
+    TResult? Function()? fetchTaskTypes,
+    TResult? Function()? fetchProjects,
+    TResult? Function()? fetchProjectTypes,
+    TResult? Function()? fetchEmployees,
+    TResult? Function(int projectId, bool isPersonalProject)?
+        fetchParentProjectTasks,
+    TResult? Function(String name)? updateContentTaskName,
+    TResult? Function(int assigneeId, String assigneeName)?
+        updateContentAssignee,
+    TResult? Function(int assignerId, String assignerName)?
+        updateContentAssigner,
+    TResult? Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)?
+        updateContentDates,
+    TResult? Function(String description)? updateContentDescription,
+    TResult? Function(String result)? updateContentResult,
+    TResult? Function(String reasonSolution)? updateContentReasonSolution,
+    TResult? Function(int value, String? otherText)? updateContentWorkplace,
+    TResult? Function(List<EmployeeTaskItem> assignees)? setAssignees,
+    TResult? Function(EmployeeTaskItem employee)? addAssignee,
+    TResult? Function(int employeeId)? removeAssignee,
+    TResult? Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
+    TResult? Function(EmployeeTaskItem employee)? addRelatedPerson,
+    TResult? Function(int employeeId)? removeRelatedPerson,
+    TResult? Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
+    TResult? Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
+    TResult? Function(int index)? removeSubTask,
+    TResult? Function(int taskId)? fetchChecklists,
+    TResult? Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult? Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
+    TResult? Function(String item)? addChecklistItem,
+    TResult? Function(int index, String item)? updateChecklistItem,
+    TResult? Function(int index)? toggleChecklistDone,
+    TResult? Function(int index)? removeChecklistItem,
+    TResult? Function(int checklistId)? markChecklistDeleted,
+    TResult? Function(WeekPlanAttachmentItem attachment)? addAttachment,
+    TResult? Function(int index)? removeAttachment,
+    TResult? Function(WeekPlanLinkItem link)? addLink,
+    TResult? Function(int index)? removeLink,
+    TResult? Function()? addIncident,
+    TResult? Function(int index, WeekPlanIncidentItem incident)? updateIncident,
+    TResult? Function(int index)? removeIncident,
+    TResult? Function(int index)? toggleIncidentExpand,
+    TResult? Function(String? reason)? updatePauseReason,
+    TResult? Function(bool locked)? setDeadlineLocked,
+    TResult? Function()? createTask,
+    TResult? Function()? editTask,
+    TResult? Function()? clearSubmitState,
+    TResult? Function()? clearCheckInState,
+    TResult? Function(List<String> filePaths, String subPath)? uploadFiles,
+    TResult? Function()? clearUploadedFiles,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult? Function()? fetchProjectTaskStatuses,
+  }) {
+    return fetchProjectTaskStatuses?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initMenu,
+    TResult Function()? initScreen,
+    TResult Function()? initDashboard,
+    TResult Function(int viewNumber)? initScreenWithView,
+    TResult Function(int viewNumber)? changeView,
+    TResult Function()? refresh,
+    TResult Function(String keyword)? search,
+    TResult Function()? clearSearch,
+    TResult Function(List<String> statuses)? filterByStatuses,
+    TResult Function(List<int> statusNos, List<int> approveNos)?
+        filterByStatusNos,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? clearDateFilter,
+    TResult Function(int taskId, bool isCheck)? checkIn,
+    TResult Function()? initAddScreen,
+    TResult Function(int taskId)? initDetailScreen,
+    TResult Function(int step)? changeStep,
+    TResult Function(int projectId, String projectName)? updateHeaderProject,
+    TResult Function(int parentTaskId, String parentTaskName)?
+        updateHeaderParentTask,
+    TResult Function(int assignerId, String assignerName)? updateHeaderAssigner,
+    TResult Function(bool isPersonal)? updateHeaderPersonalTask,
+    TResult Function(int complexity)? updateHeaderComplexity,
+    TResult Function(int priority)? updateHeaderPriority,
+    TResult Function(int statusId, String statusName)? updateHeaderStatus,
+    TResult Function(double? timeEstimate)? updateHeaderTimeEstimate,
+    TResult Function(int categoryId, String categoryName)?
+        updateHeaderTaskCategory,
+    TResult Function(int workTypeId, String workTypeName, int statusId,
+            String statusName)?
+        updateHeaderWorkTypeAndStatus,
+    TResult Function()? fetchTaskTypes,
+    TResult Function()? fetchProjects,
+    TResult Function()? fetchProjectTypes,
+    TResult Function()? fetchEmployees,
+    TResult Function(int projectId, bool isPersonalProject)?
+        fetchParentProjectTasks,
+    TResult Function(String name)? updateContentTaskName,
+    TResult Function(int assigneeId, String assigneeName)?
+        updateContentAssignee,
+    TResult Function(int assignerId, String assignerName)?
+        updateContentAssigner,
+    TResult Function(
+            DateTime? startDate,
+            DateTime? endDate,
+            DateTime? actualStartDate,
+            DateTime? actualEndDate,
+            DateTime? deadline)?
+        updateContentDates,
+    TResult Function(String description)? updateContentDescription,
+    TResult Function(String result)? updateContentResult,
+    TResult Function(String reasonSolution)? updateContentReasonSolution,
+    TResult Function(int value, String? otherText)? updateContentWorkplace,
+    TResult Function(List<EmployeeTaskItem> assignees)? setAssignees,
+    TResult Function(EmployeeTaskItem employee)? addAssignee,
+    TResult Function(int employeeId)? removeAssignee,
+    TResult Function(List<EmployeeTaskItem> persons)? setRelatedPersons,
+    TResult Function(EmployeeTaskItem employee)? addRelatedPerson,
+    TResult Function(int employeeId)? removeRelatedPerson,
+    TResult Function(WeekPlanSubTaskItem subTask)? addSubTaskWithData,
+    TResult Function(int index, WeekPlanSubTaskItem subTask)? updateSubTask,
+    TResult Function(int index)? removeSubTask,
+    TResult Function(int taskId)? fetchChecklists,
+    TResult Function(int checklistId, String? checklistTitle, int? orderIndex,
+            bool? isDone)?
+        updateDetailChecklistItem,
+    TResult Function(int checklistId, String checklistTitle, int orderIndex,
+            bool isDone)?
+        updateChecklistItemOnServer,
+    TResult Function(String item)? addChecklistItem,
+    TResult Function(int index, String item)? updateChecklistItem,
+    TResult Function(int index)? toggleChecklistDone,
+    TResult Function(int index)? removeChecklistItem,
+    TResult Function(int checklistId)? markChecklistDeleted,
+    TResult Function(WeekPlanAttachmentItem attachment)? addAttachment,
+    TResult Function(int index)? removeAttachment,
+    TResult Function(WeekPlanLinkItem link)? addLink,
+    TResult Function(int index)? removeLink,
+    TResult Function()? addIncident,
+    TResult Function(int index, WeekPlanIncidentItem incident)? updateIncident,
+    TResult Function(int index)? removeIncident,
+    TResult Function(int index)? toggleIncidentExpand,
+    TResult Function(String? reason)? updatePauseReason,
+    TResult Function(bool locked)? setDeadlineLocked,
+    TResult Function()? createTask,
+    TResult Function()? editTask,
+    TResult Function()? clearSubmitState,
+    TResult Function()? clearCheckInState,
+    TResult Function(List<String> filePaths, String subPath)? uploadFiles,
+    TResult Function()? clearUploadedFiles,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? fetchTimelineData,
+    TResult Function()? fetchProjectTaskStatuses,
+    required TResult orElse(),
+  }) {
+    if (fetchProjectTaskStatuses != null) {
+      return fetchProjectTaskStatuses();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InitMenu value) initMenu,
+    required TResult Function(_InitScreen value) initScreen,
+    required TResult Function(_InitDashboard value) initDashboard,
+    required TResult Function(_InitScreenWithView value) initScreenWithView,
+    required TResult Function(_ChangeView value) changeView,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ClearSearch value) clearSearch,
+    required TResult Function(_FilterByStatuses value) filterByStatuses,
+    required TResult Function(_FilterByStatusNos value) filterByStatusNos,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ClearDateFilter value) clearDateFilter,
+    required TResult Function(_CheckIn value) checkIn,
+    required TResult Function(_InitAddScreen value) initAddScreen,
+    required TResult Function(_InitDetailScreen value) initDetailScreen,
+    required TResult Function(_ChangeStep value) changeStep,
+    required TResult Function(_UpdateHeaderProject value) updateHeaderProject,
+    required TResult Function(_UpdateHeaderParentTask value)
+        updateHeaderParentTask,
+    required TResult Function(_UpdateHeaderAssigner value) updateHeaderAssigner,
+    required TResult Function(_UpdateHeaderPersonalTask value)
+        updateHeaderPersonalTask,
+    required TResult Function(_UpdateHeaderComplexity value)
+        updateHeaderComplexity,
+    required TResult Function(_UpdateHeaderPriority value) updateHeaderPriority,
+    required TResult Function(_UpdateHeaderStatus value) updateHeaderStatus,
+    required TResult Function(_UpdateHeaderTimeEstimate value)
+        updateHeaderTimeEstimate,
+    required TResult Function(_UpdateHeaderTaskCategory value)
+        updateHeaderTaskCategory,
+    required TResult Function(_UpdateHeaderWorkTypeAndStatus value)
+        updateHeaderWorkTypeAndStatus,
+    required TResult Function(_FetchTaskTypes value) fetchTaskTypes,
+    required TResult Function(_FetchProjects value) fetchProjects,
+    required TResult Function(_FetchProjectTypes value) fetchProjectTypes,
+    required TResult Function(_FetchEmployees value) fetchEmployees,
+    required TResult Function(_FetchParentProjectTasks value)
+        fetchParentProjectTasks,
+    required TResult Function(_UpdateContentTaskName value)
+        updateContentTaskName,
+    required TResult Function(_UpdateContentAssignee value)
+        updateContentAssignee,
+    required TResult Function(_UpdateContentAssigner value)
+        updateContentAssigner,
+    required TResult Function(_UpdateContentDates value) updateContentDates,
+    required TResult Function(_UpdateContentDescription value)
+        updateContentDescription,
+    required TResult Function(_UpdateContentResult value) updateContentResult,
+    required TResult Function(_UpdateContentReasonSolution value)
+        updateContentReasonSolution,
+    required TResult Function(_UpdateContentWorkplace value)
+        updateContentWorkplace,
+    required TResult Function(_SetAssignees value) setAssignees,
+    required TResult Function(_AddAssignee value) addAssignee,
+    required TResult Function(_RemoveAssignee value) removeAssignee,
+    required TResult Function(_SetRelatedPersons value) setRelatedPersons,
+    required TResult Function(_AddRelatedPerson value) addRelatedPerson,
+    required TResult Function(_RemoveRelatedPerson value) removeRelatedPerson,
+    required TResult Function(_AddSubTaskWithData value) addSubTaskWithData,
+    required TResult Function(_UpdateSubTask value) updateSubTask,
+    required TResult Function(_RemoveSubTask value) removeSubTask,
+    required TResult Function(_FetchChecklists value) fetchChecklists,
+    required TResult Function(_UpdateDetailChecklistItem value)
+        updateDetailChecklistItem,
+    required TResult Function(_UpdateChecklistItemOnServer value)
+        updateChecklistItemOnServer,
+    required TResult Function(_AddChecklistItem value) addChecklistItem,
+    required TResult Function(_UpdateChecklistItem value) updateChecklistItem,
+    required TResult Function(_ToggleChecklistDone value) toggleChecklistDone,
+    required TResult Function(_RemoveChecklistItem value) removeChecklistItem,
+    required TResult Function(_MarkChecklistDeleted value) markChecklistDeleted,
+    required TResult Function(_AddAttachment value) addAttachment,
+    required TResult Function(_RemoveAttachment value) removeAttachment,
+    required TResult Function(_AddLink value) addLink,
+    required TResult Function(_RemoveLink value) removeLink,
+    required TResult Function(_AddIncident value) addIncident,
+    required TResult Function(_UpdateIncident value) updateIncident,
+    required TResult Function(_RemoveIncident value) removeIncident,
+    required TResult Function(_ToggleIncidentExpand value) toggleIncidentExpand,
+    required TResult Function(_UpdatePauseReason value) updatePauseReason,
+    required TResult Function(_SetDeadlineLocked value) setDeadlineLocked,
+    required TResult Function(_CreateTask value) createTask,
+    required TResult Function(_EditTask value) editTask,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_ClearCheckInState value) clearCheckInState,
+    required TResult Function(_UploadFiles value) uploadFiles,
+    required TResult Function(_ClearUploadedFiles value) clearUploadedFiles,
+    required TResult Function(_FetchTimelineData value) fetchTimelineData,
+    required TResult Function(_FetchProjectTaskStatuses value)
+        fetchProjectTaskStatuses,
+  }) {
+    return fetchProjectTaskStatuses(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_InitMenu value)? initMenu,
+    TResult? Function(_InitScreen value)? initScreen,
+    TResult? Function(_InitDashboard value)? initDashboard,
+    TResult? Function(_InitScreenWithView value)? initScreenWithView,
+    TResult? Function(_ChangeView value)? changeView,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ClearSearch value)? clearSearch,
+    TResult? Function(_FilterByStatuses value)? filterByStatuses,
+    TResult? Function(_FilterByStatusNos value)? filterByStatusNos,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ClearDateFilter value)? clearDateFilter,
+    TResult? Function(_CheckIn value)? checkIn,
+    TResult? Function(_InitAddScreen value)? initAddScreen,
+    TResult? Function(_InitDetailScreen value)? initDetailScreen,
+    TResult? Function(_ChangeStep value)? changeStep,
+    TResult? Function(_UpdateHeaderProject value)? updateHeaderProject,
+    TResult? Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult? Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
+    TResult? Function(_UpdateHeaderPersonalTask value)?
+        updateHeaderPersonalTask,
+    TResult? Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
+    TResult? Function(_UpdateHeaderPriority value)? updateHeaderPriority,
+    TResult? Function(_UpdateHeaderStatus value)? updateHeaderStatus,
+    TResult? Function(_UpdateHeaderTimeEstimate value)?
+        updateHeaderTimeEstimate,
+    TResult? Function(_UpdateHeaderTaskCategory value)?
+        updateHeaderTaskCategory,
+    TResult? Function(_UpdateHeaderWorkTypeAndStatus value)?
+        updateHeaderWorkTypeAndStatus,
+    TResult? Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult? Function(_FetchProjects value)? fetchProjects,
+    TResult? Function(_FetchProjectTypes value)? fetchProjectTypes,
+    TResult? Function(_FetchEmployees value)? fetchEmployees,
+    TResult? Function(_FetchParentProjectTasks value)? fetchParentProjectTasks,
+    TResult? Function(_UpdateContentTaskName value)? updateContentTaskName,
+    TResult? Function(_UpdateContentAssignee value)? updateContentAssignee,
+    TResult? Function(_UpdateContentAssigner value)? updateContentAssigner,
+    TResult? Function(_UpdateContentDates value)? updateContentDates,
+    TResult? Function(_UpdateContentDescription value)?
+        updateContentDescription,
+    TResult? Function(_UpdateContentResult value)? updateContentResult,
+    TResult? Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
+    TResult? Function(_UpdateContentWorkplace value)? updateContentWorkplace,
+    TResult? Function(_SetAssignees value)? setAssignees,
+    TResult? Function(_AddAssignee value)? addAssignee,
+    TResult? Function(_RemoveAssignee value)? removeAssignee,
+    TResult? Function(_SetRelatedPersons value)? setRelatedPersons,
+    TResult? Function(_AddRelatedPerson value)? addRelatedPerson,
+    TResult? Function(_RemoveRelatedPerson value)? removeRelatedPerson,
+    TResult? Function(_AddSubTaskWithData value)? addSubTaskWithData,
+    TResult? Function(_UpdateSubTask value)? updateSubTask,
+    TResult? Function(_RemoveSubTask value)? removeSubTask,
+    TResult? Function(_FetchChecklists value)? fetchChecklists,
+    TResult? Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult? Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
+    TResult? Function(_AddChecklistItem value)? addChecklistItem,
+    TResult? Function(_UpdateChecklistItem value)? updateChecklistItem,
+    TResult? Function(_ToggleChecklistDone value)? toggleChecklistDone,
+    TResult? Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult? Function(_MarkChecklistDeleted value)? markChecklistDeleted,
+    TResult? Function(_AddAttachment value)? addAttachment,
+    TResult? Function(_RemoveAttachment value)? removeAttachment,
+    TResult? Function(_AddLink value)? addLink,
+    TResult? Function(_RemoveLink value)? removeLink,
+    TResult? Function(_AddIncident value)? addIncident,
+    TResult? Function(_UpdateIncident value)? updateIncident,
+    TResult? Function(_RemoveIncident value)? removeIncident,
+    TResult? Function(_ToggleIncidentExpand value)? toggleIncidentExpand,
+    TResult? Function(_UpdatePauseReason value)? updatePauseReason,
+    TResult? Function(_SetDeadlineLocked value)? setDeadlineLocked,
+    TResult? Function(_CreateTask value)? createTask,
+    TResult? Function(_EditTask value)? editTask,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_ClearCheckInState value)? clearCheckInState,
+    TResult? Function(_UploadFiles value)? uploadFiles,
+    TResult? Function(_ClearUploadedFiles value)? clearUploadedFiles,
+    TResult? Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult? Function(_FetchProjectTaskStatuses value)?
+        fetchProjectTaskStatuses,
+  }) {
+    return fetchProjectTaskStatuses?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InitMenu value)? initMenu,
+    TResult Function(_InitScreen value)? initScreen,
+    TResult Function(_InitDashboard value)? initDashboard,
+    TResult Function(_InitScreenWithView value)? initScreenWithView,
+    TResult Function(_ChangeView value)? changeView,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_Search value)? search,
+    TResult Function(_ClearSearch value)? clearSearch,
+    TResult Function(_FilterByStatuses value)? filterByStatuses,
+    TResult Function(_FilterByStatusNos value)? filterByStatusNos,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ClearDateFilter value)? clearDateFilter,
+    TResult Function(_CheckIn value)? checkIn,
+    TResult Function(_InitAddScreen value)? initAddScreen,
+    TResult Function(_InitDetailScreen value)? initDetailScreen,
+    TResult Function(_ChangeStep value)? changeStep,
+    TResult Function(_UpdateHeaderProject value)? updateHeaderProject,
+    TResult Function(_UpdateHeaderParentTask value)? updateHeaderParentTask,
+    TResult Function(_UpdateHeaderAssigner value)? updateHeaderAssigner,
+    TResult Function(_UpdateHeaderPersonalTask value)? updateHeaderPersonalTask,
+    TResult Function(_UpdateHeaderComplexity value)? updateHeaderComplexity,
+    TResult Function(_UpdateHeaderPriority value)? updateHeaderPriority,
+    TResult Function(_UpdateHeaderStatus value)? updateHeaderStatus,
+    TResult Function(_UpdateHeaderTimeEstimate value)? updateHeaderTimeEstimate,
+    TResult Function(_UpdateHeaderTaskCategory value)? updateHeaderTaskCategory,
+    TResult Function(_UpdateHeaderWorkTypeAndStatus value)?
+        updateHeaderWorkTypeAndStatus,
+    TResult Function(_FetchTaskTypes value)? fetchTaskTypes,
+    TResult Function(_FetchProjects value)? fetchProjects,
+    TResult Function(_FetchProjectTypes value)? fetchProjectTypes,
+    TResult Function(_FetchEmployees value)? fetchEmployees,
+    TResult Function(_FetchParentProjectTasks value)? fetchParentProjectTasks,
+    TResult Function(_UpdateContentTaskName value)? updateContentTaskName,
+    TResult Function(_UpdateContentAssignee value)? updateContentAssignee,
+    TResult Function(_UpdateContentAssigner value)? updateContentAssigner,
+    TResult Function(_UpdateContentDates value)? updateContentDates,
+    TResult Function(_UpdateContentDescription value)? updateContentDescription,
+    TResult Function(_UpdateContentResult value)? updateContentResult,
+    TResult Function(_UpdateContentReasonSolution value)?
+        updateContentReasonSolution,
+    TResult Function(_UpdateContentWorkplace value)? updateContentWorkplace,
+    TResult Function(_SetAssignees value)? setAssignees,
+    TResult Function(_AddAssignee value)? addAssignee,
+    TResult Function(_RemoveAssignee value)? removeAssignee,
+    TResult Function(_SetRelatedPersons value)? setRelatedPersons,
+    TResult Function(_AddRelatedPerson value)? addRelatedPerson,
+    TResult Function(_RemoveRelatedPerson value)? removeRelatedPerson,
+    TResult Function(_AddSubTaskWithData value)? addSubTaskWithData,
+    TResult Function(_UpdateSubTask value)? updateSubTask,
+    TResult Function(_RemoveSubTask value)? removeSubTask,
+    TResult Function(_FetchChecklists value)? fetchChecklists,
+    TResult Function(_UpdateDetailChecklistItem value)?
+        updateDetailChecklistItem,
+    TResult Function(_UpdateChecklistItemOnServer value)?
+        updateChecklistItemOnServer,
+    TResult Function(_AddChecklistItem value)? addChecklistItem,
+    TResult Function(_UpdateChecklistItem value)? updateChecklistItem,
+    TResult Function(_ToggleChecklistDone value)? toggleChecklistDone,
+    TResult Function(_RemoveChecklistItem value)? removeChecklistItem,
+    TResult Function(_MarkChecklistDeleted value)? markChecklistDeleted,
+    TResult Function(_AddAttachment value)? addAttachment,
+    TResult Function(_RemoveAttachment value)? removeAttachment,
+    TResult Function(_AddLink value)? addLink,
+    TResult Function(_RemoveLink value)? removeLink,
+    TResult Function(_AddIncident value)? addIncident,
+    TResult Function(_UpdateIncident value)? updateIncident,
+    TResult Function(_RemoveIncident value)? removeIncident,
+    TResult Function(_ToggleIncidentExpand value)? toggleIncidentExpand,
+    TResult Function(_UpdatePauseReason value)? updatePauseReason,
+    TResult Function(_SetDeadlineLocked value)? setDeadlineLocked,
+    TResult Function(_CreateTask value)? createTask,
+    TResult Function(_EditTask value)? editTask,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_ClearCheckInState value)? clearCheckInState,
+    TResult Function(_UploadFiles value)? uploadFiles,
+    TResult Function(_ClearUploadedFiles value)? clearUploadedFiles,
+    TResult Function(_FetchTimelineData value)? fetchTimelineData,
+    TResult Function(_FetchProjectTaskStatuses value)? fetchProjectTaskStatuses,
+    required TResult orElse(),
+  }) {
+    if (fetchProjectTaskStatuses != null) {
+      return fetchProjectTaskStatuses(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FetchProjectTaskStatuses implements WeekPlanEvent {
+  const factory _FetchProjectTaskStatuses() = _$FetchProjectTaskStatusesImpl;
 }

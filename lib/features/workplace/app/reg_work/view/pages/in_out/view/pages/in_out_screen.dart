@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -69,7 +68,7 @@ class _InOutScreenPageState
       },
       child: BaseScaffold(
         appBar: AppBarCommon(
-          title: Text('reg_work.in_out'.tr(), style: AppStyles.headingTitle2),
+          title: Text('Đi muộn - về sớm', style: AppStyles.headingTitle2),
           actions: [
             IconButton(
               icon: const Icon(Icons.calendar_month),

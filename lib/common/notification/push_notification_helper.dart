@@ -5,72 +5,78 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../di/injection.dart';
-import '../logger/index.dart';
-import 'index.dart';
-
+/// Helper class để quản lý FCM push notifications.
+/// Lưu ý: Background handler chính được đăng ký trong FirebaseInitializer.
+/// File này chỉ cung cấp các utility methods cho push notifications.
 @singleton
 class PushNotificationHelper {
   late final FirebaseMessaging _firebaseMessaging;
   Function(String)? handleNotificationOnTap;
   String? pushToken;
-  String? _payLoad;
+  String? _payload;
 
   Future<void> initialize({
     Function(String)? handleNotificationOnTap,
   }) async {
-    // await Firebase.initializeApp();
-    // _firebaseMessaging = FirebaseMessaging.instance;
     this.handleNotificationOnTap = handleNotificationOnTap;
     await _fcmInitialization();
-    // await FirebaseMessaging.instance
-    // .setForegroundNotificationPresentationOptions(
-    // alert: true,
-    // badge: true,
-    // sound: true,
-    // );
   }
 
-  Future _fcmInitialization() async {
+  Future<void> _fcmInitialization() async {
     try {
-      await getPushToken();
-      FirebaseMessaging.instance.onTokenRefresh.listen((token) {
-        pushToken = token;
-      });
+      _firebaseMessaging = FirebaseMessaging.instance;
 
-      final RemoteMessage? initMessage =
-      await _firebaseMessaging.getInitialMessage();
-      if (initMessage != null) {
-        _payLoad = jsonEncode(initMessage);
+      // Thiết lập foreground notification options cho iOS
+      if (Platform.isIOS) {
+        await _firebaseMessaging.setForegroundNotificationPresentationOptions(
+          alert: true,
+          badge: true,
+          sound: true,
+        );
       }
 
-      FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-        _payLoad = getNotificationContent(message);
-        if (message.notification != null) {
-          getIt<LogUtils>().logD("Message: ${message.notification?.title}");
-          if (Platform.isAndroid) {
-            getIt<LocalNotificationHelper>().showNotification(
-              title: message.notification?.title ?? '',
-              body: message.notification?.body ?? '',
-            );
-          }
+      // Lắng nghe khi app được mở từ notification (background -> foreground)
+      FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+        _payload = getNotificationContent(message);
+        if (handleNotificationOnTap != null && _payload != null) {
+          handleNotificationOnTap!(_payload!);
         }
       });
-      FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
-      FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-        _payLoad = getNotificationContent(message);
-        handleNotificationOnTap!(_payLoad!);
+
+      // Lắng nghe foreground messages (app đang mở)
+      // Lưu ý: Background handler đã được đăng ký trong FirebaseInitializer
+      FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+        _payload = getNotificationContent(message);
+        if (kDebugMode) {
+          print('[FCM] Foreground message: ${message.notification?.title}');
+        }
       });
+
+      // Lắng nghe token refresh
+      _firebaseMessaging.onTokenRefresh.listen((token) {
+        pushToken = token;
+        if (kDebugMode) {
+          print('[FCM] Token refreshed: $pushToken');
+        }
+      });
+
+      // Lấy initial message (khi app được cold start từ notification)
+      final RemoteMessage? initMessage = await _firebaseMessaging.getInitialMessage();
+      if (initMessage != null) {
+        _payload = getNotificationContent(initMessage);
+      }
     } catch (e) {
       if (kDebugMode) {
-        print(e.toString());
+        print('[PushNotificationHelper] Initialization error: $e');
       }
     }
   }
 
   Future<String?> getPushToken() async {
     pushToken ??= await _firebaseMessaging.getToken();
-    getIt<LogUtils>().logD('fcm token: $pushToken');
+    if (kDebugMode) {
+      print('[FCM] Token: $pushToken');
+    }
     return pushToken;
   }
 
@@ -89,13 +95,14 @@ class PushNotificationHelper {
 
   void removeBadgeCount() {
     if (Platform.isIOS) {
-      ///todo: handle for ios
+      // TODO: implement iOS badge removal
     } else if (Platform.isAndroid) {
-      ///todo: handle for android
+      // TODO: implement Android badge removal
     }
   }
 }
 
+/// Chuyển đổi RemoteMessage thành JSON string.
 String getNotificationContent(RemoteMessage? message) {
   if (message == null) return 'RemoteMessage is Null';
   final body = {
@@ -104,20 +111,11 @@ String getNotificationContent(RemoteMessage? message) {
       'body': message.notification?.body,
     },
     'data': message.data,
-    "collapse_key": message.collapseKey,
-    "message_id": message.messageId,
-    "sent_time": message.sentTime?.millisecondsSinceEpoch,
-    "from": message.from,
-    "ttl": message.ttl,
+    'collapse_key': message.collapseKey,
+    'message_id': message.messageId,
+    'sent_time': message.sentTime?.millisecondsSinceEpoch,
+    'from': message.from,
+    'ttl': message.ttl,
   };
   return jsonEncode(body);
-}
-
-Future<void> firebaseMessagingBackgroundHandler(
-    RemoteMessage remoteMessage,
-    ) async {
-  // injector<LogUtils>()
-  //     .logD('Handling a background message ${remoteMessage.messageId}');
-  // injector<LogUtils>()
-  //     .logD('message data ${getNotificationContent(remoteMessage)}');
 }

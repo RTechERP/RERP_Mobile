@@ -1,9 +1,13 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/enums/index.dart';
 import '../../data/datasource/models/wfh_model.dart';
 
+/// Card hiển thị một đơn WFH trong danh sách với style glassmorphism.
 class WfhCard extends StatelessWidget {
   final WfhItem item;
   final VoidCallback? onTap;
@@ -19,11 +23,9 @@ class WfhCard extends StatelessWidget {
   ApprovalStatus _mapHrStatus(int? statusHRNumber, String? statusHRText) {
     final text = (statusHRText ?? '').toLowerCase();
 
-    // Heuristic: nếu API trả số rõ ràng thì ưu tiên số.
     if (statusHRNumber != null) {
       if (statusHRNumber == 1) return ApprovalStatus.approved;
       if (statusHRNumber == 0) return ApprovalStatus.pending;
-      // Không chắc contract BE về giá trị cancelled; dùng fallback theo text.
     }
 
     if (text.contains('huỷ') ||
@@ -40,7 +42,6 @@ class WfhCard extends StatelessWidget {
 
   ApprovalStatus _bgdStatus() => _mapBoolToStatus(item.isApproved);
 
-  /// TBP: nếu BE trả `null` cho `IsApprovedTP` thì coi như đang "Chờ duyệt".
   ApprovalStatus _tbpStatus() {
     final v = item.isApproved;
     if (v == true) return ApprovalStatus.approved;
@@ -62,50 +63,105 @@ class WfhCard extends StatelessWidget {
     final tbp = _tbpStatus();
     final hr = _hrStatus();
 
-    return Material(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(12),
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(12),
-        child: Container(
-          padding: const EdgeInsets.all(12),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: const Color(0xFFE0E0E0)),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Khoảng thời gian: ${item.timeWFHText ?? '--'}',
-                          style: const TextStyle(fontWeight: FontWeight.w600),
-                        ),
-                        const SizedBox(height: 4),
-                        Text('Ngày: ${_formatDate(item.dateWFH)}'),
-                        if ((item.contentWork ?? '').trim().isNotEmpty) ...[
-                          const SizedBox(height: 4),
-                          Text('ND/KH công việc: ${item.contentWork}'),
-                        ],
-                        if ((item.reason ?? '').trim().isNotEmpty) ...[
-                          const SizedBox(height: 4),
-                          Text('Lý do: ${item.reason}'),
-                        ],
-                      ],
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  _RoleBadges(bgd: bgd, tbp: tbp, hr: hr),
+    return GestureDetector(
+      onTap: onTap,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(16),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Colors.white.withValues(alpha: 0.9),
+                  Colors.white.withValues(alpha: 0.7),
                 ],
               ),
-            ],
+              border: Border.all(
+                color: Colors.white.withValues(alpha: 0.6),
+                width: 1.5,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.primaryERP.withValues(alpha: 0.08),
+                  blurRadius: 24,
+                  offset: const Offset(0, 8),
+                ),
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.04),
+                  blurRadius: 8,
+                  offset: const Offset(0, 2),
+                ),
+              ],
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Header: badges
+                  Row(
+                    children: [
+                      const SizedBox(width: 8),
+                      _ApprovalBadge(role: 'TBP', status: tbp),
+                      const SizedBox(width: 6),
+                      _ApprovalBadge(role: 'HR', status: hr),
+                      const SizedBox(width: 6),
+                      _ApprovalBadge(role: 'BGD', status: bgd),
+                    ],
+                  ),
+
+                  const SizedBox(height: 14),
+
+                  // Time range chip
+                  _TypeChip(
+                    label: 'Khoảng thời gian',
+                    value: item.timeWFHText ?? '—',
+                    color: AppColors.blueMain,
+                  ),
+
+                  const SizedBox(height: 14),
+
+                  // Content
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _InfoRow(
+                              icon: Icons.calendar_today_outlined,
+                              label: 'Ngày',
+                              value: _formatDate(item.dateWFH),
+                            ),
+                            if ((item.contentWork ?? '').trim().isNotEmpty) ...[
+                              const SizedBox(height: 8),
+                              _InfoRow(
+                                icon: Icons.work_outline,
+                                label: 'ND/KH công việc',
+                                value: item.contentWork!,
+                              ),
+                            ],
+                            if ((item.reason ?? '').trim().isNotEmpty) ...[
+                              const SizedBox(height: 8),
+                              _InfoRow(
+                                icon: Icons.note_outlined,
+                                label: 'Lý do',
+                                value: item.reason!,
+                              ),
+                            ],
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
       ),
@@ -113,34 +169,114 @@ class WfhCard extends StatelessWidget {
   }
 }
 
-class _RoleBadges extends StatelessWidget {
-  final ApprovalStatus bgd;
-  final ApprovalStatus tbp;
-  final ApprovalStatus hr;
+class _TypeChip extends StatelessWidget {
+  const _TypeChip({
+    required this.label,
+    required this.value,
+    required this.color,
+  });
 
-  const _RoleBadges({required this.bgd, required this.tbp, required this.hr});
+  final String label;
+  final String value;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.end,
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.08),
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(
+          color: color.withValues(alpha: 0.15),
+          width: 1,
+        ),
+      ),
+      child: Row(
+        children: [
+          Icon(Icons.schedule_outlined, size: 16, color: color),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  label,
+                  style: TextStyle(
+                    fontSize: 10,
+                    color: AppColors.gray,
+                    height: 1,
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  value,
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.enableText,
+                    height: 1,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _InfoRow extends StatelessWidget {
+  const _InfoRow({
+    required this.icon,
+    required this.label,
+    required this.value,
+  });
+
+  final IconData icon;
+  final String label;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
       children: [
-        _RoleBadge(role: 'BGD', status: bgd),
-        const SizedBox(height: 6),
-        _RoleBadge(role: 'TBP', status: tbp),
-        const SizedBox(height: 6),
-        _RoleBadge(role: 'HR', status: hr),
+        Icon(icon, size: 14, color: AppColors.gray),
+        const SizedBox(width: 6),
+        Text(
+          '$label: ',
+          style: TextStyle(
+            fontSize: 12,
+            color: AppColors.gray,
+            height: 1.2,
+          ),
+        ),
+        Expanded(
+          child: Text(
+            value,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w500,
+              color: AppColors.enableText,
+              height: 1.2,
+            ),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
       ],
     );
   }
 }
 
-class _RoleBadge extends StatelessWidget {
+class _ApprovalBadge extends StatelessWidget {
+  const _ApprovalBadge({required this.role, required this.status});
+
   final String role;
   final ApprovalStatus status;
-
-  const _RoleBadge({required this.role, required this.status});
 
   String get _statusText {
     switch (status) {
@@ -158,34 +294,54 @@ class _RoleBadge extends StatelessWidget {
   Color get _bgColor {
     switch (status) {
       case ApprovalStatus.approved:
-        return Colors.green;
+        return AppColors.greenA500;
       case ApprovalStatus.pending:
-        return Colors.orange;
+        return AppColors.orangeA500;
       case ApprovalStatus.cancelled:
-        return Colors.red;
+        return AppColors.redA500;
       case ApprovalStatus.prepare:
-        return const Color(0xFFF5F7F8);
+        return AppColors.gray.withValues(alpha: 0.15);
     }
   }
 
   Color get _textColor {
     switch (status) {
       case ApprovalStatus.prepare:
-        return Colors.black87;
+        return AppColors.enableText;
       default:
         return Colors.white;
+    }
+  }
+
+  Color get _borderColor {
+    switch (status) {
+      case ApprovalStatus.approved:
+        return AppColors.greenA400;
+      case ApprovalStatus.pending:
+        return AppColors.orangeA400;
+      case ApprovalStatus.cancelled:
+        return AppColors.redA400;
+      case ApprovalStatus.prepare:
+        return AppColors.gray.withValues(alpha: 0.3);
     }
   }
 
   @override
   Widget build(BuildContext context) {
     final label = _statusText.isEmpty ? role : '$role - $_statusText';
-
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
         color: _bgColor,
         borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: _borderColor, width: 0.8),
+        boxShadow: [
+          BoxShadow(
+            color: _bgColor.withValues(alpha: 0.3),
+            blurRadius: 6,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
       child: Text(
         label,

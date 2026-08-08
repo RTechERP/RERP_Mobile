@@ -19,7 +19,7 @@ class WeekPlanService extends DioBaseApiService {
   Future<BaseData<List<WeekPlanTaskItem>>> getProjectTask({
     required DateTime dateStart,
     required DateTime dateEnd,
-    required int status,
+    String? status,
     required int isApprove,
     required int viewNumber,
   }) async {
@@ -473,6 +473,92 @@ class WeekPlanService extends DioBaseApiService {
             .map((e) => DayOffItem.fromJson(e as Map<String, dynamic>))
             .toList();
       }),
+    );
+  }
+
+  /// GET /ProjectTask/project-task-status
+  ///
+  /// Response {status: 1, data: { projectTaskStatuses: [ {ID: 0}, ... ] }
+  Future<BaseData<List<WeekPlanFilterItem>>> getProjectTaskStatus() async {
+    return get<BaseData<List<WeekPlanFilterItem>>>(
+      ApiEndPoint.getWeekPlanFilter,
+      parser: (json) {
+        final map = json as Map<String, dynamic>;
+        final dataPart = map['data'];
+        
+        List<WeekPlanFilterItem> items = [];
+        if (dataPart is Map<String, dynamic>) {
+          final statuses = dataPart['projectTaskStatuses'];
+          if (statuses is List) {
+            items = statuses
+                .map((e) => WeekPlanFilterItem.fromJson(e as Map<String, dynamic>))
+                .toList();
+          }
+        }
+        
+        return BaseData<List<WeekPlanFilterItem>>(
+          status: map['status'] as int?,
+          data: items,
+        );
+      },
+    );
+  }
+
+  /// PUT /ProjectTask/Approve
+  ///
+  /// Body: [int, int, ...]  (raw list of projectTaskIDs)
+  /// Query params: isApproved, review, completionRating
+  /// Response: { status: 1, data: [WeekPlanApproveResponse, ...] }
+  Future<BaseData<List<WeekPlanApproveResponse>>> approveProjectTask({
+    required List<int> projectTaskIds,
+    required bool isApproved,
+    String? review,
+    int? completionRating,
+  }) async {
+    return post<BaseData<List<WeekPlanApproveResponse>>>(
+      ApiEndPoint.approveProjectTask,
+      body: projectTaskIds,
+      query: {
+        'isApproved': isApproved,
+        if (review != null && review.isNotEmpty) 'review': review,
+        if (completionRating != null) 'completionRating': completionRating,
+      },
+      parser: (json) => _parseList<WeekPlanApproveResponse>(
+        json,
+        WeekPlanApproveResponse.fromJson,
+      ),
+    );
+  }
+
+  BaseData<List<T>> _parseList<T>(
+      dynamic json,
+      T Function(Map<String, dynamic>) fromJson,
+      ) {
+    if (json is List) {
+      return BaseData<List<T>>.fromJson(
+        {'status': 1, 'data': json},
+            (data) => (data as List)
+            .map((e) => fromJson(e as Map<String, dynamic>))
+            .toList(),
+      );
+    }
+
+    return BaseData<List<T>>.fromJson(
+      json as Map<String, dynamic>,
+          (data) {
+        if (data is List) {
+          return data.map((e) => fromJson(e as Map<String, dynamic>)).toList();
+        }
+        if (data is Map) {
+          final items = (data as Map<String, dynamic>).values
+              .whereType<List>()
+              .expand((e) => e)
+              .map((e) => fromJson(e as Map<String, dynamic>))
+              .toList();
+          if (items.isNotEmpty) return items;
+        }
+        return <T>[];
+      },
     );
   }
 }

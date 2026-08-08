@@ -21,6 +21,7 @@ import '../../../features/workplace/app/reg_work/view/pages/work_trip/view/widge
 import '../../../features/workplace/app/reports/view/tech/view/bloc/tech_bloc.dart';
 import '../../../routes/route_names.dart';
 import '../../app_theme/index.dart';
+import '../../common_ui.dart';
 import '../../constants/index.dart';
 import '../../services/custom_toast.dart';
 import '../../services/update/force_update_service.dart';
@@ -172,14 +173,9 @@ class DialogService {
   static Future<void> showForceUpdate({required BuildContext context}) {
     return BaseDialog.twoOptionVerticalDialog(
       context: context,
-      image: const Icon(
-        Icons.system_update,
-        size: 64,
-        color: AppColors.main,
-      ),
+      image: const Icon(Icons.system_update, size: 64, color: AppColors.main),
       title: 'Cập nhật phiên bản mới',
-      description:
-          'Vui lòng cập nhật phiên bản mới để tiếp tục sử dụng.',
+      description: 'Vui lòng cập nhật phiên bản mới để tiếp tục sử dụng.',
       contentTopButton: 'Cập nhật',
       topButtonFunc: () {
         Navigator.of(context, rootNavigator: true).pop();
@@ -1148,6 +1144,150 @@ class DialogService {
         onBack(context);
       },
     );
+  }
+
+  static Future<Map<String, dynamic>?> showApproveTask({
+    required BuildContext context,
+    String title = 'Xác nhận duyệt công việc',
+    String? initialComment,
+    bool isCommentRequired = false,
+    int initialRating = 5,
+    void Function(int rating, String? comment)? onConfirm,
+  }) async {
+    final formKey = GlobalKey<FormBuilderState>();
+    int selectedRating = initialRating;
+    Map<String, dynamic>? result;
+
+    await BaseDialog.twoOptionVerticalDialog(
+      context: context,
+      image: const Icon(Icons.check_circle_outline, size: 64, color: AppColors.stateSuccessColor),
+      title: title,
+      descriptionWidget: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            'Đánh giá hoàn thành',
+            style: AppStyles.body2.copyWith(color: AppColors.textSecondaryColor),
+          ),
+          SizedBox(height: AppUICommons.smallVerticalSpacing),
+          StatefulBuilder(
+            builder: (context, setState) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(5, (index) {
+                  return IconButton(
+                    onPressed: () {
+                      setState(() {
+                        selectedRating = index + 1;
+                      });
+                    },
+                    icon: Icon(
+                      index < selectedRating
+                          ? Icons.star_rounded
+                          : Icons.star_border_rounded,
+                      size: 36,
+                      color: AppColors.stateWarningColor,
+                    ),
+                  );
+                }),
+              );
+            },
+          ),
+          SizedBox(height: AppUICommons.smallVerticalSpacing),
+          FormBuilder(
+            key: formKey,
+            child: FormBuilderTextField(
+              name: 'comment',
+              initialValue: initialComment,
+              decoration: InputDecoration(
+                labelText: isCommentRequired ? 'Nhận xét *' : 'Nhận xét',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(AppUICommons.mediumRadius),
+                ),
+              ),
+              maxLines: 3,
+              validator: isCommentRequired
+                  ? FormBuilderValidators.compose([
+                      FormBuilderValidators.required(
+                        errorText: 'Vui lòng nhập nhận xét',
+                      ),
+                    ])
+                  : null,
+            ),
+          ),
+        ],
+      ),
+      contentTopButton: 'Xác nhận',
+      topButtonFunc: () {
+        final formState = formKey.currentState;
+        if (formState?.saveAndValidate() ?? false) {
+          final comment = formState!.value['comment'] as String?;
+          result = {
+            'rating': selectedRating,
+            'comment': comment?.isNotEmpty == true ? comment : null,
+          };
+          onConfirm?.call(selectedRating, comment);
+          onBack(context);
+        }
+      },
+      contentBottomButton: 'Huỷ',
+      bottomButtonFunc: () {
+        onBack(context);
+      },
+    );
+
+    return result;
+  }
+
+  static Future<Map<String, dynamic>?> showRejectTask({
+    required BuildContext context,
+    String title = 'Lý do từ chối',
+    String? initialReason,
+    void Function(String reason)? onConfirm,
+  }) async {
+    final formKey = GlobalKey<FormBuilderState>();
+    Map<String, dynamic>? result;
+
+    await BaseDialog.twoOptionVerticalDialog(
+      context: context,
+      image: const Icon(Icons.cancel_outlined, size: 64, color: Colors.red),
+      title: title,
+      descriptionWidget: FormBuilder(
+        key: formKey,
+        child: FormBuilderTextField(
+          name: 'reason',
+          initialValue: initialReason,
+          decoration: InputDecoration(
+            labelText: 'Lý do từ chối *',
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(AppUICommons.mediumRadius),
+            ),
+          ),
+          maxLines: 4,
+          validator: FormBuilderValidators.compose([
+            FormBuilderValidators.required(
+              errorText: 'Vui lòng nhập lý do từ chối',
+            ),
+          ]),
+        ),
+      ),
+      contentTopButton: 'Xác nhận',
+      topButtonFunc: () {
+        final formState = formKey.currentState;
+        if (formState?.saveAndValidate() ?? false) {
+          final reason = formState!.value['reason'] as String;
+          result = {'reason': reason};
+          onConfirm?.call(reason);
+          onBack(context);
+        }
+      },
+      contentBottomButton: 'Huỷ',
+      bottomButtonFunc: () {
+        onBack(context);
+      },
+    );
+
+    return result;
   }
 
   // static Future<dynamic> showRequestStoragePermissionDialog(

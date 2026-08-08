@@ -4,14 +4,11 @@ import '../../../../../../../../../common/app_theme/index.dart';
 import 'week_plan_dashboard_glass_container.dart';
 import '../../data/datasource/models/week_plan_dashboard_models.dart';
 
-/// Bảng thống kê số lượng công việc theo loại (Task / Bug / Issue Log / ...).
+/// Bảng thống kê trạng thái công việc theo loại.
 ///
-/// Cột: LOẠI CV | SL | HOÀN THÀNH | ĐANG LÀM | QUÁ HẠN | CHỜ DUYỆT
+/// Cột: LOẠI CV | DUYỆT | TỪ CHỐI | ĐANG LÀM | QUÁ HẠN | CHỜ DUYỆT
 class WeekPlanDashboardTaskTypeTable extends StatelessWidget {
-  const WeekPlanDashboardTaskTypeTable({
-    super.key,
-    required this.stats,
-  });
+  const WeekPlanDashboardTaskTypeTable({super.key, required this.stats});
 
   final List<DashboardTaskTypeStat> stats;
 
@@ -24,7 +21,7 @@ class WeekPlanDashboardTaskTypeTable extends StatelessWidget {
         children: [
           const WeekPlanDashboardSectionHeader(
             title: 'Thống kê theo loại công việc',
-            subtitle: 'Số lượng & tỉ lệ hoàn thành',
+            subtitle: 'Phân bổ trạng thái công việc',
             icon: Icons.category_outlined,
           ),
           const SizedBox(height: 12),
@@ -45,14 +42,11 @@ class WeekPlanDashboardTaskTypeTable extends StatelessWidget {
             const WeekPlanDashboardTableHeader(),
             const SizedBox(height: 6),
             ...stats.asMap().entries.map(
-                  (e) => Padding(
-                    padding: const EdgeInsets.only(bottom: 6),
-                    child: WeekPlanDashboardTableRow(
-                      index: e.key,
-                      stat: e.value,
-                    ),
-                  ),
-                ),
+              (e) => Padding(
+                padding: const EdgeInsets.only(bottom: 6),
+                child: WeekPlanDashboardTableRow(index: e.key, stat: e.value),
+              ),
+            ),
           ],
         ],
       ),
@@ -82,44 +76,24 @@ class WeekPlanDashboardTableHeader extends StatelessWidget {
         children: [
           Expanded(flex: 28, child: Text('LOẠI CV', style: style)),
           Expanded(
-            flex: 12,
-            child: Text(
-              'SL',
-              style: style,
-              textAlign: TextAlign.center,
-            ),
-          ),
-          Expanded(
-            flex: 16,
-            child: Text(
-              'HOÀN THÀNH',
-              style: style,
-              textAlign: TextAlign.center,
-            ),
-          ),
-          Expanded(
-            flex: 16,
-            child: Text(
-              'ĐANG LÀM',
-              style: style,
-              textAlign: TextAlign.center,
-            ),
+            flex: 14,
+            child: Text('DUYỆT', style: style, textAlign: TextAlign.center),
           ),
           Expanded(
             flex: 14,
-            child: Text(
-              'QUÁ HẠN',
-              style: style,
-              textAlign: TextAlign.center,
-            ),
+            child: Text('TỪ CHỐI', style: style, textAlign: TextAlign.center),
+          ),
+          Expanded(
+            flex: 16,
+            child: Text('ĐANG LÀM', style: style, textAlign: TextAlign.center),
           ),
           Expanded(
             flex: 14,
-            child: Text(
-              'CHỜ DUYỆT',
-              style: style,
-              textAlign: TextAlign.center,
-            ),
+            child: Text('QUÁ HẠN', style: style, textAlign: TextAlign.center),
+          ),
+          Expanded(
+            flex: 14,
+            child: Text('CHỜ DUYỆT', style: style, textAlign: TextAlign.center),
           ),
         ],
       ),
@@ -165,19 +139,19 @@ class WeekPlanDashboardTableRow extends StatelessWidget {
             ),
           ),
           Expanded(
-            flex: 12,
+            flex: 14,
             child: WeekPlanDashboardStatBadge(
-              text: '${stat.total}',
-              color: AppColors.heading,
-              bg: AppColors.bgCard,
+              text: '${stat.duyet}',
+              color: const Color(0xFF33B469),
+              bg: const Color(0xFFE7F6EC),
             ),
           ),
           Expanded(
-            flex: 16,
+            flex: 14,
             child: WeekPlanDashboardStatBadge(
-              text: '${stat.hoanThanh}',
-              color: const Color(0xFF33B469),
-              bg: const Color(0xFFE7F6EC),
+              text: '${stat.tuChoi}',
+              color: const Color(0xFFE94260),
+              bg: const Color(0xFFFCE7EB),
             ),
           ),
           Expanded(

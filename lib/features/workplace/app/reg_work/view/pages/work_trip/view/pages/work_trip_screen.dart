@@ -130,6 +130,7 @@ class _WorkTripScreenPageState
               item: item,
               onTap: () => _openDetail(context, item),
               onLongPress: () => _onLongPress(context, item),
+              onCopy: () => _onLongPress(context, item),
             ),
           );
           continue;
@@ -169,6 +170,10 @@ class _WorkTripScreenPageState
                   _openDetail(context, item);
                 },
                 onLongPress: () {
+                  Slidable.of(slidableCtx)?.close();
+                  _onLongPress(context, item);
+                },
+                onCopy: () {
                   Slidable.of(slidableCtx)?.close();
                   _onLongPress(context, item);
                 },

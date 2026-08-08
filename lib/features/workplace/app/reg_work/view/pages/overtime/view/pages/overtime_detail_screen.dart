@@ -182,23 +182,6 @@ class _OvertimeDetailScreenPageState
     );
   }
 
-  Future<void> _openLocationSheet(String slipKey) async {
-    final form = _formKey.currentState;
-    if (form == null) return;
-    await openSelectBottomSheet<OvertimeLocationOption>(
-      context: context,
-      title: 'Chọn địa điểm',
-      items: kOvertimeLocationOptions,
-      displayText: (o) => o.label,
-      onSelected: (o) {
-        form.fields['ot_slip_${slipKey}_location_id']
-            ?.didChange(o.value.toString());
-        form.fields['ot_slip_${slipKey}_location_text']?.didChange(o.label);
-        setState(() {});
-      },
-    );
-  }
-
   Future<void> _openProjectSheet(String slipKey) async {
     final form = _formKey.currentState;
     if (form == null) return;
@@ -331,14 +314,6 @@ class _OvertimeDetailScreenPageState
     if (typeId == null) return '';
     for (final t in state.overtimeTypes) {
       if (t.id == typeId) return t.type ?? '';
-    }
-    return '';
-  }
-
-  String _locationLabel(int? locationId) {
-    if (locationId == null) return '';
-    for (final o in kOvertimeLocationOptions) {
-      if (o.value == locationId) return o.label;
     }
     return '';
   }
@@ -546,7 +521,6 @@ class _OvertimeDetailScreenPageState
                                     dateRegister:
                                         detail.dateRegister ?? DateTime.now(),
                                     onTypeTap: _openTypeSheet,
-                                    onLocationTap: _openLocationSheet,
                                     onProjectTap: _openProjectSheet,
                                     computedHours: _computeSlipHours(),
                                     initialTimeStart: detail.timeStart,
@@ -554,7 +528,6 @@ class _OvertimeDetailScreenPageState
                                     initialTypeId: detail.typeId,
                                     initialTypeLabel: _typeLabel(state, detail.typeId),
                                     initialLocationId: detail.location,
-                                    initialLocationLabel: _locationLabel(detail.location),
                                     initialProjectId: detail.projectId,
                                     initialProjectLabel: _projectLabel(state, detail.projectId),
                                     initialReason: detail.reason,
@@ -562,6 +535,7 @@ class _OvertimeDetailScreenPageState
                                     onTimeStartChanged: _onSlipTimeStartChanged,
                                     onEndTimeChanged: _onSlipEndTimeChanged,
                                     onOvernightChanged: _onSlipOvernightChanged,
+                                    isProjectRequired: state.isProjectRequired,
                                   ),
                                 ],
                               ),
@@ -596,7 +570,7 @@ class _OvertimeDetailScreenPageState
           return Positioned.fill(
             child: AbsorbPointer(
               child: Container(
-                color: Colors.black.withOpacity(0.45),
+                color: Colors.black.withValues(alpha: 0.45),
                 alignment: Alignment.center,
                 child: Lottie.asset(
                   'assets/lotties/Loading.json',

@@ -45,8 +45,24 @@ class User with _$User {
     @JsonKey(name: 'Permissions') required String permissions,
 
     @JsonKey(name: 'Name') required String name,
+    @JsonKey(name: 'PasswordHash') required String passwordHash,
+    @JsonKey(name: 'LeaderID') required int leaderId,
+    @JsonKey(name: 'TaxCompanyID') required int taxCompanyId,
+    @JsonKey(name: 'ImagePath') String? imagePath,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) =>
       _$UserFromJson(json);
+}
+
+/// Response trả về từ API /home/upload-avatar.
+@freezed
+class UploadAvatarResponse with _$UploadAvatarResponse {
+  const factory UploadAvatarResponse({
+    /// Tên file server đã lưu (vd: `avatar_emp_689_20260712172859.jpeg`).
+    @JsonKey(name: 'SavedFileName') @Default('') String savedFileName,
+  }) = _UploadAvatarResponse;
+
+  factory UploadAvatarResponse.fromJson(Map<String, dynamic> json) =>
+      _$UploadAvatarResponseFromJson(json);
 }

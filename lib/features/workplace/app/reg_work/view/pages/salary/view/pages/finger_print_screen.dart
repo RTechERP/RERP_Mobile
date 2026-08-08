@@ -63,7 +63,12 @@ class _FingerPrintScreenState
             SliverList(
               delegate: SliverChildBuilderDelegate(
                 (context, index) =>
-                    FingerPrintDayRow(detail: details[index], index: index),
+                    FingerPrintDayRow(
+                      detail: details[index],
+                      index: index,
+                      holidays: state.holidays,
+                      workSaturdays: state.workSaturdays,
+                    ),
                 childCount: details.length,
               ),
             ),
@@ -179,6 +184,8 @@ class _FingerPrintScreenState
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 14),
       child: FingerPrintSummaryCard(
+        holidays: state.holidays,
+        workSaturdays: state.workSaturdays,
         items: [
           FingerPrintSummaryItem(
             'Đi muộn', lateCount, AppColors.alert, Icons.arrow_upward,

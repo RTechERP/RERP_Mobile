@@ -3,6 +3,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../../di/injection.dart';
 import '../config/app_version_config.dart';
 import '../services/firebase/firebase_initializer.dart';
+import '../utils/datetime_utils.dart';
 import 'app_config.dart';
 
 class AppInitializer {
@@ -13,5 +14,6 @@ class AppInitializer {
     await FirebaseInitializer.init();
     await AppVersionConfig.preloadCurrentVersion();
     await AppVersionConfig.loadMinSupportedVersion();
+    initializeTimeZones();
   }
 }

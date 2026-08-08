@@ -42,6 +42,7 @@ import '../features/workplace/app/personal_approve/app/approve_timesheet/view/pa
 import '../features/workplace/app/personal_approve/app/approve_timesheet/data/datasource/models/approve_timesheet_model.dart';
 import '../features/workplace/app/personal_approve/view/bloc/personal_approve_menu_bloc.dart';
 import '../features/workplace/app/personal_approve/view/pages/personal_approve_menu_screen.dart';
+import '../features/more/view/pages/avatar_viewer_screen.dart';
 import '../features/workplace/app/general_form/view/bloc/general_form_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_add_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_edit_screen.dart';
@@ -168,6 +169,9 @@ import '../features/workplace/app/reports/view/tech/view/pages/tech_add_screen.d
 import '../features/workplace/app/reports/view/tech/view/pages/tech_detail_screen.dart';
 import '../features/workplace/app/reports/view/tech/view/pages/tech_edit_screen.dart';
 import '../features/workplace/app/reports/view/tech/view/pages/tech_screen.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_area_screen.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/warehouse_sale_screen.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_screen.dart';
 import '../features/workplace/app/week_plan/view/bloc/week_plan_bloc.dart';
 import '../features/workplace/app/week_plan/view/pages/week_plan_add_screen.dart';
 import '../features/workplace/app/week_plan/view/pages/week_plan_all_screen.dart';
@@ -937,6 +941,18 @@ class AppRouter {
             path: RouteNames.notificationSettings,
             builder: (context, state) => const NotificationSettingsScreen(),
           ),
+          GoRoute(
+            path: RouteNames.avatarViewer,
+            builder: (context, state) {
+              final extra = state.extra as Map<String, dynamic>?;
+              final avatarUrl = extra?['avatarUrl'] as String? ?? '';
+              final userName = extra?['userName'] as String? ?? '';
+              return AvatarViewerScreen(
+                avatarUrl: avatarUrl,
+                userName: userName,
+              );
+            },
+          ),
         ],
       ),
 
@@ -1404,6 +1420,17 @@ class AppRouter {
             ],
           ),
         ],
+      ),
+
+      //---(Warehouse)---//
+      GoRoute(
+        path: RouteNames.warehouse,
+        builder: (context, state) => const WarehouseScreen(),
+      ),
+
+      GoRoute(
+        path: RouteNames.warehouseArea,
+        builder: (context, state) => const WarehouseAreaScreen(),
       ),
     ],
   );

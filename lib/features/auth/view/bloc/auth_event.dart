@@ -1,5 +1,5 @@
 // Date: 11/04/2026 - Dev: NQHung
-// Nội dung/Chức năng: Event definitions cho auth - init, login, logout, toggleRememberMe
+// Nội dung/Chức năng: Event definitions cho auth - init, login, logout, toggleRememberMe, uploadAvatar
 
 part of 'auth_bloc.dart';
 
@@ -20,4 +20,7 @@ class AuthEvent with _$AuthEvent {
 
   /// Toggle remember me checkbox - cập nhật state, không gọi API.
   const factory AuthEvent.toggleRememberMe(bool value) = _ToggleRememberMe;
+
+  /// Upload avatar lên server, sau đó refetch user để cập nhật imagePath.
+  const factory AuthEvent.uploadAvatar(String filePath) = _UploadAvatar;
 }

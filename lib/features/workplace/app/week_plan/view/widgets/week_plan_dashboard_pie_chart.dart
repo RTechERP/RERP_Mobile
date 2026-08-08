@@ -8,21 +8,19 @@ import '../../data/datasource/models/week_plan_dashboard_models.dart';
 /// Biểu đồ tròn (Pie Chart) hiển thị phân bổ trạng thái công việc.
 ///
 /// Dùng `SfCircularChart` với `DoughnutSeries`:
-///  - Liệt kê **đầy đủ 7 trạng thái** (kể cả khi `value == 0`) để đồng bộ với lưới.
-///  - Màu & nhãn khớp với `WeekPlanDashboardStatusGrid` (không có biến thể quá hạn riêng).
+///  - Liệt kê **đầy đủ 10 trạng thái** (kể cả khi `value == 0`) để đồng bộ với lưới.
+///  - Màu & nhãn khớp với `WeekPlanDashboardStatusGrid`.
 ///  - Trên mỗi lát in **số lượng** (cỡ lớn) và **tên trạng thái** (cỡ nhỏ) bằng màu chữ tương phản.
 ///  - Bên cạnh biểu đồ là danh sách chú thích: ô màu + tên trạng thái + số lượng + tỉ lệ %.
 ///  - Phần trung tâm chỉ hiển thị tổng cộng.
 class WeekPlanDashboardPieChart extends StatelessWidget {
-  const WeekPlanDashboardPieChart({
-    super.key,
-    required this.stats,
-  });
+  const WeekPlanDashboardPieChart({super.key, required this.stats});
 
   final DashboardStats stats;
 
   static const List<_PieItem> _items = [
     _PieItem('Chưa bắt đầu', Color(0xFF8C96B1)),
+    _PieItem('Chưa bắt đầu quá hạn', Color(0xFFEB5757)),
     _PieItem('Đang làm', Color(0xFF2F80ED)),
     _PieItem('Đang làm quá hạn', Color(0xFFEB5757)),
     _PieItem('Chờ phê duyệt', Color(0xFFF2C94C)),
@@ -35,11 +33,13 @@ class WeekPlanDashboardPieChart extends StatelessWidget {
 
   List<_PieSlice> _buildSlices() {
     return _items
-        .map((it) => _PieSlice(
-              label: it.label,
-              value: _valueOf(it.label),
-              color: it.color,
-            ))
+        .map(
+          (it) => _PieSlice(
+            label: it.label,
+            value: _valueOf(it.label),
+            color: it.color,
+          ),
+        )
         .toList(growable: false);
   }
 
@@ -47,6 +47,8 @@ class WeekPlanDashboardPieChart extends StatelessWidget {
     switch (label) {
       case 'Chưa bắt đầu':
         return stats.chuaBatDau;
+      case 'Chưa bắt đầu quá hạn':
+        return stats.chuaBatDauQuaHan;
       case 'Đang làm':
         return stats.dangLam;
       case 'Đang làm quá hạn':
@@ -110,27 +112,30 @@ class WeekPlanDashboardPieChart extends StatelessWidget {
                           margin: EdgeInsets.zero,
                           tooltipBehavior: TooltipBehavior(
                             enable: true,
-                            builder: (data, point, series, pointIndex,
-                                seriesIndex) {
-                              final slice = point as _PieSlice;
-                              return Container(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 6),
-                                decoration: BoxDecoration(
-                                  color:
-                                      Colors.black.withValues(alpha: 0.85),
-                                  borderRadius: BorderRadius.circular(6),
-                                ),
-                                child: Text(
-                                  '${slice.label}: ${slice.value}',
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              );
-                            },
+                            builder:
+                                (data, point, series, pointIndex, seriesIndex) {
+                                  final slice = point as _PieSlice;
+                                  return Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 10,
+                                      vertical: 6,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: Colors.black.withValues(
+                                        alpha: 0.85,
+                                      ),
+                                      borderRadius: BorderRadius.circular(6),
+                                    ),
+                                    child: Text(
+                                      '${slice.label}: ${slice.value}',
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  );
+                                },
                           ),
                           series: <CircularSeries>[
                             DoughnutSeries<_PieSlice, String>(
@@ -148,17 +153,23 @@ class WeekPlanDashboardPieChart extends StatelessWidget {
                                     LabelIntersectAction.shift,
                                 connectorLineSettings:
                                     const ConnectorLineSettings(
-                                  width: 1,
-                                  color: AppColors.borderColor,
-                                ),
-                                builder: (data, point, series, pointIndex,
-                                    seriesIndex) {
-                                  final slice = data as _PieSlice;
-                                  if (slice.value <= 0) {
-                                    return const SizedBox.shrink();
-                                  }
-                                  return _SliceLabel(slice: slice);
-                                },
+                                      width: 1,
+                                      color: AppColors.borderColor,
+                                    ),
+                                builder:
+                                    (
+                                      data,
+                                      point,
+                                      series,
+                                      pointIndex,
+                                      seriesIndex,
+                                    ) {
+                                      final slice = data as _PieSlice;
+                                      if (slice.value <= 0) {
+                                        return const SizedBox.shrink();
+                                      }
+                                      return _SliceLabel(slice: slice);
+                                    },
                               ),
                             ),
                           ],
@@ -204,7 +215,7 @@ class _PieSlice {
 }
 
 /// Danh sách chú thích dạng Wrap nằm dưới biểu đồ: tự xuống hàng khi hết chỗ,
-/// hiển thị đủ 9 trạng thái (kể cả value = 0 — sẽ làm mờ).
+/// hiển thị đủ 10 trạng thái (kể cả value = 0 — sẽ làm mờ).
 class _LegendWrap extends StatelessWidget {
   const _LegendWrap({required this.slices});
 
@@ -312,10 +323,7 @@ class _SliceLabel extends StatelessWidget {
 
 /// Nhãn hiển thị ở tâm biểu đồ tròn.
 class _PieCenterLabel extends StatelessWidget {
-  const _PieCenterLabel({
-    required this.total,
-    required this.overdue,
-  });
+  const _PieCenterLabel({required this.total, required this.overdue});
 
   final int total;
   final int overdue;
@@ -346,8 +354,7 @@ class _PieCenterLabel extends StatelessWidget {
         if (overdue > 0) ...[
           const SizedBox(height: 3),
           Container(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
             decoration: BoxDecoration(
               color: const Color(0xFFEB5757).withValues(alpha: 0.12),
               borderRadius: BorderRadius.circular(8),

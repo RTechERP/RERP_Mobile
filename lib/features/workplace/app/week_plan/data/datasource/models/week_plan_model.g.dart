@@ -1145,3 +1145,77 @@ Map<String, dynamic> _$$DayOffItemImplToJson(_$DayOffItemImpl instance) =>
     <String, dynamic>{
       'DateOff': instance.dateOff?.toIso8601String(),
     };
+
+_$WeekPlanFilterItemImpl _$$WeekPlanFilterItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$WeekPlanFilterItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      no: (json['No'] as num?)?.toInt(),
+      title: json['Title'] as String?,
+      description: json['Description'] as String?,
+      type: (json['Type'] as num?)?.toInt(),
+      colorBackground: json['ColorBackground'] as String?,
+      colorFont: json['ColorFont'] as String?,
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+      createdBy: json['CreatedBy'] as String?,
+      updatedDate: json['UpdatedDate'] == null
+          ? null
+          : DateTime.parse(json['UpdatedDate'] as String),
+      updatedBy: json['UpdatedBy'] as String?,
+      isDeleted: json['IsDeleted'] as bool?,
+    );
+
+Map<String, dynamic> _$$WeekPlanFilterItemImplToJson(
+        _$WeekPlanFilterItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'No': instance.no,
+      'Title': instance.title,
+      'Description': instance.description,
+      'Type': instance.type,
+      'ColorBackground': instance.colorBackground,
+      'ColorFont': instance.colorFont,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'CreatedBy': instance.createdBy,
+      'UpdatedDate': instance.updatedDate?.toIso8601String(),
+      'UpdatedBy': instance.updatedBy,
+      'IsDeleted': instance.isDeleted,
+    };
+
+_$WeekPlanApproveResponseImpl _$$WeekPlanApproveResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$WeekPlanApproveResponseImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      projectTaskId: (json['ProjectTaskID'] as num?)?.toInt(),
+      employeeId: (json['EmployeeID'] as num?)?.toInt(),
+      isApprove: json['IsApprove'] as bool?,
+      review: json['Review'] as String?,
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+      createdBy: json['CreatedBy'] as String?,
+      updatedDate: json['UpdatedDate'] == null
+          ? null
+          : DateTime.parse(json['UpdatedDate'] as String),
+      updatedBy: json['UpdatedBy'] as String?,
+      isDeleted: json['IsDeleted'] as bool?,
+      completionRating: (json['CompletionRating'] as num?)?.toDouble(),
+    );
+
+Map<String, dynamic> _$$WeekPlanApproveResponseImplToJson(
+        _$WeekPlanApproveResponseImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'ProjectTaskID': instance.projectTaskId,
+      'EmployeeID': instance.employeeId,
+      'IsApprove': instance.isApprove,
+      'Review': instance.review,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'CreatedBy': instance.createdBy,
+      'UpdatedDate': instance.updatedDate?.toIso8601String(),
+      'UpdatedBy': instance.updatedBy,
+      'IsDeleted': instance.isDeleted,
+      'CompletionRating': instance.completionRating,
+    };

@@ -53,4 +53,32 @@ class AuthService extends DioBaseApiService {
       ),
     );
   }
+
+  /// Upload avatar lên server.
+  /// [filePath] là đường dẫn file trên thiết bị.
+  Future<UploadAvatarResponse> uploadAvatar(String filePath) async {
+    final token = await AuthRepository.getToken();
+
+    final formData = FormData.fromMap({
+      'file': await MultipartFile.fromFile(
+        filePath,
+        filename: 'avatar.jpg',
+      ),
+    });
+
+    return post<UploadAvatarResponse>(
+      ApiEndPoint.uploadAvatar,
+      body: formData,
+      options: Options(
+        headers: {
+          'Authorization': 'Bearer $token',
+          'Accept': 'application/json',
+          'Content-Type': 'multipart/form-data',
+        },
+      ),
+      parser: (json) => UploadAvatarResponse.fromJson(
+        json as Map<String, dynamic>,
+      ),
+    );
+  }
 }

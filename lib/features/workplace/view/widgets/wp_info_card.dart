@@ -60,9 +60,19 @@ class WpInfoCard extends StatelessWidget {
     return CircleAvatar(
       radius: (height - 16) / 2,
       backgroundColor: Colors.grey.shade200,
-      backgroundImage: hasAvatar ? NetworkImage(avatarUrl!) : null,
       child: hasAvatar
-          ? null
+          ? ClipOval(
+              child: Image.network(
+                avatarUrl!,
+                width: (height - 16) * 2,
+                height: (height - 16) * 2,
+                fit: BoxFit.cover,
+                errorBuilder: (_, __, ___) => const Icon(
+                  Icons.person,
+                  color: Colors.grey,
+                ),
+              ),
+            )
           : const Icon(Icons.person, color: Colors.grey),
     );
   }

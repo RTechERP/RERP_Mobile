@@ -256,8 +256,9 @@ class _MissedDetailScreenState extends BaseState<MissedDetailScreen, MissedEvent
                                 format: DateFormat('dd/MM/yyyy'),
                                 initialValue: day,
                                 initialDate: day,
-                                firstDate: datePickerFirstDate,
-                                lastDate: _lastSelectableDate,
+                                // firstDate: datePickerFirstDate,
+                                // lastDate: _lastSelectableDate,
+                                // lastDate: day,
                               ),
                               const SizedBox(height: 12),
                               if (_canEdit) ...[
@@ -296,24 +297,42 @@ class _MissedDetailScreenState extends BaseState<MissedDetailScreen, MissedEvent
                                 ),
                               const SizedBox(height: 12),
                               if (_canEdit) ...[
-                                FormRadioGroup(
+                                // FormRadioGroup(
+                                //   name: 'regwork_missed_detail_type',
+                                //   label: 'Loại',
+                                //   initialValue: typeKey,
+                                //   options: const [
+                                //     FormRadioOption(
+                                //       value: 'check_in',
+                                //       icon: Icons.login_rounded,
+                                //       label: 'Quên lúc đến',
+                                //     ),
+                                //     FormRadioOption(
+                                //       value: 'check_out',
+                                //       icon: Icons.logout_rounded,
+                                //       label: 'Quên lúc về',
+                                //     ),
+                                //   ],
+                                // ),
+                                FormChoiceGroup<String>(
                                   name: 'regwork_missed_detail_type',
                                   label: 'Loại',
+                                  icon: Icons.punch_clock_outlined,
                                   initialValue: typeKey,
-                                  options: const [
-                                    FormRadioOption(
+                                  columns: 2,
+                                  options: [
+                                    FormChoiceOption(
                                       value: 'check_in',
-                                      icon: Icons.login_rounded,
                                       label: 'Quên lúc đến',
+                                      selectedColor: AppColors.primaryERP,
                                     ),
-                                    FormRadioOption(
+                                    FormChoiceOption(
                                       value: 'check_out',
-                                      icon: Icons.logout_rounded,
                                       label: 'Quên lúc về',
+                                      selectedColor: AppColors.primaryERP,
                                     ),
                                   ],
                                 ),
-
                               ] else ...[
                                 FormReadonlyField(
                                   name: 'regwork_missed_detail_type_ro',

@@ -54,6 +54,11 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
             _onForgotResetPin(emit, newPin, confirmPin),
         forgotUpdateStep: (step) => _onForgotUpdateStep(emit, step),
         clearForgotState: () => _onClearForgotState(emit),
+        // Confirm Payroll
+        confirmPayroll: (payrollId) => _onConfirmPayroll(emit, payrollId),
+        cancelPayroll: (payrollId) => _onCancelPayroll(emit, payrollId),
+        clearConfirmState: () => _onClearConfirmState(emit),
+        confirmInit: () => _onConfirmInit(emit),
       );
     });
   }
@@ -417,7 +422,7 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
           otMoneyWKNightWeekend: calcOtMoneyWKNightWeekend,
           otHourHD: p?.otHourHD ?? calcOtHourHD,
           otMoneyHD: p?.otMoneyHD ?? calcOtMoneyHD,
-          otTotalSalary: calcOtTotal,
+          otTotalSalary: p?.otTotalSalary ?? calcOtTotal,
           // Card phụ cấp
           allowanceMeal: p?.allowanceMeal ?? 0,
           allowanceOTEarly: p?.allowanceOTEarly ?? 0,
@@ -431,7 +436,7 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
           totalBonus: p?.totalBonus ?? 0,
           // Card tổng thu nhập
           totalTaxableIncome: (p?.totalSalaryByDay ?? 0) +
-              calcOtTotal +
+              (p?.otTotalSalary ?? calcOtTotal) +
               (p?.totalAllowance ?? 0) +
               (p?.totalBonus ?? 0),
           // Card các khoản phải trừ
@@ -443,6 +448,7 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
           parkingMoney: p?.parkingMoney ?? 0,
           punish5S: p?.punish5S ?? 0,
           mealUse: p?.mealUse ?? 0,
+          regulationViolation: p?.regulationViolation ?? 0,
           otherDeduction: p?.otherDeduction ?? 0,
           totalDeduction: p?.totalDeduction ?? 0,
           // Card giảm trừ thuế
@@ -454,6 +460,14 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
           totalTaxDeduction: p?.totalTaxDeduction ?? 0,
           taxAbleIncome: p?.taxAbleIncome ?? 0,
           taxDeduction: p?.taxDeduction ?? 0,
+          // Card tổng hợp phạt
+          penaltyLateEarlyQty: p?.penaltyLateEarlyQty ?? 0,
+          penaltyLateEarlyAmount: p?.penaltyLateEarlyAmount ?? 0,
+          penaltyMissingAttendanceQty: p?.penaltyMissingAttendanceQty ?? 0,
+          penaltyMissingAttendanceAmount: p?.penaltyMissingAttendanceAmount ?? 0,
+          penaltyLeaveOver2DaysQty: p?.penaltyLeaveOver2DaysQty ?? 0,
+          penaltyLeaveOver2DaysAmount: p?.penaltyLeaveOver2DaysAmount ?? 0,
+          penaltyTotalAmount: p?.penaltyTotalAmount ?? 0,
           // Thực lĩnh & Ghi chú
           netSalary: p?.actualAmountReceived ?? p?.realSalary ?? 0,
           note: p?.note,
@@ -465,6 +479,46 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
           overtimeItems: overtimeItems,
           overnightItems: overtimeItems.where((o) => o.overnight == true).toList(),
         ));
+      },
+    );
+  }
+
+  Future<void> _fetchHolidays(
+    Emitter<SalaryState> emit,
+    int year,
+    int month,
+  ) async {
+    final res = await _salaryRepo.getCalendar(month: month, year: year);
+    await res.fold(
+      (err) async {
+        _log.logE('Get holidays failed: $err');
+      },
+      (data) async {
+        final holidays = (data.holidays ?? const [])
+            .where((h) => h.holidayDate != null)
+            .map((h) => DateTime(
+                  h.holidayDate!.year,
+                  h.holidayDate!.month,
+                  h.holidayDate!.day,
+                ))
+            .toList();
+
+        final workSaturdays = (data.scheduleWorkSaturdays ?? const [])
+            .where((s) => s.dateValue != null)
+            .map((s) => DateTime(
+                  s.dateValue!.year,
+                  s.dateValue!.month,
+                  s.dateValue!.day,
+                ))
+            .toList();
+
+        _log.logI('Get holidays success - holidays: ${holidays.length}, workSaturdays: ${workSaturdays.length}');
+        emit(
+          state.copyWith(
+            holidays: holidays,
+            workSaturdays: workSaturdays,
+          ),
+        );
       },
     );
   }
@@ -492,6 +546,7 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
         ));
 
         await _onFetchPayroll(emit, now.year, now.month);
+        await _fetchHolidays(emit, now.year, now.month);
 
         emit(state.copyWith(status: BaseStateStatus.success));
       },
@@ -510,7 +565,107 @@ class SalaryBloc extends BaseBloc<SalaryEvent, SalaryState> {
     ));
 
     await _onFetchPayroll(emit, month.year, month.month);
+    await _fetchHolidays(emit, month.year, month.month);
 
     emit(state.copyWith(status: BaseStateStatus.success));
+  }
+
+  //---(Confirm Payroll)---//
+  Future<void> _onConfirmPayroll(Emitter<SalaryState> emit, int payrollId) async {
+    emit(state.copyWith(isConfirmingPayroll: true, confirmMessage: null));
+
+    final res = await _salaryRepo.confirmPayroll(id: payrollId, sign: true);
+    res.fold(
+      (err) {
+        _log.logE('Confirm payroll failed: $err');
+        emit(state.copyWith(
+          isConfirmingPayroll: false,
+          confirmSuccess: false,
+          confirmMessage: err.getErrorMessage,
+        ));
+      },
+      (data) async {
+        _log.logI('Confirm payroll success: ${data.message}');
+        emit(state.copyWith(
+          isConfirmingPayroll: false,
+          confirmSuccess: true,
+          confirmMessage: data.message,
+        ));
+        // Update payroll sign status immediately without re-fetching
+        final updatedPayroll = state.payroll.map((p) {
+          if (p.id == payrollId) {
+            return p.copyWith(sign: true);
+          }
+          return p;
+        }).toList();
+        emit(state.copyWith(payroll: updatedPayroll));
+      },
+    );
+  }
+
+  //---(Cancel Payroll)---//
+  Future<void> _onCancelPayroll(Emitter<SalaryState> emit, int payrollId) async {
+    emit(state.copyWith(isConfirmingPayroll: true, confirmMessage: null));
+
+    final res = await _salaryRepo.confirmPayroll(id: payrollId, sign: false);
+    res.fold(
+      (err) {
+        _log.logE('Cancel payroll failed: $err');
+        emit(state.copyWith(
+          isConfirmingPayroll: false,
+          confirmSuccess: false,
+          confirmMessage: err.getErrorMessage,
+        ));
+      },
+      (data) async {
+        _log.logI('Cancel payroll success: ${data.message}');
+        emit(state.copyWith(
+          isConfirmingPayroll: false,
+          confirmSuccess: true,
+          confirmMessage: data.message,
+        ));
+        // Update payroll sign status immediately without re-fetching
+        final updatedPayroll = state.payroll.map((p) {
+          if (p.id == payrollId) {
+            return p.copyWith(sign: false);
+          }
+          return p;
+        }).toList();
+        emit(state.copyWith(payroll: updatedPayroll));
+      },
+    );
+  }
+
+  //---(Confirm Init)---//
+  Future<void> _onConfirmInit(Emitter<SalaryState> emit) async {
+    emit(state.copyWith(status: BaseStateStatus.loading));
+
+    // final userRes = await _authRepo.getCurrentUser();
+    // await userRes.fold(
+    //   (err) async {
+    //     _log.logE('Get current user failed: $err');
+    //   },
+    //   (user) async {
+    //     _log.logI('Get current user success');
+    //     if (user != null) {
+    //       emit(state.copyWith(
+    //         userId: user.id,
+    //         userName: user.fullName,
+    //         employeeId: user.employeeId,
+    //       ));
+    //     }
+    //   },
+    // );
+
+    final selectedMonth = state.selectedMonth ?? DateTime.now();
+    await _onFetchPayroll(emit, selectedMonth.year, selectedMonth.month);
+  }
+
+   _onClearConfirmState(Emitter<SalaryState> emit) {
+    emit(state.copyWith(
+      isConfirmingPayroll: false,
+      confirmSuccess: null,
+      confirmMessage: null,
+    ));
   }
 }

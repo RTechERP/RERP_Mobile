@@ -34,6 +34,26 @@
     "help": "Trợ giúp",
     "about": "Thông tin"
   },
+  "more": {
+    "change_avatar": "Đổi ảnh đại diện",
+    "change_avatar_hint": "Chọn nguồn ảnh để cập nhật ảnh đại diện của bạn",
+    "pick_from_gallery": "Chọn ảnh từ thư viện",
+    "take_photo": "Chụp ảnh mới",
+    "upload_avatar_success": "Cập nhật ảnh đại diện thành công",
+    "upload_avatar_failed": "Cập nhật ảnh đại diện thất bại",
+    "cancel": "Hủy",
+    "view_avatar": "Xem ảnh đại diện",
+    "avatar_permission_title": "Cần cấp quyền truy cập",
+    "avatar_permission_open_settings": "Để thay đổi ảnh đại diện, bạn cần cấp quyền truy cập ảnh hoặc camera. Mở Cài đặt để cấp quyền?",
+    "avatar_camera_permission_title": "Cần cấp quyền Camera",
+    "avatar_camera_permission_open_settings": "Để chụp ảnh đại diện, bạn cần cấp quyền truy cập Camera. Mở Cài đặt để cấp quyền?",
+    "avatar_camera_permission_permanently": "Bạn đã từ chối quyền Camera. Để sử dụng tính năng này, vui lòng vào Cài đặt của thiết bị > Ứng dụng > RERP Mobile > Quyền, và bật quyền Camera.",
+    "avatar_gallery_permission_title": "Cần cấp quyền Thư viện ảnh",
+    "avatar_gallery_permission_open_settings": "Để chọn ảnh từ thư viện, bạn cần cấp quyền truy cập ảnh. Mở Cài đặt để cấp quyền?",
+    "avatar_gallery_permission_permanently": "Bạn đã từ chối quyền truy cập ảnh. Để sử dụng tính năng này, vui lòng vào Cài đặt của thiết bị > Ứng dụng > RERP Mobile > Quyền, và bật quyền ảnh.",
+    "open_settings": "Mở Cài đặt",
+    "crop_avatar_title": "Chỉnh sửa ảnh đại diện"
+  },
   "tab": {
     "applications": "Ứng dụng",
     "features": "Tính năng"
@@ -47,7 +67,8 @@
     "report": "Báo cáo CV",
     "week_plan": "Công việc",
     "stock": "Tồn kho theo SP",
-    "personal_approve": "Phê duyệt"
+    "personal_approve": "Phê duyệt",
+    "warehouse": "Kho"
   },
   "general_forms": {
 
@@ -122,6 +143,24 @@
   },
   "dialog_service": {
     "an_error_occurred_please_try_again": "Có lỗi xảy ra, vui lòng thử lại"
+  },
+  "warehouse": {
+    "list": "Danh sách kho",
+    "function": "Chức năng",
+    "sale": "Kho sale",
+    "demo": "Kho demo",
+    "agv": "Kho AGV",
+    "project": "Kho dự án",
+    "test": "Kho test",
+    "area": "Khu vực",
+    "ha_noi": "Hà Nội",
+    "ho_chi_minh": "Hồ Chí Minh",
+    "bac_ninh": "Bắc Ninh",
+    "dan_phuong": "Đan Phượng"
+  },
+  "warehouse_sale": {
+    "grn": "Phiếu nhập",
+    "gdn": "Phiếu xuất"
   },
   "dio": {
     "cancel_request": "Request was cancelled",

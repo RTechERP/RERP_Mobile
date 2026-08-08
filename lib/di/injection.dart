@@ -12,6 +12,10 @@ import '../features/auth/data/datasource/service/auth_service.dart';
 import '../features/auth/data/repository/auth_repo.dart';
 import '../features/auth/data/repository/auth_repo_impl.dart';
 import '../features/auth/view/bloc/auth_bloc.dart';
+import '../features/contact/data/datasource/services/contact_service.dart';
+import '../features/contact/data/repository/contact_repo.dart';
+import '../features/contact/data/repository/contact_repo_impl.dart';
+import '../features/contact/view/bloc/contact_bloc.dart';
 import '../features/more/data/datasource/service/more_service.dart';
 import '../features/more/data/repository/more_repo.dart';
 import '../features/more/data/repository/more_repo_impl.dart';
@@ -118,6 +122,7 @@ import '../features/workplace/app/reports/view/tech/view/bloc/tech_bloc.dart';
 import '../features/workplace/app/week_plan/data/datasource/service/week_plan_service.dart';
 import '../features/workplace/app/week_plan/data/repository/week_plan_repo.dart';
 import '../features/workplace/app/week_plan/data/repository/week_plan_repo_impl.dart';
+import '../features/workplace/app/week_plan/view/bloc/week_plan_approval_bloc.dart';
 import '../features/workplace/app/week_plan/view/bloc/week_plan_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/salary/data/datasource/service/salary_service.dart';
 import '../features/workplace/app/reg_work/view/pages/salary/data/datasource/service/salary_pin_service.dart';
@@ -258,6 +263,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<ApproveTimeSheetService>(
     () => ApproveTimeSheetService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<ContactService>(
+    () => ContactService(getIt<Dio>()),
   );
 
   /// ===== REPOSITORY =====
@@ -538,6 +547,13 @@ void configureDependencies() {
     ),
   );
 
+  getIt.registerFactory<WeekPlanApprovalBloc>(
+    () => WeekPlanApprovalBloc(
+      getIt<WeekPlanRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
   getIt.registerLazySingleton<SalaryPinService>(
     () => SalaryPinService(getIt<Dio>()),
   );
@@ -572,6 +588,14 @@ void configureDependencies() {
 
   getIt.registerFactory<AppVersionBloc>(
     () => AppVersionBloc(getIt<AppVersionRepo>(), getIt<LogUtils>()),
+  );
+
+  getIt.registerLazySingleton<ContactRepo>(
+    () => ContactRepoImpl(getIt<ContactService>()),
+  );
+
+  getIt.registerFactory<ContactBloc>(
+    () => ContactBloc(getIt<ContactRepo>()),
   );
 
   getIt.registerFactory<AccountantBloc>(

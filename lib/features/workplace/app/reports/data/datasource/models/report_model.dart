@@ -346,7 +346,7 @@ class DetailReportNullResponse with _$DetailReportNullResponse {
     @JsonKey(name: 'PlanNextDay') required String planNextDay,
     @JsonKey(name: 'Note') required String note,
     @JsonKey(name: 'Confirm') required bool confirm,
-    @JsonKey(name: 'Backlog') required String backlog,
+    @JsonKey(name: 'Backlog') String? backlog,
     @JsonKey(name: 'DeleteFlag') required int deleteFlag,
     @JsonKey(name: 'CreatedDate') required DateTime createdDate,
     @JsonKey(name: 'Type') required int type,
@@ -1052,9 +1052,9 @@ class SaleReportItem with _$SaleReportItem {
     @JsonKey(name: 'DateStart') required DateTime dateStart,
     @JsonKey(name: 'DateEnd') required DateTime dateEnd,
 
-    @JsonKey(name: 'Telesale') int? telesale,
-    @JsonKey(name: 'Visit') int? visit,
-    @JsonKey(name: 'Demo') int? demo,
+    @JsonKey(name: 'Telesale') String? telesale,
+    @JsonKey(name: 'Visit') String? visit,
+    @JsonKey(name: 'Demo') String? demo,
 
     @JsonKey(name: 'Result') String? result,
     @JsonKey(name: 'ProblemBacklog') String? problemBacklog,

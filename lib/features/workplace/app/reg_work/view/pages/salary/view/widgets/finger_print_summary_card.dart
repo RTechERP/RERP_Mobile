@@ -16,12 +16,16 @@ class FingerPrintSummaryItem {
 class FingerPrintSummaryCard extends StatelessWidget {
   final List<FingerPrintSummaryItem> items;
   final List<SalaryFingerDetail> problemDays;
+  final List<DateTime> holidays;
+  final List<DateTime> workSaturdays;
   final EdgeInsets? padding;
 
   const FingerPrintSummaryCard({
     super.key,
     required this.items,
     required this.problemDays,
+    required this.holidays,
+    required this.workSaturdays,
     this.padding,
   });
 
@@ -115,7 +119,13 @@ class FingerPrintSummaryCard extends StatelessWidget {
         Wrap(
           spacing: 6,
           runSpacing: 6,
-          children: problemDays.map((d) => _ProblemDayChip(detail: d)).toList(),
+          children: problemDays
+              .map((d) => _ProblemDayChip(
+                    detail: d,
+                    holidays: holidays,
+                    workSaturdays: workSaturdays,
+                  ))
+              .toList(),
         ),
       ],
     );
@@ -180,14 +190,25 @@ class _SummaryChip extends StatelessWidget {
 
 class _ProblemDayChip extends StatelessWidget {
   final SalaryFingerDetail detail;
+  final List<DateTime> holidays;
+  final List<DateTime> workSaturdays;
 
-  const _ProblemDayChip({required this.detail});
+  const _ProblemDayChip({
+    required this.detail,
+    required this.holidays,
+    required this.workSaturdays,
+  });
 
   static const _weekdayLabels = ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'];
 
-  bool get _isWeekend {
+  bool get _isHolidayOrWeekend {
     final d = detail.attendanceDate;
-    return d != null && d.weekday == 7;
+    if (d == null) return false;
+    if (d.weekday == DateTime.sunday) return true;
+    if (d.weekday == DateTime.saturday) {
+      return workSaturdays.any((ws) => DateUtils.isSameDay(ws, d));
+    }
+    return holidays.any((h) => DateUtils.isSameDay(h, d));
   }
 
   String get _dateLabel {
@@ -200,8 +221,10 @@ class _ProblemDayChip extends StatelessWidget {
 
   List<_ProblemTag> get _tags {
     final tags = <_ProblemTag>[];
+    final isHoliday = _isHolidayOrWeekend;
 
-    if (detail.isLate == true) {
+    // Đi muộn: chỉ hiển thị khi isLate = true VÀ không phải ngày nghỉ
+    if (detail.isLate == true && !isHoliday) {
       tags.add(_ProblemTag(
         'Đi muộn',
         detail.timeLate != null && detail.timeLate! > 0
@@ -211,7 +234,8 @@ class _ProblemDayChip extends StatelessWidget {
         Icons.arrow_upward,
       ));
     }
-    if (detail.isEarly == true) {
+    // Về sớm: chỉ hiển thị khi isEarly = true VÀ không phải ngày nghỉ
+    if (detail.isEarly == true && !isHoliday) {
       tags.add(_ProblemTag(
         'Về sớm',
         detail.timeEarly != null && detail.timeEarly! > 0
@@ -227,7 +251,8 @@ class _ProblemDayChip extends StatelessWidget {
     if (detail.bussiness == true) {
       tags.add(_ProblemTag('Công tác', null, AppColors.secondaryERP, Icons.directions_car));
     }
-    if (detail.isLateRegister == true || detail.isEarlyRegister == true) {
+    // Khai báo: chỉ hiển thị khi đã đăng ký VÀ noFingerprint = true
+    if ((detail.isLateRegister == true || detail.isEarlyRegister == true) && detail.noFingerprint == true) {
       tags.add(_ProblemTag('Khai báo', null, AppColors.primaryERP, Icons.warning_amber));
     }
     if (detail.onLeave == true) {
@@ -253,7 +278,7 @@ class _ProblemDayChip extends StatelessWidget {
         color: AppColors.white,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: _isWeekend
+          color: _isHolidayOrWeekend
               ? AppColors.alert.withValues(alpha: 0.3)
               : AppColors.borderColor.withValues(alpha: 0.5),
         ),
@@ -265,7 +290,7 @@ class _ProblemDayChip extends StatelessWidget {
           Text(
             _dateLabel,
             style: AppStyles.caption2.copyWith(
-              color: _isWeekend ? AppColors.alert : AppColors.heading,
+              color: _isHolidayOrWeekend ? AppColors.alert : AppColors.heading,
               fontWeight: FontWeight.w700,
               fontSize: 11,
             ),

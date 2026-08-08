@@ -177,10 +177,10 @@ class ApiEndPoint {
   static const String uploadBookingVehicleFile =
       '/vehiclebookingmanagement/upload-file';
 
-  static const String getLunch = '/EmployeeFoodOrder';
+  static const String getLunch = '/EmployeeFoodOrder/get-foodorder-personal';
   static const String saveLunch = '/EmployeeFoodOrder/save-data';
 
-  static const String getEarlyLate = '/EmployeeEarlyLate';
+  static const String getEarlyLate = '/EmployeeEarlyLate/person';
   static const String saveEarlyLate = '/EmployeeEarlyLate/save-data';
   static const String getApprover = '/Employee/get-approve';
 
@@ -188,14 +188,14 @@ class ApiEndPoint {
   static const String saveWfh = '/EmployeeWFH/save-data';
 
   static const String getMissed =
-      '/EmployeeNoFingerprint/get-employee-no-fingerprint';
+      '/EmployeeNoFingerprint/person';
 
   static const String saveMissed = '/EmployeeNoFingerprint/savedata';
 
   static const String checkDuplicateEnfMissed =
       '/EmployeeNoFingerprint/check-duplicate-enf';
 
-  static const String getLeave = '/EmployeeOnLeave';
+  static const String getLeave = '/EmployeeOnLeave/get-onleave-person';
   static const String getLeavePhaseMulti = '/EmployeeOnLeave/get-multi';
   static const String saveLeave = '/EmployeeOnLeave/save-data';
 
@@ -233,11 +233,9 @@ class ApiEndPoint {
   static const String getWorkTripById = '/EmployeeBussiness/get-by-id';
 
   static const String getOvernight =
-      '/EmployeeNightShift/get-employee-night-shift';
+      '/EmployeeNightShift/person';
 
   static const String saveOvernight = '/EmployeeNightShift/save-data';
-
-  // TODO: Thay đường dẫn API thực tế của Backend tại đây
 
   static const String getWorkCategory =
       '/projectitemnew/get-project-item-person';
@@ -309,9 +307,16 @@ class ApiEndPoint {
 
   static const String getEmployees = '/Employee';
 
+  static const String getWeekPlanFilter = '/ProjectTask/project-task-status';
+
+  // Approve/Reject ProjectTask
+  static const String approveProjectTask = '/ProjectTask/Approve';
+  static const String rejectProjectTask = '/ProjectTask/reject';
+
   // Salary
   static const String getPersonalSyntheticByMonth =
       '/Home/get-personal-synthetic-by-month';
+  static const String confirmPayroll = '/Home/confirm-payroll';
 
   // PIN
   static const String checkPin = '/PinAuth/check-pin-status';
@@ -377,6 +382,9 @@ class ApiEndPoint {
       '/newsletter/get-newsletter-file-by-newsletterid';
   static const String getCalendar = '/Holiday';
 
+  // Avatar
+  static const String uploadAvatar = '/home/upload-avatar';
+
   // Personal Approve
   // Approve Timesheet
   static const String getApproveTimesheet = '/home/get-approve-by-approve-tp';
@@ -393,4 +401,7 @@ class ApiEndPoint {
   static const String getGeneralForm = '/document/get-document-admin-sale';
   static const String getDocumentFile = '/document/get-document-file';
   static const String downloadByKey = '/home/download-by-key';
+
+  // Contact
+  static const String getContact = '/Home/get-all-contact';
 }

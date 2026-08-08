@@ -20,6 +20,9 @@ abstract class AuthRepo {
   /// Lấy thông tin user hiện tại từ API.
   Future<Either<BaseError, User?>> getCurrentUser();
 
+  /// Upload avatar lên server, trả về tên file đã lưu.
+  Future<Either<BaseError, UploadAvatarResponse>> uploadAvatar(String filePath);
+
   /// Kiểm tra và set notification mặc định (true) cho user mới đăng nhập lần đầu.
   /// Chỉ chạy 1 lần duy nhất cho mỗi userId.
   Future<void> initDefaultNotificationsForNewUser({required int userId});

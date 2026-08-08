@@ -13,11 +13,9 @@ import '../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../common/constants/index.dart';
-import '../../../../../../../../common/services/permissions/role_groups.dart';
 import '../../../../../../../../common/utils/dialog/index.dart';
 import '../../../../../../../../common/utils/navigation/navigation_utils.dart';
 import '../../../../../../../../routes/route_names.dart';
-import '../../../../../../../auth/data/repository/auth_repository.dart';
 import '../../../../data/datasource/models/report_model.dart';
 import '../bloc/sale_bloc.dart';
 
@@ -30,7 +28,6 @@ class SaleScreen extends StatefulWidget {
 
 class _SaleScreenState
     extends BaseState<SaleScreen, SaleEvent, SaleState, SaleBloc> {
-  bool _isSaleAdmin = false;
   bool _isSearching = false;
   final TextEditingController _searchController = TextEditingController();
   List<SaleReportItem> _filteredReports = [];
@@ -52,20 +49,7 @@ class _SaleScreenState
   @override
   void initState() {
     super.initState();
-    _detectSaleRole();
     bloc.add(const SaleEvent.init());
-  }
-
-  Future<void> _detectSaleRole() async {
-    final user = await AuthRepository.getCurrentUser();
-
-    final permissions = user?.permissions.split(',') ?? [];
-
-    setState(() {
-      _isSaleAdmin = permissions.any(
-        PermissionGroups.saleAdminReports.contains,
-      );
-    });
   }
 
   @override
@@ -158,7 +142,12 @@ class _SaleScreenState
             ),
           ],
         ),
-        body: _isSaleAdmin ? _buildSaleAdminUI() : _buildSaleStaffUI(),
+        body: BlocBuilder<SaleBloc, SaleState>(
+          buildWhen: (prev, curr) => prev.isSaleAdmin != curr.isSaleAdmin,
+          builder: (context, state) {
+            return state.isSaleAdmin ? _buildSaleAdminUI() : _buildSaleStaffUI();
+          },
+        ),
 
         floatingActionButton: SpeedDial(
           icon: Icons.menu,
@@ -175,7 +164,7 @@ class _SaleScreenState
               child: const Icon(Icons.add),
               label: 'Thêm',
               onTap: () async {
-                final route = _isSaleAdmin
+                final route = bloc.state.isSaleAdmin
                     ? RouteNames.reportSaleAdminAdd
                     : RouteNames.reportSaleStaffAdd;
 
@@ -413,58 +402,59 @@ class _SaleScreenState
   Widget _buildAdminReportList(SaleState state) {
     final displayList = state.adminReports;
 
+    // Group reports by employee
+    final Map<String, List<SaleAdminResponse>> groupedReports = {};
+    for (final r in displayList) {
+      final key = r.employeeFullName ?? 'Unknown';
+      groupedReports.putIfAbsent(key, () => []).add(r);
+    }
+
+    final entries = groupedReports.entries.toList();
+
     return ListView.builder(
-      itemCount: displayList.length,
+      itemCount: entries.length,
       itemBuilder: (context, index) {
-        final r = displayList[index];
+        final entry = entries[index];
+        final employeeName = entry.key;
+        final reports = entry.value;
 
-        return Slidable(
-          key: ValueKey(r.id),
-          endActionPane: ActionPane(
-            motion: const DrawerMotion(),
-            extentRatio: 0.25,
-            children: [
-              SlidableAction(
-                onPressed: (_) async {
-                  final confirmed = await DialogService.showConfirmDelete(
-                    context: context,
-                  );
-                  if (!confirmed) return;
-
-                  bloc.add(SaleEvent.deleteAdminReport(dailyID: r.id));
-                },
-                backgroundColor: Colors.red,
-                foregroundColor: Colors.white,
-                icon: Icons.delete,
-                label: 'Xoá',
-              ),
-            ],
-          ),
-          child: AppCardSaleAdminReport(
+        return AppCardSaleAdminReport(
+          employeeFullName: employeeName,
+          reports: reports.map((r) => SaleAdminReportItem(
+            id: r.id,
             projectCode: r.projectCode,
             reportTypeName: r.reportTypeName,
-            employeeFullName: r.employeeFullName,
             reportContent: r.reportContent,
             result: r.result,
             planNextDay: r.planNextDay,
-            dateReport: DateTime.tryParse(r.dateReport.toString()),
-            onTap: () async {
-              final reload = await context.push(
-                RouteNames.reportSaledAdminDetail,
-                extra: {
-                  'id': r.id,
-                  'projectCode': r.projectCode,
-                  'customerName': r.customerName,
-                  'employeeName': r.employeeFullName,
-                },
-              );
+            dateReport: r.dateReport,
+            employeeRequestFullName: r.employeeRequestFullName,
+            customerName: r.customerName,
+          )).toList(),
+          onReportTap: (id) async {
+            final report = reports.firstWhere((r) => r.id == id);
+            final reload = await context.push(
+              RouteNames.reportSaledAdminDetail,
+              extra: {
+                'id': report.id,
+                'projectCode': report.reportTypeName,
+                'customerName': report.customerName,
+                'employeeName': report.employeeFullName,
+              },
+            );
 
+            if (reload == true) {
+              bloc.add(const SaleEvent.init());
+            }
+          },
+          onDeleteReport: (id) async {
+            final confirmed = await DialogService.showConfirmDelete(
+              context: context,
+            );
+            if (!confirmed) return;
 
-              if (reload == true) {
-                bloc.add(const SaleEvent.init());
-              }
-            },
-          )
+            bloc.add(SaleEvent.deleteAdminReport(dailyID: id));
+          },
         );
       },
     );

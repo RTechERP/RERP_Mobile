@@ -46,6 +46,8 @@ abstract class _$OvertimeStateCWProxy {
 
   OvertimeState approveId(FillApproverItem? approveId);
 
+  OvertimeState isProjectRequired(bool isProjectRequired);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `OvertimeState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -72,6 +74,7 @@ abstract class _$OvertimeStateCWProxy {
     bool? isFetchingDetail,
     bool? editSuccess,
     FillApproverItem? approveId,
+    bool? isProjectRequired,
   });
 }
 
@@ -151,6 +154,10 @@ class _$OvertimeStateCWProxyImpl implements _$OvertimeStateCWProxy {
       this(approveId: approveId);
 
   @override
+  OvertimeState isProjectRequired(bool isProjectRequired) =>
+      this(isProjectRequired: isProjectRequired);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `OvertimeState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -178,6 +185,7 @@ class _$OvertimeStateCWProxyImpl implements _$OvertimeStateCWProxy {
     Object? isFetchingDetail = const $CopyWithPlaceholder(),
     Object? editSuccess = const $CopyWithPlaceholder(),
     Object? approveId = const $CopyWithPlaceholder(),
+    Object? isProjectRequired = const $CopyWithPlaceholder(),
   }) {
     return OvertimeState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -266,6 +274,11 @@ class _$OvertimeStateCWProxyImpl implements _$OvertimeStateCWProxy {
           ? _value.approveId
           // ignore: cast_nullable_to_non_nullable
           : approveId as FillApproverItem?,
+      isProjectRequired: isProjectRequired == const $CopyWithPlaceholder() ||
+              isProjectRequired == null
+          ? _value.isProjectRequired
+          // ignore: cast_nullable_to_non_nullable
+          : isProjectRequired as bool,
     );
   }
 }

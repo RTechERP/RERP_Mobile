@@ -1,44 +1,61 @@
-// Date: 28/04/2026
-// Nội dung/Chức năng: Week Plan card - hiển thị công việc theo trạng thái
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../../../../common/app_theme/index.dart';
-import '../../../../../../../../../common/widgets/form/form_left_border_card.dart';
+import '../../../../../../common/widgets/form/index.dart';
+import '../../../../../../../../../common/utils/dialog/dialog_service.dart';
 import '../../data/datasource/models/week_plan_model.dart';
 import '../bloc/week_plan_bloc.dart';
+import '../bloc/week_plan_approval_bloc.dart';
 import '../week_plan_helper.dart';
 
 //---(Card)---//
 
-class WeekPlanCard extends StatelessWidget {
+class WeekPlanCard extends StatefulWidget {
   const WeekPlanCard({
     super.key,
     required this.task,
+    required this.approvalBloc,
     this.isAssigned = false,
     this.showCheckIn = true,
+    this.showApproval = false,
+    this.viewNumber = 1,
     this.onTap,
+    this.isSelectionMode = false,
+    this.isSelected = false,
+    this.onSelect,
   });
 
   final WeekPlanTaskItem task;
+  final WeekPlanApprovalBloc approvalBloc;
   final bool isAssigned;
   final bool showCheckIn;
+  final bool showApproval;
+  final int viewNumber;
   final VoidCallback? onTap;
+  final bool isSelectionMode;
+  final bool isSelected;
+  final VoidCallback? onSelect;
 
   static final DateFormat _df = DateFormat('dd/MM/yyyy');
 
-  String _fmt(DateTime? dt) => dt == null ? '--/--/----' : _df.format(dt);
+  @override
+  State<WeekPlanCard> createState() => _WeekPlanCardState();
+}
+
+class _WeekPlanCardState extends State<WeekPlanCard> {
+  String _fmt(DateTime? dt) =>
+      dt == null ? '--/--/----' : WeekPlanCard._df.format(dt);
 
   @override
   Widget build(BuildContext context) {
-    final statusColor = weekPlanStatusColor(task);
-    final statusLabel = weekPlanStatusLabel(task);
-    final isOverdue = weekPlanIsOverdue(task);
-    final isCheckedIn = task.isCheck == true;
-    final typeColor = weekPlanTypeColor(task);
-    final typeName = task.projectTaskTypeName ?? '';
+    final statusColor = weekPlanStatusColor(widget.task);
+    final statusLabel = weekPlanStatusLabel(widget.task);
+    final isOverdue = weekPlanIsOverdue(widget.task);
+    final isCheckedIn = widget.task.isCheck == true;
+    final typeColor = weekPlanTypeColor(widget.task);
+    final typeName = widget.task.projectTaskTypeName ?? '';
 
     final inner = FormLeftBorderCard(
       borderColor: statusColor,
@@ -55,10 +72,10 @@ class WeekPlanCard extends StatelessWidget {
             typeColor,
             typeName,
             isCheckedIn,
-            showCheckIn,
+            widget.showCheckIn,
           ),
-          if ((task.projectCode ?? '').isNotEmpty ||
-              (task.projectName ?? '').isNotEmpty) ...[
+          if ((widget.task.projectCode ?? '').isNotEmpty ||
+              (widget.task.projectName ?? '').isNotEmpty) ...[
             const SizedBox(height: 6),
             _buildProjectInfo(),
           ],
@@ -67,21 +84,36 @@ class WeekPlanCard extends StatelessWidget {
 
           const SizedBox(height: 6),
           _buildDeadline(isOverdue),
-          if (isAssigned && (task.departmentAssigneeName ?? '').isNotEmpty) ...[
+          if (widget.showApproval) ...[
             const SizedBox(height: 8),
-            _buildAssignee(),
+            _buildReceiver(),
+          ],
+          if (widget.viewNumber == 1 &&
+              (widget.task.fullName ?? '').isNotEmpty) ...[
+            const SizedBox(height: 8),
+            _buildAssigneer(),
+          ],
+          if (widget.isAssigned &&
+              (widget.task.departmentAssigneeName ?? '').isNotEmpty) ...[
+            const SizedBox(height: 8),
+            _buildDepartmentAssignee(),
+          ],
+          if (widget.viewNumber == 1 &&
+              (widget.task.reviewCompletionRating ?? 0) > 0) ...[
+            const SizedBox(height: 8),
+            _buildRating(),
           ],
         ],
       ),
     );
 
-    return onTap == null
+    return widget.onTap == null
         ? inner
         : Material(
             color: Colors.transparent,
             child: InkWell(
               borderRadius: BorderRadius.circular(14),
-              onTap: onTap,
+              onTap: widget.onTap,
               child: inner,
             ),
           );
@@ -96,28 +128,111 @@ class WeekPlanCard extends StatelessWidget {
     bool isCheckedIn,
     bool showCheckIn,
   ) {
-    final approvalStatus = task.approvalStatus;
+    final approvalStatus = widget.task.approvalStatus;
+    final isDone = widget.task.status == 2;
+
+    String label;
+    Color color;
+    bool isApprovedOrRejected = false;
+
+    if (isDone && approvalStatus == true) {
+      label = 'Done';
+      color = AppColors.stateSuccessColor;
+      isApprovedOrRejected = true;
+    } else if (isDone && approvalStatus == false) {
+      label = 'Reject';
+      color = AppColors.stateErrorColor;
+      isApprovedOrRejected = true;
+    } else if (isDone) {
+      label = 'Awaiting Approval';
+      color = AppColors.stateSuccessColor;
+    } else {
+      label = statusLabel;
+      color = statusColor;
+    }
+
+    final showApprovalButtons = widget.showApproval && !isApprovedOrRejected;
+    // Chỉ show checkbox khi đang ở selection mode VÀ task đang chờ duyệt
+    final canSelect = widget.isSelectionMode && isDone && widget.task.approvalStatus == null;
+    final showCheckbox = widget.isSelectionMode && canSelect;
 
     return Column(
       children: [
         Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            _StatusChip(color: statusColor, label: statusLabel),
-            const SizedBox(width: 4),
-            if (typeName.isNotEmpty)
-              _TypeBadge(text: typeName, color: typeColor),
-            const Spacer(),
-            if (showCheckIn)
-              _CheckinButton(task: task, isCheckedIn: isCheckedIn),
-          ],
-        ),
-        const SizedBox(height: 6),
-        Row(
-          children: [
-            if (approvalStatus != null) ...[
-              _ApprovalChip(isApproved: approvalStatus),
-              const SizedBox(width: 8),
+            if (showCheckbox) ...[
+              GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: widget.onSelect,
+                child: Container(
+                  width: 32,
+                  height: 32,
+                  padding: const EdgeInsets.all(4),
+                  margin: const EdgeInsets.only(right: 10),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: widget.isSelected
+                          ? AppColors.primaryERP
+                          : AppColors.borderColor,
+                      width: 2.5,
+                    ),
+                    color: widget.isSelected
+                        ? AppColors.primaryERP
+                        : Colors.transparent,
+                  ),
+                  child: widget.isSelected
+                      ? const Icon(Icons.check, size: 18, color: Colors.white)
+                      : null,
+                ),
+              ),
             ],
+            _StatusChip(color: color, label: label),
+            if (typeName.isNotEmpty) ...[
+              const SizedBox(width: 6),
+              _TypeBadge(text: typeName, color: typeColor),
+            ],
+            const Spacer(),
+            if (!widget.isSelectionMode && showApprovalButtons) ...[
+              _ApprovalButton(
+                label: 'Từ chối',
+                color: AppColors.stateErrorColor,
+                onTap: () {
+                  DialogService.showRejectTask(
+                    context: context,
+                    onConfirm: (reason) {
+                      widget.approvalBloc.add(
+                        WeekPlanApprovalEvent.rejectTask(
+                          taskId: widget.task.id ?? 0,
+                          reason: reason,
+                        ),
+                      );
+                    },
+                  );
+                },
+              ),
+              const SizedBox(width: 8),
+              _ApprovalButton(
+                label: 'Duyệt',
+                color: AppColors.stateSuccessColor,
+                onTap: () {
+                  DialogService.showApproveTask(
+                    context: context,
+                    onConfirm: (rating, comment) {
+                      widget.approvalBloc.add(
+                        WeekPlanApprovalEvent.approveTask(
+                          taskId: widget.task.id ?? 0,
+                          completionRating: rating,
+                          review: comment,
+                        ),
+                      );
+                    },
+                  );
+                },
+              ),
+            ] else if (showCheckIn)
+              _CheckinButton(task: widget.task, isCheckedIn: isCheckedIn),
           ],
         ),
       ],
@@ -126,7 +241,7 @@ class WeekPlanCard extends StatelessWidget {
 
   //---(_TaskName)---//
   Widget _buildTaskName() {
-    final name = task.mission ?? task.taskName ?? '';
+    final name = widget.task.mission ?? widget.task.taskName ?? '';
     if (name.isEmpty) return const SizedBox.shrink();
 
     return Text(
@@ -146,7 +261,7 @@ class WeekPlanCard extends StatelessWidget {
   Widget _buildProjectInfo() {
     return Row(
       children: [
-        if ((task.projectCode ?? '').isNotEmpty) ...[
+        if ((widget.task.code ?? '').isNotEmpty) ...[
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
             decoration: BoxDecoration(
@@ -154,7 +269,7 @@ class WeekPlanCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(4),
             ),
             child: Text(
-              task.projectCode!,
+              widget.task.code!,
               style: const TextStyle(
                 fontSize: 11,
                 fontWeight: FontWeight.w600,
@@ -162,12 +277,13 @@ class WeekPlanCard extends StatelessWidget {
               ),
             ),
           ),
-          if ((task.projectName ?? '').isNotEmpty) const SizedBox(width: 6),
+          if ((widget.task.projectName ?? '').isNotEmpty)
+            const SizedBox(width: 6),
         ],
-        if ((task.projectName ?? '').isNotEmpty)
+        if ((widget.task.projectName ?? '').isNotEmpty)
           Flexible(
             child: Text(
-              task.projectName!,
+              widget.task.projectName!,
               style: const TextStyle(
                 fontSize: 11,
                 color: AppColors.textTertiaryColor,
@@ -198,7 +314,7 @@ class WeekPlanCard extends StatelessWidget {
           ),
         ),
         Text(
-          _fmt(task.deadline),
+          _fmt(widget.task.deadline),
           style: TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w600,
@@ -210,7 +326,7 @@ class WeekPlanCard extends StatelessWidget {
   }
 
   //---(_Assignee)---//
-  Widget _buildAssignee() {
+  Widget _buildDepartmentAssignee() {
     return Row(
       children: [
         Icon(
@@ -221,7 +337,7 @@ class WeekPlanCard extends StatelessWidget {
         const SizedBox(width: 5),
         Expanded(
           child: Text(
-            task.departmentAssigneeName!,
+            widget.task.departmentAssigneeName!,
             style: const TextStyle(
               fontSize: 12,
               color: AppColors.textSecondaryColor,
@@ -230,6 +346,103 @@ class WeekPlanCard extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
         ),
+      ],
+    );
+  }
+
+  Widget _buildAssigneer() {
+    final assigneerName = widget.task.fullName ?? '';
+    if (assigneerName.isEmpty) return const SizedBox.shrink();
+
+    return Row(
+      children: [
+        Icon(
+          Icons.people_outline,
+          size: 13,
+          color: AppColors.textTertiaryColor,
+        ),
+        const SizedBox(width: 5),
+        Text(
+          'Người giao: ',
+          style: const TextStyle(
+            fontSize: 12,
+            color: AppColors.textTertiaryColor,
+          ),
+        ),
+        Expanded(
+          child: Text(
+            assigneerName,
+            style: const TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+              color: AppColors.heading,
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+      ],
+    );
+  }
+
+  //---(_Receiver)---//
+  Widget _buildReceiver() {
+    final receiverName =
+        widget.task.asigneeEmployeeFullName ?? widget.task.assigneeName ?? '';
+    if (receiverName.isEmpty) return const SizedBox.shrink();
+
+    return Row(
+      children: [
+        Icon(
+          Icons.people_outline,
+          size: 13,
+          color: AppColors.textTertiaryColor,
+        ),
+        const SizedBox(width: 5),
+        Text(
+          'Người nhận: ',
+          style: const TextStyle(
+            fontSize: 12,
+            color: AppColors.textTertiaryColor,
+          ),
+        ),
+        Expanded(
+          child: Text(
+            receiverName,
+            style: const TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+              color: AppColors.heading,
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+      ],
+    );
+  }
+
+  //---(_Rating)---//
+  Widget _buildRating() {
+    final rating = widget.task.reviewCompletionRating ?? 0;
+    return Row(
+      children: [
+        Icon(Icons.star_outline, size: 13, color: AppColors.textTertiaryColor),
+        const SizedBox(width: 5),
+        Text(
+          'Đánh giá: ',
+          style: const TextStyle(
+            fontSize: 12,
+            color: AppColors.textTertiaryColor,
+          ),
+        ),
+        ...List.generate(5, (index) {
+          return Icon(
+            index < rating ? Icons.star_rounded : Icons.star_border_rounded,
+            size: 16,
+            color: AppColors.stateWarningColor,
+          );
+        }),
       ],
     );
   }
@@ -301,41 +514,33 @@ class _TypeBadge extends StatelessWidget {
   }
 }
 
-//---(_ApprovalChip)---//
-class _ApprovalChip extends StatelessWidget {
-  const _ApprovalChip({required this.isApproved});
+//---(_ApprovalButton)---//
+class _ApprovalButton extends StatelessWidget {
+  const _ApprovalButton({required this.label, required this.color, this.onTap});
 
-  final bool isApproved;
+  final String label;
+  final Color color;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    final color = isApproved ? AppColors.stateSuccessColor : AppColors.warning;
-    final label = isApproved ? 'Đã duyệt' : 'Chưa duyệt';
-    final icon = isApproved
-        ? Icons.check_circle_outline
-        : Icons.pending_outlined;
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-      decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(6),
-        border: Border.all(color: color.withValues(alpha: 0.3)),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(icon, size: 12, color: color),
-          const SizedBox(width: 4),
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: 11,
-              fontWeight: FontWeight.w600,
-              color: color,
-            ),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+        decoration: BoxDecoration(
+          color: color.withValues(alpha: 0.1),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: color.withValues(alpha: 0.5)),
+        ),
+        child: Text(
+          label,
+          style: TextStyle(
+            fontSize: 11,
+            fontWeight: FontWeight.w600,
+            color: color,
           ),
-        ],
+        ),
       ),
     );
   }
@@ -355,7 +560,14 @@ class _CheckinButton extends StatelessWidget {
     final isActive = isCheckedIn || isDone;
 
     return GestureDetector(
-      onTap: isPending ? null : () => _onCheckIn(context),
+      onTap: isPending
+          ? null
+          : () {
+              if (task.id == null) return;
+              context.read<WeekPlanBloc>().add(
+                WeekPlanEvent.checkIn(task.id!, !isCheckedIn),
+              );
+            },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
         decoration: BoxDecoration(
@@ -379,7 +591,7 @@ class _CheckinButton extends StatelessWidget {
           isCheckedIn
               ? 'Đã điểm danh'
               : isPending
-              ? 'Tạm hoãn'
+              ? 'Pending'
               : isDone
               ? 'Hoàn thành'
               : 'Điểm danh',
@@ -394,13 +606,6 @@ class _CheckinButton extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-
-  void _onCheckIn(BuildContext context) {
-    if (task.id == null) return;
-    context.read<WeekPlanBloc>().add(
-      WeekPlanEvent.checkIn(task.id!, !isCheckedIn),
     );
   }
 }

@@ -61,6 +61,7 @@ class AppImages {
   static const reg_general_work = 'assets/images/icons/apps/reg_general/19.png';
   static const reg_general_personal_asset =
       'assets/images/icons/apps/reg_general/20.png';
-  static const reg_general_stamp =
-      'assets/images/icons/apps/21.png';
+  static const reg_general_stamp = 'assets/images/icons/apps/21.png';
+  static const reg_general_poll_form =
+      'assets/images/icons/apps/poll_form/poll.png';
 }

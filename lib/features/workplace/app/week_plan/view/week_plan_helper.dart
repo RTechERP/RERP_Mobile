@@ -59,20 +59,46 @@ Color weekPlanTypeColor(WeekPlanTaskItem task) {
 
 /// Lấy nhãn trạng thái hiển thị cho task.
 ///
+/// Lấy từ API (task.statusText) nếu có, không thì dùng hardcoded.
 /// Quá hạn = ActualEndDate > effectiveEndDate (PlanEndDate hoặc DateTime.now()).
 String weekPlanStatusLabel(WeekPlanTaskItem task) {
   final isOverdue = weekPlanIsOverdue(task);
+  final apiLabel = task.statusText;
 
+  if (isOverdue) {
+    if (apiLabel != null && apiLabel.isNotEmpty) {
+      return '$apiLabel Overdue';
+    }
+    // Fallback hardcoded
+    switch (task.status) {
+      case 0:
+        return 'Not Started Overdue';
+      case 1:
+        return 'In Progress Overdue';
+      case 2:
+        return 'Done Overdue';
+      case 3:
+        return 'Pending Overdue';
+      default:
+        return 'Unknown Overdue';
+    }
+  }
+
+  if (apiLabel != null && apiLabel.isNotEmpty) {
+    return apiLabel;
+  }
+
+  // Fallback hardcoded khi không có statusText từ API
   switch (task.status) {
     case 0:
-      return isOverdue ? 'Chưa làm quá hạn' : 'Chưa làm';
+      return 'Not Started';
     case 1:
-      return isOverdue ? 'Đang làm quá hạn' : 'Đang làm';
+      return 'In Progress';
     case 2:
-      return isOverdue ? 'Hoàn thành quá hạn' : 'Hoàn thành';
+      return 'Done';
     case 3:
       return 'Pending';
     default:
-      return 'Không xác định';
+      return 'Unknown';
   }
 }

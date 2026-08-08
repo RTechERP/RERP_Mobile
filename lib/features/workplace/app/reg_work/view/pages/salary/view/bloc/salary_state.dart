@@ -54,9 +54,10 @@ class SalaryState extends BaseBlocState {
   final double departmentalFees;    // (33) Thu hộ phòng ban
   final double parkingMoney;       // (34) Gửi xe ô tô
   final double punish5S;           // (35) 5S
-  final int mealUse;            // (36) Cơm ca tại VP
-  final double otherDeduction;     // (37) Khác
-  final double totalDeduction;     // (38) Tổng các khoản trừ
+  final int mealUse;                // (36) Cơm ca tại VP
+  final double regulationViolation; //(37) Vi phạm quy định
+  final double otherDeduction;     // (38) Khác
+  final double totalDeduction;     // (39) Tổng các khoản trừ
 
   // Card giảm trừ thuế TNCN
   final double taxSalaryOT;         // (40) Thu nhập OT chịu thuế
@@ -70,7 +71,16 @@ class SalaryState extends BaseBlocState {
 
   // Thực lĩnh & Ghi chú
   final double netSalary;           // (48) Thực lĩnh
-  final String? note;              // (49) Ghi chú
+  final String? note;              // (57) Ghi chú
+
+  // Card tổng hợp phạt
+  final int penaltyLateEarlyQty;        // (50) Đi muộn về sớm - Số lượng
+  final double penaltyLateEarlyAmount;   // (51) Đi muộn về sớm - Thành tiền
+  final int penaltyMissingAttendanceQty; // (52) Quên chấm công - Số lượng
+  final double penaltyMissingAttendanceAmount; // (53) Quên chấm công - Thành tiền
+  final int penaltyLeaveOver2DaysQty;   // (54) Nghỉ > 2 ngày/tháng - Số lượng
+  final double penaltyLeaveOver2DaysAmount; // (55) Nghỉ > 2 ngày/tháng - Thành tiền
+  final double penaltyTotalAmount;      // (56) Tổng
 
   // PIN verification
   final bool hasPin;
@@ -102,6 +112,15 @@ class SalaryState extends BaseBlocState {
   // Overtime data
   final List<OvertimeItem> overtimeItems;
   final List<OvertimeItem> overnightItems;
+
+  // Holiday data from newsfeed calendar API
+  final List<DateTime> holidays;
+  final List<DateTime> workSaturdays;
+
+  // Confirm Payroll
+  final bool isConfirmingPayroll;
+  final bool? confirmSuccess;
+  final String? confirmMessage;
 
   const SalaryState({
     required super.status,
@@ -146,6 +165,7 @@ class SalaryState extends BaseBlocState {
     this.parkingMoney = 0,
     this.punish5S = 0,
     this.mealUse = 0,
+    this.regulationViolation = 0,
     this.otherDeduction = 0,
     this.totalDeduction = 0,
     this.taxSalaryOT = 0,
@@ -158,6 +178,13 @@ class SalaryState extends BaseBlocState {
     this.taxDeduction = 0,
     this.netSalary = 0,
     this.note,
+    this.penaltyLateEarlyQty = 0,
+    this.penaltyLateEarlyAmount = 0,
+    this.penaltyMissingAttendanceQty = 0,
+    this.penaltyMissingAttendanceAmount = 0,
+    this.penaltyLeaveOver2DaysQty = 0,
+    this.penaltyLeaveOver2DaysAmount = 0,
+    this.penaltyTotalAmount = 0,
     this.hasPin = false,
     this.pinVerified = false,
     this.isVerifyingPin = false,
@@ -179,6 +206,11 @@ class SalaryState extends BaseBlocState {
     this.selectedFingerMonthDt,
     this.overtimeItems = const [],
     this.overnightItems = const [],
+    this.holidays = const [],
+    this.workSaturdays = const [],
+    this.isConfirmingPayroll = false,
+    this.confirmSuccess,
+    this.confirmMessage,
   });
 
   factory SalaryState.init() => const SalaryState(
@@ -229,6 +261,7 @@ class SalaryState extends BaseBlocState {
         parkingMoney,
         punish5S,
         mealUse,
+        regulationViolation,
         otherDeduction,
         totalDeduction,
         taxSalaryOT,
@@ -241,6 +274,13 @@ class SalaryState extends BaseBlocState {
         taxDeduction,
         netSalary,
         note,
+        penaltyLateEarlyQty,
+        penaltyLateEarlyAmount,
+        penaltyMissingAttendanceQty,
+        penaltyMissingAttendanceAmount,
+        penaltyLeaveOver2DaysQty,
+        penaltyLeaveOver2DaysAmount,
+        penaltyTotalAmount,
         hasPin,
         pinVerified,
         isVerifyingPin,
@@ -262,5 +302,10 @@ class SalaryState extends BaseBlocState {
         selectedFingerMonthDt,
         overtimeItems,
         overnightItems,
+        holidays,
+        workSaturdays,
+        isConfirmingPayroll,
+        confirmSuccess,
+        confirmMessage,
       ];
 }

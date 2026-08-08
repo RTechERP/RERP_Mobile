@@ -618,8 +618,11 @@ class ValidateHelper {
     );
   }
 
-  /// **Chỉ UI:** hiện card «Vấn đề phát sinh / TBP» khi mốc cần đến (ngày lịch) trùng **hôm nay**.
-  /// Người dùng có thể điền sớm; bắt buộc TBP/lý do vẫn theo [bookingVehicleIsProblemArises] + [validateBookingVehicle].
+  /// Hiển thị card «Vấn đề phát sinh / TBP» khi:
+  /// - Ngày đặt (cần đến) là hôm nay → luôn hiển thị.
+  /// - Hoặc ngày đặt là hôm sau/tương lai VÀ giờ hiện tại >= 20:00.
+  ///
+  /// Áp dụng cho cả hiển thị UI và validation submit.
   static bool bookingVehicleProblemArisesCardVisibleForUi(DateTime? timeNeedPresent) {
     if (timeNeedPresent == null) return false;
     final n = DateTime.now();
@@ -629,7 +632,9 @@ class ValidateHelper {
       timeNeedPresent.month,
       timeNeedPresent.day,
     );
-    return needDay == today;
+    if (needDay == today) return true;
+    if (needDay.isAfter(today)) return n.hour >= 20;
+    return false;
   }
 
   /// Validate tổng hợp form đặt xe trước khi gửi bloc/API.
@@ -1047,15 +1052,15 @@ class ValidateHelper {
     DateTime? earliestSelectableDay,
   }) {
     if (value == null) return 'Vui lòng chọn ngày';
-    if (earliestSelectableDay != null) {
-      final picked = DateTime(value.year, value.month, value.day);
-      final min = DateTime(
-        earliestSelectableDay.year,
-        earliestSelectableDay.month,
-        earliestSelectableDay.day,
-      );
-      if (picked.isBefore(min)) return 'Không được chọn ngày quá khứ';
-    }
+    // if (earliestSelectableDay != null) {
+    //   final picked = DateTime(value.year, value.month, value.day);
+    //   final min = DateTime(
+    //     earliestSelectableDay.year,
+    //     earliestSelectableDay.month,
+    //     earliestSelectableDay.day,
+    //   );
+    //   if (picked.isBefore(min)) return 'Không được chọn ngày quá khứ';
+    // }
     return null;
   }
 
@@ -1446,16 +1451,6 @@ class ValidateHelper {
       final ts = s.timeStart!;
       final te = s.endTime!;
 
-      // timeStart phải nằm trong ngày đăng ký.
-      if (ts.isBefore(dayStart) || !ts.isBefore(dayEnd)) {
-        return '${prefix}Thời gian bắt đầu phải nằm trong ngày đăng ký';
-      }
-      // endTime cho phép qua đêm đến tối đa 5:00 sáng ngày hôm sau.
-      final dayEndOvernight = dayEnd.add(const Duration(hours: 5));
-      if (te.isBefore(dayStart) || te.isAfter(dayEndOvernight)) {
-        return '${prefix}Thời gian kết thúc tối đa đến 5:00 sáng ngày hôm sau';
-      }
-
       if (!te.isAfter(ts)) {
         return '${prefix}Thời gian kết thúc phải lớn hơn thời gian bắt đầu';
       }
@@ -1472,9 +1467,9 @@ class ValidateHelper {
       if (s.overnight) overnightCount++;
     }
 
-    if (overnightCount > 1) {
-      return 'Chỉ được chọn một khoảng thời gian hưởng phụ cấp ăn tối';
-    }
+    // if (overnightCount > 1) {
+    //   return 'Chỉ được chọn một khoảng thời gian hưởng phụ cấp ăn tối';
+    // }
 
     for (var i = 0; i < slips.length; i++) {
       for (var j = i + 1; j < slips.length; j++) {

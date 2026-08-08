@@ -3,7 +3,7 @@ description: "RTC ERP"
 
 publish_to: 'none'
 
-version: 1.1.1+27
+version: 1.3.1+33
 
 environment:
   sdk: ^3.10.7
@@ -81,7 +81,10 @@ dependencies:
   form_builder_validators: ^11.2.0
   file_picker: ^10.3.10
   file_saver: ^0.2.14
-  image_picker: ^1.1.2
+  image_picker: ^1.2.3
+  image_cropper: ^8.0.2
+  cached_network_image: ^3.4.1
+  flutter_cache_manager: ^3.4.1
   form_builder_file_picker: ^5.0.0
   skeletonizer: ^2.1.2
   wolt_modal_sheet: ^0.11.0
@@ -180,6 +183,7 @@ flutter:
     - assets/images/icons/apps/report/Sale.png
     - assets/images/icons/apps/report/Saler.png
     - assets/images/icons/apps/report/Tech.png
+    - assets/images/icons/apps/poll_form/poll.png
 
     # Trans
     - assets/trans/vi-VN.json

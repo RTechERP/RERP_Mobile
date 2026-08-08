@@ -89,22 +89,38 @@ class ReportRepoImpl implements ReportRepo {
   }
 
   /// Lưu báo cáo công việc "Phòng Kỹ thuật"
+  ///
+  /// Response BE có dạng:
+  /// ```json
+  /// { "status": 1, "message": "Lưu dữ liệu thành công", "data": [187705] }
+  /// ```
+  /// Chỉ coi là thành công khi `status == 1` **và** `data` là list khác rỗng.
+  /// Trường hợp `status == 1` nhưng `data` rỗng → trả về lỗi để caller xử lý.
   @override
-  Future<Either<BaseError, String>> saveReportTech({
+  Future<Either<BaseError, List<int>>> saveReportTech({
     required Map<String, dynamic> payload,
   }) async {
     try {
       final res = await _service.saveReportTech(payload: payload);
 
-      if (res.status == 1) {
-        return right(res.message ?? 'Lưu dữ liệu thành công');
-      } else {
+      if (res.status != 1) {
         return left(
           BaseError.httpInternalServerError(
             res.message ?? 'Lưu dữ liệu thất bại',
           ),
         );
       }
+
+      final ids = res.data ?? const <int>[];
+      if (ids.isEmpty) {
+        return left(
+          BaseError.httpInternalServerError(
+            'Lưu dữ liệu thất bại. Vui lòng báo cáo lại',
+          ),
+        );
+      }
+
+      return right(ids);
     } on DioException catch (e) {
       return left(e.baseError);
     }

@@ -1,10 +1,13 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/enums/index.dart';
 import '../../data/datasource/models/overtime_model.dart';
 
-/// Card hiển thị một đơn tăng ca trong danh sách.
+/// Card hiển thị một đơn tăng ca trong danh sách với style glassmorphism.
 class OvertimeCard extends StatelessWidget {
   const OvertimeCard({
     super.key,
@@ -51,53 +54,127 @@ class OvertimeCard extends StatelessWidget {
   ApprovalStatus _hrStatus() =>
       _mapStatus(item.isApprovedHr, item.statusHr, item.statusHrText);
 
+  String get _timeRange {
+    final start = _formatTime(item.timeStart);
+    final end = _formatTime(item.endTime);
+    if (start == '--:--' && end == '--:--') return '—';
+    return '$start - $end';
+  }
+
   @override
   Widget build(BuildContext context) {
     final tbp = _tbpStatus();
     final hr = _hrStatus();
 
-    return Material(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(12),
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(12),
-        child: Container(
-          padding: const EdgeInsets.all(12),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: const Color(0xFFE0E0E0)),
-          ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Loại tăng ca: ${item.typeName ?? '—'}',
-                      style: const TextStyle(fontWeight: FontWeight.w600),
-                    ),
-                    const SizedBox(height: 4),
-                    Text('Ngày: ${_formatDate(item.dateRegister)}'),
-                    const SizedBox(height: 4),
-                    Text(
-                      'Thời gian: ${_formatTime(item.timeStart)} - ${_formatTime(item.endTime)}',
-                    ),
-                    const SizedBox(height: 4),
-                    if (item.totalTime != null)
-                      Text('Số giờ: ${item.totalTime!.toStringAsFixed(1)}'),
-                    if (item.projectName != null && item.projectName!.isNotEmpty) ...[
-                      const SizedBox(height: 4),
-                      Text('Dự án: ${item.projectName}'),
-                    ],
-                  ],
-                ),
+    return GestureDetector(
+      onTap: onTap,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(16),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Colors.white.withValues(alpha: 0.9),
+                  Colors.white.withValues(alpha: 0.7),
+                ],
               ),
-              const SizedBox(width: 12),
-              _OvertimeRoleBadges(tbp: tbp, hr: hr),
-            ],
+              border: Border.all(
+                color: Colors.white.withValues(alpha: 0.6),
+                width: 1.5,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.primaryERP.withValues(alpha: 0.08),
+                  blurRadius: 24,
+                  offset: const Offset(0, 8),
+                ),
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.04),
+                  blurRadius: 8,
+                  offset: const Offset(0, 2),
+                ),
+              ],
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Header: badges
+                  Row(
+                    children: [
+                      const SizedBox(width: 8),
+                      _ApprovalBadge(role: 'TBP', status: tbp),
+                      const SizedBox(width: 6),
+                      _ApprovalBadge(role: 'HR', status: hr),
+                    ],
+                  ),
+
+                  const SizedBox(height: 14),
+
+                  // Type chip
+                  _TypeChip(
+                    label: 'Loại tăng ca',
+                    value: item.typeName ?? '—',
+                    color: AppColors.blueMain,
+                  ),
+
+                  const SizedBox(height: 14),
+
+                  // Time range chip
+                  _TypeChip(
+                    label: 'Khoảng thời gian',
+                    value: _timeRange,
+                    color: AppColors.primaryERP,
+                  ),
+
+                  const SizedBox(height: 14),
+
+                  // Content
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _InfoRow(
+                              icon: Icons.calendar_today_outlined,
+                              label: 'Ngày',
+                              value: _formatDate(item.dateRegister),
+                            ),
+                            if (item.totalTime != null) ...[
+                              const SizedBox(height: 8),
+                              _InfoRow(
+                                icon: Icons.timelapse_outlined,
+                                label: 'Số giờ',
+                                value: '${item.totalTime!.toStringAsFixed(1)} giờ',
+                                isBold: true,
+                                valueColor: AppColors.primaryERP,
+                              ),
+                            ],
+                            if (item.projectName != null &&
+                                item.projectName!.isNotEmpty) ...[
+                              const SizedBox(height: 8),
+                              _InfoRow(
+                                icon: Icons.work_outline,
+                                label: 'Dự án',
+                                value: item.projectName!,
+                              ),
+                            ],
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
       ),
@@ -105,28 +182,115 @@ class OvertimeCard extends StatelessWidget {
   }
 }
 
-class _OvertimeRoleBadges extends StatelessWidget {
-  const _OvertimeRoleBadges({required this.tbp, required this.hr});
+class _TypeChip extends StatelessWidget {
+  const _TypeChip({
+    required this.label,
+    required this.value,
+    required this.color,
+  });
 
-  final ApprovalStatus tbp;
-  final ApprovalStatus hr;
+  final String label;
+  final String value;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.end,
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.08),
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(
+          color: color.withValues(alpha: 0.15),
+          width: 1,
+        ),
+      ),
+      child: Row(
+        children: [
+          Icon(Icons.category_outlined, size: 16, color: color),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  label,
+                  style: TextStyle(
+                    fontSize: 10,
+                    color: AppColors.gray,
+                    height: 1,
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  value,
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.enableText,
+                    height: 1,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _InfoRow extends StatelessWidget {
+  const _InfoRow({
+    required this.icon,
+    required this.label,
+    required this.value,
+    this.isBold = false,
+    this.valueColor,
+  });
+
+  final IconData icon;
+  final String label;
+  final String value;
+  final bool isBold;
+  final Color? valueColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
       children: [
-        _OvertimeRoleBadge(role: 'TBP', status: tbp),
-        const SizedBox(height: 6),
-        _OvertimeRoleBadge(role: 'HR', status: hr),
+        Icon(icon, size: 14, color: AppColors.gray),
+        const SizedBox(width: 6),
+        Text(
+          '$label: ',
+          style: TextStyle(
+            fontSize: 12,
+            color: AppColors.gray,
+            height: 1.2,
+          ),
+        ),
+        Expanded(
+          child: Text(
+            value,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: isBold ? FontWeight.w600 : FontWeight.w500,
+              color: valueColor ?? AppColors.enableText,
+              height: 1.2,
+            ),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
       ],
     );
   }
 }
 
-class _OvertimeRoleBadge extends StatelessWidget {
-  const _OvertimeRoleBadge({required this.role, required this.status});
+class _ApprovalBadge extends StatelessWidget {
+  const _ApprovalBadge({required this.role, required this.status});
 
   final String role;
   final ApprovalStatus status;
@@ -147,22 +311,35 @@ class _OvertimeRoleBadge extends StatelessWidget {
   Color get _bgColor {
     switch (status) {
       case ApprovalStatus.approved:
-        return Colors.green;
+        return AppColors.greenA500;
       case ApprovalStatus.pending:
-        return Colors.orange;
+        return AppColors.orangeA500;
       case ApprovalStatus.cancelled:
-        return Colors.red;
+        return AppColors.redA500;
       case ApprovalStatus.prepare:
-        return const Color(0xFFF5F7F8);
+        return AppColors.gray.withValues(alpha: 0.15);
     }
   }
 
   Color get _textColor {
     switch (status) {
       case ApprovalStatus.prepare:
-        return Colors.black87;
+        return AppColors.enableText;
       default:
         return Colors.white;
+    }
+  }
+
+  Color get _borderColor {
+    switch (status) {
+      case ApprovalStatus.approved:
+        return AppColors.greenA500;
+      case ApprovalStatus.pending:
+        return AppColors.orangeA500;
+      case ApprovalStatus.cancelled:
+        return AppColors.redA500;
+      case ApprovalStatus.prepare:
+        return AppColors.gray.withValues(alpha: 0.3);
     }
   }
 
@@ -174,6 +351,14 @@ class _OvertimeRoleBadge extends StatelessWidget {
       decoration: BoxDecoration(
         color: _bgColor,
         borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: _borderColor, width: 0.8),
+        boxShadow: [
+          BoxShadow(
+            color: _bgColor.withValues(alpha: 0.3),
+            blurRadius: 6,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
       child: Text(
         label,

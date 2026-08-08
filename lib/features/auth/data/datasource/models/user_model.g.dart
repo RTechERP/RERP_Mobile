@@ -32,6 +32,10 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
       teamOfUser: (json['TeamOfUser'] as num).toInt(),
       permissions: json['Permissions'] as String,
       name: json['Name'] as String,
+      passwordHash: json['PasswordHash'] as String,
+      leaderId: (json['LeaderID'] as num).toInt(),
+      taxCompanyId: (json['TaxCompanyID'] as num).toInt(),
+      imagePath: json['ImagePath'] as String?,
     );
 
 Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
@@ -61,4 +65,20 @@ Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
       'TeamOfUser': instance.teamOfUser,
       'Permissions': instance.permissions,
       'Name': instance.name,
+      'PasswordHash': instance.passwordHash,
+      'LeaderID': instance.leaderId,
+      'TaxCompanyID': instance.taxCompanyId,
+      'ImagePath': instance.imagePath,
+    };
+
+_$UploadAvatarResponseImpl _$$UploadAvatarResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$UploadAvatarResponseImpl(
+      savedFileName: json['SavedFileName'] as String? ?? '',
+    );
+
+Map<String, dynamic> _$$UploadAvatarResponseImplToJson(
+        _$UploadAvatarResponseImpl instance) =>
+    <String, dynamic>{
+      'SavedFileName': instance.savedFileName,
     };

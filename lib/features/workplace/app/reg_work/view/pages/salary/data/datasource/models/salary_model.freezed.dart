@@ -4701,6 +4701,23 @@ mixin _$SalaryPayrollItem {
   String? get statusContract => throw _privateConstructorUsedError;
   @JsonKey(name: 'TaxDeduction')
   double? get taxDeduction => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PenaltyLateEarlyQty')
+  int? get penaltyLateEarlyQty => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PenaltyLateEarlyAmount')
+  double? get penaltyLateEarlyAmount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PenaltyMissingAttendanceQty')
+  int? get penaltyMissingAttendanceQty => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PenaltyMissingAttendanceAmount')
+  double? get penaltyMissingAttendanceAmount =>
+      throw _privateConstructorUsedError;
+  @JsonKey(name: 'PenaltyLeaveOver2DaysQty')
+  int? get penaltyLeaveOver2DaysQty => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PenaltyLeaveOver2DaysAmount')
+  double? get penaltyLeaveOver2DaysAmount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PenaltyTotalAmount')
+  double? get penaltyTotalAmount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'RegulationViolation')
+  double? get regulationViolation => throw _privateConstructorUsedError;
   @JsonKey(name: 'STT')
   int? get stt => throw _privateConstructorUsedError;
   @JsonKey(name: 'RealSalary')
@@ -4777,6 +4794,17 @@ abstract class $SalaryPayrollItemCopyWith<$Res> {
       @JsonKey(name: 'TaxCompanyName') String? taxCompanyName,
       @JsonKey(name: 'StatusContract') String? statusContract,
       @JsonKey(name: 'TaxDeduction') double? taxDeduction,
+      @JsonKey(name: 'PenaltyLateEarlyQty') int? penaltyLateEarlyQty,
+      @JsonKey(name: 'PenaltyLateEarlyAmount') double? penaltyLateEarlyAmount,
+      @JsonKey(name: 'PenaltyMissingAttendanceQty')
+      int? penaltyMissingAttendanceQty,
+      @JsonKey(name: 'PenaltyMissingAttendanceAmount')
+      double? penaltyMissingAttendanceAmount,
+      @JsonKey(name: 'PenaltyLeaveOver2DaysQty') int? penaltyLeaveOver2DaysQty,
+      @JsonKey(name: 'PenaltyLeaveOver2DaysAmount')
+      double? penaltyLeaveOver2DaysAmount,
+      @JsonKey(name: 'PenaltyTotalAmount') double? penaltyTotalAmount,
+      @JsonKey(name: 'RegulationViolation') double? regulationViolation,
       @JsonKey(name: 'STT') int? stt,
       @JsonKey(name: 'RealSalary') double? realSalary,
       @JsonKey(name: 'ActualAmountReceived') double? actualAmountReceived});
@@ -4851,6 +4879,14 @@ class _$SalaryPayrollItemCopyWithImpl<$Res, $Val extends SalaryPayrollItem>
     Object? taxCompanyName = freezed,
     Object? statusContract = freezed,
     Object? taxDeduction = freezed,
+    Object? penaltyLateEarlyQty = freezed,
+    Object? penaltyLateEarlyAmount = freezed,
+    Object? penaltyMissingAttendanceQty = freezed,
+    Object? penaltyMissingAttendanceAmount = freezed,
+    Object? penaltyLeaveOver2DaysQty = freezed,
+    Object? penaltyLeaveOver2DaysAmount = freezed,
+    Object? penaltyTotalAmount = freezed,
+    Object? regulationViolation = freezed,
     Object? stt = freezed,
     Object? realSalary = freezed,
     Object? actualAmountReceived = freezed,
@@ -5080,6 +5116,38 @@ class _$SalaryPayrollItemCopyWithImpl<$Res, $Val extends SalaryPayrollItem>
           ? _value.taxDeduction
           : taxDeduction // ignore: cast_nullable_to_non_nullable
               as double?,
+      penaltyLateEarlyQty: freezed == penaltyLateEarlyQty
+          ? _value.penaltyLateEarlyQty
+          : penaltyLateEarlyQty // ignore: cast_nullable_to_non_nullable
+              as int?,
+      penaltyLateEarlyAmount: freezed == penaltyLateEarlyAmount
+          ? _value.penaltyLateEarlyAmount
+          : penaltyLateEarlyAmount // ignore: cast_nullable_to_non_nullable
+              as double?,
+      penaltyMissingAttendanceQty: freezed == penaltyMissingAttendanceQty
+          ? _value.penaltyMissingAttendanceQty
+          : penaltyMissingAttendanceQty // ignore: cast_nullable_to_non_nullable
+              as int?,
+      penaltyMissingAttendanceAmount: freezed == penaltyMissingAttendanceAmount
+          ? _value.penaltyMissingAttendanceAmount
+          : penaltyMissingAttendanceAmount // ignore: cast_nullable_to_non_nullable
+              as double?,
+      penaltyLeaveOver2DaysQty: freezed == penaltyLeaveOver2DaysQty
+          ? _value.penaltyLeaveOver2DaysQty
+          : penaltyLeaveOver2DaysQty // ignore: cast_nullable_to_non_nullable
+              as int?,
+      penaltyLeaveOver2DaysAmount: freezed == penaltyLeaveOver2DaysAmount
+          ? _value.penaltyLeaveOver2DaysAmount
+          : penaltyLeaveOver2DaysAmount // ignore: cast_nullable_to_non_nullable
+              as double?,
+      penaltyTotalAmount: freezed == penaltyTotalAmount
+          ? _value.penaltyTotalAmount
+          : penaltyTotalAmount // ignore: cast_nullable_to_non_nullable
+              as double?,
+      regulationViolation: freezed == regulationViolation
+          ? _value.regulationViolation
+          : regulationViolation // ignore: cast_nullable_to_non_nullable
+              as double?,
       stt: freezed == stt
           ? _value.stt
           : stt // ignore: cast_nullable_to_non_nullable
@@ -5161,6 +5229,17 @@ abstract class _$$SalaryPayrollItemImplCopyWith<$Res>
       @JsonKey(name: 'TaxCompanyName') String? taxCompanyName,
       @JsonKey(name: 'StatusContract') String? statusContract,
       @JsonKey(name: 'TaxDeduction') double? taxDeduction,
+      @JsonKey(name: 'PenaltyLateEarlyQty') int? penaltyLateEarlyQty,
+      @JsonKey(name: 'PenaltyLateEarlyAmount') double? penaltyLateEarlyAmount,
+      @JsonKey(name: 'PenaltyMissingAttendanceQty')
+      int? penaltyMissingAttendanceQty,
+      @JsonKey(name: 'PenaltyMissingAttendanceAmount')
+      double? penaltyMissingAttendanceAmount,
+      @JsonKey(name: 'PenaltyLeaveOver2DaysQty') int? penaltyLeaveOver2DaysQty,
+      @JsonKey(name: 'PenaltyLeaveOver2DaysAmount')
+      double? penaltyLeaveOver2DaysAmount,
+      @JsonKey(name: 'PenaltyTotalAmount') double? penaltyTotalAmount,
+      @JsonKey(name: 'RegulationViolation') double? regulationViolation,
       @JsonKey(name: 'STT') int? stt,
       @JsonKey(name: 'RealSalary') double? realSalary,
       @JsonKey(name: 'ActualAmountReceived') double? actualAmountReceived});
@@ -5233,6 +5312,14 @@ class __$$SalaryPayrollItemImplCopyWithImpl<$Res>
     Object? taxCompanyName = freezed,
     Object? statusContract = freezed,
     Object? taxDeduction = freezed,
+    Object? penaltyLateEarlyQty = freezed,
+    Object? penaltyLateEarlyAmount = freezed,
+    Object? penaltyMissingAttendanceQty = freezed,
+    Object? penaltyMissingAttendanceAmount = freezed,
+    Object? penaltyLeaveOver2DaysQty = freezed,
+    Object? penaltyLeaveOver2DaysAmount = freezed,
+    Object? penaltyTotalAmount = freezed,
+    Object? regulationViolation = freezed,
     Object? stt = freezed,
     Object? realSalary = freezed,
     Object? actualAmountReceived = freezed,
@@ -5462,6 +5549,38 @@ class __$$SalaryPayrollItemImplCopyWithImpl<$Res>
           ? _value.taxDeduction
           : taxDeduction // ignore: cast_nullable_to_non_nullable
               as double?,
+      penaltyLateEarlyQty: freezed == penaltyLateEarlyQty
+          ? _value.penaltyLateEarlyQty
+          : penaltyLateEarlyQty // ignore: cast_nullable_to_non_nullable
+              as int?,
+      penaltyLateEarlyAmount: freezed == penaltyLateEarlyAmount
+          ? _value.penaltyLateEarlyAmount
+          : penaltyLateEarlyAmount // ignore: cast_nullable_to_non_nullable
+              as double?,
+      penaltyMissingAttendanceQty: freezed == penaltyMissingAttendanceQty
+          ? _value.penaltyMissingAttendanceQty
+          : penaltyMissingAttendanceQty // ignore: cast_nullable_to_non_nullable
+              as int?,
+      penaltyMissingAttendanceAmount: freezed == penaltyMissingAttendanceAmount
+          ? _value.penaltyMissingAttendanceAmount
+          : penaltyMissingAttendanceAmount // ignore: cast_nullable_to_non_nullable
+              as double?,
+      penaltyLeaveOver2DaysQty: freezed == penaltyLeaveOver2DaysQty
+          ? _value.penaltyLeaveOver2DaysQty
+          : penaltyLeaveOver2DaysQty // ignore: cast_nullable_to_non_nullable
+              as int?,
+      penaltyLeaveOver2DaysAmount: freezed == penaltyLeaveOver2DaysAmount
+          ? _value.penaltyLeaveOver2DaysAmount
+          : penaltyLeaveOver2DaysAmount // ignore: cast_nullable_to_non_nullable
+              as double?,
+      penaltyTotalAmount: freezed == penaltyTotalAmount
+          ? _value.penaltyTotalAmount
+          : penaltyTotalAmount // ignore: cast_nullable_to_non_nullable
+              as double?,
+      regulationViolation: freezed == regulationViolation
+          ? _value.regulationViolation
+          : regulationViolation // ignore: cast_nullable_to_non_nullable
+              as double?,
       stt: freezed == stt
           ? _value.stt
           : stt // ignore: cast_nullable_to_non_nullable
@@ -5538,6 +5657,17 @@ class _$SalaryPayrollItemImpl implements _SalaryPayrollItem {
       @JsonKey(name: 'TaxCompanyName') this.taxCompanyName,
       @JsonKey(name: 'StatusContract') this.statusContract,
       @JsonKey(name: 'TaxDeduction') this.taxDeduction,
+      @JsonKey(name: 'PenaltyLateEarlyQty') this.penaltyLateEarlyQty,
+      @JsonKey(name: 'PenaltyLateEarlyAmount') this.penaltyLateEarlyAmount,
+      @JsonKey(name: 'PenaltyMissingAttendanceQty')
+      this.penaltyMissingAttendanceQty,
+      @JsonKey(name: 'PenaltyMissingAttendanceAmount')
+      this.penaltyMissingAttendanceAmount,
+      @JsonKey(name: 'PenaltyLeaveOver2DaysQty') this.penaltyLeaveOver2DaysQty,
+      @JsonKey(name: 'PenaltyLeaveOver2DaysAmount')
+      this.penaltyLeaveOver2DaysAmount,
+      @JsonKey(name: 'PenaltyTotalAmount') this.penaltyTotalAmount,
+      @JsonKey(name: 'RegulationViolation') this.regulationViolation,
       @JsonKey(name: 'STT') this.stt,
       @JsonKey(name: 'RealSalary') this.realSalary,
       @JsonKey(name: 'ActualAmountReceived') this.actualAmountReceived});
@@ -5714,6 +5844,30 @@ class _$SalaryPayrollItemImpl implements _SalaryPayrollItem {
   @JsonKey(name: 'TaxDeduction')
   final double? taxDeduction;
   @override
+  @JsonKey(name: 'PenaltyLateEarlyQty')
+  final int? penaltyLateEarlyQty;
+  @override
+  @JsonKey(name: 'PenaltyLateEarlyAmount')
+  final double? penaltyLateEarlyAmount;
+  @override
+  @JsonKey(name: 'PenaltyMissingAttendanceQty')
+  final int? penaltyMissingAttendanceQty;
+  @override
+  @JsonKey(name: 'PenaltyMissingAttendanceAmount')
+  final double? penaltyMissingAttendanceAmount;
+  @override
+  @JsonKey(name: 'PenaltyLeaveOver2DaysQty')
+  final int? penaltyLeaveOver2DaysQty;
+  @override
+  @JsonKey(name: 'PenaltyLeaveOver2DaysAmount')
+  final double? penaltyLeaveOver2DaysAmount;
+  @override
+  @JsonKey(name: 'PenaltyTotalAmount')
+  final double? penaltyTotalAmount;
+  @override
+  @JsonKey(name: 'RegulationViolation')
+  final double? regulationViolation;
+  @override
   @JsonKey(name: 'STT')
   final int? stt;
   @override
@@ -5725,7 +5879,7 @@ class _$SalaryPayrollItemImpl implements _SalaryPayrollItem {
 
   @override
   String toString() {
-    return 'SalaryPayrollItem(id: $id, sign: $sign, payrollId: $payrollId, employeeId: $employeeId, code: $code, fullName: $fullName, departmentSTT: $departmentSTT, departmentName: $departmentName, priorityOrder: $priorityOrder, positionName: $positionName, basicSalary: $basicSalary, totalWorkday: $totalWorkday, totalMerit: $totalMerit, totalSalaryByDay: $totalSalaryByDay, salaryOneHour: $salaryOneHour, otHourWD: $otHourWD, otMoneyWD: $otMoneyWD, otHourWK: $otHourWK, otMoneyWK: $otMoneyWK, otHourHD: $otHourHD, otMoneyHD: $otMoneyHD, otTotalSalary: $otTotalSalary, referenceIndustry: $referenceIndustry, realIndustry: $realIndustry, allowanceMeal: $allowanceMeal, allowanceOTEarly: $allowanceOTEarly, totalAllowance: $totalAllowance, bussinessMoney: $bussinessMoney, nightShiftMoney: $nightShiftMoney, costVehicleBussiness: $costVehicleBussiness, bonus: $bonus, other: $other, totalBonus: $totalBonus, socialInsurance: $socialInsurance, insurances: $insurances, unionFees: $unionFees, advancePayment: $advancePayment, departmentalFees: $departmentalFees, parkingMoney: $parkingMoney, punish5S: $punish5S, otherDeduction: $otherDeduction, totalDeduction: $totalDeduction, note: $note, isPublish: $isPublish, startWorking: $startWorking, mealUse: $mealUse, taxSalaryOT: $taxSalaryOT, taxSalaryMeal: $taxSalaryMeal, taxSalaryPhone: $taxSalaryPhone, taxPersonalDeduction: $taxPersonalDeduction, taxDependentsDeduction: $taxDependentsDeduction, totalTaxDeduction: $totalTaxDeduction, taxAbleIncome: $taxAbleIncome, taxCompanyName: $taxCompanyName, statusContract: $statusContract, taxDeduction: $taxDeduction, stt: $stt, realSalary: $realSalary, actualAmountReceived: $actualAmountReceived)';
+    return 'SalaryPayrollItem(id: $id, sign: $sign, payrollId: $payrollId, employeeId: $employeeId, code: $code, fullName: $fullName, departmentSTT: $departmentSTT, departmentName: $departmentName, priorityOrder: $priorityOrder, positionName: $positionName, basicSalary: $basicSalary, totalWorkday: $totalWorkday, totalMerit: $totalMerit, totalSalaryByDay: $totalSalaryByDay, salaryOneHour: $salaryOneHour, otHourWD: $otHourWD, otMoneyWD: $otMoneyWD, otHourWK: $otHourWK, otMoneyWK: $otMoneyWK, otHourHD: $otHourHD, otMoneyHD: $otMoneyHD, otTotalSalary: $otTotalSalary, referenceIndustry: $referenceIndustry, realIndustry: $realIndustry, allowanceMeal: $allowanceMeal, allowanceOTEarly: $allowanceOTEarly, totalAllowance: $totalAllowance, bussinessMoney: $bussinessMoney, nightShiftMoney: $nightShiftMoney, costVehicleBussiness: $costVehicleBussiness, bonus: $bonus, other: $other, totalBonus: $totalBonus, socialInsurance: $socialInsurance, insurances: $insurances, unionFees: $unionFees, advancePayment: $advancePayment, departmentalFees: $departmentalFees, parkingMoney: $parkingMoney, punish5S: $punish5S, otherDeduction: $otherDeduction, totalDeduction: $totalDeduction, note: $note, isPublish: $isPublish, startWorking: $startWorking, mealUse: $mealUse, taxSalaryOT: $taxSalaryOT, taxSalaryMeal: $taxSalaryMeal, taxSalaryPhone: $taxSalaryPhone, taxPersonalDeduction: $taxPersonalDeduction, taxDependentsDeduction: $taxDependentsDeduction, totalTaxDeduction: $totalTaxDeduction, taxAbleIncome: $taxAbleIncome, taxCompanyName: $taxCompanyName, statusContract: $statusContract, taxDeduction: $taxDeduction, penaltyLateEarlyQty: $penaltyLateEarlyQty, penaltyLateEarlyAmount: $penaltyLateEarlyAmount, penaltyMissingAttendanceQty: $penaltyMissingAttendanceQty, penaltyMissingAttendanceAmount: $penaltyMissingAttendanceAmount, penaltyLeaveOver2DaysQty: $penaltyLeaveOver2DaysQty, penaltyLeaveOver2DaysAmount: $penaltyLeaveOver2DaysAmount, penaltyTotalAmount: $penaltyTotalAmount, regulationViolation: $regulationViolation, stt: $stt, realSalary: $realSalary, actualAmountReceived: $actualAmountReceived)';
   }
 
   @override
@@ -5832,6 +5986,14 @@ class _$SalaryPayrollItemImpl implements _SalaryPayrollItem {
             (identical(other.taxCompanyName, taxCompanyName) || other.taxCompanyName == taxCompanyName) &&
             (identical(other.statusContract, statusContract) || other.statusContract == statusContract) &&
             (identical(other.taxDeduction, taxDeduction) || other.taxDeduction == taxDeduction) &&
+            (identical(other.penaltyLateEarlyQty, penaltyLateEarlyQty) || other.penaltyLateEarlyQty == penaltyLateEarlyQty) &&
+            (identical(other.penaltyLateEarlyAmount, penaltyLateEarlyAmount) || other.penaltyLateEarlyAmount == penaltyLateEarlyAmount) &&
+            (identical(other.penaltyMissingAttendanceQty, penaltyMissingAttendanceQty) || other.penaltyMissingAttendanceQty == penaltyMissingAttendanceQty) &&
+            (identical(other.penaltyMissingAttendanceAmount, penaltyMissingAttendanceAmount) || other.penaltyMissingAttendanceAmount == penaltyMissingAttendanceAmount) &&
+            (identical(other.penaltyLeaveOver2DaysQty, penaltyLeaveOver2DaysQty) || other.penaltyLeaveOver2DaysQty == penaltyLeaveOver2DaysQty) &&
+            (identical(other.penaltyLeaveOver2DaysAmount, penaltyLeaveOver2DaysAmount) || other.penaltyLeaveOver2DaysAmount == penaltyLeaveOver2DaysAmount) &&
+            (identical(other.penaltyTotalAmount, penaltyTotalAmount) || other.penaltyTotalAmount == penaltyTotalAmount) &&
+            (identical(other.regulationViolation, regulationViolation) || other.regulationViolation == regulationViolation) &&
             (identical(other.stt, stt) || other.stt == stt) &&
             (identical(other.realSalary, realSalary) || other.realSalary == realSalary) &&
             (identical(other.actualAmountReceived, actualAmountReceived) || other.actualAmountReceived == actualAmountReceived));
@@ -5897,6 +6059,14 @@ class _$SalaryPayrollItemImpl implements _SalaryPayrollItem {
         taxCompanyName,
         statusContract,
         taxDeduction,
+        penaltyLateEarlyQty,
+        penaltyLateEarlyAmount,
+        penaltyMissingAttendanceQty,
+        penaltyMissingAttendanceAmount,
+        penaltyLeaveOver2DaysQty,
+        penaltyLeaveOver2DaysAmount,
+        penaltyTotalAmount,
+        regulationViolation,
         stt,
         realSalary,
         actualAmountReceived
@@ -5976,6 +6146,19 @@ abstract class _SalaryPayrollItem implements SalaryPayrollItem {
       @JsonKey(name: 'TaxCompanyName') final String? taxCompanyName,
       @JsonKey(name: 'StatusContract') final String? statusContract,
       @JsonKey(name: 'TaxDeduction') final double? taxDeduction,
+      @JsonKey(name: 'PenaltyLateEarlyQty') final int? penaltyLateEarlyQty,
+      @JsonKey(name: 'PenaltyLateEarlyAmount')
+      final double? penaltyLateEarlyAmount,
+      @JsonKey(name: 'PenaltyMissingAttendanceQty')
+      final int? penaltyMissingAttendanceQty,
+      @JsonKey(name: 'PenaltyMissingAttendanceAmount')
+      final double? penaltyMissingAttendanceAmount,
+      @JsonKey(name: 'PenaltyLeaveOver2DaysQty')
+      final int? penaltyLeaveOver2DaysQty,
+      @JsonKey(name: 'PenaltyLeaveOver2DaysAmount')
+      final double? penaltyLeaveOver2DaysAmount,
+      @JsonKey(name: 'PenaltyTotalAmount') final double? penaltyTotalAmount,
+      @JsonKey(name: 'RegulationViolation') final double? regulationViolation,
       @JsonKey(name: 'STT') final int? stt,
       @JsonKey(name: 'RealSalary') final double? realSalary,
       @JsonKey(name: 'ActualAmountReceived')
@@ -6152,6 +6335,30 @@ abstract class _SalaryPayrollItem implements SalaryPayrollItem {
   @override
   @JsonKey(name: 'TaxDeduction')
   double? get taxDeduction;
+  @override
+  @JsonKey(name: 'PenaltyLateEarlyQty')
+  int? get penaltyLateEarlyQty;
+  @override
+  @JsonKey(name: 'PenaltyLateEarlyAmount')
+  double? get penaltyLateEarlyAmount;
+  @override
+  @JsonKey(name: 'PenaltyMissingAttendanceQty')
+  int? get penaltyMissingAttendanceQty;
+  @override
+  @JsonKey(name: 'PenaltyMissingAttendanceAmount')
+  double? get penaltyMissingAttendanceAmount;
+  @override
+  @JsonKey(name: 'PenaltyLeaveOver2DaysQty')
+  int? get penaltyLeaveOver2DaysQty;
+  @override
+  @JsonKey(name: 'PenaltyLeaveOver2DaysAmount')
+  double? get penaltyLeaveOver2DaysAmount;
+  @override
+  @JsonKey(name: 'PenaltyTotalAmount')
+  double? get penaltyTotalAmount;
+  @override
+  @JsonKey(name: 'RegulationViolation')
+  double? get regulationViolation;
   @override
   @JsonKey(name: 'STT')
   int? get stt;

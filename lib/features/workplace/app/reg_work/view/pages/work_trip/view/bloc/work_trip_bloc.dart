@@ -6,9 +6,11 @@ import 'package:injectable/injectable.dart';
 import '../../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../../common/logger/index.dart';
+import '../../../../../../../../../common/utils/datetime_utils.dart';
 import '../../../../../../../../auth/data/repository/auth_repo.dart';
 import '../../data/datasource/models/work_trip_model.dart';
 import '../../data/repository/work_trip_repo.dart';
+import '../../data/repository/work_trip_repository.dart';
 import '../widgets/work_trip_add_constants.dart';
 
 part 'work_trip_event.dart';
@@ -67,24 +69,9 @@ class WorkTripBloc extends BaseBloc<WorkTripEvent, WorkTripState> {
     };
   }
 
-  static DateTime _normalizeToMinute(DateTime dt) =>
-      DateTime(dt.year, dt.month, dt.day, dt.hour, dt.minute);
+DateTime _normalizeToMinute(DateTime dt) =>
+    DateTime(dt.year, dt.month, dt.day, dt.hour, dt.minute);
 
-  static String _toLocalIso8601(DateTime dt) {
-    final local = dt.isUtc ? dt.toLocal() : dt;
-    final offset = local.timeZoneOffset;
-    final sign = offset.isNegative ? '-' : '+';
-    final oh = offset.inHours.abs().toString().padLeft(2, '0');
-    final om = (offset.inMinutes.abs() % 60).toString().padLeft(2, '0');
-    final ms = local.millisecond.toString().padLeft(3, '0');
-    return '${local.year.toString().padLeft(4, '0')}-'
-        '${local.month.toString().padLeft(2, '0')}-'
-        '${local.day.toString().padLeft(2, '0')}T'
-        '${local.hour.toString().padLeft(2, '0')}:'
-        '${local.minute.toString().padLeft(2, '0')}:'
-        '${local.second.toString().padLeft(2, '0')}.'
-        '$ms$sign$oh:$om';
-  }
 
   Future<void> _onInit(Emitter<WorkTripState> emit) async {
     emit(state.copyWith(status: BaseStateStatus.loading));
@@ -110,6 +97,11 @@ class WorkTripBloc extends BaseBloc<WorkTripEvent, WorkTripState> {
         } else {
           rangeStart = defaultStart;
           rangeEnd = defaultEnd;
+        }
+
+        // ── Tải & cache lookup data cho màn Add ─────────────────────────────
+        if (user != null) {
+          await _loadAndCacheLookupData(user.employeeId);
         }
 
         final payload = _listPayload(
@@ -145,6 +137,76 @@ class WorkTripBloc extends BaseBloc<WorkTripEvent, WorkTripState> {
     );
   }
 
+  /// Tải lookup data từ API và lưu cache, đồng thời emit vào state nếu có.
+  Future<void> _loadAndCacheLookupData(int employeeId) async {
+    final cached = await WorkTripRepository.getInitAddCache(
+      employeeId: employeeId,
+      log: _log,
+    );
+
+    List<ApproverItem> approvers = [];
+    List<WorkTripProject> projects = [];
+    List<WorkTripTypeItem> types = [];
+    List<WorkTripTypeVehicle> vehicles = [];
+    FillApproverItem? fillApprover;
+
+    if (cached != null && cached.isUsable) {
+      _log.logI(
+          'WorkTrip cache hit for user=$employeeId (fetchedAt=${cached.fetchedAt})');
+      approvers = cached.approvers;
+      projects = cached.projects;
+      types = cached.types;
+      vehicles = cached.vehicles;
+      fillApprover = cached.fillApprover;
+    } else {
+      _log.logI('WorkTrip cache miss for user=$employeeId — fetching API');
+
+      final approverRes = await _workTripRepo.getApprover();
+      final typeRes = await _workTripRepo.getWorkTripType();
+      final vehicleRes = await _workTripRepo.getWorkTripVehicleType();
+      final projectRes = await _workTripRepo.getWorkTripProject();
+      final fillApproverRes = await _workTripRepo.getFillApprover(
+        employeeID: employeeId,
+        tableName: 'EmployeeBussiness',
+      );
+
+      approverRes.fold(
+          (l) => _log.logE('getApprover failed: $l'), (r) => approvers = r);
+      typeRes.fold(
+          (l) => _log.logE('getWorkTripType failed: $l'), (r) => types = r);
+      vehicleRes.fold(
+          (l) => _log.logE('getWorkTripVehicleType failed: $l'),
+          (r) => vehicles = r);
+      projectRes.fold(
+          (l) => _log.logE('getWorkTripProject failed: $l'),
+          (r) => projects = r);
+      fillApproverRes.fold(
+          (l) => _log.logE('getFillApprover failed: $l'),
+          (r) => fillApprover = r);
+
+      await WorkTripRepository.saveInitAddCache(
+        employeeId: employeeId,
+        approvers: approvers,
+        projects: projects,
+        types: types,
+        vehicles: vehicles,
+        fillApprover: fillApprover,
+        log: _log,
+      );
+    }
+
+    // Emit lookup data vào state nếu chưa có hoặc cache miss (force update)
+    if (approvers.isNotEmpty || types.isNotEmpty || vehicles.isNotEmpty) {
+      emit(state.copyWith(
+        approvers: approvers,
+        workTripProjects: projects,
+        workTripTypes: types,
+        workTripVehicles: vehicles,
+        approveId: fillApprover,
+      ));
+    }
+  }
+
   Future<void> _onInitAdd(Emitter<WorkTripState> emit) async {
     if (_isInitAddInFlight) {
       _log.logI('ℹ️ WorkTripBloc initAdd skipped: request in-flight');
@@ -164,62 +226,61 @@ class WorkTripBloc extends BaseBloc<WorkTripEvent, WorkTripState> {
         return;
       }
 
-      final approverRes = await _workTripRepo.getApprover();
-      final typeRes = await _workTripRepo.getWorkTripType();
-      final vehicleRes = await _workTripRepo.getWorkTripVehicleType();
-      final projectRes = await _workTripRepo.getWorkTripProject();
-      final fillApproverRes = await _workTripRepo.getFillApprover(
-        employeeID: user.employeeId,
-        tableName: 'EmployeeBussiness',
-      );
+      // Ưu tiên đọc từ cache, fallback sang API nếu không có.
+      var approvers = state.approvers;
+      var types = state.workTripTypes;
+      var vehicles = state.workTripVehicles;
+      var projects = state.workTripProjects;
+      FillApproverItem? fillApprover = state.approveId;
 
-      var approvers = <ApproverItem>[];
-      var types = <WorkTripTypeItem>[];
-      var vehicles = <WorkTripTypeVehicle>[];
-      var projects = <WorkTripProject>[];
-      FillApproverItem? fillApprover;
-      String? errorMsg;
+      if (approvers.isEmpty || types.isEmpty || vehicles.isEmpty) {
+        _log.logI('WorkTripBloc initAdd: reading from cache first');
+        final cached = await WorkTripRepository.getInitAddCache(
+          employeeId: user.employeeId,
+          log: _log,
+        );
 
-      approverRes.fold(
-        (l) => errorMsg = l.getErrorMessage,
-        (r) => approvers = r,
-      );
-      if (errorMsg != null) {
-        _log.logE('❌ WorkTripBloc initAdd getApprover failed: $errorMsg');
-        emit(state.copyWith(
-          status: BaseStateStatus.failed,
-          message: errorMsg,
-        ));
-        return;
+        if (cached != null && cached.isUsable) {
+          _log.logI('WorkTripBloc initAdd: cache hit');
+          approvers = cached.approvers;
+          types = cached.types;
+          vehicles = cached.vehicles;
+          projects = cached.projects;
+          fillApprover = cached.fillApprover;
+        } else {
+          _log.logI('WorkTripBloc initAdd: cache miss — calling API');
+
+          final approverRes = await _workTripRepo.getApprover();
+          final typeRes = await _workTripRepo.getWorkTripType();
+          final vehicleRes = await _workTripRepo.getWorkTripVehicleType();
+          final projectRes = await _workTripRepo.getWorkTripProject();
+          final fillApproverRes = await _workTripRepo.getFillApprover(
+            employeeID: user.employeeId,
+            tableName: 'EmployeeBussiness',
+          );
+
+          approverRes.fold((l) => _log.logE('getApprover failed: $l'),
+              (r) => approvers = r);
+          typeRes.fold((l) => _log.logE('getWorkTripType failed: $l'),
+              (r) => types = r);
+          vehicleRes.fold((l) => _log.logE('getVehicle failed: $l'),
+              (r) => vehicles = r);
+          projectRes.fold((l) => _log.logE('getProject failed: $l'),
+              (r) => projects = r);
+          fillApproverRes.fold((l) => _log.logE('getFillApprover failed: $l'),
+              (r) => fillApprover = r);
+
+          await WorkTripRepository.saveInitAddCache(
+            employeeId: user.employeeId,
+            approvers: approvers,
+            projects: projects,
+            types: types,
+            vehicles: vehicles,
+            fillApprover: fillApprover,
+            log: _log,
+          );
+        }
       }
-
-      typeRes.fold(
-        (l) => errorMsg = l.getErrorMessage,
-        (r) => types = r,
-      );
-      if (errorMsg != null) {
-        _log.logE('❌ WorkTripBloc initAdd getWorkTripType failed: $errorMsg');
-        emit(state.copyWith(
-          status: BaseStateStatus.failed,
-          message: errorMsg,
-        ));
-        return;
-      }
-
-      vehicleRes.fold(
-        (l) => _log.logE('❌ WorkTripBloc initAdd getVehicle failed: $l'),
-        (r) => vehicles = r,
-      );
-
-      projectRes.fold(
-        (l) => _log.logE('❌ WorkTripBloc initAdd getProject failed: $l'),
-        (r) => projects = r,
-      );
-
-      fillApproverRes.fold(
-        (l) => _log.logE('❌ WorkTripBloc initAdd getFillApprover failed: $l'),
-        (r) => fillApprover = r,
-      );
 
       _log.logI('✅ WorkTripBloc initAdd success');
       emit(state.copyWith(
@@ -316,7 +377,7 @@ class WorkTripBloc extends BaseBloc<WorkTripEvent, WorkTripState> {
           data.costBussiness + costVehicle + costWorkEarly + costOvernight;
 
       final dayStr =
-          _toLocalIso8601(_normalizeToMinute(data.dayBussiness));
+          toVnIso8601(_normalizeToMinute(data.dayBussiness));
 
       // VehicleID = 0 khi gửi qua employeeBussinessVehicle (xe máy / khác),
       // ngược lại dùng ID thực của phương tiện đã chọn.
@@ -520,7 +581,7 @@ class WorkTripBloc extends BaseBloc<WorkTripEvent, WorkTripState> {
       final totalMoney =
           data.costBussiness + costVehicle + costWorkEarly + costOvernight;
 
-      final dayStr = _toLocalIso8601(_normalizeToMinute(data.dayBussiness));
+      final dayStr = toVnIso8601(_normalizeToMinute(data.dayBussiness));
 
       final bussinessObject = <String, dynamic>{
         'ID': id,

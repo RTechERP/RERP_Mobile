@@ -5969,7 +5969,7 @@ mixin _$DetailReportNullResponse {
   @JsonKey(name: 'Confirm')
   bool get confirm => throw _privateConstructorUsedError;
   @JsonKey(name: 'Backlog')
-  String get backlog => throw _privateConstructorUsedError;
+  String? get backlog => throw _privateConstructorUsedError;
   @JsonKey(name: 'DeleteFlag')
   int get deleteFlag => throw _privateConstructorUsedError;
   @JsonKey(name: 'CreatedDate')
@@ -6026,7 +6026,7 @@ abstract class $DetailReportNullResponseCopyWith<$Res> {
       @JsonKey(name: 'PlanNextDay') String planNextDay,
       @JsonKey(name: 'Note') String note,
       @JsonKey(name: 'Confirm') bool confirm,
-      @JsonKey(name: 'Backlog') String backlog,
+      @JsonKey(name: 'Backlog') String? backlog,
       @JsonKey(name: 'DeleteFlag') int deleteFlag,
       @JsonKey(name: 'CreatedDate') DateTime createdDate,
       @JsonKey(name: 'Type') int type,
@@ -6070,7 +6070,7 @@ class _$DetailReportNullResponseCopyWithImpl<$Res,
     Object? planNextDay = null,
     Object? note = null,
     Object? confirm = null,
-    Object? backlog = null,
+    Object? backlog = freezed,
     Object? deleteFlag = null,
     Object? createdDate = null,
     Object? type = null,
@@ -6136,10 +6136,10 @@ class _$DetailReportNullResponseCopyWithImpl<$Res,
           ? _value.confirm
           : confirm // ignore: cast_nullable_to_non_nullable
               as bool,
-      backlog: null == backlog
+      backlog: freezed == backlog
           ? _value.backlog
           : backlog // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       deleteFlag: null == deleteFlag
           ? _value.deleteFlag
           : deleteFlag // ignore: cast_nullable_to_non_nullable
@@ -6226,7 +6226,7 @@ abstract class _$$DetailReportNullResponseImplCopyWith<$Res>
       @JsonKey(name: 'PlanNextDay') String planNextDay,
       @JsonKey(name: 'Note') String note,
       @JsonKey(name: 'Confirm') bool confirm,
-      @JsonKey(name: 'Backlog') String backlog,
+      @JsonKey(name: 'Backlog') String? backlog,
       @JsonKey(name: 'DeleteFlag') int deleteFlag,
       @JsonKey(name: 'CreatedDate') DateTime createdDate,
       @JsonKey(name: 'Type') int type,
@@ -6269,7 +6269,7 @@ class __$$DetailReportNullResponseImplCopyWithImpl<$Res>
     Object? planNextDay = null,
     Object? note = null,
     Object? confirm = null,
-    Object? backlog = null,
+    Object? backlog = freezed,
     Object? deleteFlag = null,
     Object? createdDate = null,
     Object? type = null,
@@ -6335,10 +6335,10 @@ class __$$DetailReportNullResponseImplCopyWithImpl<$Res>
           ? _value.confirm
           : confirm // ignore: cast_nullable_to_non_nullable
               as bool,
-      backlog: null == backlog
+      backlog: freezed == backlog
           ? _value.backlog
           : backlog // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       deleteFlag: null == deleteFlag
           ? _value.deleteFlag
           : deleteFlag // ignore: cast_nullable_to_non_nullable
@@ -6419,7 +6419,7 @@ class _$DetailReportNullResponseImpl implements _DetailReportNullResponse {
       @JsonKey(name: 'PlanNextDay') required this.planNextDay,
       @JsonKey(name: 'Note') required this.note,
       @JsonKey(name: 'Confirm') required this.confirm,
-      @JsonKey(name: 'Backlog') required this.backlog,
+      @JsonKey(name: 'Backlog') this.backlog,
       @JsonKey(name: 'DeleteFlag') required this.deleteFlag,
       @JsonKey(name: 'CreatedDate') required this.createdDate,
       @JsonKey(name: 'Type') required this.type,
@@ -6477,7 +6477,7 @@ class _$DetailReportNullResponseImpl implements _DetailReportNullResponse {
   final bool confirm;
   @override
   @JsonKey(name: 'Backlog')
-  final String backlog;
+  final String? backlog;
   @override
   @JsonKey(name: 'DeleteFlag')
   final int deleteFlag;
@@ -6647,7 +6647,7 @@ abstract class _DetailReportNullResponse implements DetailReportNullResponse {
       @JsonKey(name: 'PlanNextDay') required final String planNextDay,
       @JsonKey(name: 'Note') required final String note,
       @JsonKey(name: 'Confirm') required final bool confirm,
-      @JsonKey(name: 'Backlog') required final String backlog,
+      @JsonKey(name: 'Backlog') final String? backlog,
       @JsonKey(name: 'DeleteFlag') required final int deleteFlag,
       @JsonKey(name: 'CreatedDate') required final DateTime createdDate,
       @JsonKey(name: 'Type') required final int type,
@@ -6706,7 +6706,7 @@ abstract class _DetailReportNullResponse implements DetailReportNullResponse {
   bool get confirm;
   @override
   @JsonKey(name: 'Backlog')
-  String get backlog;
+  String? get backlog;
   @override
   @JsonKey(name: 'DeleteFlag')
   int get deleteFlag;
@@ -18556,11 +18556,11 @@ mixin _$SaleReportItem {
   @JsonKey(name: 'DateEnd')
   DateTime get dateEnd => throw _privateConstructorUsedError;
   @JsonKey(name: 'Telesale')
-  int? get telesale => throw _privateConstructorUsedError;
+  String? get telesale => throw _privateConstructorUsedError;
   @JsonKey(name: 'Visit')
-  int? get visit => throw _privateConstructorUsedError;
+  String? get visit => throw _privateConstructorUsedError;
   @JsonKey(name: 'Demo')
-  int? get demo => throw _privateConstructorUsedError;
+  String? get demo => throw _privateConstructorUsedError;
   @JsonKey(name: 'Result')
   String? get result => throw _privateConstructorUsedError;
   @JsonKey(name: 'ProblemBacklog')
@@ -18649,9 +18649,9 @@ abstract class $SaleReportItemCopyWith<$Res> {
       @JsonKey(name: 'ContacID') int contacId,
       @JsonKey(name: 'DateStart') DateTime dateStart,
       @JsonKey(name: 'DateEnd') DateTime dateEnd,
-      @JsonKey(name: 'Telesale') int? telesale,
-      @JsonKey(name: 'Visit') int? visit,
-      @JsonKey(name: 'Demo') int? demo,
+      @JsonKey(name: 'Telesale') String? telesale,
+      @JsonKey(name: 'Visit') String? visit,
+      @JsonKey(name: 'Demo') String? demo,
       @JsonKey(name: 'Result') String? result,
       @JsonKey(name: 'ProblemBacklog') String? problemBacklog,
       @JsonKey(name: 'PlanNext') String? planNext,
@@ -18773,15 +18773,15 @@ class _$SaleReportItemCopyWithImpl<$Res, $Val extends SaleReportItem>
       telesale: freezed == telesale
           ? _value.telesale
           : telesale // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       visit: freezed == visit
           ? _value.visit
           : visit // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       demo: freezed == demo
           ? _value.demo
           : demo // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       result: freezed == result
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
@@ -18937,9 +18937,9 @@ abstract class _$$SaleReportItemImplCopyWith<$Res>
       @JsonKey(name: 'ContacID') int contacId,
       @JsonKey(name: 'DateStart') DateTime dateStart,
       @JsonKey(name: 'DateEnd') DateTime dateEnd,
-      @JsonKey(name: 'Telesale') int? telesale,
-      @JsonKey(name: 'Visit') int? visit,
-      @JsonKey(name: 'Demo') int? demo,
+      @JsonKey(name: 'Telesale') String? telesale,
+      @JsonKey(name: 'Visit') String? visit,
+      @JsonKey(name: 'Demo') String? demo,
       @JsonKey(name: 'Result') String? result,
       @JsonKey(name: 'ProblemBacklog') String? problemBacklog,
       @JsonKey(name: 'PlanNext') String? planNext,
@@ -19059,15 +19059,15 @@ class __$$SaleReportItemImplCopyWithImpl<$Res>
       telesale: freezed == telesale
           ? _value.telesale
           : telesale // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       visit: freezed == visit
           ? _value.visit
           : visit // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       demo: freezed == demo
           ? _value.demo
           : demo // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       result: freezed == result
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
@@ -19279,13 +19279,13 @@ class _$SaleReportItemImpl implements _SaleReportItem {
   final DateTime dateEnd;
   @override
   @JsonKey(name: 'Telesale')
-  final int? telesale;
+  final String? telesale;
   @override
   @JsonKey(name: 'Visit')
-  final int? visit;
+  final String? visit;
   @override
   @JsonKey(name: 'Demo')
-  final int? demo;
+  final String? demo;
   @override
   @JsonKey(name: 'Result')
   final String? result;
@@ -19546,9 +19546,9 @@ abstract class _SaleReportItem implements SaleReportItem {
           @JsonKey(name: 'ContacID') required final int contacId,
           @JsonKey(name: 'DateStart') required final DateTime dateStart,
           @JsonKey(name: 'DateEnd') required final DateTime dateEnd,
-          @JsonKey(name: 'Telesale') final int? telesale,
-          @JsonKey(name: 'Visit') final int? visit,
-          @JsonKey(name: 'Demo') final int? demo,
+          @JsonKey(name: 'Telesale') final String? telesale,
+          @JsonKey(name: 'Visit') final String? visit,
+          @JsonKey(name: 'Demo') final String? demo,
           @JsonKey(name: 'Result') final String? result,
           @JsonKey(name: 'ProblemBacklog') final String? problemBacklog,
           @JsonKey(name: 'PlanNext') final String? planNext,
@@ -19608,13 +19608,13 @@ abstract class _SaleReportItem implements SaleReportItem {
   DateTime get dateEnd;
   @override
   @JsonKey(name: 'Telesale')
-  int? get telesale;
+  String? get telesale;
   @override
   @JsonKey(name: 'Visit')
-  int? get visit;
+  String? get visit;
   @override
   @JsonKey(name: 'Demo')
-  int? get demo;
+  String? get demo;
   @override
   @JsonKey(name: 'Result')
   String? get result;

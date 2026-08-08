@@ -59,10 +59,11 @@ class NotificationService {
     );
 
     // ── iOS / macOS settings ──────────────────────────────────────────────
+    // Bật notification permissions để FCM có thể nhận push notifications
     const darwinSettings = DarwinInitializationSettings(
-      requestAlertPermission: false,
-      requestBadgePermission: false,
-      requestSoundPermission: false,
+      requestAlertPermission: true,
+      requestBadgePermission: true,
+      requestSoundPermission: true,
     );
 
     const initSettings = InitializationSettings(

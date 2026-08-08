@@ -632,9 +632,9 @@ class _SaleStaffAddItemState extends State<SaleStaffAddItem> {
               nameTextField: 'content_${widget.report.id}',
 
               label: 'Nội dung công việc',
-              maxLines: 1,
               keyboardType: TextInputType.multiline,
               textInputAction: TextInputAction.newline,
+              autoExpand: true,
               controller: _contentController,
               onChanged: (v) {
                 context.read<SaleBloc>().add(
@@ -656,9 +656,9 @@ class _SaleStaffAddItemState extends State<SaleStaffAddItem> {
               nameForm: 'sale_staff_result_${widget.report.id}',
               nameTextField: 'result_${widget.report.id}',
               label: 'Kết quả',
-              maxLines: 1,
               keyboardType: TextInputType.multiline,
-              textInputAction: TextInputAction.newline, // ⬅ Enter xuống dòng
+              textInputAction: TextInputAction.newline,
+              autoExpand: true,
               controller: _resultsController,
               onChanged: (v) {
                 context.read<SaleBloc>().add(
@@ -678,9 +678,9 @@ class _SaleStaffAddItemState extends State<SaleStaffAddItem> {
               nameForm: 'sale_staff_backlog_${widget.report.id}',
               nameTextField: 'backlog_${widget.report.id}',
               label: 'Vấn đề tồn đọng',
-              maxLines: 1,
               keyboardType: TextInputType.multiline,
-              textInputAction: TextInputAction.newline, // ⬅ Enter xuống dòng
+              textInputAction: TextInputAction.newline,
+              autoExpand: true,
               controller: _backlogController,
               onChanged: (v) {
                 context.read<SaleBloc>().add(
@@ -700,9 +700,9 @@ class _SaleStaffAddItemState extends State<SaleStaffAddItem> {
               nameForm: 'sale_staff_plan_next_day_${widget.report.id}',
               nameTextField: 'plan_next_day_${widget.report.id}',
               label: 'Kế hoạch tiếp theo',
-              maxLines: 1,
               keyboardType: TextInputType.multiline,
-              textInputAction: TextInputAction.newline, // ⬅ Enter xuống dòng
+              textInputAction: TextInputAction.newline,
+              autoExpand: true,
               controller: _planNextDayController,
               onChanged: (v) {
                 context.read<SaleBloc>().add(
@@ -722,9 +722,9 @@ class _SaleStaffAddItemState extends State<SaleStaffAddItem> {
               nameForm: 'sale_staff_product_${widget.report.id}',
               nameTextField: 'product_${widget.report.id}',
               label: 'Sản phẩm của KH',
-              maxLines: 1,
               keyboardType: TextInputType.multiline,
-              textInputAction: TextInputAction.newline, // ⬅ Enter xuống dòng
+              textInputAction: TextInputAction.newline,
+              autoExpand: true,
               controller: _customerProductController,
               onChanged: (v) {
                 context.read<SaleBloc>().add(

@@ -25,6 +25,10 @@ abstract class _$WeekPlanStateCWProxy {
 
   WeekPlanState selectedStatuses(List<String> selectedStatuses);
 
+  WeekPlanState selectedStatusNos(List<int> selectedStatusNos);
+
+  WeekPlanState selectedApproveNos(List<int> selectedApproveNos);
+
   WeekPlanState dateStart(DateTime? dateStart);
 
   WeekPlanState dateEnd(DateTime? dateEnd);
@@ -153,6 +157,11 @@ abstract class _$WeekPlanStateCWProxy {
 
   WeekPlanState dayOffDates(List<DayOffItem> dayOffDates);
 
+  WeekPlanState projectTaskStatuses(
+      List<WeekPlanFilterItem> projectTaskStatuses);
+
+  WeekPlanState selectedTaskIds(Set<int> selectedTaskIds);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WeekPlanState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -169,6 +178,8 @@ abstract class _$WeekPlanStateCWProxy {
     List<WeekPlanTaskItem>? allTasks,
     String? searchKeyword,
     List<String>? selectedStatuses,
+    List<int>? selectedStatusNos,
+    List<int>? selectedApproveNos,
     DateTime? dateStart,
     DateTime? dateEnd,
     int? employeeId,
@@ -231,6 +242,8 @@ abstract class _$WeekPlanStateCWProxy {
     bool? isDeadlineLocked,
     List<ProjectTaskTimelineResponse>? timelineTasks,
     List<DayOffItem>? dayOffDates,
+    List<WeekPlanFilterItem>? projectTaskStatuses,
+    Set<int>? selectedTaskIds,
   });
 }
 
@@ -272,6 +285,14 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
   @override
   WeekPlanState selectedStatuses(List<String> selectedStatuses) =>
       this(selectedStatuses: selectedStatuses);
+
+  @override
+  WeekPlanState selectedStatusNos(List<int> selectedStatusNos) =>
+      this(selectedStatusNos: selectedStatusNos);
+
+  @override
+  WeekPlanState selectedApproveNos(List<int> selectedApproveNos) =>
+      this(selectedApproveNos: selectedApproveNos);
 
   @override
   WeekPlanState dateStart(DateTime? dateStart) => this(dateStart: dateStart);
@@ -521,6 +542,15 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
       this(dayOffDates: dayOffDates);
 
   @override
+  WeekPlanState projectTaskStatuses(
+          List<WeekPlanFilterItem> projectTaskStatuses) =>
+      this(projectTaskStatuses: projectTaskStatuses);
+
+  @override
+  WeekPlanState selectedTaskIds(Set<int> selectedTaskIds) =>
+      this(selectedTaskIds: selectedTaskIds);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WeekPlanState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -538,6 +568,8 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
     Object? allTasks = const $CopyWithPlaceholder(),
     Object? searchKeyword = const $CopyWithPlaceholder(),
     Object? selectedStatuses = const $CopyWithPlaceholder(),
+    Object? selectedStatusNos = const $CopyWithPlaceholder(),
+    Object? selectedApproveNos = const $CopyWithPlaceholder(),
     Object? dateStart = const $CopyWithPlaceholder(),
     Object? dateEnd = const $CopyWithPlaceholder(),
     Object? employeeId = const $CopyWithPlaceholder(),
@@ -600,6 +632,8 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
     Object? isDeadlineLocked = const $CopyWithPlaceholder(),
     Object? timelineTasks = const $CopyWithPlaceholder(),
     Object? dayOffDates = const $CopyWithPlaceholder(),
+    Object? projectTaskStatuses = const $CopyWithPlaceholder(),
+    Object? selectedTaskIds = const $CopyWithPlaceholder(),
   }) {
     return WeekPlanState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -643,6 +677,16 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
           ? _value.selectedStatuses
           // ignore: cast_nullable_to_non_nullable
           : selectedStatuses as List<String>,
+      selectedStatusNos: selectedStatusNos == const $CopyWithPlaceholder() ||
+              selectedStatusNos == null
+          ? _value.selectedStatusNos
+          // ignore: cast_nullable_to_non_nullable
+          : selectedStatusNos as List<int>,
+      selectedApproveNos: selectedApproveNos == const $CopyWithPlaceholder() ||
+              selectedApproveNos == null
+          ? _value.selectedApproveNos
+          // ignore: cast_nullable_to_non_nullable
+          : selectedApproveNos as List<int>,
       dateStart: dateStart == const $CopyWithPlaceholder()
           ? _value.dateStart
           // ignore: cast_nullable_to_non_nullable
@@ -922,6 +966,17 @@ class _$WeekPlanStateCWProxyImpl implements _$WeekPlanStateCWProxy {
               ? _value.dayOffDates
               // ignore: cast_nullable_to_non_nullable
               : dayOffDates as List<DayOffItem>,
+      projectTaskStatuses:
+          projectTaskStatuses == const $CopyWithPlaceholder() ||
+                  projectTaskStatuses == null
+              ? _value.projectTaskStatuses
+              // ignore: cast_nullable_to_non_nullable
+              : projectTaskStatuses as List<WeekPlanFilterItem>,
+      selectedTaskIds: selectedTaskIds == const $CopyWithPlaceholder() ||
+              selectedTaskIds == null
+          ? _value.selectedTaskIds
+          // ignore: cast_nullable_to_non_nullable
+          : selectedTaskIds as Set<int>,
     );
   }
 }
