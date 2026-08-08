@@ -42,8 +42,15 @@ class WorkTripItem with _$WorkTripItem {
     @JsonKey(name: 'ApprovedID') int? approvedId,
     @JsonKey(name: 'ProjectID') int? projectId,
     @JsonKey(name: 'ProjectText') String? projectText,
+    @JsonKey(name: 'CustomerName') String? customerName,
+    @JsonKey(name: 'CompanyName') String? companyName,
+    @JsonKey(name: 'VehicleBookingID') int? vehicleBookingId,
+    @JsonKey(name: 'IsActiveTransport') int? isActiveTransport,
+    @JsonKey(name: 'IsApprovedBGD') bool? isApprovedBgd,
+    @JsonKey(name: 'IsApprovedBGDText') String? isApprovedBgdText,
     @JsonKey(name: 'StatusTBPText') String? statusTbpText,
     @JsonKey(name: 'StatusHRText') String? statusHrText,
+    @JsonKey(name: 'IsSelfTransport') bool? isSelfTransport,
   }) = _WorkTripItem;
 
   factory WorkTripItem.fromJson(Map<String, dynamic> json) =>
@@ -183,10 +190,10 @@ class WorkTripDetailItem with _$WorkTripDetailItem {
     @JsonKey(name: 'ProjectID') int? projectId,
     @JsonKey(name: 'DecilineApproveSenior') int? decilineApproveSenior,
     @JsonKey(name: 'ReasonDecilineSenior') String? reasonDecilineSenior,
-    @JsonKey(name: 'BookingVehicleID') int? bookingVehicleId,
+    @JsonKey(name: 'VehicleBookingID') int? vehicleBookingId,
     @JsonKey(name: 'CustomerName') String? customerName,
     @JsonKey(name: 'CompanyName') String? companyName,
-    @JsonKey(name: 'SelfVehicle') bool? selfVehicle,
+    @JsonKey(name: 'IsSelfTransport') bool? isSelfTransport,
   }) = _WorkTripDetailItem;
 
   factory WorkTripDetailItem.fromJson(Map<String, dynamic> json) =>

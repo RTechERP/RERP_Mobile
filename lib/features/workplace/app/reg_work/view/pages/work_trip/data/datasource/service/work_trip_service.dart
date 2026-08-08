@@ -168,4 +168,22 @@ class WorkTripService extends DioBaseApiService {
       ),
     );
   }
+
+  Future<BaseData<List<int>>> getDepartmentIds({required int configType}) {
+    return get<BaseData<List<int>>>(
+      ApiEndPoint.getDepartmentIds,
+      query: {'configType': configType},
+      parser: (json) => BaseData<List<int>>.fromJson(
+        json,
+        (data) {
+          if (data is List) {
+            return data.cast<int>();
+          }
+          final list =
+              (data as Map<String, dynamic>?)?['data'] as List? ?? [];
+          return list.cast<int>();
+        },
+      ),
+    );
+  }
 }

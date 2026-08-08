@@ -40,6 +40,10 @@ class WorkTripState extends BaseBlocState {
   /// Dùng để xác định user thuộc phòng ban nào — vd: check Sale department.
   final User? currentEmployee;
 
+  /// Danh sách ID phòng ban Sale, lấy từ API /BusinessConfig/get-department-ids?configType=1.
+  /// Nếu departmentId của user nằm trong danh sách này → hiển thị form Sale.
+  final List<int> saleDepartmentIds;
+
   const WorkTripState({
     required super.status,
     super.message,
@@ -66,6 +70,7 @@ class WorkTripState extends BaseBlocState {
     this.isFetchingCopy = false,
     this.approveId,
     this.currentEmployee,
+    this.saleDepartmentIds = const [],
   });
 
   factory WorkTripState.init() => const WorkTripState(
@@ -93,6 +98,7 @@ class WorkTripState extends BaseBlocState {
         isFetchingCopy: false,
         approveId: null,
         currentEmployee: null,
+        saleDepartmentIds: const [],
       );
 
   @override
@@ -122,5 +128,6 @@ class WorkTripState extends BaseBlocState {
         isFetchingCopy,
         approveId,
         currentEmployee,
+        saleDepartmentIds,
       ];
 }

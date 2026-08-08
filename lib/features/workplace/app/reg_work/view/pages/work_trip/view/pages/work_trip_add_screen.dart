@@ -22,14 +22,10 @@ import '../../data/datasource/models/work_trip_model.dart';
 import '../bloc/work_trip_bloc.dart';
 import '../widgets/work_trip_add_constants.dart';
 
-/// Department IDs thuộc nhóm Sale — dùng để hiển thị các field liên quan
-/// đến Phiếu đặt xe / Tên khách hàng / Tên công ty / Chủ động phương tiện.
-const _kSaleDepartmentIds = <int>{3, 28, 29, 30, 12, 13};
-
 bool _isSaleDepartment(WorkTripState state) {
   final deptId = state.currentEmployee?.departmentId;
   if (deptId == null) return false;
-  return _kSaleDepartmentIds.contains(deptId);
+  return state.saleDepartmentIds.contains(deptId);
 }
 
 class WorkTripAddScreenPage extends StatefulWidget {
@@ -246,21 +242,29 @@ class _WorkTripAddScreenPageState
       onSelected: (item) {
         setState(() {
           _selectedBookingVehicle = item;
-          _customerName = item.companyNameArrives ?? '';
           _companyName = item.companyNameArrives ?? '';
           _selfVehicle = true;
           _checkboxSelfVehicle = true;
           _selectedVehicles = [];
           _computedVehicleCost = 0;
+          // Fill project từ phiếu đặt xe
+          if (item.projectId != null && item.projectId != 0) {
+            _selectedProjectId = item.projectId;
+            _selectedProjectText = item.projectFullName ?? '';
+          }
         });
         WidgetsBinding.instance.addPostFrameCallback((_) {
           final form = _formKey.currentState;
           form?.fields['wt_self_vehicle']?.didChange(true);
-          form?.fields['wt_customer_name']?.didChange(item.companyNameArrives ?? '');
           form?.fields['wt_company_name']?.didChange(item.companyNameArrives ?? '');
           form?.fields['wt_location']?.didChange(
             item.specificDestinationAddress ?? item.province ?? '',
           );
+          // Fill project
+          if (item.projectId != null && item.projectId != 0) {
+            form?.fields['wt_project_id']?.didChange(item.projectId.toString());
+            form?.fields['wt_project_text']?.didChange(item.projectFullName ?? '');
+          }
         });
       },
     );
@@ -443,6 +447,37 @@ class _WorkTripAddScreenPageState
     // Lý do công tác
     form.fields['wt_reason']?.didChange(copy.reason ?? '');
     form.fields['wt_note']?.didChange(copy.note ?? '');
+
+    // isSelfTransport (Chủ động phương tiện)
+    final selfTransport = copy.isSelfTransport ?? false;
+    setState(() {
+      _selfVehicle = selfTransport;
+      _checkboxSelfVehicle = selfTransport;
+    });
+    form.fields['wt_self_vehicle']?.didChange(selfTransport);
+
+    // Tên khách hàng
+    final customerName = copy.customerName ?? '';
+    setState(() => _customerName = customerName);
+    form.fields['wt_customer_name']?.didChange(customerName);
+
+    // Tên công ty
+    final companyName = copy.companyName ?? '';
+    setState(() => _companyName = companyName);
+    form.fields['wt_company_name']?.didChange(companyName);
+
+    // Phiếu đặt xe (VehicleBookingID)
+    final bookingId = copy.vehicleBookingId ?? 0;
+    if (bookingId > 0) {
+      try {
+        final matched = state.selfVehicleList.firstWhere(
+          (v) => v.id == bookingId,
+        );
+        setState(() {
+          _selectedBookingVehicle = matched;
+        });
+      } catch (_) {}
+    }
   }
 
   Future<void> _openVehicleDialog() async {
@@ -859,6 +894,9 @@ class _WorkTripAddScreenPageState
               initialValue: _customerName,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               isRequired: true,
+              onChanged: (value) {
+                _customerName = value ?? '';
+              },
               validator: (v) {
                 if (v == null || v.trim().isEmpty) {
                   return 'Vui lòng nhập tên khách hàng';
@@ -877,6 +915,9 @@ class _WorkTripAddScreenPageState
               initialValue: _companyName,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               isRequired: true,
+              onChanged: (value) {
+                _companyName = value ?? '';
+              },
               validator: (v) {
                 if (v == null || v.trim().isEmpty) {
                   return 'Vui lòng nhập tên công ty';

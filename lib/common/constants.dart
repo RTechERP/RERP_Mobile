@@ -397,4 +397,7 @@ class ApiEndPoint {
 
   // Contact
   static const String getContact = '/Home/get-all-contact';
+
+  // BusinessConfig
+  static const String getDepartmentIds = '/BusinessConfig/get-department-ids';
 }

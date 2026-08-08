@@ -235,6 +235,7 @@ DateTime _normalizeToMinute(DateTime dt) =>
       var vehicles = state.workTripVehicles;
       var projects = state.workTripProjects;
       FillApproverItem? fillApprover = state.approveId;
+      List<int> saleDepartmentIds = state.saleDepartmentIds;
 
       if (approvers.isEmpty || types.isEmpty || vehicles.isEmpty) {
         _log.logI('WorkTripBloc initAdd: reading from cache first');
@@ -285,6 +286,15 @@ DateTime _normalizeToMinute(DateTime dt) =>
         }
       }
 
+      // Luôn tải danh sách department IDs từ API
+      if (saleDepartmentIds.isEmpty) {
+        final deptRes = await _workTripRepo.getDepartmentIds(configType: 1);
+        deptRes.fold(
+          (l) => _log.logE('getDepartmentIds failed: $l'),
+          (r) => saleDepartmentIds = r,
+        );
+      }
+
       _log.logI('✅ WorkTripBloc initAdd success');
       emit(state.copyWith(
         status: BaseStateStatus.success,
@@ -296,6 +306,7 @@ DateTime _normalizeToMinute(DateTime dt) =>
         loginName: user.loginName,
         approveId: fillApprover,
         currentEmployee: user,
+        saleDepartmentIds: saleDepartmentIds,
       ));
     } finally {
       _isInitAddInFlight = false;
@@ -389,6 +400,12 @@ DateTime _normalizeToMinute(DateTime dt) =>
           ? 0
           : (data.vehicles.isNotEmpty ? data.vehicles.first.vehicleTypeId : 0);
 
+      // Case A: Chủ động PT (selfVehicle = true)
+      // Case B: Dùng Ô tô công ty (selfVehicle = false)
+      final isSelfTransport = data.selfVehicle;
+      final isApprovedBgd = isSelfTransport ? false : null;
+      final vehicleBookingId = isSelfTransport ? data.bookingVehicleId : null;
+
       final bussinessObject = <String, dynamic>{
         'ID': 0,
         'EmployeeID': employeeId,
@@ -410,10 +427,11 @@ DateTime _normalizeToMinute(DateTime dt) =>
         'OvernightType': data.overnightType,
         'IsProblem': data.isProblem,
         'Reason': data.reason.isEmpty ? ' ' : data.reason,
-        'BookingVehicleID': data.bookingVehicleId ?? 0,
+        'VehicleBookingID': vehicleBookingId,
         'CustomerName': data.customerName ?? '',
         'CompanyName': data.companyName ?? '',
-        'SelfVehicle': data.selfVehicle,
+        'IsApprovedBGD': isApprovedBgd,
+        'IsSelfTransport': isSelfTransport,
       };
 
       final payload = <String, dynamic>{
@@ -429,6 +447,20 @@ DateTime _normalizeToMinute(DateTime dt) =>
                   }
                 : null,
       };
+
+      // Case A (selfVehicle=true): KHÔNG gửi employeeBussinessVehicle
+      // Case B (selfVehicle=false): Gửi "Ô tô công ty" mặc định khi không có xe máy/khác
+      if (!isSelfTransport && !data.needsVehicleRecord) {
+        payload['employeeBussinessVehicle'] = <String, dynamic>{
+          'ID': 0,
+          'EmployeeBussinesID': 0,
+          'EmployeeVehicleBussinessID': 2, // Ô tô công ty
+          'Cost': 0,
+          'BillImage': '',
+          'Note': '',
+          'VehicleName': 'Ô tô công ty',
+        };
+      }
 
       // Gửi employeeBussinessVehicle khi chọn Xe máy hoặc Phương tiện khác.
       // Phương tiện khác → EmployeeVehicleBussinessID = 0, VehicleName = tên tuỳ chỉnh.
@@ -585,11 +617,17 @@ DateTime _normalizeToMinute(DateTime dt) =>
       final costWorkEarly = data.workEarly ? 50000.0 : 0.0;
       final costOvernight = data.overnightType > 0 ? 35000.0 : 0.0;
       final overnight = data.overnightType > 0;
-      final costVehicle = data.costVehicle;
+      final costVehicle = data.selfVehicle ? 0.0 : data.costVehicle;
       final totalMoney =
           data.costBussiness + costVehicle + costWorkEarly + costOvernight;
 
       final dayStr = toVnIso8601(_normalizeToMinute(data.dayBussiness));
+
+      // Case A: Chủ động PT (selfVehicle = true)
+      // Case B: Dùng Ô tô công ty (selfVehicle = false)
+      final isSelfTransport = data.selfVehicle;
+      final isApprovedBgd = isSelfTransport ? false : null;
+      final vehicleBookingId = isSelfTransport ? data.bookingVehicleId : null;
 
       final bussinessObject = <String, dynamic>{
         'ID': id,
@@ -612,6 +650,11 @@ DateTime _normalizeToMinute(DateTime dt) =>
         'OvernightType': data.overnightType,
         'IsProblem': data.isProblem,
         'Reason': data.reason.isEmpty ? ' ' : data.reason,
+        'VehicleBookingID': vehicleBookingId,
+        'CustomerName': data.customerName ?? '',
+        'CompanyName': data.companyName ?? '',
+        'IsApprovedBGD': isApprovedBgd,
+        'IsSelfTransport': isSelfTransport,
       };
 
       final payload = <String, dynamic>{
@@ -627,6 +670,20 @@ DateTime _normalizeToMinute(DateTime dt) =>
                   }
                 : null,
       };
+
+      // Case A (selfVehicle=true): KHÔNG gửi employeeBussinessVehicle
+      // Case B (selfVehicle=false): Gửi "Ô tô công ty" mặc định khi không có xe máy/khác
+      if (!isSelfTransport && !data.needsVehicleRecord) {
+        payload['employeeBussinessVehicle'] = <String, dynamic>{
+          'ID': 0,
+          'EmployeeBussinesID': id,
+          'EmployeeVehicleBussinessID': 2, // Ô tô công ty
+          'Cost': 0,
+          'BillImage': '',
+          'Note': '',
+          'VehicleName': 'Ô tô công ty',
+        };
+      }
 
       if (data.needsVehicleRecord) {
         final v = data.vehicleRecord!;

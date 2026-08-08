@@ -33,4 +33,8 @@ abstract class WorkTripRepo {
     required DateTime dateStart,
     required DateTime dateEnd,
   });
+
+  Future<Either<BaseError, List<int>>> getDepartmentIds({
+    required int configType,
+  });
 }

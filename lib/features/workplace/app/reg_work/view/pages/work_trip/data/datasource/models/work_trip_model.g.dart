@@ -48,8 +48,15 @@ _$WorkTripItemImpl _$$WorkTripItemImplFromJson(Map<String, dynamic> json) =>
       approvedId: (json['ApprovedID'] as num?)?.toInt(),
       projectId: (json['ProjectID'] as num?)?.toInt(),
       projectText: json['ProjectText'] as String?,
+      customerName: json['CustomerName'] as String?,
+      companyName: json['CompanyName'] as String?,
+      vehicleBookingId: (json['VehicleBookingID'] as num?)?.toInt(),
+      isActiveTransport: (json['IsActiveTransport'] as num?)?.toInt(),
+      isApprovedBgd: json['IsApprovedBGD'] as bool?,
+      isApprovedBgdText: json['IsApprovedBGDText'] as String?,
       statusTbpText: json['StatusTBPText'] as String?,
       statusHrText: json['StatusHRText'] as String?,
+      isSelfTransport: json['IsSelfTransport'] as bool?,
     );
 
 Map<String, dynamic> _$$WorkTripItemImplToJson(_$WorkTripItemImpl instance) =>
@@ -90,8 +97,15 @@ Map<String, dynamic> _$$WorkTripItemImplToJson(_$WorkTripItemImpl instance) =>
       'ApprovedID': instance.approvedId,
       'ProjectID': instance.projectId,
       'ProjectText': instance.projectText,
+      'CustomerName': instance.customerName,
+      'CompanyName': instance.companyName,
+      'VehicleBookingID': instance.vehicleBookingId,
+      'IsActiveTransport': instance.isActiveTransport,
+      'IsApprovedBGD': instance.isApprovedBgd,
+      'IsApprovedBGDText': instance.isApprovedBgdText,
       'StatusTBPText': instance.statusTbpText,
       'StatusHRText': instance.statusHrText,
+      'IsSelfTransport': instance.isSelfTransport,
     };
 
 _$ApproverItemImpl _$$ApproverItemImplFromJson(Map<String, dynamic> json) =>
@@ -311,10 +325,10 @@ _$WorkTripDetailItemImpl _$$WorkTripDetailItemImplFromJson(
       projectId: (json['ProjectID'] as num?)?.toInt(),
       decilineApproveSenior: (json['DecilineApproveSenior'] as num?)?.toInt(),
       reasonDecilineSenior: json['ReasonDecilineSenior'] as String?,
-      bookingVehicleId: (json['BookingVehicleID'] as num?)?.toInt(),
+      vehicleBookingId: (json['VehicleBookingID'] as num?)?.toInt(),
       customerName: json['CustomerName'] as String?,
       companyName: json['CompanyName'] as String?,
-      selfVehicle: json['SelfVehicle'] as bool?,
+      isSelfTransport: json['IsSelfTransport'] as bool?,
     );
 
 Map<String, dynamic> _$$WorkTripDetailItemImplToJson(
@@ -360,10 +374,10 @@ Map<String, dynamic> _$$WorkTripDetailItemImplToJson(
       'ProjectID': instance.projectId,
       'DecilineApproveSenior': instance.decilineApproveSenior,
       'ReasonDecilineSenior': instance.reasonDecilineSenior,
-      'BookingVehicleID': instance.bookingVehicleId,
+      'VehicleBookingID': instance.vehicleBookingId,
       'CustomerName': instance.customerName,
       'CompanyName': instance.companyName,
-      'SelfVehicle': instance.selfVehicle,
+      'IsSelfTransport': instance.isSelfTransport,
     };
 
 _$FillApproverItemImpl _$$FillApproverItemImplFromJson(

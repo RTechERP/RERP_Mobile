@@ -58,6 +58,8 @@ abstract class _$WorkTripStateCWProxy {
 
   WorkTripState currentEmployee(User? currentEmployee);
 
+  WorkTripState saleDepartmentIds(List<int> saleDepartmentIds);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WorkTripState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -90,6 +92,7 @@ abstract class _$WorkTripStateCWProxy {
     bool? isFetchingCopy,
     FillApproverItem? approveId,
     User? currentEmployee,
+    List<int>? saleDepartmentIds,
   });
 }
 
@@ -192,6 +195,10 @@ class _$WorkTripStateCWProxyImpl implements _$WorkTripStateCWProxy {
       this(currentEmployee: currentEmployee);
 
   @override
+  WorkTripState saleDepartmentIds(List<int> saleDepartmentIds) =>
+      this(saleDepartmentIds: saleDepartmentIds);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WorkTripState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -225,6 +232,7 @@ class _$WorkTripStateCWProxyImpl implements _$WorkTripStateCWProxy {
     Object? isFetchingCopy = const $CopyWithPlaceholder(),
     Object? approveId = const $CopyWithPlaceholder(),
     Object? currentEmployee = const $CopyWithPlaceholder(),
+    Object? saleDepartmentIds = const $CopyWithPlaceholder(),
   }) {
     return WorkTripState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -340,6 +348,11 @@ class _$WorkTripStateCWProxyImpl implements _$WorkTripStateCWProxy {
           ? _value.currentEmployee
           // ignore: cast_nullable_to_non_nullable
           : currentEmployee as User?,
+      saleDepartmentIds: saleDepartmentIds == const $CopyWithPlaceholder() ||
+              saleDepartmentIds == null
+          ? _value.saleDepartmentIds
+          // ignore: cast_nullable_to_non_nullable
+          : saleDepartmentIds as List<int>,
     );
   }
 }
