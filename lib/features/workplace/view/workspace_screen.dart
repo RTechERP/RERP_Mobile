@@ -284,12 +284,12 @@ class _WorkPlaceScreenState
                       //   name: 'applications.stock'.tr(),
                       //   imageUrl: AppImages.app_menu_stock,
                       // ),
-                      AppItemModel(
-                        id: 'warehouse',
-                        iconCodePoint: Icons.warehouse_outlined.codePoint,
-                        name: 'applications.warehouse'.tr(),
-                        route: RouteNames.warehouse,
-                      ),
+                      // AppItemModel(
+                      //   id: 'warehouse',
+                      //   iconCodePoint: Icons.warehouse_outlined.codePoint,
+                      //   name: 'applications.warehouse'.tr(),
+                      //   route: RouteNames.warehouse,
+                      // ),
                     ],
                   ),
 

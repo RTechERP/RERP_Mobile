@@ -360,21 +360,6 @@ class NotificationService {
 
     final soundEnabled = _cachedSettings?['sound'] ?? true;
     final vibrateEnabled = _cachedSettings?['vibrate'] ?? true;
-    final soundType = await getSoundType();
-
-    String? soundName;
-    if (soundEnabled) {
-      switch (soundType) {
-        case 1:
-          soundName = 'short_sound';
-          break;
-        case 2:
-          soundName = 'long_sound';
-          break;
-        default:
-          soundName = null;
-      }
-    }
 
     final androidDetails = AndroidNotificationDetails(
       _channel.id,
@@ -385,9 +370,19 @@ class NotificationService {
       icon: '@mipmap/ic_launcher',
       playSound: soundEnabled,
       enableVibration: vibrateEnabled,
-      sound: soundName != null
-          ? RawResourceAndroidNotificationSound(soundName)
-          : null,
+      // Dùng default system sound (đáng tin cậy trên mọi thiết bị,
+      // kể cả Xiaomi/MIUI). Nếu muốn custom sound thì phải add file
+      // .mp3/.ogg vào android/app/src/main/res/raw/ trước.
+      sound: null,
+      // Ticker text hiển thị trên status bar khi heads-up.
+      ticker: notification.title,
+      // Xiaomi/MIUI: thêm visibility & autoCancel để heads-up hiển thị
+      // đúng trên ROM Trung Quốc.
+      visibility: NotificationVisibility.public,
+      autoCancel: true,
+      category: AndroidNotificationCategory.message,
+      // Full-screen intent (chỉ dùng cho incoming call/message quan trọng).
+      fullScreenIntent: false,
     );
 
     final darwinDetails = DarwinNotificationDetails(

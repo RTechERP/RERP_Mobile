@@ -5,6 +5,18 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
+    <!-- Android 12+ – cần thiết để hiển thị notification heads-up.
+         Android 13+ đã dùng POST_NOTIFICATIONS. -->
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM"/>
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    <!-- Xiaomi/MIUI: cho phép hiển thị notification trên lock screen,
+         pin và chạy nền. Một số ROM Trung Quốc yêu cầu khai báo tường minh. -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
+    <!-- Xiaomi/MIUI 13+: foreground service để giữ app chạy nền nhận push. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
     <!-- Quyền cho image_picker (chọn ảnh từ thư viện + chụp ảnh từ camera) -->
     <uses-permission android:name="android.permission.CAMERA"/>
@@ -14,7 +26,8 @@
     <application
         android:label="R-ERP"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -63,6 +76,28 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@mipmap/ic_launcher"/>
+
+        <!-- Bật FCM auto-initialization. Mặc định true, nhưng nếu
+             R8/ProGuard strip meta-data này thì FCM không auto init
+             → token không được tạo → push không đến. Khai báo tường
+             minh để chắc chắn R8 giữ lại. -->
+        <meta-data
+            android:name="firebase_messaging_auto_init_enabled"
+            android:value="true"/>
+
+        <!-- Bật Analytics collection (mặc định true, khai báo rõ để
+             R8 không strip). -->
+        <meta-data
+            android:name="firebase_analytics_collection_enabled"
+            android:value="true"/>
+
+        <!-- Xiaomi/MIUI không đọc meta-data nào từ AndroidManifest để
+             cho phép autostart. Chỉ có cách yêu cầu user vào
+             Settings > Apps > Manage apps > R-ERP > Autostart
+             bật toggle "Autostart" thủ công. Tương tự Huawei Phone
+             Manager, OPPO Security Center, Vivo iManager.
+             Meta-data ở đây giữ chỗ để nhắc nhở nếu sau này muốn
+             tích hợp SDK riêng của từng vendor. -->
     </application>
     <!-- Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility and

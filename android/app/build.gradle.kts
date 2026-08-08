@@ -87,6 +87,15 @@ android {
 
         getByName("release") {
             isMinifyEnabled = true
+            // Tắt resource shrinker: meta-data kênh notification và icon
+            // mặc định của FCM trong AndroidManifest có thể bị strip nếu
+            // R8 không thấy Java/Kotlin nào reference tới → notification
+            // background không hiện trên release.
+            isShrinkResources = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
             signingConfig = signingConfigs.getByName("release")
         }
     }
