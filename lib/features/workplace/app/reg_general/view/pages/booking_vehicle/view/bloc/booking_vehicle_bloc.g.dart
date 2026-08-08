@@ -79,6 +79,8 @@ abstract class _$BookingVehicleStateCWProxy {
   BookingVehicleState selectedApproverEmployeeId(
       int? selectedApproverEmployeeId);
 
+  BookingVehicleState saleDepartmentIds(List<int> saleDepartmentIds);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BookingVehicleState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -118,6 +120,7 @@ abstract class _$BookingVehicleStateCWProxy {
     Map<String, dynamic>? infoFieldValues,
     int? bookingTypeGroup,
     int? selectedApproverEmployeeId,
+    List<int>? saleDepartmentIds,
   });
 }
 
@@ -265,6 +268,10 @@ class _$BookingVehicleStateCWProxyImpl implements _$BookingVehicleStateCWProxy {
       this(selectedApproverEmployeeId: selectedApproverEmployeeId);
 
   @override
+  BookingVehicleState saleDepartmentIds(List<int> saleDepartmentIds) =>
+      this(saleDepartmentIds: saleDepartmentIds);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BookingVehicleState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -306,6 +313,7 @@ class _$BookingVehicleStateCWProxyImpl implements _$BookingVehicleStateCWProxy {
     Object? infoFieldValues = const $CopyWithPlaceholder(),
     Object? bookingTypeGroup = const $CopyWithPlaceholder(),
     Object? selectedApproverEmployeeId = const $CopyWithPlaceholder(),
+    Object? saleDepartmentIds = const $CopyWithPlaceholder(),
   }) {
     return BookingVehicleState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -466,6 +474,11 @@ class _$BookingVehicleStateCWProxyImpl implements _$BookingVehicleStateCWProxy {
               ? _value.selectedApproverEmployeeId
               // ignore: cast_nullable_to_non_nullable
               : selectedApproverEmployeeId as int?,
+      saleDepartmentIds: saleDepartmentIds == const $CopyWithPlaceholder() ||
+              saleDepartmentIds == null
+          ? _value.saleDepartmentIds
+          // ignore: cast_nullable_to_non_nullable
+          : saleDepartmentIds as List<int>,
     );
   }
 }

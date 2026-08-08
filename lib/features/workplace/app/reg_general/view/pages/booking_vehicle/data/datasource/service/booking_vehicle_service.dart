@@ -136,6 +136,26 @@ class BookingVehicleService extends DioBaseApiService {
     );
   }
 
+  /// Lấy danh sách ID phòng ban theo `configType` từ API `/BusinessConfig/get-department-ids`.
+  /// Dùng để xác định nhân viên có thuộc phòng ban Sale (configType=1) hay không.
+  Future<BaseData<List<int>>> getDepartmentIds({required int configType}) {
+    return get<BaseData<List<int>>>(
+      ApiEndPoint.getDepartmentIds,
+      query: {'configType': configType},
+      parser: (json) => BaseData<List<int>>.fromJson(
+        json,
+        (data) {
+          if (data is List) {
+            return data.cast<int>();
+          }
+          final list =
+              (data as Map<String, dynamic>?)?['data'] as List? ?? [];
+          return list.cast<int>();
+        },
+      ),
+    );
+  }
+
   /// `POST .../vehicle-booking-cancel` — body JSON primitive `vehicleBookingId` (ASP.NET `[FromBody] int`).
   Future<BaseData<void>> cancelBookingVehicle({
     required int vehicleBookingId,

@@ -242,11 +242,12 @@ class _BookingVehicleAddScreenState
   }
 
   /// Kiểm tra currentUser có departmentId thuộc nhóm Sale không.
-  /// Các department được phép sử dụng "Chủ động phương tiện": [3, 28, 29, 30, 12, 13]
-  bool _canUseSelfVehicle(int? deptId) {
+  /// Danh sách ID phòng ban Sale lấy từ API `/BusinessConfig/get-department-ids?configType=1`
+  /// (cache trong [BookingVehicleState.saleDepartmentIds]).
+  bool _canUseSelfVehicle(BookingVehicleState state) {
+    final deptId = state.currentEmployee?.departmentId;
     if (deptId == null) return false;
-    const saleDepartmentIds = [3, 28, 29, 30, 12, 13];
-    return saleDepartmentIds.contains(deptId);
+    return state.saleDepartmentIds.contains(deptId);
   }
 
   @override
@@ -312,6 +313,8 @@ class _BookingVehicleAddScreenState
       case _BookingVehicleTypeGroup.passengerReturn:
       case _BookingVehicleTypeGroup.selfVehicle:
         bloc.add(const BookingVehicleEvent.initPassengerGoInfosForEdit());
+        // Tải lookup data + saleDepartmentIds cho edit passenger flows.
+        bloc.add(const BookingVehicleEvent.preloadInitAdd());
         break;
       case _BookingVehicleTypeGroup.commercialDelivery:
         bloc.add(const BookingVehicleEvent.initCommercialReceiverInfos());
@@ -615,6 +618,7 @@ class _BookingVehicleAddScreenState
                       prev.formFieldValues != curr.formFieldValues ||
                       prev.employee != curr.employee ||
                       prev.currentEmployee != curr.currentEmployee ||
+                      prev.saleDepartmentIds != curr.saleDepartmentIds ||
                       prev.passengerGoLineCount != curr.passengerGoLineCount ||
                       prev.expandedPassengerGoIndex !=
                           curr.expandedPassengerGoIndex ||
@@ -672,15 +676,10 @@ class _BookingVehicleAddScreenState
                                 FormCard(
                                   child: GestureDetector(
                                     onTap: () {
-                                      final deptId = bloc
-                                          .state
-                                          .currentEmployee
-                                          ?.departmentId;
-
                                       final bookingTypeOptions = [
                                         'Đăng ký người đi',
                                         'Đăng ký người về',
-                                        if (_canUseSelfVehicle(deptId))
+                                        if (_canUseSelfVehicle(bloc.state))
                                           'Chủ động phương tiện',
                                         'Đăng ký giao hàng thương mại',
                                         'Đăng ký lấy hàng thương mại',

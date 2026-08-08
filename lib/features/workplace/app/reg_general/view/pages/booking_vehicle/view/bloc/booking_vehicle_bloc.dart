@@ -590,6 +590,8 @@ class BookingVehicleBloc
           currentEmployee: initAddCache.currentEmployee,
         ),
       );
+      // Vẫn đảm bảo gọi getDepartmentIds nếu chưa có trong state.
+      await _loadSaleDepartmentIdsIfNeeded();
       return;
     }
 
@@ -708,11 +710,31 @@ class BookingVehicleBloc
           currentEmployee: currentEmployee,
         ),
       );
+
+      // Tải danh sách department IDs (Sale) từ API và emit vào state.
+      await _loadSaleDepartmentIdsIfNeeded();
     } catch (e) {
       _log.logE('❌ initAdd exception: $e');
     } finally {
       _isInitAddInFlight = false;
     }
+  }
+
+  /// Lấy danh sách ID phòng ban Sale từ API `/BusinessConfig/get-department-ids?configType=1`.
+  /// Skip nếu state đã có sẵn (cache in-memory). Emit kết quả vào [BookingVehicleState.saleDepartmentIds].
+  Future<void> _loadSaleDepartmentIdsIfNeeded() async {
+    if (state.saleDepartmentIds.isNotEmpty) return;
+    final res = await _bookingVehicleRepo.getDepartmentIds(configType: 1);
+    res.fold(
+      (l) => _log.logE('getDepartmentIds failed: $l'),
+      (r) {
+        _log.logI('✅ getDepartmentIds OK: ${r.length} ids');
+        if (state.saleDepartmentIds.length != r.length ||
+            state.saleDepartmentIds.isEmpty) {
+          emit(state.copyWith(saleDepartmentIds: r));
+        }
+      },
+    );
   }
 
   Future<void> _onInitPassengerGoInfos(

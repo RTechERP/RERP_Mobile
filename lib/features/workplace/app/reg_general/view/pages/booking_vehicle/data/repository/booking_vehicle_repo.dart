@@ -40,4 +40,10 @@ abstract class BookingVehicleRepo {
   Future<Either<BaseError, void>> cancelBookingVehicle({
     required int vehicleBookingId,
   });
+
+  /// Lấy danh sách ID phòng ban từ API `/BusinessConfig/get-department-ids?configType=...`.
+  /// Dùng để xác định nhân viên thuộc nhóm phòng ban nào (vd: Sale).
+  Future<Either<BaseError, List<int>>> getDepartmentIds({
+    required int configType,
+  });
 }

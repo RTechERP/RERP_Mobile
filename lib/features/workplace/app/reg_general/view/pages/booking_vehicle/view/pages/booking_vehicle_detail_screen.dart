@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/utils/navigation/navigation_utils.dart';
+import '../../../../../../../../../common/utils/snack_bar_helper.dart'
+    show SnackBarType;
 import '../../../../../../../../../common/widgets/form/index.dart';
 import '../../../../../../../../../routes/route_names.dart';
 import '../../data/datasource/models/booking_vehicle_model.dart';
@@ -16,6 +19,14 @@ Future<void> _openBookingVehicleEditAndPopToListIfSaved(
   BuildContext context,
   BookingVehicleItem item,
 ) async {
+  // Chỉ cho phép sửa khi response status = 1 (trạng thái "Chưa xếp").
+  if (item.status != 1) {
+    context.showMessage(
+      'Chỉ có thể sửa đơn đăng ký có trạng thái "Chưa xếp"!',
+      type: SnackBarType.error,
+    );
+    return;
+  }
   final edited = await context.push<bool?>(
     RouteNames.bookingVehicleEdit,
     extra: item,
@@ -1066,7 +1077,7 @@ class _ApprovalBox extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 22,
-            backgroundColor: AppColors.secondaryERP.withOpacity(0.12),
+            backgroundColor: AppColors.secondaryERP.withValues(alpha: 0.12),
             child: Text(
               initials,
               style: const TextStyle(
