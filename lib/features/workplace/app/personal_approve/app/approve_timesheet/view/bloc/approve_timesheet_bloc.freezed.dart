@@ -19,7 +19,7 @@ mixin _$ApproveTimesheetEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            ApproveTimesheetRole role, int? employeeId, int? status)
+            ApproveTimesheetRole role, int? employeeId, int? status, int? tType)
         init,
     required TResult Function() toggleSelectionMode,
     required TResult Function(int id) toggleSelection,
@@ -41,7 +41,8 @@ mixin _$ApproveTimesheetEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ApproveTimesheetRole role, int? employeeId, int? status)?
+    TResult? Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
         init,
     TResult? Function()? toggleSelectionMode,
     TResult? Function(int id)? toggleSelection,
@@ -63,7 +64,8 @@ mixin _$ApproveTimesheetEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ApproveTimesheetRole role, int? employeeId, int? status)?
+    TResult Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
         init,
     TResult Function()? toggleSelectionMode,
     TResult Function(int id)? toggleSelection,
@@ -173,7 +175,8 @@ abstract class _$$InitImplCopyWith<$Res> {
           _$InitImpl value, $Res Function(_$InitImpl) then) =
       __$$InitImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({ApproveTimesheetRole role, int? employeeId, int? status});
+  $Res call(
+      {ApproveTimesheetRole role, int? employeeId, int? status, int? tType});
 }
 
 /// @nodoc
@@ -189,6 +192,7 @@ class __$$InitImplCopyWithImpl<$Res>
     Object? role = null,
     Object? employeeId = freezed,
     Object? status = freezed,
+    Object? tType = freezed,
   }) {
     return _then(_$InitImpl(
       role: null == role
@@ -203,6 +207,10 @@ class __$$InitImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as int?,
+      tType: freezed == tType
+          ? _value.tType
+          : tType // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -213,7 +221,8 @@ class _$InitImpl implements _Init {
   const _$InitImpl(
       {this.role = ApproveTimesheetRole.senior,
       this.employeeId,
-      this.status = 0});
+      this.status = 0,
+      this.tType});
 
   @override
   @JsonKey()
@@ -223,10 +232,12 @@ class _$InitImpl implements _Init {
   @override
   @JsonKey()
   final int? status;
+  @override
+  final int? tType;
 
   @override
   String toString() {
-    return 'ApproveTimesheetEvent.init(role: $role, employeeId: $employeeId, status: $status)';
+    return 'ApproveTimesheetEvent.init(role: $role, employeeId: $employeeId, status: $status, tType: $tType)';
   }
 
   @override
@@ -237,11 +248,12 @@ class _$InitImpl implements _Init {
             (identical(other.role, role) || other.role == role) &&
             (identical(other.employeeId, employeeId) ||
                 other.employeeId == employeeId) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.tType, tType) || other.tType == tType));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, role, employeeId, status);
+  int get hashCode => Object.hash(runtimeType, role, employeeId, status, tType);
 
   @JsonKey(ignore: true)
   @override
@@ -253,7 +265,7 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            ApproveTimesheetRole role, int? employeeId, int? status)
+            ApproveTimesheetRole role, int? employeeId, int? status, int? tType)
         init,
     required TResult Function() toggleSelectionMode,
     required TResult Function(int id) toggleSelection,
@@ -272,13 +284,14 @@ class _$InitImpl implements _Init {
     required TResult Function(List<ApproveTimesheetItem> items, bool isApproved)
         tbpSeniorBypassApprove,
   }) {
-    return init(role, employeeId, status);
+    return init(role, employeeId, status, tType);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ApproveTimesheetRole role, int? employeeId, int? status)?
+    TResult? Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
         init,
     TResult? Function()? toggleSelectionMode,
     TResult? Function(int id)? toggleSelection,
@@ -297,13 +310,14 @@ class _$InitImpl implements _Init {
     TResult? Function(List<ApproveTimesheetItem> items, bool isApproved)?
         tbpSeniorBypassApprove,
   }) {
-    return init?.call(role, employeeId, status);
+    return init?.call(role, employeeId, status, tType);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ApproveTimesheetRole role, int? employeeId, int? status)?
+    TResult Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
         init,
     TResult Function()? toggleSelectionMode,
     TResult Function(int id)? toggleSelection,
@@ -324,7 +338,7 @@ class _$InitImpl implements _Init {
     required TResult orElse(),
   }) {
     if (init != null) {
-      return init(role, employeeId, status);
+      return init(role, employeeId, status, tType);
     }
     return orElse();
   }
@@ -408,11 +422,13 @@ abstract class _Init implements ApproveTimesheetEvent {
   const factory _Init(
       {final ApproveTimesheetRole role,
       final int? employeeId,
-      final int? status}) = _$InitImpl;
+      final int? status,
+      final int? tType}) = _$InitImpl;
 
   ApproveTimesheetRole get role;
   int? get employeeId;
   int? get status;
+  int? get tType;
   @JsonKey(ignore: true)
   _$$InitImplCopyWith<_$InitImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -458,7 +474,7 @@ class _$ToggleSelectionModeImpl implements _ToggleSelectionMode {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            ApproveTimesheetRole role, int? employeeId, int? status)
+            ApproveTimesheetRole role, int? employeeId, int? status, int? tType)
         init,
     required TResult Function() toggleSelectionMode,
     required TResult Function(int id) toggleSelection,
@@ -483,7 +499,8 @@ class _$ToggleSelectionModeImpl implements _ToggleSelectionMode {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ApproveTimesheetRole role, int? employeeId, int? status)?
+    TResult? Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
         init,
     TResult? Function()? toggleSelectionMode,
     TResult? Function(int id)? toggleSelection,
@@ -508,7 +525,8 @@ class _$ToggleSelectionModeImpl implements _ToggleSelectionMode {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ApproveTimesheetRole role, int? employeeId, int? status)?
+    TResult Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
         init,
     TResult Function()? toggleSelectionMode,
     TResult Function(int id)? toggleSelection,
@@ -679,7 +697,7 @@ class _$ToggleSelectionImpl implements _ToggleSelection {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            ApproveTimesheetRole role, int? employeeId, int? status)
+            ApproveTimesheetRole role, int? employeeId, int? status, int? tType)
         init,
     required TResult Function() toggleSelectionMode,
     required TResult Function(int id) toggleSelection,
@@ -704,7 +722,8 @@ class _$ToggleSelectionImpl implements _ToggleSelection {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ApproveTimesheetRole role, int? employeeId, int? status)?
+    TResult? Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
         init,
     TResult? Function()? toggleSelectionMode,
     TResult? Function(int id)? toggleSelection,
@@ -729,7 +748,8 @@ class _$ToggleSelectionImpl implements _ToggleSelection {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ApproveTimesheetRole role, int? employeeId, int? status)?
+    TResult Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
         init,
     TResult Function()? toggleSelectionMode,
     TResult Function(int id)? toggleSelection,
@@ -905,7 +925,7 @@ class _$ToggleSelectGroupImpl implements _ToggleSelectGroup {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            ApproveTimesheetRole role, int? employeeId, int? status)
+            ApproveTimesheetRole role, int? employeeId, int? status, int? tType)
         init,
     required TResult Function() toggleSelectionMode,
     required TResult Function(int id) toggleSelection,
@@ -930,7 +950,8 @@ class _$ToggleSelectGroupImpl implements _ToggleSelectGroup {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ApproveTimesheetRole role, int? employeeId, int? status)?
+    TResult? Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
         init,
     TResult? Function()? toggleSelectionMode,
     TResult? Function(int id)? toggleSelection,
@@ -955,7 +976,8 @@ class _$ToggleSelectGroupImpl implements _ToggleSelectGroup {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ApproveTimesheetRole role, int? employeeId, int? status)?
+    TResult Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
         init,
     TResult Function()? toggleSelectionMode,
     TResult Function(int id)? toggleSelection,
@@ -1104,7 +1126,7 @@ class _$ToggleSelectAllImpl implements _ToggleSelectAll {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            ApproveTimesheetRole role, int? employeeId, int? status)
+            ApproveTimesheetRole role, int? employeeId, int? status, int? tType)
         init,
     required TResult Function() toggleSelectionMode,
     required TResult Function(int id) toggleSelection,
@@ -1129,7 +1151,8 @@ class _$ToggleSelectAllImpl implements _ToggleSelectAll {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ApproveTimesheetRole role, int? employeeId, int? status)?
+    TResult? Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
         init,
     TResult? Function()? toggleSelectionMode,
     TResult? Function(int id)? toggleSelection,
@@ -1154,7 +1177,8 @@ class _$ToggleSelectAllImpl implements _ToggleSelectAll {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ApproveTimesheetRole role, int? employeeId, int? status)?
+    TResult Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
         init,
     TResult Function()? toggleSelectionMode,
     TResult Function(int id)? toggleSelection,
@@ -1331,7 +1355,7 @@ class _$SetSelectionByTypesImpl implements _SetSelectionByTypes {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            ApproveTimesheetRole role, int? employeeId, int? status)
+            ApproveTimesheetRole role, int? employeeId, int? status, int? tType)
         init,
     required TResult Function() toggleSelectionMode,
     required TResult Function(int id) toggleSelection,
@@ -1356,7 +1380,8 @@ class _$SetSelectionByTypesImpl implements _SetSelectionByTypes {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ApproveTimesheetRole role, int? employeeId, int? status)?
+    TResult? Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
         init,
     TResult? Function()? toggleSelectionMode,
     TResult? Function(int id)? toggleSelection,
@@ -1381,7 +1406,8 @@ class _$SetSelectionByTypesImpl implements _SetSelectionByTypes {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ApproveTimesheetRole role, int? employeeId, int? status)?
+    TResult Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
         init,
     TResult Function()? toggleSelectionMode,
     TResult Function(int id)? toggleSelection,
@@ -1564,7 +1590,7 @@ class _$SetFilterTTypesImpl implements _SetFilterTTypes {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            ApproveTimesheetRole role, int? employeeId, int? status)
+            ApproveTimesheetRole role, int? employeeId, int? status, int? tType)
         init,
     required TResult Function() toggleSelectionMode,
     required TResult Function(int id) toggleSelection,
@@ -1589,7 +1615,8 @@ class _$SetFilterTTypesImpl implements _SetFilterTTypes {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ApproveTimesheetRole role, int? employeeId, int? status)?
+    TResult? Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
         init,
     TResult? Function()? toggleSelectionMode,
     TResult? Function(int id)? toggleSelection,
@@ -1614,7 +1641,8 @@ class _$SetFilterTTypesImpl implements _SetFilterTTypes {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ApproveTimesheetRole role, int? employeeId, int? status)?
+    TResult Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
         init,
     TResult Function()? toggleSelectionMode,
     TResult Function(int id)? toggleSelection,
@@ -1790,7 +1818,7 @@ class _$SetFilterStatusImpl implements _SetFilterStatus {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            ApproveTimesheetRole role, int? employeeId, int? status)
+            ApproveTimesheetRole role, int? employeeId, int? status, int? tType)
         init,
     required TResult Function() toggleSelectionMode,
     required TResult Function(int id) toggleSelection,
@@ -1815,7 +1843,8 @@ class _$SetFilterStatusImpl implements _SetFilterStatus {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ApproveTimesheetRole role, int? employeeId, int? status)?
+    TResult? Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
         init,
     TResult? Function()? toggleSelectionMode,
     TResult? Function(int id)? toggleSelection,
@@ -1840,7 +1869,8 @@ class _$SetFilterStatusImpl implements _SetFilterStatus {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ApproveTimesheetRole role, int? employeeId, int? status)?
+    TResult Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
         init,
     TResult Function()? toggleSelectionMode,
     TResult Function(int id)? toggleSelection,
@@ -1989,7 +2019,7 @@ class _$ClearSelectionImpl implements _ClearSelection {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            ApproveTimesheetRole role, int? employeeId, int? status)
+            ApproveTimesheetRole role, int? employeeId, int? status, int? tType)
         init,
     required TResult Function() toggleSelectionMode,
     required TResult Function(int id) toggleSelection,
@@ -2014,7 +2044,8 @@ class _$ClearSelectionImpl implements _ClearSelection {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ApproveTimesheetRole role, int? employeeId, int? status)?
+    TResult? Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
         init,
     TResult? Function()? toggleSelectionMode,
     TResult? Function(int id)? toggleSelection,
@@ -2039,7 +2070,8 @@ class _$ClearSelectionImpl implements _ClearSelection {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ApproveTimesheetRole role, int? employeeId, int? status)?
+    TResult Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
         init,
     TResult Function()? toggleSelectionMode,
     TResult Function(int id)? toggleSelection,
@@ -2183,7 +2215,7 @@ class _$SeniorApproveImpl implements _SeniorApprove {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            ApproveTimesheetRole role, int? employeeId, int? status)
+            ApproveTimesheetRole role, int? employeeId, int? status, int? tType)
         init,
     required TResult Function() toggleSelectionMode,
     required TResult Function(int id) toggleSelection,
@@ -2208,7 +2240,8 @@ class _$SeniorApproveImpl implements _SeniorApprove {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ApproveTimesheetRole role, int? employeeId, int? status)?
+    TResult? Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
         init,
     TResult? Function()? toggleSelectionMode,
     TResult? Function(int id)? toggleSelection,
@@ -2233,7 +2266,8 @@ class _$SeniorApproveImpl implements _SeniorApprove {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ApproveTimesheetRole role, int? employeeId, int? status)?
+    TResult Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
         init,
     TResult Function()? toggleSelectionMode,
     TResult Function(int id)? toggleSelection,
@@ -2377,7 +2411,7 @@ class _$SeniorUnapproveImpl implements _SeniorUnapprove {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            ApproveTimesheetRole role, int? employeeId, int? status)
+            ApproveTimesheetRole role, int? employeeId, int? status, int? tType)
         init,
     required TResult Function() toggleSelectionMode,
     required TResult Function(int id) toggleSelection,
@@ -2402,7 +2436,8 @@ class _$SeniorUnapproveImpl implements _SeniorUnapprove {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ApproveTimesheetRole role, int? employeeId, int? status)?
+    TResult? Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
         init,
     TResult? Function()? toggleSelectionMode,
     TResult? Function(int id)? toggleSelection,
@@ -2427,7 +2462,8 @@ class _$SeniorUnapproveImpl implements _SeniorUnapprove {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ApproveTimesheetRole role, int? employeeId, int? status)?
+    TResult Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
         init,
     TResult Function()? toggleSelectionMode,
     TResult Function(int id)? toggleSelection,
@@ -2597,7 +2633,7 @@ class _$SeniorDeclineImpl implements _SeniorDecline {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            ApproveTimesheetRole role, int? employeeId, int? status)
+            ApproveTimesheetRole role, int? employeeId, int? status, int? tType)
         init,
     required TResult Function() toggleSelectionMode,
     required TResult Function(int id) toggleSelection,
@@ -2622,7 +2658,8 @@ class _$SeniorDeclineImpl implements _SeniorDecline {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ApproveTimesheetRole role, int? employeeId, int? status)?
+    TResult? Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
         init,
     TResult? Function()? toggleSelectionMode,
     TResult? Function(int id)? toggleSelection,
@@ -2647,7 +2684,8 @@ class _$SeniorDeclineImpl implements _SeniorDecline {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ApproveTimesheetRole role, int? employeeId, int? status)?
+    TResult Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
         init,
     TResult Function()? toggleSelectionMode,
     TResult Function(int id)? toggleSelection,
@@ -2796,7 +2834,7 @@ class _$TbpApproveImpl implements _TbpApprove {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            ApproveTimesheetRole role, int? employeeId, int? status)
+            ApproveTimesheetRole role, int? employeeId, int? status, int? tType)
         init,
     required TResult Function() toggleSelectionMode,
     required TResult Function(int id) toggleSelection,
@@ -2821,7 +2859,8 @@ class _$TbpApproveImpl implements _TbpApprove {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ApproveTimesheetRole role, int? employeeId, int? status)?
+    TResult? Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
         init,
     TResult? Function()? toggleSelectionMode,
     TResult? Function(int id)? toggleSelection,
@@ -2846,7 +2885,8 @@ class _$TbpApproveImpl implements _TbpApprove {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ApproveTimesheetRole role, int? employeeId, int? status)?
+    TResult Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
         init,
     TResult Function()? toggleSelectionMode,
     TResult Function(int id)? toggleSelection,
@@ -2990,7 +3030,7 @@ class _$TbpUnapproveImpl implements _TbpUnapprove {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            ApproveTimesheetRole role, int? employeeId, int? status)
+            ApproveTimesheetRole role, int? employeeId, int? status, int? tType)
         init,
     required TResult Function() toggleSelectionMode,
     required TResult Function(int id) toggleSelection,
@@ -3015,7 +3055,8 @@ class _$TbpUnapproveImpl implements _TbpUnapprove {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ApproveTimesheetRole role, int? employeeId, int? status)?
+    TResult? Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
         init,
     TResult? Function()? toggleSelectionMode,
     TResult? Function(int id)? toggleSelection,
@@ -3040,7 +3081,8 @@ class _$TbpUnapproveImpl implements _TbpUnapprove {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ApproveTimesheetRole role, int? employeeId, int? status)?
+    TResult Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
         init,
     TResult Function()? toggleSelectionMode,
     TResult Function(int id)? toggleSelection,
@@ -3210,7 +3252,7 @@ class _$TbpDeclineImpl implements _TbpDecline {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            ApproveTimesheetRole role, int? employeeId, int? status)
+            ApproveTimesheetRole role, int? employeeId, int? status, int? tType)
         init,
     required TResult Function() toggleSelectionMode,
     required TResult Function(int id) toggleSelection,
@@ -3235,7 +3277,8 @@ class _$TbpDeclineImpl implements _TbpDecline {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ApproveTimesheetRole role, int? employeeId, int? status)?
+    TResult? Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
         init,
     TResult? Function()? toggleSelectionMode,
     TResult? Function(int id)? toggleSelection,
@@ -3260,7 +3303,8 @@ class _$TbpDeclineImpl implements _TbpDecline {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ApproveTimesheetRole role, int? employeeId, int? status)?
+    TResult Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
         init,
     TResult Function()? toggleSelectionMode,
     TResult Function(int id)? toggleSelection,
@@ -3457,7 +3501,7 @@ class _$TbpSeniorBypassApproveImpl implements _TbpSeniorBypassApprove {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            ApproveTimesheetRole role, int? employeeId, int? status)
+            ApproveTimesheetRole role, int? employeeId, int? status, int? tType)
         init,
     required TResult Function() toggleSelectionMode,
     required TResult Function(int id) toggleSelection,
@@ -3482,7 +3526,8 @@ class _$TbpSeniorBypassApproveImpl implements _TbpSeniorBypassApprove {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ApproveTimesheetRole role, int? employeeId, int? status)?
+    TResult? Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
         init,
     TResult? Function()? toggleSelectionMode,
     TResult? Function(int id)? toggleSelection,
@@ -3507,7 +3552,8 @@ class _$TbpSeniorBypassApproveImpl implements _TbpSeniorBypassApprove {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ApproveTimesheetRole role, int? employeeId, int? status)?
+    TResult Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
         init,
     TResult Function()? toggleSelectionMode,
     TResult Function(int id)? toggleSelection,

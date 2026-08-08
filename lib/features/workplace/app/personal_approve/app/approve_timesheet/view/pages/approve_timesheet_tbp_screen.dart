@@ -21,7 +21,12 @@ import '../widgets/approve_timesheet_selection_bar.dart';
 /// - Có cảnh báo khi chọn phiếu Senior chưa duyệt + bottom sheet bypass.
 /// - Không ẩn TType nào (hiển thị tất cả nhóm).
 class ApproveTimesheetTbpScreen extends StatefulWidget {
-  const ApproveTimesheetTbpScreen({super.key});
+  const ApproveTimesheetTbpScreen({super.key, this.initialTType});
+
+  /// `TType` ban đầu (từ menu Phê duyệt). Khi có giá trị (>0),
+  /// API `getApproveTimesheet` sẽ chỉ trả về phiếu của loại đó.
+  /// `null` → lấy tất cả các loại (TBP xem toàn bộ).
+  final int? initialTType;
 
   @override
   State<ApproveTimesheetTbpScreen> createState() =>
@@ -54,6 +59,7 @@ class _ApproveTimesheetTbpScreenState
       role: ApproveTimesheetRole.tbp,
       employeeId: empId,
       status: 0,
+      tType: widget.initialTType,
     ));
   }
 

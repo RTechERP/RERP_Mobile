@@ -33,6 +33,8 @@ abstract class _$ApproveTimesheetStateCWProxy {
 
   ApproveTimesheetState filteredStatus(int? filteredStatus);
 
+  ApproveTimesheetState initialTType(int? initialTType);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ApproveTimesheetState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -53,6 +55,7 @@ abstract class _$ApproveTimesheetStateCWProxy {
     int? tbpApproverEmployeeId,
     bool? isTbpApproving,
     int? filteredStatus,
+    int? initialTType,
   });
 }
 
@@ -112,6 +115,10 @@ class _$ApproveTimesheetStateCWProxyImpl
       this(filteredStatus: filteredStatus);
 
   @override
+  ApproveTimesheetState initialTType(int? initialTType) =>
+      this(initialTType: initialTType);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ApproveTimesheetState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -133,6 +140,7 @@ class _$ApproveTimesheetStateCWProxyImpl
     Object? tbpApproverEmployeeId = const $CopyWithPlaceholder(),
     Object? isTbpApproving = const $CopyWithPlaceholder(),
     Object? filteredStatus = const $CopyWithPlaceholder(),
+    Object? initialTType = const $CopyWithPlaceholder(),
   }) {
     return ApproveTimesheetState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -193,6 +201,10 @@ class _$ApproveTimesheetStateCWProxyImpl
           ? _value.filteredStatus
           // ignore: cast_nullable_to_non_nullable
           : filteredStatus as int?,
+      initialTType: initialTType == const $CopyWithPlaceholder()
+          ? _value.initialTType
+          // ignore: cast_nullable_to_non_nullable
+          : initialTType as int?,
     );
   }
 }

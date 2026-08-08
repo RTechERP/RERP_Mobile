@@ -225,13 +225,22 @@ class RouteNames {
 
   // Personal Approve
   static const personalApprove = '/personal_approve';
-  static const personalApproveTimesheet = '/personal_approve/approve_timesheet/timesheet';
+  static const personalApproveTimesheet =
+      '/personal_approve/approve_timesheet/timesheet';
   static const personalApproveTimesheetDetail =
       '/personal_approve/approve_timesheet/timesheet/detail';
   static const personalApproveSeniorTimesheet =
       '/personal_approve/approve_timesheet/senior_timesheet';
   static const personalApproveSeniorTimesheetDetail =
       '/personal_approve/approve_timesheet/senior_timesheet/detail';
+
+  /// Helper: route duyệt công theo một `tType` cụ thể.
+  ///
+  /// Dùng cho menu Phê duyệt — mỗi mục con (Đăng ký nghỉ, Làm thêm, ...)
+  /// gọi route này với `tType` tương ứng để API `getApproveTimesheet` filter
+  /// theo `TType` trong payload.
+  static String personalApproveTimesheetByType(int tType) =>
+      '$personalApproveTimesheet?tType=$tType';
 
   // Warehouse
   static const warehouseArea = '/warehouse_area';

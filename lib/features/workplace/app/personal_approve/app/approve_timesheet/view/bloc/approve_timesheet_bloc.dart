@@ -26,7 +26,8 @@ class ApproveTimesheetBloc
       : super(ApproveTimesheetState.init()) {
     on<ApproveTimesheetEvent>((event, emit) async {
       await event.when(
-        init: (role, employeeId, status) => _onInit(emit, role, employeeId, status),
+        init: (role, employeeId, status, tType) =>
+            _onInit(emit, role, employeeId, status, tType),
         toggleSelectionMode: () => _onToggleSelectionMode(emit),
         toggleSelection: (id) => _onToggleSelection(emit, id),
         toggleSelectGroup: (tType) => _onToggleSelectGroup(emit, tType),
@@ -53,15 +54,23 @@ class ApproveTimesheetBloc
     ApproveTimesheetRole role,
     int? employeeId,
     int? status,
+    int? tType,
   ) async {
     emit(state.copyWith(
       status: BaseStateStatus.loading,
       role: role,
       filteredStatus: status,
+      // Chỉ set initialTType nếu caller truyền vào (>0) — tránh reset
+      // khi reload do đổi filter Status.
+      initialTType: (tType != null && tType > 0) ? tType : state.initialTType,
     ));
 
+    final effectiveTType = (tType != null && tType > 0)
+        ? tType
+        : state.initialTType;
+
     if (role == ApproveTimesheetRole.tbp) {
-      await _initTbp(emit, employeeId);
+      await _initTbp(emit, employeeId, effectiveTType);
     } else {
       await _initSenior(emit);
     }
@@ -118,6 +127,7 @@ class ApproveTimesheetBloc
   Future<void> _initTbp(
     Emitter<ApproveTimesheetState> emit,
     int? employeeId,
+    int? tType,
   ) async {
     if (employeeId == null) {
       emit(
@@ -142,6 +152,7 @@ class ApproveTimesheetBloc
     final payload = _buildApprovePayload(
       seniorId: seniorId ?? 0,
       approvedTpEmployeeId: employeeId,
+      tType: tType,
     );
 
     final result = await _approveTimesheetRepo.getApproveTimesheet(
@@ -169,10 +180,14 @@ class ApproveTimesheetBloc
   }
 
   /// Build payload chung cho cả Senior và TBP — chỉ khác `IDApprovedTP`.
+  ///
+  /// `tType` (optional): filter API theo một loại phiếu cụ thể (1..9).
+  /// `null` / `0` → lấy tất cả các loại.
   Map<String, dynamic> _buildApprovePayload({
     required int seniorId,
     required int approvedTpEmployeeId,
     int? status,
+    int? tType,
   }) {
     final now = DateTime.now();
     final startOfMonth = DateTime(now.year, now.month, 1);
@@ -185,7 +200,7 @@ class ApproveTimesheetBloc
       "Status": status ?? -1,
       "DeleteFlag": 0,
       "EmployeeID": 0,
-      "TType": 0,
+      "TType": tType ?? 0,
       "StatusSenior": -1,
       "StatusHR": -1,
       "StatusBGD": -1,
@@ -442,6 +457,8 @@ class ApproveTimesheetBloc
     add(ApproveTimesheetEvent.init(
       role: state.role,
       employeeId: state.tbpApproverEmployeeId,
+      status: status,
+      tType: state.initialTType,
     ));
   }
 }

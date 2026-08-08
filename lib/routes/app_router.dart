@@ -170,7 +170,6 @@ import '../features/workplace/app/reports/view/tech/view/pages/tech_detail_scree
 import '../features/workplace/app/reports/view/tech/view/pages/tech_edit_screen.dart';
 import '../features/workplace/app/reports/view/tech/view/pages/tech_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_area_screen.dart';
-import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/warehouse_sale_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_screen.dart';
 import '../features/workplace/app/week_plan/view/bloc/week_plan_bloc.dart';
 import '../features/workplace/app/week_plan/view/pages/week_plan_add_screen.dart';
@@ -1369,7 +1368,15 @@ class AppRouter {
             routes: [
               GoRoute(
                 path: RouteNames.personalApproveTimesheet,
-                builder: (context, state) => const ApproveTimesheetTbpScreen(),
+                builder: (context, state) {
+                  // Mở từ menu Phê duyệt → query `?tType=1..9` để
+                  // bloc filter API theo 1 loại phiếu cụ thể.
+                  // Mở trực tiếp (không qua menu) → không có tType,
+                  // hiển thị tất cả.
+                  final tTypeStr = state.uri.queryParameters['tType'];
+                  final tType = int.tryParse(tTypeStr ?? '');
+                  return ApproveTimesheetTbpScreen(initialTType: tType);
+                },
               ),
               GoRoute(
                 path: RouteNames.personalApproveSeniorTimesheet,

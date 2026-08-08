@@ -5,10 +5,15 @@ class ApproveTimesheetEvent with _$ApproveTimesheetEvent {
   /// Init cho bloc. Mặc định là Senior (backward-compat).
   /// TBP truyền `role: ApproveTimesheetRole.tbp` + `employeeId` để filter API
   /// theo `IDApprovedTP` và lưu lại employeeId dùng khi submit approve.
+  ///
+  /// `tType` (optional): khi user vào từ menu Phê duyệt → 1 loại phiếu cụ thể
+  /// → API filter theo `TType` trong payload (chỉ trả về nhóm phiếu đó).
+  /// `null` / `0` → lấy tất cả.
   const factory ApproveTimesheetEvent.init({
     @Default(ApproveTimesheetRole.senior) ApproveTimesheetRole role,
     int? employeeId,
     @Default(0) int? status,
+    int? tType,
   }) = _Init;
 
   /// Bật / tắt chế độ chọn nhiều.

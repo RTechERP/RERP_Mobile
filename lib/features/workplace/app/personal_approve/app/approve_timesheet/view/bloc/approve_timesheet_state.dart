@@ -36,6 +36,12 @@ class ApproveTimesheetState extends BaseBlocState {
   /// Đang duyệt / từ chối hàng loạt (TBP).
   final bool isTbpApproving;
 
+  /// `TType` cố định lúc khởi tạo bloc (từ menu Phê duyệt).
+  /// `null` / `0` → bloc lấy tất cả các loại phiếu.
+  /// Khi user thay đổi filter `Status`, bloc sẽ giữ `tType` này để API
+  /// chỉ trả về đúng loại phiếu đang xem.
+  final int? initialTType;
+
   const ApproveTimesheetState({
     required super.status,
     super.message,
@@ -50,6 +56,7 @@ class ApproveTimesheetState extends BaseBlocState {
     this.tbpApproverEmployeeId,
     this.isTbpApproving = false,
     this.filteredStatus,
+    this.initialTType,
   });
 
   factory ApproveTimesheetState.init() => const ApproveTimesheetState(
@@ -118,5 +125,6 @@ class ApproveTimesheetState extends BaseBlocState {
         tbpApproverEmployeeId,
         isTbpApproving,
         filteredStatus,
+        initialTType,
       ];
 }
