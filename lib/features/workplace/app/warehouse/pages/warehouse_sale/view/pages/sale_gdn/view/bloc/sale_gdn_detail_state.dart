@@ -9,6 +9,74 @@ class GdnDetailState extends BaseBlocState {
   /// Thông tin cơ bản của phiếu xuất (truyền từ màn danh sách).
   final BillExporResponse? bill;
 
+  /// Thông tin header phiếu xuất trả về từ API `/billexport/{id}`.
+  /// Dùng để fill các trường form ở đầu trang Detail
+  /// (mã phiếu, ngày tạo, kho, khách hàng/NCC, địa chỉ, người giao, bộ phận, ...).
+  final DetailGDNItemResponse? billInfo;
+
+  /// ID NCC đang chọn trên form (override từ `billInfo.supplierId` khi user đổi).
+  final int? selectedSupplierId;
+
+  /// ID người giao đang chọn (override từ `billInfo.senderId`).
+  final int? selectedSenderId;
+
+  /// ID khách hàng đang chọn (override từ `billInfo.customerId`).
+  final int? selectedCustomerId;
+
+  /// ID kho đang chọn (override từ `billInfo.warehouseId`).
+  final int? selectedWarehouseId;
+
+  /// ID loại kho đang chọn (override từ `billInfo.khoTypeId`).
+  final int? selectedKhoTypeId;
+
+  /// Trạng thái của phiếu (int) - hiển thị qua bottom-sheet.
+  final int? selectedStatus;
+
+  /// ID dự án (project) đang chọn cho phiếu.
+  final int? selectedProjectId;
+
+  /// Ngày xuất (delivery date) - chỉ ngày, set từ `billInfo.deliveryTime`
+  /// hoặc `bill.deliveryTime`.
+  final DateTime? deliveryDate;
+
+  /// Ngày yêu cầu (request date) - chỉ ngày, set từ `billInfo.requestDate`.
+  final DateTime? requestDate;
+
+  /// Thời gian nhận hàng - bao gồm cả ngày + giờ (24h).
+  /// Khi null → hiển thị "Thời gian nhận hàng" cho user chọn.
+  final DateTime? receiveTime;
+
+  /// Loại kho (text hiển thị) đang chọn - có thể là ProductGroup hoặc
+  /// tên loại kho. Override từ `billInfo.warehouseType` khi user đổi.
+  final String? selectedLoaiKhoText;
+
+  /// Loại hàng (product type) đang chọn.
+  final int? selectedProductType;
+
+  /// Địa chỉ khách hàng (override từ CustomerResponse.address khi chọn KH).
+  final String? selectedCustomerAddress;
+
+  /// Kho chuyển nội bộ (text) - hiển thị khi tick checkbox "Chuyển kho nội bộ".
+  final int? selectedInternalWarehouseId;
+
+  /// Loại kho chuyển nội bộ (text) - kho nội bộ.
+  final int? selectedInternalKhoTypeId;
+
+  /// Checkbox "Chuyển kho nội bộ" có đang tick hay không.
+  final bool isTransferInternalChecked;
+
+  /// Checkbox "Chuyển kho nội bộ" - tách riêng với isTransferInternalChecked.
+  final bool isInternalChecked;
+
+  /// Địa chỉ giao hàng (text hiển thị) - override từ `billInfo.address`.
+  final String? deliveryAddress;
+
+  /// Tham chiếu - chuỗi text tham chiếu (mã phiếu liên quan). Disabled nếu null/rỗng.
+  final String? reference;
+
+  /// Nhà cung cấp (text) đang chọn - thường dùng lookup NCC.
+  final int? selectedNccId;
+
   /// Danh sách dòng chi tiết sản phẩm (từ API view).
   final List<ViewGDNDetailResponse> details;
 
@@ -34,6 +102,27 @@ class GdnDetailState extends BaseBlocState {
     super.message,
     this.billExportId = 0,
     this.bill,
+    this.billInfo,
+    this.selectedSupplierId,
+    this.selectedSenderId,
+    this.selectedCustomerId,
+    this.selectedWarehouseId,
+    this.selectedKhoTypeId,
+    this.selectedStatus,
+    this.selectedProjectId,
+    this.deliveryDate,
+    this.requestDate,
+    this.receiveTime,
+    this.selectedLoaiKhoText,
+    this.selectedProductType,
+    this.selectedCustomerAddress,
+    this.selectedInternalWarehouseId,
+    this.selectedInternalKhoTypeId,
+    this.isTransferInternalChecked = false,
+    this.isInternalChecked = false,
+    this.deliveryAddress,
+    this.reference,
+    this.selectedNccId,
     this.details = const [],
     this.detailFull = const [],
     this.uploadedImages = const [],
@@ -50,12 +139,62 @@ class GdnDetailState extends BaseBlocState {
     );
   }
 
+  /// Khởi tạo state detail với billInfo đã load từ API, đồng thời set các
+  /// ID đang chọn theo billInfo để form hiển thị đúng giá trị ban đầu.
+  factory GdnDetailState.fromBillInfo({
+    required int id,
+    BillExporResponse? bill,
+    required DetailGDNItemResponse billInfo,
+  }) {
+    return GdnDetailState(
+      status: BaseStateStatus.success,
+      billExportId: id,
+      bill: bill,
+      billInfo: billInfo,
+      selectedSupplierId: billInfo.supplierId,
+      selectedSenderId: billInfo.senderId,
+      selectedCustomerId: billInfo.customerId,
+      selectedWarehouseId: billInfo.warehouseId,
+      selectedKhoTypeId: billInfo.khoTypeId,
+      selectedStatus: billInfo.status,
+      deliveryDate: billInfo.deliveryTime,
+      requestDate: billInfo.requestDate,
+      receiveTime: billInfo.deliveryTime,
+      selectedLoaiKhoText: billInfo.warehouseType,
+      selectedInternalWarehouseId: billInfo.wareHouseTranferId,
+      selectedInternalKhoTypeId: billInfo.khoTypeTransferId,
+      isTransferInternalChecked: billInfo.isTransferInternal ?? false,
+      deliveryAddress: billInfo.address,
+    );
+  }
+
   @override
   List get props => [
         status,
         message,
         billExportId,
         bill,
+        billInfo,
+        selectedSupplierId,
+        selectedSenderId,
+        selectedCustomerId,
+        selectedWarehouseId,
+        selectedKhoTypeId,
+        selectedStatus,
+        selectedProjectId,
+        deliveryDate,
+        requestDate,
+        receiveTime,
+        selectedLoaiKhoText,
+        selectedProductType,
+        selectedCustomerAddress,
+        selectedInternalWarehouseId,
+        selectedInternalKhoTypeId,
+        isTransferInternalChecked,
+        isInternalChecked,
+        deliveryAddress,
+        reference,
+        selectedNccId,
         details,
         detailFull,
         uploadedImages,

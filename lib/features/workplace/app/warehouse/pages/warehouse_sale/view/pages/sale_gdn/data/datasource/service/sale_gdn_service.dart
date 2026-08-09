@@ -59,6 +59,112 @@ class SaleGdnService extends DioBaseApiService {
     );
   }
 
+  /// Lấy thông tin header của phiếu xuất kho theo ID.
+  /// Trả về 1 đối tượng `DetailGDNItemResponse` để fill các trường form ở
+  /// đầu trang Detail (mã phiếu, ngày tạo, kho, khách hàng, địa chỉ, ...).
+  Future<BaseData<DetailGDNItemResponse>> getBillExportById({
+    required int id,
+  }) async {
+    return get<BaseData<DetailGDNItemResponse>>(
+      ApiEndPoint.getBillExportById.replaceAll('{id}', id.toString()),
+      parser: (json) => BaseData<DetailGDNItemResponse>.fromJson(
+        json,
+            (data) => DetailGDNItemResponse.fromJson(
+          (data as Map?)?.cast<String, dynamic>() ?? const {},
+        ),
+      ),
+    );
+  }
+
+  /// Danh sách NCC (Supplier) — `/billexport/get-suppliers`.
+  Future<BaseData<List<SupplierResponse>>> getSuppliers() async {
+    return get<BaseData<List<SupplierResponse>>>(
+      ApiEndPoint.getSuppliers,
+      parser: (json) => BaseData<List<SupplierResponse>>.fromJson(
+        json,
+            (data) => ((data as List?) ?? const <dynamic>[])
+            .map((e) => SupplierResponse.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      ),
+    );
+  }
+
+  /// Danh sách người giao (Sender) — `/billexport/get-senders`.
+  Future<BaseData<List<SenderResponse>>> getSenders() async {
+    return get<BaseData<List<SenderResponse>>>(
+      ApiEndPoint.getSenders,
+      parser: (json) => BaseData<List<SenderResponse>>.fromJson(
+        json,
+            (data) => ((data as List?) ?? const <dynamic>[])
+            .map((e) => SenderResponse.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      ),
+    );
+  }
+
+  /// Danh sách khách hàng — `/billexport/get-customers`.
+  Future<BaseData<List<CustomerResponse>>> getCustomers() async {
+    return get<BaseData<List<CustomerResponse>>>(
+      ApiEndPoint.getCustomers,
+      parser: (json) => BaseData<List<CustomerResponse>>.fromJson(
+        json,
+            (data) => ((data as List?) ?? const <dynamic>[])
+            .map((e) => CustomerResponse.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      ),
+    );
+  }
+
+  /// Danh sách dự án — `/billexport/get-all-project`.
+  Future<BaseData<List<ProjectGDNResponse>>> getAllProjects() async {
+    return get<BaseData<List<ProjectGDNResponse>>>(
+      ApiEndPoint.getAllProjects,
+      parser: (json) => BaseData<List<ProjectGDNResponse>>.fromJson(
+        json,
+            (data) => ((data as List?) ?? const <dynamic>[])
+            .map((e) => ProjectGDNResponse.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      ),
+    );
+  }
+
+  /// Danh sách kho — `/billexport/get-warehouses`.
+  Future<BaseData<List<WarehouseResponse>>> getWarehouses() async {
+    return get<BaseData<List<WarehouseResponse>>>(
+      ApiEndPoint.getWarehouses,
+      parser: (json) => BaseData<List<WarehouseResponse>>.fromJson(
+        json,
+            (data) => ((data as List?) ?? const <dynamic>[])
+            .map((e) => WarehouseResponse.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      ),
+    );
+  }
+
+  /// Danh sách loại kho (ProductGroup) —
+  /// `/ProductGroup/product-group-new?warehouseId=1&isDeleted=false&isVisible=true`.
+  Future<BaseData<List<ProductGroupNewResponse>>> getProductGroupNew({
+    int? warehouseId,
+    bool? isDeleted,
+    bool? isVisible,
+  }) async {
+    return get<BaseData<List<ProductGroupNewResponse>>>(
+      ApiEndPoint.getProductGroupNew,
+      query: {
+        if (warehouseId != null) 'warehouseId': warehouseId,
+        if (isDeleted != null) 'isDeleted': isDeleted,
+        if (isVisible != null) 'isVisible': isVisible,
+      },
+      parser: (json) => BaseData<List<ProductGroupNewResponse>>.fromJson(
+        json,
+            (data) => ((data as List?) ?? const <dynamic>[])
+            .map((e) =>
+                ProductGroupNewResponse.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      ),
+    );
+  }
+
   Future<BaseData<List<ViewGDNDetailResponse>>> getViewExportDetail({
     required int id,
   }) async {

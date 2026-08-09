@@ -57,4 +57,82 @@ class SaleGdnEvent with _$SaleGdnEvent {
 
   /// Clear upload status sau khi đã show message.
   const factory SaleGdnEvent.clearUploadStatus() = _ClearUploadStatus;
+
+  // ---------------------------------------------------------------------------
+  // Lookup form events for BillExport detail
+  // ---------------------------------------------------------------------------
+
+  /// Fetch toàn bộ danh sách lookup (NCC, người giao, khách hàng, dự án,
+  /// kho, loại kho) để dùng cho các dropdown trên form BillExport.
+  const factory SaleGdnEvent.fetchLookupData() = _FetchLookupData;
+
+  /// User chọn NCC trên form.
+  const factory SaleGdnEvent.selectSupplier(int? supplierId) = _SelectSupplier;
+
+  /// User chọn người giao trên form.
+  const factory SaleGdnEvent.selectSender(int? senderId) = _SelectSender;
+
+  /// User chọn khách hàng trên form.
+  const factory SaleGdnEvent.selectCustomer(int? customerId) = _SelectCustomer;
+
+  /// User chọn kho trên form.
+  const factory SaleGdnEvent.selectWarehouse(int? warehouseId) =
+      _SelectWarehouse;
+
+  /// User chọn loại kho trên form.
+  const factory SaleGdnEvent.selectKhoType(int? khoTypeId) = _SelectKhoType;
+
+  /// User chọn trạng thái phiếu từ bottom-sheet.
+  const factory SaleGdnEvent.selectStatus(int? status) = _SelectStatus;
+
+  /// User chọn dự án (project) từ bottom-sheet.
+  const factory SaleGdnEvent.selectProject(int? projectId) = _SelectProject;
+
+  /// User thay đổi ngày xuất (delivery date).
+  const factory SaleGdnEvent.changeDeliveryDate(DateTime? date) =
+      _ChangeDeliveryDate;
+
+  /// User thay đổi ngày yêu cầu (request date).
+  const factory SaleGdnEvent.changeRequestDate(DateTime? date) =
+      _ChangeRequestDate;
+
+  /// User thay đổi thời gian nhận hàng (ngày + giờ).
+  const factory SaleGdnEvent.changeReceiveTime(DateTime? time) =
+      _ChangeReceiveTime;
+
+  /// User chọn loại kho (text label - ProductGroup) từ bottom-sheet.
+  const factory SaleGdnEvent.selectLoaiKho(String? text) = _SelectLoaiKho;
+
+  /// User chọn loại hàng (product type) từ bottom-sheet.
+  const factory SaleGdnEvent.selectProductType(int? productType) =
+      _SelectProductType;
+
+  /// User chọn khách hàng - đồng thời fill địa chỉ KH vào address field.
+  const factory SaleGdnEvent.selectCustomerWithAddress({
+    required int? customerId,
+    String? address,
+  }) = _SelectCustomerWithAddress;
+
+  /// User tick/bỏ tick "Chuyển kho nội bộ" - enable field "Kho chuyển".
+  const factory SaleGdnEvent.toggleTransferInternal({required bool value}) =
+      _ToggleTransferInternal;
+
+  /// User tick/bỏ tick "Chuyển kho nội bộ" - enable field "Loại kho chuyển".
+  const factory SaleGdnEvent.toggleInternal({required bool value}) =
+      _ToggleInternal;
+
+  /// User chọn kho chuyển nội bộ (khi checkbox đã tick).
+  const factory SaleGdnEvent.selectInternalWarehouse(int? warehouseId) =
+      _SelectInternalWarehouse;
+
+  /// User chọn loại kho chuyển nội bộ.
+  const factory SaleGdnEvent.selectInternalKhoType(int? khoTypeId) =
+      _SelectInternalKhoType;
+
+  /// User thay đổi địa chỉ giao hàng (từ bottom-sheet chọn địa chỉ).
+  const factory SaleGdnEvent.changeDeliveryAddress(String? address) =
+      _ChangeDeliveryAddress;
+
+  /// User chọn nhà cung cấp (text) từ bottom-sheet.
+  const factory SaleGdnEvent.selectNcc(int? nccId) = _SelectNcc;
 }

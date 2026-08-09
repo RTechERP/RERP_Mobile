@@ -186,6 +186,118 @@ Map<String, dynamic> _$$ViewGDNDetailResponseImplToJson(
       'ProjectCodeExport': instance.projectCodeExport,
     };
 
+_$DetailGDNItemResponseImpl _$$DetailGDNItemResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$DetailGDNItemResponseImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      code: json['Code'] as String?,
+      typeBill: json['TypeBill'] as bool?,
+      supplierId: (json['SupplierID'] as num?)?.toInt(),
+      customerId: (json['CustomerID'] as num?)?.toInt(),
+      userId: (json['UserID'] as num?)?.toInt(),
+      senderId: (json['SenderID'] as num?)?.toInt(),
+      stockId: (json['StockID'] as num?)?.toInt(),
+      description: json['Description'] as String?,
+      address: json['Address'] as String?,
+      creatDate: json['CreatDate'] == null
+          ? null
+          : DateTime.parse(json['CreatDate'] as String),
+      isApproved: json['IsApproved'] as bool?,
+      status: (json['Status'] as num?)?.toInt(),
+      groupId: json['GroupID'] as String?,
+      warehouseType: json['WarehouseType'] as String?,
+      khoTypeId: (json['KhoTypeID'] as num?)?.toInt(),
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+      updatedDate: json['UpdatedDate'] == null
+          ? null
+          : DateTime.parse(json['UpdatedDate'] as String),
+      createdBy: json['CreatedBy'] as String?,
+      updatedBy: json['UpdatedBy'] as String?,
+      productType: (json['ProductType'] as num?)?.toInt(),
+      addressStockId: (json['AddressStockID'] as num?)?.toInt(),
+      isMerge: json['IsMerge'] as bool?,
+      unApprove: (json['UnApprove'] as num?)?.toInt(),
+      warehouseId: (json['WarehouseID'] as num?)?.toInt(),
+      isPrepared: json['IsPrepared'] as bool?,
+      isReceived: json['IsReceived'] as bool?,
+      requestDate: json['RequestDate'] == null
+          ? null
+          : DateTime.parse(json['RequestDate'] as String),
+      preparedDate: json['PreparedDate'] == null
+          ? null
+          : DateTime.parse(json['PreparedDate'] as String),
+      billDocumentExportType: (json['BillDocumentExportType'] as num?)?.toInt(),
+      isDeleted: json['IsDeleted'] as bool?,
+      billImportId: (json['BillImportID'] as num?)?.toInt(),
+      wareHouseTranferId: (json['WareHouseTranferID'] as num?)?.toInt(),
+      isTransfer: json['IsTransfer'] as bool?,
+      deliveryTime: json['DeliveryTime'] == null
+          ? null
+          : DateTime.parse(json['DeliveryTime'] as String),
+      isAfterHours: json['IsAfterHours'] as bool?,
+      receiverId: (json['ReceiverID'] as num?)?.toInt(),
+      isIncurredApproved: json['IsIncurredApproved'] as bool?,
+      incurredApprovedId: (json['IncurredApprovedID'] as num?)?.toInt(),
+      isOrderPrepared: json['IsOrderPrepared'] as bool?,
+      isOrderReceived: json['IsOrderReceived'] as bool?,
+      orderPreparedId: (json['OrderPreparedID'] as num?)?.toInt(),
+      orderReceivedId: (json['OrderReceivedID'] as num?)?.toInt(),
+      isTransferInternal: json['IsTransferInternal'] as bool?,
+      khoTypeTransferId: (json['KhoTypeTransferID'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$DetailGDNItemResponseImplToJson(
+        _$DetailGDNItemResponseImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'Code': instance.code,
+      'TypeBill': instance.typeBill,
+      'SupplierID': instance.supplierId,
+      'CustomerID': instance.customerId,
+      'UserID': instance.userId,
+      'SenderID': instance.senderId,
+      'StockID': instance.stockId,
+      'Description': instance.description,
+      'Address': instance.address,
+      'CreatDate': instance.creatDate?.toIso8601String(),
+      'IsApproved': instance.isApproved,
+      'Status': instance.status,
+      'GroupID': instance.groupId,
+      'WarehouseType': instance.warehouseType,
+      'KhoTypeID': instance.khoTypeId,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'UpdatedDate': instance.updatedDate?.toIso8601String(),
+      'CreatedBy': instance.createdBy,
+      'UpdatedBy': instance.updatedBy,
+      'ProductType': instance.productType,
+      'AddressStockID': instance.addressStockId,
+      'IsMerge': instance.isMerge,
+      'UnApprove': instance.unApprove,
+      'WarehouseID': instance.warehouseId,
+      'IsPrepared': instance.isPrepared,
+      'IsReceived': instance.isReceived,
+      'RequestDate': instance.requestDate?.toIso8601String(),
+      'PreparedDate': instance.preparedDate?.toIso8601String(),
+      'BillDocumentExportType': instance.billDocumentExportType,
+      'IsDeleted': instance.isDeleted,
+      'BillImportID': instance.billImportId,
+      'WareHouseTranferID': instance.wareHouseTranferId,
+      'IsTransfer': instance.isTransfer,
+      'DeliveryTime': instance.deliveryTime?.toIso8601String(),
+      'IsAfterHours': instance.isAfterHours,
+      'ReceiverID': instance.receiverId,
+      'IsIncurredApproved': instance.isIncurredApproved,
+      'IncurredApprovedID': instance.incurredApprovedId,
+      'IsOrderPrepared': instance.isOrderPrepared,
+      'IsOrderReceived': instance.isOrderReceived,
+      'OrderPreparedID': instance.orderPreparedId,
+      'OrderReceivedID': instance.orderReceivedId,
+      'IsTransferInternal': instance.isTransferInternal,
+      'KhoTypeTransferID': instance.khoTypeTransferId,
+    };
+
 _$DetailGDNResponseImpl _$$DetailGDNResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$DetailGDNResponseImpl(
@@ -598,4 +710,281 @@ Map<String, dynamic> _$$SaveBillExportDataResponseImplToJson(
         _$SaveBillExportDataResponseImpl instance) =>
     <String, dynamic>{
       'BillExportID': instance.billExportId,
+    };
+
+_$SupplierResponseImpl _$$SupplierResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$SupplierResponseImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      code: json['CodeNCC'] as String?,
+      name: json['NameNCC'] as String?,
+      address: json['AddressNCC'] as String?,
+      phone: json['PhoneNCC'] as String?,
+      orderer: json['OrdererNCC'] as String?,
+      debt: json['Debt'],
+      ngayUpdate: json['NgayUpdate'] == null
+          ? null
+          : DateTime.parse(json['NgayUpdate'] as String),
+      nvPhuTrach: json['NVPhuTrach'] as String?,
+      loaiHangHoa: json['LoaiHangHoa'] as String?,
+      brand: json['Brand'] as String?,
+      maNhom: json['MaNhom'] as String?,
+      tenTiengAnh: json['TenTiengAnh'] as String?,
+      website: json['Website'] as String?,
+      soTK: json['SoTK'] as String?,
+      nganHang: json['NganHang'] as String?,
+      maSoThue: json['MaSoThue'] as String?,
+      note: json['Note'] as String?,
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+      createdBy: json['CreatedBy'] as String?,
+      updatedDate: json['UpdatedDate'] == null
+          ? null
+          : DateTime.parse(json['UpdatedDate'] as String),
+      updatedBy: json['UpdatedBy'] as String?,
+      company: json['Company'] as String?,
+      shortName: json['ShortNameSupplier'] as String?,
+      employeeId: (json['EmployeeID'] as num?)?.toInt(),
+      isDeleted: json['IsDeleted'] as bool?,
+      isDebt: json['IsDebt'] as bool?,
+      fedexAccount: json['FedexAccount'] as String?,
+      originItem: json['OriginItem'] as String?,
+      bankCharge: json['BankCharge'] as String?,
+      addressDelivery: json['AddressDelivery'] as String?,
+      rulePayId: (json['RulePayID'] as num?)?.toInt(),
+      description: json['Description'] as String?,
+      ruleIncoterm: json['RuleIncoterm'] as String?,
+      bankListId: (json['BankListID'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$SupplierResponseImplToJson(
+        _$SupplierResponseImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'CodeNCC': instance.code,
+      'NameNCC': instance.name,
+      'AddressNCC': instance.address,
+      'PhoneNCC': instance.phone,
+      'OrdererNCC': instance.orderer,
+      'Debt': instance.debt,
+      'NgayUpdate': instance.ngayUpdate?.toIso8601String(),
+      'NVPhuTrach': instance.nvPhuTrach,
+      'LoaiHangHoa': instance.loaiHangHoa,
+      'Brand': instance.brand,
+      'MaNhom': instance.maNhom,
+      'TenTiengAnh': instance.tenTiengAnh,
+      'Website': instance.website,
+      'SoTK': instance.soTK,
+      'NganHang': instance.nganHang,
+      'MaSoThue': instance.maSoThue,
+      'Note': instance.note,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'CreatedBy': instance.createdBy,
+      'UpdatedDate': instance.updatedDate?.toIso8601String(),
+      'UpdatedBy': instance.updatedBy,
+      'Company': instance.company,
+      'ShortNameSupplier': instance.shortName,
+      'EmployeeID': instance.employeeId,
+      'IsDeleted': instance.isDeleted,
+      'IsDebt': instance.isDebt,
+      'FedexAccount': instance.fedexAccount,
+      'OriginItem': instance.originItem,
+      'BankCharge': instance.bankCharge,
+      'AddressDelivery': instance.addressDelivery,
+      'RulePayID': instance.rulePayId,
+      'Description': instance.description,
+      'RuleIncoterm': instance.ruleIncoterm,
+      'BankListID': instance.bankListId,
+    };
+
+_$SenderResponseImpl _$$SenderResponseImplFromJson(Map<String, dynamic> json) =>
+    _$SenderResponseImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      code: json['Code'] as String?,
+      loginName: json['LoginName'] as String?,
+      fullName: json['FullName'] as String?,
+      birthOfDate: json['BirthOfDate'] == null
+          ? null
+          : DateTime.parse(json['BirthOfDate'] as String),
+      sex: (json['Sex'] as num?)?.toInt(),
+      telephone: json['Telephone'] as String?,
+      handPhone: json['HandPhone'] as String?,
+      email: json['Email'] as String?,
+      departmentId: (json['DepartmentID'] as num?)?.toInt(),
+      status: (json['Status'] as num?)?.toInt(),
+      position: json['Position'] as String?,
+      imagePath: json['ImagePath'] as String?,
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+      updatedDate: json['UpdatedDate'] == null
+          ? null
+          : DateTime.parse(json['UpdatedDate'] as String),
+    );
+
+Map<String, dynamic> _$$SenderResponseImplToJson(
+        _$SenderResponseImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'Code': instance.code,
+      'LoginName': instance.loginName,
+      'FullName': instance.fullName,
+      'BirthOfDate': instance.birthOfDate?.toIso8601String(),
+      'Sex': instance.sex,
+      'Telephone': instance.telephone,
+      'HandPhone': instance.handPhone,
+      'Email': instance.email,
+      'DepartmentID': instance.departmentId,
+      'Status': instance.status,
+      'Position': instance.position,
+      'ImagePath': instance.imagePath,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'UpdatedDate': instance.updatedDate?.toIso8601String(),
+    };
+
+_$CustomerResponseImpl _$$CustomerResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$CustomerResponseImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      name: json['CustomerName'] as String?,
+      code: json['CustomerCode'] as String?,
+      shortName: json['CustomerShortName'] as String?,
+      address: json['Address'] as String?,
+      phone: json['Phone'] as String?,
+      email: json['Email'] as String?,
+      note: json['Note'] as String?,
+      website: json['Website'] as String?,
+      contactName: json['ContactName'] as String?,
+      contactPhone: json['ContactPhone'] as String?,
+      contactEmail: json['ContactEmail'] as String?,
+      addressStock: json['AdressStock'] as String?,
+      taxCode: json['TaxCode'] as String?,
+    );
+
+Map<String, dynamic> _$$CustomerResponseImplToJson(
+        _$CustomerResponseImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'CustomerName': instance.name,
+      'CustomerCode': instance.code,
+      'CustomerShortName': instance.shortName,
+      'Address': instance.address,
+      'Phone': instance.phone,
+      'Email': instance.email,
+      'Note': instance.note,
+      'Website': instance.website,
+      'ContactName': instance.contactName,
+      'ContactPhone': instance.contactPhone,
+      'ContactEmail': instance.contactEmail,
+      'AdressStock': instance.addressStock,
+      'TaxCode': instance.taxCode,
+    };
+
+_$ProjectGDNResponseImpl _$$ProjectGDNResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ProjectGDNResponseImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      customerId: (json['CustomerID'] as num?)?.toInt(),
+      code: json['ProjectCode'] as String?,
+      name: json['ProjectName'] as String?,
+      shortName: json['ProjectShortName'] as String?,
+      status: (json['ProjectStatus'] as num?)?.toInt(),
+      userId: (json['UserID'] as num?)?.toInt(),
+      userTechnicalId: (json['UserTechnicalID'] as num?)?.toInt(),
+      note: json['Note'] as String?,
+      projectType: (json['ProjectType'] as num?)?.toInt(),
+      planDateStart: json['PlanDateStart'] == null
+          ? null
+          : DateTime.parse(json['PlanDateStart'] as String),
+      planDateEnd: json['PlanDateEnd'] == null
+          ? null
+          : DateTime.parse(json['PlanDateEnd'] as String),
+      actualDateStart: json['ActualDateStart'] == null
+          ? null
+          : DateTime.parse(json['ActualDateStart'] as String),
+      actualDateEnd: json['ActualDateEnd'] == null
+          ? null
+          : DateTime.parse(json['ActualDateEnd'] as String),
+      endUser: (json['EndUser'] as num?)?.toInt(),
+      createdBy: json['CreatedBy'] as String?,
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+      updatedBy: json['UpdatedBy'] as String?,
+      updatedDate: json['UpdatedDate'] == null
+          ? null
+          : DateTime.parse(json['UpdatedDate'] as String),
+      typeProject: (json['TypeProject'] as num?)?.toInt(),
+      isDeleted: json['IsDeleted'] as bool?,
+    );
+
+Map<String, dynamic> _$$ProjectGDNResponseImplToJson(
+        _$ProjectGDNResponseImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'CustomerID': instance.customerId,
+      'ProjectCode': instance.code,
+      'ProjectName': instance.name,
+      'ProjectShortName': instance.shortName,
+      'ProjectStatus': instance.status,
+      'UserID': instance.userId,
+      'UserTechnicalID': instance.userTechnicalId,
+      'Note': instance.note,
+      'ProjectType': instance.projectType,
+      'PlanDateStart': instance.planDateStart?.toIso8601String(),
+      'PlanDateEnd': instance.planDateEnd?.toIso8601String(),
+      'ActualDateStart': instance.actualDateStart?.toIso8601String(),
+      'ActualDateEnd': instance.actualDateEnd?.toIso8601String(),
+      'EndUser': instance.endUser,
+      'CreatedBy': instance.createdBy,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'UpdatedBy': instance.updatedBy,
+      'UpdatedDate': instance.updatedDate?.toIso8601String(),
+      'TypeProject': instance.typeProject,
+      'IsDeleted': instance.isDeleted,
+    };
+
+_$WarehouseResponseImpl _$$WarehouseResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$WarehouseResponseImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      code: json['WarehouseCode'] as String?,
+      name: json['WarehouseName'] as String?,
+      isDeleted: json['IsDeleted'] as bool?,
+    );
+
+Map<String, dynamic> _$$WarehouseResponseImplToJson(
+        _$WarehouseResponseImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'WarehouseCode': instance.code,
+      'WarehouseName': instance.name,
+      'IsDeleted': instance.isDeleted,
+    };
+
+_$ProductGroupNewResponseImpl _$$ProductGroupNewResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ProductGroupNewResponseImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      productGroupId: json['ProductGroupID'] as String?,
+      name: json['ProductGroupName'] as String?,
+      isVisible: json['IsVisible'] as bool?,
+      employeeId: (json['EmployeeID'] as num?)?.toInt(),
+      parentId: (json['ParentID'] as num?)?.toInt(),
+      stt: (json['STT'] as num?)?.toInt(),
+      isView: (json['IsView'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$ProductGroupNewResponseImplToJson(
+        _$ProductGroupNewResponseImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'ProductGroupID': instance.productGroupId,
+      'ProductGroupName': instance.name,
+      'IsVisible': instance.isVisible,
+      'EmployeeID': instance.employeeId,
+      'ParentID': instance.parentId,
+      'STT': instance.stt,
+      'IsView': instance.isView,
     };

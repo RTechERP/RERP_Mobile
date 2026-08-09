@@ -2,10 +2,12 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:intl/intl.dart';
 import 'package:rtc_erp/base/bloc/index.dart';
+import 'package:rtc_erp/base/network/errors/error.dart';
 import 'package:rtc_erp/base/network/errors/extension.dart';
 import 'package:rtc_erp/common/logger/index.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/models/sale_gdn_model.dart';
@@ -47,11 +49,35 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
             _onRemoveImage(emit, stt, imageIndex, isLocal),
         submitImages: () => _onSubmitImages(emit),
         clearUploadStatus: () => _onClearUploadStatus(emit),
+        fetchLookupData: () => _fetchLookupData(emit),
+        selectSupplier: (id) => _selectSupplier(emit, id),
+        selectSender: (id) => _selectSender(emit, id),
+        selectCustomer: (id) => _selectCustomer(emit, id),
+        selectWarehouse: (id) => _selectWarehouse(emit, id),
+        selectKhoType: (id) => _selectKhoType(emit, id),
+        selectStatus: (id) => _selectStatus(emit, id),
+        selectProject: (id) => _selectProject(emit, id),
+        changeDeliveryDate: (date) => _changeDeliveryDate(emit, date),
+        changeRequestDate: (date) => _changeRequestDate(emit, date),
+        changeReceiveTime: (time) => _changeReceiveTime(emit, time),
+        selectLoaiKho: (text) => _selectLoaiKho(emit, text),
+        selectProductType: (id) => _selectProductType(emit, id),
+        selectCustomerWithAddress: (id, address) =>
+            _selectCustomerWithAddress(emit, id, address),
+        toggleTransferInternal: (value) =>
+            _toggleTransferInternal(emit, value),
+        toggleInternal: (value) => _toggleInternal(emit, value),
+        selectInternalWarehouse: (id) =>
+            _selectInternalWarehouse(emit, id),
+        selectInternalKhoType: (id) => _selectInternalKhoType(emit, id),
+        changeDeliveryAddress: (address) =>
+            _changeDeliveryAddress(emit, address),
+        selectNcc: (id) => _selectNcc(emit, id),
       );
     });
   }
 
-   _onClearUploadStatus(Emitter<SaleGdnState> emit) {
+  Future<void> _onClearUploadStatus(Emitter<SaleGdnState> emit) async {
     final current = state.detail;
     if (current == null) return;
     emit(state.copyWith(
@@ -397,7 +423,44 @@ BillExporResponse? _findGdnInList(String code) {
           ),
         ));
 
-        // Bước 2: Gọi API detail -> DetailGDNResponse
+        // Bước 2: Gọi API header bill -> DetailGDNItemResponse để fill form
+        // (chạy song song với step detail để không tăng latency).
+        final headerRes = await _repo.getBillExportById(id: id);
+        final billInfo = headerRes.fold(
+          (l) {
+            _log.logE('❌ getBillExportById failed: $l');
+            return null;
+          },
+          (r) {
+            _log.logI('✅ getBillExportById success');
+            return r;
+          },
+        );
+        if (billInfo != null) {
+          final currentAfterHeader = state.detail;
+          if (currentAfterHeader != null) {
+            emit(state.copyWith(
+              detail: currentAfterHeader.copyWith(
+                billInfo: billInfo,
+                // Khởi tạo ID đang chọn theo billInfo để form hiển thị
+                // đúng giá trị ban đầu từ server.
+                selectedSupplierId: billInfo.supplierId,
+                selectedSenderId: billInfo.senderId,
+                selectedCustomerId: billInfo.customerId,
+                selectedWarehouseId: billInfo.warehouseId,
+                selectedKhoTypeId: billInfo.khoTypeId,
+              ),
+            ));
+          }
+
+          // Bước 2.1: Fetch lookup data cho các dropdown trên form.
+          // Dispatch event riêng để handler có vòng đời emitter riêng —
+          // tránh "emit after handler completed" khi handler này emit sau
+          // khi `_onInitDetail` đã kết thúc.
+          add(SaleGdnEvent.fetchLookupData());
+        }
+
+        // Bước 3: Gọi API detail -> DetailGDNResponse
         final detailRes = await _repo.getBillExportDetail(id: id);
 
         await detailRes.fold(
@@ -420,7 +483,7 @@ BillExporResponse? _findGdnInList(String code) {
               _log.logI('🔍 detailData[$i] childId=${detailData[i].childId} stt=${detailData[i].stt}');
             }
 
-            // Bước 3: Gọi API files cho từng childId
+            // Bước 4: Gọi API files cho từng childId
             final serverImagesByChildId = <int, List<ReadFileResponse>>{};
             for (final detail in detailData) {
               final childId = detail.childId;
@@ -776,5 +839,260 @@ BillExporResponse? _findGdnInList(String code) {
       'DeletedDetailIds': <int>[],
       'DeletedFileIds': <int>[],
     };
+  }
+
+  // ---------------------------------------------------------------------------
+  // Lookup data for BillExport form
+  // ---------------------------------------------------------------------------
+
+  /// Fetch song song 6 danh sách lookup. Mỗi danh sách lỗi riêng thì bỏ qua
+  /// nhưng vẫn trả về danh sách rỗng để form không bị trắng field.
+  Future<void> _fetchLookupData(Emitter<SaleGdnState> emit) async {
+    _log.logI('📡 Fetching BillExport lookup data...');
+    final Either<BaseError, List<SupplierResponse>> suppliersRes =
+        await _repo.getSuppliers();
+    final Either<BaseError, List<SenderResponse>> sendersRes =
+        await _repo.getSenders();
+    final Either<BaseError, List<CustomerResponse>> customersRes =
+        await _repo.getCustomers();
+    final Either<BaseError, List<ProjectGDNResponse>> projectsRes =
+        await _repo.getAllProjects();
+    final Either<BaseError, List<WarehouseResponse>> warehousesRes =
+        await _repo.getWarehouses();
+    final Either<BaseError, List<ProductGroupNewResponse>> productGroupsRes =
+        await _repo.getProductGroupNew(
+      warehouseId: 1,
+      isDeleted: false,
+      isVisible: true,
+    );
+
+    final List<SupplierResponse> suppliers = suppliersRes.fold(
+      (_) => const <SupplierResponse>[],
+      (r) => r,
+    );
+    final List<SenderResponse> senders = sendersRes.fold(
+      (_) => const <SenderResponse>[],
+      (r) => r,
+    );
+    final List<CustomerResponse> customers = customersRes.fold(
+      (_) => const <CustomerResponse>[],
+      (r) => r,
+    );
+    final List<ProjectGDNResponse> projects = projectsRes.fold(
+      (_) => const <ProjectGDNResponse>[],
+      (r) => r,
+    );
+    final List<WarehouseResponse> warehouses = warehousesRes.fold(
+      (_) => const <WarehouseResponse>[],
+      (r) => r,
+    );
+    final List<ProductGroupNewResponse> productGroups = productGroupsRes.fold(
+      (_) => const <ProductGroupNewResponse>[],
+      (r) => r,
+    );
+
+    _log.logI(
+      '✅ Lookup data loaded: '
+      'suppliers=${suppliers.length}, senders=${senders.length}, '
+      'customers=${customers.length}, projects=${projects.length}, '
+      'warehouses=${warehouses.length}, productGroups=${productGroups.length}',
+    );
+
+    // Guard: tránh "emit after handler completed" nếu emitter đã đóng
+    // (ví dụ khi handler bị cancel giữa chừng do state mới).
+    if (emit.isDone) return;
+
+    emit(state.copyWith(
+      suppliers: suppliers,
+      senders: senders,
+      customers: customers,
+      projects: projects,
+      warehouses: warehouses,
+      productGroups: productGroups,
+    ));
+  }
+
+  // ---------------------------------------------------------------------------
+  // Lookup selection handlers — update selected ID trong detail state.
+  // Khi ID thay đổi, UI sẽ tự re-lookup display text từ các list ở trên.
+  // ---------------------------------------------------------------------------
+
+  Future<void> _selectSupplier(Emitter<SaleGdnState> emit, int? id) async {
+    final current = state.detail;
+    if (current == null || emit.isDone) return;
+    emit(state.copyWith(
+      detail: current.copyWith(selectedSupplierId: id),
+    ));
+  }
+
+  Future<void> _selectSender(Emitter<SaleGdnState> emit, int? id) async {
+    final current = state.detail;
+    if (current == null || emit.isDone) return;
+    emit(state.copyWith(
+      detail: current.copyWith(selectedSenderId: id),
+    ));
+  }
+
+  Future<void> _selectCustomer(Emitter<SaleGdnState> emit, int? id) async {
+    final current = state.detail;
+    if (current == null || emit.isDone) return;
+    emit(state.copyWith(
+      detail: current.copyWith(selectedCustomerId: id),
+    ));
+  }
+
+  Future<void> _selectWarehouse(Emitter<SaleGdnState> emit, int? id) async {
+    final current = state.detail;
+    if (current == null || emit.isDone) return;
+    emit(state.copyWith(
+      detail: current.copyWith(selectedWarehouseId: id),
+    ));
+  }
+
+  Future<void> _selectKhoType(Emitter<SaleGdnState> emit, int? id) async {
+    final current = state.detail;
+    if (current == null || emit.isDone) return;
+    emit(state.copyWith(
+      detail: current.copyWith(selectedKhoTypeId: id),
+    ));
+  }
+
+  Future<void> _selectStatus(Emitter<SaleGdnState> emit, int? id) async {
+    final current = state.detail;
+    if (current == null || emit.isDone) return;
+    emit(state.copyWith(
+      detail: current.copyWith(selectedStatus: id),
+    ));
+  }
+
+  Future<void> _selectProject(Emitter<SaleGdnState> emit, int? id) async {
+    final current = state.detail;
+    if (current == null || emit.isDone) return;
+    emit(state.copyWith(
+      detail: current.copyWith(selectedProjectId: id),
+    ));
+  }
+
+  Future<void> _changeDeliveryDate(
+      Emitter<SaleGdnState> emit, DateTime? date) async {
+    final current = state.detail;
+    if (current == null || emit.isDone) return;
+    emit(state.copyWith(
+      detail: current.copyWith(deliveryDate: date),
+    ));
+  }
+
+  Future<void> _changeRequestDate(
+      Emitter<SaleGdnState> emit, DateTime? date) async {
+    final current = state.detail;
+    if (current == null || emit.isDone) return;
+    emit(state.copyWith(
+      detail: current.copyWith(requestDate: date),
+    ));
+  }
+
+  Future<void> _changeReceiveTime(
+      Emitter<SaleGdnState> emit, DateTime? time) async {
+    final current = state.detail;
+    if (current == null || emit.isDone) return;
+    emit(state.copyWith(
+      detail: current.copyWith(receiveTime: time),
+    ));
+  }
+
+  Future<void> _selectLoaiKho(
+      Emitter<SaleGdnState> emit, String? text) async {
+    final current = state.detail;
+    if (current == null || emit.isDone) return;
+    emit(state.copyWith(
+      detail: current.copyWith(selectedLoaiKhoText: text),
+    ));
+  }
+
+  Future<void> _selectProductType(
+      Emitter<SaleGdnState> emit, int? productType) async {
+    final current = state.detail;
+    if (current == null || emit.isDone) return;
+    emit(state.copyWith(
+      detail: current.copyWith(selectedProductType: productType),
+    ));
+  }
+
+  Future<void> _selectCustomerWithAddress(
+    Emitter<SaleGdnState> emit,
+    int? customerId,
+    String? address,
+  ) async {
+    final current = state.detail;
+    if (current == null || emit.isDone) return;
+    emit(state.copyWith(
+      detail: current.copyWith(
+        selectedCustomerId: customerId,
+        selectedCustomerAddress: address,
+      ),
+    ));
+  }
+
+  Future<void> _toggleTransferInternal(
+      Emitter<SaleGdnState> emit, bool value) async {
+    final current = state.detail;
+    if (current == null || emit.isDone) return;
+    // Bỏ tick → clear kho chuyển để tránh data thừa.
+    emit(state.copyWith(
+      detail: current.copyWith(
+        isTransferInternalChecked: value,
+        selectedInternalWarehouseId:
+            value ? current.selectedInternalWarehouseId : null,
+      ),
+    ));
+  }
+
+  Future<void> _toggleInternal(
+      Emitter<SaleGdnState> emit, bool value) async {
+    final current = state.detail;
+    if (current == null || emit.isDone) return;
+    // Bỏ tick → clear loại kho chuyển để tránh data thừa.
+    emit(state.copyWith(
+      detail: current.copyWith(
+        isInternalChecked: value,
+        selectedInternalKhoTypeId:
+            value ? current.selectedInternalKhoTypeId : null,
+      ),
+    ));
+  }
+
+  Future<void> _selectInternalWarehouse(
+      Emitter<SaleGdnState> emit, int? warehouseId) async {
+    final current = state.detail;
+    if (current == null || emit.isDone) return;
+    emit(state.copyWith(
+      detail: current.copyWith(selectedInternalWarehouseId: warehouseId),
+    ));
+  }
+
+  Future<void> _selectInternalKhoType(
+      Emitter<SaleGdnState> emit, int? khoTypeId) async {
+    final current = state.detail;
+    if (current == null || emit.isDone) return;
+    emit(state.copyWith(
+      detail: current.copyWith(selectedInternalKhoTypeId: khoTypeId),
+    ));
+  }
+
+  Future<void> _changeDeliveryAddress(
+      Emitter<SaleGdnState> emit, String? address) async {
+    final current = state.detail;
+    if (current == null || emit.isDone) return;
+    emit(state.copyWith(
+      detail: current.copyWith(deliveryAddress: address),
+    ));
+  }
+
+  Future<void> _selectNcc(Emitter<SaleGdnState> emit, int? nccId) async {
+    final current = state.detail;
+    if (current == null || emit.isDone) return;
+    emit(state.copyWith(
+      detail: current.copyWith(selectedNccId: nccId),
+    ));
   }
 }

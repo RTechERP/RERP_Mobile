@@ -14,6 +14,7 @@ import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/vi
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/widgets/sale_gdn_detail_item_card.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/widgets/sale_gdn_empty_view.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/widgets/sale_gdn_error_view.dart';
+import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/widgets/sale_gdn_form.dart';
 
 import '../../../../../../../../../../../common/utils/snack_bar_helper.dart';
 
@@ -119,11 +120,78 @@ class _SaleGdnDetailScreenState
               ),
               child: ListView.separated(
                 padding: const EdgeInsets.all(16),
-                itemCount: detail.details.length,
+                // +1 cho bill info card ở đầu.
+                itemCount: detail.details.length + 1,
                 separatorBuilder: (_, _) => const SizedBox(height: 12),
                 itemBuilder: (context, index) {
-                  final detailItem = detail.details[index];
-                  final stt = detailItem.stt ?? (index + 1);
+                  // Index 0: Form phiếu chi tiết (SaleGdnForm).
+                  if (index == 0) {
+                    return SaleGdnForm(
+                      detail: detail,
+                      suppliers: bloc.state.suppliers,
+                      senders: bloc.state.senders,
+                      customers: bloc.state.customers,
+                      warehouses: bloc.state.warehouses,
+                      productGroups: bloc.state.productGroups,
+                      onSelectSupplier: (id) => bloc.add(
+                        SaleGdnEvent.selectSupplier(id),
+                      ),
+                      onSelectSender: (id) => bloc.add(
+                        SaleGdnEvent.selectSender(id),
+                      ),
+                      onSelectCustomer: (id) => bloc.add(
+                        SaleGdnEvent.selectCustomer(id),
+                      ),
+                      onSelectCustomerWithAddress: (id, address) => bloc.add(
+                        SaleGdnEvent.selectCustomerWithAddress(
+                          customerId: id,
+                          address: address,
+                        ),
+                      ),
+                      onSelectWarehouse: (id) => bloc.add(
+                        SaleGdnEvent.selectWarehouse(id),
+                      ),
+                      onSelectKhoType: (id) => bloc.add(
+                        SaleGdnEvent.selectKhoType(id),
+                      ),
+                      onSelectStatus: (id) => bloc.add(
+                        SaleGdnEvent.selectStatus(id),
+                      ),
+                      onChangeDeliveryDate: (date) => bloc.add(
+                        SaleGdnEvent.changeDeliveryDate(date),
+                      ),
+                      onChangeRequestDate: (date) => bloc.add(
+                        SaleGdnEvent.changeRequestDate(date),
+                      ),
+                      onChangeReceiveTime: (time) => bloc.add(
+                        SaleGdnEvent.changeReceiveTime(time),
+                      ),
+                      onSelectLoaiKho: (text) => bloc.add(
+                        SaleGdnEvent.selectLoaiKho(text),
+                      ),
+                      onToggleTransferInternal: (v) => bloc.add(
+                        SaleGdnEvent.toggleTransferInternal(value: v),
+                      ),
+                      onToggleInternal: (v) => bloc.add(
+                        SaleGdnEvent.toggleInternal(value: v),
+                      ),
+                      onSelectInternalWarehouse: (id) => bloc.add(
+                        SaleGdnEvent.selectInternalWarehouse(id),
+                      ),
+                      onSelectInternalKhoType: (id) => bloc.add(
+                        SaleGdnEvent.selectInternalKhoType(id),
+                      ),
+                      onChangeDeliveryAddress: (address) => bloc.add(
+                        SaleGdnEvent.changeDeliveryAddress(address),
+                      ),
+                      onSelectNcc: (id) => bloc.add(
+                        SaleGdnEvent.selectNcc(id),
+                      ),
+                    );
+                  }
+                  final detailIndex = index - 1;
+                  final detailItem = detail.details[detailIndex];
+                  final stt = detailItem.stt ?? (detailIndex + 1);
                   // Tra `childId` từ DetailGDNResponse theo cùng vị trí `stt`.
                   DetailGDNResponse? matchedFull;
                   for (final f in detail.detailFull) {
@@ -134,7 +202,7 @@ class _SaleGdnDetailScreenState
                     }
                   }
                   matchedFull ??= detail.detailFull.isNotEmpty
-                      ? detail.detailFull[index.clamp(0, detail.detailFull.length - 1)]
+                      ? detail.detailFull[detailIndex.clamp(0, detail.detailFull.length - 1)]
                       : null;
                   final childId = matchedFull?.childId;
                   final serverFiles = childId != null && childId > 0
@@ -151,8 +219,9 @@ class _SaleGdnDetailScreenState
 
                   return SaleGdnDetailItemCard(
                     item: detailItem,
-                    index: index + 1,
-                    localImagePaths: detail.localImagePathsByStt[stt] ?? [],
+                    index: detailIndex + 1,
+                    localImagePaths:
+                        detail.localImagePathsByStt[stt] ?? [],
                     serverImageUrls: serverUrls,
                     onAddImages: () => _addImages(stt),
                     onRemoveImage: (imageIndex, isLocal) =>
@@ -215,14 +284,19 @@ class _SaleGdnDetailScreenState
     final baseUrl = dotenv.env['BASE_URL'] ?? '';
     final newPrefix = '${baseUrl.replaceFirst(RegExp(r'/$'), '')}/share';
 
-    // Thêm http:// nếu thiếu scheme (//192.168.1.190/... → http://192.168.1.190/...)
-    final normalized = path.startsWith('//')
-        ? 'https:${path}'
-        : path;
+    // Chuẩn hoá path: thay tất cả backslash `\` (UNC path Windows) thành
+    // forward slash `/` để URL hợp lệ với HTTP. Đồng thời thêm scheme
+    // nếu path bắt đầu bằng `//` (vd `//192.168.1.190/...` → `https://...`).
+    var normalized = path.replaceAll('\\', '/');
+    if (normalized.startsWith('//')) {
+      normalized = 'https:$normalized';
+    }
 
     if (normalized.contains('192.168.1.190')) {
       final relative = normalized.split('192.168.1.190').last;
-      return '$newPrefix$relative';
+      // Đảm bảo relative path bắt đầu bằng `/`.
+      final withSlash = relative.startsWith('/') ? relative : '/$relative';
+      return '$newPrefix$withSlash';
     }
     if (normalized.startsWith('http://') || normalized.startsWith('https://')) {
       return normalized;

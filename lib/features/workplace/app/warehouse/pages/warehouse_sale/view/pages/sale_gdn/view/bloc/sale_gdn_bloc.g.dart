@@ -29,6 +29,18 @@ abstract class _$SaleGdnStateCWProxy {
 
   SaleGdnState selectedStatus(int selectedStatus);
 
+  SaleGdnState suppliers(List<SupplierResponse> suppliers);
+
+  SaleGdnState senders(List<SenderResponse> senders);
+
+  SaleGdnState customers(List<CustomerResponse> customers);
+
+  SaleGdnState projects(List<ProjectGDNResponse> projects);
+
+  SaleGdnState warehouses(List<WarehouseResponse> warehouses);
+
+  SaleGdnState productGroups(List<ProductGroupNewResponse> productGroups);
+
   SaleGdnState detail(GdnDetailState? detail);
 
   SaleGdnState openedDetailBill(BillExporResponse? openedDetailBill);
@@ -53,6 +65,12 @@ abstract class _$SaleGdnStateCWProxy {
     List<TypeWarehouseResponse>? warehouseTypes,
     List<int>? selectedWarehouseTypeIds,
     int? selectedStatus,
+    List<SupplierResponse>? suppliers,
+    List<SenderResponse>? senders,
+    List<CustomerResponse>? customers,
+    List<ProjectGDNResponse>? projects,
+    List<WarehouseResponse>? warehouses,
+    List<ProductGroupNewResponse>? productGroups,
     GdnDetailState? detail,
     BillExporResponse? openedDetailBill,
     String? scanResultMessage,
@@ -104,6 +122,29 @@ class _$SaleGdnStateCWProxyImpl implements _$SaleGdnStateCWProxy {
       this(selectedStatus: selectedStatus);
 
   @override
+  SaleGdnState suppliers(List<SupplierResponse> suppliers) =>
+      this(suppliers: suppliers);
+
+  @override
+  SaleGdnState senders(List<SenderResponse> senders) => this(senders: senders);
+
+  @override
+  SaleGdnState customers(List<CustomerResponse> customers) =>
+      this(customers: customers);
+
+  @override
+  SaleGdnState projects(List<ProjectGDNResponse> projects) =>
+      this(projects: projects);
+
+  @override
+  SaleGdnState warehouses(List<WarehouseResponse> warehouses) =>
+      this(warehouses: warehouses);
+
+  @override
+  SaleGdnState productGroups(List<ProductGroupNewResponse> productGroups) =>
+      this(productGroups: productGroups);
+
+  @override
   SaleGdnState detail(GdnDetailState? detail) => this(detail: detail);
 
   @override
@@ -134,6 +175,12 @@ class _$SaleGdnStateCWProxyImpl implements _$SaleGdnStateCWProxy {
     Object? warehouseTypes = const $CopyWithPlaceholder(),
     Object? selectedWarehouseTypeIds = const $CopyWithPlaceholder(),
     Object? selectedStatus = const $CopyWithPlaceholder(),
+    Object? suppliers = const $CopyWithPlaceholder(),
+    Object? senders = const $CopyWithPlaceholder(),
+    Object? customers = const $CopyWithPlaceholder(),
+    Object? projects = const $CopyWithPlaceholder(),
+    Object? warehouses = const $CopyWithPlaceholder(),
+    Object? productGroups = const $CopyWithPlaceholder(),
     Object? detail = const $CopyWithPlaceholder(),
     Object? openedDetailBill = const $CopyWithPlaceholder(),
     Object? scanResultMessage = const $CopyWithPlaceholder(),
@@ -190,6 +237,32 @@ class _$SaleGdnStateCWProxyImpl implements _$SaleGdnStateCWProxy {
           ? _value.selectedStatus
           // ignore: cast_nullable_to_non_nullable
           : selectedStatus as int,
+      suppliers: suppliers == const $CopyWithPlaceholder() || suppliers == null
+          ? _value.suppliers
+          // ignore: cast_nullable_to_non_nullable
+          : suppliers as List<SupplierResponse>,
+      senders: senders == const $CopyWithPlaceholder() || senders == null
+          ? _value.senders
+          // ignore: cast_nullable_to_non_nullable
+          : senders as List<SenderResponse>,
+      customers: customers == const $CopyWithPlaceholder() || customers == null
+          ? _value.customers
+          // ignore: cast_nullable_to_non_nullable
+          : customers as List<CustomerResponse>,
+      projects: projects == const $CopyWithPlaceholder() || projects == null
+          ? _value.projects
+          // ignore: cast_nullable_to_non_nullable
+          : projects as List<ProjectGDNResponse>,
+      warehouses:
+          warehouses == const $CopyWithPlaceholder() || warehouses == null
+              ? _value.warehouses
+              // ignore: cast_nullable_to_non_nullable
+              : warehouses as List<WarehouseResponse>,
+      productGroups:
+          productGroups == const $CopyWithPlaceholder() || productGroups == null
+              ? _value.productGroups
+              // ignore: cast_nullable_to_non_nullable
+              : productGroups as List<ProductGroupNewResponse>,
       detail: detail == const $CopyWithPlaceholder()
           ? _value.detail
           // ignore: cast_nullable_to_non_nullable
@@ -221,6 +294,48 @@ abstract class _$GdnDetailStateCWProxy {
 
   GdnDetailState bill(BillExporResponse? bill);
 
+  GdnDetailState billInfo(DetailGDNItemResponse? billInfo);
+
+  GdnDetailState selectedSupplierId(int? selectedSupplierId);
+
+  GdnDetailState selectedSenderId(int? selectedSenderId);
+
+  GdnDetailState selectedCustomerId(int? selectedCustomerId);
+
+  GdnDetailState selectedWarehouseId(int? selectedWarehouseId);
+
+  GdnDetailState selectedKhoTypeId(int? selectedKhoTypeId);
+
+  GdnDetailState selectedStatus(int? selectedStatus);
+
+  GdnDetailState selectedProjectId(int? selectedProjectId);
+
+  GdnDetailState deliveryDate(DateTime? deliveryDate);
+
+  GdnDetailState requestDate(DateTime? requestDate);
+
+  GdnDetailState receiveTime(DateTime? receiveTime);
+
+  GdnDetailState selectedLoaiKhoText(String? selectedLoaiKhoText);
+
+  GdnDetailState selectedProductType(int? selectedProductType);
+
+  GdnDetailState selectedCustomerAddress(String? selectedCustomerAddress);
+
+  GdnDetailState selectedInternalWarehouseId(int? selectedInternalWarehouseId);
+
+  GdnDetailState selectedInternalKhoTypeId(int? selectedInternalKhoTypeId);
+
+  GdnDetailState isTransferInternalChecked(bool isTransferInternalChecked);
+
+  GdnDetailState isInternalChecked(bool isInternalChecked);
+
+  GdnDetailState deliveryAddress(String? deliveryAddress);
+
+  GdnDetailState reference(String? reference);
+
+  GdnDetailState selectedNccId(int? selectedNccId);
+
   GdnDetailState details(List<ViewGDNDetailResponse> details);
 
   GdnDetailState detailFull(List<DetailGDNResponse> detailFull);
@@ -246,6 +361,27 @@ abstract class _$GdnDetailStateCWProxy {
     String? message,
     int? billExportId,
     BillExporResponse? bill,
+    DetailGDNItemResponse? billInfo,
+    int? selectedSupplierId,
+    int? selectedSenderId,
+    int? selectedCustomerId,
+    int? selectedWarehouseId,
+    int? selectedKhoTypeId,
+    int? selectedStatus,
+    int? selectedProjectId,
+    DateTime? deliveryDate,
+    DateTime? requestDate,
+    DateTime? receiveTime,
+    String? selectedLoaiKhoText,
+    int? selectedProductType,
+    String? selectedCustomerAddress,
+    int? selectedInternalWarehouseId,
+    int? selectedInternalKhoTypeId,
+    bool? isTransferInternalChecked,
+    bool? isInternalChecked,
+    String? deliveryAddress,
+    String? reference,
+    int? selectedNccId,
     List<ViewGDNDetailResponse>? details,
     List<DetailGDNResponse>? detailFull,
     List<UploadFileResponse>? uploadedImages,
@@ -273,6 +409,90 @@ class _$GdnDetailStateCWProxyImpl implements _$GdnDetailStateCWProxy {
 
   @override
   GdnDetailState bill(BillExporResponse? bill) => this(bill: bill);
+
+  @override
+  GdnDetailState billInfo(DetailGDNItemResponse? billInfo) =>
+      this(billInfo: billInfo);
+
+  @override
+  GdnDetailState selectedSupplierId(int? selectedSupplierId) =>
+      this(selectedSupplierId: selectedSupplierId);
+
+  @override
+  GdnDetailState selectedSenderId(int? selectedSenderId) =>
+      this(selectedSenderId: selectedSenderId);
+
+  @override
+  GdnDetailState selectedCustomerId(int? selectedCustomerId) =>
+      this(selectedCustomerId: selectedCustomerId);
+
+  @override
+  GdnDetailState selectedWarehouseId(int? selectedWarehouseId) =>
+      this(selectedWarehouseId: selectedWarehouseId);
+
+  @override
+  GdnDetailState selectedKhoTypeId(int? selectedKhoTypeId) =>
+      this(selectedKhoTypeId: selectedKhoTypeId);
+
+  @override
+  GdnDetailState selectedStatus(int? selectedStatus) =>
+      this(selectedStatus: selectedStatus);
+
+  @override
+  GdnDetailState selectedProjectId(int? selectedProjectId) =>
+      this(selectedProjectId: selectedProjectId);
+
+  @override
+  GdnDetailState deliveryDate(DateTime? deliveryDate) =>
+      this(deliveryDate: deliveryDate);
+
+  @override
+  GdnDetailState requestDate(DateTime? requestDate) =>
+      this(requestDate: requestDate);
+
+  @override
+  GdnDetailState receiveTime(DateTime? receiveTime) =>
+      this(receiveTime: receiveTime);
+
+  @override
+  GdnDetailState selectedLoaiKhoText(String? selectedLoaiKhoText) =>
+      this(selectedLoaiKhoText: selectedLoaiKhoText);
+
+  @override
+  GdnDetailState selectedProductType(int? selectedProductType) =>
+      this(selectedProductType: selectedProductType);
+
+  @override
+  GdnDetailState selectedCustomerAddress(String? selectedCustomerAddress) =>
+      this(selectedCustomerAddress: selectedCustomerAddress);
+
+  @override
+  GdnDetailState selectedInternalWarehouseId(
+          int? selectedInternalWarehouseId) =>
+      this(selectedInternalWarehouseId: selectedInternalWarehouseId);
+
+  @override
+  GdnDetailState selectedInternalKhoTypeId(int? selectedInternalKhoTypeId) =>
+      this(selectedInternalKhoTypeId: selectedInternalKhoTypeId);
+
+  @override
+  GdnDetailState isTransferInternalChecked(bool isTransferInternalChecked) =>
+      this(isTransferInternalChecked: isTransferInternalChecked);
+
+  @override
+  GdnDetailState isInternalChecked(bool isInternalChecked) =>
+      this(isInternalChecked: isInternalChecked);
+
+  @override
+  GdnDetailState deliveryAddress(String? deliveryAddress) =>
+      this(deliveryAddress: deliveryAddress);
+
+  @override
+  GdnDetailState reference(String? reference) => this(reference: reference);
+
+  @override
+  GdnDetailState selectedNccId(int? selectedNccId) =>
+      this(selectedNccId: selectedNccId);
 
   @override
   GdnDetailState details(List<ViewGDNDetailResponse> details) =>
@@ -313,6 +533,27 @@ class _$GdnDetailStateCWProxyImpl implements _$GdnDetailStateCWProxy {
     Object? message = const $CopyWithPlaceholder(),
     Object? billExportId = const $CopyWithPlaceholder(),
     Object? bill = const $CopyWithPlaceholder(),
+    Object? billInfo = const $CopyWithPlaceholder(),
+    Object? selectedSupplierId = const $CopyWithPlaceholder(),
+    Object? selectedSenderId = const $CopyWithPlaceholder(),
+    Object? selectedCustomerId = const $CopyWithPlaceholder(),
+    Object? selectedWarehouseId = const $CopyWithPlaceholder(),
+    Object? selectedKhoTypeId = const $CopyWithPlaceholder(),
+    Object? selectedStatus = const $CopyWithPlaceholder(),
+    Object? selectedProjectId = const $CopyWithPlaceholder(),
+    Object? deliveryDate = const $CopyWithPlaceholder(),
+    Object? requestDate = const $CopyWithPlaceholder(),
+    Object? receiveTime = const $CopyWithPlaceholder(),
+    Object? selectedLoaiKhoText = const $CopyWithPlaceholder(),
+    Object? selectedProductType = const $CopyWithPlaceholder(),
+    Object? selectedCustomerAddress = const $CopyWithPlaceholder(),
+    Object? selectedInternalWarehouseId = const $CopyWithPlaceholder(),
+    Object? selectedInternalKhoTypeId = const $CopyWithPlaceholder(),
+    Object? isTransferInternalChecked = const $CopyWithPlaceholder(),
+    Object? isInternalChecked = const $CopyWithPlaceholder(),
+    Object? deliveryAddress = const $CopyWithPlaceholder(),
+    Object? reference = const $CopyWithPlaceholder(),
+    Object? selectedNccId = const $CopyWithPlaceholder(),
     Object? details = const $CopyWithPlaceholder(),
     Object? detailFull = const $CopyWithPlaceholder(),
     Object? uploadedImages = const $CopyWithPlaceholder(),
@@ -338,6 +579,96 @@ class _$GdnDetailStateCWProxyImpl implements _$GdnDetailStateCWProxy {
           ? _value.bill
           // ignore: cast_nullable_to_non_nullable
           : bill as BillExporResponse?,
+      billInfo: billInfo == const $CopyWithPlaceholder()
+          ? _value.billInfo
+          // ignore: cast_nullable_to_non_nullable
+          : billInfo as DetailGDNItemResponse?,
+      selectedSupplierId: selectedSupplierId == const $CopyWithPlaceholder()
+          ? _value.selectedSupplierId
+          // ignore: cast_nullable_to_non_nullable
+          : selectedSupplierId as int?,
+      selectedSenderId: selectedSenderId == const $CopyWithPlaceholder()
+          ? _value.selectedSenderId
+          // ignore: cast_nullable_to_non_nullable
+          : selectedSenderId as int?,
+      selectedCustomerId: selectedCustomerId == const $CopyWithPlaceholder()
+          ? _value.selectedCustomerId
+          // ignore: cast_nullable_to_non_nullable
+          : selectedCustomerId as int?,
+      selectedWarehouseId: selectedWarehouseId == const $CopyWithPlaceholder()
+          ? _value.selectedWarehouseId
+          // ignore: cast_nullable_to_non_nullable
+          : selectedWarehouseId as int?,
+      selectedKhoTypeId: selectedKhoTypeId == const $CopyWithPlaceholder()
+          ? _value.selectedKhoTypeId
+          // ignore: cast_nullable_to_non_nullable
+          : selectedKhoTypeId as int?,
+      selectedStatus: selectedStatus == const $CopyWithPlaceholder()
+          ? _value.selectedStatus
+          // ignore: cast_nullable_to_non_nullable
+          : selectedStatus as int?,
+      selectedProjectId: selectedProjectId == const $CopyWithPlaceholder()
+          ? _value.selectedProjectId
+          // ignore: cast_nullable_to_non_nullable
+          : selectedProjectId as int?,
+      deliveryDate: deliveryDate == const $CopyWithPlaceholder()
+          ? _value.deliveryDate
+          // ignore: cast_nullable_to_non_nullable
+          : deliveryDate as DateTime?,
+      requestDate: requestDate == const $CopyWithPlaceholder()
+          ? _value.requestDate
+          // ignore: cast_nullable_to_non_nullable
+          : requestDate as DateTime?,
+      receiveTime: receiveTime == const $CopyWithPlaceholder()
+          ? _value.receiveTime
+          // ignore: cast_nullable_to_non_nullable
+          : receiveTime as DateTime?,
+      selectedLoaiKhoText: selectedLoaiKhoText == const $CopyWithPlaceholder()
+          ? _value.selectedLoaiKhoText
+          // ignore: cast_nullable_to_non_nullable
+          : selectedLoaiKhoText as String?,
+      selectedProductType: selectedProductType == const $CopyWithPlaceholder()
+          ? _value.selectedProductType
+          // ignore: cast_nullable_to_non_nullable
+          : selectedProductType as int?,
+      selectedCustomerAddress:
+          selectedCustomerAddress == const $CopyWithPlaceholder()
+              ? _value.selectedCustomerAddress
+              // ignore: cast_nullable_to_non_nullable
+              : selectedCustomerAddress as String?,
+      selectedInternalWarehouseId:
+          selectedInternalWarehouseId == const $CopyWithPlaceholder()
+              ? _value.selectedInternalWarehouseId
+              // ignore: cast_nullable_to_non_nullable
+              : selectedInternalWarehouseId as int?,
+      selectedInternalKhoTypeId:
+          selectedInternalKhoTypeId == const $CopyWithPlaceholder()
+              ? _value.selectedInternalKhoTypeId
+              // ignore: cast_nullable_to_non_nullable
+              : selectedInternalKhoTypeId as int?,
+      isTransferInternalChecked:
+          isTransferInternalChecked == const $CopyWithPlaceholder() ||
+                  isTransferInternalChecked == null
+              ? _value.isTransferInternalChecked
+              // ignore: cast_nullable_to_non_nullable
+              : isTransferInternalChecked as bool,
+      isInternalChecked: isInternalChecked == const $CopyWithPlaceholder() ||
+              isInternalChecked == null
+          ? _value.isInternalChecked
+          // ignore: cast_nullable_to_non_nullable
+          : isInternalChecked as bool,
+      deliveryAddress: deliveryAddress == const $CopyWithPlaceholder()
+          ? _value.deliveryAddress
+          // ignore: cast_nullable_to_non_nullable
+          : deliveryAddress as String?,
+      reference: reference == const $CopyWithPlaceholder()
+          ? _value.reference
+          // ignore: cast_nullable_to_non_nullable
+          : reference as String?,
+      selectedNccId: selectedNccId == const $CopyWithPlaceholder()
+          ? _value.selectedNccId
+          // ignore: cast_nullable_to_non_nullable
+          : selectedNccId as int?,
       details: details == const $CopyWithPlaceholder() || details == null
           ? _value.details
           // ignore: cast_nullable_to_non_nullable

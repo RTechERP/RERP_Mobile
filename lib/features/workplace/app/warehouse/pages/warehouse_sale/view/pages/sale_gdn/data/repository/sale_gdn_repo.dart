@@ -19,6 +19,35 @@ abstract class SaleGdnRepo {
     required int id,
   });
 
+  /// Lấy thông tin header của phiếu xuất kho theo ID (single object).
+  /// Dùng để fill các trường form (mã phiếu, ngày tạo, kho, khách hàng, địa chỉ...)
+  /// ở đầu trang Detail.
+  Future<Either<BaseError, DetailGDNItemResponse>> getBillExportById({
+    required int id,
+  });
+
+  /// Danh sách NCC dùng cho dropdown trên trang Detail.
+  Future<Either<BaseError, List<SupplierResponse>>> getSuppliers();
+
+  /// Danh sách người giao (nhân viên) cho dropdown trên trang Detail.
+  Future<Either<BaseError, List<SenderResponse>>> getSenders();
+
+  /// Danh sách khách hàng cho dropdown trên trang Detail.
+  Future<Either<BaseError, List<CustomerResponse>>> getCustomers();
+
+  /// Danh sách dự án cho dropdown trên trang Detail.
+  Future<Either<BaseError, List<ProjectGDNResponse>>> getAllProjects();
+
+  /// Danh sách kho cho dropdown trên trang Detail.
+  Future<Either<BaseError, List<WarehouseResponse>>> getWarehouses();
+
+  /// Danh sách loại kho (ProductGroup) theo warehouseId.
+  Future<Either<BaseError, List<ProductGroupNewResponse>>> getProductGroupNew({
+    int? warehouseId,
+    bool? isDeleted,
+    bool? isVisible,
+  });
+
   /// Lấy chi tiết phiếu xuất kho theo ID.
   Future<Either<BaseError, List<ViewGDNDetailResponse>>> getViewExportDetail({
     required int id,

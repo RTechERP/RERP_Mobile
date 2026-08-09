@@ -106,6 +106,60 @@ class ViewGDNDetailResponse with _$ViewGDNDetailResponse {
 }
 
 @freezed
+class DetailGDNItemResponse with _$DetailGDNItemResponse {
+  const factory DetailGDNItemResponse({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'TypeBill') bool? typeBill,
+    @JsonKey(name: 'SupplierID') int? supplierId,
+    @JsonKey(name: 'CustomerID') int? customerId,
+    @JsonKey(name: 'UserID') int? userId,
+    @JsonKey(name: 'SenderID') int? senderId,
+    @JsonKey(name: 'StockID') int? stockId,
+    @JsonKey(name: 'Description') String? description,
+    @JsonKey(name: 'Address') String? address,
+    @JsonKey(name: 'CreatDate') DateTime? creatDate,
+    @JsonKey(name: 'IsApproved') bool? isApproved,
+    @JsonKey(name: 'Status') int? status,
+    @JsonKey(name: 'GroupID') String? groupId,
+    @JsonKey(name: 'WarehouseType') String? warehouseType,
+    @JsonKey(name: 'KhoTypeID') int? khoTypeId,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'ProductType') int? productType,
+    @JsonKey(name: 'AddressStockID') int? addressStockId,
+    @JsonKey(name: 'IsMerge') bool? isMerge,
+    @JsonKey(name: 'UnApprove') int? unApprove,
+    @JsonKey(name: 'WarehouseID') int? warehouseId,
+    @JsonKey(name: 'IsPrepared') bool? isPrepared,
+    @JsonKey(name: 'IsReceived') bool? isReceived,
+    @JsonKey(name: 'RequestDate') DateTime? requestDate,
+    @JsonKey(name: 'PreparedDate') DateTime? preparedDate,
+    @JsonKey(name: 'BillDocumentExportType') int? billDocumentExportType,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+    @JsonKey(name: 'BillImportID') int? billImportId,
+    @JsonKey(name: 'WareHouseTranferID') int? wareHouseTranferId,
+    @JsonKey(name: 'IsTransfer') bool? isTransfer,
+    @JsonKey(name: 'DeliveryTime') DateTime? deliveryTime,
+    @JsonKey(name: 'IsAfterHours') bool? isAfterHours,
+    @JsonKey(name: 'ReceiverID') int? receiverId,
+    @JsonKey(name: 'IsIncurredApproved') bool? isIncurredApproved,
+    @JsonKey(name: 'IncurredApprovedID') int? incurredApprovedId,
+    @JsonKey(name: 'IsOrderPrepared') bool? isOrderPrepared,
+    @JsonKey(name: 'IsOrderReceived') bool? isOrderReceived,
+    @JsonKey(name: 'OrderPreparedID') int? orderPreparedId,
+    @JsonKey(name: 'OrderReceivedID') int? orderReceivedId,
+    @JsonKey(name: 'IsTransferInternal') bool? isTransferInternal,
+    @JsonKey(name: 'KhoTypeTransferID') int? khoTypeTransferId,
+  }) = _DetailGDNItemResponse;
+
+  factory DetailGDNItemResponse.fromJson(Map<String, dynamic> json) =>
+      _$DetailGDNItemResponseFromJson(json);
+}
+
+@freezed
 class DetailGDNResponse with _$DetailGDNResponse {
   const factory DetailGDNResponse({
     @JsonKey(name: 'TotalInventory') double? totalInventory,
@@ -338,4 +392,166 @@ class SaveBillExportDataResponse with _$SaveBillExportDataResponse {
 
   factory SaveBillExportDataResponse.fromJson(Map<String, dynamic> json) =>
       _$SaveBillExportDataResponseFromJson(json);
+}
+
+// ===========================================================================
+// Lookup models for BillExport form fields
+// ===========================================================================
+
+/// NCC (Supplier) — API `/billexport/get-suppliers`.
+@freezed
+class SupplierResponse with _$SupplierResponse {
+  const factory SupplierResponse({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'CodeNCC') String? code,
+    @JsonKey(name: 'NameNCC') String? name,
+    @JsonKey(name: 'AddressNCC') String? address,
+    @JsonKey(name: 'PhoneNCC') String? phone,
+    @JsonKey(name: 'OrdererNCC') String? orderer,
+    @JsonKey(name: 'Debt') dynamic debt,
+    @JsonKey(name: 'NgayUpdate') DateTime? ngayUpdate,
+    @JsonKey(name: 'NVPhuTrach') String? nvPhuTrach,
+    @JsonKey(name: 'LoaiHangHoa') String? loaiHangHoa,
+    @JsonKey(name: 'Brand') String? brand,
+    @JsonKey(name: 'MaNhom') String? maNhom,
+    @JsonKey(name: 'TenTiengAnh') String? tenTiengAnh,
+    @JsonKey(name: 'Website') String? website,
+    @JsonKey(name: 'SoTK') String? soTK,
+    @JsonKey(name: 'NganHang') String? nganHang,
+    @JsonKey(name: 'MaSoThue') String? maSoThue,
+    @JsonKey(name: 'Note') String? note,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'Company') String? company,
+    @JsonKey(name: 'ShortNameSupplier') String? shortName,
+    @JsonKey(name: 'EmployeeID') int? employeeId,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+    @JsonKey(name: 'IsDebt') bool? isDebt,
+    @JsonKey(name: 'FedexAccount') String? fedexAccount,
+    @JsonKey(name: 'OriginItem') String? originItem,
+    @JsonKey(name: 'BankCharge') String? bankCharge,
+    @JsonKey(name: 'AddressDelivery') String? addressDelivery,
+    @JsonKey(name: 'RulePayID') int? rulePayId,
+    @JsonKey(name: 'Description') String? description,
+    @JsonKey(name: 'RuleIncoterm') String? ruleIncoterm,
+    @JsonKey(name: 'BankListID') int? bankListId,
+  }) = _SupplierResponse;
+
+  factory SupplierResponse.fromJson(Map<String, dynamic> json) =>
+      _$SupplierResponseFromJson(json);
+}
+
+/// Người giao hàng (Sender / Employee) — API `/billexport/get-senders`.
+@freezed
+class SenderResponse with _$SenderResponse {
+  const factory SenderResponse({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'LoginName') String? loginName,
+    @JsonKey(name: 'FullName') String? fullName,
+    @JsonKey(name: 'BirthOfDate') DateTime? birthOfDate,
+    @JsonKey(name: 'Sex') int? sex,
+    @JsonKey(name: 'Telephone') String? telephone,
+    @JsonKey(name: 'HandPhone') String? handPhone,
+    @JsonKey(name: 'Email') String? email,
+    @JsonKey(name: 'DepartmentID') int? departmentId,
+    @JsonKey(name: 'Status') int? status,
+    @JsonKey(name: 'Position') String? position,
+    @JsonKey(name: 'ImagePath') String? imagePath,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+  }) = _SenderResponse;
+
+  factory SenderResponse.fromJson(Map<String, dynamic> json) =>
+      _$SenderResponseFromJson(json);
+}
+
+/// Khách hàng — API `/billexport/get-customers`.
+@freezed
+class CustomerResponse with _$CustomerResponse {
+  const factory CustomerResponse({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'CustomerName') String? name,
+    @JsonKey(name: 'CustomerCode') String? code,
+    @JsonKey(name: 'CustomerShortName') String? shortName,
+    @JsonKey(name: 'Address') String? address,
+    @JsonKey(name: 'Phone') String? phone,
+    @JsonKey(name: 'Email') String? email,
+    @JsonKey(name: 'Note') String? note,
+    @JsonKey(name: 'Website') String? website,
+    @JsonKey(name: 'ContactName') String? contactName,
+    @JsonKey(name: 'ContactPhone') String? contactPhone,
+    @JsonKey(name: 'ContactEmail') String? contactEmail,
+    @JsonKey(name: 'AdressStock') String? addressStock,
+    @JsonKey(name: 'TaxCode') String? taxCode,
+  }) = _CustomerResponse;
+
+  factory CustomerResponse.fromJson(Map<String, dynamic> json) =>
+      _$CustomerResponseFromJson(json);
+}
+
+/// Dự án — API `/billexport/get-all-project`.
+@freezed
+class ProjectGDNResponse with _$ProjectGDNResponse {
+  const factory ProjectGDNResponse({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'CustomerID') int? customerId,
+    @JsonKey(name: 'ProjectCode') String? code,
+    @JsonKey(name: 'ProjectName') String? name,
+    @JsonKey(name: 'ProjectShortName') String? shortName,
+    @JsonKey(name: 'ProjectStatus') int? status,
+    @JsonKey(name: 'UserID') int? userId,
+    @JsonKey(name: 'UserTechnicalID') int? userTechnicalId,
+    @JsonKey(name: 'Note') String? note,
+    @JsonKey(name: 'ProjectType') int? projectType,
+    @JsonKey(name: 'PlanDateStart') DateTime? planDateStart,
+    @JsonKey(name: 'PlanDateEnd') DateTime? planDateEnd,
+    @JsonKey(name: 'ActualDateStart') DateTime? actualDateStart,
+    @JsonKey(name: 'ActualDateEnd') DateTime? actualDateEnd,
+    @JsonKey(name: 'EndUser') int? endUser,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'TypeProject') int? typeProject,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+  }) = _ProjectGDNResponse;
+
+  factory ProjectGDNResponse.fromJson(Map<String, dynamic> json) =>
+      _$ProjectGDNResponseFromJson(json);
+}
+
+/// Kho — API `/billexport/get-warehouses`.
+@freezed
+class WarehouseResponse with _$WarehouseResponse {
+  const factory WarehouseResponse({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'WarehouseCode') String? code,
+    @JsonKey(name: 'WarehouseName') String? name,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+  }) = _WarehouseResponse;
+
+  factory WarehouseResponse.fromJson(Map<String, dynamic> json) =>
+      _$WarehouseResponseFromJson(json);
+}
+
+/// Nhóm sản phẩm (loại kho) — API `/ProductGroup/product-group-new`.
+/// Field trả về nằm trong `data` của `BaseData`.
+@freezed
+class ProductGroupNewResponse with _$ProductGroupNewResponse {
+  const factory ProductGroupNewResponse({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'ProductGroupID') String? productGroupId,
+    @JsonKey(name: 'ProductGroupName') String? name,
+    @JsonKey(name: 'IsVisible') bool? isVisible,
+    @JsonKey(name: 'EmployeeID') int? employeeId,
+    @JsonKey(name: 'ParentID') int? parentId,
+    @JsonKey(name: 'STT') int? stt,
+    @JsonKey(name: 'IsView') int? isView,
+  }) = _ProductGroupNewResponse;
+
+  factory ProductGroupNewResponse.fromJson(Map<String, dynamic> json) =>
+      _$ProductGroupNewResponseFromJson(json);
 }

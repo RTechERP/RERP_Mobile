@@ -27,6 +27,28 @@ class SaleGdnState extends BaseBlocState {
   /// Trạng thái đang chọn (-1 = tất cả).
   final int selectedStatus;
 
+  // ---------------------------------------------------------------------------
+  // Lookup lists for BillExport form fields (fetched lazily on detail open)
+  // ---------------------------------------------------------------------------
+
+  /// Danh sách NCC (Supplier) cho dropdown trên form BillExport.
+  final List<SupplierResponse> suppliers;
+
+  /// Danh sách người giao (Sender / Employee) cho dropdown.
+  final List<SenderResponse> senders;
+
+  /// Danh sách khách hàng cho dropdown.
+  final List<CustomerResponse> customers;
+
+  /// Danh sách dự án cho dropdown.
+  final List<ProjectGDNResponse> projects;
+
+  /// Danh sách kho cho dropdown.
+  final List<WarehouseResponse> warehouses;
+
+  /// Danh sách loại kho (ProductGroup) cho dropdown.
+  final List<ProductGroupNewResponse> productGroups;
+
   /// Trạng thái màn chi tiết (nested). Khi chưa mở thì null.
   final GdnDetailState? detail;
 
@@ -50,6 +72,12 @@ class SaleGdnState extends BaseBlocState {
     this.warehouseTypes = const [],
     this.selectedWarehouseTypeIds = const [],
     this.selectedStatus = -1,
+    this.suppliers = const [],
+    this.senders = const [],
+    this.customers = const [],
+    this.projects = const [],
+    this.warehouses = const [],
+    this.productGroups = const [],
     this.detail,
     this.openedDetailBill,
     this.scanResultMessage,
@@ -84,6 +112,12 @@ class SaleGdnState extends BaseBlocState {
         warehouseTypes,
         selectedWarehouseTypeIds,
         selectedStatus,
+        suppliers,
+        senders,
+        customers,
+        projects,
+        warehouses,
+        productGroups,
         detail,
         openedDetailBill,
         scanResultMessage,
