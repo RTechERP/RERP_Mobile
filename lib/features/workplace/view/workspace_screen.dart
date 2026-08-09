@@ -271,13 +271,14 @@ class _WorkPlaceScreenState
                       //   route: '/week_plan',
                       //   imageUrl: AppImages.app_menu_week_plan,
                       // ),
-                      AppItemModel(
-                        id: 'personal_approve',
-                        iconCodePoint: Icons.approval_outlined.codePoint,
-                        name: 'applications.personal_approve'.tr(),
-                        // route trống - sẽ resolve ngay khi tap
-                        // imageUrl: AppImages.app_menu_week_plan,
-                      ),
+                      if (_hasApprovePermission(state.user))
+                        AppItemModel(
+                          id: 'personal_approve',
+                          iconCodePoint: Icons.approval_outlined.codePoint,
+                          name: 'applications.personal_approve'.tr(),
+                          // route trống - sẽ resolve ngay khi tap
+                          // imageUrl: AppImages.app_menu_week_plan,
+                        ),
                       // AppItemModel(
                       //   id: 'stock',
                       //   iconCodePoint: Icons.shopping_cart_outlined.codePoint,
@@ -323,6 +324,19 @@ class _WorkPlaceScreenState
       }, buildWhen: (p, n) => p.status != n.status || p.user != n.user),
     );
   }
+
+  /// Kiểm tra user có được phép hiển thị chức năng "Phê duyệt" hay không.
+  ///
+  /// Dựa trên field `permissions` (chuỗi phân tách bởi dấu phẩy) của user.
+  /// Chỉ những user có chứa một trong các mã N1, N32, N85 mới được thấy item.
+  bool _hasApprovePermission(User? user) {
+    if (user == null) return false;
+    final codes = user.permissions.split(',').map((e) => e.trim()).toSet();
+    return codes.any(_approvePermissionCodes.contains);
+  }
+
+  /// Danh sách các mã permission cho phép hiển thị chức năng Phê duyệt.
+  static const _approvePermissionCodes = {'N1', 'N32', 'N85'};
 
   /// Resolve full URL cho avatar qua endpoint /api/home/avatar.
   ///
