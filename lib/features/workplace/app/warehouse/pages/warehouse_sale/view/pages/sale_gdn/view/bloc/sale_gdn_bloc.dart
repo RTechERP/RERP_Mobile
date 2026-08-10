@@ -714,6 +714,10 @@ BillExporResponse? _findGdnInList(String code) {
     final current = state.detail;
     if (current == null) return;
 
+    // Chống gọi trùng: nếu đang submit thì bỏ qua lời gọi add mới
+    // (cũng chính là submit ngay) để tránh duplicate save-data.
+    if (current.uploadStatus == BaseStateStatus.loading) return;
+
     final existing = current.localImagePathsByStt[stt] ?? [];
     final updated = Map<int, List<String>>.from(current.localImagePathsByStt);
     updated[stt] = [...existing, ...imagePaths];
@@ -790,6 +794,10 @@ BillExporResponse? _findGdnInList(String code) {
   Future<void> _onSubmitImages(Emitter<SaleGdnState> emit) async {
     final current = state.detail;
     if (current == null) return;
+
+    // Chống gọi trùng: nếu đang submit thì bỏ qua để tránh duplicate
+    // save-data khi event được dispatch nhiều lần liên tiếp.
+    if (current.uploadStatus == BaseStateStatus.loading) return;
 
     final localFilesByStt = current.localImagePathsByStt;
     final pendingDeletedFileIds = current.pendingDeletedFileIds;

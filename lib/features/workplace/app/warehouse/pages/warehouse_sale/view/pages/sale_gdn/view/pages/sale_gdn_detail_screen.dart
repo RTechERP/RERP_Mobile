@@ -68,6 +68,10 @@ class _SaleGdnDetailScreenState
           // KHÔNG pop màn detail: nếu user vẫn muốn xem/ sửa tiếp thì ở lại.
           // Ảnh đã được server cập nhật qua API save-data.
           bloc.add(SaleGdnEvent.clearUploadStatus());
+          bloc.add(SaleGdnEvent.initDetail(
+            id: widget.billId,
+            bill: widget.bill,
+          ));
         }
       },
       child: _buildBody(context),
