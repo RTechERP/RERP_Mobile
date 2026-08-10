@@ -100,6 +100,15 @@ class GdnDetailState extends BaseBlocState {
   /// Key = childId, Value = danh sách ReadFileResponse.
   final Map<int, List<ReadFileResponse>> serverImagesByChildId;
 
+  /// Tập `fileId` (server) đã được đánh dấu xoá trong phiên làm việc hiện tại.
+  /// Sẽ được gửi lên server qua `DeletedFileIds` khi submit.
+  /// Key = fileId (int).
+  final Set<int> pendingDeletedFileIds;
+
+  /// Tập đường dẫn ảnh local đã được đánh dấu xoá trong phiên làm việc hiện tại.
+  /// Sẽ bị loại khỏi danh sách upload và remove khỏi state sau khi submit thành công.
+  final Set<String> pendingDeletedLocalPaths;
+
   /// Trạng thái upload ảnh (tách riêng với status để tránh conflict).
   final BaseStateStatus uploadStatus;
 
@@ -136,6 +145,8 @@ class GdnDetailState extends BaseBlocState {
     this.uploadedImages = const [],
     this.localImagePathsByStt = const {},
     this.serverImagesByChildId = const {},
+    this.pendingDeletedFileIds = const {},
+    this.pendingDeletedLocalPaths = const {},
     this.uploadStatus = BaseStateStatus.init,
   });
 
@@ -212,6 +223,8 @@ class GdnDetailState extends BaseBlocState {
         uploadedImages,
         localImagePathsByStt,
         serverImagesByChildId,
+        pendingDeletedFileIds,
+        pendingDeletedLocalPaths,
         uploadStatus,
       ];
 }

@@ -376,6 +376,10 @@ abstract class _$GdnDetailStateCWProxy {
   GdnDetailState serverImagesByChildId(
       Map<int, List<ReadFileResponse>> serverImagesByChildId);
 
+  GdnDetailState pendingDeletedFileIds(Set<int> pendingDeletedFileIds);
+
+  GdnDetailState pendingDeletedLocalPaths(Set<String> pendingDeletedLocalPaths);
+
   GdnDetailState uploadStatus(BaseStateStatus uploadStatus);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GdnDetailState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
@@ -417,6 +421,8 @@ abstract class _$GdnDetailStateCWProxy {
     List<UploadFileResponse>? uploadedImages,
     Map<int, List<String>>? localImagePathsByStt,
     Map<int, List<ReadFileResponse>>? serverImagesByChildId,
+    Set<int>? pendingDeletedFileIds,
+    Set<String>? pendingDeletedLocalPaths,
     BaseStateStatus? uploadStatus,
   });
 }
@@ -554,6 +560,15 @@ class _$GdnDetailStateCWProxyImpl implements _$GdnDetailStateCWProxy {
       this(serverImagesByChildId: serverImagesByChildId);
 
   @override
+  GdnDetailState pendingDeletedFileIds(Set<int> pendingDeletedFileIds) =>
+      this(pendingDeletedFileIds: pendingDeletedFileIds);
+
+  @override
+  GdnDetailState pendingDeletedLocalPaths(
+          Set<String> pendingDeletedLocalPaths) =>
+      this(pendingDeletedLocalPaths: pendingDeletedLocalPaths);
+
+  @override
   GdnDetailState uploadStatus(BaseStateStatus uploadStatus) =>
       this(uploadStatus: uploadStatus);
 
@@ -598,6 +613,8 @@ class _$GdnDetailStateCWProxyImpl implements _$GdnDetailStateCWProxy {
     Object? uploadedImages = const $CopyWithPlaceholder(),
     Object? localImagePathsByStt = const $CopyWithPlaceholder(),
     Object? serverImagesByChildId = const $CopyWithPlaceholder(),
+    Object? pendingDeletedFileIds = const $CopyWithPlaceholder(),
+    Object? pendingDeletedLocalPaths = const $CopyWithPlaceholder(),
     Object? uploadStatus = const $CopyWithPlaceholder(),
   }) {
     return GdnDetailState(
@@ -742,6 +759,18 @@ class _$GdnDetailStateCWProxyImpl implements _$GdnDetailStateCWProxy {
               ? _value.serverImagesByChildId
               // ignore: cast_nullable_to_non_nullable
               : serverImagesByChildId as Map<int, List<ReadFileResponse>>,
+      pendingDeletedFileIds:
+          pendingDeletedFileIds == const $CopyWithPlaceholder() ||
+                  pendingDeletedFileIds == null
+              ? _value.pendingDeletedFileIds
+              // ignore: cast_nullable_to_non_nullable
+              : pendingDeletedFileIds as Set<int>,
+      pendingDeletedLocalPaths:
+          pendingDeletedLocalPaths == const $CopyWithPlaceholder() ||
+                  pendingDeletedLocalPaths == null
+              ? _value.pendingDeletedLocalPaths
+              // ignore: cast_nullable_to_non_nullable
+              : pendingDeletedLocalPaths as Set<String>,
       uploadStatus:
           uploadStatus == const $CopyWithPlaceholder() || uploadStatus == null
               ? _value.uploadStatus

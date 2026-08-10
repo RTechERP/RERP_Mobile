@@ -48,23 +48,25 @@ class _SaleGdnDetailScreenState
         final detail = state.detail;
         if (detail == null) return;
 
-        // Upload thất bại
+        // Upload/xoá thất bại
         if (detail.uploadStatus == BaseStateStatus.failed) {
           context.showMessage(
-            detail.message ?? 'Upload thất bại',
+            detail.message ?? 'Lưu ảnh thất bại',
             type: SnackBarType.error,
           );
           // Clear status after showing message
           bloc.add(SaleGdnEvent.clearUploadStatus());
         }
 
-        // Upload thành công
+        // Upload/xoá thành công
         if (detail.uploadStatus == BaseStateStatus.success) {
           context.showMessage(
-            'Upload thành công',
+            detail.message ?? 'Upload thành công',
             type: SnackBarType.success,
           );
-          // Clear status after showing message
+          // Clear status after showing message.
+          // KHÔNG pop màn detail: nếu user vẫn muốn xem/ sửa tiếp thì ở lại.
+          // Ảnh đã được server cập nhật qua API save-data.
           bloc.add(SaleGdnEvent.clearUploadStatus());
         }
       },
@@ -214,13 +216,18 @@ class _SaleGdnDetailScreenState
                 final serverFiles = childId != null && childId > 0
                     ? childIdToServerFiles[childId] ?? []
                     : <ReadFileResponse>[];
-                final serverUrls = serverFiles
+
+                // Tạo danh sách (url, fileId) cho server images của dòng này.
+                final serverImages = serverFiles
                     .where((f) =>
                         (f.serverPath ?? '').isNotEmpty &&
                         (f.fileName ?? '').isNotEmpty)
-                    .map((f) =>
-                        _fixFileUrl('${f.serverPath}\\${f.fileName}'))
-                    .where((u) => u.isNotEmpty)
+                    .map((f) => (
+                          url: _fixFileUrl(
+                              '${f.serverPath}\\${f.fileName}'),
+                          fileId: f.id,
+                        ))
+                    .where((rec) => rec.url.isNotEmpty)
                     .toList();
 
                 return SaleGdnDetailItemCard(
@@ -228,10 +235,16 @@ class _SaleGdnDetailScreenState
                   index: detailIndex + 1,
                   localImagePaths:
                       detail.localImagePathsByStt[stt] ?? [],
-                  serverImageUrls: serverUrls,
+                  serverImages: serverImages,
                   onAddImages: () => _addImages(stt),
-                  onRemoveImage: (imageIndex, isLocal) =>
-                      _removeImage(stt, imageIndex, isLocal),
+                  onTapImage: (imageIndex, isLocal) {},
+                  onMarkToDelete: ({fileId, localPath}) =>
+                      _markToDelete(fileId: fileId, localPath: localPath),
+                  onAfterMarkDelete: _afterMarkDelete,
+                  pendingDeletedFileIds:
+                      detail.pendingDeletedFileIds,
+                  pendingDeletedLocalPaths:
+                      detail.pendingDeletedLocalPaths,
                 );
               },
             );
@@ -275,12 +288,18 @@ class _SaleGdnDetailScreenState
     bloc.add(SaleGdnEvent.addImages(stt: stt, imagePaths: confirmed));
   }
 
-  void _removeImage(int stt, int imageIndex, bool isLocal) {
-    bloc.add(SaleGdnEvent.removeImage(
-      stt: stt,
-      imageIndex: imageIndex,
-      isLocal: isLocal,
+  void _markToDelete({int? fileId, String? localPath}) {
+    bloc.add(SaleGdnEvent.markImageToDelete(
+      fileId: fileId,
+      localPath: localPath,
     ));
+  }
+
+  /// Sau khi mark xoá 1 ảnh từ viewer:
+  /// - Tự động submit lên server (upload + deletedFileIds).
+  /// - Submit success → screen pop(true) + showMessage qua listener.
+  void _afterMarkDelete() {
+    bloc.add(const SaleGdnEvent.submitImages());
   }
 
   String _fixFileUrl(String? path) {

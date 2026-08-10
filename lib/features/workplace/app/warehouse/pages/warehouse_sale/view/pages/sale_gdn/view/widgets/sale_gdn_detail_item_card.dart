@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rtc_erp/common/app_theme/index.dart';
+import 'package:rtc_erp/common/utils/dialog/dialog_service.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/models/sale_gdn_model.dart';
 
 /// Card hiển thị một dòng chi tiết sản phẩm trong phiếu xuất kho.
@@ -12,22 +13,43 @@ class SaleGdnDetailItemCard extends StatelessWidget {
     required this.item,
     required this.index,
     required this.localImagePaths,
-    required this.serverImageUrls,
+    required this.serverImages,
     required this.onAddImages,
-    required this.onRemoveImage,
+    required this.onTapImage,
+    required this.onMarkToDelete,
+    required this.pendingDeletedFileIds,
+    required this.pendingDeletedLocalPaths,
+    this.onAfterMarkDelete,
   });
 
   final ViewGDNDetailResponse item;
   final int index;
   final List<String> localImagePaths;
-  final List<String> serverImageUrls;
+
+  /// Ảnh server: `url` dùng để load, `fileId` dùng để mark xoá.
+  final List<({String url, int? fileId})> serverImages;
 
   /// Callback mở flow chọn ảnh (camera/gallery) cho dòng này.
   final Future<void> Function() onAddImages;
 
-  /// Callback xoá 1 ảnh theo chỉ số trong dòng này.
-  /// Nếu `isLocal=true` thì xoá local, ngược lại xoá server.
-  final void Function(int imageIndex, bool isLocal) onRemoveImage;
+  /// Tap 1 thumbnail ảnh để mở fullscreen viewer.
+  /// `isLocal=true` nếu là ảnh local, ngược lại là ảnh server.
+  final void Function(int imageIndex, bool isLocal) onTapImage;
+
+  /// User xác nhận xoá 1 ảnh trong viewer.
+  /// Với ảnh server: truyền `fileId`.
+  /// Với ảnh local: truyền `localPath`.
+  final void Function({int? fileId, String? localPath}) onMarkToDelete;
+
+  /// Set `fileId` (server) đã được đánh dấu xoá (chưa submit).
+  final Set<int> pendingDeletedFileIds;
+
+  /// Set `localPath` đã được đánh dấu xoá (chưa submit).
+  final Set<String> pendingDeletedLocalPaths;
+
+  /// Callback gọi SAU khi đã mark 1 ảnh xoá (từ viewer).
+  /// Screen dùng để pop viewer + auto submit lên server.
+  final VoidCallback? onAfterMarkDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -181,9 +203,12 @@ class SaleGdnDetailItemCard extends StatelessWidget {
           // Khu vực ảnh (server + local)
           _PhotoSection(
             localPaths: localImagePaths,
-            serverUrls: serverImageUrls,
+            serverImages: serverImages,
             onAdd: onAddImages,
-            onRemove: onRemoveImage,
+            onTapImage: (imageIndex, isLocal) =>
+                _onTapThumb(context, imageIndex, isLocal),
+            pendingDeletedFileIds: pendingDeletedFileIds,
+            pendingDeletedLocalPaths: pendingDeletedLocalPaths,
           ),
         ],
       ),
@@ -214,6 +239,52 @@ class SaleGdnDetailItemCard extends StatelessWidget {
       context: context,
       builder: (_) => _GdnItemInfoDialog(item: item),
     );
+  }
+
+  /// Tap 1 thumbnail → mở fullscreen viewer (kèm nút thùng rác góc phải).
+  void _onTapThumb(
+    BuildContext context,
+    int imageIndex,
+    bool isLocal,
+  ) {
+    final List<String> paths;
+    if (isLocal) {
+      paths = localImagePaths;
+    } else {
+      paths = serverImages.map((e) => e.url).toList();
+    }
+
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        fullscreenDialog: true,
+        builder: (_) => _FullScreenImageViewer(
+          imagePaths: paths,
+          initialIndex: imageIndex,
+          isLocal: isLocal,
+          onDelete: (currentIndex) =>
+              _onViewerDelete(isLocal, currentIndex),
+        ),
+      ),
+    );
+  }
+
+  /// User xác nhận xoá 1 ảnh trong màn hình viewer.
+  /// Mark vào state - không gọi API.
+  /// Sau khi submit, bloc sẽ gọi `saveBillExportData` với `DeletedFileIds`.
+  void _onViewerDelete(bool isLocal, int currentIndex) {
+    if (isLocal) {
+      if (currentIndex < 0 || currentIndex >= localImagePaths.length) return;
+      final path = localImagePaths[currentIndex];
+      onMarkToDelete(localPath: path);
+    } else {
+      if (currentIndex < 0 || currentIndex >= serverImages.length) return;
+      final image = serverImages[currentIndex];
+      final fileId = image.fileId;
+      if (fileId == null || fileId <= 0) return;
+      onMarkToDelete(fileId: fileId);
+    }
+    // Thông báo cho screen: đã mark xong, hãy pop viewer + auto submit.
+    onAfterMarkDelete?.call();
   }
 }
 
@@ -323,19 +394,32 @@ class _MetricCell extends StatelessWidget {
 class _PhotoSection extends StatelessWidget {
   const _PhotoSection({
     required this.localPaths,
-    required this.serverUrls,
+    required this.serverImages,
     required this.onAdd,
-    required this.onRemove,
+    required this.onTapImage,
+    required this.pendingDeletedFileIds,
+    required this.pendingDeletedLocalPaths,
   });
 
   final List<String> localPaths;
-  final List<String> serverUrls;
+
+  /// Ảnh server: `url` dùng để load, `fileId` dùng để mark xoá.
+  final List<({String url, int? fileId})> serverImages;
+
   final Future<void> Function() onAdd;
-  final void Function(int imageIndex, bool isLocal) onRemove;
+
+  /// Tap 1 thumbnail ảnh (server hoặc local) → mở fullscreen viewer.
+  final void Function(int imageIndex, bool isLocal) onTapImage;
+
+  /// Set `fileId` (server) đã được đánh dấu xoá.
+  final Set<int> pendingDeletedFileIds;
+
+  /// Set `localPath` đã được đánh dấu xoá.
+  final Set<String> pendingDeletedLocalPaths;
 
   @override
   Widget build(BuildContext context) {
-    final hasImages = localPaths.isNotEmpty || serverUrls.isNotEmpty;
+    final hasImages = localPaths.isNotEmpty || serverImages.isNotEmpty;
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -388,18 +472,21 @@ class _PhotoSection extends StatelessWidget {
       spacing: 8,
       runSpacing: 8,
       children: [
-        // Server images (removable)
-        for (int i = 0; i < serverUrls.length; i++)
+        // Server images
+        for (int i = 0; i < serverImages.length; i++)
           _ServerPhotoThumb(
-            url: serverUrls[i],
-            index: i,
-            onRemove: () => onRemove(i, false),
+            image: serverImages[i],
+            isMarkedDeleted: pendingDeletedFileIds.contains(
+              serverImages[i].fileId ?? -1,
+            ),
+            onTap: () => onTapImage(i, false),
           ),
-        // Local images (removable)
+        // Local images
         for (int i = 0; i < localPaths.length; i++)
           _LocalPhotoThumb(
             path: localPaths[i],
-            onRemove: () => onRemove(i, true),
+            isMarkedDeleted: pendingDeletedLocalPaths.contains(localPaths[i]),
+            onTap: () => onTapImage(i, true),
           ),
         _AddPhotoButton(onTap: onAdd),
       ],
@@ -407,7 +494,7 @@ class _PhotoSection extends StatelessWidget {
   }
 
   Widget _buildCount() {
-    final total = localPaths.length + serverUrls.length;
+    final total = localPaths.length + serverImages.length;
     return Text(
       '$total ảnh',
       style: TextStyle(
@@ -465,20 +552,25 @@ class _AddPhotoButton extends StatelessWidget {
 }
 
 class _LocalPhotoThumb extends StatelessWidget {
-  const _LocalPhotoThumb({required this.path, required this.onRemove});
+  const _LocalPhotoThumb({
+    required this.path,
+    required this.isMarkedDeleted,
+    required this.onTap,
+  });
 
   final String path;
-  final VoidCallback onRemove;
+  final bool isMarkedDeleted;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        GestureDetector(
-          onTap: () => _showFullscreen(context, [path], 0, isLocal: true),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: Image.file(
+    return GestureDetector(
+      onTap: onTap,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: Stack(
+          children: [
+            Image.file(
               File(path),
               width: 64,
               height: 64,
@@ -494,44 +586,8 @@ class _LocalPhotoThumb extends StatelessWidget {
                 ),
               ),
             ),
-          ),
-        ),
-        Positioned(
-          top: 2,
-          right: 2,
-          child: GestureDetector(
-            onTap: onRemove,
-            child: Container(
-              padding: const EdgeInsets.all(2),
-              decoration: const BoxDecoration(
-                color: Colors.black54,
-                shape: BoxShape.circle,
-              ),
-              child: const Icon(
-                Icons.close,
-                size: 12,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  void _showFullscreen(
-    BuildContext context,
-    List<String> paths,
-    int initialIndex, {
-    required bool isLocal,
-  }) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        fullscreenDialog: true,
-        builder: (_) => _FullScreenImageViewer(
-          imagePaths: paths,
-          initialIndex: initialIndex,
-          isLocal: isLocal,
+            if (isMarkedDeleted) const _MarkedDeletedOverlay(),
+          ],
         ),
       ),
     );
@@ -540,25 +596,25 @@ class _LocalPhotoThumb extends StatelessWidget {
 
 class _ServerPhotoThumb extends StatelessWidget {
   const _ServerPhotoThumb({
-    required this.url,
-    required this.index,
-    required this.onRemove,
+    required this.image,
+    required this.isMarkedDeleted,
+    required this.onTap,
   });
 
-  final String url;
-  final int index;
-  final VoidCallback onRemove;
+  final ({String url, int? fileId}) image;
+  final bool isMarkedDeleted;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        GestureDetector(
-          onTap: () => _showFullscreen(context),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: Image.network(
-              url,
+    return GestureDetector(
+      onTap: onTap,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: Stack(
+          children: [
+            Image.network(
+              image.url,
               width: 64,
               height: 64,
               fit: BoxFit.cover,
@@ -577,7 +633,7 @@ class _ServerPhotoThumb extends StatelessWidget {
                   ),
                 );
               },
-              errorBuilder: (_, __, ___) => Container(
+              errorBuilder: (_, _, _) => Container(
                 width: 64,
                 height: 64,
                 color: AppColors.gray.withValues(alpha: 0.2),
@@ -588,40 +644,39 @@ class _ServerPhotoThumb extends StatelessWidget {
                 ),
               ),
             ),
-          ),
+            if (isMarkedDeleted) const _MarkedDeletedOverlay(),
+          ],
         ),
-        Positioned(
-          top: 2,
-          right: 2,
-          child: GestureDetector(
-            onTap: onRemove,
-            child: Container(
-              padding: const EdgeInsets.all(2),
-              decoration: const BoxDecoration(
-                color: Colors.black54,
-                shape: BoxShape.circle,
-              ),
-              child: const Icon(
-                Icons.close,
-                size: 12,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ),
-      ],
+      ),
     );
   }
+}
 
-  void _showFullscreen(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        fullscreenDialog: true,
-        builder: (_) => _FullScreenImageViewer(
-          imagePaths: [url],
-          initialIndex: 0,
-          isLocal: false,
-        ),
+/// Overlay đánh dấu ảnh đã được lên lịch xoá
+/// (chưa submit → hiển thị dấu X + nhãn "Đã xoá").
+class _MarkedDeletedOverlay extends StatelessWidget {
+  const _MarkedDeletedOverlay();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 64,
+      height: 64,
+      color: Colors.black.withValues(alpha: 0.55),
+      child: const Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(Icons.delete_outline, color: Colors.white, size: 20),
+          SizedBox(height: 2),
+          Text(
+            'Đã xoá',
+            style: TextStyle(
+              fontSize: 9,
+              color: Colors.white,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -851,11 +906,16 @@ class _FullScreenImageViewer extends StatefulWidget {
     required this.imagePaths,
     required this.initialIndex,
     required this.isLocal,
+    this.onDelete,
   });
 
   final List<String> imagePaths;
   final int initialIndex;
   final bool isLocal;
+
+  /// Callback xoá ảnh đang xem hiện tại (khi user xác nhận).
+  /// Viewer không gọi API - chỉ thông báo cho cha để mark/Unmark.
+  final void Function(int currentIndex)? onDelete;
 
   @override
   State<_FullScreenImageViewer> createState() => _FullScreenImageViewerState();
@@ -878,6 +938,17 @@ class _FullScreenImageViewerState extends State<_FullScreenImageViewer> {
     super.dispose();
   }
 
+  Future<void> _confirmDelete() async {
+    final confirmed = await DialogService.showConfirmDelete(context: context);
+    if (!mounted) return;
+    if (confirmed) {
+      widget.onDelete?.call(_currentIndex);
+      // Pop viewer về màn chi tiết sau khi đã mark xong.
+      // Screen sẽ xử lý pop màn chi tiết + showMessage + init lại list.
+      Navigator.of(context).pop();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -891,6 +962,14 @@ class _FullScreenImageViewerState extends State<_FullScreenImageViewer> {
           style: const TextStyle(fontSize: 16),
         ),
         centerTitle: true,
+        actions: [
+          if (widget.onDelete != null)
+            IconButton(
+              icon: const Icon(Icons.delete_outline),
+              tooltip: 'Xoá ảnh',
+              onPressed: _confirmDelete,
+            ),
+        ],
       ),
       body: PageView.builder(
         controller: _pageController,
@@ -906,7 +985,7 @@ class _FullScreenImageViewerState extends State<_FullScreenImageViewer> {
                   ? Image.file(
                       File(path),
                       fit: BoxFit.contain,
-                      errorBuilder: (_, __, ___) => _errorPlaceholder(),
+                      errorBuilder: (_, _, _) => _errorPlaceholder(),
                     )
                   : Image.network(
                       path,
@@ -923,7 +1002,7 @@ class _FullScreenImageViewerState extends State<_FullScreenImageViewer> {
                           ),
                         );
                       },
-                      errorBuilder: (_, __, ___) => _errorPlaceholder(),
+                      errorBuilder: (_, _, _) => _errorPlaceholder(),
                     ),
             ),
           );

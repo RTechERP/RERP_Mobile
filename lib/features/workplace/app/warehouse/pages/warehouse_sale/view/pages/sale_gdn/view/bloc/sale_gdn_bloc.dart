@@ -46,8 +46,10 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
             _changeDateRange(emit, dateStart, dateEnd),
         initDetail: (id, bill) => _onInitDetail(emit, id: id, bill: bill),
         addImages: (stt, paths) => _onAddImages(emit, stt, paths),
-        removeImage: (stt, imageIndex, isLocal) =>
-            _onRemoveImage(emit, stt, imageIndex, isLocal),
+        markImageToDelete: (fileId, localPath) =>
+            _onMarkImageToDelete(emit, fileId: fileId, localPath: localPath),
+        unmarkImageToDelete: (fileId, localPath) =>
+            _onUnmarkImageToDelete(emit, fileId: fileId, localPath: localPath),
         submitImages: () => _onSubmitImages(emit),
         clearUploadStatus: () => _onClearUploadStatus(emit),
         fetchLookupData: () => _fetchLookupData(emit),
@@ -723,99 +725,207 @@ BillExporResponse? _findGdnInList(String code) {
     await _onSubmitImages(emit);
   }
 
-  /// Xoá 1 ảnh khỏi dòng chi tiết theo `stt` và `imageIndex`.
-  /// Nếu `isLocal=true` thì xoá local image, ngược lại xoá server image.
-  Future<void> _onRemoveImage(
-    Emitter<SaleGdnState> emit,
-    int stt,
-    int imageIndex,
-    bool isLocal,
-  ) async {
+  /// Đánh dấu 1 ảnh cần xoá (chưa gọi API).
+  /// - Ảnh server: truyền `fileId` (sẽ gửi lên server qua `DeletedFileIds` khi submit).
+  /// - Ảnh local: truyền `localPath` (sẽ bị loại khỏi upload và remove khỏi state khi submit).
+  /// Ảnh đã đánh dấu sẽ hiển thị overlay "đã xoá" trên preview.
+  _onMarkImageToDelete(
+    Emitter<SaleGdnState> emit, {
+    int? fileId,
+    String? localPath,
+  }) {
     final current = state.detail;
     if (current == null) return;
+    if (fileId == null && localPath == null) return;
 
-    if (isLocal) {
-      // Xoá local image
-      final existing = current.localImagePathsByStt[stt] ?? [];
-      if (imageIndex >= existing.length) return;
-      final updatedLocal = Map<int, List<String>>.from(current.localImagePathsByStt);
-      final nextLocal = [...existing]..removeAt(imageIndex);
-      updatedLocal[stt] = nextLocal;
-      emit(state.copyWith(
-        detail: current.copyWith(localImagePathsByStt: updatedLocal),
-      ));
-    } else {
-      // Xoá server image - cần tìm childId từ stt
-      final detailItem = current.detailFull.firstWhere(
-        (d) => d.stt == stt,
-        orElse: () => DetailGDNResponse(),
-      );
-      final childId = detailItem.childId;
-      if (childId == null || childId <= 0) return;
+    final updatedFileIds = Set<int>.from(current.pendingDeletedFileIds);
+    final updatedLocalPaths = Set<String>.from(current.pendingDeletedLocalPaths);
 
-      final serverImages = current.serverImagesByChildId[childId] ?? [];
-      if (imageIndex >= serverImages.length) return;
-
-      // Gọi API xoá file trên server
-      final fileId = serverImages[imageIndex].id;
-      if (fileId != null && fileId > 0) {
-        final deleteRes = await _repo.deleteBillExportFile(fileId: fileId);
-        await deleteRes.fold(
-          (l) async {
-            _log.logE('❌ deleteBillExportFile failed: $l');
-          },
-          (r) async {
-            _log.logI('✅ deleteBillExportFile success');
-          },
-        );
-      }
-
-      // Cập nhật state sau khi xoá
-      final updatedServer = Map<int, List<ReadFileResponse>>.from(current.serverImagesByChildId);
-      final nextServer = [...serverImages]..removeAt(imageIndex);
-      if (nextServer.isEmpty) {
-        updatedServer.remove(childId);
-      } else {
-        updatedServer[childId] = nextServer;
-      }
-      emit(state.copyWith(
-        detail: current.copyWith(serverImagesByChildId: updatedServer),
-      ));
+    if (fileId != null) {
+      updatedFileIds.add(fileId);
     }
+    if (localPath != null) {
+      updatedLocalPaths.add(localPath);
+    }
+
+    emit(state.copyWith(
+      detail: current.copyWith(
+        pendingDeletedFileIds: updatedFileIds,
+        pendingDeletedLocalPaths: updatedLocalPaths,
+      ),
+    ));
   }
 
-  /// Upload tất cả ảnh local đã chọn lên server.
+  /// Bỏ đánh dấu xoá (khi user tap lại ảnh đã mark).
+  _onUnmarkImageToDelete(
+    Emitter<SaleGdnState> emit, {
+    int? fileId,
+    String? localPath,
+  }) {
+    final current = state.detail;
+    if (current == null) return;
+    if (fileId == null && localPath == null) return;
+
+    final updatedFileIds = Set<int>.from(current.pendingDeletedFileIds);
+    final updatedLocalPaths = Set<String>.from(current.pendingDeletedLocalPaths);
+
+    if (fileId != null) {
+      updatedFileIds.remove(fileId);
+    }
+    if (localPath != null) {
+      updatedLocalPaths.remove(localPath);
+    }
+
+    emit(state.copyWith(
+      detail: current.copyWith(
+        pendingDeletedFileIds: updatedFileIds,
+        pendingDeletedLocalPaths: updatedLocalPaths,
+      ),
+    ));
+  }
+
+  /// Upload ảnh local đã chọn lên server + apply các ảnh đã đánh dấu xoá.
   /// Sau khi upload thành công, build payload gán FileIds theo childId
-  /// và gọi API /BillExport/save-data để lưu liên kết file.
+  /// và gọi API /BillExport/save-data để lưu liên kết file + xoá file.
   Future<void> _onSubmitImages(Emitter<SaleGdnState> emit) async {
     final current = state.detail;
     if (current == null) return;
 
     final localFilesByStt = current.localImagePathsByStt;
-    if (localFilesByStt.isEmpty) return;
+    final pendingDeletedFileIds = current.pendingDeletedFileIds;
+    final pendingDeletedLocalPaths = current.pendingDeletedLocalPaths;
+
+    final hasLocalToUpload = localFilesByStt.values
+        .any((paths) => paths.any((p) => !pendingDeletedLocalPaths.contains(p)));
+    final hasDelete = pendingDeletedFileIds.isNotEmpty ||
+        pendingDeletedLocalPaths.isNotEmpty;
+
+    // Không có gì để làm → bỏ qua.
+    if (!hasLocalToUpload && !hasDelete) return;
 
     emit(state.copyWith(
       detail: current.copyWith(uploadStatus: BaseStateStatus.loading),
     ));
 
-    // Bước 1: Upload tất cả file
+    // Bước 1: Upload các file local chưa bị đánh dấu xoá.
     final allFiles = <File>[];
     for (final paths in localFilesByStt.values) {
       for (final path in paths) {
+        if (pendingDeletedLocalPaths.contains(path)) continue;
         allFiles.add(File(path));
       }
     }
-    if (allFiles.isEmpty) return;
 
-    _log.logI('📤 Uploading ${allFiles.length} files');
-    final uploadRes = await _repo.uploadBillExportFiles(files: allFiles);
+    List<UploadFileResponse> uploadedFiles = const [];
+    if (allFiles.isNotEmpty) {
+      _log.logI('📤 Uploading ${allFiles.length} files');
+      final uploadRes = await _repo.uploadBillExportFiles(files: allFiles);
+
+      final uploadOk = await uploadRes.fold(
+        (l) async {
+          _log.logE('❌ upload failed: $l');
+          return null;
+        },
+        (list) async => list,
+      );
+
+      if (uploadOk == null) {
+        // Upload fail - emit failed
+        final updated = state.detail;
+        if (updated != null) {
+          emit(state.copyWith(
+            detail: updated.copyWith(
+              uploadStatus: BaseStateStatus.failed,
+              message: 'Upload ảnh thất bại',
+            ),
+          ));
+        }
+        return;
+      }
+      uploadedFiles = uploadOk;
+      _log.logI('✅ upload success: ${uploadedFiles.length} files');
+    }
 
     final updated = state.detail;
     if (updated == null) return;
 
-    await uploadRes.fold(
+    // Bước 2: Map fileID → childId
+    // Flat order theo từng STT, từng file trong STT đó - trùng với allFiles.
+    final sttToFileIds = <int, List<int>>{};
+    var uploadIdx = 0;
+    final sortedStts = localFilesByStt.keys.toList()..sort();
+    for (final stt in sortedStts) {
+      final paths = localFilesByStt[stt] ?? const <String>[];
+      for (final path in paths) {
+        if (pendingDeletedLocalPaths.contains(path)) continue;
+        if (uploadIdx >= uploadedFiles.length) break;
+        final fileId = uploadedFiles[uploadIdx].fileID;
+        if (fileId > 0) {
+          sttToFileIds.putIfAbsent(stt, () => []).add(fileId);
+        }
+        uploadIdx++;
+      }
+    }
+
+    // Map stt → childId (1 stt có thể xuất hiện nhiều detail trùng stt nếu trùng STT)
+    final sttToChildIds = <int, List<int>>{};
+    for (final d in updated.detailFull) {
+      final stt = d.stt;
+      final childId = d.childId;
+      if (stt == null || childId == null || childId <= 0) continue;
+      sttToChildIds.putIfAbsent(stt, () => []).add(childId);
+    }
+
+    // Build map childId -> fileIds:
+    //   - Server images hiện có (loại bỏ các fileId đã mark xoá).
+    //   - FileIds mới upload từ local.
+    final childIdToFileIds = <int, List<int>>{};
+    for (final entry in sttToFileIds.entries) {
+      final stt = entry.key;
+      final uploadedIds = entry.value;
+      final childIds = sttToChildIds[stt] ?? const <int>[];
+      for (final childId in childIds) {
+        childIdToFileIds[childId] = [
+          ...(childIdToFileIds[childId] ?? const <int>[]),
+          ...uploadedIds,
+        ];
+      }
+    }
+
+    // Bổ sung các fileIds server cũ CHƯA bị mark xoá cho mỗi childId
+    // có liên kết ảnh server. Quan trọng: payload `FileIds` phải chứa
+    // TẤT CẢ fileIds muốn giữ (server hiện tại + mới upload), nếu không
+    // server sẽ xoá các ảnh không nằm trong `FileIds`.
+    for (final childId in updated.serverImagesByChildId.keys) {
+      final existing = updated.serverImagesByChildId[childId] ?? [];
+      final keptIds = existing
+          .map((f) => f.id)
+          .whereType<int>()
+          .where((id) => !updated.pendingDeletedFileIds.contains(id))
+          .toList();
+      if (keptIds.isEmpty) continue;
+      final merged = [
+        ...(childIdToFileIds[childId] ?? const <int>[]),
+        ...keptIds,
+      ];
+      childIdToFileIds[childId] = merged;
+    }
+
+    // Bước 3: Build payload save-data (kèm deletedFileIds)
+    final payload = _buildSaveBillExportDataPayload(
+      bill: updated.bill,
+      billInfoUpdated: updated,
+      detailFull: updated.detailFull,
+      childIdToFileIds: childIdToFileIds,
+      deletedFileIds: updated.pendingDeletedFileIds.toList(),
+    );
+
+    _log.logI('📤 Calling saveBillExportData...');
+    final saveRes = await _repo.saveBillExportData(payload: payload);
+
+    await saveRes.fold(
       (l) async {
-        _log.logE('❌ upload failed: $l');
+        _log.logE('❌ saveBillExportData failed: $l');
         emit(state.copyWith(
           detail: updated.copyWith(
             uploadStatus: BaseStateStatus.failed,
@@ -823,111 +933,98 @@ BillExporResponse? _findGdnInList(String code) {
           ),
         ));
       },
-      (uploadedFiles) async {
-        _log.logI('✅ upload success: ${uploadedFiles.length} files');
+      (saveResult) async {
+        final billExportId = saveResult.billExportId;
+        _log.logI('✅ saveBillExportData success: BillExportID=$billExportId');
 
-        // Bước 2: Map fileID → childId
-        // Phải flatten theo CÙNG thứ tự với upload (Bước 1),
-        // không được dùng sttEntries.length vì 1 STT có thể có nhiều file.
-        final sttToFileIds = <int, List<int>>{};
+        // Bước 4: Merge ảnh server mới upload + xoá ảnh đã mark.
+        final mergedServerImages =
+            Map<int, List<ReadFileResponse>>.from(updated.serverImagesByChildId);
 
-        // Flat order theo từng STT, từng file trong STT đó - trùng với allFiles.
-        var uploadIdx = 0;
-        // Sắp xếp theo STT để đảm bảo deterministic order (giống sttEntries).
-        final sortedStts = localFilesByStt.keys.toList()..sort();
-        for (final stt in sortedStts) {
-          final paths = localFilesByStt[stt] ?? const <String>[];
-          for (int j = 0; j < paths.length; j++) {
-            if (uploadIdx >= uploadedFiles.length) break;
-            final fileId = uploadedFiles[uploadIdx].fileID;
-            if (fileId > 0) {
-              sttToFileIds.putIfAbsent(stt, () => []).add(fileId);
-            }
-            uploadIdx++;
+        // Remove ảnh server đã mark xoá.
+        for (final childId in mergedServerImages.keys.toList()) {
+          final list = mergedServerImages[childId] ?? [];
+          final filtered = list
+              .where((f) => !updated.pendingDeletedFileIds.contains(f.id))
+              .toList();
+          if (filtered.isEmpty) {
+            mergedServerImages.remove(childId);
+          } else {
+            mergedServerImages[childId] = filtered;
           }
         }
 
-        // Map stt → childId (1 stt có thể xuất hiện nhiều detail trùng stt nếu trùng STT)
-        final childIdToFileIds = <int, List<int>>{};
-        for (final entry in sttToFileIds.entries) {
-          final stt = entry.key;
+        // Add ảnh server mới upload.
+        for (final entry in childIdToFileIds.entries) {
+          final childId = entry.key;
           final fileIds = entry.value;
-          final detailItem = updated.detailFull.firstWhere(
-            (d) => d.stt == stt,
-            orElse: () => DetailGDNResponse(),
-          );
-          final childId = detailItem.childId;
-          if (childId == null || childId <= 0) continue;
-          childIdToFileIds[childId] = fileIds;
+          final newOnes = <ReadFileResponse>[];
+          for (int i = 0; i < fileIds.length; i++) {
+            final uploadedFile = uploadedFiles.firstWhere(
+              (f) => f.fileID == fileIds[i],
+              orElse: () => UploadFileResponse(
+                fileID: fileIds[i],
+                filePath: '',
+                serverPath: '',
+                fileName: '',
+              ),
+            );
+            newOnes.add(ReadFileResponse(
+              id: uploadedFile.fileID,
+              originPath: uploadedFile.filePath,
+              serverPath: uploadedFile.serverPath,
+              fileName: uploadedFile.fileName,
+            ));
+          }
+          mergedServerImages[childId] = [
+            ...(mergedServerImages[childId] ?? []),
+            ...newOnes,
+          ];
         }
 
-        // Bước 3: Build payload save-data
-        final payload = _buildSaveBillExportDataPayload(
-          bill: updated.bill,
-          billInfoUpdated: updated,
-          detailFull: updated.detailFull,
-          childIdToFileIds: childIdToFileIds,
-        );
+        // Remove ảnh local đã mark xoá khỏi localImagePathsByStt.
+        final updatedLocalPaths =
+            Map<int, List<String>>.from(updated.localImagePathsByStt);
+        for (final stt in updatedLocalPaths.keys.toList()) {
+          final list = updatedLocalPaths[stt] ?? [];
+          final filtered = list
+              .where((p) => !updated.pendingDeletedLocalPaths.contains(p))
+              .toList();
+          if (filtered.isEmpty) {
+            updatedLocalPaths.remove(stt);
+          } else {
+            updatedLocalPaths[stt] = filtered;
+          }
+        }
 
-        _log.logI('📤 Calling saveBillExportData...');
-        final saveRes = await _repo.saveBillExportData(payload: payload);
+        // Xác định message thành công dựa trên hành động đã thực hiện.
+        final hasUpload = uploadedFiles.isNotEmpty;
+        final hasDelete = updated.pendingDeletedFileIds.isNotEmpty ||
+            updated.pendingDeletedLocalPaths.isNotEmpty;
+        String successMessage;
+        if (hasUpload && hasDelete) {
+          successMessage = 'Upload & xoá ảnh thành công';
+        } else if (hasDelete) {
+          successMessage = 'Xoá ảnh thành công';
+        } else {
+          successMessage = 'Upload thành công';
+        }
 
-        await saveRes.fold(
-          (l) async {
-            _log.logE('❌ saveBillExportData failed: $l');
-            emit(state.copyWith(
-              detail: updated.copyWith(
-                uploadStatus: BaseStateStatus.failed,
-                message: l.toString(),
-              ),
-            ));
-          },
-          (saveResult) async {
-            final billExportId = saveResult.billExportId;
-            _log.logI('✅ saveBillExportData success: BillExportID=$billExportId');
-
-            // Merge ảnh server vào state
-            final mergedServerImages =
-                Map<int, List<ReadFileResponse>>.from(updated.serverImagesByChildId);
-            for (final entry in childIdToFileIds.entries) {
-              final childId = entry.key;
-              final fileIds = entry.value;
-              final newOnes = <ReadFileResponse>[];
-              for (int i = 0; i < fileIds.length; i++) {
-                final uploadedFile = uploadedFiles.firstWhere(
-                  (f) => f.fileID == fileIds[i],
-                  orElse: () => UploadFileResponse(
-                    fileID: fileIds[i],
-                    filePath: '',
-                    serverPath: '',
-                    fileName: '',
-                  ),
-                );
-                newOnes.add(ReadFileResponse(
-                  id: uploadedFile.fileID,
-                  originPath: uploadedFile.filePath,
-                  serverPath: uploadedFile.serverPath,
-                  fileName: uploadedFile.fileName,
-                ));
-              }
-              mergedServerImages[childId] = [
-                ...(mergedServerImages[childId] ?? []),
-                ...newOnes,
-              ];
-            }
-
-            emit(state.copyWith(
-              detail: updated.copyWith(
-                uploadStatus: billExportId != null && billExportId > 0
-                    ? BaseStateStatus.success
-                    : BaseStateStatus.failed,
-                uploadedImages: uploadedFiles,
-                localImagePathsByStt: {},
-                serverImagesByChildId: mergedServerImages,
-              ),
-            ));
-          },
-        );
+        emit(state.copyWith(
+          detail: updated.copyWith(
+            uploadStatus: billExportId != null && billExportId > 0
+                ? BaseStateStatus.success
+                : BaseStateStatus.failed,
+            message: billExportId != null && billExportId > 0
+                ? successMessage
+                : 'Lưu ảnh thất bại',
+            uploadedImages: uploadedFiles,
+            localImagePathsByStt: updatedLocalPaths,
+            serverImagesByChildId: mergedServerImages,
+            pendingDeletedFileIds: const {},
+            pendingDeletedLocalPaths: const {},
+          ),
+        ));
       },
     );
   }
@@ -1039,7 +1136,7 @@ BillExporResponse? _findGdnInList(String code) {
       'BillExport': billExport,
       'billExportDetail': billExportDetail,
       'DeletedDetailIds': <int>[],
-      'DeletedFileIds': <int>[],
+      'DeletedFileIds': deletedFileIds,
     };
   }
 

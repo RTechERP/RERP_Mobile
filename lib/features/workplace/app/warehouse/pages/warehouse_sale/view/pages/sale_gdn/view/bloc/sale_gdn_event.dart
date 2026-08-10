@@ -44,13 +44,21 @@ class SaleGdnEvent with _$SaleGdnEvent {
     required List<String> imagePaths,
   }) = _AddImages;
 
-  /// Xoá 1 ảnh khỏi dòng chi tiết theo `stt` và `imageIndex`.
-  /// Nếu `isLocal=true` thì xoá local image, ngược lại xoá server image.
-  const factory SaleGdnEvent.removeImage({
-    required int stt,
-    required int imageIndex,
-    @Default(true) bool isLocal,
-  }) = _RemoveImage;
+  /// Đánh dấu 1 ảnh cần xoá (chưa submit).
+  /// Với ảnh server: truyền `fileId` (server).
+  /// Với ảnh local: truyền `localPath`.
+  /// Ảnh sẽ được đánh dấu visuals (overlay X) trên preview và áp dụng
+  /// khi user submit (gửi `DeletedFileIds` + lọc local paths).
+  const factory SaleGdnEvent.markImageToDelete({
+    int? fileId,
+    String? localPath,
+  }) = _MarkImageToDelete;
+
+  /// Bỏ đánh dấu xoá (khi user tap lại vào ảnh đã mark).
+  const factory SaleGdnEvent.unmarkImageToDelete({
+    int? fileId,
+    String? localPath,
+  }) = _UnmarkImageToDelete;
 
   /// Upload tất cả ảnh local đã chọn lên server.
   const factory SaleGdnEvent.submitImages() = _SubmitImages;
