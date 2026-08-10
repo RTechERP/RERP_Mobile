@@ -14,12 +14,13 @@ import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/vi
 ///
 /// Tất cả field đều dùng `DetailGDNItemResponse` (API `/billexport/{id}`) làm
 /// nguồn chính. Text của các dropdown (NCC, người giao, KH, kho, loại kho, ...)
+/// được resolve từ ID thông qua các lookup list đã load sẵn (widget.suppliers,
 /// được resolve từ ID thông qua các lookup list đã load sẵn (suppliers,
 /// senders, customers, warehouses, productGroups). Khi lookup chưa load,
 /// text sẽ rỗng.
 ///
 /// Form là read-only theo yêu cầu - chỉ xem, không lưu server.
-class SaleGdnForm extends StatelessWidget {
+class SaleGdnForm extends StatefulWidget {
   const SaleGdnForm({
     super.key,
     required this.detail,
@@ -76,13 +77,46 @@ class SaleGdnForm extends StatelessWidget {
   final ValueChanged<int?> onSelectNcc;
 
   @override
+  State<SaleGdnForm> createState() => _SaleGdnFormState();
+}
+
+class _SaleGdnFormState extends State<SaleGdnForm> {
+  // Trạng thái thu/mở toàn bộ card thông tin. Mặc định collapse.
+  bool _isExpanded = false;
+
+  @override
   Widget build(BuildContext context) {
-    final info = detail.billInfo;
+    final info = widget.detail.billInfo;
 
     return FormBuilder(
       child: FormCard(
         title: 'Thông tin phiếu xuất kho',
-        child: Column(
+        collapsed: !_isExpanded,
+        actions: [
+          IconButton(
+            visualDensity: VisualDensity.compact,
+            padding: EdgeInsets.zero,
+            constraints: const BoxConstraints(
+              minWidth: 32,
+              minHeight: 32,
+            ),
+            tooltip: _isExpanded ? 'Thu gọn' : 'Mở rộng',
+            icon: Icon(
+              _isExpanded
+                  ? Icons.keyboard_arrow_up_rounded
+                  : Icons.keyboard_arrow_down_rounded,
+              color: AppColors.gray,
+            ),
+            onPressed: () => setState(() => _isExpanded = !_isExpanded),
+          ),
+        ],
+        child: _buildBody(info),
+      ),
+    );
+  }
+
+  Widget _buildBody(DetailGDNItemResponse? info) {
+    return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // === Mã phiếu + Trạng thái + Ngày tạo ===
@@ -116,8 +150,8 @@ class SaleGdnForm extends StatelessWidget {
                   icon: Icons.event_available_outlined,
                   inputType: InputType.date,
                   format: DateFormat('dd/MM/yyyy'),
-                  initialValue: detail.deliveryDate ?? info?.deliveryTime,
-                  onChanged: onChangeDeliveryDate,
+                  initialValue: widget.detail.deliveryDate ?? info?.deliveryTime,
+                  onChanged: widget.onChangeDeliveryDate,
                 ),
                 FormDateTimePicker(
                   nameForm: 'gdn_request_date',
@@ -126,8 +160,8 @@ class SaleGdnForm extends StatelessWidget {
                   icon: Icons.calendar_today_outlined,
                   inputType: InputType.date,
                   format: DateFormat('dd/MM/yyyy'),
-                  initialValue: detail.requestDate ?? info?.requestDate,
-                  onChanged: onChangeRequestDate,
+                  initialValue: widget.detail.requestDate ?? info?.requestDate,
+                  onChanged: widget.onChangeRequestDate,
                 ),
                 FormDateTimePicker(
                   nameForm: 'gdn_receive_time',
@@ -136,8 +170,8 @@ class SaleGdnForm extends StatelessWidget {
                   icon: Icons.schedule_outlined,
                   inputType: InputType.both,
                   format: DateFormat('dd/MM/yyyy HH:mm'),
-                  initialValue: detail.receiveTime ?? info?.deliveryTime,
-                  onChanged: onChangeReceiveTime,
+                  initialValue: widget.detail.receiveTime ?? info?.deliveryTime,
+                  onChanged: widget.onChangeReceiveTime,
                 ),
               ],
             ),
@@ -166,9 +200,9 @@ class SaleGdnForm extends StatelessWidget {
                 ),
                 // Checkbox "Chuyển kho" bên trái + Field "Kho chuyển" bên phải
                 _CheckboxInputRow(
-                  checked: detail.isTransferInternalChecked,
+                  checked: widget.detail.isTransferInternalChecked,
                   label: 'Chuyển kho',
-                  onChanged: (v) => onToggleTransferInternal(v),
+                  onChanged: (v) => widget.onToggleTransferInternal(v),
                   child: FormInputField(
                     nameForm: 'gdn_internal_warehouse',
                     nameTextField: 'gdn_internal_warehouse_text',
@@ -176,17 +210,17 @@ class SaleGdnForm extends StatelessWidget {
                     icon: Icons.swap_horiz_outlined,
                     initialValue: _resolveInternalWarehouseText(),
                     readOnly: true,
-                    enabled: detail.isTransferInternalChecked,
-                    onTap: detail.isTransferInternalChecked
+                    enabled: widget.detail.isTransferInternalChecked,
+                    onTap: widget.detail.isTransferInternalChecked
                         ? () => _pickInternalWarehouse(context)
                         : null,
                   ),
                 ),
                 // Checkbox "Chuyển kho nội bộ" bên trái + Field "Kho nội bộ" bên phải
                 _CheckboxInputRow(
-                  checked: detail.isInternalChecked,
+                  checked: widget.detail.isInternalChecked,
                   label: 'Chuyển kho nội bộ',
-                  onChanged: (v) => onToggleInternal(v),
+                  onChanged: (v) => widget.onToggleInternal(v),
                   child: FormInputField(
                     nameForm: 'gdn_internal_kho_type',
                     nameTextField: 'gdn_internal_kho_type_text',
@@ -194,8 +228,8 @@ class SaleGdnForm extends StatelessWidget {
                     icon: Icons.category_outlined,
                     initialValue: _resolveInternalKhoTypeText(),
                     readOnly: true,
-                    enabled: detail.isInternalChecked,
-                    onTap: detail.isInternalChecked
+                    enabled: widget.detail.isInternalChecked,
+                    onTap: widget.detail.isInternalChecked
                         ? () => _pickInternalKhoType(context)
                         : null,
                   ),
@@ -245,7 +279,7 @@ class SaleGdnForm extends StatelessWidget {
                   nameTextField: 'gdn_delivery_address_text',
                   label: 'Địa chỉ giao hàng',
                   icon: Icons.local_shipping_outlined,
-                  initialValue: detail.deliveryAddress ??
+                  initialValue: widget.detail.deliveryAddress ??
                       (info?.address ?? '').trim(),
                   readOnly: true,
                   onTap: () => _pickDeliveryAddress(context),
@@ -315,9 +349,7 @@ class SaleGdnForm extends StatelessWidget {
               ],
             ),
           ],
-        ),
-      ),
-    );
+        );
   }
 
   // ===========================================================================
@@ -325,9 +357,9 @@ class SaleGdnForm extends StatelessWidget {
   // ===========================================================================
 
   String _resolveSupplierText() {
-    final id = detail.selectedSupplierId ?? detail.billInfo?.supplierId;
+    final id = widget.detail.selectedSupplierId ?? widget.detail.billInfo?.supplierId;
     if (id != null && id > 0) {
-      for (final s in suppliers) {
+      for (final s in widget.suppliers) {
         if (s.id == id) return (s.name ?? '').trim();
       }
     }
@@ -335,9 +367,9 @@ class SaleGdnForm extends StatelessWidget {
   }
 
   String _resolveSenderText() {
-    final id = detail.selectedSenderId ?? detail.billInfo?.senderId;
+    final id = widget.detail.selectedSenderId ?? widget.detail.billInfo?.senderId;
     if (id != null && id > 0) {
-      for (final s in senders) {
+      for (final s in widget.senders) {
         if (s.id == id) return (s.fullName ?? '').trim();
       }
     }
@@ -345,9 +377,9 @@ class SaleGdnForm extends StatelessWidget {
   }
 
   String _resolveReceiverText() {
-    final id = detail.billInfo?.receiverId;
+    final id = widget.detail.billInfo?.receiverId;
     if (id != null && id > 0) {
-      for (final s in senders) {
+      for (final s in widget.senders) {
         if (s.id == id) return (s.fullName ?? '').trim();
       }
     }
@@ -355,9 +387,9 @@ class SaleGdnForm extends StatelessWidget {
   }
 
   String _resolveCustomerText() {
-    final id = detail.selectedCustomerId ?? detail.billInfo?.customerId;
+    final id = widget.detail.selectedCustomerId ?? widget.detail.billInfo?.customerId;
     if (id != null && id > 0) {
-      for (final c in customers) {
+      for (final c in widget.customers) {
         if (c.id == id) return (c.name ?? '').trim();
       }
     }
@@ -365,9 +397,9 @@ class SaleGdnForm extends StatelessWidget {
   }
 
   String _resolveCustomerAddress() {
-    final id = detail.selectedCustomerId ?? detail.billInfo?.customerId;
+    final id = widget.detail.selectedCustomerId ?? widget.detail.billInfo?.customerId;
     if (id != null && id > 0) {
-      for (final c in customers) {
+      for (final c in widget.customers) {
         if (c.id == id) return (c.address ?? '').trim();
       }
     }
@@ -375,9 +407,9 @@ class SaleGdnForm extends StatelessWidget {
   }
 
   String _resolveWarehouseText() {
-    final id = detail.selectedWarehouseId ?? detail.billInfo?.warehouseId;
+    final id = widget.detail.selectedWarehouseId ?? widget.detail.billInfo?.warehouseId;
     if (id != null && id > 0) {
-      for (final w in warehouses) {
+      for (final w in widget.warehouses) {
         if (w.id == id) return (w.name ?? '').trim();
       }
     }
@@ -385,19 +417,19 @@ class SaleGdnForm extends StatelessWidget {
   }
 
   String _resolveLoaiKhoText() {
-    final id = detail.selectedKhoTypeId ?? detail.billInfo?.khoTypeId;
+    final id = widget.detail.selectedKhoTypeId ?? widget.detail.billInfo?.khoTypeId;
     if (id != null && id > 0) {
-      for (final p in productGroups) {
+      for (final p in widget.productGroups) {
         if (p.id == id) return (p.name ?? '').trim();
       }
     }
     // Fallback: dùng text thô từ API khi lookup chưa load.
-    return detail.selectedLoaiKhoText ??
-        (detail.billInfo?.warehouseType ?? '').trim();
+    return widget.detail.selectedLoaiKhoText ??
+        (widget.detail.billInfo?.warehouseType ?? '').trim();
   }
 
   String _resolveStatusText() {
-    final status = detail.selectedStatus ?? detail.billInfo?.status;
+    final status = widget.detail.selectedStatus ?? widget.detail.billInfo?.status;
     switch (status) {
       case 0:
         return 'Mượn';
@@ -417,9 +449,9 @@ class SaleGdnForm extends StatelessWidget {
   }
 
   String _resolveNccText() {
-    final id = detail.selectedNccId ?? detail.billInfo?.supplierId;
+    final id = widget.detail.selectedNccId ?? widget.detail.billInfo?.supplierId;
     if (id != null && id > 0) {
-      for (final s in suppliers) {
+      for (final s in widget.suppliers) {
         if (s.id == id) return (s.name ?? '').trim();
       }
     }
@@ -427,10 +459,10 @@ class SaleGdnForm extends StatelessWidget {
   }
 
   String _resolveInternalWarehouseText() {
-    final id = detail.selectedInternalWarehouseId ??
-        detail.billInfo?.wareHouseTranferId;
+    final id = widget.detail.selectedInternalWarehouseId ??
+        widget.detail.billInfo?.wareHouseTranferId;
     if (id != null && id > 0) {
-      for (final w in warehouses) {
+      for (final w in widget.warehouses) {
         if (w.id == id) return (w.name ?? '').trim();
       }
     }
@@ -438,10 +470,10 @@ class SaleGdnForm extends StatelessWidget {
   }
 
   String _resolveInternalKhoTypeText() {
-    final id = detail.selectedInternalKhoTypeId ??
-        detail.billInfo?.khoTypeTransferId;
+    final id = widget.detail.selectedInternalKhoTypeId ??
+        widget.detail.billInfo?.khoTypeTransferId;
     if (id != null && id > 0) {
-      for (final p in productGroups) {
+      for (final p in widget.productGroups) {
         if (p.id == id) return (p.name ?? '').trim();
       }
     }
@@ -464,55 +496,55 @@ class SaleGdnForm extends StatelessWidget {
   // ===========================================================================
 
   Future<void> _pickSupplier(BuildContext context) async {
-    if (suppliers.isEmpty) return;
+    if (widget.suppliers.isEmpty) return;
     await openSelectBottomSheet<SupplierResponse>(
       context: context,
       title: 'Chọn NCC',
-      items: suppliers,
+      items: widget.suppliers,
       displayText: (s) =>
           '${(s.code ?? '').trim()} - ${(s.name ?? '').trim()}'.trim(),
-      initialSelectedItem: _findById(suppliers, detail.selectedSupplierId),
-      onSelected: (item) => onSelectSupplier(item.id),
+      initialSelectedItem: _findById(widget.suppliers, widget.detail.selectedSupplierId),
+      onSelected: (item) => widget.onSelectSupplier(item.id),
     );
   }
 
   Future<void> _pickSender(BuildContext context) async {
-    if (senders.isEmpty) return;
+    if (widget.senders.isEmpty) return;
     await openSelectBottomSheet<SenderResponse>(
       context: context,
       title: 'Chọn người giao',
-      items: senders,
+      items: widget.senders,
       displayText: (s) =>
           '${(s.code ?? '').trim()} - ${(s.fullName ?? '').trim()}'.trim(),
-      initialSelectedItem: _findById(senders, detail.selectedSenderId),
-      onSelected: (item) => onSelectSender(item.id),
+      initialSelectedItem: _findById(widget.senders, widget.detail.selectedSenderId),
+      onSelected: (item) => widget.onSelectSender(item.id),
     );
   }
 
   Future<void> _pickReceiver(BuildContext context) async {
-    if (senders.isEmpty) return;
+    if (widget.senders.isEmpty) return;
     await openSelectBottomSheet<SenderResponse>(
       context: context,
       title: 'Chọn người nhận',
-      items: senders,
+      items: widget.senders,
       displayText: (s) =>
           '${(s.code ?? '').trim()} - ${(s.fullName ?? '').trim()}'.trim(),
       initialSelectedItem:
-          _findById(senders, detail.billInfo?.receiverId),
-      onSelected: (item) => onSelectCustomer(item.id),
+          _findById(widget.senders, widget.detail.billInfo?.receiverId),
+      onSelected: (item) => widget.onSelectCustomer(item.id),
     );
   }
 
   Future<void> _pickCustomer(BuildContext context) async {
-    if (customers.isEmpty) return;
+    if (widget.customers.isEmpty) return;
     await openSelectBottomSheet<CustomerResponse>(
       context: context,
       title: 'Chọn khách hàng',
-      items: customers,
+      items: widget.customers,
       displayText: (c) =>
           '${(c.code ?? '').trim()} - ${(c.name ?? '').trim()}'.trim(),
-      initialSelectedItem: _findById(customers, detail.selectedCustomerId),
-      onSelected: (item) => onSelectCustomerWithAddress(
+      initialSelectedItem: _findById(widget.customers, widget.detail.selectedCustomerId),
+      onSelected: (item) => widget.onSelectCustomerWithAddress(
         item.id,
         (item.address ?? '').trim(),
       ),
@@ -520,15 +552,15 @@ class SaleGdnForm extends StatelessWidget {
   }
 
   Future<void> _pickWarehouse(BuildContext context) async {
-    if (warehouses.isEmpty) return;
+    if (widget.warehouses.isEmpty) return;
     await openSelectBottomSheet<WarehouseResponse>(
       context: context,
       title: 'Chọn kho',
-      items: warehouses,
+      items: widget.warehouses,
       displayText: (w) =>
           '${(w.code ?? '').trim()} - ${(w.name ?? '').trim()}'.trim(),
-      initialSelectedItem: _findById(warehouses, detail.selectedWarehouseId),
-      onSelected: (item) => onSelectWarehouse(item.id),
+      initialSelectedItem: _findById(widget.warehouses, widget.detail.selectedWarehouseId),
+      onSelected: (item) => widget.onSelectWarehouse(item.id),
     );
   }
 
@@ -541,7 +573,7 @@ class SaleGdnForm extends StatelessWidget {
       _StatusOption(6, 'Y/C xuất kho'),
       _StatusOption(7, 'Y/C mượn'),
     ];
-    final current = detail.selectedStatus ?? detail.billInfo?.status;
+    final current = widget.detail.selectedStatus ?? widget.detail.billInfo?.status;
     await openSelectBottomSheet<_StatusOption>(
       context: context,
       title: 'Chọn trạng thái',
@@ -551,27 +583,27 @@ class SaleGdnForm extends StatelessWidget {
         (o) => o.value == current,
         orElse: () => options.first,
       ),
-      onSelected: (item) => onSelectStatus(item.value),
+      onSelected: (item) => widget.onSelectStatus(item.value),
     );
   }
 
   Future<void> _pickLoaiKho(BuildContext context) async {
-    if (productGroups.isEmpty) return;
+    if (widget.productGroups.isEmpty) return;
     await openSelectBottomSheet<ProductGroupNewResponse>(
       context: context,
       title: 'Chọn loại kho',
-      items: productGroups,
+      items: widget.productGroups,
       displayText: (p) => (p.name ?? '').trim(),
-      initialSelectedItem: _findById(productGroups, detail.selectedKhoTypeId),
+      initialSelectedItem: _findById(widget.productGroups, widget.detail.selectedKhoTypeId),
       onSelected: (item) {
-        onSelectKhoType(item.id);
-        onSelectLoaiKho((item.name ?? '').trim());
+        widget.onSelectKhoType(item.id);
+        widget.onSelectLoaiKho((item.name ?? '').trim());
       },
     );
   }
 
   Future<void> _pickDeliveryAddress(BuildContext context) async {
-    final items = suppliers
+    final items = widget.suppliers
         .map((s) => _AddressOption(
               label:
                   '${(s.name ?? '').trim()} - ${(s.address ?? '').trim()}',
@@ -585,47 +617,47 @@ class SaleGdnForm extends StatelessWidget {
       title: 'Chọn địa chỉ giao hàng',
       items: items,
       displayText: (a) => a.label,
-      onSelected: (item) => onChangeDeliveryAddress(item.value),
+      onSelected: (item) => widget.onChangeDeliveryAddress(item.value),
     );
   }
 
   Future<void> _pickInternalWarehouse(BuildContext context) async {
-    if (warehouses.isEmpty) return;
+    if (widget.warehouses.isEmpty) return;
     await openSelectBottomSheet<WarehouseResponse>(
       context: context,
       title: 'Chọn kho chuyển',
-      items: warehouses,
+      items: widget.warehouses,
       displayText: (w) =>
           '${(w.code ?? '').trim()} - ${(w.name ?? '').trim()}'.trim(),
       initialSelectedItem:
-          _findById(warehouses, detail.selectedInternalWarehouseId),
-      onSelected: (item) => onSelectInternalWarehouse(item.id),
+          _findById(widget.warehouses, widget.detail.selectedInternalWarehouseId),
+      onSelected: (item) => widget.onSelectInternalWarehouse(item.id),
     );
   }
 
   Future<void> _pickInternalKhoType(BuildContext context) async {
-    if (productGroups.isEmpty) return;
+    if (widget.productGroups.isEmpty) return;
     await openSelectBottomSheet<ProductGroupNewResponse>(
       context: context,
       title: 'Chọn loại kho chuyển',
-      items: productGroups,
+      items: widget.productGroups,
       displayText: (p) => (p.name ?? '').trim(),
       initialSelectedItem:
-          _findById(productGroups, detail.selectedInternalKhoTypeId),
-      onSelected: (item) => onSelectInternalKhoType(item.id),
+          _findById(widget.productGroups, widget.detail.selectedInternalKhoTypeId),
+      onSelected: (item) => widget.onSelectInternalKhoType(item.id),
     );
   }
 
   Future<void> _pickNcc(BuildContext context) async {
-    if (suppliers.isEmpty) return;
+    if (widget.suppliers.isEmpty) return;
     await openSelectBottomSheet<SupplierResponse>(
       context: context,
       title: 'Chọn nhà cung cấp',
-      items: suppliers,
+      items: widget.suppliers,
       displayText: (s) =>
           '${(s.code ?? '').trim()} - ${(s.name ?? '').trim()}'.trim(),
-      initialSelectedItem: _findById(suppliers, detail.selectedNccId),
-      onSelected: (item) => onSelectNcc(item.id),
+      initialSelectedItem: _findById(widget.suppliers, widget.detail.selectedNccId),
+      onSelected: (item) => widget.onSelectNcc(item.id),
     );
   }
 
