@@ -28,6 +28,8 @@ mixin _$ApproveTimesheetEvent {
     required TResult Function(Set<int> tTypes) setSelectionByTypes,
     required TResult Function(Set<int> tTypes) setFilterTTypes,
     required TResult Function(int? status) setFilterStatus,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        setDateRange,
     required TResult Function() clearSelection,
     required TResult Function() seniorApprove,
     required TResult Function() seniorUnapprove,
@@ -51,6 +53,7 @@ mixin _$ApproveTimesheetEvent {
     TResult? Function(Set<int> tTypes)? setSelectionByTypes,
     TResult? Function(Set<int> tTypes)? setFilterTTypes,
     TResult? Function(int? status)? setFilterStatus,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
     TResult? Function()? clearSelection,
     TResult? Function()? seniorApprove,
     TResult? Function()? seniorUnapprove,
@@ -74,6 +77,7 @@ mixin _$ApproveTimesheetEvent {
     TResult Function(Set<int> tTypes)? setSelectionByTypes,
     TResult Function(Set<int> tTypes)? setFilterTTypes,
     TResult Function(int? status)? setFilterStatus,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
     TResult Function()? clearSelection,
     TResult Function()? seniorApprove,
     TResult Function()? seniorUnapprove,
@@ -96,6 +100,7 @@ mixin _$ApproveTimesheetEvent {
     required TResult Function(_SetSelectionByTypes value) setSelectionByTypes,
     required TResult Function(_SetFilterTTypes value) setFilterTTypes,
     required TResult Function(_SetFilterStatus value) setFilterStatus,
+    required TResult Function(_SetDateRange value) setDateRange,
     required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_SeniorApprove value) seniorApprove,
     required TResult Function(_SeniorUnapprove value) seniorUnapprove,
@@ -117,6 +122,7 @@ mixin _$ApproveTimesheetEvent {
     TResult? Function(_SetSelectionByTypes value)? setSelectionByTypes,
     TResult? Function(_SetFilterTTypes value)? setFilterTTypes,
     TResult? Function(_SetFilterStatus value)? setFilterStatus,
+    TResult? Function(_SetDateRange value)? setDateRange,
     TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_SeniorApprove value)? seniorApprove,
     TResult? Function(_SeniorUnapprove value)? seniorUnapprove,
@@ -137,6 +143,7 @@ mixin _$ApproveTimesheetEvent {
     TResult Function(_SetSelectionByTypes value)? setSelectionByTypes,
     TResult Function(_SetFilterTTypes value)? setFilterTTypes,
     TResult Function(_SetFilterStatus value)? setFilterStatus,
+    TResult Function(_SetDateRange value)? setDateRange,
     TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_SeniorApprove value)? seniorApprove,
     TResult Function(_SeniorUnapprove value)? seniorUnapprove,
@@ -274,6 +281,8 @@ class _$InitImpl implements _Init {
     required TResult Function(Set<int> tTypes) setSelectionByTypes,
     required TResult Function(Set<int> tTypes) setFilterTTypes,
     required TResult Function(int? status) setFilterStatus,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        setDateRange,
     required TResult Function() clearSelection,
     required TResult Function() seniorApprove,
     required TResult Function() seniorUnapprove,
@@ -300,6 +309,7 @@ class _$InitImpl implements _Init {
     TResult? Function(Set<int> tTypes)? setSelectionByTypes,
     TResult? Function(Set<int> tTypes)? setFilterTTypes,
     TResult? Function(int? status)? setFilterStatus,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
     TResult? Function()? clearSelection,
     TResult? Function()? seniorApprove,
     TResult? Function()? seniorUnapprove,
@@ -326,6 +336,7 @@ class _$InitImpl implements _Init {
     TResult Function(Set<int> tTypes)? setSelectionByTypes,
     TResult Function(Set<int> tTypes)? setFilterTTypes,
     TResult Function(int? status)? setFilterStatus,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
     TResult Function()? clearSelection,
     TResult Function()? seniorApprove,
     TResult Function()? seniorUnapprove,
@@ -354,6 +365,7 @@ class _$InitImpl implements _Init {
     required TResult Function(_SetSelectionByTypes value) setSelectionByTypes,
     required TResult Function(_SetFilterTTypes value) setFilterTTypes,
     required TResult Function(_SetFilterStatus value) setFilterStatus,
+    required TResult Function(_SetDateRange value) setDateRange,
     required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_SeniorApprove value) seniorApprove,
     required TResult Function(_SeniorUnapprove value) seniorUnapprove,
@@ -378,6 +390,7 @@ class _$InitImpl implements _Init {
     TResult? Function(_SetSelectionByTypes value)? setSelectionByTypes,
     TResult? Function(_SetFilterTTypes value)? setFilterTTypes,
     TResult? Function(_SetFilterStatus value)? setFilterStatus,
+    TResult? Function(_SetDateRange value)? setDateRange,
     TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_SeniorApprove value)? seniorApprove,
     TResult? Function(_SeniorUnapprove value)? seniorUnapprove,
@@ -401,6 +414,7 @@ class _$InitImpl implements _Init {
     TResult Function(_SetSelectionByTypes value)? setSelectionByTypes,
     TResult Function(_SetFilterTTypes value)? setFilterTTypes,
     TResult Function(_SetFilterStatus value)? setFilterStatus,
+    TResult Function(_SetDateRange value)? setDateRange,
     TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_SeniorApprove value)? seniorApprove,
     TResult Function(_SeniorUnapprove value)? seniorUnapprove,
@@ -483,6 +497,8 @@ class _$ToggleSelectionModeImpl implements _ToggleSelectionMode {
     required TResult Function(Set<int> tTypes) setSelectionByTypes,
     required TResult Function(Set<int> tTypes) setFilterTTypes,
     required TResult Function(int? status) setFilterStatus,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        setDateRange,
     required TResult Function() clearSelection,
     required TResult Function() seniorApprove,
     required TResult Function() seniorUnapprove,
@@ -509,6 +525,7 @@ class _$ToggleSelectionModeImpl implements _ToggleSelectionMode {
     TResult? Function(Set<int> tTypes)? setSelectionByTypes,
     TResult? Function(Set<int> tTypes)? setFilterTTypes,
     TResult? Function(int? status)? setFilterStatus,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
     TResult? Function()? clearSelection,
     TResult? Function()? seniorApprove,
     TResult? Function()? seniorUnapprove,
@@ -535,6 +552,7 @@ class _$ToggleSelectionModeImpl implements _ToggleSelectionMode {
     TResult Function(Set<int> tTypes)? setSelectionByTypes,
     TResult Function(Set<int> tTypes)? setFilterTTypes,
     TResult Function(int? status)? setFilterStatus,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
     TResult Function()? clearSelection,
     TResult Function()? seniorApprove,
     TResult Function()? seniorUnapprove,
@@ -563,6 +581,7 @@ class _$ToggleSelectionModeImpl implements _ToggleSelectionMode {
     required TResult Function(_SetSelectionByTypes value) setSelectionByTypes,
     required TResult Function(_SetFilterTTypes value) setFilterTTypes,
     required TResult Function(_SetFilterStatus value) setFilterStatus,
+    required TResult Function(_SetDateRange value) setDateRange,
     required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_SeniorApprove value) seniorApprove,
     required TResult Function(_SeniorUnapprove value) seniorUnapprove,
@@ -587,6 +606,7 @@ class _$ToggleSelectionModeImpl implements _ToggleSelectionMode {
     TResult? Function(_SetSelectionByTypes value)? setSelectionByTypes,
     TResult? Function(_SetFilterTTypes value)? setFilterTTypes,
     TResult? Function(_SetFilterStatus value)? setFilterStatus,
+    TResult? Function(_SetDateRange value)? setDateRange,
     TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_SeniorApprove value)? seniorApprove,
     TResult? Function(_SeniorUnapprove value)? seniorUnapprove,
@@ -610,6 +630,7 @@ class _$ToggleSelectionModeImpl implements _ToggleSelectionMode {
     TResult Function(_SetSelectionByTypes value)? setSelectionByTypes,
     TResult Function(_SetFilterTTypes value)? setFilterTTypes,
     TResult Function(_SetFilterStatus value)? setFilterStatus,
+    TResult Function(_SetDateRange value)? setDateRange,
     TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_SeniorApprove value)? seniorApprove,
     TResult Function(_SeniorUnapprove value)? seniorUnapprove,
@@ -706,6 +727,8 @@ class _$ToggleSelectionImpl implements _ToggleSelection {
     required TResult Function(Set<int> tTypes) setSelectionByTypes,
     required TResult Function(Set<int> tTypes) setFilterTTypes,
     required TResult Function(int? status) setFilterStatus,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        setDateRange,
     required TResult Function() clearSelection,
     required TResult Function() seniorApprove,
     required TResult Function() seniorUnapprove,
@@ -732,6 +755,7 @@ class _$ToggleSelectionImpl implements _ToggleSelection {
     TResult? Function(Set<int> tTypes)? setSelectionByTypes,
     TResult? Function(Set<int> tTypes)? setFilterTTypes,
     TResult? Function(int? status)? setFilterStatus,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
     TResult? Function()? clearSelection,
     TResult? Function()? seniorApprove,
     TResult? Function()? seniorUnapprove,
@@ -758,6 +782,7 @@ class _$ToggleSelectionImpl implements _ToggleSelection {
     TResult Function(Set<int> tTypes)? setSelectionByTypes,
     TResult Function(Set<int> tTypes)? setFilterTTypes,
     TResult Function(int? status)? setFilterStatus,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
     TResult Function()? clearSelection,
     TResult Function()? seniorApprove,
     TResult Function()? seniorUnapprove,
@@ -786,6 +811,7 @@ class _$ToggleSelectionImpl implements _ToggleSelection {
     required TResult Function(_SetSelectionByTypes value) setSelectionByTypes,
     required TResult Function(_SetFilterTTypes value) setFilterTTypes,
     required TResult Function(_SetFilterStatus value) setFilterStatus,
+    required TResult Function(_SetDateRange value) setDateRange,
     required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_SeniorApprove value) seniorApprove,
     required TResult Function(_SeniorUnapprove value) seniorUnapprove,
@@ -810,6 +836,7 @@ class _$ToggleSelectionImpl implements _ToggleSelection {
     TResult? Function(_SetSelectionByTypes value)? setSelectionByTypes,
     TResult? Function(_SetFilterTTypes value)? setFilterTTypes,
     TResult? Function(_SetFilterStatus value)? setFilterStatus,
+    TResult? Function(_SetDateRange value)? setDateRange,
     TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_SeniorApprove value)? seniorApprove,
     TResult? Function(_SeniorUnapprove value)? seniorUnapprove,
@@ -833,6 +860,7 @@ class _$ToggleSelectionImpl implements _ToggleSelection {
     TResult Function(_SetSelectionByTypes value)? setSelectionByTypes,
     TResult Function(_SetFilterTTypes value)? setFilterTTypes,
     TResult Function(_SetFilterStatus value)? setFilterStatus,
+    TResult Function(_SetDateRange value)? setDateRange,
     TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_SeniorApprove value)? seniorApprove,
     TResult Function(_SeniorUnapprove value)? seniorUnapprove,
@@ -934,6 +962,8 @@ class _$ToggleSelectGroupImpl implements _ToggleSelectGroup {
     required TResult Function(Set<int> tTypes) setSelectionByTypes,
     required TResult Function(Set<int> tTypes) setFilterTTypes,
     required TResult Function(int? status) setFilterStatus,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        setDateRange,
     required TResult Function() clearSelection,
     required TResult Function() seniorApprove,
     required TResult Function() seniorUnapprove,
@@ -960,6 +990,7 @@ class _$ToggleSelectGroupImpl implements _ToggleSelectGroup {
     TResult? Function(Set<int> tTypes)? setSelectionByTypes,
     TResult? Function(Set<int> tTypes)? setFilterTTypes,
     TResult? Function(int? status)? setFilterStatus,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
     TResult? Function()? clearSelection,
     TResult? Function()? seniorApprove,
     TResult? Function()? seniorUnapprove,
@@ -986,6 +1017,7 @@ class _$ToggleSelectGroupImpl implements _ToggleSelectGroup {
     TResult Function(Set<int> tTypes)? setSelectionByTypes,
     TResult Function(Set<int> tTypes)? setFilterTTypes,
     TResult Function(int? status)? setFilterStatus,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
     TResult Function()? clearSelection,
     TResult Function()? seniorApprove,
     TResult Function()? seniorUnapprove,
@@ -1014,6 +1046,7 @@ class _$ToggleSelectGroupImpl implements _ToggleSelectGroup {
     required TResult Function(_SetSelectionByTypes value) setSelectionByTypes,
     required TResult Function(_SetFilterTTypes value) setFilterTTypes,
     required TResult Function(_SetFilterStatus value) setFilterStatus,
+    required TResult Function(_SetDateRange value) setDateRange,
     required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_SeniorApprove value) seniorApprove,
     required TResult Function(_SeniorUnapprove value) seniorUnapprove,
@@ -1038,6 +1071,7 @@ class _$ToggleSelectGroupImpl implements _ToggleSelectGroup {
     TResult? Function(_SetSelectionByTypes value)? setSelectionByTypes,
     TResult? Function(_SetFilterTTypes value)? setFilterTTypes,
     TResult? Function(_SetFilterStatus value)? setFilterStatus,
+    TResult? Function(_SetDateRange value)? setDateRange,
     TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_SeniorApprove value)? seniorApprove,
     TResult? Function(_SeniorUnapprove value)? seniorUnapprove,
@@ -1061,6 +1095,7 @@ class _$ToggleSelectGroupImpl implements _ToggleSelectGroup {
     TResult Function(_SetSelectionByTypes value)? setSelectionByTypes,
     TResult Function(_SetFilterTTypes value)? setFilterTTypes,
     TResult Function(_SetFilterStatus value)? setFilterStatus,
+    TResult Function(_SetDateRange value)? setDateRange,
     TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_SeniorApprove value)? seniorApprove,
     TResult Function(_SeniorUnapprove value)? seniorUnapprove,
@@ -1135,6 +1170,8 @@ class _$ToggleSelectAllImpl implements _ToggleSelectAll {
     required TResult Function(Set<int> tTypes) setSelectionByTypes,
     required TResult Function(Set<int> tTypes) setFilterTTypes,
     required TResult Function(int? status) setFilterStatus,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        setDateRange,
     required TResult Function() clearSelection,
     required TResult Function() seniorApprove,
     required TResult Function() seniorUnapprove,
@@ -1161,6 +1198,7 @@ class _$ToggleSelectAllImpl implements _ToggleSelectAll {
     TResult? Function(Set<int> tTypes)? setSelectionByTypes,
     TResult? Function(Set<int> tTypes)? setFilterTTypes,
     TResult? Function(int? status)? setFilterStatus,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
     TResult? Function()? clearSelection,
     TResult? Function()? seniorApprove,
     TResult? Function()? seniorUnapprove,
@@ -1187,6 +1225,7 @@ class _$ToggleSelectAllImpl implements _ToggleSelectAll {
     TResult Function(Set<int> tTypes)? setSelectionByTypes,
     TResult Function(Set<int> tTypes)? setFilterTTypes,
     TResult Function(int? status)? setFilterStatus,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
     TResult Function()? clearSelection,
     TResult Function()? seniorApprove,
     TResult Function()? seniorUnapprove,
@@ -1215,6 +1254,7 @@ class _$ToggleSelectAllImpl implements _ToggleSelectAll {
     required TResult Function(_SetSelectionByTypes value) setSelectionByTypes,
     required TResult Function(_SetFilterTTypes value) setFilterTTypes,
     required TResult Function(_SetFilterStatus value) setFilterStatus,
+    required TResult Function(_SetDateRange value) setDateRange,
     required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_SeniorApprove value) seniorApprove,
     required TResult Function(_SeniorUnapprove value) seniorUnapprove,
@@ -1239,6 +1279,7 @@ class _$ToggleSelectAllImpl implements _ToggleSelectAll {
     TResult? Function(_SetSelectionByTypes value)? setSelectionByTypes,
     TResult? Function(_SetFilterTTypes value)? setFilterTTypes,
     TResult? Function(_SetFilterStatus value)? setFilterStatus,
+    TResult? Function(_SetDateRange value)? setDateRange,
     TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_SeniorApprove value)? seniorApprove,
     TResult? Function(_SeniorUnapprove value)? seniorUnapprove,
@@ -1262,6 +1303,7 @@ class _$ToggleSelectAllImpl implements _ToggleSelectAll {
     TResult Function(_SetSelectionByTypes value)? setSelectionByTypes,
     TResult Function(_SetFilterTTypes value)? setFilterTTypes,
     TResult Function(_SetFilterStatus value)? setFilterStatus,
+    TResult Function(_SetDateRange value)? setDateRange,
     TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_SeniorApprove value)? seniorApprove,
     TResult Function(_SeniorUnapprove value)? seniorUnapprove,
@@ -1364,6 +1406,8 @@ class _$SetSelectionByTypesImpl implements _SetSelectionByTypes {
     required TResult Function(Set<int> tTypes) setSelectionByTypes,
     required TResult Function(Set<int> tTypes) setFilterTTypes,
     required TResult Function(int? status) setFilterStatus,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        setDateRange,
     required TResult Function() clearSelection,
     required TResult Function() seniorApprove,
     required TResult Function() seniorUnapprove,
@@ -1390,6 +1434,7 @@ class _$SetSelectionByTypesImpl implements _SetSelectionByTypes {
     TResult? Function(Set<int> tTypes)? setSelectionByTypes,
     TResult? Function(Set<int> tTypes)? setFilterTTypes,
     TResult? Function(int? status)? setFilterStatus,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
     TResult? Function()? clearSelection,
     TResult? Function()? seniorApprove,
     TResult? Function()? seniorUnapprove,
@@ -1416,6 +1461,7 @@ class _$SetSelectionByTypesImpl implements _SetSelectionByTypes {
     TResult Function(Set<int> tTypes)? setSelectionByTypes,
     TResult Function(Set<int> tTypes)? setFilterTTypes,
     TResult Function(int? status)? setFilterStatus,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
     TResult Function()? clearSelection,
     TResult Function()? seniorApprove,
     TResult Function()? seniorUnapprove,
@@ -1444,6 +1490,7 @@ class _$SetSelectionByTypesImpl implements _SetSelectionByTypes {
     required TResult Function(_SetSelectionByTypes value) setSelectionByTypes,
     required TResult Function(_SetFilterTTypes value) setFilterTTypes,
     required TResult Function(_SetFilterStatus value) setFilterStatus,
+    required TResult Function(_SetDateRange value) setDateRange,
     required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_SeniorApprove value) seniorApprove,
     required TResult Function(_SeniorUnapprove value) seniorUnapprove,
@@ -1468,6 +1515,7 @@ class _$SetSelectionByTypesImpl implements _SetSelectionByTypes {
     TResult? Function(_SetSelectionByTypes value)? setSelectionByTypes,
     TResult? Function(_SetFilterTTypes value)? setFilterTTypes,
     TResult? Function(_SetFilterStatus value)? setFilterStatus,
+    TResult? Function(_SetDateRange value)? setDateRange,
     TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_SeniorApprove value)? seniorApprove,
     TResult? Function(_SeniorUnapprove value)? seniorUnapprove,
@@ -1491,6 +1539,7 @@ class _$SetSelectionByTypesImpl implements _SetSelectionByTypes {
     TResult Function(_SetSelectionByTypes value)? setSelectionByTypes,
     TResult Function(_SetFilterTTypes value)? setFilterTTypes,
     TResult Function(_SetFilterStatus value)? setFilterStatus,
+    TResult Function(_SetDateRange value)? setDateRange,
     TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_SeniorApprove value)? seniorApprove,
     TResult Function(_SeniorUnapprove value)? seniorUnapprove,
@@ -1599,6 +1648,8 @@ class _$SetFilterTTypesImpl implements _SetFilterTTypes {
     required TResult Function(Set<int> tTypes) setSelectionByTypes,
     required TResult Function(Set<int> tTypes) setFilterTTypes,
     required TResult Function(int? status) setFilterStatus,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        setDateRange,
     required TResult Function() clearSelection,
     required TResult Function() seniorApprove,
     required TResult Function() seniorUnapprove,
@@ -1625,6 +1676,7 @@ class _$SetFilterTTypesImpl implements _SetFilterTTypes {
     TResult? Function(Set<int> tTypes)? setSelectionByTypes,
     TResult? Function(Set<int> tTypes)? setFilterTTypes,
     TResult? Function(int? status)? setFilterStatus,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
     TResult? Function()? clearSelection,
     TResult? Function()? seniorApprove,
     TResult? Function()? seniorUnapprove,
@@ -1651,6 +1703,7 @@ class _$SetFilterTTypesImpl implements _SetFilterTTypes {
     TResult Function(Set<int> tTypes)? setSelectionByTypes,
     TResult Function(Set<int> tTypes)? setFilterTTypes,
     TResult Function(int? status)? setFilterStatus,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
     TResult Function()? clearSelection,
     TResult Function()? seniorApprove,
     TResult Function()? seniorUnapprove,
@@ -1679,6 +1732,7 @@ class _$SetFilterTTypesImpl implements _SetFilterTTypes {
     required TResult Function(_SetSelectionByTypes value) setSelectionByTypes,
     required TResult Function(_SetFilterTTypes value) setFilterTTypes,
     required TResult Function(_SetFilterStatus value) setFilterStatus,
+    required TResult Function(_SetDateRange value) setDateRange,
     required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_SeniorApprove value) seniorApprove,
     required TResult Function(_SeniorUnapprove value) seniorUnapprove,
@@ -1703,6 +1757,7 @@ class _$SetFilterTTypesImpl implements _SetFilterTTypes {
     TResult? Function(_SetSelectionByTypes value)? setSelectionByTypes,
     TResult? Function(_SetFilterTTypes value)? setFilterTTypes,
     TResult? Function(_SetFilterStatus value)? setFilterStatus,
+    TResult? Function(_SetDateRange value)? setDateRange,
     TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_SeniorApprove value)? seniorApprove,
     TResult? Function(_SeniorUnapprove value)? seniorUnapprove,
@@ -1726,6 +1781,7 @@ class _$SetFilterTTypesImpl implements _SetFilterTTypes {
     TResult Function(_SetSelectionByTypes value)? setSelectionByTypes,
     TResult Function(_SetFilterTTypes value)? setFilterTTypes,
     TResult Function(_SetFilterStatus value)? setFilterStatus,
+    TResult Function(_SetDateRange value)? setDateRange,
     TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_SeniorApprove value)? seniorApprove,
     TResult Function(_SeniorUnapprove value)? seniorUnapprove,
@@ -1827,6 +1883,8 @@ class _$SetFilterStatusImpl implements _SetFilterStatus {
     required TResult Function(Set<int> tTypes) setSelectionByTypes,
     required TResult Function(Set<int> tTypes) setFilterTTypes,
     required TResult Function(int? status) setFilterStatus,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        setDateRange,
     required TResult Function() clearSelection,
     required TResult Function() seniorApprove,
     required TResult Function() seniorUnapprove,
@@ -1853,6 +1911,7 @@ class _$SetFilterStatusImpl implements _SetFilterStatus {
     TResult? Function(Set<int> tTypes)? setSelectionByTypes,
     TResult? Function(Set<int> tTypes)? setFilterTTypes,
     TResult? Function(int? status)? setFilterStatus,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
     TResult? Function()? clearSelection,
     TResult? Function()? seniorApprove,
     TResult? Function()? seniorUnapprove,
@@ -1879,6 +1938,7 @@ class _$SetFilterStatusImpl implements _SetFilterStatus {
     TResult Function(Set<int> tTypes)? setSelectionByTypes,
     TResult Function(Set<int> tTypes)? setFilterTTypes,
     TResult Function(int? status)? setFilterStatus,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
     TResult Function()? clearSelection,
     TResult Function()? seniorApprove,
     TResult Function()? seniorUnapprove,
@@ -1907,6 +1967,7 @@ class _$SetFilterStatusImpl implements _SetFilterStatus {
     required TResult Function(_SetSelectionByTypes value) setSelectionByTypes,
     required TResult Function(_SetFilterTTypes value) setFilterTTypes,
     required TResult Function(_SetFilterStatus value) setFilterStatus,
+    required TResult Function(_SetDateRange value) setDateRange,
     required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_SeniorApprove value) seniorApprove,
     required TResult Function(_SeniorUnapprove value) seniorUnapprove,
@@ -1931,6 +1992,7 @@ class _$SetFilterStatusImpl implements _SetFilterStatus {
     TResult? Function(_SetSelectionByTypes value)? setSelectionByTypes,
     TResult? Function(_SetFilterTTypes value)? setFilterTTypes,
     TResult? Function(_SetFilterStatus value)? setFilterStatus,
+    TResult? Function(_SetDateRange value)? setDateRange,
     TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_SeniorApprove value)? seniorApprove,
     TResult? Function(_SeniorUnapprove value)? seniorUnapprove,
@@ -1954,6 +2016,7 @@ class _$SetFilterStatusImpl implements _SetFilterStatus {
     TResult Function(_SetSelectionByTypes value)? setSelectionByTypes,
     TResult Function(_SetFilterTTypes value)? setFilterTTypes,
     TResult Function(_SetFilterStatus value)? setFilterStatus,
+    TResult Function(_SetDateRange value)? setDateRange,
     TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_SeniorApprove value)? seniorApprove,
     TResult Function(_SeniorUnapprove value)? seniorUnapprove,
@@ -1977,6 +2040,252 @@ abstract class _SetFilterStatus implements ApproveTimesheetEvent {
   int? get status;
   @JsonKey(ignore: true)
   _$$SetFilterStatusImplCopyWith<_$SetFilterStatusImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SetDateRangeImplCopyWith<$Res> {
+  factory _$$SetDateRangeImplCopyWith(
+          _$SetDateRangeImpl value, $Res Function(_$SetDateRangeImpl) then) =
+      __$$SetDateRangeImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DateTime dateStart, DateTime dateEnd});
+}
+
+/// @nodoc
+class __$$SetDateRangeImplCopyWithImpl<$Res>
+    extends _$ApproveTimesheetEventCopyWithImpl<$Res, _$SetDateRangeImpl>
+    implements _$$SetDateRangeImplCopyWith<$Res> {
+  __$$SetDateRangeImplCopyWithImpl(
+      _$SetDateRangeImpl _value, $Res Function(_$SetDateRangeImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? dateStart = null,
+    Object? dateEnd = null,
+  }) {
+    return _then(_$SetDateRangeImpl(
+      dateStart: null == dateStart
+          ? _value.dateStart
+          : dateStart // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      dateEnd: null == dateEnd
+          ? _value.dateEnd
+          : dateEnd // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SetDateRangeImpl implements _SetDateRange {
+  const _$SetDateRangeImpl({required this.dateStart, required this.dateEnd});
+
+  @override
+  final DateTime dateStart;
+  @override
+  final DateTime dateEnd;
+
+  @override
+  String toString() {
+    return 'ApproveTimesheetEvent.setDateRange(dateStart: $dateStart, dateEnd: $dateEnd)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetDateRangeImpl &&
+            (identical(other.dateStart, dateStart) ||
+                other.dateStart == dateStart) &&
+            (identical(other.dateEnd, dateEnd) || other.dateEnd == dateEnd));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, dateStart, dateEnd);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetDateRangeImplCopyWith<_$SetDateRangeImpl> get copyWith =>
+      __$$SetDateRangeImplCopyWithImpl<_$SetDateRangeImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            ApproveTimesheetRole role, int? employeeId, int? status, int? tType)
+        init,
+    required TResult Function() toggleSelectionMode,
+    required TResult Function(int id) toggleSelection,
+    required TResult Function(int tType) toggleSelectGroup,
+    required TResult Function() toggleSelectAll,
+    required TResult Function(Set<int> tTypes) setSelectionByTypes,
+    required TResult Function(Set<int> tTypes) setFilterTTypes,
+    required TResult Function(int? status) setFilterStatus,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        setDateRange,
+    required TResult Function() clearSelection,
+    required TResult Function() seniorApprove,
+    required TResult Function() seniorUnapprove,
+    required TResult Function(String reason) seniorDecline,
+    required TResult Function() tbpApprove,
+    required TResult Function() tbpUnapprove,
+    required TResult Function(String reason) tbpDecline,
+    required TResult Function(List<ApproveTimesheetItem> items, bool isApproved)
+        tbpSeniorBypassApprove,
+  }) {
+    return setDateRange(dateStart, dateEnd);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
+        init,
+    TResult? Function()? toggleSelectionMode,
+    TResult? Function(int id)? toggleSelection,
+    TResult? Function(int tType)? toggleSelectGroup,
+    TResult? Function()? toggleSelectAll,
+    TResult? Function(Set<int> tTypes)? setSelectionByTypes,
+    TResult? Function(Set<int> tTypes)? setFilterTTypes,
+    TResult? Function(int? status)? setFilterStatus,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
+    TResult? Function()? clearSelection,
+    TResult? Function()? seniorApprove,
+    TResult? Function()? seniorUnapprove,
+    TResult? Function(String reason)? seniorDecline,
+    TResult? Function()? tbpApprove,
+    TResult? Function()? tbpUnapprove,
+    TResult? Function(String reason)? tbpDecline,
+    TResult? Function(List<ApproveTimesheetItem> items, bool isApproved)?
+        tbpSeniorBypassApprove,
+  }) {
+    return setDateRange?.call(dateStart, dateEnd);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(ApproveTimesheetRole role, int? employeeId, int? status,
+            int? tType)?
+        init,
+    TResult Function()? toggleSelectionMode,
+    TResult Function(int id)? toggleSelection,
+    TResult Function(int tType)? toggleSelectGroup,
+    TResult Function()? toggleSelectAll,
+    TResult Function(Set<int> tTypes)? setSelectionByTypes,
+    TResult Function(Set<int> tTypes)? setFilterTTypes,
+    TResult Function(int? status)? setFilterStatus,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
+    TResult Function()? clearSelection,
+    TResult Function()? seniorApprove,
+    TResult Function()? seniorUnapprove,
+    TResult Function(String reason)? seniorDecline,
+    TResult Function()? tbpApprove,
+    TResult Function()? tbpUnapprove,
+    TResult Function(String reason)? tbpDecline,
+    TResult Function(List<ApproveTimesheetItem> items, bool isApproved)?
+        tbpSeniorBypassApprove,
+    required TResult orElse(),
+  }) {
+    if (setDateRange != null) {
+      return setDateRange(dateStart, dateEnd);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ToggleSelectionMode value) toggleSelectionMode,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_ToggleSelectGroup value) toggleSelectGroup,
+    required TResult Function(_ToggleSelectAll value) toggleSelectAll,
+    required TResult Function(_SetSelectionByTypes value) setSelectionByTypes,
+    required TResult Function(_SetFilterTTypes value) setFilterTTypes,
+    required TResult Function(_SetFilterStatus value) setFilterStatus,
+    required TResult Function(_SetDateRange value) setDateRange,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_SeniorApprove value) seniorApprove,
+    required TResult Function(_SeniorUnapprove value) seniorUnapprove,
+    required TResult Function(_SeniorDecline value) seniorDecline,
+    required TResult Function(_TbpApprove value) tbpApprove,
+    required TResult Function(_TbpUnapprove value) tbpUnapprove,
+    required TResult Function(_TbpDecline value) tbpDecline,
+    required TResult Function(_TbpSeniorBypassApprove value)
+        tbpSeniorBypassApprove,
+  }) {
+    return setDateRange(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ToggleSelectionMode value)? toggleSelectionMode,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_ToggleSelectGroup value)? toggleSelectGroup,
+    TResult? Function(_ToggleSelectAll value)? toggleSelectAll,
+    TResult? Function(_SetSelectionByTypes value)? setSelectionByTypes,
+    TResult? Function(_SetFilterTTypes value)? setFilterTTypes,
+    TResult? Function(_SetFilterStatus value)? setFilterStatus,
+    TResult? Function(_SetDateRange value)? setDateRange,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_SeniorApprove value)? seniorApprove,
+    TResult? Function(_SeniorUnapprove value)? seniorUnapprove,
+    TResult? Function(_SeniorDecline value)? seniorDecline,
+    TResult? Function(_TbpApprove value)? tbpApprove,
+    TResult? Function(_TbpUnapprove value)? tbpUnapprove,
+    TResult? Function(_TbpDecline value)? tbpDecline,
+    TResult? Function(_TbpSeniorBypassApprove value)? tbpSeniorBypassApprove,
+  }) {
+    return setDateRange?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ToggleSelectionMode value)? toggleSelectionMode,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_ToggleSelectGroup value)? toggleSelectGroup,
+    TResult Function(_ToggleSelectAll value)? toggleSelectAll,
+    TResult Function(_SetSelectionByTypes value)? setSelectionByTypes,
+    TResult Function(_SetFilterTTypes value)? setFilterTTypes,
+    TResult Function(_SetFilterStatus value)? setFilterStatus,
+    TResult Function(_SetDateRange value)? setDateRange,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_SeniorApprove value)? seniorApprove,
+    TResult Function(_SeniorUnapprove value)? seniorUnapprove,
+    TResult Function(_SeniorDecline value)? seniorDecline,
+    TResult Function(_TbpApprove value)? tbpApprove,
+    TResult Function(_TbpUnapprove value)? tbpUnapprove,
+    TResult Function(_TbpDecline value)? tbpDecline,
+    TResult Function(_TbpSeniorBypassApprove value)? tbpSeniorBypassApprove,
+    required TResult orElse(),
+  }) {
+    if (setDateRange != null) {
+      return setDateRange(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetDateRange implements ApproveTimesheetEvent {
+  const factory _SetDateRange(
+      {required final DateTime dateStart,
+      required final DateTime dateEnd}) = _$SetDateRangeImpl;
+
+  DateTime get dateStart;
+  DateTime get dateEnd;
+  @JsonKey(ignore: true)
+  _$$SetDateRangeImplCopyWith<_$SetDateRangeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -2028,6 +2337,8 @@ class _$ClearSelectionImpl implements _ClearSelection {
     required TResult Function(Set<int> tTypes) setSelectionByTypes,
     required TResult Function(Set<int> tTypes) setFilterTTypes,
     required TResult Function(int? status) setFilterStatus,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        setDateRange,
     required TResult Function() clearSelection,
     required TResult Function() seniorApprove,
     required TResult Function() seniorUnapprove,
@@ -2054,6 +2365,7 @@ class _$ClearSelectionImpl implements _ClearSelection {
     TResult? Function(Set<int> tTypes)? setSelectionByTypes,
     TResult? Function(Set<int> tTypes)? setFilterTTypes,
     TResult? Function(int? status)? setFilterStatus,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
     TResult? Function()? clearSelection,
     TResult? Function()? seniorApprove,
     TResult? Function()? seniorUnapprove,
@@ -2080,6 +2392,7 @@ class _$ClearSelectionImpl implements _ClearSelection {
     TResult Function(Set<int> tTypes)? setSelectionByTypes,
     TResult Function(Set<int> tTypes)? setFilterTTypes,
     TResult Function(int? status)? setFilterStatus,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
     TResult Function()? clearSelection,
     TResult Function()? seniorApprove,
     TResult Function()? seniorUnapprove,
@@ -2108,6 +2421,7 @@ class _$ClearSelectionImpl implements _ClearSelection {
     required TResult Function(_SetSelectionByTypes value) setSelectionByTypes,
     required TResult Function(_SetFilterTTypes value) setFilterTTypes,
     required TResult Function(_SetFilterStatus value) setFilterStatus,
+    required TResult Function(_SetDateRange value) setDateRange,
     required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_SeniorApprove value) seniorApprove,
     required TResult Function(_SeniorUnapprove value) seniorUnapprove,
@@ -2132,6 +2446,7 @@ class _$ClearSelectionImpl implements _ClearSelection {
     TResult? Function(_SetSelectionByTypes value)? setSelectionByTypes,
     TResult? Function(_SetFilterTTypes value)? setFilterTTypes,
     TResult? Function(_SetFilterStatus value)? setFilterStatus,
+    TResult? Function(_SetDateRange value)? setDateRange,
     TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_SeniorApprove value)? seniorApprove,
     TResult? Function(_SeniorUnapprove value)? seniorUnapprove,
@@ -2155,6 +2470,7 @@ class _$ClearSelectionImpl implements _ClearSelection {
     TResult Function(_SetSelectionByTypes value)? setSelectionByTypes,
     TResult Function(_SetFilterTTypes value)? setFilterTTypes,
     TResult Function(_SetFilterStatus value)? setFilterStatus,
+    TResult Function(_SetDateRange value)? setDateRange,
     TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_SeniorApprove value)? seniorApprove,
     TResult Function(_SeniorUnapprove value)? seniorUnapprove,
@@ -2224,6 +2540,8 @@ class _$SeniorApproveImpl implements _SeniorApprove {
     required TResult Function(Set<int> tTypes) setSelectionByTypes,
     required TResult Function(Set<int> tTypes) setFilterTTypes,
     required TResult Function(int? status) setFilterStatus,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        setDateRange,
     required TResult Function() clearSelection,
     required TResult Function() seniorApprove,
     required TResult Function() seniorUnapprove,
@@ -2250,6 +2568,7 @@ class _$SeniorApproveImpl implements _SeniorApprove {
     TResult? Function(Set<int> tTypes)? setSelectionByTypes,
     TResult? Function(Set<int> tTypes)? setFilterTTypes,
     TResult? Function(int? status)? setFilterStatus,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
     TResult? Function()? clearSelection,
     TResult? Function()? seniorApprove,
     TResult? Function()? seniorUnapprove,
@@ -2276,6 +2595,7 @@ class _$SeniorApproveImpl implements _SeniorApprove {
     TResult Function(Set<int> tTypes)? setSelectionByTypes,
     TResult Function(Set<int> tTypes)? setFilterTTypes,
     TResult Function(int? status)? setFilterStatus,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
     TResult Function()? clearSelection,
     TResult Function()? seniorApprove,
     TResult Function()? seniorUnapprove,
@@ -2304,6 +2624,7 @@ class _$SeniorApproveImpl implements _SeniorApprove {
     required TResult Function(_SetSelectionByTypes value) setSelectionByTypes,
     required TResult Function(_SetFilterTTypes value) setFilterTTypes,
     required TResult Function(_SetFilterStatus value) setFilterStatus,
+    required TResult Function(_SetDateRange value) setDateRange,
     required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_SeniorApprove value) seniorApprove,
     required TResult Function(_SeniorUnapprove value) seniorUnapprove,
@@ -2328,6 +2649,7 @@ class _$SeniorApproveImpl implements _SeniorApprove {
     TResult? Function(_SetSelectionByTypes value)? setSelectionByTypes,
     TResult? Function(_SetFilterTTypes value)? setFilterTTypes,
     TResult? Function(_SetFilterStatus value)? setFilterStatus,
+    TResult? Function(_SetDateRange value)? setDateRange,
     TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_SeniorApprove value)? seniorApprove,
     TResult? Function(_SeniorUnapprove value)? seniorUnapprove,
@@ -2351,6 +2673,7 @@ class _$SeniorApproveImpl implements _SeniorApprove {
     TResult Function(_SetSelectionByTypes value)? setSelectionByTypes,
     TResult Function(_SetFilterTTypes value)? setFilterTTypes,
     TResult Function(_SetFilterStatus value)? setFilterStatus,
+    TResult Function(_SetDateRange value)? setDateRange,
     TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_SeniorApprove value)? seniorApprove,
     TResult Function(_SeniorUnapprove value)? seniorUnapprove,
@@ -2420,6 +2743,8 @@ class _$SeniorUnapproveImpl implements _SeniorUnapprove {
     required TResult Function(Set<int> tTypes) setSelectionByTypes,
     required TResult Function(Set<int> tTypes) setFilterTTypes,
     required TResult Function(int? status) setFilterStatus,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        setDateRange,
     required TResult Function() clearSelection,
     required TResult Function() seniorApprove,
     required TResult Function() seniorUnapprove,
@@ -2446,6 +2771,7 @@ class _$SeniorUnapproveImpl implements _SeniorUnapprove {
     TResult? Function(Set<int> tTypes)? setSelectionByTypes,
     TResult? Function(Set<int> tTypes)? setFilterTTypes,
     TResult? Function(int? status)? setFilterStatus,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
     TResult? Function()? clearSelection,
     TResult? Function()? seniorApprove,
     TResult? Function()? seniorUnapprove,
@@ -2472,6 +2798,7 @@ class _$SeniorUnapproveImpl implements _SeniorUnapprove {
     TResult Function(Set<int> tTypes)? setSelectionByTypes,
     TResult Function(Set<int> tTypes)? setFilterTTypes,
     TResult Function(int? status)? setFilterStatus,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
     TResult Function()? clearSelection,
     TResult Function()? seniorApprove,
     TResult Function()? seniorUnapprove,
@@ -2500,6 +2827,7 @@ class _$SeniorUnapproveImpl implements _SeniorUnapprove {
     required TResult Function(_SetSelectionByTypes value) setSelectionByTypes,
     required TResult Function(_SetFilterTTypes value) setFilterTTypes,
     required TResult Function(_SetFilterStatus value) setFilterStatus,
+    required TResult Function(_SetDateRange value) setDateRange,
     required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_SeniorApprove value) seniorApprove,
     required TResult Function(_SeniorUnapprove value) seniorUnapprove,
@@ -2524,6 +2852,7 @@ class _$SeniorUnapproveImpl implements _SeniorUnapprove {
     TResult? Function(_SetSelectionByTypes value)? setSelectionByTypes,
     TResult? Function(_SetFilterTTypes value)? setFilterTTypes,
     TResult? Function(_SetFilterStatus value)? setFilterStatus,
+    TResult? Function(_SetDateRange value)? setDateRange,
     TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_SeniorApprove value)? seniorApprove,
     TResult? Function(_SeniorUnapprove value)? seniorUnapprove,
@@ -2547,6 +2876,7 @@ class _$SeniorUnapproveImpl implements _SeniorUnapprove {
     TResult Function(_SetSelectionByTypes value)? setSelectionByTypes,
     TResult Function(_SetFilterTTypes value)? setFilterTTypes,
     TResult Function(_SetFilterStatus value)? setFilterStatus,
+    TResult Function(_SetDateRange value)? setDateRange,
     TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_SeniorApprove value)? seniorApprove,
     TResult Function(_SeniorUnapprove value)? seniorUnapprove,
@@ -2642,6 +2972,8 @@ class _$SeniorDeclineImpl implements _SeniorDecline {
     required TResult Function(Set<int> tTypes) setSelectionByTypes,
     required TResult Function(Set<int> tTypes) setFilterTTypes,
     required TResult Function(int? status) setFilterStatus,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        setDateRange,
     required TResult Function() clearSelection,
     required TResult Function() seniorApprove,
     required TResult Function() seniorUnapprove,
@@ -2668,6 +3000,7 @@ class _$SeniorDeclineImpl implements _SeniorDecline {
     TResult? Function(Set<int> tTypes)? setSelectionByTypes,
     TResult? Function(Set<int> tTypes)? setFilterTTypes,
     TResult? Function(int? status)? setFilterStatus,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
     TResult? Function()? clearSelection,
     TResult? Function()? seniorApprove,
     TResult? Function()? seniorUnapprove,
@@ -2694,6 +3027,7 @@ class _$SeniorDeclineImpl implements _SeniorDecline {
     TResult Function(Set<int> tTypes)? setSelectionByTypes,
     TResult Function(Set<int> tTypes)? setFilterTTypes,
     TResult Function(int? status)? setFilterStatus,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
     TResult Function()? clearSelection,
     TResult Function()? seniorApprove,
     TResult Function()? seniorUnapprove,
@@ -2722,6 +3056,7 @@ class _$SeniorDeclineImpl implements _SeniorDecline {
     required TResult Function(_SetSelectionByTypes value) setSelectionByTypes,
     required TResult Function(_SetFilterTTypes value) setFilterTTypes,
     required TResult Function(_SetFilterStatus value) setFilterStatus,
+    required TResult Function(_SetDateRange value) setDateRange,
     required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_SeniorApprove value) seniorApprove,
     required TResult Function(_SeniorUnapprove value) seniorUnapprove,
@@ -2746,6 +3081,7 @@ class _$SeniorDeclineImpl implements _SeniorDecline {
     TResult? Function(_SetSelectionByTypes value)? setSelectionByTypes,
     TResult? Function(_SetFilterTTypes value)? setFilterTTypes,
     TResult? Function(_SetFilterStatus value)? setFilterStatus,
+    TResult? Function(_SetDateRange value)? setDateRange,
     TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_SeniorApprove value)? seniorApprove,
     TResult? Function(_SeniorUnapprove value)? seniorUnapprove,
@@ -2769,6 +3105,7 @@ class _$SeniorDeclineImpl implements _SeniorDecline {
     TResult Function(_SetSelectionByTypes value)? setSelectionByTypes,
     TResult Function(_SetFilterTTypes value)? setFilterTTypes,
     TResult Function(_SetFilterStatus value)? setFilterStatus,
+    TResult Function(_SetDateRange value)? setDateRange,
     TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_SeniorApprove value)? seniorApprove,
     TResult Function(_SeniorUnapprove value)? seniorUnapprove,
@@ -2843,6 +3180,8 @@ class _$TbpApproveImpl implements _TbpApprove {
     required TResult Function(Set<int> tTypes) setSelectionByTypes,
     required TResult Function(Set<int> tTypes) setFilterTTypes,
     required TResult Function(int? status) setFilterStatus,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        setDateRange,
     required TResult Function() clearSelection,
     required TResult Function() seniorApprove,
     required TResult Function() seniorUnapprove,
@@ -2869,6 +3208,7 @@ class _$TbpApproveImpl implements _TbpApprove {
     TResult? Function(Set<int> tTypes)? setSelectionByTypes,
     TResult? Function(Set<int> tTypes)? setFilterTTypes,
     TResult? Function(int? status)? setFilterStatus,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
     TResult? Function()? clearSelection,
     TResult? Function()? seniorApprove,
     TResult? Function()? seniorUnapprove,
@@ -2895,6 +3235,7 @@ class _$TbpApproveImpl implements _TbpApprove {
     TResult Function(Set<int> tTypes)? setSelectionByTypes,
     TResult Function(Set<int> tTypes)? setFilterTTypes,
     TResult Function(int? status)? setFilterStatus,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
     TResult Function()? clearSelection,
     TResult Function()? seniorApprove,
     TResult Function()? seniorUnapprove,
@@ -2923,6 +3264,7 @@ class _$TbpApproveImpl implements _TbpApprove {
     required TResult Function(_SetSelectionByTypes value) setSelectionByTypes,
     required TResult Function(_SetFilterTTypes value) setFilterTTypes,
     required TResult Function(_SetFilterStatus value) setFilterStatus,
+    required TResult Function(_SetDateRange value) setDateRange,
     required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_SeniorApprove value) seniorApprove,
     required TResult Function(_SeniorUnapprove value) seniorUnapprove,
@@ -2947,6 +3289,7 @@ class _$TbpApproveImpl implements _TbpApprove {
     TResult? Function(_SetSelectionByTypes value)? setSelectionByTypes,
     TResult? Function(_SetFilterTTypes value)? setFilterTTypes,
     TResult? Function(_SetFilterStatus value)? setFilterStatus,
+    TResult? Function(_SetDateRange value)? setDateRange,
     TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_SeniorApprove value)? seniorApprove,
     TResult? Function(_SeniorUnapprove value)? seniorUnapprove,
@@ -2970,6 +3313,7 @@ class _$TbpApproveImpl implements _TbpApprove {
     TResult Function(_SetSelectionByTypes value)? setSelectionByTypes,
     TResult Function(_SetFilterTTypes value)? setFilterTTypes,
     TResult Function(_SetFilterStatus value)? setFilterStatus,
+    TResult Function(_SetDateRange value)? setDateRange,
     TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_SeniorApprove value)? seniorApprove,
     TResult Function(_SeniorUnapprove value)? seniorUnapprove,
@@ -3039,6 +3383,8 @@ class _$TbpUnapproveImpl implements _TbpUnapprove {
     required TResult Function(Set<int> tTypes) setSelectionByTypes,
     required TResult Function(Set<int> tTypes) setFilterTTypes,
     required TResult Function(int? status) setFilterStatus,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        setDateRange,
     required TResult Function() clearSelection,
     required TResult Function() seniorApprove,
     required TResult Function() seniorUnapprove,
@@ -3065,6 +3411,7 @@ class _$TbpUnapproveImpl implements _TbpUnapprove {
     TResult? Function(Set<int> tTypes)? setSelectionByTypes,
     TResult? Function(Set<int> tTypes)? setFilterTTypes,
     TResult? Function(int? status)? setFilterStatus,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
     TResult? Function()? clearSelection,
     TResult? Function()? seniorApprove,
     TResult? Function()? seniorUnapprove,
@@ -3091,6 +3438,7 @@ class _$TbpUnapproveImpl implements _TbpUnapprove {
     TResult Function(Set<int> tTypes)? setSelectionByTypes,
     TResult Function(Set<int> tTypes)? setFilterTTypes,
     TResult Function(int? status)? setFilterStatus,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
     TResult Function()? clearSelection,
     TResult Function()? seniorApprove,
     TResult Function()? seniorUnapprove,
@@ -3119,6 +3467,7 @@ class _$TbpUnapproveImpl implements _TbpUnapprove {
     required TResult Function(_SetSelectionByTypes value) setSelectionByTypes,
     required TResult Function(_SetFilterTTypes value) setFilterTTypes,
     required TResult Function(_SetFilterStatus value) setFilterStatus,
+    required TResult Function(_SetDateRange value) setDateRange,
     required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_SeniorApprove value) seniorApprove,
     required TResult Function(_SeniorUnapprove value) seniorUnapprove,
@@ -3143,6 +3492,7 @@ class _$TbpUnapproveImpl implements _TbpUnapprove {
     TResult? Function(_SetSelectionByTypes value)? setSelectionByTypes,
     TResult? Function(_SetFilterTTypes value)? setFilterTTypes,
     TResult? Function(_SetFilterStatus value)? setFilterStatus,
+    TResult? Function(_SetDateRange value)? setDateRange,
     TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_SeniorApprove value)? seniorApprove,
     TResult? Function(_SeniorUnapprove value)? seniorUnapprove,
@@ -3166,6 +3516,7 @@ class _$TbpUnapproveImpl implements _TbpUnapprove {
     TResult Function(_SetSelectionByTypes value)? setSelectionByTypes,
     TResult Function(_SetFilterTTypes value)? setFilterTTypes,
     TResult Function(_SetFilterStatus value)? setFilterStatus,
+    TResult Function(_SetDateRange value)? setDateRange,
     TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_SeniorApprove value)? seniorApprove,
     TResult Function(_SeniorUnapprove value)? seniorUnapprove,
@@ -3261,6 +3612,8 @@ class _$TbpDeclineImpl implements _TbpDecline {
     required TResult Function(Set<int> tTypes) setSelectionByTypes,
     required TResult Function(Set<int> tTypes) setFilterTTypes,
     required TResult Function(int? status) setFilterStatus,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        setDateRange,
     required TResult Function() clearSelection,
     required TResult Function() seniorApprove,
     required TResult Function() seniorUnapprove,
@@ -3287,6 +3640,7 @@ class _$TbpDeclineImpl implements _TbpDecline {
     TResult? Function(Set<int> tTypes)? setSelectionByTypes,
     TResult? Function(Set<int> tTypes)? setFilterTTypes,
     TResult? Function(int? status)? setFilterStatus,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
     TResult? Function()? clearSelection,
     TResult? Function()? seniorApprove,
     TResult? Function()? seniorUnapprove,
@@ -3313,6 +3667,7 @@ class _$TbpDeclineImpl implements _TbpDecline {
     TResult Function(Set<int> tTypes)? setSelectionByTypes,
     TResult Function(Set<int> tTypes)? setFilterTTypes,
     TResult Function(int? status)? setFilterStatus,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
     TResult Function()? clearSelection,
     TResult Function()? seniorApprove,
     TResult Function()? seniorUnapprove,
@@ -3341,6 +3696,7 @@ class _$TbpDeclineImpl implements _TbpDecline {
     required TResult Function(_SetSelectionByTypes value) setSelectionByTypes,
     required TResult Function(_SetFilterTTypes value) setFilterTTypes,
     required TResult Function(_SetFilterStatus value) setFilterStatus,
+    required TResult Function(_SetDateRange value) setDateRange,
     required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_SeniorApprove value) seniorApprove,
     required TResult Function(_SeniorUnapprove value) seniorUnapprove,
@@ -3365,6 +3721,7 @@ class _$TbpDeclineImpl implements _TbpDecline {
     TResult? Function(_SetSelectionByTypes value)? setSelectionByTypes,
     TResult? Function(_SetFilterTTypes value)? setFilterTTypes,
     TResult? Function(_SetFilterStatus value)? setFilterStatus,
+    TResult? Function(_SetDateRange value)? setDateRange,
     TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_SeniorApprove value)? seniorApprove,
     TResult? Function(_SeniorUnapprove value)? seniorUnapprove,
@@ -3388,6 +3745,7 @@ class _$TbpDeclineImpl implements _TbpDecline {
     TResult Function(_SetSelectionByTypes value)? setSelectionByTypes,
     TResult Function(_SetFilterTTypes value)? setFilterTTypes,
     TResult Function(_SetFilterStatus value)? setFilterStatus,
+    TResult Function(_SetDateRange value)? setDateRange,
     TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_SeniorApprove value)? seniorApprove,
     TResult Function(_SeniorUnapprove value)? seniorUnapprove,
@@ -3510,6 +3868,8 @@ class _$TbpSeniorBypassApproveImpl implements _TbpSeniorBypassApprove {
     required TResult Function(Set<int> tTypes) setSelectionByTypes,
     required TResult Function(Set<int> tTypes) setFilterTTypes,
     required TResult Function(int? status) setFilterStatus,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        setDateRange,
     required TResult Function() clearSelection,
     required TResult Function() seniorApprove,
     required TResult Function() seniorUnapprove,
@@ -3536,6 +3896,7 @@ class _$TbpSeniorBypassApproveImpl implements _TbpSeniorBypassApprove {
     TResult? Function(Set<int> tTypes)? setSelectionByTypes,
     TResult? Function(Set<int> tTypes)? setFilterTTypes,
     TResult? Function(int? status)? setFilterStatus,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
     TResult? Function()? clearSelection,
     TResult? Function()? seniorApprove,
     TResult? Function()? seniorUnapprove,
@@ -3562,6 +3923,7 @@ class _$TbpSeniorBypassApproveImpl implements _TbpSeniorBypassApprove {
     TResult Function(Set<int> tTypes)? setSelectionByTypes,
     TResult Function(Set<int> tTypes)? setFilterTTypes,
     TResult Function(int? status)? setFilterStatus,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? setDateRange,
     TResult Function()? clearSelection,
     TResult Function()? seniorApprove,
     TResult Function()? seniorUnapprove,
@@ -3590,6 +3952,7 @@ class _$TbpSeniorBypassApproveImpl implements _TbpSeniorBypassApprove {
     required TResult Function(_SetSelectionByTypes value) setSelectionByTypes,
     required TResult Function(_SetFilterTTypes value) setFilterTTypes,
     required TResult Function(_SetFilterStatus value) setFilterStatus,
+    required TResult Function(_SetDateRange value) setDateRange,
     required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_SeniorApprove value) seniorApprove,
     required TResult Function(_SeniorUnapprove value) seniorUnapprove,
@@ -3614,6 +3977,7 @@ class _$TbpSeniorBypassApproveImpl implements _TbpSeniorBypassApprove {
     TResult? Function(_SetSelectionByTypes value)? setSelectionByTypes,
     TResult? Function(_SetFilterTTypes value)? setFilterTTypes,
     TResult? Function(_SetFilterStatus value)? setFilterStatus,
+    TResult? Function(_SetDateRange value)? setDateRange,
     TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_SeniorApprove value)? seniorApprove,
     TResult? Function(_SeniorUnapprove value)? seniorUnapprove,
@@ -3637,6 +4001,7 @@ class _$TbpSeniorBypassApproveImpl implements _TbpSeniorBypassApprove {
     TResult Function(_SetSelectionByTypes value)? setSelectionByTypes,
     TResult Function(_SetFilterTTypes value)? setFilterTTypes,
     TResult Function(_SetFilterStatus value)? setFilterStatus,
+    TResult Function(_SetDateRange value)? setDateRange,
     TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_SeniorApprove value)? seniorApprove,
     TResult Function(_SeniorUnapprove value)? seniorUnapprove,

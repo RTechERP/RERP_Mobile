@@ -36,6 +36,8 @@ class ApproveTimesheetBloc
             _onSetSelectionByTypes(emit, tTypes),
         setFilterTTypes: (tTypes) => _onSetFilterTTypes(emit, tTypes),
         setFilterStatus: (status) => _onSetFilterStatus(emit, status),
+        setDateRange: (dateStart, dateEnd) =>
+            _onSetDateRange(emit, dateStart, dateEnd),
         clearSelection: () => _onClearSelection(emit),
         seniorApprove: () => _onSeniorApprove(emit),
         seniorUnapprove: () => _onSeniorUnapprove(emit),
@@ -183,19 +185,33 @@ class ApproveTimesheetBloc
   ///
   /// `tType` (optional): filter API theo một loại phiếu cụ thể (1..9).
   /// `null` / `0` → lấy tất cả các loại.
+  ///
+  /// `dateStart` / `dateEnd`: khoảng ngày lọc dữ liệu. Lấy từ state nếu
+  /// user đã chọn qua `DateRangePicker`; fallback về tháng hiện tại.
   Map<String, dynamic> _buildApprovePayload({
     required int seniorId,
     required int approvedTpEmployeeId,
     int? status,
     int? tType,
   }) {
-    final now = DateTime.now();
-    final startOfMonth = DateTime(now.year, now.month, 1);
-    final endOfMonth = DateTime(now.year, now.month + 1, 0, 23, 59, 59);
+    final startOfMonth = ApproveTimesheetState.defaultDateStart();
+    final endOfMonth = ApproveTimesheetState.defaultDateEnd();
+    final dateStart = state.dateStart ?? startOfMonth;
+    // End-of-day cho dateEnd: nếu user chọn end < 23:59:59, ta vẫn gửi
+    // 23:59:59 để bao trọn ngày (giống pattern ở accountant_screen).
+    final rawDateEnd = state.dateEnd ?? endOfMonth;
+    final dateEnd = DateTime(
+      rawDateEnd.year,
+      rawDateEnd.month,
+      rawDateEnd.day,
+      23,
+      59,
+      59,
+    );
     return {
       "FilterText": "",
-      "DateStart": startOfMonth.toUtc().toIso8601String(),
-      "DateEnd": endOfMonth.toUtc().toIso8601String(),
+      "DateStart": dateStart.toUtc().toIso8601String(),
+      "DateEnd": dateEnd.toUtc().toIso8601String(),
       "IDApprovedTP": approvedTpEmployeeId,
       "Status": status ?? -1,
       "DeleteFlag": 0,
@@ -458,6 +474,26 @@ class ApproveTimesheetBloc
       role: state.role,
       employeeId: state.tbpApproverEmployeeId,
       status: status,
+      tType: state.initialTType,
+    ));
+  }
+
+  /// Cập nhật khoảng ngày lọc và reload danh sách.
+  ///
+  /// Flow:
+  /// 1. Set `dateStart` / `dateEnd` lên state.
+  /// 2. Re-dispatch `init` để bloc tự build payload mới (qua
+  ///    `_buildApprovePayload` đọc từ state) và gọi lại API.
+  Future<void> _onSetDateRange(
+    Emitter<ApproveTimesheetState> emit,
+    DateTime dateStart,
+    DateTime dateEnd,
+  ) async {
+    emit(state.copyWith(dateStart: dateStart, dateEnd: dateEnd));
+    add(ApproveTimesheetEvent.init(
+      role: state.role,
+      employeeId: state.tbpApproverEmployeeId,
+      status: state.filteredStatus,
       tType: state.initialTType,
     ));
   }

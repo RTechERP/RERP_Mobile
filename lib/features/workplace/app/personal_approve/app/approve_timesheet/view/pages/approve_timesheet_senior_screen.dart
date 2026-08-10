@@ -7,6 +7,7 @@ import '../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../common/utils/dialog/dialog_service.dart';
 import '../../../../../../../../common/utils/navigation/navigation_utils.dart';
+import '../../../../../../../../common/widgets/date_range_picker.dart';
 import '../../../../../../../../routes/route_names.dart';
 import '../../data/datasource/models/approve_timesheet_model.dart';
 import '../bloc/approve_timesheet_bloc.dart';
@@ -45,6 +46,14 @@ class _ApproveTimesheetSeniorScreenState
         ),
         onBackTap: () => onBack(context),
         actions: [
+          IconButton(
+            tooltip: 'Chọn khoảng ngày',
+            onPressed: () => _openDateRangePicker(context),
+            icon: Icon(
+              Icons.calendar_month,
+              color: AppColors.primaryERP,
+            ),
+          ),
           blocBuilder(
             (context, state) {
               if (state.totalCount == 0) {
@@ -281,6 +290,33 @@ class _ApproveTimesheetSeniorScreenState
   /// Auto tick theo `state.filteredTTypes` (filter hiển thị hiện tại);
   /// user điều chỉnh rồi bấm "Áp dụng" → cập nhật filter hiển thị,
   /// không ảnh hưởng selection.
+  /// Mở `DateRangePicker` để user chọn khoảng ngày lọc dữ liệu.
+  ///
+  /// Apply → dispatch `setDateRange` → bloc set state + tự động reload.
+  Future<void> _openDateRangePicker(BuildContext context) async {
+    final initialStart = bloc.state.dateStart ??
+        ApproveTimesheetState.defaultDateStart();
+    final initialEnd =
+        bloc.state.dateEnd ?? ApproveTimesheetState.defaultDateEnd();
+
+    await showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      builder: (_) => DateRangePicker(
+        initialStart: initialStart,
+        initialEnd: initialEnd,
+        onApply: (start, end) {
+          bloc.add(
+            ApproveTimesheetEvent.setDateRange(
+              dateStart: DateTime(start.year, start.month, start.day),
+              dateEnd: DateTime(end.year, end.month, end.day),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
   Future<void> _openTypeFilterSheet(
     BuildContext context,
     ApproveTimesheetState state,

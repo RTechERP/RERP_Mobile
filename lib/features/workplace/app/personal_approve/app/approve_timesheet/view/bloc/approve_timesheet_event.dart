@@ -45,6 +45,14 @@ class ApproveTimesheetEvent with _$ApproveTimesheetEvent {
   const factory ApproveTimesheetEvent.setFilterStatus(int? status) =
       _SetFilterStatus;
 
+  /// Lọc dữ liệu theo khoảng ngày (gửi kèm `DateStart` / `DateEnd` lên API).
+  /// Khi nhận event này, bloc sẽ set state + tự động gọi lại `init` để
+  /// reload danh sách với range mới.
+  const factory ApproveTimesheetEvent.setDateRange({
+    required DateTime dateStart,
+    required DateTime dateEnd,
+  }) = _SetDateRange;
+
   /// Xoá toàn bộ lựa chọn + thoát selection mode.
   const factory ApproveTimesheetEvent.clearSelection() = _ClearSelection;
 

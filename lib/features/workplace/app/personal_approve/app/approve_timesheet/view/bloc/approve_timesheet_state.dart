@@ -42,6 +42,13 @@ class ApproveTimesheetState extends BaseBlocState {
   /// chỉ trả về đúng loại phiếu đang xem.
   final int? initialTType;
 
+  /// Khoảng ngày lọc dữ liệu gửi lên API.
+  /// `null` → bloc dùng tháng hiện tại (mặc định).
+  /// Khi user chọn ngày qua `DateRangePicker`, cả hai field sẽ được set
+  /// → payload API dùng range này.
+  final DateTime? dateStart;
+  final DateTime? dateEnd;
+
   const ApproveTimesheetState({
     required super.status,
     super.message,
@@ -57,6 +64,8 @@ class ApproveTimesheetState extends BaseBlocState {
     this.isTbpApproving = false,
     this.filteredStatus,
     this.initialTType,
+    this.dateStart,
+    this.dateEnd,
   });
 
   factory ApproveTimesheetState.init() => const ApproveTimesheetState(
@@ -67,6 +76,35 @@ class ApproveTimesheetState extends BaseBlocState {
         isSeniorApproving: false,
         isTbpApproving: false,
       );
+
+  /// Ngày bắt đầu mặc định = ngày 1 của tháng hiện tại.
+  /// Dùng khi `dateStart` chưa được user set.
+  static DateTime defaultDateStart() {
+    final now = DateTime.now();
+    return DateTime(now.year, now.month, 1);
+  }
+
+  /// Ngày kết thúc mặc định = ngày cuối của tháng hiện tại (cuối ngày).
+  /// Dùng khi `dateEnd` chưa được user set.
+  static DateTime defaultDateEnd() {
+    final now = DateTime.now();
+    return DateTime(now.year, now.month + 1, 0, 23, 59, 59);
+  }
+
+  /// `true` khi user đã chọn khoảng ngày khác với tháng hiện tại.
+  /// UI dùng để highlight icon lịch trên app bar.
+  bool get isDateFiltered {
+    if (dateStart == null || dateEnd == null) return false;
+    final defaultStart = defaultDateStart();
+    final defaultEnd = defaultDateEnd();
+    // So sánh ngày (không tính giờ phút) để tránh false negative.
+    return dateStart!.year != defaultStart.year ||
+        dateStart!.month != defaultStart.month ||
+        dateStart!.day != defaultStart.day ||
+        dateEnd!.year != defaultEnd.year ||
+        dateEnd!.month != defaultEnd.month ||
+        dateEnd!.day != defaultEnd.day;
+  }
 
   /// Tổng số phiếu có id hợp lệ đang hiển thị (dùng cho "chọn tất cả").
   int get totalCount => items?.where((e) => e.id != null).length ?? 0;
@@ -126,5 +164,7 @@ class ApproveTimesheetState extends BaseBlocState {
         isTbpApproving,
         filteredStatus,
         initialTType,
+        dateStart,
+        dateEnd,
       ];
 }

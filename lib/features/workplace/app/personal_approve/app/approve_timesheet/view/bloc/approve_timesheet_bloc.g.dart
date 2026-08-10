@@ -35,6 +35,10 @@ abstract class _$ApproveTimesheetStateCWProxy {
 
   ApproveTimesheetState initialTType(int? initialTType);
 
+  ApproveTimesheetState dateStart(DateTime? dateStart);
+
+  ApproveTimesheetState dateEnd(DateTime? dateEnd);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ApproveTimesheetState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -56,6 +60,8 @@ abstract class _$ApproveTimesheetStateCWProxy {
     bool? isTbpApproving,
     int? filteredStatus,
     int? initialTType,
+    DateTime? dateStart,
+    DateTime? dateEnd,
   });
 }
 
@@ -119,6 +125,13 @@ class _$ApproveTimesheetStateCWProxyImpl
       this(initialTType: initialTType);
 
   @override
+  ApproveTimesheetState dateStart(DateTime? dateStart) =>
+      this(dateStart: dateStart);
+
+  @override
+  ApproveTimesheetState dateEnd(DateTime? dateEnd) => this(dateEnd: dateEnd);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ApproveTimesheetState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -141,6 +154,8 @@ class _$ApproveTimesheetStateCWProxyImpl
     Object? isTbpApproving = const $CopyWithPlaceholder(),
     Object? filteredStatus = const $CopyWithPlaceholder(),
     Object? initialTType = const $CopyWithPlaceholder(),
+    Object? dateStart = const $CopyWithPlaceholder(),
+    Object? dateEnd = const $CopyWithPlaceholder(),
   }) {
     return ApproveTimesheetState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -205,6 +220,14 @@ class _$ApproveTimesheetStateCWProxyImpl
           ? _value.initialTType
           // ignore: cast_nullable_to_non_nullable
           : initialTType as int?,
+      dateStart: dateStart == const $CopyWithPlaceholder()
+          ? _value.dateStart
+          // ignore: cast_nullable_to_non_nullable
+          : dateStart as DateTime?,
+      dateEnd: dateEnd == const $CopyWithPlaceholder()
+          ? _value.dateEnd
+          // ignore: cast_nullable_to_non_nullable
+          : dateEnd as DateTime?,
     );
   }
 }
