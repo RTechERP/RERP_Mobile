@@ -239,7 +239,21 @@ class SaleGdnService extends DioBaseApiService {
       body: payload,
       parser: (json) => BaseData<SaveBillExportDataResponse>.fromJson(
         json,
-            (data) => SaveBillExportDataResponse.fromJson(data as Map<String, dynamic>),
+        (data) => SaveBillExportDataResponse.fromJson(data as Map<String, dynamic>),
+      ),
+    );
+  }
+
+  /// Danh sách nhân viên cho bottom-sheet người giao / người nhận.
+  /// API: GET /billexport/get-users
+  Future<BaseData<List<BillExportUserResponse>>> getBillExportUsers() async {
+    return get<BaseData<List<BillExportUserResponse>>>(
+      ApiEndPoint.getBillExportUsers,
+      parser: (json) => BaseData<List<BillExportUserResponse>>.fromJson(
+        json,
+        (data) => ((data as List?) ?? const <dynamic>[])
+            .map((e) => BillExportUserResponse.fromJson(e as Map<String, dynamic>))
+            .toList(),
       ),
     );
   }

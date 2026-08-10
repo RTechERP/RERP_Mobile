@@ -50,8 +50,10 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
         submitImages: () => _onSubmitImages(emit),
         clearUploadStatus: () => _onClearUploadStatus(emit),
         fetchLookupData: () => _fetchLookupData(emit),
+        fetchUsers: () => _fetchLookupData(emit),
         selectSupplier: (id) => _selectSupplier(emit, id),
         selectSender: (id) => _selectSender(emit, id),
+        selectReceiver: (id) => _selectReceiver(emit, id),
         selectCustomer: (id) => _selectCustomer(emit, id),
         selectWarehouse: (id) => _selectWarehouse(emit, id),
         selectKhoType: (id) => _selectKhoType(emit, id),
@@ -395,8 +397,17 @@ BillExporResponse? _findGdnInList(String code) {
 
     emit(state.copyWith(detail: GdnDetailState.init(id: id, bill: bill)));
 
-    // Bước 1: Gọi API view trước -> ViewGDNDetailResponse
-    final viewRes = await _repo.getViewExportDetail(id: id);
+    // Bước 1+2+3: Fire song song 3 API chính + lookup data.
+    // Lookup chạy nền (Future) — sẽ được await ở cuối cùng cùng với detail.
+    // Việc chạy song song giúp NCC/senders/customers/... sẵn sàng cho bottomSheet
+    // ngay khi user mở form, thay vì phải đợi xong cả vòng file-fetch ở bước 3.
+    final viewFuture = _repo.getViewExportDetail(id: id);
+    final headerFuture = _repo.getBillExportById(id: id);
+    final detailFuture = _repo.getBillExportDetail(id: id);
+    final lookupFuture = _loadLookupDataOnly();
+
+    // Đợi API view trước (nhanh nhất) → hiển thị skeleton detail items.
+    final viewRes = await viewFuture;
 
     await viewRes.fold(
       (l) async {
@@ -424,8 +435,7 @@ BillExporResponse? _findGdnInList(String code) {
         ));
 
         // Bước 2: Gọi API header bill -> DetailGDNItemResponse để fill form
-        // (chạy song song với step detail để không tăng latency).
-        final headerRes = await _repo.getBillExportById(id: id);
+        final headerRes = await headerFuture;
         final billInfo = headerRes.fold(
           (l) {
             _log.logE('❌ getBillExportById failed: $l');
@@ -439,29 +449,39 @@ BillExporResponse? _findGdnInList(String code) {
         if (billInfo != null) {
           final currentAfterHeader = state.detail;
           if (currentAfterHeader != null) {
+            // Set đầy đủ các ID/text đang chọn theo billInfo để form hiển thị
+            // đúng giá trị ban đầu từ server. Trước đây chỉ set 5 ID
+            // (supplier/sender/customer/warehouse/khoType) — các field còn
+            // lại (status, dates, internal warehouse, address, ...) bị null
+            // và form phải dùng fallback billInfo, dẫn đến mismatch khi
+            // state.copyWith ở bước 3 dùng reference cũ ghi đè mất.
             emit(state.copyWith(
               detail: currentAfterHeader.copyWith(
                 billInfo: billInfo,
-                // Khởi tạo ID đang chọn theo billInfo để form hiển thị
-                // đúng giá trị ban đầu từ server.
                 selectedSupplierId: billInfo.supplierId,
                 selectedSenderId: billInfo.senderId,
+                selectedReceiverId: billInfo.receiverId,
                 selectedCustomerId: billInfo.customerId,
                 selectedWarehouseId: billInfo.warehouseId,
                 selectedKhoTypeId: billInfo.khoTypeId,
+                selectedStatus: billInfo.status,
+                selectedProductType: billInfo.productType,
+                deliveryDate: billInfo.deliveryTime,
+                requestDate: billInfo.requestDate,
+                receiveTime: billInfo.deliveryTime,
+                selectedLoaiKhoText: billInfo.warehouseType,
+                selectedInternalWarehouseId: billInfo.wareHouseTranferId,
+                selectedInternalKhoTypeId: billInfo.khoTypeTransferId,
+                isTransferInternalChecked:
+                    billInfo.isTransferInternal ?? false,
+                deliveryAddress: billInfo.address,
               ),
             ));
           }
-
-          // Bước 2.1: Fetch lookup data cho các dropdown trên form.
-          // Dispatch event riêng để handler có vòng đời emitter riêng —
-          // tránh "emit after handler completed" khi handler này emit sau
-          // khi `_onInitDetail` đã kết thúc.
-          add(SaleGdnEvent.fetchLookupData());
         }
 
         // Bước 3: Gọi API detail -> DetailGDNResponse
-        final detailRes = await _repo.getBillExportDetail(id: id);
+        final detailRes = await detailFuture;
 
         await detailRes.fold(
           (l) async {
@@ -511,18 +531,72 @@ BillExporResponse? _findGdnInList(String code) {
               );
             }
 
+            // Bước 5: Đợi lookup data (đã chạy song song từ đầu).
+            final lookup = await lookupFuture;
+
+            // QUAN TRỌNG: dùng `state.detail` (latest) thay vì `current`
+            // (đã capture từ đầu handler). Trước đây code dùng `current` ở
+            // đây → billInfo + selected IDs (set ở bước 2) bị mất, gây ra
+            // "vào màn detail có dữ liệu rồi load xong API là mất hết".
+            final latest = state.detail;
+            if (latest == null) return;
+
             emit(state.copyWith(
-              detail: current.copyWith(
+              detail: latest.copyWith(
                 status: BaseStateStatus.success,
                 details: viewData,
                 detailFull: detailData,
                 serverImagesByChildId: serverImagesByChildId,
               ),
+              suppliers: lookup.suppliers,
+              senders: lookup.senders,
+              customers: lookup.customers,
+              projects: lookup.projects,
+              warehouses: lookup.warehouses,
+              productGroups: lookup.productGroups,
+              users: lookup.users,
             ));
+
+            // Load warehouseTypes cho form
+            await _fetchWarehouseTypes(emit);
           },
         );
       },
     );
+  }
+
+  /// Helper: gọi 7 API lookup song song và trả về data (không emit).
+  /// Dùng để chạy song song với các API detail ở `_onInitDetail` để NCC,
+  /// người giao, KH, kho, ... sẵn sàng cho bottomSheet ngay khi form mount.
+  Future<_LookupDataResult> _loadLookupDataOnly() async {
+    // Future.wait trả về `List<Object>` với `dynamic` element → cần ép kiểu
+    // rõ ràng cho từng Either trước khi unwrap.
+    final suppliersRes = await _repo.getSuppliers();
+    final sendersRes = await _repo.getSenders();
+    final customersRes = await _repo.getCustomers();
+    final projectsRes = await _repo.getAllProjects();
+    final warehousesRes = await _repo.getWarehouses();
+    final productGroupsRes = await _repo.getProductGroupNew(
+      warehouseId: 1,
+      isDeleted: false,
+      isVisible: true,
+    );
+    final usersRes = await _repo.getBillExportUsers();
+
+    return _LookupDataResult(
+      suppliers: _unwrapEither(suppliersRes),
+      senders: _unwrapEither(sendersRes),
+      customers: _unwrapEither(customersRes),
+      projects: _unwrapEither(projectsRes),
+      warehouses: _unwrapEither(warehousesRes),
+      productGroups: _unwrapEither(productGroupsRes),
+      users: _unwrapEither(usersRes),
+    );
+  }
+
+  /// Unwrap `Either<BaseError, List<T>>` về `List<T>` (rỗng nếu lỗi).
+  List<T> _unwrapEither<T>(Either<BaseError, List<T>> either) {
+    return either.fold((_) => <T>[], (r) => r);
   }
 
   /// Thêm 1 hoặc nhiều ảnh local vào dòng chi tiết theo `stt`.
@@ -865,6 +939,8 @@ BillExporResponse? _findGdnInList(String code) {
       isDeleted: false,
       isVisible: true,
     );
+    final Either<BaseError, List<BillExportUserResponse>> usersRes =
+        await _repo.getBillExportUsers();
 
     final List<SupplierResponse> suppliers = suppliersRes.fold(
       (_) => const <SupplierResponse>[],
@@ -890,12 +966,17 @@ BillExporResponse? _findGdnInList(String code) {
       (_) => const <ProductGroupNewResponse>[],
       (r) => r,
     );
+    final List<BillExportUserResponse> users = usersRes.fold(
+      (_) => const <BillExportUserResponse>[],
+      (r) => r,
+    );
 
     _log.logI(
       '✅ Lookup data loaded: '
       'suppliers=${suppliers.length}, senders=${senders.length}, '
       'customers=${customers.length}, projects=${projects.length}, '
-      'warehouses=${warehouses.length}, productGroups=${productGroups.length}',
+      'warehouses=${warehouses.length}, productGroups=${productGroups.length}, '
+      'users=${users.length}',
     );
 
     // Guard: tránh "emit after handler completed" nếu emitter đã đóng
@@ -909,7 +990,11 @@ BillExporResponse? _findGdnInList(String code) {
       projects: projects,
       warehouses: warehouses,
       productGroups: productGroups,
+      users: users,
     ));
+
+    // Load warehouseTypes cho form
+    await _fetchWarehouseTypes(emit);
   }
 
   // ---------------------------------------------------------------------------
@@ -930,6 +1015,14 @@ BillExporResponse? _findGdnInList(String code) {
     if (current == null || emit.isDone) return;
     emit(state.copyWith(
       detail: current.copyWith(selectedSenderId: id),
+    ));
+  }
+
+  Future<void> _selectReceiver(Emitter<SaleGdnState> emit, int? id) async {
+    final current = state.detail;
+    if (current == null || emit.isDone) return;
+    emit(state.copyWith(
+      detail: current.copyWith(selectedReceiverId: id),
     ));
   }
 
@@ -1095,4 +1188,27 @@ BillExporResponse? _findGdnInList(String code) {
       detail: current.copyWith(selectedNccId: nccId),
     ));
   }
+}
+
+/// Kết quả lookup data (không phải state — chỉ bundle các list trả về từ
+/// API lookup). Dùng nội bộ trong `_onInitDetail` để chạy song song với
+/// detail API và emit cùng lúc khi tất cả hoàn tất.
+class _LookupDataResult {
+  const _LookupDataResult({
+    required this.suppliers,
+    required this.senders,
+    required this.customers,
+    required this.projects,
+    required this.warehouses,
+    required this.productGroups,
+    required this.users,
+  });
+
+  final List<SupplierResponse> suppliers;
+  final List<SenderResponse> senders;
+  final List<CustomerResponse> customers;
+  final List<ProjectGDNResponse> projects;
+  final List<WarehouseResponse> warehouses;
+  final List<ProductGroupNewResponse> productGroups;
+  final List<BillExportUserResponse> users;
 }

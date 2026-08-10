@@ -462,14 +462,14 @@ class AppItemRegistry {
 
   static final List<AppItemModel> warehouse_sale = [
     /// ================= WAREHOUSE SALE =================
-    AppItemModel(
-      id: 'warehouse_sale:grn',
-      name: 'warehouse_sale.grn'.tr(),
-      iconCodePoint: Icons.warehouse_outlined.codePoint,
-      iconFontFamily: 'MaterialIcons',
-      tab: 'warehouse',
-      route: RouteNames.warehouseDemo,
-    ),
+    // AppItemModel(
+    //   id: 'warehouse_sale:grn',
+    //   name: 'warehouse_sale.grn'.tr(),
+    //   iconCodePoint: Icons.warehouse_outlined.codePoint,
+    //   iconFontFamily: 'MaterialIcons',
+    //   tab: 'warehouse',
+    //   route: RouteNames.warehouseDemo,
+    // ),
     AppItemModel(
       id: 'warehouse_sale:gdn',
       name: 'warehouse_sale.gdn'.tr(),

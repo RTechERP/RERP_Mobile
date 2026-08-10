@@ -41,6 +41,8 @@ abstract class _$SaleGdnStateCWProxy {
 
   SaleGdnState productGroups(List<ProductGroupNewResponse> productGroups);
 
+  SaleGdnState users(List<BillExportUserResponse> users);
+
   SaleGdnState detail(GdnDetailState? detail);
 
   SaleGdnState openedDetailBill(BillExporResponse? openedDetailBill);
@@ -71,6 +73,7 @@ abstract class _$SaleGdnStateCWProxy {
     List<ProjectGDNResponse>? projects,
     List<WarehouseResponse>? warehouses,
     List<ProductGroupNewResponse>? productGroups,
+    List<BillExportUserResponse>? users,
     GdnDetailState? detail,
     BillExporResponse? openedDetailBill,
     String? scanResultMessage,
@@ -145,6 +148,9 @@ class _$SaleGdnStateCWProxyImpl implements _$SaleGdnStateCWProxy {
       this(productGroups: productGroups);
 
   @override
+  SaleGdnState users(List<BillExportUserResponse> users) => this(users: users);
+
+  @override
   SaleGdnState detail(GdnDetailState? detail) => this(detail: detail);
 
   @override
@@ -181,6 +187,7 @@ class _$SaleGdnStateCWProxyImpl implements _$SaleGdnStateCWProxy {
     Object? projects = const $CopyWithPlaceholder(),
     Object? warehouses = const $CopyWithPlaceholder(),
     Object? productGroups = const $CopyWithPlaceholder(),
+    Object? users = const $CopyWithPlaceholder(),
     Object? detail = const $CopyWithPlaceholder(),
     Object? openedDetailBill = const $CopyWithPlaceholder(),
     Object? scanResultMessage = const $CopyWithPlaceholder(),
@@ -263,6 +270,10 @@ class _$SaleGdnStateCWProxyImpl implements _$SaleGdnStateCWProxy {
               ? _value.productGroups
               // ignore: cast_nullable_to_non_nullable
               : productGroups as List<ProductGroupNewResponse>,
+      users: users == const $CopyWithPlaceholder() || users == null
+          ? _value.users
+          // ignore: cast_nullable_to_non_nullable
+          : users as List<BillExportUserResponse>,
       detail: detail == const $CopyWithPlaceholder()
           ? _value.detail
           // ignore: cast_nullable_to_non_nullable
@@ -299,6 +310,8 @@ abstract class _$GdnDetailStateCWProxy {
   GdnDetailState selectedSupplierId(int? selectedSupplierId);
 
   GdnDetailState selectedSenderId(int? selectedSenderId);
+
+  GdnDetailState selectedReceiverId(int? selectedReceiverId);
 
   GdnDetailState selectedCustomerId(int? selectedCustomerId);
 
@@ -364,6 +377,7 @@ abstract class _$GdnDetailStateCWProxy {
     DetailGDNItemResponse? billInfo,
     int? selectedSupplierId,
     int? selectedSenderId,
+    int? selectedReceiverId,
     int? selectedCustomerId,
     int? selectedWarehouseId,
     int? selectedKhoTypeId,
@@ -421,6 +435,10 @@ class _$GdnDetailStateCWProxyImpl implements _$GdnDetailStateCWProxy {
   @override
   GdnDetailState selectedSenderId(int? selectedSenderId) =>
       this(selectedSenderId: selectedSenderId);
+
+  @override
+  GdnDetailState selectedReceiverId(int? selectedReceiverId) =>
+      this(selectedReceiverId: selectedReceiverId);
 
   @override
   GdnDetailState selectedCustomerId(int? selectedCustomerId) =>
@@ -536,6 +554,7 @@ class _$GdnDetailStateCWProxyImpl implements _$GdnDetailStateCWProxy {
     Object? billInfo = const $CopyWithPlaceholder(),
     Object? selectedSupplierId = const $CopyWithPlaceholder(),
     Object? selectedSenderId = const $CopyWithPlaceholder(),
+    Object? selectedReceiverId = const $CopyWithPlaceholder(),
     Object? selectedCustomerId = const $CopyWithPlaceholder(),
     Object? selectedWarehouseId = const $CopyWithPlaceholder(),
     Object? selectedKhoTypeId = const $CopyWithPlaceholder(),
@@ -591,6 +610,10 @@ class _$GdnDetailStateCWProxyImpl implements _$GdnDetailStateCWProxy {
           ? _value.selectedSenderId
           // ignore: cast_nullable_to_non_nullable
           : selectedSenderId as int?,
+      selectedReceiverId: selectedReceiverId == const $CopyWithPlaceholder()
+          ? _value.selectedReceiverId
+          // ignore: cast_nullable_to_non_nullable
+          : selectedReceiverId as int?,
       selectedCustomerId: selectedCustomerId == const $CopyWithPlaceholder()
           ? _value.selectedCustomerId
           // ignore: cast_nullable_to_non_nullable

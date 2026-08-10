@@ -73,4 +73,7 @@ abstract class SaleGdnRepo {
   Future<Either<BaseError, SaveBillExportDataResponse>> saveBillExportData({
     required Map<String, dynamic> payload,
   });
+
+  /// Danh sách nhân viên cho bottom-sheet người giao / người nhận.
+  Future<Either<BaseError, List<BillExportUserResponse>>> getBillExportUsers();
 }

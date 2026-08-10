@@ -66,11 +66,17 @@ class SaleGdnEvent with _$SaleGdnEvent {
   /// kho, loại kho) để dùng cho các dropdown trên form BillExport.
   const factory SaleGdnEvent.fetchLookupData() = _FetchLookupData;
 
+  /// Fetch danh sách nhân viên (Employee) cho bottom-sheet người giao / người nhận.
+  const factory SaleGdnEvent.fetchUsers() = _FetchUsers;
+
   /// User chọn NCC trên form.
   const factory SaleGdnEvent.selectSupplier(int? supplierId) = _SelectSupplier;
 
   /// User chọn người giao trên form.
   const factory SaleGdnEvent.selectSender(int? senderId) = _SelectSender;
+
+  /// User chọn người nhận trên form.
+  const factory SaleGdnEvent.selectReceiver(int? receiverId) = _SelectReceiver;
 
   /// User chọn khách hàng trên form.
   const factory SaleGdnEvent.selectCustomer(int? customerId) = _SelectCustomer;

@@ -49,6 +49,9 @@ class SaleGdnState extends BaseBlocState {
   /// Danh sách loại kho (ProductGroup) cho dropdown.
   final List<ProductGroupNewResponse> productGroups;
 
+  /// Danh sách nhân viên (Employee) cho bottom-sheet người giao / người nhận.
+  final List<BillExportUserResponse> users;
+
   /// Trạng thái màn chi tiết (nested). Khi chưa mở thì null.
   final GdnDetailState? detail;
 
@@ -78,6 +81,7 @@ class SaleGdnState extends BaseBlocState {
     this.projects = const [],
     this.warehouses = const [],
     this.productGroups = const [],
+    this.users = const [],
     this.detail,
     this.openedDetailBill,
     this.scanResultMessage,
@@ -118,6 +122,7 @@ class SaleGdnState extends BaseBlocState {
         projects,
         warehouses,
         productGroups,
+        users,
         detail,
         openedDetailBill,
         scanResultMessage,

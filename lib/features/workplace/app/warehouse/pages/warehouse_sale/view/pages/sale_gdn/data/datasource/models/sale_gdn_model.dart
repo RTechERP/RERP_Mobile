@@ -555,3 +555,22 @@ class ProductGroupNewResponse with _$ProductGroupNewResponse {
   factory ProductGroupNewResponse.fromJson(Map<String, dynamic> json) =>
       _$ProductGroupNewResponseFromJson(json);
 }
+
+/// Danh sách nhân viên (Employee) dùng cho bottom-sheet người giao / người nhận.
+/// API: GET /billexport/get-users
+@freezed
+class BillExportUserResponse with _$BillExportUserResponse {
+  const factory BillExportUserResponse({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'EmployeeCode') String? employeeCode,
+    @JsonKey(name: 'TeamName') String? teamName,
+    @JsonKey(name: 'Status') int? status,
+    @JsonKey(name: 'LoginName') String? loginName,
+    @JsonKey(name: 'DepartmentName') String? departmentName,
+    @JsonKey(name: 'FullName') String? fullName,
+    @JsonKey(name: 'StatusText') String? statusText,
+  }) = _BillExportUserResponse;
+
+  factory BillExportUserResponse.fromJson(Map<String, dynamic> json) =>
+      _$BillExportUserResponseFromJson(json);
+}

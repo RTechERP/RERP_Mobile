@@ -988,3 +988,29 @@ Map<String, dynamic> _$$ProductGroupNewResponseImplToJson(
       'STT': instance.stt,
       'IsView': instance.isView,
     };
+
+_$BillExportUserResponseImpl _$$BillExportUserResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$BillExportUserResponseImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      employeeCode: json['EmployeeCode'] as String?,
+      teamName: json['TeamName'] as String?,
+      status: (json['Status'] as num?)?.toInt(),
+      loginName: json['LoginName'] as String?,
+      departmentName: json['DepartmentName'] as String?,
+      fullName: json['FullName'] as String?,
+      statusText: json['StatusText'] as String?,
+    );
+
+Map<String, dynamic> _$$BillExportUserResponseImplToJson(
+        _$BillExportUserResponseImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'EmployeeCode': instance.employeeCode,
+      'TeamName': instance.teamName,
+      'Status': instance.status,
+      'LoginName': instance.loginName,
+      'DepartmentName': instance.departmentName,
+      'FullName': instance.fullName,
+      'StatusText': instance.statusText,
+    };

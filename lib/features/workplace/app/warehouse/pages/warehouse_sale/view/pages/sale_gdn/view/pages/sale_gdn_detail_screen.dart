@@ -114,121 +114,122 @@ class _SaleGdnDetailScreenState
               }
             }
 
-            return RefreshIndicator(
-              onRefresh: () async => bloc.add(
-                SaleGdnEvent.initDetail(id: widget.billId, bill: widget.bill),
-              ),
-              child: ListView.separated(
-                padding: const EdgeInsets.all(16),
-                // +1 cho bill info card ở đầu.
-                itemCount: detail.details.length + 1,
-                separatorBuilder: (_, _) => const SizedBox(height: 12),
-                itemBuilder: (context, index) {
-                  // Index 0: Form phiếu chi tiết (SaleGdnForm).
-                  if (index == 0) {
-                    return SaleGdnForm(
-                      detail: detail,
-                      suppliers: bloc.state.suppliers,
-                      senders: bloc.state.senders,
-                      customers: bloc.state.customers,
-                      warehouses: bloc.state.warehouses,
-                      productGroups: bloc.state.productGroups,
-                      onSelectSupplier: (id) => bloc.add(
-                        SaleGdnEvent.selectSupplier(id),
+            return ListView.separated(
+              padding: const EdgeInsets.all(16),
+              // +1 cho bill info card ở đầu.
+              itemCount: detail.details.length + 1,
+              separatorBuilder: (_, _) => const SizedBox(height: 12),
+              itemBuilder: (context, index) {
+                // Index 0: Form phiếu chi tiết (SaleGdnForm).
+                if (index == 0) {
+                  return SaleGdnForm(
+                    detail: detail,
+                    suppliers: bloc.state.suppliers,
+                    senders: bloc.state.senders,
+                    customers: bloc.state.customers,
+                    warehouses: bloc.state.warehouses,
+                    warehouseTypes: bloc.state.warehouseTypes,
+                    users: bloc.state.users,
+                    currentWarehouseCode: bloc.state.warehouseCode,
+                    onSelectSupplier: (id) => bloc.add(
+                      SaleGdnEvent.selectSupplier(id),
+                    ),
+                    onSelectSender: (id) => bloc.add(
+                      SaleGdnEvent.selectSender(id),
+                    ),
+                    onSelectReceiver: (id) => bloc.add(
+                      SaleGdnEvent.selectReceiver(id),
+                    ),
+                    onSelectCustomer: (id) => bloc.add(
+                      SaleGdnEvent.selectCustomer(id),
+                    ),
+                    onSelectCustomerWithAddress: (id, address) => bloc.add(
+                      SaleGdnEvent.selectCustomerWithAddress(
+                        customerId: id,
+                        address: address,
                       ),
-                      onSelectSender: (id) => bloc.add(
-                        SaleGdnEvent.selectSender(id),
-                      ),
-                      onSelectCustomer: (id) => bloc.add(
-                        SaleGdnEvent.selectCustomer(id),
-                      ),
-                      onSelectCustomerWithAddress: (id, address) => bloc.add(
-                        SaleGdnEvent.selectCustomerWithAddress(
-                          customerId: id,
-                          address: address,
-                        ),
-                      ),
-                      onSelectWarehouse: (id) => bloc.add(
-                        SaleGdnEvent.selectWarehouse(id),
-                      ),
-                      onSelectKhoType: (id) => bloc.add(
-                        SaleGdnEvent.selectKhoType(id),
-                      ),
-                      onSelectStatus: (id) => bloc.add(
-                        SaleGdnEvent.selectStatus(id),
-                      ),
-                      onChangeDeliveryDate: (date) => bloc.add(
-                        SaleGdnEvent.changeDeliveryDate(date),
-                      ),
-                      onChangeRequestDate: (date) => bloc.add(
-                        SaleGdnEvent.changeRequestDate(date),
-                      ),
-                      onChangeReceiveTime: (time) => bloc.add(
-                        SaleGdnEvent.changeReceiveTime(time),
-                      ),
-                      onSelectLoaiKho: (text) => bloc.add(
-                        SaleGdnEvent.selectLoaiKho(text),
-                      ),
-                      onToggleTransferInternal: (v) => bloc.add(
-                        SaleGdnEvent.toggleTransferInternal(value: v),
-                      ),
-                      onToggleInternal: (v) => bloc.add(
-                        SaleGdnEvent.toggleInternal(value: v),
-                      ),
-                      onSelectInternalWarehouse: (id) => bloc.add(
-                        SaleGdnEvent.selectInternalWarehouse(id),
-                      ),
-                      onSelectInternalKhoType: (id) => bloc.add(
-                        SaleGdnEvent.selectInternalKhoType(id),
-                      ),
-                      onChangeDeliveryAddress: (address) => bloc.add(
-                        SaleGdnEvent.changeDeliveryAddress(address),
-                      ),
-                      onSelectNcc: (id) => bloc.add(
-                        SaleGdnEvent.selectNcc(id),
-                      ),
-                    );
-                  }
-                  final detailIndex = index - 1;
-                  final detailItem = detail.details[detailIndex];
-                  final stt = detailItem.stt ?? (detailIndex + 1);
-                  // Tra `childId` từ DetailGDNResponse theo cùng vị trí `stt`.
-                  DetailGDNResponse? matchedFull;
-                  for (final f in detail.detailFull) {
-                    final fStt = f.stt ?? (detail.detailFull.indexOf(f) + 1);
-                    if (fStt == stt) {
-                      matchedFull = f;
-                      break;
-                    }
-                  }
-                  matchedFull ??= detail.detailFull.isNotEmpty
-                      ? detail.detailFull[detailIndex.clamp(0, detail.detailFull.length - 1)]
-                      : null;
-                  final childId = matchedFull?.childId;
-                  final serverFiles = childId != null && childId > 0
-                      ? childIdToServerFiles[childId] ?? []
-                      : <ReadFileResponse>[];
-                  final serverUrls = serverFiles
-                      .where((f) =>
-                          (f.serverPath ?? '').isNotEmpty &&
-                          (f.fileName ?? '').isNotEmpty)
-                      .map((f) =>
-                          _fixFileUrl('${f.serverPath}\\${f.fileName}'))
-                      .where((u) => u.isNotEmpty)
-                      .toList();
-
-                  return SaleGdnDetailItemCard(
-                    item: detailItem,
-                    index: detailIndex + 1,
-                    localImagePaths:
-                        detail.localImagePathsByStt[stt] ?? [],
-                    serverImageUrls: serverUrls,
-                    onAddImages: () => _addImages(stt),
-                    onRemoveImage: (imageIndex, isLocal) =>
-                        _removeImage(stt, imageIndex, isLocal),
+                    ),
+                    onSelectKhoType: (id) => bloc.add(
+                      SaleGdnEvent.selectKhoType(id),
+                    ),
+                    onSelectProductType: (id) => bloc.add(
+                      SaleGdnEvent.selectProductType(id),
+                    ),
+                    onSelectStatus: (id) => bloc.add(
+                      SaleGdnEvent.selectStatus(id),
+                    ),
+                    onChangeDeliveryDate: (date) => bloc.add(
+                      SaleGdnEvent.changeDeliveryDate(date),
+                    ),
+                    onChangeRequestDate: (date) => bloc.add(
+                      SaleGdnEvent.changeRequestDate(date),
+                    ),
+                    onChangeReceiveTime: (time) => bloc.add(
+                      SaleGdnEvent.changeReceiveTime(time),
+                    ),
+                    onSelectLoaiKho: (text) => bloc.add(
+                      SaleGdnEvent.selectLoaiKho(text),
+                    ),
+                    onToggleTransferInternal: (v) => bloc.add(
+                      SaleGdnEvent.toggleTransferInternal(value: v),
+                    ),
+                    onToggleInternal: (v) => bloc.add(
+                      SaleGdnEvent.toggleInternal(value: v),
+                    ),
+                    onSelectInternalWarehouse: (id) => bloc.add(
+                      SaleGdnEvent.selectInternalWarehouse(id),
+                    ),
+                    onSelectInternalKhoType: (id) => bloc.add(
+                      SaleGdnEvent.selectInternalKhoType(id),
+                    ),
+                    onChangeDeliveryAddress: (address) => bloc.add(
+                      SaleGdnEvent.changeDeliveryAddress(address),
+                    ),
+                    onSelectNcc: (id) => bloc.add(
+                      SaleGdnEvent.selectNcc(id),
+                    ),
                   );
-                },
-              ),
+                }
+                final detailIndex = index - 1;
+                final detailItem = detail.details[detailIndex];
+                final stt = detailItem.stt ?? (detailIndex + 1);
+                // Tra `childId` từ DetailGDNResponse theo cùng vị trí `stt`.
+                DetailGDNResponse? matchedFull;
+                for (final f in detail.detailFull) {
+                  final fStt = f.stt ?? (detail.detailFull.indexOf(f) + 1);
+                  if (fStt == stt) {
+                    matchedFull = f;
+                    break;
+                  }
+                }
+                matchedFull ??= detail.detailFull.isNotEmpty
+                    ? detail.detailFull[
+                        detailIndex.clamp(0, detail.detailFull.length - 1)]
+                    : null;
+                final childId = matchedFull?.childId;
+                final serverFiles = childId != null && childId > 0
+                    ? childIdToServerFiles[childId] ?? []
+                    : <ReadFileResponse>[];
+                final serverUrls = serverFiles
+                    .where((f) =>
+                        (f.serverPath ?? '').isNotEmpty &&
+                        (f.fileName ?? '').isNotEmpty)
+                    .map((f) =>
+                        _fixFileUrl('${f.serverPath}\\${f.fileName}'))
+                    .where((u) => u.isNotEmpty)
+                    .toList();
+
+                return SaleGdnDetailItemCard(
+                  item: detailItem,
+                  index: detailIndex + 1,
+                  localImagePaths:
+                      detail.localImagePathsByStt[stt] ?? [],
+                  serverImageUrls: serverUrls,
+                  onAddImages: () => _addImages(stt),
+                  onRemoveImage: (imageIndex, isLocal) =>
+                      _removeImage(stt, imageIndex, isLocal),
+                );
+              },
             );
           }),
         ),

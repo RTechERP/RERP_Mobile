@@ -410,4 +410,8 @@ class ApiEndPoint {
   static const String uploadBillExportFiles = '/BillExport/upload-files';
   static const String deleteBillExportFile = '/BillExport/delete-file/{fileId}';
   static const String saveBillExportData = '/BillExport/save-data';
+
+  /// Danh sách người dùng (Employee) cho dropdown người giao/người nhận.
+  /// API: GET /billexport/get-users
+  static const String getBillExportUsers = '/billexport/get-users';
 }

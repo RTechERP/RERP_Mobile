@@ -11453,3 +11453,321 @@ abstract class _ProductGroupNewResponse implements ProductGroupNewResponse {
   _$$ProductGroupNewResponseImplCopyWith<_$ProductGroupNewResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+BillExportUserResponse _$BillExportUserResponseFromJson(
+    Map<String, dynamic> json) {
+  return _BillExportUserResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BillExportUserResponse {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeCode')
+  String? get employeeCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TeamName')
+  String? get teamName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Status')
+  int? get status => throw _privateConstructorUsedError;
+  @JsonKey(name: 'LoginName')
+  String? get loginName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DepartmentName')
+  String? get departmentName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FullName')
+  String? get fullName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'StatusText')
+  String? get statusText => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BillExportUserResponseCopyWith<BillExportUserResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BillExportUserResponseCopyWith<$Res> {
+  factory $BillExportUserResponseCopyWith(BillExportUserResponse value,
+          $Res Function(BillExportUserResponse) then) =
+      _$BillExportUserResponseCopyWithImpl<$Res, BillExportUserResponse>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'EmployeeCode') String? employeeCode,
+      @JsonKey(name: 'TeamName') String? teamName,
+      @JsonKey(name: 'Status') int? status,
+      @JsonKey(name: 'LoginName') String? loginName,
+      @JsonKey(name: 'DepartmentName') String? departmentName,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'StatusText') String? statusText});
+}
+
+/// @nodoc
+class _$BillExportUserResponseCopyWithImpl<$Res,
+        $Val extends BillExportUserResponse>
+    implements $BillExportUserResponseCopyWith<$Res> {
+  _$BillExportUserResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? employeeCode = freezed,
+    Object? teamName = freezed,
+    Object? status = freezed,
+    Object? loginName = freezed,
+    Object? departmentName = freezed,
+    Object? fullName = freezed,
+    Object? statusText = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      employeeCode: freezed == employeeCode
+          ? _value.employeeCode
+          : employeeCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      teamName: freezed == teamName
+          ? _value.teamName
+          : teamName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
+      loginName: freezed == loginName
+          ? _value.loginName
+          : loginName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departmentName: freezed == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      statusText: freezed == statusText
+          ? _value.statusText
+          : statusText // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$BillExportUserResponseImplCopyWith<$Res>
+    implements $BillExportUserResponseCopyWith<$Res> {
+  factory _$$BillExportUserResponseImplCopyWith(
+          _$BillExportUserResponseImpl value,
+          $Res Function(_$BillExportUserResponseImpl) then) =
+      __$$BillExportUserResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'EmployeeCode') String? employeeCode,
+      @JsonKey(name: 'TeamName') String? teamName,
+      @JsonKey(name: 'Status') int? status,
+      @JsonKey(name: 'LoginName') String? loginName,
+      @JsonKey(name: 'DepartmentName') String? departmentName,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'StatusText') String? statusText});
+}
+
+/// @nodoc
+class __$$BillExportUserResponseImplCopyWithImpl<$Res>
+    extends _$BillExportUserResponseCopyWithImpl<$Res,
+        _$BillExportUserResponseImpl>
+    implements _$$BillExportUserResponseImplCopyWith<$Res> {
+  __$$BillExportUserResponseImplCopyWithImpl(
+      _$BillExportUserResponseImpl _value,
+      $Res Function(_$BillExportUserResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? employeeCode = freezed,
+    Object? teamName = freezed,
+    Object? status = freezed,
+    Object? loginName = freezed,
+    Object? departmentName = freezed,
+    Object? fullName = freezed,
+    Object? statusText = freezed,
+  }) {
+    return _then(_$BillExportUserResponseImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      employeeCode: freezed == employeeCode
+          ? _value.employeeCode
+          : employeeCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      teamName: freezed == teamName
+          ? _value.teamName
+          : teamName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
+      loginName: freezed == loginName
+          ? _value.loginName
+          : loginName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departmentName: freezed == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      statusText: freezed == statusText
+          ? _value.statusText
+          : statusText // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$BillExportUserResponseImpl implements _BillExportUserResponse {
+  const _$BillExportUserResponseImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'EmployeeCode') this.employeeCode,
+      @JsonKey(name: 'TeamName') this.teamName,
+      @JsonKey(name: 'Status') this.status,
+      @JsonKey(name: 'LoginName') this.loginName,
+      @JsonKey(name: 'DepartmentName') this.departmentName,
+      @JsonKey(name: 'FullName') this.fullName,
+      @JsonKey(name: 'StatusText') this.statusText});
+
+  factory _$BillExportUserResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BillExportUserResponseImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'EmployeeCode')
+  final String? employeeCode;
+  @override
+  @JsonKey(name: 'TeamName')
+  final String? teamName;
+  @override
+  @JsonKey(name: 'Status')
+  final int? status;
+  @override
+  @JsonKey(name: 'LoginName')
+  final String? loginName;
+  @override
+  @JsonKey(name: 'DepartmentName')
+  final String? departmentName;
+  @override
+  @JsonKey(name: 'FullName')
+  final String? fullName;
+  @override
+  @JsonKey(name: 'StatusText')
+  final String? statusText;
+
+  @override
+  String toString() {
+    return 'BillExportUserResponse(id: $id, employeeCode: $employeeCode, teamName: $teamName, status: $status, loginName: $loginName, departmentName: $departmentName, fullName: $fullName, statusText: $statusText)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BillExportUserResponseImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.employeeCode, employeeCode) ||
+                other.employeeCode == employeeCode) &&
+            (identical(other.teamName, teamName) ||
+                other.teamName == teamName) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.loginName, loginName) ||
+                other.loginName == loginName) &&
+            (identical(other.departmentName, departmentName) ||
+                other.departmentName == departmentName) &&
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName) &&
+            (identical(other.statusText, statusText) ||
+                other.statusText == statusText));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, employeeCode, teamName,
+      status, loginName, departmentName, fullName, statusText);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BillExportUserResponseImplCopyWith<_$BillExportUserResponseImpl>
+      get copyWith => __$$BillExportUserResponseImplCopyWithImpl<
+          _$BillExportUserResponseImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BillExportUserResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BillExportUserResponse implements BillExportUserResponse {
+  const factory _BillExportUserResponse(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'EmployeeCode') final String? employeeCode,
+          @JsonKey(name: 'TeamName') final String? teamName,
+          @JsonKey(name: 'Status') final int? status,
+          @JsonKey(name: 'LoginName') final String? loginName,
+          @JsonKey(name: 'DepartmentName') final String? departmentName,
+          @JsonKey(name: 'FullName') final String? fullName,
+          @JsonKey(name: 'StatusText') final String? statusText}) =
+      _$BillExportUserResponseImpl;
+
+  factory _BillExportUserResponse.fromJson(Map<String, dynamic> json) =
+      _$BillExportUserResponseImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'EmployeeCode')
+  String? get employeeCode;
+  @override
+  @JsonKey(name: 'TeamName')
+  String? get teamName;
+  @override
+  @JsonKey(name: 'Status')
+  int? get status;
+  @override
+  @JsonKey(name: 'LoginName')
+  String? get loginName;
+  @override
+  @JsonKey(name: 'DepartmentName')
+  String? get departmentName;
+  @override
+  @JsonKey(name: 'FullName')
+  String? get fullName;
+  @override
+  @JsonKey(name: 'StatusText')
+  String? get statusText;
+  @override
+  @JsonKey(ignore: true)
+  _$$BillExportUserResponseImplCopyWith<_$BillExportUserResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}

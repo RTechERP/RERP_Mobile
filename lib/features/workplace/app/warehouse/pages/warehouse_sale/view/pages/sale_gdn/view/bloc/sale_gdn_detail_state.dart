@@ -20,6 +20,9 @@ class GdnDetailState extends BaseBlocState {
   /// ID người giao đang chọn (override từ `billInfo.senderId`).
   final int? selectedSenderId;
 
+  /// ID người nhận đang chọn (override từ `billInfo.receiverId`).
+  final int? selectedReceiverId;
+
   /// ID khách hàng đang chọn (override từ `billInfo.customerId`).
   final int? selectedCustomerId;
 
@@ -105,6 +108,7 @@ class GdnDetailState extends BaseBlocState {
     this.billInfo,
     this.selectedSupplierId,
     this.selectedSenderId,
+    this.selectedReceiverId,
     this.selectedCustomerId,
     this.selectedWarehouseId,
     this.selectedKhoTypeId,
@@ -153,9 +157,11 @@ class GdnDetailState extends BaseBlocState {
       billInfo: billInfo,
       selectedSupplierId: billInfo.supplierId,
       selectedSenderId: billInfo.senderId,
+      selectedReceiverId: billInfo.receiverId,
       selectedCustomerId: billInfo.customerId,
       selectedWarehouseId: billInfo.warehouseId,
       selectedKhoTypeId: billInfo.khoTypeId,
+      selectedProductType: billInfo.productType,
       selectedStatus: billInfo.status,
       deliveryDate: billInfo.deliveryTime,
       requestDate: billInfo.requestDate,
@@ -177,6 +183,7 @@ class GdnDetailState extends BaseBlocState {
         billInfo,
         selectedSupplierId,
         selectedSenderId,
+        selectedReceiverId,
         selectedCustomerId,
         selectedWarehouseId,
         selectedKhoTypeId,
