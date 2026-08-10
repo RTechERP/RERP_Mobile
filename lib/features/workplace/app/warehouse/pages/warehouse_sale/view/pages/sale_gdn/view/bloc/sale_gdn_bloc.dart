@@ -826,30 +826,45 @@ BillExporResponse? _findGdnInList(String code) {
       (uploadedFiles) async {
         _log.logI('✅ upload success: ${uploadedFiles.length} files');
 
-        // Bước 2: Map fileID → childId qua stt
-        // uploadedFiles order trùng với localFilesByStt.entries order.
-        final sttEntries = localFilesByStt.entries.toList();
-        final childIdToFileIds = <int, List<int>>{};
+        // Bước 2: Map fileID → childId
+        // Phải flatten theo CÙNG thứ tự với upload (Bước 1),
+        // không được dùng sttEntries.length vì 1 STT có thể có nhiều file.
+        final sttToFileIds = <int, List<int>>{};
 
-        for (int i = 0; i < sttEntries.length; i++) {
-          final stt = sttEntries[i].key;
+        // Flat order theo từng STT, từng file trong STT đó - trùng với allFiles.
+        var uploadIdx = 0;
+        // Sắp xếp theo STT để đảm bảo deterministic order (giống sttEntries).
+        final sortedStts = localFilesByStt.keys.toList()..sort();
+        for (final stt in sortedStts) {
+          final paths = localFilesByStt[stt] ?? const <String>[];
+          for (int j = 0; j < paths.length; j++) {
+            if (uploadIdx >= uploadedFiles.length) break;
+            final fileId = uploadedFiles[uploadIdx].fileID;
+            if (fileId > 0) {
+              sttToFileIds.putIfAbsent(stt, () => []).add(fileId);
+            }
+            uploadIdx++;
+          }
+        }
+
+        // Map stt → childId (1 stt có thể xuất hiện nhiều detail trùng stt nếu trùng STT)
+        final childIdToFileIds = <int, List<int>>{};
+        for (final entry in sttToFileIds.entries) {
+          final stt = entry.key;
+          final fileIds = entry.value;
           final detailItem = updated.detailFull.firstWhere(
             (d) => d.stt == stt,
             orElse: () => DetailGDNResponse(),
           );
           final childId = detailItem.childId;
           if (childId == null || childId <= 0) continue;
-
-          // uploadedFiles[i] là file thứ i trong batch (trùng thứ tự với sttEntries[i])
-          final fileId = uploadedFiles[i].fileID;
-          if (fileId > 0) {
-            childIdToFileIds.putIfAbsent(childId, () => []).add(fileId);
-          }
+          childIdToFileIds[childId] = fileIds;
         }
 
         // Bước 3: Build payload save-data
         final payload = _buildSaveBillExportDataPayload(
           bill: updated.bill,
+          billInfoUpdated: updated,
           detailFull: updated.detailFull,
           childIdToFileIds: childIdToFileIds,
         );
@@ -920,9 +935,20 @@ BillExporResponse? _findGdnInList(String code) {
   /// Build payload cho API /BillExport/save-data.
   Map<String, dynamic> _buildSaveBillExportDataPayload({
     required BillExporResponse? bill,
+    required GdnDetailState billInfoUpdated,
     required List<DetailGDNResponse> detailFull,
     required Map<int, List<int>> childIdToFileIds,
+    List<int> deletedFileIds = const [],
   }) {
+    // Lấy trực tiếp từ state hiện tại để tránh stale data.
+    final billInfo = billInfoUpdated.billInfo;
+    final isTransferInternal =
+        billInfoUpdated.isTransferInternalChecked || (billInfo?.isTransferInternal ?? false);
+    final khoTypeTransferId = billInfoUpdated.selectedInternalKhoTypeId ??
+        billInfo?.khoTypeTransferId;
+    final wareHouseTranferId =
+        billInfoUpdated.selectedInternalWarehouseId ?? bill?.wareHouseTranferId;
+
     // BillExport header
     final billExport = <String, dynamic>{
       'ID': bill?.id,
@@ -951,10 +977,10 @@ BillExporResponse? _findGdnInList(String code) {
       'BillDocumentExportType': bill?.billDocumentExportType ?? 0,
       'IsApproved': bill?.isApproved ?? false,
       'IsTransfer': bill?.isTransfer ?? false,
-      'WareHouseTranferID': bill?.wareHouseTranferId,
-      'IsTransferInternal': true,
-      'KhoTypeTransferID': bill?.khoTypeId ?? 0,
-      'ReceiverID': 0,
+      'WareHouseTranferID': wareHouseTranferId,
+      'IsTransferInternal': isTransferInternal,
+      'KhoTypeTransferID': khoTypeTransferId,
+      'ReceiverID': billInfo?.receiverId ?? 0,
       'IsPrepared': bill?.isPrepared ?? false,
       'IsReceived': bill?.isReceived ?? false,
       'IsDeleted': false,

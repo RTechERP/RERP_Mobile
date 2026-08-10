@@ -118,7 +118,7 @@ const _kFieldIsIncurred = 'gdn_is_incurred';
 
 class _SaleGdnFormState extends State<SaleGdnForm> {
   // Trạng thái thu/mở toàn bộ card thông tin. Mặc định collapse.
-  bool _isExpanded = true;
+  bool _isExpanded = false;
 
   // Key FormBuilder dùng để gọi `fields[name]?.didChange(value)` khi bloc
   // state đổi (FormBuilderField chỉ áp dụng `initialValue` ở lần build đầu).
