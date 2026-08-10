@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rtc_erp/common/app_theme/index.dart';
-import 'package:rtc_erp/common/utils/dialog/dialog_service.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/models/sale_gdn_model.dart';
 
 /// Card hiển thị một dòng chi tiết sản phẩm trong phiếu xuất kho.
@@ -16,10 +15,9 @@ class SaleGdnDetailItemCard extends StatelessWidget {
     required this.serverImages,
     required this.onAddImages,
     required this.onTapImage,
-    required this.onMarkToDelete,
+    required this.onBulkDeleteImages,
     required this.pendingDeletedFileIds,
     required this.pendingDeletedLocalPaths,
-    this.onAfterMarkDelete,
   });
 
   final ViewGDNDetailResponse item;
@@ -36,20 +34,16 @@ class SaleGdnDetailItemCard extends StatelessWidget {
   /// `isLocal=true` nếu là ảnh local, ngược lại là ảnh server.
   final void Function(int imageIndex, bool isLocal) onTapImage;
 
-  /// User xác nhận xoá 1 ảnh trong viewer.
-  /// Với ảnh server: truyền `fileId`.
-  /// Với ảnh local: truyền `localPath`.
-  final void Function({int? fileId, String? localPath}) onMarkToDelete;
+  /// Mở bottomSheet chọn nhiều ảnh (server + local) của dòng này để xoá.
+  /// Callback này được gọi từ nút thùng rác trên fullscreen viewer.
+  /// Screen sẽ hiển thị dialog confirm trước khi submit.
+  final void Function() onBulkDeleteImages;
 
   /// Set `fileId` (server) đã được đánh dấu xoá (chưa submit).
   final Set<int> pendingDeletedFileIds;
 
   /// Set `localPath` đã được đánh dấu xoá (chưa submit).
   final Set<String> pendingDeletedLocalPaths;
-
-  /// Callback gọi SAU khi đã mark 1 ảnh xoá (từ viewer).
-  /// Screen dùng để pop viewer + auto submit lên server.
-  final VoidCallback? onAfterMarkDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -261,30 +255,15 @@ class SaleGdnDetailItemCard extends StatelessWidget {
           imagePaths: paths,
           initialIndex: imageIndex,
           isLocal: isLocal,
-          onDelete: (currentIndex) =>
-              _onViewerDelete(isLocal, currentIndex),
+          // Icon thùng rác trên viewer: bấm sẽ pop viewer rồi mở
+          // bottomSheet chọn nhiều ảnh của dòng (server + local).
+          onRequestBulkDelete: () {
+            Navigator.of(context).pop();
+            onBulkDeleteImages();
+          },
         ),
       ),
     );
-  }
-
-  /// User xác nhận xoá 1 ảnh trong màn hình viewer.
-  /// Mark vào state - không gọi API.
-  /// Sau khi submit, bloc sẽ gọi `saveBillExportData` với `DeletedFileIds`.
-  void _onViewerDelete(bool isLocal, int currentIndex) {
-    if (isLocal) {
-      if (currentIndex < 0 || currentIndex >= localImagePaths.length) return;
-      final path = localImagePaths[currentIndex];
-      onMarkToDelete(localPath: path);
-    } else {
-      if (currentIndex < 0 || currentIndex >= serverImages.length) return;
-      final image = serverImages[currentIndex];
-      final fileId = image.fileId;
-      if (fileId == null || fileId <= 0) return;
-      onMarkToDelete(fileId: fileId);
-    }
-    // Thông báo cho screen: đã mark xong, hãy pop viewer + auto submit.
-    onAfterMarkDelete?.call();
   }
 }
 
@@ -906,16 +885,16 @@ class _FullScreenImageViewer extends StatefulWidget {
     required this.imagePaths,
     required this.initialIndex,
     required this.isLocal,
-    this.onDelete,
+    this.onRequestBulkDelete,
   });
 
   final List<String> imagePaths;
   final int initialIndex;
   final bool isLocal;
 
-  /// Callback xoá ảnh đang xem hiện tại (khi user xác nhận).
-  /// Viewer không gọi API - chỉ thông báo cho cha để mark/Unmark.
-  final void Function(int currentIndex)? onDelete;
+  /// Callback khi user bấm nút thùng rác trên AppBar.
+  /// Viewer không tự xoá - mà thông báo cho cha để mở bottomSheet chọn nhiều.
+  final VoidCallback? onRequestBulkDelete;
 
   @override
   State<_FullScreenImageViewer> createState() => _FullScreenImageViewerState();
@@ -938,17 +917,6 @@ class _FullScreenImageViewerState extends State<_FullScreenImageViewer> {
     super.dispose();
   }
 
-  Future<void> _confirmDelete() async {
-    final confirmed = await DialogService.showConfirmDelete(context: context);
-    if (!mounted) return;
-    if (confirmed) {
-      widget.onDelete?.call(_currentIndex);
-      // Pop viewer về màn chi tiết sau khi đã mark xong.
-      // Screen sẽ xử lý pop màn chi tiết + showMessage + init lại list.
-      Navigator.of(context).pop();
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -963,11 +931,11 @@ class _FullScreenImageViewerState extends State<_FullScreenImageViewer> {
         ),
         centerTitle: true,
         actions: [
-          if (widget.onDelete != null)
+          if (widget.onRequestBulkDelete != null)
             IconButton(
               icon: const Icon(Icons.delete_outline),
               tooltip: 'Xoá ảnh',
-              onPressed: _confirmDelete,
+              onPressed: widget.onRequestBulkDelete,
             ),
         ],
       ),
@@ -1023,6 +991,294 @@ class _FullScreenImageViewerState extends State<_FullScreenImageViewer> {
             style: TextStyle(color: Colors.white54),
           ),
         ],
+      ),
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Bottom sheet chọn nhiều ảnh để xoá
+// ---------------------------------------------------------------------------
+
+/// Item đại diện cho 1 ảnh trong bottom sheet.
+class _BulkDeleteItem {
+  const _BulkDeleteItem({
+    required this.id,
+    required this.previewUrl,
+    required this.isLocal,
+    this.fileId,
+    this.localPath,
+  });
+
+  /// Key duy nhất: fileId cho ảnh server, localPath cho ảnh local.
+  final String id;
+  final String previewUrl;
+  final bool isLocal;
+  final int? fileId;
+  final String? localPath;
+}
+
+/// Hiển thị bottom sheet cho phép user chọn 1 hoặc nhiều ảnh (server + local)
+/// rồi trả về danh sách đã chọn qua `Navigator.pop`.
+///
+/// Trả về `null` nếu user đóng sheet mà không bấm xoá.
+Future<({Set<int> fileIds, Set<String> localPaths})?>
+    showSaleGdnBulkDeleteImageSheet({
+  required BuildContext context,
+  required List<({String url, int? fileId})> serverImages,
+  required List<String> localImagePaths,
+}) async {
+  final items = <_BulkDeleteItem>[
+    for (final s in serverImages)
+      if ((s.fileId ?? 0) > 0)
+        _BulkDeleteItem(
+          id: 'srv_${s.fileId}',
+          previewUrl: s.url,
+          isLocal: false,
+          fileId: s.fileId,
+        ),
+    for (final p in localImagePaths)
+      _BulkDeleteItem(
+        id: 'loc_${p.hashCode}',
+        previewUrl: p,
+        isLocal: true,
+        localPath: p,
+      ),
+  ];
+
+  if (items.isEmpty) return null;
+
+  return showModalBottomSheet<({Set<int> fileIds, Set<String> localPaths})>(
+    context: context,
+    isScrollControlled: true,
+    backgroundColor: Colors.white,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+    ),
+    builder: (ctx) => _BulkDeleteImageSheet(items: items),
+  );
+}
+
+class _BulkDeleteImageSheet extends StatefulWidget {
+  const _BulkDeleteImageSheet({required this.items});
+
+  final List<_BulkDeleteItem> items;
+
+  @override
+  State<_BulkDeleteImageSheet> createState() => _BulkDeleteImageSheetState();
+}
+
+class _BulkDeleteImageSheetState extends State<_BulkDeleteImageSheet> {
+  final Set<String> _selectedIds = <String>{};
+
+  bool get _hasSelection => _selectedIds.isNotEmpty;
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            // Header
+            Row(
+              children: [
+                const Expanded(
+                  child: Text(
+                    'Chọn ảnh cần xoá',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+                if (_hasSelection)
+                  TextButton(
+                    onPressed: () => setState(() => _selectedIds.clear()),
+                    child: const Text('Bỏ chọn'),
+                  ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Text(
+              _hasSelection
+                  ? 'Đã chọn ${_selectedIds.length}/${widget.items.length} ảnh'
+                  : 'Có thể chọn nhiều ảnh',
+              style: TextStyle(
+                fontSize: 12,
+                color: AppColors.gray,
+              ),
+            ),
+            const SizedBox(height: 12),
+            // Grid ảnh
+            ConstrainedBox(
+              constraints: BoxConstraints(
+                maxHeight: MediaQuery.of(context).size.height * 0.5,
+              ),
+              child: GridView.builder(
+                shrinkWrap: true,
+                itemCount: widget.items.length,
+                gridDelegate:
+                    const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 8,
+                  mainAxisSpacing: 8,
+                ),
+                itemBuilder: (ctx, i) {
+                  final item = widget.items[i];
+                  final selected = _selectedIds.contains(item.id);
+                  return GestureDetector(
+                    onTap: () => setState(() {
+                      if (selected) {
+                        _selectedIds.remove(item.id);
+                      } else {
+                        _selectedIds.add(item.id);
+                      }
+                    }),
+                    child: Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: item.isLocal
+                              ? Image.file(
+                                  File(item.previewUrl),
+                                  fit: BoxFit.cover,
+                                  errorBuilder: (_, _, _) =>
+                                      _brokenThumb(),
+                                )
+                              : Image.network(
+                                  item.previewUrl,
+                                  fit: BoxFit.cover,
+                                  errorBuilder: (_, _, _) =>
+                                      _brokenThumb(),
+                                ),
+                        ),
+                        // Selected overlay
+                        if (selected)
+                          Container(
+                            decoration: BoxDecoration(
+                              color:
+                                  Colors.red.withValues(alpha: 0.25),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ),
+                        // Checkbox
+                        Positioned(
+                          top: 6,
+                          right: 6,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withValues(alpha: 0.15),
+                                  blurRadius: 4,
+                                ),
+                              ],
+                            ),
+                            child: Icon(
+                              selected
+                                  ? Icons.check_circle
+                                  : Icons.radio_button_unchecked,
+                              size: 22,
+                              color: selected
+                                  ? Colors.red
+                                  : Colors.black54,
+                            ),
+                          ),
+                        ),
+                        if (item.isLocal)
+                          Positioned(
+                            left: 6,
+                            bottom: 6,
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 6, vertical: 2),
+                              decoration: BoxDecoration(
+                                color:
+                                    Colors.black.withValues(alpha: 0.55),
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                              child: const Text(
+                                'Local',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 10,
+                                ),
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+            const SizedBox(height: 12),
+            // Action buttons
+            Row(
+              children: [
+                Expanded(
+                  child: OutlinedButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: const Text('Huỷ'),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: ElevatedButton.icon(
+                    onPressed: _hasSelection
+                        ? () {
+                            final fileIds = <int>{};
+                            final localPaths = <String>{};
+                            for (final item in widget.items) {
+                              if (!_selectedIds.contains(item.id)) continue;
+                              if (item.fileId != null) {
+                                fileIds.add(item.fileId!);
+                              } else if (item.localPath != null) {
+                                localPaths.add(item.localPath!);
+                              }
+                            }
+                            Navigator.of(context).pop((
+                              fileIds: fileIds,
+                              localPaths: localPaths,
+                            ));
+                          }
+                        : null,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red,
+                      disabledBackgroundColor:
+                          Colors.red.withValues(alpha: 0.4),
+                      foregroundColor: Colors.white,
+                    ),
+                    icon: const Icon(Icons.delete_outline, size: 18),
+                    label: Text(
+                      _hasSelection
+                          ? 'Xoá (${_selectedIds.length})'
+                          : 'Xoá',
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _brokenThumb() {
+    return Container(
+      color: Colors.black12,
+      alignment: Alignment.center,
+      child: const Icon(
+        Icons.broken_image_outlined,
+        color: Colors.black38,
+        size: 32,
       ),
     );
   }

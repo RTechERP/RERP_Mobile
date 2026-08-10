@@ -35,6 +35,8 @@ mixin _$SaleGdnEvent {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -84,6 +86,8 @@ mixin _$SaleGdnEvent {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -132,6 +136,8 @@ mixin _$SaleGdnEvent {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -184,6 +190,8 @@ mixin _$SaleGdnEvent {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -237,6 +245,7 @@ mixin _$SaleGdnEvent {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -286,6 +295,7 @@ mixin _$SaleGdnEvent {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -392,6 +402,8 @@ class _$InitImpl implements _Init {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -444,6 +456,8 @@ class _$InitImpl implements _Init {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -495,6 +509,8 @@ class _$InitImpl implements _Init {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -553,6 +569,8 @@ class _$InitImpl implements _Init {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -609,6 +627,7 @@ class _$InitImpl implements _Init {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -661,6 +680,7 @@ class _$InitImpl implements _Init {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -758,6 +778,8 @@ class _$FetchGdnsImpl implements _FetchGdns {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -810,6 +832,8 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -861,6 +885,8 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -919,6 +945,8 @@ class _$FetchGdnsImpl implements _FetchGdns {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -975,6 +1003,7 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -1027,6 +1056,7 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -1151,6 +1181,8 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -1203,6 +1235,8 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -1254,6 +1288,8 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -1312,6 +1348,8 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -1368,6 +1406,7 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -1420,6 +1459,7 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -1551,6 +1591,8 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -1603,6 +1645,8 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -1654,6 +1698,8 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -1712,6 +1758,8 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -1768,6 +1816,7 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -1820,6 +1869,7 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -1923,6 +1973,8 @@ class _$ClearSearchImpl implements _ClearSearch {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -1975,6 +2027,8 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -2026,6 +2080,8 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -2084,6 +2140,8 @@ class _$ClearSearchImpl implements _ClearSearch {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -2140,6 +2198,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -2192,6 +2251,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -2316,6 +2376,8 @@ class _$ScanQrToDetailImpl implements _ScanQrToDetail {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -2368,6 +2430,8 @@ class _$ScanQrToDetailImpl implements _ScanQrToDetail {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -2419,6 +2483,8 @@ class _$ScanQrToDetailImpl implements _ScanQrToDetail {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -2477,6 +2543,8 @@ class _$ScanQrToDetailImpl implements _ScanQrToDetail {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -2533,6 +2601,7 @@ class _$ScanQrToDetailImpl implements _ScanQrToDetail {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -2585,6 +2654,7 @@ class _$ScanQrToDetailImpl implements _ScanQrToDetail {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -2687,6 +2757,8 @@ class _$ClearOpenedDetailImpl implements _ClearOpenedDetail {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -2739,6 +2811,8 @@ class _$ClearOpenedDetailImpl implements _ClearOpenedDetail {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -2790,6 +2864,8 @@ class _$ClearOpenedDetailImpl implements _ClearOpenedDetail {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -2848,6 +2924,8 @@ class _$ClearOpenedDetailImpl implements _ClearOpenedDetail {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -2904,6 +2982,7 @@ class _$ClearOpenedDetailImpl implements _ClearOpenedDetail {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -2956,6 +3035,7 @@ class _$ClearOpenedDetailImpl implements _ClearOpenedDetail {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -3056,6 +3136,8 @@ class _$ClearScanResultMessageImpl implements _ClearScanResultMessage {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -3108,6 +3190,8 @@ class _$ClearScanResultMessageImpl implements _ClearScanResultMessage {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -3159,6 +3243,8 @@ class _$ClearScanResultMessageImpl implements _ClearScanResultMessage {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -3217,6 +3303,8 @@ class _$ClearScanResultMessageImpl implements _ClearScanResultMessage {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -3273,6 +3361,7 @@ class _$ClearScanResultMessageImpl implements _ClearScanResultMessage {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -3325,6 +3414,7 @@ class _$ClearScanResultMessageImpl implements _ClearScanResultMessage {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -3423,6 +3513,8 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -3475,6 +3567,8 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -3526,6 +3620,8 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -3584,6 +3680,8 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -3640,6 +3738,7 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -3692,6 +3791,7 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -3826,6 +3926,8 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -3878,6 +3980,8 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -3929,6 +4033,8 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -3987,6 +4093,8 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -4043,6 +4151,7 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -4095,6 +4204,7 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -4225,6 +4335,8 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -4277,6 +4389,8 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -4328,6 +4442,8 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -4386,6 +4502,8 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -4442,6 +4560,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -4494,6 +4613,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -4596,6 +4716,8 @@ class _$ClearFiltersImpl implements _ClearFilters {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -4648,6 +4770,8 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -4699,6 +4823,8 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -4757,6 +4883,8 @@ class _$ClearFiltersImpl implements _ClearFilters {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -4813,6 +4941,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -4865,6 +4994,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -4998,6 +5128,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -5050,6 +5182,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -5101,6 +5235,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -5159,6 +5295,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -5215,6 +5353,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -5267,6 +5406,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -5421,6 +5561,8 @@ class _$InitDetailImpl implements _InitDetail {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -5473,6 +5615,8 @@ class _$InitDetailImpl implements _InitDetail {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -5524,6 +5668,8 @@ class _$InitDetailImpl implements _InitDetail {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -5582,6 +5728,8 @@ class _$InitDetailImpl implements _InitDetail {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -5638,6 +5786,7 @@ class _$InitDetailImpl implements _InitDetail {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -5690,6 +5839,7 @@ class _$InitDetailImpl implements _InitDetail {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -5837,6 +5987,8 @@ class _$AddImagesImpl implements _AddImages {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -5889,6 +6041,8 @@ class _$AddImagesImpl implements _AddImages {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -5940,6 +6094,8 @@ class _$AddImagesImpl implements _AddImages {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -5998,6 +6154,8 @@ class _$AddImagesImpl implements _AddImages {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -6054,6 +6212,7 @@ class _$AddImagesImpl implements _AddImages {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -6106,6 +6265,7 @@ class _$AddImagesImpl implements _AddImages {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -6247,6 +6407,8 @@ class _$MarkImageToDeleteImpl implements _MarkImageToDelete {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -6299,6 +6461,8 @@ class _$MarkImageToDeleteImpl implements _MarkImageToDelete {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -6350,6 +6514,8 @@ class _$MarkImageToDeleteImpl implements _MarkImageToDelete {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -6408,6 +6574,8 @@ class _$MarkImageToDeleteImpl implements _MarkImageToDelete {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -6464,6 +6632,7 @@ class _$MarkImageToDeleteImpl implements _MarkImageToDelete {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -6516,6 +6685,7 @@ class _$MarkImageToDeleteImpl implements _MarkImageToDelete {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -6563,6 +6733,448 @@ abstract class _MarkImageToDelete implements SaleGdnEvent {
   @JsonKey(ignore: true)
   _$$MarkImageToDeleteImplCopyWith<_$MarkImageToDeleteImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$MarkImagesToDeleteBulkImplCopyWith<$Res> {
+  factory _$$MarkImagesToDeleteBulkImplCopyWith(
+          _$MarkImagesToDeleteBulkImpl value,
+          $Res Function(_$MarkImagesToDeleteBulkImpl) then) =
+      __$$MarkImagesToDeleteBulkImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Set<int> fileIds, Set<String> localPaths});
+}
+
+/// @nodoc
+class __$$MarkImagesToDeleteBulkImplCopyWithImpl<$Res>
+    extends _$SaleGdnEventCopyWithImpl<$Res, _$MarkImagesToDeleteBulkImpl>
+    implements _$$MarkImagesToDeleteBulkImplCopyWith<$Res> {
+  __$$MarkImagesToDeleteBulkImplCopyWithImpl(
+      _$MarkImagesToDeleteBulkImpl _value,
+      $Res Function(_$MarkImagesToDeleteBulkImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? fileIds = null,
+    Object? localPaths = null,
+  }) {
+    return _then(_$MarkImagesToDeleteBulkImpl(
+      fileIds: null == fileIds
+          ? _value._fileIds
+          : fileIds // ignore: cast_nullable_to_non_nullable
+              as Set<int>,
+      localPaths: null == localPaths
+          ? _value._localPaths
+          : localPaths // ignore: cast_nullable_to_non_nullable
+              as Set<String>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$MarkImagesToDeleteBulkImpl implements _MarkImagesToDeleteBulk {
+  const _$MarkImagesToDeleteBulkImpl(
+      {final Set<int> fileIds = const <int>{},
+      final Set<String> localPaths = const <String>{}})
+      : _fileIds = fileIds,
+        _localPaths = localPaths;
+
+  final Set<int> _fileIds;
+  @override
+  @JsonKey()
+  Set<int> get fileIds {
+    if (_fileIds is EqualUnmodifiableSetView) return _fileIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_fileIds);
+  }
+
+  final Set<String> _localPaths;
+  @override
+  @JsonKey()
+  Set<String> get localPaths {
+    if (_localPaths is EqualUnmodifiableSetView) return _localPaths;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_localPaths);
+  }
+
+  @override
+  String toString() {
+    return 'SaleGdnEvent.markImagesToDeleteBulk(fileIds: $fileIds, localPaths: $localPaths)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MarkImagesToDeleteBulkImpl &&
+            const DeepCollectionEquality().equals(other._fileIds, _fileIds) &&
+            const DeepCollectionEquality()
+                .equals(other._localPaths, _localPaths));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_fileIds),
+      const DeepCollectionEquality().hash(_localPaths));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MarkImagesToDeleteBulkImplCopyWith<_$MarkImagesToDeleteBulkImpl>
+      get copyWith => __$$MarkImagesToDeleteBulkImplCopyWithImpl<
+          _$MarkImagesToDeleteBulkImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() fetchGdns,
+    required TResult Function(String keyword) searchByKeyword,
+    required TResult Function(String voucherNumber) searchByVoucherNumber,
+    required TResult Function() clearSearch,
+    required TResult Function(String code) scanQrToDetail,
+    required TResult Function() clearOpenedDetail,
+    required TResult Function() clearScanResultMessage,
+    required TResult Function() fetchWarehouseTypes,
+    required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
+    required TResult Function(int status) filterByStatus,
+    required TResult Function() clearFilters,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(int stt, List<String> imagePaths) addImages,
+    required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
+    required TResult Function(int? fileId, String? localPath)
+        unmarkImageToDelete,
+    required TResult Function() submitImages,
+    required TResult Function() clearUploadStatus,
+    required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
+    required TResult Function() fetchUsers,
+    required TResult Function(int? supplierId) selectSupplier,
+    required TResult Function(int? senderId) selectSender,
+    required TResult Function(int? receiverId) selectReceiver,
+    required TResult Function(int? customerId) selectCustomer,
+    required TResult Function(int? warehouseId) selectWarehouse,
+    required TResult Function(int? khoTypeId) selectKhoType,
+    required TResult Function(int? status) selectStatus,
+    required TResult Function(int? projectId) selectProject,
+    required TResult Function(DateTime? date) changeDeliveryDate,
+    required TResult Function(DateTime? date) changeRequestDate,
+    required TResult Function(DateTime? time) changeReceiveTime,
+    required TResult Function(String? text) selectLoaiKho,
+    required TResult Function(int? productType) selectProductType,
+    required TResult Function(int? customerId, String? address)
+        selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
+    required TResult Function(bool value) toggleTransferInternal,
+    required TResult Function(bool value) toggleInternal,
+    required TResult Function(int? warehouseId) selectInternalWarehouse,
+    required TResult Function(int? khoTypeId) selectInternalKhoType,
+    required TResult Function(String? address) changeDeliveryAddress,
+    required TResult Function(int? nccId) selectNcc,
+  }) {
+    return markImagesToDeleteBulk(fileIds, localPaths);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? fetchGdns,
+    TResult? Function(String keyword)? searchByKeyword,
+    TResult? Function(String voucherNumber)? searchByVoucherNumber,
+    TResult? Function()? clearSearch,
+    TResult? Function(String code)? scanQrToDetail,
+    TResult? Function()? clearOpenedDetail,
+    TResult? Function()? clearScanResultMessage,
+    TResult? Function()? fetchWarehouseTypes,
+    TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
+    TResult? Function(int status)? filterByStatus,
+    TResult? Function()? clearFilters,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(int stt, List<String> imagePaths)? addImages,
+    TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
+    TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
+    TResult? Function()? submitImages,
+    TResult? Function()? clearUploadStatus,
+    TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
+    TResult? Function()? fetchUsers,
+    TResult? Function(int? supplierId)? selectSupplier,
+    TResult? Function(int? senderId)? selectSender,
+    TResult? Function(int? receiverId)? selectReceiver,
+    TResult? Function(int? customerId)? selectCustomer,
+    TResult? Function(int? warehouseId)? selectWarehouse,
+    TResult? Function(int? khoTypeId)? selectKhoType,
+    TResult? Function(int? status)? selectStatus,
+    TResult? Function(int? projectId)? selectProject,
+    TResult? Function(DateTime? date)? changeDeliveryDate,
+    TResult? Function(DateTime? date)? changeRequestDate,
+    TResult? Function(DateTime? time)? changeReceiveTime,
+    TResult? Function(String? text)? selectLoaiKho,
+    TResult? Function(int? productType)? selectProductType,
+    TResult? Function(int? customerId, String? address)?
+        selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
+    TResult? Function(bool value)? toggleTransferInternal,
+    TResult? Function(bool value)? toggleInternal,
+    TResult? Function(int? warehouseId)? selectInternalWarehouse,
+    TResult? Function(int? khoTypeId)? selectInternalKhoType,
+    TResult? Function(String? address)? changeDeliveryAddress,
+    TResult? Function(int? nccId)? selectNcc,
+  }) {
+    return markImagesToDeleteBulk?.call(fileIds, localPaths);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? fetchGdns,
+    TResult Function(String keyword)? searchByKeyword,
+    TResult Function(String voucherNumber)? searchByVoucherNumber,
+    TResult Function()? clearSearch,
+    TResult Function(String code)? scanQrToDetail,
+    TResult Function()? clearOpenedDetail,
+    TResult Function()? clearScanResultMessage,
+    TResult Function()? fetchWarehouseTypes,
+    TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
+    TResult Function(int status)? filterByStatus,
+    TResult Function()? clearFilters,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(int stt, List<String> imagePaths)? addImages,
+    TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
+    TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
+    TResult Function()? submitImages,
+    TResult Function()? clearUploadStatus,
+    TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
+    TResult Function()? fetchUsers,
+    TResult Function(int? supplierId)? selectSupplier,
+    TResult Function(int? senderId)? selectSender,
+    TResult Function(int? receiverId)? selectReceiver,
+    TResult Function(int? customerId)? selectCustomer,
+    TResult Function(int? warehouseId)? selectWarehouse,
+    TResult Function(int? khoTypeId)? selectKhoType,
+    TResult Function(int? status)? selectStatus,
+    TResult Function(int? projectId)? selectProject,
+    TResult Function(DateTime? date)? changeDeliveryDate,
+    TResult Function(DateTime? date)? changeRequestDate,
+    TResult Function(DateTime? time)? changeReceiveTime,
+    TResult Function(String? text)? selectLoaiKho,
+    TResult Function(int? productType)? selectProductType,
+    TResult Function(int? customerId, String? address)?
+        selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
+    TResult Function(bool value)? toggleTransferInternal,
+    TResult Function(bool value)? toggleInternal,
+    TResult Function(int? warehouseId)? selectInternalWarehouse,
+    TResult Function(int? khoTypeId)? selectInternalKhoType,
+    TResult Function(String? address)? changeDeliveryAddress,
+    TResult Function(int? nccId)? selectNcc,
+    required TResult orElse(),
+  }) {
+    if (markImagesToDeleteBulk != null) {
+      return markImagesToDeleteBulk(fileIds, localPaths);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_FetchGdns value) fetchGdns,
+    required TResult Function(_SearchByKeyword value) searchByKeyword,
+    required TResult Function(_SearchByVoucherNumber value)
+        searchByVoucherNumber,
+    required TResult Function(_ClearSearch value) clearSearch,
+    required TResult Function(_ScanQrToDetail value) scanQrToDetail,
+    required TResult Function(_ClearOpenedDetail value) clearOpenedDetail,
+    required TResult Function(_ClearScanResultMessage value)
+        clearScanResultMessage,
+    required TResult Function(_FetchWarehouseTypes value) fetchWarehouseTypes,
+    required TResult Function(_FilterByWarehouseType value)
+        filterByWarehouseType,
+    required TResult Function(_FilterByStatus value) filterByStatus,
+    required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
+    required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
+    required TResult Function(_SubmitImages value) submitImages,
+    required TResult Function(_ClearUploadStatus value) clearUploadStatus,
+    required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
+    required TResult Function(_FetchUsers value) fetchUsers,
+    required TResult Function(_SelectSupplier value) selectSupplier,
+    required TResult Function(_SelectSender value) selectSender,
+    required TResult Function(_SelectReceiver value) selectReceiver,
+    required TResult Function(_SelectCustomer value) selectCustomer,
+    required TResult Function(_SelectWarehouse value) selectWarehouse,
+    required TResult Function(_SelectKhoType value) selectKhoType,
+    required TResult Function(_SelectStatus value) selectStatus,
+    required TResult Function(_SelectProject value) selectProject,
+    required TResult Function(_ChangeDeliveryDate value) changeDeliveryDate,
+    required TResult Function(_ChangeRequestDate value) changeRequestDate,
+    required TResult Function(_ChangeReceiveTime value) changeReceiveTime,
+    required TResult Function(_SelectLoaiKho value) selectLoaiKho,
+    required TResult Function(_SelectProductType value) selectProductType,
+    required TResult Function(_SelectCustomerWithAddress value)
+        selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
+    required TResult Function(_ToggleTransferInternal value)
+        toggleTransferInternal,
+    required TResult Function(_ToggleInternal value) toggleInternal,
+    required TResult Function(_SelectInternalWarehouse value)
+        selectInternalWarehouse,
+    required TResult Function(_SelectInternalKhoType value)
+        selectInternalKhoType,
+    required TResult Function(_ChangeDeliveryAddress value)
+        changeDeliveryAddress,
+    required TResult Function(_SelectNcc value) selectNcc,
+  }) {
+    return markImagesToDeleteBulk(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_FetchGdns value)? fetchGdns,
+    TResult? Function(_SearchByKeyword value)? searchByKeyword,
+    TResult? Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
+    TResult? Function(_ClearSearch value)? clearSearch,
+    TResult? Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult? Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult? Function(_ClearScanResultMessage value)? clearScanResultMessage,
+    TResult? Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
+    TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
+    TResult? Function(_FilterByStatus value)? filterByStatus,
+    TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
+    TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
+    TResult? Function(_SubmitImages value)? submitImages,
+    TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
+    TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
+    TResult? Function(_FetchUsers value)? fetchUsers,
+    TResult? Function(_SelectSupplier value)? selectSupplier,
+    TResult? Function(_SelectSender value)? selectSender,
+    TResult? Function(_SelectReceiver value)? selectReceiver,
+    TResult? Function(_SelectCustomer value)? selectCustomer,
+    TResult? Function(_SelectWarehouse value)? selectWarehouse,
+    TResult? Function(_SelectKhoType value)? selectKhoType,
+    TResult? Function(_SelectStatus value)? selectStatus,
+    TResult? Function(_SelectProject value)? selectProject,
+    TResult? Function(_ChangeDeliveryDate value)? changeDeliveryDate,
+    TResult? Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult? Function(_ChangeReceiveTime value)? changeReceiveTime,
+    TResult? Function(_SelectLoaiKho value)? selectLoaiKho,
+    TResult? Function(_SelectProductType value)? selectProductType,
+    TResult? Function(_SelectCustomerWithAddress value)?
+        selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
+    TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
+    TResult? Function(_ToggleInternal value)? toggleInternal,
+    TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
+    TResult? Function(_SelectInternalKhoType value)? selectInternalKhoType,
+    TResult? Function(_ChangeDeliveryAddress value)? changeDeliveryAddress,
+    TResult? Function(_SelectNcc value)? selectNcc,
+  }) {
+    return markImagesToDeleteBulk?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_FetchGdns value)? fetchGdns,
+    TResult Function(_SearchByKeyword value)? searchByKeyword,
+    TResult Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
+    TResult Function(_ClearSearch value)? clearSearch,
+    TResult Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult Function(_ClearScanResultMessage value)? clearScanResultMessage,
+    TResult Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
+    TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
+    TResult Function(_FilterByStatus value)? filterByStatus,
+    TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
+    TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
+    TResult Function(_SubmitImages value)? submitImages,
+    TResult Function(_ClearUploadStatus value)? clearUploadStatus,
+    TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
+    TResult Function(_FetchUsers value)? fetchUsers,
+    TResult Function(_SelectSupplier value)? selectSupplier,
+    TResult Function(_SelectSender value)? selectSender,
+    TResult Function(_SelectReceiver value)? selectReceiver,
+    TResult Function(_SelectCustomer value)? selectCustomer,
+    TResult Function(_SelectWarehouse value)? selectWarehouse,
+    TResult Function(_SelectKhoType value)? selectKhoType,
+    TResult Function(_SelectStatus value)? selectStatus,
+    TResult Function(_SelectProject value)? selectProject,
+    TResult Function(_ChangeDeliveryDate value)? changeDeliveryDate,
+    TResult Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult Function(_ChangeReceiveTime value)? changeReceiveTime,
+    TResult Function(_SelectLoaiKho value)? selectLoaiKho,
+    TResult Function(_SelectProductType value)? selectProductType,
+    TResult Function(_SelectCustomerWithAddress value)?
+        selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
+    TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
+    TResult Function(_ToggleInternal value)? toggleInternal,
+    TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
+    TResult Function(_SelectInternalKhoType value)? selectInternalKhoType,
+    TResult Function(_ChangeDeliveryAddress value)? changeDeliveryAddress,
+    TResult Function(_SelectNcc value)? selectNcc,
+    required TResult orElse(),
+  }) {
+    if (markImagesToDeleteBulk != null) {
+      return markImagesToDeleteBulk(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _MarkImagesToDeleteBulk implements SaleGdnEvent {
+  const factory _MarkImagesToDeleteBulk(
+      {final Set<int> fileIds,
+      final Set<String> localPaths}) = _$MarkImagesToDeleteBulkImpl;
+
+  Set<int> get fileIds;
+  Set<String> get localPaths;
+  @JsonKey(ignore: true)
+  _$$MarkImagesToDeleteBulkImplCopyWith<_$MarkImagesToDeleteBulkImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -6656,6 +7268,8 @@ class _$UnmarkImageToDeleteImpl implements _UnmarkImageToDelete {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -6708,6 +7322,8 @@ class _$UnmarkImageToDeleteImpl implements _UnmarkImageToDelete {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -6759,6 +7375,8 @@ class _$UnmarkImageToDeleteImpl implements _UnmarkImageToDelete {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -6817,6 +7435,8 @@ class _$UnmarkImageToDeleteImpl implements _UnmarkImageToDelete {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -6873,6 +7493,7 @@ class _$UnmarkImageToDeleteImpl implements _UnmarkImageToDelete {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -6925,6 +7546,7 @@ class _$UnmarkImageToDeleteImpl implements _UnmarkImageToDelete {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -7029,6 +7651,8 @@ class _$SubmitImagesImpl implements _SubmitImages {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -7081,6 +7705,8 @@ class _$SubmitImagesImpl implements _SubmitImages {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -7132,6 +7758,8 @@ class _$SubmitImagesImpl implements _SubmitImages {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -7190,6 +7818,8 @@ class _$SubmitImagesImpl implements _SubmitImages {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -7246,6 +7876,7 @@ class _$SubmitImagesImpl implements _SubmitImages {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -7298,6 +7929,7 @@ class _$SubmitImagesImpl implements _SubmitImages {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -7395,6 +8027,8 @@ class _$ClearUploadStatusImpl implements _ClearUploadStatus {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -7447,6 +8081,8 @@ class _$ClearUploadStatusImpl implements _ClearUploadStatus {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -7498,6 +8134,8 @@ class _$ClearUploadStatusImpl implements _ClearUploadStatus {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -7556,6 +8194,8 @@ class _$ClearUploadStatusImpl implements _ClearUploadStatus {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -7612,6 +8252,7 @@ class _$ClearUploadStatusImpl implements _ClearUploadStatus {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -7664,6 +8305,7 @@ class _$ClearUploadStatusImpl implements _ClearUploadStatus {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -7761,6 +8403,8 @@ class _$FetchLookupDataImpl implements _FetchLookupData {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -7813,6 +8457,8 @@ class _$FetchLookupDataImpl implements _FetchLookupData {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -7864,6 +8510,8 @@ class _$FetchLookupDataImpl implements _FetchLookupData {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -7922,6 +8570,8 @@ class _$FetchLookupDataImpl implements _FetchLookupData {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -7978,6 +8628,7 @@ class _$FetchLookupDataImpl implements _FetchLookupData {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -8030,6 +8681,7 @@ class _$FetchLookupDataImpl implements _FetchLookupData {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -8127,6 +8779,8 @@ class _$PrefetchLookupDataImpl implements _PrefetchLookupData {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -8179,6 +8833,8 @@ class _$PrefetchLookupDataImpl implements _PrefetchLookupData {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -8230,6 +8886,8 @@ class _$PrefetchLookupDataImpl implements _PrefetchLookupData {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -8288,6 +8946,8 @@ class _$PrefetchLookupDataImpl implements _PrefetchLookupData {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -8344,6 +9004,7 @@ class _$PrefetchLookupDataImpl implements _PrefetchLookupData {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -8396,6 +9057,7 @@ class _$PrefetchLookupDataImpl implements _PrefetchLookupData {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -8493,6 +9155,8 @@ class _$FetchUsersImpl implements _FetchUsers {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -8545,6 +9209,8 @@ class _$FetchUsersImpl implements _FetchUsers {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -8596,6 +9262,8 @@ class _$FetchUsersImpl implements _FetchUsers {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -8654,6 +9322,8 @@ class _$FetchUsersImpl implements _FetchUsers {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -8710,6 +9380,7 @@ class _$FetchUsersImpl implements _FetchUsers {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -8762,6 +9433,7 @@ class _$FetchUsersImpl implements _FetchUsers {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -8887,6 +9559,8 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -8939,6 +9613,8 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -8990,6 +9666,8 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -9048,6 +9726,8 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -9104,6 +9784,7 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -9156,6 +9837,7 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -9285,6 +9967,8 @@ class _$SelectSenderImpl implements _SelectSender {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -9337,6 +10021,8 @@ class _$SelectSenderImpl implements _SelectSender {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -9388,6 +10074,8 @@ class _$SelectSenderImpl implements _SelectSender {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -9446,6 +10134,8 @@ class _$SelectSenderImpl implements _SelectSender {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -9502,6 +10192,7 @@ class _$SelectSenderImpl implements _SelectSender {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -9554,6 +10245,7 @@ class _$SelectSenderImpl implements _SelectSender {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -9684,6 +10376,8 @@ class _$SelectReceiverImpl implements _SelectReceiver {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -9736,6 +10430,8 @@ class _$SelectReceiverImpl implements _SelectReceiver {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -9787,6 +10483,8 @@ class _$SelectReceiverImpl implements _SelectReceiver {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -9845,6 +10543,8 @@ class _$SelectReceiverImpl implements _SelectReceiver {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -9901,6 +10601,7 @@ class _$SelectReceiverImpl implements _SelectReceiver {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -9953,6 +10654,7 @@ class _$SelectReceiverImpl implements _SelectReceiver {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -10083,6 +10785,8 @@ class _$SelectCustomerImpl implements _SelectCustomer {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -10135,6 +10839,8 @@ class _$SelectCustomerImpl implements _SelectCustomer {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -10186,6 +10892,8 @@ class _$SelectCustomerImpl implements _SelectCustomer {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -10244,6 +10952,8 @@ class _$SelectCustomerImpl implements _SelectCustomer {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -10300,6 +11010,7 @@ class _$SelectCustomerImpl implements _SelectCustomer {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -10352,6 +11063,7 @@ class _$SelectCustomerImpl implements _SelectCustomer {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -10482,6 +11194,8 @@ class _$SelectWarehouseImpl implements _SelectWarehouse {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -10534,6 +11248,8 @@ class _$SelectWarehouseImpl implements _SelectWarehouse {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -10585,6 +11301,8 @@ class _$SelectWarehouseImpl implements _SelectWarehouse {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -10643,6 +11361,8 @@ class _$SelectWarehouseImpl implements _SelectWarehouse {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -10699,6 +11419,7 @@ class _$SelectWarehouseImpl implements _SelectWarehouse {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -10751,6 +11472,7 @@ class _$SelectWarehouseImpl implements _SelectWarehouse {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -10881,6 +11603,8 @@ class _$SelectKhoTypeImpl implements _SelectKhoType {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -10933,6 +11657,8 @@ class _$SelectKhoTypeImpl implements _SelectKhoType {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -10984,6 +11710,8 @@ class _$SelectKhoTypeImpl implements _SelectKhoType {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -11042,6 +11770,8 @@ class _$SelectKhoTypeImpl implements _SelectKhoType {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -11098,6 +11828,7 @@ class _$SelectKhoTypeImpl implements _SelectKhoType {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -11150,6 +11881,7 @@ class _$SelectKhoTypeImpl implements _SelectKhoType {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -11278,6 +12010,8 @@ class _$SelectStatusImpl implements _SelectStatus {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -11330,6 +12064,8 @@ class _$SelectStatusImpl implements _SelectStatus {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -11381,6 +12117,8 @@ class _$SelectStatusImpl implements _SelectStatus {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -11439,6 +12177,8 @@ class _$SelectStatusImpl implements _SelectStatus {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -11495,6 +12235,7 @@ class _$SelectStatusImpl implements _SelectStatus {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -11547,6 +12288,7 @@ class _$SelectStatusImpl implements _SelectStatus {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -11676,6 +12418,8 @@ class _$SelectProjectImpl implements _SelectProject {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -11728,6 +12472,8 @@ class _$SelectProjectImpl implements _SelectProject {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -11779,6 +12525,8 @@ class _$SelectProjectImpl implements _SelectProject {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -11837,6 +12585,8 @@ class _$SelectProjectImpl implements _SelectProject {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -11893,6 +12643,7 @@ class _$SelectProjectImpl implements _SelectProject {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -11945,6 +12696,7 @@ class _$SelectProjectImpl implements _SelectProject {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -12074,6 +12826,8 @@ class _$ChangeDeliveryDateImpl implements _ChangeDeliveryDate {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -12126,6 +12880,8 @@ class _$ChangeDeliveryDateImpl implements _ChangeDeliveryDate {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -12177,6 +12933,8 @@ class _$ChangeDeliveryDateImpl implements _ChangeDeliveryDate {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -12235,6 +12993,8 @@ class _$ChangeDeliveryDateImpl implements _ChangeDeliveryDate {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -12291,6 +13051,7 @@ class _$ChangeDeliveryDateImpl implements _ChangeDeliveryDate {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -12343,6 +13104,7 @@ class _$ChangeDeliveryDateImpl implements _ChangeDeliveryDate {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -12473,6 +13235,8 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -12525,6 +13289,8 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -12576,6 +13342,8 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -12634,6 +13402,8 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -12690,6 +13460,7 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -12742,6 +13513,7 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -12872,6 +13644,8 @@ class _$ChangeReceiveTimeImpl implements _ChangeReceiveTime {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -12924,6 +13698,8 @@ class _$ChangeReceiveTimeImpl implements _ChangeReceiveTime {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -12975,6 +13751,8 @@ class _$ChangeReceiveTimeImpl implements _ChangeReceiveTime {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -13033,6 +13811,8 @@ class _$ChangeReceiveTimeImpl implements _ChangeReceiveTime {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -13089,6 +13869,7 @@ class _$ChangeReceiveTimeImpl implements _ChangeReceiveTime {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -13141,6 +13922,7 @@ class _$ChangeReceiveTimeImpl implements _ChangeReceiveTime {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -13270,6 +14052,8 @@ class _$SelectLoaiKhoImpl implements _SelectLoaiKho {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -13322,6 +14106,8 @@ class _$SelectLoaiKhoImpl implements _SelectLoaiKho {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -13373,6 +14159,8 @@ class _$SelectLoaiKhoImpl implements _SelectLoaiKho {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -13431,6 +14219,8 @@ class _$SelectLoaiKhoImpl implements _SelectLoaiKho {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -13487,6 +14277,7 @@ class _$SelectLoaiKhoImpl implements _SelectLoaiKho {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -13539,6 +14330,7 @@ class _$SelectLoaiKhoImpl implements _SelectLoaiKho {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -13669,6 +14461,8 @@ class _$SelectProductTypeImpl implements _SelectProductType {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -13721,6 +14515,8 @@ class _$SelectProductTypeImpl implements _SelectProductType {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -13772,6 +14568,8 @@ class _$SelectProductTypeImpl implements _SelectProductType {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -13830,6 +14628,8 @@ class _$SelectProductTypeImpl implements _SelectProductType {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -13886,6 +14686,7 @@ class _$SelectProductTypeImpl implements _SelectProductType {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -13938,6 +14739,7 @@ class _$SelectProductTypeImpl implements _SelectProductType {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -14080,6 +14882,8 @@ class _$SelectCustomerWithAddressImpl implements _SelectCustomerWithAddress {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -14132,6 +14936,8 @@ class _$SelectCustomerWithAddressImpl implements _SelectCustomerWithAddress {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -14183,6 +14989,8 @@ class _$SelectCustomerWithAddressImpl implements _SelectCustomerWithAddress {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -14241,6 +15049,8 @@ class _$SelectCustomerWithAddressImpl implements _SelectCustomerWithAddress {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -14297,6 +15107,7 @@ class _$SelectCustomerWithAddressImpl implements _SelectCustomerWithAddress {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -14349,6 +15160,7 @@ class _$SelectCustomerWithAddressImpl implements _SelectCustomerWithAddress {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -14485,6 +15297,8 @@ class _$FetchAddressStockByCustomerImpl
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -14537,6 +15351,8 @@ class _$FetchAddressStockByCustomerImpl
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -14588,6 +15404,8 @@ class _$FetchAddressStockByCustomerImpl
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -14646,6 +15464,8 @@ class _$FetchAddressStockByCustomerImpl
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -14702,6 +15522,7 @@ class _$FetchAddressStockByCustomerImpl
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -14754,6 +15575,7 @@ class _$FetchAddressStockByCustomerImpl
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -14886,6 +15708,8 @@ class _$ToggleTransferInternalImpl implements _ToggleTransferInternal {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -14938,6 +15762,8 @@ class _$ToggleTransferInternalImpl implements _ToggleTransferInternal {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -14989,6 +15815,8 @@ class _$ToggleTransferInternalImpl implements _ToggleTransferInternal {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -15047,6 +15875,8 @@ class _$ToggleTransferInternalImpl implements _ToggleTransferInternal {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -15103,6 +15933,7 @@ class _$ToggleTransferInternalImpl implements _ToggleTransferInternal {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -15155,6 +15986,7 @@ class _$ToggleTransferInternalImpl implements _ToggleTransferInternal {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -15285,6 +16117,8 @@ class _$ToggleInternalImpl implements _ToggleInternal {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -15337,6 +16171,8 @@ class _$ToggleInternalImpl implements _ToggleInternal {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -15388,6 +16224,8 @@ class _$ToggleInternalImpl implements _ToggleInternal {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -15446,6 +16284,8 @@ class _$ToggleInternalImpl implements _ToggleInternal {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -15502,6 +16342,7 @@ class _$ToggleInternalImpl implements _ToggleInternal {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -15554,6 +16395,7 @@ class _$ToggleInternalImpl implements _ToggleInternal {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -15687,6 +16529,8 @@ class _$SelectInternalWarehouseImpl implements _SelectInternalWarehouse {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -15739,6 +16583,8 @@ class _$SelectInternalWarehouseImpl implements _SelectInternalWarehouse {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -15790,6 +16636,8 @@ class _$SelectInternalWarehouseImpl implements _SelectInternalWarehouse {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -15848,6 +16696,8 @@ class _$SelectInternalWarehouseImpl implements _SelectInternalWarehouse {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -15904,6 +16754,7 @@ class _$SelectInternalWarehouseImpl implements _SelectInternalWarehouse {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -15956,6 +16807,7 @@ class _$SelectInternalWarehouseImpl implements _SelectInternalWarehouse {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -16088,6 +16940,8 @@ class _$SelectInternalKhoTypeImpl implements _SelectInternalKhoType {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -16140,6 +16994,8 @@ class _$SelectInternalKhoTypeImpl implements _SelectInternalKhoType {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -16191,6 +17047,8 @@ class _$SelectInternalKhoTypeImpl implements _SelectInternalKhoType {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -16249,6 +17107,8 @@ class _$SelectInternalKhoTypeImpl implements _SelectInternalKhoType {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -16305,6 +17165,7 @@ class _$SelectInternalKhoTypeImpl implements _SelectInternalKhoType {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -16357,6 +17218,7 @@ class _$SelectInternalKhoTypeImpl implements _SelectInternalKhoType {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -16488,6 +17350,8 @@ class _$ChangeDeliveryAddressImpl implements _ChangeDeliveryAddress {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -16540,6 +17404,8 @@ class _$ChangeDeliveryAddressImpl implements _ChangeDeliveryAddress {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -16591,6 +17457,8 @@ class _$ChangeDeliveryAddressImpl implements _ChangeDeliveryAddress {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -16649,6 +17517,8 @@ class _$ChangeDeliveryAddressImpl implements _ChangeDeliveryAddress {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -16705,6 +17575,7 @@ class _$ChangeDeliveryAddressImpl implements _ChangeDeliveryAddress {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -16757,6 +17628,7 @@ class _$ChangeDeliveryAddressImpl implements _ChangeDeliveryAddress {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -16886,6 +17758,8 @@ class _$SelectNccImpl implements _SelectNcc {
     required TResult Function(int id, BillExporResponse? bill) initDetail,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
     required TResult Function(int? fileId, String? localPath)
         unmarkImageToDelete,
     required TResult Function() submitImages,
@@ -16938,6 +17812,8 @@ class _$SelectNccImpl implements _SelectNcc {
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
@@ -16989,6 +17865,8 @@ class _$SelectNccImpl implements _SelectNcc {
     TResult Function(int id, BillExporResponse? bill)? initDetail,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
     TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
@@ -17047,6 +17925,8 @@ class _$SelectNccImpl implements _SelectNcc {
     required TResult Function(_InitDetail value) initDetail,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
     required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
@@ -17103,6 +17983,7 @@ class _$SelectNccImpl implements _SelectNcc {
     TResult? Function(_InitDetail value)? initDetail,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
@@ -17155,6 +18036,7 @@ class _$SelectNccImpl implements _SelectNcc {
     TResult Function(_InitDetail value)? initDetail,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
     TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,

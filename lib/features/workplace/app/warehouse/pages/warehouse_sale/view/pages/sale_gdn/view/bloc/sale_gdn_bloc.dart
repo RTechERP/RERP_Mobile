@@ -48,6 +48,12 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
         addImages: (stt, paths) => _onAddImages(emit, stt, paths),
         markImageToDelete: (fileId, localPath) =>
             _onMarkImageToDelete(emit, fileId: fileId, localPath: localPath),
+        markImagesToDeleteBulk: (fileIds, localPaths) =>
+            _onMarkImagesToDeleteBulk(
+              emit,
+              fileIds: fileIds,
+              localPaths: localPaths,
+            ),
         unmarkImageToDelete: (fileId, localPath) =>
             _onUnmarkImageToDelete(emit, fileId: fileId, localPath: localPath),
         submitImages: () => _onSubmitImages(emit),
@@ -751,6 +757,30 @@ BillExporResponse? _findGdnInList(String code) {
     if (localPath != null) {
       updatedLocalPaths.add(localPath);
     }
+
+    emit(state.copyWith(
+      detail: current.copyWith(
+        pendingDeletedFileIds: updatedFileIds,
+        pendingDeletedLocalPaths: updatedLocalPaths,
+      ),
+    ));
+  }
+
+  /// Đánh dấu nhiều ảnh cần xoá trong 1 lần (chưa gọi API).
+  /// Dùng cho flow xoá nhiều ảnh đã chọn từ bottomSheet.
+  _onMarkImagesToDeleteBulk(
+    Emitter<SaleGdnState> emit, {
+    Set<int> fileIds = const <int>{},
+    Set<String> localPaths = const <String>{},
+  }) {
+    final current = state.detail;
+    if (current == null) return;
+    if (fileIds.isEmpty && localPaths.isEmpty) return;
+
+    final updatedFileIds = Set<int>.from(current.pendingDeletedFileIds)
+      ..addAll(fileIds);
+    final updatedLocalPaths = Set<String>.from(current.pendingDeletedLocalPaths)
+      ..addAll(localPaths);
 
     emit(state.copyWith(
       detail: current.copyWith(

@@ -54,6 +54,13 @@ class SaleGdnEvent with _$SaleGdnEvent {
     String? localPath,
   }) = _MarkImageToDelete;
 
+  /// Đánh dấu nhiều ảnh cần xoá trong 1 lần (chưa submit).
+  /// Dùng cho flow xoá nhiều ảnh đã chọn từ bottomSheet.
+  const factory SaleGdnEvent.markImagesToDeleteBulk({
+    @Default(<int>{}) Set<int> fileIds,
+    @Default(<String>{}) Set<String> localPaths,
+  }) = _MarkImagesToDeleteBulk;
+
   /// Bỏ đánh dấu xoá (khi user tap lại vào ảnh đã mark).
   const factory SaleGdnEvent.unmarkImageToDelete({
     int? fileId,

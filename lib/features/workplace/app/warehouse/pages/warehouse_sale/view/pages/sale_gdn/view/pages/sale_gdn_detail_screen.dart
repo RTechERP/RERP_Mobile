@@ -8,6 +8,7 @@ import 'package:rtc_erp/base/network/errors/extension.dart';
 import 'package:rtc_erp/base/widgets/base_scaffold.dart';
 import 'package:rtc_erp/base/widgets/base_widget.dart';
 import 'package:rtc_erp/common/app_theme/index.dart';
+import 'package:rtc_erp/common/utils/dialog/dialog_service.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/models/sale_gdn_model.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/bloc/sale_gdn_bloc.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/widgets/sale_gdn_detail_image_flow.dart';
@@ -242,9 +243,13 @@ class _SaleGdnDetailScreenState
                   serverImages: serverImages,
                   onAddImages: () => _addImages(stt),
                   onTapImage: (imageIndex, isLocal) {},
-                  onMarkToDelete: ({fileId, localPath}) =>
-                      _markToDelete(fileId: fileId, localPath: localPath),
-                  onAfterMarkDelete: _afterMarkDelete,
+                  onBulkDeleteImages: () =>
+                      _openBulkDeleteSheet(
+                    stt: stt,
+                    serverImages: serverImages,
+                    localImagePaths:
+                        detail.localImagePathsByStt[stt] ?? const [],
+                  ),
                   pendingDeletedFileIds:
                       detail.pendingDeletedFileIds,
                   pendingDeletedLocalPaths:
@@ -292,17 +297,30 @@ class _SaleGdnDetailScreenState
     bloc.add(SaleGdnEvent.addImages(stt: stt, imagePaths: confirmed));
   }
 
-  void _markToDelete({int? fileId, String? localPath}) {
-    bloc.add(SaleGdnEvent.markImageToDelete(
-      fileId: fileId,
-      localPath: localPath,
-    ));
-  }
+  /// Mở bottomSheet chọn nhiều ảnh (server + local) của dòng để xoá.
+  /// Sau khi user chọn và xác nhận trong sheet, hiện dialog confirm
+  /// rồi dispatch `markImagesToDeleteBulk` + `submitImages` để gửi server.
+  Future<void> _openBulkDeleteSheet({
+    required int stt,
+    required List<({String url, int? fileId})> serverImages,
+    required List<String> localImagePaths,
+  }) async {
+    final picked = await showSaleGdnBulkDeleteImageSheet(
+      context: context,
+      serverImages: serverImages,
+      localImagePaths: localImagePaths,
+    );
+    if (picked == null) return;
+    if (picked.fileIds.isEmpty && picked.localPaths.isEmpty) return;
 
-  /// Sau khi mark xoá 1 ảnh từ viewer:
-  /// - Tự động submit lên server (upload + deletedFileIds).
-  /// - Submit success → screen pop(true) + showMessage qua listener.
-  void _afterMarkDelete() {
+    final confirmed = await DialogService.showConfirmDelete(context: context);
+    if (!confirmed) return;
+    if (!mounted) return;
+
+    bloc.add(SaleGdnEvent.markImagesToDeleteBulk(
+      fileIds: picked.fileIds,
+      localPaths: picked.localPaths,
+    ));
     bloc.add(const SaleGdnEvent.submitImages());
   }
 
