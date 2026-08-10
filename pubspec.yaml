@@ -186,6 +186,17 @@ flutter:
     - assets/images/icons/apps/report/Saler.png
     - assets/images/icons/apps/report/Tech.png
     - assets/images/icons/apps/poll_form/poll.png
+    - assets/images/icons/apps/warehouse/74.png
+    - assets/images/icons/apps/warehouse/75.png
+    - assets/images/icons/apps/warehouse/76.png
+    - assets/images/icons/apps/warehouse/77.png
+    - assets/images/icons/apps/warehouse/78.png
+    - assets/images/icons/apps/warehouse/79.png
+    - assets/images/icons/apps/warehouse/80.png
+    - assets/images/icons/apps/warehouse/81.png
+    - assets/images/icons/apps/warehouse/82.png
+    - assets/images/icons/apps/warehouse/83.png
+    - assets/images/icons/apps/warehouse/84.png
 
     # Trans
     - assets/trans/vi-VN.json

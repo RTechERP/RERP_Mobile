@@ -64,4 +64,13 @@ class AppImages {
   static const reg_general_stamp = 'assets/images/icons/apps/21.png';
   static const reg_general_poll_form =
       'assets/images/icons/apps/poll_form/poll.png';
+
+  static const warehouse_HN = 'assets/images/icons/apps/warehouse/74.png';
+  static const warehouse_HCM = 'assets/images/icons/apps/warehouse/78.png';
+  static const warehouse_BN = 'assets/images/icons/apps/warehouse/79.png';
+  static const warehouse_DP = 'assets/images/icons/apps/warehouse/80.png';
+  static const warehouse_sale = 'assets/images/icons/apps/warehouse/75.png';
+  static const warehouse_gdn = 'assets/images/icons/apps/warehouse/77.png';
+  static const warehouse_project = 'assets/images/icons/apps/warehouse/81.png';
+  static const warehouse = 'assets/images/icons/apps/warehouse/83.png';
 }

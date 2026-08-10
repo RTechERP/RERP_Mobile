@@ -388,6 +388,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.warehouse_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'warehouse',
+      imageUrl: AppImages.warehouse_sale,
       route: RouteNames.warehouseSaleArea,
     ),
     // AppItemModel(
@@ -412,6 +413,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.warehouse_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'warehouse',
+      imageUrl: AppImages.warehouse_project,
       route: RouteNames.warehouseProjectArea,
     ),
     // AppItemModel(
@@ -432,6 +434,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.warehouse_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'warehouse',
+      imageUrl: AppImages.warehouse_HN,
       route: RouteNames.warehouseSale,
     ),
     AppItemModel(
@@ -440,6 +443,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.warehouse_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'warehouse',
+      imageUrl: AppImages.warehouse_HCM,
       route: RouteNames.warehouseDemo,
     ),
     AppItemModel(
@@ -448,6 +452,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.warehouse_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'warehouse',
+      imageUrl: AppImages.warehouse_BN,
       route: RouteNames.warehouseAgv,
     ),
     AppItemModel(
@@ -456,6 +461,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.warehouse_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'warehouse',
+      imageUrl: AppImages.warehouse_DP,
       route: RouteNames.warehouseProject,
     ),
   ];
@@ -476,6 +482,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.warehouse_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'warehouse',
+      imageUrl: AppImages.warehouse_gdn,
       route: RouteNames.warehouseSaleGdn,
     ),
   ];

@@ -264,6 +264,7 @@ class _WorkPlaceScreenState
                         iconCodePoint: Icons.warehouse_outlined.codePoint,
                         name: 'applications.warehouse'.tr(),
                         route: RouteNames.warehouse,
+                        imageUrl: AppImages.warehouse,
                       ),
                     ],
                   ),
