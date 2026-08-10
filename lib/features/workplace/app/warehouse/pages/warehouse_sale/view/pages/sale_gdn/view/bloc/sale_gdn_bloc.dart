@@ -45,6 +45,11 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
         changeDateRange: (dateStart, dateEnd) =>
             _changeDateRange(emit, dateStart, dateEnd),
         initDetail: (id, bill) => _onInitDetail(emit, id: id, bill: bill),
+        setWarehouseCode: (code) {
+          _onSetWarehouseCode(emit, code);
+          // Trả về Future<void> để khớp await event.when() yêu cầu.
+          return Future<void>.value();
+        },
         addImages: (stt, paths) => _onAddImages(emit, stt, paths),
         markImageToDelete: (fileId, localPath) =>
             _onMarkImageToDelete(emit, fileId: fileId, localPath: localPath),
@@ -153,6 +158,15 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
         ));
       },
     );
+  }
+
+  /// Cập nhật `warehouseCode` cho bloc (lấy từ màn chọn khu vực).
+  /// Chỉ set state, không gọi API.
+  /// Sau khi set, screen sẽ tự dispatch `init` để fetch lại danh sách theo kho mới.
+  void _onSetWarehouseCode(Emitter<SaleGdnState> emit, String? code) {
+    if (code == null || code.isEmpty) return;
+    if (state.warehouseCode == code) return;
+    emit(state.copyWith(warehouseCode: code));
   }
 
   Future<void> _fetchGdns(Emitter<SaleGdnState> emit) async {

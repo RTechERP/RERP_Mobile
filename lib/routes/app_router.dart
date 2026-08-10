@@ -1416,7 +1416,12 @@ class AppRouter {
         routes: [
           GoRoute(
             path: RouteNames.warehouseSaleGdn,
-            builder: (context, state) => const SaleGdnScreen(),
+            builder: (context, state) {
+              final extra = state.extra as Map<String, dynamic>?;
+              return SaleGdnScreen(
+                areaId: extra?['areaId'] as String?,
+              );
+            },
           ),
           GoRoute(
             path: RouteNames.warehouseSaleGdnDetail,

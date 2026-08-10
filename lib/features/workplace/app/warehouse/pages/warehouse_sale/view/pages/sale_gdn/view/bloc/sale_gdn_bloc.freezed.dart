@@ -33,6 +33,7 @@ mixin _$SaleGdnEvent {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -84,6 +85,7 @@ mixin _$SaleGdnEvent {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -134,6 +136,7 @@ mixin _$SaleGdnEvent {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -188,6 +191,7 @@ mixin _$SaleGdnEvent {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -243,6 +247,7 @@ mixin _$SaleGdnEvent {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -293,6 +298,7 @@ mixin _$SaleGdnEvent {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -400,6 +406,7 @@ class _$InitImpl implements _Init {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -454,6 +461,7 @@ class _$InitImpl implements _Init {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -507,6 +515,7 @@ class _$InitImpl implements _Init {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -567,6 +576,7 @@ class _$InitImpl implements _Init {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -625,6 +635,7 @@ class _$InitImpl implements _Init {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -678,6 +689,7 @@ class _$InitImpl implements _Init {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -776,6 +788,7 @@ class _$FetchGdnsImpl implements _FetchGdns {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -830,6 +843,7 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -883,6 +897,7 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -943,6 +958,7 @@ class _$FetchGdnsImpl implements _FetchGdns {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -1001,6 +1017,7 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -1054,6 +1071,7 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -1179,6 +1197,7 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -1233,6 +1252,7 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -1286,6 +1306,7 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -1346,6 +1367,7 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -1404,6 +1426,7 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -1457,6 +1480,7 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -1589,6 +1613,7 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -1643,6 +1668,7 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -1696,6 +1722,7 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -1756,6 +1783,7 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -1814,6 +1842,7 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -1867,6 +1896,7 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -1971,6 +2001,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -2025,6 +2056,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -2078,6 +2110,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -2138,6 +2171,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -2196,6 +2230,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -2249,6 +2284,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -2374,6 +2410,7 @@ class _$ScanQrToDetailImpl implements _ScanQrToDetail {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -2428,6 +2465,7 @@ class _$ScanQrToDetailImpl implements _ScanQrToDetail {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -2481,6 +2519,7 @@ class _$ScanQrToDetailImpl implements _ScanQrToDetail {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -2541,6 +2580,7 @@ class _$ScanQrToDetailImpl implements _ScanQrToDetail {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -2599,6 +2639,7 @@ class _$ScanQrToDetailImpl implements _ScanQrToDetail {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -2652,6 +2693,7 @@ class _$ScanQrToDetailImpl implements _ScanQrToDetail {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -2755,6 +2797,7 @@ class _$ClearOpenedDetailImpl implements _ClearOpenedDetail {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -2809,6 +2852,7 @@ class _$ClearOpenedDetailImpl implements _ClearOpenedDetail {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -2862,6 +2906,7 @@ class _$ClearOpenedDetailImpl implements _ClearOpenedDetail {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -2922,6 +2967,7 @@ class _$ClearOpenedDetailImpl implements _ClearOpenedDetail {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -2980,6 +3026,7 @@ class _$ClearOpenedDetailImpl implements _ClearOpenedDetail {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -3033,6 +3080,7 @@ class _$ClearOpenedDetailImpl implements _ClearOpenedDetail {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -3134,6 +3182,7 @@ class _$ClearScanResultMessageImpl implements _ClearScanResultMessage {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -3188,6 +3237,7 @@ class _$ClearScanResultMessageImpl implements _ClearScanResultMessage {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -3241,6 +3291,7 @@ class _$ClearScanResultMessageImpl implements _ClearScanResultMessage {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -3301,6 +3352,7 @@ class _$ClearScanResultMessageImpl implements _ClearScanResultMessage {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -3359,6 +3411,7 @@ class _$ClearScanResultMessageImpl implements _ClearScanResultMessage {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -3412,6 +3465,7 @@ class _$ClearScanResultMessageImpl implements _ClearScanResultMessage {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -3511,6 +3565,7 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -3565,6 +3620,7 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -3618,6 +3674,7 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -3678,6 +3735,7 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -3736,6 +3794,7 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -3789,6 +3848,7 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -3924,6 +3984,7 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -3978,6 +4039,7 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -4031,6 +4093,7 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -4091,6 +4154,7 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -4149,6 +4213,7 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -4202,6 +4267,7 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -4333,6 +4399,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -4387,6 +4454,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -4440,6 +4508,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -4500,6 +4569,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -4558,6 +4628,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -4611,6 +4682,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -4714,6 +4786,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -4768,6 +4841,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -4821,6 +4895,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -4881,6 +4956,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -4939,6 +5015,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -4992,6 +5069,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -5126,6 +5204,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -5180,6 +5259,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -5233,6 +5313,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -5293,6 +5374,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -5351,6 +5433,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -5404,6 +5487,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -5559,6 +5643,7 @@ class _$InitDetailImpl implements _InitDetail {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -5613,6 +5698,7 @@ class _$InitDetailImpl implements _InitDetail {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -5666,6 +5752,7 @@ class _$InitDetailImpl implements _InitDetail {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -5726,6 +5813,7 @@ class _$InitDetailImpl implements _InitDetail {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -5784,6 +5872,7 @@ class _$InitDetailImpl implements _InitDetail {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -5837,6 +5926,7 @@ class _$InitDetailImpl implements _InitDetail {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -5886,6 +5976,422 @@ abstract class _InitDetail implements SaleGdnEvent {
   BillExporResponse? get bill;
   @JsonKey(ignore: true)
   _$$InitDetailImplCopyWith<_$InitDetailImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SetWarehouseCodeImplCopyWith<$Res> {
+  factory _$$SetWarehouseCodeImplCopyWith(_$SetWarehouseCodeImpl value,
+          $Res Function(_$SetWarehouseCodeImpl) then) =
+      __$$SetWarehouseCodeImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String? warehouseCode});
+}
+
+/// @nodoc
+class __$$SetWarehouseCodeImplCopyWithImpl<$Res>
+    extends _$SaleGdnEventCopyWithImpl<$Res, _$SetWarehouseCodeImpl>
+    implements _$$SetWarehouseCodeImplCopyWith<$Res> {
+  __$$SetWarehouseCodeImplCopyWithImpl(_$SetWarehouseCodeImpl _value,
+      $Res Function(_$SetWarehouseCodeImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? warehouseCode = freezed,
+  }) {
+    return _then(_$SetWarehouseCodeImpl(
+      freezed == warehouseCode
+          ? _value.warehouseCode
+          : warehouseCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SetWarehouseCodeImpl implements _SetWarehouseCode {
+  const _$SetWarehouseCodeImpl(this.warehouseCode);
+
+  @override
+  final String? warehouseCode;
+
+  @override
+  String toString() {
+    return 'SaleGdnEvent.setWarehouseCode(warehouseCode: $warehouseCode)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetWarehouseCodeImpl &&
+            (identical(other.warehouseCode, warehouseCode) ||
+                other.warehouseCode == warehouseCode));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, warehouseCode);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetWarehouseCodeImplCopyWith<_$SetWarehouseCodeImpl> get copyWith =>
+      __$$SetWarehouseCodeImplCopyWithImpl<_$SetWarehouseCodeImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() fetchGdns,
+    required TResult Function(String keyword) searchByKeyword,
+    required TResult Function(String voucherNumber) searchByVoucherNumber,
+    required TResult Function() clearSearch,
+    required TResult Function(String code) scanQrToDetail,
+    required TResult Function() clearOpenedDetail,
+    required TResult Function() clearScanResultMessage,
+    required TResult Function() fetchWarehouseTypes,
+    required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
+    required TResult Function(int status) filterByStatus,
+    required TResult Function() clearFilters,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
+    required TResult Function(int stt, List<String> imagePaths) addImages,
+    required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
+    required TResult Function(int? fileId, String? localPath)
+        unmarkImageToDelete,
+    required TResult Function() submitImages,
+    required TResult Function() clearUploadStatus,
+    required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
+    required TResult Function() fetchUsers,
+    required TResult Function(int? supplierId) selectSupplier,
+    required TResult Function(int? senderId) selectSender,
+    required TResult Function(int? receiverId) selectReceiver,
+    required TResult Function(int? customerId) selectCustomer,
+    required TResult Function(int? warehouseId) selectWarehouse,
+    required TResult Function(int? khoTypeId) selectKhoType,
+    required TResult Function(int? status) selectStatus,
+    required TResult Function(int? projectId) selectProject,
+    required TResult Function(DateTime? date) changeDeliveryDate,
+    required TResult Function(DateTime? date) changeRequestDate,
+    required TResult Function(DateTime? time) changeReceiveTime,
+    required TResult Function(String? text) selectLoaiKho,
+    required TResult Function(int? productType) selectProductType,
+    required TResult Function(int? customerId, String? address)
+        selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
+    required TResult Function(bool value) toggleTransferInternal,
+    required TResult Function(bool value) toggleInternal,
+    required TResult Function(int? warehouseId) selectInternalWarehouse,
+    required TResult Function(int? khoTypeId) selectInternalKhoType,
+    required TResult Function(String? address) changeDeliveryAddress,
+    required TResult Function(int? nccId) selectNcc,
+  }) {
+    return setWarehouseCode(warehouseCode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? fetchGdns,
+    TResult? Function(String keyword)? searchByKeyword,
+    TResult? Function(String voucherNumber)? searchByVoucherNumber,
+    TResult? Function()? clearSearch,
+    TResult? Function(String code)? scanQrToDetail,
+    TResult? Function()? clearOpenedDetail,
+    TResult? Function()? clearScanResultMessage,
+    TResult? Function()? fetchWarehouseTypes,
+    TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
+    TResult? Function(int status)? filterByStatus,
+    TResult? Function()? clearFilters,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
+    TResult? Function(int stt, List<String> imagePaths)? addImages,
+    TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
+    TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
+    TResult? Function()? submitImages,
+    TResult? Function()? clearUploadStatus,
+    TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
+    TResult? Function()? fetchUsers,
+    TResult? Function(int? supplierId)? selectSupplier,
+    TResult? Function(int? senderId)? selectSender,
+    TResult? Function(int? receiverId)? selectReceiver,
+    TResult? Function(int? customerId)? selectCustomer,
+    TResult? Function(int? warehouseId)? selectWarehouse,
+    TResult? Function(int? khoTypeId)? selectKhoType,
+    TResult? Function(int? status)? selectStatus,
+    TResult? Function(int? projectId)? selectProject,
+    TResult? Function(DateTime? date)? changeDeliveryDate,
+    TResult? Function(DateTime? date)? changeRequestDate,
+    TResult? Function(DateTime? time)? changeReceiveTime,
+    TResult? Function(String? text)? selectLoaiKho,
+    TResult? Function(int? productType)? selectProductType,
+    TResult? Function(int? customerId, String? address)?
+        selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
+    TResult? Function(bool value)? toggleTransferInternal,
+    TResult? Function(bool value)? toggleInternal,
+    TResult? Function(int? warehouseId)? selectInternalWarehouse,
+    TResult? Function(int? khoTypeId)? selectInternalKhoType,
+    TResult? Function(String? address)? changeDeliveryAddress,
+    TResult? Function(int? nccId)? selectNcc,
+  }) {
+    return setWarehouseCode?.call(warehouseCode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? fetchGdns,
+    TResult Function(String keyword)? searchByKeyword,
+    TResult Function(String voucherNumber)? searchByVoucherNumber,
+    TResult Function()? clearSearch,
+    TResult Function(String code)? scanQrToDetail,
+    TResult Function()? clearOpenedDetail,
+    TResult Function()? clearScanResultMessage,
+    TResult Function()? fetchWarehouseTypes,
+    TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
+    TResult Function(int status)? filterByStatus,
+    TResult Function()? clearFilters,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
+    TResult Function(int stt, List<String> imagePaths)? addImages,
+    TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
+    TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
+    TResult Function()? submitImages,
+    TResult Function()? clearUploadStatus,
+    TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
+    TResult Function()? fetchUsers,
+    TResult Function(int? supplierId)? selectSupplier,
+    TResult Function(int? senderId)? selectSender,
+    TResult Function(int? receiverId)? selectReceiver,
+    TResult Function(int? customerId)? selectCustomer,
+    TResult Function(int? warehouseId)? selectWarehouse,
+    TResult Function(int? khoTypeId)? selectKhoType,
+    TResult Function(int? status)? selectStatus,
+    TResult Function(int? projectId)? selectProject,
+    TResult Function(DateTime? date)? changeDeliveryDate,
+    TResult Function(DateTime? date)? changeRequestDate,
+    TResult Function(DateTime? time)? changeReceiveTime,
+    TResult Function(String? text)? selectLoaiKho,
+    TResult Function(int? productType)? selectProductType,
+    TResult Function(int? customerId, String? address)?
+        selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
+    TResult Function(bool value)? toggleTransferInternal,
+    TResult Function(bool value)? toggleInternal,
+    TResult Function(int? warehouseId)? selectInternalWarehouse,
+    TResult Function(int? khoTypeId)? selectInternalKhoType,
+    TResult Function(String? address)? changeDeliveryAddress,
+    TResult Function(int? nccId)? selectNcc,
+    required TResult orElse(),
+  }) {
+    if (setWarehouseCode != null) {
+      return setWarehouseCode(warehouseCode);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_FetchGdns value) fetchGdns,
+    required TResult Function(_SearchByKeyword value) searchByKeyword,
+    required TResult Function(_SearchByVoucherNumber value)
+        searchByVoucherNumber,
+    required TResult Function(_ClearSearch value) clearSearch,
+    required TResult Function(_ScanQrToDetail value) scanQrToDetail,
+    required TResult Function(_ClearOpenedDetail value) clearOpenedDetail,
+    required TResult Function(_ClearScanResultMessage value)
+        clearScanResultMessage,
+    required TResult Function(_FetchWarehouseTypes value) fetchWarehouseTypes,
+    required TResult Function(_FilterByWarehouseType value)
+        filterByWarehouseType,
+    required TResult Function(_FilterByStatus value) filterByStatus,
+    required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
+    required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
+    required TResult Function(_SubmitImages value) submitImages,
+    required TResult Function(_ClearUploadStatus value) clearUploadStatus,
+    required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
+    required TResult Function(_FetchUsers value) fetchUsers,
+    required TResult Function(_SelectSupplier value) selectSupplier,
+    required TResult Function(_SelectSender value) selectSender,
+    required TResult Function(_SelectReceiver value) selectReceiver,
+    required TResult Function(_SelectCustomer value) selectCustomer,
+    required TResult Function(_SelectWarehouse value) selectWarehouse,
+    required TResult Function(_SelectKhoType value) selectKhoType,
+    required TResult Function(_SelectStatus value) selectStatus,
+    required TResult Function(_SelectProject value) selectProject,
+    required TResult Function(_ChangeDeliveryDate value) changeDeliveryDate,
+    required TResult Function(_ChangeRequestDate value) changeRequestDate,
+    required TResult Function(_ChangeReceiveTime value) changeReceiveTime,
+    required TResult Function(_SelectLoaiKho value) selectLoaiKho,
+    required TResult Function(_SelectProductType value) selectProductType,
+    required TResult Function(_SelectCustomerWithAddress value)
+        selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
+    required TResult Function(_ToggleTransferInternal value)
+        toggleTransferInternal,
+    required TResult Function(_ToggleInternal value) toggleInternal,
+    required TResult Function(_SelectInternalWarehouse value)
+        selectInternalWarehouse,
+    required TResult Function(_SelectInternalKhoType value)
+        selectInternalKhoType,
+    required TResult Function(_ChangeDeliveryAddress value)
+        changeDeliveryAddress,
+    required TResult Function(_SelectNcc value) selectNcc,
+  }) {
+    return setWarehouseCode(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_FetchGdns value)? fetchGdns,
+    TResult? Function(_SearchByKeyword value)? searchByKeyword,
+    TResult? Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
+    TResult? Function(_ClearSearch value)? clearSearch,
+    TResult? Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult? Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult? Function(_ClearScanResultMessage value)? clearScanResultMessage,
+    TResult? Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
+    TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
+    TResult? Function(_FilterByStatus value)? filterByStatus,
+    TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
+    TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
+    TResult? Function(_SubmitImages value)? submitImages,
+    TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
+    TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
+    TResult? Function(_FetchUsers value)? fetchUsers,
+    TResult? Function(_SelectSupplier value)? selectSupplier,
+    TResult? Function(_SelectSender value)? selectSender,
+    TResult? Function(_SelectReceiver value)? selectReceiver,
+    TResult? Function(_SelectCustomer value)? selectCustomer,
+    TResult? Function(_SelectWarehouse value)? selectWarehouse,
+    TResult? Function(_SelectKhoType value)? selectKhoType,
+    TResult? Function(_SelectStatus value)? selectStatus,
+    TResult? Function(_SelectProject value)? selectProject,
+    TResult? Function(_ChangeDeliveryDate value)? changeDeliveryDate,
+    TResult? Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult? Function(_ChangeReceiveTime value)? changeReceiveTime,
+    TResult? Function(_SelectLoaiKho value)? selectLoaiKho,
+    TResult? Function(_SelectProductType value)? selectProductType,
+    TResult? Function(_SelectCustomerWithAddress value)?
+        selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
+    TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
+    TResult? Function(_ToggleInternal value)? toggleInternal,
+    TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
+    TResult? Function(_SelectInternalKhoType value)? selectInternalKhoType,
+    TResult? Function(_ChangeDeliveryAddress value)? changeDeliveryAddress,
+    TResult? Function(_SelectNcc value)? selectNcc,
+  }) {
+    return setWarehouseCode?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_FetchGdns value)? fetchGdns,
+    TResult Function(_SearchByKeyword value)? searchByKeyword,
+    TResult Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
+    TResult Function(_ClearSearch value)? clearSearch,
+    TResult Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult Function(_ClearScanResultMessage value)? clearScanResultMessage,
+    TResult Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
+    TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
+    TResult Function(_FilterByStatus value)? filterByStatus,
+    TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
+    TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
+    TResult Function(_SubmitImages value)? submitImages,
+    TResult Function(_ClearUploadStatus value)? clearUploadStatus,
+    TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
+    TResult Function(_FetchUsers value)? fetchUsers,
+    TResult Function(_SelectSupplier value)? selectSupplier,
+    TResult Function(_SelectSender value)? selectSender,
+    TResult Function(_SelectReceiver value)? selectReceiver,
+    TResult Function(_SelectCustomer value)? selectCustomer,
+    TResult Function(_SelectWarehouse value)? selectWarehouse,
+    TResult Function(_SelectKhoType value)? selectKhoType,
+    TResult Function(_SelectStatus value)? selectStatus,
+    TResult Function(_SelectProject value)? selectProject,
+    TResult Function(_ChangeDeliveryDate value)? changeDeliveryDate,
+    TResult Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult Function(_ChangeReceiveTime value)? changeReceiveTime,
+    TResult Function(_SelectLoaiKho value)? selectLoaiKho,
+    TResult Function(_SelectProductType value)? selectProductType,
+    TResult Function(_SelectCustomerWithAddress value)?
+        selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
+    TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
+    TResult Function(_ToggleInternal value)? toggleInternal,
+    TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
+    TResult Function(_SelectInternalKhoType value)? selectInternalKhoType,
+    TResult Function(_ChangeDeliveryAddress value)? changeDeliveryAddress,
+    TResult Function(_SelectNcc value)? selectNcc,
+    required TResult orElse(),
+  }) {
+    if (setWarehouseCode != null) {
+      return setWarehouseCode(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetWarehouseCode implements SaleGdnEvent {
+  const factory _SetWarehouseCode(final String? warehouseCode) =
+      _$SetWarehouseCodeImpl;
+
+  String? get warehouseCode;
+  @JsonKey(ignore: true)
+  _$$SetWarehouseCodeImplCopyWith<_$SetWarehouseCodeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -5985,6 +6491,7 @@ class _$AddImagesImpl implements _AddImages {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -6039,6 +6546,7 @@ class _$AddImagesImpl implements _AddImages {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -6092,6 +6600,7 @@ class _$AddImagesImpl implements _AddImages {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -6152,6 +6661,7 @@ class _$AddImagesImpl implements _AddImages {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -6210,6 +6720,7 @@ class _$AddImagesImpl implements _AddImages {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -6263,6 +6774,7 @@ class _$AddImagesImpl implements _AddImages {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -6405,6 +6917,7 @@ class _$MarkImageToDeleteImpl implements _MarkImageToDelete {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -6459,6 +6972,7 @@ class _$MarkImageToDeleteImpl implements _MarkImageToDelete {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -6512,6 +7026,7 @@ class _$MarkImageToDeleteImpl implements _MarkImageToDelete {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -6572,6 +7087,7 @@ class _$MarkImageToDeleteImpl implements _MarkImageToDelete {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -6630,6 +7146,7 @@ class _$MarkImageToDeleteImpl implements _MarkImageToDelete {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -6683,6 +7200,7 @@ class _$MarkImageToDeleteImpl implements _MarkImageToDelete {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -6846,6 +7364,7 @@ class _$MarkImagesToDeleteBulkImpl implements _MarkImagesToDeleteBulk {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -6900,6 +7419,7 @@ class _$MarkImagesToDeleteBulkImpl implements _MarkImagesToDeleteBulk {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -6953,6 +7473,7 @@ class _$MarkImagesToDeleteBulkImpl implements _MarkImagesToDeleteBulk {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -7013,6 +7534,7 @@ class _$MarkImagesToDeleteBulkImpl implements _MarkImagesToDeleteBulk {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -7071,6 +7593,7 @@ class _$MarkImagesToDeleteBulkImpl implements _MarkImagesToDeleteBulk {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -7124,6 +7647,7 @@ class _$MarkImagesToDeleteBulkImpl implements _MarkImagesToDeleteBulk {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -7266,6 +7790,7 @@ class _$UnmarkImageToDeleteImpl implements _UnmarkImageToDelete {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -7320,6 +7845,7 @@ class _$UnmarkImageToDeleteImpl implements _UnmarkImageToDelete {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -7373,6 +7899,7 @@ class _$UnmarkImageToDeleteImpl implements _UnmarkImageToDelete {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -7433,6 +7960,7 @@ class _$UnmarkImageToDeleteImpl implements _UnmarkImageToDelete {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -7491,6 +8019,7 @@ class _$UnmarkImageToDeleteImpl implements _UnmarkImageToDelete {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -7544,6 +8073,7 @@ class _$UnmarkImageToDeleteImpl implements _UnmarkImageToDelete {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -7649,6 +8179,7 @@ class _$SubmitImagesImpl implements _SubmitImages {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -7703,6 +8234,7 @@ class _$SubmitImagesImpl implements _SubmitImages {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -7756,6 +8288,7 @@ class _$SubmitImagesImpl implements _SubmitImages {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -7816,6 +8349,7 @@ class _$SubmitImagesImpl implements _SubmitImages {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -7874,6 +8408,7 @@ class _$SubmitImagesImpl implements _SubmitImages {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -7927,6 +8462,7 @@ class _$SubmitImagesImpl implements _SubmitImages {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -8025,6 +8561,7 @@ class _$ClearUploadStatusImpl implements _ClearUploadStatus {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -8079,6 +8616,7 @@ class _$ClearUploadStatusImpl implements _ClearUploadStatus {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -8132,6 +8670,7 @@ class _$ClearUploadStatusImpl implements _ClearUploadStatus {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -8192,6 +8731,7 @@ class _$ClearUploadStatusImpl implements _ClearUploadStatus {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -8250,6 +8790,7 @@ class _$ClearUploadStatusImpl implements _ClearUploadStatus {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -8303,6 +8844,7 @@ class _$ClearUploadStatusImpl implements _ClearUploadStatus {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -8401,6 +8943,7 @@ class _$FetchLookupDataImpl implements _FetchLookupData {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -8455,6 +8998,7 @@ class _$FetchLookupDataImpl implements _FetchLookupData {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -8508,6 +9052,7 @@ class _$FetchLookupDataImpl implements _FetchLookupData {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -8568,6 +9113,7 @@ class _$FetchLookupDataImpl implements _FetchLookupData {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -8626,6 +9172,7 @@ class _$FetchLookupDataImpl implements _FetchLookupData {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -8679,6 +9226,7 @@ class _$FetchLookupDataImpl implements _FetchLookupData {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -8777,6 +9325,7 @@ class _$PrefetchLookupDataImpl implements _PrefetchLookupData {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -8831,6 +9380,7 @@ class _$PrefetchLookupDataImpl implements _PrefetchLookupData {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -8884,6 +9434,7 @@ class _$PrefetchLookupDataImpl implements _PrefetchLookupData {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -8944,6 +9495,7 @@ class _$PrefetchLookupDataImpl implements _PrefetchLookupData {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -9002,6 +9554,7 @@ class _$PrefetchLookupDataImpl implements _PrefetchLookupData {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -9055,6 +9608,7 @@ class _$PrefetchLookupDataImpl implements _PrefetchLookupData {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -9153,6 +9707,7 @@ class _$FetchUsersImpl implements _FetchUsers {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -9207,6 +9762,7 @@ class _$FetchUsersImpl implements _FetchUsers {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -9260,6 +9816,7 @@ class _$FetchUsersImpl implements _FetchUsers {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -9320,6 +9877,7 @@ class _$FetchUsersImpl implements _FetchUsers {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -9378,6 +9936,7 @@ class _$FetchUsersImpl implements _FetchUsers {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -9431,6 +9990,7 @@ class _$FetchUsersImpl implements _FetchUsers {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -9557,6 +10117,7 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -9611,6 +10172,7 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -9664,6 +10226,7 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -9724,6 +10287,7 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -9782,6 +10346,7 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -9835,6 +10400,7 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -9965,6 +10531,7 @@ class _$SelectSenderImpl implements _SelectSender {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -10019,6 +10586,7 @@ class _$SelectSenderImpl implements _SelectSender {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -10072,6 +10640,7 @@ class _$SelectSenderImpl implements _SelectSender {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -10132,6 +10701,7 @@ class _$SelectSenderImpl implements _SelectSender {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -10190,6 +10760,7 @@ class _$SelectSenderImpl implements _SelectSender {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -10243,6 +10814,7 @@ class _$SelectSenderImpl implements _SelectSender {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -10374,6 +10946,7 @@ class _$SelectReceiverImpl implements _SelectReceiver {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -10428,6 +11001,7 @@ class _$SelectReceiverImpl implements _SelectReceiver {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -10481,6 +11055,7 @@ class _$SelectReceiverImpl implements _SelectReceiver {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -10541,6 +11116,7 @@ class _$SelectReceiverImpl implements _SelectReceiver {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -10599,6 +11175,7 @@ class _$SelectReceiverImpl implements _SelectReceiver {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -10652,6 +11229,7 @@ class _$SelectReceiverImpl implements _SelectReceiver {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -10783,6 +11361,7 @@ class _$SelectCustomerImpl implements _SelectCustomer {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -10837,6 +11416,7 @@ class _$SelectCustomerImpl implements _SelectCustomer {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -10890,6 +11470,7 @@ class _$SelectCustomerImpl implements _SelectCustomer {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -10950,6 +11531,7 @@ class _$SelectCustomerImpl implements _SelectCustomer {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -11008,6 +11590,7 @@ class _$SelectCustomerImpl implements _SelectCustomer {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -11061,6 +11644,7 @@ class _$SelectCustomerImpl implements _SelectCustomer {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -11192,6 +11776,7 @@ class _$SelectWarehouseImpl implements _SelectWarehouse {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -11246,6 +11831,7 @@ class _$SelectWarehouseImpl implements _SelectWarehouse {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -11299,6 +11885,7 @@ class _$SelectWarehouseImpl implements _SelectWarehouse {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -11359,6 +11946,7 @@ class _$SelectWarehouseImpl implements _SelectWarehouse {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -11417,6 +12005,7 @@ class _$SelectWarehouseImpl implements _SelectWarehouse {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -11470,6 +12059,7 @@ class _$SelectWarehouseImpl implements _SelectWarehouse {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -11601,6 +12191,7 @@ class _$SelectKhoTypeImpl implements _SelectKhoType {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -11655,6 +12246,7 @@ class _$SelectKhoTypeImpl implements _SelectKhoType {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -11708,6 +12300,7 @@ class _$SelectKhoTypeImpl implements _SelectKhoType {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -11768,6 +12361,7 @@ class _$SelectKhoTypeImpl implements _SelectKhoType {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -11826,6 +12420,7 @@ class _$SelectKhoTypeImpl implements _SelectKhoType {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -11879,6 +12474,7 @@ class _$SelectKhoTypeImpl implements _SelectKhoType {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -12008,6 +12604,7 @@ class _$SelectStatusImpl implements _SelectStatus {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -12062,6 +12659,7 @@ class _$SelectStatusImpl implements _SelectStatus {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -12115,6 +12713,7 @@ class _$SelectStatusImpl implements _SelectStatus {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -12175,6 +12774,7 @@ class _$SelectStatusImpl implements _SelectStatus {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -12233,6 +12833,7 @@ class _$SelectStatusImpl implements _SelectStatus {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -12286,6 +12887,7 @@ class _$SelectStatusImpl implements _SelectStatus {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -12416,6 +13018,7 @@ class _$SelectProjectImpl implements _SelectProject {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -12470,6 +13073,7 @@ class _$SelectProjectImpl implements _SelectProject {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -12523,6 +13127,7 @@ class _$SelectProjectImpl implements _SelectProject {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -12583,6 +13188,7 @@ class _$SelectProjectImpl implements _SelectProject {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -12641,6 +13247,7 @@ class _$SelectProjectImpl implements _SelectProject {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -12694,6 +13301,7 @@ class _$SelectProjectImpl implements _SelectProject {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -12824,6 +13432,7 @@ class _$ChangeDeliveryDateImpl implements _ChangeDeliveryDate {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -12878,6 +13487,7 @@ class _$ChangeDeliveryDateImpl implements _ChangeDeliveryDate {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -12931,6 +13541,7 @@ class _$ChangeDeliveryDateImpl implements _ChangeDeliveryDate {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -12991,6 +13602,7 @@ class _$ChangeDeliveryDateImpl implements _ChangeDeliveryDate {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -13049,6 +13661,7 @@ class _$ChangeDeliveryDateImpl implements _ChangeDeliveryDate {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -13102,6 +13715,7 @@ class _$ChangeDeliveryDateImpl implements _ChangeDeliveryDate {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -13233,6 +13847,7 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -13287,6 +13902,7 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -13340,6 +13956,7 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -13400,6 +14017,7 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -13458,6 +14076,7 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -13511,6 +14130,7 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -13642,6 +14262,7 @@ class _$ChangeReceiveTimeImpl implements _ChangeReceiveTime {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -13696,6 +14317,7 @@ class _$ChangeReceiveTimeImpl implements _ChangeReceiveTime {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -13749,6 +14371,7 @@ class _$ChangeReceiveTimeImpl implements _ChangeReceiveTime {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -13809,6 +14432,7 @@ class _$ChangeReceiveTimeImpl implements _ChangeReceiveTime {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -13867,6 +14491,7 @@ class _$ChangeReceiveTimeImpl implements _ChangeReceiveTime {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -13920,6 +14545,7 @@ class _$ChangeReceiveTimeImpl implements _ChangeReceiveTime {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -14050,6 +14676,7 @@ class _$SelectLoaiKhoImpl implements _SelectLoaiKho {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -14104,6 +14731,7 @@ class _$SelectLoaiKhoImpl implements _SelectLoaiKho {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -14157,6 +14785,7 @@ class _$SelectLoaiKhoImpl implements _SelectLoaiKho {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -14217,6 +14846,7 @@ class _$SelectLoaiKhoImpl implements _SelectLoaiKho {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -14275,6 +14905,7 @@ class _$SelectLoaiKhoImpl implements _SelectLoaiKho {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -14328,6 +14959,7 @@ class _$SelectLoaiKhoImpl implements _SelectLoaiKho {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -14459,6 +15091,7 @@ class _$SelectProductTypeImpl implements _SelectProductType {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -14513,6 +15146,7 @@ class _$SelectProductTypeImpl implements _SelectProductType {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -14566,6 +15200,7 @@ class _$SelectProductTypeImpl implements _SelectProductType {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -14626,6 +15261,7 @@ class _$SelectProductTypeImpl implements _SelectProductType {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -14684,6 +15320,7 @@ class _$SelectProductTypeImpl implements _SelectProductType {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -14737,6 +15374,7 @@ class _$SelectProductTypeImpl implements _SelectProductType {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -14880,6 +15518,7 @@ class _$SelectCustomerWithAddressImpl implements _SelectCustomerWithAddress {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -14934,6 +15573,7 @@ class _$SelectCustomerWithAddressImpl implements _SelectCustomerWithAddress {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -14987,6 +15627,7 @@ class _$SelectCustomerWithAddressImpl implements _SelectCustomerWithAddress {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -15047,6 +15688,7 @@ class _$SelectCustomerWithAddressImpl implements _SelectCustomerWithAddress {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -15105,6 +15747,7 @@ class _$SelectCustomerWithAddressImpl implements _SelectCustomerWithAddress {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -15158,6 +15801,7 @@ class _$SelectCustomerWithAddressImpl implements _SelectCustomerWithAddress {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -15295,6 +15939,7 @@ class _$FetchAddressStockByCustomerImpl
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -15349,6 +15994,7 @@ class _$FetchAddressStockByCustomerImpl
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -15402,6 +16048,7 @@ class _$FetchAddressStockByCustomerImpl
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -15462,6 +16109,7 @@ class _$FetchAddressStockByCustomerImpl
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -15520,6 +16168,7 @@ class _$FetchAddressStockByCustomerImpl
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -15573,6 +16222,7 @@ class _$FetchAddressStockByCustomerImpl
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -15706,6 +16356,7 @@ class _$ToggleTransferInternalImpl implements _ToggleTransferInternal {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -15760,6 +16411,7 @@ class _$ToggleTransferInternalImpl implements _ToggleTransferInternal {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -15813,6 +16465,7 @@ class _$ToggleTransferInternalImpl implements _ToggleTransferInternal {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -15873,6 +16526,7 @@ class _$ToggleTransferInternalImpl implements _ToggleTransferInternal {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -15931,6 +16585,7 @@ class _$ToggleTransferInternalImpl implements _ToggleTransferInternal {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -15984,6 +16639,7 @@ class _$ToggleTransferInternalImpl implements _ToggleTransferInternal {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -16115,6 +16771,7 @@ class _$ToggleInternalImpl implements _ToggleInternal {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -16169,6 +16826,7 @@ class _$ToggleInternalImpl implements _ToggleInternal {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -16222,6 +16880,7 @@ class _$ToggleInternalImpl implements _ToggleInternal {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -16282,6 +16941,7 @@ class _$ToggleInternalImpl implements _ToggleInternal {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -16340,6 +17000,7 @@ class _$ToggleInternalImpl implements _ToggleInternal {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -16393,6 +17054,7 @@ class _$ToggleInternalImpl implements _ToggleInternal {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -16527,6 +17189,7 @@ class _$SelectInternalWarehouseImpl implements _SelectInternalWarehouse {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -16581,6 +17244,7 @@ class _$SelectInternalWarehouseImpl implements _SelectInternalWarehouse {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -16634,6 +17298,7 @@ class _$SelectInternalWarehouseImpl implements _SelectInternalWarehouse {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -16694,6 +17359,7 @@ class _$SelectInternalWarehouseImpl implements _SelectInternalWarehouse {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -16752,6 +17418,7 @@ class _$SelectInternalWarehouseImpl implements _SelectInternalWarehouse {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -16805,6 +17472,7 @@ class _$SelectInternalWarehouseImpl implements _SelectInternalWarehouse {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -16938,6 +17606,7 @@ class _$SelectInternalKhoTypeImpl implements _SelectInternalKhoType {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -16992,6 +17661,7 @@ class _$SelectInternalKhoTypeImpl implements _SelectInternalKhoType {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -17045,6 +17715,7 @@ class _$SelectInternalKhoTypeImpl implements _SelectInternalKhoType {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -17105,6 +17776,7 @@ class _$SelectInternalKhoTypeImpl implements _SelectInternalKhoType {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -17163,6 +17835,7 @@ class _$SelectInternalKhoTypeImpl implements _SelectInternalKhoType {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -17216,6 +17889,7 @@ class _$SelectInternalKhoTypeImpl implements _SelectInternalKhoType {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -17348,6 +18022,7 @@ class _$ChangeDeliveryAddressImpl implements _ChangeDeliveryAddress {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -17402,6 +18077,7 @@ class _$ChangeDeliveryAddressImpl implements _ChangeDeliveryAddress {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -17455,6 +18131,7 @@ class _$ChangeDeliveryAddressImpl implements _ChangeDeliveryAddress {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -17515,6 +18192,7 @@ class _$ChangeDeliveryAddressImpl implements _ChangeDeliveryAddress {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -17573,6 +18251,7 @@ class _$ChangeDeliveryAddressImpl implements _ChangeDeliveryAddress {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -17626,6 +18305,7 @@ class _$ChangeDeliveryAddressImpl implements _ChangeDeliveryAddress {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -17756,6 +18436,7 @@ class _$SelectNccImpl implements _SelectNcc {
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
     required TResult Function(int stt, List<String> imagePaths) addImages,
     required TResult Function(int? fileId, String? localPath) markImageToDelete,
     required TResult Function(Set<int> fileIds, Set<String> localPaths)
@@ -17810,6 +18491,7 @@ class _$SelectNccImpl implements _SelectNcc {
     TResult? Function()? clearFilters,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
     TResult? Function(int stt, List<String> imagePaths)? addImages,
     TResult? Function(int? fileId, String? localPath)? markImageToDelete,
     TResult? Function(Set<int> fileIds, Set<String> localPaths)?
@@ -17863,6 +18545,7 @@ class _$SelectNccImpl implements _SelectNcc {
     TResult Function()? clearFilters,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
     TResult Function(int stt, List<String> imagePaths)? addImages,
     TResult Function(int? fileId, String? localPath)? markImageToDelete,
     TResult Function(Set<int> fileIds, Set<String> localPaths)?
@@ -17923,6 +18606,7 @@ class _$SelectNccImpl implements _SelectNcc {
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
     required TResult Function(_AddImages value) addImages,
     required TResult Function(_MarkImageToDelete value) markImageToDelete,
     required TResult Function(_MarkImagesToDeleteBulk value)
@@ -17981,6 +18665,7 @@ class _$SelectNccImpl implements _SelectNcc {
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult? Function(_AddImages value)? addImages,
     TResult? Function(_MarkImageToDelete value)? markImageToDelete,
     TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
@@ -18034,6 +18719,7 @@ class _$SelectNccImpl implements _SelectNcc {
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
     TResult Function(_AddImages value)? addImages,
     TResult Function(_MarkImageToDelete value)? markImageToDelete,
     TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,

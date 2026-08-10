@@ -42,7 +42,12 @@ class WarehouseSaleScreen extends StatelessWidget {
                   items: items,
                   onItemTap: (item) {
                     if (item.route != null) {
-                      context.push(item.route!);
+                      context.push(
+                        item.route!,
+                        // Truyền `areaId` để màn phiếu xuất tự map sang
+                        // `warehouseCode` (HN/HCM/BN).
+                        extra: {'areaId': areaId},
+                      );
                     }
                   },
                 ),

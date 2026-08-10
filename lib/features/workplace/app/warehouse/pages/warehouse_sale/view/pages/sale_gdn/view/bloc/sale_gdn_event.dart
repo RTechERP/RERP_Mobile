@@ -38,6 +38,11 @@ class SaleGdnEvent with _$SaleGdnEvent {
     BillExporResponse? bill,
   }) = _InitDetail;
 
+  /// Cập nhật `warehouseCode` (mã kho) dùng cho các API phiếu xuất.
+  /// Thường gọi 1 lần khi vào màn SaleGdnScreen (lấy từ màn chọn khu vực).
+  const factory SaleGdnEvent.setWarehouseCode(String? warehouseCode) =
+      _SetWarehouseCode;
+
   /// Thêm 1 hoặc nhiều ảnh đã chọn (local path) vào dòng chi tiết theo `stt`.
   const factory SaleGdnEvent.addImages({
     required int stt,

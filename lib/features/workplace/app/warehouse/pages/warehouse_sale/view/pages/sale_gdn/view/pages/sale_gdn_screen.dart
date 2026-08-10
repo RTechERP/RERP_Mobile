@@ -15,7 +15,11 @@ import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/vi
 import 'package:rtc_erp/routes/route_names.dart';
 
 class SaleGdnScreen extends StatefulWidget {
-  const SaleGdnScreen({super.key});
+  /// `areaId` của khu vực đang chọn (ví dụ `warehouse_area:ha_noi`).
+  /// Null = mặc định "HN".
+  final String? areaId;
+
+  const SaleGdnScreen({super.key, this.areaId});
 
   @override
   State<SaleGdnScreen> createState() => _SaleGdnScreenState();
@@ -26,11 +30,32 @@ class _SaleGdnScreenState
   @override
   void initState() {
     super.initState();
+    // Map areaId → warehouseCode (HN/HCM/BN) rồi set cho bloc.
+    final code = _mapAreaIdToWarehouseCode(widget.areaId);
+    bloc.add(SaleGdnEvent.setWarehouseCode(code));
     bloc.add(const SaleGdnEvent.init());
     bloc.add(const SaleGdnEvent.fetchWarehouseTypes());
     // Pre-fetch lookup data (suppliers, senders, customers, etc.) so detail
     // screen has data ready immediately without additional API calls.
     bloc.add(const SaleGdnEvent.prefetchLookupData());
+  }
+
+  /// Map `areaId` từ màn chọn khu vực sang `warehouseCode` truyền cho API.
+  /// - Hà Nội → "HN"
+  /// - Hồ Chí Minh → "HCM"
+  /// - Bắc Ninh → "BN"
+  /// Trả về null nếu không khớp để giữ nguyên `warehouseCode` mặc định của bloc.
+  static String? _mapAreaIdToWarehouseCode(String? areaId) {
+    switch (areaId) {
+      case 'warehouse_area:ha_noi':
+        return 'HN';
+      case 'warehouse_area:ho_chi_minh':
+        return 'HCM';
+      case 'warehouse_area:bac_ninh':
+        return 'BN';
+      default:
+        return null;
+    }
   }
 
   @override
