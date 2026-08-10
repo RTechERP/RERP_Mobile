@@ -414,4 +414,9 @@ class ApiEndPoint {
   /// Danh sách người dùng (Employee) cho dropdown người giao/người nhận.
   /// API: GET /billexport/get-users
   static const String getBillExportUsers = '/billexport/get-users';
+
+  /// Lấy danh sách địa chỉ giao hàng theo customerID.
+  /// API: GET /AddressStock/get-by-customerID/?customerID={customerId}
+  static const String getAddressStockByCustomerId =
+      '/AddressStock/get-by-customerID';
 }

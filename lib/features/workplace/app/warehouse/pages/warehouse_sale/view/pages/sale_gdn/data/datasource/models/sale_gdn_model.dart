@@ -159,6 +159,21 @@ class DetailGDNItemResponse with _$DetailGDNItemResponse {
       _$DetailGDNItemResponseFromJson(json);
 }
 
+/// Model cho địa chỉ giao hàng theo khách hàng.
+/// API: GET /AddressStock/get-by-customerID/?customerID={customerId}
+@freezed
+class AddressStockResponse with _$AddressStockResponse {
+  const factory AddressStockResponse({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'Address') String? address,
+    @JsonKey(name: 'CustomerID') int? customerId,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+  }) = _AddressStockResponse;
+
+  factory AddressStockResponse.fromJson(Map<String, dynamic> json) =>
+      _$AddressStockResponseFromJson(json);
+}
+
 @freezed
 class DetailGDNResponse with _$DetailGDNResponse {
   const factory DetailGDNResponse({
@@ -408,7 +423,7 @@ class SupplierResponse with _$SupplierResponse {
     @JsonKey(name: 'AddressNCC') String? address,
     @JsonKey(name: 'PhoneNCC') String? phone,
     @JsonKey(name: 'OrdererNCC') String? orderer,
-    @JsonKey(name: 'Debt') dynamic debt,
+    @JsonKey(name: 'Debt') String? debt,
     @JsonKey(name: 'NgayUpdate') DateTime? ngayUpdate,
     @JsonKey(name: 'NVPhuTrach') String? nvPhuTrach,
     @JsonKey(name: 'LoaiHangHoa') String? loaiHangHoa,
@@ -424,7 +439,7 @@ class SupplierResponse with _$SupplierResponse {
     @JsonKey(name: 'CreatedBy') String? createdBy,
     @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
     @JsonKey(name: 'UpdatedBy') String? updatedBy,
-    @JsonKey(name: 'Company') String? company,
+    @JsonKey(name: 'Company') int? company,
     @JsonKey(name: 'ShortNameSupplier') String? shortName,
     @JsonKey(name: 'EmployeeID') int? employeeId,
     @JsonKey(name: 'IsDeleted') bool? isDeleted,
@@ -573,4 +588,33 @@ class BillExportUserResponse with _$BillExportUserResponse {
 
   factory BillExportUserResponse.fromJson(Map<String, dynamic> json) =>
       _$BillExportUserResponseFromJson(json);
+}
+
+// ===========================================================================
+// Cache models for lookup data (SaleGdn)
+// ===========================================================================
+
+/// Cache model for all lookup data in SaleGdn.
+/// Pre-fetched from sale_gdn_screen.dart and hydrated into in-memory cache
+/// so that sale_gdn_detail_screen has data ready without additional API calls.
+class SaleGdnLookupCache {
+  final DateTime fetchedAt;
+  final List<SupplierResponse> suppliers;
+  final List<SenderResponse> senders;
+  final List<CustomerResponse> customers;
+  final List<ProjectGDNResponse> projects;
+  final List<WarehouseResponse> warehouses;
+  final List<ProductGroupNewResponse> productGroups;
+  final List<BillExportUserResponse> users;
+
+  const SaleGdnLookupCache({
+    required this.fetchedAt,
+    required this.suppliers,
+    required this.senders,
+    required this.customers,
+    required this.projects,
+    required this.warehouses,
+    required this.productGroups,
+    required this.users,
+  });
 }

@@ -66,6 +66,10 @@ class SaleGdnEvent with _$SaleGdnEvent {
   /// kho, loại kho) để dùng cho các dropdown trên form BillExport.
   const factory SaleGdnEvent.fetchLookupData() = _FetchLookupData;
 
+  /// Pre-fetch lookup data from API and save to SharedPreferences + in-memory cache.
+  /// Called from sale_gdn_screen.dart so detail screen has data ready immediately.
+  const factory SaleGdnEvent.prefetchLookupData() = _PrefetchLookupData;
+
   /// Fetch danh sách nhân viên (Employee) cho bottom-sheet người giao / người nhận.
   const factory SaleGdnEvent.fetchUsers() = _FetchUsers;
 
@@ -118,6 +122,11 @@ class SaleGdnEvent with _$SaleGdnEvent {
     required int? customerId,
     String? address,
   }) = _SelectCustomerWithAddress;
+
+  /// User chọn khách hàng - fetch địa chỉ giao hàng từ API.
+  const factory SaleGdnEvent.fetchAddressStockByCustomer({
+    required int customerId,
+  }) = _FetchAddressStockByCustomer;
 
   /// User tick/bỏ tick "Chuyển kho nội bộ" - enable field "Kho chuyển".
   const factory SaleGdnEvent.toggleTransferInternal({required bool value}) =

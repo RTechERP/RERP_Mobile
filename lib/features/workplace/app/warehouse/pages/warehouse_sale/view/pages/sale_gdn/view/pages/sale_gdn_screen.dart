@@ -28,6 +28,9 @@ class _SaleGdnScreenState
     super.initState();
     bloc.add(const SaleGdnEvent.init());
     bloc.add(const SaleGdnEvent.fetchWarehouseTypes());
+    // Pre-fetch lookup data (suppliers, senders, customers, etc.) so detail
+    // screen has data ready immediately without additional API calls.
+    bloc.add(const SaleGdnEvent.prefetchLookupData());
   }
 
   @override

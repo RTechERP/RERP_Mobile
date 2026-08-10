@@ -76,4 +76,9 @@ abstract class SaleGdnRepo {
 
   /// Danh sách nhân viên cho bottom-sheet người giao / người nhận.
   Future<Either<BaseError, List<BillExportUserResponse>>> getBillExportUsers();
+
+  /// Lấy danh sách địa chỉ giao hàng theo customerID.
+  Future<Either<BaseError, List<AddressStockResponse>>> getAddressStockByCustomerId({
+    required int customerId,
+  });
 }

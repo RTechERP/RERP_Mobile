@@ -3490,6 +3490,225 @@ abstract class _DetailGDNItemResponse implements DetailGDNItemResponse {
       get copyWith => throw _privateConstructorUsedError;
 }
 
+AddressStockResponse _$AddressStockResponseFromJson(Map<String, dynamic> json) {
+  return _AddressStockResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$AddressStockResponse {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Address')
+  String? get address => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CustomerID')
+  int? get customerId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $AddressStockResponseCopyWith<AddressStockResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AddressStockResponseCopyWith<$Res> {
+  factory $AddressStockResponseCopyWith(AddressStockResponse value,
+          $Res Function(AddressStockResponse) then) =
+      _$AddressStockResponseCopyWithImpl<$Res, AddressStockResponse>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Address') String? address,
+      @JsonKey(name: 'CustomerID') int? customerId,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted});
+}
+
+/// @nodoc
+class _$AddressStockResponseCopyWithImpl<$Res,
+        $Val extends AddressStockResponse>
+    implements $AddressStockResponseCopyWith<$Res> {
+  _$AddressStockResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? address = freezed,
+    Object? customerId = freezed,
+    Object? isDeleted = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerId: freezed == customerId
+          ? _value.customerId
+          : customerId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$AddressStockResponseImplCopyWith<$Res>
+    implements $AddressStockResponseCopyWith<$Res> {
+  factory _$$AddressStockResponseImplCopyWith(_$AddressStockResponseImpl value,
+          $Res Function(_$AddressStockResponseImpl) then) =
+      __$$AddressStockResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Address') String? address,
+      @JsonKey(name: 'CustomerID') int? customerId,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted});
+}
+
+/// @nodoc
+class __$$AddressStockResponseImplCopyWithImpl<$Res>
+    extends _$AddressStockResponseCopyWithImpl<$Res, _$AddressStockResponseImpl>
+    implements _$$AddressStockResponseImplCopyWith<$Res> {
+  __$$AddressStockResponseImplCopyWithImpl(_$AddressStockResponseImpl _value,
+      $Res Function(_$AddressStockResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? address = freezed,
+    Object? customerId = freezed,
+    Object? isDeleted = freezed,
+  }) {
+    return _then(_$AddressStockResponseImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerId: freezed == customerId
+          ? _value.customerId
+          : customerId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$AddressStockResponseImpl implements _AddressStockResponse {
+  const _$AddressStockResponseImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'Address') this.address,
+      @JsonKey(name: 'CustomerID') this.customerId,
+      @JsonKey(name: 'IsDeleted') this.isDeleted});
+
+  factory _$AddressStockResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AddressStockResponseImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'Address')
+  final String? address;
+  @override
+  @JsonKey(name: 'CustomerID')
+  final int? customerId;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  final bool? isDeleted;
+
+  @override
+  String toString() {
+    return 'AddressStockResponse(id: $id, address: $address, customerId: $customerId, isDeleted: $isDeleted)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AddressStockResponseImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.customerId, customerId) ||
+                other.customerId == customerId) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, id, address, customerId, isDeleted);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddressStockResponseImplCopyWith<_$AddressStockResponseImpl>
+      get copyWith =>
+          __$$AddressStockResponseImplCopyWithImpl<_$AddressStockResponseImpl>(
+              this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$AddressStockResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _AddressStockResponse implements AddressStockResponse {
+  const factory _AddressStockResponse(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'Address') final String? address,
+          @JsonKey(name: 'CustomerID') final int? customerId,
+          @JsonKey(name: 'IsDeleted') final bool? isDeleted}) =
+      _$AddressStockResponseImpl;
+
+  factory _AddressStockResponse.fromJson(Map<String, dynamic> json) =
+      _$AddressStockResponseImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'Address')
+  String? get address;
+  @override
+  @JsonKey(name: 'CustomerID')
+  int? get customerId;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted;
+  @override
+  @JsonKey(ignore: true)
+  _$$AddressStockResponseImplCopyWith<_$AddressStockResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
 DetailGDNResponse _$DetailGDNResponseFromJson(Map<String, dynamic> json) {
   return _DetailGDNResponse.fromJson(json);
 }
@@ -8358,7 +8577,7 @@ mixin _$SupplierResponse {
   @JsonKey(name: 'OrdererNCC')
   String? get orderer => throw _privateConstructorUsedError;
   @JsonKey(name: 'Debt')
-  dynamic get debt => throw _privateConstructorUsedError;
+  String? get debt => throw _privateConstructorUsedError;
   @JsonKey(name: 'NgayUpdate')
   DateTime? get ngayUpdate => throw _privateConstructorUsedError;
   @JsonKey(name: 'NVPhuTrach')
@@ -8390,7 +8609,7 @@ mixin _$SupplierResponse {
   @JsonKey(name: 'UpdatedBy')
   String? get updatedBy => throw _privateConstructorUsedError;
   @JsonKey(name: 'Company')
-  String? get company => throw _privateConstructorUsedError;
+  int? get company => throw _privateConstructorUsedError;
   @JsonKey(name: 'ShortNameSupplier')
   String? get shortName => throw _privateConstructorUsedError;
   @JsonKey(name: 'EmployeeID')
@@ -8435,7 +8654,7 @@ abstract class $SupplierResponseCopyWith<$Res> {
       @JsonKey(name: 'AddressNCC') String? address,
       @JsonKey(name: 'PhoneNCC') String? phone,
       @JsonKey(name: 'OrdererNCC') String? orderer,
-      @JsonKey(name: 'Debt') dynamic debt,
+      @JsonKey(name: 'Debt') String? debt,
       @JsonKey(name: 'NgayUpdate') DateTime? ngayUpdate,
       @JsonKey(name: 'NVPhuTrach') String? nvPhuTrach,
       @JsonKey(name: 'LoaiHangHoa') String? loaiHangHoa,
@@ -8451,7 +8670,7 @@ abstract class $SupplierResponseCopyWith<$Res> {
       @JsonKey(name: 'CreatedBy') String? createdBy,
       @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
       @JsonKey(name: 'UpdatedBy') String? updatedBy,
-      @JsonKey(name: 'Company') String? company,
+      @JsonKey(name: 'Company') int? company,
       @JsonKey(name: 'ShortNameSupplier') String? shortName,
       @JsonKey(name: 'EmployeeID') int? employeeId,
       @JsonKey(name: 'IsDeleted') bool? isDeleted,
@@ -8543,7 +8762,7 @@ class _$SupplierResponseCopyWithImpl<$Res, $Val extends SupplierResponse>
       debt: freezed == debt
           ? _value.debt
           : debt // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       ngayUpdate: freezed == ngayUpdate
           ? _value.ngayUpdate
           : ngayUpdate // ignore: cast_nullable_to_non_nullable
@@ -8607,7 +8826,7 @@ class _$SupplierResponseCopyWithImpl<$Res, $Val extends SupplierResponse>
       company: freezed == company
           ? _value.company
           : company // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       shortName: freezed == shortName
           ? _value.shortName
           : shortName // ignore: cast_nullable_to_non_nullable
@@ -8675,7 +8894,7 @@ abstract class _$$SupplierResponseImplCopyWith<$Res>
       @JsonKey(name: 'AddressNCC') String? address,
       @JsonKey(name: 'PhoneNCC') String? phone,
       @JsonKey(name: 'OrdererNCC') String? orderer,
-      @JsonKey(name: 'Debt') dynamic debt,
+      @JsonKey(name: 'Debt') String? debt,
       @JsonKey(name: 'NgayUpdate') DateTime? ngayUpdate,
       @JsonKey(name: 'NVPhuTrach') String? nvPhuTrach,
       @JsonKey(name: 'LoaiHangHoa') String? loaiHangHoa,
@@ -8691,7 +8910,7 @@ abstract class _$$SupplierResponseImplCopyWith<$Res>
       @JsonKey(name: 'CreatedBy') String? createdBy,
       @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
       @JsonKey(name: 'UpdatedBy') String? updatedBy,
-      @JsonKey(name: 'Company') String? company,
+      @JsonKey(name: 'Company') int? company,
       @JsonKey(name: 'ShortNameSupplier') String? shortName,
       @JsonKey(name: 'EmployeeID') int? employeeId,
       @JsonKey(name: 'IsDeleted') bool? isDeleted,
@@ -8781,7 +9000,7 @@ class __$$SupplierResponseImplCopyWithImpl<$Res>
       debt: freezed == debt
           ? _value.debt
           : debt // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       ngayUpdate: freezed == ngayUpdate
           ? _value.ngayUpdate
           : ngayUpdate // ignore: cast_nullable_to_non_nullable
@@ -8845,7 +9064,7 @@ class __$$SupplierResponseImplCopyWithImpl<$Res>
       company: freezed == company
           ? _value.company
           : company // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       shortName: freezed == shortName
           ? _value.shortName
           : shortName // ignore: cast_nullable_to_non_nullable
@@ -8961,7 +9180,7 @@ class _$SupplierResponseImpl implements _SupplierResponse {
   final String? orderer;
   @override
   @JsonKey(name: 'Debt')
-  final dynamic debt;
+  final String? debt;
   @override
   @JsonKey(name: 'NgayUpdate')
   final DateTime? ngayUpdate;
@@ -9009,7 +9228,7 @@ class _$SupplierResponseImpl implements _SupplierResponse {
   final String? updatedBy;
   @override
   @JsonKey(name: 'Company')
-  final String? company;
+  final int? company;
   @override
   @JsonKey(name: 'ShortNameSupplier')
   final String? shortName;
@@ -9063,7 +9282,7 @@ class _$SupplierResponseImpl implements _SupplierResponse {
             (identical(other.address, address) || other.address == address) &&
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.orderer, orderer) || other.orderer == orderer) &&
-            const DeepCollectionEquality().equals(other.debt, debt) &&
+            (identical(other.debt, debt) || other.debt == debt) &&
             (identical(other.ngayUpdate, ngayUpdate) ||
                 other.ngayUpdate == ngayUpdate) &&
             (identical(other.nvPhuTrach, nvPhuTrach) ||
@@ -9125,7 +9344,7 @@ class _$SupplierResponseImpl implements _SupplierResponse {
         address,
         phone,
         orderer,
-        const DeepCollectionEquality().hash(debt),
+        debt,
         ngayUpdate,
         nvPhuTrach,
         loaiHangHoa,
@@ -9179,7 +9398,7 @@ abstract class _SupplierResponse implements SupplierResponse {
           @JsonKey(name: 'AddressNCC') final String? address,
           @JsonKey(name: 'PhoneNCC') final String? phone,
           @JsonKey(name: 'OrdererNCC') final String? orderer,
-          @JsonKey(name: 'Debt') final dynamic debt,
+          @JsonKey(name: 'Debt') final String? debt,
           @JsonKey(name: 'NgayUpdate') final DateTime? ngayUpdate,
           @JsonKey(name: 'NVPhuTrach') final String? nvPhuTrach,
           @JsonKey(name: 'LoaiHangHoa') final String? loaiHangHoa,
@@ -9195,7 +9414,7 @@ abstract class _SupplierResponse implements SupplierResponse {
           @JsonKey(name: 'CreatedBy') final String? createdBy,
           @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
           @JsonKey(name: 'UpdatedBy') final String? updatedBy,
-          @JsonKey(name: 'Company') final String? company,
+          @JsonKey(name: 'Company') final int? company,
           @JsonKey(name: 'ShortNameSupplier') final String? shortName,
           @JsonKey(name: 'EmployeeID') final int? employeeId,
           @JsonKey(name: 'IsDeleted') final bool? isDeleted,
@@ -9233,7 +9452,7 @@ abstract class _SupplierResponse implements SupplierResponse {
   String? get orderer;
   @override
   @JsonKey(name: 'Debt')
-  dynamic get debt;
+  String? get debt;
   @override
   @JsonKey(name: 'NgayUpdate')
   DateTime? get ngayUpdate;
@@ -9281,7 +9500,7 @@ abstract class _SupplierResponse implements SupplierResponse {
   String? get updatedBy;
   @override
   @JsonKey(name: 'Company')
-  String? get company;
+  int? get company;
   @override
   @JsonKey(name: 'ShortNameSupplier')
   String? get shortName;

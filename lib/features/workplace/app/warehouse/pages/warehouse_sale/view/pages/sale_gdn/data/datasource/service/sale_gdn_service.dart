@@ -82,7 +82,7 @@ class SaleGdnService extends DioBaseApiService {
       ApiEndPoint.getSuppliers,
       parser: (json) => BaseData<List<SupplierResponse>>.fromJson(
         json,
-            (data) => ((data as List?) ?? const <dynamic>[])
+        (data) => ((data as List?) ?? const <dynamic>[])
             .map((e) => SupplierResponse.fromJson(e as Map<String, dynamic>))
             .toList(),
       ),
@@ -136,6 +136,23 @@ class SaleGdnService extends DioBaseApiService {
         json,
             (data) => ((data as List?) ?? const <dynamic>[])
             .map((e) => WarehouseResponse.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      ),
+    );
+  }
+
+  /// Lấy địa chỉ giao hàng theo customerID.
+  /// API: GET /AddressStock/get-by-customerID/?customerID={customerId}
+  Future<BaseData<List<AddressStockResponse>>> getAddressStockByCustomerId({
+    required int customerId,
+  }) async {
+    return get<BaseData<List<AddressStockResponse>>>(
+      ApiEndPoint.getAddressStockByCustomerId,
+      query: {'customerID': customerId},
+      parser: (json) => BaseData<List<AddressStockResponse>>.fromJson(
+        json,
+        (data) => ((data as List?) ?? const <dynamic>[])
+            .map((e) => AddressStockResponse.fromJson(e as Map<String, dynamic>))
             .toList(),
       ),
     );

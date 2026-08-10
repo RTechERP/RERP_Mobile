@@ -298,6 +298,24 @@ Map<String, dynamic> _$$DetailGDNItemResponseImplToJson(
       'KhoTypeTransferID': instance.khoTypeTransferId,
     };
 
+_$AddressStockResponseImpl _$$AddressStockResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$AddressStockResponseImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      address: json['Address'] as String?,
+      customerId: (json['CustomerID'] as num?)?.toInt(),
+      isDeleted: json['IsDeleted'] as bool?,
+    );
+
+Map<String, dynamic> _$$AddressStockResponseImplToJson(
+        _$AddressStockResponseImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'Address': instance.address,
+      'CustomerID': instance.customerId,
+      'IsDeleted': instance.isDeleted,
+    };
+
 _$DetailGDNResponseImpl _$$DetailGDNResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$DetailGDNResponseImpl(
@@ -721,7 +739,7 @@ _$SupplierResponseImpl _$$SupplierResponseImplFromJson(
       address: json['AddressNCC'] as String?,
       phone: json['PhoneNCC'] as String?,
       orderer: json['OrdererNCC'] as String?,
-      debt: json['Debt'],
+      debt: json['Debt'] as String?,
       ngayUpdate: json['NgayUpdate'] == null
           ? null
           : DateTime.parse(json['NgayUpdate'] as String),
@@ -743,7 +761,7 @@ _$SupplierResponseImpl _$$SupplierResponseImplFromJson(
           ? null
           : DateTime.parse(json['UpdatedDate'] as String),
       updatedBy: json['UpdatedBy'] as String?,
-      company: json['Company'] as String?,
+      company: (json['Company'] as num?)?.toInt(),
       shortName: json['ShortNameSupplier'] as String?,
       employeeId: (json['EmployeeID'] as num?)?.toInt(),
       isDeleted: json['IsDeleted'] as bool?,

@@ -292,4 +292,21 @@ class SaleGdnRepoImpl implements SaleGdnRepo {
       return left(BaseError.httpInternalServerError(e.toString()));
     }
   }
+
+  @override
+  Future<Either<BaseError, List<AddressStockResponse>>> getAddressStockByCustomerId({
+    required int customerId,
+  }) async {
+    try {
+      final res = await _service.getAddressStockByCustomerId(customerId: customerId);
+      if (res.status != 1) {
+        return left(BaseError.httpInternalServerError(res.message ?? 'Lỗi'));
+      }
+      return right(res.data ?? const <AddressStockResponse>[]);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
 }

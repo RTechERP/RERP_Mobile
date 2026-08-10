@@ -39,6 +39,7 @@ mixin _$SaleGdnEvent {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -55,6 +56,7 @@ mixin _$SaleGdnEvent {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -84,6 +86,7 @@ mixin _$SaleGdnEvent {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -100,6 +103,7 @@ mixin _$SaleGdnEvent {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -129,6 +133,7 @@ mixin _$SaleGdnEvent {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -145,6 +150,7 @@ mixin _$SaleGdnEvent {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -178,6 +184,7 @@ mixin _$SaleGdnEvent {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -194,6 +201,8 @@ mixin _$SaleGdnEvent {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -227,6 +236,7 @@ mixin _$SaleGdnEvent {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -243,6 +253,8 @@ mixin _$SaleGdnEvent {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -272,6 +284,7 @@ mixin _$SaleGdnEvent {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -288,6 +301,8 @@ mixin _$SaleGdnEvent {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -375,6 +390,7 @@ class _$InitImpl implements _Init {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -391,6 +407,7 @@ class _$InitImpl implements _Init {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -423,6 +440,7 @@ class _$InitImpl implements _Init {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -439,6 +457,7 @@ class _$InitImpl implements _Init {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -471,6 +490,7 @@ class _$InitImpl implements _Init {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -487,6 +507,7 @@ class _$InitImpl implements _Init {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -526,6 +547,7 @@ class _$InitImpl implements _Init {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -542,6 +564,8 @@ class _$InitImpl implements _Init {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -578,6 +602,7 @@ class _$InitImpl implements _Init {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -594,6 +619,8 @@ class _$InitImpl implements _Init {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -626,6 +653,7 @@ class _$InitImpl implements _Init {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -642,6 +670,8 @@ class _$InitImpl implements _Init {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -720,6 +750,7 @@ class _$FetchGdnsImpl implements _FetchGdns {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -736,6 +767,7 @@ class _$FetchGdnsImpl implements _FetchGdns {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -768,6 +800,7 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -784,6 +817,7 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -816,6 +850,7 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -832,6 +867,7 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -871,6 +907,7 @@ class _$FetchGdnsImpl implements _FetchGdns {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -887,6 +924,8 @@ class _$FetchGdnsImpl implements _FetchGdns {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -923,6 +962,7 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -939,6 +979,8 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -971,6 +1013,7 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -987,6 +1030,8 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -1092,6 +1137,7 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -1108,6 +1154,7 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -1140,6 +1187,7 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -1156,6 +1204,7 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -1188,6 +1237,7 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -1204,6 +1254,7 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -1243,6 +1294,7 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -1259,6 +1311,8 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -1295,6 +1349,7 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -1311,6 +1366,8 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -1343,6 +1400,7 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -1359,6 +1417,8 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -1471,6 +1531,7 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -1487,6 +1548,7 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -1519,6 +1581,7 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -1535,6 +1598,7 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -1567,6 +1631,7 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -1583,6 +1648,7 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -1622,6 +1688,7 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -1638,6 +1705,8 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -1674,6 +1743,7 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -1690,6 +1760,8 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -1722,6 +1794,7 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -1738,6 +1811,8 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -1822,6 +1897,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -1838,6 +1914,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -1870,6 +1947,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -1886,6 +1964,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -1918,6 +1997,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -1934,6 +2014,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -1973,6 +2054,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -1989,6 +2071,8 @@ class _$ClearSearchImpl implements _ClearSearch {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -2025,6 +2109,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -2041,6 +2126,8 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -2073,6 +2160,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -2089,6 +2177,8 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -2194,6 +2284,7 @@ class _$ScanQrToDetailImpl implements _ScanQrToDetail {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -2210,6 +2301,7 @@ class _$ScanQrToDetailImpl implements _ScanQrToDetail {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -2242,6 +2334,7 @@ class _$ScanQrToDetailImpl implements _ScanQrToDetail {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -2258,6 +2351,7 @@ class _$ScanQrToDetailImpl implements _ScanQrToDetail {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -2290,6 +2384,7 @@ class _$ScanQrToDetailImpl implements _ScanQrToDetail {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -2306,6 +2401,7 @@ class _$ScanQrToDetailImpl implements _ScanQrToDetail {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -2345,6 +2441,7 @@ class _$ScanQrToDetailImpl implements _ScanQrToDetail {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -2361,6 +2458,8 @@ class _$ScanQrToDetailImpl implements _ScanQrToDetail {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -2397,6 +2496,7 @@ class _$ScanQrToDetailImpl implements _ScanQrToDetail {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -2413,6 +2513,8 @@ class _$ScanQrToDetailImpl implements _ScanQrToDetail {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -2445,6 +2547,7 @@ class _$ScanQrToDetailImpl implements _ScanQrToDetail {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -2461,6 +2564,8 @@ class _$ScanQrToDetailImpl implements _ScanQrToDetail {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -2544,6 +2649,7 @@ class _$ClearOpenedDetailImpl implements _ClearOpenedDetail {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -2560,6 +2666,7 @@ class _$ClearOpenedDetailImpl implements _ClearOpenedDetail {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -2592,6 +2699,7 @@ class _$ClearOpenedDetailImpl implements _ClearOpenedDetail {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -2608,6 +2716,7 @@ class _$ClearOpenedDetailImpl implements _ClearOpenedDetail {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -2640,6 +2749,7 @@ class _$ClearOpenedDetailImpl implements _ClearOpenedDetail {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -2656,6 +2766,7 @@ class _$ClearOpenedDetailImpl implements _ClearOpenedDetail {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -2695,6 +2806,7 @@ class _$ClearOpenedDetailImpl implements _ClearOpenedDetail {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -2711,6 +2823,8 @@ class _$ClearOpenedDetailImpl implements _ClearOpenedDetail {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -2747,6 +2861,7 @@ class _$ClearOpenedDetailImpl implements _ClearOpenedDetail {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -2763,6 +2878,8 @@ class _$ClearOpenedDetailImpl implements _ClearOpenedDetail {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -2795,6 +2912,7 @@ class _$ClearOpenedDetailImpl implements _ClearOpenedDetail {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -2811,6 +2929,8 @@ class _$ClearOpenedDetailImpl implements _ClearOpenedDetail {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -2892,6 +3012,7 @@ class _$ClearScanResultMessageImpl implements _ClearScanResultMessage {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -2908,6 +3029,7 @@ class _$ClearScanResultMessageImpl implements _ClearScanResultMessage {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -2940,6 +3062,7 @@ class _$ClearScanResultMessageImpl implements _ClearScanResultMessage {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -2956,6 +3079,7 @@ class _$ClearScanResultMessageImpl implements _ClearScanResultMessage {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -2988,6 +3112,7 @@ class _$ClearScanResultMessageImpl implements _ClearScanResultMessage {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -3004,6 +3129,7 @@ class _$ClearScanResultMessageImpl implements _ClearScanResultMessage {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -3043,6 +3169,7 @@ class _$ClearScanResultMessageImpl implements _ClearScanResultMessage {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -3059,6 +3186,8 @@ class _$ClearScanResultMessageImpl implements _ClearScanResultMessage {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -3095,6 +3224,7 @@ class _$ClearScanResultMessageImpl implements _ClearScanResultMessage {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -3111,6 +3241,8 @@ class _$ClearScanResultMessageImpl implements _ClearScanResultMessage {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -3143,6 +3275,7 @@ class _$ClearScanResultMessageImpl implements _ClearScanResultMessage {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -3159,6 +3292,8 @@ class _$ClearScanResultMessageImpl implements _ClearScanResultMessage {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -3238,6 +3373,7 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -3254,6 +3390,7 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -3286,6 +3423,7 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -3302,6 +3440,7 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -3334,6 +3473,7 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -3350,6 +3490,7 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -3389,6 +3530,7 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -3405,6 +3547,8 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -3441,6 +3585,7 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -3457,6 +3602,8 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -3489,6 +3636,7 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -3505,6 +3653,8 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -3620,6 +3770,7 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -3636,6 +3787,7 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -3668,6 +3820,7 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -3684,6 +3837,7 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -3716,6 +3870,7 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -3732,6 +3887,7 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -3771,6 +3927,7 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -3787,6 +3944,8 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -3823,6 +3982,7 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -3839,6 +3999,8 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -3871,6 +4033,7 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -3887,6 +4050,8 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -3998,6 +4163,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -4014,6 +4180,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -4046,6 +4213,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -4062,6 +4230,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -4094,6 +4263,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -4110,6 +4280,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -4149,6 +4320,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -4165,6 +4337,8 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -4201,6 +4375,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -4217,6 +4392,8 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -4249,6 +4426,7 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -4265,6 +4443,8 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -4348,6 +4528,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -4364,6 +4545,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -4396,6 +4578,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -4412,6 +4595,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -4444,6 +4628,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -4460,6 +4645,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -4499,6 +4685,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -4515,6 +4702,8 @@ class _$ClearFiltersImpl implements _ClearFilters {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -4551,6 +4740,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -4567,6 +4757,8 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -4599,6 +4791,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -4615,6 +4808,8 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -4729,6 +4924,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -4745,6 +4941,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -4777,6 +4974,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -4793,6 +4991,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -4825,6 +5024,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -4841,6 +5041,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -4880,6 +5081,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -4896,6 +5098,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -4932,6 +5136,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -4948,6 +5153,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -4980,6 +5187,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -4996,6 +5204,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -5131,6 +5341,7 @@ class _$InitDetailImpl implements _InitDetail {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -5147,6 +5358,7 @@ class _$InitDetailImpl implements _InitDetail {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -5179,6 +5391,7 @@ class _$InitDetailImpl implements _InitDetail {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -5195,6 +5408,7 @@ class _$InitDetailImpl implements _InitDetail {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -5227,6 +5441,7 @@ class _$InitDetailImpl implements _InitDetail {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -5243,6 +5458,7 @@ class _$InitDetailImpl implements _InitDetail {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -5282,6 +5498,7 @@ class _$InitDetailImpl implements _InitDetail {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -5298,6 +5515,8 @@ class _$InitDetailImpl implements _InitDetail {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -5334,6 +5553,7 @@ class _$InitDetailImpl implements _InitDetail {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -5350,6 +5570,8 @@ class _$InitDetailImpl implements _InitDetail {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -5382,6 +5604,7 @@ class _$InitDetailImpl implements _InitDetail {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -5398,6 +5621,8 @@ class _$InitDetailImpl implements _InitDetail {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -5526,6 +5751,7 @@ class _$AddImagesImpl implements _AddImages {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -5542,6 +5768,7 @@ class _$AddImagesImpl implements _AddImages {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -5574,6 +5801,7 @@ class _$AddImagesImpl implements _AddImages {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -5590,6 +5818,7 @@ class _$AddImagesImpl implements _AddImages {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -5622,6 +5851,7 @@ class _$AddImagesImpl implements _AddImages {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -5638,6 +5868,7 @@ class _$AddImagesImpl implements _AddImages {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -5677,6 +5908,7 @@ class _$AddImagesImpl implements _AddImages {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -5693,6 +5925,8 @@ class _$AddImagesImpl implements _AddImages {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -5729,6 +5963,7 @@ class _$AddImagesImpl implements _AddImages {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -5745,6 +5980,8 @@ class _$AddImagesImpl implements _AddImages {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -5777,6 +6014,7 @@ class _$AddImagesImpl implements _AddImages {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -5793,6 +6031,8 @@ class _$AddImagesImpl implements _AddImages {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -5924,6 +6164,7 @@ class _$RemoveImageImpl implements _RemoveImage {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -5940,6 +6181,7 @@ class _$RemoveImageImpl implements _RemoveImage {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -5972,6 +6214,7 @@ class _$RemoveImageImpl implements _RemoveImage {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -5988,6 +6231,7 @@ class _$RemoveImageImpl implements _RemoveImage {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -6020,6 +6264,7 @@ class _$RemoveImageImpl implements _RemoveImage {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -6036,6 +6281,7 @@ class _$RemoveImageImpl implements _RemoveImage {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -6075,6 +6321,7 @@ class _$RemoveImageImpl implements _RemoveImage {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -6091,6 +6338,8 @@ class _$RemoveImageImpl implements _RemoveImage {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -6127,6 +6376,7 @@ class _$RemoveImageImpl implements _RemoveImage {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -6143,6 +6393,8 @@ class _$RemoveImageImpl implements _RemoveImage {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -6175,6 +6427,7 @@ class _$RemoveImageImpl implements _RemoveImage {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -6191,6 +6444,8 @@ class _$RemoveImageImpl implements _RemoveImage {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -6279,6 +6534,7 @@ class _$SubmitImagesImpl implements _SubmitImages {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -6295,6 +6551,7 @@ class _$SubmitImagesImpl implements _SubmitImages {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -6327,6 +6584,7 @@ class _$SubmitImagesImpl implements _SubmitImages {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -6343,6 +6601,7 @@ class _$SubmitImagesImpl implements _SubmitImages {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -6375,6 +6634,7 @@ class _$SubmitImagesImpl implements _SubmitImages {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -6391,6 +6651,7 @@ class _$SubmitImagesImpl implements _SubmitImages {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -6430,6 +6691,7 @@ class _$SubmitImagesImpl implements _SubmitImages {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -6446,6 +6708,8 @@ class _$SubmitImagesImpl implements _SubmitImages {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -6482,6 +6746,7 @@ class _$SubmitImagesImpl implements _SubmitImages {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -6498,6 +6763,8 @@ class _$SubmitImagesImpl implements _SubmitImages {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -6530,6 +6797,7 @@ class _$SubmitImagesImpl implements _SubmitImages {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -6546,6 +6814,8 @@ class _$SubmitImagesImpl implements _SubmitImages {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -6624,6 +6894,7 @@ class _$ClearUploadStatusImpl implements _ClearUploadStatus {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -6640,6 +6911,7 @@ class _$ClearUploadStatusImpl implements _ClearUploadStatus {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -6672,6 +6944,7 @@ class _$ClearUploadStatusImpl implements _ClearUploadStatus {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -6688,6 +6961,7 @@ class _$ClearUploadStatusImpl implements _ClearUploadStatus {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -6720,6 +6994,7 @@ class _$ClearUploadStatusImpl implements _ClearUploadStatus {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -6736,6 +7011,7 @@ class _$ClearUploadStatusImpl implements _ClearUploadStatus {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -6775,6 +7051,7 @@ class _$ClearUploadStatusImpl implements _ClearUploadStatus {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -6791,6 +7068,8 @@ class _$ClearUploadStatusImpl implements _ClearUploadStatus {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -6827,6 +7106,7 @@ class _$ClearUploadStatusImpl implements _ClearUploadStatus {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -6843,6 +7123,8 @@ class _$ClearUploadStatusImpl implements _ClearUploadStatus {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -6875,6 +7157,7 @@ class _$ClearUploadStatusImpl implements _ClearUploadStatus {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -6891,6 +7174,8 @@ class _$ClearUploadStatusImpl implements _ClearUploadStatus {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -6969,6 +7254,7 @@ class _$FetchLookupDataImpl implements _FetchLookupData {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -6985,6 +7271,7 @@ class _$FetchLookupDataImpl implements _FetchLookupData {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -7017,6 +7304,7 @@ class _$FetchLookupDataImpl implements _FetchLookupData {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -7033,6 +7321,7 @@ class _$FetchLookupDataImpl implements _FetchLookupData {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -7065,6 +7354,7 @@ class _$FetchLookupDataImpl implements _FetchLookupData {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -7081,6 +7371,7 @@ class _$FetchLookupDataImpl implements _FetchLookupData {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -7120,6 +7411,7 @@ class _$FetchLookupDataImpl implements _FetchLookupData {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -7136,6 +7428,8 @@ class _$FetchLookupDataImpl implements _FetchLookupData {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -7172,6 +7466,7 @@ class _$FetchLookupDataImpl implements _FetchLookupData {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -7188,6 +7483,8 @@ class _$FetchLookupDataImpl implements _FetchLookupData {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -7220,6 +7517,7 @@ class _$FetchLookupDataImpl implements _FetchLookupData {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -7236,6 +7534,8 @@ class _$FetchLookupDataImpl implements _FetchLookupData {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -7253,6 +7553,366 @@ class _$FetchLookupDataImpl implements _FetchLookupData {
 
 abstract class _FetchLookupData implements SaleGdnEvent {
   const factory _FetchLookupData() = _$FetchLookupDataImpl;
+}
+
+/// @nodoc
+abstract class _$$PrefetchLookupDataImplCopyWith<$Res> {
+  factory _$$PrefetchLookupDataImplCopyWith(_$PrefetchLookupDataImpl value,
+          $Res Function(_$PrefetchLookupDataImpl) then) =
+      __$$PrefetchLookupDataImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$PrefetchLookupDataImplCopyWithImpl<$Res>
+    extends _$SaleGdnEventCopyWithImpl<$Res, _$PrefetchLookupDataImpl>
+    implements _$$PrefetchLookupDataImplCopyWith<$Res> {
+  __$$PrefetchLookupDataImplCopyWithImpl(_$PrefetchLookupDataImpl _value,
+      $Res Function(_$PrefetchLookupDataImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$PrefetchLookupDataImpl implements _PrefetchLookupData {
+  const _$PrefetchLookupDataImpl();
+
+  @override
+  String toString() {
+    return 'SaleGdnEvent.prefetchLookupData()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$PrefetchLookupDataImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() fetchGdns,
+    required TResult Function(String keyword) searchByKeyword,
+    required TResult Function(String voucherNumber) searchByVoucherNumber,
+    required TResult Function() clearSearch,
+    required TResult Function(String code) scanQrToDetail,
+    required TResult Function() clearOpenedDetail,
+    required TResult Function() clearScanResultMessage,
+    required TResult Function() fetchWarehouseTypes,
+    required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
+    required TResult Function(int status) filterByStatus,
+    required TResult Function() clearFilters,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(int stt, List<String> imagePaths) addImages,
+    required TResult Function(int stt, int imageIndex, bool isLocal)
+        removeImage,
+    required TResult Function() submitImages,
+    required TResult Function() clearUploadStatus,
+    required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
+    required TResult Function() fetchUsers,
+    required TResult Function(int? supplierId) selectSupplier,
+    required TResult Function(int? senderId) selectSender,
+    required TResult Function(int? receiverId) selectReceiver,
+    required TResult Function(int? customerId) selectCustomer,
+    required TResult Function(int? warehouseId) selectWarehouse,
+    required TResult Function(int? khoTypeId) selectKhoType,
+    required TResult Function(int? status) selectStatus,
+    required TResult Function(int? projectId) selectProject,
+    required TResult Function(DateTime? date) changeDeliveryDate,
+    required TResult Function(DateTime? date) changeRequestDate,
+    required TResult Function(DateTime? time) changeReceiveTime,
+    required TResult Function(String? text) selectLoaiKho,
+    required TResult Function(int? productType) selectProductType,
+    required TResult Function(int? customerId, String? address)
+        selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
+    required TResult Function(bool value) toggleTransferInternal,
+    required TResult Function(bool value) toggleInternal,
+    required TResult Function(int? warehouseId) selectInternalWarehouse,
+    required TResult Function(int? khoTypeId) selectInternalKhoType,
+    required TResult Function(String? address) changeDeliveryAddress,
+    required TResult Function(int? nccId) selectNcc,
+  }) {
+    return prefetchLookupData();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? fetchGdns,
+    TResult? Function(String keyword)? searchByKeyword,
+    TResult? Function(String voucherNumber)? searchByVoucherNumber,
+    TResult? Function()? clearSearch,
+    TResult? Function(String code)? scanQrToDetail,
+    TResult? Function()? clearOpenedDetail,
+    TResult? Function()? clearScanResultMessage,
+    TResult? Function()? fetchWarehouseTypes,
+    TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
+    TResult? Function(int status)? filterByStatus,
+    TResult? Function()? clearFilters,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(int stt, List<String> imagePaths)? addImages,
+    TResult? Function(int stt, int imageIndex, bool isLocal)? removeImage,
+    TResult? Function()? submitImages,
+    TResult? Function()? clearUploadStatus,
+    TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
+    TResult? Function()? fetchUsers,
+    TResult? Function(int? supplierId)? selectSupplier,
+    TResult? Function(int? senderId)? selectSender,
+    TResult? Function(int? receiverId)? selectReceiver,
+    TResult? Function(int? customerId)? selectCustomer,
+    TResult? Function(int? warehouseId)? selectWarehouse,
+    TResult? Function(int? khoTypeId)? selectKhoType,
+    TResult? Function(int? status)? selectStatus,
+    TResult? Function(int? projectId)? selectProject,
+    TResult? Function(DateTime? date)? changeDeliveryDate,
+    TResult? Function(DateTime? date)? changeRequestDate,
+    TResult? Function(DateTime? time)? changeReceiveTime,
+    TResult? Function(String? text)? selectLoaiKho,
+    TResult? Function(int? productType)? selectProductType,
+    TResult? Function(int? customerId, String? address)?
+        selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
+    TResult? Function(bool value)? toggleTransferInternal,
+    TResult? Function(bool value)? toggleInternal,
+    TResult? Function(int? warehouseId)? selectInternalWarehouse,
+    TResult? Function(int? khoTypeId)? selectInternalKhoType,
+    TResult? Function(String? address)? changeDeliveryAddress,
+    TResult? Function(int? nccId)? selectNcc,
+  }) {
+    return prefetchLookupData?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? fetchGdns,
+    TResult Function(String keyword)? searchByKeyword,
+    TResult Function(String voucherNumber)? searchByVoucherNumber,
+    TResult Function()? clearSearch,
+    TResult Function(String code)? scanQrToDetail,
+    TResult Function()? clearOpenedDetail,
+    TResult Function()? clearScanResultMessage,
+    TResult Function()? fetchWarehouseTypes,
+    TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
+    TResult Function(int status)? filterByStatus,
+    TResult Function()? clearFilters,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(int stt, List<String> imagePaths)? addImages,
+    TResult Function(int stt, int imageIndex, bool isLocal)? removeImage,
+    TResult Function()? submitImages,
+    TResult Function()? clearUploadStatus,
+    TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
+    TResult Function()? fetchUsers,
+    TResult Function(int? supplierId)? selectSupplier,
+    TResult Function(int? senderId)? selectSender,
+    TResult Function(int? receiverId)? selectReceiver,
+    TResult Function(int? customerId)? selectCustomer,
+    TResult Function(int? warehouseId)? selectWarehouse,
+    TResult Function(int? khoTypeId)? selectKhoType,
+    TResult Function(int? status)? selectStatus,
+    TResult Function(int? projectId)? selectProject,
+    TResult Function(DateTime? date)? changeDeliveryDate,
+    TResult Function(DateTime? date)? changeRequestDate,
+    TResult Function(DateTime? time)? changeReceiveTime,
+    TResult Function(String? text)? selectLoaiKho,
+    TResult Function(int? productType)? selectProductType,
+    TResult Function(int? customerId, String? address)?
+        selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
+    TResult Function(bool value)? toggleTransferInternal,
+    TResult Function(bool value)? toggleInternal,
+    TResult Function(int? warehouseId)? selectInternalWarehouse,
+    TResult Function(int? khoTypeId)? selectInternalKhoType,
+    TResult Function(String? address)? changeDeliveryAddress,
+    TResult Function(int? nccId)? selectNcc,
+    required TResult orElse(),
+  }) {
+    if (prefetchLookupData != null) {
+      return prefetchLookupData();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_FetchGdns value) fetchGdns,
+    required TResult Function(_SearchByKeyword value) searchByKeyword,
+    required TResult Function(_SearchByVoucherNumber value)
+        searchByVoucherNumber,
+    required TResult Function(_ClearSearch value) clearSearch,
+    required TResult Function(_ScanQrToDetail value) scanQrToDetail,
+    required TResult Function(_ClearOpenedDetail value) clearOpenedDetail,
+    required TResult Function(_ClearScanResultMessage value)
+        clearScanResultMessage,
+    required TResult Function(_FetchWarehouseTypes value) fetchWarehouseTypes,
+    required TResult Function(_FilterByWarehouseType value)
+        filterByWarehouseType,
+    required TResult Function(_FilterByStatus value) filterByStatus,
+    required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
+    required TResult Function(_SubmitImages value) submitImages,
+    required TResult Function(_ClearUploadStatus value) clearUploadStatus,
+    required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
+    required TResult Function(_FetchUsers value) fetchUsers,
+    required TResult Function(_SelectSupplier value) selectSupplier,
+    required TResult Function(_SelectSender value) selectSender,
+    required TResult Function(_SelectReceiver value) selectReceiver,
+    required TResult Function(_SelectCustomer value) selectCustomer,
+    required TResult Function(_SelectWarehouse value) selectWarehouse,
+    required TResult Function(_SelectKhoType value) selectKhoType,
+    required TResult Function(_SelectStatus value) selectStatus,
+    required TResult Function(_SelectProject value) selectProject,
+    required TResult Function(_ChangeDeliveryDate value) changeDeliveryDate,
+    required TResult Function(_ChangeRequestDate value) changeRequestDate,
+    required TResult Function(_ChangeReceiveTime value) changeReceiveTime,
+    required TResult Function(_SelectLoaiKho value) selectLoaiKho,
+    required TResult Function(_SelectProductType value) selectProductType,
+    required TResult Function(_SelectCustomerWithAddress value)
+        selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
+    required TResult Function(_ToggleTransferInternal value)
+        toggleTransferInternal,
+    required TResult Function(_ToggleInternal value) toggleInternal,
+    required TResult Function(_SelectInternalWarehouse value)
+        selectInternalWarehouse,
+    required TResult Function(_SelectInternalKhoType value)
+        selectInternalKhoType,
+    required TResult Function(_ChangeDeliveryAddress value)
+        changeDeliveryAddress,
+    required TResult Function(_SelectNcc value) selectNcc,
+  }) {
+    return prefetchLookupData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_FetchGdns value)? fetchGdns,
+    TResult? Function(_SearchByKeyword value)? searchByKeyword,
+    TResult? Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
+    TResult? Function(_ClearSearch value)? clearSearch,
+    TResult? Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult? Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult? Function(_ClearScanResultMessage value)? clearScanResultMessage,
+    TResult? Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
+    TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
+    TResult? Function(_FilterByStatus value)? filterByStatus,
+    TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
+    TResult? Function(_SubmitImages value)? submitImages,
+    TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
+    TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
+    TResult? Function(_FetchUsers value)? fetchUsers,
+    TResult? Function(_SelectSupplier value)? selectSupplier,
+    TResult? Function(_SelectSender value)? selectSender,
+    TResult? Function(_SelectReceiver value)? selectReceiver,
+    TResult? Function(_SelectCustomer value)? selectCustomer,
+    TResult? Function(_SelectWarehouse value)? selectWarehouse,
+    TResult? Function(_SelectKhoType value)? selectKhoType,
+    TResult? Function(_SelectStatus value)? selectStatus,
+    TResult? Function(_SelectProject value)? selectProject,
+    TResult? Function(_ChangeDeliveryDate value)? changeDeliveryDate,
+    TResult? Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult? Function(_ChangeReceiveTime value)? changeReceiveTime,
+    TResult? Function(_SelectLoaiKho value)? selectLoaiKho,
+    TResult? Function(_SelectProductType value)? selectProductType,
+    TResult? Function(_SelectCustomerWithAddress value)?
+        selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
+    TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
+    TResult? Function(_ToggleInternal value)? toggleInternal,
+    TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
+    TResult? Function(_SelectInternalKhoType value)? selectInternalKhoType,
+    TResult? Function(_ChangeDeliveryAddress value)? changeDeliveryAddress,
+    TResult? Function(_SelectNcc value)? selectNcc,
+  }) {
+    return prefetchLookupData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_FetchGdns value)? fetchGdns,
+    TResult Function(_SearchByKeyword value)? searchByKeyword,
+    TResult Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
+    TResult Function(_ClearSearch value)? clearSearch,
+    TResult Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult Function(_ClearScanResultMessage value)? clearScanResultMessage,
+    TResult Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
+    TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
+    TResult Function(_FilterByStatus value)? filterByStatus,
+    TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
+    TResult Function(_SubmitImages value)? submitImages,
+    TResult Function(_ClearUploadStatus value)? clearUploadStatus,
+    TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
+    TResult Function(_FetchUsers value)? fetchUsers,
+    TResult Function(_SelectSupplier value)? selectSupplier,
+    TResult Function(_SelectSender value)? selectSender,
+    TResult Function(_SelectReceiver value)? selectReceiver,
+    TResult Function(_SelectCustomer value)? selectCustomer,
+    TResult Function(_SelectWarehouse value)? selectWarehouse,
+    TResult Function(_SelectKhoType value)? selectKhoType,
+    TResult Function(_SelectStatus value)? selectStatus,
+    TResult Function(_SelectProject value)? selectProject,
+    TResult Function(_ChangeDeliveryDate value)? changeDeliveryDate,
+    TResult Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult Function(_ChangeReceiveTime value)? changeReceiveTime,
+    TResult Function(_SelectLoaiKho value)? selectLoaiKho,
+    TResult Function(_SelectProductType value)? selectProductType,
+    TResult Function(_SelectCustomerWithAddress value)?
+        selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
+    TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
+    TResult Function(_ToggleInternal value)? toggleInternal,
+    TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
+    TResult Function(_SelectInternalKhoType value)? selectInternalKhoType,
+    TResult Function(_ChangeDeliveryAddress value)? changeDeliveryAddress,
+    TResult Function(_SelectNcc value)? selectNcc,
+    required TResult orElse(),
+  }) {
+    if (prefetchLookupData != null) {
+      return prefetchLookupData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PrefetchLookupData implements SaleGdnEvent {
+  const factory _PrefetchLookupData() = _$PrefetchLookupDataImpl;
 }
 
 /// @nodoc
@@ -7314,6 +7974,7 @@ class _$FetchUsersImpl implements _FetchUsers {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -7330,6 +7991,7 @@ class _$FetchUsersImpl implements _FetchUsers {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -7362,6 +8024,7 @@ class _$FetchUsersImpl implements _FetchUsers {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -7378,6 +8041,7 @@ class _$FetchUsersImpl implements _FetchUsers {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -7410,6 +8074,7 @@ class _$FetchUsersImpl implements _FetchUsers {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -7426,6 +8091,7 @@ class _$FetchUsersImpl implements _FetchUsers {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -7465,6 +8131,7 @@ class _$FetchUsersImpl implements _FetchUsers {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -7481,6 +8148,8 @@ class _$FetchUsersImpl implements _FetchUsers {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -7517,6 +8186,7 @@ class _$FetchUsersImpl implements _FetchUsers {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -7533,6 +8203,8 @@ class _$FetchUsersImpl implements _FetchUsers {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -7565,6 +8237,7 @@ class _$FetchUsersImpl implements _FetchUsers {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -7581,6 +8254,8 @@ class _$FetchUsersImpl implements _FetchUsers {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -7687,6 +8362,7 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -7703,6 +8379,7 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -7735,6 +8412,7 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -7751,6 +8429,7 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -7783,6 +8462,7 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -7799,6 +8479,7 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -7838,6 +8519,7 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -7854,6 +8536,8 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -7890,6 +8574,7 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -7906,6 +8591,8 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -7938,6 +8625,7 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -7954,6 +8642,8 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -8064,6 +8754,7 @@ class _$SelectSenderImpl implements _SelectSender {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -8080,6 +8771,7 @@ class _$SelectSenderImpl implements _SelectSender {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -8112,6 +8804,7 @@ class _$SelectSenderImpl implements _SelectSender {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -8128,6 +8821,7 @@ class _$SelectSenderImpl implements _SelectSender {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -8160,6 +8854,7 @@ class _$SelectSenderImpl implements _SelectSender {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -8176,6 +8871,7 @@ class _$SelectSenderImpl implements _SelectSender {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -8215,6 +8911,7 @@ class _$SelectSenderImpl implements _SelectSender {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -8231,6 +8928,8 @@ class _$SelectSenderImpl implements _SelectSender {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -8267,6 +8966,7 @@ class _$SelectSenderImpl implements _SelectSender {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -8283,6 +8983,8 @@ class _$SelectSenderImpl implements _SelectSender {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -8315,6 +9017,7 @@ class _$SelectSenderImpl implements _SelectSender {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -8331,6 +9034,8 @@ class _$SelectSenderImpl implements _SelectSender {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -8442,6 +9147,7 @@ class _$SelectReceiverImpl implements _SelectReceiver {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -8458,6 +9164,7 @@ class _$SelectReceiverImpl implements _SelectReceiver {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -8490,6 +9197,7 @@ class _$SelectReceiverImpl implements _SelectReceiver {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -8506,6 +9214,7 @@ class _$SelectReceiverImpl implements _SelectReceiver {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -8538,6 +9247,7 @@ class _$SelectReceiverImpl implements _SelectReceiver {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -8554,6 +9264,7 @@ class _$SelectReceiverImpl implements _SelectReceiver {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -8593,6 +9304,7 @@ class _$SelectReceiverImpl implements _SelectReceiver {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -8609,6 +9321,8 @@ class _$SelectReceiverImpl implements _SelectReceiver {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -8645,6 +9359,7 @@ class _$SelectReceiverImpl implements _SelectReceiver {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -8661,6 +9376,8 @@ class _$SelectReceiverImpl implements _SelectReceiver {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -8693,6 +9410,7 @@ class _$SelectReceiverImpl implements _SelectReceiver {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -8709,6 +9427,8 @@ class _$SelectReceiverImpl implements _SelectReceiver {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -8820,6 +9540,7 @@ class _$SelectCustomerImpl implements _SelectCustomer {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -8836,6 +9557,7 @@ class _$SelectCustomerImpl implements _SelectCustomer {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -8868,6 +9590,7 @@ class _$SelectCustomerImpl implements _SelectCustomer {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -8884,6 +9607,7 @@ class _$SelectCustomerImpl implements _SelectCustomer {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -8916,6 +9640,7 @@ class _$SelectCustomerImpl implements _SelectCustomer {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -8932,6 +9657,7 @@ class _$SelectCustomerImpl implements _SelectCustomer {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -8971,6 +9697,7 @@ class _$SelectCustomerImpl implements _SelectCustomer {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -8987,6 +9714,8 @@ class _$SelectCustomerImpl implements _SelectCustomer {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -9023,6 +9752,7 @@ class _$SelectCustomerImpl implements _SelectCustomer {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -9039,6 +9769,8 @@ class _$SelectCustomerImpl implements _SelectCustomer {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -9071,6 +9803,7 @@ class _$SelectCustomerImpl implements _SelectCustomer {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -9087,6 +9820,8 @@ class _$SelectCustomerImpl implements _SelectCustomer {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -9198,6 +9933,7 @@ class _$SelectWarehouseImpl implements _SelectWarehouse {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -9214,6 +9950,7 @@ class _$SelectWarehouseImpl implements _SelectWarehouse {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -9246,6 +9983,7 @@ class _$SelectWarehouseImpl implements _SelectWarehouse {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -9262,6 +10000,7 @@ class _$SelectWarehouseImpl implements _SelectWarehouse {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -9294,6 +10033,7 @@ class _$SelectWarehouseImpl implements _SelectWarehouse {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -9310,6 +10050,7 @@ class _$SelectWarehouseImpl implements _SelectWarehouse {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -9349,6 +10090,7 @@ class _$SelectWarehouseImpl implements _SelectWarehouse {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -9365,6 +10107,8 @@ class _$SelectWarehouseImpl implements _SelectWarehouse {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -9401,6 +10145,7 @@ class _$SelectWarehouseImpl implements _SelectWarehouse {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -9417,6 +10162,8 @@ class _$SelectWarehouseImpl implements _SelectWarehouse {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -9449,6 +10196,7 @@ class _$SelectWarehouseImpl implements _SelectWarehouse {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -9465,6 +10213,8 @@ class _$SelectWarehouseImpl implements _SelectWarehouse {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -9576,6 +10326,7 @@ class _$SelectKhoTypeImpl implements _SelectKhoType {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -9592,6 +10343,7 @@ class _$SelectKhoTypeImpl implements _SelectKhoType {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -9624,6 +10376,7 @@ class _$SelectKhoTypeImpl implements _SelectKhoType {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -9640,6 +10393,7 @@ class _$SelectKhoTypeImpl implements _SelectKhoType {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -9672,6 +10426,7 @@ class _$SelectKhoTypeImpl implements _SelectKhoType {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -9688,6 +10443,7 @@ class _$SelectKhoTypeImpl implements _SelectKhoType {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -9727,6 +10483,7 @@ class _$SelectKhoTypeImpl implements _SelectKhoType {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -9743,6 +10500,8 @@ class _$SelectKhoTypeImpl implements _SelectKhoType {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -9779,6 +10538,7 @@ class _$SelectKhoTypeImpl implements _SelectKhoType {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -9795,6 +10555,8 @@ class _$SelectKhoTypeImpl implements _SelectKhoType {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -9827,6 +10589,7 @@ class _$SelectKhoTypeImpl implements _SelectKhoType {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -9843,6 +10606,8 @@ class _$SelectKhoTypeImpl implements _SelectKhoType {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -9952,6 +10717,7 @@ class _$SelectStatusImpl implements _SelectStatus {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -9968,6 +10734,7 @@ class _$SelectStatusImpl implements _SelectStatus {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -10000,6 +10767,7 @@ class _$SelectStatusImpl implements _SelectStatus {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -10016,6 +10784,7 @@ class _$SelectStatusImpl implements _SelectStatus {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -10048,6 +10817,7 @@ class _$SelectStatusImpl implements _SelectStatus {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -10064,6 +10834,7 @@ class _$SelectStatusImpl implements _SelectStatus {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -10103,6 +10874,7 @@ class _$SelectStatusImpl implements _SelectStatus {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -10119,6 +10891,8 @@ class _$SelectStatusImpl implements _SelectStatus {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -10155,6 +10929,7 @@ class _$SelectStatusImpl implements _SelectStatus {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -10171,6 +10946,8 @@ class _$SelectStatusImpl implements _SelectStatus {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -10203,6 +10980,7 @@ class _$SelectStatusImpl implements _SelectStatus {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -10219,6 +10997,8 @@ class _$SelectStatusImpl implements _SelectStatus {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -10329,6 +11109,7 @@ class _$SelectProjectImpl implements _SelectProject {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -10345,6 +11126,7 @@ class _$SelectProjectImpl implements _SelectProject {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -10377,6 +11159,7 @@ class _$SelectProjectImpl implements _SelectProject {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -10393,6 +11176,7 @@ class _$SelectProjectImpl implements _SelectProject {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -10425,6 +11209,7 @@ class _$SelectProjectImpl implements _SelectProject {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -10441,6 +11226,7 @@ class _$SelectProjectImpl implements _SelectProject {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -10480,6 +11266,7 @@ class _$SelectProjectImpl implements _SelectProject {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -10496,6 +11283,8 @@ class _$SelectProjectImpl implements _SelectProject {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -10532,6 +11321,7 @@ class _$SelectProjectImpl implements _SelectProject {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -10548,6 +11338,8 @@ class _$SelectProjectImpl implements _SelectProject {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -10580,6 +11372,7 @@ class _$SelectProjectImpl implements _SelectProject {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -10596,6 +11389,8 @@ class _$SelectProjectImpl implements _SelectProject {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -10706,6 +11501,7 @@ class _$ChangeDeliveryDateImpl implements _ChangeDeliveryDate {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -10722,6 +11518,7 @@ class _$ChangeDeliveryDateImpl implements _ChangeDeliveryDate {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -10754,6 +11551,7 @@ class _$ChangeDeliveryDateImpl implements _ChangeDeliveryDate {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -10770,6 +11568,7 @@ class _$ChangeDeliveryDateImpl implements _ChangeDeliveryDate {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -10802,6 +11601,7 @@ class _$ChangeDeliveryDateImpl implements _ChangeDeliveryDate {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -10818,6 +11618,7 @@ class _$ChangeDeliveryDateImpl implements _ChangeDeliveryDate {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -10857,6 +11658,7 @@ class _$ChangeDeliveryDateImpl implements _ChangeDeliveryDate {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -10873,6 +11675,8 @@ class _$ChangeDeliveryDateImpl implements _ChangeDeliveryDate {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -10909,6 +11713,7 @@ class _$ChangeDeliveryDateImpl implements _ChangeDeliveryDate {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -10925,6 +11730,8 @@ class _$ChangeDeliveryDateImpl implements _ChangeDeliveryDate {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -10957,6 +11764,7 @@ class _$ChangeDeliveryDateImpl implements _ChangeDeliveryDate {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -10973,6 +11781,8 @@ class _$ChangeDeliveryDateImpl implements _ChangeDeliveryDate {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -11084,6 +11894,7 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -11100,6 +11911,7 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -11132,6 +11944,7 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -11148,6 +11961,7 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -11180,6 +11994,7 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -11196,6 +12011,7 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -11235,6 +12051,7 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -11251,6 +12068,8 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -11287,6 +12106,7 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -11303,6 +12123,8 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -11335,6 +12157,7 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -11351,6 +12174,8 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -11462,6 +12287,7 @@ class _$ChangeReceiveTimeImpl implements _ChangeReceiveTime {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -11478,6 +12304,7 @@ class _$ChangeReceiveTimeImpl implements _ChangeReceiveTime {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -11510,6 +12337,7 @@ class _$ChangeReceiveTimeImpl implements _ChangeReceiveTime {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -11526,6 +12354,7 @@ class _$ChangeReceiveTimeImpl implements _ChangeReceiveTime {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -11558,6 +12387,7 @@ class _$ChangeReceiveTimeImpl implements _ChangeReceiveTime {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -11574,6 +12404,7 @@ class _$ChangeReceiveTimeImpl implements _ChangeReceiveTime {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -11613,6 +12444,7 @@ class _$ChangeReceiveTimeImpl implements _ChangeReceiveTime {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -11629,6 +12461,8 @@ class _$ChangeReceiveTimeImpl implements _ChangeReceiveTime {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -11665,6 +12499,7 @@ class _$ChangeReceiveTimeImpl implements _ChangeReceiveTime {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -11681,6 +12516,8 @@ class _$ChangeReceiveTimeImpl implements _ChangeReceiveTime {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -11713,6 +12550,7 @@ class _$ChangeReceiveTimeImpl implements _ChangeReceiveTime {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -11729,6 +12567,8 @@ class _$ChangeReceiveTimeImpl implements _ChangeReceiveTime {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -11839,6 +12679,7 @@ class _$SelectLoaiKhoImpl implements _SelectLoaiKho {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -11855,6 +12696,7 @@ class _$SelectLoaiKhoImpl implements _SelectLoaiKho {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -11887,6 +12729,7 @@ class _$SelectLoaiKhoImpl implements _SelectLoaiKho {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -11903,6 +12746,7 @@ class _$SelectLoaiKhoImpl implements _SelectLoaiKho {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -11935,6 +12779,7 @@ class _$SelectLoaiKhoImpl implements _SelectLoaiKho {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -11951,6 +12796,7 @@ class _$SelectLoaiKhoImpl implements _SelectLoaiKho {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -11990,6 +12836,7 @@ class _$SelectLoaiKhoImpl implements _SelectLoaiKho {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -12006,6 +12853,8 @@ class _$SelectLoaiKhoImpl implements _SelectLoaiKho {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -12042,6 +12891,7 @@ class _$SelectLoaiKhoImpl implements _SelectLoaiKho {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -12058,6 +12908,8 @@ class _$SelectLoaiKhoImpl implements _SelectLoaiKho {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -12090,6 +12942,7 @@ class _$SelectLoaiKhoImpl implements _SelectLoaiKho {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -12106,6 +12959,8 @@ class _$SelectLoaiKhoImpl implements _SelectLoaiKho {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -12217,6 +13072,7 @@ class _$SelectProductTypeImpl implements _SelectProductType {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -12233,6 +13089,7 @@ class _$SelectProductTypeImpl implements _SelectProductType {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -12265,6 +13122,7 @@ class _$SelectProductTypeImpl implements _SelectProductType {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -12281,6 +13139,7 @@ class _$SelectProductTypeImpl implements _SelectProductType {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -12313,6 +13172,7 @@ class _$SelectProductTypeImpl implements _SelectProductType {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -12329,6 +13189,7 @@ class _$SelectProductTypeImpl implements _SelectProductType {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -12368,6 +13229,7 @@ class _$SelectProductTypeImpl implements _SelectProductType {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -12384,6 +13246,8 @@ class _$SelectProductTypeImpl implements _SelectProductType {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -12420,6 +13284,7 @@ class _$SelectProductTypeImpl implements _SelectProductType {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -12436,6 +13301,8 @@ class _$SelectProductTypeImpl implements _SelectProductType {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -12468,6 +13335,7 @@ class _$SelectProductTypeImpl implements _SelectProductType {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -12484,6 +13352,8 @@ class _$SelectProductTypeImpl implements _SelectProductType {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -12607,6 +13477,7 @@ class _$SelectCustomerWithAddressImpl implements _SelectCustomerWithAddress {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -12623,6 +13494,7 @@ class _$SelectCustomerWithAddressImpl implements _SelectCustomerWithAddress {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -12655,6 +13527,7 @@ class _$SelectCustomerWithAddressImpl implements _SelectCustomerWithAddress {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -12671,6 +13544,7 @@ class _$SelectCustomerWithAddressImpl implements _SelectCustomerWithAddress {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -12703,6 +13577,7 @@ class _$SelectCustomerWithAddressImpl implements _SelectCustomerWithAddress {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -12719,6 +13594,7 @@ class _$SelectCustomerWithAddressImpl implements _SelectCustomerWithAddress {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -12758,6 +13634,7 @@ class _$SelectCustomerWithAddressImpl implements _SelectCustomerWithAddress {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -12774,6 +13651,8 @@ class _$SelectCustomerWithAddressImpl implements _SelectCustomerWithAddress {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -12810,6 +13689,7 @@ class _$SelectCustomerWithAddressImpl implements _SelectCustomerWithAddress {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -12826,6 +13706,8 @@ class _$SelectCustomerWithAddressImpl implements _SelectCustomerWithAddress {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -12858,6 +13740,7 @@ class _$SelectCustomerWithAddressImpl implements _SelectCustomerWithAddress {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -12874,6 +13757,8 @@ class _$SelectCustomerWithAddressImpl implements _SelectCustomerWithAddress {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -12898,6 +13783,403 @@ abstract class _SelectCustomerWithAddress implements SaleGdnEvent {
   String? get address;
   @JsonKey(ignore: true)
   _$$SelectCustomerWithAddressImplCopyWith<_$SelectCustomerWithAddressImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FetchAddressStockByCustomerImplCopyWith<$Res> {
+  factory _$$FetchAddressStockByCustomerImplCopyWith(
+          _$FetchAddressStockByCustomerImpl value,
+          $Res Function(_$FetchAddressStockByCustomerImpl) then) =
+      __$$FetchAddressStockByCustomerImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int customerId});
+}
+
+/// @nodoc
+class __$$FetchAddressStockByCustomerImplCopyWithImpl<$Res>
+    extends _$SaleGdnEventCopyWithImpl<$Res, _$FetchAddressStockByCustomerImpl>
+    implements _$$FetchAddressStockByCustomerImplCopyWith<$Res> {
+  __$$FetchAddressStockByCustomerImplCopyWithImpl(
+      _$FetchAddressStockByCustomerImpl _value,
+      $Res Function(_$FetchAddressStockByCustomerImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? customerId = null,
+  }) {
+    return _then(_$FetchAddressStockByCustomerImpl(
+      customerId: null == customerId
+          ? _value.customerId
+          : customerId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FetchAddressStockByCustomerImpl
+    implements _FetchAddressStockByCustomer {
+  const _$FetchAddressStockByCustomerImpl({required this.customerId});
+
+  @override
+  final int customerId;
+
+  @override
+  String toString() {
+    return 'SaleGdnEvent.fetchAddressStockByCustomer(customerId: $customerId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FetchAddressStockByCustomerImpl &&
+            (identical(other.customerId, customerId) ||
+                other.customerId == customerId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, customerId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FetchAddressStockByCustomerImplCopyWith<_$FetchAddressStockByCustomerImpl>
+      get copyWith => __$$FetchAddressStockByCustomerImplCopyWithImpl<
+          _$FetchAddressStockByCustomerImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() fetchGdns,
+    required TResult Function(String keyword) searchByKeyword,
+    required TResult Function(String voucherNumber) searchByVoucherNumber,
+    required TResult Function() clearSearch,
+    required TResult Function(String code) scanQrToDetail,
+    required TResult Function() clearOpenedDetail,
+    required TResult Function() clearScanResultMessage,
+    required TResult Function() fetchWarehouseTypes,
+    required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
+    required TResult Function(int status) filterByStatus,
+    required TResult Function() clearFilters,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(int stt, List<String> imagePaths) addImages,
+    required TResult Function(int stt, int imageIndex, bool isLocal)
+        removeImage,
+    required TResult Function() submitImages,
+    required TResult Function() clearUploadStatus,
+    required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
+    required TResult Function() fetchUsers,
+    required TResult Function(int? supplierId) selectSupplier,
+    required TResult Function(int? senderId) selectSender,
+    required TResult Function(int? receiverId) selectReceiver,
+    required TResult Function(int? customerId) selectCustomer,
+    required TResult Function(int? warehouseId) selectWarehouse,
+    required TResult Function(int? khoTypeId) selectKhoType,
+    required TResult Function(int? status) selectStatus,
+    required TResult Function(int? projectId) selectProject,
+    required TResult Function(DateTime? date) changeDeliveryDate,
+    required TResult Function(DateTime? date) changeRequestDate,
+    required TResult Function(DateTime? time) changeReceiveTime,
+    required TResult Function(String? text) selectLoaiKho,
+    required TResult Function(int? productType) selectProductType,
+    required TResult Function(int? customerId, String? address)
+        selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
+    required TResult Function(bool value) toggleTransferInternal,
+    required TResult Function(bool value) toggleInternal,
+    required TResult Function(int? warehouseId) selectInternalWarehouse,
+    required TResult Function(int? khoTypeId) selectInternalKhoType,
+    required TResult Function(String? address) changeDeliveryAddress,
+    required TResult Function(int? nccId) selectNcc,
+  }) {
+    return fetchAddressStockByCustomer(customerId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? fetchGdns,
+    TResult? Function(String keyword)? searchByKeyword,
+    TResult? Function(String voucherNumber)? searchByVoucherNumber,
+    TResult? Function()? clearSearch,
+    TResult? Function(String code)? scanQrToDetail,
+    TResult? Function()? clearOpenedDetail,
+    TResult? Function()? clearScanResultMessage,
+    TResult? Function()? fetchWarehouseTypes,
+    TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
+    TResult? Function(int status)? filterByStatus,
+    TResult? Function()? clearFilters,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(int stt, List<String> imagePaths)? addImages,
+    TResult? Function(int stt, int imageIndex, bool isLocal)? removeImage,
+    TResult? Function()? submitImages,
+    TResult? Function()? clearUploadStatus,
+    TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
+    TResult? Function()? fetchUsers,
+    TResult? Function(int? supplierId)? selectSupplier,
+    TResult? Function(int? senderId)? selectSender,
+    TResult? Function(int? receiverId)? selectReceiver,
+    TResult? Function(int? customerId)? selectCustomer,
+    TResult? Function(int? warehouseId)? selectWarehouse,
+    TResult? Function(int? khoTypeId)? selectKhoType,
+    TResult? Function(int? status)? selectStatus,
+    TResult? Function(int? projectId)? selectProject,
+    TResult? Function(DateTime? date)? changeDeliveryDate,
+    TResult? Function(DateTime? date)? changeRequestDate,
+    TResult? Function(DateTime? time)? changeReceiveTime,
+    TResult? Function(String? text)? selectLoaiKho,
+    TResult? Function(int? productType)? selectProductType,
+    TResult? Function(int? customerId, String? address)?
+        selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
+    TResult? Function(bool value)? toggleTransferInternal,
+    TResult? Function(bool value)? toggleInternal,
+    TResult? Function(int? warehouseId)? selectInternalWarehouse,
+    TResult? Function(int? khoTypeId)? selectInternalKhoType,
+    TResult? Function(String? address)? changeDeliveryAddress,
+    TResult? Function(int? nccId)? selectNcc,
+  }) {
+    return fetchAddressStockByCustomer?.call(customerId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? fetchGdns,
+    TResult Function(String keyword)? searchByKeyword,
+    TResult Function(String voucherNumber)? searchByVoucherNumber,
+    TResult Function()? clearSearch,
+    TResult Function(String code)? scanQrToDetail,
+    TResult Function()? clearOpenedDetail,
+    TResult Function()? clearScanResultMessage,
+    TResult Function()? fetchWarehouseTypes,
+    TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
+    TResult Function(int status)? filterByStatus,
+    TResult Function()? clearFilters,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(int stt, List<String> imagePaths)? addImages,
+    TResult Function(int stt, int imageIndex, bool isLocal)? removeImage,
+    TResult Function()? submitImages,
+    TResult Function()? clearUploadStatus,
+    TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
+    TResult Function()? fetchUsers,
+    TResult Function(int? supplierId)? selectSupplier,
+    TResult Function(int? senderId)? selectSender,
+    TResult Function(int? receiverId)? selectReceiver,
+    TResult Function(int? customerId)? selectCustomer,
+    TResult Function(int? warehouseId)? selectWarehouse,
+    TResult Function(int? khoTypeId)? selectKhoType,
+    TResult Function(int? status)? selectStatus,
+    TResult Function(int? projectId)? selectProject,
+    TResult Function(DateTime? date)? changeDeliveryDate,
+    TResult Function(DateTime? date)? changeRequestDate,
+    TResult Function(DateTime? time)? changeReceiveTime,
+    TResult Function(String? text)? selectLoaiKho,
+    TResult Function(int? productType)? selectProductType,
+    TResult Function(int? customerId, String? address)?
+        selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
+    TResult Function(bool value)? toggleTransferInternal,
+    TResult Function(bool value)? toggleInternal,
+    TResult Function(int? warehouseId)? selectInternalWarehouse,
+    TResult Function(int? khoTypeId)? selectInternalKhoType,
+    TResult Function(String? address)? changeDeliveryAddress,
+    TResult Function(int? nccId)? selectNcc,
+    required TResult orElse(),
+  }) {
+    if (fetchAddressStockByCustomer != null) {
+      return fetchAddressStockByCustomer(customerId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_FetchGdns value) fetchGdns,
+    required TResult Function(_SearchByKeyword value) searchByKeyword,
+    required TResult Function(_SearchByVoucherNumber value)
+        searchByVoucherNumber,
+    required TResult Function(_ClearSearch value) clearSearch,
+    required TResult Function(_ScanQrToDetail value) scanQrToDetail,
+    required TResult Function(_ClearOpenedDetail value) clearOpenedDetail,
+    required TResult Function(_ClearScanResultMessage value)
+        clearScanResultMessage,
+    required TResult Function(_FetchWarehouseTypes value) fetchWarehouseTypes,
+    required TResult Function(_FilterByWarehouseType value)
+        filterByWarehouseType,
+    required TResult Function(_FilterByStatus value) filterByStatus,
+    required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_RemoveImage value) removeImage,
+    required TResult Function(_SubmitImages value) submitImages,
+    required TResult Function(_ClearUploadStatus value) clearUploadStatus,
+    required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
+    required TResult Function(_FetchUsers value) fetchUsers,
+    required TResult Function(_SelectSupplier value) selectSupplier,
+    required TResult Function(_SelectSender value) selectSender,
+    required TResult Function(_SelectReceiver value) selectReceiver,
+    required TResult Function(_SelectCustomer value) selectCustomer,
+    required TResult Function(_SelectWarehouse value) selectWarehouse,
+    required TResult Function(_SelectKhoType value) selectKhoType,
+    required TResult Function(_SelectStatus value) selectStatus,
+    required TResult Function(_SelectProject value) selectProject,
+    required TResult Function(_ChangeDeliveryDate value) changeDeliveryDate,
+    required TResult Function(_ChangeRequestDate value) changeRequestDate,
+    required TResult Function(_ChangeReceiveTime value) changeReceiveTime,
+    required TResult Function(_SelectLoaiKho value) selectLoaiKho,
+    required TResult Function(_SelectProductType value) selectProductType,
+    required TResult Function(_SelectCustomerWithAddress value)
+        selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
+    required TResult Function(_ToggleTransferInternal value)
+        toggleTransferInternal,
+    required TResult Function(_ToggleInternal value) toggleInternal,
+    required TResult Function(_SelectInternalWarehouse value)
+        selectInternalWarehouse,
+    required TResult Function(_SelectInternalKhoType value)
+        selectInternalKhoType,
+    required TResult Function(_ChangeDeliveryAddress value)
+        changeDeliveryAddress,
+    required TResult Function(_SelectNcc value) selectNcc,
+  }) {
+    return fetchAddressStockByCustomer(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_FetchGdns value)? fetchGdns,
+    TResult? Function(_SearchByKeyword value)? searchByKeyword,
+    TResult? Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
+    TResult? Function(_ClearSearch value)? clearSearch,
+    TResult? Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult? Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult? Function(_ClearScanResultMessage value)? clearScanResultMessage,
+    TResult? Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
+    TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
+    TResult? Function(_FilterByStatus value)? filterByStatus,
+    TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_RemoveImage value)? removeImage,
+    TResult? Function(_SubmitImages value)? submitImages,
+    TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
+    TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
+    TResult? Function(_FetchUsers value)? fetchUsers,
+    TResult? Function(_SelectSupplier value)? selectSupplier,
+    TResult? Function(_SelectSender value)? selectSender,
+    TResult? Function(_SelectReceiver value)? selectReceiver,
+    TResult? Function(_SelectCustomer value)? selectCustomer,
+    TResult? Function(_SelectWarehouse value)? selectWarehouse,
+    TResult? Function(_SelectKhoType value)? selectKhoType,
+    TResult? Function(_SelectStatus value)? selectStatus,
+    TResult? Function(_SelectProject value)? selectProject,
+    TResult? Function(_ChangeDeliveryDate value)? changeDeliveryDate,
+    TResult? Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult? Function(_ChangeReceiveTime value)? changeReceiveTime,
+    TResult? Function(_SelectLoaiKho value)? selectLoaiKho,
+    TResult? Function(_SelectProductType value)? selectProductType,
+    TResult? Function(_SelectCustomerWithAddress value)?
+        selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
+    TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
+    TResult? Function(_ToggleInternal value)? toggleInternal,
+    TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
+    TResult? Function(_SelectInternalKhoType value)? selectInternalKhoType,
+    TResult? Function(_ChangeDeliveryAddress value)? changeDeliveryAddress,
+    TResult? Function(_SelectNcc value)? selectNcc,
+  }) {
+    return fetchAddressStockByCustomer?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_FetchGdns value)? fetchGdns,
+    TResult Function(_SearchByKeyword value)? searchByKeyword,
+    TResult Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
+    TResult Function(_ClearSearch value)? clearSearch,
+    TResult Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult Function(_ClearScanResultMessage value)? clearScanResultMessage,
+    TResult Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
+    TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
+    TResult Function(_FilterByStatus value)? filterByStatus,
+    TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_RemoveImage value)? removeImage,
+    TResult Function(_SubmitImages value)? submitImages,
+    TResult Function(_ClearUploadStatus value)? clearUploadStatus,
+    TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
+    TResult Function(_FetchUsers value)? fetchUsers,
+    TResult Function(_SelectSupplier value)? selectSupplier,
+    TResult Function(_SelectSender value)? selectSender,
+    TResult Function(_SelectReceiver value)? selectReceiver,
+    TResult Function(_SelectCustomer value)? selectCustomer,
+    TResult Function(_SelectWarehouse value)? selectWarehouse,
+    TResult Function(_SelectKhoType value)? selectKhoType,
+    TResult Function(_SelectStatus value)? selectStatus,
+    TResult Function(_SelectProject value)? selectProject,
+    TResult Function(_ChangeDeliveryDate value)? changeDeliveryDate,
+    TResult Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult Function(_ChangeReceiveTime value)? changeReceiveTime,
+    TResult Function(_SelectLoaiKho value)? selectLoaiKho,
+    TResult Function(_SelectProductType value)? selectProductType,
+    TResult Function(_SelectCustomerWithAddress value)?
+        selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
+    TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
+    TResult Function(_ToggleInternal value)? toggleInternal,
+    TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
+    TResult Function(_SelectInternalKhoType value)? selectInternalKhoType,
+    TResult Function(_ChangeDeliveryAddress value)? changeDeliveryAddress,
+    TResult Function(_SelectNcc value)? selectNcc,
+    required TResult orElse(),
+  }) {
+    if (fetchAddressStockByCustomer != null) {
+      return fetchAddressStockByCustomer(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FetchAddressStockByCustomer implements SaleGdnEvent {
+  const factory _FetchAddressStockByCustomer({required final int customerId}) =
+      _$FetchAddressStockByCustomerImpl;
+
+  int get customerId;
+  @JsonKey(ignore: true)
+  _$$FetchAddressStockByCustomerImplCopyWith<_$FetchAddressStockByCustomerImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -12989,6 +14271,7 @@ class _$ToggleTransferInternalImpl implements _ToggleTransferInternal {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -13005,6 +14288,7 @@ class _$ToggleTransferInternalImpl implements _ToggleTransferInternal {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -13037,6 +14321,7 @@ class _$ToggleTransferInternalImpl implements _ToggleTransferInternal {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -13053,6 +14338,7 @@ class _$ToggleTransferInternalImpl implements _ToggleTransferInternal {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -13085,6 +14371,7 @@ class _$ToggleTransferInternalImpl implements _ToggleTransferInternal {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -13101,6 +14388,7 @@ class _$ToggleTransferInternalImpl implements _ToggleTransferInternal {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -13140,6 +14428,7 @@ class _$ToggleTransferInternalImpl implements _ToggleTransferInternal {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -13156,6 +14445,8 @@ class _$ToggleTransferInternalImpl implements _ToggleTransferInternal {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -13192,6 +14483,7 @@ class _$ToggleTransferInternalImpl implements _ToggleTransferInternal {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -13208,6 +14500,8 @@ class _$ToggleTransferInternalImpl implements _ToggleTransferInternal {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -13240,6 +14534,7 @@ class _$ToggleTransferInternalImpl implements _ToggleTransferInternal {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -13256,6 +14551,8 @@ class _$ToggleTransferInternalImpl implements _ToggleTransferInternal {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -13367,6 +14664,7 @@ class _$ToggleInternalImpl implements _ToggleInternal {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -13383,6 +14681,7 @@ class _$ToggleInternalImpl implements _ToggleInternal {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -13415,6 +14714,7 @@ class _$ToggleInternalImpl implements _ToggleInternal {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -13431,6 +14731,7 @@ class _$ToggleInternalImpl implements _ToggleInternal {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -13463,6 +14764,7 @@ class _$ToggleInternalImpl implements _ToggleInternal {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -13479,6 +14781,7 @@ class _$ToggleInternalImpl implements _ToggleInternal {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -13518,6 +14821,7 @@ class _$ToggleInternalImpl implements _ToggleInternal {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -13534,6 +14838,8 @@ class _$ToggleInternalImpl implements _ToggleInternal {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -13570,6 +14876,7 @@ class _$ToggleInternalImpl implements _ToggleInternal {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -13586,6 +14893,8 @@ class _$ToggleInternalImpl implements _ToggleInternal {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -13618,6 +14927,7 @@ class _$ToggleInternalImpl implements _ToggleInternal {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -13634,6 +14944,8 @@ class _$ToggleInternalImpl implements _ToggleInternal {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -13748,6 +15060,7 @@ class _$SelectInternalWarehouseImpl implements _SelectInternalWarehouse {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -13764,6 +15077,7 @@ class _$SelectInternalWarehouseImpl implements _SelectInternalWarehouse {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -13796,6 +15110,7 @@ class _$SelectInternalWarehouseImpl implements _SelectInternalWarehouse {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -13812,6 +15127,7 @@ class _$SelectInternalWarehouseImpl implements _SelectInternalWarehouse {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -13844,6 +15160,7 @@ class _$SelectInternalWarehouseImpl implements _SelectInternalWarehouse {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -13860,6 +15177,7 @@ class _$SelectInternalWarehouseImpl implements _SelectInternalWarehouse {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -13899,6 +15217,7 @@ class _$SelectInternalWarehouseImpl implements _SelectInternalWarehouse {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -13915,6 +15234,8 @@ class _$SelectInternalWarehouseImpl implements _SelectInternalWarehouse {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -13951,6 +15272,7 @@ class _$SelectInternalWarehouseImpl implements _SelectInternalWarehouse {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -13967,6 +15289,8 @@ class _$SelectInternalWarehouseImpl implements _SelectInternalWarehouse {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -13999,6 +15323,7 @@ class _$SelectInternalWarehouseImpl implements _SelectInternalWarehouse {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -14015,6 +15340,8 @@ class _$SelectInternalWarehouseImpl implements _SelectInternalWarehouse {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -14128,6 +15455,7 @@ class _$SelectInternalKhoTypeImpl implements _SelectInternalKhoType {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -14144,6 +15472,7 @@ class _$SelectInternalKhoTypeImpl implements _SelectInternalKhoType {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -14176,6 +15505,7 @@ class _$SelectInternalKhoTypeImpl implements _SelectInternalKhoType {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -14192,6 +15522,7 @@ class _$SelectInternalKhoTypeImpl implements _SelectInternalKhoType {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -14224,6 +15555,7 @@ class _$SelectInternalKhoTypeImpl implements _SelectInternalKhoType {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -14240,6 +15572,7 @@ class _$SelectInternalKhoTypeImpl implements _SelectInternalKhoType {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -14279,6 +15612,7 @@ class _$SelectInternalKhoTypeImpl implements _SelectInternalKhoType {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -14295,6 +15629,8 @@ class _$SelectInternalKhoTypeImpl implements _SelectInternalKhoType {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -14331,6 +15667,7 @@ class _$SelectInternalKhoTypeImpl implements _SelectInternalKhoType {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -14347,6 +15684,8 @@ class _$SelectInternalKhoTypeImpl implements _SelectInternalKhoType {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -14379,6 +15718,7 @@ class _$SelectInternalKhoTypeImpl implements _SelectInternalKhoType {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -14395,6 +15735,8 @@ class _$SelectInternalKhoTypeImpl implements _SelectInternalKhoType {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -14507,6 +15849,7 @@ class _$ChangeDeliveryAddressImpl implements _ChangeDeliveryAddress {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -14523,6 +15866,7 @@ class _$ChangeDeliveryAddressImpl implements _ChangeDeliveryAddress {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -14555,6 +15899,7 @@ class _$ChangeDeliveryAddressImpl implements _ChangeDeliveryAddress {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -14571,6 +15916,7 @@ class _$ChangeDeliveryAddressImpl implements _ChangeDeliveryAddress {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -14603,6 +15949,7 @@ class _$ChangeDeliveryAddressImpl implements _ChangeDeliveryAddress {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -14619,6 +15966,7 @@ class _$ChangeDeliveryAddressImpl implements _ChangeDeliveryAddress {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -14658,6 +16006,7 @@ class _$ChangeDeliveryAddressImpl implements _ChangeDeliveryAddress {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -14674,6 +16023,8 @@ class _$ChangeDeliveryAddressImpl implements _ChangeDeliveryAddress {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -14710,6 +16061,7 @@ class _$ChangeDeliveryAddressImpl implements _ChangeDeliveryAddress {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -14726,6 +16078,8 @@ class _$ChangeDeliveryAddressImpl implements _ChangeDeliveryAddress {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -14758,6 +16112,7 @@ class _$ChangeDeliveryAddressImpl implements _ChangeDeliveryAddress {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -14774,6 +16129,8 @@ class _$ChangeDeliveryAddressImpl implements _ChangeDeliveryAddress {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -14884,6 +16241,7 @@ class _$SelectNccImpl implements _SelectNcc {
     required TResult Function() submitImages,
     required TResult Function() clearUploadStatus,
     required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
     required TResult Function() fetchUsers,
     required TResult Function(int? supplierId) selectSupplier,
     required TResult Function(int? senderId) selectSender,
@@ -14900,6 +16258,7 @@ class _$SelectNccImpl implements _SelectNcc {
     required TResult Function(int? productType) selectProductType,
     required TResult Function(int? customerId, String? address)
         selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
     required TResult Function(bool value) toggleTransferInternal,
     required TResult Function(bool value) toggleInternal,
     required TResult Function(int? warehouseId) selectInternalWarehouse,
@@ -14932,6 +16291,7 @@ class _$SelectNccImpl implements _SelectNcc {
     TResult? Function()? submitImages,
     TResult? Function()? clearUploadStatus,
     TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
     TResult? Function()? fetchUsers,
     TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function(int? senderId)? selectSender,
@@ -14948,6 +16308,7 @@ class _$SelectNccImpl implements _SelectNcc {
     TResult? Function(int? productType)? selectProductType,
     TResult? Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
     TResult? Function(bool value)? toggleTransferInternal,
     TResult? Function(bool value)? toggleInternal,
     TResult? Function(int? warehouseId)? selectInternalWarehouse,
@@ -14980,6 +16341,7 @@ class _$SelectNccImpl implements _SelectNcc {
     TResult Function()? submitImages,
     TResult Function()? clearUploadStatus,
     TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
     TResult Function()? fetchUsers,
     TResult Function(int? supplierId)? selectSupplier,
     TResult Function(int? senderId)? selectSender,
@@ -14996,6 +16358,7 @@ class _$SelectNccImpl implements _SelectNcc {
     TResult Function(int? productType)? selectProductType,
     TResult Function(int? customerId, String? address)?
         selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
     TResult Function(bool value)? toggleTransferInternal,
     TResult Function(bool value)? toggleInternal,
     TResult Function(int? warehouseId)? selectInternalWarehouse,
@@ -15035,6 +16398,7 @@ class _$SelectNccImpl implements _SelectNcc {
     required TResult Function(_SubmitImages value) submitImages,
     required TResult Function(_ClearUploadStatus value) clearUploadStatus,
     required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
     required TResult Function(_FetchUsers value) fetchUsers,
     required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_SelectSender value) selectSender,
@@ -15051,6 +16415,8 @@ class _$SelectNccImpl implements _SelectNcc {
     required TResult Function(_SelectProductType value) selectProductType,
     required TResult Function(_SelectCustomerWithAddress value)
         selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
     required TResult Function(_ToggleTransferInternal value)
         toggleTransferInternal,
     required TResult Function(_ToggleInternal value) toggleInternal,
@@ -15087,6 +16453,7 @@ class _$SelectNccImpl implements _SelectNcc {
     TResult? Function(_SubmitImages value)? submitImages,
     TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult? Function(_FetchUsers value)? fetchUsers,
     TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_SelectSender value)? selectSender,
@@ -15103,6 +16470,8 @@ class _$SelectNccImpl implements _SelectNcc {
     TResult? Function(_SelectProductType value)? selectProductType,
     TResult? Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult? Function(_ToggleInternal value)? toggleInternal,
     TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
@@ -15135,6 +16504,7 @@ class _$SelectNccImpl implements _SelectNcc {
     TResult Function(_SubmitImages value)? submitImages,
     TResult Function(_ClearUploadStatus value)? clearUploadStatus,
     TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
     TResult Function(_FetchUsers value)? fetchUsers,
     TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_SelectSender value)? selectSender,
@@ -15151,6 +16521,8 @@ class _$SelectNccImpl implements _SelectNcc {
     TResult Function(_SelectProductType value)? selectProductType,
     TResult Function(_SelectCustomerWithAddress value)?
         selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
     TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
     TResult Function(_ToggleInternal value)? toggleInternal,
     TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,

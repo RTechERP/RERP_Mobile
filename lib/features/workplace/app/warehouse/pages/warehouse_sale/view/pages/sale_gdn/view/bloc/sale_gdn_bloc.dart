@@ -12,6 +12,7 @@ import 'package:rtc_erp/base/network/errors/extension.dart';
 import 'package:rtc_erp/common/logger/index.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/models/sale_gdn_model.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/repository/sale_gdn_repo.dart';
+import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/repository/sale_gdn_repository.dart';
 
 part 'sale_gdn_event.dart';
 part 'sale_gdn_state.dart';
@@ -50,6 +51,7 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
         submitImages: () => _onSubmitImages(emit),
         clearUploadStatus: () => _onClearUploadStatus(emit),
         fetchLookupData: () => _fetchLookupData(emit),
+        prefetchLookupData: () => _prefetchLookupData(emit),
         fetchUsers: () => _fetchLookupData(emit),
         selectSupplier: (id) => _selectSupplier(emit, id),
         selectSender: (id) => _selectSender(emit, id),
@@ -75,6 +77,8 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
         changeDeliveryAddress: (address) =>
             _changeDeliveryAddress(emit, address),
         selectNcc: (id) => _selectNcc(emit, id),
+        fetchAddressStockByCustomer: (customerId) =>
+            _fetchAddressStockByCustomer(emit, customerId),
       );
     });
   }
@@ -349,6 +353,68 @@ BillExporResponse? _findGdnInList(String code) {
     );
   }
 
+  /// Pre-fetch all lookup data (suppliers, senders, customers, projects,
+  /// warehouses, productGroups, users) and save to SharedPreferences cache.
+  /// This is called from sale_gdn_screen.dart so that when user opens
+  /// detail_screen, the data is already available without additional API calls.
+  Future<void> _prefetchLookupData(Emitter<SaleGdnState> emit) async {
+    _log.logI('📡 Pre-fetching SaleGdn lookup data...');
+
+    final suppliersRes = await _repo.getSuppliers();
+    final sendersRes = await _repo.getSenders();
+    final customersRes = await _repo.getCustomers();
+    final projectsRes = await _repo.getAllProjects();
+    final warehousesRes = await _repo.getWarehouses();
+    final productGroupsRes = await _repo.getProductGroupNew(
+      warehouseId: 1,
+      isDeleted: false,
+      isVisible: true,
+    );
+    final usersRes = await _repo.getBillExportUsers();
+
+    final suppliers = suppliersRes.fold((_) => <SupplierResponse>[], (r) => r);
+    final senders = sendersRes.fold((_) => <SenderResponse>[], (r) => r);
+    final customers = customersRes.fold((_) => <CustomerResponse>[], (r) => r);
+    final projects = projectsRes.fold((_) => <ProjectGDNResponse>[], (r) => r);
+    final warehouses = warehousesRes.fold((_) => <WarehouseResponse>[], (r) => r);
+    final productGroups = productGroupsRes.fold(
+        (_) => <ProductGroupNewResponse>[], (r) => r);
+    final users = usersRes.fold((_) => <BillExportUserResponse>[], (r) => r);
+
+    _log.logI(
+        '✅ Pre-fetch complete: '
+        '${suppliers.length} suppliers, ${senders.length} senders, '
+        '${customers.length} customers, ${projects.length} projects, '
+        '${warehouses.length} warehouses, ${productGroups.length} productGroups, '
+        '${users.length} users');
+
+    // Save to SharedPreferences cache for persistence across app sessions
+    // ignore: invalid_use_of_visible_for_testing_member
+    await SaleGdnRepository.saveLookupCache(
+      suppliers: suppliers,
+      senders: senders,
+      customers: customers,
+      projects: projects,
+      warehouses: warehouses,
+      productGroups: productGroups,
+      users: users,
+      log: _log,
+    );
+
+    // Also emit to state for current session (so detail screen can use them)
+    if (!emit.isDone) {
+      emit(state.copyWith(
+        suppliers: suppliers,
+        senders: senders,
+        customers: customers,
+        projects: projects,
+        warehouses: warehouses,
+        productGroups: productGroups,
+        users: users,
+      ));
+    }
+  }
+
   Future<void> _filterByWarehouseType(
       Emitter<SaleGdnState> emit, List<int> warehouseTypeIds) async {
     emit(state.copyWith(selectedWarehouseTypeIds: warehouseTypeIds));
@@ -461,6 +527,7 @@ BillExporResponse? _findGdnInList(String code) {
                 selectedSupplierId: billInfo.supplierId,
                 selectedSenderId: billInfo.senderId,
                 selectedReceiverId: billInfo.receiverId,
+                userId: billInfo.userId,
                 selectedCustomerId: billInfo.customerId,
                 selectedWarehouseId: billInfo.warehouseId,
                 selectedKhoTypeId: billInfo.khoTypeId,
@@ -474,7 +541,6 @@ BillExporResponse? _findGdnInList(String code) {
                 selectedInternalKhoTypeId: billInfo.khoTypeTransferId,
                 isTransferInternalChecked:
                     billInfo.isTransferInternal ?? false,
-                deliveryAddress: billInfo.address,
               ),
             ));
           }
@@ -568,9 +634,45 @@ BillExporResponse? _findGdnInList(String code) {
   /// Helper: gọi 7 API lookup song song và trả về data (không emit).
   /// Dùng để chạy song song với các API detail ở `_onInitDetail` để NCC,
   /// người giao, KH, kho, ... sẵn sàng cho bottomSheet ngay khi form mount.
+  /// Load lookup data: first check in-memory/SharedPreferences cache,
+  /// if not available then call APIs. This ensures detail screen has data
+  /// ready immediately if pre-fetch was called from sale_gdn_screen.
   Future<_LookupDataResult> _loadLookupDataOnly() async {
-    // Future.wait trả về `List<Object>` với `dynamic` element → cần ép kiểu
-    // rõ ràng cho từng Either trước khi unwrap.
+    // First, try to load from in-memory cache (populated by prefetchLookupData)
+    if (SaleGdnRepository.isLookupCacheLoaded) {
+      // Verify cache has data (not empty)
+      if (SaleGdnRepository.suppliersSync.isNotEmpty) {
+        _log.logI('✅ Using in-memory lookup cache (pre-fetched, ${SaleGdnRepository.suppliersSync.length} suppliers)');
+        return _LookupDataResult(
+          suppliers: SaleGdnRepository.suppliersSync,
+          senders: SaleGdnRepository.sendersSync,
+          customers: SaleGdnRepository.customersSync,
+          projects: SaleGdnRepository.projectsSync,
+          warehouses: SaleGdnRepository.warehousesSync,
+          productGroups: SaleGdnRepository.productGroupsSync,
+          users: SaleGdnRepository.usersSync,
+        );
+      }
+      _log.logW('⚠️ Cache marked as loaded but data is empty, will refetch from API');
+    }
+
+    // Fallback: load from SharedPreferences cache
+    final loaded = await SaleGdnRepository.loadLookupCacheToMemory(log: _log);
+    if (loaded && SaleGdnRepository.suppliersSync.isNotEmpty) {
+      _log.logI('✅ Loaded lookup data from SharedPreferences cache');
+      return _LookupDataResult(
+        suppliers: SaleGdnRepository.suppliersSync,
+        senders: SaleGdnRepository.sendersSync,
+        customers: SaleGdnRepository.customersSync,
+        projects: SaleGdnRepository.projectsSync,
+        warehouses: SaleGdnRepository.warehousesSync,
+        productGroups: SaleGdnRepository.productGroupsSync,
+        users: SaleGdnRepository.usersSync,
+      );
+    }
+
+    // Cache miss or empty: call APIs
+    _log.logI('⚠️ Cache miss, fetching lookup data from API...');
     final suppliersRes = await _repo.getSuppliers();
     final sendersRes = await _repo.getSenders();
     final customersRes = await _repo.getCustomers();
@@ -1179,6 +1281,25 @@ BillExporResponse? _findGdnInList(String code) {
     emit(state.copyWith(
       detail: current.copyWith(deliveryAddress: address),
     ));
+  }
+
+  Future<void> _fetchAddressStockByCustomer(
+    Emitter<SaleGdnState> emit,
+    int customerId,
+  ) async {
+    _log.logI('📡 Fetching address stock for customerId: $customerId');
+    final res = await _repo.getAddressStockByCustomerId(customerId: customerId);
+    res.fold(
+      (l) {
+        _log.logE('❌ getAddressStockByCustomerId failed: $l');
+        // Still emit empty list on error
+        emit(state.copyWith(addressStocks: const []));
+      },
+      (r) {
+        _log.logI('✅ getAddressStockByCustomerId success: ${r.length} addresses');
+        emit(state.copyWith(addressStocks: r));
+      },
+    );
   }
 
   Future<void> _selectNcc(Emitter<SaleGdnState> emit, int? nccId) async {

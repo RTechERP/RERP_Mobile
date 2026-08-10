@@ -130,7 +130,11 @@ class _SaleGdnDetailScreenState
                     warehouses: bloc.state.warehouses,
                     warehouseTypes: bloc.state.warehouseTypes,
                     users: bloc.state.users,
+                    addressStocks: bloc.state.addressStocks,
                     currentWarehouseCode: bloc.state.warehouseCode,
+                    onFetchAddressStockByCustomer: (customerId) => bloc.add(
+                      SaleGdnEvent.fetchAddressStockByCustomer(customerId: customerId),
+                    ),
                     onSelectSupplier: (id) => bloc.add(
                       SaleGdnEvent.selectSupplier(id),
                     ),

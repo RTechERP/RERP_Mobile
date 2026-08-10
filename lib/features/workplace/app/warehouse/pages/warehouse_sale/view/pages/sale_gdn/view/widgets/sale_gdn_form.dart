@@ -53,6 +53,8 @@ class SaleGdnForm extends StatefulWidget {
     required this.onChangeDeliveryAddress,
     required this.onSelectNcc,
     required this.warehouseTypes,
+    this.addressStocks = const [],
+    this.onFetchAddressStockByCustomer,
   });
 
   final GdnDetailState detail;
@@ -64,6 +66,13 @@ class SaleGdnForm extends StatefulWidget {
   final List<WarehouseResponse> warehouses;
   final List<TypeWarehouseResponse> warehouseTypes;
   final List<BillExportUserResponse> users;
+
+  /// Danh sách địa chỉ giao hàng theo customerId (fetch từ API AddressStock).
+  final List<AddressStockResponse> addressStocks;
+
+  /// Callback để fetch địa chỉ giao hàng khi chọn khách hàng.
+  final void Function(int customerId)? onFetchAddressStockByCustomer;
+
   final String currentWarehouseCode;
 
   // Callbacks
@@ -194,7 +203,7 @@ class _SaleGdnFormState extends State<SaleGdnForm> {
     );
     form.fields[_kFieldCustomer]?.didChange(_resolveCustomerText());
     form.fields[_kFieldDeliveryAddress]?.didChange(
-      widget.detail.deliveryAddress ?? (info?.address ?? '').trim(),
+      _resolveDeliveryAddressText(),
     );
     form.fields[_kFieldSupplier]?.didChange(_resolveSupplierText());
 
@@ -387,8 +396,7 @@ class _SaleGdnFormState extends State<SaleGdnForm> {
               nameTextField: 'gdn_delivery_address_text',
               label: 'Địa chỉ giao hàng',
               icon: Icons.local_shipping_outlined,
-              initialValue:
-                  widget.detail.deliveryAddress ?? (info?.address ?? '').trim(),
+              initialValue: _resolveDeliveryAddressText(),
               readOnly: true,
               onTap: () => _pickDeliveryAddress(context),
             ),
@@ -459,15 +467,11 @@ class _SaleGdnFormState extends State<SaleGdnForm> {
   }
 
   String _resolveReceiverText() {
-    final id =
-        widget.detail.selectedReceiverId ?? widget.detail.billInfo?.receiverId;
+    // Ưu tiên dùng userId từ detail để map với users list, fallback sang selectedReceiverId
+    final id = widget.detail.userId ?? widget.detail.selectedReceiverId;
     if (id != null && id > 0) {
       for (final u in widget.users) {
         if (u.id == id) return (u.fullName ?? '').trim();
-      }
-      // Fallback: sender lookup cũ
-      for (final s in widget.senders) {
-        if (s.id == id) return (s.fullName ?? '').trim();
       }
     }
     return '';
@@ -492,6 +496,24 @@ class _SaleGdnFormState extends State<SaleGdnForm> {
         if (c.id == id) return (c.address ?? '').trim();
       }
     }
+    return '';
+  }
+
+  /// Tra cứu text địa chỉ giao hàng từ `addressStocks` theo `addressStockId`:
+  /// 1. Nếu đã chọn từ picker → `widget.detail.deliveryAddress`.
+  /// 2. Nếu phiếu có `addressStockId` → tìm trong `addressStocks` để lấy text.
+  /// Ko fallback ra text khác — chỉ lấy từ AddressStockResponse.
+  String _resolveDeliveryAddressText() {
+    final picked = widget.detail.deliveryAddress;
+    if (picked != null && picked.trim().isNotEmpty) return picked;
+
+    final stockId = widget.detail.billInfo?.addressStockId;
+    if (stockId != null && stockId > 0) {
+      for (final a in widget.addressStocks) {
+        if (a.id == stockId) return (a.address ?? '').trim();
+      }
+    }
+
     return '';
   }
 
@@ -724,10 +746,14 @@ class _SaleGdnFormState extends State<SaleGdnForm> {
         widget.customers,
         widget.detail.selectedCustomerId,
       ),
-      onSelected: (item) => widget.onSelectCustomerWithAddress(
-        item.id,
-        (item.address ?? '').trim(),
-      ),
+      onSelected: (item) {
+        // Gọi API lấy địa chỉ giao hàng theo customerId
+        widget.onFetchAddressStockByCustomer?.call(item.id ?? 0);
+        widget.onSelectCustomerWithAddress(
+          item.id,
+          (item.address ?? '').trim(),
+        );
+      },
     );
   }
 
@@ -809,35 +835,38 @@ class _SaleGdnFormState extends State<SaleGdnForm> {
   }
 
   Future<void> _pickDeliveryAddress(BuildContext context) async {
-    if (widget.suppliers.isEmpty) {
+    // Chỉ lấy từ AddressStockResponse (API AddressStock)
+    if (widget.addressStocks.isEmpty) {
       context.showMessage(
-        'Danh sách nhà cung cấp chưa sẵn sàng, vui lòng đợi',
+        'Chưa có địa chỉ giao hàng cho khách hàng này',
         type: SnackBarType.info,
       );
       return;
     }
-    final items = widget.suppliers
-        .map(
-          (s) => _AddressOption(
-            label: '${(s.name ?? '').trim()} - ${(s.address ?? '').trim()}',
-            value: (s.address ?? '').trim(),
-          ),
-        )
-        .where((o) => o.value.isNotEmpty)
+
+    final items = widget.addressStocks
+        .where((a) => (a.address ?? '').trim().isNotEmpty)
+        .map((a) => _DeliveryAddressItem(
+              id: a.id,
+              label: (a.address ?? '').trim(),
+              address: (a.address ?? '').trim(),
+            ))
         .toList();
+
     if (items.isEmpty) {
       context.showMessage(
-        'Nhà cung cấp chưa có địa chỉ giao hàng',
+        'Chưa có địa chỉ giao hàng',
         type: SnackBarType.info,
       );
       return;
     }
-    await openSelectBottomSheet<_AddressOption>(
+
+    await openSelectBottomSheet<_DeliveryAddressItem>(
       context: context,
       title: 'Chọn địa chỉ giao hàng',
       items: items,
-      displayText: (a) => a.label,
-      onSelected: (item) => widget.onChangeDeliveryAddress(item.value),
+      displayText: (item) => item.label,
+      onSelected: (item) => widget.onChangeDeliveryAddress(item.address),
     );
   }
 
@@ -976,10 +1005,18 @@ class _ProductTypeOption {
   final String label;
 }
 
-class _AddressOption {
-  const _AddressOption({required this.label, required this.value});
+/// Helper class cho delivery address selection (chung cho AddressStockResponse và SupplierResponse).
+class _DeliveryAddressItem {
+  const _DeliveryAddressItem({
+    required this.id,
+    required this.label,
+    required this.address,
+  });
+
+  /// ID từ AddressStockResponse (null nếu từ SupplierResponse).
+  final int? id;
   final String label;
-  final String value;
+  final String address;
 }
 
 /// Một section trong form (header + children) - tạo khoảng cách giữa các nhóm.
