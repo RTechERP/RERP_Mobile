@@ -45,6 +45,16 @@
 	<string>Ứng dụng cần truy cập camera để bạn chụp ảnh đính kèm vào báo cáo, đơn đăng ký và cập nhật ảnh đại diện.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Ứng dụng cần quyền truy cập micro để quay video khi đính kèm vào báo cáo.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Ứng dụng cần truy cập vị trí để xác định vị trí làm việc và hỗ trợ các tính năng liên quan đến địa điểm.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Ứng dụng cần truy cập vị trí nền để theo dõi vị trí làm việc ngay cả khi ứng dụng không hoạt động.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Ứng dụng cần truy cập lịch để tạo và quản lý các sự kiện liên quan đến công việc.</string>
+	<key>NSCalendarsFullAccessUsageDescription</key>
+	<string>Ứng dụng cần truy cập đầy đủ lịch để tạo và quản lý các sự kiện liên quan đến công việc.</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>Ứng dụng cần truy cập nhắc nhở để thiết lập thông báo nhắc nhở công việc.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UIBackgroundModes</key>
