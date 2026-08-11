@@ -265,6 +265,13 @@ class _WorkPlaceScreenState
                       //   name: 'applications.warehouse'.tr(),
                       //   route: RouteNames.warehouse,
                       // ),
+                      AppItemModel(
+                        id: 'warehouse',
+                        iconCodePoint: Icons.warehouse_outlined.codePoint,
+                        name: 'applications.warehouse'.tr(),
+                        route: RouteNames.warehouse,
+                        imageUrl: AppImages.warehouse,
+                      ),
                     ],
                   ),
 

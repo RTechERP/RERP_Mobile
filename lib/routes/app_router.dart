@@ -162,8 +162,17 @@ import '../features/workplace/app/reports/view/tech/view/pages/tech_add_screen.d
 import '../features/workplace/app/reports/view/tech/view/pages/tech_detail_screen.dart';
 import '../features/workplace/app/reports/view/tech/view/pages/tech_edit_screen.dart';
 import '../features/workplace/app/reports/view/tech/view/pages/tech_screen.dart';
+import '../features/workplace/app/warehouse/enums/warehouse_type.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_area_screen.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/warehouse_demo_screen.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/models/sale_gdn_model.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/pages/sale_gdn_detail_screen.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/bloc/sale_gdn_bloc.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/pages/sale_gdn_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/warehouse_sale_screen.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_agv/view/pages/warehouse_agv_screen.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_project/view/pages/warehouse_project_screen.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_test/view/pages/warehouse_test_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_screen.dart';
 import '../features/workplace/app/week_plan/view/bloc/week_plan_bloc.dart';
 import '../features/workplace/app/week_plan/view/pages/week_plan_add_screen.dart';
@@ -1345,9 +1354,133 @@ class AppRouter {
         builder: (context, state) => const WarehouseScreen(),
       ),
 
+      // Warehouse Sale Area
       GoRoute(
-        path: RouteNames.warehouseArea,
-        builder: (context, state) => const WarehouseAreaScreen(),
+        path: RouteNames.warehouseSaleArea,
+        builder: (context, state) => const WarehouseAreaScreen(
+          warehouseType: WarehouseType.sale,
+        ),
+      ),
+
+      // Warehouse Demo Area
+      GoRoute(
+        path: RouteNames.warehouseDemoArea,
+        builder: (context, state) => const WarehouseAreaScreen(
+          warehouseType: WarehouseType.demo,
+        ),
+      ),
+
+      // Warehouse AGV Area
+      GoRoute(
+        path: RouteNames.warehouseAgvArea,
+        builder: (context, state) => const WarehouseAreaScreen(
+          warehouseType: WarehouseType.agv,
+        ),
+      ),
+
+      // Warehouse Project Area
+      GoRoute(
+        path: RouteNames.warehouseProjectArea,
+        builder: (context, state) => const WarehouseAreaScreen(
+          warehouseType: WarehouseType.project,
+        ),
+      ),
+
+      // Warehouse Test Area
+      GoRoute(
+        path: RouteNames.warehouseTestArea,
+        builder: (context, state) => const WarehouseAreaScreen(
+          warehouseType: WarehouseType.test,
+        ),
+      ),
+
+      // Warehouse Sale
+      GoRoute(
+        path: RouteNames.warehouseSale,
+        builder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>?;
+          return WarehouseSaleScreen(
+            areaId: extra?['areaId'] as String? ?? '',
+            areaName: extra?['areaName'] as String? ?? '',
+          );
+        },
+      ),
+
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(
+            value: getIt<SaleGdnBloc>(),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.warehouseSaleGdn,
+            builder: (context, state) {
+              final extra = state.extra as Map<String, dynamic>?;
+              return SaleGdnScreen(
+                areaId: extra?['areaId'] as String?,
+              );
+            },
+          ),
+          GoRoute(
+            path: RouteNames.warehouseSaleGdnDetail,
+            builder: (context, state) {
+              final extra = state.extra as Map<String, dynamic>?;
+              final billId = extra?['billId'] as int? ?? 0;
+              final bill = extra?['bill'] as BillExporResponse?;
+              return SaleGdnDetailScreen(billId: billId, bill: bill);
+            },
+          ),
+        ],
+      ),
+
+      // Warehouse Demo
+      GoRoute(
+        path: RouteNames.warehouseDemo,
+        builder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>?;
+          return WarehouseDemoScreen(
+            areaId: extra?['areaId'] as String? ?? '',
+            areaName: extra?['areaName'] as String? ?? '',
+          );
+        },
+      ),
+
+      // Warehouse AGV
+      GoRoute(
+        path: RouteNames.warehouseAgv,
+        builder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>?;
+          return WarehouseAgvScreen(
+            areaId: extra?['areaId'] as String? ?? '',
+            areaName: extra?['areaName'] as String? ?? '',
+          );
+        },
+      ),
+
+      // Warehouse Project
+      GoRoute(
+        path: RouteNames.warehouseProject,
+        builder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>?;
+          return WarehouseProjectScreen(
+            areaId: extra?['areaId'] as String? ?? '',
+            areaName: extra?['areaName'] as String? ?? '',
+          );
+        },
+      ),
+
+      // Warehouse Test
+      GoRoute(
+        path: RouteNames.warehouseTest,
+        builder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>?;
+          return WarehouseTestScreen(
+            areaId: extra?['areaId'] as String? ?? '',
+            areaName: extra?['areaName'] as String? ?? '',
+          );
+        },
       ),
     ],
   );

@@ -400,4 +400,30 @@ class ApiEndPoint {
 
   // BusinessConfig
   static const String getDepartmentIds = '/BusinessConfig/get-department-ids';
+
+  // Warehouse
+  static const String getBillExport = '/BillExport';
+  static const String getBillExportById = '/billexport/{id}';
+  static const String getBillExportDetail = '/billexport/get-bill-detail/{id}';
+  static const String getSuppliers = '/billexport/get-suppliers';
+  static const String getSenders = '/billexport/get-senders';
+  static const String getCustomers = '/billexport/get-customers';
+  static const String getAllProjects = '/billexport/get-all-project';
+  static const String getWarehouses = '/billexport/get-warehouses';
+  static const String getProductGroupNew = '/ProductGroup/product-group-new';
+  static const String getProductGroup = '/BillExport/get-product-group';
+  static const String getViewExportDetail = '/BillExport/get-view-export-detail';
+  static const String getBillExportFiles = '/BillExport/files';
+  static const String uploadBillExportFiles = '/BillExport/upload-files';
+  static const String deleteBillExportFile = '/BillExport/delete-file/{fileId}';
+  static const String saveBillExportData = '/BillExport/save-data';
+
+  /// Danh sách người dùng (Employee) cho dropdown người giao/người nhận.
+  /// API: GET /billexport/get-users
+  static const String getBillExportUsers = '/billexport/get-users';
+
+  /// Lấy danh sách địa chỉ giao hàng theo customerID.
+  /// API: GET /AddressStock/get-by-customerID/?customerID={customerId}
+  static const String getAddressStockByCustomerId =
+      '/AddressStock/get-by-customerID';
 }

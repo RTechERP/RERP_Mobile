@@ -114,6 +114,10 @@ import '../features/workplace/app/reports/view/accountant/view/bloc/accountant_b
 import '../features/workplace/app/reports/view/marketing/view/bloc/marketing_bloc.dart';
 import '../features/workplace/app/reports/view/sale/view/bloc/sale_bloc.dart';
 import '../features/workplace/app/reports/view/tech/view/bloc/tech_bloc.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/service/sale_gdn_service.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/repository/sale_gdn_repo.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/repository/sale_gdn_repo_impl.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/bloc/sale_gdn_bloc.dart';
 import '../features/workplace/app/week_plan/data/datasource/service/week_plan_service.dart';
 import '../features/workplace/app/week_plan/data/repository/week_plan_repo.dart';
 import '../features/workplace/app/week_plan/data/repository/week_plan_repo_impl.dart';
@@ -264,6 +268,10 @@ void configureDependencies() {
     () => ContactService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<SaleGdnService>(
+    () => SaleGdnService(getIt<Dio>()),
+  );
+
   /// ===== REPOSITORY =====
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImpl(
@@ -369,6 +377,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<AppVersionRepo>(
     () => AppVersionRepoImpl(getIt<AppVersionService>()),
+  );
+
+  getIt.registerLazySingleton<SaleGdnRepo>(
+    () => SaleGdnRepoImpl(getIt<SaleGdnService>()),
   );
 
   /// ===== BLOCS =====
@@ -608,4 +620,12 @@ void configureDependencies() {
       getIt<LogUtils>(),
     ),
   );
+
+  getIt.registerFactory<SaleGdnBloc>(
+    () => SaleGdnBloc(
+      getIt<SaleGdnRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
 }

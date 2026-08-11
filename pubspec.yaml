@@ -59,6 +59,7 @@ dependencies:
   easy_localization: ^3.0.8
   top_snackbar_flutter: ^3.3.0
   pinput: ^5.0.0
+  mobile_scanner: ^7.0.2
 
   # Env
   flutter_dotenv: ^6.0.0
@@ -83,6 +84,7 @@ dependencies:
   file_saver: ^0.2.14
   image_picker: ^1.2.3
   image_cropper: ^8.0.2
+  camerawesome: ^2.5.0
   cached_network_image: ^3.4.1
   flutter_cache_manager: ^3.4.1
   form_builder_file_picker: ^5.0.0
@@ -184,6 +186,17 @@ flutter:
     - assets/images/icons/apps/report/Saler.png
     - assets/images/icons/apps/report/Tech.png
     - assets/images/icons/apps/poll_form/poll.png
+    - assets/images/icons/apps/warehouse/74.png
+    - assets/images/icons/apps/warehouse/75.png
+    - assets/images/icons/apps/warehouse/76.png
+    - assets/images/icons/apps/warehouse/77.png
+    - assets/images/icons/apps/warehouse/78.png
+    - assets/images/icons/apps/warehouse/79.png
+    - assets/images/icons/apps/warehouse/80.png
+    - assets/images/icons/apps/warehouse/81.png
+    - assets/images/icons/apps/warehouse/82.png
+    - assets/images/icons/apps/warehouse/83.png
+    - assets/images/icons/apps/warehouse/84.png
 
     # Trans
     - assets/trans/vi-VN.json
