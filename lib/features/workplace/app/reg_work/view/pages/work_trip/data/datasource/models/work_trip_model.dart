@@ -42,8 +42,15 @@ class WorkTripItem with _$WorkTripItem {
     @JsonKey(name: 'ApprovedID') int? approvedId,
     @JsonKey(name: 'ProjectID') int? projectId,
     @JsonKey(name: 'ProjectText') String? projectText,
+    @JsonKey(name: 'CustomerName') String? customerName,
+    @JsonKey(name: 'CompanyName') String? companyName,
+    @JsonKey(name: 'VehicleBookingID') int? vehicleBookingId,
+    @JsonKey(name: 'IsActiveTransport') int? isActiveTransport,
+    @JsonKey(name: 'IsApprovedBGD') bool? isApprovedBgd,
+    @JsonKey(name: 'IsApprovedBGDText') String? isApprovedBgdText,
     @JsonKey(name: 'StatusTBPText') String? statusTbpText,
     @JsonKey(name: 'StatusHRText') String? statusHrText,
+    @JsonKey(name: 'IsSelfTransport') bool? isSelfTransport,
   }) = _WorkTripItem;
 
   factory WorkTripItem.fromJson(Map<String, dynamic> json) =>
@@ -183,6 +190,10 @@ class WorkTripDetailItem with _$WorkTripDetailItem {
     @JsonKey(name: 'ProjectID') int? projectId,
     @JsonKey(name: 'DecilineApproveSenior') int? decilineApproveSenior,
     @JsonKey(name: 'ReasonDecilineSenior') String? reasonDecilineSenior,
+    @JsonKey(name: 'VehicleBookingID') int? vehicleBookingId,
+    @JsonKey(name: 'CustomerName') String? customerName,
+    @JsonKey(name: 'CompanyName') String? companyName,
+    @JsonKey(name: 'IsSelfTransport') bool? isSelfTransport,
   }) = _WorkTripDetailItem;
 
   factory WorkTripDetailItem.fromJson(Map<String, dynamic> json) =>
@@ -197,4 +208,38 @@ class FillApproverItem with _$FillApproverItem {
 
   factory FillApproverItem.fromJson(Map<String, dynamic> json) =>
       _$FillApproverItemFromJson(json);
+}
+
+/// Summary model for booking vehicle selection in work trip form.
+// (Replaced by WorkTripSelfVehicle — kept removed for API migration.)
+
+@freezed
+class WorkTripSelfVehicle with _$WorkTripSelfVehicle {
+  const factory WorkTripSelfVehicle({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'Category') int? category,
+    @JsonKey(name: 'CategoryText') String? categoryText,
+    @JsonKey(name: 'Status') int? status,
+    @JsonKey(name: 'StatusText') String? statusText,
+    @JsonKey(name: 'DepartureDate') DateTime? departureDate,
+    @JsonKey(name: 'DepartureDateText') String? departureDateText,
+    @JsonKey(name: 'DepartureAddress') String? departureAddress,
+    @JsonKey(name: 'SpecificDestinationAddress')
+    String? specificDestinationAddress,
+    @JsonKey(name: 'Province') String? province,
+    @JsonKey(name: 'CompanyNameArrives') String? companyNameArrives,
+    @JsonKey(name: 'EmployeeID') int? employeeId,
+    @JsonKey(name: 'EmployeeName') String? employeeName,
+    @JsonKey(name: 'EmployeeCode') String? employeeCode,
+    @JsonKey(name: 'BookerVehicles') String? bookerVehicles,
+    @JsonKey(name: 'PassengerName') String? passengerName,
+    @JsonKey(name: 'DeliverName') String? deliverName,
+    @JsonKey(name: 'Note') String? note,
+    @JsonKey(name: 'ProjectID') int? projectId,
+    @JsonKey(name: 'ProjectFullName') String? projectFullName,
+    @JsonKey(name: 'DisplayLabel') String? displayLabel,
+  }) = _WorkTripSelfVehicle;
+
+  factory WorkTripSelfVehicle.fromJson(Map<String, dynamic> json) =>
+      _$WorkTripSelfVehicleFromJson(json);
 }

@@ -7,6 +7,7 @@ class WorkTripState extends BaseBlocState {
   final List<WorkTripTypeItem> workTripTypes;
   final List<WorkTripTypeVehicle> workTripVehicles;
   final List<WorkTripProject> workTripProjects;
+  final List<WorkTripSelfVehicle> selfVehicleList;
   final bool isSubmitting;
   final bool submitSuccess;
   final bool deleteSuccess;
@@ -35,6 +36,14 @@ class WorkTripState extends BaseBlocState {
 
   final FillApproverItem? approveId;
 
+  /// Thông tin user đang đăng nhập (lấy từ AuthRepo trong initAdd).
+  /// Dùng để xác định user thuộc phòng ban nào — vd: check Sale department.
+  final User? currentEmployee;
+
+  /// Danh sách ID phòng ban Sale, lấy từ API /BusinessConfig/get-department-ids?configType=1.
+  /// Nếu departmentId của user nằm trong danh sách này → hiển thị form Sale.
+  final List<int> saleDepartmentIds;
+
   const WorkTripState({
     required super.status,
     super.message,
@@ -43,6 +52,7 @@ class WorkTripState extends BaseBlocState {
     this.workTripTypes = const [],
     this.workTripVehicles = const [],
     this.workTripProjects = const [],
+    this.selfVehicleList = const [],
     this.isSubmitting = false,
     this.submitSuccess = false,
     this.deleteSuccess = false,
@@ -59,6 +69,8 @@ class WorkTripState extends BaseBlocState {
     this.copyData,
     this.isFetchingCopy = false,
     this.approveId,
+    this.currentEmployee,
+    this.saleDepartmentIds = const [],
   });
 
   factory WorkTripState.init() => const WorkTripState(
@@ -68,6 +80,7 @@ class WorkTripState extends BaseBlocState {
         workTripTypes: [],
         workTripVehicles: [],
         workTripProjects: [],
+        selfVehicleList: const [],
         isSubmitting: false,
         submitSuccess: false,
         deleteSuccess: false,
@@ -84,6 +97,8 @@ class WorkTripState extends BaseBlocState {
         copyData: null,
         isFetchingCopy: false,
         approveId: null,
+        currentEmployee: null,
+        saleDepartmentIds: const [],
       );
 
   @override
@@ -95,6 +110,7 @@ class WorkTripState extends BaseBlocState {
         workTripTypes,
         workTripVehicles,
         workTripProjects,
+        selfVehicleList,
         isSubmitting,
         submitSuccess,
         deleteSuccess,
@@ -111,5 +127,7 @@ class WorkTripState extends BaseBlocState {
         copyData,
         isFetchingCopy,
         approveId,
+        currentEmployee,
+        saleDepartmentIds,
       ];
 }

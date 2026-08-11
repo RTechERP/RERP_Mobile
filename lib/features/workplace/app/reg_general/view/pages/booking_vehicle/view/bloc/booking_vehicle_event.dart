@@ -90,6 +90,12 @@ class BookingVehicleEvent with _$BookingVehicleEvent{
     @Default(null) int? existingBookingId,
   }) = _SubmitPassengerGo;
 
+  /// Gửi đăng ký **Chủ động phương tiện** — `Category` = 4.
+  const factory BookingVehicleEvent.submitSelfVehicle({
+    required Map<String, dynamic> formValues,
+    @Default(null) int? existingBookingId,
+  }) = _SubmitSelfVehicle;
+
   /// Gửi đăng ký **Người về** — `Category` = 5 (`BookingVehicleApiCategory.passengerReturn`).
   const factory BookingVehicleEvent.submitPassengerReturn({
     required Map<String, dynamic> formValues,

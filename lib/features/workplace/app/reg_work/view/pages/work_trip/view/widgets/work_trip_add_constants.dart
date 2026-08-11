@@ -92,6 +92,10 @@ class WorkTripSubmitData {
     required this.reason,
     required this.note,
     this.fileInfo,
+    this.bookingVehicleId,
+    this.customerName,
+    this.companyName,
+    this.selfVehicle = false,
   });
 
   final int approvedId;
@@ -114,6 +118,18 @@ class WorkTripSubmitData {
   final String reason;
   final String note;
   final Map<String, String?>? fileInfo;
+
+  /// ID phiếu đặt xe được chọn.
+  final int? bookingVehicleId;
+
+  /// Tên khách hàng từ phiếu đặt xe.
+  final String? customerName;
+
+  /// Tên công ty từ phiếu đặt xe.
+  final String? companyName;
+
+  /// Checkbox chủ động phương tiện.
+  final bool selfVehicle;
 
   /// Tổng chi phí phương tiện.
   /// Nếu có [costVehicleOverride] thì dùng giá trị đó (edit mode giữ nguyên cost cũ).

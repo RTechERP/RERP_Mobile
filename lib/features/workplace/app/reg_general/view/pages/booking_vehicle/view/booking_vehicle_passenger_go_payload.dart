@@ -270,6 +270,7 @@ Map<String, dynamic> buildPassengerGoCreatePayload({
   int? approvedTBP,
   bool isProblemArises = false,
   String? problemArises,
+  int category = BookingVehicleApiCategory.passengerGo,
 }) {
   final projectId = resolveBookingVehicleProjectId(form['project'], projects);
   final passengerCode = _trimStr(form['passenger_code_$passengerIndex']);
@@ -282,7 +283,7 @@ Map<String, dynamic> buildPassengerGoCreatePayload({
 
   return <String, dynamic>{
     'BookerVehicles': bookerFullName,
-    'Category': BookingVehicleApiCategory.passengerGo,
+    'Category': category,
     'CompanyNameArrives': _trimStr(form['location_address']),
     'DeliverName': '',
     'DeliverPhoneNumber': _trimStr(
@@ -326,6 +327,73 @@ Map<String, dynamic> buildPassengerGoCreatePayload({
   };
 }
 
+/// **Chủ động phương tiện** — [BookingVehicleApiCategory.selfVehicle] (4).
+/// Giống passengerGo nhưng không có TimeReturn.
+Map<String, dynamic> buildSelfVehicleCreatePayload({
+  required Map<String, dynamic> form,
+  required int passengerIndex,
+  required int bookerEmployeeId,
+  required String bookerFullName,
+  required List<BookingVehicleProjectItem> projects,
+  required List<BookingVehiclePersonalItem> employees,
+  int? existingBookingId,
+  int? approvedTBP,
+  bool isProblemArises = false,
+  String? problemArises,
+}) {
+  final projectId = resolveBookingVehicleProjectId(form['project'], projects);
+  final passengerCode = _trimStr(form['passenger_code_$passengerIndex']);
+  final passengerEmployeeId = resolvePassengerEmployeeIdFromCode(
+    passengerCode,
+    employees,
+  );
+
+  return <String, dynamic>{
+    'BookerVehicles': bookerFullName,
+    'Category': BookingVehicleApiCategory.selfVehicle,
+    'CompanyNameArrives': _trimStr(form['location_address']),
+    'DeliverName': '',
+    'DeliverPhoneNumber': _trimStr(
+      form['passenger_contact_phone_$passengerIndex'],
+    ),
+    'DepartureAddress': departureAddressFromForm(form),
+    'DepartureAddressStatus': departureAddressStatusFromStartingPoint(
+      form['starting_point'],
+    ),
+    'DepartureDate': _formatApiDateTime(form['time_depart']) ?? '',
+    'EmployeeID': bookerEmployeeId,
+    'ID': _payloadBookingId(existingBookingId, passengerIndex),
+    ..._bookingVehicleCreateStatusFlags(isProblemArises: isProblemArises),
+    'ApprovedTBP': approvedTBP ?? 0,
+    'Note': _trimStr(form['passenger_note_$passengerIndex']),
+    'PackageName': '',
+    'PackageQuantity': 0,
+    'PackageSize': '',
+    'PackageWeight': '',
+    'PassengerCode': passengerCode,
+    'PassengerDepartment': _trimStr(
+      form['passenger_department_$passengerIndex'],
+    ),
+    'PassengerEmployeeID': passengerEmployeeId,
+    'PassengerName': _trimStr(form['passenger_full_name_$passengerIndex']),
+    'PassengerPhoneNumber': _trimStr(
+      form['passenger_contact_phone_$passengerIndex'],
+    ),
+    'PhoneNumber': '',
+    'ProblemArises': _trimStr(problemArises),
+    'ProjectID': projectId,
+    'Province': _trimStr(form['provinces']),
+    'ReceiverCode': '',
+    'ReceiverEmployeeID': 0,
+    'ReceiverName': '',
+    'ReceiverPhoneNumber': '',
+    'SpecificDestinationAddress': _trimStr(form['address']),
+    'TimeNeedPresent': _formatApiDateTime(form['time_need_present']) ?? '',
+    // Chủ động phương tiện: không có TimeReturn (API expects nullable datetime)
+    'VehicleType': bookingVehicleVehicleTypeFromForm(form['type_transport']),
+  };
+}
+
 List<Map<String, dynamic>> buildAllPassengerGoCreatePayloads({
   required Map<String, dynamic> formValues,
   required int? bookerEmployeeId,
@@ -345,6 +413,42 @@ List<Map<String, dynamic>> buildAllPassengerGoCreatePayloads({
     if (bookingVehicleIsPassengerRowEmpty(formValues, i)) continue;
     out.add(
       buildPassengerGoCreatePayload(
+        form: formValues,
+        passengerIndex: i,
+        bookerEmployeeId: bookerEmployeeId,
+        bookerFullName: name,
+        projects: projects,
+        employees: employees,
+        existingBookingId: existingBookingId,
+        approvedTBP: approvedTBP,
+        isProblemArises: isProblemArises,
+        problemArises: problemArises,
+      ),
+    );
+  }
+  return out;
+}
+
+/// Build all payloads cho **Chủ động phương tiện**.
+List<Map<String, dynamic>> buildAllSelfVehicleCreatePayloads({
+  required Map<String, dynamic> formValues,
+  required int? bookerEmployeeId,
+  required String? bookerFullName,
+  required List<BookingVehicleProjectItem> projects,
+  required List<BookingVehiclePersonalItem> employees,
+  required int passengerLineCount,
+  int? existingBookingId,
+  int? approvedTBP,
+  bool isProblemArises = false,
+  String? problemArises,
+}) {
+  if (bookerEmployeeId == null) return const [];
+  final name = _trimStr(bookerFullName);
+  final out = <Map<String, dynamic>>[];
+  for (var i = 0; i < passengerLineCount; i++) {
+    if (bookingVehicleIsPassengerRowEmpty(formValues, i)) continue;
+    out.add(
+      buildSelfVehicleCreatePayload(
         form: formValues,
         passengerIndex: i,
         bookerEmployeeId: bookerEmployeeId,

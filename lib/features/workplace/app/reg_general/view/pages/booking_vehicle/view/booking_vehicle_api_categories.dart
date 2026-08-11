@@ -7,6 +7,7 @@
 /// { value: 6, label: 'Đăng ký lấy hàng thương mại' },
 /// { value: 7, label: 'Đăng ký lấy hàng Demo/triển Lãm' },
 /// { value: 8, label: 'Đăng ký giao hàng Demo/triển lãm' },
+/// { value: 4, label: 'Chủ động phương tiện' },
 /// ```
 abstract final class BookingVehicleApiCategory {
   BookingVehicleApiCategory._();
@@ -16,6 +17,9 @@ abstract final class BookingVehicleApiCategory {
 
   /// Đăng ký giao hàng thương mại
   static const int commercialDelivery = 2;
+
+  /// Chủ động phương tiện
+  static const int selfVehicle = 4;
 
   /// Đăng ký người về
   static const int passengerReturn = 5;

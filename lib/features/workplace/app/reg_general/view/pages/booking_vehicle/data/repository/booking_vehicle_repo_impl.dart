@@ -172,4 +172,21 @@ class BookingVehicleRepoImpl implements BookingVehicleRepo {
       return left(BaseError.httpInternalServerError(e.toString()));
     }
   }
+
+  @override
+  Future<Either<BaseError, List<int>>> getDepartmentIds({
+    required int configType,
+  }) async {
+    try {
+      final res = await _service.getDepartmentIds(configType: configType);
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

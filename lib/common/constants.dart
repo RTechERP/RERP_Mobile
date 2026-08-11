@@ -232,6 +232,10 @@ class ApiEndPoint {
 
   static const String getWorkTripById = '/EmployeeBussiness/get-by-id';
 
+  /// Lấy phiếu đặt xe theo ngày cho work_trip.
+  static const String getVehicleBookingsForBussiness =
+      '/EmployeeBussiness/get-vehicle-bookings-for-bussiness';
+
   static const String getOvernight =
       '/EmployeeNightShift/person';
 
@@ -393,4 +397,7 @@ class ApiEndPoint {
 
   // Contact
   static const String getContact = '/Home/get-all-contact';
+
+  // BusinessConfig
+  static const String getDepartmentIds = '/BusinessConfig/get-department-ids';
 }
