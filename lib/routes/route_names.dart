@@ -200,6 +200,10 @@ class RouteNames {
   static const String stampAdd = '/reg_general/stamp/add';
   static const String stampDetail = '/reg_general/stamp/detail';
 
+  // Signature Registration
+  static const String signature = '/signature';
+  static const String signatureAdd = '/signature/add';
+
   // More - Settings
   static const notificationSettings = '/more/notification_settings';
   static const avatarViewer = '/more/avatar_viewer';

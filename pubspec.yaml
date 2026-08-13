@@ -102,6 +102,7 @@ dependencies:
   flutter_speed_dial: ^7.0.0
   smooth_sheets: ^1.0.0
   easy_stepper: ^1.0.1
+  signature: ^5.5.0
 
 flutter_native_splash:
   color: "#FFFFFF"

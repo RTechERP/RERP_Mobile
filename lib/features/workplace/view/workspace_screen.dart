@@ -272,6 +272,13 @@ class _WorkPlaceScreenState
                         route: RouteNames.warehouse,
                         imageUrl: AppImages.warehouse,
                       ),
+
+                      AppItemModel(
+                        id: 'signature',
+                        iconCodePoint: Icons.assignment.codePoint,
+                        name: 'Chữ ký',
+                        route: RouteNames.signature,
+                      ),
                     ],
                   ),
 

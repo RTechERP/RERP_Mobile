@@ -13,6 +13,9 @@ import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/stamp/view
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/stamp/view/pages/stamp_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/stamp/view/pages/stamp_add_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/stamp/view/pages/stamp_detail_screen.dart';
+import 'package:rtc_erp/features/workplace/app/signature/view/bloc/my_signature_bloc.dart';
+import 'package:rtc_erp/features/workplace/app/signature/view/pages/signature_screen.dart';
+import 'package:rtc_erp/features/workplace/app/signature/view/pages/signature_add_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/data/datasource/models/booking_vehicle_model.dart';
 import 'package:rtc_erp/features/workplace/app/favorites/view/pages/favorites_adding_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/view/bloc/booking_vehicle_bloc.dart';
@@ -1150,6 +1153,26 @@ class AppRouter {
                 item: item ?? const IdeaItem(),
               );
             },
+          ),
+        ],
+      ),
+
+      //---(Signature)---//
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(
+            value: getIt<MySignatureBloc>(),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.signature,
+            builder: (context, state) => const SignatureScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.signatureAdd,
+            builder: (context, state) => const SignatureAddScreen(),
           ),
         ],
       ),

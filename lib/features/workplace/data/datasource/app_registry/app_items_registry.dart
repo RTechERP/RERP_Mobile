@@ -489,6 +489,15 @@ class AppItemRegistry {
   static final List<AppItemModel> all = [
     ...regwork,
     ...reggeneral,
+    // Signature - standalone feature
+    AppItemModel(
+      id: 'signature',
+      name: 'Chữ ký',
+      iconCodePoint: Icons.draw_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'signature',
+      route: RouteNames.signature,
+    ),
     // ...weekplan,
     // ...summaryword,
     // ...generalforms,

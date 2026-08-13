@@ -7,7 +7,6 @@ import '../common/local_data/shared_pref.dart';
 import '../common/logger/index.dart';
 import '../common/utils/snack_bar_helper.dart';
 
-
 import '../features/auth/data/datasource/service/auth_service.dart';
 import '../features/auth/data/repository/auth_repo.dart';
 import '../features/auth/data/repository/auth_repo_impl.dart';
@@ -114,6 +113,10 @@ import '../features/workplace/app/reports/view/accountant/view/bloc/accountant_b
 import '../features/workplace/app/reports/view/marketing/view/bloc/marketing_bloc.dart';
 import '../features/workplace/app/reports/view/sale/view/bloc/sale_bloc.dart';
 import '../features/workplace/app/reports/view/tech/view/bloc/tech_bloc.dart';
+import '../features/workplace/app/signature/data/datasource/service/signature_service.dart';
+import '../features/workplace/app/signature/data/repository/signature_repo.dart';
+import '../features/workplace/app/signature/data/repository/signature_repo_impl.dart';
+import '../features/workplace/app/signature/view/bloc/my_signature_bloc.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/service/sale_gdn_service.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/repository/sale_gdn_repo.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/repository/sale_gdn_repo_impl.dart';
@@ -224,9 +227,7 @@ void configureDependencies() {
     () => StationeryService(getIt<Dio>()),
   );
 
-  getIt.registerLazySingleton<StampService>(
-    () => StampService(getIt<Dio>()),
-  );
+  getIt.registerLazySingleton<StampService>(() => StampService(getIt<Dio>()));
 
   getIt.registerLazySingleton<WorkRequirementService>(
     () => WorkRequirementService(getIt<Dio>()),
@@ -244,13 +245,9 @@ void configureDependencies() {
     () => WeekPlanService(getIt<Dio>()),
   );
 
-  getIt.registerLazySingleton<SalaryService>(
-    () => SalaryService(getIt<Dio>()),
-  );
+  getIt.registerLazySingleton<SalaryService>(() => SalaryService(getIt<Dio>()));
 
-  getIt.registerLazySingleton<PollService>(
-    () => PollService(getIt<Dio>()),
-  );
+  getIt.registerLazySingleton<PollService>(() => PollService(getIt<Dio>()));
 
   getIt.registerLazySingleton<GeneralFormService>(
     () => GeneralFormService(getIt<Dio>()),
@@ -270,6 +267,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<SaleGdnService>(
     () => SaleGdnService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<SignatureService>(
+    () => SignatureService(getIt<Dio>()),
   );
 
   /// ===== REPOSITORY =====
@@ -383,6 +384,10 @@ void configureDependencies() {
     () => SaleGdnRepoImpl(getIt<SaleGdnService>()),
   );
 
+  getIt.registerLazySingleton<SignatureRepo>(
+    () => SignatureRepoImpl(getIt<SignatureService>()),
+  );
+
   /// ===== BLOCS =====
   getIt.registerFactory<AuthBloc>(
     () => AuthBloc(getIt<AuthRepo>(), getIt<LogUtils>()),
@@ -445,11 +450,7 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<LeaveBloc>(
-    () => LeaveBloc(
-      getIt<LeaveRepo>(),
-      getIt<AuthRepo>(),
-      getIt<LogUtils>(),
-    ),
+    () => LeaveBloc(getIt<LeaveRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
   );
 
   getIt.registerFactory<OvertimeBloc>(
@@ -533,11 +534,7 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<StampBloc>(
-    () => StampBloc(
-      getIt<StampRepo>(),
-      getIt<AuthRepo>(),
-      getIt<LogUtils>(),
-    ),
+    () => StampBloc(getIt<StampRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
   );
 
   getIt.registerFactory<WeekPlanBloc>(
@@ -550,10 +547,7 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<WeekPlanApprovalBloc>(
-    () => WeekPlanApprovalBloc(
-      getIt<WeekPlanRepo>(),
-      getIt<LogUtils>(),
-    ),
+    () => WeekPlanApprovalBloc(getIt<WeekPlanRepo>(), getIt<LogUtils>()),
   );
 
   getIt.registerLazySingleton<SalaryPinService>(
@@ -582,16 +576,10 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<PollBloc>(
-    () => PollBloc(
-      getIt<PollRepo>(),
-      getIt<LogUtils>(),
-    ),
+    () => PollBloc(getIt<PollRepo>(), getIt<LogUtils>()),
   );
   getIt.registerFactory<NewsfeedBloc>(
-    () => NewsfeedBloc(
-      getIt<NewsfeedRepo>(),
-      getIt<LogUtils>(),
-    ),
+    () => NewsfeedBloc(getIt<NewsfeedRepo>(), getIt<LogUtils>()),
   );
 
   getIt.registerFactory<AppVersionBloc>(
@@ -602,9 +590,7 @@ void configureDependencies() {
     () => ContactRepoImpl(getIt<ContactService>()),
   );
 
-  getIt.registerFactory<ContactBloc>(
-    () => ContactBloc(getIt<ContactRepo>()),
-  );
+  getIt.registerFactory<ContactBloc>(() => ContactBloc(getIt<ContactRepo>()));
 
   getIt.registerFactory<AccountantBloc>(
     () => AccountantBloc(
@@ -615,17 +601,14 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<GeneralFormBloc>(
-    () => GeneralFormBloc(
-      getIt<GeneralFormRepo>(),
-      getIt<LogUtils>(),
-    ),
+    () => GeneralFormBloc(getIt<GeneralFormRepo>(), getIt<LogUtils>()),
   );
 
   getIt.registerFactory<SaleGdnBloc>(
-    () => SaleGdnBloc(
-      getIt<SaleGdnRepo>(),
-      getIt<LogUtils>(),
-    ),
+    () => SaleGdnBloc(getIt<SaleGdnRepo>(), getIt<LogUtils>()),
   );
 
+  getIt.registerFactory<MySignatureBloc>(
+    () => MySignatureBloc(getIt<SignatureRepo>(), getIt<LogUtils>()),
+  );
 }

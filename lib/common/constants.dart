@@ -372,6 +372,16 @@ class ApiEndPoint {
   static const String getStampDocumentTypes = '/TrackingMarks/document-types';
   static const String getStampTaxCompanies = '/TrackingMarks/tax-companies';
 
+  // Signature Registration
+  static const String getSignature = '/TrackingSigns/get-all';
+  static const String saveSignature = '/TrackingSigns/save';
+  static const String getSignatureDetail = '/TrackingSigns';
+  static const String deleteSignature = '/TrackingSigns/delete-tracking-signs';
+
+  // Employee Signature
+  static const String getEmployeeSignature = '/Employee/signature';
+  static const String saveEmployeeSignature = '/Employee/signature';
+
   // Poll
   static const String getPolls = '/pollform/all';
   static const String getDetailPoll = '/pollform';
