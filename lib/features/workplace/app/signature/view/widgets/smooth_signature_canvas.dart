@@ -1,6 +1,7 @@
 // Date: 12/08/2026
 // Nội dung/Chức năng: Widget vẽ chữ ký với nét mượt
 
+import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
@@ -114,22 +115,22 @@ class SmoothSignatureCanvasState extends State<SmoothSignatureCanvas> {
     widget.onSignatureChanged?.call(null);
   }
 
-  Future<ui.Image?> toImage() async {
+  Future<ui.Image?> toImage({bool transparent = false}) async {
     if (isEmpty) return null;
 
     final recorder = ui.PictureRecorder();
     final canvas = Canvas(recorder);
     final size = context.size ?? const Size(300, 150);
 
-    // Draw white background
-    canvas.drawRect(
-      Rect.fromLTWH(0, 0, size.width, size.height),
-      Paint()..color = widget.backgroundColor,
-    );
+    if (!transparent) {
+      canvas.drawRect(
+        Rect.fromLTWH(0, 0, size.width, size.height),
+        Paint()..color = widget.backgroundColor,
+      );
+    }
 
-    // Draw strokes
     final painter = SmoothSignaturePainter(
-      strokes: _strokes..add(_currentStroke),
+      strokes: [..._strokes, if (_currentStroke.isNotEmpty) _currentStroke],
       penColor: widget.penColor,
       strokeWidth: widget.strokeWidth,
     );
@@ -139,12 +140,17 @@ class SmoothSignatureCanvasState extends State<SmoothSignatureCanvas> {
     return picture.toImage(size.width.toInt(), size.height.toInt());
   }
 
-  Future<List<int>?> toPngBytes() async {
-    final image = await toImage();
+  Future<List<int>?> toPngBytes({bool transparent = false}) async {
+    final image = await toImage(transparent: transparent);
     if (image == null) return null;
 
     final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
     return byteData?.buffer.asUint8List().toList();
+  }
+
+  Future<Uint8List?> toTransparentBytes() async {
+    final bytes = await toPngBytes(transparent: true);
+    return bytes != null ? Uint8List.fromList(bytes) : null;
   }
 
   @override

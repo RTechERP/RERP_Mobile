@@ -770,6 +770,33 @@ class DialogService {
     return confirmed;
   }
 
+  static Future<bool?> showConfirmDeleteSignature({
+    required BuildContext context,
+    String title = 'Xoá chữ ký',
+    String message = 'Bạn có chắc muốn xoá chữ ký này không?',
+  }) async {
+    bool confirmed = false;
+
+    await BaseDialog.twoOptionVerticalDialog(
+      context: context,
+      image: const Icon(Icons.delete_outline, size: 64, color: Colors.red),
+      title: title,
+      description: message,
+      contentTopButton: 'Xoá',
+      topButtonFunc: () {
+        confirmed = true;
+        onBack(context);
+      },
+      contentBottomButton: 'Huỷ',
+      bottomButtonFunc: () {
+        confirmed = false;
+        onBack(context);
+      },
+    );
+
+    return confirmed;
+  }
+
   static Future<void> showCancelBooking({
     required BuildContext context,
     VoidCallback? onConfirm,

@@ -17,4 +17,31 @@ class SignatureService extends DioBaseApiService {
     );
     return res.data as Uint8List?;
   }
+
+  Future<void> uploadSignature(Uint8List signatureBytes) async {
+    final formData = FormData.fromMap({
+      'file': MultipartFile.fromBytes(
+        signatureBytes,
+        filename: 'signature.png',
+      ),
+    });
+
+    await dio.post(
+      ApiEndPoint.saveEmployeeSignature,
+      data: formData,
+      options: Options(
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'multipart/form-data',
+        },
+      ),
+    );
+  }
+
+  Future<void> deleteEmployeeSignature() async {
+    await dio.post(
+      ApiEndPoint.deleteEmployeeSignature,
+      data: {},
+    );
+  }
 }

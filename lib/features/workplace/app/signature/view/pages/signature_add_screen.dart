@@ -101,18 +101,21 @@ class _SignatureAddScreenState
   }
 
   Future<void> _saveSignature() async {
-    final signatureBytes = await _signatureKey.currentState?.toPngBytes();
+    final signatureBytes = await _signatureKey.currentState?.toTransparentBytes();
     if (signatureBytes == null) {
       showMessage(context, 'Vui lòng vẽ chữ ký', type: SnackBarType.error);
       return;
     }
+    bloc.add(MySignatureEvent.saveEmployeeSignature(signatureBytes));
   }
 
   Future<void> _savePhoto() async {
-    if (_capturedImagePath == null) {
+    if (_processedImageBytes == null && _capturedImagePath == null) {
       showMessage(context, 'Vui lòng chụp ảnh', type: SnackBarType.error);
       return;
     }
+    final bytes = _processedImageBytes ?? await File(_capturedImagePath!).readAsBytes();
+    bloc.add(MySignatureEvent.saveEmployeeSignature(Uint8List.fromList(bytes)));
   }
 
   @override

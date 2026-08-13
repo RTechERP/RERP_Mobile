@@ -20,18 +20,24 @@ mixin _$MySignatureEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() loadEmployeeSignature,
+    required TResult Function(Uint8List signatureBytes) saveEmployeeSignature,
+    required TResult Function() deleteEmployeeSignature,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? loadEmployeeSignature,
+    TResult? Function(Uint8List signatureBytes)? saveEmployeeSignature,
+    TResult? Function()? deleteEmployeeSignature,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? loadEmployeeSignature,
+    TResult Function(Uint8List signatureBytes)? saveEmployeeSignature,
+    TResult Function()? deleteEmployeeSignature,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -40,18 +46,26 @@ mixin _$MySignatureEvent {
     required TResult Function(_Init value) init,
     required TResult Function(_LoadEmployeeSignature value)
         loadEmployeeSignature,
+    required TResult Function(_SaveEmployeeSignature value)
+        saveEmployeeSignature,
+    required TResult Function(_DeleteEmployeeSignature value)
+        deleteEmployeeSignature,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_LoadEmployeeSignature value)? loadEmployeeSignature,
+    TResult? Function(_SaveEmployeeSignature value)? saveEmployeeSignature,
+    TResult? Function(_DeleteEmployeeSignature value)? deleteEmployeeSignature,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_LoadEmployeeSignature value)? loadEmployeeSignature,
+    TResult Function(_SaveEmployeeSignature value)? saveEmployeeSignature,
+    TResult Function(_DeleteEmployeeSignature value)? deleteEmployeeSignature,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -114,6 +128,8 @@ class _$InitImpl implements _Init {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() loadEmployeeSignature,
+    required TResult Function(Uint8List signatureBytes) saveEmployeeSignature,
+    required TResult Function() deleteEmployeeSignature,
   }) {
     return init();
   }
@@ -123,6 +139,8 @@ class _$InitImpl implements _Init {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? loadEmployeeSignature,
+    TResult? Function(Uint8List signatureBytes)? saveEmployeeSignature,
+    TResult? Function()? deleteEmployeeSignature,
   }) {
     return init?.call();
   }
@@ -132,6 +150,8 @@ class _$InitImpl implements _Init {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? loadEmployeeSignature,
+    TResult Function(Uint8List signatureBytes)? saveEmployeeSignature,
+    TResult Function()? deleteEmployeeSignature,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -146,6 +166,10 @@ class _$InitImpl implements _Init {
     required TResult Function(_Init value) init,
     required TResult Function(_LoadEmployeeSignature value)
         loadEmployeeSignature,
+    required TResult Function(_SaveEmployeeSignature value)
+        saveEmployeeSignature,
+    required TResult Function(_DeleteEmployeeSignature value)
+        deleteEmployeeSignature,
   }) {
     return init(this);
   }
@@ -155,6 +179,8 @@ class _$InitImpl implements _Init {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_LoadEmployeeSignature value)? loadEmployeeSignature,
+    TResult? Function(_SaveEmployeeSignature value)? saveEmployeeSignature,
+    TResult? Function(_DeleteEmployeeSignature value)? deleteEmployeeSignature,
   }) {
     return init?.call(this);
   }
@@ -164,6 +190,8 @@ class _$InitImpl implements _Init {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_LoadEmployeeSignature value)? loadEmployeeSignature,
+    TResult Function(_SaveEmployeeSignature value)? saveEmployeeSignature,
+    TResult Function(_DeleteEmployeeSignature value)? deleteEmployeeSignature,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -219,6 +247,8 @@ class _$LoadEmployeeSignatureImpl implements _LoadEmployeeSignature {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() loadEmployeeSignature,
+    required TResult Function(Uint8List signatureBytes) saveEmployeeSignature,
+    required TResult Function() deleteEmployeeSignature,
   }) {
     return loadEmployeeSignature();
   }
@@ -228,6 +258,8 @@ class _$LoadEmployeeSignatureImpl implements _LoadEmployeeSignature {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? loadEmployeeSignature,
+    TResult? Function(Uint8List signatureBytes)? saveEmployeeSignature,
+    TResult? Function()? deleteEmployeeSignature,
   }) {
     return loadEmployeeSignature?.call();
   }
@@ -237,6 +269,8 @@ class _$LoadEmployeeSignatureImpl implements _LoadEmployeeSignature {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? loadEmployeeSignature,
+    TResult Function(Uint8List signatureBytes)? saveEmployeeSignature,
+    TResult Function()? deleteEmployeeSignature,
     required TResult orElse(),
   }) {
     if (loadEmployeeSignature != null) {
@@ -251,6 +285,10 @@ class _$LoadEmployeeSignatureImpl implements _LoadEmployeeSignature {
     required TResult Function(_Init value) init,
     required TResult Function(_LoadEmployeeSignature value)
         loadEmployeeSignature,
+    required TResult Function(_SaveEmployeeSignature value)
+        saveEmployeeSignature,
+    required TResult Function(_DeleteEmployeeSignature value)
+        deleteEmployeeSignature,
   }) {
     return loadEmployeeSignature(this);
   }
@@ -260,6 +298,8 @@ class _$LoadEmployeeSignatureImpl implements _LoadEmployeeSignature {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_LoadEmployeeSignature value)? loadEmployeeSignature,
+    TResult? Function(_SaveEmployeeSignature value)? saveEmployeeSignature,
+    TResult? Function(_DeleteEmployeeSignature value)? deleteEmployeeSignature,
   }) {
     return loadEmployeeSignature?.call(this);
   }
@@ -269,6 +309,8 @@ class _$LoadEmployeeSignatureImpl implements _LoadEmployeeSignature {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_LoadEmployeeSignature value)? loadEmployeeSignature,
+    TResult Function(_SaveEmployeeSignature value)? saveEmployeeSignature,
+    TResult Function(_DeleteEmployeeSignature value)? deleteEmployeeSignature,
     required TResult orElse(),
   }) {
     if (loadEmployeeSignature != null) {
@@ -280,4 +322,277 @@ class _$LoadEmployeeSignatureImpl implements _LoadEmployeeSignature {
 
 abstract class _LoadEmployeeSignature implements MySignatureEvent {
   const factory _LoadEmployeeSignature() = _$LoadEmployeeSignatureImpl;
+}
+
+/// @nodoc
+abstract class _$$SaveEmployeeSignatureImplCopyWith<$Res> {
+  factory _$$SaveEmployeeSignatureImplCopyWith(
+          _$SaveEmployeeSignatureImpl value,
+          $Res Function(_$SaveEmployeeSignatureImpl) then) =
+      __$$SaveEmployeeSignatureImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Uint8List signatureBytes});
+}
+
+/// @nodoc
+class __$$SaveEmployeeSignatureImplCopyWithImpl<$Res>
+    extends _$MySignatureEventCopyWithImpl<$Res, _$SaveEmployeeSignatureImpl>
+    implements _$$SaveEmployeeSignatureImplCopyWith<$Res> {
+  __$$SaveEmployeeSignatureImplCopyWithImpl(_$SaveEmployeeSignatureImpl _value,
+      $Res Function(_$SaveEmployeeSignatureImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? signatureBytes = null,
+  }) {
+    return _then(_$SaveEmployeeSignatureImpl(
+      null == signatureBytes
+          ? _value.signatureBytes
+          : signatureBytes // ignore: cast_nullable_to_non_nullable
+              as Uint8List,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SaveEmployeeSignatureImpl implements _SaveEmployeeSignature {
+  const _$SaveEmployeeSignatureImpl(this.signatureBytes);
+
+  @override
+  final Uint8List signatureBytes;
+
+  @override
+  String toString() {
+    return 'MySignatureEvent.saveEmployeeSignature(signatureBytes: $signatureBytes)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SaveEmployeeSignatureImpl &&
+            const DeepCollectionEquality()
+                .equals(other.signatureBytes, signatureBytes));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(signatureBytes));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SaveEmployeeSignatureImplCopyWith<_$SaveEmployeeSignatureImpl>
+      get copyWith => __$$SaveEmployeeSignatureImplCopyWithImpl<
+          _$SaveEmployeeSignatureImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() loadEmployeeSignature,
+    required TResult Function(Uint8List signatureBytes) saveEmployeeSignature,
+    required TResult Function() deleteEmployeeSignature,
+  }) {
+    return saveEmployeeSignature(signatureBytes);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? loadEmployeeSignature,
+    TResult? Function(Uint8List signatureBytes)? saveEmployeeSignature,
+    TResult? Function()? deleteEmployeeSignature,
+  }) {
+    return saveEmployeeSignature?.call(signatureBytes);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? loadEmployeeSignature,
+    TResult Function(Uint8List signatureBytes)? saveEmployeeSignature,
+    TResult Function()? deleteEmployeeSignature,
+    required TResult orElse(),
+  }) {
+    if (saveEmployeeSignature != null) {
+      return saveEmployeeSignature(signatureBytes);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_LoadEmployeeSignature value)
+        loadEmployeeSignature,
+    required TResult Function(_SaveEmployeeSignature value)
+        saveEmployeeSignature,
+    required TResult Function(_DeleteEmployeeSignature value)
+        deleteEmployeeSignature,
+  }) {
+    return saveEmployeeSignature(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_LoadEmployeeSignature value)? loadEmployeeSignature,
+    TResult? Function(_SaveEmployeeSignature value)? saveEmployeeSignature,
+    TResult? Function(_DeleteEmployeeSignature value)? deleteEmployeeSignature,
+  }) {
+    return saveEmployeeSignature?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_LoadEmployeeSignature value)? loadEmployeeSignature,
+    TResult Function(_SaveEmployeeSignature value)? saveEmployeeSignature,
+    TResult Function(_DeleteEmployeeSignature value)? deleteEmployeeSignature,
+    required TResult orElse(),
+  }) {
+    if (saveEmployeeSignature != null) {
+      return saveEmployeeSignature(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SaveEmployeeSignature implements MySignatureEvent {
+  const factory _SaveEmployeeSignature(final Uint8List signatureBytes) =
+      _$SaveEmployeeSignatureImpl;
+
+  Uint8List get signatureBytes;
+  @JsonKey(ignore: true)
+  _$$SaveEmployeeSignatureImplCopyWith<_$SaveEmployeeSignatureImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DeleteEmployeeSignatureImplCopyWith<$Res> {
+  factory _$$DeleteEmployeeSignatureImplCopyWith(
+          _$DeleteEmployeeSignatureImpl value,
+          $Res Function(_$DeleteEmployeeSignatureImpl) then) =
+      __$$DeleteEmployeeSignatureImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$DeleteEmployeeSignatureImplCopyWithImpl<$Res>
+    extends _$MySignatureEventCopyWithImpl<$Res, _$DeleteEmployeeSignatureImpl>
+    implements _$$DeleteEmployeeSignatureImplCopyWith<$Res> {
+  __$$DeleteEmployeeSignatureImplCopyWithImpl(
+      _$DeleteEmployeeSignatureImpl _value,
+      $Res Function(_$DeleteEmployeeSignatureImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$DeleteEmployeeSignatureImpl implements _DeleteEmployeeSignature {
+  const _$DeleteEmployeeSignatureImpl();
+
+  @override
+  String toString() {
+    return 'MySignatureEvent.deleteEmployeeSignature()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteEmployeeSignatureImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() loadEmployeeSignature,
+    required TResult Function(Uint8List signatureBytes) saveEmployeeSignature,
+    required TResult Function() deleteEmployeeSignature,
+  }) {
+    return deleteEmployeeSignature();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? loadEmployeeSignature,
+    TResult? Function(Uint8List signatureBytes)? saveEmployeeSignature,
+    TResult? Function()? deleteEmployeeSignature,
+  }) {
+    return deleteEmployeeSignature?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? loadEmployeeSignature,
+    TResult Function(Uint8List signatureBytes)? saveEmployeeSignature,
+    TResult Function()? deleteEmployeeSignature,
+    required TResult orElse(),
+  }) {
+    if (deleteEmployeeSignature != null) {
+      return deleteEmployeeSignature();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_LoadEmployeeSignature value)
+        loadEmployeeSignature,
+    required TResult Function(_SaveEmployeeSignature value)
+        saveEmployeeSignature,
+    required TResult Function(_DeleteEmployeeSignature value)
+        deleteEmployeeSignature,
+  }) {
+    return deleteEmployeeSignature(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_LoadEmployeeSignature value)? loadEmployeeSignature,
+    TResult? Function(_SaveEmployeeSignature value)? saveEmployeeSignature,
+    TResult? Function(_DeleteEmployeeSignature value)? deleteEmployeeSignature,
+  }) {
+    return deleteEmployeeSignature?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_LoadEmployeeSignature value)? loadEmployeeSignature,
+    TResult Function(_SaveEmployeeSignature value)? saveEmployeeSignature,
+    TResult Function(_DeleteEmployeeSignature value)? deleteEmployeeSignature,
+    required TResult orElse(),
+  }) {
+    if (deleteEmployeeSignature != null) {
+      return deleteEmployeeSignature(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DeleteEmployeeSignature implements MySignatureEvent {
+  const factory _DeleteEmployeeSignature() = _$DeleteEmployeeSignatureImpl;
 }

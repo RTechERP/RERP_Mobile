@@ -5,7 +5,9 @@ import 'package:go_router/go_router.dart';
 import '../../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
+import '../../../../../../../../../common/utils/dialog/dialog_service.dart';
 import '../../../../../../../../../routes/route_names.dart';
+import '../../../../../../common/utils/snack_bar_helper.dart';
 import '../bloc/my_signature_bloc.dart';
 
 class SignatureScreen extends StatefulWidget {
@@ -21,6 +23,33 @@ class _SignatureScreenState
   void initState() {
     super.initState();
     bloc.add(const MySignatureEvent.init());
+  }
+
+  Future<void> _onDeleteSignature() async {
+    final confirmed = await DialogService.showConfirmDeleteSignature(
+      context: context,
+    );
+    if (confirmed == true) {
+      bloc.add(const MySignatureEvent.deleteEmployeeSignature());
+    }
+  }
+
+  @override
+  bool listenWhen(MySignatureState previous, MySignatureState current) {
+    return previous.deleteSuccess != current.deleteSuccess ||
+        previous.isDeleting != current.isDeleting ||
+        previous.message != current.message;
+  }
+
+  @override
+  void listener(BuildContext context, MySignatureState state) {
+    if (state.deleteSuccess) {
+      showMessage(context, 'Xóa chữ ký thành công', type: SnackBarType.success);
+      return;
+    }
+    if (state.message != null && state.message!.isNotEmpty) {
+      showMessage(context, state.message!, type: SnackBarType.error);
+    }
   }
 
   @override
@@ -41,6 +70,11 @@ class _SignatureScreenState
                   bloc.add(const MySignatureEvent.init());
                 },
               ),
+              if (state.employeeSignature != null)
+                IconButton(
+                  icon: const Icon(Icons.delete_outline),
+                  onPressed: _onDeleteSignature,
+                ),
             ],
           ),
           body: Column(

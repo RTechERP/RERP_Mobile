@@ -24,6 +24,8 @@ class MySignatureBloc extends BaseBloc<MySignatureEvent, MySignatureState> {
       await event.when(
         init: () => _onInit(emit),
         loadEmployeeSignature: () => _onLoadEmployeeSignature(emit),
+        saveEmployeeSignature: (bytes) => _onSaveEmployeeSignature(emit, bytes),
+        deleteEmployeeSignature: () => _onDeleteEmployeeSignature(emit),
       );
     });
   }
@@ -46,6 +48,54 @@ class MySignatureBloc extends BaseBloc<MySignatureEvent, MySignatureState> {
         emit(state.copyWith(
           status: BaseStateStatus.success,
           employeeSignature: signature,
+        ));
+      },
+    );
+  }
+
+  Future<void> _onSaveEmployeeSignature(Emitter<MySignatureState> emit, Uint8List bytes) async {
+    emit(state.copyWith(isSaving: true, saveSuccess: false));
+
+    final res = await _signatureRepo.uploadSignature(bytes);
+
+    await res.fold(
+      (err) async {
+        _log.logE('Save employee signature failed: $err');
+        emit(state.copyWith(
+          isSaving: false,
+          saveSuccess: false,
+        ));
+      },
+      (_) async {
+        _log.logI('Save employee signature success');
+        emit(state.copyWith(
+          isSaving: false,
+          saveSuccess: true,
+          employeeSignature: bytes,
+        ));
+      },
+    );
+  }
+
+  Future<void> _onDeleteEmployeeSignature(Emitter<MySignatureState> emit) async {
+    emit(state.copyWith(isDeleting: true, deleteSuccess: false));
+
+    final res = await _signatureRepo.deleteEmployeeSignature();
+
+    await res.fold(
+      (err) async {
+        _log.logE('Delete employee signature failed: $err');
+        emit(state.copyWith(
+          isDeleting: false,
+          deleteSuccess: false,
+        ));
+      },
+      (_) async {
+        _log.logI('Delete employee signature success');
+        emit(state.copyWith(
+          isDeleting: false,
+          deleteSuccess: true,
+          employeeSignature: null,
         ));
       },
     );

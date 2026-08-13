@@ -380,7 +380,8 @@ class ApiEndPoint {
 
   // Employee Signature
   static const String getEmployeeSignature = '/Employee/signature';
-  static const String saveEmployeeSignature = '/Employee/signature';
+  static const String saveEmployeeSignature = '/Employee/upload-signature';
+  static const String deleteEmployeeSignature = '/Employee/delete-signature';
 
   // Poll
   static const String getPolls = '/pollform/all';

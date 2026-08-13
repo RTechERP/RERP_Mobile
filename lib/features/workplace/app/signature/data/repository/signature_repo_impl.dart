@@ -26,4 +26,28 @@ class SignatureRepoImpl implements SignatureRepo {
       return left(BaseError.httpUnknownError(e.toString()));
     }
   }
+
+  @override
+  Future<Either<BaseError, void>> uploadSignature(Uint8List signatureBytes) async {
+    try {
+      await _service.uploadSignature(signatureBytes);
+      return right(null);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpUnknownError(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<BaseError, void>> deleteEmployeeSignature() async {
+    try {
+      await _service.deleteEmployeeSignature();
+      return right(null);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpUnknownError(e.toString()));
+    }
+  }
 }

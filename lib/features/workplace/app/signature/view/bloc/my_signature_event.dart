@@ -6,4 +6,10 @@ class MySignatureEvent with _$MySignatureEvent {
 
   const factory MySignatureEvent.loadEmployeeSignature() =
       _LoadEmployeeSignature;
+
+  const factory MySignatureEvent.saveEmployeeSignature(Uint8List signatureBytes) =
+      _SaveEmployeeSignature;
+
+  const factory MySignatureEvent.deleteEmployeeSignature() =
+      _DeleteEmployeeSignature;
 }
