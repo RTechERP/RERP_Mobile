@@ -14,6 +14,7 @@ import '../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../base/bloc/index.dart';
 import '../bloc/my_signature_bloc.dart';
 import '../widgets/smooth_signature_canvas.dart';
+import 'signature_photo_confirm_page.dart';
 
 class SignatureAddScreen extends StatefulWidget {
   const SignatureAddScreen({super.key});
@@ -31,6 +32,7 @@ class _SignatureAddScreenState
 
   String? _capturedImagePath;
   Uint8List? _processedImageBytes;
+  Uint8List? _rawCameraBytes;
 
   @override
   void initState() {
@@ -53,28 +55,34 @@ class _SignatureAddScreenState
     setState(() {
       _capturedImagePath = null;
       _processedImageBytes = null;
+      _rawCameraBytes = null;
     });
   }
 
   Future<void> _openCamera() async {
-    final result = await Navigator.of(context).push<List<String>>(
+    final result = await Navigator.of(context).push<dynamic>(
       MaterialPageRoute(
         builder: (_) => const SignatureCameraPage(),
       ),
     );
 
-    if (result != null && result.isNotEmpty && mounted) {
+    if (result != null && result is Uint8List && mounted) {
       setState(() {
-        _capturedImagePath = result.first;
-        _processedImageBytes = null;
+        _rawCameraBytes = result;
+        _capturedImagePath = null;
+        _processedImageBytes = result;
       });
-      await _cropAndProcessImage(result.first);
     }
   }
 
-  Future<void> _cropAndProcessImage(String imagePath) async {
+  Future<void> _cropAndProcessImage() async {
+    if (_rawCameraBytes == null && _capturedImagePath == null) return;
+
+    final sourcePath = _capturedImagePath;
+    if (sourcePath == null) return;
+
     final croppedFile = await ImageCropper().cropImage(
-      sourcePath: imagePath,
+      sourcePath: sourcePath,
       uiSettings: [
         AndroidUiSettings(
           toolbarTitle: 'Cắt ảnh',
@@ -103,7 +111,7 @@ class _SignatureAddScreenState
   Future<void> _saveSignature() async {
     final signatureBytes = await _signatureKey.currentState?.toTransparentBytes();
     if (signatureBytes == null) {
-      showMessage(context, 'Vui lòng vẽ chữ ký', type: SnackBarType.error);
+      showMessage(context, 'Vui lòng bổ sung chữ ký', type: SnackBarType.error);
       return;
     }
     bloc.add(MySignatureEvent.saveEmployeeSignature(signatureBytes));
@@ -156,42 +164,35 @@ class _SignatureAddScreenState
           ),
           body: Column(
             children: [
-              Container(
-                margin: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: AppColors.grey_bg,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: TabBar(
-                  controller: _tabController,
-                  indicator: BoxDecoration(
-                    color: AppColors.primaryERP,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  indicatorSize: TabBarIndicatorSize.tab,
-                  indicatorPadding: const EdgeInsets.all(4),
-                  dividerColor: Colors.transparent,
-                  labelColor: Colors.white,
-                  unselectedLabelColor: AppColors.textSecondaryColor,
-                  labelStyle: const TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 14,
-                  ),
-                  tabs: const [
-                    Tab(text: 'Khung ký'),
-                    Tab(text: 'Chụp ảnh'),
-                  ],
-                ),
-              ),
+              // Container(
+              //   margin: const EdgeInsets.all(16),
+              //   decoration: BoxDecoration(
+              //     color: AppColors.grey_bg,
+              //     borderRadius: BorderRadius.circular(12),
+              //   ),
+              //   child: TabBar(
+              //     controller: _tabController,
+              //     indicator: BoxDecoration(
+              //       color: AppColors.primaryERP,
+              //       borderRadius: BorderRadius.circular(10),
+              //     ),
+              //     indicatorSize: TabBarIndicatorSize.tab,
+              //     indicatorPadding: const EdgeInsets.all(4),
+              //     dividerColor: Colors.transparent,
+              //     labelColor: Colors.white,
+              //     unselectedLabelColor: AppColors.textSecondaryColor,
+              //     labelStyle: const TextStyle(
+              //       fontWeight: FontWeight.w600,
+              //       fontSize: 14,
+              //     ),
+              //     tabs: const [
+              //       Tab(text: 'Khung ký'),
+              //       Tab(text: 'Chụp ảnh'),
+              //     ],
+              //   ),
+              // ),
               Expanded(
-                child: TabBarView(
-                  controller: _tabController,
-                  physics: const NeverScrollableScrollPhysics(),
-                  children: [
-                    _buildSignatureTab(),
-                    _buildPhotoTab(),
-                  ],
-                ),
+                child: _buildSignatureTab(),
               ),
               const SizedBox(height: 8),
               _buildBottomButtons(state),
@@ -347,7 +348,7 @@ class _SignatureAddScreenState
             ElevatedButton.icon(
               onPressed: _openCamera,
               icon: const Icon(Icons.camera_alt),
-              label: const Text('Mở camera'),
+              label: const Text('Chụp ảnh'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primaryERP,
                 foregroundColor: Colors.white,
@@ -364,6 +365,9 @@ class _SignatureAddScreenState
   }
 
   Widget _buildPhotoPreview() {
+    final imageBytes = _processedImageBytes ?? _rawCameraBytes;
+    if (imageBytes == null) return const SizedBox.shrink();
+
     return Container(
       margin: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -376,33 +380,18 @@ class _SignatureAddScreenState
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
-            child: _processedImageBytes != null
-                ? Image.memory(
-                    _processedImageBytes!,
-                    fit: BoxFit.contain,
-                  )
-                : Image.file(
-                    File(_capturedImagePath!),
-                    fit: BoxFit.contain,
-                  ),
+            child: Image.memory(
+              imageBytes,
+              fit: BoxFit.contain,
+            ),
           ),
           Positioned(
             top: 8,
             right: 8,
-            child: Row(
-              children: [
-                _PreviewActionButton(
-                  icon: Icons.crop,
-                  onPressed: () => _cropAndProcessImage(_capturedImagePath!),
-                  tooltip: 'Cắt ảnh',
-                ),
-                const SizedBox(width: 8),
-                _PreviewActionButton(
-                  icon: Icons.refresh,
-                  onPressed: _clearPhoto,
-                  tooltip: 'Chụp lại',
-                ),
-              ],
+            child: _PreviewActionButton(
+              icon: Icons.refresh,
+              onPressed: _clearPhoto,
+              tooltip: 'Chụp lại',
             ),
           ),
         ],
@@ -413,56 +402,48 @@ class _SignatureAddScreenState
   Widget _buildBottomButtons(MySignatureState state) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-      child: AnimatedBuilder(
-        animation: _tabController,
-        builder: (context, _) {
-          final currentTab = _tabController.index;
-          return Row(
-            children: [
-              Expanded(
-                child: OutlinedButton.icon(
-                  onPressed: currentTab == 0 ? _clearSignature : _clearPhoto,
-                  icon: const Icon(Icons.refresh),
-                  label: const Text('Xoá'),
-                  style: OutlinedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 14),
-                    side: BorderSide(color: AppColors.primaryERP),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
+      child: Row(
+        children: [
+          Expanded(
+            child: OutlinedButton.icon(
+              onPressed: _clearSignature,
+              icon: const Icon(Icons.refresh),
+              label: const Text('Xoá'),
+              style: OutlinedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(vertical: 14),
+                side: BorderSide(color: AppColors.primaryERP),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: ElevatedButton.icon(
-                  onPressed: state.isSaving
-                      ? null
-                      : (currentTab == 0 ? _saveSignature : _savePhoto),
-                  icon: state.isSaving
-                      ? const SizedBox(
-                          width: 20,
-                          height: 20,
-                          child: CircularProgressIndicator(
-                            strokeWidth: 2,
-                            color: Colors.white,
-                          ),
-                        )
-                      : const Icon(Icons.save),
-                  label: Text(state.isSaving ? 'Đang lưu...' : 'Lưu'),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.primaryERP,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 14),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
+            ),
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: ElevatedButton.icon(
+              onPressed: state.isSaving ? null : _saveSignature,
+              icon: state.isSaving
+                  ? const SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        color: Colors.white,
+                      ),
+                    )
+                  : const Icon(Icons.save),
+              label: Text(state.isSaving ? 'Đang lưu...' : 'Lưu'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.primaryERP,
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(vertical: 14),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
                 ),
               ),
-            ],
-          );
-        },
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -507,8 +488,8 @@ class SignatureCameraPage extends StatefulWidget {
 }
 
 class _SignatureCameraPageState extends State<SignatureCameraPage> {
-  final List<String> _captured = [];
   bool _busy = false;
+  PhotoCameraState? _cameraState;
 
   @override
   Widget build(BuildContext context) {
@@ -529,7 +510,10 @@ class _SignatureCameraPageState extends State<SignatureCameraPage> {
                 valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
               ),
             ),
-            onPhotoMode: (state) => _buildCameraUi(state),
+            onPhotoMode: (state) {
+              _cameraState = state;
+              return _buildCameraUi();
+            },
             onVideoMode: (_) => const SizedBox.shrink(),
             onVideoRecordingMode: (_) => const SizedBox.shrink(),
           );
@@ -538,7 +522,7 @@ class _SignatureCameraPageState extends State<SignatureCameraPage> {
     );
   }
 
-  Widget _buildCameraUi(PhotoCameraState state) {
+  Widget _buildCameraUi() {
     return Stack(
       fit: StackFit.expand,
       children: [
@@ -554,39 +538,28 @@ class _SignatureCameraPageState extends State<SignatureCameraPage> {
                     icon: Icons.close,
                     onPressed: () => Navigator.of(context).pop(),
                   ),
-                  const Spacer(),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 6,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.black54,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Icon(
-                          Icons.photo_camera_outlined,
-                          size: 14,
-                          color: Colors.white,
-                        ),
-                        const SizedBox(width: 6),
-                        Text(
-                          'Đã chụp: ${_captured.length}',
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const Spacer(),
-                  const SizedBox(width: 48),
                 ],
+              ),
+            ),
+          ),
+        ),
+        Positioned(
+          left: 0,
+          right: 0,
+          bottom: 120,
+          child: Center(
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              decoration: BoxDecoration(
+                color: Colors.black54,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: const Text(
+                'Đặt chữ ký trong khung',
+                style: TextStyle(
+                  color: Colors.white70,
+                  fontSize: 14,
+                ),
               ),
             ),
           ),
@@ -595,40 +568,13 @@ class _SignatureCameraPageState extends State<SignatureCameraPage> {
           alignment: Alignment.bottomCenter,
           child: Container(
             color: Colors.black,
-            padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
+            padding: const EdgeInsets.fromLTRB(24, 12, 24, 24),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                if (_captured.isNotEmpty) _buildThumbnailStrip(),
-                const SizedBox(height: 12),
-                Row(
-                  children: [
-                    Expanded(
-                      child: _ShutterButton(
-                        enabled: !_busy,
-                        onPressed: () => _capture(state),
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: ElevatedButton.icon(
-                        onPressed: _captured.isEmpty ? null : _confirmAndExit,
-                        icon: const Icon(Icons.arrow_forward),
-                        label: const Text('Tiếp theo'),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.primaryERP,
-                          disabledBackgroundColor:
-                              Colors.white.withValues(alpha: 0.2),
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(vertical: 14),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          elevation: 0,
-                        ),
-                      ),
-                    ),
-                  ],
+                _ShutterButton(
+                  enabled: !_busy,
+                  onPressed: _capture,
                 ),
               ],
             ),
@@ -638,74 +584,61 @@ class _SignatureCameraPageState extends State<SignatureCameraPage> {
     );
   }
 
-  Widget _buildThumbnailStrip() {
-    return SizedBox(
-      height: 56,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        itemCount: _captured.length,
-        separatorBuilder: (_, _) => const SizedBox(width: 6),
-        itemBuilder: (context, index) {
-          final path = _captured[index];
-          return ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: Image.file(
-              File(path),
-              width: 56,
-              height: 56,
-              fit: BoxFit.cover,
-              errorBuilder: (_, _, _) => Container(
-                width: 56,
-                height: 56,
-                color: Colors.white24,
-                child: const Icon(
-                  Icons.broken_image_outlined,
-                  color: Colors.white54,
-                ),
-              ),
-            ),
-          );
-        },
-      ),
-    );
-  }
-
-  Future<void> _capture(PhotoCameraState state) async {
-    if (_busy) return;
+  Future<void> _capture() async {
+    if (_busy || _cameraState == null) return;
     setState(() => _busy = true);
     try {
-      await state.takePhoto();
+      await _cameraState!.takePhoto();
     } catch (_) {
       // ignore
-    } finally {
-      if (mounted) setState(() => _busy = false);
     }
-  }
-
-  Future<void> _confirmAndExit() async {
-    if (_captured.isEmpty) return;
-    Navigator.of(context).pop(_captured);
   }
 
   void _onMediaCapture(MediaCapture capture) {
     if (capture.status != MediaCaptureStatus.success) return;
     if (!capture.isPicture) return;
+
     capture.captureRequest.when(
       single: (single) {
         final path = single.file?.path ?? '';
         if (path.isNotEmpty && mounted) {
-          setState(() => _captured.add(path));
+          _navigateToConfirm(path);
         }
       },
       multiple: (multiple) {
         for (final f in multiple.fileBySensor.values) {
           final path = f?.path ?? '';
           if (path.isNotEmpty) {
-            setState(() => _captured.add(path));
+            _navigateToConfirm(path);
+            break;
           }
         }
       },
     );
+  }
+
+  Future<void> _navigateToConfirm(String imagePath) async {
+    final result = await Navigator.of(context).push<dynamic>(
+      MaterialPageRoute(
+        builder: (_) => SignaturePhotoConfirmPage(imagePath: imagePath),
+      ),
+    );
+
+    if (!mounted) return;
+
+    if (result == null || result == 'cancel') {
+      setState(() => _busy = false);
+      return;
+    }
+
+    if (result == 'retake') {
+      setState(() => _busy = false);
+      return;
+    }
+
+    if (result is Uint8List) {
+      Navigator.of(context).pop(result);
+    }
   }
 }
 
