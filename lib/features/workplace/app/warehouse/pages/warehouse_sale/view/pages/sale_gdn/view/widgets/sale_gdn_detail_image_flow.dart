@@ -151,6 +151,25 @@ class ImageConfirmPage extends StatefulWidget {
     );
   }
 
+  /// Mở viewer fullscreen cho phép xoá ảnh, trả về list đã xoá qua Navigator.pop.
+  /// - Trả về `null` nếu user chỉ đóng viewer mà không có thay đổi.
+  /// - Trả về `[]` (list rỗng) nếu xoá hết (đóng viewer + clear list).
+  static Future<List<String>?> openViewer(
+    BuildContext context,
+    List<String> paths,
+    int initialIndex,
+  ) {
+    return Navigator.of(context).push<List<String>>(
+      MaterialPageRoute(
+        fullscreenDialog: true,
+        builder: (_) => _ConfirmPageFullscreenViewer(
+          paths: paths,
+          initialIndex: initialIndex,
+        ),
+      ),
+    );
+  }
+
   @override
   State<ImageConfirmPage> createState() => _ImageConfirmPageState();
 }
@@ -309,15 +328,16 @@ class _ImageConfirmPageState extends State<ImageConfirmPage> {
                 right: 4,
                 child: GestureDetector(
                   onTap: () => setState(() => _paths.removeAt(index)),
+                  behavior: HitTestBehavior.opaque,
                   child: Container(
-                    padding: const EdgeInsets.all(4),
+                    padding: const EdgeInsets.all(6),
                     decoration: const BoxDecoration(
                       color: Colors.black54,
                       shape: BoxShape.circle,
                     ),
                     child: const Icon(
                       Icons.close,
-                      size: 14,
+                      size: 20,
                       color: Colors.white,
                     ),
                   ),
@@ -350,16 +370,15 @@ class _ImageConfirmPageState extends State<ImageConfirmPage> {
     );
   }
 
-  void _openFullscreen(int initialIndex) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        fullscreenDialog: true,
-        builder: (_) => _ConfirmPageFullscreenViewer(
-          paths: _paths,
-          initialIndex: initialIndex,
-        ),
-      ),
+  Future<void> _openFullscreen(int initialIndex) async {
+    final updated = await ImageConfirmPage.openViewer(
+      context,
+      _paths,
+      initialIndex,
     );
+    if (updated == null) return;
+    if (!mounted) return;
+    setState(() => _paths = updated);
   }
 }
 
@@ -382,6 +401,7 @@ class _ConfirmPageFullscreenViewerState
   late PageController _pageController;
   late int _currentIndex;
   late List<String> _paths;
+  bool _changed = false;
 
   @override
   void initState() {
@@ -395,6 +415,10 @@ class _ConfirmPageFullscreenViewerState
   void dispose() {
     _pageController.dispose();
     super.dispose();
+  }
+
+  void _close() {
+    Navigator.of(context).pop(_changed ? _paths : null);
   }
 
   @override
@@ -412,23 +436,12 @@ class _ConfirmPageFullscreenViewerState
         centerTitle: true,
         leading: IconButton(
           icon: const Icon(Icons.close),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: _close,
         ),
         actions: [
           IconButton(
             icon: const Icon(Icons.delete_outline),
-            onPressed: () {
-              setState(() {
-                if (_paths.length == 1) {
-                  Navigator.of(context).pop();
-                } else {
-                  _paths.removeAt(_currentIndex);
-                  if (_currentIndex >= _paths.length) {
-                    _currentIndex = _paths.length - 1;
-                  }
-                }
-              });
-            },
+            onPressed: _paths.isEmpty ? null : _deleteCurrent,
           ),
         ],
       ),
@@ -455,5 +468,21 @@ class _ConfirmPageFullscreenViewerState
         },
       ),
     );
+  }
+
+  void _deleteCurrent() {
+    setState(() {
+      _paths.removeAt(_currentIndex);
+      _changed = true;
+      if (_paths.isEmpty) {
+        _currentIndex = 0;
+        // Xoá hết → trả về list rỗng để trang confirm cập nhật state rồi đóng.
+        Navigator.of(context).pop(<String>[]);
+        return;
+      }
+      if (_currentIndex >= _paths.length) {
+        _currentIndex = _paths.length - 1;
+      }
+    });
   }
 }

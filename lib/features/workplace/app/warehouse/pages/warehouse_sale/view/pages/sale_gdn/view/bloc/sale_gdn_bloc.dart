@@ -86,6 +86,7 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
         selectSupplier: (id) => _selectSupplier(emit, id),
         selectSender: (id) => _selectSender(emit, id),
         selectReceiver: (id) => _selectReceiver(emit, id),
+        selectBorrower: (id) => _selectBorrower(emit, id),
         selectCustomer: (id) => _selectCustomer(emit, id),
         selectWarehouse: (id) => _selectWarehouse(emit, id),
         selectKhoType: (id) => _selectKhoType(emit, id),
@@ -1115,6 +1116,18 @@ BillExporResponse? _findGdnInList(String code) {
     final wareHouseTranferId =
         billInfoUpdated.selectedInternalWarehouseId ?? bill?.wareHouseTranferId;
 
+    // Khi phiếu ở trạng thái Mượn (0) hoặc Y/C mượn (7), field "Người mượn"
+    // được map sang `ReceiverID` của BillExport. Ưu tiên giá trị user vừa
+    // chọn (`selectedBorrowerId`); fallback sang `billInfo.userId`.
+    final currentStatus =
+        billInfoUpdated.selectedStatus ?? bill?.status;
+    final isBorrowStatus = currentStatus == 0 || currentStatus == 7;
+    final receiverId = isBorrowStatus
+        ? (billInfoUpdated.selectedBorrowerId ?? billInfo?.userId ?? 0)
+        : (billInfoUpdated.selectedReceiverId ??
+            billInfo?.receiverId ??
+            0);
+
     // BillExport header
     final billExport = <String, dynamic>{
       'ID': bill?.id,
@@ -1146,7 +1159,7 @@ BillExporResponse? _findGdnInList(String code) {
       'WareHouseTranferID': wareHouseTranferId,
       'IsTransferInternal': isTransferInternal,
       'KhoTypeTransferID': khoTypeTransferId,
-      'ReceiverID': billInfo?.receiverId ?? 0,
+      'ReceiverID': receiverId,
       'IsPrepared': bill?.isPrepared ?? false,
       'IsReceived': bill?.isReceived ?? false,
       'IsDeleted': false,
@@ -1317,6 +1330,14 @@ BillExporResponse? _findGdnInList(String code) {
     if (current == null || emit.isDone) return;
     emit(state.copyWith(
       detail: current.copyWith(selectedReceiverId: id),
+    ));
+  }
+
+  Future<void> _selectBorrower(Emitter<SaleGdnState> emit, int? id) async {
+    final current = state.detail;
+    if (current == null || emit.isDone) return;
+    emit(state.copyWith(
+      detail: current.copyWith(selectedBorrowerId: id),
     ));
   }
 

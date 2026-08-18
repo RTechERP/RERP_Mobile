@@ -23,6 +23,11 @@ class GdnDetailState extends BaseBlocState {
   /// ID người nhận đang chọn (override từ `billInfo.receiverId`).
   final int? selectedReceiverId;
 
+  /// ID người mượn đang chọn — chỉ áp dụng khi trạng thái phiếu là
+  /// "Mượn" (0) hoặc "Y/C mượn" (7). Map từ `billInfo.receiverId`
+  /// để hiển thị người mượn lên form trước field "Người giao".
+  final int? selectedBorrowerId;
+
   /// UserID từ detail để map với users list (BillExportUserResponse.id).
   final int? userId;
 
@@ -121,6 +126,7 @@ class GdnDetailState extends BaseBlocState {
     this.selectedSupplierId,
     this.selectedSenderId,
     this.selectedReceiverId,
+    this.selectedBorrowerId,
     this.userId,
     this.selectedCustomerId,
     this.selectedWarehouseId,
@@ -173,6 +179,8 @@ class GdnDetailState extends BaseBlocState {
       selectedSupplierId: billInfo.supplierId,
       selectedSenderId: billInfo.senderId,
       selectedReceiverId: billInfo.receiverId,
+      selectedBorrowerId:
+          (billInfo.status == 0 || billInfo.status == 7) ? billInfo.userId : null,
       userId: billInfo.userId,
       selectedCustomerId: billInfo.customerId,
       selectedWarehouseId: billInfo.warehouseId,
@@ -199,6 +207,7 @@ class GdnDetailState extends BaseBlocState {
         selectedSupplierId,
         selectedSenderId,
         selectedReceiverId,
+        selectedBorrowerId,
         userId,
         selectedCustomerId,
         selectedWarehouseId,

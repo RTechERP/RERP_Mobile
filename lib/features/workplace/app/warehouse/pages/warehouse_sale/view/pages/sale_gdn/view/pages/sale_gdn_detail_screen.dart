@@ -151,6 +151,9 @@ class _SaleGdnDetailScreenState
                     onSelectReceiver: (id) => bloc.add(
                       SaleGdnEvent.selectReceiver(id),
                     ),
+                    onSelectBorrower: (id) => bloc.add(
+                      SaleGdnEvent.selectBorrower(id),
+                    ),
                     onSelectCustomer: (id) => bloc.add(
                       SaleGdnEvent.selectCustomer(id),
                     ),

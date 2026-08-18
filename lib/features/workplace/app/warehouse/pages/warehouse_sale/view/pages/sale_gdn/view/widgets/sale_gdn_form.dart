@@ -37,6 +37,7 @@ class SaleGdnForm extends StatefulWidget {
     required this.onSelectSupplier,
     required this.onSelectSender,
     required this.onSelectReceiver,
+    required this.onSelectBorrower,
     required this.onSelectCustomer,
     required this.onSelectCustomerWithAddress,
     required this.onSelectKhoType,
@@ -79,6 +80,7 @@ class SaleGdnForm extends StatefulWidget {
   final ValueChanged<int?> onSelectSupplier;
   final ValueChanged<int?> onSelectSender;
   final ValueChanged<int?> onSelectReceiver;
+  final ValueChanged<int?> onSelectBorrower;
   final ValueChanged<int?> onSelectCustomer;
   final void Function(int? id, String? address) onSelectCustomerWithAddress;
   final ValueChanged<int?> onSelectKhoType;
@@ -115,6 +117,13 @@ const _kFieldCustomer = 'gdn_customer';
 const _kFieldDeliveryAddress = 'gdn_delivery_address';
 const _kFieldSupplier = 'gdn_supplier';
 const _kFieldIsIncurred = 'gdn_is_incurred';
+const _kFieldBorrower = 'gdn_borrower';
+
+/// Các trạng thái thuộc nhóm "mượn" — sẽ hiển thị thêm field "Người mượn".
+const _kBorrowStatusValues = <int>{0, 7};
+
+bool _isBorrowStatus(int? status) =>
+    status != null && _kBorrowStatusValues.contains(status);
 
 class _SaleGdnFormState extends State<SaleGdnForm> {
   // Trạng thái thu/mở toàn bộ card thông tin. Mặc định collapse.
@@ -220,11 +229,21 @@ class _SaleGdnFormState extends State<SaleGdnForm> {
       widget.detail.receiveTime ?? info?.deliveryTime,
     );
 
-    // Checkbox "Phát sinh" - auto tick theo logic ở title.
+// Checkbox "Phát sinh" - auto tick theo logic ở title.
     form.fields[_kFieldIsIncurred]?.didChange(_isIncurred());
+
+    // Đồng bộ field "Người mượn" khi status thuộc nhóm mượn.
+    if (_showBorrowerField) {
+      form.fields[_kFieldBorrower]?.didChange(_resolveBorrowerText());
+    }
   }
 
-  Widget _buildBody(DetailGDNItemResponse? info) {
+  /// Trả về true nếu status hiện tại thuộc nhóm mượn (Mượn / Y/C mượn).
+  bool get _showBorrowerField =>
+      _isBorrowStatus(widget.detail.selectedStatus ??
+          widget.detail.billInfo?.status);
+
+Widget _buildBody(DetailGDNItemResponse? info) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -245,6 +264,9 @@ class _SaleGdnFormState extends State<SaleGdnForm> {
                 errorText: 'Vui lòng chọn trạng thái',
               ),
             ),
+            // Khi trạng thái phiếu là Mượn (0) hoặc Y/C mượn (7), đổi thứ tự:
+            // "Người giao" đặt trước, "Người mượn" đặt sau. Các trạng
+            // thái khác giữ nguyên thứ tự (chỉ hiện "Người giao").
             FormInputField(
               nameForm: 'gdn_sender',
               nameTextField: 'gdn_sender_text',
@@ -258,6 +280,22 @@ class _SaleGdnFormState extends State<SaleGdnForm> {
                 errorText: 'Vui lòng chọn người giao',
               ),
             ),
+            // Map từ billInfo.receiverId; chỉ hiện khi trạng thái phiếu
+            // là Mượn (0) hoặc Y/C mượn (7).
+            if (_showBorrowerField)
+              FormInputField(
+                nameForm: 'gdn_borrower',
+                nameTextField: 'gdn_borrower_text',
+                label: 'Người mượn',
+                icon: Icons.person_pin_outlined,
+                initialValue: _resolveBorrowerText(),
+                readOnly: true,
+                onTap: () => _pickBorrower(context),
+                isRequired: true,
+                validator: FormBuilderValidators.required(
+                  errorText: 'Vui lòng chọn người mượn',
+                ),
+              ),
             FormInputField(
               nameForm: 'gdn_receiver',
               nameTextField: 'gdn_receiver_text',
@@ -467,8 +505,27 @@ class _SaleGdnFormState extends State<SaleGdnForm> {
   }
 
   String _resolveReceiverText() {
-    // Ưu tiên dùng userId từ detail để map với users list, fallback sang selectedReceiverId
-    final id = widget.detail.userId ?? widget.detail.selectedReceiverId;
+    // Với phiếu Mượn (0) / Y/C mượn (7): "Người nhận" map từ `receiverId`
+    // (ưu tiên `selectedReceiverId` do user chọn, fallback
+    // `billInfo.receiverId`).
+    // Với các trạng thái khác: giữ logic cũ — ưu tiên `userId` t� detail,
+    // fallback `selectedReceiverId`.
+    final id = _showBorrowerField
+        ? (widget.detail.selectedReceiverId ??
+            widget.detail.billInfo?.receiverId)
+        : (widget.detail.userId ?? widget.detail.selectedReceiverId);
+    if (id != null && id > 0) {
+      for (final u in widget.users) {
+        if (u.id == id) return (u.fullName ?? '').trim();
+      }
+    }
+    return '';
+  }
+
+  /// Resolve text "Người mượn" từ `userId` (ưu tiên `selectedBorrowerId`,
+  /// fallback `billInfo.userId`), lookup trong danh sách `users`.
+  String _resolveBorrowerText() {
+    final id = widget.detail.selectedBorrowerId ?? widget.detail.userId;
     if (id != null && id > 0) {
       for (final u in widget.users) {
         if (u.id == id) return (u.fullName ?? '').trim();
@@ -778,6 +835,30 @@ class _SaleGdnFormState extends State<SaleGdnForm> {
         orElse: () => options.first,
       ),
       onSelected: (item) => widget.onSelectStatus(item.value),
+    );
+  }
+
+  Future<void> _pickBorrower(BuildContext context) async {
+    if (widget.users.isEmpty) {
+      context.showMessage(
+        'Danh sách nhân viên chưa sẵn sàng, vui lòng đợi',
+        type: SnackBarType.info,
+      );
+      return;
+    }
+    final current = widget.detail.selectedBorrowerId ??
+        widget.detail.billInfo?.userId;
+    final initial = widget.users.firstWhere(
+      (u) => u.id == current,
+      orElse: () => widget.users.first,
+    );
+    await openSelectBottomSheet<BillExportUserResponse>(
+      context: context,
+      title: 'Chọn người mượn',
+      items: widget.users,
+      displayText: (u) => u.fullName ?? '',
+      initialSelectedItem: initial,
+      onSelected: (item) => widget.onSelectBorrower(item.id),
     );
   }
 
