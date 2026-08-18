@@ -8,7 +8,6 @@ import 'package:injectable/injectable.dart';
 import 'package:intl/intl.dart';
 import 'package:rtc_erp/base/bloc/index.dart';
 import 'package:rtc_erp/base/network/errors/error.dart';
-import 'package:rtc_erp/base/network/errors/extension.dart';
 import 'package:rtc_erp/common/logger/index.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/models/sale_gdn_model.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/repository/sale_gdn_repo.dart';
@@ -19,6 +18,24 @@ part 'sale_gdn_state.dart';
 part 'sale_gdn_detail_state.dart';
 part 'sale_gdn_bloc.g.dart';
 part 'sale_gdn_bloc.freezed.dart';
+
+const _maxErrorLength = 200;
+
+extension _BaseErrorExt on BaseError {
+  String get truncatedMsg {
+    return when(
+      httpInternalServerError: (body) =>
+          body.length > _maxErrorLength
+              ? '${body.substring(0, _maxErrorLength)}...'
+              : body,
+      httpUnAuthorizedError: () => 'Unauthorized',
+      httpUnknownError: (m) =>
+          m.length > _maxErrorLength
+              ? '${m.substring(0, _maxErrorLength)}...'
+              : m,
+    );
+  }
+}
 
 @injectable
 class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
@@ -147,7 +164,7 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
         _log.logE('❌ API failed: $l');
         emit(state.copyWith(
           status: BaseStateStatus.failed,
-          message: l.getErrorMessage,
+          message: l.truncatedMsg,
         ));
       },
       (r) async {
@@ -183,7 +200,7 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
         _log.logE('❌ API failed: $l');
         emit(state.copyWith(
           status: BaseStateStatus.failed,
-          message: l.getErrorMessage,
+          message: l.truncatedMsg,
         ));
       },
       (r) async {
@@ -211,7 +228,7 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
         _log.logE('❌ API failed: $l');
         emit(state.copyWith(
           status: BaseStateStatus.failed,
-          message: l.getErrorMessage,
+          message: l.truncatedMsg,
         ));
       },
       (r) async {
@@ -241,7 +258,7 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
         _log.logE('❌ API failed: $l');
         emit(state.copyWith(
           status: BaseStateStatus.failed,
-          message: l.getErrorMessage,
+          message: l.truncatedMsg,
         ));
       },
       (r) async {
@@ -300,7 +317,7 @@ Future<void> _scanQrToDetail(
       _log.logE('❌ scanQrToDetail failed: $l');
       emit(state.copyWith(
         status: BaseStateStatus.failed,
-        message: l.getErrorMessage,
+        message: l.truncatedMsg,
         isSearching: false,
       ));
     },
@@ -505,7 +522,7 @@ BillExporResponse? _findGdnInList(String code) {
         emit(state.copyWith(
           detail: current.copyWith(
             status: BaseStateStatus.failed,
-            message: l.getErrorMessage,
+            message: l.truncatedMsg,
           ),
         ));
       },
@@ -579,7 +596,7 @@ BillExporResponse? _findGdnInList(String code) {
             emit(state.copyWith(
               detail: current.copyWith(
                 status: BaseStateStatus.failed,
-                message: l.getErrorMessage,
+                message: l.truncatedMsg,
               ),
             ));
           },
@@ -981,7 +998,7 @@ BillExporResponse? _findGdnInList(String code) {
         emit(state.copyWith(
           detail: updated.copyWith(
             uploadStatus: BaseStateStatus.failed,
-            message: l.toString(),
+            message: l.truncatedMsg,
           ),
         ));
       },
@@ -1167,7 +1184,7 @@ BillExporResponse? _findGdnInList(String code) {
         'Specifications': detail.specifications ?? '',
         'BillImportDetailID': detail.billImportDetailId ?? 0,
         'TotalInventory': detail.totalInventory ?? 0,
-        'ExpectReturnDate': null,
+        'ExpectReturnDate': detail.expectReturnDate?.toIso8601String(),
         'CustomerResponse': detail.customerResponse ?? '',
         'POKHDetailIDActual': detail.pokhDetailIdActual ?? 0,
         'PONumber': detail.poNumber ?? '',

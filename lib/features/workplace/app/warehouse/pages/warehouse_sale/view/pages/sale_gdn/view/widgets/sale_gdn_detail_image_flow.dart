@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:rtc_erp/common/app_theme/index.dart';
 
 import 'sale_gdn_detail_camera_page.dart';
@@ -8,23 +9,128 @@ import 'sale_gdn_detail_camera_page.dart';
 /// Mở flow chụp nhiều ảnh cho dòng chi tiết phiếu xuất kho.
 ///
 /// Flow:
-/// 1. Mở thẳng màn camera (`CameraCapturePage`) — plugin `camerawesome`
-///    giữ camera session liên tục, cho phép chụp nhiều ảnh mà không cần
-///    đóng/mở lại.
-/// 2. Mỗi lần user bấm nút chụp, ảnh được lưu ngay vào strip vào state
-///    nội bộ của camera page.
-/// 3. Khi user bấm "Tiếp theo" → đóng camera và mở màn xác nhận
-///    (`_ImageConfirmPage`) cho phép xoá ảnh không muốn trước khi lưu.
+/// 1. Hiển thị bottom sheet với 2 lựa chọn: "Chụp ảnh" và "Chọn ảnh từ bộ nhớ".
+/// 2. Chụp ảnh → mở camera (`CameraCapturePage`) với camerawesome.
+/// 3. Chọn ảnh → mở picker đa chọn ảnh từ gallery.
+/// 4. Sau khi chọn/chụp → mở màn xác nhận (`ImageConfirmPage`) cho phép xoá
+///    ảnh không muốn trước khi lưu.
 ///
 /// Trả về danh sách đường dẫn ảnh đã user xác nhận, hoặc `null` nếu user
 /// huỷ trước khi xác nhận.
-Future<List<String>?> showSaleGdnDetailImageFlow(BuildContext context) {
-  return Navigator.of(context).push<List<String>>(
-    MaterialPageRoute(
-      fullscreenDialog: true,
-      builder: (_) => const CameraCapturePage(),
+Future<List<String>?> showSaleGdnDetailImageFlow(BuildContext context) async {
+  final choice = await showModalBottomSheet<_ImageSourceChoice>(
+    context: context,
+    backgroundColor: Colors.white,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
     ),
+    builder: (_) => const _ImageSourceBottomSheet(),
   );
+
+  if (choice == null) return null;
+
+  final List<String> initialPaths;
+  if (choice == _ImageSourceChoice.camera) {
+    initialPaths = await Navigator.of(context).push<List<String>>(
+      MaterialPageRoute(
+        fullscreenDialog: true,
+        builder: (_) => const CameraCapturePage(),
+      ),
+    ) ?? [];
+  } else {
+    initialPaths = await _pickImagesFromGallery() ?? [];
+  }
+
+  if (!context.mounted) return null;
+
+  if (initialPaths.isEmpty) return null;
+
+  final confirmed = await ImageConfirmPage.show(context, initialPaths);
+  return confirmed;
+}
+
+enum _ImageSourceChoice { camera, gallery }
+
+class _ImageSourceBottomSheet extends StatelessWidget {
+  const _ImageSourceBottomSheet();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      child: SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 40,
+              height: 4,
+              margin: const EdgeInsets.only(top: 12),
+              decoration: BoxDecoration(
+                color: Colors.grey[300],
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.all(16),
+              child: Text(
+                'Chọn chế độ',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: AppColors.primaryERP.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: const Icon(
+                  Icons.camera_alt_outlined,
+                  color: AppColors.primaryERP,
+                ),
+              ),
+              title: const Text('Chụp ảnh'),
+              subtitle: const Text('Mở camera để chụp ảnh'),
+              onTap: () =>
+                  Navigator.of(context).pop(_ImageSourceChoice.camera),
+            ),
+            ListTile(
+              leading: Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Colors.orange.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: const Icon(
+                  Icons.photo_library_outlined,
+                  color: Colors.orange,
+                ),
+              ),
+              title: const Text('Chọn ảnh từ bộ nhớ'),
+              subtitle: const Text('Chọn ảnh có sẵn trên thiết bị'),
+              onTap: () =>
+                  Navigator.of(context).pop(_ImageSourceChoice.gallery),
+            ),
+            const SizedBox(height: 16),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+Future<List<String>?> _pickImagesFromGallery() async {
+  final picker = ImagePicker();
+  final images = await picker.pickMultiImage();
+  if (images.isEmpty) return null;
+  return images.map((e) => e.path).toList();
 }
 
 // ---------------------------------------------------------------------------
