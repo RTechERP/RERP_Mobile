@@ -258,11 +258,12 @@ Widget _buildBody(DetailGDNItemResponse? info) {
               icon: Icons.flag_outlined,
               initialValue: _resolveStatusText(),
               readOnly: true,
-              onTap: () => _pickStatus(context),
-              isRequired: true,
-              validator: FormBuilderValidators.required(
-                errorText: 'Vui lòng chọn trạng thái',
-              ),
+              enabled: false,
+              // onTap: () => _pickStatus(context),
+              // isRequired: true,
+              // validator: FormBuilderValidators.required(
+              //   errorText: 'Vui lòng chọn trạng thái',
+              // ),
             ),
             // Khi trạng thái phiếu là Mượn (0) hoặc Y/C mượn (7), đổi thứ tự:
             // "Người giao" đặt trước, "Người mượn" đặt sau. Các trạng
@@ -274,11 +275,12 @@ Widget _buildBody(DetailGDNItemResponse? info) {
               icon: Icons.delivery_dining_outlined,
               initialValue: _resolveSenderText(),
               readOnly: true,
-              onTap: () => _pickSender(context),
-              isRequired: true,
-              validator: FormBuilderValidators.required(
-                errorText: 'Vui lòng chọn người giao',
-              ),
+              enabled: false,
+              // onTap: () => _pickSender(context),
+              // isRequired: true,
+              // validator: FormBuilderValidators.required(
+              //   errorText: 'Vui lòng chọn người giao',
+              // ),
             ),
             // Map từ billInfo.receiverId; chỉ hiện khi trạng thái phiếu
             // là Mượn (0) hoặc Y/C mượn (7).
@@ -290,24 +292,26 @@ Widget _buildBody(DetailGDNItemResponse? info) {
                 icon: Icons.person_pin_outlined,
                 initialValue: _resolveBorrowerText(),
                 readOnly: true,
-                onTap: () => _pickBorrower(context),
-                isRequired: true,
-                validator: FormBuilderValidators.required(
-                  errorText: 'Vui lòng chọn người mượn',
-                ),
+                enabled: false,
+                // onTap: () => _pickBorrower(context),
+                // isRequired: true,
+                // validator: FormBuilderValidators.required(
+                //   errorText: 'Vui lòng chọn người mượn',
+                // ),
               ),
             FormInputField(
               nameForm: 'gdn_receiver',
               nameTextField: 'gdn_receiver_text',
               label: 'Người nhận',
+              enabled: false,
               icon: Icons.assignment_ind_outlined,
               initialValue: _resolveReceiverText(),
               readOnly: true,
-              onTap: () => _pickReceiver(context),
-              isRequired: true,
-              validator: FormBuilderValidators.required(
-                errorText: 'Vui lòng chọn người nhận',
-              ),
+              // onTap: () => _pickReceiver(context),
+              // isRequired: true,
+              // validator: FormBuilderValidators.required(
+              //   errorText: 'Vui lòng chọn người nhận',
+              // ),
             ),
             FormDateTimePicker(
               nameForm: 'gdn_delivery_date',
@@ -318,10 +322,11 @@ Widget _buildBody(DetailGDNItemResponse? info) {
               format: DateFormat('dd/MM/yyyy'),
               initialValue: widget.detail.deliveryDate ?? info?.deliveryTime,
               onChanged: widget.onChangeDeliveryDate,
-              isRequired: true,
-              validator: FormBuilderValidators.required(
-                errorText: 'Vui lòng chọn ngày xuất phiếu',
-              ),
+              enabled: false,
+              // isRequired: true,
+              // validator: FormBuilderValidators.required(
+              //   errorText: 'Vui lòng chọn ngày xuất phiếu',
+              // ),
             ),
             FormDateTimePicker(
               nameForm: 'gdn_request_date',
@@ -332,6 +337,7 @@ Widget _buildBody(DetailGDNItemResponse? info) {
               format: DateFormat('dd/MM/yyyy'),
               initialValue: widget.detail.requestDate ?? info?.requestDate,
               onChanged: widget.onChangeRequestDate,
+              enabled: false,
             ),
             FormDateTimePicker(
               nameForm: 'gdn_receive_time',
@@ -342,6 +348,7 @@ Widget _buildBody(DetailGDNItemResponse? info) {
               format: DateFormat('dd/MM/yyyy HH:mm'),
               initialValue: widget.detail.receiveTime ?? info?.deliveryTime,
               onChanged: widget.onChangeReceiveTime,
+              enabled: false,
             ),
           ],
         ),
@@ -357,11 +364,12 @@ Widget _buildBody(DetailGDNItemResponse? info) {
               icon: Icons.category_outlined,
               initialValue: _resolveLoaiKhoText(),
               readOnly: true,
-              onTap: () => _pickLoaiKho(context),
-              isRequired: true,
-              validator: FormBuilderValidators.required(
-                errorText: 'Vui lòng chọn loại kho',
-              ),
+              enabled: false,
+              // onTap: () => _pickLoaiKho(context),
+              // isRequired: true,
+              // validator: FormBuilderValidators.required(
+              //   errorText: 'Vui lòng chọn loại kho',
+              // ),
             ),
             FormInputField(
               nameForm: 'gdn_warehouse',
@@ -370,7 +378,8 @@ Widget _buildBody(DetailGDNItemResponse? info) {
               icon: Icons.inventory_2_outlined,
               initialValue: _resolveProductTypeText(),
               readOnly: true,
-              onTap: () => _pickProductType(context),
+              enabled: false,
+              // onTap: () => _pickProductType(context),
             ),
 
             // Checkbox "Chuyển kho" bên trái + Field "Chuyển kho" bên phải
@@ -384,10 +393,11 @@ Widget _buildBody(DetailGDNItemResponse? info) {
                 icon: Icons.swap_horiz_outlined,
                 initialValue: _resolveInternalWarehouseText(),
                 readOnly: true,
-                enabled: widget.detail.isTransferInternalChecked,
-                onTap: widget.detail.isTransferInternalChecked
-                    ? () => _pickInternalWarehouse(context)
-                    : null,
+                enabled: false,
+                // enabled: widget.detail.isTransferInternalChecked,
+                // onTap: widget.detail.isTransferInternalChecked
+                //     ? () => _pickInternalWarehouse(context)
+                //     : null,
               ),
             ),
             // Checkbox "Chuyển kho nội bộ" bên trái + Field "Loại kho chuyển" bên phải
@@ -401,10 +411,11 @@ Widget _buildBody(DetailGDNItemResponse? info) {
                 icon: Icons.category_outlined,
                 initialValue: _resolveInternalKhoTypeText(),
                 readOnly: true,
-                enabled: widget.detail.isInternalChecked,
-                onTap: widget.detail.isInternalChecked
-                    ? () => _pickInternalKhoType(context)
-                    : null,
+                enabled: false,
+                // enabled: widget.detail.isInternalChecked,
+                // onTap: widget.detail.isInternalChecked
+                //     ? () => _pickInternalKhoType(context)
+                //     : null,
               ),
             ),
           ],
@@ -421,7 +432,8 @@ Widget _buildBody(DetailGDNItemResponse? info) {
               icon: Icons.people_alt_outlined,
               initialValue: _resolveCustomerText(),
               readOnly: true,
-              onTap: () => _pickCustomer(context),
+              enabled: false,
+              // onTap: () => _pickCustomer(context),
             ),
             // Địa chỉ khách hàng - read-only, tự fill từ customer.address
             _ReadonlyFieldRow(
@@ -436,7 +448,8 @@ Widget _buildBody(DetailGDNItemResponse? info) {
               icon: Icons.local_shipping_outlined,
               initialValue: _resolveDeliveryAddressText(),
               readOnly: true,
-              onTap: () => _pickDeliveryAddress(context),
+              enabled: false,
+              // onTap: () => _pickDeliveryAddress(context),
             ),
             FormInputField(
               nameForm: 'gdn_supplier',
@@ -445,7 +458,8 @@ Widget _buildBody(DetailGDNItemResponse? info) {
               icon: Icons.local_shipping_outlined,
               initialValue: _resolveSupplierText(),
               readOnly: true,
-              onTap: () => _pickSupplier(context),
+              enabled: false,
+              // onTap: () => _pickSupplier(context),
             ),
           ],
         ),
@@ -460,7 +474,8 @@ Widget _buildBody(DetailGDNItemResponse? info) {
               label: 'Tham chiếu',
               icon: Icons.link_outlined,
               initialValue: _resolveReference(),
-              enabled: _resolveReference().isNotEmpty,
+              enabled: false,
+              // enabled: _resolveReference().isNotEmpty,
             ),
 
             FormCheckbox(
