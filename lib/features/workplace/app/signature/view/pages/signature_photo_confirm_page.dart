@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:typed_data';
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 
@@ -24,6 +25,13 @@ class _SignaturePhotoConfirmPageState extends State<SignaturePhotoConfirmPage> {
   bool _isLoading = true;
   String? _processingError;
 
+  static const Size _outputSize = Size(300, 150);
+  static const double _outputAspect = 2.0; // 300 / 150
+
+  /// Crop rect expressed in pixels of the rendered image (not normalized).
+  /// Updated by [_SignatureCropOverlay] through [_setCropRect].
+  Rect _cropRect = Rect.zero;
+
   @override
   void initState() {
     super.initState();
@@ -32,7 +40,7 @@ class _SignaturePhotoConfirmPageState extends State<SignaturePhotoConfirmPage> {
 
   Future<void> _initializeAndLoadImage() async {
     await _loadImage();
-    if (mounted) {
+    if (mounted && _imageBytes != null) {
       await _processBackgroundRemoval();
     }
   }
@@ -83,21 +91,103 @@ class _SignaturePhotoConfirmPageState extends State<SignaturePhotoConfirmPage> {
     }
   }
 
+  void _setCropRect(Rect rect) {
+    if (_cropRect == rect) return;
+    setState(() => _cropRect = rect);
+  }
+
   void _onRetake() {
     Navigator.of(context).pop('retake');
   }
 
   Future<void> _onConfirm() async {
-    if (_showTransparentBg && _transparentBytes != null) {
-      Navigator.of(context).pop(_transparentBytes);
-    } else if (_imageBytes != null) {
-      Navigator.of(context).pop(_imageBytes);
+    final source = _showTransparentBg && _transparentBytes != null
+        ? _transparentBytes!
+        : _imageBytes;
+
+    if (source == null) return;
+
+    final cropped = await _cropToOutput(source);
+    if (mounted && cropped != null) {
+      Navigator.of(context).pop(cropped);
+    }
+  }
+
+  /// Decode, crop using the rendered crop rect, and resize to
+  /// the fixed output size (300x150).
+  Future<Uint8List?> _cropToOutput(Uint8List bytes) async {
+    try {
+      final codec = await ui.instantiateImageCodec(bytes);
+      final frame = await codec.getNextFrame();
+      final image = frame.image;
+
+      // Map the rendered crop rect (which is in the BoxFit.contain
+      // image space) back to actual image pixel coordinates.
+      final decodedSize = Size(image.width.toDouble(), image.height.toDouble());
+      final renderedFit = _fitContain(decodedSize, _previewImageSize);
+
+      final cropX = (_cropRect.left - renderedFit.left) / renderedFit.width;
+      final cropY = (_cropRect.top - renderedFit.top) / renderedFit.height;
+      final cropW = _cropRect.width / renderedFit.width;
+      final cropH = _cropRect.height / renderedFit.height;
+
+      final src = Rect.fromLTWH(
+        (cropX * image.width).clamp(0.0, image.width.toDouble()),
+        (cropY * image.height).clamp(0.0, image.height.toDouble()),
+        (cropW * image.width).clamp(1.0, image.width.toDouble()),
+        (cropH * image.height).clamp(1.0, image.height.toDouble()),
+      );
+      final dst = Rect.fromLTWH(0, 0, _outputSize.width, _outputSize.height);
+
+      final recorder = ui.PictureRecorder();
+      final canvas = Canvas(recorder);
+      canvas.drawImageRect(image, src, dst, Paint());
+      final picture = recorder.endRecording();
+      final resized = await picture.toImage(
+        _outputSize.width.toInt(),
+        _outputSize.height.toInt(),
+      );
+      final data = await resized.toByteData(format: ui.ImageByteFormat.png);
+      image.dispose();
+      resized.dispose();
+      if (data == null) return null;
+      return data.buffer.asUint8List();
+    } catch (e) {
+      debugPrint('Crop to output failed: $e');
+      return bytes;
     }
   }
 
   @override
   void dispose() {
     super.dispose();
+  }
+
+  // Rendered size of the image preview (the Stack area where both
+  // the image and the crop overlay are laid out).
+  Size _previewImageSize = Size.zero;
+
+  /// Compute the rect inside [container] where an image with [source]
+  /// size would be rendered using `BoxFit.contain`.
+  static Rect _fitContain(Size source, Size container) {
+    if (source.width <= 0 || source.height <= 0) {
+      return Rect.fromLTWH(0, 0, container.width, container.height);
+    }
+    final srcAspect = source.width / source.height;
+    final dstAspect = container.width / container.height;
+
+    double w, h;
+    if (srcAspect > dstAspect) {
+      w = container.width;
+      h = w / srcAspect;
+    } else {
+      h = container.height;
+      w = h * srcAspect;
+    }
+
+    final left = (container.width - w) / 2;
+    final top = (container.height - h) / 2;
+    return Rect.fromLTWH(left, top, w, h);
   }
 
   @override
@@ -176,7 +266,10 @@ class _SignaturePhotoConfirmPageState extends State<SignaturePhotoConfirmPage> {
                         SizedBox(width: 8),
                         Text(
                           'Đang xử lý tách nền...',
-                          style: TextStyle(color: Colors.white70, fontSize: 14),
+                          style: TextStyle(
+                            color: Colors.white70,
+                            fontSize: 14,
+                          ),
                         ),
                       ],
                     ),
@@ -240,17 +333,51 @@ class _SignaturePhotoConfirmPageState extends State<SignaturePhotoConfirmPage> {
   }
 
   Widget _buildImagePreview() {
-    if (_showTransparentBg && _transparentBytes != null) {
-      return Stack(
-        fit: StackFit.expand,
-        children: [
-          CustomPaint(painter: _CheckerboardPainter()),
-          Image.memory(_transparentBytes!, fit: BoxFit.contain),
-        ],
-      );
-    }
+    final showTransparent = _showTransparentBg && _transparentBytes != null;
 
-    return Image.memory(_imageBytes!, fit: BoxFit.contain);
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final containerSize = Size(constraints.maxWidth, constraints.maxHeight);
+
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (_previewImageSize != containerSize) {
+            setState(() => _previewImageSize = containerSize);
+          }
+        });
+
+        Widget imageWidget;
+        if (showTransparent) {
+          imageWidget = Stack(
+            fit: StackFit.expand,
+            children: [
+              CustomPaint(painter: _CheckerboardPainter()),
+              Image.memory(_transparentBytes!, fit: BoxFit.contain),
+            ],
+          );
+        } else {
+          imageWidget = Image.memory(_imageBytes!, fit: BoxFit.contain);
+        }
+
+        if (!showTransparent) {
+          return imageWidget;
+        }
+
+        return Stack(
+          fit: StackFit.expand,
+          children: [
+            imageWidget,
+            Positioned.fill(
+              child: _SignatureCropOverlay(
+                containerSize: containerSize,
+                fixedAspectRatio: _outputAspect,
+                initialRect: _cropRect,
+                onChanged: _setCropRect,
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   Widget _buildPreviewOption({
@@ -300,6 +427,258 @@ class _SignaturePhotoConfirmPageState extends State<SignaturePhotoConfirmPage> {
         ),
       ),
     );
+  }
+}
+
+class _SignatureCropOverlay extends StatefulWidget {
+  final Size containerSize;
+  final double fixedAspectRatio;
+  final Rect initialRect;
+  final ValueChanged<Rect> onChanged;
+
+  const _SignatureCropOverlay({
+    required this.containerSize,
+    required this.fixedAspectRatio,
+    required this.initialRect,
+    required this.onChanged,
+  });
+
+  @override
+  State<_SignatureCropOverlay> createState() => _SignatureCropOverlayState();
+}
+
+class _SignatureCropOverlayState extends State<_SignatureCropOverlay> {
+  /// The crop rect in container coordinates. This is the source of
+  /// truth - we never recompute it from normalized values.
+  Rect? _rect;
+
+  Rect _ensureRect() {
+    if (_rect != null) return _rect!;
+    final size = widget.containerSize;
+    final h = size.width / widget.fixedAspectRatio;
+    final w = size.width;
+    final left = 0.0;
+    final top = (size.height - h) / 2;
+    final rect = Rect.fromLTWH(left, top, w, h);
+    _rect = rect;
+    return rect;
+  }
+
+  Rect _clampRect(Rect rect) {
+    final aspect = widget.fixedAspectRatio;
+    final size = widget.containerSize;
+
+    double w = rect.width;
+    double h = rect.height;
+
+    if (w / h > aspect) {
+      w = h * aspect;
+    } else {
+      h = w / aspect;
+    }
+
+    double left = rect.left;
+    double top = rect.top;
+
+    if (left < 0) left = 0;
+    if (top < 0) top = 0;
+    if (left + w > size.width) left = size.width - w;
+    if (top + h > size.height) top = size.height - h;
+
+    return Rect.fromLTWH(left, top, w, h);
+  }
+
+  void _emit(Rect rect) {
+    _rect = rect;
+    widget.onChanged(rect);
+  }
+
+  void _onMove(DragUpdateDetails details) {
+    final current = _ensureRect();
+    final shifted = current.shift(details.delta);
+    final clamped = _clampRect(shifted);
+    setState(() => _emit(clamped));
+  }
+
+  void _onCornerDrag(DragUpdateDetails details, _HandlePosition handle) {
+    final current = _ensureRect();
+    double left = current.left;
+    double top = current.top;
+    double right = current.right;
+    double bottom = current.bottom;
+
+    switch (handle) {
+      case _HandlePosition.topLeft:
+        left += details.delta.dx;
+        top += details.delta.dy;
+        break;
+      case _HandlePosition.topRight:
+        right += details.delta.dx;
+        top += details.delta.dy;
+        break;
+      case _HandlePosition.bottomLeft:
+        left += details.delta.dx;
+        bottom += details.delta.dy;
+        break;
+      case _HandlePosition.bottomRight:
+        right += details.delta.dx;
+        bottom += details.delta.dy;
+        break;
+    }
+
+    final aspect = widget.fixedAspectRatio;
+    double width = right - left;
+    double height = bottom - top;
+
+    if (width / height > aspect) {
+      width = height * aspect;
+    } else {
+      height = width / aspect;
+    }
+
+    // Minimum size to avoid collapsing to nothing.
+    const minSize = 60.0;
+    if (width < minSize) {
+      width = minSize;
+      height = width / aspect;
+    }
+    if (height < minSize / aspect) {
+      height = minSize / aspect;
+      width = height * aspect;
+    }
+
+    switch (handle) {
+      case _HandlePosition.topLeft:
+        left = right - width;
+        top = bottom - height;
+        break;
+      case _HandlePosition.topRight:
+        right = left + width;
+        top = bottom - height;
+        break;
+      case _HandlePosition.bottomLeft:
+        left = right - width;
+        bottom = top + height;
+        break;
+      case _HandlePosition.bottomRight:
+        right = left + width;
+        bottom = top + height;
+        break;
+    }
+
+    final clamped = _clampRect(
+      Rect.fromLTRB(left, top, right, bottom),
+    );
+    setState(() => _emit(clamped));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final rect = _ensureRect();
+
+    return Stack(
+      children: [
+        // Dim everything outside the crop rect.
+        Positioned.fill(
+          child: CustomPaint(painter: _CropDimPainter(cropRect: rect)),
+        ),
+        // Movable crop frame.
+        Positioned.fromRect(
+          rect: rect,
+          child: GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onPanUpdate: _onMove,
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: AppColors.primaryERP,
+                  width: 2,
+                ),
+              ),
+            ),
+          ),
+        ),
+        _buildHandles(rect),
+        // Helper label.
+        Positioned(
+          left: rect.left,
+          top: (rect.top - 28).clamp(4.0, double.infinity),
+          child: Container(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8,
+              vertical: 4,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.black54,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: const Text(
+              'Kéo khung để căn chữ ký',
+              style: TextStyle(color: Colors.white, fontSize: 12),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildHandles(Rect rect) {
+    const handleSize = 22.0;
+    final positions = {
+      _HandlePosition.topLeft: rect.topLeft,
+      _HandlePosition.topRight: rect.topRight,
+      _HandlePosition.bottomLeft: rect.bottomLeft,
+      _HandlePosition.bottomRight: rect.bottomRight,
+    };
+
+    return Stack(
+      children: positions.entries.map((entry) {
+        return Positioned(
+          left: entry.value.dx - handleSize / 2,
+          top: entry.value.dy - handleSize / 2,
+          child: GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onPanUpdate: (d) => _onCornerDrag(d, entry.key),
+            child: Container(
+              width: handleSize,
+              height: handleSize,
+              decoration: BoxDecoration(
+                color: AppColors.primaryERP,
+                shape: BoxShape.circle,
+                border: Border.all(color: Colors.white, width: 2),
+              ),
+            ),
+          ),
+        );
+      }).toList(),
+    );
+  }
+}
+
+enum _HandlePosition { topLeft, topRight, bottomLeft, bottomRight }
+
+class _CropDimPainter extends CustomPainter {
+  final Rect cropRect;
+
+  _CropDimPainter({required this.cropRect});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = Colors.black.withValues(alpha: 0.55)
+      ..style = PaintingStyle.fill;
+
+    final path = Path()
+      ..addRect(Rect.fromLTWH(0, 0, size.width, size.height))
+      ..addRect(cropRect)
+      ..fillType = PathFillType.evenOdd;
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant _CropDimPainter oldDelegate) {
+    return oldDelegate.cropRect != cropRect;
   }
 }
 

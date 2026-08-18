@@ -55,8 +55,34 @@ class SignatureImageHelper {
     );
 
     // ------------------------------------------------------------
-    // 1. Extract alpha from brightness
+    // 1. Estimate background color from image corners.
+    //    The signature is normally centered; corners are clean paper
+    //    or shadow background. Using the median sample keeps us safe
+    //    from one shadowed corner pulling the estimate.
     // ------------------------------------------------------------
+
+    final bg = _sampleBackground(source);
+
+    // ------------------------------------------------------------
+    // 2. Compute alpha using darkness-from-paper test.
+    //
+    //    Heuristic for signature on paper:
+    //      - Ink       : much darker than paper (luminance << bg).
+    //      - Paper     : luminance ~ paper luminance.
+    //      - Shadow    : slightly darker than paper, but still close.
+    //
+    //    We pick a darkness cutoff that puts shadow on the
+    //    background side and ink on the opaque side.
+    // ------------------------------------------------------------
+
+    final bgLuminance = bg.luminance;
+
+    // Pick a darkness threshold. Paper brightness is sampled from
+    // corners; real ink usually sits at least 60 units darker than
+    // the paper, while shadows are within ~40 units. Anything
+    // between gets a soft fade.
+    const darknessSolid = 70.0; // >= this => full ink
+    const darknessFade = 35.0; // <= this => background
 
     for (int y = 0; y < source.height; y++) {
       for (int x = 0; x < source.width; x++) {
@@ -66,49 +92,38 @@ class SignatureImageHelper {
         final g = pixel.g.toDouble();
         final b = pixel.b.toDouble();
 
-        // Perceived brightness.
-        final brightness =
-            0.299 * r +
-            0.587 * g +
-            0.114 * b;
+        final luminance =
+            0.299 * r + 0.587 * g + 0.114 * b;
+
+        final darkness = bgLuminance - luminance;
 
         int alpha;
-
-        if (brightness >= threshold) {
-          // White / near-white background.
-          alpha = 0;
-        } else if (brightness <= blackPoint) {
-          // Dark signature.
+        if (darkness >= darknessSolid) {
           alpha = 255;
+        } else if (darkness <= darknessFade) {
+          alpha = 0;
         } else {
-          // Soft alpha for anti-aliased edges.
-          final value =
-              (threshold - brightness) /
-              (threshold - blackPoint);
-
-          alpha = (value * 255)
-              .clamp(0, 255)
-              .round();
+          final t = (darkness - darknessFade) /
+              (darknessSolid - darknessFade);
+          alpha = (t * 255).clamp(0, 255).round();
         }
 
         if (alpha == 0) {
-          image.setPixelRgba(
-            x,
-            y,
-            255,
-            255,
-            255,
-            0,
-          );
+          image.setPixelRgba(x, y, 0, 0, 0, 0);
         } else {
-          image.setPixelRgba(
-            x,
-            y,
-            r.round(),
-            g.round(),
-            b.round(),
-            alpha,
-          );
+          // Normalize RGB against the background so the ink comes
+          // out clean (no paper tint bleeding into the dark pixels).
+          final nr = (r - bg.r * (1 - alpha / 255.0))
+              .clamp(0, 255)
+              .round();
+          final ng = (g - bg.g * (1 - alpha / 255.0))
+              .clamp(0, 255)
+              .round();
+          final nb = (b - bg.b * (1 - alpha / 255.0))
+              .clamp(0, 255)
+              .round();
+
+          image.setPixelRgba(x, y, nr, ng, nb, alpha);
         }
       }
     }
@@ -204,9 +219,65 @@ class SignatureImageHelper {
     );
   }
 
-  // ============================================================
-  // Bounding Box
-  // ============================================================
+// ============================================================
+// Background Sampling
+// ============================================================
+
+/// Sample the dominant background color by averaging a ring of pixels
+/// near each corner. Returns a clean estimate of paper color,
+/// including any tint (yellowish, grayish) or shadow.
+///
+/// We avoid a single median because shadow at one corner would
+/// skew the estimate badly. Multi-corner + center-ish sampling
+/// gives a robust paper color.
+static _Color _sampleBackground(img.Image image) {
+  const int size = 12; // patch size around the sample point
+
+  final samples = <_Color>[];
+
+  void addPatch(int cx, int cy) {
+    double r = 0, g = 0, b = 0;
+    int n = 0;
+    for (int dy = -size; dy <= size; dy++) {
+      for (int dx = -size; dx <= size; dx++) {
+        final x = (cx + dx).clamp(0, image.width - 1);
+        final y = (cy + dy).clamp(0, image.height - 1);
+        final p = image.getPixel(x, y);
+        r += p.r;
+        g += p.g;
+        b += p.b;
+        n++;
+      }
+    }
+    samples.add(
+      _Color(r / n, g / n, b / n),
+    );
+  }
+
+  // Four corners.
+  addPatch(0, 0);
+  addPatch(image.width - 1, 0);
+  addPatch(0, image.height - 1);
+  addPatch(image.width - 1, image.height - 1);
+
+  // Mid-edges (less likely to be the signature).
+  addPatch(image.width ~/ 2, 4);
+  addPatch(image.width ~/ 2, image.height - 5);
+
+  // Median by luminance -> picks the "background-ish" patches over
+  // the shadow patch.
+  samples.sort(
+    (a, b) => a.luminance.compareTo(b.luminance),
+  );
+  final median =
+      samples[samples.length ~/ 2];
+
+  return median;
+}
+
+// ============================================================
+// Bounding Box
+// ============================================================
 
   static _Bounds? _findBounds(img.Image image) {
     int? minX;
@@ -361,6 +432,17 @@ class SignatureImageHelper {
 // ================================================================
 // Internal models
 // ================================================================
+
+class _Color {
+  final double r;
+  final double g;
+  final double b;
+
+  const _Color(this.r, this.g, this.b);
+
+  double get luminance =>
+      0.299 * r + 0.587 * g + 0.114 * b;
+}
 
 class _Point {
   final int x;

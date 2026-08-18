@@ -1,11 +1,11 @@
 import 'dart:io';
 import 'dart:typed_data';
+import 'dart:ui';
 
 import 'package:camerawesome/camerawesome_plugin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:image_cropper/image_cropper.dart';
 
 import '../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../base/widgets/base_widget.dart';
@@ -29,6 +29,7 @@ class _SignatureAddScreenState
   final GlobalKey<SmoothSignatureCanvasState> _signatureKey = GlobalKey();
 
   late TabController _tabController;
+  int _currentTabIndex = 0;
 
   String? _capturedImagePath;
   Uint8List? _processedImageBytes;
@@ -66,45 +67,18 @@ class _SignatureAddScreenState
       ),
     );
 
-    if (result != null && result is Uint8List && mounted) {
+    if (!mounted) return;
+
+    if (result == null || result == 'cancel' || result == 'retake') return;
+
+    if (result is Uint8List) {
       setState(() {
         _rawCameraBytes = result;
         _capturedImagePath = null;
         _processedImageBytes = result;
       });
-    }
-  }
-
-  Future<void> _cropAndProcessImage() async {
-    if (_rawCameraBytes == null && _capturedImagePath == null) return;
-
-    final sourcePath = _capturedImagePath;
-    if (sourcePath == null) return;
-
-    final croppedFile = await ImageCropper().cropImage(
-      sourcePath: sourcePath,
-      uiSettings: [
-        AndroidUiSettings(
-          toolbarTitle: 'Cắt ảnh',
-          toolbarColor: AppColors.primaryERP,
-          toolbarWidgetColor: Colors.white,
-          initAspectRatio: CropAspectRatioPreset.square,
-          lockAspectRatio: false,
-          hideBottomControls: false,
-        ),
-        IOSUiSettings(
-          title: 'Cắt ảnh',
-          cancelButtonTitle: 'Huỷ',
-          doneButtonTitle: 'Xong',
-        ),
-      ],
-    );
-
-    if (croppedFile != null && mounted) {
-      final bytes = await File(croppedFile.path).readAsBytes();
-      setState(() {
-        _processedImageBytes = bytes;
-      });
+      // Auto-submit: confirmed bytes are already cropped to 300x150.
+      bloc.add(MySignatureEvent.saveEmployeeSignature(result));
     }
   }
 
@@ -164,38 +138,50 @@ class _SignatureAddScreenState
           ),
           body: Column(
             children: [
-              // Container(
-              //   margin: const EdgeInsets.all(16),
-              //   decoration: BoxDecoration(
-              //     color: AppColors.grey_bg,
-              //     borderRadius: BorderRadius.circular(12),
-              //   ),
-              //   child: TabBar(
-              //     controller: _tabController,
-              //     indicator: BoxDecoration(
-              //       color: AppColors.primaryERP,
-              //       borderRadius: BorderRadius.circular(10),
-              //     ),
-              //     indicatorSize: TabBarIndicatorSize.tab,
-              //     indicatorPadding: const EdgeInsets.all(4),
-              //     dividerColor: Colors.transparent,
-              //     labelColor: Colors.white,
-              //     unselectedLabelColor: AppColors.textSecondaryColor,
-              //     labelStyle: const TextStyle(
-              //       fontWeight: FontWeight.w600,
-              //       fontSize: 14,
-              //     ),
-              //     tabs: const [
-              //       Tab(text: 'Khung ký'),
-              //       Tab(text: 'Chụp ảnh'),
-              //     ],
-              //   ),
-              // ),
-              Expanded(
-                child: _buildSignatureTab(),
+              Container(
+                margin: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: AppColors.grey_bg,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: TabBar(
+                  controller: _tabController,
+                  onTap: (index) {
+                    setState(() => _currentTabIndex = index);
+                  },
+                  indicator: BoxDecoration(
+                    color: AppColors.primaryERP,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  indicatorSize: TabBarIndicatorSize.tab,
+                  indicatorPadding: const EdgeInsets.all(4),
+                  dividerColor: Colors.transparent,
+                  labelColor: Colors.white,
+                  unselectedLabelColor: AppColors.textSecondaryColor,
+                  labelStyle: const TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14,
+                  ),
+                  tabs: const [
+                    Tab(text: 'Khung ký'),
+                    Tab(text: 'Chụp ảnh'),
+                  ],
+                ),
               ),
-              const SizedBox(height: 8),
-              _buildBottomButtons(state),
+              Expanded(
+                child: TabBarView(
+                  controller: _tabController,
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: [
+                    _buildSignatureTab(),
+                    _buildPhotoTab(),
+                  ],
+                ),
+              ),
+              if (_currentTabIndex == 0) ...[
+                const SizedBox(height: 8),
+                _buildBottomButtons(state),
+              ],
             ],
           ),
         );
@@ -400,13 +386,15 @@ class _SignatureAddScreenState
   }
 
   Widget _buildBottomButtons(MySignatureState state) {
+    final isSignatureTab = _currentTabIndex == 0;
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
       child: Row(
         children: [
           Expanded(
             child: OutlinedButton.icon(
-              onPressed: _clearSignature,
+              onPressed: isSignatureTab ? _clearSignature : _clearPhoto,
               icon: const Icon(Icons.refresh),
               label: const Text('Xoá'),
               style: OutlinedButton.styleFrom(
@@ -421,7 +409,9 @@ class _SignatureAddScreenState
           const SizedBox(width: 16),
           Expanded(
             child: ElevatedButton.icon(
-              onPressed: state.isSaving ? null : _saveSignature,
+              onPressed: state.isSaving
+                  ? null
+                  : (isSignatureTab ? _saveSignature : _savePhoto),
               icon: state.isSaving
                   ? const SizedBox(
                       width: 20,
@@ -539,27 +529,6 @@ class _SignatureCameraPageState extends State<SignatureCameraPage> {
                     onPressed: () => Navigator.of(context).pop(),
                   ),
                 ],
-              ),
-            ),
-          ),
-        ),
-        Positioned(
-          left: 0,
-          right: 0,
-          bottom: 120,
-          child: Center(
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              decoration: BoxDecoration(
-                color: Colors.black54,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: const Text(
-                'Đặt chữ ký trong khung',
-                style: TextStyle(
-                  color: Colors.white70,
-                  fontSize: 14,
-                ),
               ),
             ),
           ),
