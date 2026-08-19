@@ -39,7 +39,7 @@ class SignatureImageHelper {
     int blackPoint = 100,
     int padding = 10,
     bool removeNoise = true,
-    int minComponentSize = 3,
+    int minComponentSize = 2,
     int? outputWidth,
   }) {
     final source = img.decodeImage(inputBytes);

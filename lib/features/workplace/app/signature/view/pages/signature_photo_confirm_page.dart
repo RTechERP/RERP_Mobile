@@ -25,8 +25,8 @@ class _SignaturePhotoConfirmPageState extends State<SignaturePhotoConfirmPage> {
   bool _isLoading = true;
   String? _processingError;
 
-  static const Size _outputSize = Size(300, 150);
-  static const double _outputAspect = 2.0; // 300 / 150
+  static const Size _outputSize = Size(600, 300);
+  static const double _outputAspect = 2.0; // 600 / 300
 
   /// Crop rect expressed in pixels of the rendered image (not normalized).
   /// Updated by [_SignatureCropOverlay] through [_setCropRect].
@@ -85,10 +85,29 @@ class _SignaturePhotoConfirmPageState extends State<SignaturePhotoConfirmPage> {
         setState(() {
           _isProcessing = false;
           _showTransparentBg = false;
-          _processingError = e.toString();
+          _processingError = _humanizeError(e);
         });
       }
     }
+  }
+
+  /// Translate low-level exceptions into a short, user-facing
+  /// message in Vietnamese.
+  String _humanizeError(Object e) {
+    final raw = e.toString();
+    if (raw.contains('Invalid image data')) {
+      return 'Ảnh không hợp lệ. Vui lòng chọn ảnh khác.';
+    }
+    if (raw.contains('No signature detected')) {
+      return 'Không nhận diện được chữ ký. Vui lòng chụp lại với nét đậm hơn và rõ nét hơn.';
+    }
+    if (raw.contains('FormatException')) {
+      return 'Định dạng ảnh không được hỗ trợ. Vui lòng chọn ảnh JPG hoặc PNG.';
+    }
+    if (raw.contains('OutOfMemory') || raw.contains('ImageTooLarge')) {
+      return 'Ảnh quá lớn. Vui lòng chọn ảnh có dung lượng nhỏ hơn.';
+    }
+    return 'Không thể xử lý ảnh. Vui lòng thử lại hoặc chụp ảnh khác.';
   }
 
   void _setCropRect(Rect rect) {
@@ -141,7 +160,10 @@ class _SignaturePhotoConfirmPageState extends State<SignaturePhotoConfirmPage> {
 
       final recorder = ui.PictureRecorder();
       final canvas = Canvas(recorder);
-      canvas.drawImageRect(image, src, dst, Paint());
+      final paint = Paint()
+        ..filterQuality = FilterQuality.high
+        ..isAntiAlias = true;
+      canvas.drawImageRect(image, src, dst, paint);
       final picture = recorder.endRecording();
       final resized = await picture.toImage(
         _outputSize.width.toInt(),
@@ -277,15 +299,67 @@ class _SignaturePhotoConfirmPageState extends State<SignaturePhotoConfirmPage> {
                 if (_processingError != null)
                   Container(
                     margin: const EdgeInsets.only(bottom: 16),
-                    padding: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color: Colors.red.withValues(alpha: 0.2),
+                      color: Colors.red.withValues(alpha: 0.12),
                       borderRadius: BorderRadius.circular(8),
+                      border: Border.all(
+                        color: Colors.red.withValues(alpha: 0.4),
+                      ),
                     ),
-                    child: Text(
-                      'Lỗi: $_processingError',
-                      style: const TextStyle(color: Colors.red, fontSize: 12),
-                      textAlign: TextAlign.center,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: const [
+                            Icon(
+                              Icons.error_outline,
+                              color: Colors.red,
+                              size: 18,
+                            ),
+                            SizedBox(width: 6),
+                            Text(
+                              'Không thể tách nền ảnh',
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 13,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          _processingError!,
+                          style: const TextStyle(
+                            color: Colors.red,
+                            fontSize: 12,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: TextButton(
+                            onPressed: _isProcessing
+                                ? null
+                                : () {
+                                    setState(() =>
+                                        _processingError = null);
+                                    _processBackgroundRemoval();
+                                  },
+                            style: TextButton.styleFrom(
+                              foregroundColor: Colors.red,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                              ),
+                            ),
+                            child: const Text(
+                              'Thử lại',
+                              style: TextStyle(fontSize: 12),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 Row(
