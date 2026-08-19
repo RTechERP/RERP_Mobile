@@ -328,35 +328,12 @@ class _SignaturePhotoConfirmPageState extends State<SignaturePhotoConfirmPage> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 6),
+                          const SizedBox(height: 6),
                         Text(
                           _processingError!,
                           style: const TextStyle(
                             color: Colors.red,
                             fontSize: 12,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: TextButton(
-                            onPressed: _isProcessing
-                                ? null
-                                : () {
-                                    setState(() =>
-                                        _processingError = null);
-                                    _processBackgroundRemoval();
-                                  },
-                            style: TextButton.styleFrom(
-                              foregroundColor: Colors.red,
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 8,
-                              ),
-                            ),
-                            child: const Text(
-                              'Thử lại',
-                              style: TextStyle(fontSize: 12),
-                            ),
                           ),
                         ),
                       ],

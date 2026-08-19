@@ -1,11 +1,12 @@
 import 'dart:io';
 import 'dart:typed_data';
-import 'dart:ui';
 
 import 'package:camerawesome/camerawesome_plugin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 
 import '../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../base/widgets/base_widget.dart';
@@ -60,6 +61,27 @@ class _SignatureAddScreenState
     });
   }
 
+  Future<void> _pickImage() async {
+    final choice = await showModalBottomSheet<_ImageSourceChoice>(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (_) => const _ImageSourceBottomSheet(),
+    );
+
+    if (!mounted) return;
+
+    switch (choice) {
+      case _ImageSourceChoice.camera:
+        await _openCamera();
+        break;
+      case _ImageSourceChoice.gallery:
+        await _pickFromGallery();
+        break;
+      case null:
+        break;
+    }
+  }
+
   Future<void> _openCamera() async {
     final result = await Navigator.of(context).push<dynamic>(
       MaterialPageRoute(
@@ -79,6 +101,53 @@ class _SignatureAddScreenState
       });
       // Auto-submit: confirmed bytes are already cropped to 300x150.
       bloc.add(MySignatureEvent.saveEmployeeSignature(result));
+    }
+  }
+
+  Future<void> _pickFromGallery() async {
+    try {
+      final picker = ImagePicker();
+      final picked = await picker.pickImage(
+        source: ImageSource.gallery,
+        imageQuality: 100,
+      );
+      if (!mounted) return;
+      if (picked == null) return;
+
+      // Copy the picked file to a temp location so the downstream
+      // confirm page (which expects a file path) can reuse it.
+      final tempDir = await getTemporaryDirectory();
+      final dest = File(
+        '${tempDir.path}/sig_${DateTime.now().millisecondsSinceEpoch}.png',
+      );
+      await File(picked.path).copy(dest.path);
+
+      final result = await Navigator.of(context).push<dynamic>(
+        MaterialPageRoute(
+          builder: (_) => SignaturePhotoConfirmPage(imagePath: dest.path),
+        ),
+      );
+
+      if (!mounted) return;
+
+      if (result == null || result == 'cancel') return;
+      if (result == 'retake') return;
+
+      if (result is Uint8List) {
+        setState(() {
+          _rawCameraBytes = result;
+          _capturedImagePath = null;
+          _processedImageBytes = result;
+        });
+        bloc.add(MySignatureEvent.saveEmployeeSignature(result));
+      }
+    } catch (e) {
+      if (!mounted) return;
+      showMessage(
+        context,
+        'Không thể chọn ảnh. Vui lòng thử lại.',
+        type: SnackBarType.error,
+      );
     }
   }
 
@@ -164,7 +233,7 @@ class _SignatureAddScreenState
                   ),
                   tabs: const [
                     Tab(text: 'Khung ký'),
-                    Tab(text: 'Chụp ảnh'),
+                    Tab(text: 'Ảnh chữ ký'),
                   ],
                 ),
               ),
@@ -277,7 +346,7 @@ class _SignatureAddScreenState
                 Icon(Icons.camera_alt_outlined, size: 20, color: AppColors.primaryERP),
                 const SizedBox(width: 8),
                 Text(
-                  'Chụp ảnh chữ ký',
+                  'Ảnh chữ ký',
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
@@ -316,7 +385,7 @@ class _SignatureAddScreenState
             ),
             const SizedBox(height: 16),
             Text(
-              'Chụp ảnh chữ ký của bạn',
+              'Chụp hoặc chọn ảnh chữ ký của bạn',
               style: TextStyle(
                 fontSize: 16,
                 color: AppColors.textSecondaryColor,
@@ -332,9 +401,9 @@ class _SignatureAddScreenState
             ),
             const SizedBox(height: 24),
             ElevatedButton.icon(
-              onPressed: _openCamera,
+              onPressed: _pickImage,
               icon: const Icon(Icons.camera_alt),
-              label: const Text('Chụp ảnh'),
+              label: const Text('Ảnh chữ ký'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primaryERP,
                 foregroundColor: Colors.white,
@@ -663,6 +732,87 @@ class _ShutterButton extends StatelessWidget {
               color: Colors.white,
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+// ============================================================
+// Image source picker (camera / gallery)
+// ============================================================
+
+enum _ImageSourceChoice { camera, gallery }
+
+class _ImageSourceBottomSheet extends StatelessWidget {
+  const _ImageSourceBottomSheet();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      child: SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 40,
+              height: 4,
+              margin: const EdgeInsets.only(top: 12),
+              decoration: BoxDecoration(
+                color: Colors.grey[300],
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.all(16),
+              child: Text(
+                'Chọn chế độ',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: AppColors.primaryERP.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: const Icon(
+                  Icons.camera_alt_outlined,
+                  color: AppColors.primaryERP,
+                ),
+              ),
+              title: const Text('Chụp ảnh'),
+              subtitle: const Text('Mở camera để chụp ảnh'),
+              onTap: () =>
+                  Navigator.of(context).pop(_ImageSourceChoice.camera),
+            ),
+            ListTile(
+              leading: Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Colors.orange.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: const Icon(
+                  Icons.photo_library_outlined,
+                  color: Colors.orange,
+                ),
+              ),
+              title: const Text('Chọn ảnh từ bộ nhớ'),
+              subtitle: const Text('Chọn ảnh có sẵn trên thiết bị'),
+              onTap: () =>
+                  Navigator.of(context).pop(_ImageSourceChoice.gallery),
+            ),
+            const SizedBox(height: 16),
+          ],
         ),
       ),
     );
