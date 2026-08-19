@@ -37,6 +37,7 @@ class SaleGdnForm extends StatefulWidget {
     required this.onSelectSupplier,
     required this.onSelectSender,
     required this.onSelectReceiver,
+    required this.onSelectBorrower,
     required this.onSelectCustomer,
     required this.onSelectCustomerWithAddress,
     required this.onSelectKhoType,
@@ -79,6 +80,7 @@ class SaleGdnForm extends StatefulWidget {
   final ValueChanged<int?> onSelectSupplier;
   final ValueChanged<int?> onSelectSender;
   final ValueChanged<int?> onSelectReceiver;
+  final ValueChanged<int?> onSelectBorrower;
   final ValueChanged<int?> onSelectCustomer;
   final void Function(int? id, String? address) onSelectCustomerWithAddress;
   final ValueChanged<int?> onSelectKhoType;
@@ -115,6 +117,13 @@ const _kFieldCustomer = 'gdn_customer';
 const _kFieldDeliveryAddress = 'gdn_delivery_address';
 const _kFieldSupplier = 'gdn_supplier';
 const _kFieldIsIncurred = 'gdn_is_incurred';
+const _kFieldBorrower = 'gdn_borrower';
+
+/// Các trạng thái thuộc nhóm "mượn" — sẽ hiển thị thêm field "Người mượn".
+const _kBorrowStatusValues = <int>{0, 7};
+
+bool _isBorrowStatus(int? status) =>
+    status != null && _kBorrowStatusValues.contains(status);
 
 class _SaleGdnFormState extends State<SaleGdnForm> {
   // Trạng thái thu/mở toàn bộ card thông tin. Mặc định collapse.
@@ -220,11 +229,21 @@ class _SaleGdnFormState extends State<SaleGdnForm> {
       widget.detail.receiveTime ?? info?.deliveryTime,
     );
 
-    // Checkbox "Phát sinh" - auto tick theo logic ở title.
+// Checkbox "Phát sinh" - auto tick theo logic ở title.
     form.fields[_kFieldIsIncurred]?.didChange(_isIncurred());
+
+    // Đồng bộ field "Người mượn" khi status thuộc nhóm mượn.
+    if (_showBorrowerField) {
+      form.fields[_kFieldBorrower]?.didChange(_resolveBorrowerText());
+    }
   }
 
-  Widget _buildBody(DetailGDNItemResponse? info) {
+  /// Trả về true nếu status hiện tại thuộc nhóm mượn (Mượn / Y/C mượn).
+  bool get _showBorrowerField =>
+      _isBorrowStatus(widget.detail.selectedStatus ??
+          widget.detail.billInfo?.status);
+
+Widget _buildBody(DetailGDNItemResponse? info) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -239,12 +258,16 @@ class _SaleGdnFormState extends State<SaleGdnForm> {
               icon: Icons.flag_outlined,
               initialValue: _resolveStatusText(),
               readOnly: true,
-              onTap: () => _pickStatus(context),
-              isRequired: true,
-              validator: FormBuilderValidators.required(
-                errorText: 'Vui lòng chọn trạng thái',
-              ),
+              enabled: false,
+              // onTap: () => _pickStatus(context),
+              // isRequired: true,
+              // validator: FormBuilderValidators.required(
+              //   errorText: 'Vui lòng chọn trạng thái',
+              // ),
             ),
+            // Khi trạng thái phiếu là Mượn (0) hoặc Y/C mượn (7), đổi thứ tự:
+            // "Người giao" đặt trước, "Người mượn" đặt sau. Các trạng
+            // thái khác giữ nguyên thứ tự (chỉ hiện "Người giao").
             FormInputField(
               nameForm: 'gdn_sender',
               nameTextField: 'gdn_sender_text',
@@ -252,24 +275,43 @@ class _SaleGdnFormState extends State<SaleGdnForm> {
               icon: Icons.delivery_dining_outlined,
               initialValue: _resolveSenderText(),
               readOnly: true,
-              onTap: () => _pickSender(context),
-              isRequired: true,
-              validator: FormBuilderValidators.required(
-                errorText: 'Vui lòng chọn người giao',
-              ),
+              enabled: false,
+              // onTap: () => _pickSender(context),
+              // isRequired: true,
+              // validator: FormBuilderValidators.required(
+              //   errorText: 'Vui lòng chọn người giao',
+              // ),
             ),
+            // Map từ billInfo.receiverId; chỉ hiện khi trạng thái phiếu
+            // là Mượn (0) hoặc Y/C mượn (7).
+            if (_showBorrowerField)
+              FormInputField(
+                nameForm: 'gdn_borrower',
+                nameTextField: 'gdn_borrower_text',
+                label: 'Người mượn',
+                icon: Icons.person_pin_outlined,
+                initialValue: _resolveBorrowerText(),
+                readOnly: true,
+                enabled: false,
+                // onTap: () => _pickBorrower(context),
+                // isRequired: true,
+                // validator: FormBuilderValidators.required(
+                //   errorText: 'Vui lòng chọn người mượn',
+                // ),
+              ),
             FormInputField(
               nameForm: 'gdn_receiver',
               nameTextField: 'gdn_receiver_text',
               label: 'Người nhận',
+              enabled: false,
               icon: Icons.assignment_ind_outlined,
               initialValue: _resolveReceiverText(),
               readOnly: true,
-              onTap: () => _pickReceiver(context),
-              isRequired: true,
-              validator: FormBuilderValidators.required(
-                errorText: 'Vui lòng chọn người nhận',
-              ),
+              // onTap: () => _pickReceiver(context),
+              // isRequired: true,
+              // validator: FormBuilderValidators.required(
+              //   errorText: 'Vui lòng chọn người nhận',
+              // ),
             ),
             FormDateTimePicker(
               nameForm: 'gdn_delivery_date',
@@ -280,10 +322,11 @@ class _SaleGdnFormState extends State<SaleGdnForm> {
               format: DateFormat('dd/MM/yyyy'),
               initialValue: widget.detail.deliveryDate ?? info?.deliveryTime,
               onChanged: widget.onChangeDeliveryDate,
-              isRequired: true,
-              validator: FormBuilderValidators.required(
-                errorText: 'Vui lòng chọn ngày xuất phiếu',
-              ),
+              enabled: false,
+              // isRequired: true,
+              // validator: FormBuilderValidators.required(
+              //   errorText: 'Vui lòng chọn ngày xuất phiếu',
+              // ),
             ),
             FormDateTimePicker(
               nameForm: 'gdn_request_date',
@@ -294,6 +337,7 @@ class _SaleGdnFormState extends State<SaleGdnForm> {
               format: DateFormat('dd/MM/yyyy'),
               initialValue: widget.detail.requestDate ?? info?.requestDate,
               onChanged: widget.onChangeRequestDate,
+              enabled: false,
             ),
             FormDateTimePicker(
               nameForm: 'gdn_receive_time',
@@ -304,6 +348,7 @@ class _SaleGdnFormState extends State<SaleGdnForm> {
               format: DateFormat('dd/MM/yyyy HH:mm'),
               initialValue: widget.detail.receiveTime ?? info?.deliveryTime,
               onChanged: widget.onChangeReceiveTime,
+              enabled: false,
             ),
           ],
         ),
@@ -319,11 +364,12 @@ class _SaleGdnFormState extends State<SaleGdnForm> {
               icon: Icons.category_outlined,
               initialValue: _resolveLoaiKhoText(),
               readOnly: true,
-              onTap: () => _pickLoaiKho(context),
-              isRequired: true,
-              validator: FormBuilderValidators.required(
-                errorText: 'Vui lòng chọn loại kho',
-              ),
+              enabled: false,
+              // onTap: () => _pickLoaiKho(context),
+              // isRequired: true,
+              // validator: FormBuilderValidators.required(
+              //   errorText: 'Vui lòng chọn loại kho',
+              // ),
             ),
             FormInputField(
               nameForm: 'gdn_warehouse',
@@ -332,7 +378,8 @@ class _SaleGdnFormState extends State<SaleGdnForm> {
               icon: Icons.inventory_2_outlined,
               initialValue: _resolveProductTypeText(),
               readOnly: true,
-              onTap: () => _pickProductType(context),
+              enabled: false,
+              // onTap: () => _pickProductType(context),
             ),
 
             // Checkbox "Chuyển kho" bên trái + Field "Chuyển kho" bên phải
@@ -346,10 +393,11 @@ class _SaleGdnFormState extends State<SaleGdnForm> {
                 icon: Icons.swap_horiz_outlined,
                 initialValue: _resolveInternalWarehouseText(),
                 readOnly: true,
-                enabled: widget.detail.isTransferInternalChecked,
-                onTap: widget.detail.isTransferInternalChecked
-                    ? () => _pickInternalWarehouse(context)
-                    : null,
+                enabled: false,
+                // enabled: widget.detail.isTransferInternalChecked,
+                // onTap: widget.detail.isTransferInternalChecked
+                //     ? () => _pickInternalWarehouse(context)
+                //     : null,
               ),
             ),
             // Checkbox "Chuyển kho nội bộ" bên trái + Field "Loại kho chuyển" bên phải
@@ -363,10 +411,11 @@ class _SaleGdnFormState extends State<SaleGdnForm> {
                 icon: Icons.category_outlined,
                 initialValue: _resolveInternalKhoTypeText(),
                 readOnly: true,
-                enabled: widget.detail.isInternalChecked,
-                onTap: widget.detail.isInternalChecked
-                    ? () => _pickInternalKhoType(context)
-                    : null,
+                enabled: false,
+                // enabled: widget.detail.isInternalChecked,
+                // onTap: widget.detail.isInternalChecked
+                //     ? () => _pickInternalKhoType(context)
+                //     : null,
               ),
             ),
           ],
@@ -383,7 +432,8 @@ class _SaleGdnFormState extends State<SaleGdnForm> {
               icon: Icons.people_alt_outlined,
               initialValue: _resolveCustomerText(),
               readOnly: true,
-              onTap: () => _pickCustomer(context),
+              enabled: false,
+              // onTap: () => _pickCustomer(context),
             ),
             // Địa chỉ khách hàng - read-only, tự fill từ customer.address
             _ReadonlyFieldRow(
@@ -398,7 +448,8 @@ class _SaleGdnFormState extends State<SaleGdnForm> {
               icon: Icons.local_shipping_outlined,
               initialValue: _resolveDeliveryAddressText(),
               readOnly: true,
-              onTap: () => _pickDeliveryAddress(context),
+              enabled: false,
+              // onTap: () => _pickDeliveryAddress(context),
             ),
             FormInputField(
               nameForm: 'gdn_supplier',
@@ -407,7 +458,8 @@ class _SaleGdnFormState extends State<SaleGdnForm> {
               icon: Icons.local_shipping_outlined,
               initialValue: _resolveSupplierText(),
               readOnly: true,
-              onTap: () => _pickSupplier(context),
+              enabled: false,
+              // onTap: () => _pickSupplier(context),
             ),
           ],
         ),
@@ -422,7 +474,8 @@ class _SaleGdnFormState extends State<SaleGdnForm> {
               label: 'Tham chiếu',
               icon: Icons.link_outlined,
               initialValue: _resolveReference(),
-              enabled: _resolveReference().isNotEmpty,
+              enabled: false,
+              // enabled: _resolveReference().isNotEmpty,
             ),
 
             FormCheckbox(
@@ -467,8 +520,27 @@ class _SaleGdnFormState extends State<SaleGdnForm> {
   }
 
   String _resolveReceiverText() {
-    // Ưu tiên dùng userId từ detail để map với users list, fallback sang selectedReceiverId
-    final id = widget.detail.userId ?? widget.detail.selectedReceiverId;
+    // Với phiếu Mượn (0) / Y/C mượn (7): "Người nhận" map từ `receiverId`
+    // (ưu tiên `selectedReceiverId` do user chọn, fallback
+    // `billInfo.receiverId`).
+    // Với các trạng thái khác: giữ logic cũ — ưu tiên `userId` t� detail,
+    // fallback `selectedReceiverId`.
+    final id = _showBorrowerField
+        ? (widget.detail.selectedReceiverId ??
+            widget.detail.billInfo?.receiverId)
+        : (widget.detail.userId ?? widget.detail.selectedReceiverId);
+    if (id != null && id > 0) {
+      for (final u in widget.users) {
+        if (u.id == id) return (u.fullName ?? '').trim();
+      }
+    }
+    return '';
+  }
+
+  /// Resolve text "Người mượn" từ `userId` (ưu tiên `selectedBorrowerId`,
+  /// fallback `billInfo.userId`), lookup trong danh sách `users`.
+  String _resolveBorrowerText() {
+    final id = widget.detail.selectedBorrowerId ?? widget.detail.userId;
     if (id != null && id > 0) {
       for (final u in widget.users) {
         if (u.id == id) return (u.fullName ?? '').trim();
@@ -778,6 +850,30 @@ class _SaleGdnFormState extends State<SaleGdnForm> {
         orElse: () => options.first,
       ),
       onSelected: (item) => widget.onSelectStatus(item.value),
+    );
+  }
+
+  Future<void> _pickBorrower(BuildContext context) async {
+    if (widget.users.isEmpty) {
+      context.showMessage(
+        'Danh sách nhân viên chưa sẵn sàng, vui lòng đợi',
+        type: SnackBarType.info,
+      );
+      return;
+    }
+    final current = widget.detail.selectedBorrowerId ??
+        widget.detail.billInfo?.userId;
+    final initial = widget.users.firstWhere(
+      (u) => u.id == current,
+      orElse: () => widget.users.first,
+    );
+    await openSelectBottomSheet<BillExportUserResponse>(
+      context: context,
+      title: 'Chọn người mượn',
+      items: widget.users,
+      displayText: (u) => u.fullName ?? '',
+      initialSelectedItem: initial,
+      onSelected: (item) => widget.onSelectBorrower(item.id),
     );
   }
 

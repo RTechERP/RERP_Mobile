@@ -326,6 +326,8 @@ abstract class _$GdnDetailStateCWProxy {
 
   GdnDetailState selectedReceiverId(int? selectedReceiverId);
 
+  GdnDetailState selectedBorrowerId(int? selectedBorrowerId);
+
   GdnDetailState userId(int? userId);
 
   GdnDetailState selectedCustomerId(int? selectedCustomerId);
@@ -397,6 +399,7 @@ abstract class _$GdnDetailStateCWProxy {
     int? selectedSupplierId,
     int? selectedSenderId,
     int? selectedReceiverId,
+    int? selectedBorrowerId,
     int? userId,
     int? selectedCustomerId,
     int? selectedWarehouseId,
@@ -461,6 +464,10 @@ class _$GdnDetailStateCWProxyImpl implements _$GdnDetailStateCWProxy {
   @override
   GdnDetailState selectedReceiverId(int? selectedReceiverId) =>
       this(selectedReceiverId: selectedReceiverId);
+
+  @override
+  GdnDetailState selectedBorrowerId(int? selectedBorrowerId) =>
+      this(selectedBorrowerId: selectedBorrowerId);
 
   @override
   GdnDetailState userId(int? userId) => this(userId: userId);
@@ -589,6 +596,7 @@ class _$GdnDetailStateCWProxyImpl implements _$GdnDetailStateCWProxy {
     Object? selectedSupplierId = const $CopyWithPlaceholder(),
     Object? selectedSenderId = const $CopyWithPlaceholder(),
     Object? selectedReceiverId = const $CopyWithPlaceholder(),
+    Object? selectedBorrowerId = const $CopyWithPlaceholder(),
     Object? userId = const $CopyWithPlaceholder(),
     Object? selectedCustomerId = const $CopyWithPlaceholder(),
     Object? selectedWarehouseId = const $CopyWithPlaceholder(),
@@ -651,6 +659,10 @@ class _$GdnDetailStateCWProxyImpl implements _$GdnDetailStateCWProxy {
           ? _value.selectedReceiverId
           // ignore: cast_nullable_to_non_nullable
           : selectedReceiverId as int?,
+      selectedBorrowerId: selectedBorrowerId == const $CopyWithPlaceholder()
+          ? _value.selectedBorrowerId
+          // ignore: cast_nullable_to_non_nullable
+          : selectedBorrowerId as int?,
       userId: userId == const $CopyWithPlaceholder()
           ? _value.userId
           // ignore: cast_nullable_to_non_nullable

@@ -102,6 +102,9 @@ class SaleGdnEvent with _$SaleGdnEvent {
   /// User chọn người nhận trên form.
   const factory SaleGdnEvent.selectReceiver(int? receiverId) = _SelectReceiver;
 
+  /// User chọn người mượn trên form (chỉ dùng khi status là Mượn / Y/C mượn).
+  const factory SaleGdnEvent.selectBorrower(int? borrowerId) = _SelectBorrower;
+
   /// User chọn khách hàng trên form.
   const factory SaleGdnEvent.selectCustomer(int? customerId) = _SelectCustomer;
 

@@ -4,8 +4,6 @@ import 'package:camerawesome/camerawesome_plugin.dart';
 import 'package:flutter/material.dart';
 import 'package:rtc_erp/common/app_theme/index.dart';
 
-import 'sale_gdn_detail_image_flow.dart';
-
 /// Màn camera chụp nhiều ảnh liên tục trong cùng 1 session sử dụng
 /// plugin `camerawesome`.
 ///
@@ -204,18 +202,9 @@ class _CameraCapturePageState extends State<CameraCapturePage> {
   }
 
   Future<void> _confirmAndExit() async {
-    final result = await ImageConfirmPage.show(context, _captured);
-    if (!mounted) return;
-    if (result == null) {
-      // "Chụp lại" → xoá toàn bộ ảnh đã chụp, quay về camera
-      setState(() => _captured.clear());
-      return;
-    }
-    if (result.isEmpty) {
-      // Không có ảnh nào sau khi confirm → về camera
-      return;
-    }
-    Navigator.of(context).pop(result);
+    // Pop directly — confirmation step is handled by showSaleGdnDetailImageFlow
+    // after receiving the result, avoiding duplicate ImageConfirmPage.
+    Navigator.of(context).pop(_captured);
   }
 
   void _onMediaCapture(MediaCapture capture) {

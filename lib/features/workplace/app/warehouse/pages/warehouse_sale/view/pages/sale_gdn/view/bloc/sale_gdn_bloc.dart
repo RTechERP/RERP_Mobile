@@ -8,7 +8,6 @@ import 'package:injectable/injectable.dart';
 import 'package:intl/intl.dart';
 import 'package:rtc_erp/base/bloc/index.dart';
 import 'package:rtc_erp/base/network/errors/error.dart';
-import 'package:rtc_erp/base/network/errors/extension.dart';
 import 'package:rtc_erp/common/logger/index.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/models/sale_gdn_model.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/repository/sale_gdn_repo.dart';
@@ -19,6 +18,24 @@ part 'sale_gdn_state.dart';
 part 'sale_gdn_detail_state.dart';
 part 'sale_gdn_bloc.g.dart';
 part 'sale_gdn_bloc.freezed.dart';
+
+const _maxErrorLength = 200;
+
+extension _BaseErrorExt on BaseError {
+  String get truncatedMsg {
+    return when(
+      httpInternalServerError: (body) =>
+          body.length > _maxErrorLength
+              ? '${body.substring(0, _maxErrorLength)}...'
+              : body,
+      httpUnAuthorizedError: () => 'Unauthorized',
+      httpUnknownError: (m) =>
+          m.length > _maxErrorLength
+              ? '${m.substring(0, _maxErrorLength)}...'
+              : m,
+    );
+  }
+}
 
 @injectable
 class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
@@ -69,6 +86,7 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
         selectSupplier: (id) => _selectSupplier(emit, id),
         selectSender: (id) => _selectSender(emit, id),
         selectReceiver: (id) => _selectReceiver(emit, id),
+        selectBorrower: (id) => _selectBorrower(emit, id),
         selectCustomer: (id) => _selectCustomer(emit, id),
         selectWarehouse: (id) => _selectWarehouse(emit, id),
         selectKhoType: (id) => _selectKhoType(emit, id),
@@ -147,7 +165,7 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
         _log.logE('❌ API failed: $l');
         emit(state.copyWith(
           status: BaseStateStatus.failed,
-          message: l.getErrorMessage,
+          message: l.truncatedMsg,
         ));
       },
       (r) async {
@@ -183,7 +201,7 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
         _log.logE('❌ API failed: $l');
         emit(state.copyWith(
           status: BaseStateStatus.failed,
-          message: l.getErrorMessage,
+          message: l.truncatedMsg,
         ));
       },
       (r) async {
@@ -211,7 +229,7 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
         _log.logE('❌ API failed: $l');
         emit(state.copyWith(
           status: BaseStateStatus.failed,
-          message: l.getErrorMessage,
+          message: l.truncatedMsg,
         ));
       },
       (r) async {
@@ -241,7 +259,7 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
         _log.logE('❌ API failed: $l');
         emit(state.copyWith(
           status: BaseStateStatus.failed,
-          message: l.getErrorMessage,
+          message: l.truncatedMsg,
         ));
       },
       (r) async {
@@ -300,7 +318,7 @@ Future<void> _scanQrToDetail(
       _log.logE('❌ scanQrToDetail failed: $l');
       emit(state.copyWith(
         status: BaseStateStatus.failed,
-        message: l.getErrorMessage,
+        message: l.truncatedMsg,
         isSearching: false,
       ));
     },
@@ -505,7 +523,7 @@ BillExporResponse? _findGdnInList(String code) {
         emit(state.copyWith(
           detail: current.copyWith(
             status: BaseStateStatus.failed,
-            message: l.getErrorMessage,
+            message: l.truncatedMsg,
           ),
         ));
       },
@@ -579,7 +597,7 @@ BillExporResponse? _findGdnInList(String code) {
             emit(state.copyWith(
               detail: current.copyWith(
                 status: BaseStateStatus.failed,
-                message: l.getErrorMessage,
+                message: l.truncatedMsg,
               ),
             ));
           },
@@ -981,7 +999,7 @@ BillExporResponse? _findGdnInList(String code) {
         emit(state.copyWith(
           detail: updated.copyWith(
             uploadStatus: BaseStateStatus.failed,
-            message: l.toString(),
+            message: l.truncatedMsg,
           ),
         ));
       },
@@ -1098,6 +1116,18 @@ BillExporResponse? _findGdnInList(String code) {
     final wareHouseTranferId =
         billInfoUpdated.selectedInternalWarehouseId ?? bill?.wareHouseTranferId;
 
+    // Khi phiếu ở trạng thái Mượn (0) hoặc Y/C mượn (7), field "Người mượn"
+    // được map sang `ReceiverID` của BillExport. Ưu tiên giá trị user vừa
+    // chọn (`selectedBorrowerId`); fallback sang `billInfo.userId`.
+    final currentStatus =
+        billInfoUpdated.selectedStatus ?? bill?.status;
+    final isBorrowStatus = currentStatus == 0 || currentStatus == 7;
+    final receiverId = isBorrowStatus
+        ? (billInfoUpdated.selectedBorrowerId ?? billInfo?.userId ?? 0)
+        : (billInfoUpdated.selectedReceiverId ??
+            billInfo?.receiverId ??
+            0);
+
     // BillExport header
     final billExport = <String, dynamic>{
       'ID': bill?.id,
@@ -1129,7 +1159,7 @@ BillExporResponse? _findGdnInList(String code) {
       'WareHouseTranferID': wareHouseTranferId,
       'IsTransferInternal': isTransferInternal,
       'KhoTypeTransferID': khoTypeTransferId,
-      'ReceiverID': billInfo?.receiverId ?? 0,
+      'ReceiverID': receiverId,
       'IsPrepared': bill?.isPrepared ?? false,
       'IsReceived': bill?.isReceived ?? false,
       'IsDeleted': false,
@@ -1167,7 +1197,7 @@ BillExporResponse? _findGdnInList(String code) {
         'Specifications': detail.specifications ?? '',
         'BillImportDetailID': detail.billImportDetailId ?? 0,
         'TotalInventory': detail.totalInventory ?? 0,
-        'ExpectReturnDate': null,
+        'ExpectReturnDate': detail.expectReturnDate?.toIso8601String(),
         'CustomerResponse': detail.customerResponse ?? '',
         'POKHDetailIDActual': detail.pokhDetailIdActual ?? 0,
         'PONumber': detail.poNumber ?? '',
@@ -1300,6 +1330,14 @@ BillExporResponse? _findGdnInList(String code) {
     if (current == null || emit.isDone) return;
     emit(state.copyWith(
       detail: current.copyWith(selectedReceiverId: id),
+    ));
+  }
+
+  Future<void> _selectBorrower(Emitter<SaleGdnState> emit, int? id) async {
+    final current = state.detail;
+    if (current == null || emit.isDone) return;
+    emit(state.copyWith(
+      detail: current.copyWith(selectedBorrowerId: id),
     ));
   }
 
