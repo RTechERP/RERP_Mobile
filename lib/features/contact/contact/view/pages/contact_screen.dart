@@ -21,7 +21,9 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../../../../base/bloc/index.dart';
 import '../../../../../../common/app_theme/index.dart';
 import '../../../../../../di/injection.dart';
+import '../../../bussiness_card/view/pages/add_business_card_screen.dart';
 import '../../../bussiness_card/view/pages/business_card_detail_screen.dart';
+import '../../../bussiness_card/view/pages/confirm_business_card_screen.dart';
 import '../bloc/contact_bloc.dart';
 import '../../../bussiness_card/data/datasource/models/business_card_model.dart';
 import '../../data/datasource/models/contact_model.dart';
@@ -275,6 +277,13 @@ class _ContactViewState extends State<_ContactView>
             ),
           ),
           body: _buildBody(state),
+          floatingActionButton: _tabController.index == 2
+              ? FloatingActionButton(
+                  onPressed: () => _openAddBusinessCard(context),
+                  backgroundColor: AppColors.primaryERP,
+                  child: const Icon(Icons.add, color: Colors.white),
+                )
+              : null,
         );
       },
     );
@@ -670,6 +679,51 @@ class _ContactViewState extends State<_ContactView>
     Navigator.push(
       context,
       MaterialPageRoute(builder: (_) => BusinessCardDetailScreen(card: card)),
+    );
+  }
+
+  Future<void> _openAddBusinessCard(BuildContext context) async {
+    final scannedData = await Navigator.push<Map<String, String>>(
+      context,
+      MaterialPageRoute(builder: (_) => const AddBusinessCardScreen()),
+    );
+
+    if (scannedData == null || !context.mounted) return;
+
+    if (scannedData.isEmpty) {
+      // User chose manual entry
+      final result = await Navigator.push<BusinessCardModel>(
+        context,
+        MaterialPageRoute(
+          builder: (_) => ConfirmBusinessCardScreen(scannedData: scannedData),
+        ),
+      );
+      if (result != null && context.mounted) {
+        _showSavedMessage(context);
+      }
+    } else {
+      // Show confirm screen with scanned data
+      final result = await Navigator.push<BusinessCardModel>(
+        context,
+        MaterialPageRoute(
+          builder: (_) => ConfirmBusinessCardScreen(scannedData: scannedData),
+        ),
+      );
+      if (result != null && context.mounted) {
+        _showSavedMessage(context);
+      }
+    }
+  }
+
+  void _showSavedMessage(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: const Text('Đã lưu danh thiếp'),
+        backgroundColor: AppColors.success,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        margin: const EdgeInsets.all(16),
+      ),
     );
   }
 }
