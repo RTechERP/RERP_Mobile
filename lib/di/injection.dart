@@ -11,10 +11,14 @@ import '../features/auth/data/datasource/service/auth_service.dart';
 import '../features/auth/data/repository/auth_repo.dart';
 import '../features/auth/data/repository/auth_repo_impl.dart';
 import '../features/auth/view/bloc/auth_bloc.dart';
-import '../features/contact/data/datasource/services/contact_service.dart';
-import '../features/contact/data/repository/contact_repo.dart';
-import '../features/contact/data/repository/contact_repo_impl.dart';
-import '../features/contact/view/bloc/contact_bloc.dart';
+import '../features/contact/contact/data/datasource/services/contact_service.dart';
+import '../features/contact/contact/data/repository/contact_repo.dart';
+import '../features/contact/contact/data/repository/contact_repo_impl.dart';
+import '../features/contact/contact/view/bloc/contact_bloc.dart';
+import '../features/contact/bussiness_card/data/datasource/services/business_card_service.dart';
+import '../features/contact/bussiness_card/data/repository/business_card_repo.dart';
+import '../features/contact/bussiness_card/data/repository/business_card_repo_impl.dart';
+import '../features/contact/bussiness_card/view/bloc/business_card_bloc.dart';
 import '../features/more/data/datasource/service/more_service.dart';
 import '../features/more/data/repository/more_repo.dart';
 import '../features/more/data/repository/more_repo_impl.dart';
@@ -264,6 +268,8 @@ void configureDependencies() {
   getIt.registerLazySingleton<ContactService>(
     () => ContactService(getIt<Dio>()),
   );
+
+  getIt.registerLazySingleton<BusinessCardService>(() => BusinessCardService());
 
   getIt.registerLazySingleton<SaleGdnService>(
     () => SaleGdnService(getIt<Dio>()),
@@ -590,7 +596,17 @@ void configureDependencies() {
     () => ContactRepoImpl(getIt<ContactService>()),
   );
 
-  getIt.registerFactory<ContactBloc>(() => ContactBloc(getIt<ContactRepo>()));
+  getIt.registerLazySingleton<BusinessCardRepo>(
+    () => BusinessCardRepoImpl(getIt<BusinessCardService>()),
+  );
+
+  getIt.registerFactory<ContactBloc>(
+    () => ContactBloc(getIt<ContactRepo>(), getIt<BusinessCardRepo>()),
+  );
+
+  getIt.registerFactory<BusinessCardBloc>(
+    () => BusinessCardBloc(getIt<LogUtils>(), getIt<BusinessCardRepo>()),
+  );
 
   getIt.registerFactory<AccountantBloc>(
     () => AccountantBloc(

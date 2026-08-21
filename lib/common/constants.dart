@@ -409,6 +409,9 @@ class ApiEndPoint {
   // Contact
   static const String getContact = '/Home/get-all-contact';
 
+  // Business Card
+  static const String getBusinessCard = '/Home/get-business-card';
+
   // BusinessConfig
   static const String getDepartmentIds = '/BusinessConfig/get-department-ids';
 

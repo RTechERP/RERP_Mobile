@@ -14,8 +14,8 @@ import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../../common/app_theme/index.dart';
-import '../../../../base/network/errors/extension.dart';
-import '../../../../common/utils/snack_bar_helper.dart';
+import '../../../../../base/network/errors/extension.dart';
+import '../../../../../common/utils/snack_bar_helper.dart';
 import '../../data/datasource/models/contact_model.dart';
 
 /// Màn hình chi tiết liên hệ.

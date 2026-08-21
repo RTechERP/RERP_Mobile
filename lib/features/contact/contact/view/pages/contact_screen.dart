@@ -22,6 +22,7 @@ import '../../../../../../base/bloc/index.dart';
 import '../../../../../../common/app_theme/index.dart';
 import '../../../../../../di/injection.dart';
 import '../bloc/contact_bloc.dart';
+import '../../../bussiness_card/data/datasource/models/business_card_model.dart';
 import '../../data/datasource/models/contact_model.dart';
 import 'contact_detail_screen.dart';
 
@@ -79,7 +80,7 @@ class _ContactViewState extends State<_ContactView>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 2, vsync: this);
+    _tabController = TabController(length: 3, vsync: this);
     _tabController.addListener(_onTabChanged);
   }
 
@@ -187,7 +188,8 @@ class _ContactViewState extends State<_ContactView>
       buildWhen: (previous, current) =>
           previous.status != current.status ||
           previous.contacts != current.contacts ||
-          previous.keyword != current.keyword,
+          previous.keyword != current.keyword ||
+          previous.businessCards != current.businessCards,
       builder: (context, state) {
         return Scaffold(
           backgroundColor: const Color(0xFFF0F2F5),
@@ -254,6 +256,7 @@ class _ContactViewState extends State<_ContactView>
       children: [
         _buildContactList(state.contacts),
         _buildDepartmentList(state.contacts),
+        _buildBusinessCardList(state.businessCards),
       ],
     );
   }
@@ -389,8 +392,10 @@ class _ContactViewState extends State<_ContactView>
   /// TabBar lọc liên hệ.
   Widget _buildTabBar() {
     final totalCount = _filteredContacts.length;
+    final businessCardCount = context.read<ContactBloc>().state.businessCards.length;
     return TabBar(
       controller: _tabController,
+      isScrollable: true,
       labelColor: AppColors.primaryERP,
       unselectedLabelColor: AppColors.gray,
       labelStyle: const TextStyle(
@@ -405,9 +410,11 @@ class _ContactViewState extends State<_ContactView>
       indicatorWeight: 2.5,
       dividerColor: Colors.transparent,
       onTap: (_) => setState(() {}),
+      tabAlignment: TabAlignment.start,
       tabs: [
         Tab(text: 'Tất cả ($totalCount)'),
         const Tab(text: 'Phòng ban'),
+        Tab(text: 'Danh thiếp ($businessCardCount)'),
       ],
     );
   }
@@ -491,6 +498,38 @@ class _ContactViewState extends State<_ContactView>
           contacts: entry.value,
           onContactTap: (c) => _openDetail(context, c),
         );
+      },
+    );
+  }
+
+  /// Danh sách danh thiếp.
+  Widget _buildBusinessCardList(List<BusinessCardModel> businessCards) {
+    if (businessCards.isEmpty) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.badge_outlined,
+              size: 64,
+              color: AppColors.gray.withValues(alpha: 0.5),
+            ),
+            const SizedBox(height: 16),
+            const Text(
+              'Chưa có danh thiếp nào',
+              style: TextStyle(color: AppColors.gray, fontSize: 15),
+            ),
+          ],
+        ),
+      );
+    }
+
+    return ListView.builder(
+      padding: const EdgeInsets.only(right: 16, top: 8, bottom: 20),
+      itemCount: businessCards.length,
+      itemBuilder: (context, index) {
+        final card = businessCards[index];
+        return _BusinessCardTile(data: card);
       },
     );
   }
@@ -711,6 +750,144 @@ class _ContactTile extends StatelessWidget {
   }
 
   Color _colorForLetter(String letter) {
+    const colors = {
+      'A': Color(0xFF2957A6),
+      'B': Color(0xFFEE4623),
+      'C': Color(0xFF41B339),
+      'D': Color(0xFFF0891A),
+      'E': Color(0xFF853EFD),
+      'F': Color(0xFF2F80ED),
+      'G': Color(0xFF009688),
+      'H': Color(0xFFE91E63),
+      'I': Color(0xFF795548),
+      'J': Color(0xFFFF5722),
+      'K': Color(0xFF607D8B),
+      'L': Color(0xFF9C27B0),
+      'M': Color(0xFF3F51B5),
+      'N': Color(0xFF00BCD4),
+      'O': Color(0xFF8BC34A),
+      'P': Color(0xFFFF9800),
+      'Q': Color(0xFF673AB7),
+      'R': Color(0xFF4CAF50),
+      'S': Color(0xFFCDDC39),
+      'T': Color(0xFF03A9F4),
+      'U': Color(0xFFF44336),
+      'V': Color(0xFF009688),
+      'W': Color(0xFFFFC107),
+      'X': Color(0xFF9E9E9E),
+      'Y': Color(0xFF607D8B),
+    };
+    return colors[letter.toUpperCase()] ?? AppColors.primaryERP;
+  }
+}
+
+/// Item hiển thị một danh thiếp trong danh sách.
+class _BusinessCardTile extends StatelessWidget {
+  final BusinessCardModel data;
+
+  const _BusinessCardTile({required this.data});
+
+  @override
+  Widget build(BuildContext context) {
+    final avatarText = (data.fullName?.trim().isNotEmpty ?? false)
+        ? data.fullName!.trim()[0].toUpperCase()
+        : '?';
+
+    final avatarColor = _colorForLetterBC(avatarText);
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 1),
+      decoration: BoxDecoration(
+        color: AppColors.white,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 46,
+            height: 46,
+            decoration: BoxDecoration(
+              color: avatarColor,
+              shape: BoxShape.circle,
+            ),
+            alignment: Alignment.center,
+            child: Text(
+              avatarText,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  data.fullName ?? '--',
+                  style: const TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.heading,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(height: 2),
+                if (data.chucVu != null && data.chucVu!.trim().isNotEmpty)
+                  Text(
+                    data.chucVu!.trim(),
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: AppColors.gray,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                if (data.companyName != null && data.companyName!.trim().isNotEmpty)
+                  Text(
+                    data.companyName!.trim(),
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: AppColors.gray,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+              ],
+            ),
+          ),
+          if (data.sdtCaNhan != null && data.sdtCaNhan!.isNotEmpty)
+            GestureDetector(
+              onTap: () async {
+                final uri = Uri(scheme: 'tel', path: data.sdtCaNhan);
+                if (await canLaunchUrl(uri)) {
+                  await launchUrl(uri);
+                }
+              },
+              child: Container(
+                width: 55,
+                height: 55,
+                decoration: BoxDecoration(
+                  color: AppColors.primaryERP.withValues(alpha: 0.1),
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(
+                  Icons.phone_outlined,
+                  color: AppColors.primaryERP,
+                  size: 22,
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+
+  Color _colorForLetterBC(String letter) {
     const colors = {
       'A': Color(0xFF2957A6),
       'B': Color(0xFFEE4623),
