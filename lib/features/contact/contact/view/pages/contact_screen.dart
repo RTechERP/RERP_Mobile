@@ -21,6 +21,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../../../../base/bloc/index.dart';
 import '../../../../../../common/app_theme/index.dart';
 import '../../../../../../di/injection.dart';
+import '../../../bussiness_card/view/pages/business_card_detail_screen.dart';
 import '../bloc/contact_bloc.dart';
 import '../../../bussiness_card/data/datasource/models/business_card_model.dart';
 import '../../data/datasource/models/contact_model.dart';
@@ -55,9 +56,12 @@ class _ContactViewState extends State<_ContactView>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   String _searchQuery = '';
+  String _businessCardSearchQuery = '';
   bool _isSearchVisible = false;
   final TextEditingController _searchController = TextEditingController();
+  final TextEditingController _businessCardSearchController = TextEditingController();
   Timer? _debounceTimer;
+  Timer? _businessCardDebounceTimer;
 
   // Cache for filtered contacts
   List<ContactPersonalItem> _cachedFilteredContacts = [];
@@ -65,14 +69,53 @@ class _ContactViewState extends State<_ContactView>
 
   // Pre-computed order map for faster sorting
   static final Map<String, int> _alphabetOrder = {
-    'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'G': 5, 'H': 6, 'I': 7,
-    'K': 8, 'L': 9, 'M': 10, 'N': 11, 'O': 12, 'P': 13, 'Q': 14, 'R': 15,
-    'S': 16, 'T': 17, 'U': 18, 'V': 19, 'X': 20, 'Y': 21,
+    'A': 0,
+    'B': 1,
+    'C': 2,
+    'D': 3,
+    'E': 4,
+    'G': 5,
+    'H': 6,
+    'I': 7,
+    'K': 8,
+    'L': 9,
+    'M': 10,
+    'N': 11,
+    'O': 12,
+    'P': 13,
+    'Q': 14,
+    'R': 15,
+    'S': 16,
+    'T': 17,
+    'U': 18,
+    'V': 19,
+    'X': 20,
+    'Y': 21,
   };
 
   static const List<String> _alphabet = [
-    'A', 'B', 'C', 'D', 'E', 'G', 'H', 'I', 'K', 'L', 'M',
-    'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'X', 'Y',
+    'A',
+    'B',
+    'C',
+    'D',
+    'E',
+    'G',
+    'H',
+    'I',
+    'K',
+    'L',
+    'M',
+    'N',
+    'O',
+    'P',
+    'Q',
+    'R',
+    'S',
+    'T',
+    'U',
+    'V',
+    'X',
+    'Y',
   ];
 
   final Map<String, GlobalKey> _sectionKeys = {};
@@ -117,7 +160,9 @@ class _ContactViewState extends State<_ContactView>
   void dispose() {
     _tabController.dispose();
     _searchController.dispose();
+    _businessCardSearchController.dispose();
     _debounceTimer?.cancel();
+    _businessCardDebounceTimer?.cancel();
     super.dispose();
   }
 
@@ -125,7 +170,8 @@ class _ContactViewState extends State<_ContactView>
     final contacts = context.read<ContactBloc>().state.contacts;
 
     // Return cached if search query hasn't changed
-    if (_searchQuery == _cachedSearchQuery && _cachedFilteredContacts.isNotEmpty) {
+    if (_searchQuery == _cachedSearchQuery &&
+        _cachedFilteredContacts.isNotEmpty) {
       return _cachedFilteredContacts;
     }
 
@@ -161,7 +207,8 @@ class _ContactViewState extends State<_ContactView>
 
   /// Gom contacts theo chữ cái đầu tiên.
   Map<String, List<ContactPersonalItem>> _groupByLetter(
-      List<ContactPersonalItem> contacts) {
+    List<ContactPersonalItem> contacts,
+  ) {
     final grouped = <String, List<ContactPersonalItem>>{};
     for (final c in contacts) {
       final letter = _getFirstLetter(c.fullName ?? '');
@@ -224,7 +271,7 @@ class _ContactViewState extends State<_ContactView>
             ],
             bottom: PreferredSize(
               preferredSize: Size.fromHeight(_isSearchVisible ? 100 : 48),
-              child: _isSearchVisible ? _buildSearchField() : _buildTabBar(),
+              child: _isSearchVisible ? _buildActiveTabSearchField() : _buildTabBar(),
             ),
           ),
           body: _buildBody(state),
@@ -234,8 +281,7 @@ class _ContactViewState extends State<_ContactView>
   }
 
   Widget _buildBody(ContactState state) {
-    if (state.status == BaseStateStatus.loading &&
-        state.contacts.isEmpty) {
+    if (state.status == BaseStateStatus.loading && state.contacts.isEmpty) {
       return const Center(child: CircularProgressIndicator());
     }
 
@@ -243,11 +289,11 @@ class _ContactViewState extends State<_ContactView>
       return _buildErrorState(
         message: state.message ?? 'Không tải được danh bạ',
         onRetry: () => context.read<ContactBloc>().add(
-              ContactEvent.refresh(
-                departmentID: state.departmentID,
-                keyword: state.keyword,
-              ),
-            ),
+          ContactEvent.refresh(
+            departmentID: state.departmentID,
+            keyword: state.keyword,
+          ),
+        ),
       );
     }
 
@@ -256,7 +302,7 @@ class _ContactViewState extends State<_ContactView>
       children: [
         _buildContactList(state.contacts),
         _buildDepartmentList(state.contacts),
-        _buildBusinessCardList(state.businessCards),
+        _buildBusinessCardList(state.businessCards, _tabController.index),
       ],
     );
   }
@@ -271,11 +317,7 @@ class _ContactViewState extends State<_ContactView>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(
-              Icons.error_outline,
-              size: 48,
-              color: AppColors.alert,
-            ),
+            const Icon(Icons.error_outline, size: 48, color: AppColors.alert),
             const SizedBox(height: 16),
             Text(
               message,
@@ -298,8 +340,81 @@ class _ContactViewState extends State<_ContactView>
   }
 
   /// Thanh tìm kiếm trong AppBar kèm số liên hệ tương ứng.
-  Widget _buildSearchField() {
+  Widget _buildActiveTabSearchField() {
+    final currentTab = _tabController.index;
+
+    if (currentTab == 2) {
+      final matchedCount = _getFilteredBusinessCards(
+        context.read<ContactBloc>().state.businessCards,
+        _businessCardSearchQuery,
+      ).length;
+      return _buildSearchField(
+        controller: _businessCardSearchController,
+        hintText: 'Tìm kiếm tên, công ty, chức vụ...',
+        matchedCount: matchedCount,
+        labelText: 'Danh thiếp tương ứng',
+        onChanged: (value) {
+          _businessCardDebounceTimer?.cancel();
+          _businessCardDebounceTimer = Timer(
+            const Duration(milliseconds: 400),
+            () {
+              setState(() {
+                _businessCardSearchQuery = value.trim();
+              });
+            },
+          );
+        },
+        onClear: () {
+          _businessCardDebounceTimer?.cancel();
+          setState(() {
+            _isSearchVisible = false;
+            _businessCardSearchQuery = '';
+            _businessCardSearchController.clear();
+          });
+        },
+      );
+    }
+
     final matchedCount = _filteredContacts.length;
+    return _buildSearchField(
+      controller: _searchController,
+      hintText: 'Tìm kiếm tên, phòng ban...',
+      matchedCount: matchedCount,
+      labelText: 'Nhân viên tương ứng',
+      onChanged: (value) {
+        _debounceTimer?.cancel();
+        _debounceTimer = Timer(
+          const Duration(milliseconds: 400),
+          () {
+            setState(() {
+              _searchQuery = value.trim();
+              _cachedSearchQuery = '';
+              _cachedFilteredContacts = [];
+            });
+          },
+        );
+      },
+      onClear: () {
+        _debounceTimer?.cancel();
+        setState(() {
+          _isSearchVisible = false;
+          _searchQuery = '';
+          _cachedSearchQuery = '';
+          _cachedFilteredContacts = [];
+          _searchController.clear();
+        });
+      },
+    );
+  }
+
+  Widget _buildSearchField({
+    required TextEditingController controller,
+    required String hintText,
+    required int matchedCount,
+    required String labelText,
+    required ValueChanged<String> onChanged,
+    required VoidCallback onClear,
+  }) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -309,10 +424,10 @@ class _ContactViewState extends State<_ContactView>
             children: [
               Expanded(
                 child: TextField(
-                  controller: _searchController,
+                  controller: controller,
                   autofocus: true,
                   decoration: InputDecoration(
-                    hintText: 'Tìm kiếm tên, phòng ban...',
+                    hintText: hintText,
                     hintStyle: const TextStyle(
                       color: AppColors.hintText,
                       fontSize: 14,
@@ -333,31 +448,12 @@ class _ContactViewState extends State<_ContactView>
                       vertical: 12,
                     ),
                   ),
-                  onChanged: (value) {
-                    _debounceTimer?.cancel();
-                    _debounceTimer =
-                        Timer(const Duration(milliseconds: 400), () {
-                      setState(() {
-                        _searchQuery = value.trim();
-                        _cachedSearchQuery = '';
-                        _cachedFilteredContacts = [];
-                      });
-                    });
-                  },
+                  onChanged: onChanged,
                 ),
               ),
               const SizedBox(width: 8),
               GestureDetector(
-                onTap: () {
-                  _debounceTimer?.cancel();
-                  setState(() {
-                    _isSearchVisible = false;
-                    _searchQuery = '';
-                    _cachedSearchQuery = '';
-                    _cachedFilteredContacts = [];
-                    _searchController.clear();
-                  });
-                },
+                onTap: onClear,
                 child: Container(
                   padding: const EdgeInsets.all(8),
                   child: const Icon(
@@ -370,13 +466,12 @@ class _ContactViewState extends State<_ContactView>
             ],
           ),
         ),
-        // Dòng hiển thị số nhân viên tương ứng với từ khóa tìm kiếm
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 0, 16, 8),
           child: Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              'Nhân viên tương ứng ($matchedCount)',
+              '$labelText ($matchedCount)',
               style: const TextStyle(
                 fontSize: 13,
                 fontWeight: FontWeight.w600,
@@ -392,18 +487,19 @@ class _ContactViewState extends State<_ContactView>
   /// TabBar lọc liên hệ.
   Widget _buildTabBar() {
     final totalCount = _filteredContacts.length;
-    final businessCardCount = context.read<ContactBloc>().state.businessCards.length;
+    final businessCardCount = context
+        .read<ContactBloc>()
+        .state
+        .businessCards
+        .length;
     return TabBar(
       controller: _tabController,
       isScrollable: true,
       labelColor: AppColors.primaryERP,
       unselectedLabelColor: AppColors.gray,
-      labelStyle: const TextStyle(
-        fontSize: 14,
-        fontWeight: FontWeight.w600,
-      ),
+      labelStyle: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
       unselectedLabelStyle: const TextStyle(
-        fontSize: 14,
+        fontSize: 15,
         fontWeight: FontWeight.w500,
       ),
       indicatorColor: AppColors.primaryERP,
@@ -481,7 +577,9 @@ class _ContactViewState extends State<_ContactView>
     if (deptList.isEmpty) {
       return Center(
         child: Text(
-          _searchQuery.isNotEmpty ? 'Không tìm thấy phòng ban' : 'Chưa có phòng ban nào',
+          _searchQuery.isNotEmpty
+              ? 'Không tìm thấy phòng ban'
+              : 'Chưa có phòng ban nào',
           style: const TextStyle(color: AppColors.gray, fontSize: 14),
         ),
       );
@@ -503,35 +601,40 @@ class _ContactViewState extends State<_ContactView>
   }
 
   /// Danh sách danh thiếp.
-  Widget _buildBusinessCardList(List<BusinessCardModel> businessCards) {
-    if (businessCards.isEmpty) {
-      return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.badge_outlined,
-              size: 64,
-              color: AppColors.gray.withValues(alpha: 0.5),
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              'Chưa có danh thiếp nào',
-              style: TextStyle(color: AppColors.gray, fontSize: 15),
-            ),
-          ],
-        ),
-      );
-    }
+  Widget _buildBusinessCardList(List<BusinessCardModel> businessCards, int tabIndex) {
+    final filteredCards = _getFilteredBusinessCards(businessCards, _businessCardSearchQuery);
 
-    return ListView.builder(
-      padding: const EdgeInsets.only(right: 16, top: 8, bottom: 20),
-      itemCount: businessCards.length,
-      itemBuilder: (context, index) {
-        final card = businessCards[index];
-        return _BusinessCardTile(data: card);
-      },
-    );
+    return filteredCards.isEmpty
+        ? Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.badge_outlined,
+                  size: 64,
+                  color: AppColors.gray.withValues(alpha: 0.5),
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  _businessCardSearchQuery.isNotEmpty
+                      ? 'Không tìm thấy danh thiếp'
+                      : 'Chưa có danh thiếp nào',
+                  style: const TextStyle(color: AppColors.gray, fontSize: 15),
+                ),
+              ],
+            ),
+          )
+        : ListView.builder(
+            padding: const EdgeInsets.only(right: 16, top: 8, bottom: 20),
+            itemCount: filteredCards.length,
+            itemBuilder: (context, index) {
+              final card = filteredCards[index];
+              return _BusinessCardTile(
+                data: card,
+                onTap: () => _openBusinessCardDetail(context, card),
+              );
+            },
+          );
   }
 
   Widget _buildEmptyState() {
@@ -559,9 +662,14 @@ class _ContactViewState extends State<_ContactView>
   void _openDetail(BuildContext context, ContactPersonalItem contact) {
     Navigator.push(
       context,
-      MaterialPageRoute(
-        builder: (_) => ContactDetailScreen(contact: contact),
-      ),
+      MaterialPageRoute(builder: (_) => ContactDetailScreen(contact: contact)),
+    );
+  }
+
+  void _openBusinessCardDetail(BuildContext context, BusinessCardModel card) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => BusinessCardDetailScreen(card: card)),
     );
   }
 }
@@ -713,7 +821,7 @@ class _ContactTile extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                         ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),
@@ -781,11 +889,28 @@ class _ContactTile extends StatelessWidget {
   }
 }
 
+List<BusinessCardModel> _getFilteredBusinessCards(
+  List<BusinessCardModel> cards,
+  String query,
+) {
+  if (query.isEmpty) return cards;
+  final q = query.toLowerCase();
+  return cards
+      .where(
+        (c) =>
+            (c.fullName?.toLowerCase().contains(q) ?? false) ||
+            (c.companyName?.toLowerCase().contains(q) ?? false) ||
+            (c.chucVu?.toLowerCase().contains(q) ?? false),
+      )
+      .toList();
+}
+
 /// Item hiển thị một danh thiếp trong danh sách.
 class _BusinessCardTile extends StatelessWidget {
   final BusinessCardModel data;
+  final VoidCallback onTap;
 
-  const _BusinessCardTile({required this.data});
+  const _BusinessCardTile({required this.data, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -795,94 +920,98 @@ class _BusinessCardTile extends StatelessWidget {
 
     final avatarColor = _colorForLetterBC(avatarText);
 
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-      margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 1),
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 46,
-            height: 46,
-            decoration: BoxDecoration(
-              color: avatarColor,
-              shape: BoxShape.circle,
-            ),
-            alignment: Alignment.center,
-            child: Text(
-              avatarText,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 1),
+        decoration: BoxDecoration(
+          color: AppColors.white,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 46,
+              height: 46,
+              decoration: BoxDecoration(
+                color: avatarColor,
+                shape: BoxShape.circle,
+              ),
+              alignment: Alignment.center,
+              child: Text(
+                avatarText,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
             ),
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  data.fullName ?? '--',
-                  style: const TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.heading,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const SizedBox(height: 2),
-                if (data.chucVu != null && data.chucVu!.trim().isNotEmpty)
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
                   Text(
-                    data.chucVu!.trim(),
+                    data.fullName ?? '--',
                     style: const TextStyle(
-                      fontSize: 12,
-                      color: AppColors.gray,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.heading,
                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-                if (data.companyName != null && data.companyName!.trim().isNotEmpty)
-                  Text(
-                    data.companyName!.trim(),
-                    style: const TextStyle(
-                      fontSize: 12,
-                      color: AppColors.gray,
+                  const SizedBox(height: 2),
+                  if (data.chucVu != null && data.chucVu!.trim().isNotEmpty)
+                    Text(
+                      data.chucVu!.trim(),
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: AppColors.gray,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-              ],
-            ),
-          ),
-          if (data.sdtCaNhan != null && data.sdtCaNhan!.isNotEmpty)
-            GestureDetector(
-              onTap: () async {
-                final uri = Uri(scheme: 'tel', path: data.sdtCaNhan);
-                if (await canLaunchUrl(uri)) {
-                  await launchUrl(uri);
-                }
-              },
-              child: Container(
-                width: 55,
-                height: 55,
-                decoration: BoxDecoration(
-                  color: AppColors.primaryERP.withValues(alpha: 0.1),
-                  shape: BoxShape.circle,
-                ),
-                child: const Icon(
-                  Icons.phone_outlined,
-                  color: AppColors.primaryERP,
-                  size: 22,
-                ),
+                  if (data.companyName != null &&
+                      data.companyName!.trim().isNotEmpty)
+                    Text(
+                      data.companyName!.trim(),
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: AppColors.gray,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                ],
               ),
             ),
-        ],
+            if (data.sdtCaNhan != null && data.sdtCaNhan!.isNotEmpty)
+              GestureDetector(
+                onTap: () async {
+                  final uri = Uri(scheme: 'tel', path: data.sdtCaNhan);
+                  if (await canLaunchUrl(uri)) {
+                    await launchUrl(uri);
+                  }
+                },
+                child: Container(
+                  width: 55,
+                  height: 55,
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryERP.withValues(alpha: 0.1),
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(
+                    Icons.phone_outlined,
+                    color: AppColors.primaryERP,
+                    size: 22,
+                  ),
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }
@@ -995,7 +1124,10 @@ class _DepartmentTileState extends State<_DepartmentTile> {
                         const SizedBox(height: 3),
                         Text(
                           '${widget.memberCount} thành viên',
-                          style: const TextStyle(fontSize: 13, color: AppColors.gray),
+                          style: const TextStyle(
+                            fontSize: 13,
+                            color: AppColors.gray,
+                          ),
                         ),
                       ],
                     ),
@@ -1026,21 +1158,21 @@ class _DepartmentTileState extends State<_DepartmentTile> {
             firstChild: const SizedBox.shrink(),
             secondChild: Column(
               children: [
-                Container(
-                  height: 1,
-                  color: const Color(0xFFE8EAF0),
-                ),
+                Container(height: 1, color: const Color(0xFFE8EAF0)),
                 Container(
                   decoration: BoxDecoration(
                     color: const Color(0xFFF8F9FB),
-                    borderRadius: const BorderRadius.vertical(bottom: Radius.circular(16)),
+                    borderRadius: const BorderRadius.vertical(
+                      bottom: Radius.circular(16),
+                    ),
                   ),
                   child: Column(
                     children: widget.contacts.asMap().entries.map((entry) {
                       final index = entry.key;
                       final c = entry.value;
                       final isLast = index == widget.contacts.length - 1;
-                      final avatarText = (c.fullName?.trim().isNotEmpty ?? false)
+                      final avatarText =
+                          (c.fullName?.trim().isNotEmpty ?? false)
                           ? c.fullName!.trim()[0].toUpperCase()
                           : '?';
                       final avatarColor = _avatarColorFor(avatarText);
@@ -1049,7 +1181,10 @@ class _DepartmentTileState extends State<_DepartmentTile> {
                           InkWell(
                             onTap: () => widget.onContactTap(c),
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                                vertical: 12,
+                              ),
                               child: Row(
                                 children: [
                                   Container(
@@ -1072,7 +1207,8 @@ class _DepartmentTileState extends State<_DepartmentTile> {
                                   const SizedBox(width: 12),
                                   Expanded(
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           c.fullName ?? '--',
@@ -1097,7 +1233,10 @@ class _DepartmentTileState extends State<_DepartmentTile> {
                                     onTap: () async {
                                       final phone = c.sdtCaNhan;
                                       if (phone != null && phone.isNotEmpty) {
-                                        final uri = Uri(scheme: 'tel', path: phone);
+                                        final uri = Uri(
+                                          scheme: 'tel',
+                                          path: phone,
+                                        );
                                         if (await canLaunchUrl(uri)) {
                                           await launchUrl(uri);
                                         }
@@ -1107,7 +1246,9 @@ class _DepartmentTileState extends State<_DepartmentTile> {
                                       width: 45,
                                       height: 45,
                                       decoration: BoxDecoration(
-                                        color: AppColors.primaryERP.withValues(alpha: 0.1),
+                                        color: AppColors.primaryERP.withValues(
+                                          alpha: 0.1,
+                                        ),
                                         shape: BoxShape.circle,
                                       ),
                                       child: const Icon(
@@ -1126,7 +1267,9 @@ class _DepartmentTileState extends State<_DepartmentTile> {
                               padding: const EdgeInsets.only(left: 68),
                               child: Container(
                                 height: 1,
-                                color: const Color(0xFFE8EAF0).withValues(alpha: 0.6),
+                                color: const Color(
+                                  0xFFE8EAF0,
+                                ).withValues(alpha: 0.6),
                               ),
                             ),
                         ],
