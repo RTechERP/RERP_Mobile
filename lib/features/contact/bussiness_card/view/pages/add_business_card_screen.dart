@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
 import '../../../../../common/app_theme/index.dart';
+import '../../../../../common/utils/snack_bar_helper.dart';
+import '../../data/services/business_card_ocr_service.dart';
 
-/// Màn hình scan danh thiếp - sử dụng camera để quét QR/Barcode trên danh thiếp.
+/// Màn hình scan danh thiếp - live scan tự động.
 class AddBusinessCardScreen extends StatefulWidget {
   const AddBusinessCardScreen({super.key});
 
@@ -11,11 +13,15 @@ class AddBusinessCardScreen extends StatefulWidget {
   State<AddBusinessCardScreen> createState() => _AddBusinessCardScreenState();
 }
 
-class _AddBusinessCardScreenState extends State<AddBusinessCardScreen> {
+class _AddBusinessCardScreenState extends State<AddBusinessCardScreen>
+    with TickerProviderStateMixin {
+  final BusinessCardOcrService _ocrService = BusinessCardOcrService();
   MobileScannerController? _controller;
-  bool _isScanning = true;
   bool _isProcessing = false;
-  bool _isTorchOn = false;
+  late AnimationController _scanLineController;
+  late AnimationController _pulseController;
+  late Animation<double> _scanLineAnimation;
+  late Animation<double> _pulseAnimation;
 
   @override
   void initState() {
@@ -25,16 +31,37 @@ class _AddBusinessCardScreenState extends State<AddBusinessCardScreen> {
       facing: CameraFacing.back,
       torchEnabled: false,
     );
+
+    _scanLineController = AnimationController(
+      duration: const Duration(milliseconds: 2500),
+      vsync: this,
+    )..repeat(reverse: true);
+
+    _pulseController = AnimationController(
+      duration: const Duration(milliseconds: 1500),
+      vsync: this,
+    )..repeat(reverse: true);
+
+    _scanLineAnimation = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(parent: _scanLineController, curve: Curves.easeInOut),
+    );
+
+    _pulseAnimation = Tween<double>(begin: 0.6, end: 1.0).animate(
+      CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
+    );
   }
 
   @override
   void dispose() {
     _controller?.dispose();
+    _ocrService.dispose();
+    _scanLineController.dispose();
+    _pulseController.dispose();
     super.dispose();
   }
 
   void _onDetect(BarcodeCapture capture) {
-    if (!_isScanning || _isProcessing) return;
+    if (_isProcessing) return;
 
     final List<Barcode> barcodes = capture.barcodes;
     if (barcodes.isEmpty) return;
@@ -44,72 +71,27 @@ class _AddBusinessCardScreenState extends State<AddBusinessCardScreen> {
 
     if (rawValue == null || rawValue.isEmpty) return;
 
-    setState(() {
-      _isScanning = false;
-      _isProcessing = true;
-    });
-
-    // Parse the scanned data - for demo, we'll just pass the raw value
-    // In production, you'd parse the QR code data into business card fields
+    setState(() => _isProcessing = true);
     _processScannedData(rawValue);
   }
 
-  void _processScannedData(String rawValue) {
-    // For demo purposes, parse simple key:value pairs or show raw data
-    // In real implementation, this would parse vCard or custom format
-    final Map<String, String> parsedData = _parseBusinessCardData(rawValue);
+  Future<void> _processScannedData(String rawValue) async {
+    try {
+      final result = await _ocrService.parseScannedText(rawValue);
 
-    Navigator.pop(context, parsedData);
-  }
+      if (!mounted) return;
 
-  Map<String, String> _parseBusinessCardData(String rawValue) {
-    // Try to parse as vCard or simple format
-    final data = <String, String>{};
-
-    if (rawValue.contains('BEGIN:VCARD')) {
-      // Parse vCard format
-      final lines = rawValue.split('\n');
-      for (final line in lines) {
-        if (line.contains(':')) {
-          final parts = line.split(':');
-          if (parts.length >= 2) {
-            final key = parts[0].split(';').first;
-            final value = parts.sublist(1).join(':');
-            data[key.toUpperCase()] = value.trim();
-          }
-        }
-      }
-    } else {
-      // Simple key=value or raw text
-      final lines = rawValue.split(RegExp(r'[\n,;]'));
-      for (final line in lines) {
-        final trimmed = line.trim();
-        if (trimmed.contains('=')) {
-          final parts = trimmed.split('=');
-          if (parts.length == 2) {
-            data[parts[0].trim().toUpperCase()] = parts[1].trim();
-          }
-        }
+      if (result.isEmpty) {
+        setState(() => _isProcessing = false);
+        return;
       }
 
-      // If no key=value found, just store as raw text
-      if (data.isEmpty && rawValue.isNotEmpty) {
-        data['RAW'] = rawValue;
-      }
+      Navigator.pop(context, result);
+    } catch (e) {
+      if (!mounted) return;
+      SnackBarHelper().showError(context, 'Lỗi khi quét: $e');
+      setState(() => _isProcessing = false);
     }
-
-    return data;
-  }
-
-  void _toggleTorch() {
-    _controller?.toggleTorch();
-    setState(() {
-      _isTorchOn = !_isTorchOn;
-    });
-  }
-
-  void _switchCamera() {
-    _controller?.switchCamera();
   }
 
   void _enterManually() {
@@ -118,39 +100,15 @@ class _AddBusinessCardScreenState extends State<AddBusinessCardScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final frameWidth = screenWidth * 0.85;
+    const frameHeightRatio = 0.57;
+    final frameHeight = screenWidth * frameHeightRatio;
+
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(
-        backgroundColor: Colors.black.withValues(alpha: 0.7),
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.close, color: Colors.white),
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: const Text(
-          'Quét danh thiếp',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            icon: Icon(
-              _isTorchOn ? Icons.flash_on : Icons.flash_off,
-              color: Colors.white,
-            ),
-            onPressed: _toggleTorch,
-          ),
-          IconButton(
-            icon: const Icon(Icons.cameraswitch, color: Colors.white),
-            onPressed: _switchCamera,
-          ),
-        ],
-      ),
       body: Stack(
+        fit: StackFit.expand,
         children: [
           // Camera preview
           MobileScanner(
@@ -158,230 +116,465 @@ class _AddBusinessCardScreenState extends State<AddBusinessCardScreen> {
             onDetect: _onDetect,
           ),
 
-          // Scan overlay
-          _buildScanOverlay(),
+          // Dark overlay with transparent scan area
+          _buildScanOverlay(context, frameWidth, frameHeight),
 
-          // Bottom controls
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: _buildBottomControls(),
+          // Scan frame with corners
+          Center(
+            child: _ScanFrame(
+              width: frameWidth,
+              height: frameHeight,
+              scanAnimation: _scanLineAnimation,
+              pulseAnimation: _pulseAnimation,
+              isProcessing: _isProcessing,
+            ),
           ),
-        ],
-      ),
-    );
-  }
 
-  Widget _buildScanOverlay() {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final scanAreaSize = constraints.maxWidth * 0.75;
-        final left = (constraints.maxWidth - scanAreaSize) / 2;
-        final top = (constraints.maxHeight - scanAreaSize) / 2 - 40;
-
-        return Stack(
-          children: [
-            // Dark overlay with cutout
-            ColorFiltered(
-              colorFilter: ColorFilter.mode(
-                Colors.black.withValues(alpha: 0.5),
-                BlendMode.srcOut,
-              ),
-              child: Stack(
-                children: [
-                  Container(
-                    decoration: const BoxDecoration(
-                      color: Colors.black,
-                      backgroundBlendMode: BlendMode.dstOut,
-                    ),
-                  ),
-                  Positioned(
-                    left: left,
-                    top: top,
-                    child: Container(
-                      width: scanAreaSize,
-                      height: scanAreaSize,
-                      decoration: BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            // Corner decorations
-            Positioned(
-              left: left,
-              top: top,
-              child: _buildCorner(0, 0, true, true),
-            ),
-            Positioned(
-              right: left,
-              top: top,
-              child: _buildCorner(0, 0, true, false),
-            ),
-            Positioned(
-              left: left,
-              bottom: top,
-              child: _buildCorner(0, 0, false, true),
-            ),
-            Positioned(
-              right: left,
-              bottom: top,
-              child: _buildCorner(0, 0, false, false),
-            ),
-
-            // Scan area border
-            Positioned(
-              left: left,
-              top: top,
+          // Loading overlay
+          if (_isProcessing)
+            Center(
               child: Container(
-                width: scanAreaSize,
-                height: scanAreaSize,
+                width: frameWidth,
+                height: frameHeight,
                 decoration: BoxDecoration(
-                  border: Border.all(
-                    color: AppColors.primaryERP.withValues(alpha: 0.5),
-                    width: 1,
+                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.black.withValues(alpha: 0.7),
+                ),
+                child: Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SizedBox(
+                        width: 48,
+                        height: 48,
+                        child: CircularProgressIndicator(
+                          color: AppColors.primaryERP,
+                          strokeWidth: 3,
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      const Text(
+                        'Đang xử lý...',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
                   ),
-                  borderRadius: BorderRadius.circular(16),
                 ),
               ),
             ),
 
-            // Instructions
-            Positioned(
-              left: 0,
-              right: 0,
-              top: top + scanAreaSize + 24,
-              child: const Column(
-                children: [
-                  Text(
-                    'Đặt danh thiếp hoặc mã QR',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    'trong vùng quét',
-                    style: TextStyle(
-                      color: Colors.white70,
-                      fontSize: 14,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
-            ),
-          ],
-        );
-      },
-    );
-  }
+          // Top bar
+          _buildTopBar(context),
 
-  Widget _buildCorner(double width, double height, bool isTop, bool isLeft) {
-    return SizedBox(
-      width: 24,
-      height: 24,
-      child: CustomPaint(
-        painter: _CornerPainter(
-          isTop: isTop,
-          isLeft: isLeft,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildBottomControls() {
-    return Container(
-      padding: const EdgeInsets.fromLTRB(24, 16, 24, 40),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Colors.transparent,
-            Colors.black.withValues(alpha: 0.8),
-          ],
-        ),
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          // Loading indicator when processing
-          if (_isProcessing)
-            const Padding(
-              padding: EdgeInsets.only(bottom: 16),
-              child: CircularProgressIndicator(
-                color: AppColors.primaryERP,
-              ),
-            ),
-
-          // Manual entry button
-          TextButton.icon(
-            onPressed: _enterManually,
-            icon: const Icon(
-              Icons.edit_outlined,
-              color: Colors.white,
-            ),
-            label: const Text(
-              'Nhập thủ công',
+          // Hint text
+          Positioned(
+            bottom: MediaQuery.of(context).padding.bottom + 100,
+            left: 0,
+            right: 0,
+            child: const Text(
+              'Đưa danh thiếp vào khung để quét tự động',
+              textAlign: TextAlign.center,
               style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
+                color: Colors.white70,
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
               ),
             ),
           ),
+
+          // Manual input button
+          Positioned(
+            bottom: MediaQuery.of(context).padding.bottom + 32,
+            left: 0,
+            right: 0,
+            child: Center(
+              child: _ManualInputButton(onTap: _enterManually),
+            ),
+          ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildTopBar(BuildContext context) {
+    return Positioned(
+      top: 0,
+      left: 0,
+      right: 0,
+      child: Container(
+        padding: EdgeInsets.only(
+          top: MediaQuery.of(context).padding.top + 8,
+          left: 8,
+          right: 8,
+          bottom: 16,
+        ),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.black.withValues(alpha: 0.8),
+              Colors.transparent,
+            ],
+          ),
+        ),
+        child: Row(
+          children: [
+            IconButton(
+              onPressed: () => Navigator.pop(context),
+              icon: Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: Colors.white.withValues(alpha: 0.15),
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(
+                  Icons.close,
+                  color: Colors.white,
+                  size: 22,
+                ),
+              ),
+            ),
+            const Expanded(
+              child: Text(
+                'Quét danh thiếp',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            const SizedBox(width: 48),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildScanOverlay(BuildContext context, double frameWidth, double frameHeight) {
+    final screenSize = MediaQuery.of(context).size;
+    final topBarHeight = MediaQuery.of(context).padding.top + 80;
+    final bottomOffset = MediaQuery.of(context).padding.bottom + 180;
+    final availableHeight = screenSize.height - topBarHeight - bottomOffset;
+    final centerY = topBarHeight + availableHeight / 2;
+
+    final frameRect = Rect.fromCenter(
+      center: Offset(screenSize.width / 2, centerY),
+      width: frameWidth,
+      height: frameHeight,
+    );
+
+    return CustomPaint(
+      size: screenSize,
+      painter: _ScanOverlayPainter(frameRect: frameRect),
+    );
+  }
+}
+
+class _ScanOverlayPainter extends CustomPainter {
+  _ScanOverlayPainter({required this.frameRect});
+
+  final Rect frameRect;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = Colors.black.withValues(alpha: 0.6)
+      ..style = PaintingStyle.fill;
+
+    final path = Path()
+      ..addRect(Rect.fromLTWH(0, 0, size.width, size.height))
+      ..addRRect(RRect.fromRectAndRadius(frameRect, const Radius.circular(12)))
+      ..fillType = PathFillType.evenOdd;
+
+    canvas.drawPath(path, paint);
+
+    // Draw subtle border around scan area
+    final borderPaint = Paint()
+      ..color = Colors.white.withValues(alpha: 0.3)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1;
+
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(frameRect, const Radius.circular(12)),
+      borderPaint,
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant _ScanOverlayPainter oldDelegate) => false;
+}
+
+class _ScanFrame extends StatelessWidget {
+  const _ScanFrame({
+    required this.width,
+    required this.height,
+    required this.scanAnimation,
+    required this.pulseAnimation,
+    required this.isProcessing,
+  });
+
+  final double width;
+  final double height;
+  final Animation<double> scanAnimation;
+  final Animation<double> pulseAnimation;
+  final bool isProcessing;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: width,
+      height: height,
+      child: Stack(
+        children: [
+          // Corner brackets
+          ..._buildCorners(),
+
+          // Animated scan line
+          if (!isProcessing)
+            AnimatedBuilder(
+              animation: scanAnimation,
+              builder: (context, child) {
+                return Positioned(
+                  top: 20 + (height - 40) * scanAnimation.value,
+                  left: 20,
+                  right: 20,
+                  child: _ScanLine(pulseAnimation: pulseAnimation),
+                );
+              },
+            ),
+        ],
+      ),
+    );
+  }
+
+  List<Widget> _buildCorners() {
+    const cornerSize = 40.0;
+    const strokeWidth = 4.0;
+    const radius = 12.0;
+
+    return [
+      // Top-left
+      Positioned(
+        top: 0,
+        left: 0,
+        child: _CornerBracket(
+          size: cornerSize,
+          strokeWidth: strokeWidth,
+          radius: radius,
+          position: _BracketPosition.topLeft,
+        ),
+      ),
+      // Top-right
+      Positioned(
+        top: 0,
+        right: 0,
+        child: _CornerBracket(
+          size: cornerSize,
+          strokeWidth: strokeWidth,
+          radius: radius,
+          position: _BracketPosition.topRight,
+        ),
+      ),
+      // Bottom-left
+      Positioned(
+        bottom: 0,
+        left: 0,
+        child: _CornerBracket(
+          size: cornerSize,
+          strokeWidth: strokeWidth,
+          radius: radius,
+          position: _BracketPosition.bottomLeft,
+        ),
+      ),
+      // Bottom-right
+      Positioned(
+        bottom: 0,
+        right: 0,
+        child: _CornerBracket(
+          size: cornerSize,
+          strokeWidth: strokeWidth,
+          radius: radius,
+          position: _BracketPosition.bottomRight,
+        ),
+      ),
+    ];
+  }
+}
+
+enum _BracketPosition { topLeft, topRight, bottomLeft, bottomRight }
+
+class _CornerBracket extends StatelessWidget {
+  const _CornerBracket({
+    required this.size,
+    required this.strokeWidth,
+    required this.radius,
+    required this.position,
+  });
+
+  final double size;
+  final double strokeWidth;
+  final double radius;
+  final _BracketPosition position;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: size,
+      height: size,
+      child: CustomPaint(
+        painter: _BracketPainter(
+          strokeWidth: strokeWidth,
+          radius: radius,
+          position: position,
+          color: Colors.white,
+        ),
       ),
     );
   }
 }
 
-class _CornerPainter extends CustomPainter {
-  final bool isTop;
-  final bool isLeft;
+class _BracketPainter extends CustomPainter {
+  _BracketPainter({
+    required this.strokeWidth,
+    required this.radius,
+    required this.position,
+    required this.color,
+  });
 
-  _CornerPainter({required this.isTop, required this.isLeft});
+  final double strokeWidth;
+  final double radius;
+  final _BracketPosition position;
+  final Color color;
 
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = AppColors.primaryERP
-      ..strokeWidth = 3
+      ..color = color
+      ..strokeWidth = strokeWidth
       ..style = PaintingStyle.stroke
-      ..strokeCap = StrokeCap.round;
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round;
 
     final path = Path();
 
-    if (isTop && isLeft) {
-      path.moveTo(0, size.height);
-      path.lineTo(0, 0);
-      path.lineTo(size.width, 0);
-    } else if (isTop && !isLeft) {
-      path.moveTo(0, 0);
-      path.lineTo(size.width, 0);
-      path.lineTo(size.width, size.height);
-    } else if (!isTop && isLeft) {
-      path.moveTo(0, 0);
-      path.lineTo(0, size.height);
-      path.lineTo(size.width, size.height);
-    } else {
-      path.moveTo(0, size.height);
-      path.lineTo(size.width, size.height);
-      path.lineTo(size.width, 0);
+    switch (position) {
+      case _BracketPosition.topLeft:
+        path.moveTo(0, size.height);
+        path.lineTo(0, radius);
+        path.quadraticBezierTo(0, 0, radius, 0);
+        path.lineTo(size.width, 0);
+        break;
+      case _BracketPosition.topRight:
+        path.moveTo(0, 0);
+        path.lineTo(size.width - radius, 0);
+        path.quadraticBezierTo(size.width, 0, size.width, radius);
+        path.lineTo(size.width, size.height);
+        break;
+      case _BracketPosition.bottomLeft:
+        path.moveTo(0, 0);
+        path.lineTo(0, size.height - radius);
+        path.quadraticBezierTo(0, size.height, radius, size.height);
+        path.lineTo(size.width, size.height);
+        break;
+      case _BracketPosition.bottomRight:
+        path.moveTo(size.width, 0);
+        path.lineTo(size.width, size.height - radius);
+        path.quadraticBezierTo(size.width, size.height, size.width - radius, size.height);
+        path.lineTo(0, size.height);
+        break;
     }
 
     canvas.drawPath(path, paint);
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+  bool shouldRepaint(covariant _BracketPainter oldDelegate) => true;
+}
+
+class _ScanLine extends StatelessWidget {
+  const _ScanLine({required this.pulseAnimation});
+
+  final Animation<double> pulseAnimation;
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: pulseAnimation,
+      builder: (context, child) {
+        return Container(
+          height: 3,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.transparent,
+                AppColors.primaryERP.withValues(alpha: 0.5 + 0.5 * pulseAnimation.value),
+                AppColors.primaryERP,
+                AppColors.primaryERP.withValues(alpha: 0.5 + 0.5 * pulseAnimation.value),
+                Colors.transparent,
+              ],
+              stops: const [0.0, 0.2, 0.5, 0.8, 1.0],
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.primaryERP.withValues(alpha: 0.6 * pulseAnimation.value),
+                blurRadius: 12,
+                spreadRadius: 2,
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _ManualInputButton extends StatelessWidget {
+  const _ManualInputButton({required this.onTap});
+
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+        decoration: BoxDecoration(
+          color: Colors.white.withValues(alpha: 0.1),
+          borderRadius: BorderRadius.circular(24),
+          border: Border.all(
+            color: Colors.white.withValues(alpha: 0.2),
+            width: 1,
+          ),
+        ),
+        child: const Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.edit_outlined,
+              color: Colors.white70,
+              size: 20,
+            ),
+            SizedBox(width: 8),
+            Text(
+              'Nhập tay',
+              style: TextStyle(
+                color: Colors.white70,
+                fontSize: 15,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
