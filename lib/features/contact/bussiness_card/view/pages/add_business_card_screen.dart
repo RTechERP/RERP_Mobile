@@ -1,11 +1,13 @@
+import 'dart:io';
+
+import 'package:camerawesome/camerawesome_plugin.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile_scanner/mobile_scanner.dart';
 
 import '../../../../../common/app_theme/index.dart';
 import '../../../../../common/utils/snack_bar_helper.dart';
-import '../../data/services/business_card_ocr_service.dart';
+import '../../data/datasource/services/ollama_vision_service.dart';
 
-/// Màn hình scan danh thiếp - live scan tự động.
+/// Màn hình quét danh thiếp bằng camera.
 class AddBusinessCardScreen extends StatefulWidget {
   const AddBusinessCardScreen({super.key});
 
@@ -15,32 +17,27 @@ class AddBusinessCardScreen extends StatefulWidget {
 
 class _AddBusinessCardScreenState extends State<AddBusinessCardScreen>
     with TickerProviderStateMixin {
-  final BusinessCardOcrService _ocrService = BusinessCardOcrService();
-  MobileScannerController? _controller;
+  final OllamaVisionService _ollamaService = OllamaVisionService();
   bool _isProcessing = false;
   late AnimationController _scanLineController;
   late AnimationController _pulseController;
   late Animation<double> _scanLineAnimation;
   late Animation<double> _pulseAnimation;
+  PhotoCameraState? _photoState;
 
   @override
   void initState() {
     super.initState();
-    _controller = MobileScannerController(
-      detectionSpeed: DetectionSpeed.normal,
-      facing: CameraFacing.back,
-      torchEnabled: false,
-    );
-
+    // Scan line animation disabled - only corner brackets are shown.
     _scanLineController = AnimationController(
       duration: const Duration(milliseconds: 2500),
       vsync: this,
-    )..repeat(reverse: true);
+    );
 
     _pulseController = AnimationController(
       duration: const Duration(milliseconds: 1500),
       vsync: this,
-    )..repeat(reverse: true);
+    );
 
     _scanLineAnimation = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(parent: _scanLineController, curve: Curves.easeInOut),
@@ -53,43 +50,63 @@ class _AddBusinessCardScreenState extends State<AddBusinessCardScreen>
 
   @override
   void dispose() {
-    _controller?.dispose();
-    _ocrService.dispose();
+    _ollamaService.dispose();
     _scanLineController.dispose();
     _pulseController.dispose();
     super.dispose();
   }
 
-  void _onDetect(BarcodeCapture capture) {
+  Future<void> _captureAndScan() async {
     if (_isProcessing) return;
 
-    final List<Barcode> barcodes = capture.barcodes;
-    if (barcodes.isEmpty) return;
-
-    final barcode = barcodes.first;
-    final String? rawValue = barcode.rawValue;
-
-    if (rawValue == null || rawValue.isEmpty) return;
-
     setState(() => _isProcessing = true);
-    _processScannedData(rawValue);
-  }
 
-  Future<void> _processScannedData(String rawValue) async {
     try {
-      final result = await _ocrService.parseScannedText(rawValue);
+      final captureRequest = await _photoState?.takePhoto();
+      if (captureRequest == null || !mounted) {
+        if (mounted) setState(() => _isProcessing = false);
+        return;
+      }
+
+      final path = captureRequest.when(
+        single: (s) => s.path,
+        multiple: (m) => m.path,
+      );
+
+      if (path == null || path.isEmpty) {
+        if (mounted) setState(() => _isProcessing = false);
+        return;
+      }
+
+      // Gọi Ollama Qwen2.5VL để extract thông tin danh thiếp.
+      final ollamaResult = await _ollamaService.extractBusinessCard(path);
+      final scannedData = ollamaResult.toMap();
 
       if (!mounted) return;
 
-      if (result.isEmpty) {
+      try {
+        await File(path).delete();
+      } catch (_) {}
+
+      if (!mounted) return;
+
+      if (scannedData.isEmpty) {
+        SnackBarHelper().showError(
+          context,
+          'Không nhận diện được thông tin. Vui lòng thử lại.',
+        );
         setState(() => _isProcessing = false);
         return;
       }
 
-      Navigator.pop(context, result);
+      Navigator.pop(context, scannedData);
+    } on OllamaConnectionException catch (e) {
+      if (!mounted) return;
+      SnackBarHelper().showError(context, e.message);
+      setState(() => _isProcessing = false);
     } catch (e) {
       if (!mounted) return;
-      SnackBarHelper().showError(context, 'Lỗi khi quét: $e');
+      SnackBarHelper().showError(context, 'Lỗi khi xử lý ảnh: $e');
       setState(() => _isProcessing = false);
     }
   }
@@ -110,16 +127,28 @@ class _AddBusinessCardScreenState extends State<AddBusinessCardScreen>
       body: Stack(
         fit: StackFit.expand,
         children: [
-          // Camera preview
-          MobileScanner(
-            controller: _controller,
-            onDetect: _onDetect,
+          // Camera preview - camerawesome renders the preview texture internally.
+          // The builder only returns a placeholder widget. We capture
+          // PhotoCameraState from the cameraState so `_captureAndScan` can call
+          // takePhoto(). Never return `preview` as a Widget - it is an
+          // AnalysisPreview (metadata), not a Widget.
+          CameraAwesomeBuilder.custom(
+            sensorConfig: SensorConfig.single(
+              sensor: Sensor.position(SensorPosition.back),
+            ),
+            saveConfig: SaveConfig.photo(),
+            builder: (cameraState, preview) {
+              cameraState.when(
+                onPhotoMode: (s) => _photoState = s,
+              );
+              return const SizedBox.shrink();
+            },
           ),
 
           // Dark overlay with transparent scan area
           _buildScanOverlay(context, frameWidth, frameHeight),
 
-          // Scan frame with corners
+          // Scan frame with animated scan line
           Center(
             child: _ScanFrame(
               width: frameWidth,
@@ -130,7 +159,7 @@ class _AddBusinessCardScreenState extends State<AddBusinessCardScreen>
             ),
           ),
 
-          // Loading overlay
+          // Processing overlay
           if (_isProcessing)
             Center(
               child: Container(
@@ -154,7 +183,7 @@ class _AddBusinessCardScreenState extends State<AddBusinessCardScreen>
                       ),
                       const SizedBox(height: 16),
                       const Text(
-                        'Đang xử lý...',
+                        'Đang quét bằng AI...',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
@@ -170,34 +199,67 @@ class _AddBusinessCardScreenState extends State<AddBusinessCardScreen>
           // Top bar
           _buildTopBar(context),
 
-          // Hint text
+          // Hint text - placed right below the centered scan frame.
+          // The scan frame sits at vertical center of the screen via Center,
+          // so the hint top is computed from screen midpoint + half frame height.
           Positioned(
-            bottom: MediaQuery.of(context).padding.bottom + 100,
+            top: MediaQuery.of(context).size.height / 2 +
+                frameHeight / 2 +
+                16,
             left: 0,
             right: 0,
-            child: const Text(
-              'Đưa danh thiếp vào khung để quét tự động',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.white70,
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
+            child: Center(
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                decoration: BoxDecoration(
+                  color: Colors.black.withValues(alpha: 0.45),
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                    color: Colors.white.withValues(alpha: 0.15),
+                    width: 1,
+                  ),
+                ),
+                child: const Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.center_focus_weak, color: Colors.white70, size: 16),
+                    SizedBox(width: 8),
+                    Text(
+                      'Đưa danh thiếp vào khung để quét',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: 0.2,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
 
-          // Manual input button
+          // Bottom controls: capture button centered, manual input on the right.
           Positioned(
             bottom: MediaQuery.of(context).padding.bottom + 32,
-            left: 0,
-            right: 0,
-            child: Center(
-              child: _ManualInputButton(onTap: _enterManually),
+            left: 24,
+            right: 24,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(width: 72),
+                _CaptureButton(
+                  isProcessing: _isProcessing,
+                  onTap: _captureAndScan,
+                ),
+                _ManualInputButton(onTap: _enterManually),
+              ],
             ),
           ),
         ],
       ),
-    );
+);
   }
 
   Widget _buildTopBar(BuildContext context) {
@@ -296,7 +358,6 @@ class _ScanOverlayPainter extends CustomPainter {
 
     canvas.drawPath(path, paint);
 
-    // Draw subtle border around scan area
     final borderPaint = Paint()
       ..color = Colors.white.withValues(alpha: 0.3)
       ..style = PaintingStyle.stroke
@@ -334,22 +395,20 @@ class _ScanFrame extends StatelessWidget {
       height: height,
       child: Stack(
         children: [
-          // Corner brackets
           ..._buildCorners(),
-
-          // Animated scan line
-          if (!isProcessing)
-            AnimatedBuilder(
-              animation: scanAnimation,
-              builder: (context, child) {
-                return Positioned(
-                  top: 20 + (height - 40) * scanAnimation.value,
-                  left: 20,
-                  right: 20,
-                  child: _ScanLine(pulseAnimation: pulseAnimation),
-                );
-              },
-            ),
+          // Animated scan line disabled - keep corners only for cleaner UI.
+          // if (!isProcessing)
+          //   AnimatedBuilder(
+          //     animation: scanAnimation,
+          //     builder: (context, child) {
+          //       return Positioned(
+          //         top: 20 + (height - 40) * scanAnimation.value,
+          //         left: 20,
+          //         right: 20,
+          //         child: _ScanLine(pulseAnimation: pulseAnimation),
+          //       );
+          //     },
+          //   ),
         ],
       ),
     );
@@ -361,7 +420,6 @@ class _ScanFrame extends StatelessWidget {
     const radius = 12.0;
 
     return [
-      // Top-left
       Positioned(
         top: 0,
         left: 0,
@@ -372,7 +430,6 @@ class _ScanFrame extends StatelessWidget {
           position: _BracketPosition.topLeft,
         ),
       ),
-      // Top-right
       Positioned(
         top: 0,
         right: 0,
@@ -383,7 +440,6 @@ class _ScanFrame extends StatelessWidget {
           position: _BracketPosition.topRight,
         ),
       ),
-      // Bottom-left
       Positioned(
         bottom: 0,
         left: 0,
@@ -394,7 +450,6 @@ class _ScanFrame extends StatelessWidget {
           position: _BracketPosition.bottomLeft,
         ),
       ),
-      // Bottom-right
       Positioned(
         bottom: 0,
         right: 0,
@@ -499,42 +554,43 @@ class _BracketPainter extends CustomPainter {
   bool shouldRepaint(covariant _BracketPainter oldDelegate) => true;
 }
 
-class _ScanLine extends StatelessWidget {
-  const _ScanLine({required this.pulseAnimation});
-
-  final Animation<double> pulseAnimation;
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: pulseAnimation,
-      builder: (context, child) {
-        return Container(
-          height: 3,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Colors.transparent,
-                AppColors.primaryERP.withValues(alpha: 0.5 + 0.5 * pulseAnimation.value),
-                AppColors.primaryERP,
-                AppColors.primaryERP.withValues(alpha: 0.5 + 0.5 * pulseAnimation.value),
-                Colors.transparent,
-              ],
-              stops: const [0.0, 0.2, 0.5, 0.8, 1.0],
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.primaryERP.withValues(alpha: 0.6 * pulseAnimation.value),
-                blurRadius: 12,
-                spreadRadius: 2,
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-}
+// Scan line widget kept for reference but currently disabled in the UI.
+// class _ScanLine extends StatelessWidget {
+//   const _ScanLine({required this.pulseAnimation});
+//
+//   final Animation<double> pulseAnimation;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return AnimatedBuilder(
+//       animation: pulseAnimation,
+//       builder: (context, child) {
+//         return Container(
+//           height: 3,
+//           decoration: BoxDecoration(
+//             gradient: LinearGradient(
+//               colors: [
+//                 Colors.transparent,
+//                 AppColors.primaryERP.withValues(alpha: 0.5 + 0.5 * pulseAnimation.value),
+//                 AppColors.primaryERP,
+//                 AppColors.primaryERP.withValues(alpha: 0.5 + 0.5 * pulseAnimation.value),
+//                 Colors.transparent,
+//               ],
+//               stops: const [0.0, 0.2, 0.5, 0.8, 1.0],
+//             ),
+//             boxShadow: [
+//               BoxShadow(
+//                 color: AppColors.primaryERP.withValues(alpha: 0.6 * pulseAnimation.value),
+//                 blurRadius: 12,
+//                 spreadRadius: 2,
+//               ),
+//             ],
+//           ),
+//         );
+//       },
+//     );
+//   }
+// }
 
 class _ManualInputButton extends StatelessWidget {
   const _ManualInputButton({required this.onTap});
@@ -558,11 +614,7 @@ class _ManualInputButton extends StatelessWidget {
         child: const Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              Icons.edit_outlined,
-              color: Colors.white70,
-              size: 20,
-            ),
+            Icon(Icons.edit_outlined, color: Colors.white70, size: 20),
             SizedBox(width: 8),
             Text(
               'Nhập tay',
@@ -573,6 +625,48 @@ class _ManualInputButton extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _CaptureButton extends StatelessWidget {
+  const _CaptureButton({
+    required this.isProcessing,
+    required this.onTap,
+  });
+
+  final bool isProcessing;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: isProcessing ? null : onTap,
+      child: Container(
+        width: 72,
+        height: 72,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.3),
+              blurRadius: 8,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Container(
+          margin: const EdgeInsets.all(4),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(
+              color: AppColors.primaryERP,
+              width: 3,
+            ),
+          ),
         ),
       ),
     );

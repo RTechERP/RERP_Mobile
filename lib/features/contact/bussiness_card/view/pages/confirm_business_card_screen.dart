@@ -32,7 +32,7 @@ class _ConfirmBusinessCardScreenState extends State<ConfirmBusinessCardScreen> {
   void initState() {
     super.initState();
     _nameController = TextEditingController(text: _extractField('FN') ?? _extractField('NAME'));
-    _phoneController = TextEditingController(text: _extractField('TEL'));
+    _phoneController = TextEditingController(text: _extractField('TEL') ?? _extractField('PHONE'));
     _emailController = TextEditingController(text: _extractField('EMAIL'));
     _companyController = TextEditingController(text: _extractField('ORG') ?? _extractField('COMPANY'));
     _addressController = TextEditingController(text: _extractField('ADR') ?? _extractField('ADDRESS'));
@@ -99,13 +99,21 @@ class _ConfirmBusinessCardScreenState extends State<ConfirmBusinessCardScreen> {
         ),
         centerTitle: true,
         actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.check,
-              color: AppColors.primaryERP,
-              size: 28,
-            ),
-            onPressed: _confirmAndSave,
+          ValueListenableBuilder<TextEditingValue>(
+            valueListenable: _nameController,
+            builder: (context, value, _) {
+              final enabled = value.text.trim().isNotEmpty;
+              return IconButton(
+                icon: Icon(
+                  Icons.check,
+                  color: enabled
+                      ? AppColors.primaryERP
+                      : AppColors.gray.withValues(alpha: 0.4),
+                  size: 28,
+                ),
+                onPressed: enabled ? _confirmAndSave : null,
+              );
+            },
           ),
         ],
       ),
@@ -282,7 +290,7 @@ class _ConfirmBusinessCardScreenState extends State<ConfirmBusinessCardScreen> {
                     controller: _addressController,
                     label: 'Địa chỉ',
                     icon: Icons.location_on_outlined,
-                    maxLines: 2,
+                    autoExpand: true,
                   ),
                 ],
               ),
@@ -298,86 +306,86 @@ class _ConfirmBusinessCardScreenState extends State<ConfirmBusinessCardScreen> {
     required String label,
     required IconData icon,
     TextInputType? keyboardType,
-    int maxLines = 1,
+    bool autoExpand = false,
     bool isRequired = false,
   }) {
+    final copyIcon = IconButton(
+      icon: const Icon(
+        Icons.copy_outlined,
+        size: 18,
+        color: AppColors.gray,
+      ),
+      tooltip: 'Sao chép',
+      onPressed: () => _copyToClipboard(controller.text),
+      visualDensity: VisualDensity.compact,
+    );
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      child: Row(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(icon, size: 20, color: AppColors.gray),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      label,
-                      style: const TextStyle(
-                        fontSize: 12,
-                        color: AppColors.gray,
-                      ),
-                    ),
-                    if (isRequired)
-                      const Text(
-                        ' *',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.red,
-                        ),
-                      ),
-                  ],
-                ),
-                const SizedBox(height: 4),
-                TextField(
-                  controller: controller,
-                  keyboardType: keyboardType,
-                  maxLines: maxLines,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.heading,
-                  ),
-                  decoration: InputDecoration(
-                    isDense: true,
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 10,
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: const BorderSide(color: Color(0xFFE8EAF0)),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: const BorderSide(color: Color(0xFFE8EAF0)),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: const BorderSide(color: AppColors.primaryERP),
-                    ),
-                    filled: true,
-                    fillColor: const Color(0xFFF8F9FB),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          if (controller.text.isNotEmpty)
-            GestureDetector(
-              onTap: () => _copyToClipboard(controller.text),
-              child: Container(
-                padding: const EdgeInsets.all(6),
-                child: const Icon(
-                  Icons.copy_outlined,
-                  size: 18,
+          Row(
+            children: [
+              Icon(icon, size: 20, color: AppColors.gray),
+              const SizedBox(width: 12),
+              Text(
+                label,
+                style: const TextStyle(
+                  fontSize: 12,
                   color: AppColors.gray,
                 ),
               ),
+              if (isRequired)
+                const Text(
+                  ' *',
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.red,
+                  ),
+                ),
+            ],
+          ),
+          const SizedBox(height: 6),
+          TextField(
+            controller: controller,
+            keyboardType: keyboardType,
+            minLines: 1,
+            maxLines: autoExpand ? null : 1,
+            style: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: AppColors.heading,
             ),
+            decoration: InputDecoration(
+              isDense: true,
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 12,
+                vertical: 10,
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: const BorderSide(color: Color(0xFFE8EAF0)),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: const BorderSide(color: Color(0xFFE8EAF0)),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: const BorderSide(color: AppColors.primaryERP),
+              ),
+              filled: true,
+              fillColor: const Color(0xFFF8F9FB),
+              suffixIcon: ValueListenableBuilder<TextEditingValue>(
+                valueListenable: controller,
+                builder: (context, value, _) {
+                  if (value.text.isEmpty) return const SizedBox.shrink();
+                  return copyIcon;
+                },
+              ),
+            ),
+          ),
         ],
       ),
     );

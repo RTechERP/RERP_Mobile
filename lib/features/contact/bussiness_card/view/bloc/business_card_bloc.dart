@@ -17,7 +17,7 @@ class BusinessCardBloc extends BaseBloc<BusinessCardEvent, BusinessCardState> {
   final LogUtils _log;
   final BusinessCardRepo _repo;
 
-  BusinessCardBloc(this._log,this._repo) : super(BusinessCardState.init()) {
+  BusinessCardBloc(this._log, this._repo) : super(BusinessCardState.init()) {
     on<BusinessCardEvent>((event, emit) async {
       await event.when(init: () => _onInit(emit));
     });
