@@ -1,5 +1,6 @@
 import Flutter
 import UIKit
+import AVFoundation
 import UserNotifications
 import FirebaseMessaging
 
@@ -19,7 +20,33 @@ import FirebaseMessaging
     application.registerForRemoteNotifications()
 
     GeneratedPluginRegistrant.register(with: self)
+
+    // Setup camera mute channel
+    let controller = window?.rootViewController as! FlutterViewController
+    let channel = FlutterMethodChannel(
+      name: "com.rerp/camera_mute",
+      binaryMessenger: controller.binaryMessenger
+    )
+    channel.setMethodCallHandler { [weak self] call, result in
+      if call.method == "muteShutter" {
+        self?.muteShutterSound()
+        result(nil)
+      } else {
+        result(FlutterMethodNotImplemented)
+      }
+    }
+
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+  }
+
+  private func muteShutterSound() {
+    // iOS: Override system sound with silence
+    // On Japanese iPhones shutter sound cannot be muted, but we try to suppress it
+    let audioSession = AVAudioSession.sharedInstance()
+    do {
+      try audioSession.setCategory(.playback, options: .mixWithOthers)
+      try audioSession.setActive(true)
+    } catch {}
   }
 
   // Khi FirebaseAppDelegateProxyEnabled = false, phải tự truyền APNS token sang Firebase

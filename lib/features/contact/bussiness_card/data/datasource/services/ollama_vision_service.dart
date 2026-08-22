@@ -41,12 +41,14 @@ class OllamaBusinessCardResult {
 /// Service gọi Ollama local (Qwen2.5VL) để trích xuất thông tin danh thiếp.
 class OllamaVisionService {
   OllamaVisionService({String? baseUrl})
-      : _baseUrlOverride = baseUrl,
-        _dio = Dio(BaseOptions(
+    : _baseUrlOverride = baseUrl,
+      _dio = Dio(
+        BaseOptions(
           connectTimeout: const Duration(seconds: 10),
           receiveTimeout: const Duration(minutes: 5),
           sendTimeout: const Duration(minutes: 5),
-        ));
+        ),
+      );
 
   final String? _baseUrlOverride;
   final Dio _dio;
@@ -72,11 +74,13 @@ class OllamaVisionService {
     final candidates = _defaultCandidates();
     for (final url in candidates) {
       try {
-        final dio = Dio(BaseOptions(
-          baseUrl: url,
-          connectTimeout: const Duration(seconds: 3),
-          receiveTimeout: const Duration(seconds: 3),
-        ));
+        final dio = Dio(
+          BaseOptions(
+            baseUrl: url,
+            connectTimeout: const Duration(seconds: 3),
+            receiveTimeout: const Duration(seconds: 3),
+          ),
+        );
         final r = await dio.get('/api/tags');
         if (r.statusCode == 200) return url;
       } catch (_) {
@@ -92,8 +96,10 @@ class OllamaVisionService {
     String imagePath, {
     String model = 'qwen2.5vl:latest',
   }) async {
-    developer.log('[Ollama] extractBusinessCard path=$imagePath',
-        name: 'OllamaVision');
+    developer.log(
+      '[Ollama] extractBusinessCard path=$imagePath',
+      name: 'OllamaVision',
+    );
     // Resolve base URL trước (auto-detect nếu cần).
     final baseUrl = await _resolveBaseUrl();
     developer.log('[Ollama] resolved baseUrl=$baseUrl', name: 'OllamaVision');
@@ -108,8 +114,10 @@ class OllamaVisionService {
 
     // Ollama /api/generate endpoint với image base64.
     final base64Image = await _imageToBase64(imagePath);
-    developer.log('[Ollama] image base64 length=${base64Image.length}',
-        name: 'OllamaVision');
+    developer.log(
+      '[Ollama] image base64 length=${base64Image.length}',
+      name: 'OllamaVision',
+    );
 
     // Prompt yêu cầu Ollama trả về JSON thuần túy.
     const prompt = '''
@@ -153,10 +161,14 @@ Nếu không tìm thấy trường nào thì để giá trị rỗng "". Trả v
       return _parseOllamaResponse(rawResponse);
     } on DioException catch (e, st) {
       final body = e.response?.data;
-      developer.log('[Ollama] DioException type=${e.type} '
-          'code=${e.response?.statusCode} msg=${e.message} '
-          'body=$body',
-          name: 'OllamaVision', error: e, stackTrace: st);
+      developer.log(
+        '[Ollama] DioException type=${e.type} '
+        'code=${e.response?.statusCode} msg=${e.message} '
+        'body=$body',
+        name: 'OllamaVision',
+        error: e,
+        stackTrace: st,
+      );
       if (e.type == DioExceptionType.connectionError ||
           e.type == DioExceptionType.connectionTimeout) {
         throw const OllamaConnectionException(
@@ -166,10 +178,16 @@ Nếu không tìm thấy trường nào thì để giá trị rỗng "". Trả v
       }
       final serverMsg = body is Map ? (body['error']?.toString()) : null;
       final detail = serverMsg ?? e.message ?? 'unknown';
-      throw OllamaException('Lỗi từ Ollama (${e.response?.statusCode}): $detail');
+      throw OllamaException(
+        'Lỗi từ Ollama (${e.response?.statusCode}): $detail',
+      );
     } catch (e, st) {
-      developer.log('[Ollama] Unexpected error: $e',
-          name: 'OllamaVision', error: e, stackTrace: st);
+      developer.log(
+        '[Ollama] Unexpected error: $e',
+        name: 'OllamaVision',
+        error: e,
+        stackTrace: st,
+      );
       rethrow;
     }
   }
@@ -179,11 +197,13 @@ Nếu không tìm thấy trường nào thì để giá trị rỗng "". Trả v
     try {
       final baseUrl = await _resolveBaseUrl();
       if (baseUrl == null) return false;
-      final dio = Dio(BaseOptions(
-        baseUrl: baseUrl,
-        connectTimeout: const Duration(seconds: 3),
-        receiveTimeout: const Duration(seconds: 5),
-      ));
+      final dio = Dio(
+        BaseOptions(
+          baseUrl: baseUrl,
+          connectTimeout: const Duration(seconds: 3),
+          receiveTimeout: const Duration(seconds: 5),
+        ),
+      );
       final response = await dio.get('/api/tags');
       if (response.statusCode == 200 && response.data is Map) {
         final models = response.data['models'] as List?;
@@ -215,8 +235,7 @@ Nếu không tìm thấy trường nào thì để giá trị rỗng "". Trả v
     }
 
     const maxDim = 1024;
-    final shouldResize =
-        decoded.width > maxDim || decoded.height > maxDim;
+    final shouldResize = decoded.width > maxDim || decoded.height > maxDim;
     final resized = shouldResize
         ? img.copyResize(
             decoded,
@@ -235,7 +254,9 @@ Nếu không tìm thấy trường nào thì để giá trị rỗng "". Trả v
     // Ollama có thể trả kèm markdown code block, tách ra.
     var text = raw.trim();
     // Bỏ ```json ... ``` hoặc ``` ... ```
-    final codeBlockMatch = RegExp(r'```(?:json)?\s*([\s\S]*?)```').firstMatch(text);
+    final codeBlockMatch = RegExp(
+      r'```(?:json)?\s*([\s\S]*?)```',
+    ).firstMatch(text);
     if (codeBlockMatch != null) {
       text = codeBlockMatch.group(1)!.trim();
     }

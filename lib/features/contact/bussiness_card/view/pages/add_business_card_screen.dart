@@ -1,11 +1,23 @@
-import 'dart:io';
+import 'dart:async';
 
 import 'package:camerawesome/camerawesome_plugin.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../../../common/app_theme/index.dart';
 import '../../../../../common/utils/snack_bar_helper.dart';
 import '../../data/datasource/services/ollama_vision_service.dart';
+
+/// Mute camera shutter sound on iOS/Android.
+class _CameraSoundMuter {
+  static const _channel = MethodChannel('com.rerp/camera_mute');
+
+  static Future<void> mute() async {
+    try {
+      await _channel.invokeMethod('muteShutter');
+    } catch (_) {}
+  }
+}
 
 /// Màn hình quét danh thiếp bằng camera.
 class AddBusinessCardScreen extends StatefulWidget {
@@ -19,25 +31,42 @@ class _AddBusinessCardScreenState extends State<AddBusinessCardScreen>
     with TickerProviderStateMixin {
   final OllamaVisionService _ollamaService = OllamaVisionService();
   bool _isProcessing = false;
+  bool _hasObject = false;
   late AnimationController _scanLineController;
   late AnimationController _pulseController;
+  late AnimationController _blinkController;
   late Animation<double> _scanLineAnimation;
   late Animation<double> _pulseAnimation;
+  late Animation<double> _blinkAnimation;
   PhotoCameraState? _photoState;
+
+  // Stability detection
+  Timer? _stabilityTimer;
+  DateTime? _stableStartTime;
+  Uint8List? _lastFrameBytes;
+  static const _stableDuration = Duration(seconds: 2);
+
+  // Edge ratio với hysteresis để tránh flickering
+  double _smoothedEdgeRatio = 0.0;
+  bool _confirmedHasObject = false;
 
   @override
   void initState() {
     super.initState();
-    // Scan line animation disabled - only corner brackets are shown.
     _scanLineController = AnimationController(
       duration: const Duration(milliseconds: 2500),
       vsync: this,
-    );
+    )..repeat(reverse: true);
 
     _pulseController = AnimationController(
       duration: const Duration(milliseconds: 1500),
       vsync: this,
-    );
+    )..repeat(reverse: true);
+
+    _blinkController = AnimationController(
+      duration: const Duration(milliseconds: 600),
+      vsync: this,
+    )..repeat(reverse: true);
 
     _scanLineAnimation = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(parent: _scanLineController, curve: Curves.easeInOut),
@@ -46,6 +75,10 @@ class _AddBusinessCardScreenState extends State<AddBusinessCardScreen>
     _pulseAnimation = Tween<double>(begin: 0.6, end: 1.0).animate(
       CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
     );
+
+    _blinkAnimation = Tween<double>(begin: 0.4, end: 1.0).animate(
+      CurvedAnimation(parent: _blinkController, curve: Curves.easeInOut),
+    );
   }
 
   @override
@@ -53,6 +86,8 @@ class _AddBusinessCardScreenState extends State<AddBusinessCardScreen>
     _ollamaService.dispose();
     _scanLineController.dispose();
     _pulseController.dispose();
+    _blinkController.dispose();
+    _stabilityTimer?.cancel();
     super.dispose();
   }
 
@@ -60,6 +95,10 @@ class _AddBusinessCardScreenState extends State<AddBusinessCardScreen>
     if (_isProcessing) return;
 
     setState(() => _isProcessing = true);
+    _stabilityTimer?.cancel();
+
+    // Mute shutter sound before capture
+    await _CameraSoundMuter.mute();
 
     try {
       final captureRequest = await _photoState?.takePhoto();
@@ -84,21 +123,6 @@ class _AddBusinessCardScreenState extends State<AddBusinessCardScreen>
 
       if (!mounted) return;
 
-      try {
-        await File(path).delete();
-      } catch (_) {}
-
-      if (!mounted) return;
-
-      if (scannedData.isEmpty) {
-        SnackBarHelper().showError(
-          context,
-          'Không nhận diện được thông tin. Vui lòng thử lại.',
-        );
-        setState(() => _isProcessing = false);
-        return;
-      }
-
       Navigator.pop(context, scannedData);
     } on OllamaConnectionException catch (e) {
       if (!mounted) return;
@@ -111,8 +135,100 @@ class _AddBusinessCardScreenState extends State<AddBusinessCardScreen>
     }
   }
 
-  void _enterManually() {
-    Navigator.pop(context, <String, String>{});
+  Future<void> _onAnalysis(AnalysisImage image) async {
+    if (_isProcessing || !mounted) return;
+
+    final bytes = image.when(
+      nv21: (img) => img.bytes,
+      bgra8888: (img) => img.bytes,
+      jpeg: (img) => img.bytes,
+      yuv420: (img) => img.planes.first.bytes,
+    );
+
+    if (bytes == null || bytes.isEmpty) return;
+
+    // Phát hiện vật thể với smoothing để tránh flickering
+    final currentEdgeRatio = _calculateEdgeRatio(bytes);
+    _smoothedEdgeRatio = _smoothedEdgeRatio * 0.7 + currentEdgeRatio * 0.3;
+
+    // Hysteresis: threshold khác nhau cho on/off
+    const onThreshold = 0.60;
+    const offThreshold = 0.50;
+
+    bool hasObject;
+    if (_confirmedHasObject) {
+      hasObject = _smoothedEdgeRatio > offThreshold;
+    } else {
+      hasObject = _smoothedEdgeRatio > onThreshold;
+    }
+
+    if (hasObject != _confirmedHasObject) {
+      _confirmedHasObject = hasObject;
+      setState(() => _hasObject = hasObject);
+    }
+
+    if (!hasObject) {
+      _stableStartTime = null;
+      _stabilityTimer?.cancel();
+      _stabilityTimer = null;
+      return;
+    }
+
+    // Chỉ đếm stability khi có vật thể
+    final isStable = _isFrameStable(bytes);
+
+    if (isStable) {
+      if (_stableStartTime == null) {
+        _stableStartTime = DateTime.now();
+        _stabilityTimer?.cancel();
+        _stabilityTimer = Timer(_stableDuration, () {
+          _captureAndScan();
+        });
+      }
+    } else {
+      _stableStartTime = null;
+      _stabilityTimer?.cancel();
+      _stabilityTimer = null;
+    }
+  }
+
+    double _calculateEdgeRatio(Uint8List bytes) {
+    if (bytes.length < 1000) return 0.0;
+
+    int diffCount = 0;
+    final sampleSize = (bytes.length / 20).clamp(500, 3000).toInt();
+    final step = (bytes.length / sampleSize).floor();
+
+    for (int i = 0; i < bytes.length - step; i += step) {
+      final diff = (bytes[i] - bytes[i + step]).abs();
+      if (diff > 30) diffCount++;
+    }
+
+    return diffCount / sampleSize;
+  }
+
+  bool _isFrameStable(Uint8List currentBytes) {
+    if (_lastFrameBytes == null) {
+      _lastFrameBytes = currentBytes;
+      return false;
+    }
+
+    if (currentBytes.length != _lastFrameBytes!.length) {
+      _lastFrameBytes = currentBytes;
+      return false;
+    }
+
+    // Compare bytes to detect motion
+    int diff = 0;
+    for (int i = 0; i < currentBytes.length && i < _lastFrameBytes!.length; i += 100) {
+      diff += (currentBytes[i] - _lastFrameBytes![i]).abs();
+    }
+
+    _lastFrameBytes = currentBytes;
+
+    // Consider stable if average difference per sampled byte is less than 3
+    final avgDiff = diff / (currentBytes.length / 100);
+    return avgDiff < 3;
   }
 
   @override
@@ -127,16 +243,18 @@ class _AddBusinessCardScreenState extends State<AddBusinessCardScreen>
       body: Stack(
         fit: StackFit.expand,
         children: [
-          // Camera preview - camerawesome renders the preview texture internally.
-          // The builder only returns a placeholder widget. We capture
-          // PhotoCameraState from the cameraState so `_captureAndScan` can call
-          // takePhoto(). Never return `preview` as a Widget - it is an
-          // AnalysisPreview (metadata), not a Widget.
+          // Camera preview with image analysis for stability detection
           CameraAwesomeBuilder.custom(
             sensorConfig: SensorConfig.single(
               sensor: Sensor.position(SensorPosition.back),
             ),
             saveConfig: SaveConfig.photo(),
+            imageAnalysisConfig: AnalysisConfig(
+              androidOptions: const AndroidAnalysisOptions.nv21(width: 100),
+              maxFramesPerSecond: 5,
+              autoStart: true,
+            ),
+            onImageForAnalysis: _onAnalysis,
             builder: (cameraState, preview) {
               cameraState.when(
                 onPhotoMode: (s) => _photoState = s,
@@ -156,6 +274,7 @@ class _AddBusinessCardScreenState extends State<AddBusinessCardScreen>
               scanAnimation: _scanLineAnimation,
               pulseAnimation: _pulseAnimation,
               isProcessing: _isProcessing,
+              hasObject: _hasObject,
             ),
           ),
 
@@ -200,8 +319,6 @@ class _AddBusinessCardScreenState extends State<AddBusinessCardScreen>
           _buildTopBar(context),
 
           // Hint text - placed right below the centered scan frame.
-          // The scan frame sits at vertical center of the screen via Center,
-          // so the hint top is computed from screen midpoint + half frame height.
           Positioned(
             top: MediaQuery.of(context).size.height / 2 +
                 frameHeight / 2 +
@@ -209,57 +326,58 @@ class _AddBusinessCardScreenState extends State<AddBusinessCardScreen>
             left: 0,
             right: 0,
             child: Center(
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                decoration: BoxDecoration(
-                  color: Colors.black.withValues(alpha: 0.45),
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(
-                    color: Colors.white.withValues(alpha: 0.15),
-                    width: 1,
-                  ),
-                ),
-                child: const Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(Icons.center_focus_weak, color: Colors.white70, size: 16),
-                    SizedBox(width: 8),
-                    Text(
-                      'Đưa danh thiếp vào khung để quét',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 13,
-                        fontWeight: FontWeight.w500,
-                        letterSpacing: 0.2,
+              child: AnimatedBuilder(
+                animation: _blinkAnimation,
+                builder: (context, child) {
+                  return Opacity(
+                    opacity: _isProcessing ? _blinkAnimation.value : 1.0,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      decoration: BoxDecoration(
+                        color: Colors.black.withValues(alpha: 0.45),
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          color: Colors.white.withValues(alpha: 0.15),
+                          width: 1,
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            _isProcessing
+                                ? Icons.hourglass_empty
+                                : _hasObject
+                                    ? Icons.check_circle_outline
+                                    : Icons.center_focus_weak,
+                            color: Colors.white70,
+                            size: 16,
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            _isProcessing
+                                ? 'Đang xử lý ...'
+                                : _hasObject
+                                    ? 'Vui lòng giữ nguyên trong 1 - 2 giây'
+                                    : 'Đưa danh thiếp vào khung để quét',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w500,
+                              letterSpacing: 0.2,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
+                  );
+                },
               ),
-            ),
-          ),
-
-          // Bottom controls: capture button centered, manual input on the right.
-          Positioned(
-            bottom: MediaQuery.of(context).padding.bottom + 32,
-            left: 24,
-            right: 24,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const SizedBox(width: 72),
-                _CaptureButton(
-                  isProcessing: _isProcessing,
-                  onTap: _captureAndScan,
-                ),
-                _ManualInputButton(onTap: _enterManually),
-              ],
             ),
           ),
         ],
       ),
-);
+    );
   }
 
   Widget _buildTopBar(BuildContext context) {
@@ -373,13 +491,14 @@ class _ScanOverlayPainter extends CustomPainter {
   bool shouldRepaint(covariant _ScanOverlayPainter oldDelegate) => false;
 }
 
-class _ScanFrame extends StatelessWidget {
+class _ScanFrame extends StatefulWidget {
   const _ScanFrame({
     required this.width,
     required this.height,
     required this.scanAnimation,
     required this.pulseAnimation,
     required this.isProcessing,
+    required this.hasObject,
   });
 
   final double width;
@@ -387,288 +506,194 @@ class _ScanFrame extends StatelessWidget {
   final Animation<double> scanAnimation;
   final Animation<double> pulseAnimation;
   final bool isProcessing;
+  final bool hasObject;
+
+  @override
+  State<_ScanFrame> createState() => _ScanFrameState();
+}
+
+class _ScanFrameState extends State<_ScanFrame> {
+  late bool _hasObject;
+
+  @override
+  void initState() {
+    super.initState();
+    _hasObject = widget.hasObject;
+  }
+
+  @override
+  void didUpdateWidget(_ScanFrame oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.hasObject != oldWidget.hasObject) {
+      setState(() => _hasObject = widget.hasObject);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    final color = _hasObject ? Colors.green : Colors.white;
+
     return SizedBox(
-      width: width,
-      height: height,
+      width: widget.width,
+      height: widget.height,
       child: Stack(
         children: [
-          ..._buildCorners(),
-          // Animated scan line disabled - keep corners only for cleaner UI.
-          // if (!isProcessing)
-          //   AnimatedBuilder(
-          //     animation: scanAnimation,
-          //     builder: (context, child) {
-          //       return Positioned(
-          //         top: 20 + (height - 40) * scanAnimation.value,
-          //         left: 20,
-          //         right: 20,
-          //         child: _ScanLine(pulseAnimation: pulseAnimation),
-          //       );
-          //     },
-          //   ),
+          // 4 corners
+          Positioned(
+            top: 0,
+            left: 0,
+            child: _CornerWidget(color: color),
+          ),
+          Positioned(
+            top: 0,
+            right: 0,
+            child: _CornerWidget(color: color, isRight: true),
+          ),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            child: _CornerWidget(color: color, isBottom: true),
+          ),
+          Positioned(
+            bottom: 0,
+            right: 0,
+            child: _CornerWidget(color: color, isRight: true, isBottom: true),
+          ),
+          if (!widget.isProcessing)
+            AnimatedBuilder(
+              animation: widget.scanAnimation,
+              builder: (context, child) {
+                return Positioned(
+                  top: 20 + (widget.height - 40) * widget.scanAnimation.value,
+                  left: 20,
+                  right: 20,
+                  child: _ScanLine(pulseAnimation: widget.pulseAnimation),
+                );
+              },
+            ),
         ],
       ),
     );
   }
-
-  List<Widget> _buildCorners() {
-    const cornerSize = 40.0;
-    const strokeWidth = 4.0;
-    const radius = 12.0;
-
-    return [
-      Positioned(
-        top: 0,
-        left: 0,
-        child: _CornerBracket(
-          size: cornerSize,
-          strokeWidth: strokeWidth,
-          radius: radius,
-          position: _BracketPosition.topLeft,
-        ),
-      ),
-      Positioned(
-        top: 0,
-        right: 0,
-        child: _CornerBracket(
-          size: cornerSize,
-          strokeWidth: strokeWidth,
-          radius: radius,
-          position: _BracketPosition.topRight,
-        ),
-      ),
-      Positioned(
-        bottom: 0,
-        left: 0,
-        child: _CornerBracket(
-          size: cornerSize,
-          strokeWidth: strokeWidth,
-          radius: radius,
-          position: _BracketPosition.bottomLeft,
-        ),
-      ),
-      Positioned(
-        bottom: 0,
-        right: 0,
-        child: _CornerBracket(
-          size: cornerSize,
-          strokeWidth: strokeWidth,
-          radius: radius,
-          position: _BracketPosition.bottomRight,
-        ),
-      ),
-    ];
-  }
 }
 
-enum _BracketPosition { topLeft, topRight, bottomLeft, bottomRight }
-
-class _CornerBracket extends StatelessWidget {
-  const _CornerBracket({
-    required this.size,
-    required this.strokeWidth,
-    required this.radius,
-    required this.position,
+class _CornerWidget extends StatelessWidget {
+  const _CornerWidget({
+    required this.color,
+    this.isRight = false,
+    this.isBottom = false,
   });
 
-  final double size;
-  final double strokeWidth;
-  final double radius;
-  final _BracketPosition position;
+  final Color color;
+  final bool isRight;
+  final bool isBottom;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: size,
-      height: size,
+      width: 40,
+      height: 40,
       child: CustomPaint(
-        painter: _BracketPainter(
-          strokeWidth: strokeWidth,
-          radius: radius,
-          position: position,
-          color: Colors.white,
+        painter: _CornerPainter(
+          color: color,
+          isRight: isRight,
+          isBottom: isBottom,
         ),
       ),
     );
   }
 }
 
-class _BracketPainter extends CustomPainter {
-  _BracketPainter({
-    required this.strokeWidth,
-    required this.radius,
-    required this.position,
+class _CornerPainter extends CustomPainter {
+  _CornerPainter({
     required this.color,
+    required this.isRight,
+    required this.isBottom,
   });
 
-  final double strokeWidth;
-  final double radius;
-  final _BracketPosition position;
   final Color color;
+  final bool isRight;
+  final bool isBottom;
 
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
       ..color = color
-      ..strokeWidth = strokeWidth
+      ..strokeWidth = 4
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
       ..strokeJoin = StrokeJoin.round;
 
     final path = Path();
+    final radius = 12.0;
 
-    switch (position) {
-      case _BracketPosition.topLeft:
-        path.moveTo(0, size.height);
-        path.lineTo(0, radius);
-        path.quadraticBezierTo(0, 0, radius, 0);
-        path.lineTo(size.width, 0);
-        break;
-      case _BracketPosition.topRight:
-        path.moveTo(0, 0);
-        path.lineTo(size.width - radius, 0);
-        path.quadraticBezierTo(size.width, 0, size.width, radius);
-        path.lineTo(size.width, size.height);
-        break;
-      case _BracketPosition.bottomLeft:
-        path.moveTo(0, 0);
-        path.lineTo(0, size.height - radius);
-        path.quadraticBezierTo(0, size.height, radius, size.height);
-        path.lineTo(size.width, size.height);
-        break;
-      case _BracketPosition.bottomRight:
-        path.moveTo(size.width, 0);
-        path.lineTo(size.width, size.height - radius);
-        path.quadraticBezierTo(size.width, size.height, size.width - radius, size.height);
-        path.lineTo(0, size.height);
-        break;
+    if (!isRight && !isBottom) {
+      // top-left
+      path.moveTo(0, size.height);
+      path.lineTo(0, radius);
+      path.quadraticBezierTo(0, 0, radius, 0);
+      path.lineTo(size.width, 0);
+    } else if (isRight && !isBottom) {
+      // top-right
+      path.moveTo(0, 0);
+      path.lineTo(size.width - radius, 0);
+      path.quadraticBezierTo(size.width, 0, size.width, radius);
+      path.lineTo(size.width, size.height);
+    } else if (!isRight && isBottom) {
+      // bottom-left
+      path.moveTo(0, 0);
+      path.lineTo(0, size.height - radius);
+      path.quadraticBezierTo(0, size.height, radius, size.height);
+      path.lineTo(size.width, size.height);
+    } else {
+      // bottom-right
+      path.moveTo(size.width, 0);
+      path.lineTo(size.width, size.height - radius);
+      path.quadraticBezierTo(size.width, size.height, size.width - radius, size.height);
+      path.lineTo(0, size.height);
     }
 
     canvas.drawPath(path, paint);
   }
 
   @override
-  bool shouldRepaint(covariant _BracketPainter oldDelegate) => true;
+  bool shouldRepaint(covariant _CornerPainter oldDelegate) =>
+      oldDelegate.color != color;
 }
 
-// Scan line widget kept for reference but currently disabled in the UI.
-// class _ScanLine extends StatelessWidget {
-//   const _ScanLine({required this.pulseAnimation});
-//
-//   final Animation<double> pulseAnimation;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return AnimatedBuilder(
-//       animation: pulseAnimation,
-//       builder: (context, child) {
-//         return Container(
-//           height: 3,
-//           decoration: BoxDecoration(
-//             gradient: LinearGradient(
-//               colors: [
-//                 Colors.transparent,
-//                 AppColors.primaryERP.withValues(alpha: 0.5 + 0.5 * pulseAnimation.value),
-//                 AppColors.primaryERP,
-//                 AppColors.primaryERP.withValues(alpha: 0.5 + 0.5 * pulseAnimation.value),
-//                 Colors.transparent,
-//               ],
-//               stops: const [0.0, 0.2, 0.5, 0.8, 1.0],
-//             ),
-//             boxShadow: [
-//               BoxShadow(
-//                 color: AppColors.primaryERP.withValues(alpha: 0.6 * pulseAnimation.value),
-//                 blurRadius: 12,
-//                 spreadRadius: 2,
-//               ),
-//             ],
-//           ),
-//         );
-//       },
-//     );
-//   }
-// }
+class _ScanLine extends StatelessWidget {
+  const _ScanLine({required this.pulseAnimation});
 
-class _ManualInputButton extends StatelessWidget {
-  const _ManualInputButton({required this.onTap});
-
-  final VoidCallback onTap;
+  final Animation<double> pulseAnimation;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-        decoration: BoxDecoration(
-          color: Colors.white.withValues(alpha: 0.1),
-          borderRadius: BorderRadius.circular(24),
-          border: Border.all(
-            color: Colors.white.withValues(alpha: 0.2),
-            width: 1,
-          ),
-        ),
-        child: const Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(Icons.edit_outlined, color: Colors.white70, size: 20),
-            SizedBox(width: 8),
-            Text(
-              'Nhập tay',
-              style: TextStyle(
-                color: Colors.white70,
-                fontSize: 15,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _CaptureButton extends StatelessWidget {
-  const _CaptureButton({
-    required this.isProcessing,
-    required this.onTap,
-  });
-
-  final bool isProcessing;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: isProcessing ? null : onTap,
-      child: Container(
-        width: 72,
-        height: 72,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.3),
-              blurRadius: 8,
-              offset: const Offset(0, 4),
-            ),
-          ],
-        ),
-        child: Container(
-          margin: const EdgeInsets.all(4),
+    return AnimatedBuilder(
+      animation: pulseAnimation,
+      builder: (context, child) {
+        return Container(
+          height: 3,
           decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(
-              color: AppColors.primaryERP,
-              width: 3,
+            gradient: LinearGradient(
+              colors: [
+                Colors.transparent,
+                AppColors.primaryERP.withValues(alpha: 0.5 + 0.5 * pulseAnimation.value),
+                AppColors.primaryERP,
+                AppColors.primaryERP.withValues(alpha: 0.5 + 0.5 * pulseAnimation.value),
+                Colors.transparent,
+              ],
+              stops: const [0.0, 0.2, 0.5, 0.8, 1.0],
             ),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.primaryERP.withValues(alpha: 0.6 * pulseAnimation.value),
+                blurRadius: 12,
+                spreadRadius: 2,
+              ),
+            ],
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
