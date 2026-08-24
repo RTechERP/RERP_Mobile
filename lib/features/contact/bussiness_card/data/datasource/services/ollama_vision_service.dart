@@ -56,7 +56,7 @@ class OllamaVisionService {
   static const String envOverride = String.fromEnvironment('OLLAMA_HOST');
 
   /// IP LAN của Mac dev — fallback cho iPhone thật khi không có dart-define.
-  static const String _devFallbackHost = 'http://192.168.0.46:11434';
+  static const String _devFallbackHost = 'http://192.168.0.33:11434';
 
   static List<String> _defaultCandidates() {
     final override = envOverride.isNotEmpty ? envOverride : null;
