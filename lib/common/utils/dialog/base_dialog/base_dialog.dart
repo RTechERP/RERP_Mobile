@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../app_theme/index.dart';
 import '../../../common_ui.dart';
+import '../../../constants/app_image.dart';
 import '../../../services/device_type_helper.dart';
 import '../../../widgets/buttons/custom_circle_button.dart';
 import '../../../widgets/buttons/custom_text_button.dart';
@@ -13,7 +14,7 @@ import '../../navigation/navigation_utils.dart';
 class BaseDialog {
   static List<BoxShadow> boxShadow = [
     BoxShadow(
-      color: AppColors.black.withOpacity(0.1),
+      color: AppColors.black.withValues(alpha: 0.1),
       spreadRadius: 8.h,
       blurRadius: 8.h,
       offset: const Offset(0, 4),
@@ -38,6 +39,9 @@ class BaseDialog {
     bool? barrierDismissible,
     Color? backgroundColor,
     double? elevation,
+
+    /// Hiển thị logo RTC + "RTC Thông báo" ở góc trái thay vì icon ở giữa.
+    bool showRtcHeader = false,
   }) {
     return showDialog(
       context: context,
@@ -87,6 +91,7 @@ class BaseDialog {
                               descriptionWidget: descriptionWidget,
                               description: description,
                               descriptionStyle: descriptionStyle,
+                              showRtcHeader: showRtcHeader,
                             ),
                         if (buttonWidget != null) buttonWidget,
                       ],
@@ -263,7 +268,7 @@ class BaseDialog {
     required BuildContext context,
     String? heading,
     TextStyle? headingStyle,
-    required Widget image,
+    Widget? image,
     String? title,
     TextStyle? titleStyle,
     Widget? descriptionWidget,
@@ -280,6 +285,9 @@ class BaseDialog {
     Color? colorBottomButton,
     Border? colorBorder,
     bool haveCancelBottomBtn = false,
+
+    /// Hiển thị logo RTC + "RTC Thông báo" ở góc trái thay vì icon ở giữa.
+    bool showRtcHeader = false,
   }) {
     return baseDialog(
       context: context,
@@ -292,6 +300,7 @@ class BaseDialog {
       descriptionStyle: descriptionStyle,
       descriptionWidget: descriptionWidget,
       haveCancelBottomBtn: haveCancelBottomBtn,
+      showRtcHeader: showRtcHeader,
       buttonWidget: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -405,11 +414,17 @@ class BaseDialog {
     Widget? descriptionWidget,
     String? description,
     TextStyle? descriptionStyle,
+    bool showRtcHeader = false,
   }) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        if (heading != null)
+        if (showRtcHeader)
+          _buildRtcHeader(),
+        if (showRtcHeader)
+          SizedBox(height: AppUICommons.mediumVerticalSpacing),
+        if (!showRtcHeader && heading != null)
           Padding(
             padding: EdgeInsets.only(
               bottom: AppUICommons.mediumVerticalSpacing,
@@ -420,14 +435,27 @@ class BaseDialog {
               style: headingStyle ?? AppStyles.headingTitle5.copyWith(),
             ),
           ),
-        if (image != null)
+        if (!showRtcHeader && image != null)
           Padding(
             padding: EdgeInsets.only(
               bottom: AppUICommons.mediumVerticalSpacing,
             ),
             child: image,
           ),
-        if (title != null)
+        if (showRtcHeader && title != null)
+          Padding(
+            padding: EdgeInsets.only(
+              left: AppUICommons.smallHorizontalSpacing,
+              right: AppUICommons.smallHorizontalSpacing,
+              bottom: AppUICommons.smallVerticalSpacing,
+            ),
+            child: Text(
+              title,
+              textAlign: TextAlign.left,
+              style: titleStyle ?? AppStyles.headingTitle6.copyWith(),
+            ),
+          ),
+        if (!showRtcHeader && title != null)
           Padding(
             padding: EdgeInsets.only(bottom: AppUICommons.smallVerticalSpacing),
             child: Text(
@@ -445,7 +473,7 @@ class BaseDialog {
                 descriptionWidget ??
                 Text(
                   description ?? '',
-                  textAlign: TextAlign.center,
+                  textAlign: showRtcHeader ? TextAlign.left : TextAlign.center,
                   style:
                       descriptionStyle ??
                       AppStyles.body2.copyWith(
@@ -453,6 +481,28 @@ class BaseDialog {
                       ),
                 ),
           ),
+      ],
+    );
+  }
+
+  /// Widget hiển thị logo RTC + "RTC Thông báo" ở góc trái dialog.
+  static Widget _buildRtcHeader() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Image.asset(
+          AppImages.logo_login,
+          width: 32,
+          height: 32,
+        ),
+        const SizedBox(width: 8),
+        Text(
+          'RTC',
+          style: AppStyles.headingTitle6.copyWith(
+            color: AppColors.main,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
       ],
     );
   }

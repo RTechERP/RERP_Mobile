@@ -236,6 +236,7 @@ class _ConfirmBusinessCardScreenState extends State<ConfirmBusinessCardScreen> {
                     controller: _positionController,
                     label: 'Chức vụ',
                     icon: Icons.work_outline,
+                    autoExpand: true,
                   ),
                 ],
               ),
@@ -285,6 +286,7 @@ class _ConfirmBusinessCardScreenState extends State<ConfirmBusinessCardScreen> {
                     controller: _companyController,
                     label: 'Tên công ty',
                     icon: Icons.domain_outlined,
+                    autoExpand: true,
                   ),
                   _buildTextField(
                     controller: _addressController,

@@ -93,7 +93,7 @@ class OllamaVisionService {
   /// Trả về [OllamaBusinessCardResult] hoặc ném exception.
   Future<OllamaBusinessCardResult> extractBusinessCard(
     String imagePath, {
-    String model = 'qwen2.5vl:3b',
+    String model = 'qwen2.5vl:latest',
   }) async {
     final stopwatch = Stopwatch()..start();
 
@@ -176,7 +176,7 @@ Nếu không tìm thấy trường nào thì để giá trị rỗng "". Trả v
   }
 
   /// Check xem Ollama có đang online và model có sẵn không.
-  Future<bool> isAvailable({String model = 'qwen2.5vl:3b'}) async {
+  Future<bool> isAvailable({String model = 'qwen2.5vl:latest'}) async {
     try {
       final baseUrl = await _resolveBaseUrl();
       if (baseUrl == null) return false;

@@ -779,6 +779,7 @@ class DialogService {
 
     await BaseDialog.twoOptionVerticalDialog(
       context: context,
+      showRtcHeader: true,
       image: const Icon(Icons.delete_outline, size: 64, color: Colors.red),
       title: title,
       description: message,
