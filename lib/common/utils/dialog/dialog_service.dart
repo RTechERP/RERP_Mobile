@@ -777,22 +777,22 @@ class DialogService {
   }) async {
     bool confirmed = false;
 
-    await BaseDialog.twoOptionVerticalDialog(
+    await BaseDialog.twoOptionHorizontalDialogWithCompany(
       context: context,
-      showRtcHeader: true,
-      image: const Icon(Icons.delete_outline, size: 64, color: Colors.red),
+      logo:Image.asset(AppImages.logo_login, width: 32, height: 32),
+      companyName: "RTC",
       title: title,
       description: message,
-      contentTopButton: 'Xoá',
-      topButtonFunc: () {
+      contentLeftButton: 'Xoá',
+      leftButtonFunc: () {
         confirmed = true;
         onBack(context);
       },
-      contentBottomButton: 'Huỷ',
-      bottomButtonFunc: () {
+      contentRightButton: 'Huỷ',
+      rightButtonFunc: () {
         confirmed = false;
         onBack(context);
-      },
+      }
     );
 
     return confirmed;
