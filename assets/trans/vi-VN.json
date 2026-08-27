@@ -56,7 +56,8 @@
   },
   "tab": {
     "applications": "Ứng dụng",
-    "features": "Tính năng"
+    "features": "Tính năng",
+    "personal": "Cá nhân"
   },
   "applications": {
     "all": "Tất cả",
@@ -74,7 +75,7 @@
   },
   "summary_work": {
     "leaving":"Đăng ký nghỉ",
-    "in_out": "Đi muộn - về sớm",
+    "in_out": "Đ.muộn - v.sớm",
     "wfh": "WFH",
     "fingerprint": "Quên vân tay",
     "overtime": "Làm thêm",

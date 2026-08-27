@@ -230,7 +230,7 @@ class AppItemRegistry {
     ),
   ];
 
-  static final List<AppItemModel> summaryword = [
+  static final List<AppItemModel> summarywork = [
     /// ================= SUMMARY WORK =================
     AppItemModel(
       id: 'summary_work:leaving',
@@ -238,7 +238,8 @@ class AppItemRegistry {
       iconCodePoint: Icons.event_busy_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'summary_work',
-      route: '/summary-work/leaving',
+      route: RouteNames.summaryWorkLeaving,
+      imageUrl: AppImages.app_leave,
     ),
 
     AppItemModel(
@@ -247,7 +248,8 @@ class AppItemRegistry {
       iconCodePoint: Icons.swap_horiz_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'summary_work',
-      route: '/summary-work/in-out',
+      route: RouteNames.summaryWorkInOut,
+      imageUrl: AppImages.app_in_out,
     ),
 
     AppItemModel(
@@ -256,7 +258,8 @@ class AppItemRegistry {
       iconCodePoint: Icons.home_work_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'summary_work',
-      route: '/summary-work/wfh',
+      route: RouteNames.summaryWorkWfh,
+      imageUrl: AppImages.app_wfh,
     ),
 
     AppItemModel(
@@ -266,6 +269,7 @@ class AppItemRegistry {
       iconFontFamily: 'MaterialIcons',
       tab: 'summary_work',
       route: '/summary-work/fingerprint',
+      imageUrl: AppImages.app_missed,
     ),
 
     AppItemModel(
@@ -275,6 +279,7 @@ class AppItemRegistry {
       iconFontFamily: 'MaterialIcons',
       tab: 'summary_work',
       route: '/summary-work/overtime',
+      imageUrl: AppImages.app_overtime,
     ),
 
     AppItemModel(
@@ -284,6 +289,7 @@ class AppItemRegistry {
       iconFontFamily: 'MaterialIcons',
       tab: 'summary_work',
       route: '/summary-work/overnight',
+      imageUrl: AppImages.app_overnight,
     ),
   ];
 

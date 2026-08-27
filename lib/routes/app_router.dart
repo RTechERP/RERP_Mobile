@@ -165,6 +165,7 @@ import '../features/workplace/app/reports/view/tech/view/pages/tech_add_screen.d
 import '../features/workplace/app/reports/view/tech/view/pages/tech_detail_screen.dart';
 import '../features/workplace/app/reports/view/tech/view/pages/tech_edit_screen.dart';
 import '../features/workplace/app/reports/view/tech/view/pages/tech_screen.dart';
+import '../features/workplace/app/summary_work/summary_work_screen.dart';
 import '../features/workplace/app/warehouse/enums/warehouse_type.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_area_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/warehouse_demo_screen.dart';
@@ -1504,6 +1505,12 @@ class AppRouter {
             areaName: extra?['areaName'] as String? ?? '',
           );
         },
+      ),
+
+      //---(Summary Work)---//
+      GoRoute(
+        path: RouteNames.summarywork,
+        builder: (context, state) => const SummaryWorkScreen(),
       ),
     ],
   );

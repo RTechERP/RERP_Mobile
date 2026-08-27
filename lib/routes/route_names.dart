@@ -239,4 +239,12 @@ class RouteNames {
   static const warehouseTest = '/warehouse_test';
   static const warehouseSaleGdn = '/warehouse_sale_gdn';
   static const warehouseSaleGdnDetail = '/warehouse_sale_gdn/detail';
+
+  // Summary Work
+  static const summaryWorkLeaving = '/summary-work/leaving';
+  static const summaryWorkInOut = '/summary-work/in-out';
+  static const summaryWorkWfh = '/summary-work/wfh';
+  static const summaryWorkFingerprint = '/summary-work/fingerprint';
+  static const summaryWorkOvertime = '/summary-work/overtime';
+  static const summaryWorkOvernight = '/summary-work/overnight';
 }
