@@ -75,6 +75,10 @@ import '../features/workplace/app/reg_work/view/pages/leave/data/datasource/serv
 import '../features/workplace/app/reg_work/view/pages/leave/data/repository/leave_repo.dart';
 import '../features/workplace/app/reg_work/view/pages/leave/data/repository/leave_repo_impl.dart';
 import '../features/workplace/app/reg_work/view/pages/leave/view/bloc/leave_bloc.dart';
+import '../features/workplace/app/summary_work/leave/data/datasource/service/summary_leave_service.dart';
+import '../features/workplace/app/summary_work/leave/data/repository/summary_leave_repo.dart';
+import '../features/workplace/app/summary_work/leave/data/repository/summary_leave_repo_impl.dart';
+import '../features/workplace/app/summary_work/leave/view/bloc/summary_leave_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/overnight/data/datasource/service/overnight_service.dart';
 import '../features/workplace/app/reg_work/view/pages/overnight/data/repository/overnight_repo.dart';
 import '../features/workplace/app/reg_work/view/pages/overnight/data/repository/overnight_repo_impl.dart';
@@ -610,5 +614,21 @@ void configureDependencies() {
 
   getIt.registerFactory<MySignatureBloc>(
     () => MySignatureBloc(getIt<SignatureRepo>(), getIt<LogUtils>()),
+  );
+
+  getIt.registerLazySingleton<SummaryLeaveService>(
+    () => SummaryLeaveService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<SummaryLeaveRepo>(
+    () => SummaryLeaveRepoImpl(getIt<SummaryLeaveService>()),
+  );
+
+  getIt.registerFactory<SummaryLeaveBloc>(
+    () => SummaryLeaveBloc(
+      getIt<SummaryLeaveRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
   );
 }

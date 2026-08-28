@@ -298,6 +298,7 @@ class _WorkPlaceScreenState
                         iconCodePoint: Icons.assignment.codePoint,
                         name: 'Chữ ký',
                         route: RouteNames.signature,
+                        imageUrl: AppImages.signature,
                       ),
                     ],
                   ),

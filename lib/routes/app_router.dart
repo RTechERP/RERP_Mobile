@@ -165,7 +165,9 @@ import '../features/workplace/app/reports/view/tech/view/pages/tech_add_screen.d
 import '../features/workplace/app/reports/view/tech/view/pages/tech_detail_screen.dart';
 import '../features/workplace/app/reports/view/tech/view/pages/tech_edit_screen.dart';
 import '../features/workplace/app/reports/view/tech/view/pages/tech_screen.dart';
+import '../features/workplace/app/summary_work/leave/view/bloc/summary_leave_bloc.dart';
 import '../features/workplace/app/summary_work/summary_work_screen.dart';
+import '../features/workplace/app/summary_work/leave/view/pages/summary_leave_screen.dart';
 import '../features/workplace/app/warehouse/enums/warehouse_type.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_area_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/warehouse_demo_screen.dart';
@@ -1511,6 +1513,20 @@ class AppRouter {
       GoRoute(
         path: RouteNames.summarywork,
         builder: (context, state) => const SummaryWorkScreen(),
+      ),
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(
+            value: getIt<SummaryLeaveBloc>(),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.summaryWorkLeaving,
+            builder: (context, state) => const SummaryLeaveScreen(),
+          ),
+        ],
       ),
     ],
   );
