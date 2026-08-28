@@ -79,6 +79,10 @@ import '../features/workplace/app/summary_work/leave/data/datasource/service/sum
 import '../features/workplace/app/summary_work/leave/data/repository/summary_leave_repo.dart';
 import '../features/workplace/app/summary_work/leave/data/repository/summary_leave_repo_impl.dart';
 import '../features/workplace/app/summary_work/leave/view/bloc/summary_leave_bloc.dart';
+import '../features/workplace/app/summary_work/in_out/data/datasource/service/summary_in_out_service.dart';
+import '../features/workplace/app/summary_work/in_out/data/repository/summary_in_out_repo.dart';
+import '../features/workplace/app/summary_work/in_out/data/repository/summary_in_out_repo_impl.dart';
+import '../features/workplace/app/summary_work/in_out/view/bloc/summary_in_out_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/overnight/data/datasource/service/overnight_service.dart';
 import '../features/workplace/app/reg_work/view/pages/overnight/data/repository/overnight_repo.dart';
 import '../features/workplace/app/reg_work/view/pages/overnight/data/repository/overnight_repo_impl.dart';
@@ -277,6 +281,14 @@ void configureDependencies() {
     () => SignatureService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<SummaryLeaveService>(
+        () => SummaryLeaveService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<SummaryInOutService>(
+        () => SummaryInOutService(getIt<Dio>()),
+  );
+
   /// ===== REPOSITORY =====
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImpl(
@@ -390,6 +402,14 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<SignatureRepo>(
     () => SignatureRepoImpl(getIt<SignatureService>()),
+  );
+
+  getIt.registerLazySingleton<SummaryLeaveRepo>(
+        () => SummaryLeaveRepoImpl(getIt<SummaryLeaveService>()),
+  );
+
+  getIt.registerLazySingleton<SummaryInOutRepo>(
+        () => SummaryInOutRepoImpl(getIt<SummaryInOutService>()),
   );
 
   /// ===== BLOCS =====
@@ -616,17 +636,17 @@ void configureDependencies() {
     () => MySignatureBloc(getIt<SignatureRepo>(), getIt<LogUtils>()),
   );
 
-  getIt.registerLazySingleton<SummaryLeaveService>(
-    () => SummaryLeaveService(getIt<Dio>()),
-  );
-
-  getIt.registerLazySingleton<SummaryLeaveRepo>(
-    () => SummaryLeaveRepoImpl(getIt<SummaryLeaveService>()),
-  );
-
   getIt.registerFactory<SummaryLeaveBloc>(
     () => SummaryLeaveBloc(
       getIt<SummaryLeaveRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<SummaryInOutBloc>(
+    () => SummaryInOutBloc(
+      getIt<SummaryInOutRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
     ),

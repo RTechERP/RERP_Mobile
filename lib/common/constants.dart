@@ -199,6 +199,8 @@ class ApiEndPoint {
   static const String getLeaveSummaryWork = '/EmployeeOnLeave/get-employee-onleave-person';
   static const String getLeavePhaseMulti = '/EmployeeOnLeave/get-multi';
   static const String saveLeave = '/EmployeeOnLeave/save-data';
+  static const String getEmployeeEarlyLatePerson =
+      '/EmployeeEarlyLate/get-employee-early-late-person';
 
   static const String getLeaveTime =
       '/employeeonleave/list-summary-employee-on-leave';
