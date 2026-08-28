@@ -73,4 +73,12 @@ class AppImages {
   static const warehouse_gdn = 'assets/images/icons/apps/warehouse/77.png';
   static const warehouse_project = 'assets/images/icons/apps/warehouse/81.png';
   static const warehouse = 'assets/images/icons/apps/warehouse/83.png';
+
+  static const week_plan_my_task = 'assets/images/icons/apps/week_plan/85.png';
+  static const week_plan_assign = 'assets/images/icons/apps/week_plan/86.png';
+  static const week_plan_related = 'assets/images/icons/apps/week_plan/87.png';
+  static const week_plan_overall = 'assets/images/icons/apps/week_plan/88.png';
+  static const week_plan_timeline = 'assets/images/icons/apps/week_plan/89.png';
+
+  static const signature = 'assets/images/icons/apps/week_plan/90.png';
 }

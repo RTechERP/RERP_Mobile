@@ -202,6 +202,12 @@ flutter:
     - assets/images/icons/apps/warehouse/82.png
     - assets/images/icons/apps/warehouse/83.png
     - assets/images/icons/apps/warehouse/84.png
+    - assets/images/icons/apps/week_plan/85.png
+    - assets/images/icons/apps/week_plan/86.png
+    - assets/images/icons/apps/week_plan/87.png
+    - assets/images/icons/apps/week_plan/88.png
+    - assets/images/icons/apps/week_plan/89.png
+    - assets/images/icons/apps/week_plan/90.png
 
     # Trans
     - assets/trans/vi-VN.json
