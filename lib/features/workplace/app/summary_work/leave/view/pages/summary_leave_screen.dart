@@ -9,6 +9,7 @@ import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/constants/index.dart';
 import '../../../../../../../../../common/widgets/date_range_picker.dart';
 import '../../../../../../../base/widgets/base_widget.dart';
+import '../../data/datasource/models/summary_leave_model.dart';
 import '../../view/bloc/summary_leave_bloc.dart';
 import '../../view/widgets/summary_leave_card.dart';
 import '../../view/widgets/summary_leave_filter_sheet.dart';
@@ -303,12 +304,50 @@ class _SummaryLeaveScreenState
     }
   }
 
+  /// Nhóm items theo phòng ban (departmentId → danh sách items).
+  /// Trả về map đã sort theo departmentName.
+  Map<String, List<SummaryLeaveItem>> _groupByDepartment(
+    List<SummaryLeaveItem> items,
+    List<SummaryDepartment> departments,
+  ) {
+    final grouped = <String, List<SummaryLeaveItem>>{};
+    for (final item in items) {
+      final name = item.departmentName?.trim().isNotEmpty == true
+          ? item.departmentName!
+          : 'Không xác định';
+      grouped.putIfAbsent(name, () => []).add(item);
+    }
+
+    // Sort groups by department name matching departments list order
+    final sorted = Map<String, List<SummaryLeaveItem>>.fromEntries(
+      grouped.entries.toList()
+        ..sort((a, b) {
+          final idxA = departments.indexWhere((d) => d.name == a.key);
+          final idxB = departments.indexWhere((d) => d.name == b.key);
+          if (idxA == -1 && idxB == -1) return a.key.compareTo(b.key);
+          if (idxA == -1) return 1;
+          if (idxB == -1) return -1;
+          return idxA.compareTo(idxB);
+        }),
+    );
+    return sorted;
+  }
+
+  /// Đếm số nhân viên distinct theo employeeId trong một nhóm.
+  int _countDistinctEmployees(List<SummaryLeaveItem> items) {
+    final seen = <int>{};
+    for (final item in items) {
+      if (item.employeeId != null) seen.add(item.employeeId!);
+    }
+    return seen.isEmpty ? items.length : seen.length;
+  }
+
   Widget _buildContent(
     BuildContext context,
     SummaryLeaveState state,
     bool loading,
     bool failed,
-    List items,
+    List<SummaryLeaveItem> items,
     bool isInitialLoading,
   ) {
     if (failed && items.isEmpty) {
@@ -342,24 +381,100 @@ class _SummaryLeaveScreenState
       );
     }
 
+    // Nếu chọn phòng ban cụ thể → hiển thị phẳng
+    if (state.departmentId != null) {
+      return RefreshIndicator(
+        onRefresh: () async {
+          bloc.add(const SummaryLeaveEvent.refresh());
+          await bloc.stream.firstWhere((s) => s.status != BaseStateStatus.loading);
+        },
+        child: ListView.separated(
+          padding: const EdgeInsets.all(16),
+          physics: const AlwaysScrollableScrollPhysics(),
+          itemCount: items.length,
+          itemBuilder: (context, index) => SummaryLeaveCard(item: items[index]),
+          separatorBuilder: (_, __) => const SizedBox(height: 8),
+        ),
+      );
+    }
+
+    // Không chọn phòng ban → nhóm theo phòng ban
+    final grouped = _groupByDepartment(items, state.departments);
+
     return RefreshIndicator(
       onRefresh: () async {
         bloc.add(const SummaryLeaveEvent.refresh());
-        await bloc.stream.firstWhere(
-          (s) => s.status != BaseStateStatus.loading,
-        );
+        await bloc.stream.firstWhere((s) => s.status != BaseStateStatus.loading);
       },
-      child: ListView.separated(
+      child: ListView.builder(
         padding: const EdgeInsets.all(16),
         physics: const AlwaysScrollableScrollPhysics(),
-        itemCount: items.length,
+        itemCount: grouped.length,
         itemBuilder: (context, index) {
-          final item = items[index];
-          return SummaryLeaveCard(
-            item: item,
+          final entry = grouped.entries.elementAt(index);
+          final deptName = entry.key;
+          final deptItems = entry.value;
+          final empCount = _countDistinctEmployees(deptItems);
+
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (index > 0) const SizedBox(height: 16),
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                decoration: BoxDecoration(
+                  color: AppColors.primaryERP.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    color: AppColors.primaryERP.withValues(alpha: 0.3),
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.business_outlined,
+                      size: 18,
+                      color: AppColors.primaryERP,
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        deptName,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.primaryERP,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                      decoration: BoxDecoration(
+                        color: AppColors.primaryERP,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Text(
+                        '$empCount nhân viên',
+                        style: const TextStyle(
+                          fontSize: 11,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 8),
+              ...deptItems.map((item) => Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: SummaryLeaveCard(item: item),
+                  )),
+            ],
           );
         },
-        separatorBuilder: (_, __) => const SizedBox(height: 8),
       ),
     );
   }
