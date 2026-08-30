@@ -190,6 +190,9 @@ class ApiEndPoint {
   static const String getEmployeeNoFingerprintPerson =
       '/EmployeeNoFingerprint/get-employee-no-fingerprint-person';
 
+  static const String getEmployeeNightShiftPerson =
+      '/EmployeeNightShift/get-employee-night-shift-person';
+
   static const String getMissed =
       '/EmployeeNoFingerprint/person';
 

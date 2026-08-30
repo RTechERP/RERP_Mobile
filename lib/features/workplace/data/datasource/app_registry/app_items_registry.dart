@@ -288,7 +288,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.nightlight_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'summary_work',
-      route: '/summary-work/overnight',
+      route: RouteNames.summaryWorkOvernight,
       imageUrl: AppImages.app_overnight,
     ),
   ];
