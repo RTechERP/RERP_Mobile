@@ -170,6 +170,8 @@ import '../features/workplace/app/summary_work/in_out/view/bloc/summary_in_out_b
 import '../features/workplace/app/summary_work/summary_work_screen.dart';
 import '../features/workplace/app/summary_work/leave/view/pages/summary_leave_screen.dart';
 import '../features/workplace/app/summary_work/in_out/view/pages/summary_in_out_screen.dart';
+import '../features/workplace/app/summary_work/wfh/view/bloc/summary_wfh_bloc.dart';
+import '../features/workplace/app/summary_work/wfh/view/pages/summary_wfh_screen.dart';
 import '../features/workplace/app/warehouse/enums/warehouse_type.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_area_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/warehouse_demo_screen.dart';
@@ -467,8 +469,8 @@ class AppRouter {
             providers: [
               BlocProvider.value(value: getIt<SalaryBloc>()),
               BlocProvider.value(value: getIt<TimekeepingBloc>()),
-              // BlocProvider.value(value: getIt<FingerPrintBloc>()),
 
+              // BlocProvider.value(value: getIt<FingerPrintBloc>()),
             ],
             child: child,
           );
@@ -508,10 +510,7 @@ class AppRouter {
                 cardType = extra['cardType'] as SalaryCardType?;
                 month = extra['month'] as DateTime?;
               }
-              return SalaryCardDetailScreen(
-                cardType: cardType,
-                month: month,
-              );
+              return SalaryCardDetailScreen(cardType: cardType, month: month);
             },
           ),
         ],
@@ -1185,10 +1184,7 @@ class AppRouter {
       //---(Stamp)---//
       ShellRoute(
         builder: (context, state, child) {
-          return BlocProvider.value(
-            value: getIt<StampBloc>(),
-            child: child,
-          );
+          return BlocProvider.value(value: getIt<StampBloc>(), child: child);
         },
         routes: [
           GoRoute(
@@ -1203,9 +1199,7 @@ class AppRouter {
                 return StampAddScreen(payload: extra);
               }
               if (extra is StampItem) {
-                return StampAddScreen(
-                  payload: StampRoutePayload(item: extra),
-                );
+                return StampAddScreen(payload: StampRoutePayload(item: extra));
               }
               return const StampAddScreen();
             },
@@ -1218,7 +1212,9 @@ class AppRouter {
                 return StampDetailScreen(payload: extra);
               }
               if (extra is StampItem) {
-                return StampDetailScreen(payload: StampRoutePayload(item: extra));
+                return StampDetailScreen(
+                  payload: StampRoutePayload(item: extra),
+                );
               }
               return const StampDetailScreen(payload: StampRoutePayload());
             },
@@ -1229,10 +1225,7 @@ class AppRouter {
       //---(Week Plan)---//
       ShellRoute(
         builder: (context, state, child) {
-          return BlocProvider.value(
-            value: getIt<WeekPlanBloc>(),
-            child: child,
-          );
+          return BlocProvider.value(value: getIt<WeekPlanBloc>(), child: child);
         },
         routes: [
           GoRoute(
@@ -1265,9 +1258,7 @@ class AppRouter {
           ),
           GoRoute(
             path: RouteNames.weekplanAdd,
-            builder: (context, state) => WeekPlanAddScreen(
-              extra: state.extra,
-            ),
+            builder: (context, state) => WeekPlanAddScreen(extra: state.extra),
           ),
           GoRoute(
             path: RouteNames.weekplanDetail,
@@ -1281,10 +1272,7 @@ class AppRouter {
               } else if (extra is int) {
                 taskId = extra;
               }
-              return WeekPlanDetailScreen(
-                taskId: taskId,
-                extra: addExtra,
-              );
+              return WeekPlanDetailScreen(taskId: taskId, extra: addExtra);
             },
           ),
           // Legacy route - redirect to menu
@@ -1298,10 +1286,7 @@ class AppRouter {
       // Poll
       ShellRoute(
         builder: (context, state, child) {
-          return BlocProvider.value(
-            value: getIt<PollBloc>(),
-            child: child,
-          );
+          return BlocProvider.value(value: getIt<PollBloc>(), child: child);
         },
         routes: [
           GoRoute(
@@ -1339,7 +1324,8 @@ class AppRouter {
             builder: (context, state) {
               final extra = state.extra as Map<String, dynamic>?;
               final documentId = extra?['documentId'] as int? ?? 0;
-              final documentName = extra?['documentName'] as String? ?? 'Chi tiết biểu mẫu';
+              final documentName =
+                  extra?['documentName'] as String? ?? 'Chi tiết biểu mẫu';
               return GeneralFormDetailScreen(
                 documentId: documentId,
                 documentName: documentName,
@@ -1385,41 +1371,36 @@ class AppRouter {
       // Warehouse Sale Area
       GoRoute(
         path: RouteNames.warehouseSaleArea,
-        builder: (context, state) => const WarehouseAreaScreen(
-          warehouseType: WarehouseType.sale,
-        ),
+        builder: (context, state) =>
+            const WarehouseAreaScreen(warehouseType: WarehouseType.sale),
       ),
 
       // Warehouse Demo Area
       GoRoute(
         path: RouteNames.warehouseDemoArea,
-        builder: (context, state) => const WarehouseAreaScreen(
-          warehouseType: WarehouseType.demo,
-        ),
+        builder: (context, state) =>
+            const WarehouseAreaScreen(warehouseType: WarehouseType.demo),
       ),
 
       // Warehouse AGV Area
       GoRoute(
         path: RouteNames.warehouseAgvArea,
-        builder: (context, state) => const WarehouseAreaScreen(
-          warehouseType: WarehouseType.agv,
-        ),
+        builder: (context, state) =>
+            const WarehouseAreaScreen(warehouseType: WarehouseType.agv),
       ),
 
       // Warehouse Project Area
       GoRoute(
         path: RouteNames.warehouseProjectArea,
-        builder: (context, state) => const WarehouseAreaScreen(
-          warehouseType: WarehouseType.project,
-        ),
+        builder: (context, state) =>
+            const WarehouseAreaScreen(warehouseType: WarehouseType.project),
       ),
 
       // Warehouse Test Area
       GoRoute(
         path: RouteNames.warehouseTestArea,
-        builder: (context, state) => const WarehouseAreaScreen(
-          warehouseType: WarehouseType.test,
-        ),
+        builder: (context, state) =>
+            const WarehouseAreaScreen(warehouseType: WarehouseType.test),
       ),
 
       // Warehouse Sale
@@ -1436,19 +1417,14 @@ class AppRouter {
 
       ShellRoute(
         builder: (context, state, child) {
-          return BlocProvider.value(
-            value: getIt<SaleGdnBloc>(),
-            child: child,
-          );
+          return BlocProvider.value(value: getIt<SaleGdnBloc>(), child: child);
         },
         routes: [
           GoRoute(
             path: RouteNames.warehouseSaleGdn,
             builder: (context, state) {
               final extra = state.extra as Map<String, dynamic>?;
-              return SaleGdnScreen(
-                areaId: extra?['areaId'] as String?,
-              );
+              return SaleGdnScreen(areaId: extra?['areaId'] as String?);
             },
           ),
           GoRoute(
@@ -1535,6 +1511,13 @@ class AppRouter {
         builder: (context, state) => BlocProvider.value(
           value: getIt<SummaryInOutBloc>(),
           child: const SummaryInOutScreen(),
+        ),
+      ),
+      GoRoute(
+        path: RouteNames.summaryWorkWfh,
+        builder: (context, state) => BlocProvider.value(
+          value: getIt<SummaryWfhBloc>(),
+          child: const SummaryWfhScreen(),
         ),
       ),
     ],

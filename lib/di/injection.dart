@@ -125,6 +125,10 @@ import '../features/workplace/app/signature/data/datasource/service/signature_se
 import '../features/workplace/app/signature/data/repository/signature_repo.dart';
 import '../features/workplace/app/signature/data/repository/signature_repo_impl.dart';
 import '../features/workplace/app/signature/view/bloc/my_signature_bloc.dart';
+import '../features/workplace/app/summary_work/wfh/data/datasource/service/summary_wfh_service.dart';
+import '../features/workplace/app/summary_work/wfh/data/repository/summary_wfh_repo.dart';
+import '../features/workplace/app/summary_work/wfh/data/repository/summary_wfh_repo_impl.dart';
+import '../features/workplace/app/summary_work/wfh/view/bloc/summary_wfh_bloc.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/service/sale_gdn_service.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/repository/sale_gdn_repo.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/repository/sale_gdn_repo_impl.dart';
@@ -282,11 +286,15 @@ void configureDependencies() {
   );
 
   getIt.registerLazySingleton<SummaryLeaveService>(
-        () => SummaryLeaveService(getIt<Dio>()),
+    () => SummaryLeaveService(getIt<Dio>()),
   );
 
   getIt.registerLazySingleton<SummaryInOutService>(
-        () => SummaryInOutService(getIt<Dio>()),
+    () => SummaryInOutService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<SummaryWfhService>(
+        () => SummaryWfhService(getIt<Dio>()),
   );
 
   /// ===== REPOSITORY =====
@@ -405,11 +413,15 @@ void configureDependencies() {
   );
 
   getIt.registerLazySingleton<SummaryLeaveRepo>(
-        () => SummaryLeaveRepoImpl(getIt<SummaryLeaveService>()),
+    () => SummaryLeaveRepoImpl(getIt<SummaryLeaveService>()),
   );
 
   getIt.registerLazySingleton<SummaryInOutRepo>(
-        () => SummaryInOutRepoImpl(getIt<SummaryInOutService>()),
+    () => SummaryInOutRepoImpl(getIt<SummaryInOutService>()),
+  );
+
+  getIt.registerLazySingleton<SummaryWfhRepo>(
+    () => SummaryWfhRepoImpl(getIt<SummaryWfhService>()),
   );
 
   /// ===== BLOCS =====
@@ -647,6 +659,14 @@ void configureDependencies() {
   getIt.registerFactory<SummaryInOutBloc>(
     () => SummaryInOutBloc(
       getIt<SummaryInOutRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<SummaryWfhBloc>(
+        () => SummaryWfhBloc(
+      getIt<SummaryWfhRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
     ),

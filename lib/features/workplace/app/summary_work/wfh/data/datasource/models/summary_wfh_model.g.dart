@@ -1,0 +1,136 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'summary_wfh_model.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_$SummaryWfhItemImpl _$$SummaryWfhItemImplFromJson(Map<String, dynamic> json) =>
+    _$SummaryWfhItemImpl(
+      id: (json['ID'] as num).toInt(),
+      employeeId: (json['EmployeeID'] as num?)?.toInt(),
+      approvedID: (json['ApprovedID'] as num?)?.toInt(),
+      isApproved: json['IsApproved'] as bool?,
+      reason: json['Reason'] as String?,
+      dateWFH: json['DateWFH'] as String?,
+      timeWFH: (json['TimeWFH'] as num?)?.toInt(),
+      note: json['Note'] as String?,
+      createdDate: json['CreatedDate'] as String?,
+      createdBy: json['CreatedBy'] as String?,
+      updatedDate: json['UpdatedDate'] as String?,
+      updatedBy: json['UpdatedBy'] as String?,
+      totalDay: (json['TotalDay'] as num?)?.toDouble(),
+      approvedHR: (json['ApprovedHR'] as num?)?.toInt(),
+      isApprovedHR: json['IsApprovedHR'] as bool?,
+      decilineApprove: (json['DecilineApprove'] as num?)?.toInt(),
+      reasonDeciline: json['ReasonDeciline'] as String?,
+      reasonHREdit: json['ReasonHREdit'] as String?,
+      isProblem: json['IsProblem'] as bool?,
+      contentWork: json['ContentWork'] as String?,
+      isApprovedBGD: json['IsApprovedBGD'] as bool?,
+      approvedBGDID: (json['ApprovedBGDID'] as num?)?.toInt(),
+      dateApprovedBGD: json['DateApprovedBGD'] as String?,
+      evaluateResults: json['EvaluateResults'] as String?,
+      isDeleted: json['IsDeleted'] as bool?,
+      isSeniorApproved: (json['IsSeniorApproved'] as num?)?.toInt(),
+      approvedSeniorID: (json['ApprovedSeniorID'] as num?)?.toInt(),
+      dateApprovedSenior: json['DateApprovedSenior'] as String?,
+      reasonDecilineSenior: json['ReasonDecilineSenior'] as String?,
+      decilineApproveSenior: (json['DecilineApproveSenior'] as num?)?.toInt(),
+      rowNumber: (json['RowNumber'] as num?)?.toInt(),
+      creatDay: json['CreatDay'] as String?,
+      employeeName: json['EmployeeName'] as String?,
+      departmentId: (json['DepartmentID'] as num?)?.toInt(),
+      approvedName: json['ApprovedName'] as String?,
+      departmentName: json['DepartmentName'] as String?,
+      timeWFHText: json['TimeWFHText'] as String?,
+      isApprovedBGDText: json['IsApprovedBGDText'] as String?,
+      departmentSTT: (json['DepartmentSTT'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$SummaryWfhItemImplToJson(
+        _$SummaryWfhItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'EmployeeID': instance.employeeId,
+      'ApprovedID': instance.approvedID,
+      'IsApproved': instance.isApproved,
+      'Reason': instance.reason,
+      'DateWFH': instance.dateWFH,
+      'TimeWFH': instance.timeWFH,
+      'Note': instance.note,
+      'CreatedDate': instance.createdDate,
+      'CreatedBy': instance.createdBy,
+      'UpdatedDate': instance.updatedDate,
+      'UpdatedBy': instance.updatedBy,
+      'TotalDay': instance.totalDay,
+      'ApprovedHR': instance.approvedHR,
+      'IsApprovedHR': instance.isApprovedHR,
+      'DecilineApprove': instance.decilineApprove,
+      'ReasonDeciline': instance.reasonDeciline,
+      'ReasonHREdit': instance.reasonHREdit,
+      'IsProblem': instance.isProblem,
+      'ContentWork': instance.contentWork,
+      'IsApprovedBGD': instance.isApprovedBGD,
+      'ApprovedBGDID': instance.approvedBGDID,
+      'DateApprovedBGD': instance.dateApprovedBGD,
+      'EvaluateResults': instance.evaluateResults,
+      'IsDeleted': instance.isDeleted,
+      'IsSeniorApproved': instance.isSeniorApproved,
+      'ApprovedSeniorID': instance.approvedSeniorID,
+      'DateApprovedSenior': instance.dateApprovedSenior,
+      'ReasonDecilineSenior': instance.reasonDecilineSenior,
+      'DecilineApproveSenior': instance.decilineApproveSenior,
+      'RowNumber': instance.rowNumber,
+      'CreatDay': instance.creatDay,
+      'EmployeeName': instance.employeeName,
+      'DepartmentID': instance.departmentId,
+      'ApprovedName': instance.approvedName,
+      'DepartmentName': instance.departmentName,
+      'TimeWFHText': instance.timeWFHText,
+      'IsApprovedBGDText': instance.isApprovedBGDText,
+      'DepartmentSTT': instance.departmentSTT,
+    };
+
+_$SummaryWfhDepartmentImpl _$$SummaryWfhDepartmentImplFromJson(
+        Map<String, dynamic> json) =>
+    _$SummaryWfhDepartmentImpl(
+      id: (json['ID'] as num).toInt(),
+      code: json['Code'] as String?,
+      name: json['Name'] as String?,
+      description: json['Description'] as String?,
+      createdBy: json['CreatedBy'] as String?,
+      createdDate: json['CreatedDate'] as String?,
+      updatedBy: json['UpdatedBy'] as String?,
+      updatedDate: json['UpdatedDate'] as String?,
+      status: (json['Status'] as num?)?.toInt(),
+      email: json['Email'] as String?,
+      headOfDepartment: (json['HeadofDepartment'] as num?)?.toInt(),
+      isShowHotline: json['IsShowHotline'] as bool?,
+      pId: json['PId'] as String?,
+      stt: (json['STT'] as num?)?.toInt(),
+      isDeleted: json['IsDeleted'] as bool?,
+      parentID: (json['ParentID'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$SummaryWfhDepartmentImplToJson(
+        _$SummaryWfhDepartmentImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'Code': instance.code,
+      'Name': instance.name,
+      'Description': instance.description,
+      'CreatedBy': instance.createdBy,
+      'CreatedDate': instance.createdDate,
+      'UpdatedBy': instance.updatedBy,
+      'UpdatedDate': instance.updatedDate,
+      'Status': instance.status,
+      'Email': instance.email,
+      'HeadofDepartment': instance.headOfDepartment,
+      'IsShowHotline': instance.isShowHotline,
+      'PId': instance.pId,
+      'STT': instance.stt,
+      'IsDeleted': instance.isDeleted,
+      'ParentID': instance.parentID,
+    };

@@ -202,6 +202,9 @@ class ApiEndPoint {
   static const String getEmployeeEarlyLatePerson =
       '/EmployeeEarlyLate/get-employee-early-late-person';
 
+  static const String getEmployeeWFHPerson =
+      '/EmployeeWFH/get-wfh-person';
+
   static const String getLeaveTime =
       '/employeeonleave/list-summary-employee-on-leave';
 
