@@ -187,6 +187,9 @@ class ApiEndPoint {
   static const String getWfh = '/EmployeeWFH/get-wfh';
   static const String saveWfh = '/EmployeeWFH/save-data';
 
+  static const String getEmployeeNoFingerprintPerson =
+      '/EmployeeNoFingerprint/get-employee-no-fingerprint-person';
+
   static const String getMissed =
       '/EmployeeNoFingerprint/person';
 

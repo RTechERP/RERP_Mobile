@@ -129,6 +129,10 @@ import '../features/workplace/app/summary_work/wfh/data/datasource/service/summa
 import '../features/workplace/app/summary_work/wfh/data/repository/summary_wfh_repo.dart';
 import '../features/workplace/app/summary_work/wfh/data/repository/summary_wfh_repo_impl.dart';
 import '../features/workplace/app/summary_work/wfh/view/bloc/summary_wfh_bloc.dart';
+import '../features/workplace/app/summary_work/missed/data/datasource/service/summary_missed_service.dart';
+import '../features/workplace/app/summary_work/missed/data/repository/summary_missed_repo.dart';
+import '../features/workplace/app/summary_work/missed/data/repository/summary_missed_repo_impl.dart';
+import '../features/workplace/app/summary_work/missed/view/bloc/summary_missed_bloc.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/service/sale_gdn_service.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/repository/sale_gdn_repo.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/repository/sale_gdn_repo_impl.dart';
@@ -297,6 +301,10 @@ void configureDependencies() {
         () => SummaryWfhService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<SummaryMissedService>(
+        () => SummaryMissedService(getIt<Dio>()),
+  );
+
   /// ===== REPOSITORY =====
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImpl(
@@ -422,6 +430,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<SummaryWfhRepo>(
     () => SummaryWfhRepoImpl(getIt<SummaryWfhService>()),
+  );
+
+  getIt.registerLazySingleton<SummaryMissedRepo>(
+    () => SummaryMissedRepoImpl(getIt<SummaryMissedService>()),
   );
 
   /// ===== BLOCS =====
@@ -667,6 +679,14 @@ void configureDependencies() {
   getIt.registerFactory<SummaryWfhBloc>(
         () => SummaryWfhBloc(
       getIt<SummaryWfhRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<SummaryMissedBloc>(
+        () => SummaryMissedBloc(
+      getIt<SummaryMissedRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
     ),

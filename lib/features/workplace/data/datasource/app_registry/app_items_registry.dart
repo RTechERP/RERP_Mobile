@@ -268,7 +268,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.fingerprint_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'summary_work',
-      route: '/summary-work/fingerprint',
+      route: RouteNames.summaryWorkFingerprint,
       imageUrl: AppImages.app_missed,
     ),
 
