@@ -134,6 +134,7 @@ class _SummaryOvernightScreenState extends BaseState<
         return BaseScaffold(
           appBar: AppBarCommon(
             onBackTap: () => context.pop(),
+            centerTitle: false,
             title: Text(
               'Làm đêm',
               style: AppStyles.headingTitle2,

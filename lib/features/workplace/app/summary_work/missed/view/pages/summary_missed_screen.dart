@@ -134,6 +134,7 @@ class _SummaryMissedScreenState extends BaseState<
         return BaseScaffold(
           appBar: AppBarCommon(
             onBackTap: () => context.pop(),
+            centerTitle: false,
             title: Text(
               'Quên chấm công',
               style: AppStyles.headingTitle2,

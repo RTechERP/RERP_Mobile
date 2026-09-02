@@ -128,6 +128,7 @@ class _SummaryLeaveScreenState
         return BaseScaffold(
           appBar: AppBarCommon(
             onBackTap: () => context.pop(),
+            centerTitle: false,
             title: Text(
               'Đăng ký nghỉ',
               style: AppStyles.headingTitle2,

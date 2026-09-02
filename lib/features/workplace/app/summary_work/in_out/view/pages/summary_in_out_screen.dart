@@ -165,6 +165,7 @@ class _SummaryInOutScreenState extends BaseState<
         return BaseScaffold(
           appBar: AppBarCommon(
             onBackTap: () => context.pop(),
+            centerTitle: false,
             title: Text(
               'Đi muộn - Về sớm',
               style: AppStyles.headingTitle2,

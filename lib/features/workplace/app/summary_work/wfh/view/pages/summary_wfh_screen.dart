@@ -131,6 +131,7 @@ class _SummaryWfhScreenState
         return BaseScaffold(
           appBar: AppBarCommon(
             onBackTap: () => context.pop(),
+            centerTitle: false,
             title: Text(
               'WFH',
               style: AppStyles.headingTitle2,
