@@ -278,7 +278,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.schedule_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'summary_work',
-      route: '/summary-work/overtime',
+      route: RouteNames.summaryWorkOvertime,
       imageUrl: AppImages.app_overtime,
     ),
 

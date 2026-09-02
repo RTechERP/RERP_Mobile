@@ -176,6 +176,8 @@ import '../features/workplace/app/summary_work/missed/view/bloc/summary_missed_b
 import '../features/workplace/app/summary_work/missed/view/pages/summary_missed_screen.dart';
 import '../features/workplace/app/summary_work/overnight/view/bloc/summary_overnight_bloc.dart';
 import '../features/workplace/app/summary_work/overnight/view/pages/summary_overnight_screen.dart';
+import '../features/workplace/app/summary_work/overtime/view/bloc/summary_overtime_bloc.dart';
+import '../features/workplace/app/summary_work/overtime/view/pages/summary_overtime_screen.dart';
 import '../features/workplace/app/warehouse/enums/warehouse_type.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_area_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/warehouse_demo_screen.dart';
@@ -1536,6 +1538,13 @@ class AppRouter {
         builder: (context, state) => BlocProvider.value(
           value: getIt<SummaryOvernightBloc>(),
           child: const SummaryOvernightScreen(),
+        ),
+      ),
+      GoRoute(
+        path: RouteNames.summaryWorkOvertime,
+        builder: (context, state) => BlocProvider.value(
+          value: getIt<SummaryOvertimeBloc>(),
+          child: const SummaryOvertimeScreen(),
         ),
       ),
     ],

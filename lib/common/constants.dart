@@ -193,6 +193,9 @@ class ApiEndPoint {
   static const String getEmployeeNightShiftPerson =
       '/EmployeeNightShift/get-employee-night-shift-person';
 
+  static const String getSummaryOverTimePersonByDept =
+      '/EmployeeOverTime/get-summary-over-time-person-by-dept';
+
   static const String getMissed =
       '/EmployeeNoFingerprint/person';
 

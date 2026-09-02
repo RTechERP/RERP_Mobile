@@ -137,6 +137,10 @@ import '../features/workplace/app/summary_work/overnight/data/datasource/service
 import '../features/workplace/app/summary_work/overnight/data/repository/summary_overnight_repo.dart';
 import '../features/workplace/app/summary_work/overnight/data/repository/summary_overnight_repo_impl.dart';
 import '../features/workplace/app/summary_work/overnight/view/bloc/summary_overnight_bloc.dart';
+import '../features/workplace/app/summary_work/overtime/data/datasource/service/summary_overtime_service.dart';
+import '../features/workplace/app/summary_work/overtime/data/repository/summary_overtime_repo.dart';
+import '../features/workplace/app/summary_work/overtime/data/repository/summary_overtime_repo_impl.dart';
+import '../features/workplace/app/summary_work/overtime/view/bloc/summary_overtime_bloc.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/service/sale_gdn_service.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/repository/sale_gdn_repo.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/repository/sale_gdn_repo_impl.dart';
@@ -313,6 +317,10 @@ void configureDependencies() {
         () => SummaryOvernightService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<SummaryOvertimeService>(
+        () => SummaryOvertimeService(getIt<Dio>()),
+  );
+
   /// ===== REPOSITORY =====
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImpl(
@@ -446,6 +454,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<SummaryOvernightRepo>(
     () => SummaryOvernightRepoImpl(getIt<SummaryOvernightService>()),
+  );
+
+  getIt.registerLazySingleton<SummaryOvertimeRepo>(
+    () => SummaryOvertimeRepoImpl(getIt<SummaryOvertimeService>()),
   );
 
   /// ===== BLOCS =====
@@ -707,6 +719,14 @@ void configureDependencies() {
   getIt.registerFactory<SummaryOvernightBloc>(
         () => SummaryOvernightBloc(
       getIt<SummaryOvernightRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<SummaryOvertimeBloc>(
+        () => SummaryOvertimeBloc(
+      getIt<SummaryOvertimeRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
     ),
