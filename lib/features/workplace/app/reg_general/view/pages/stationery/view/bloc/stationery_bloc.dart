@@ -423,7 +423,7 @@ class StationeryBloc extends BaseBloc<StationeryEvent, StationeryState> {
       return;
     }
 
-    final payload = _buildPayload(user.employeeId, dateRegister: dateRegister);
+    final payload = _buildPayload(user.employeeId, user.departmentId, dateRegister: dateRegister);
 
     final saveRes = await _stationeryRepo.saveStationery(payload: payload);
 
@@ -450,7 +450,7 @@ class StationeryBloc extends BaseBloc<StationeryEvent, StationeryState> {
     _isSubmitting = false;
   }
 
-  Map<String, dynamic> _buildPayload(int employeeId, {required DateTime dateRegister}) {
+  Map<String, dynamic> _buildPayload(int employeeId, int departmentId, {required DateTime dateRegister}) {
     final details = state.slips.map((s) {
       return {
         'ID': s.detailId ?? 0,
@@ -470,7 +470,7 @@ class StationeryBloc extends BaseBloc<StationeryEvent, StationeryState> {
         'ID': state.editItemId ?? 0,
         'EmployeeIDRequest': employeeId,
         'DateRequest': dateRegister.toIso8601String(),
-        'DepartmentID': 0,
+        'DepartmentID': departmentId,
         'IsApproved': false,
         'IsAdminApproved': false,
         'IsDeleted': false,

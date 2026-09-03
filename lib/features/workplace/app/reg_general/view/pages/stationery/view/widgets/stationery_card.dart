@@ -77,10 +77,16 @@ class _InfoLine extends StatelessWidget {
 }
 
 /// Badge label theo trạng thái duyệt (Admin).
-String _approvalBadgeLabel(StationeryItem item) {
+String _approvalTBPBadgeLabel(StationeryItem item) {
+  final tbp = item.isApproved;
+  if (tbp == true) return 'TBP - Đã duyệt';
+  return 'TBP - Chờ duyệt';
+}
+
+String _approvalAdminBadgeLabel(StationeryItem item){
   final admin = item.isAdminApproved;
-  if (admin == true) return 'Đã duyệt';
-  return 'Chờ duyệt';
+  if (admin == true) return 'Admin - Đã duyệt';
+  return 'Admin - Chờ duyệt';
 }
 
 /// Màu badge theo trạng thái duyệt.
@@ -105,7 +111,8 @@ class StationeryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final badgeLabel = _approvalBadgeLabel(item);
+    final badgeTBPLabel = _approvalTBPBadgeLabel(item);
+    final badgeAdminLabel = _approvalAdminBadgeLabel(item);
     final badgeColor = _approvalBadgeColor(item);
 
     final dateApprovedDisplay = item.dateApproved != null
@@ -132,17 +139,22 @@ class StationeryCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Header: badge trạng thái
-              _StatusBadge(
-                label: badgeLabel,
-                color: badgeColor,
+              Row(
+                children: [
+                  _StatusBadge(
+                    label: badgeAdminLabel,
+                    color: badgeColor,
+                  ),
+                  const SizedBox(width: 8),
+                  _StatusBadge(
+                    label: badgeTBPLabel,
+                    color: badgeColor,
+                  ),
+
+                ],
               ),
               const SizedBox(height: 12),
               // Body: thông tin chi tiết
-              _InfoLine(
-                prefix: 'Duyệt (Admin - TBP): ',
-                text: item.fullNameApproved ?? '-',
-              ),
-              const SizedBox(height: 6),
               _InfoLine(
                 prefix: 'Ngày TBP duyệt: ',
                 text: dateApprovedDisplay,
