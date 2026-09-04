@@ -3,7 +3,7 @@ description: "RTC ERP"
 
 publish_to: 'none'
 
-version: 1.6.0+37
+version: 1.6.1+38
 
 environment:
   sdk: ^3.10.7
