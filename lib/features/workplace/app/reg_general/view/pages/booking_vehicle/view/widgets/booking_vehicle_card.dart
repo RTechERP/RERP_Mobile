@@ -653,6 +653,8 @@ bool _canShowCancelSlidable(BookingVehicleItem item) {
   if (id == null || id <= 0) return false;
   if (item.isCancel == true) return false;
   if (item.status == 3) return false;
+  // Đã xếp xe rồi thì không cho huỷ bằng swipe.
+  if (_arrangementBadgeLabel(item) == 'Đã xếp') return false;
   return true;
 }
 
