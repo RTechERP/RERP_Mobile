@@ -13,6 +13,8 @@ import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/stamp/view
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/stamp/view/pages/stamp_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/stamp/view/pages/stamp_add_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/stamp/view/pages/stamp_detail_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/test_table/view/bloc/test_table_bloc.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/test_table/view/pages/test_table_screen.dart';
 import 'package:rtc_erp/features/workplace/app/signature/view/bloc/my_signature_bloc.dart';
 import 'package:rtc_erp/features/workplace/app/signature/view/pages/signature_screen.dart';
 import 'package:rtc_erp/features/workplace/app/signature/view/pages/signature_add_screen.dart';
@@ -1224,6 +1226,19 @@ class AppRouter {
               }
               return const StampDetailScreen(payload: StampRoutePayload());
             },
+          ),
+        ],
+      ),
+
+      //---(Test Table)---//
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(value: getIt<TestTableBloc>(), child: child);
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.testTable,
+            builder: (context, state) => const TestTableScreen(),
           ),
         ],
       ),

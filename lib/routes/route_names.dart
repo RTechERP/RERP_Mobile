@@ -200,6 +200,9 @@ class RouteNames {
   static const String stampAdd = '/reg_general/stamp/add';
   static const String stampDetail = '/reg_general/stamp/detail';
 
+  // Test Table Registration
+  static const String testTable = '/reg_general/test_table';
+
   // Signature Registration
   static const String signature = '/signature';
   static const String signatureAdd = '/signature/add';

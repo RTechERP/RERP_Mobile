@@ -452,4 +452,6 @@ class ApiEndPoint {
   /// API: GET /AddressStock/get-by-customerID/?customerID={customerId}
   static const String getAddressStockByCustomerId =
       '/AddressStock/get-by-customerID';
+
+  static const String getTestTable = '/ESLRegistration/get-all-registration';
 }

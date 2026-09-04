@@ -220,6 +220,16 @@ class AppItemRegistry {
     ),
 
     AppItemModel(
+      id: 'reg_general:test_table',
+      name: 'reg_general.test_table'.tr(),
+      iconCodePoint: Icons.desktop_windows_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'reg_general',
+      route: RouteNames.testTable,
+      imageUrl: AppImages.reg_general_stamp,
+    ),
+
+    AppItemModel(
       id: 'reg_general:poll',
       name: 'reg_general.poll'.tr(),
       iconCodePoint: Icons.poll_outlined.codePoint,

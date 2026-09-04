@@ -55,6 +55,10 @@ import '../features/workplace/app/reg_general/view/pages/stamp/data/datasource/s
 import '../features/workplace/app/reg_general/view/pages/stamp/data/repository/stamp_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/stamp/data/repository/stamp_repo_impl.dart';
 import '../features/workplace/app/reg_general/view/pages/stamp/view/bloc/stamp_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/test_table/data/datasource/service/test_table_service.dart';
+import '../features/workplace/app/reg_general/view/pages/test_table/data/repository/test_table_repo.dart';
+import '../features/workplace/app/reg_general/view/pages/test_table/data/repository/test_table_repo_impl.dart';
+import '../features/workplace/app/reg_general/view/pages/test_table/view/bloc/test_table_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/work_requirement/data/datasource/service/work_requirement_service.dart';
 import '../features/workplace/app/reg_general/view/pages/work_requirement/data/repository/work_requirement_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/work_requirement/data/repository/work_requirement_repo_impl.dart';
@@ -321,6 +325,9 @@ void configureDependencies() {
         () => SummaryOvertimeService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<TestTableService>(
+    () => TestTableService(getIt<Dio>()),
+  );
   /// ===== REPOSITORY =====
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImpl(
@@ -460,6 +467,9 @@ void configureDependencies() {
     () => SummaryOvertimeRepoImpl(getIt<SummaryOvertimeService>()),
   );
 
+  getIt.registerLazySingleton<TestTableRepo>(
+      () => TestTableRepoImpl(getIt<TestTableService>()),
+  );
   /// ===== BLOCS =====
   getIt.registerFactory<AuthBloc>(
     () => AuthBloc(getIt<AuthRepo>(), getIt<LogUtils>()),
@@ -729,6 +739,13 @@ void configureDependencies() {
       getIt<SummaryOvertimeRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<TestTableBloc>(
+        () => TestTableBloc(
+      getIt<LogUtils>(),
+      getIt<TestTableRepo>(),
     ),
   );
 }
