@@ -689,7 +689,7 @@ Map<String, dynamic> buildCommercialDeliveryCreatePayload({
     'BookerVehicles': bookerFullName,
     'Category': apiCategory,
     'CompanyNameArrives': _trimStr(form['location_address']),
-    'DeliverName': receiverName,
+    'DeliverName': bookerFullName,
     'DeliverPhoneNumber': receiverPhone,
     'DepartureAddress': departureAddressFromReturnForm(form),
     'DepartureAddressStatus': departureAddressStatusFromReturnPoint(
