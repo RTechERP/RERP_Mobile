@@ -160,10 +160,10 @@ class _TestTableScreenState extends BaseState<TestTableScreen, TestTableEvent,
       child: ListView.separated(
         physics: const AlwaysScrollableScrollPhysics(),
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-        itemCount: state.testTable.length,
+        itemCount: state.testCard.length,
         separatorBuilder: (_, _) => const SizedBox(height: 10),
         itemBuilder: (context, index) {
-          return TestTableCard(item: state.testTable[index]);
+          return TestTableCard(item: state.testCard[index]);
         },
       ),
     );

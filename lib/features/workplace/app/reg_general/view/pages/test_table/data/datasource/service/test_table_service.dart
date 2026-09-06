@@ -5,23 +5,76 @@ import '../../../../../../../../../../base/network/models/base_data.dart';
 import '../../../../../../../../../../common/constants.dart';
 import '../models/test_table_model.dart';
 
-/// Gọi API danh sách đăng ký bàn test ESL.
+/// Gọi API liên quan bàn test ESL: phiếu đăng ký, bàn, nhân viên, dự án, người duyệt.
 @injectable
 class TestTableService extends DioBaseApiService {
   TestTableService(super.dio);
 
-  /// Lấy danh sách phiếu bàn test, lọc theo [keyword] nếu có.
-  Future<BaseData<List<TestTableItem>>> getTestTableItem({
+  /// Lấy danh sách phiếu đăng ký bàn test, lọc theo [keyword] nếu có.
+  Future<BaseData<List<TestCardItem>>> getTestCardItem({
     String keyword = '',
   }) async {
-    return get<BaseData<List<TestTableItem>>>(
+    return get<BaseData<List<TestCardItem>>>(
       ApiEndPoint.getTestTable,
       query: {
         'keyword': keyword,
       },
-      parser: (json) => _parseList<TestTableItem>(
+      parser: (json) => _parseList(
+        json,
+        TestCardItem.fromJson,
+      ),
+    );
+  }
+
+  /// Lấy danh sách bàn test ESL.
+  Future<BaseData<List<TestTableItem>>> getTestTableItem() async {
+    return get<BaseData<List<TestTableItem>>>(
+      ApiEndPoint.getEslTestTable,
+      parser: (json) => _parseList(
         json,
         TestTableItem.fromJson,
+      ),
+    );
+  }
+
+  /// Lấy danh sách nhân viên, lọc theo [status], [departmentId], [keyword].
+  Future<BaseData<List<EmployeeInfoItem>>> getEmployeeInfoItem({
+    int status = 0,
+    int departmentId = 0,
+    String keyword = '',
+  }) async {
+    return get<BaseData<List<EmployeeInfoItem>>>(
+      ApiEndPoint.getEmployee,
+      query: {
+        'status': status,
+        'departmentid': departmentId,
+        'keyword': keyword,
+      },
+      parser: (json) => _parseList(
+        json,
+        EmployeeInfoItem.fromJson,
+      ),
+    );
+  }
+
+  /// Lấy danh sách dự án.
+  Future<BaseData<List<ProjectItem>>> getProjectItem() async {
+    return get<BaseData<List<ProjectItem>>>(
+      ApiEndPoint.getAllProject,
+      parser: (json) => _parseList(
+        json,
+        ProjectItem.fromJson,
+      ),
+    );
+  }
+
+  /// Lấy danh sách người duyệt.
+  Future<BaseData<List<ApproverItem>>> getApproverItem() async {
+    return get<BaseData<List<ApproverItem>>>(
+      ApiEndPoint.getAllUserApprove,
+      parser: (json) => _parseList(
+        json,
+        ApproverItem.fromJson,
       ),
     );
   }

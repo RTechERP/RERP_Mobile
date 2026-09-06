@@ -35,7 +35,7 @@ String _statusLabel(int? s) {
 class TestTableCard extends StatelessWidget {
   const TestTableCard({super.key, required this.item});
 
-  final TestTableItem item;
+  final TestCardItem item;
 
   @override
   Widget build(BuildContext context) {

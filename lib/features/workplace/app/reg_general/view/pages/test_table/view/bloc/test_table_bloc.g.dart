@@ -11,7 +11,13 @@ abstract class _$TestTableStateCWProxy {
 
   TestTableState message(String? message);
 
+  TestTableState testCard(List<TestCardItem> testCard);
+
   TestTableState testTable(List<TestTableItem> testTable);
+
+  TestTableState employee(List<EmployeeInfoItem> employee);
+
+  TestTableState project(List<ProjectItem> project);
 
   TestTableState keyword(String keyword);
 
@@ -24,7 +30,10 @@ abstract class _$TestTableStateCWProxy {
   TestTableState call({
     BaseStateStatus? status,
     String? message,
+    List<TestCardItem>? testCard,
     List<TestTableItem>? testTable,
+    List<EmployeeInfoItem>? employee,
+    List<ProjectItem>? project,
     String? keyword,
   });
 }
@@ -42,8 +51,19 @@ class _$TestTableStateCWProxyImpl implements _$TestTableStateCWProxy {
   TestTableState message(String? message) => this(message: message);
 
   @override
+  TestTableState testCard(List<TestCardItem> testCard) =>
+      this(testCard: testCard);
+
+  @override
   TestTableState testTable(List<TestTableItem> testTable) =>
       this(testTable: testTable);
+
+  @override
+  TestTableState employee(List<EmployeeInfoItem> employee) =>
+      this(employee: employee);
+
+  @override
+  TestTableState project(List<ProjectItem> project) => this(project: project);
 
   @override
   TestTableState keyword(String keyword) => this(keyword: keyword);
@@ -59,7 +79,10 @@ class _$TestTableStateCWProxyImpl implements _$TestTableStateCWProxy {
   TestTableState call({
     Object? status = const $CopyWithPlaceholder(),
     Object? message = const $CopyWithPlaceholder(),
+    Object? testCard = const $CopyWithPlaceholder(),
     Object? testTable = const $CopyWithPlaceholder(),
+    Object? employee = const $CopyWithPlaceholder(),
+    Object? project = const $CopyWithPlaceholder(),
     Object? keyword = const $CopyWithPlaceholder(),
   }) {
     return TestTableState(
@@ -71,10 +94,22 @@ class _$TestTableStateCWProxyImpl implements _$TestTableStateCWProxy {
           ? _value.message
           // ignore: cast_nullable_to_non_nullable
           : message as String?,
+      testCard: testCard == const $CopyWithPlaceholder() || testCard == null
+          ? _value.testCard
+          // ignore: cast_nullable_to_non_nullable
+          : testCard as List<TestCardItem>,
       testTable: testTable == const $CopyWithPlaceholder() || testTable == null
           ? _value.testTable
           // ignore: cast_nullable_to_non_nullable
           : testTable as List<TestTableItem>,
+      employee: employee == const $CopyWithPlaceholder() || employee == null
+          ? _value.employee
+          // ignore: cast_nullable_to_non_nullable
+          : employee as List<EmployeeInfoItem>,
+      project: project == const $CopyWithPlaceholder() || project == null
+          ? _value.project
+          // ignore: cast_nullable_to_non_nullable
+          : project as List<ProjectItem>,
       keyword: keyword == const $CopyWithPlaceholder() || keyword == null
           ? _value.keyword
           // ignore: cast_nullable_to_non_nullable

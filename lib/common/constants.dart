@@ -454,4 +454,16 @@ class ApiEndPoint {
       '/AddressStock/get-by-customerID';
 
   static const String getTestTable = '/ESLRegistration/get-all-registration';
+
+  /// Bàn test ESL: GET /ESLTestTable/getall.
+  static const String getEslTestTable = '/ESLTestTable/getall';
+
+  /// Người duyệt: GET /ESLRegistration/get-all-user-approve.
+  static const String getAllUserApprove = '/ESLRegistration/get-all-user-approve';
+
+  /// Nhân viên: GET /Employee?status=&departmentid=&keyword=.
+  static const String getEmployee = '/Employee';
+
+  /// Dự án: GET /ProjectTask/get-all-project.
+  static const String getAllProject = '/ProjectTask/get-all-project';
 }

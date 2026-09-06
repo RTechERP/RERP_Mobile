@@ -32,12 +32,12 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
 
   Future<void> _onInit(Emitter<TestTableState> emit) async {
     emit(state.copyWith(status: BaseStateStatus.loading, message: null));
-    await _fetchTestTables(emit);
+    await _fetchTestCards(emit);
   }
 
   Future<void> _onRefresh(Emitter<TestTableState> emit) async {
     emit(state.copyWith(status: BaseStateStatus.loading, message: null));
-    await _fetchTestTables(emit);
+    await _fetchTestCards(emit);
   }
 
   Future<void> _onChangeKeyword(
@@ -51,12 +51,12 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
         message: null,
       ),
     );
-    await _fetchTestTables(emit);
+    await _fetchTestCards(emit);
   }
 
   /// Gọi API theo [TestTableState.keyword].
-  Future<void> _fetchTestTables(Emitter<TestTableState> emit) async {
-    final result = await _repo.getTestTableItem(keyword: state.keyword);
+  Future<void> _fetchTestCards(Emitter<TestTableState> emit) async {
+    final result = await _repo.getTestCardItem(keyword: state.keyword);
 
     result.fold(
       (error) {
@@ -74,7 +74,7 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
         emit(
           state.copyWith(
             status: BaseStateStatus.success,
-            testTable: items,
+            testCard: items,
             message: null,
           ),
         );

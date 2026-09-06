@@ -12,14 +12,87 @@ import 'test_table_repo.dart';
 @LazySingleton(as: TestTableRepo)
 class TestTableRepoImpl implements TestTableRepo {
   final TestTableService _service;
+
   TestTableRepoImpl(this._service);
 
   @override
-  Future<Either<BaseError, List<TestTableItem>>> getTestTableItem({
+  Future<Either<BaseError, List<TestCardItem>>> getTestCardItem({
     String keyword = '',
   }) async {
     try {
-      final res = await _service.getTestTableItem(keyword: keyword);
+      final res = await _service.getTestCardItem(keyword: keyword);
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      } else {
+        return left(
+          BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+        );
+      }
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<TestTableItem>>> getTestTableItem() async {
+    try {
+      final res = await _service.getTestTableItem();
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      } else {
+        return left(
+          BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+        );
+      }
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<EmployeeInfoItem>>> getEmployeeInfoItem({
+    int status = 0,
+    int departmentId = 0,
+    String keyword = '',
+  }) async {
+    try {
+      final res = await _service.getEmployeeInfoItem(
+        status: status,
+        departmentId: departmentId,
+        keyword: keyword,
+      );
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      } else {
+        return left(
+          BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+        );
+      }
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<ProjectItem>>> getProjectItem() async {
+    try {
+      final res = await _service.getProjectItem();
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      } else {
+        return left(
+          BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+        );
+      }
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<ApproverItem>>> getApproverItem() async {
+    try {
+      final res = await _service.getApproverItem();
       if (res.status == 1 && res.data != null) {
         return right(res.data!);
       } else {
