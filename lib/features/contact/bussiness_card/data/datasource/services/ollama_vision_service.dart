@@ -37,7 +37,7 @@ class OllamaBusinessCardResult {
   }
 }
 
-/// Service gọi Ollama local (Qwen2.5VL) để trích xuất thông tin danh thiếp.
+/// Service gọi Ollama local (qwen3-vl) để trích xuất thông tin danh thiếp.
 class OllamaVisionService {
   OllamaVisionService({String? baseUrl})
     : _baseUrlOverride = baseUrl,
@@ -55,7 +55,7 @@ class OllamaVisionService {
   static const String envOverride = String.fromEnvironment('OLLAMA_HOST');
 
   /// IP LAN của Mac dev — fallback cho iPhone thật khi không có dart-define.
-  static const String _devFallbackHost = 'http://192.168.0.22:11434';
+  static const String _devFallbackHost = 'http://10.20.29.34:11434';
 
   static List<String> _defaultCandidates() {
     final override = envOverride.isNotEmpty ? envOverride : null;
@@ -93,7 +93,7 @@ class OllamaVisionService {
   /// Trả về [OllamaBusinessCardResult] hoặc ném exception.
   Future<OllamaBusinessCardResult> extractBusinessCard(
     String imagePath, {
-    String model = 'qwen2.5vl:latest',
+    String model = 'qwen3-vl:latest',
   }) async {
     final stopwatch = Stopwatch()..start();
 
@@ -127,6 +127,17 @@ Nếu không tìm thấy trường nào thì để giá trị rỗng "". Trả v
 ''';
 
     try {
+      // // ignore: avoid_print
+      // print('[Ollama] === START extract ===');
+      // // ignore: avoid_print
+      // print('[Ollama] model: $model');
+      // // ignore: avoid_print
+      // print('[Ollama] baseUrl: $baseUrl');
+      // // ignore: avoid_print
+      // print('[Ollama] imagePath: $imagePath');
+      // // ignore: avoid_print
+      // print('[Ollama] base64 length: ${base64Image.length}');
+
       final response = await _dio.post(
         '/api/generate',
         data: {
@@ -144,19 +155,48 @@ Nếu không tìm thấy trường nào thì để giá trị rỗng "". Trả v
         },
       );
 
+      // ignore: avoid_print
+      print('[Ollama] status: ${response.statusCode}');
+      // ignore: avoid_print
+      print('[Ollama] full response.data: ${jsonEncode(response.data)}');
+
       final data = response.data;
       String rawResponse;
 
       if (data is Map) {
+        // Qwen3-VL trả JSON ở field `thinking` thay vì `response`.
+        // Fallback: ưu tiên `response`, nếu rỗng thì dùng `thinking`.
         rawResponse = (data['response'] ?? '').toString();
+        if (rawResponse.isEmpty && data['thinking'] != null) {
+          rawResponse = data['thinking'].toString();
+        }
       } else if (data is String) {
         rawResponse = data;
       } else {
         rawResponse = jsonEncode(data);
       }
 
-      return _parseOllamaResponse(rawResponse);
+      // // ignore: avoid_print
+      // print('[Ollama] raw response (${rawResponse.length} chars):');
+      // // ignore: avoid_print
+      // print('---BEGIN RAW---');
+      // // ignore: avoid_print
+      // print(rawResponse);
+      // // ignore: avoid_print
+      // print('---END RAW---');
+
+      final result = _parseOllamaResponse(rawResponse);
+      // ignore: avoid_print
+      print('[Ollama] parsed result: ${result.toMap()}');
+      // ignore: avoid_print
+      print('[Ollama] === END extract (${stopwatch.elapsedMilliseconds}ms) ===');
+
+      return result;
     } on DioException catch (e) {
+      // ignore: avoid_print
+      print('[Ollama] DioException: ${e.type} | ${e.message}');
+      // ignore: avoid_print
+      print('[Ollama] response body: ${e.response?.data}');
       final body = e.response?.data;
       if (e.type == DioExceptionType.connectionError ||
           e.type == DioExceptionType.connectionTimeout) {
@@ -176,7 +216,7 @@ Nếu không tìm thấy trường nào thì để giá trị rỗng "". Trả v
   }
 
   /// Check xem Ollama có đang online và model có sẵn không.
-  Future<bool> isAvailable({String model = 'qwen2.5vl:latest'}) async {
+  Future<bool> isAvailable({String model = 'qwen3-vl:latest'}) async {
     try {
       final baseUrl = await _resolveBaseUrl();
       if (baseUrl == null) return false;
@@ -249,6 +289,15 @@ Nếu không tìm thấy trường nào thì để giá trị rỗng "". Trả v
       text = codeBlockMatch.group(1)!.trim();
     }
 
+    // // ignore: avoid_print
+    // print('[Ollama] text after strip (${text.length} chars):');
+    // // ignore: avoid_print
+    // print('---BEGIN TEXT---');
+    // // ignore: avoid_print
+    // print(text);
+    // // ignore: avoid_print
+    // print('---END TEXT---');
+
     // Thử parse JSON trực tiếp.
     try {
       final map = jsonDecode(text) as Map<String, dynamic>;
@@ -261,7 +310,9 @@ Nếu không tìm thấy trường nào thì để giá trị rỗng "". Trả v
         position: _stringOrNull(map['position']),
         website: _stringOrNull(map['website']),
       );
-    } catch (_) {
+    } catch (e) {
+      // ignore: avoid_print
+      print('[Ollama] JSON parse FAILED: $e');
       // JSON parse fail → fallback.
       return const OllamaBusinessCardResult();
     }
