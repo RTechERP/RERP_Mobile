@@ -24,6 +24,13 @@ class SaleGdnEvent with _$SaleGdnEvent {
   const factory SaleGdnEvent.filterByWarehouseType(List<int> warehouseTypeIds) = _FilterByWarehouseType;
   const factory SaleGdnEvent.filterByStatus(int status) = _FilterByStatus;
   const factory SaleGdnEvent.clearFilters() = _ClearFilters;
+  const factory SaleGdnEvent.filterBySender(int? senderId) = _FilterBySender;
+
+  /// Filter theo tên người giao (lấy từ fullNameSender của API card).
+  const factory SaleGdnEvent.filterBySenderName(String? senderName) =
+      _FilterBySenderName;
+
+  const factory SaleGdnEvent.filterByReceiver(String? receiverName) = _FilterByReceiver;
 
   /// Thay đổi khoảng thời gian lọc và fetch lại danh sách phiếu xuất kho.
   const factory SaleGdnEvent.changeDateRange({

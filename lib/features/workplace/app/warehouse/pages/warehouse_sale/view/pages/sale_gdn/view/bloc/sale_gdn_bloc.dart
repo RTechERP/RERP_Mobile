@@ -58,6 +58,11 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
         filterByWarehouseType: (warehouseTypeId) =>
             _filterByWarehouseType(emit, warehouseTypeId),
         filterByStatus: (status) => _filterByStatus(emit, status),
+        filterBySender: (senderId) =>
+            _filterBySenderName(emit, senderId?.toString()),
+        filterBySenderName: (senderName) =>
+            _filterBySenderName(emit, senderName),
+        filterByReceiver: (receiverId) => _filterByReceiver(emit, receiverId),
         clearFilters: () => _clearFilters(emit),
         changeDateRange: (dateStart, dateEnd) =>
             _changeDateRange(emit, dateStart, dateEnd),
@@ -466,10 +471,23 @@ BillExporResponse? _findGdnInList(String code) {
     await _fetchGdns(emit);
   }
 
+  Future<void> _filterBySenderName(
+    Emitter<SaleGdnState> emit,
+    String? senderName,
+  ) async {
+    emit(state.copyWith(selectedSenderName: senderName));
+  }
+
+  Future<void> _filterByReceiver(Emitter<SaleGdnState> emit, String? receiverName) async {
+    emit(state.copyWith(selectedReceiverName: receiverName));
+  }
+
   Future<void> _clearFilters(Emitter<SaleGdnState> emit) async {
     emit(state.copyWith(
       selectedWarehouseTypeIds: [],
       selectedStatus: -1,
+      selectedSenderName: null,
+      selectedReceiverName: null,
     ));
     await _fetchGdns(emit);
   }

@@ -27,6 +27,12 @@ class SaleGdnState extends BaseBlocState {
   /// Trạng thái đang chọn (-1 = tất cả).
   final int selectedStatus;
 
+  /// Tên người giao đang lọc (lấy từ fullNameSender API, null = tất cả).
+  final String? selectedSenderName;
+
+  /// Tên người nhận đang lọc (null = tất cả).
+  final String? selectedReceiverName;
+
   // ---------------------------------------------------------------------------
   // Lookup lists for BillExport form fields (fetched lazily on detail open)
   // ---------------------------------------------------------------------------
@@ -89,6 +95,8 @@ class SaleGdnState extends BaseBlocState {
     this.detail,
     this.openedDetailBill,
     this.scanResultMessage,
+    this.selectedSenderName,
+    this.selectedReceiverName,
   });
 
   factory SaleGdnState.init() {
@@ -130,5 +138,7 @@ class SaleGdnState extends BaseBlocState {
         detail,
         openedDetailBill,
         scanResultMessage,
+        selectedSenderName,
+        selectedReceiverName,
       ];
 }
