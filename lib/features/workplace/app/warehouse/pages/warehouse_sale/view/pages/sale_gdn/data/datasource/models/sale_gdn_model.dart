@@ -399,14 +399,47 @@ class BillExportDetailPayload with _$BillExportDetailPayload {
 }
 
 /// Response của API /BillExport/save-data.
+///
+/// Server trả về structure:
+/// ```json
+/// {
+///   "status": 1,
+///   "message": "Lưu thành công",
+///   "data": {
+///     "billExport": { "ID": 60304, ... },
+///     "billExportDetail": [...],
+///     "DeletedDetailIDs": [],
+///     "DeletedFileIds": []
+///   }
+/// }
+/// ```
+/// `BillExportID` nằm trong `data.billExport.ID`.
 @freezed
 class SaveBillExportDataResponse with _$SaveBillExportDataResponse {
   const factory SaveBillExportDataResponse({
-    @JsonKey(name: 'BillExportID') int? billExportId,
+    @JsonKey(name: 'billExport') BillExportPayload? billExport,
+    @JsonKey(name: 'billExportDetail')
+        @Default([]) List<BillExportDetailPayload> billExportDetail,
+    @JsonKey(name: 'DeletedDetailIDs') @Default([]) List<int> deletedDetailIds,
+    @JsonKey(name: 'DeletedFileIds') @Default([]) List<int> deletedFileIds,
   }) = _SaveBillExportDataResponse;
 
   factory SaveBillExportDataResponse.fromJson(Map<String, dynamic> json) =>
       _$SaveBillExportDataResponseFromJson(json);
+}
+
+/// Wrapper response của API /BillExport/save-data.
+/// Server bọc data trong object có `status`, `message`, `data`.
+@freezed
+class SaveBillExportApiResponse with _$SaveBillExportApiResponse {
+  const factory SaveBillExportApiResponse({
+    @JsonKey(name: 'status') int? status,
+    @JsonKey(name: 'message') String? message,
+    @JsonKey(name: 'data') SaveBillExportDataResponse? data,
+  }) = _SaveBillExportApiResponse;
+
+  factory SaveBillExportApiResponse.fromJson(Map<String, dynamic> json) =>
+      _$SaveBillExportApiResponseFromJson(json);
 }
 
 // ===========================================================================
