@@ -37,6 +37,13 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
           refresh: () => _onRefresh(emit),
           changeKeyword: (keyword) =>
               _onChangeKeyword(emit, keyword: keyword),
+          changeStatus: (status) =>
+              _onChangeStatus(emit, status: status),
+          changeDateRange: (dateStart, dateEnd) => _onChangeDateRange(
+            emit,
+            dateStart: dateStart,
+            dateEnd: dateEnd,
+          ),
 
           // ===== Form đăng ký =====
           initAdd: () => _onInitAdd(emit),
@@ -114,6 +121,44 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
     await _fetchTestCards(emit);
   }
 
+  Future<void> _onChangeStatus(
+    Emitter<TestTableState> emit, {
+    required int status,
+  }) async {
+    emit(
+      state.copyWith(
+        statusFilter: status,
+        status: BaseStateStatus.loading,
+        message: null,
+      ),
+    );
+    await _fetchTestCards(emit);
+  }
+
+  Future<void> _onChangeDateRange(
+    Emitter<TestTableState> emit, {
+    DateTime? dateStart,
+    DateTime? dateEnd,
+  }) async {
+    emit(
+      state.copyWith(
+        dateStart: dateStart,
+        dateEnd: dateEnd,
+        status: BaseStateStatus.loading,
+        message: null,
+      ),
+    );
+    await _fetchTestCards(emit);
+  }
+
+  /// Format DateTime thành `yyyy-MM-dd` cho query API (bỏ phần giờ).
+  static String _dateOnly(DateTime d) {
+    final dd = DateTime(d.year, d.month, d.day);
+    final mm = dd.month.toString().padLeft(2, '0');
+    final day = dd.day.toString().padLeft(2, '0');
+    return '${dd.year}-$mm-$day';
+  }
+
   /// Lấy currentUser nếu state chưa có (cache để khỏi gọi lại).
   /// Fail thì giữ nguyên currentUser=null — lúc đó BE sẽ trả tất cả phiếu.
   Future<void> _ensureCurrentUser(Emitter<TestTableState> emit) async {
@@ -126,9 +171,14 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
   }
 
   Future<void> _fetchTestCards(Emitter<TestTableState> emit) async {
+    final start = state.dateStart;
+    final end = state.dateEnd;
     final result = await _repo.getTestCardItem(
       keyword: state.keyword,
       employeeId: state.currentUser?.employeeId ?? 0,
+      status: state.statusFilter,
+      startDate: start == null ? '' : _dateOnly(start),
+      endDate: end == null ? '' : _dateOnly(end),
     );
 
     await result.fold(
@@ -503,14 +553,6 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
   // =================================================================
   // ===================== Helpers ===================================
   // =================================================================
-
-  /// Format DateTime thành `yyyy-MM-dd` cho payload (bỏ phần giờ).
-  String _dateOnly(DateTime d) {
-    final dd = DateTime(d.year, d.month, d.day);
-    final mm = dd.month.toString().padLeft(2, '0');
-    final day = dd.day.toString().padLeft(2, '0');
-    return '${dd.year}-$mm-$day';
-  }
 
   /// Nhận diện message "không trùng lặp" từ BE.
   /// BE thường trả về: "Không trùng lặp", "Khong trung lap"...

@@ -19,11 +19,15 @@ class TestTableRepoImpl implements TestTableRepo {
   Future<Either<BaseError, List<TestCardItem>>> getTestCardItem({
     String keyword = '',
     int employeeId = 0,
+    int? status,
+    String startDate = '',
+    String endDate = '',
   }) async {
     try {
       final res = await _service.getTestCardItem(
         keyword: keyword,
         employeeId: employeeId,
+        status: status ?? 0,
       );
       if (res.status == 1 && res.data != null) {
         return right(res.data!);

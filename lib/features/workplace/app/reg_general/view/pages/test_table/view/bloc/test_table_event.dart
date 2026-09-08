@@ -15,6 +15,19 @@ class TestTableEvent with _$TestTableEvent {
     required String keyword,
   }) = _ChangeKeyword;
 
+  /// Đổi bộ lọc trạng thái phiếu.
+  /// [status] = -1 (tất cả) / 0 / 1 / 2.
+  const factory TestTableEvent.changeStatus({
+    required int status,
+  }) = _ChangeStatus;
+
+  /// Đổi khoảng ngày lọc danh sách.
+  /// Truyền null ở cả 2 phía để bỏ filter ngày.
+  const factory TestTableEvent.changeDateRange({
+    DateTime? dateStart,
+    DateTime? dateEnd,
+  }) = _ChangeDateRange;
+
   // ===== Form đăng ký (màn add) =====
   /// Khởi tạo state cho màn add: load currentUser + lookup data (cache-aware).
   const factory TestTableEvent.initAdd() = _InitAdd;

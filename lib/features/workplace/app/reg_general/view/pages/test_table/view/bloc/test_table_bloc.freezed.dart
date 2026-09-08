@@ -21,6 +21,9 @@ mixin _$TestTableEvent {
     required TResult Function() init,
     required TResult Function() refresh,
     required TResult Function(String keyword) changeKeyword,
+    required TResult Function(int status) changeStatus,
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd)
+        changeDateRange,
     required TResult Function() initAdd,
     required TResult Function(
             ProjectItem? project,
@@ -47,6 +50,8 @@ mixin _$TestTableEvent {
     TResult? Function()? init,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(int status)? changeStatus,
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
     TResult? Function()? initAdd,
     TResult? Function(
             ProjectItem? project,
@@ -73,6 +78,8 @@ mixin _$TestTableEvent {
     TResult Function()? init,
     TResult Function()? refresh,
     TResult Function(String keyword)? changeKeyword,
+    TResult Function(int status)? changeStatus,
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
     TResult Function()? initAdd,
     TResult Function(
             ProjectItem? project,
@@ -100,6 +107,8 @@ mixin _$TestTableEvent {
     required TResult Function(_Init value) init,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_ChangeStatus value) changeStatus,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_CheckConflict value) checkConflict,
@@ -113,6 +122,8 @@ mixin _$TestTableEvent {
     TResult? Function(_Init value)? init,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_ChangeStatus value)? changeStatus,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_CheckConflict value)? checkConflict,
@@ -126,6 +137,8 @@ mixin _$TestTableEvent {
     TResult Function(_Init value)? init,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_ChangeStatus value)? changeStatus,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_CheckConflict value)? checkConflict,
@@ -201,6 +214,9 @@ class _$InitImpl with DiagnosticableTreeMixin implements _Init {
     required TResult Function() init,
     required TResult Function() refresh,
     required TResult Function(String keyword) changeKeyword,
+    required TResult Function(int status) changeStatus,
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd)
+        changeDateRange,
     required TResult Function() initAdd,
     required TResult Function(
             ProjectItem? project,
@@ -230,6 +246,8 @@ class _$InitImpl with DiagnosticableTreeMixin implements _Init {
     TResult? Function()? init,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(int status)? changeStatus,
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
     TResult? Function()? initAdd,
     TResult? Function(
             ProjectItem? project,
@@ -259,6 +277,8 @@ class _$InitImpl with DiagnosticableTreeMixin implements _Init {
     TResult Function()? init,
     TResult Function()? refresh,
     TResult Function(String keyword)? changeKeyword,
+    TResult Function(int status)? changeStatus,
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
     TResult Function()? initAdd,
     TResult Function(
             ProjectItem? project,
@@ -292,6 +312,8 @@ class _$InitImpl with DiagnosticableTreeMixin implements _Init {
     required TResult Function(_Init value) init,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_ChangeStatus value) changeStatus,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_CheckConflict value) checkConflict,
@@ -308,6 +330,8 @@ class _$InitImpl with DiagnosticableTreeMixin implements _Init {
     TResult? Function(_Init value)? init,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_ChangeStatus value)? changeStatus,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_CheckConflict value)? checkConflict,
@@ -324,6 +348,8 @@ class _$InitImpl with DiagnosticableTreeMixin implements _Init {
     TResult Function(_Init value)? init,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_ChangeStatus value)? changeStatus,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_CheckConflict value)? checkConflict,
@@ -390,6 +416,9 @@ class _$RefreshImpl with DiagnosticableTreeMixin implements _Refresh {
     required TResult Function() init,
     required TResult Function() refresh,
     required TResult Function(String keyword) changeKeyword,
+    required TResult Function(int status) changeStatus,
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd)
+        changeDateRange,
     required TResult Function() initAdd,
     required TResult Function(
             ProjectItem? project,
@@ -419,6 +448,8 @@ class _$RefreshImpl with DiagnosticableTreeMixin implements _Refresh {
     TResult? Function()? init,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(int status)? changeStatus,
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
     TResult? Function()? initAdd,
     TResult? Function(
             ProjectItem? project,
@@ -448,6 +479,8 @@ class _$RefreshImpl with DiagnosticableTreeMixin implements _Refresh {
     TResult Function()? init,
     TResult Function()? refresh,
     TResult Function(String keyword)? changeKeyword,
+    TResult Function(int status)? changeStatus,
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
     TResult Function()? initAdd,
     TResult Function(
             ProjectItem? project,
@@ -481,6 +514,8 @@ class _$RefreshImpl with DiagnosticableTreeMixin implements _Refresh {
     required TResult Function(_Init value) init,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_ChangeStatus value) changeStatus,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_CheckConflict value) checkConflict,
@@ -497,6 +532,8 @@ class _$RefreshImpl with DiagnosticableTreeMixin implements _Refresh {
     TResult? Function(_Init value)? init,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_ChangeStatus value)? changeStatus,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_CheckConflict value)? checkConflict,
@@ -513,6 +550,8 @@ class _$RefreshImpl with DiagnosticableTreeMixin implements _Refresh {
     TResult Function(_Init value)? init,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_ChangeStatus value)? changeStatus,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_CheckConflict value)? checkConflict,
@@ -609,6 +648,9 @@ class _$ChangeKeywordImpl
     required TResult Function() init,
     required TResult Function() refresh,
     required TResult Function(String keyword) changeKeyword,
+    required TResult Function(int status) changeStatus,
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd)
+        changeDateRange,
     required TResult Function() initAdd,
     required TResult Function(
             ProjectItem? project,
@@ -638,6 +680,8 @@ class _$ChangeKeywordImpl
     TResult? Function()? init,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(int status)? changeStatus,
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
     TResult? Function()? initAdd,
     TResult? Function(
             ProjectItem? project,
@@ -667,6 +711,8 @@ class _$ChangeKeywordImpl
     TResult Function()? init,
     TResult Function()? refresh,
     TResult Function(String keyword)? changeKeyword,
+    TResult Function(int status)? changeStatus,
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
     TResult Function()? initAdd,
     TResult Function(
             ProjectItem? project,
@@ -700,6 +746,8 @@ class _$ChangeKeywordImpl
     required TResult Function(_Init value) init,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_ChangeStatus value) changeStatus,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_CheckConflict value) checkConflict,
@@ -716,6 +764,8 @@ class _$ChangeKeywordImpl
     TResult? Function(_Init value)? init,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_ChangeStatus value)? changeStatus,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_CheckConflict value)? checkConflict,
@@ -732,6 +782,8 @@ class _$ChangeKeywordImpl
     TResult Function(_Init value)? init,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_ChangeStatus value)? changeStatus,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_CheckConflict value)? checkConflict,
@@ -754,6 +806,492 @@ abstract class _ChangeKeyword implements TestTableEvent {
   String get keyword;
   @JsonKey(ignore: true)
   _$$ChangeKeywordImplCopyWith<_$ChangeKeywordImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ChangeStatusImplCopyWith<$Res> {
+  factory _$$ChangeStatusImplCopyWith(
+          _$ChangeStatusImpl value, $Res Function(_$ChangeStatusImpl) then) =
+      __$$ChangeStatusImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int status});
+}
+
+/// @nodoc
+class __$$ChangeStatusImplCopyWithImpl<$Res>
+    extends _$TestTableEventCopyWithImpl<$Res, _$ChangeStatusImpl>
+    implements _$$ChangeStatusImplCopyWith<$Res> {
+  __$$ChangeStatusImplCopyWithImpl(
+      _$ChangeStatusImpl _value, $Res Function(_$ChangeStatusImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? status = null,
+  }) {
+    return _then(_$ChangeStatusImpl(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChangeStatusImpl with DiagnosticableTreeMixin implements _ChangeStatus {
+  const _$ChangeStatusImpl({required this.status});
+
+  @override
+  final int status;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'TestTableEvent.changeStatus(status: $status)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'TestTableEvent.changeStatus'))
+      ..add(DiagnosticsProperty('status', status));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangeStatusImpl &&
+            (identical(other.status, status) || other.status == status));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, status);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangeStatusImplCopyWith<_$ChangeStatusImpl> get copyWith =>
+      __$$ChangeStatusImplCopyWithImpl<_$ChangeStatusImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() refresh,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function(int status) changeStatus,
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd)
+        changeDateRange,
+    required TResult Function() initAdd,
+    required TResult Function(
+            ProjectItem? project,
+            int? testTableId,
+            List<int>? selectedMachineIds,
+            int? ownerId,
+            int? approverId,
+            DateTime? startDate,
+            bool clearProject,
+            bool clearTestTableId,
+            bool clearSelectedMachineIds,
+            bool clearOwnerId,
+            bool clearApproverId,
+            bool clearStartDate)
+        updateForm,
+    required TResult Function() checkConflict,
+    required TResult Function() submitRegistration,
+    required TResult Function() resetSubmitFlags,
+    required TResult Function(int testTableId) loadTestMachines,
+  }) {
+    return changeStatus(status);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? refresh,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(int status)? changeStatus,
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult? Function()? initAdd,
+    TResult? Function(
+            ProjectItem? project,
+            int? testTableId,
+            List<int>? selectedMachineIds,
+            int? ownerId,
+            int? approverId,
+            DateTime? startDate,
+            bool clearProject,
+            bool clearTestTableId,
+            bool clearSelectedMachineIds,
+            bool clearOwnerId,
+            bool clearApproverId,
+            bool clearStartDate)?
+        updateForm,
+    TResult? Function()? checkConflict,
+    TResult? Function()? submitRegistration,
+    TResult? Function()? resetSubmitFlags,
+    TResult? Function(int testTableId)? loadTestMachines,
+  }) {
+    return changeStatus?.call(status);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? refresh,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function(int status)? changeStatus,
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult Function()? initAdd,
+    TResult Function(
+            ProjectItem? project,
+            int? testTableId,
+            List<int>? selectedMachineIds,
+            int? ownerId,
+            int? approverId,
+            DateTime? startDate,
+            bool clearProject,
+            bool clearTestTableId,
+            bool clearSelectedMachineIds,
+            bool clearOwnerId,
+            bool clearApproverId,
+            bool clearStartDate)?
+        updateForm,
+    TResult Function()? checkConflict,
+    TResult Function()? submitRegistration,
+    TResult Function()? resetSubmitFlags,
+    TResult Function(int testTableId)? loadTestMachines,
+    required TResult orElse(),
+  }) {
+    if (changeStatus != null) {
+      return changeStatus(status);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_ChangeStatus value) changeStatus,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_UpdateForm value) updateForm,
+    required TResult Function(_CheckConflict value) checkConflict,
+    required TResult Function(_SubmitRegistration value) submitRegistration,
+    required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
+    required TResult Function(_LoadTestMachines value) loadTestMachines,
+  }) {
+    return changeStatus(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_ChangeStatus value)? changeStatus,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_UpdateForm value)? updateForm,
+    TResult? Function(_CheckConflict value)? checkConflict,
+    TResult? Function(_SubmitRegistration value)? submitRegistration,
+    TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult? Function(_LoadTestMachines value)? loadTestMachines,
+  }) {
+    return changeStatus?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_ChangeStatus value)? changeStatus,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_UpdateForm value)? updateForm,
+    TResult Function(_CheckConflict value)? checkConflict,
+    TResult Function(_SubmitRegistration value)? submitRegistration,
+    TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult Function(_LoadTestMachines value)? loadTestMachines,
+    required TResult orElse(),
+  }) {
+    if (changeStatus != null) {
+      return changeStatus(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangeStatus implements TestTableEvent {
+  const factory _ChangeStatus({required final int status}) = _$ChangeStatusImpl;
+
+  int get status;
+  @JsonKey(ignore: true)
+  _$$ChangeStatusImplCopyWith<_$ChangeStatusImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ChangeDateRangeImplCopyWith<$Res> {
+  factory _$$ChangeDateRangeImplCopyWith(_$ChangeDateRangeImpl value,
+          $Res Function(_$ChangeDateRangeImpl) then) =
+      __$$ChangeDateRangeImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DateTime? dateStart, DateTime? dateEnd});
+}
+
+/// @nodoc
+class __$$ChangeDateRangeImplCopyWithImpl<$Res>
+    extends _$TestTableEventCopyWithImpl<$Res, _$ChangeDateRangeImpl>
+    implements _$$ChangeDateRangeImplCopyWith<$Res> {
+  __$$ChangeDateRangeImplCopyWithImpl(
+      _$ChangeDateRangeImpl _value, $Res Function(_$ChangeDateRangeImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? dateStart = freezed,
+    Object? dateEnd = freezed,
+  }) {
+    return _then(_$ChangeDateRangeImpl(
+      dateStart: freezed == dateStart
+          ? _value.dateStart
+          : dateStart // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      dateEnd: freezed == dateEnd
+          ? _value.dateEnd
+          : dateEnd // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChangeDateRangeImpl
+    with DiagnosticableTreeMixin
+    implements _ChangeDateRange {
+  const _$ChangeDateRangeImpl({this.dateStart, this.dateEnd});
+
+  @override
+  final DateTime? dateStart;
+  @override
+  final DateTime? dateEnd;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'TestTableEvent.changeDateRange(dateStart: $dateStart, dateEnd: $dateEnd)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'TestTableEvent.changeDateRange'))
+      ..add(DiagnosticsProperty('dateStart', dateStart))
+      ..add(DiagnosticsProperty('dateEnd', dateEnd));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangeDateRangeImpl &&
+            (identical(other.dateStart, dateStart) ||
+                other.dateStart == dateStart) &&
+            (identical(other.dateEnd, dateEnd) || other.dateEnd == dateEnd));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, dateStart, dateEnd);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangeDateRangeImplCopyWith<_$ChangeDateRangeImpl> get copyWith =>
+      __$$ChangeDateRangeImplCopyWithImpl<_$ChangeDateRangeImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() refresh,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function(int status) changeStatus,
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd)
+        changeDateRange,
+    required TResult Function() initAdd,
+    required TResult Function(
+            ProjectItem? project,
+            int? testTableId,
+            List<int>? selectedMachineIds,
+            int? ownerId,
+            int? approverId,
+            DateTime? startDate,
+            bool clearProject,
+            bool clearTestTableId,
+            bool clearSelectedMachineIds,
+            bool clearOwnerId,
+            bool clearApproverId,
+            bool clearStartDate)
+        updateForm,
+    required TResult Function() checkConflict,
+    required TResult Function() submitRegistration,
+    required TResult Function() resetSubmitFlags,
+    required TResult Function(int testTableId) loadTestMachines,
+  }) {
+    return changeDateRange(dateStart, dateEnd);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? refresh,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(int status)? changeStatus,
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult? Function()? initAdd,
+    TResult? Function(
+            ProjectItem? project,
+            int? testTableId,
+            List<int>? selectedMachineIds,
+            int? ownerId,
+            int? approverId,
+            DateTime? startDate,
+            bool clearProject,
+            bool clearTestTableId,
+            bool clearSelectedMachineIds,
+            bool clearOwnerId,
+            bool clearApproverId,
+            bool clearStartDate)?
+        updateForm,
+    TResult? Function()? checkConflict,
+    TResult? Function()? submitRegistration,
+    TResult? Function()? resetSubmitFlags,
+    TResult? Function(int testTableId)? loadTestMachines,
+  }) {
+    return changeDateRange?.call(dateStart, dateEnd);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? refresh,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function(int status)? changeStatus,
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult Function()? initAdd,
+    TResult Function(
+            ProjectItem? project,
+            int? testTableId,
+            List<int>? selectedMachineIds,
+            int? ownerId,
+            int? approverId,
+            DateTime? startDate,
+            bool clearProject,
+            bool clearTestTableId,
+            bool clearSelectedMachineIds,
+            bool clearOwnerId,
+            bool clearApproverId,
+            bool clearStartDate)?
+        updateForm,
+    TResult Function()? checkConflict,
+    TResult Function()? submitRegistration,
+    TResult Function()? resetSubmitFlags,
+    TResult Function(int testTableId)? loadTestMachines,
+    required TResult orElse(),
+  }) {
+    if (changeDateRange != null) {
+      return changeDateRange(dateStart, dateEnd);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_ChangeStatus value) changeStatus,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_UpdateForm value) updateForm,
+    required TResult Function(_CheckConflict value) checkConflict,
+    required TResult Function(_SubmitRegistration value) submitRegistration,
+    required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
+    required TResult Function(_LoadTestMachines value) loadTestMachines,
+  }) {
+    return changeDateRange(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_ChangeStatus value)? changeStatus,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_UpdateForm value)? updateForm,
+    TResult? Function(_CheckConflict value)? checkConflict,
+    TResult? Function(_SubmitRegistration value)? submitRegistration,
+    TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult? Function(_LoadTestMachines value)? loadTestMachines,
+  }) {
+    return changeDateRange?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_ChangeStatus value)? changeStatus,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_UpdateForm value)? updateForm,
+    TResult Function(_CheckConflict value)? checkConflict,
+    TResult Function(_SubmitRegistration value)? submitRegistration,
+    TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult Function(_LoadTestMachines value)? loadTestMachines,
+    required TResult orElse(),
+  }) {
+    if (changeDateRange != null) {
+      return changeDateRange(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangeDateRange implements TestTableEvent {
+  const factory _ChangeDateRange(
+      {final DateTime? dateStart,
+      final DateTime? dateEnd}) = _$ChangeDateRangeImpl;
+
+  DateTime? get dateStart;
+  DateTime? get dateEnd;
+  @JsonKey(ignore: true)
+  _$$ChangeDateRangeImplCopyWith<_$ChangeDateRangeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -804,6 +1342,9 @@ class _$InitAddImpl with DiagnosticableTreeMixin implements _InitAdd {
     required TResult Function() init,
     required TResult Function() refresh,
     required TResult Function(String keyword) changeKeyword,
+    required TResult Function(int status) changeStatus,
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd)
+        changeDateRange,
     required TResult Function() initAdd,
     required TResult Function(
             ProjectItem? project,
@@ -833,6 +1374,8 @@ class _$InitAddImpl with DiagnosticableTreeMixin implements _InitAdd {
     TResult? Function()? init,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(int status)? changeStatus,
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
     TResult? Function()? initAdd,
     TResult? Function(
             ProjectItem? project,
@@ -862,6 +1405,8 @@ class _$InitAddImpl with DiagnosticableTreeMixin implements _InitAdd {
     TResult Function()? init,
     TResult Function()? refresh,
     TResult Function(String keyword)? changeKeyword,
+    TResult Function(int status)? changeStatus,
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
     TResult Function()? initAdd,
     TResult Function(
             ProjectItem? project,
@@ -895,6 +1440,8 @@ class _$InitAddImpl with DiagnosticableTreeMixin implements _InitAdd {
     required TResult Function(_Init value) init,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_ChangeStatus value) changeStatus,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_CheckConflict value) checkConflict,
@@ -911,6 +1458,8 @@ class _$InitAddImpl with DiagnosticableTreeMixin implements _InitAdd {
     TResult? Function(_Init value)? init,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_ChangeStatus value)? changeStatus,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_CheckConflict value)? checkConflict,
@@ -927,6 +1476,8 @@ class _$InitAddImpl with DiagnosticableTreeMixin implements _InitAdd {
     TResult Function(_Init value)? init,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_ChangeStatus value)? changeStatus,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_CheckConflict value)? checkConflict,
@@ -1199,6 +1750,9 @@ class _$UpdateFormImpl with DiagnosticableTreeMixin implements _UpdateForm {
     required TResult Function() init,
     required TResult Function() refresh,
     required TResult Function(String keyword) changeKeyword,
+    required TResult Function(int status) changeStatus,
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd)
+        changeDateRange,
     required TResult Function() initAdd,
     required TResult Function(
             ProjectItem? project,
@@ -1240,6 +1794,8 @@ class _$UpdateFormImpl with DiagnosticableTreeMixin implements _UpdateForm {
     TResult? Function()? init,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(int status)? changeStatus,
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
     TResult? Function()? initAdd,
     TResult? Function(
             ProjectItem? project,
@@ -1281,6 +1837,8 @@ class _$UpdateFormImpl with DiagnosticableTreeMixin implements _UpdateForm {
     TResult Function()? init,
     TResult Function()? refresh,
     TResult Function(String keyword)? changeKeyword,
+    TResult Function(int status)? changeStatus,
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
     TResult Function()? initAdd,
     TResult Function(
             ProjectItem? project,
@@ -1326,6 +1884,8 @@ class _$UpdateFormImpl with DiagnosticableTreeMixin implements _UpdateForm {
     required TResult Function(_Init value) init,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_ChangeStatus value) changeStatus,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_CheckConflict value) checkConflict,
@@ -1342,6 +1902,8 @@ class _$UpdateFormImpl with DiagnosticableTreeMixin implements _UpdateForm {
     TResult? Function(_Init value)? init,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_ChangeStatus value)? changeStatus,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_CheckConflict value)? checkConflict,
@@ -1358,6 +1920,8 @@ class _$UpdateFormImpl with DiagnosticableTreeMixin implements _UpdateForm {
     TResult Function(_Init value)? init,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_ChangeStatus value)? changeStatus,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_CheckConflict value)? checkConflict,
@@ -1454,6 +2018,9 @@ class _$CheckConflictImpl
     required TResult Function() init,
     required TResult Function() refresh,
     required TResult Function(String keyword) changeKeyword,
+    required TResult Function(int status) changeStatus,
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd)
+        changeDateRange,
     required TResult Function() initAdd,
     required TResult Function(
             ProjectItem? project,
@@ -1483,6 +2050,8 @@ class _$CheckConflictImpl
     TResult? Function()? init,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(int status)? changeStatus,
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
     TResult? Function()? initAdd,
     TResult? Function(
             ProjectItem? project,
@@ -1512,6 +2081,8 @@ class _$CheckConflictImpl
     TResult Function()? init,
     TResult Function()? refresh,
     TResult Function(String keyword)? changeKeyword,
+    TResult Function(int status)? changeStatus,
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
     TResult Function()? initAdd,
     TResult Function(
             ProjectItem? project,
@@ -1545,6 +2116,8 @@ class _$CheckConflictImpl
     required TResult Function(_Init value) init,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_ChangeStatus value) changeStatus,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_CheckConflict value) checkConflict,
@@ -1561,6 +2134,8 @@ class _$CheckConflictImpl
     TResult? Function(_Init value)? init,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_ChangeStatus value)? changeStatus,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_CheckConflict value)? checkConflict,
@@ -1577,6 +2152,8 @@ class _$CheckConflictImpl
     TResult Function(_Init value)? init,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_ChangeStatus value)? changeStatus,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_CheckConflict value)? checkConflict,
@@ -1646,6 +2223,9 @@ class _$SubmitRegistrationImpl
     required TResult Function() init,
     required TResult Function() refresh,
     required TResult Function(String keyword) changeKeyword,
+    required TResult Function(int status) changeStatus,
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd)
+        changeDateRange,
     required TResult Function() initAdd,
     required TResult Function(
             ProjectItem? project,
@@ -1675,6 +2255,8 @@ class _$SubmitRegistrationImpl
     TResult? Function()? init,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(int status)? changeStatus,
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
     TResult? Function()? initAdd,
     TResult? Function(
             ProjectItem? project,
@@ -1704,6 +2286,8 @@ class _$SubmitRegistrationImpl
     TResult Function()? init,
     TResult Function()? refresh,
     TResult Function(String keyword)? changeKeyword,
+    TResult Function(int status)? changeStatus,
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
     TResult Function()? initAdd,
     TResult Function(
             ProjectItem? project,
@@ -1737,6 +2321,8 @@ class _$SubmitRegistrationImpl
     required TResult Function(_Init value) init,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_ChangeStatus value) changeStatus,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_CheckConflict value) checkConflict,
@@ -1753,6 +2339,8 @@ class _$SubmitRegistrationImpl
     TResult? Function(_Init value)? init,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_ChangeStatus value)? changeStatus,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_CheckConflict value)? checkConflict,
@@ -1769,6 +2357,8 @@ class _$SubmitRegistrationImpl
     TResult Function(_Init value)? init,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_ChangeStatus value)? changeStatus,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_CheckConflict value)? checkConflict,
@@ -1838,6 +2428,9 @@ class _$ResetSubmitFlagsImpl
     required TResult Function() init,
     required TResult Function() refresh,
     required TResult Function(String keyword) changeKeyword,
+    required TResult Function(int status) changeStatus,
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd)
+        changeDateRange,
     required TResult Function() initAdd,
     required TResult Function(
             ProjectItem? project,
@@ -1867,6 +2460,8 @@ class _$ResetSubmitFlagsImpl
     TResult? Function()? init,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(int status)? changeStatus,
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
     TResult? Function()? initAdd,
     TResult? Function(
             ProjectItem? project,
@@ -1896,6 +2491,8 @@ class _$ResetSubmitFlagsImpl
     TResult Function()? init,
     TResult Function()? refresh,
     TResult Function(String keyword)? changeKeyword,
+    TResult Function(int status)? changeStatus,
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
     TResult Function()? initAdd,
     TResult Function(
             ProjectItem? project,
@@ -1929,6 +2526,8 @@ class _$ResetSubmitFlagsImpl
     required TResult Function(_Init value) init,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_ChangeStatus value) changeStatus,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_CheckConflict value) checkConflict,
@@ -1945,6 +2544,8 @@ class _$ResetSubmitFlagsImpl
     TResult? Function(_Init value)? init,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_ChangeStatus value)? changeStatus,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_CheckConflict value)? checkConflict,
@@ -1961,6 +2562,8 @@ class _$ResetSubmitFlagsImpl
     TResult Function(_Init value)? init,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_ChangeStatus value)? changeStatus,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_CheckConflict value)? checkConflict,
@@ -2059,6 +2662,9 @@ class _$LoadTestMachinesImpl
     required TResult Function() init,
     required TResult Function() refresh,
     required TResult Function(String keyword) changeKeyword,
+    required TResult Function(int status) changeStatus,
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd)
+        changeDateRange,
     required TResult Function() initAdd,
     required TResult Function(
             ProjectItem? project,
@@ -2088,6 +2694,8 @@ class _$LoadTestMachinesImpl
     TResult? Function()? init,
     TResult? Function()? refresh,
     TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(int status)? changeStatus,
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
     TResult? Function()? initAdd,
     TResult? Function(
             ProjectItem? project,
@@ -2117,6 +2725,8 @@ class _$LoadTestMachinesImpl
     TResult Function()? init,
     TResult Function()? refresh,
     TResult Function(String keyword)? changeKeyword,
+    TResult Function(int status)? changeStatus,
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
     TResult Function()? initAdd,
     TResult Function(
             ProjectItem? project,
@@ -2150,6 +2760,8 @@ class _$LoadTestMachinesImpl
     required TResult Function(_Init value) init,
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_ChangeStatus value) changeStatus,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_InitAdd value) initAdd,
     required TResult Function(_UpdateForm value) updateForm,
     required TResult Function(_CheckConflict value) checkConflict,
@@ -2166,6 +2778,8 @@ class _$LoadTestMachinesImpl
     TResult? Function(_Init value)? init,
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_ChangeStatus value)? changeStatus,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_InitAdd value)? initAdd,
     TResult? Function(_UpdateForm value)? updateForm,
     TResult? Function(_CheckConflict value)? checkConflict,
@@ -2182,6 +2796,8 @@ class _$LoadTestMachinesImpl
     TResult Function(_Init value)? init,
     TResult Function(_Refresh value)? refresh,
     TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_ChangeStatus value)? changeStatus,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_InitAdd value)? initAdd,
     TResult Function(_UpdateForm value)? updateForm,
     TResult Function(_CheckConflict value)? checkConflict,

@@ -13,6 +13,7 @@ import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/constants/index.dart';
 import '../../../../../../../../../common/utils/navigation/navigation_utils.dart';
+import '../../../../../../../../../common/widgets/date_range_picker.dart';
 import '../../../../../../../../../routes/route_names.dart';
 import '../bloc/test_table_bloc.dart';
 import '../widgets/test_table_card.dart';
@@ -58,6 +59,105 @@ class _TestTableScreenState extends BaseState<TestTableScreen, TestTableEvent,
     }
   }
 
+  /// Mở DateRangePicker dùng để lọc danh sách theo khoảng ngày đăng ký.
+  Future<void> _openDateRangePicker() async {
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+    final start = bloc.state.dateStart ?? today;
+    final end = bloc.state.dateEnd ?? start.add(const Duration(days: 1));
+
+    await showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      builder: (_) => DateRangePicker(
+        initialStart: start,
+        initialEnd: end,
+        onApply: (s, e) {
+          bloc.add(TestTableEvent.changeDateRange(
+            dateStart: s,
+            dateEnd: e,
+          ));
+        },
+      ),
+    );
+  }
+
+  /// Mở bottom sheet lọc theo 3 trạng thái phiếu.
+  Future<void> _openStatusFilter() async {
+    await showModalBottomSheet<void>(
+      context: context,
+      builder: (sheetCtx) {
+        final entries = <_StatusOption>[
+          _StatusOption(0, 'Chờ duyệt', Icons.hourglass_top),
+          _StatusOption(1, 'Đã duyệt', Icons.check_circle_outline),
+          _StatusOption(2, 'Từ chối', Icons.cancel_outlined),
+        ];
+
+        return SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  width: 40,
+                  height: 4,
+                  margin: const EdgeInsets.symmetric(vertical: 8),
+                  decoration: BoxDecoration(
+                    color: AppColors.gray.withValues(alpha: 0.3),
+                    borderRadius: BorderRadius.circular(2),
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 8),
+                  child: Text(
+                    'Lọc theo trạng thái',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.heading,
+                    ),
+                  ),
+                ),
+                ...entries.map((opt) {
+                  final selected = opt.value == bloc.state.statusFilter;
+                  return ListTile(
+                    leading: Icon(
+                      opt.icon,
+                      color: selected
+                          ? AppColors.primaryERP
+                          : AppColors.heading,
+                    ),
+                    title: Text(
+                      opt.label,
+                      style: TextStyle(
+                        fontWeight:
+                            selected ? FontWeight.w700 : FontWeight.w500,
+                        color: selected
+                            ? AppColors.primaryERP
+                            : AppColors.heading,
+                      ),
+                    ),
+                    trailing: selected
+                        ? const Icon(
+                            Icons.check,
+                            color: AppColors.primaryERP,
+                          )
+                        : null,
+                    onTap: () {
+                      bloc.add(TestTableEvent.changeStatus(status: opt.value));
+                      Navigator.pop(sheetCtx);
+                    },
+                  );
+                }),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget renderUI(BuildContext context) {
     return BlocBuilder<TestTableBloc, TestTableState>(
@@ -91,6 +191,16 @@ class _TestTableScreenState extends BaseState<TestTableScreen, TestTableEvent,
                       icon: const Icon(Icons.search),
                       tooltip: 'Tìm kiếm',
                       onPressed: () => setState(() => _isSearchActive = true),
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.filter_list),
+                      tooltip: 'Lọc trạng thái',
+                      onPressed: _openStatusFilter,
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.calendar_month),
+                      tooltip: 'Chọn khoảng ngày',
+                      onPressed: _openDateRangePicker,
                     ),
                   ],
           ),
@@ -196,9 +306,9 @@ class _TestTableScreenState extends BaseState<TestTableScreen, TestTableEvent,
         children: [
           _ListHeader(
             total: items.length,
-            dateStart: null,
-            dateEnd: null,
-            isSearching: false,
+            dateStart: state.dateStart,
+            dateEnd: state.dateEnd,
+            isSearching: _searchController.text.isNotEmpty,
           ),
           const SizedBox(height: 8),
           ...items.map((item) => Padding(
@@ -229,11 +339,18 @@ class _ListHeader extends StatelessWidget {
     final df = DateFormat('dd/MM/yyyy');
     final hasRange = dateStart != null && dateEnd != null;
     final isSameDay = hasRange && _isSameDay(dateStart!, dateEnd!);
-    final rangeText = hasRange
-        ? (isSameDay
-            ? df.format(dateStart!)
-            : '${df.format(dateStart!)} - ${df.format(dateEnd!)}')
-        : null;
+
+    // Luôn hiển thị khoảng ngày — null thì show placeholder.
+    String rangeText;
+    if (dateStart == null && dateEnd == null) {
+      rangeText = '--/--/----';
+    } else if (dateStart != null && dateEnd != null) {
+      rangeText = isSameDay
+          ? df.format(dateStart!)
+          : '${df.format(dateStart!)} - ${df.format(dateEnd!)}';
+    } else {
+      rangeText = df.format(dateStart ?? dateEnd!);
+    }
 
     return Container(
       margin: const EdgeInsets.fromLTRB(4, 0, 4, 0),
@@ -300,8 +417,7 @@ class _ListHeader extends StatelessWidget {
               ],
             ),
           ),
-          if (rangeText != null) ...[
-            const SizedBox(width: 8),
+          const SizedBox(width: 8),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
               decoration: BoxDecoration(
@@ -327,7 +443,6 @@ class _ListHeader extends StatelessWidget {
                 ],
               ),
             ),
-          ],
         ],
       ),
     );
@@ -336,4 +451,12 @@ class _ListHeader extends StatelessWidget {
   bool _isSameDay(DateTime a, DateTime b) {
     return a.year == b.year && a.month == b.month && a.day == b.day;
   }
+}
+
+/// Một lựa chọn trạng thái trong bottom sheet lọc.
+class _StatusOption {
+  const _StatusOption(this.value, this.label, this.icon);
+  final int value;
+  final String label;
+  final IconData icon;
 }

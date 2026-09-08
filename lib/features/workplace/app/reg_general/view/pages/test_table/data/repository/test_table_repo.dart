@@ -7,9 +7,14 @@ abstract class TestTableRepo {
   /// Lấy danh sách phiếu đăng ký bàn test.
   /// [employeeId] = id nhân viên của currentUser — chỉ lấy phiếu do nhân viên
   /// đó đăng ký. Truyền `0` (mặc định) thì BE trả tất cả.
+  /// [status] = null để bỏ filter trạng thái.
+  /// [startDate]/[endDate] = khoảng ngày đăng ký (yyyy-MM-dd), truyền rỗng để bỏ qua.
   Future<Either<BaseError, List<TestCardItem>>> getTestCardItem({
     String keyword,
     int employeeId,
+    int? status,
+    String startDate,
+    String endDate,
   });
 
   /// Lấy danh sách bàn test ESL.

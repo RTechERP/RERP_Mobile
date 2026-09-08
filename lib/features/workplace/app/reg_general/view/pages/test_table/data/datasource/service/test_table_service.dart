@@ -12,18 +12,28 @@ import '../models/test_table_model.dart';
 class TestTableService extends DioBaseApiService {
   TestTableService(super.dio);
 
-  /// Lấy danh sách phiếu đăng ký bàn test, lọc theo [keyword] và [employeeId].
-  /// [employeeId] = id nhân viên của currentUser — BE sẽ chỉ trả phiếu
-  /// do nhân viên đó đăng ký (OwnerID). Nếu null/0 thì BE trả tất cả.
+  /// Lấy danh sách phiếu đăng ký bàn test, lọc theo [keyword], [employeeId],
+  /// [status], [startDate], [endDate].
+  /// - [employeeId] = id nhân viên của currentUser — chỉ lấy phiếu do nhân viên
+  ///   đó đăng ký (OwnerID).
+  /// - [status] = 0/1/2 (xem StatusFilter), truyền -1 để lấy tất cả.
+  /// - [startDate] / [endDate] = khoảng ngày đăng ký, định dạng `yyyy-MM-dd`.
+  /// Truyền rỗng/0/null thì BE bỏ qua filter tương ứng.
   Future<BaseData<List<TestCardItem>>> getTestCardItem({
     String keyword = '',
     int employeeId = 0,
+    int status = 0,
+    String startDate = '',
+    String endDate = '',
   }) async {
     return get<BaseData<List<TestCardItem>>>(
       ApiEndPoint.getTestTable,
       query: {
         'keyword': keyword,
         'employeeId': employeeId,
+        'status': status,
+        'startDate': startDate,
+        'endDate': endDate,
       },
       parser: (json) => _parseList(
         json,

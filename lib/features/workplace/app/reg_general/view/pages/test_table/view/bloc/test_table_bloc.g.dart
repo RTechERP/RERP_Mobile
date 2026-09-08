@@ -15,6 +15,12 @@ abstract class _$TestTableStateCWProxy {
 
   TestTableState keyword(String keyword);
 
+  TestTableState statusFilter(int statusFilter);
+
+  TestTableState dateStart(DateTime? dateStart);
+
+  TestTableState dateEnd(DateTime? dateEnd);
+
   TestTableState testTable(List<TestTableItem> testTable);
 
   TestTableState employee(List<EmployeeInfoItem> employee);
@@ -54,6 +60,9 @@ abstract class _$TestTableStateCWProxy {
     String? message,
     List<TestCardItem>? testCard,
     String? keyword,
+    int? statusFilter,
+    DateTime? dateStart,
+    DateTime? dateEnd,
     List<TestTableItem>? testTable,
     List<EmployeeInfoItem>? employee,
     List<ProjectItem>? project,
@@ -89,6 +98,16 @@ class _$TestTableStateCWProxyImpl implements _$TestTableStateCWProxy {
 
   @override
   TestTableState keyword(String keyword) => this(keyword: keyword);
+
+  @override
+  TestTableState statusFilter(int statusFilter) =>
+      this(statusFilter: statusFilter);
+
+  @override
+  TestTableState dateStart(DateTime? dateStart) => this(dateStart: dateStart);
+
+  @override
+  TestTableState dateEnd(DateTime? dateEnd) => this(dateEnd: dateEnd);
 
   @override
   TestTableState testTable(List<TestTableItem> testTable) =>
@@ -157,6 +176,9 @@ class _$TestTableStateCWProxyImpl implements _$TestTableStateCWProxy {
     Object? message = const $CopyWithPlaceholder(),
     Object? testCard = const $CopyWithPlaceholder(),
     Object? keyword = const $CopyWithPlaceholder(),
+    Object? statusFilter = const $CopyWithPlaceholder(),
+    Object? dateStart = const $CopyWithPlaceholder(),
+    Object? dateEnd = const $CopyWithPlaceholder(),
     Object? testTable = const $CopyWithPlaceholder(),
     Object? employee = const $CopyWithPlaceholder(),
     Object? project = const $CopyWithPlaceholder(),
@@ -189,6 +211,19 @@ class _$TestTableStateCWProxyImpl implements _$TestTableStateCWProxy {
           ? _value.keyword
           // ignore: cast_nullable_to_non_nullable
           : keyword as String,
+      statusFilter:
+          statusFilter == const $CopyWithPlaceholder() || statusFilter == null
+              ? _value.statusFilter
+              // ignore: cast_nullable_to_non_nullable
+              : statusFilter as int,
+      dateStart: dateStart == const $CopyWithPlaceholder()
+          ? _value.dateStart
+          // ignore: cast_nullable_to_non_nullable
+          : dateStart as DateTime?,
+      dateEnd: dateEnd == const $CopyWithPlaceholder()
+          ? _value.dateEnd
+          // ignore: cast_nullable_to_non_nullable
+          : dateEnd as DateTime?,
       testTable: testTable == const $CopyWithPlaceholder() || testTable == null
           ? _value.testTable
           // ignore: cast_nullable_to_non_nullable

@@ -7,6 +7,13 @@ class TestTableState extends BaseBlocState {
   final List<TestCardItem> testCard;
   final String keyword;
 
+  /// Bộ lọc trạng thái phiếu: 0/1/2 theo BE. Mặc định 0 = Chờ duyệt.
+  final int statusFilter;
+
+  /// Khoảng ngày đăng ký (lọc danh sách).
+  final DateTime? dateStart;
+  final DateTime? dateEnd;
+
   // ===== Lookup data (cache để màn add dùng chung với list) =====
   final List<TestTableItem> testTable;
   final List<EmployeeInfoItem> employee;
@@ -57,6 +64,9 @@ class TestTableState extends BaseBlocState {
     super.message,
     this.testCard = const [],
     this.keyword = '',
+    this.statusFilter = -1,
+    this.dateStart,
+    this.dateEnd,
     this.testTable = const [],
     this.employee = const [],
     this.project = const [],
@@ -77,6 +87,7 @@ class TestTableState extends BaseBlocState {
         status: BaseStateStatus.init,
         testCard: [],
         keyword: '',
+        statusFilter: 0,
         testTable: [],
         employee: [],
         project: [],
@@ -99,6 +110,9 @@ class TestTableState extends BaseBlocState {
         message,
         testCard,
         keyword,
+        statusFilter,
+        dateStart,
+        dateEnd,
         testTable,
         employee,
         project,
