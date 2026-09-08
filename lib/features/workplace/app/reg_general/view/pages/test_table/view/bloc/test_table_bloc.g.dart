@@ -49,6 +49,10 @@ abstract class _$TestTableStateCWProxy {
 
   TestTableState isLoadingTestMachines(bool isLoadingTestMachines);
 
+  TestTableState foundTestTable(TestTableItem? foundTestTable);
+
+  TestTableState qrLookupMessage(String? qrLookupMessage);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `TestTableState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -77,6 +81,8 @@ abstract class _$TestTableStateCWProxy {
     bool? conflictPassed,
     List<TestMachineItem>? testMachines,
     bool? isLoadingTestMachines,
+    TestTableItem? foundTestTable,
+    String? qrLookupMessage,
   });
 }
 
@@ -164,6 +170,14 @@ class _$TestTableStateCWProxyImpl implements _$TestTableStateCWProxy {
       this(isLoadingTestMachines: isLoadingTestMachines);
 
   @override
+  TestTableState foundTestTable(TestTableItem? foundTestTable) =>
+      this(foundTestTable: foundTestTable);
+
+  @override
+  TestTableState qrLookupMessage(String? qrLookupMessage) =>
+      this(qrLookupMessage: qrLookupMessage);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `TestTableState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -193,6 +207,8 @@ class _$TestTableStateCWProxyImpl implements _$TestTableStateCWProxy {
     Object? conflictPassed = const $CopyWithPlaceholder(),
     Object? testMachines = const $CopyWithPlaceholder(),
     Object? isLoadingTestMachines = const $CopyWithPlaceholder(),
+    Object? foundTestTable = const $CopyWithPlaceholder(),
+    Object? qrLookupMessage = const $CopyWithPlaceholder(),
   }) {
     return TestTableState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -287,6 +303,14 @@ class _$TestTableStateCWProxyImpl implements _$TestTableStateCWProxy {
               ? _value.isLoadingTestMachines
               // ignore: cast_nullable_to_non_nullable
               : isLoadingTestMachines as bool,
+      foundTestTable: foundTestTable == const $CopyWithPlaceholder()
+          ? _value.foundTestTable
+          // ignore: cast_nullable_to_non_nullable
+          : foundTestTable as TestTableItem?,
+      qrLookupMessage: qrLookupMessage == const $CopyWithPlaceholder()
+          ? _value.qrLookupMessage
+          // ignore: cast_nullable_to_non_nullable
+          : qrLookupMessage as String?,
     );
   }
 }

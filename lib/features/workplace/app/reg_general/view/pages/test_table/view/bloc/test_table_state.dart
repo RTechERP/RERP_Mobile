@@ -59,12 +59,20 @@ class TestTableState extends BaseBlocState {
   /// Đang tải máy test.
   final bool isLoadingTestMachines;
 
+  // ===== QR scan / deep link =====
+  /// Bàn test tìm được từ QR (cache cho màn hình scan).
+  final TestTableItem? foundTestTable;
+
+  /// Message lỗi/thành công từ flow QR (vd: "Không tìm thấy bàn test",
+  /// "Bàn đang được sử dụng"). UI scan đọc cái này để showMessage + điều hướng.
+  final String? qrLookupMessage;
+
   const TestTableState({
     required super.status,
     super.message,
     this.testCard = const [],
     this.keyword = '',
-    this.statusFilter = -1,
+    this.statusFilter = 0,
     this.dateStart,
     this.dateEnd,
     this.testTable = const [],
@@ -81,6 +89,8 @@ class TestTableState extends BaseBlocState {
     this.conflictPassed = false,
     this.testMachines = const [],
     this.isLoadingTestMachines = false,
+    this.foundTestTable,
+    this.qrLookupMessage,
   });
 
   factory TestTableState.init() => const TestTableState(
@@ -102,6 +112,8 @@ class TestTableState extends BaseBlocState {
         conflictPassed: false,
         testMachines: [],
         isLoadingTestMachines: false,
+        foundTestTable: null,
+        qrLookupMessage: null,
       );
 
   @override
@@ -127,6 +139,8 @@ class TestTableState extends BaseBlocState {
         conflictPassed,
         testMachines,
         isLoadingTestMachines,
+        foundTestTable,
+        qrLookupMessage,
       ];
 }
 

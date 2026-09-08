@@ -85,25 +85,6 @@ class _QrBarcodeScannerPageState extends State<QrBarcodeScannerPage> {
         backgroundColor: Colors.black,
         foregroundColor: Colors.white,
         title: Text(widget.title ?? _defaultTitle(widget.scanMode)),
-        actions: [
-          ValueListenableBuilder<MobileScannerState>(
-            valueListenable: _controller,
-            builder: (context, state, _) {
-              final isOn = state.torchState == TorchState.on;
-              return IconButton(
-                icon: Icon(
-                  isOn ? Icons.flash_on : Icons.flash_off,
-                  color: Colors.white,
-                ),
-                onPressed: () => _controller.toggleTorch(),
-              );
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.cameraswitch, color: Colors.white),
-            onPressed: () => _controller.switchCamera(),
-          ),
-        ],
       ),
       body: Stack(
         children: [

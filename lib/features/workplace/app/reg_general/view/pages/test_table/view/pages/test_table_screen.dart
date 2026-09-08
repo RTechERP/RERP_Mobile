@@ -188,6 +188,19 @@ class _TestTableScreenState extends BaseState<TestTableScreen, TestTableEvent,
                   ]
                 : [
                     IconButton(
+                      icon: const Icon(Icons.qr_code_scanner),
+                      tooltip: 'Quét QR bàn test',
+                      onPressed: () async {
+                        // QR screen truyền `true` lên nếu Add submit thành công.
+                        final reload =
+                            await context.push<bool?>(RouteNames.testTableQrScan);
+                        if (!mounted) return;
+                        if (reload == true) {
+                          bloc.add(const TestTableEvent.init());
+                        }
+                      },
+                    ),
+                    IconButton(
                       icon: const Icon(Icons.search),
                       tooltip: 'Tìm kiếm',
                       onPressed: () => setState(() => _isSearchActive = true),
@@ -208,10 +221,11 @@ class _TestTableScreenState extends BaseState<TestTableScreen, TestTableEvent,
           floatingActionButton: FloatingActionButton(
             onPressed: () async {
               if (_isSearchActive) _clearSearch();
-              final reload = await context.push<bool?>(RouteNames.testTableAdd);
+              final reload =
+                  await context.push<bool?>(RouteNames.testTableAdd);
               if (!mounted) return;
               if (reload == true) {
-                bloc.add(const TestTableEvent.refresh());
+                bloc.add(const TestTableEvent.init());
               }
             },
             backgroundColor: AppColors.primaryERP,

@@ -30,7 +30,10 @@ class TestTableEvent with _$TestTableEvent {
 
   // ===== Form đăng ký (màn add) =====
   /// Khởi tạo state cho màn add: load currentUser + lookup data (cache-aware).
-  const factory TestTableEvent.initAdd() = _InitAdd;
+  /// [prefillTestTableId] = nếu có (vd từ QR scan) thì tự động điền vào form.
+  const factory TestTableEvent.initAdd({
+    int? prefillTestTableId,
+  }) = _InitAdd;
 
   /// Cập nhật một hoặc nhiều field của form. Dùng `clearX: true` để reset về null.
   /// Form data được UI điều khiển thông qua event này — bloc không tự ý set.
@@ -63,4 +66,12 @@ class TestTableEvent with _$TestTableEvent {
   const factory TestTableEvent.loadTestMachines({
     required int testTableId,
   }) = _LoadTestMachines;
+
+  // ===== QR / Deep link =====
+  /// Tra cứu bàn test theo [barcode] + [tableSide] trong cache lookup
+  /// (`state.testTable`). Trả kết quả qua `state.foundTestTable` + `message`.
+  const factory TestTableEvent.findTestTableByBarcode({
+    required String barcode,
+    required int tableSide,
+  }) = _FindTestTableByBarcode;
 }

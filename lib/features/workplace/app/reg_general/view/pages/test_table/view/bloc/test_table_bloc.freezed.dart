@@ -24,7 +24,7 @@ mixin _$TestTableEvent {
     required TResult Function(int status) changeStatus,
     required TResult Function(DateTime? dateStart, DateTime? dateEnd)
         changeDateRange,
-    required TResult Function() initAdd,
+    required TResult Function(int? prefillTestTableId) initAdd,
     required TResult Function(
             ProjectItem? project,
             int? testTableId,
@@ -43,6 +43,8 @@ mixin _$TestTableEvent {
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
     required TResult Function(int testTableId) loadTestMachines,
+    required TResult Function(String barcode, int tableSide)
+        findTestTableByBarcode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -52,7 +54,7 @@ mixin _$TestTableEvent {
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function(int status)? changeStatus,
     TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
-    TResult? Function()? initAdd,
+    TResult? Function(int? prefillTestTableId)? initAdd,
     TResult? Function(
             ProjectItem? project,
             int? testTableId,
@@ -71,6 +73,7 @@ mixin _$TestTableEvent {
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(int testTableId)? loadTestMachines,
+    TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -80,7 +83,7 @@ mixin _$TestTableEvent {
     TResult Function(String keyword)? changeKeyword,
     TResult Function(int status)? changeStatus,
     TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
-    TResult Function()? initAdd,
+    TResult Function(int? prefillTestTableId)? initAdd,
     TResult Function(
             ProjectItem? project,
             int? testTableId,
@@ -99,6 +102,7 @@ mixin _$TestTableEvent {
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
     TResult Function(int testTableId)? loadTestMachines,
+    TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -115,6 +119,8 @@ mixin _$TestTableEvent {
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
+    required TResult Function(_FindTestTableByBarcode value)
+        findTestTableByBarcode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -130,6 +136,7 @@ mixin _$TestTableEvent {
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
+    TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -145,6 +152,7 @@ mixin _$TestTableEvent {
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
+    TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -217,7 +225,7 @@ class _$InitImpl with DiagnosticableTreeMixin implements _Init {
     required TResult Function(int status) changeStatus,
     required TResult Function(DateTime? dateStart, DateTime? dateEnd)
         changeDateRange,
-    required TResult Function() initAdd,
+    required TResult Function(int? prefillTestTableId) initAdd,
     required TResult Function(
             ProjectItem? project,
             int? testTableId,
@@ -236,6 +244,8 @@ class _$InitImpl with DiagnosticableTreeMixin implements _Init {
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
     required TResult Function(int testTableId) loadTestMachines,
+    required TResult Function(String barcode, int tableSide)
+        findTestTableByBarcode,
   }) {
     return init();
   }
@@ -248,7 +258,7 @@ class _$InitImpl with DiagnosticableTreeMixin implements _Init {
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function(int status)? changeStatus,
     TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
-    TResult? Function()? initAdd,
+    TResult? Function(int? prefillTestTableId)? initAdd,
     TResult? Function(
             ProjectItem? project,
             int? testTableId,
@@ -267,6 +277,7 @@ class _$InitImpl with DiagnosticableTreeMixin implements _Init {
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(int testTableId)? loadTestMachines,
+    TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
   }) {
     return init?.call();
   }
@@ -279,7 +290,7 @@ class _$InitImpl with DiagnosticableTreeMixin implements _Init {
     TResult Function(String keyword)? changeKeyword,
     TResult Function(int status)? changeStatus,
     TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
-    TResult Function()? initAdd,
+    TResult Function(int? prefillTestTableId)? initAdd,
     TResult Function(
             ProjectItem? project,
             int? testTableId,
@@ -298,6 +309,7 @@ class _$InitImpl with DiagnosticableTreeMixin implements _Init {
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
     TResult Function(int testTableId)? loadTestMachines,
+    TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -320,6 +332,8 @@ class _$InitImpl with DiagnosticableTreeMixin implements _Init {
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
+    required TResult Function(_FindTestTableByBarcode value)
+        findTestTableByBarcode,
   }) {
     return init(this);
   }
@@ -338,6 +352,7 @@ class _$InitImpl with DiagnosticableTreeMixin implements _Init {
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
+    TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
   }) {
     return init?.call(this);
   }
@@ -356,6 +371,7 @@ class _$InitImpl with DiagnosticableTreeMixin implements _Init {
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
+    TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -419,7 +435,7 @@ class _$RefreshImpl with DiagnosticableTreeMixin implements _Refresh {
     required TResult Function(int status) changeStatus,
     required TResult Function(DateTime? dateStart, DateTime? dateEnd)
         changeDateRange,
-    required TResult Function() initAdd,
+    required TResult Function(int? prefillTestTableId) initAdd,
     required TResult Function(
             ProjectItem? project,
             int? testTableId,
@@ -438,6 +454,8 @@ class _$RefreshImpl with DiagnosticableTreeMixin implements _Refresh {
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
     required TResult Function(int testTableId) loadTestMachines,
+    required TResult Function(String barcode, int tableSide)
+        findTestTableByBarcode,
   }) {
     return refresh();
   }
@@ -450,7 +468,7 @@ class _$RefreshImpl with DiagnosticableTreeMixin implements _Refresh {
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function(int status)? changeStatus,
     TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
-    TResult? Function()? initAdd,
+    TResult? Function(int? prefillTestTableId)? initAdd,
     TResult? Function(
             ProjectItem? project,
             int? testTableId,
@@ -469,6 +487,7 @@ class _$RefreshImpl with DiagnosticableTreeMixin implements _Refresh {
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(int testTableId)? loadTestMachines,
+    TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
   }) {
     return refresh?.call();
   }
@@ -481,7 +500,7 @@ class _$RefreshImpl with DiagnosticableTreeMixin implements _Refresh {
     TResult Function(String keyword)? changeKeyword,
     TResult Function(int status)? changeStatus,
     TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
-    TResult Function()? initAdd,
+    TResult Function(int? prefillTestTableId)? initAdd,
     TResult Function(
             ProjectItem? project,
             int? testTableId,
@@ -500,6 +519,7 @@ class _$RefreshImpl with DiagnosticableTreeMixin implements _Refresh {
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
     TResult Function(int testTableId)? loadTestMachines,
+    TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -522,6 +542,8 @@ class _$RefreshImpl with DiagnosticableTreeMixin implements _Refresh {
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
+    required TResult Function(_FindTestTableByBarcode value)
+        findTestTableByBarcode,
   }) {
     return refresh(this);
   }
@@ -540,6 +562,7 @@ class _$RefreshImpl with DiagnosticableTreeMixin implements _Refresh {
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
+    TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
   }) {
     return refresh?.call(this);
   }
@@ -558,6 +581,7 @@ class _$RefreshImpl with DiagnosticableTreeMixin implements _Refresh {
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
+    TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -651,7 +675,7 @@ class _$ChangeKeywordImpl
     required TResult Function(int status) changeStatus,
     required TResult Function(DateTime? dateStart, DateTime? dateEnd)
         changeDateRange,
-    required TResult Function() initAdd,
+    required TResult Function(int? prefillTestTableId) initAdd,
     required TResult Function(
             ProjectItem? project,
             int? testTableId,
@@ -670,6 +694,8 @@ class _$ChangeKeywordImpl
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
     required TResult Function(int testTableId) loadTestMachines,
+    required TResult Function(String barcode, int tableSide)
+        findTestTableByBarcode,
   }) {
     return changeKeyword(keyword);
   }
@@ -682,7 +708,7 @@ class _$ChangeKeywordImpl
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function(int status)? changeStatus,
     TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
-    TResult? Function()? initAdd,
+    TResult? Function(int? prefillTestTableId)? initAdd,
     TResult? Function(
             ProjectItem? project,
             int? testTableId,
@@ -701,6 +727,7 @@ class _$ChangeKeywordImpl
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(int testTableId)? loadTestMachines,
+    TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
   }) {
     return changeKeyword?.call(keyword);
   }
@@ -713,7 +740,7 @@ class _$ChangeKeywordImpl
     TResult Function(String keyword)? changeKeyword,
     TResult Function(int status)? changeStatus,
     TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
-    TResult Function()? initAdd,
+    TResult Function(int? prefillTestTableId)? initAdd,
     TResult Function(
             ProjectItem? project,
             int? testTableId,
@@ -732,6 +759,7 @@ class _$ChangeKeywordImpl
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
     TResult Function(int testTableId)? loadTestMachines,
+    TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     required TResult orElse(),
   }) {
     if (changeKeyword != null) {
@@ -754,6 +782,8 @@ class _$ChangeKeywordImpl
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
+    required TResult Function(_FindTestTableByBarcode value)
+        findTestTableByBarcode,
   }) {
     return changeKeyword(this);
   }
@@ -772,6 +802,7 @@ class _$ChangeKeywordImpl
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
+    TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
   }) {
     return changeKeyword?.call(this);
   }
@@ -790,6 +821,7 @@ class _$ChangeKeywordImpl
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
+    TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     required TResult orElse(),
   }) {
     if (changeKeyword != null) {
@@ -887,7 +919,7 @@ class _$ChangeStatusImpl with DiagnosticableTreeMixin implements _ChangeStatus {
     required TResult Function(int status) changeStatus,
     required TResult Function(DateTime? dateStart, DateTime? dateEnd)
         changeDateRange,
-    required TResult Function() initAdd,
+    required TResult Function(int? prefillTestTableId) initAdd,
     required TResult Function(
             ProjectItem? project,
             int? testTableId,
@@ -906,6 +938,8 @@ class _$ChangeStatusImpl with DiagnosticableTreeMixin implements _ChangeStatus {
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
     required TResult Function(int testTableId) loadTestMachines,
+    required TResult Function(String barcode, int tableSide)
+        findTestTableByBarcode,
   }) {
     return changeStatus(status);
   }
@@ -918,7 +952,7 @@ class _$ChangeStatusImpl with DiagnosticableTreeMixin implements _ChangeStatus {
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function(int status)? changeStatus,
     TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
-    TResult? Function()? initAdd,
+    TResult? Function(int? prefillTestTableId)? initAdd,
     TResult? Function(
             ProjectItem? project,
             int? testTableId,
@@ -937,6 +971,7 @@ class _$ChangeStatusImpl with DiagnosticableTreeMixin implements _ChangeStatus {
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(int testTableId)? loadTestMachines,
+    TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
   }) {
     return changeStatus?.call(status);
   }
@@ -949,7 +984,7 @@ class _$ChangeStatusImpl with DiagnosticableTreeMixin implements _ChangeStatus {
     TResult Function(String keyword)? changeKeyword,
     TResult Function(int status)? changeStatus,
     TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
-    TResult Function()? initAdd,
+    TResult Function(int? prefillTestTableId)? initAdd,
     TResult Function(
             ProjectItem? project,
             int? testTableId,
@@ -968,6 +1003,7 @@ class _$ChangeStatusImpl with DiagnosticableTreeMixin implements _ChangeStatus {
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
     TResult Function(int testTableId)? loadTestMachines,
+    TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     required TResult orElse(),
   }) {
     if (changeStatus != null) {
@@ -990,6 +1026,8 @@ class _$ChangeStatusImpl with DiagnosticableTreeMixin implements _ChangeStatus {
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
+    required TResult Function(_FindTestTableByBarcode value)
+        findTestTableByBarcode,
   }) {
     return changeStatus(this);
   }
@@ -1008,6 +1046,7 @@ class _$ChangeStatusImpl with DiagnosticableTreeMixin implements _ChangeStatus {
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
+    TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
   }) {
     return changeStatus?.call(this);
   }
@@ -1026,6 +1065,7 @@ class _$ChangeStatusImpl with DiagnosticableTreeMixin implements _ChangeStatus {
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
+    TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     required TResult orElse(),
   }) {
     if (changeStatus != null) {
@@ -1135,7 +1175,7 @@ class _$ChangeDateRangeImpl
     required TResult Function(int status) changeStatus,
     required TResult Function(DateTime? dateStart, DateTime? dateEnd)
         changeDateRange,
-    required TResult Function() initAdd,
+    required TResult Function(int? prefillTestTableId) initAdd,
     required TResult Function(
             ProjectItem? project,
             int? testTableId,
@@ -1154,6 +1194,8 @@ class _$ChangeDateRangeImpl
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
     required TResult Function(int testTableId) loadTestMachines,
+    required TResult Function(String barcode, int tableSide)
+        findTestTableByBarcode,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -1166,7 +1208,7 @@ class _$ChangeDateRangeImpl
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function(int status)? changeStatus,
     TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
-    TResult? Function()? initAdd,
+    TResult? Function(int? prefillTestTableId)? initAdd,
     TResult? Function(
             ProjectItem? project,
             int? testTableId,
@@ -1185,6 +1227,7 @@ class _$ChangeDateRangeImpl
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(int testTableId)? loadTestMachines,
+    TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -1197,7 +1240,7 @@ class _$ChangeDateRangeImpl
     TResult Function(String keyword)? changeKeyword,
     TResult Function(int status)? changeStatus,
     TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
-    TResult Function()? initAdd,
+    TResult Function(int? prefillTestTableId)? initAdd,
     TResult Function(
             ProjectItem? project,
             int? testTableId,
@@ -1216,6 +1259,7 @@ class _$ChangeDateRangeImpl
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
     TResult Function(int testTableId)? loadTestMachines,
+    TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -1238,6 +1282,8 @@ class _$ChangeDateRangeImpl
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
+    required TResult Function(_FindTestTableByBarcode value)
+        findTestTableByBarcode,
   }) {
     return changeDateRange(this);
   }
@@ -1256,6 +1302,7 @@ class _$ChangeDateRangeImpl
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
+    TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
   }) {
     return changeDateRange?.call(this);
   }
@@ -1274,6 +1321,7 @@ class _$ChangeDateRangeImpl
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
+    TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -1300,6 +1348,8 @@ abstract class _$$InitAddImplCopyWith<$Res> {
   factory _$$InitAddImplCopyWith(
           _$InitAddImpl value, $Res Function(_$InitAddImpl) then) =
       __$$InitAddImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int? prefillTestTableId});
 }
 
 /// @nodoc
@@ -1309,32 +1359,59 @@ class __$$InitAddImplCopyWithImpl<$Res>
   __$$InitAddImplCopyWithImpl(
       _$InitAddImpl _value, $Res Function(_$InitAddImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? prefillTestTableId = freezed,
+  }) {
+    return _then(_$InitAddImpl(
+      prefillTestTableId: freezed == prefillTestTableId
+          ? _value.prefillTestTableId
+          : prefillTestTableId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$InitAddImpl with DiagnosticableTreeMixin implements _InitAdd {
-  const _$InitAddImpl();
+  const _$InitAddImpl({this.prefillTestTableId});
+
+  @override
+  final int? prefillTestTableId;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'TestTableEvent.initAdd()';
+    return 'TestTableEvent.initAdd(prefillTestTableId: $prefillTestTableId)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'TestTableEvent.initAdd'));
+    properties
+      ..add(DiagnosticsProperty('type', 'TestTableEvent.initAdd'))
+      ..add(DiagnosticsProperty('prefillTestTableId', prefillTestTableId));
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitAddImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$InitAddImpl &&
+            (identical(other.prefillTestTableId, prefillTestTableId) ||
+                other.prefillTestTableId == prefillTestTableId));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, prefillTestTableId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitAddImplCopyWith<_$InitAddImpl> get copyWith =>
+      __$$InitAddImplCopyWithImpl<_$InitAddImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1345,7 +1422,7 @@ class _$InitAddImpl with DiagnosticableTreeMixin implements _InitAdd {
     required TResult Function(int status) changeStatus,
     required TResult Function(DateTime? dateStart, DateTime? dateEnd)
         changeDateRange,
-    required TResult Function() initAdd,
+    required TResult Function(int? prefillTestTableId) initAdd,
     required TResult Function(
             ProjectItem? project,
             int? testTableId,
@@ -1364,8 +1441,10 @@ class _$InitAddImpl with DiagnosticableTreeMixin implements _InitAdd {
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
     required TResult Function(int testTableId) loadTestMachines,
+    required TResult Function(String barcode, int tableSide)
+        findTestTableByBarcode,
   }) {
-    return initAdd();
+    return initAdd(prefillTestTableId);
   }
 
   @override
@@ -1376,7 +1455,7 @@ class _$InitAddImpl with DiagnosticableTreeMixin implements _InitAdd {
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function(int status)? changeStatus,
     TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
-    TResult? Function()? initAdd,
+    TResult? Function(int? prefillTestTableId)? initAdd,
     TResult? Function(
             ProjectItem? project,
             int? testTableId,
@@ -1395,8 +1474,9 @@ class _$InitAddImpl with DiagnosticableTreeMixin implements _InitAdd {
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(int testTableId)? loadTestMachines,
+    TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
   }) {
-    return initAdd?.call();
+    return initAdd?.call(prefillTestTableId);
   }
 
   @override
@@ -1407,7 +1487,7 @@ class _$InitAddImpl with DiagnosticableTreeMixin implements _InitAdd {
     TResult Function(String keyword)? changeKeyword,
     TResult Function(int status)? changeStatus,
     TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
-    TResult Function()? initAdd,
+    TResult Function(int? prefillTestTableId)? initAdd,
     TResult Function(
             ProjectItem? project,
             int? testTableId,
@@ -1426,10 +1506,11 @@ class _$InitAddImpl with DiagnosticableTreeMixin implements _InitAdd {
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
     TResult Function(int testTableId)? loadTestMachines,
+    TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     required TResult orElse(),
   }) {
     if (initAdd != null) {
-      return initAdd();
+      return initAdd(prefillTestTableId);
     }
     return orElse();
   }
@@ -1448,6 +1529,8 @@ class _$InitAddImpl with DiagnosticableTreeMixin implements _InitAdd {
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
+    required TResult Function(_FindTestTableByBarcode value)
+        findTestTableByBarcode,
   }) {
     return initAdd(this);
   }
@@ -1466,6 +1549,7 @@ class _$InitAddImpl with DiagnosticableTreeMixin implements _InitAdd {
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
+    TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
   }) {
     return initAdd?.call(this);
   }
@@ -1484,6 +1568,7 @@ class _$InitAddImpl with DiagnosticableTreeMixin implements _InitAdd {
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
+    TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     required TResult orElse(),
   }) {
     if (initAdd != null) {
@@ -1494,7 +1579,12 @@ class _$InitAddImpl with DiagnosticableTreeMixin implements _InitAdd {
 }
 
 abstract class _InitAdd implements TestTableEvent {
-  const factory _InitAdd() = _$InitAddImpl;
+  const factory _InitAdd({final int? prefillTestTableId}) = _$InitAddImpl;
+
+  int? get prefillTestTableId;
+  @JsonKey(ignore: true)
+  _$$InitAddImplCopyWith<_$InitAddImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1753,7 +1843,7 @@ class _$UpdateFormImpl with DiagnosticableTreeMixin implements _UpdateForm {
     required TResult Function(int status) changeStatus,
     required TResult Function(DateTime? dateStart, DateTime? dateEnd)
         changeDateRange,
-    required TResult Function() initAdd,
+    required TResult Function(int? prefillTestTableId) initAdd,
     required TResult Function(
             ProjectItem? project,
             int? testTableId,
@@ -1772,6 +1862,8 @@ class _$UpdateFormImpl with DiagnosticableTreeMixin implements _UpdateForm {
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
     required TResult Function(int testTableId) loadTestMachines,
+    required TResult Function(String barcode, int tableSide)
+        findTestTableByBarcode,
   }) {
     return updateForm(
         project,
@@ -1796,7 +1888,7 @@ class _$UpdateFormImpl with DiagnosticableTreeMixin implements _UpdateForm {
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function(int status)? changeStatus,
     TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
-    TResult? Function()? initAdd,
+    TResult? Function(int? prefillTestTableId)? initAdd,
     TResult? Function(
             ProjectItem? project,
             int? testTableId,
@@ -1815,6 +1907,7 @@ class _$UpdateFormImpl with DiagnosticableTreeMixin implements _UpdateForm {
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(int testTableId)? loadTestMachines,
+    TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
   }) {
     return updateForm?.call(
         project,
@@ -1839,7 +1932,7 @@ class _$UpdateFormImpl with DiagnosticableTreeMixin implements _UpdateForm {
     TResult Function(String keyword)? changeKeyword,
     TResult Function(int status)? changeStatus,
     TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
-    TResult Function()? initAdd,
+    TResult Function(int? prefillTestTableId)? initAdd,
     TResult Function(
             ProjectItem? project,
             int? testTableId,
@@ -1858,6 +1951,7 @@ class _$UpdateFormImpl with DiagnosticableTreeMixin implements _UpdateForm {
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
     TResult Function(int testTableId)? loadTestMachines,
+    TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     required TResult orElse(),
   }) {
     if (updateForm != null) {
@@ -1892,6 +1986,8 @@ class _$UpdateFormImpl with DiagnosticableTreeMixin implements _UpdateForm {
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
+    required TResult Function(_FindTestTableByBarcode value)
+        findTestTableByBarcode,
   }) {
     return updateForm(this);
   }
@@ -1910,6 +2006,7 @@ class _$UpdateFormImpl with DiagnosticableTreeMixin implements _UpdateForm {
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
+    TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
   }) {
     return updateForm?.call(this);
   }
@@ -1928,6 +2025,7 @@ class _$UpdateFormImpl with DiagnosticableTreeMixin implements _UpdateForm {
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
+    TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     required TResult orElse(),
   }) {
     if (updateForm != null) {
@@ -2021,7 +2119,7 @@ class _$CheckConflictImpl
     required TResult Function(int status) changeStatus,
     required TResult Function(DateTime? dateStart, DateTime? dateEnd)
         changeDateRange,
-    required TResult Function() initAdd,
+    required TResult Function(int? prefillTestTableId) initAdd,
     required TResult Function(
             ProjectItem? project,
             int? testTableId,
@@ -2040,6 +2138,8 @@ class _$CheckConflictImpl
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
     required TResult Function(int testTableId) loadTestMachines,
+    required TResult Function(String barcode, int tableSide)
+        findTestTableByBarcode,
   }) {
     return checkConflict();
   }
@@ -2052,7 +2152,7 @@ class _$CheckConflictImpl
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function(int status)? changeStatus,
     TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
-    TResult? Function()? initAdd,
+    TResult? Function(int? prefillTestTableId)? initAdd,
     TResult? Function(
             ProjectItem? project,
             int? testTableId,
@@ -2071,6 +2171,7 @@ class _$CheckConflictImpl
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(int testTableId)? loadTestMachines,
+    TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
   }) {
     return checkConflict?.call();
   }
@@ -2083,7 +2184,7 @@ class _$CheckConflictImpl
     TResult Function(String keyword)? changeKeyword,
     TResult Function(int status)? changeStatus,
     TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
-    TResult Function()? initAdd,
+    TResult Function(int? prefillTestTableId)? initAdd,
     TResult Function(
             ProjectItem? project,
             int? testTableId,
@@ -2102,6 +2203,7 @@ class _$CheckConflictImpl
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
     TResult Function(int testTableId)? loadTestMachines,
+    TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     required TResult orElse(),
   }) {
     if (checkConflict != null) {
@@ -2124,6 +2226,8 @@ class _$CheckConflictImpl
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
+    required TResult Function(_FindTestTableByBarcode value)
+        findTestTableByBarcode,
   }) {
     return checkConflict(this);
   }
@@ -2142,6 +2246,7 @@ class _$CheckConflictImpl
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
+    TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
   }) {
     return checkConflict?.call(this);
   }
@@ -2160,6 +2265,7 @@ class _$CheckConflictImpl
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
+    TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     required TResult orElse(),
   }) {
     if (checkConflict != null) {
@@ -2226,7 +2332,7 @@ class _$SubmitRegistrationImpl
     required TResult Function(int status) changeStatus,
     required TResult Function(DateTime? dateStart, DateTime? dateEnd)
         changeDateRange,
-    required TResult Function() initAdd,
+    required TResult Function(int? prefillTestTableId) initAdd,
     required TResult Function(
             ProjectItem? project,
             int? testTableId,
@@ -2245,6 +2351,8 @@ class _$SubmitRegistrationImpl
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
     required TResult Function(int testTableId) loadTestMachines,
+    required TResult Function(String barcode, int tableSide)
+        findTestTableByBarcode,
   }) {
     return submitRegistration();
   }
@@ -2257,7 +2365,7 @@ class _$SubmitRegistrationImpl
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function(int status)? changeStatus,
     TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
-    TResult? Function()? initAdd,
+    TResult? Function(int? prefillTestTableId)? initAdd,
     TResult? Function(
             ProjectItem? project,
             int? testTableId,
@@ -2276,6 +2384,7 @@ class _$SubmitRegistrationImpl
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(int testTableId)? loadTestMachines,
+    TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
   }) {
     return submitRegistration?.call();
   }
@@ -2288,7 +2397,7 @@ class _$SubmitRegistrationImpl
     TResult Function(String keyword)? changeKeyword,
     TResult Function(int status)? changeStatus,
     TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
-    TResult Function()? initAdd,
+    TResult Function(int? prefillTestTableId)? initAdd,
     TResult Function(
             ProjectItem? project,
             int? testTableId,
@@ -2307,6 +2416,7 @@ class _$SubmitRegistrationImpl
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
     TResult Function(int testTableId)? loadTestMachines,
+    TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     required TResult orElse(),
   }) {
     if (submitRegistration != null) {
@@ -2329,6 +2439,8 @@ class _$SubmitRegistrationImpl
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
+    required TResult Function(_FindTestTableByBarcode value)
+        findTestTableByBarcode,
   }) {
     return submitRegistration(this);
   }
@@ -2347,6 +2459,7 @@ class _$SubmitRegistrationImpl
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
+    TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
   }) {
     return submitRegistration?.call(this);
   }
@@ -2365,6 +2478,7 @@ class _$SubmitRegistrationImpl
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
+    TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     required TResult orElse(),
   }) {
     if (submitRegistration != null) {
@@ -2431,7 +2545,7 @@ class _$ResetSubmitFlagsImpl
     required TResult Function(int status) changeStatus,
     required TResult Function(DateTime? dateStart, DateTime? dateEnd)
         changeDateRange,
-    required TResult Function() initAdd,
+    required TResult Function(int? prefillTestTableId) initAdd,
     required TResult Function(
             ProjectItem? project,
             int? testTableId,
@@ -2450,6 +2564,8 @@ class _$ResetSubmitFlagsImpl
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
     required TResult Function(int testTableId) loadTestMachines,
+    required TResult Function(String barcode, int tableSide)
+        findTestTableByBarcode,
   }) {
     return resetSubmitFlags();
   }
@@ -2462,7 +2578,7 @@ class _$ResetSubmitFlagsImpl
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function(int status)? changeStatus,
     TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
-    TResult? Function()? initAdd,
+    TResult? Function(int? prefillTestTableId)? initAdd,
     TResult? Function(
             ProjectItem? project,
             int? testTableId,
@@ -2481,6 +2597,7 @@ class _$ResetSubmitFlagsImpl
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(int testTableId)? loadTestMachines,
+    TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
   }) {
     return resetSubmitFlags?.call();
   }
@@ -2493,7 +2610,7 @@ class _$ResetSubmitFlagsImpl
     TResult Function(String keyword)? changeKeyword,
     TResult Function(int status)? changeStatus,
     TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
-    TResult Function()? initAdd,
+    TResult Function(int? prefillTestTableId)? initAdd,
     TResult Function(
             ProjectItem? project,
             int? testTableId,
@@ -2512,6 +2629,7 @@ class _$ResetSubmitFlagsImpl
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
     TResult Function(int testTableId)? loadTestMachines,
+    TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     required TResult orElse(),
   }) {
     if (resetSubmitFlags != null) {
@@ -2534,6 +2652,8 @@ class _$ResetSubmitFlagsImpl
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
+    required TResult Function(_FindTestTableByBarcode value)
+        findTestTableByBarcode,
   }) {
     return resetSubmitFlags(this);
   }
@@ -2552,6 +2672,7 @@ class _$ResetSubmitFlagsImpl
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
+    TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
   }) {
     return resetSubmitFlags?.call(this);
   }
@@ -2570,6 +2691,7 @@ class _$ResetSubmitFlagsImpl
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
+    TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     required TResult orElse(),
   }) {
     if (resetSubmitFlags != null) {
@@ -2665,7 +2787,7 @@ class _$LoadTestMachinesImpl
     required TResult Function(int status) changeStatus,
     required TResult Function(DateTime? dateStart, DateTime? dateEnd)
         changeDateRange,
-    required TResult Function() initAdd,
+    required TResult Function(int? prefillTestTableId) initAdd,
     required TResult Function(
             ProjectItem? project,
             int? testTableId,
@@ -2684,6 +2806,8 @@ class _$LoadTestMachinesImpl
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
     required TResult Function(int testTableId) loadTestMachines,
+    required TResult Function(String barcode, int tableSide)
+        findTestTableByBarcode,
   }) {
     return loadTestMachines(testTableId);
   }
@@ -2696,7 +2820,7 @@ class _$LoadTestMachinesImpl
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function(int status)? changeStatus,
     TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
-    TResult? Function()? initAdd,
+    TResult? Function(int? prefillTestTableId)? initAdd,
     TResult? Function(
             ProjectItem? project,
             int? testTableId,
@@ -2715,6 +2839,7 @@ class _$LoadTestMachinesImpl
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(int testTableId)? loadTestMachines,
+    TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
   }) {
     return loadTestMachines?.call(testTableId);
   }
@@ -2727,7 +2852,7 @@ class _$LoadTestMachinesImpl
     TResult Function(String keyword)? changeKeyword,
     TResult Function(int status)? changeStatus,
     TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
-    TResult Function()? initAdd,
+    TResult Function(int? prefillTestTableId)? initAdd,
     TResult Function(
             ProjectItem? project,
             int? testTableId,
@@ -2746,6 +2871,7 @@ class _$LoadTestMachinesImpl
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
     TResult Function(int testTableId)? loadTestMachines,
+    TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     required TResult orElse(),
   }) {
     if (loadTestMachines != null) {
@@ -2768,6 +2894,8 @@ class _$LoadTestMachinesImpl
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
+    required TResult Function(_FindTestTableByBarcode value)
+        findTestTableByBarcode,
   }) {
     return loadTestMachines(this);
   }
@@ -2786,6 +2914,7 @@ class _$LoadTestMachinesImpl
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
+    TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
   }) {
     return loadTestMachines?.call(this);
   }
@@ -2804,6 +2933,7 @@ class _$LoadTestMachinesImpl
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
+    TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     required TResult orElse(),
   }) {
     if (loadTestMachines != null) {
@@ -2821,4 +2951,267 @@ abstract class _LoadTestMachines implements TestTableEvent {
   @JsonKey(ignore: true)
   _$$LoadTestMachinesImplCopyWith<_$LoadTestMachinesImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FindTestTableByBarcodeImplCopyWith<$Res> {
+  factory _$$FindTestTableByBarcodeImplCopyWith(
+          _$FindTestTableByBarcodeImpl value,
+          $Res Function(_$FindTestTableByBarcodeImpl) then) =
+      __$$FindTestTableByBarcodeImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String barcode, int tableSide});
+}
+
+/// @nodoc
+class __$$FindTestTableByBarcodeImplCopyWithImpl<$Res>
+    extends _$TestTableEventCopyWithImpl<$Res, _$FindTestTableByBarcodeImpl>
+    implements _$$FindTestTableByBarcodeImplCopyWith<$Res> {
+  __$$FindTestTableByBarcodeImplCopyWithImpl(
+      _$FindTestTableByBarcodeImpl _value,
+      $Res Function(_$FindTestTableByBarcodeImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? barcode = null,
+    Object? tableSide = null,
+  }) {
+    return _then(_$FindTestTableByBarcodeImpl(
+      barcode: null == barcode
+          ? _value.barcode
+          : barcode // ignore: cast_nullable_to_non_nullable
+              as String,
+      tableSide: null == tableSide
+          ? _value.tableSide
+          : tableSide // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FindTestTableByBarcodeImpl
+    with DiagnosticableTreeMixin
+    implements _FindTestTableByBarcode {
+  const _$FindTestTableByBarcodeImpl(
+      {required this.barcode, required this.tableSide});
+
+  @override
+  final String barcode;
+  @override
+  final int tableSide;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'TestTableEvent.findTestTableByBarcode(barcode: $barcode, tableSide: $tableSide)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(
+          DiagnosticsProperty('type', 'TestTableEvent.findTestTableByBarcode'))
+      ..add(DiagnosticsProperty('barcode', barcode))
+      ..add(DiagnosticsProperty('tableSide', tableSide));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FindTestTableByBarcodeImpl &&
+            (identical(other.barcode, barcode) || other.barcode == barcode) &&
+            (identical(other.tableSide, tableSide) ||
+                other.tableSide == tableSide));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, barcode, tableSide);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FindTestTableByBarcodeImplCopyWith<_$FindTestTableByBarcodeImpl>
+      get copyWith => __$$FindTestTableByBarcodeImplCopyWithImpl<
+          _$FindTestTableByBarcodeImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() refresh,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function(int status) changeStatus,
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd)
+        changeDateRange,
+    required TResult Function(int? prefillTestTableId) initAdd,
+    required TResult Function(
+            ProjectItem? project,
+            int? testTableId,
+            List<int>? selectedMachineIds,
+            int? ownerId,
+            int? approverId,
+            DateTime? startDate,
+            bool clearProject,
+            bool clearTestTableId,
+            bool clearSelectedMachineIds,
+            bool clearOwnerId,
+            bool clearApproverId,
+            bool clearStartDate)
+        updateForm,
+    required TResult Function() checkConflict,
+    required TResult Function() submitRegistration,
+    required TResult Function() resetSubmitFlags,
+    required TResult Function(int testTableId) loadTestMachines,
+    required TResult Function(String barcode, int tableSide)
+        findTestTableByBarcode,
+  }) {
+    return findTestTableByBarcode(barcode, tableSide);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? refresh,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(int status)? changeStatus,
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult? Function(int? prefillTestTableId)? initAdd,
+    TResult? Function(
+            ProjectItem? project,
+            int? testTableId,
+            List<int>? selectedMachineIds,
+            int? ownerId,
+            int? approverId,
+            DateTime? startDate,
+            bool clearProject,
+            bool clearTestTableId,
+            bool clearSelectedMachineIds,
+            bool clearOwnerId,
+            bool clearApproverId,
+            bool clearStartDate)?
+        updateForm,
+    TResult? Function()? checkConflict,
+    TResult? Function()? submitRegistration,
+    TResult? Function()? resetSubmitFlags,
+    TResult? Function(int testTableId)? loadTestMachines,
+    TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
+  }) {
+    return findTestTableByBarcode?.call(barcode, tableSide);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? refresh,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function(int status)? changeStatus,
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult Function(int? prefillTestTableId)? initAdd,
+    TResult Function(
+            ProjectItem? project,
+            int? testTableId,
+            List<int>? selectedMachineIds,
+            int? ownerId,
+            int? approverId,
+            DateTime? startDate,
+            bool clearProject,
+            bool clearTestTableId,
+            bool clearSelectedMachineIds,
+            bool clearOwnerId,
+            bool clearApproverId,
+            bool clearStartDate)?
+        updateForm,
+    TResult Function()? checkConflict,
+    TResult Function()? submitRegistration,
+    TResult Function()? resetSubmitFlags,
+    TResult Function(int testTableId)? loadTestMachines,
+    TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
+    required TResult orElse(),
+  }) {
+    if (findTestTableByBarcode != null) {
+      return findTestTableByBarcode(barcode, tableSide);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_ChangeStatus value) changeStatus,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_UpdateForm value) updateForm,
+    required TResult Function(_CheckConflict value) checkConflict,
+    required TResult Function(_SubmitRegistration value) submitRegistration,
+    required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
+    required TResult Function(_LoadTestMachines value) loadTestMachines,
+    required TResult Function(_FindTestTableByBarcode value)
+        findTestTableByBarcode,
+  }) {
+    return findTestTableByBarcode(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_ChangeStatus value)? changeStatus,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_UpdateForm value)? updateForm,
+    TResult? Function(_CheckConflict value)? checkConflict,
+    TResult? Function(_SubmitRegistration value)? submitRegistration,
+    TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult? Function(_LoadTestMachines value)? loadTestMachines,
+    TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+  }) {
+    return findTestTableByBarcode?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_ChangeStatus value)? changeStatus,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_UpdateForm value)? updateForm,
+    TResult Function(_CheckConflict value)? checkConflict,
+    TResult Function(_SubmitRegistration value)? submitRegistration,
+    TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult Function(_LoadTestMachines value)? loadTestMachines,
+    TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    required TResult orElse(),
+  }) {
+    if (findTestTableByBarcode != null) {
+      return findTestTableByBarcode(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FindTestTableByBarcode implements TestTableEvent {
+  const factory _FindTestTableByBarcode(
+      {required final String barcode,
+      required final int tableSide}) = _$FindTestTableByBarcodeImpl;
+
+  String get barcode;
+  int get tableSide;
+  @JsonKey(ignore: true)
+  _$$FindTestTableByBarcodeImplCopyWith<_$FindTestTableByBarcodeImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

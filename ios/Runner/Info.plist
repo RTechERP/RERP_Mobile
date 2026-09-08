@@ -42,7 +42,7 @@
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Ứng dụng cần truy cập thư viện ảnh để đính kèm hình ảnh trong báo cáo công việc, đăng ký xe và các đơn đăng ký khác.</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Ứng dụng cần truy cập camera để bạn chụp ảnh đính kèm vào báo cáo, đơn đăng ký và cập nhật ảnh đại diện.</string>
+	<string>Ứng dụng cần truy cập camera để bạn chụp ảnh đính kèm vào báo cáo, đơn đăng ký, cập nhật ảnh đại diện và quét mã QR trên bảng ESL.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Ứng dụng cần quyền truy cập micro để quay video khi đính kèm vào báo cáo.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
@@ -82,5 +82,18 @@
 	</array>
 	<key>io.flutter.embedded_views_preview</key>
 	<true/>
+	<!-- Deep-link: mở app khi click URL QR dạng https://erp.rtc.vn/esl-test-registration?barcode=...&tableside=... -->
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.rtc.erp.esl-test-registration</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>https</string>
+				<string>esl-test-registration</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>

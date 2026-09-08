@@ -16,6 +16,7 @@ import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/stamp/view
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/test_table/view/bloc/test_table_bloc.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/test_table/view/pages/test_table_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/test_table/view/pages/test_table_add_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/test_table/view/pages/test_table_qr_scan_screen.dart';
 import 'package:rtc_erp/features/workplace/app/signature/view/bloc/my_signature_bloc.dart';
 import 'package:rtc_erp/features/workplace/app/signature/view/pages/signature_screen.dart';
 import 'package:rtc_erp/features/workplace/app/signature/view/pages/signature_add_screen.dart';
@@ -1243,7 +1244,15 @@ class AppRouter {
           ),
           GoRoute(
             path: RouteNames.testTableAdd,
-            builder: (context, state) => const TestTableAddScreen(),
+            builder: (context, state) {
+              final raw = state.uri.queryParameters['testTableId'];
+              final id = int.tryParse(raw ?? '');
+              return TestTableAddScreen(prefilledTestTableId: id);
+            },
+          ),
+          GoRoute(
+            path: RouteNames.testTableQrScan,
+            builder: (context, state) => const TestTableQrScanScreen(),
           ),
         ],
       ),

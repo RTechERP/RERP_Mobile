@@ -27,6 +27,11 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
   /// Cờ chống submit trùng — tương tự pattern TechBloc.
   bool _isSavingRegistration = false;
 
+  /// Key cache cho QR lookup — tránh xử lý trùng input khi camera detect
+  /// cùng QR nhiều lần liên tiếp. Không đưa vào state vì chỉ là cache
+  /// nội bộ của bloc.
+  String? _lastQrLookupKey;
+
   TestTableBloc(this._log, this._repo, this._authRepo)
       : super(TestTableState.init()) {
     on<TestTableEvent>(
@@ -46,7 +51,8 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
           ),
 
           // ===== Form đăng ký =====
-          initAdd: () => _onInitAdd(emit),
+          initAdd: (prefillTestTableId) =>
+              _onInitAdd(emit, prefillTestTableId: prefillTestTableId),
           updateForm: (
             project,
             testTableId,
@@ -81,6 +87,14 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
           resetSubmitFlags: () => _onResetSubmitFlags(emit),
           loadTestMachines: (testTableId) =>
               _onLoadTestMachines(emit, testTableId: testTableId),
+
+          // ===== QR / Deep link =====
+          findTestTableByBarcode: (barcode, tableSide) =>
+              _onFindTestTableByBarcode(
+            emit,
+            barcode: barcode,
+            tableSide: tableSide,
+          ),
         );
       },
       transformer: (events, mapper) => events.asyncExpand(mapper),
@@ -92,7 +106,13 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
   // =================================================================
 
   Future<void> _onInit(Emitter<TestTableState> emit) async {
-    emit(state.copyWith(status: BaseStateStatus.loading, message: null));
+    _lastQrLookupKey = null;
+    emit(state.copyWith(
+      status: BaseStateStatus.loading,
+      message: null,
+      // Reset lookup để buộc re-fetch → tránh bỏ qua list khi cache hit.
+      lookupFetched: false,
+    ));
     // Lấy currentUser trước để BE lọc theo employeeId.
     await _ensureCurrentUser(emit);
     await _fetchTestCards(emit);
@@ -101,6 +121,7 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
   }
 
   Future<void> _onRefresh(Emitter<TestTableState> emit) async {
+    _lastQrLookupKey = null;
     emit(state.copyWith(status: BaseStateStatus.loading, message: null));
     await _ensureCurrentUser(emit);
     await _fetchTestCards(emit);
@@ -238,7 +259,10 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
   // ============== Form đăng ký (màn Add) ==========================
   // =================================================================
 
-  Future<void> _onInitAdd(Emitter<TestTableState> emit) async {
+  Future<void> _onInitAdd(
+    Emitter<TestTableState> emit, {
+    int? prefillTestTableId,
+  }) async {
     emit(state.copyWith(
       conflictMessage: null,
       conflictPassed: false,
@@ -269,10 +293,86 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
       newForm = newForm.copyWith(ownerId: user.employeeId);
     }
 
+    // 4. Nếu có prefillTestTableId (vd từ QR scan), set luôn vào form.
+    if (prefillTestTableId != null) {
+      newForm = newForm.copyWith(testTableId: prefillTestTableId);
+      // Đồng thời load máy test của bàn đó để UI hiển thị sẵn.
+      add(TestTableEvent.loadTestMachines(testTableId: prefillTestTableId));
+    }
+
     emit(state.copyWith(
       currentUser: user ?? state.currentUser,
       formData: newForm,
       status: BaseStateStatus.success,
+    ));
+  }
+
+  // =================================================================
+  // ============== QR / Deep link ==================================
+  // =================================================================
+
+  /// Tra cứu bàn test theo [barcode] + [tableSide] trong cache lookup.
+  /// So khớp `Barcode` không phân biệt hoa/thường, đã trim.
+  /// Kết quả đổ vào `state.foundTestTable` + `state.qrLookupMessage`.
+  /// Reset cả 2 field ở đầu handler để đảm bảo state thay đổi
+  /// mỗi lần scan → `BlocListener` luôn trigger.
+  /// Bỏ qua nếu cùng input với lần tra trước (camera detect cùng QR).
+  Future<void> _onFindTestTableByBarcode(
+    Emitter<TestTableState> emit, {
+    required String barcode,
+    required int tableSide,
+  }) async {
+    final normalized = barcode.trim().toLowerCase();
+    final key = '$normalized|$tableSide';
+
+    // Cùng input → bỏ qua để tránh emit thừa + gọi API lookup lặp.
+    // Key sẽ được reset khi emit kết quả → cho phép user thử lại.
+    if (_lastQrLookupKey == key) return;
+    _lastQrLookupKey = key;
+
+    // Reset ngay để state luôn thay đổi (kể cả khi kết quả giống lần trước).
+    emit(state.copyWith(
+      qrLookupMessage: null,
+      foundTestTable: null,
+    ));
+
+    // Đảm bảo có lookup data để tra — gọi API nếu cache rỗng.
+    await _ensureLookupData(emit);
+
+    if (normalized.isEmpty) {
+      emit(state.copyWith(qrLookupMessage: 'Mã QR không hợp lệ'));
+      return;
+    }
+
+    final match = state.testTable.where((t) {
+      final bc = (t.barcode ?? '').trim().toLowerCase();
+      return bc == normalized && t.tableSide == tableSide;
+    }).toList();
+
+    if (match.isEmpty) {
+      // Reset key để user có thể quét lại cùng QR.
+      _lastQrLookupKey = null;
+      emit(state.copyWith(
+        qrLookupMessage: 'Không tìm thấy bàn test',
+      ));
+      return;
+    }
+
+    final found = match.first;
+    if (found.isRegistrated == 1) {
+      // Reset key để user có thể quét lại sau khi bàn được giải phóng.
+      _lastQrLookupKey = null;
+      emit(state.copyWith(
+        foundTestTable: found,
+        qrLookupMessage: 'Bàn đang được sử dụng',
+      ));
+      return;
+    }
+
+    // Thành công — không reset key, tránh navigate 2 lần.
+    emit(state.copyWith(
+      foundTestTable: found,
+      qrLookupMessage: null,
     ));
   }
 

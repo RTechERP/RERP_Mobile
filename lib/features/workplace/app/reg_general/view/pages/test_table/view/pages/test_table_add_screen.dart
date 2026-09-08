@@ -34,13 +34,16 @@ import '../widgets/test_table_picker.dart';
 import '../widgets/test_machine_picker.dart';
 
 class TestTableAddScreen extends StatefulWidget {
-  const TestTableAddScreen({super.key});
+  /// Id bàn test cần pre-fill (vd từ QR scan). Null = user tự chọn trên form.
+  const TestTableAddScreen({super.key, this.prefilledTestTableId});
+
+  final int? prefilledTestTableId;
 
   @override
   State<TestTableAddScreen> createState() => _TestTableAddScreenState();
 }
 
-class _TestTableAddScreenState extends BaseState<TestTableAddScreen,
+class _TestTableAddScreenState extends BaseShareState<TestTableAddScreen,
     TestTableEvent, TestTableState, TestTableBloc> {
   final _formKey = GlobalKey<FormBuilderState>();
 
@@ -80,9 +83,12 @@ class _TestTableAddScreenState extends BaseState<TestTableAddScreen,
     ));
 
     // Tải lookup data (cache từ list) + currentUser.
+    // Nếu có prefillTestTableId (từ QR scan) thì truyền luôn vào initAdd.
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
-      bloc.add(const TestTableEvent.initAdd());
+      bloc.add(TestTableEvent.initAdd(
+        prefillTestTableId: widget.prefilledTestTableId,
+      ));
     });
   }
 
