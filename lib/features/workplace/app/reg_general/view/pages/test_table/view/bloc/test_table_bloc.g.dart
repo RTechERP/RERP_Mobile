@@ -13,13 +13,35 @@ abstract class _$TestTableStateCWProxy {
 
   TestTableState testCard(List<TestCardItem> testCard);
 
+  TestTableState keyword(String keyword);
+
   TestTableState testTable(List<TestTableItem> testTable);
 
   TestTableState employee(List<EmployeeInfoItem> employee);
 
   TestTableState project(List<ProjectItem> project);
 
-  TestTableState keyword(String keyword);
+  TestTableState approver(List<ApproverItem> approver);
+
+  TestTableState currentUser(User? currentUser);
+
+  TestTableState lookupFetched(bool lookupFetched);
+
+  TestTableState formData(TestTableFormData formData);
+
+  TestTableState isSubmitting(bool isSubmitting);
+
+  TestTableState submitSuccess(bool submitSuccess);
+
+  TestTableState createdId(int createdId);
+
+  TestTableState conflictMessage(String? conflictMessage);
+
+  TestTableState conflictPassed(bool conflictPassed);
+
+  TestTableState testMachines(List<TestMachineItem> testMachines);
+
+  TestTableState isLoadingTestMachines(bool isLoadingTestMachines);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `TestTableState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -31,10 +53,21 @@ abstract class _$TestTableStateCWProxy {
     BaseStateStatus? status,
     String? message,
     List<TestCardItem>? testCard,
+    String? keyword,
     List<TestTableItem>? testTable,
     List<EmployeeInfoItem>? employee,
     List<ProjectItem>? project,
-    String? keyword,
+    List<ApproverItem>? approver,
+    User? currentUser,
+    bool? lookupFetched,
+    TestTableFormData? formData,
+    bool? isSubmitting,
+    bool? submitSuccess,
+    int? createdId,
+    String? conflictMessage,
+    bool? conflictPassed,
+    List<TestMachineItem>? testMachines,
+    bool? isLoadingTestMachines,
   });
 }
 
@@ -55,6 +88,9 @@ class _$TestTableStateCWProxyImpl implements _$TestTableStateCWProxy {
       this(testCard: testCard);
 
   @override
+  TestTableState keyword(String keyword) => this(keyword: keyword);
+
+  @override
   TestTableState testTable(List<TestTableItem> testTable) =>
       this(testTable: testTable);
 
@@ -66,7 +102,47 @@ class _$TestTableStateCWProxyImpl implements _$TestTableStateCWProxy {
   TestTableState project(List<ProjectItem> project) => this(project: project);
 
   @override
-  TestTableState keyword(String keyword) => this(keyword: keyword);
+  TestTableState approver(List<ApproverItem> approver) =>
+      this(approver: approver);
+
+  @override
+  TestTableState currentUser(User? currentUser) =>
+      this(currentUser: currentUser);
+
+  @override
+  TestTableState lookupFetched(bool lookupFetched) =>
+      this(lookupFetched: lookupFetched);
+
+  @override
+  TestTableState formData(TestTableFormData formData) =>
+      this(formData: formData);
+
+  @override
+  TestTableState isSubmitting(bool isSubmitting) =>
+      this(isSubmitting: isSubmitting);
+
+  @override
+  TestTableState submitSuccess(bool submitSuccess) =>
+      this(submitSuccess: submitSuccess);
+
+  @override
+  TestTableState createdId(int createdId) => this(createdId: createdId);
+
+  @override
+  TestTableState conflictMessage(String? conflictMessage) =>
+      this(conflictMessage: conflictMessage);
+
+  @override
+  TestTableState conflictPassed(bool conflictPassed) =>
+      this(conflictPassed: conflictPassed);
+
+  @override
+  TestTableState testMachines(List<TestMachineItem> testMachines) =>
+      this(testMachines: testMachines);
+
+  @override
+  TestTableState isLoadingTestMachines(bool isLoadingTestMachines) =>
+      this(isLoadingTestMachines: isLoadingTestMachines);
 
   @override
 
@@ -80,10 +156,21 @@ class _$TestTableStateCWProxyImpl implements _$TestTableStateCWProxy {
     Object? status = const $CopyWithPlaceholder(),
     Object? message = const $CopyWithPlaceholder(),
     Object? testCard = const $CopyWithPlaceholder(),
+    Object? keyword = const $CopyWithPlaceholder(),
     Object? testTable = const $CopyWithPlaceholder(),
     Object? employee = const $CopyWithPlaceholder(),
     Object? project = const $CopyWithPlaceholder(),
-    Object? keyword = const $CopyWithPlaceholder(),
+    Object? approver = const $CopyWithPlaceholder(),
+    Object? currentUser = const $CopyWithPlaceholder(),
+    Object? lookupFetched = const $CopyWithPlaceholder(),
+    Object? formData = const $CopyWithPlaceholder(),
+    Object? isSubmitting = const $CopyWithPlaceholder(),
+    Object? submitSuccess = const $CopyWithPlaceholder(),
+    Object? createdId = const $CopyWithPlaceholder(),
+    Object? conflictMessage = const $CopyWithPlaceholder(),
+    Object? conflictPassed = const $CopyWithPlaceholder(),
+    Object? testMachines = const $CopyWithPlaceholder(),
+    Object? isLoadingTestMachines = const $CopyWithPlaceholder(),
   }) {
     return TestTableState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -98,6 +185,10 @@ class _$TestTableStateCWProxyImpl implements _$TestTableStateCWProxy {
           ? _value.testCard
           // ignore: cast_nullable_to_non_nullable
           : testCard as List<TestCardItem>,
+      keyword: keyword == const $CopyWithPlaceholder() || keyword == null
+          ? _value.keyword
+          // ignore: cast_nullable_to_non_nullable
+          : keyword as String,
       testTable: testTable == const $CopyWithPlaceholder() || testTable == null
           ? _value.testTable
           // ignore: cast_nullable_to_non_nullable
@@ -110,10 +201,57 @@ class _$TestTableStateCWProxyImpl implements _$TestTableStateCWProxy {
           ? _value.project
           // ignore: cast_nullable_to_non_nullable
           : project as List<ProjectItem>,
-      keyword: keyword == const $CopyWithPlaceholder() || keyword == null
-          ? _value.keyword
+      approver: approver == const $CopyWithPlaceholder() || approver == null
+          ? _value.approver
           // ignore: cast_nullable_to_non_nullable
-          : keyword as String,
+          : approver as List<ApproverItem>,
+      currentUser: currentUser == const $CopyWithPlaceholder()
+          ? _value.currentUser
+          // ignore: cast_nullable_to_non_nullable
+          : currentUser as User?,
+      lookupFetched:
+          lookupFetched == const $CopyWithPlaceholder() || lookupFetched == null
+              ? _value.lookupFetched
+              // ignore: cast_nullable_to_non_nullable
+              : lookupFetched as bool,
+      formData: formData == const $CopyWithPlaceholder() || formData == null
+          ? _value.formData
+          // ignore: cast_nullable_to_non_nullable
+          : formData as TestTableFormData,
+      isSubmitting:
+          isSubmitting == const $CopyWithPlaceholder() || isSubmitting == null
+              ? _value.isSubmitting
+              // ignore: cast_nullable_to_non_nullable
+              : isSubmitting as bool,
+      submitSuccess:
+          submitSuccess == const $CopyWithPlaceholder() || submitSuccess == null
+              ? _value.submitSuccess
+              // ignore: cast_nullable_to_non_nullable
+              : submitSuccess as bool,
+      createdId: createdId == const $CopyWithPlaceholder() || createdId == null
+          ? _value.createdId
+          // ignore: cast_nullable_to_non_nullable
+          : createdId as int,
+      conflictMessage: conflictMessage == const $CopyWithPlaceholder()
+          ? _value.conflictMessage
+          // ignore: cast_nullable_to_non_nullable
+          : conflictMessage as String?,
+      conflictPassed: conflictPassed == const $CopyWithPlaceholder() ||
+              conflictPassed == null
+          ? _value.conflictPassed
+          // ignore: cast_nullable_to_non_nullable
+          : conflictPassed as bool,
+      testMachines:
+          testMachines == const $CopyWithPlaceholder() || testMachines == null
+              ? _value.testMachines
+              // ignore: cast_nullable_to_non_nullable
+              : testMachines as List<TestMachineItem>,
+      isLoadingTestMachines:
+          isLoadingTestMachines == const $CopyWithPlaceholder() ||
+                  isLoadingTestMachines == null
+              ? _value.isLoadingTestMachines
+              // ignore: cast_nullable_to_non_nullable
+              : isLoadingTestMachines as bool,
     );
   }
 }

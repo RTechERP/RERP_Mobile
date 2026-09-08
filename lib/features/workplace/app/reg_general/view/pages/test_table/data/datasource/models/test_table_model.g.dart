@@ -552,3 +552,21 @@ Map<String, dynamic> _$$ApproverItemImplToJson(_$ApproverItemImpl instance) =>
       'SDTNguoiThan2': instance.sdtNguoiThan2,
       'IsExcludedFromSalary': instance.isExcludedFromSalary,
     };
+
+_$TestMachineItemImpl _$$TestMachineItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$TestMachineItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      machineName: json['MachineName'] as String?,
+      machineCode: json['MachineCode'] as String?,
+      ip: json['IP'] as String?,
+    );
+
+Map<String, dynamic> _$$TestMachineItemImplToJson(
+        _$TestMachineItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'MachineName': instance.machineName,
+      'MachineCode': instance.machineCode,
+      'IP': instance.ip,
+    };

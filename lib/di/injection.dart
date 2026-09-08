@@ -745,7 +745,7 @@ void configureDependencies() {
   getIt.registerFactory<TestTableBloc>(
         () => TestTableBloc(
       getIt<LogUtils>(),
-      getIt<TestTableRepo>(),
+      getIt<TestTableRepo>(),getIt<AuthRepo>(),
     ),
   );
 }

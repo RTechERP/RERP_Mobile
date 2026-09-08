@@ -6175,3 +6175,219 @@ abstract class _ApproverItem implements ApproverItem {
   _$$ApproverItemImplCopyWith<_$ApproverItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+TestMachineItem _$TestMachineItemFromJson(Map<String, dynamic> json) {
+  return _TestMachineItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$TestMachineItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'MachineName')
+  String? get machineName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'MachineCode')
+  String? get machineCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IP')
+  String? get ip => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $TestMachineItemCopyWith<TestMachineItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TestMachineItemCopyWith<$Res> {
+  factory $TestMachineItemCopyWith(
+          TestMachineItem value, $Res Function(TestMachineItem) then) =
+      _$TestMachineItemCopyWithImpl<$Res, TestMachineItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'MachineName') String? machineName,
+      @JsonKey(name: 'MachineCode') String? machineCode,
+      @JsonKey(name: 'IP') String? ip});
+}
+
+/// @nodoc
+class _$TestMachineItemCopyWithImpl<$Res, $Val extends TestMachineItem>
+    implements $TestMachineItemCopyWith<$Res> {
+  _$TestMachineItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? machineName = freezed,
+    Object? machineCode = freezed,
+    Object? ip = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      machineName: freezed == machineName
+          ? _value.machineName
+          : machineName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      machineCode: freezed == machineCode
+          ? _value.machineCode
+          : machineCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ip: freezed == ip
+          ? _value.ip
+          : ip // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$TestMachineItemImplCopyWith<$Res>
+    implements $TestMachineItemCopyWith<$Res> {
+  factory _$$TestMachineItemImplCopyWith(_$TestMachineItemImpl value,
+          $Res Function(_$TestMachineItemImpl) then) =
+      __$$TestMachineItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'MachineName') String? machineName,
+      @JsonKey(name: 'MachineCode') String? machineCode,
+      @JsonKey(name: 'IP') String? ip});
+}
+
+/// @nodoc
+class __$$TestMachineItemImplCopyWithImpl<$Res>
+    extends _$TestMachineItemCopyWithImpl<$Res, _$TestMachineItemImpl>
+    implements _$$TestMachineItemImplCopyWith<$Res> {
+  __$$TestMachineItemImplCopyWithImpl(
+      _$TestMachineItemImpl _value, $Res Function(_$TestMachineItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? machineName = freezed,
+    Object? machineCode = freezed,
+    Object? ip = freezed,
+  }) {
+    return _then(_$TestMachineItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      machineName: freezed == machineName
+          ? _value.machineName
+          : machineName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      machineCode: freezed == machineCode
+          ? _value.machineCode
+          : machineCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ip: freezed == ip
+          ? _value.ip
+          : ip // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$TestMachineItemImpl implements _TestMachineItem {
+  const _$TestMachineItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'MachineName') this.machineName,
+      @JsonKey(name: 'MachineCode') this.machineCode,
+      @JsonKey(name: 'IP') this.ip});
+
+  factory _$TestMachineItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TestMachineItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'MachineName')
+  final String? machineName;
+  @override
+  @JsonKey(name: 'MachineCode')
+  final String? machineCode;
+  @override
+  @JsonKey(name: 'IP')
+  final String? ip;
+
+  @override
+  String toString() {
+    return 'TestMachineItem(id: $id, machineName: $machineName, machineCode: $machineCode, ip: $ip)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TestMachineItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.machineName, machineName) ||
+                other.machineName == machineName) &&
+            (identical(other.machineCode, machineCode) ||
+                other.machineCode == machineCode) &&
+            (identical(other.ip, ip) || other.ip == ip));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, id, machineName, machineCode, ip);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TestMachineItemImplCopyWith<_$TestMachineItemImpl> get copyWith =>
+      __$$TestMachineItemImplCopyWithImpl<_$TestMachineItemImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$TestMachineItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _TestMachineItem implements TestMachineItem {
+  const factory _TestMachineItem(
+      {@JsonKey(name: 'ID') final int? id,
+      @JsonKey(name: 'MachineName') final String? machineName,
+      @JsonKey(name: 'MachineCode') final String? machineCode,
+      @JsonKey(name: 'IP') final String? ip}) = _$TestMachineItemImpl;
+
+  factory _TestMachineItem.fromJson(Map<String, dynamic> json) =
+      _$TestMachineItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'MachineName')
+  String? get machineName;
+  @override
+  @JsonKey(name: 'MachineCode')
+  String? get machineCode;
+  @override
+  @JsonKey(name: 'IP')
+  String? get ip;
+  @override
+  @JsonKey(ignore: true)
+  _$$TestMachineItemImplCopyWith<_$TestMachineItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

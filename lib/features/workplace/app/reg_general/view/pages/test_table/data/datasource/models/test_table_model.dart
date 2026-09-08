@@ -279,3 +279,17 @@ class ApproverItem with _$ApproverItem {
   factory ApproverItem.fromJson(Map<String, dynamic> json) =>
       _$ApproverItemFromJson(json);
 }
+
+/// Thông tin máy test theo bàn từ '/ESLTestMachine/get-by-table'.
+@freezed
+class TestMachineItem with _$TestMachineItem {
+  const factory TestMachineItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'MachineName') String? machineName,
+    @JsonKey(name: 'MachineCode') String? machineCode,
+    @JsonKey(name: 'IP') String? ip,
+  }) = _TestMachineItem;
+
+  factory TestMachineItem.fromJson(Map<String, dynamic> json) =>
+      _$TestMachineItemFromJson(json);
+}

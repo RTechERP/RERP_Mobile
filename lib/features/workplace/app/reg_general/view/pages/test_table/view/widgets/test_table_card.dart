@@ -401,7 +401,7 @@ class _InfoLine extends StatelessWidget {
               color: AppColors.enableText,
               height: 1.2,
             ),
-            maxLines: 1,
+            maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),
         ),
@@ -429,20 +429,6 @@ class _PersonRow extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        // Icon người đăng ký
-        Container(
-          padding: const EdgeInsets.all(6),
-          decoration: BoxDecoration(
-            color: AppColors.secondaryERP.withValues(alpha: 0.12),
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: const Icon(
-            Icons.person_outline,
-            size: 16,
-            color: AppColors.secondaryERP,
-          ),
-        ),
-        const SizedBox(width: 8),
         // Row: Mã NV • Tên NV • SĐT
         Expanded(
           child: Wrap(
@@ -528,19 +514,6 @@ class _ApproverLine extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Container(
-          padding: const EdgeInsets.all(5),
-          decoration: BoxDecoration(
-            color: AppColors.success.withValues(alpha: 0.12),
-            borderRadius: BorderRadius.circular(7),
-          ),
-          child: const Icon(
-            Icons.verified_user_outlined,
-            size: 16,
-            color: AppColors.success,
-          ),
-        ),
-        const SizedBox(width: 8),
         const Text(
           'Người duyệt:',
           style: TextStyle(

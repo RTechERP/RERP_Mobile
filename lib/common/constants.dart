@@ -458,6 +458,10 @@ class ApiEndPoint {
   /// Bàn test ESL: GET /ESLTestTable/getall.
   static const String getEslTestTable = '/ESLTestTable/getall';
 
+  /// Máy test theo bàn: GET /ESLTestMachine/get-by-table?testTableId=X.
+  static const String getTestMachineByTable =
+      '/ESLTestMachine/get-by-table';
+
   /// Người duyệt: GET /ESLRegistration/get-all-user-approve.
   static const String getAllUserApprove = '/ESLRegistration/get-all-user-approve';
 
@@ -466,4 +470,13 @@ class ApiEndPoint {
 
   /// Dự án: GET /ProjectTask/get-all-project.
   static const String getAllProject = '/ProjectTask/get-all-project';
+
+  /// Check xung đột trước khi lưu phiếu đăng ký bàn test.
+  /// API: POST /ESLRegistration/check-conflict (form-data).
+  static const String checkConflictRegistration =
+      '/ESLRegistration/check-conflict';
+
+  /// Lưu phiếu đăng ký bàn test (thêm mới / cập nhật).
+  /// API: POST /ESLRegistration/save (form-data).
+  static const String saveRegistration = '/ESLRegistration/save';
 }
