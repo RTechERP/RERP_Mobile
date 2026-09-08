@@ -721,13 +721,51 @@ Map<String, dynamic> _$$BillExportDetailPayloadImplToJson(
 _$SaveBillExportDataResponseImpl _$$SaveBillExportDataResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$SaveBillExportDataResponseImpl(
-      billExportId: (json['BillExportID'] as num?)?.toInt(),
+      billExport: json['billExport'] == null
+          ? null
+          : BillExportPayload.fromJson(
+              json['billExport'] as Map<String, dynamic>),
+      billExportDetail: (json['billExportDetail'] as List<dynamic>?)
+              ?.map((e) =>
+                  BillExportDetailPayload.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      deletedDetailIds: (json['DeletedDetailIDs'] as List<dynamic>?)
+              ?.map((e) => (e as num).toInt())
+              .toList() ??
+          const [],
+      deletedFileIds: (json['DeletedFileIds'] as List<dynamic>?)
+              ?.map((e) => (e as num).toInt())
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$SaveBillExportDataResponseImplToJson(
         _$SaveBillExportDataResponseImpl instance) =>
     <String, dynamic>{
-      'BillExportID': instance.billExportId,
+      'billExport': instance.billExport,
+      'billExportDetail': instance.billExportDetail,
+      'DeletedDetailIDs': instance.deletedDetailIds,
+      'DeletedFileIds': instance.deletedFileIds,
+    };
+
+_$SaveBillExportApiResponseImpl _$$SaveBillExportApiResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$SaveBillExportApiResponseImpl(
+      status: (json['status'] as num?)?.toInt(),
+      message: json['message'] as String?,
+      data: json['data'] == null
+          ? null
+          : SaveBillExportDataResponse.fromJson(
+              json['data'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$SaveBillExportApiResponseImplToJson(
+        _$SaveBillExportApiResponseImpl instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'message': instance.message,
+      'data': instance.data,
     };
 
 _$SupplierResponseImpl _$$SupplierResponseImplFromJson(

@@ -78,6 +78,12 @@ class SaleGdnCard extends StatelessWidget {
                     label: 'Người giao',
                     value: item.fullNameSender ?? '--',
                   ),
+                  const SizedBox(height: 8),
+                  _InfoRow(
+                    icon: Icons.person_pin_outlined,
+                    label: 'Người nhận',
+                    value: item.receiverFullName ?? '--',
+                  ),
                 ],
               ),
             ),

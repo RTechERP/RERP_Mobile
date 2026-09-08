@@ -6,6 +6,7 @@ import 'package:rtc_erp/base/bloc/bloc_status.dart';
 import 'package:rtc_erp/base/widgets/base_scaffold.dart';
 import 'package:rtc_erp/base/widgets/base_widget.dart';
 import 'package:rtc_erp/common/app_theme/index.dart';
+import 'package:rtc_erp/common/helpers/select_bottom_sheet_helper.dart';
 import 'package:rtc_erp/common/utils/navigation/navigation_utils.dart';
 import 'package:rtc_erp/common/widgets/date_range_picker.dart';
 import 'package:rtc_erp/base/widgets/qr_barcode_scanner_page.dart';
@@ -109,10 +110,14 @@ class _SaleGdnScreenState
           BlocBuilder<SaleGdnBloc, SaleGdnState>(
             buildWhen: (prev, curr) =>
                 prev.selectedWarehouseTypeIds.length != curr.selectedWarehouseTypeIds.length ||
-                prev.selectedStatus != curr.selectedStatus,
+                prev.selectedStatus != curr.selectedStatus ||
+                prev.selectedSenderName != curr.selectedSenderName ||
+                prev.selectedReceiverName != curr.selectedReceiverName,
             builder: (context, state) {
               final hasFilter = state.selectedWarehouseTypeIds.isNotEmpty ||
-                  state.selectedStatus != -1;
+                  state.selectedStatus != -1 ||
+                  state.selectedSenderName != null ||
+                  state.selectedReceiverName != null;
               return IconButton(
                 icon: Icon(
                   Icons.filter_list,
@@ -136,7 +141,18 @@ class _SaleGdnScreenState
         ],
       ),
       body: blocBuilder((context, state) {
-        final gdns = state.gdns;
+        final allGdns = state.gdns;
+        final filteredGdns = allGdns.where((g) {
+          if (state.selectedSenderName != null && g.fullNameSender != state.selectedSenderName) {
+            return false;
+          }
+          if (state.selectedReceiverName != null &&
+              g.receiverFullName != state.selectedReceiverName) {
+            return false;
+          }
+          return true;
+        }).toList();
+
         if (state.status == BaseStateStatus.loading) {
           return const Center(child: CircularProgressIndicator());
         }
@@ -162,7 +178,7 @@ class _SaleGdnScreenState
             ),
           );
         }
-        if (gdns.isEmpty) {
+        if (filteredGdns.isEmpty) {
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -192,18 +208,18 @@ class _SaleGdnScreenState
           },
           child: ListView.separated(
             padding: const EdgeInsets.all(16),
-            itemCount: gdns.length + 1,
+            itemCount: filteredGdns.length + 1,
             separatorBuilder: (context, index) => const SizedBox(height: 12),
             itemBuilder: (context, index) {
               if (index == 0) {
                 return _ListHeader(
-                  total: gdns.length,
+                  total: filteredGdns.length,
                   dateStart: state.dateStart,
                   dateEnd: state.dateEnd,
                   isSearching: state.searchKeyword.isNotEmpty,
                 );
               }
-              final item = gdns[index - 1];
+              final item = filteredGdns[index - 1];
               return SaleGdnCard(
                 item: item,
                 onTap: () => _openDetail(item),
@@ -368,12 +384,21 @@ class _SaleGdnScreenState
         warehouseTypes: bloc.state.warehouseTypes,
         selectedWarehouseTypeIds: bloc.state.selectedWarehouseTypeIds,
         selectedStatus: bloc.state.selectedStatus,
-        onApply: (warehouseTypeIds, status) {
+        selectedSenderName: bloc.state.selectedSenderName,
+        selectedReceiverName: bloc.state.selectedReceiverName,
+        gdns: bloc.state.gdns,
+        onApply: (warehouseTypeIds, status, senderName, receiverName) {
           if (warehouseTypeIds != bloc.state.selectedWarehouseTypeIds) {
             bloc.add(SaleGdnEvent.filterByWarehouseType(warehouseTypeIds));
           }
           if (status != bloc.state.selectedStatus) {
             bloc.add(SaleGdnEvent.filterByStatus(status));
+          }
+          if (senderName != bloc.state.selectedSenderName) {
+            bloc.add(SaleGdnEvent.filterBySenderName(senderName));
+          }
+          if (receiverName != bloc.state.selectedReceiverName) {
+            bloc.add(SaleGdnEvent.filterByReceiver(receiverName));
           }
         },
         onClear: () => bloc.add(const SaleGdnEvent.clearFilters()),
@@ -488,6 +513,9 @@ class _FilterSheet extends StatefulWidget {
     required this.warehouseTypes,
     required this.selectedWarehouseTypeIds,
     required this.selectedStatus,
+    required this.selectedSenderName,
+    required this.selectedReceiverName,
+    required this.gdns,
     required this.onApply,
     required this.onClear,
   });
@@ -495,7 +523,10 @@ class _FilterSheet extends StatefulWidget {
   final List<TypeWarehouseResponse> warehouseTypes;
   final List<int> selectedWarehouseTypeIds;
   final int selectedStatus;
-  final void Function(List<int> warehouseTypeIds, int status) onApply;
+  final String? selectedSenderName;
+  final String? selectedReceiverName;
+  final List<BillExporResponse> gdns;
+  final void Function(List<int> warehouseTypeIds, int status, String? senderName, String? receiverName) onApply;
   final VoidCallback onClear;
 
   @override
@@ -505,19 +536,23 @@ class _FilterSheet extends StatefulWidget {
 class _FilterSheetState extends State<_FilterSheet> {
   late List<int> _selectedWarehouseTypeIds;
   late int _selectedStatus;
+  late String? _selectedSenderName;
+  late String? _selectedReceiverName;
 
   @override
   void initState() {
     super.initState();
     _selectedWarehouseTypeIds = List<int>.from(widget.selectedWarehouseTypeIds);
     _selectedStatus = widget.selectedStatus;
+    _selectedSenderName = widget.selectedSenderName;
+    _selectedReceiverName = widget.selectedReceiverName;
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       constraints: BoxConstraints(
-        maxHeight: MediaQuery.of(context).size.height * 0.7,
+        maxHeight: MediaQuery.of(context).size.height * 0.85,
       ),
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -551,7 +586,6 @@ class _FilterSheetState extends State<_FilterSheet> {
                 shrinkWrap: true,
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 children: [
-                  // Loại kho
                   const Text(
                     'Loại kho',
                     style: TextStyle(
@@ -570,7 +604,6 @@ class _FilterSheetState extends State<_FilterSheet> {
                     )).toList(),
                   ),
                   const SizedBox(height: 24),
-                  // Trạng thái
                   const Text(
                     'Trạng thái',
                     style: TextStyle(
@@ -589,6 +622,22 @@ class _FilterSheetState extends State<_FilterSheet> {
                         label: opt['label'] as String,
                       );
                     }).toList(),
+                  ),
+                  const SizedBox(height: 24),
+                  // Người giao
+                  _buildPersonField(
+                    label: 'Người giao',
+                    selectedValue: _selectedSenderName,
+                    onTap: () => _openUserSheet(),
+                    onClear: () => setState(() => _selectedSenderName = null),
+                  ),
+                  const SizedBox(height: 16),
+                  // Người nhận
+                  _buildPersonField(
+                    label: 'Người nhận',
+                    selectedValue: _selectedReceiverName,
+                    onTap: () => _openReceiverSheet(),
+                    onClear: () => setState(() => _selectedReceiverName = null),
                   ),
                   const SizedBox(height: 24),
                 ],
@@ -622,7 +671,12 @@ class _FilterSheetState extends State<_FilterSheet> {
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {
-                        widget.onApply(_selectedWarehouseTypeIds, _selectedStatus);
+                        widget.onApply(
+                          _selectedWarehouseTypeIds,
+                          _selectedStatus,
+                          _selectedSenderName,
+                          _selectedReceiverName,
+                        );
                         context.pop();
                       },
                       style: ElevatedButton.styleFrom(
@@ -646,6 +700,116 @@ class _FilterSheetState extends State<_FilterSheet> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildPersonField({
+    required String label,
+    required Object? selectedValue,
+    required VoidCallback onTap,
+    required VoidCallback onClear,
+  }) {
+    final hasValue = selectedValue != null &&
+        (selectedValue is! String || selectedValue.isNotEmpty);
+    String displayText;
+    if (!hasValue) {
+      displayText = 'Chọn $label';
+    } else {
+      displayText = selectedValue as String;
+    }
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: const TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+            color: AppColors.heading,
+          ),
+        ),
+        const SizedBox(height: 8),
+        GestureDetector(
+          onTap: onTap,
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+            decoration: BoxDecoration(
+              color: AppColors.grey_bg,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: AppColors.borderColor),
+            ),
+            child: Row(
+              children: [
+                const Icon(Icons.person_outline, color: AppColors.gray, size: 20),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    displayText,
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: hasValue
+                          ? AppColors.heading
+                          : AppColors.gray.withValues(alpha: 0.6),
+                    ),
+                  ),
+                ),
+                if (hasValue)
+                  GestureDetector(
+                    onTap: onClear,
+                    child: const Icon(Icons.close, color: AppColors.gray, size: 20),
+                  )
+                else
+                  const Icon(Icons.keyboard_arrow_down, color: AppColors.gray, size: 20),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  void _openUserSheet() {
+    openSelectBottomSheet<String>(
+      context: context,
+      title: 'Chọn người giao',
+      items: _senderNames(),
+      displayText: (name) => name,
+      hintText: 'Tìm theo tên...',
+      initialSelectedItem: _selectedSenderName,
+      onSelected: (name) {
+        setState(() => _selectedSenderName = name);
+      },
+    );
+  }
+
+  List<String> _senderNames() {
+    return widget.gdns
+        .map((g) => g.fullNameSender)
+        .where((name) => name != null && name.isNotEmpty)
+        .map((name) => name!)
+        .toSet()
+        .toList()
+      ..sort();
+  }
+
+  void _openReceiverSheet() {
+    final receiverNames = widget.gdns
+        .map((g) => g.receiverFullName)
+        .where((name) => name != null && name.isNotEmpty)
+        .map((name) => name!)
+        .toSet()
+        .toList()
+      ..sort();
+    openSelectBottomSheet<String>(
+      context: context,
+      title: 'Chọn người nhận',
+      items: receiverNames,
+      displayText: (name) => name,
+      hintText: 'Tìm theo tên...',
+      initialSelectedItem: receiverNames.contains(_selectedReceiverName) ? _selectedReceiverName : null,
+      onSelected: (name) {
+        setState(() => _selectedReceiverName = name);
+      },
     );
   }
 

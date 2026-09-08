@@ -51,6 +51,10 @@ abstract class _$SaleGdnStateCWProxy {
 
   SaleGdnState scanResultMessage(String? scanResultMessage);
 
+  SaleGdnState selectedSenderName(String? selectedSenderName);
+
+  SaleGdnState selectedReceiverName(String? selectedReceiverName);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SaleGdnState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -80,6 +84,8 @@ abstract class _$SaleGdnStateCWProxy {
     GdnDetailState? detail,
     BillExporResponse? openedDetailBill,
     String? scanResultMessage,
+    String? selectedSenderName,
+    String? selectedReceiverName,
   });
 }
 
@@ -169,6 +175,14 @@ class _$SaleGdnStateCWProxyImpl implements _$SaleGdnStateCWProxy {
       this(scanResultMessage: scanResultMessage);
 
   @override
+  SaleGdnState selectedSenderName(String? selectedSenderName) =>
+      this(selectedSenderName: selectedSenderName);
+
+  @override
+  SaleGdnState selectedReceiverName(String? selectedReceiverName) =>
+      this(selectedReceiverName: selectedReceiverName);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SaleGdnState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -199,6 +213,8 @@ class _$SaleGdnStateCWProxyImpl implements _$SaleGdnStateCWProxy {
     Object? detail = const $CopyWithPlaceholder(),
     Object? openedDetailBill = const $CopyWithPlaceholder(),
     Object? scanResultMessage = const $CopyWithPlaceholder(),
+    Object? selectedSenderName = const $CopyWithPlaceholder(),
+    Object? selectedReceiverName = const $CopyWithPlaceholder(),
   }) {
     return SaleGdnState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -299,6 +315,14 @@ class _$SaleGdnStateCWProxyImpl implements _$SaleGdnStateCWProxy {
           ? _value.scanResultMessage
           // ignore: cast_nullable_to_non_nullable
           : scanResultMessage as String?,
+      selectedSenderName: selectedSenderName == const $CopyWithPlaceholder()
+          ? _value.selectedSenderName
+          // ignore: cast_nullable_to_non_nullable
+          : selectedSenderName as String?,
+      selectedReceiverName: selectedReceiverName == const $CopyWithPlaceholder()
+          ? _value.selectedReceiverName
+          // ignore: cast_nullable_to_non_nullable
+          : selectedReceiverName as String?,
     );
   }
 }

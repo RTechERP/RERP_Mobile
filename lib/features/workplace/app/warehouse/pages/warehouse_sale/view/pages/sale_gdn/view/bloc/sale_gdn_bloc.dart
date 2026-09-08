@@ -58,6 +58,11 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
         filterByWarehouseType: (warehouseTypeId) =>
             _filterByWarehouseType(emit, warehouseTypeId),
         filterByStatus: (status) => _filterByStatus(emit, status),
+        filterBySender: (senderId) =>
+            _filterBySenderName(emit, senderId?.toString()),
+        filterBySenderName: (senderName) =>
+            _filterBySenderName(emit, senderName),
+        filterByReceiver: (receiverId) => _filterByReceiver(emit, receiverId),
         clearFilters: () => _clearFilters(emit),
         changeDateRange: (dateStart, dateEnd) =>
             _changeDateRange(emit, dateStart, dateEnd),
@@ -466,10 +471,23 @@ BillExporResponse? _findGdnInList(String code) {
     await _fetchGdns(emit);
   }
 
+  Future<void> _filterBySenderName(
+    Emitter<SaleGdnState> emit,
+    String? senderName,
+  ) async {
+    emit(state.copyWith(selectedSenderName: senderName));
+  }
+
+  Future<void> _filterByReceiver(Emitter<SaleGdnState> emit, String? receiverName) async {
+    emit(state.copyWith(selectedReceiverName: receiverName));
+  }
+
   Future<void> _clearFilters(Emitter<SaleGdnState> emit) async {
     emit(state.copyWith(
       selectedWarehouseTypeIds: [],
       selectedStatus: -1,
+      selectedSenderName: null,
+      selectedReceiverName: null,
     ));
     await _fetchGdns(emit);
   }
@@ -1004,7 +1022,7 @@ BillExporResponse? _findGdnInList(String code) {
         ));
       },
       (saveResult) async {
-        final billExportId = saveResult.billExportId;
+        final billExportId = saveResult.billExport?.id;
         _log.logI('✅ saveBillExportData success: BillExportID=$billExportId');
 
         // Bước 4: Merge ảnh server mới upload + xoá ảnh đã mark.
@@ -1129,29 +1147,62 @@ BillExporResponse? _findGdnInList(String code) {
             0);
 
     // BillExport header
+    //
+    // Lưu ý: ưu tiên giá trị user vừa chọn trong form (`billInfoUpdated`),
+    // fallback về `billInfo` (server trả về từ getBillExportById), cuối
+    // cùng mới fallback về `bill` (danh sách GDN). Nếu chỉ dùng `bill` thì
+    // khi user đổi kho / loại kho / trạng thái / WarehouseType sẽ bị "rớt"
+    // về giá trị cũ và server trả lỗi validation.
     final billExport = <String, dynamic>{
       'ID': bill?.id,
       'Code': bill?.code,
       'TypeBill': bill?.typeBill,
-      'SupplierID': bill?.supplierId ?? 0,
-      'CustomerID': bill?.customerId ?? 0,
-      'UserID': bill?.userId ?? 0,
-      'SenderID': bill?.senderId ?? 0,
+      'SupplierID': billInfoUpdated.selectedSupplierId ??
+          billInfo?.supplierId ??
+          bill?.supplierId ??
+          0,
+      'CustomerID': billInfoUpdated.selectedCustomerId ??
+          billInfo?.customerId ??
+          bill?.customerId ??
+          0,
+      'UserID': billInfoUpdated.userId ?? billInfo?.userId ?? bill?.userId ?? 0,
+      'SenderID': billInfoUpdated.selectedSenderId ??
+          billInfo?.senderId ??
+          bill?.senderId ??
+          0,
       'StockID': bill?.stockId ?? 0,
       'Description': bill?.description ?? '',
-      'Address': bill?.address ?? '',
-      'Status': bill?.status ?? 2,
+      'Address': billInfoUpdated.deliveryAddress ??
+          billInfoUpdated.selectedCustomerAddress ??
+          bill?.address ??
+          '',
+      'Status': billInfoUpdated.selectedStatus ?? bill?.status ?? 2,
       'GroupID': bill?.groupId ?? '',
-      'WarehouseType': bill?.warehouseType ?? '',
-      'KhoTypeID': bill?.khoTypeId ?? 0,
+      'WarehouseType': billInfoUpdated.selectedLoaiKhoText ??
+          billInfo?.warehouseType ??
+          bill?.warehouseType ??
+          '',
+      'KhoTypeID': billInfoUpdated.selectedKhoTypeId ??
+          billInfo?.khoTypeId ??
+          bill?.khoTypeId ??
+          0,
       'CreatDate': bill?.creatDate ?? DateTime.now().toIso8601String(),
       'CreatedDate': bill?.createdDate ?? DateTime.now().toIso8601String(),
       'UpdatedDate': DateTime.now().toIso8601String(),
-      'ProductType': bill?.productType ?? 0,
+      'ProductType': billInfoUpdated.selectedProductType ??
+          bill?.productType ??
+          0,
       'AddressStockID': bill?.addressStockId ?? 0,
-      'WarehouseID': bill?.warehouseId ?? 0,
-      'RequestDate': bill?.requestDate ?? DateTime.now().toIso8601String(),
-      'DeliveryTime': bill?.deliveryTime ?? DateTime.now().toIso8601String(),
+      'WarehouseID': billInfoUpdated.selectedWarehouseId ??
+          billInfo?.warehouseId ??
+          bill?.warehouseId ??
+          0,
+      'RequestDate': billInfoUpdated.requestDate != null
+          ? DateFormat('yyyy-MM-ddTHH:mm:ss').format(billInfoUpdated.requestDate!)
+          : (bill?.requestDate ?? DateTime.now().toIso8601String()),
+      'DeliveryTime': billInfoUpdated.deliveryDate != null
+          ? DateFormat('yyyy-MM-ddTHH:mm:ss').format(billInfoUpdated.deliveryDate!)
+          : (bill?.deliveryTime ?? DateTime.now().toIso8601String()),
       'IsAfterHours': bill?.isAfterHours ?? false,
       'BillDocumentExportType': bill?.billDocumentExportType ?? 0,
       'IsApproved': bill?.isApproved ?? false,
