@@ -4,6 +4,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../../../../common/app_theme/index.dart';
@@ -33,15 +34,25 @@ String _statusLabel(int? s) {
 // ─── Card ────────────────────────────────────────────────────────────────────
 
 class TestTableCard extends StatelessWidget {
-  const TestTableCard({super.key, required this.item});
+  const TestTableCard({
+    super.key,
+    required this.item,
+    this.onDelete,
+  });
 
   final TestCardItem item;
+
+  /// Callback khi user xác nhận xóa (qua confirm dialog ở screen cha).
+  /// Truyền `masterId` để caller biết xóa phiếu nào.
+  /// Khi null → không cho phép xóa (ẩn action pane).
+  final void Function(int masterId)? onDelete;
 
   @override
   Widget build(BuildContext context) {
     final sc = _statusColor(item.status);
+    final masterId = item.id;
 
-    return ClipRRect(
+    final card = ClipRRect(
       borderRadius: BorderRadius.circular(16),
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
@@ -91,6 +102,32 @@ class TestTableCard extends StatelessWidget {
         ),
       ),
     );
+
+    // Không có id hoặc không cho phép xóa → chỉ render card thường.
+    if (masterId == null || onDelete == null) return card;
+
+    return Slidable(
+      key: ValueKey('test_card_$masterId'),
+      groupTag: 'test_table_slidable',
+      endActionPane: ActionPane(
+        motion: const DrawerMotion(),
+        extentRatio: 0.28,
+        children: [
+          SlidableAction(
+            onPressed: (actionContext) async {
+              Slidable.of(actionContext)?.close();
+              if (!actionContext.mounted) return;
+              onDelete!(masterId);
+            },
+            backgroundColor: AppColors.alert,
+            foregroundColor: Colors.white,
+            icon: Icons.delete_outline,
+            label: 'Xóa',
+          ),
+        ],
+      ),
+      child: card,
+    );
   }
 
   // ─── Header: mã + status ─────────────────────────────────────────────────
@@ -137,6 +174,23 @@ class TestTableCard extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
+                        if (item.machineNames != null &&
+                            item.machineNames!.isNotEmpty) ...[
+                          const SizedBox(width: 4),
+                          Flexible(
+                            child: Text(
+                              '(${_dash(item.machineNames)})',
+                              style: const TextStyle(
+                                fontSize: 11,
+                                fontWeight: FontWeight.w400,
+                                color: AppColors.secondaryERP,
+                                height: 1.2,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
                         const SizedBox(width: 4),
                         _OnlineDot(online: item.online),
                       ],

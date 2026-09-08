@@ -34,6 +34,7 @@ class TestCardItem with _$TestCardItem {
     @JsonKey(name: 'esl_battery') int? eslBattery,
     @JsonKey(name: 'online') bool? online,
     @JsonKey(name: 'tableID') int? tableId,
+    @JsonKey(name: 'MachineNames') String? machineNames,
     @JsonKey(name: 'DetailsJson') String? detailsJson,
   }) = _TestCardItem;
 

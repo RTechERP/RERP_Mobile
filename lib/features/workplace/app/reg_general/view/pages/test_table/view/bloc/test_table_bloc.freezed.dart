@@ -42,6 +42,8 @@ mixin _$TestTableEvent {
     required TResult Function() checkConflict,
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
+    required TResult Function() clearDeleteFeedback,
+    required TResult Function(int masterId) deleteCard,
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
@@ -72,6 +74,8 @@ mixin _$TestTableEvent {
     TResult? Function()? checkConflict,
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
+    TResult? Function()? clearDeleteFeedback,
+    TResult? Function(int masterId)? deleteCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
   }) =>
@@ -101,6 +105,8 @@ mixin _$TestTableEvent {
     TResult Function()? checkConflict,
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
+    TResult Function()? clearDeleteFeedback,
+    TResult Function(int masterId)? deleteCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     required TResult orElse(),
@@ -118,6 +124,8 @@ mixin _$TestTableEvent {
     required TResult Function(_CheckConflict value) checkConflict,
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
+    required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_DeleteCard value) deleteCard,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
@@ -135,6 +143,8 @@ mixin _$TestTableEvent {
     TResult? Function(_CheckConflict value)? checkConflict,
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_DeleteCard value)? deleteCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
   }) =>
@@ -151,6 +161,8 @@ mixin _$TestTableEvent {
     TResult Function(_CheckConflict value)? checkConflict,
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_DeleteCard value)? deleteCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     required TResult orElse(),
@@ -243,6 +255,8 @@ class _$InitImpl with DiagnosticableTreeMixin implements _Init {
     required TResult Function() checkConflict,
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
+    required TResult Function() clearDeleteFeedback,
+    required TResult Function(int masterId) deleteCard,
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
@@ -276,6 +290,8 @@ class _$InitImpl with DiagnosticableTreeMixin implements _Init {
     TResult? Function()? checkConflict,
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
+    TResult? Function()? clearDeleteFeedback,
+    TResult? Function(int masterId)? deleteCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
   }) {
@@ -308,6 +324,8 @@ class _$InitImpl with DiagnosticableTreeMixin implements _Init {
     TResult Function()? checkConflict,
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
+    TResult Function()? clearDeleteFeedback,
+    TResult Function(int masterId)? deleteCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     required TResult orElse(),
@@ -331,6 +349,8 @@ class _$InitImpl with DiagnosticableTreeMixin implements _Init {
     required TResult Function(_CheckConflict value) checkConflict,
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
+    required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_DeleteCard value) deleteCard,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
@@ -351,6 +371,8 @@ class _$InitImpl with DiagnosticableTreeMixin implements _Init {
     TResult? Function(_CheckConflict value)? checkConflict,
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_DeleteCard value)? deleteCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
   }) {
@@ -370,6 +392,8 @@ class _$InitImpl with DiagnosticableTreeMixin implements _Init {
     TResult Function(_CheckConflict value)? checkConflict,
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_DeleteCard value)? deleteCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     required TResult orElse(),
@@ -453,6 +477,8 @@ class _$RefreshImpl with DiagnosticableTreeMixin implements _Refresh {
     required TResult Function() checkConflict,
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
+    required TResult Function() clearDeleteFeedback,
+    required TResult Function(int masterId) deleteCard,
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
@@ -486,6 +512,8 @@ class _$RefreshImpl with DiagnosticableTreeMixin implements _Refresh {
     TResult? Function()? checkConflict,
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
+    TResult? Function()? clearDeleteFeedback,
+    TResult? Function(int masterId)? deleteCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
   }) {
@@ -518,6 +546,8 @@ class _$RefreshImpl with DiagnosticableTreeMixin implements _Refresh {
     TResult Function()? checkConflict,
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
+    TResult Function()? clearDeleteFeedback,
+    TResult Function(int masterId)? deleteCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     required TResult orElse(),
@@ -541,6 +571,8 @@ class _$RefreshImpl with DiagnosticableTreeMixin implements _Refresh {
     required TResult Function(_CheckConflict value) checkConflict,
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
+    required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_DeleteCard value) deleteCard,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
@@ -561,6 +593,8 @@ class _$RefreshImpl with DiagnosticableTreeMixin implements _Refresh {
     TResult? Function(_CheckConflict value)? checkConflict,
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_DeleteCard value)? deleteCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
   }) {
@@ -580,6 +614,8 @@ class _$RefreshImpl with DiagnosticableTreeMixin implements _Refresh {
     TResult Function(_CheckConflict value)? checkConflict,
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_DeleteCard value)? deleteCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     required TResult orElse(),
@@ -693,6 +729,8 @@ class _$ChangeKeywordImpl
     required TResult Function() checkConflict,
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
+    required TResult Function() clearDeleteFeedback,
+    required TResult Function(int masterId) deleteCard,
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
@@ -726,6 +764,8 @@ class _$ChangeKeywordImpl
     TResult? Function()? checkConflict,
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
+    TResult? Function()? clearDeleteFeedback,
+    TResult? Function(int masterId)? deleteCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
   }) {
@@ -758,6 +798,8 @@ class _$ChangeKeywordImpl
     TResult Function()? checkConflict,
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
+    TResult Function()? clearDeleteFeedback,
+    TResult Function(int masterId)? deleteCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     required TResult orElse(),
@@ -781,6 +823,8 @@ class _$ChangeKeywordImpl
     required TResult Function(_CheckConflict value) checkConflict,
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
+    required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_DeleteCard value) deleteCard,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
@@ -801,6 +845,8 @@ class _$ChangeKeywordImpl
     TResult? Function(_CheckConflict value)? checkConflict,
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_DeleteCard value)? deleteCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
   }) {
@@ -820,6 +866,8 @@ class _$ChangeKeywordImpl
     TResult Function(_CheckConflict value)? checkConflict,
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_DeleteCard value)? deleteCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     required TResult orElse(),
@@ -937,6 +985,8 @@ class _$ChangeStatusImpl with DiagnosticableTreeMixin implements _ChangeStatus {
     required TResult Function() checkConflict,
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
+    required TResult Function() clearDeleteFeedback,
+    required TResult Function(int masterId) deleteCard,
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
@@ -970,6 +1020,8 @@ class _$ChangeStatusImpl with DiagnosticableTreeMixin implements _ChangeStatus {
     TResult? Function()? checkConflict,
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
+    TResult? Function()? clearDeleteFeedback,
+    TResult? Function(int masterId)? deleteCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
   }) {
@@ -1002,6 +1054,8 @@ class _$ChangeStatusImpl with DiagnosticableTreeMixin implements _ChangeStatus {
     TResult Function()? checkConflict,
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
+    TResult Function()? clearDeleteFeedback,
+    TResult Function(int masterId)? deleteCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     required TResult orElse(),
@@ -1025,6 +1079,8 @@ class _$ChangeStatusImpl with DiagnosticableTreeMixin implements _ChangeStatus {
     required TResult Function(_CheckConflict value) checkConflict,
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
+    required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_DeleteCard value) deleteCard,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
@@ -1045,6 +1101,8 @@ class _$ChangeStatusImpl with DiagnosticableTreeMixin implements _ChangeStatus {
     TResult? Function(_CheckConflict value)? checkConflict,
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_DeleteCard value)? deleteCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
   }) {
@@ -1064,6 +1122,8 @@ class _$ChangeStatusImpl with DiagnosticableTreeMixin implements _ChangeStatus {
     TResult Function(_CheckConflict value)? checkConflict,
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_DeleteCard value)? deleteCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     required TResult orElse(),
@@ -1193,6 +1253,8 @@ class _$ChangeDateRangeImpl
     required TResult Function() checkConflict,
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
+    required TResult Function() clearDeleteFeedback,
+    required TResult Function(int masterId) deleteCard,
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
@@ -1226,6 +1288,8 @@ class _$ChangeDateRangeImpl
     TResult? Function()? checkConflict,
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
+    TResult? Function()? clearDeleteFeedback,
+    TResult? Function(int masterId)? deleteCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
   }) {
@@ -1258,6 +1322,8 @@ class _$ChangeDateRangeImpl
     TResult Function()? checkConflict,
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
+    TResult Function()? clearDeleteFeedback,
+    TResult Function(int masterId)? deleteCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     required TResult orElse(),
@@ -1281,6 +1347,8 @@ class _$ChangeDateRangeImpl
     required TResult Function(_CheckConflict value) checkConflict,
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
+    required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_DeleteCard value) deleteCard,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
@@ -1301,6 +1369,8 @@ class _$ChangeDateRangeImpl
     TResult? Function(_CheckConflict value)? checkConflict,
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_DeleteCard value)? deleteCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
   }) {
@@ -1320,6 +1390,8 @@ class _$ChangeDateRangeImpl
     TResult Function(_CheckConflict value)? checkConflict,
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_DeleteCard value)? deleteCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     required TResult orElse(),
@@ -1440,6 +1512,8 @@ class _$InitAddImpl with DiagnosticableTreeMixin implements _InitAdd {
     required TResult Function() checkConflict,
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
+    required TResult Function() clearDeleteFeedback,
+    required TResult Function(int masterId) deleteCard,
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
@@ -1473,6 +1547,8 @@ class _$InitAddImpl with DiagnosticableTreeMixin implements _InitAdd {
     TResult? Function()? checkConflict,
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
+    TResult? Function()? clearDeleteFeedback,
+    TResult? Function(int masterId)? deleteCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
   }) {
@@ -1505,6 +1581,8 @@ class _$InitAddImpl with DiagnosticableTreeMixin implements _InitAdd {
     TResult Function()? checkConflict,
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
+    TResult Function()? clearDeleteFeedback,
+    TResult Function(int masterId)? deleteCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     required TResult orElse(),
@@ -1528,6 +1606,8 @@ class _$InitAddImpl with DiagnosticableTreeMixin implements _InitAdd {
     required TResult Function(_CheckConflict value) checkConflict,
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
+    required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_DeleteCard value) deleteCard,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
@@ -1548,6 +1628,8 @@ class _$InitAddImpl with DiagnosticableTreeMixin implements _InitAdd {
     TResult? Function(_CheckConflict value)? checkConflict,
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_DeleteCard value)? deleteCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
   }) {
@@ -1567,6 +1649,8 @@ class _$InitAddImpl with DiagnosticableTreeMixin implements _InitAdd {
     TResult Function(_CheckConflict value)? checkConflict,
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_DeleteCard value)? deleteCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     required TResult orElse(),
@@ -1861,6 +1945,8 @@ class _$UpdateFormImpl with DiagnosticableTreeMixin implements _UpdateForm {
     required TResult Function() checkConflict,
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
+    required TResult Function() clearDeleteFeedback,
+    required TResult Function(int masterId) deleteCard,
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
@@ -1906,6 +1992,8 @@ class _$UpdateFormImpl with DiagnosticableTreeMixin implements _UpdateForm {
     TResult? Function()? checkConflict,
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
+    TResult? Function()? clearDeleteFeedback,
+    TResult? Function(int masterId)? deleteCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
   }) {
@@ -1950,6 +2038,8 @@ class _$UpdateFormImpl with DiagnosticableTreeMixin implements _UpdateForm {
     TResult Function()? checkConflict,
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
+    TResult Function()? clearDeleteFeedback,
+    TResult Function(int masterId)? deleteCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     required TResult orElse(),
@@ -1985,6 +2075,8 @@ class _$UpdateFormImpl with DiagnosticableTreeMixin implements _UpdateForm {
     required TResult Function(_CheckConflict value) checkConflict,
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
+    required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_DeleteCard value) deleteCard,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
@@ -2005,6 +2097,8 @@ class _$UpdateFormImpl with DiagnosticableTreeMixin implements _UpdateForm {
     TResult? Function(_CheckConflict value)? checkConflict,
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_DeleteCard value)? deleteCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
   }) {
@@ -2024,6 +2118,8 @@ class _$UpdateFormImpl with DiagnosticableTreeMixin implements _UpdateForm {
     TResult Function(_CheckConflict value)? checkConflict,
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_DeleteCard value)? deleteCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     required TResult orElse(),
@@ -2137,6 +2233,8 @@ class _$CheckConflictImpl
     required TResult Function() checkConflict,
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
+    required TResult Function() clearDeleteFeedback,
+    required TResult Function(int masterId) deleteCard,
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
@@ -2170,6 +2268,8 @@ class _$CheckConflictImpl
     TResult? Function()? checkConflict,
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
+    TResult? Function()? clearDeleteFeedback,
+    TResult? Function(int masterId)? deleteCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
   }) {
@@ -2202,6 +2302,8 @@ class _$CheckConflictImpl
     TResult Function()? checkConflict,
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
+    TResult Function()? clearDeleteFeedback,
+    TResult Function(int masterId)? deleteCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     required TResult orElse(),
@@ -2225,6 +2327,8 @@ class _$CheckConflictImpl
     required TResult Function(_CheckConflict value) checkConflict,
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
+    required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_DeleteCard value) deleteCard,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
@@ -2245,6 +2349,8 @@ class _$CheckConflictImpl
     TResult? Function(_CheckConflict value)? checkConflict,
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_DeleteCard value)? deleteCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
   }) {
@@ -2264,6 +2370,8 @@ class _$CheckConflictImpl
     TResult Function(_CheckConflict value)? checkConflict,
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_DeleteCard value)? deleteCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     required TResult orElse(),
@@ -2350,6 +2458,8 @@ class _$SubmitRegistrationImpl
     required TResult Function() checkConflict,
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
+    required TResult Function() clearDeleteFeedback,
+    required TResult Function(int masterId) deleteCard,
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
@@ -2383,6 +2493,8 @@ class _$SubmitRegistrationImpl
     TResult? Function()? checkConflict,
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
+    TResult? Function()? clearDeleteFeedback,
+    TResult? Function(int masterId)? deleteCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
   }) {
@@ -2415,6 +2527,8 @@ class _$SubmitRegistrationImpl
     TResult Function()? checkConflict,
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
+    TResult Function()? clearDeleteFeedback,
+    TResult Function(int masterId)? deleteCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     required TResult orElse(),
@@ -2438,6 +2552,8 @@ class _$SubmitRegistrationImpl
     required TResult Function(_CheckConflict value) checkConflict,
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
+    required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_DeleteCard value) deleteCard,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
@@ -2458,6 +2574,8 @@ class _$SubmitRegistrationImpl
     TResult? Function(_CheckConflict value)? checkConflict,
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_DeleteCard value)? deleteCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
   }) {
@@ -2477,6 +2595,8 @@ class _$SubmitRegistrationImpl
     TResult Function(_CheckConflict value)? checkConflict,
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_DeleteCard value)? deleteCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     required TResult orElse(),
@@ -2563,6 +2683,8 @@ class _$ResetSubmitFlagsImpl
     required TResult Function() checkConflict,
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
+    required TResult Function() clearDeleteFeedback,
+    required TResult Function(int masterId) deleteCard,
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
@@ -2596,6 +2718,8 @@ class _$ResetSubmitFlagsImpl
     TResult? Function()? checkConflict,
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
+    TResult? Function()? clearDeleteFeedback,
+    TResult? Function(int masterId)? deleteCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
   }) {
@@ -2628,6 +2752,8 @@ class _$ResetSubmitFlagsImpl
     TResult Function()? checkConflict,
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
+    TResult Function()? clearDeleteFeedback,
+    TResult Function(int masterId)? deleteCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     required TResult orElse(),
@@ -2651,6 +2777,8 @@ class _$ResetSubmitFlagsImpl
     required TResult Function(_CheckConflict value) checkConflict,
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
+    required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_DeleteCard value) deleteCard,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
@@ -2671,6 +2799,8 @@ class _$ResetSubmitFlagsImpl
     TResult? Function(_CheckConflict value)? checkConflict,
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_DeleteCard value)? deleteCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
   }) {
@@ -2690,6 +2820,8 @@ class _$ResetSubmitFlagsImpl
     TResult Function(_CheckConflict value)? checkConflict,
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_DeleteCard value)? deleteCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     required TResult orElse(),
@@ -2703,6 +2835,488 @@ class _$ResetSubmitFlagsImpl
 
 abstract class _ResetSubmitFlags implements TestTableEvent {
   const factory _ResetSubmitFlags() = _$ResetSubmitFlagsImpl;
+}
+
+/// @nodoc
+abstract class _$$ClearDeleteFeedbackImplCopyWith<$Res> {
+  factory _$$ClearDeleteFeedbackImplCopyWith(_$ClearDeleteFeedbackImpl value,
+          $Res Function(_$ClearDeleteFeedbackImpl) then) =
+      __$$ClearDeleteFeedbackImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearDeleteFeedbackImplCopyWithImpl<$Res>
+    extends _$TestTableEventCopyWithImpl<$Res, _$ClearDeleteFeedbackImpl>
+    implements _$$ClearDeleteFeedbackImplCopyWith<$Res> {
+  __$$ClearDeleteFeedbackImplCopyWithImpl(_$ClearDeleteFeedbackImpl _value,
+      $Res Function(_$ClearDeleteFeedbackImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ClearDeleteFeedbackImpl
+    with DiagnosticableTreeMixin
+    implements _ClearDeleteFeedback {
+  const _$ClearDeleteFeedbackImpl();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'TestTableEvent.clearDeleteFeedback()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+        .add(DiagnosticsProperty('type', 'TestTableEvent.clearDeleteFeedback'));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ClearDeleteFeedbackImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() refresh,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function(int status) changeStatus,
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd)
+        changeDateRange,
+    required TResult Function(int? prefillTestTableId) initAdd,
+    required TResult Function(
+            ProjectItem? project,
+            int? testTableId,
+            List<int>? selectedMachineIds,
+            int? ownerId,
+            int? approverId,
+            DateTime? startDate,
+            bool clearProject,
+            bool clearTestTableId,
+            bool clearSelectedMachineIds,
+            bool clearOwnerId,
+            bool clearApproverId,
+            bool clearStartDate)
+        updateForm,
+    required TResult Function() checkConflict,
+    required TResult Function() submitRegistration,
+    required TResult Function() resetSubmitFlags,
+    required TResult Function() clearDeleteFeedback,
+    required TResult Function(int masterId) deleteCard,
+    required TResult Function(int testTableId) loadTestMachines,
+    required TResult Function(String barcode, int tableSide)
+        findTestTableByBarcode,
+  }) {
+    return clearDeleteFeedback();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? refresh,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(int status)? changeStatus,
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult? Function(int? prefillTestTableId)? initAdd,
+    TResult? Function(
+            ProjectItem? project,
+            int? testTableId,
+            List<int>? selectedMachineIds,
+            int? ownerId,
+            int? approverId,
+            DateTime? startDate,
+            bool clearProject,
+            bool clearTestTableId,
+            bool clearSelectedMachineIds,
+            bool clearOwnerId,
+            bool clearApproverId,
+            bool clearStartDate)?
+        updateForm,
+    TResult? Function()? checkConflict,
+    TResult? Function()? submitRegistration,
+    TResult? Function()? resetSubmitFlags,
+    TResult? Function()? clearDeleteFeedback,
+    TResult? Function(int masterId)? deleteCard,
+    TResult? Function(int testTableId)? loadTestMachines,
+    TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
+  }) {
+    return clearDeleteFeedback?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? refresh,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function(int status)? changeStatus,
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult Function(int? prefillTestTableId)? initAdd,
+    TResult Function(
+            ProjectItem? project,
+            int? testTableId,
+            List<int>? selectedMachineIds,
+            int? ownerId,
+            int? approverId,
+            DateTime? startDate,
+            bool clearProject,
+            bool clearTestTableId,
+            bool clearSelectedMachineIds,
+            bool clearOwnerId,
+            bool clearApproverId,
+            bool clearStartDate)?
+        updateForm,
+    TResult Function()? checkConflict,
+    TResult Function()? submitRegistration,
+    TResult Function()? resetSubmitFlags,
+    TResult Function()? clearDeleteFeedback,
+    TResult Function(int masterId)? deleteCard,
+    TResult Function(int testTableId)? loadTestMachines,
+    TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
+    required TResult orElse(),
+  }) {
+    if (clearDeleteFeedback != null) {
+      return clearDeleteFeedback();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_ChangeStatus value) changeStatus,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_UpdateForm value) updateForm,
+    required TResult Function(_CheckConflict value) checkConflict,
+    required TResult Function(_SubmitRegistration value) submitRegistration,
+    required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
+    required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_DeleteCard value) deleteCard,
+    required TResult Function(_LoadTestMachines value) loadTestMachines,
+    required TResult Function(_FindTestTableByBarcode value)
+        findTestTableByBarcode,
+  }) {
+    return clearDeleteFeedback(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_ChangeStatus value)? changeStatus,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_UpdateForm value)? updateForm,
+    TResult? Function(_CheckConflict value)? checkConflict,
+    TResult? Function(_SubmitRegistration value)? submitRegistration,
+    TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_DeleteCard value)? deleteCard,
+    TResult? Function(_LoadTestMachines value)? loadTestMachines,
+    TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+  }) {
+    return clearDeleteFeedback?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_ChangeStatus value)? changeStatus,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_UpdateForm value)? updateForm,
+    TResult Function(_CheckConflict value)? checkConflict,
+    TResult Function(_SubmitRegistration value)? submitRegistration,
+    TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_DeleteCard value)? deleteCard,
+    TResult Function(_LoadTestMachines value)? loadTestMachines,
+    TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    required TResult orElse(),
+  }) {
+    if (clearDeleteFeedback != null) {
+      return clearDeleteFeedback(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearDeleteFeedback implements TestTableEvent {
+  const factory _ClearDeleteFeedback() = _$ClearDeleteFeedbackImpl;
+}
+
+/// @nodoc
+abstract class _$$DeleteCardImplCopyWith<$Res> {
+  factory _$$DeleteCardImplCopyWith(
+          _$DeleteCardImpl value, $Res Function(_$DeleteCardImpl) then) =
+      __$$DeleteCardImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int masterId});
+}
+
+/// @nodoc
+class __$$DeleteCardImplCopyWithImpl<$Res>
+    extends _$TestTableEventCopyWithImpl<$Res, _$DeleteCardImpl>
+    implements _$$DeleteCardImplCopyWith<$Res> {
+  __$$DeleteCardImplCopyWithImpl(
+      _$DeleteCardImpl _value, $Res Function(_$DeleteCardImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? masterId = null,
+  }) {
+    return _then(_$DeleteCardImpl(
+      masterId: null == masterId
+          ? _value.masterId
+          : masterId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeleteCardImpl with DiagnosticableTreeMixin implements _DeleteCard {
+  const _$DeleteCardImpl({required this.masterId});
+
+  @override
+  final int masterId;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'TestTableEvent.deleteCard(masterId: $masterId)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'TestTableEvent.deleteCard'))
+      ..add(DiagnosticsProperty('masterId', masterId));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteCardImpl &&
+            (identical(other.masterId, masterId) ||
+                other.masterId == masterId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, masterId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteCardImplCopyWith<_$DeleteCardImpl> get copyWith =>
+      __$$DeleteCardImplCopyWithImpl<_$DeleteCardImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() refresh,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function(int status) changeStatus,
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd)
+        changeDateRange,
+    required TResult Function(int? prefillTestTableId) initAdd,
+    required TResult Function(
+            ProjectItem? project,
+            int? testTableId,
+            List<int>? selectedMachineIds,
+            int? ownerId,
+            int? approverId,
+            DateTime? startDate,
+            bool clearProject,
+            bool clearTestTableId,
+            bool clearSelectedMachineIds,
+            bool clearOwnerId,
+            bool clearApproverId,
+            bool clearStartDate)
+        updateForm,
+    required TResult Function() checkConflict,
+    required TResult Function() submitRegistration,
+    required TResult Function() resetSubmitFlags,
+    required TResult Function() clearDeleteFeedback,
+    required TResult Function(int masterId) deleteCard,
+    required TResult Function(int testTableId) loadTestMachines,
+    required TResult Function(String barcode, int tableSide)
+        findTestTableByBarcode,
+  }) {
+    return deleteCard(masterId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? refresh,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(int status)? changeStatus,
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult? Function(int? prefillTestTableId)? initAdd,
+    TResult? Function(
+            ProjectItem? project,
+            int? testTableId,
+            List<int>? selectedMachineIds,
+            int? ownerId,
+            int? approverId,
+            DateTime? startDate,
+            bool clearProject,
+            bool clearTestTableId,
+            bool clearSelectedMachineIds,
+            bool clearOwnerId,
+            bool clearApproverId,
+            bool clearStartDate)?
+        updateForm,
+    TResult? Function()? checkConflict,
+    TResult? Function()? submitRegistration,
+    TResult? Function()? resetSubmitFlags,
+    TResult? Function()? clearDeleteFeedback,
+    TResult? Function(int masterId)? deleteCard,
+    TResult? Function(int testTableId)? loadTestMachines,
+    TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
+  }) {
+    return deleteCard?.call(masterId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? refresh,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function(int status)? changeStatus,
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult Function(int? prefillTestTableId)? initAdd,
+    TResult Function(
+            ProjectItem? project,
+            int? testTableId,
+            List<int>? selectedMachineIds,
+            int? ownerId,
+            int? approverId,
+            DateTime? startDate,
+            bool clearProject,
+            bool clearTestTableId,
+            bool clearSelectedMachineIds,
+            bool clearOwnerId,
+            bool clearApproverId,
+            bool clearStartDate)?
+        updateForm,
+    TResult Function()? checkConflict,
+    TResult Function()? submitRegistration,
+    TResult Function()? resetSubmitFlags,
+    TResult Function()? clearDeleteFeedback,
+    TResult Function(int masterId)? deleteCard,
+    TResult Function(int testTableId)? loadTestMachines,
+    TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
+    required TResult orElse(),
+  }) {
+    if (deleteCard != null) {
+      return deleteCard(masterId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_ChangeStatus value) changeStatus,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_UpdateForm value) updateForm,
+    required TResult Function(_CheckConflict value) checkConflict,
+    required TResult Function(_SubmitRegistration value) submitRegistration,
+    required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
+    required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_DeleteCard value) deleteCard,
+    required TResult Function(_LoadTestMachines value) loadTestMachines,
+    required TResult Function(_FindTestTableByBarcode value)
+        findTestTableByBarcode,
+  }) {
+    return deleteCard(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_ChangeStatus value)? changeStatus,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_UpdateForm value)? updateForm,
+    TResult? Function(_CheckConflict value)? checkConflict,
+    TResult? Function(_SubmitRegistration value)? submitRegistration,
+    TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_DeleteCard value)? deleteCard,
+    TResult? Function(_LoadTestMachines value)? loadTestMachines,
+    TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+  }) {
+    return deleteCard?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_ChangeStatus value)? changeStatus,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_UpdateForm value)? updateForm,
+    TResult Function(_CheckConflict value)? checkConflict,
+    TResult Function(_SubmitRegistration value)? submitRegistration,
+    TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_DeleteCard value)? deleteCard,
+    TResult Function(_LoadTestMachines value)? loadTestMachines,
+    TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    required TResult orElse(),
+  }) {
+    if (deleteCard != null) {
+      return deleteCard(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DeleteCard implements TestTableEvent {
+  const factory _DeleteCard({required final int masterId}) = _$DeleteCardImpl;
+
+  int get masterId;
+  @JsonKey(ignore: true)
+  _$$DeleteCardImplCopyWith<_$DeleteCardImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -2805,6 +3419,8 @@ class _$LoadTestMachinesImpl
     required TResult Function() checkConflict,
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
+    required TResult Function() clearDeleteFeedback,
+    required TResult Function(int masterId) deleteCard,
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
@@ -2838,6 +3454,8 @@ class _$LoadTestMachinesImpl
     TResult? Function()? checkConflict,
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
+    TResult? Function()? clearDeleteFeedback,
+    TResult? Function(int masterId)? deleteCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
   }) {
@@ -2870,6 +3488,8 @@ class _$LoadTestMachinesImpl
     TResult Function()? checkConflict,
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
+    TResult Function()? clearDeleteFeedback,
+    TResult Function(int masterId)? deleteCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     required TResult orElse(),
@@ -2893,6 +3513,8 @@ class _$LoadTestMachinesImpl
     required TResult Function(_CheckConflict value) checkConflict,
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
+    required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_DeleteCard value) deleteCard,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
@@ -2913,6 +3535,8 @@ class _$LoadTestMachinesImpl
     TResult? Function(_CheckConflict value)? checkConflict,
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_DeleteCard value)? deleteCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
   }) {
@@ -2932,6 +3556,8 @@ class _$LoadTestMachinesImpl
     TResult Function(_CheckConflict value)? checkConflict,
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_DeleteCard value)? deleteCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     required TResult orElse(),
@@ -3066,6 +3692,8 @@ class _$FindTestTableByBarcodeImpl
     required TResult Function() checkConflict,
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
+    required TResult Function() clearDeleteFeedback,
+    required TResult Function(int masterId) deleteCard,
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
@@ -3099,6 +3727,8 @@ class _$FindTestTableByBarcodeImpl
     TResult? Function()? checkConflict,
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
+    TResult? Function()? clearDeleteFeedback,
+    TResult? Function(int masterId)? deleteCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
   }) {
@@ -3131,6 +3761,8 @@ class _$FindTestTableByBarcodeImpl
     TResult Function()? checkConflict,
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
+    TResult Function()? clearDeleteFeedback,
+    TResult Function(int masterId)? deleteCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     required TResult orElse(),
@@ -3154,6 +3786,8 @@ class _$FindTestTableByBarcodeImpl
     required TResult Function(_CheckConflict value) checkConflict,
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
+    required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_DeleteCard value) deleteCard,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
@@ -3174,6 +3808,8 @@ class _$FindTestTableByBarcodeImpl
     TResult? Function(_CheckConflict value)? checkConflict,
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_DeleteCard value)? deleteCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
   }) {
@@ -3193,6 +3829,8 @@ class _$FindTestTableByBarcodeImpl
     TResult Function(_CheckConflict value)? checkConflict,
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_DeleteCard value)? deleteCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     required TResult orElse(),

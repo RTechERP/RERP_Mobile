@@ -177,6 +177,31 @@ class TestTableService extends DioBaseApiService {
     );
   }
 
+  /// POST /ESLRegistration/delete-master?masterID={masterID}
+  /// — xóa phiếu đăng ký bàn test.
+  /// BE trả về `{status, message, data}` — success khi `status == 1`.
+  Future<void> deleteRegistration({required int masterId}) async {
+    final res = await dio.post(
+      ApiEndPoint.deleteRegistration,
+      queryParameters: {'masterID': masterId},
+      data: {'masterID': masterId},
+      options: Options(
+        contentType: Headers.jsonContentType,
+        headers: {Headers.contentTypeHeader: Headers.jsonContentType},
+      ),
+    );
+
+    final raw = res.data;
+    if (raw is Map) {
+      final status = raw['status'];
+      if (status == 1 || status == '1') return;
+      throw BaseError.httpInternalServerError(
+        (raw['message'] ?? raw['msg'] ?? 'Xóa phiếu thất bại').toString(),
+      );
+    }
+    throw const BaseError.httpInternalServerError('Xóa phiếu thất bại');
+  }
+
   /// Parse response — hỗ trợ data là List hoặc Map (`data`/`items`/`result`).
   BaseData<List<T>> _parseList<T>(
     dynamic json,

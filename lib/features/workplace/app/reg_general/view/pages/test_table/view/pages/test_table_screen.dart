@@ -12,7 +12,9 @@ import '../../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/constants/index.dart';
+import '../../../../../../../../../common/utils/dialog/dialog_service.dart';
 import '../../../../../../../../../common/utils/navigation/navigation_utils.dart';
+import '../../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../../common/widgets/date_range_picker.dart';
 import '../../../../../../../../../routes/route_names.dart';
 import '../bloc/test_table_bloc.dart';
@@ -160,8 +162,26 @@ class _TestTableScreenState extends BaseState<TestTableScreen, TestTableEvent,
 
   @override
   Widget renderUI(BuildContext context) {
-    return BlocBuilder<TestTableBloc, TestTableState>(
+    return BlocConsumer<TestTableBloc, TestTableState>(
       bloc: bloc,
+      listener: (context, state) {
+        if (state.deleteSuccess && !state.submitSuccess) {
+          showMessage(context, 'Hủy đăng ký bàn test thành công',
+              type: SnackBarType.success);
+          bloc.add(const TestTableEvent.clearDeleteFeedback());
+          // Refresh lại list sau khi xóa.
+          bloc.add(const TestTableEvent.init());
+        } else if (state.submitSuccess && !state.isDeleting) {
+          bloc.add(const TestTableEvent.resetSubmitFlags());
+          showMessage(context, 'Đăng ký bàn test thành công',
+              type: SnackBarType.success);
+        } else if (state.deleteError != null &&
+            state.deleteError!.isNotEmpty) {
+          showMessage(context, state.deleteError!,
+              type: SnackBarType.error);
+          bloc.add(const TestTableEvent.clearDeleteFeedback());
+        }
+      },
       builder: (context, state) {
         return BaseScaffold(
           backgroundColor: const Color(0xFFF4F7FB),
@@ -325,10 +345,28 @@ class _TestTableScreenState extends BaseState<TestTableScreen, TestTableEvent,
             isSearching: _searchController.text.isNotEmpty,
           ),
           const SizedBox(height: 8),
-          ...items.map((item) => Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: TestTableCard(item: item),
-              )),
+          ...items.map((item) {
+            // Chỉ cho phép xóa khi phiếu chưa duyệt (status != 1) và có id.
+            final canDelete = item.id != null && item.status != 1;
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: TestTableCard(
+                item: item,
+                onDelete: canDelete
+                    ? (masterId) async {
+                        final confirmed =
+                            await DialogService.showConfirmDelete(
+                          context: context,
+                        );
+                        if (!context.mounted || !confirmed) return;
+                        bloc.add(TestTableEvent.deleteCard(
+                          masterId: masterId,
+                        ));
+                      }
+                    : null,
+              ),
+            );
+          }),
         ],
       ),
     );

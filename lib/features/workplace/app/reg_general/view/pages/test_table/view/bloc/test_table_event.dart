@@ -62,6 +62,14 @@ class TestTableEvent with _$TestTableEvent {
   /// Reset các cờ submit/checkConflict sau khi màn add đã pop.
   const factory TestTableEvent.resetSubmitFlags() = _ResetSubmitFlags;
 
+  /// Reset cờ `deletedMasterId` / `deleteError` sau khi UI đã xử lý.
+  const factory TestTableEvent.clearDeleteFeedback() = _ClearDeleteFeedback;
+
+  /// Xóa phiếu đăng ký theo [masterId]. Trigger từ swipe-to-delete trên card.
+  const factory TestTableEvent.deleteCard({
+    required int masterId,
+  }) = _DeleteCard;
+
   /// Tải danh sách máy test thuộc một bàn test (gọi khi chọn bàn test).
   const factory TestTableEvent.loadTestMachines({
     required int testTableId,

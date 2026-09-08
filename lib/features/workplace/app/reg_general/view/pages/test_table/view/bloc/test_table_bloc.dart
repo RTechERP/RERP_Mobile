@@ -95,6 +95,10 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
             barcode: barcode,
             tableSide: tableSide,
           ),
+
+          // ===== Delete (swipe-to-delete) =====
+          deleteCard: (masterId) => _onDeleteCard(emit, masterId: masterId),
+          clearDeleteFeedback: () => _onClearDeleteFeedback(emit),
         );
       },
       transformer: (events, mapper) => events.asyncExpand(mapper),
@@ -617,6 +621,64 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
       message: null,
       status: BaseStateStatus.init,
     ));
+  }
+
+  // =================================================================
+  // ============== Xóa phiếu (swipe-to-delete) ====================
+  // =================================================================
+
+  /// Reset cờ deleteFeedback sau khi UI đã show snackbar.
+  _onClearDeleteFeedback(Emitter<TestTableState> emit) {
+    emit(state.copyWith(
+      deleteSuccess: false,
+      deleteError: null,
+      isDeleting: false,
+    ));
+  }
+
+  /// Xóa phiếu đăng ký. Pattern giống LunchBloc: đánh dấu isDeleting,
+  /// gọi API, cập nhật deleteSuccess khi xong.
+  Future<void> _onDeleteCard(
+    Emitter<TestTableState> emit, {
+    required int masterId,
+  }) async {
+    if (state.isDeleting || state.deletingIds.contains(masterId)) return;
+
+    final newDeletingIds = {...state.deletingIds, masterId};
+    emit(state.copyWith(
+      deletingIds: newDeletingIds,
+      isDeleting: true,
+      deleteError: null,
+      deleteSuccess: false,
+    ));
+
+    final res = await _repo.deleteRegistration(masterId: masterId);
+    res.fold(
+      (error) {
+        _log.logE('Delete registration failed: $error');
+        final updatedDeleting = {...state.deletingIds}..remove(masterId);
+        emit(state.copyWith(
+          deletingIds: updatedDeleting,
+          isDeleting: false,
+          deleteSuccess: false,
+          deleteError: error.getErrorMessage,
+          status: BaseStateStatus.failed,
+        ));
+      },
+      (_) {
+        final updatedDeleting = {...state.deletingIds}..remove(masterId);
+        // Bỏ card khỏi state ngay để tránh Slidable rebuild lại với cùng key.
+        final remainingCards =
+            state.testCard.where((c) => c.id != masterId).toList();
+        emit(state.copyWith(
+          testCard: remainingCards,
+          deletingIds: updatedDeleting,
+          isDeleting: false,
+          deleteSuccess: true,
+          status: BaseStateStatus.success,
+        ));
+      },
+    );
   }
 
   // =================================================================

@@ -53,6 +53,14 @@ abstract class _$TestTableStateCWProxy {
 
   TestTableState qrLookupMessage(String? qrLookupMessage);
 
+  TestTableState deletingIds(Set<int> deletingIds);
+
+  TestTableState isDeleting(bool isDeleting);
+
+  TestTableState deleteSuccess(bool deleteSuccess);
+
+  TestTableState deleteError(String? deleteError);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `TestTableState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -83,6 +91,10 @@ abstract class _$TestTableStateCWProxy {
     bool? isLoadingTestMachines,
     TestTableItem? foundTestTable,
     String? qrLookupMessage,
+    Set<int>? deletingIds,
+    bool? isDeleting,
+    bool? deleteSuccess,
+    String? deleteError,
   });
 }
 
@@ -178,6 +190,21 @@ class _$TestTableStateCWProxyImpl implements _$TestTableStateCWProxy {
       this(qrLookupMessage: qrLookupMessage);
 
   @override
+  TestTableState deletingIds(Set<int> deletingIds) =>
+      this(deletingIds: deletingIds);
+
+  @override
+  TestTableState isDeleting(bool isDeleting) => this(isDeleting: isDeleting);
+
+  @override
+  TestTableState deleteSuccess(bool deleteSuccess) =>
+      this(deleteSuccess: deleteSuccess);
+
+  @override
+  TestTableState deleteError(String? deleteError) =>
+      this(deleteError: deleteError);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `TestTableState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -209,6 +236,10 @@ class _$TestTableStateCWProxyImpl implements _$TestTableStateCWProxy {
     Object? isLoadingTestMachines = const $CopyWithPlaceholder(),
     Object? foundTestTable = const $CopyWithPlaceholder(),
     Object? qrLookupMessage = const $CopyWithPlaceholder(),
+    Object? deletingIds = const $CopyWithPlaceholder(),
+    Object? isDeleting = const $CopyWithPlaceholder(),
+    Object? deleteSuccess = const $CopyWithPlaceholder(),
+    Object? deleteError = const $CopyWithPlaceholder(),
   }) {
     return TestTableState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -311,6 +342,25 @@ class _$TestTableStateCWProxyImpl implements _$TestTableStateCWProxy {
           ? _value.qrLookupMessage
           // ignore: cast_nullable_to_non_nullable
           : qrLookupMessage as String?,
+      deletingIds:
+          deletingIds == const $CopyWithPlaceholder() || deletingIds == null
+              ? _value.deletingIds
+              // ignore: cast_nullable_to_non_nullable
+              : deletingIds as Set<int>,
+      isDeleting:
+          isDeleting == const $CopyWithPlaceholder() || isDeleting == null
+              ? _value.isDeleting
+              // ignore: cast_nullable_to_non_nullable
+              : isDeleting as bool,
+      deleteSuccess:
+          deleteSuccess == const $CopyWithPlaceholder() || deleteSuccess == null
+              ? _value.deleteSuccess
+              // ignore: cast_nullable_to_non_nullable
+              : deleteSuccess as bool,
+      deleteError: deleteError == const $CopyWithPlaceholder()
+          ? _value.deleteError
+          // ignore: cast_nullable_to_non_nullable
+          : deleteError as String?,
     );
   }
 }

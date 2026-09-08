@@ -50,4 +50,9 @@ abstract class TestTableRepo {
   Future<Either<BaseError, List<TestMachineItem>>> getTestMachineByTable({
     required int testTableId,
   });
+
+  /// Xóa phiếu đăng ký bàn test theo [masterId].
+  Future<Either<BaseError, void>> deleteRegistration({
+    required int masterId,
+  });
 }

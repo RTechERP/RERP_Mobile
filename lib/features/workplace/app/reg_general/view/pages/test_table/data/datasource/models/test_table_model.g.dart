@@ -45,6 +45,7 @@ _$TestCardItemImpl _$$TestCardItemImplFromJson(Map<String, dynamic> json) =>
       eslBattery: (json['esl_battery'] as num?)?.toInt(),
       online: json['online'] as bool?,
       tableId: (json['tableID'] as num?)?.toInt(),
+      machineNames: json['MachineNames'] as String?,
       detailsJson: json['DetailsJson'] as String?,
     );
 
@@ -78,6 +79,7 @@ Map<String, dynamic> _$$TestCardItemImplToJson(_$TestCardItemImpl instance) =>
       'esl_battery': instance.eslBattery,
       'online': instance.online,
       'tableID': instance.tableId,
+      'MachineNames': instance.machineNames,
       'DetailsJson': instance.detailsJson,
     };
 

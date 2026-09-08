@@ -67,6 +67,20 @@ class TestTableState extends BaseBlocState {
   /// "Bàn đang được sử dụng"). UI scan đọc cái này để showMessage + điều hướng.
   final String? qrLookupMessage;
 
+  // ===== Delete (swipe-to-delete) =====
+  /// Id các phiếu đang được xóa — để UI khóa swipe card tương ứng
+  /// và disable Slidable.
+  final Set<int> deletingIds;
+
+  /// Đang xóa phiếu (chờ API) — UI show loading toàn màn nếu muốn.
+  final bool isDeleting;
+
+  /// Đã xóa phiếu thành công — UI snackbar + refresh list.
+  final bool deleteSuccess;
+
+  /// Lỗi xóa phiếu (showError ở list screen).
+  final String? deleteError;
+
   const TestTableState({
     required super.status,
     super.message,
@@ -91,6 +105,10 @@ class TestTableState extends BaseBlocState {
     this.isLoadingTestMachines = false,
     this.foundTestTable,
     this.qrLookupMessage,
+    this.deletingIds = const {},
+    this.isDeleting = false,
+    this.deleteSuccess = false,
+    this.deleteError,
   });
 
   factory TestTableState.init() => const TestTableState(
@@ -114,6 +132,10 @@ class TestTableState extends BaseBlocState {
         isLoadingTestMachines: false,
         foundTestTable: null,
         qrLookupMessage: null,
+        deletingIds: const {},
+        isDeleting: false,
+        deleteSuccess: false,
+        deleteError: null,
       );
 
   @override
@@ -141,6 +163,10 @@ class TestTableState extends BaseBlocState {
         isLoadingTestMachines,
         foundTestTable,
         qrLookupMessage,
+        deletingIds,
+        isDeleting,
+        deleteSuccess,
+        deleteError,
       ];
 }
 

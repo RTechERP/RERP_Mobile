@@ -164,4 +164,20 @@ class TestTableRepoImpl implements TestTableRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, void>> deleteRegistration({
+    required int masterId,
+  }) async {
+    try {
+      await _service.deleteRegistration(masterId: masterId);
+      return right(null);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } on BaseError catch (e) {
+      return left(e);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
 }

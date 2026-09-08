@@ -74,6 +74,8 @@ mixin _$TestCardItem {
   bool? get online => throw _privateConstructorUsedError;
   @JsonKey(name: 'tableID')
   int? get tableId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'MachineNames')
+  String? get machineNames => throw _privateConstructorUsedError;
   @JsonKey(name: 'DetailsJson')
   String? get detailsJson => throw _privateConstructorUsedError;
 
@@ -117,6 +119,7 @@ abstract class $TestCardItemCopyWith<$Res> {
       @JsonKey(name: 'esl_battery') int? eslBattery,
       @JsonKey(name: 'online') bool? online,
       @JsonKey(name: 'tableID') int? tableId,
+      @JsonKey(name: 'MachineNames') String? machineNames,
       @JsonKey(name: 'DetailsJson') String? detailsJson});
 }
 
@@ -160,6 +163,7 @@ class _$TestCardItemCopyWithImpl<$Res, $Val extends TestCardItem>
     Object? eslBattery = freezed,
     Object? online = freezed,
     Object? tableId = freezed,
+    Object? machineNames = freezed,
     Object? detailsJson = freezed,
   }) {
     return _then(_value.copyWith(
@@ -271,6 +275,10 @@ class _$TestCardItemCopyWithImpl<$Res, $Val extends TestCardItem>
           ? _value.tableId
           : tableId // ignore: cast_nullable_to_non_nullable
               as int?,
+      machineNames: freezed == machineNames
+          ? _value.machineNames
+          : machineNames // ignore: cast_nullable_to_non_nullable
+              as String?,
       detailsJson: freezed == detailsJson
           ? _value.detailsJson
           : detailsJson // ignore: cast_nullable_to_non_nullable
@@ -315,6 +323,7 @@ abstract class _$$TestCardItemImplCopyWith<$Res>
       @JsonKey(name: 'esl_battery') int? eslBattery,
       @JsonKey(name: 'online') bool? online,
       @JsonKey(name: 'tableID') int? tableId,
+      @JsonKey(name: 'MachineNames') String? machineNames,
       @JsonKey(name: 'DetailsJson') String? detailsJson});
 }
 
@@ -356,6 +365,7 @@ class __$$TestCardItemImplCopyWithImpl<$Res>
     Object? eslBattery = freezed,
     Object? online = freezed,
     Object? tableId = freezed,
+    Object? machineNames = freezed,
     Object? detailsJson = freezed,
   }) {
     return _then(_$TestCardItemImpl(
@@ -467,6 +477,10 @@ class __$$TestCardItemImplCopyWithImpl<$Res>
           ? _value.tableId
           : tableId // ignore: cast_nullable_to_non_nullable
               as int?,
+      machineNames: freezed == machineNames
+          ? _value.machineNames
+          : machineNames // ignore: cast_nullable_to_non_nullable
+              as String?,
       detailsJson: freezed == detailsJson
           ? _value.detailsJson
           : detailsJson // ignore: cast_nullable_to_non_nullable
@@ -506,6 +520,7 @@ class _$TestCardItemImpl implements _TestCardItem {
       @JsonKey(name: 'esl_battery') this.eslBattery,
       @JsonKey(name: 'online') this.online,
       @JsonKey(name: 'tableID') this.tableId,
+      @JsonKey(name: 'MachineNames') this.machineNames,
       @JsonKey(name: 'DetailsJson') this.detailsJson});
 
   factory _$TestCardItemImpl.fromJson(Map<String, dynamic> json) =>
@@ -593,12 +608,15 @@ class _$TestCardItemImpl implements _TestCardItem {
   @JsonKey(name: 'tableID')
   final int? tableId;
   @override
+  @JsonKey(name: 'MachineNames')
+  final String? machineNames;
+  @override
   @JsonKey(name: 'DetailsJson')
   final String? detailsJson;
 
   @override
   String toString() {
-    return 'TestCardItem(id: $id, registrationCode: $registrationCode, testTableId: $testTableId, testTableName: $testTableName, tableSide: $tableSide, registrationStartDate: $registrationStartDate, projectCode: $projectCode, registrationContent: $registrationContent, projectId: $projectId, detailId: $detailId, no: $no, type: $type, detailStartDate: $detailStartDate, detailEndDate: $detailEndDate, actualReturnDate: $actualReturnDate, ownerId: $ownerId, ownerFullName: $ownerFullName, ownerPhone: $ownerPhone, ownerCode: $ownerCode, approverId: $approverId, approverFullName: $approverFullName, status: $status, approveDate: $approveDate, approveNote: $approveNote, eslBattery: $eslBattery, online: $online, tableId: $tableId, detailsJson: $detailsJson)';
+    return 'TestCardItem(id: $id, registrationCode: $registrationCode, testTableId: $testTableId, testTableName: $testTableName, tableSide: $tableSide, registrationStartDate: $registrationStartDate, projectCode: $projectCode, registrationContent: $registrationContent, projectId: $projectId, detailId: $detailId, no: $no, type: $type, detailStartDate: $detailStartDate, detailEndDate: $detailEndDate, actualReturnDate: $actualReturnDate, ownerId: $ownerId, ownerFullName: $ownerFullName, ownerPhone: $ownerPhone, ownerCode: $ownerCode, approverId: $approverId, approverFullName: $approverFullName, status: $status, approveDate: $approveDate, approveNote: $approveNote, eslBattery: $eslBattery, online: $online, tableId: $tableId, machineNames: $machineNames, detailsJson: $detailsJson)';
   }
 
   @override
@@ -653,6 +671,8 @@ class _$TestCardItemImpl implements _TestCardItem {
                 other.eslBattery == eslBattery) &&
             (identical(other.online, online) || other.online == online) &&
             (identical(other.tableId, tableId) || other.tableId == tableId) &&
+            (identical(other.machineNames, machineNames) ||
+                other.machineNames == machineNames) &&
             (identical(other.detailsJson, detailsJson) ||
                 other.detailsJson == detailsJson));
   }
@@ -688,6 +708,7 @@ class _$TestCardItemImpl implements _TestCardItem {
         eslBattery,
         online,
         tableId,
+        machineNames,
         detailsJson
       ]);
 
@@ -735,6 +756,7 @@ abstract class _TestCardItem implements TestCardItem {
       @JsonKey(name: 'esl_battery') final int? eslBattery,
       @JsonKey(name: 'online') final bool? online,
       @JsonKey(name: 'tableID') final int? tableId,
+      @JsonKey(name: 'MachineNames') final String? machineNames,
       @JsonKey(name: 'DetailsJson')
       final String? detailsJson}) = _$TestCardItemImpl;
 
@@ -822,6 +844,9 @@ abstract class _TestCardItem implements TestCardItem {
   @override
   @JsonKey(name: 'tableID')
   int? get tableId;
+  @override
+  @JsonKey(name: 'MachineNames')
+  String? get machineNames;
   @override
   @JsonKey(name: 'DetailsJson')
   String? get detailsJson;

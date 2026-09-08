@@ -479,4 +479,9 @@ class ApiEndPoint {
   /// Lưu phiếu đăng ký bàn test (thêm mới / cập nhật).
   /// API: POST /ESLRegistration/save (form-data).
   static const String saveRegistration = '/ESLRegistration/save';
+
+  /// Xóa phiếu đăng ký bàn test.
+  /// API: POST /ESLRegistration/delete-master?masterID={masterID}.
+  /// Body: `{ "masterID": <int> }`.
+  static const String deleteRegistration = '/ESLRegistration/delete-master';
 }
