@@ -41,6 +41,30 @@ class _LunchAddScreenState
     ),
   ];
 
+  /// Danh sách lựa chọn số lượng cơm phụ cho FormChoiceGroup.
+  static const List<FormChoiceOption<int>> _extraRiceOptions = [
+    FormChoiceOption(
+      value: 0,
+      label: 'Không chọn',
+      selectedColor: AppColors.primaryERP,
+    ),
+    FormChoiceOption(
+      value: 1,
+      label: '1 cốc',
+      selectedColor: AppColors.primaryERP,
+    ),
+    FormChoiceOption(
+      value: 2,
+      label: '2 cốc',
+      selectedColor: AppColors.primaryERP,
+    ),
+    FormChoiceOption(
+      value: 3,
+      label: '3 cốc',
+      selectedColor: AppColors.primaryERP,
+    ),
+  ];
+
   final _formKey = GlobalKey<FormBuilderState>();
   final _locationFieldKey = GlobalKey<FormBuilderFieldState>();
 
@@ -195,6 +219,15 @@ class _LunchAddScreenState
                                       return null;
                                     },
                                   ),
+                                  const SizedBox(height: 12),
+                                  FormChoiceGroup<int>(
+                                    name: 'extra_rice_quantity',
+                                    label: 'Số lượng cơm phụ (3.000đ/cốc)',
+                                    icon: Icons.restaurant_outlined,
+                                    initialValue: 0,
+                                    columns: 2,
+                                    options: _extraRiceOptions,
+                                  ),
                                   const SizedBox(height: 8),
                                   FormChoiceGroup<String>(
                                     fieldKey: _locationFieldKey,
@@ -248,12 +281,14 @@ class _LunchAddScreenState
                                 final locationRaw = values['location'] as String?;
                                 final dateOrder = values['lunch_add_date'] as DateTime?;
                                 final quantity = int.tryParse('${values['regwork_lunch_add_quantity'] ?? ''}'.trim());
+                                final extraRiceQuantity = values['extra_rice_quantity'] as int? ?? 0;
 
                                 bloc.add(
                                   LunchEvent.submit(
                                     quantity: quantity!,
                                     location: _mapLocation(locationRaw),
                                     note: '${values['regwork_lunch_add_note'] ?? ''}',
+                                    extraRiceQuantity: extraRiceQuantity,
                                     dateOrder: dateOrder!,
                                   ),
                                 );

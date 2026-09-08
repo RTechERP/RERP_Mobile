@@ -72,6 +72,7 @@ class _LunchScreenState
         location: 1,
         note: '',
         dateOrder: today,
+        extraRiceQuantity: 0,
       ),
     );
   }
