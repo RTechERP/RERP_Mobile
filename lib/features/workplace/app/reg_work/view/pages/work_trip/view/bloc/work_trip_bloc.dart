@@ -828,26 +828,28 @@ DateTime _normalizeToMinute(DateTime dt) =>
     ));
 
     final now = DateTime.now();
-    var rangeStart = now;
-    var rangeEnd = now;
     final defaultBounds = _calendarMonthBounds(now);
-    rangeStart = defaultBounds.$1;
-    rangeEnd = defaultBounds.$2;
+    var rangeStart = defaultBounds.$1;
+    var rangeEnd = defaultBounds.$2;
 
+    // Giữ nguyên khoảng ngày user đã chọn trước đó, fallback về tháng hiện tại.
     if (state.dateStart != null && state.dateEnd != null) {
-      final a = state.dateStart!;
-      final b = state.dateEnd!;
-      final lo = a.isAfter(b) ? b : a;
-      final bounds = _calendarMonthBounds(lo);
-      rangeStart = bounds.$1;
-      rangeEnd = bounds.$2;
+      rangeStart = state.dateStart!;
+      rangeEnd = state.dateEnd!;
     }
 
+    final lo = rangeStart.isAfter(rangeEnd) ? rangeEnd : rangeStart;
+    final hi = rangeStart.isAfter(rangeEnd) ? rangeStart : rangeEnd;
+
     final payload = _listPayload(
-      month: rangeStart.month,
-      year: rangeStart.year,
+      month: lo.month,
+      year: lo.year,
       approvalFilter: filter,
     );
+    // Override DateStart/DateEnd bằng đúng khoảng user chọn (đầu ngày → cuối ngày, UTC).
+    payload['DateStart'] = lo.toUtc().toIso8601String();
+    payload['DateEnd'] =
+        DateTime.utc(hi.year, hi.month, hi.day, 23, 59, 59).toIso8601String();
 
     _log.logI('WorkTripBloc changeApprovalFilter payload: $payload');
 
@@ -860,8 +862,6 @@ DateTime _normalizeToMinute(DateTime dt) =>
       (r) async => emit(state.copyWith(
         status: BaseStateStatus.success,
         workTrips: r,
-        dateStart: rangeStart,
-        dateEnd: rangeEnd,
       )),
     );
   }

@@ -24,6 +24,14 @@ class WorkTripScreenPage extends StatefulWidget {
   State<WorkTripScreenPage> createState() => _WorkTripScreenPageState();
 }
 
+class _StatusOption {
+  final int value;
+  final String label;
+  final IconData icon;
+
+  const _StatusOption(this.value, this.label, this.icon);
+}
+
 class _WorkTripScreenPageState
     extends BaseState<WorkTripScreenPage, WorkTripEvent, WorkTripState,
         WorkTripBloc> {
@@ -32,6 +40,82 @@ class _WorkTripScreenPageState
   (DateTime start, DateTime end) _calendarMonthBounds(DateTime d) {
     final y = d.year, m = d.month;
     return (DateTime(y, m, 1), DateTime(y, m + 1, 0));
+  }
+
+  Future<void> _openStatusFilter() async {
+    await showModalBottomSheet<void>(
+      context: context,
+      builder: (sheetCtx) {
+        final entries = <_StatusOption>[
+          _StatusOption(-1, 'Tất cả', Icons.all_inclusive),
+          _StatusOption(0, 'Chưa duyệt', Icons.pending_outlined),
+          _StatusOption(1, 'Đã duyệt', Icons.check_circle_outline),
+        ];
+
+        return SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  width: 40,
+                  height: 4,
+                  margin: const EdgeInsets.symmetric(vertical: 8),
+                  decoration: BoxDecoration(
+                    color: AppColors.gray.withValues(alpha: 0.3),
+                    borderRadius: BorderRadius.circular(2),
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 8),
+                  child: Text(
+                    'Lọc theo trạng thái duyệt',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.heading,
+                    ),
+                  ),
+                ),
+                ...entries.map((opt) {
+                  final selected = opt.value == bloc.state.approvalFilter;
+                  return ListTile(
+                    leading: Icon(
+                      opt.icon,
+                      color: selected
+                          ? AppColors.primaryERP
+                          : AppColors.heading,
+                    ),
+                    title: Text(
+                      opt.label,
+                      style: TextStyle(
+                        fontWeight:
+                            selected ? FontWeight.w700 : FontWeight.w500,
+                        color: selected
+                            ? AppColors.primaryERP
+                            : AppColors.heading,
+                      ),
+                    ),
+                    trailing: selected
+                        ? const Icon(
+                            Icons.check,
+                            color: AppColors.primaryERP,
+                          )
+                        : null,
+                    onTap: () {
+                      bloc.add(
+                          WorkTripEvent.changeApprovalFilter(filter: opt.value));
+                      Navigator.pop(sheetCtx);
+                    },
+                  );
+                }),
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -265,37 +349,10 @@ class _WorkTripScreenPageState
                 style: AppStyles.headingTitle2,
               ),
               actions: [
-                PopupMenuButton<int>(
+                IconButton(
                   tooltip: 'Lọc trạng thái duyệt',
-                  initialValue: state.approvalFilter,
-                  offset: const Offset(0, 48),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
                   icon: const Icon(Icons.filter_list_outlined),
-                  onSelected: (value) {
-                    bloc.add(WorkTripEvent.changeApprovalFilter(filter: value));
-                  },
-                  itemBuilder: (context) => [
-                    _buildFilterItem(
-                      value: -1,
-                      label: 'Tất cả',
-                      icon: Icons.all_inclusive,
-                      selected: state.approvalFilter == -1,
-                    ),
-                    _buildFilterItem(
-                      value: 0,
-                      label: 'Chưa duyệt',
-                      icon: Icons.pending_outlined,
-                      selected: state.approvalFilter == 0,
-                    ),
-                    _buildFilterItem(
-                      value: 1,
-                      label: 'Đã duyệt',
-                      icon: Icons.check_circle_outline,
-                      selected: state.approvalFilter == 1,
-                    ),
-                  ],
+                  onPressed: _openStatusFilter,
                 ),
                 IconButton(
                   icon: const Icon(Icons.calendar_month_outlined),
@@ -349,37 +406,4 @@ class _WorkTripScreenPageState
       ),
     );
   }
-}
-
-PopupMenuItem<int> _buildFilterItem({
-  required int value,
-  required String label,
-  required IconData icon,
-  required bool selected,
-}) {
-  return PopupMenuItem<int>(
-    value: value,
-    child: Row(
-      children: [
-        Icon(
-          icon,
-          size: 18,
-          color: selected ? AppColors.primaryERP : AppColors.gray,
-        ),
-        const SizedBox(width: 10),
-        Expanded(
-          child: Text(
-            label,
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
-              color: selected ? AppColors.enableText : AppColors.gray,
-            ),
-          ),
-        ),
-        if (selected)
-          const Icon(Icons.check, size: 18, color: AppColors.primaryERP),
-      ],
-    ),
-  );
 }
