@@ -44,6 +44,9 @@ class WorkTripState extends BaseBlocState {
   /// Nếu departmentId của user nằm trong danh sách này → hiển thị form Sale.
   final List<int> saleDepartmentIds;
 
+  /// Filter trạng thái duyệt: -1 tất cả, 0 chưa duyệt, 1 đã duyệt.
+  final int approvalFilter;
+
   const WorkTripState({
     required super.status,
     super.message,
@@ -71,6 +74,7 @@ class WorkTripState extends BaseBlocState {
     this.approveId,
     this.currentEmployee,
     this.saleDepartmentIds = const [],
+    this.approvalFilter = -1,
   });
 
   factory WorkTripState.init() => const WorkTripState(
@@ -99,6 +103,7 @@ class WorkTripState extends BaseBlocState {
         approveId: null,
         currentEmployee: null,
         saleDepartmentIds: const [],
+        approvalFilter: -1,
       );
 
   @override
@@ -129,5 +134,6 @@ class WorkTripState extends BaseBlocState {
         approveId,
         currentEmployee,
         saleDepartmentIds,
+        approvalFilter,
       ];
 }

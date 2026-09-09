@@ -265,6 +265,38 @@ class _WorkTripScreenPageState
                 style: AppStyles.headingTitle2,
               ),
               actions: [
+                PopupMenuButton<int>(
+                  tooltip: 'Lọc trạng thái duyệt',
+                  initialValue: state.approvalFilter,
+                  offset: const Offset(0, 48),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  icon: const Icon(Icons.filter_list_outlined),
+                  onSelected: (value) {
+                    bloc.add(WorkTripEvent.changeApprovalFilter(filter: value));
+                  },
+                  itemBuilder: (context) => [
+                    _buildFilterItem(
+                      value: -1,
+                      label: 'Tất cả',
+                      icon: Icons.all_inclusive,
+                      selected: state.approvalFilter == -1,
+                    ),
+                    _buildFilterItem(
+                      value: 0,
+                      label: 'Chưa duyệt',
+                      icon: Icons.pending_outlined,
+                      selected: state.approvalFilter == 0,
+                    ),
+                    _buildFilterItem(
+                      value: 1,
+                      label: 'Đã duyệt',
+                      icon: Icons.check_circle_outline,
+                      selected: state.approvalFilter == 1,
+                    ),
+                  ],
+                ),
                 IconButton(
                   icon: const Icon(Icons.calendar_month_outlined),
                   onPressed: () {
@@ -317,4 +349,37 @@ class _WorkTripScreenPageState
       ),
     );
   }
+}
+
+PopupMenuItem<int> _buildFilterItem({
+  required int value,
+  required String label,
+  required IconData icon,
+  required bool selected,
+}) {
+  return PopupMenuItem<int>(
+    value: value,
+    child: Row(
+      children: [
+        Icon(
+          icon,
+          size: 18,
+          color: selected ? AppColors.primaryERP : AppColors.gray,
+        ),
+        const SizedBox(width: 10),
+        Expanded(
+          child: Text(
+            label,
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
+              color: selected ? AppColors.enableText : AppColors.gray,
+            ),
+          ),
+        ),
+        if (selected)
+          const Icon(Icons.check, size: 18, color: AppColors.primaryERP),
+      ],
+    ),
+  );
 }

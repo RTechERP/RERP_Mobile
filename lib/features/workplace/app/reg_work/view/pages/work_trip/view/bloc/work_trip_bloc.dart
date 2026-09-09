@@ -49,6 +49,8 @@ class WorkTripBloc extends BaseBloc<WorkTripEvent, WorkTripState> {
         clearCopyData: () async =>
             emit(state.copyWith(copyData: null, isFetchingCopy: false)),
         loadBookingVehicleList: () => _onLoadBookingVehicleList(emit),
+        changeApprovalFilter: (filter) =>
+            _onChangeApprovalFilter(emit, filter: filter),
       );
     });
   }
@@ -56,15 +58,16 @@ class WorkTripBloc extends BaseBloc<WorkTripEvent, WorkTripState> {
   Map<String, dynamic> _listPayload({
     required int month,
     required int year,
+    required int approvalFilter,
   }) {
     final dateStart = DateTime(year, month, 1).toUtc();
     final dateEnd = DateTime.utc(year, month + 1, 0, 23, 59, 59);
     return <String, dynamic>{
       'DateStart': dateStart.toIso8601String(),
       'DateEnd': dateEnd.toIso8601String(),
-      'KeyWord': '',
+      'Keyword': '',
       'EmployeeID': 0,
-      'IsApprove': -1,
+      'IsApproved': approvalFilter,
       'NotCheckIn': -1,
       'Type': null,
       'VehicleID': null,
@@ -109,6 +112,7 @@ DateTime _normalizeToMinute(DateTime dt) =>
         final payload = _listPayload(
           month: rangeStart.month,
           year: rangeStart.year,
+          approvalFilter: state.approvalFilter,
         );
 
         _log.logI('WorkTripBloc _onInit payload: $payload');
@@ -319,12 +323,15 @@ DateTime _normalizeToMinute(DateTime dt) =>
     required DateTime dateEnd,
   }) async {
     final lo = dateStart.isAfter(dateEnd) ? dateEnd : dateStart;
-    final (rangeStart, rangeEnd) = _calendarMonthBounds(lo);
+    final hi = dateStart.isAfter(dateEnd) ? dateStart : dateEnd;
+
+    // Hiển thị header theo tháng đầu tiên trong range (giữ UX cũ).
+    final (rangeStart, _) = _calendarMonthBounds(lo);
 
     emit(state.copyWith(
       status: BaseStateStatus.loading,
       dateStart: rangeStart,
-      dateEnd: rangeEnd,
+      dateEnd: hi,
     ));
 
     final userRes = await _authRepo.getCurrentUser();
@@ -337,7 +344,15 @@ DateTime _normalizeToMinute(DateTime dt) =>
         final payload = _listPayload(
           month: rangeStart.month,
           year: rangeStart.year,
+          approvalFilter: state.approvalFilter,
         );
+        // Override DateStart/DateEnd bằng đúng khoảng user chọn (đầu ngày → cuối ngày, UTC).
+        payload['DateStart'] = lo.toUtc().toIso8601String();
+        payload['DateEnd'] = DateTime.utc(hi.year, hi.month, hi.day, 23, 59, 59)
+            .toIso8601String();
+
+        _log.logI('WorkTripBloc changeDateRange payload: $payload');
+
         final res = await _workTripRepo.getWorkTrip(payload: payload);
         await res.fold(
           (l) async => emit(state.copyWith(
@@ -348,7 +363,7 @@ DateTime _normalizeToMinute(DateTime dt) =>
             status: BaseStateStatus.success,
             workTrips: r,
             dateStart: rangeStart,
-            dateEnd: rangeEnd,
+            dateEnd: hi,
           )),
         );
       },
@@ -799,6 +814,56 @@ DateTime _normalizeToMinute(DateTime dt) =>
         message: 'Không tải được chi tiết đơn',
       ));
     }
+  }
+
+  Future<void> _onChangeApprovalFilter(
+    Emitter<WorkTripState> emit, {
+    required int filter,
+  }) async {
+    if (filter == state.approvalFilter) return;
+
+    emit(state.copyWith(
+      status: BaseStateStatus.loading,
+      approvalFilter: filter,
+    ));
+
+    final now = DateTime.now();
+    var rangeStart = now;
+    var rangeEnd = now;
+    final defaultBounds = _calendarMonthBounds(now);
+    rangeStart = defaultBounds.$1;
+    rangeEnd = defaultBounds.$2;
+
+    if (state.dateStart != null && state.dateEnd != null) {
+      final a = state.dateStart!;
+      final b = state.dateEnd!;
+      final lo = a.isAfter(b) ? b : a;
+      final bounds = _calendarMonthBounds(lo);
+      rangeStart = bounds.$1;
+      rangeEnd = bounds.$2;
+    }
+
+    final payload = _listPayload(
+      month: rangeStart.month,
+      year: rangeStart.year,
+      approvalFilter: filter,
+    );
+
+    _log.logI('WorkTripBloc changeApprovalFilter payload: $payload');
+
+    final res = await _workTripRepo.getWorkTrip(payload: payload);
+    await res.fold(
+      (l) async => emit(state.copyWith(
+        status: BaseStateStatus.failed,
+        message: l.getErrorMessage,
+      )),
+      (r) async => emit(state.copyWith(
+        status: BaseStateStatus.success,
+        workTrips: r,
+        dateStart: rangeStart,
+        dateEnd: rangeEnd,
+      )),
+    );
   }
 
   Future<void> _onLoadBookingVehicleList(Emitter<WorkTripState> emit) async {

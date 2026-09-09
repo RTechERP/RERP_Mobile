@@ -60,6 +60,8 @@ abstract class _$WorkTripStateCWProxy {
 
   WorkTripState saleDepartmentIds(List<int> saleDepartmentIds);
 
+  WorkTripState approvalFilter(int approvalFilter);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WorkTripState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -93,6 +95,7 @@ abstract class _$WorkTripStateCWProxy {
     FillApproverItem? approveId,
     User? currentEmployee,
     List<int>? saleDepartmentIds,
+    int? approvalFilter,
   });
 }
 
@@ -199,6 +202,10 @@ class _$WorkTripStateCWProxyImpl implements _$WorkTripStateCWProxy {
       this(saleDepartmentIds: saleDepartmentIds);
 
   @override
+  WorkTripState approvalFilter(int approvalFilter) =>
+      this(approvalFilter: approvalFilter);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `WorkTripState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -233,6 +240,7 @@ class _$WorkTripStateCWProxyImpl implements _$WorkTripStateCWProxy {
     Object? approveId = const $CopyWithPlaceholder(),
     Object? currentEmployee = const $CopyWithPlaceholder(),
     Object? saleDepartmentIds = const $CopyWithPlaceholder(),
+    Object? approvalFilter = const $CopyWithPlaceholder(),
   }) {
     return WorkTripState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -353,6 +361,11 @@ class _$WorkTripStateCWProxyImpl implements _$WorkTripStateCWProxy {
           ? _value.saleDepartmentIds
           // ignore: cast_nullable_to_non_nullable
           : saleDepartmentIds as List<int>,
+      approvalFilter: approvalFilter == const $CopyWithPlaceholder() ||
+              approvalFilter == null
+          ? _value.approvalFilter
+          // ignore: cast_nullable_to_non_nullable
+          : approvalFilter as int,
     );
   }
 }
