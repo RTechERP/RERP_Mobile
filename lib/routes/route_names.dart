@@ -203,6 +203,7 @@ class RouteNames {
   // Test Table Registration
   static const String testTable = '/reg_general/test_table';
   static const String testTableAdd = '/reg_general/test_table/add';
+  static const String testTableEdit = '/reg_general/test_table/edit';
   static const String testTableQrScan = '/reg_general/test_table/qr-scan';
 
   // Signature Registration

@@ -81,6 +81,13 @@ class TestTableState extends BaseBlocState {
   /// Lỗi xóa phiếu (showError ở list screen).
   final String? deleteError;
 
+  // ===== Edit =====
+  /// Chi tiết phiếu card từ API get-details (dùng cho màn edit).
+  final List<TestCardDetail> testCardDetail;
+
+  /// Đang tải chi tiết phiếu card.
+  final bool isLoadingDetail;
+
   const TestTableState({
     required super.status,
     super.message,
@@ -109,6 +116,8 @@ class TestTableState extends BaseBlocState {
     this.isDeleting = false,
     this.deleteSuccess = false,
     this.deleteError,
+    this.testCardDetail = const [],
+    this.isLoadingDetail = false,
   });
 
   factory TestTableState.init() => const TestTableState(
@@ -136,6 +145,8 @@ class TestTableState extends BaseBlocState {
         isDeleting: false,
         deleteSuccess: false,
         deleteError: null,
+        testCardDetail: [],
+        isLoadingDetail: false,
       );
 
   @override
@@ -167,6 +178,8 @@ class TestTableState extends BaseBlocState {
         isDeleting,
         deleteSuccess,
         deleteError,
+        testCardDetail,
+        isLoadingDetail,
       ];
 }
 
@@ -183,6 +196,14 @@ class TestTableFormData {
   final DateTime? startDate;
   final String? registrationContent;
 
+  // ===== Edit-specific fields =====
+  final int? editRegistrationId;
+  final int? editDetailId;
+  final int? editNo;
+  final int? editType;
+  final int? editStatus;
+  final bool editIsDelete;
+
   const TestTableFormData({
     this.project,
     this.testTableId,
@@ -191,6 +212,12 @@ class TestTableFormData {
     this.approverId,
     this.startDate,
     this.registrationContent,
+    this.editRegistrationId,
+    this.editDetailId,
+    this.editNo,
+    this.editType,
+    this.editStatus,
+    this.editIsDelete = false,
   });
 
   /// Ngày kết thúc = ngày bắt đầu + 7 ngày. Trả về null nếu chưa có startDate.
@@ -212,6 +239,12 @@ class TestTableFormData {
     bool clearApproverId = false,
     bool clearStartDate = false,
     bool clearRegistrationContent = false,
+    int? editRegistrationId,
+    int? editDetailId,
+    int? editNo,
+    int? editType,
+    int? editStatus,
+    bool editIsDelete = false,
   }) {
     return TestTableFormData(
       project: clearProject ? null : (project ?? this.project),
@@ -226,6 +259,12 @@ class TestTableFormData {
       registrationContent: clearRegistrationContent
           ? null
           : (registrationContent ?? this.registrationContent),
+      editRegistrationId: editRegistrationId ?? this.editRegistrationId,
+      editDetailId: editDetailId ?? this.editDetailId,
+      editNo: editNo ?? this.editNo,
+      editType: editType ?? this.editType,
+      editStatus: editStatus ?? this.editStatus,
+      editIsDelete: editIsDelete,
     );
   }
 
@@ -235,4 +274,7 @@ class TestTableFormData {
       ownerId != null &&
       approverId != null &&
       startDate != null;
+
+  /// Kiểm tra xem form đang ở chế độ edit hay add.
+  bool get isEditMode => editRegistrationId != null;
 }

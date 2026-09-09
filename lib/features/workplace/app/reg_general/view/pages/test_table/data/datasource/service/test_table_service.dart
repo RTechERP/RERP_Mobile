@@ -12,6 +12,21 @@ import '../models/test_table_model.dart';
 class TestTableService extends DioBaseApiService {
   TestTableService(super.dio);
 
+  /// Lấy chi tiết phiếu card theo registrationId.
+  /// API: GET /ESLRegistration/get-details?registrationId=X.
+  Future<BaseData<List<TestCardDetail>>> getTestCardDetails({
+    required int registrationId,
+  }) async {
+    return get<BaseData<List<TestCardDetail>>>(
+      ApiEndPoint.getTestCardDetails,
+      query: {'registrationId': registrationId},
+      parser: (json) => _parseList(
+        json,
+        TestCardDetail.fromJson,
+      ),
+    );
+  }
+
   /// Lấy danh sách phiếu đăng ký bàn test, lọc theo [keyword], [employeeId],
   /// [status], [startDate], [endDate].
   /// - [employeeId] = id nhân viên của currentUser — chỉ lấy phiếu do nhân viên

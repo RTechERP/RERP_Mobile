@@ -82,4 +82,14 @@ class TestTableEvent with _$TestTableEvent {
     required String barcode,
     required int tableSide,
   }) = _FindTestTableByBarcode;
+
+  // ===== Edit =====
+  /// Khởi tạo state cho màn edit: load chi tiết phiếu card từ API.
+  const factory TestTableEvent.initEdit({
+    required int registrationId,
+    TestCardItem? cardItem,
+  }) = _InitEdit;
+
+  /// Submit cập nhật phiếu đăng ký (từ màn edit).
+  const factory TestTableEvent.editSubmit() = _EditSubmit;
 }

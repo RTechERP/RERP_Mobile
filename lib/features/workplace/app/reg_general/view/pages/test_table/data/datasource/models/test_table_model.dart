@@ -294,3 +294,35 @@ class TestMachineItem with _$TestMachineItem {
   factory TestMachineItem.fromJson(Map<String, dynamic> json) =>
       _$TestMachineItemFromJson(json);
 }
+
+/// Chi tiết phiếu card từ '/ESLRegistration/get-details?registrationId=X'.
+@freezed
+class TestCardDetail with _$TestCardDetail {
+  const factory TestCardDetail({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'RegistrationID') int? registrationId,
+    @JsonKey(name: 'No') int? no,
+    @JsonKey(name: 'Type') int? type,
+    @JsonKey(name: 'StartDate') DateTime? startDate,
+    @JsonKey(name: 'EndDate') DateTime? endDate,
+    @JsonKey(name: 'ActualReturnDate') DateTime? actualReturnDate,
+    @JsonKey(name: 'OwnerID') int? ownerId,
+    @JsonKey(name: 'OwnerName') String? ownerName,
+    @JsonKey(name: 'ApproverID') int? approverId,
+    @JsonKey(name: 'ApproverName') String? approverName,
+    @JsonKey(name: 'Status') int? status,
+    @JsonKey(name: 'ApproveDate') DateTime? approveDate,
+    @JsonKey(name: 'ApproveNote') String? approveNote,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    // Additional fields for edit payload
+    @JsonKey(name: 'IsDelete') bool? isDelete,
+    @JsonKey(name: 'MachineIDs') List<int>? machineIds,
+    @JsonKey(name: 'ProjectCode') String? projectCode,
+    @JsonKey(name: 'ProjectID') int? projectId,
+    @JsonKey(name: 'RegistrationContent') String? registrationContent,
+    @JsonKey(name: 'TestTableID') int? testTableId,
+  }) = _TestCardDetail;
+
+  factory TestCardDetail.fromJson(Map<String, dynamic> json) =>
+      _$TestCardDetailFromJson(json);
+}

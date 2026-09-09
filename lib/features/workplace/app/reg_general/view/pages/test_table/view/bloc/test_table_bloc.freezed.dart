@@ -47,6 +47,9 @@ mixin _$TestTableEvent {
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
+    required TResult Function(int registrationId, TestCardItem? cardItem)
+        initEdit,
+    required TResult Function() editSubmit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -78,6 +81,8 @@ mixin _$TestTableEvent {
     TResult? Function(int masterId)? deleteCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult? Function()? editSubmit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -109,6 +114,8 @@ mixin _$TestTableEvent {
     TResult Function(int masterId)? deleteCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult Function()? editSubmit,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -129,6 +136,8 @@ mixin _$TestTableEvent {
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
+    required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_EditSubmit value) editSubmit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -147,6 +156,8 @@ mixin _$TestTableEvent {
     TResult? Function(_DeleteCard value)? deleteCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_EditSubmit value)? editSubmit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -165,6 +176,8 @@ mixin _$TestTableEvent {
     TResult Function(_DeleteCard value)? deleteCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_EditSubmit value)? editSubmit,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -260,6 +273,9 @@ class _$InitImpl with DiagnosticableTreeMixin implements _Init {
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
+    required TResult Function(int registrationId, TestCardItem? cardItem)
+        initEdit,
+    required TResult Function() editSubmit,
   }) {
     return init();
   }
@@ -294,6 +310,8 @@ class _$InitImpl with DiagnosticableTreeMixin implements _Init {
     TResult? Function(int masterId)? deleteCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult? Function()? editSubmit,
   }) {
     return init?.call();
   }
@@ -328,6 +346,8 @@ class _$InitImpl with DiagnosticableTreeMixin implements _Init {
     TResult Function(int masterId)? deleteCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult Function()? editSubmit,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -354,6 +374,8 @@ class _$InitImpl with DiagnosticableTreeMixin implements _Init {
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
+    required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_EditSubmit value) editSubmit,
   }) {
     return init(this);
   }
@@ -375,6 +397,8 @@ class _$InitImpl with DiagnosticableTreeMixin implements _Init {
     TResult? Function(_DeleteCard value)? deleteCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_EditSubmit value)? editSubmit,
   }) {
     return init?.call(this);
   }
@@ -396,6 +420,8 @@ class _$InitImpl with DiagnosticableTreeMixin implements _Init {
     TResult Function(_DeleteCard value)? deleteCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_EditSubmit value)? editSubmit,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -482,6 +508,9 @@ class _$RefreshImpl with DiagnosticableTreeMixin implements _Refresh {
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
+    required TResult Function(int registrationId, TestCardItem? cardItem)
+        initEdit,
+    required TResult Function() editSubmit,
   }) {
     return refresh();
   }
@@ -516,6 +545,8 @@ class _$RefreshImpl with DiagnosticableTreeMixin implements _Refresh {
     TResult? Function(int masterId)? deleteCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult? Function()? editSubmit,
   }) {
     return refresh?.call();
   }
@@ -550,6 +581,8 @@ class _$RefreshImpl with DiagnosticableTreeMixin implements _Refresh {
     TResult Function(int masterId)? deleteCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult Function()? editSubmit,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -576,6 +609,8 @@ class _$RefreshImpl with DiagnosticableTreeMixin implements _Refresh {
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
+    required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_EditSubmit value) editSubmit,
   }) {
     return refresh(this);
   }
@@ -597,6 +632,8 @@ class _$RefreshImpl with DiagnosticableTreeMixin implements _Refresh {
     TResult? Function(_DeleteCard value)? deleteCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_EditSubmit value)? editSubmit,
   }) {
     return refresh?.call(this);
   }
@@ -618,6 +655,8 @@ class _$RefreshImpl with DiagnosticableTreeMixin implements _Refresh {
     TResult Function(_DeleteCard value)? deleteCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_EditSubmit value)? editSubmit,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -734,6 +773,9 @@ class _$ChangeKeywordImpl
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
+    required TResult Function(int registrationId, TestCardItem? cardItem)
+        initEdit,
+    required TResult Function() editSubmit,
   }) {
     return changeKeyword(keyword);
   }
@@ -768,6 +810,8 @@ class _$ChangeKeywordImpl
     TResult? Function(int masterId)? deleteCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult? Function()? editSubmit,
   }) {
     return changeKeyword?.call(keyword);
   }
@@ -802,6 +846,8 @@ class _$ChangeKeywordImpl
     TResult Function(int masterId)? deleteCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult Function()? editSubmit,
     required TResult orElse(),
   }) {
     if (changeKeyword != null) {
@@ -828,6 +874,8 @@ class _$ChangeKeywordImpl
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
+    required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_EditSubmit value) editSubmit,
   }) {
     return changeKeyword(this);
   }
@@ -849,6 +897,8 @@ class _$ChangeKeywordImpl
     TResult? Function(_DeleteCard value)? deleteCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_EditSubmit value)? editSubmit,
   }) {
     return changeKeyword?.call(this);
   }
@@ -870,6 +920,8 @@ class _$ChangeKeywordImpl
     TResult Function(_DeleteCard value)? deleteCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_EditSubmit value)? editSubmit,
     required TResult orElse(),
   }) {
     if (changeKeyword != null) {
@@ -990,6 +1042,9 @@ class _$ChangeStatusImpl with DiagnosticableTreeMixin implements _ChangeStatus {
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
+    required TResult Function(int registrationId, TestCardItem? cardItem)
+        initEdit,
+    required TResult Function() editSubmit,
   }) {
     return changeStatus(status);
   }
@@ -1024,6 +1079,8 @@ class _$ChangeStatusImpl with DiagnosticableTreeMixin implements _ChangeStatus {
     TResult? Function(int masterId)? deleteCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult? Function()? editSubmit,
   }) {
     return changeStatus?.call(status);
   }
@@ -1058,6 +1115,8 @@ class _$ChangeStatusImpl with DiagnosticableTreeMixin implements _ChangeStatus {
     TResult Function(int masterId)? deleteCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult Function()? editSubmit,
     required TResult orElse(),
   }) {
     if (changeStatus != null) {
@@ -1084,6 +1143,8 @@ class _$ChangeStatusImpl with DiagnosticableTreeMixin implements _ChangeStatus {
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
+    required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_EditSubmit value) editSubmit,
   }) {
     return changeStatus(this);
   }
@@ -1105,6 +1166,8 @@ class _$ChangeStatusImpl with DiagnosticableTreeMixin implements _ChangeStatus {
     TResult? Function(_DeleteCard value)? deleteCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_EditSubmit value)? editSubmit,
   }) {
     return changeStatus?.call(this);
   }
@@ -1126,6 +1189,8 @@ class _$ChangeStatusImpl with DiagnosticableTreeMixin implements _ChangeStatus {
     TResult Function(_DeleteCard value)? deleteCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_EditSubmit value)? editSubmit,
     required TResult orElse(),
   }) {
     if (changeStatus != null) {
@@ -1258,6 +1323,9 @@ class _$ChangeDateRangeImpl
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
+    required TResult Function(int registrationId, TestCardItem? cardItem)
+        initEdit,
+    required TResult Function() editSubmit,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -1292,6 +1360,8 @@ class _$ChangeDateRangeImpl
     TResult? Function(int masterId)? deleteCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult? Function()? editSubmit,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -1326,6 +1396,8 @@ class _$ChangeDateRangeImpl
     TResult Function(int masterId)? deleteCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult Function()? editSubmit,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -1352,6 +1424,8 @@ class _$ChangeDateRangeImpl
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
+    required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_EditSubmit value) editSubmit,
   }) {
     return changeDateRange(this);
   }
@@ -1373,6 +1447,8 @@ class _$ChangeDateRangeImpl
     TResult? Function(_DeleteCard value)? deleteCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_EditSubmit value)? editSubmit,
   }) {
     return changeDateRange?.call(this);
   }
@@ -1394,6 +1470,8 @@ class _$ChangeDateRangeImpl
     TResult Function(_DeleteCard value)? deleteCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_EditSubmit value)? editSubmit,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -1517,6 +1595,9 @@ class _$InitAddImpl with DiagnosticableTreeMixin implements _InitAdd {
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
+    required TResult Function(int registrationId, TestCardItem? cardItem)
+        initEdit,
+    required TResult Function() editSubmit,
   }) {
     return initAdd(prefillTestTableId);
   }
@@ -1551,6 +1632,8 @@ class _$InitAddImpl with DiagnosticableTreeMixin implements _InitAdd {
     TResult? Function(int masterId)? deleteCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult? Function()? editSubmit,
   }) {
     return initAdd?.call(prefillTestTableId);
   }
@@ -1585,6 +1668,8 @@ class _$InitAddImpl with DiagnosticableTreeMixin implements _InitAdd {
     TResult Function(int masterId)? deleteCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult Function()? editSubmit,
     required TResult orElse(),
   }) {
     if (initAdd != null) {
@@ -1611,6 +1696,8 @@ class _$InitAddImpl with DiagnosticableTreeMixin implements _InitAdd {
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
+    required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_EditSubmit value) editSubmit,
   }) {
     return initAdd(this);
   }
@@ -1632,6 +1719,8 @@ class _$InitAddImpl with DiagnosticableTreeMixin implements _InitAdd {
     TResult? Function(_DeleteCard value)? deleteCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_EditSubmit value)? editSubmit,
   }) {
     return initAdd?.call(this);
   }
@@ -1653,6 +1742,8 @@ class _$InitAddImpl with DiagnosticableTreeMixin implements _InitAdd {
     TResult Function(_DeleteCard value)? deleteCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_EditSubmit value)? editSubmit,
     required TResult orElse(),
   }) {
     if (initAdd != null) {
@@ -1950,6 +2041,9 @@ class _$UpdateFormImpl with DiagnosticableTreeMixin implements _UpdateForm {
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
+    required TResult Function(int registrationId, TestCardItem? cardItem)
+        initEdit,
+    required TResult Function() editSubmit,
   }) {
     return updateForm(
         project,
@@ -1996,6 +2090,8 @@ class _$UpdateFormImpl with DiagnosticableTreeMixin implements _UpdateForm {
     TResult? Function(int masterId)? deleteCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult? Function()? editSubmit,
   }) {
     return updateForm?.call(
         project,
@@ -2042,6 +2138,8 @@ class _$UpdateFormImpl with DiagnosticableTreeMixin implements _UpdateForm {
     TResult Function(int masterId)? deleteCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult Function()? editSubmit,
     required TResult orElse(),
   }) {
     if (updateForm != null) {
@@ -2080,6 +2178,8 @@ class _$UpdateFormImpl with DiagnosticableTreeMixin implements _UpdateForm {
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
+    required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_EditSubmit value) editSubmit,
   }) {
     return updateForm(this);
   }
@@ -2101,6 +2201,8 @@ class _$UpdateFormImpl with DiagnosticableTreeMixin implements _UpdateForm {
     TResult? Function(_DeleteCard value)? deleteCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_EditSubmit value)? editSubmit,
   }) {
     return updateForm?.call(this);
   }
@@ -2122,6 +2224,8 @@ class _$UpdateFormImpl with DiagnosticableTreeMixin implements _UpdateForm {
     TResult Function(_DeleteCard value)? deleteCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_EditSubmit value)? editSubmit,
     required TResult orElse(),
   }) {
     if (updateForm != null) {
@@ -2238,6 +2342,9 @@ class _$CheckConflictImpl
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
+    required TResult Function(int registrationId, TestCardItem? cardItem)
+        initEdit,
+    required TResult Function() editSubmit,
   }) {
     return checkConflict();
   }
@@ -2272,6 +2379,8 @@ class _$CheckConflictImpl
     TResult? Function(int masterId)? deleteCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult? Function()? editSubmit,
   }) {
     return checkConflict?.call();
   }
@@ -2306,6 +2415,8 @@ class _$CheckConflictImpl
     TResult Function(int masterId)? deleteCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult Function()? editSubmit,
     required TResult orElse(),
   }) {
     if (checkConflict != null) {
@@ -2332,6 +2443,8 @@ class _$CheckConflictImpl
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
+    required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_EditSubmit value) editSubmit,
   }) {
     return checkConflict(this);
   }
@@ -2353,6 +2466,8 @@ class _$CheckConflictImpl
     TResult? Function(_DeleteCard value)? deleteCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_EditSubmit value)? editSubmit,
   }) {
     return checkConflict?.call(this);
   }
@@ -2374,6 +2489,8 @@ class _$CheckConflictImpl
     TResult Function(_DeleteCard value)? deleteCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_EditSubmit value)? editSubmit,
     required TResult orElse(),
   }) {
     if (checkConflict != null) {
@@ -2463,6 +2580,9 @@ class _$SubmitRegistrationImpl
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
+    required TResult Function(int registrationId, TestCardItem? cardItem)
+        initEdit,
+    required TResult Function() editSubmit,
   }) {
     return submitRegistration();
   }
@@ -2497,6 +2617,8 @@ class _$SubmitRegistrationImpl
     TResult? Function(int masterId)? deleteCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult? Function()? editSubmit,
   }) {
     return submitRegistration?.call();
   }
@@ -2531,6 +2653,8 @@ class _$SubmitRegistrationImpl
     TResult Function(int masterId)? deleteCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult Function()? editSubmit,
     required TResult orElse(),
   }) {
     if (submitRegistration != null) {
@@ -2557,6 +2681,8 @@ class _$SubmitRegistrationImpl
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
+    required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_EditSubmit value) editSubmit,
   }) {
     return submitRegistration(this);
   }
@@ -2578,6 +2704,8 @@ class _$SubmitRegistrationImpl
     TResult? Function(_DeleteCard value)? deleteCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_EditSubmit value)? editSubmit,
   }) {
     return submitRegistration?.call(this);
   }
@@ -2599,6 +2727,8 @@ class _$SubmitRegistrationImpl
     TResult Function(_DeleteCard value)? deleteCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_EditSubmit value)? editSubmit,
     required TResult orElse(),
   }) {
     if (submitRegistration != null) {
@@ -2688,6 +2818,9 @@ class _$ResetSubmitFlagsImpl
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
+    required TResult Function(int registrationId, TestCardItem? cardItem)
+        initEdit,
+    required TResult Function() editSubmit,
   }) {
     return resetSubmitFlags();
   }
@@ -2722,6 +2855,8 @@ class _$ResetSubmitFlagsImpl
     TResult? Function(int masterId)? deleteCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult? Function()? editSubmit,
   }) {
     return resetSubmitFlags?.call();
   }
@@ -2756,6 +2891,8 @@ class _$ResetSubmitFlagsImpl
     TResult Function(int masterId)? deleteCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult Function()? editSubmit,
     required TResult orElse(),
   }) {
     if (resetSubmitFlags != null) {
@@ -2782,6 +2919,8 @@ class _$ResetSubmitFlagsImpl
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
+    required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_EditSubmit value) editSubmit,
   }) {
     return resetSubmitFlags(this);
   }
@@ -2803,6 +2942,8 @@ class _$ResetSubmitFlagsImpl
     TResult? Function(_DeleteCard value)? deleteCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_EditSubmit value)? editSubmit,
   }) {
     return resetSubmitFlags?.call(this);
   }
@@ -2824,6 +2965,8 @@ class _$ResetSubmitFlagsImpl
     TResult Function(_DeleteCard value)? deleteCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_EditSubmit value)? editSubmit,
     required TResult orElse(),
   }) {
     if (resetSubmitFlags != null) {
@@ -2914,6 +3057,9 @@ class _$ClearDeleteFeedbackImpl
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
+    required TResult Function(int registrationId, TestCardItem? cardItem)
+        initEdit,
+    required TResult Function() editSubmit,
   }) {
     return clearDeleteFeedback();
   }
@@ -2948,6 +3094,8 @@ class _$ClearDeleteFeedbackImpl
     TResult? Function(int masterId)? deleteCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult? Function()? editSubmit,
   }) {
     return clearDeleteFeedback?.call();
   }
@@ -2982,6 +3130,8 @@ class _$ClearDeleteFeedbackImpl
     TResult Function(int masterId)? deleteCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult Function()? editSubmit,
     required TResult orElse(),
   }) {
     if (clearDeleteFeedback != null) {
@@ -3008,6 +3158,8 @@ class _$ClearDeleteFeedbackImpl
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
+    required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_EditSubmit value) editSubmit,
   }) {
     return clearDeleteFeedback(this);
   }
@@ -3029,6 +3181,8 @@ class _$ClearDeleteFeedbackImpl
     TResult? Function(_DeleteCard value)? deleteCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_EditSubmit value)? editSubmit,
   }) {
     return clearDeleteFeedback?.call(this);
   }
@@ -3050,6 +3204,8 @@ class _$ClearDeleteFeedbackImpl
     TResult Function(_DeleteCard value)? deleteCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_EditSubmit value)? editSubmit,
     required TResult orElse(),
   }) {
     if (clearDeleteFeedback != null) {
@@ -3165,6 +3321,9 @@ class _$DeleteCardImpl with DiagnosticableTreeMixin implements _DeleteCard {
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
+    required TResult Function(int registrationId, TestCardItem? cardItem)
+        initEdit,
+    required TResult Function() editSubmit,
   }) {
     return deleteCard(masterId);
   }
@@ -3199,6 +3358,8 @@ class _$DeleteCardImpl with DiagnosticableTreeMixin implements _DeleteCard {
     TResult? Function(int masterId)? deleteCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult? Function()? editSubmit,
   }) {
     return deleteCard?.call(masterId);
   }
@@ -3233,6 +3394,8 @@ class _$DeleteCardImpl with DiagnosticableTreeMixin implements _DeleteCard {
     TResult Function(int masterId)? deleteCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult Function()? editSubmit,
     required TResult orElse(),
   }) {
     if (deleteCard != null) {
@@ -3259,6 +3422,8 @@ class _$DeleteCardImpl with DiagnosticableTreeMixin implements _DeleteCard {
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
+    required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_EditSubmit value) editSubmit,
   }) {
     return deleteCard(this);
   }
@@ -3280,6 +3445,8 @@ class _$DeleteCardImpl with DiagnosticableTreeMixin implements _DeleteCard {
     TResult? Function(_DeleteCard value)? deleteCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_EditSubmit value)? editSubmit,
   }) {
     return deleteCard?.call(this);
   }
@@ -3301,6 +3468,8 @@ class _$DeleteCardImpl with DiagnosticableTreeMixin implements _DeleteCard {
     TResult Function(_DeleteCard value)? deleteCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_EditSubmit value)? editSubmit,
     required TResult orElse(),
   }) {
     if (deleteCard != null) {
@@ -3424,6 +3593,9 @@ class _$LoadTestMachinesImpl
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
+    required TResult Function(int registrationId, TestCardItem? cardItem)
+        initEdit,
+    required TResult Function() editSubmit,
   }) {
     return loadTestMachines(testTableId);
   }
@@ -3458,6 +3630,8 @@ class _$LoadTestMachinesImpl
     TResult? Function(int masterId)? deleteCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult? Function()? editSubmit,
   }) {
     return loadTestMachines?.call(testTableId);
   }
@@ -3492,6 +3666,8 @@ class _$LoadTestMachinesImpl
     TResult Function(int masterId)? deleteCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult Function()? editSubmit,
     required TResult orElse(),
   }) {
     if (loadTestMachines != null) {
@@ -3518,6 +3694,8 @@ class _$LoadTestMachinesImpl
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
+    required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_EditSubmit value) editSubmit,
   }) {
     return loadTestMachines(this);
   }
@@ -3539,6 +3717,8 @@ class _$LoadTestMachinesImpl
     TResult? Function(_DeleteCard value)? deleteCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_EditSubmit value)? editSubmit,
   }) {
     return loadTestMachines?.call(this);
   }
@@ -3560,6 +3740,8 @@ class _$LoadTestMachinesImpl
     TResult Function(_DeleteCard value)? deleteCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_EditSubmit value)? editSubmit,
     required TResult orElse(),
   }) {
     if (loadTestMachines != null) {
@@ -3697,6 +3879,9 @@ class _$FindTestTableByBarcodeImpl
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
+    required TResult Function(int registrationId, TestCardItem? cardItem)
+        initEdit,
+    required TResult Function() editSubmit,
   }) {
     return findTestTableByBarcode(barcode, tableSide);
   }
@@ -3731,6 +3916,8 @@ class _$FindTestTableByBarcodeImpl
     TResult? Function(int masterId)? deleteCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult? Function()? editSubmit,
   }) {
     return findTestTableByBarcode?.call(barcode, tableSide);
   }
@@ -3765,6 +3952,8 @@ class _$FindTestTableByBarcodeImpl
     TResult Function(int masterId)? deleteCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult Function()? editSubmit,
     required TResult orElse(),
   }) {
     if (findTestTableByBarcode != null) {
@@ -3791,6 +3980,8 @@ class _$FindTestTableByBarcodeImpl
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
+    required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_EditSubmit value) editSubmit,
   }) {
     return findTestTableByBarcode(this);
   }
@@ -3812,6 +4003,8 @@ class _$FindTestTableByBarcodeImpl
     TResult? Function(_DeleteCard value)? deleteCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_EditSubmit value)? editSubmit,
   }) {
     return findTestTableByBarcode?.call(this);
   }
@@ -3833,6 +4026,8 @@ class _$FindTestTableByBarcodeImpl
     TResult Function(_DeleteCard value)? deleteCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_EditSubmit value)? editSubmit,
     required TResult orElse(),
   }) {
     if (findTestTableByBarcode != null) {
@@ -3852,4 +4047,535 @@ abstract class _FindTestTableByBarcode implements TestTableEvent {
   @JsonKey(ignore: true)
   _$$FindTestTableByBarcodeImplCopyWith<_$FindTestTableByBarcodeImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$InitEditImplCopyWith<$Res> {
+  factory _$$InitEditImplCopyWith(
+          _$InitEditImpl value, $Res Function(_$InitEditImpl) then) =
+      __$$InitEditImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int registrationId, TestCardItem? cardItem});
+
+  $TestCardItemCopyWith<$Res>? get cardItem;
+}
+
+/// @nodoc
+class __$$InitEditImplCopyWithImpl<$Res>
+    extends _$TestTableEventCopyWithImpl<$Res, _$InitEditImpl>
+    implements _$$InitEditImplCopyWith<$Res> {
+  __$$InitEditImplCopyWithImpl(
+      _$InitEditImpl _value, $Res Function(_$InitEditImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? registrationId = null,
+    Object? cardItem = freezed,
+  }) {
+    return _then(_$InitEditImpl(
+      registrationId: null == registrationId
+          ? _value.registrationId
+          : registrationId // ignore: cast_nullable_to_non_nullable
+              as int,
+      cardItem: freezed == cardItem
+          ? _value.cardItem
+          : cardItem // ignore: cast_nullable_to_non_nullable
+              as TestCardItem?,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TestCardItemCopyWith<$Res>? get cardItem {
+    if (_value.cardItem == null) {
+      return null;
+    }
+
+    return $TestCardItemCopyWith<$Res>(_value.cardItem!, (value) {
+      return _then(_value.copyWith(cardItem: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$InitEditImpl with DiagnosticableTreeMixin implements _InitEdit {
+  const _$InitEditImpl({required this.registrationId, this.cardItem});
+
+  @override
+  final int registrationId;
+  @override
+  final TestCardItem? cardItem;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'TestTableEvent.initEdit(registrationId: $registrationId, cardItem: $cardItem)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'TestTableEvent.initEdit'))
+      ..add(DiagnosticsProperty('registrationId', registrationId))
+      ..add(DiagnosticsProperty('cardItem', cardItem));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InitEditImpl &&
+            (identical(other.registrationId, registrationId) ||
+                other.registrationId == registrationId) &&
+            (identical(other.cardItem, cardItem) ||
+                other.cardItem == cardItem));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, registrationId, cardItem);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitEditImplCopyWith<_$InitEditImpl> get copyWith =>
+      __$$InitEditImplCopyWithImpl<_$InitEditImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() refresh,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function(int status) changeStatus,
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd)
+        changeDateRange,
+    required TResult Function(int? prefillTestTableId) initAdd,
+    required TResult Function(
+            ProjectItem? project,
+            int? testTableId,
+            List<int>? selectedMachineIds,
+            int? ownerId,
+            int? approverId,
+            DateTime? startDate,
+            bool clearProject,
+            bool clearTestTableId,
+            bool clearSelectedMachineIds,
+            bool clearOwnerId,
+            bool clearApproverId,
+            bool clearStartDate)
+        updateForm,
+    required TResult Function() checkConflict,
+    required TResult Function() submitRegistration,
+    required TResult Function() resetSubmitFlags,
+    required TResult Function() clearDeleteFeedback,
+    required TResult Function(int masterId) deleteCard,
+    required TResult Function(int testTableId) loadTestMachines,
+    required TResult Function(String barcode, int tableSide)
+        findTestTableByBarcode,
+    required TResult Function(int registrationId, TestCardItem? cardItem)
+        initEdit,
+    required TResult Function() editSubmit,
+  }) {
+    return initEdit(registrationId, cardItem);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? refresh,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(int status)? changeStatus,
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult? Function(int? prefillTestTableId)? initAdd,
+    TResult? Function(
+            ProjectItem? project,
+            int? testTableId,
+            List<int>? selectedMachineIds,
+            int? ownerId,
+            int? approverId,
+            DateTime? startDate,
+            bool clearProject,
+            bool clearTestTableId,
+            bool clearSelectedMachineIds,
+            bool clearOwnerId,
+            bool clearApproverId,
+            bool clearStartDate)?
+        updateForm,
+    TResult? Function()? checkConflict,
+    TResult? Function()? submitRegistration,
+    TResult? Function()? resetSubmitFlags,
+    TResult? Function()? clearDeleteFeedback,
+    TResult? Function(int masterId)? deleteCard,
+    TResult? Function(int testTableId)? loadTestMachines,
+    TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult? Function()? editSubmit,
+  }) {
+    return initEdit?.call(registrationId, cardItem);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? refresh,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function(int status)? changeStatus,
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult Function(int? prefillTestTableId)? initAdd,
+    TResult Function(
+            ProjectItem? project,
+            int? testTableId,
+            List<int>? selectedMachineIds,
+            int? ownerId,
+            int? approverId,
+            DateTime? startDate,
+            bool clearProject,
+            bool clearTestTableId,
+            bool clearSelectedMachineIds,
+            bool clearOwnerId,
+            bool clearApproverId,
+            bool clearStartDate)?
+        updateForm,
+    TResult Function()? checkConflict,
+    TResult Function()? submitRegistration,
+    TResult Function()? resetSubmitFlags,
+    TResult Function()? clearDeleteFeedback,
+    TResult Function(int masterId)? deleteCard,
+    TResult Function(int testTableId)? loadTestMachines,
+    TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult Function()? editSubmit,
+    required TResult orElse(),
+  }) {
+    if (initEdit != null) {
+      return initEdit(registrationId, cardItem);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_ChangeStatus value) changeStatus,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_UpdateForm value) updateForm,
+    required TResult Function(_CheckConflict value) checkConflict,
+    required TResult Function(_SubmitRegistration value) submitRegistration,
+    required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
+    required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_DeleteCard value) deleteCard,
+    required TResult Function(_LoadTestMachines value) loadTestMachines,
+    required TResult Function(_FindTestTableByBarcode value)
+        findTestTableByBarcode,
+    required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_EditSubmit value) editSubmit,
+  }) {
+    return initEdit(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_ChangeStatus value)? changeStatus,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_UpdateForm value)? updateForm,
+    TResult? Function(_CheckConflict value)? checkConflict,
+    TResult? Function(_SubmitRegistration value)? submitRegistration,
+    TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_DeleteCard value)? deleteCard,
+    TResult? Function(_LoadTestMachines value)? loadTestMachines,
+    TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_EditSubmit value)? editSubmit,
+  }) {
+    return initEdit?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_ChangeStatus value)? changeStatus,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_UpdateForm value)? updateForm,
+    TResult Function(_CheckConflict value)? checkConflict,
+    TResult Function(_SubmitRegistration value)? submitRegistration,
+    TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_DeleteCard value)? deleteCard,
+    TResult Function(_LoadTestMachines value)? loadTestMachines,
+    TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_EditSubmit value)? editSubmit,
+    required TResult orElse(),
+  }) {
+    if (initEdit != null) {
+      return initEdit(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InitEdit implements TestTableEvent {
+  const factory _InitEdit(
+      {required final int registrationId,
+      final TestCardItem? cardItem}) = _$InitEditImpl;
+
+  int get registrationId;
+  TestCardItem? get cardItem;
+  @JsonKey(ignore: true)
+  _$$InitEditImplCopyWith<_$InitEditImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$EditSubmitImplCopyWith<$Res> {
+  factory _$$EditSubmitImplCopyWith(
+          _$EditSubmitImpl value, $Res Function(_$EditSubmitImpl) then) =
+      __$$EditSubmitImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$EditSubmitImplCopyWithImpl<$Res>
+    extends _$TestTableEventCopyWithImpl<$Res, _$EditSubmitImpl>
+    implements _$$EditSubmitImplCopyWith<$Res> {
+  __$$EditSubmitImplCopyWithImpl(
+      _$EditSubmitImpl _value, $Res Function(_$EditSubmitImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$EditSubmitImpl with DiagnosticableTreeMixin implements _EditSubmit {
+  const _$EditSubmitImpl();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'TestTableEvent.editSubmit()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'TestTableEvent.editSubmit'));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$EditSubmitImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() refresh,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function(int status) changeStatus,
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd)
+        changeDateRange,
+    required TResult Function(int? prefillTestTableId) initAdd,
+    required TResult Function(
+            ProjectItem? project,
+            int? testTableId,
+            List<int>? selectedMachineIds,
+            int? ownerId,
+            int? approverId,
+            DateTime? startDate,
+            bool clearProject,
+            bool clearTestTableId,
+            bool clearSelectedMachineIds,
+            bool clearOwnerId,
+            bool clearApproverId,
+            bool clearStartDate)
+        updateForm,
+    required TResult Function() checkConflict,
+    required TResult Function() submitRegistration,
+    required TResult Function() resetSubmitFlags,
+    required TResult Function() clearDeleteFeedback,
+    required TResult Function(int masterId) deleteCard,
+    required TResult Function(int testTableId) loadTestMachines,
+    required TResult Function(String barcode, int tableSide)
+        findTestTableByBarcode,
+    required TResult Function(int registrationId, TestCardItem? cardItem)
+        initEdit,
+    required TResult Function() editSubmit,
+  }) {
+    return editSubmit();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? refresh,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(int status)? changeStatus,
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult? Function(int? prefillTestTableId)? initAdd,
+    TResult? Function(
+            ProjectItem? project,
+            int? testTableId,
+            List<int>? selectedMachineIds,
+            int? ownerId,
+            int? approverId,
+            DateTime? startDate,
+            bool clearProject,
+            bool clearTestTableId,
+            bool clearSelectedMachineIds,
+            bool clearOwnerId,
+            bool clearApproverId,
+            bool clearStartDate)?
+        updateForm,
+    TResult? Function()? checkConflict,
+    TResult? Function()? submitRegistration,
+    TResult? Function()? resetSubmitFlags,
+    TResult? Function()? clearDeleteFeedback,
+    TResult? Function(int masterId)? deleteCard,
+    TResult? Function(int testTableId)? loadTestMachines,
+    TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult? Function()? editSubmit,
+  }) {
+    return editSubmit?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? refresh,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function(int status)? changeStatus,
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult Function(int? prefillTestTableId)? initAdd,
+    TResult Function(
+            ProjectItem? project,
+            int? testTableId,
+            List<int>? selectedMachineIds,
+            int? ownerId,
+            int? approverId,
+            DateTime? startDate,
+            bool clearProject,
+            bool clearTestTableId,
+            bool clearSelectedMachineIds,
+            bool clearOwnerId,
+            bool clearApproverId,
+            bool clearStartDate)?
+        updateForm,
+    TResult Function()? checkConflict,
+    TResult Function()? submitRegistration,
+    TResult Function()? resetSubmitFlags,
+    TResult Function()? clearDeleteFeedback,
+    TResult Function(int masterId)? deleteCard,
+    TResult Function(int testTableId)? loadTestMachines,
+    TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult Function()? editSubmit,
+    required TResult orElse(),
+  }) {
+    if (editSubmit != null) {
+      return editSubmit();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_ChangeStatus value) changeStatus,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_UpdateForm value) updateForm,
+    required TResult Function(_CheckConflict value) checkConflict,
+    required TResult Function(_SubmitRegistration value) submitRegistration,
+    required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
+    required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_DeleteCard value) deleteCard,
+    required TResult Function(_LoadTestMachines value) loadTestMachines,
+    required TResult Function(_FindTestTableByBarcode value)
+        findTestTableByBarcode,
+    required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_EditSubmit value) editSubmit,
+  }) {
+    return editSubmit(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_ChangeStatus value)? changeStatus,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_UpdateForm value)? updateForm,
+    TResult? Function(_CheckConflict value)? checkConflict,
+    TResult? Function(_SubmitRegistration value)? submitRegistration,
+    TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_DeleteCard value)? deleteCard,
+    TResult? Function(_LoadTestMachines value)? loadTestMachines,
+    TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_EditSubmit value)? editSubmit,
+  }) {
+    return editSubmit?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_ChangeStatus value)? changeStatus,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_UpdateForm value)? updateForm,
+    TResult Function(_CheckConflict value)? checkConflict,
+    TResult Function(_SubmitRegistration value)? submitRegistration,
+    TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_DeleteCard value)? deleteCard,
+    TResult Function(_LoadTestMachines value)? loadTestMachines,
+    TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_EditSubmit value)? editSubmit,
+    required TResult orElse(),
+  }) {
+    if (editSubmit != null) {
+      return editSubmit(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _EditSubmit implements TestTableEvent {
+  const factory _EditSubmit() = _$EditSubmitImpl;
 }

@@ -453,6 +453,10 @@ class ApiEndPoint {
   static const String getAddressStockByCustomerId =
       '/AddressStock/get-by-customerID';
 
+  /// Lấy chi tiết phiếu card theo registrationId.
+  /// API: GET /ESLRegistration/get-details?registrationId=X.
+  static const String getTestCardDetails = '/ESLRegistration/get-details';
+
   static const String getTestTable = '/ESLRegistration/get-all-registration';
 
   /// Bàn test ESL: GET /ESLTestTable/getall.

@@ -4,7 +4,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../../../../common/app_theme/index.dart';
@@ -38,6 +37,7 @@ class TestTableCard extends StatelessWidget {
     super.key,
     required this.item,
     this.onDelete,
+    this.onEdit,
   });
 
   final TestCardItem item;
@@ -46,6 +46,11 @@ class TestTableCard extends StatelessWidget {
   /// Truyền `masterId` để caller biết xóa phiếu nào.
   /// Khi null → không cho phép xóa (ẩn action pane).
   final void Function(int masterId)? onDelete;
+
+  /// Callback khi user bấm sửa (chuyển sang màn edit).
+  /// Truyền `masterId` để caller biết sửa phiếu nào.
+  /// Khi null → không cho phép sửa (ẩn action pane).
+  final void Function(int masterId)? onEdit;
 
   @override
   Widget build(BuildContext context) {
@@ -103,29 +108,12 @@ class TestTableCard extends StatelessWidget {
       ),
     );
 
-    // Không có id hoặc không cho phép xóa → chỉ render card thường.
-    if (masterId == null || onDelete == null) return card;
+    // Nếu không có id thì chỉ render card thường.
+    if (masterId == null) return card;
 
-    return Slidable(
-      key: ValueKey('test_card_$masterId'),
-      groupTag: 'test_table_slidable',
-      endActionPane: ActionPane(
-        motion: const DrawerMotion(),
-        extentRatio: 0.28,
-        children: [
-          SlidableAction(
-            onPressed: (actionContext) async {
-              Slidable.of(actionContext)?.close();
-              if (!actionContext.mounted) return;
-              onDelete!(masterId);
-            },
-            backgroundColor: AppColors.alert,
-            foregroundColor: Colors.white,
-            icon: Icons.delete_outline,
-            label: 'Xóa',
-          ),
-        ],
-      ),
+    // Tap vào card → navigate đến trang edit.
+    return GestureDetector(
+      onTap: onEdit != null ? () => onEdit!(masterId) : null,
       child: card,
     );
   }

@@ -572,3 +572,66 @@ Map<String, dynamic> _$$TestMachineItemImplToJson(
       'MachineCode': instance.machineCode,
       'IP': instance.ip,
     };
+
+_$TestCardDetailImpl _$$TestCardDetailImplFromJson(Map<String, dynamic> json) =>
+    _$TestCardDetailImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      registrationId: (json['RegistrationID'] as num?)?.toInt(),
+      no: (json['No'] as num?)?.toInt(),
+      type: (json['Type'] as num?)?.toInt(),
+      startDate: json['StartDate'] == null
+          ? null
+          : DateTime.parse(json['StartDate'] as String),
+      endDate: json['EndDate'] == null
+          ? null
+          : DateTime.parse(json['EndDate'] as String),
+      actualReturnDate: json['ActualReturnDate'] == null
+          ? null
+          : DateTime.parse(json['ActualReturnDate'] as String),
+      ownerId: (json['OwnerID'] as num?)?.toInt(),
+      ownerName: json['OwnerName'] as String?,
+      approverId: (json['ApproverID'] as num?)?.toInt(),
+      approverName: json['ApproverName'] as String?,
+      status: (json['Status'] as num?)?.toInt(),
+      approveDate: json['ApproveDate'] == null
+          ? null
+          : DateTime.parse(json['ApproveDate'] as String),
+      approveNote: json['ApproveNote'] as String?,
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+      isDelete: json['IsDelete'] as bool?,
+      machineIds: (json['MachineIDs'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
+          .toList(),
+      projectCode: json['ProjectCode'] as String?,
+      projectId: (json['ProjectID'] as num?)?.toInt(),
+      registrationContent: json['RegistrationContent'] as String?,
+      testTableId: (json['TestTableID'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$TestCardDetailImplToJson(
+        _$TestCardDetailImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'RegistrationID': instance.registrationId,
+      'No': instance.no,
+      'Type': instance.type,
+      'StartDate': instance.startDate?.toIso8601String(),
+      'EndDate': instance.endDate?.toIso8601String(),
+      'ActualReturnDate': instance.actualReturnDate?.toIso8601String(),
+      'OwnerID': instance.ownerId,
+      'OwnerName': instance.ownerName,
+      'ApproverID': instance.approverId,
+      'ApproverName': instance.approverName,
+      'Status': instance.status,
+      'ApproveDate': instance.approveDate?.toIso8601String(),
+      'ApproveNote': instance.approveNote,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'IsDelete': instance.isDelete,
+      'MachineIDs': instance.machineIds,
+      'ProjectCode': instance.projectCode,
+      'ProjectID': instance.projectId,
+      'RegistrationContent': instance.registrationContent,
+      'TestTableID': instance.testTableId,
+    };

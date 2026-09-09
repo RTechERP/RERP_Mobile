@@ -226,7 +226,7 @@ class AppItemRegistry {
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_general',
       route: RouteNames.testTable,
-      imageUrl: AppImages.reg_general_stamp,
+      imageUrl: AppImages.test_table,
     ),
 
     AppItemModel(

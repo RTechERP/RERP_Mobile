@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -99,6 +100,11 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
           // ===== Delete (swipe-to-delete) =====
           deleteCard: (masterId) => _onDeleteCard(emit, masterId: masterId),
           clearDeleteFeedback: () => _onClearDeleteFeedback(emit),
+
+          // ===== Edit =====
+          initEdit: (registrationId, cardItem) =>
+              _onInitEdit(emit, registrationId: registrationId, cardItem: cardItem),
+          editSubmit: () => _onEditSubmit(emit),
         );
       },
       transformer: (events, mapper) => events.asyncExpand(mapper),
@@ -557,11 +563,11 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
       // Bước 2: pass → save registration.
       // Lưu ý: API yêu cầu `MachineIDs` là List<int>, không phải chuỗi CSV.
       final payload = <String, dynamic>{
-        'ID': 0,
-        'No': 1,
-        'Type': 1,
-        'Status': 0,
-        'IsDelete': false,
+        'ID': form.editRegistrationId ?? 0,
+        'No': form.editNo ?? 1,
+        'Type': form.editType ?? 1,
+        'Status': form.editStatus ?? 0,
+        'IsDelete': form.editIsDelete,
         'ProjectID': form.project!.id,
         'ProjectCode': form.project!.projectCode,
         'TestTableID': form.testTableId,
@@ -634,6 +640,258 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
       deleteError: null,
       isDeleting: false,
     ));
+  }
+
+  // =================================================================
+  // ============== Edit (màn edit) ================================
+  // =================================================================
+
+  /// Tải chi tiết phiếu card từ API và populate form data.
+  Future<void> _onInitEdit(
+    Emitter<TestTableState> emit, {
+    required int registrationId,
+    TestCardItem? cardItem,
+  }) async {
+    emit(state.copyWith(
+      isLoadingDetail: true,
+      status: BaseStateStatus.loading,
+      message: null,
+      testCardDetail: const [],
+    ));
+
+    // 1. Đảm bảo đã có lookup data.
+    await _ensureLookupData(emit);
+
+    // 2. Gọi API lấy chi tiết phiếu card.
+    final res = await _repo.getTestCardDetails(registrationId: registrationId);
+
+    await res.fold(
+      (error) async {
+        _log.logE('Get test card detail failed: $error');
+        emit(state.copyWith(
+          isLoadingDetail: false,
+          status: BaseStateStatus.failed,
+          message: error.getErrorMessage,
+        ));
+      },
+      (details) async {
+        if (details.isEmpty) {
+          emit(state.copyWith(
+            isLoadingDetail: false,
+            status: BaseStateStatus.failed,
+            message: 'Không tìm thấy chi tiết phiếu',
+          ));
+          return;
+        }
+
+        // Lấy detail đầu tiên (thường chỉ có 1 item).
+        final detail = details.first;
+
+        // Ưu tiên lấy từ cardItem (list), fallback sang detail API.
+        final projectId = detail.projectId ?? cardItem?.projectId;
+        final projectCode = detail.projectCode ?? cardItem?.projectCode;
+        final registrationContent = detail.registrationContent ?? cardItem?.registrationContent;
+        final testTableId = detail.testTableId ?? cardItem?.testTableId;
+        final ownerId = detail.ownerId ?? cardItem?.ownerId;
+        final approverId = detail.approverId ?? cardItem?.approverId;
+
+        // Tìm project từ cache lookup.
+        final project = state.project.firstWhere(
+          (p) => p.id == projectId,
+          orElse: () => ProjectItem(
+            id: projectId,
+            projectCode: projectCode,
+            projectName: registrationContent,
+          ),
+        );
+
+        // Parse ngày.
+        DateTime? startDate;
+        if (detail.startDate != null) {
+          startDate = DateTime(
+            detail.startDate!.year,
+            detail.startDate!.month,
+            detail.startDate!.day,
+          );
+        } else if (cardItem?.registrationStartDate != null) {
+          startDate = DateTime(
+            cardItem!.registrationStartDate!.year,
+            cardItem.registrationStartDate!.month,
+            cardItem.registrationStartDate!.day,
+          );
+        }
+
+        // Build form data từ detail.
+        final formData = TestTableFormData(
+          project: project,
+          testTableId: testTableId,
+          selectedMachineIds: detail.machineIds ?? const [],
+          ownerId: ownerId,
+          approverId: approverId,
+          startDate: startDate,
+          registrationContent: registrationContent,
+          // Edit-specific fields
+          editRegistrationId: registrationId,
+          editDetailId: detail.id,
+          editNo: detail.no,
+          editType: detail.type,
+          editStatus: detail.status,
+          editIsDelete: detail.isDelete ?? false,
+        );
+
+        // Nếu có testTableId, load máy test.
+        if (testTableId != null) {
+          add(TestTableEvent.loadTestMachines(testTableId: testTableId));
+        }
+
+        emit(state.copyWith(
+          isLoadingDetail: false,
+          status: BaseStateStatus.success,
+          testCardDetail: details,
+          formData: formData,
+          message: null,
+        ));
+      },
+    );
+  }
+
+  // =================================================================
+  // ============== Edit Submit (cập nhật phiếu) =====================
+  // =================================================================
+
+  /// Submit cập nhật phiếu đăng ký từ màn edit.
+  /// Pattern giống LunchBloc._onEditSubmit và _onSubmitRegistration (add).
+  Future<void> _onEditSubmit(Emitter<TestTableState> emit) async {
+    if (_isSavingRegistration) return;
+    _isSavingRegistration = true;
+
+    final form = state.formData;
+    if (!form.isReady) {
+      _isSavingRegistration = false;
+      emit(state.copyWith(
+        status: BaseStateStatus.failed,
+        message: 'Vui lòng nhập đầy đủ thông tin trước khi lưu.',
+      ));
+      return;
+    }
+
+    try {
+      emit(state.copyWith(
+        isSubmitting: true,
+        status: BaseStateStatus.loading,
+        submitSuccess: false,
+        message: null,
+        conflictMessage: null,
+      ));
+
+      // Bước 1: gọi check-conflict trước (giống flow add).
+      // Khi edit: truyền excludeDetailId để BE bỏ qua phiếu hiện tại,
+      // tránh báo trùng lặp với chính nó.
+      final conflictPayload = <String, dynamic>{
+        'testTableId': form.testTableId,
+        'startDate': _dateOnly(form.startDate!),
+        'endDate': _dateOnly(form.endDate!),
+      };
+      if (form.isEditMode && form.editDetailId != null) {
+        conflictPayload['excludeDetailId'] = form.editDetailId;
+      }
+      final conflictRes = await _repo.checkConflict(payload: conflictPayload);
+
+      final conflictError = conflictRes.fold(
+        (error) => error,
+        (_) => null,
+      );
+      if (conflictError != null) {
+        _log.logE('Check conflict failed (pre-save edit): $conflictError');
+        emit(state.copyWith(
+          isSubmitting: false,
+          status: BaseStateStatus.failed,
+          submitSuccess: false,
+          conflictPassed: false,
+          conflictMessage: conflictError.getErrorMessage,
+          message: conflictError.getErrorMessage,
+        ));
+        return;
+      }
+
+      final conflictMessage = conflictRes.getOrElse(() => null);
+      final hasConflict = (conflictMessage ?? '').trim().isNotEmpty &&
+          !_isNoConflict(conflictMessage);
+
+      if (hasConflict) {
+        emit(state.copyWith(
+          isSubmitting: false,
+          status: BaseStateStatus.failed,
+          submitSuccess: false,
+          conflictPassed: false,
+          conflictMessage: conflictMessage,
+          message: conflictMessage,
+        ));
+        return;
+      }
+
+      // Bước 2: pass → save (update) registration.
+      // Tính EndDate = StartDate + 7 ngày (theo payload BE yêu cầu).
+      final startDate = form.startDate ?? DateTime.now();
+      final endDate = DateTime(
+        startDate.year,
+        startDate.month,
+        startDate.day,
+      ).add(const Duration(days: 7));
+
+      final payload = <String, dynamic>{
+        'ID': form.editRegistrationId ?? 0,
+        'TestTableID': form.testTableId,
+        'OwnerID': form.ownerId,
+        'ApproverID': form.approverId,
+        'ProjectCode': form.project?.projectCode,
+        'ProjectID': form.project?.id,
+        'RegistrationContent':
+            form.project?.projectName ?? form.registrationContent,
+        'StartDate': DateFormat('yyyy-MM-dd').format(startDate),
+        'EndDate': DateFormat('yyyy-MM-dd').format(endDate),
+        'MachineIDs': form.selectedMachineIds,
+        'IsDelete': form.editIsDelete,
+        'Status': form.editStatus ?? 0,
+        'Type': form.editType ?? 1,
+        'No': form.editNo ?? 1,
+      };
+
+      _log.logI('Edit submit payload: $payload');
+
+      final res = await _repo.saveRegistration(payload: payload);
+      await res.fold(
+        (error) async {
+          _log.logE('Edit submit failed: $error');
+          emit(state.copyWith(
+            isSubmitting: false,
+            submitSuccess: false,
+            status: BaseStateStatus.failed,
+            message: error.getErrorMessage,
+          ));
+        },
+        (_) async {
+          _log.logI('Edit submit success');
+          emit(state.copyWith(
+            isSubmitting: false,
+            submitSuccess: true,
+            status: BaseStateStatus.success,
+            message: 'Cập nhật phiếu thành công',
+          ));
+        },
+      );
+    } catch (e) {
+      _log.logE('Edit submit exception: $e');
+      emit(state.copyWith(
+        isSubmitting: false,
+        submitSuccess: false,
+        status: BaseStateStatus.failed,
+        message: 'Có lỗi xảy ra khi cập nhật phiếu',
+      ));
+    } finally {
+      _isSavingRegistration = false;
+      _log.logI('End edit submit');
+    }
   }
 
   /// Xóa phiếu đăng ký. Pattern giống LunchBloc: đánh dấu isDeleting,

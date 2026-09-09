@@ -4,6 +4,12 @@ import '../../../../../../../../../base/network/errors/error.dart';
 import '../datasource/models/test_table_model.dart';
 
 abstract class TestTableRepo {
+  /// Lấy chi tiết phiếu card theo [registrationId].
+  /// API: GET /ESLRegistration/get-details?registrationId=X.
+  Future<Either<BaseError, List<TestCardDetail>>> getTestCardDetails({
+    required int registrationId,
+  });
+
   /// Lấy danh sách phiếu đăng ký bàn test.
   /// [employeeId] = id nhân viên của currentUser — chỉ lấy phiếu do nhân viên
   /// đó đăng ký. Truyền `0` (mặc định) thì BE trả tất cả.

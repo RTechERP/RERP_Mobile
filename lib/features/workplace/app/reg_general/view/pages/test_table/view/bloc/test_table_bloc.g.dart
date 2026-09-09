@@ -61,6 +61,10 @@ abstract class _$TestTableStateCWProxy {
 
   TestTableState deleteError(String? deleteError);
 
+  TestTableState testCardDetail(List<TestCardDetail> testCardDetail);
+
+  TestTableState isLoadingDetail(bool isLoadingDetail);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `TestTableState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -95,6 +99,8 @@ abstract class _$TestTableStateCWProxy {
     bool? isDeleting,
     bool? deleteSuccess,
     String? deleteError,
+    List<TestCardDetail>? testCardDetail,
+    bool? isLoadingDetail,
   });
 }
 
@@ -205,6 +211,14 @@ class _$TestTableStateCWProxyImpl implements _$TestTableStateCWProxy {
       this(deleteError: deleteError);
 
   @override
+  TestTableState testCardDetail(List<TestCardDetail> testCardDetail) =>
+      this(testCardDetail: testCardDetail);
+
+  @override
+  TestTableState isLoadingDetail(bool isLoadingDetail) =>
+      this(isLoadingDetail: isLoadingDetail);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `TestTableState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -240,6 +254,8 @@ class _$TestTableStateCWProxyImpl implements _$TestTableStateCWProxy {
     Object? isDeleting = const $CopyWithPlaceholder(),
     Object? deleteSuccess = const $CopyWithPlaceholder(),
     Object? deleteError = const $CopyWithPlaceholder(),
+    Object? testCardDetail = const $CopyWithPlaceholder(),
+    Object? isLoadingDetail = const $CopyWithPlaceholder(),
   }) {
     return TestTableState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -361,6 +377,16 @@ class _$TestTableStateCWProxyImpl implements _$TestTableStateCWProxy {
           ? _value.deleteError
           // ignore: cast_nullable_to_non_nullable
           : deleteError as String?,
+      testCardDetail: testCardDetail == const $CopyWithPlaceholder() ||
+              testCardDetail == null
+          ? _value.testCardDetail
+          // ignore: cast_nullable_to_non_nullable
+          : testCardDetail as List<TestCardDetail>,
+      isLoadingDetail: isLoadingDetail == const $CopyWithPlaceholder() ||
+              isLoadingDetail == null
+          ? _value.isLoadingDetail
+          // ignore: cast_nullable_to_non_nullable
+          : isLoadingDetail as bool,
     );
   }
 }

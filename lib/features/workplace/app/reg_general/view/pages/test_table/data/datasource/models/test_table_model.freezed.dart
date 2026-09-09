@@ -6416,3 +6416,657 @@ abstract class _TestMachineItem implements TestMachineItem {
   _$$TestMachineItemImplCopyWith<_$TestMachineItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+TestCardDetail _$TestCardDetailFromJson(Map<String, dynamic> json) {
+  return _TestCardDetail.fromJson(json);
+}
+
+/// @nodoc
+mixin _$TestCardDetail {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'RegistrationID')
+  int? get registrationId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'No')
+  int? get no => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Type')
+  int? get type => throw _privateConstructorUsedError;
+  @JsonKey(name: 'StartDate')
+  DateTime? get startDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EndDate')
+  DateTime? get endDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ActualReturnDate')
+  DateTime? get actualReturnDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'OwnerID')
+  int? get ownerId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'OwnerName')
+  String? get ownerName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ApproverID')
+  int? get approverId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ApproverName')
+  String? get approverName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Status')
+  int? get status => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ApproveDate')
+  DateTime? get approveDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ApproveNote')
+  String? get approveNote => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate =>
+      throw _privateConstructorUsedError; // Additional fields for edit payload
+  @JsonKey(name: 'IsDelete')
+  bool? get isDelete => throw _privateConstructorUsedError;
+  @JsonKey(name: 'MachineIDs')
+  List<int>? get machineIds => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectCode')
+  String? get projectCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectID')
+  int? get projectId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'RegistrationContent')
+  String? get registrationContent => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TestTableID')
+  int? get testTableId => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $TestCardDetailCopyWith<TestCardDetail> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TestCardDetailCopyWith<$Res> {
+  factory $TestCardDetailCopyWith(
+          TestCardDetail value, $Res Function(TestCardDetail) then) =
+      _$TestCardDetailCopyWithImpl<$Res, TestCardDetail>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'RegistrationID') int? registrationId,
+      @JsonKey(name: 'No') int? no,
+      @JsonKey(name: 'Type') int? type,
+      @JsonKey(name: 'StartDate') DateTime? startDate,
+      @JsonKey(name: 'EndDate') DateTime? endDate,
+      @JsonKey(name: 'ActualReturnDate') DateTime? actualReturnDate,
+      @JsonKey(name: 'OwnerID') int? ownerId,
+      @JsonKey(name: 'OwnerName') String? ownerName,
+      @JsonKey(name: 'ApproverID') int? approverId,
+      @JsonKey(name: 'ApproverName') String? approverName,
+      @JsonKey(name: 'Status') int? status,
+      @JsonKey(name: 'ApproveDate') DateTime? approveDate,
+      @JsonKey(name: 'ApproveNote') String? approveNote,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'IsDelete') bool? isDelete,
+      @JsonKey(name: 'MachineIDs') List<int>? machineIds,
+      @JsonKey(name: 'ProjectCode') String? projectCode,
+      @JsonKey(name: 'ProjectID') int? projectId,
+      @JsonKey(name: 'RegistrationContent') String? registrationContent,
+      @JsonKey(name: 'TestTableID') int? testTableId});
+}
+
+/// @nodoc
+class _$TestCardDetailCopyWithImpl<$Res, $Val extends TestCardDetail>
+    implements $TestCardDetailCopyWith<$Res> {
+  _$TestCardDetailCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? registrationId = freezed,
+    Object? no = freezed,
+    Object? type = freezed,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
+    Object? actualReturnDate = freezed,
+    Object? ownerId = freezed,
+    Object? ownerName = freezed,
+    Object? approverId = freezed,
+    Object? approverName = freezed,
+    Object? status = freezed,
+    Object? approveDate = freezed,
+    Object? approveNote = freezed,
+    Object? createdDate = freezed,
+    Object? isDelete = freezed,
+    Object? machineIds = freezed,
+    Object? projectCode = freezed,
+    Object? projectId = freezed,
+    Object? registrationContent = freezed,
+    Object? testTableId = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      registrationId: freezed == registrationId
+          ? _value.registrationId
+          : registrationId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      no: freezed == no
+          ? _value.no
+          : no // ignore: cast_nullable_to_non_nullable
+              as int?,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as int?,
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      actualReturnDate: freezed == actualReturnDate
+          ? _value.actualReturnDate
+          : actualReturnDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      ownerId: freezed == ownerId
+          ? _value.ownerId
+          : ownerId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      ownerName: freezed == ownerName
+          ? _value.ownerName
+          : ownerName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      approverId: freezed == approverId
+          ? _value.approverId
+          : approverId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      approverName: freezed == approverName
+          ? _value.approverName
+          : approverName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
+      approveDate: freezed == approveDate
+          ? _value.approveDate
+          : approveDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      approveNote: freezed == approveNote
+          ? _value.approveNote
+          : approveNote // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isDelete: freezed == isDelete
+          ? _value.isDelete
+          : isDelete // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      machineIds: freezed == machineIds
+          ? _value.machineIds
+          : machineIds // ignore: cast_nullable_to_non_nullable
+              as List<int>?,
+      projectCode: freezed == projectCode
+          ? _value.projectCode
+          : projectCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      registrationContent: freezed == registrationContent
+          ? _value.registrationContent
+          : registrationContent // ignore: cast_nullable_to_non_nullable
+              as String?,
+      testTableId: freezed == testTableId
+          ? _value.testTableId
+          : testTableId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$TestCardDetailImplCopyWith<$Res>
+    implements $TestCardDetailCopyWith<$Res> {
+  factory _$$TestCardDetailImplCopyWith(_$TestCardDetailImpl value,
+          $Res Function(_$TestCardDetailImpl) then) =
+      __$$TestCardDetailImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'RegistrationID') int? registrationId,
+      @JsonKey(name: 'No') int? no,
+      @JsonKey(name: 'Type') int? type,
+      @JsonKey(name: 'StartDate') DateTime? startDate,
+      @JsonKey(name: 'EndDate') DateTime? endDate,
+      @JsonKey(name: 'ActualReturnDate') DateTime? actualReturnDate,
+      @JsonKey(name: 'OwnerID') int? ownerId,
+      @JsonKey(name: 'OwnerName') String? ownerName,
+      @JsonKey(name: 'ApproverID') int? approverId,
+      @JsonKey(name: 'ApproverName') String? approverName,
+      @JsonKey(name: 'Status') int? status,
+      @JsonKey(name: 'ApproveDate') DateTime? approveDate,
+      @JsonKey(name: 'ApproveNote') String? approveNote,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'IsDelete') bool? isDelete,
+      @JsonKey(name: 'MachineIDs') List<int>? machineIds,
+      @JsonKey(name: 'ProjectCode') String? projectCode,
+      @JsonKey(name: 'ProjectID') int? projectId,
+      @JsonKey(name: 'RegistrationContent') String? registrationContent,
+      @JsonKey(name: 'TestTableID') int? testTableId});
+}
+
+/// @nodoc
+class __$$TestCardDetailImplCopyWithImpl<$Res>
+    extends _$TestCardDetailCopyWithImpl<$Res, _$TestCardDetailImpl>
+    implements _$$TestCardDetailImplCopyWith<$Res> {
+  __$$TestCardDetailImplCopyWithImpl(
+      _$TestCardDetailImpl _value, $Res Function(_$TestCardDetailImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? registrationId = freezed,
+    Object? no = freezed,
+    Object? type = freezed,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
+    Object? actualReturnDate = freezed,
+    Object? ownerId = freezed,
+    Object? ownerName = freezed,
+    Object? approverId = freezed,
+    Object? approverName = freezed,
+    Object? status = freezed,
+    Object? approveDate = freezed,
+    Object? approveNote = freezed,
+    Object? createdDate = freezed,
+    Object? isDelete = freezed,
+    Object? machineIds = freezed,
+    Object? projectCode = freezed,
+    Object? projectId = freezed,
+    Object? registrationContent = freezed,
+    Object? testTableId = freezed,
+  }) {
+    return _then(_$TestCardDetailImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      registrationId: freezed == registrationId
+          ? _value.registrationId
+          : registrationId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      no: freezed == no
+          ? _value.no
+          : no // ignore: cast_nullable_to_non_nullable
+              as int?,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as int?,
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      actualReturnDate: freezed == actualReturnDate
+          ? _value.actualReturnDate
+          : actualReturnDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      ownerId: freezed == ownerId
+          ? _value.ownerId
+          : ownerId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      ownerName: freezed == ownerName
+          ? _value.ownerName
+          : ownerName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      approverId: freezed == approverId
+          ? _value.approverId
+          : approverId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      approverName: freezed == approverName
+          ? _value.approverName
+          : approverName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
+      approveDate: freezed == approveDate
+          ? _value.approveDate
+          : approveDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      approveNote: freezed == approveNote
+          ? _value.approveNote
+          : approveNote // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isDelete: freezed == isDelete
+          ? _value.isDelete
+          : isDelete // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      machineIds: freezed == machineIds
+          ? _value._machineIds
+          : machineIds // ignore: cast_nullable_to_non_nullable
+              as List<int>?,
+      projectCode: freezed == projectCode
+          ? _value.projectCode
+          : projectCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      registrationContent: freezed == registrationContent
+          ? _value.registrationContent
+          : registrationContent // ignore: cast_nullable_to_non_nullable
+              as String?,
+      testTableId: freezed == testTableId
+          ? _value.testTableId
+          : testTableId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$TestCardDetailImpl implements _TestCardDetail {
+  const _$TestCardDetailImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'RegistrationID') this.registrationId,
+      @JsonKey(name: 'No') this.no,
+      @JsonKey(name: 'Type') this.type,
+      @JsonKey(name: 'StartDate') this.startDate,
+      @JsonKey(name: 'EndDate') this.endDate,
+      @JsonKey(name: 'ActualReturnDate') this.actualReturnDate,
+      @JsonKey(name: 'OwnerID') this.ownerId,
+      @JsonKey(name: 'OwnerName') this.ownerName,
+      @JsonKey(name: 'ApproverID') this.approverId,
+      @JsonKey(name: 'ApproverName') this.approverName,
+      @JsonKey(name: 'Status') this.status,
+      @JsonKey(name: 'ApproveDate') this.approveDate,
+      @JsonKey(name: 'ApproveNote') this.approveNote,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'IsDelete') this.isDelete,
+      @JsonKey(name: 'MachineIDs') final List<int>? machineIds,
+      @JsonKey(name: 'ProjectCode') this.projectCode,
+      @JsonKey(name: 'ProjectID') this.projectId,
+      @JsonKey(name: 'RegistrationContent') this.registrationContent,
+      @JsonKey(name: 'TestTableID') this.testTableId})
+      : _machineIds = machineIds;
+
+  factory _$TestCardDetailImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TestCardDetailImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'RegistrationID')
+  final int? registrationId;
+  @override
+  @JsonKey(name: 'No')
+  final int? no;
+  @override
+  @JsonKey(name: 'Type')
+  final int? type;
+  @override
+  @JsonKey(name: 'StartDate')
+  final DateTime? startDate;
+  @override
+  @JsonKey(name: 'EndDate')
+  final DateTime? endDate;
+  @override
+  @JsonKey(name: 'ActualReturnDate')
+  final DateTime? actualReturnDate;
+  @override
+  @JsonKey(name: 'OwnerID')
+  final int? ownerId;
+  @override
+  @JsonKey(name: 'OwnerName')
+  final String? ownerName;
+  @override
+  @JsonKey(name: 'ApproverID')
+  final int? approverId;
+  @override
+  @JsonKey(name: 'ApproverName')
+  final String? approverName;
+  @override
+  @JsonKey(name: 'Status')
+  final int? status;
+  @override
+  @JsonKey(name: 'ApproveDate')
+  final DateTime? approveDate;
+  @override
+  @JsonKey(name: 'ApproveNote')
+  final String? approveNote;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final DateTime? createdDate;
+// Additional fields for edit payload
+  @override
+  @JsonKey(name: 'IsDelete')
+  final bool? isDelete;
+  final List<int>? _machineIds;
+  @override
+  @JsonKey(name: 'MachineIDs')
+  List<int>? get machineIds {
+    final value = _machineIds;
+    if (value == null) return null;
+    if (_machineIds is EqualUnmodifiableListView) return _machineIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  @JsonKey(name: 'ProjectCode')
+  final String? projectCode;
+  @override
+  @JsonKey(name: 'ProjectID')
+  final int? projectId;
+  @override
+  @JsonKey(name: 'RegistrationContent')
+  final String? registrationContent;
+  @override
+  @JsonKey(name: 'TestTableID')
+  final int? testTableId;
+
+  @override
+  String toString() {
+    return 'TestCardDetail(id: $id, registrationId: $registrationId, no: $no, type: $type, startDate: $startDate, endDate: $endDate, actualReturnDate: $actualReturnDate, ownerId: $ownerId, ownerName: $ownerName, approverId: $approverId, approverName: $approverName, status: $status, approveDate: $approveDate, approveNote: $approveNote, createdDate: $createdDate, isDelete: $isDelete, machineIds: $machineIds, projectCode: $projectCode, projectId: $projectId, registrationContent: $registrationContent, testTableId: $testTableId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TestCardDetailImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.registrationId, registrationId) ||
+                other.registrationId == registrationId) &&
+            (identical(other.no, no) || other.no == no) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate) &&
+            (identical(other.endDate, endDate) || other.endDate == endDate) &&
+            (identical(other.actualReturnDate, actualReturnDate) ||
+                other.actualReturnDate == actualReturnDate) &&
+            (identical(other.ownerId, ownerId) || other.ownerId == ownerId) &&
+            (identical(other.ownerName, ownerName) ||
+                other.ownerName == ownerName) &&
+            (identical(other.approverId, approverId) ||
+                other.approverId == approverId) &&
+            (identical(other.approverName, approverName) ||
+                other.approverName == approverName) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.approveDate, approveDate) ||
+                other.approveDate == approveDate) &&
+            (identical(other.approveNote, approveNote) ||
+                other.approveNote == approveNote) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.isDelete, isDelete) ||
+                other.isDelete == isDelete) &&
+            const DeepCollectionEquality()
+                .equals(other._machineIds, _machineIds) &&
+            (identical(other.projectCode, projectCode) ||
+                other.projectCode == projectCode) &&
+            (identical(other.projectId, projectId) ||
+                other.projectId == projectId) &&
+            (identical(other.registrationContent, registrationContent) ||
+                other.registrationContent == registrationContent) &&
+            (identical(other.testTableId, testTableId) ||
+                other.testTableId == testTableId));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        registrationId,
+        no,
+        type,
+        startDate,
+        endDate,
+        actualReturnDate,
+        ownerId,
+        ownerName,
+        approverId,
+        approverName,
+        status,
+        approveDate,
+        approveNote,
+        createdDate,
+        isDelete,
+        const DeepCollectionEquality().hash(_machineIds),
+        projectCode,
+        projectId,
+        registrationContent,
+        testTableId
+      ]);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TestCardDetailImplCopyWith<_$TestCardDetailImpl> get copyWith =>
+      __$$TestCardDetailImplCopyWithImpl<_$TestCardDetailImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$TestCardDetailImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _TestCardDetail implements TestCardDetail {
+  const factory _TestCardDetail(
+      {@JsonKey(name: 'ID') final int? id,
+      @JsonKey(name: 'RegistrationID') final int? registrationId,
+      @JsonKey(name: 'No') final int? no,
+      @JsonKey(name: 'Type') final int? type,
+      @JsonKey(name: 'StartDate') final DateTime? startDate,
+      @JsonKey(name: 'EndDate') final DateTime? endDate,
+      @JsonKey(name: 'ActualReturnDate') final DateTime? actualReturnDate,
+      @JsonKey(name: 'OwnerID') final int? ownerId,
+      @JsonKey(name: 'OwnerName') final String? ownerName,
+      @JsonKey(name: 'ApproverID') final int? approverId,
+      @JsonKey(name: 'ApproverName') final String? approverName,
+      @JsonKey(name: 'Status') final int? status,
+      @JsonKey(name: 'ApproveDate') final DateTime? approveDate,
+      @JsonKey(name: 'ApproveNote') final String? approveNote,
+      @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+      @JsonKey(name: 'IsDelete') final bool? isDelete,
+      @JsonKey(name: 'MachineIDs') final List<int>? machineIds,
+      @JsonKey(name: 'ProjectCode') final String? projectCode,
+      @JsonKey(name: 'ProjectID') final int? projectId,
+      @JsonKey(name: 'RegistrationContent') final String? registrationContent,
+      @JsonKey(name: 'TestTableID')
+      final int? testTableId}) = _$TestCardDetailImpl;
+
+  factory _TestCardDetail.fromJson(Map<String, dynamic> json) =
+      _$TestCardDetailImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'RegistrationID')
+  int? get registrationId;
+  @override
+  @JsonKey(name: 'No')
+  int? get no;
+  @override
+  @JsonKey(name: 'Type')
+  int? get type;
+  @override
+  @JsonKey(name: 'StartDate')
+  DateTime? get startDate;
+  @override
+  @JsonKey(name: 'EndDate')
+  DateTime? get endDate;
+  @override
+  @JsonKey(name: 'ActualReturnDate')
+  DateTime? get actualReturnDate;
+  @override
+  @JsonKey(name: 'OwnerID')
+  int? get ownerId;
+  @override
+  @JsonKey(name: 'OwnerName')
+  String? get ownerName;
+  @override
+  @JsonKey(name: 'ApproverID')
+  int? get approverId;
+  @override
+  @JsonKey(name: 'ApproverName')
+  String? get approverName;
+  @override
+  @JsonKey(name: 'Status')
+  int? get status;
+  @override
+  @JsonKey(name: 'ApproveDate')
+  DateTime? get approveDate;
+  @override
+  @JsonKey(name: 'ApproveNote')
+  String? get approveNote;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate;
+  @override // Additional fields for edit payload
+  @JsonKey(name: 'IsDelete')
+  bool? get isDelete;
+  @override
+  @JsonKey(name: 'MachineIDs')
+  List<int>? get machineIds;
+  @override
+  @JsonKey(name: 'ProjectCode')
+  String? get projectCode;
+  @override
+  @JsonKey(name: 'ProjectID')
+  int? get projectId;
+  @override
+  @JsonKey(name: 'RegistrationContent')
+  String? get registrationContent;
+  @override
+  @JsonKey(name: 'TestTableID')
+  int? get testTableId;
+  @override
+  @JsonKey(ignore: true)
+  _$$TestCardDetailImplCopyWith<_$TestCardDetailImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

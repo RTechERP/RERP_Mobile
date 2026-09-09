@@ -364,6 +364,16 @@ class _TestTableScreenState extends BaseState<TestTableScreen, TestTableEvent,
                         ));
                       }
                     : null,
+                onEdit: item.id != null && item.status != 1
+                    ? (masterId) async {
+                        await context.push<bool>(
+                          '${RouteNames.testTableEdit}?registrationId=$masterId',
+                          extra: item,
+                        );
+                        if (!mounted) return;
+                        bloc.add(const TestTableEvent.init());
+                      }
+                    : null,
               ),
             );
           }),

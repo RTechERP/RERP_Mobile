@@ -16,6 +16,26 @@ class TestTableRepoImpl implements TestTableRepo {
   TestTableRepoImpl(this._service);
 
   @override
+  Future<Either<BaseError, List<TestCardDetail>>> getTestCardDetails({
+    required int registrationId,
+  }) async {
+    try {
+      final res = await _service.getTestCardDetails(
+        registrationId: registrationId,
+      );
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      } else {
+        return left(
+          BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+        );
+      }
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
   Future<Either<BaseError, List<TestCardItem>>> getTestCardItem({
     String keyword = '',
     int employeeId = 0,
