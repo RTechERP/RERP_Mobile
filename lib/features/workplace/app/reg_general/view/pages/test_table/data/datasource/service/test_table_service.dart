@@ -217,6 +217,77 @@ class TestTableService extends DioBaseApiService {
     throw const BaseError.httpInternalServerError('Xóa phiếu thất bại');
   }
 
+  /// POST /ESLRegistration/return — trả bàn test (chỉ áp dụng với phiếu đã duyệt).
+  /// Payload: `{ "registrationID": <int>, "returnBy": <int> }`.
+  /// BE trả về `{status, message, data}` — success khi `status == 1`.
+  Future<void> returnRegistration({
+    required int registrationId,
+    required int returnBy,
+  }) async {
+    final res = await dio.post(
+      ApiEndPoint.returnRegistration,
+      data: {
+        'registrationID': registrationId,
+        'returnBy': returnBy,
+      },
+      options: Options(
+        contentType: Headers.jsonContentType,
+        headers: {Headers.contentTypeHeader: Headers.jsonContentType},
+      ),
+    );
+
+    final raw = res.data;
+    if (raw is Map) {
+      final status = raw['status'];
+      if (status == 1 || status == '1') return;
+      throw BaseError.httpInternalServerError(
+        (raw['message'] ?? raw['msg'] ?? 'Trả bàn thất bại').toString(),
+      );
+    }
+    throw const BaseError.httpInternalServerError('Trả bàn thất bại');
+  }
+
+  /// POST /ESLRegistration/extend-handover — gia hạn / bàn giao bàn test.
+  /// Payload: `{ "registrationID", "startDate", "endDate", "ownerID",
+  ///             "approverID", "type" }`.
+  /// - `type = 1` → gia hạn
+  /// - `type = 2` → bàn giao
+  /// BE trả về `{status, message, data}` — success khi `status == 1`.
+  Future<void> extendHandoverRegistration({
+    required int registrationId,
+    required String startDate,
+    required String endDate,
+    required int ownerId,
+    required int approverId,
+    required int type,
+  }) async {
+    final res = await dio.post(
+      ApiEndPoint.extendHandoverRegistration,
+      data: {
+        'registrationID': registrationId,
+        'startDate': startDate,
+        'endDate': endDate,
+        'ownerID': ownerId,
+        'approverID': approverId,
+        'type': type,
+      },
+      options: Options(
+        contentType: Headers.jsonContentType,
+        headers: {Headers.contentTypeHeader: Headers.jsonContentType},
+      ),
+    );
+
+    final raw = res.data;
+    if (raw is Map) {
+      final status = raw['status'];
+      if (status == 1 || status == '1') return;
+      throw BaseError.httpInternalServerError(
+        (raw['message'] ?? raw['msg'] ?? 'Gia hạn/Bàn giao thất bại').toString(),
+      );
+    }
+    throw const BaseError.httpInternalServerError('Gia hạn/Bàn giao thất bại');
+  }
+
   /// Parse response — hỗ trợ data là List hoặc Map (`data`/`items`/`result`).
   BaseData<List<T>> _parseList<T>(
     dynamic json,

@@ -1,9 +1,11 @@
 // Date: 04/09/2026
 // Card đăng ký bàn test ESL - glassmorphism, compact.
+// Hỗ trợ swipe actions: "Xoá" (chưa duyệt) / "Trả bàn" (đã duyệt).
 
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../../../../common/app_theme/index.dart';
@@ -38,19 +40,30 @@ class TestTableCard extends StatelessWidget {
     required this.item,
     this.onDelete,
     this.onEdit,
+    this.onReturn,
+    this.isReturning = false,
+    this.isDeleting = false,
   });
 
   final TestCardItem item;
 
-  /// Callback khi user xác nhận xóa (qua confirm dialog ở screen cha).
-  /// Truyền `masterId` để caller biết xóa phiếu nào.
+  /// Callback khi user xác nhận xóa (phiếu chưa duyệt — status != 1).
   /// Khi null → không cho phép xóa (ẩn action pane).
   final void Function(int masterId)? onDelete;
 
   /// Callback khi user bấm sửa (chuyển sang màn edit).
-  /// Truyền `masterId` để caller biết sửa phiếu nào.
-  /// Khi null → không cho phép sửa (ẩn action pane).
+  /// Khi null → không cho phép sửa.
   final void Function(int masterId)? onEdit;
+
+  /// Callback khi user xác nhận trả bàn (phiếu đã duyệt — status == 1).
+  /// Khi null → không cho phép trả (ẩn action pane).
+  final void Function(int registrationId)? onReturn;
+
+  /// Đang trả bàn (chờ API) — hiển thị loading trên action pane.
+  final bool isReturning;
+
+  /// Đang xóa (chờ API) — hiển thị loading trên action pane.
+  final bool isDeleting;
 
   @override
   Widget build(BuildContext context) {
@@ -111,11 +124,66 @@ class TestTableCard extends StatelessWidget {
     // Nếu không có id thì chỉ render card thường.
     if (masterId == null) return card;
 
+    // Slidable: swipe phải để xoá (chưa duyệt) hoặc trả bàn (đã duyệt).
     // Tap vào card → navigate đến trang edit.
-    return GestureDetector(
-      onTap: onEdit != null ? () => onEdit!(masterId) : null,
-      child: card,
+    return Slidable(
+      key: ValueKey('test_card_$masterId'),
+      endActionPane: _buildActionPane(masterId),
+      child: GestureDetector(
+        onTap: onEdit != null ? () => onEdit!(masterId) : null,
+        child: card,
+      ),
     );
+  }
+
+  // ─── Action pane tùy theo trạng thái phiếu ─────────────────────────
+  ActionPane? _buildActionPane(int masterId) {
+    // Xác định swipe action dựa trên trạng thái.
+    final isApproved = item.status == 1;
+    final hasAction = isApproved ? onReturn != null : onDelete != null;
+    if (!hasAction) return null;
+
+    final isLoading = isApproved ? isReturning : isDeleting;
+
+    if (isApproved) {
+      return ActionPane(
+        motion: const BehindMotion(),
+        extentRatio: 0.3,
+        children: [
+          SlidableAction(
+            onPressed: isLoading
+                ? null
+                : (_) => onReturn?.call(masterId),
+            backgroundColor: AppColors.primaryERP,
+            foregroundColor: Colors.white,
+            icon: isLoading ? Icons.hourglass_top : Icons.keyboard_return,
+            label: isLoading ? '...' : 'Trả bàn',
+            borderRadius: const BorderRadius.horizontal(
+              right: Radius.circular(16),
+            ),
+          ),
+        ],
+      );
+    } else {
+      return ActionPane(
+        motion: const BehindMotion(),
+        extentRatio: 0.25,
+        children: [
+          SlidableAction(
+            onPressed: isLoading
+                ? null
+                : (_) => onDelete?.call(masterId),
+            backgroundColor: AppColors.alert,
+            foregroundColor: Colors.white,
+            icon: isLoading ? Icons.hourglass_top : Icons.delete,
+            label: isLoading ? '...' : 'Xoá',
+            borderRadius: const BorderRadius.horizontal(
+              right: Radius.circular(16),
+            ),
+          ),
+        ],
+      );
+    }
   }
 
   // ─── Header: mã + status ─────────────────────────────────────────────────

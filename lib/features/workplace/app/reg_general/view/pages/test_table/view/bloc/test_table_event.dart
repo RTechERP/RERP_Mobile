@@ -65,10 +65,36 @@ class TestTableEvent with _$TestTableEvent {
   /// Reset cờ `deletedMasterId` / `deleteError` sau khi UI đã xử lý.
   const factory TestTableEvent.clearDeleteFeedback() = _ClearDeleteFeedback;
 
+  /// Reset cờ returnSuccess / returnError sau khi UI đã xử lý.
+  const factory TestTableEvent.clearReturnFeedback() = _ClearReturnFeedback;
+
+  /// Submit gia hạn / bàn giao (chỉ áp dụng với phiếu đã duyệt).
+  /// [type] = 1 (gia hạn) / 2 (bàn giao).
+  /// [startDate] / [endDate] = định dạng `yyyy-MM-dd`.
+  const factory TestTableEvent.extendHandoverSubmit({
+    required int registrationId,
+    required String startDate,
+    required String endDate,
+    required int ownerId,
+    required int approverId,
+    required int type,
+  }) = _ExtendHandoverSubmit;
+
+  /// Reset cờ extendHandoverSuccess / extendHandoverError sau khi UI đã xử lý.
+  const factory TestTableEvent.clearExtendHandoverFeedback() =
+      _ClearExtendHandoverFeedback;
+
   /// Xóa phiếu đăng ký theo [masterId]. Trigger từ swipe-to-delete trên card.
   const factory TestTableEvent.deleteCard({
     required int masterId,
   }) = _DeleteCard;
+
+  /// Trả bàn test theo [registrationId] (chỉ áp dụng với phiếu đã duyệt).
+  /// [returnBy] = id nhân viên thực hiện thao tác trả.
+  const factory TestTableEvent.returnCard({
+    required int registrationId,
+    required int returnBy,
+  }) = _ReturnCard;
 
   /// Tải danh sách máy test thuộc một bàn test (gọi khi chọn bàn test).
   const factory TestTableEvent.loadTestMachines({

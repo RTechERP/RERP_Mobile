@@ -171,6 +171,10 @@ class _TestTableScreenState extends BaseState<TestTableScreen, TestTableEvent,
           bloc.add(const TestTableEvent.clearDeleteFeedback());
           // Refresh lại list sau khi xóa.
           bloc.add(const TestTableEvent.init());
+        } else if (state.returnSuccess) {
+          showMessage(context, 'Trả bàn thành công và đã cập nhật ESL',
+              type: SnackBarType.success);
+          bloc.add(const TestTableEvent.clearReturnFeedback());
         } else if (state.submitSuccess && !state.isDeleting) {
           bloc.add(const TestTableEvent.resetSubmitFlags());
           showMessage(context, 'Đăng ký bàn test thành công',
@@ -180,6 +184,11 @@ class _TestTableScreenState extends BaseState<TestTableScreen, TestTableEvent,
           showMessage(context, state.deleteError!,
               type: SnackBarType.error);
           bloc.add(const TestTableEvent.clearDeleteFeedback());
+        } else if (state.returnError != null &&
+            state.returnError!.isNotEmpty) {
+          showMessage(context, state.returnError!,
+              type: SnackBarType.error);
+          bloc.add(const TestTableEvent.clearReturnFeedback());
         }
       },
       builder: (context, state) {
@@ -352,6 +361,8 @@ class _TestTableScreenState extends BaseState<TestTableScreen, TestTableEvent,
               padding: const EdgeInsets.only(bottom: 10),
               child: TestTableCard(
                 item: item,
+                isDeleting: state.deletingIds.contains(item.id),
+                isReturning: state.returningIds.contains(item.id),
                 onDelete: canDelete
                     ? (masterId) async {
                         final confirmed =
@@ -364,12 +375,35 @@ class _TestTableScreenState extends BaseState<TestTableScreen, TestTableEvent,
                         ));
                       }
                     : null,
-                onEdit: item.id != null && item.status != 1
-                    ? (masterId) async {
-                        await context.push<bool>(
-                          '${RouteNames.testTableEdit}?registrationId=$masterId',
-                          extra: item,
+                onReturn: item.status == 1 && item.id != null
+                    ? (registrationId) async {
+                        final confirmed =
+                            await DialogService.showConfirmReturn(
+                          context: context,
                         );
+                        if (!context.mounted || !confirmed) return;
+                        bloc.add(TestTableEvent.returnCard(
+                          registrationId: registrationId,
+                          returnBy: state.currentUser?.employeeId ?? 0,
+                        ));
+                      }
+                    : null,
+                onEdit: item.id != null
+                    ? (masterId) async {
+                        // Card đã duyệt → mở trang gia hạn / bàn giao.
+                        // Card chưa duyệt → mở trang edit như cũ.
+                        final isApproved = item.status == 1;
+                        if (isApproved) {
+                          await context.push<bool>(
+                            '${RouteNames.testTableExtendHandover}?registrationId=$masterId',
+                            extra: item,
+                          );
+                        } else {
+                          await context.push<bool>(
+                            '${RouteNames.testTableEdit}?registrationId=$masterId',
+                            extra: item,
+                          );
+                        }
                         if (!mounted) return;
                         bloc.add(const TestTableEvent.init());
                       }

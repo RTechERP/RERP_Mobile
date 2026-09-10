@@ -81,6 +81,23 @@ class TestTableState extends BaseBlocState {
   /// Lỗi xóa phiếu (showError ở list screen).
   final String? deleteError;
 
+  // ===== Return (trả bàn — chỉ phiếu đã duyệt) =====
+  /// Id các phiếu đang được trả — để UI khóa swipe card tương ứng.
+  final Set<int> returningIds;
+
+  /// Đã trả bàn thành công — UI snackbar + refresh list.
+  final bool returnSuccess;
+
+  /// Lỗi trả bàn (showError ở list screen).
+  final String? returnError;
+
+  // ===== Extend / Handover (gia hạn / bàn giao — chỉ phiếu đã duyệt) =====
+  /// Đã gửi yêu cầu gia hạn / bàn giao thành công — UI snackbar + pop.
+  final bool extendHandoverSuccess;
+
+  /// Lỗi gửi yêu cầu gia hạn / bàn giao.
+  final String? extendHandoverError;
+
   // ===== Edit =====
   /// Chi tiết phiếu card từ API get-details (dùng cho màn edit).
   final List<TestCardDetail> testCardDetail;
@@ -116,6 +133,11 @@ class TestTableState extends BaseBlocState {
     this.isDeleting = false,
     this.deleteSuccess = false,
     this.deleteError,
+    this.returningIds = const {},
+    this.returnSuccess = false,
+    this.returnError,
+    this.extendHandoverSuccess = false,
+    this.extendHandoverError,
     this.testCardDetail = const [],
     this.isLoadingDetail = false,
   });
@@ -145,6 +167,11 @@ class TestTableState extends BaseBlocState {
         isDeleting: false,
         deleteSuccess: false,
         deleteError: null,
+        returningIds: const {},
+        returnSuccess: false,
+        returnError: null,
+        extendHandoverSuccess: false,
+        extendHandoverError: null,
         testCardDetail: [],
         isLoadingDetail: false,
       );
@@ -178,6 +205,11 @@ class TestTableState extends BaseBlocState {
         isDeleting,
         deleteSuccess,
         deleteError,
+        returningIds,
+        returnSuccess,
+        returnError,
+        extendHandoverSuccess,
+        extendHandoverError,
         testCardDetail,
         isLoadingDetail,
       ];

@@ -61,4 +61,24 @@ abstract class TestTableRepo {
   Future<Either<BaseError, void>> deleteRegistration({
     required int masterId,
   });
+
+  /// Trả bàn test (chỉ áp dụng với phiếu đã duyệt — status == 1).
+  /// [registrationId] = id phiếu đăng ký (master).
+  /// [returnBy] = id nhân viên thực hiện thao tác trả (currentUser.employeeId).
+  Future<Either<BaseError, void>> returnRegistration({
+    required int registrationId,
+    required int returnBy,
+  });
+
+  /// Gia hạn / bàn giao bàn test (chỉ áp dụng với phiếu đã duyệt).
+  /// [type] = 1 (gia hạn) / 2 (bàn giao).
+  /// [startDate] / [endDate] = định dạng `yyyy-MM-dd`.
+  Future<Either<BaseError, void>> extendHandoverRegistration({
+    required int registrationId,
+    required String startDate,
+    required String endDate,
+    required int ownerId,
+    required int approverId,
+    required int type,
+  });
 }

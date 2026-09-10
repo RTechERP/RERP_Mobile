@@ -34,81 +34,98 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
   String? _lastQrLookupKey;
 
   TestTableBloc(this._log, this._repo, this._authRepo)
-      : super(TestTableState.init()) {
-    on<TestTableEvent>(
-      (event, emit) async {
-        await event.when(
-          // ===== Danh sách =====
-          init: () => _onInit(emit),
-          refresh: () => _onRefresh(emit),
-          changeKeyword: (keyword) =>
-              _onChangeKeyword(emit, keyword: keyword),
-          changeStatus: (status) =>
-              _onChangeStatus(emit, status: status),
-          changeDateRange: (dateStart, dateEnd) => _onChangeDateRange(
-            emit,
-            dateStart: dateStart,
-            dateEnd: dateEnd,
-          ),
+    : super(TestTableState.init()) {
+    on<TestTableEvent>((event, emit) async {
+      await event.when(
+        // ===== Danh sách =====
+        init: () => _onInit(emit),
+        refresh: () => _onRefresh(emit),
+        changeKeyword: (keyword) => _onChangeKeyword(emit, keyword: keyword),
+        changeStatus: (status) => _onChangeStatus(emit, status: status),
+        changeDateRange: (dateStart, dateEnd) =>
+            _onChangeDateRange(emit, dateStart: dateStart, dateEnd: dateEnd),
 
-          // ===== Form đăng ký =====
-          initAdd: (prefillTestTableId) =>
-              _onInitAdd(emit, prefillTestTableId: prefillTestTableId),
-          updateForm: (
-            project,
-            testTableId,
-            selectedMachineIds,
-            ownerId,
-            approverId,
-            startDate,
-            clearProject,
-            clearTestTableId,
-            clearSelectedMachineIds,
-            clearOwnerId,
-            clearApproverId,
-            clearStartDate,
-          ) =>
-              _onUpdateForm(
-            emit,
-            project: project,
-            testTableId: testTableId,
-            selectedMachineIds: selectedMachineIds,
-            ownerId: ownerId,
-            approverId: approverId,
-            startDate: startDate,
-            clearProject: clearProject,
-            clearTestTableId: clearTestTableId,
-            clearSelectedMachineIds: clearSelectedMachineIds,
-            clearOwnerId: clearOwnerId,
-            clearApproverId: clearApproverId,
-            clearStartDate: clearStartDate,
-          ),
-          checkConflict: () => _onCheckConflict(emit),
-          submitRegistration: () => _onSubmitRegistration(emit),
-          resetSubmitFlags: () => _onResetSubmitFlags(emit),
-          loadTestMachines: (testTableId) =>
-              _onLoadTestMachines(emit, testTableId: testTableId),
+        // ===== Form đăng ký =====
+        initAdd: (prefillTestTableId) =>
+            _onInitAdd(emit, prefillTestTableId: prefillTestTableId),
+        updateForm:
+            (
+              project,
+              testTableId,
+              selectedMachineIds,
+              ownerId,
+              approverId,
+              startDate,
+              clearProject,
+              clearTestTableId,
+              clearSelectedMachineIds,
+              clearOwnerId,
+              clearApproverId,
+              clearStartDate,
+            ) => _onUpdateForm(
+              emit,
+              project: project,
+              testTableId: testTableId,
+              selectedMachineIds: selectedMachineIds,
+              ownerId: ownerId,
+              approverId: approverId,
+              startDate: startDate,
+              clearProject: clearProject,
+              clearTestTableId: clearTestTableId,
+              clearSelectedMachineIds: clearSelectedMachineIds,
+              clearOwnerId: clearOwnerId,
+              clearApproverId: clearApproverId,
+              clearStartDate: clearStartDate,
+            ),
+        checkConflict: () => _onCheckConflict(emit),
+        submitRegistration: () => _onSubmitRegistration(emit),
+        resetSubmitFlags: () => _onResetSubmitFlags(emit),
+        loadTestMachines: (testTableId) =>
+            _onLoadTestMachines(emit, testTableId: testTableId),
 
-          // ===== QR / Deep link =====
-          findTestTableByBarcode: (barcode, tableSide) =>
-              _onFindTestTableByBarcode(
-            emit,
-            barcode: barcode,
-            tableSide: tableSide,
-          ),
+        // ===== QR / Deep link =====
+        findTestTableByBarcode: (barcode, tableSide) =>
+            _onFindTestTableByBarcode(
+              emit,
+              barcode: barcode,
+              tableSide: tableSide,
+            ),
 
-          // ===== Delete (swipe-to-delete) =====
-          deleteCard: (masterId) => _onDeleteCard(emit, masterId: masterId),
-          clearDeleteFeedback: () => _onClearDeleteFeedback(emit),
+        // ===== Delete (swipe-to-delete) =====
+        deleteCard: (masterId) => _onDeleteCard(emit, masterId: masterId),
+        clearDeleteFeedback: () => _onClearDeleteFeedback(emit),
 
-          // ===== Edit =====
-          initEdit: (registrationId, cardItem) =>
-              _onInitEdit(emit, registrationId: registrationId, cardItem: cardItem),
-          editSubmit: () => _onEditSubmit(emit),
-        );
-      },
-      transformer: (events, mapper) => events.asyncExpand(mapper),
-    );
+        // ===== Return (trả bàn) =====
+        returnCard: (registrationId, returnBy) => _onReturnCard(
+          emit,
+          registrationId: registrationId,
+          returnBy: returnBy,
+        ),
+        clearReturnFeedback: () => _onClearReturnFeedback(emit),
+
+        // ===== Extend / Handover (gia hạn / bàn giao) =====
+        extendHandoverSubmit:
+            (registrationId, startDate, endDate, ownerId, approverId, type) =>
+                _onExtendHandoverSubmit(
+                  emit,
+                  registrationId: registrationId,
+                  startDate: startDate,
+                  endDate: endDate,
+                  ownerId: ownerId,
+                  approverId: approverId,
+                  type: type,
+                ),
+        clearExtendHandoverFeedback: () => _onClearExtendHandoverFeedback(emit),
+
+        // ===== Edit =====
+        initEdit: (registrationId, cardItem) => _onInitEdit(
+          emit,
+          registrationId: registrationId,
+          cardItem: cardItem,
+        ),
+        editSubmit: () => _onEditSubmit(emit),
+      );
+    }, transformer: (events, mapper) => events.asyncExpand(mapper));
   }
 
   // =================================================================
@@ -117,12 +134,14 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
 
   Future<void> _onInit(Emitter<TestTableState> emit) async {
     _lastQrLookupKey = null;
-    emit(state.copyWith(
-      status: BaseStateStatus.loading,
-      message: null,
-      // Reset lookup để buộc re-fetch → tránh bỏ qua list khi cache hit.
-      lookupFetched: false,
-    ));
+    emit(
+      state.copyWith(
+        status: BaseStateStatus.loading,
+        message: null,
+        // Reset lookup để buộc re-fetch → tránh bỏ qua list khi cache hit.
+        lookupFetched: false,
+      ),
+    );
     // Lấy currentUser trước để BE lọc theo employeeId.
     await _ensureCurrentUser(emit);
     await _fetchTestCards(emit);
@@ -255,13 +274,15 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
     final project = projectRes.getOrElse(() => <ProjectItem>[]);
     final approver = approverRes.getOrElse(() => <ApproverItem>[]);
 
-    emit(state.copyWith(
-      testTable: testTable,
-      employee: employee,
-      project: project,
-      approver: approver,
-      lookupFetched: true,
-    ));
+    emit(
+      state.copyWith(
+        testTable: testTable,
+        employee: employee,
+        project: project,
+        approver: approver,
+        lookupFetched: true,
+      ),
+    );
     return false;
   }
 
@@ -273,19 +294,21 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
     Emitter<TestTableState> emit, {
     int? prefillTestTableId,
   }) async {
-    emit(state.copyWith(
-      conflictMessage: null,
-      conflictPassed: false,
-      submitSuccess: false,
-      isSubmitting: false,
-      testMachines: const [],
-      isLoadingTestMachines: false,
-      // Reset form data: clear machine đã chọn từ session trước.
-      formData: state.formData.copyWith(
-        clearSelectedMachineIds: true,
-        clearTestTableId: true,
+    emit(
+      state.copyWith(
+        conflictMessage: null,
+        conflictPassed: false,
+        submitSuccess: false,
+        isSubmitting: false,
+        testMachines: const [],
+        isLoadingTestMachines: false,
+        // Reset form data: clear machine đã chọn từ session trước.
+        formData: state.formData.copyWith(
+          clearSelectedMachineIds: true,
+          clearTestTableId: true,
+        ),
       ),
-    ));
+    );
 
     // 1. Đảm bảo đã có lookup data (cache từ list, hoặc tải mới).
     await _ensureLookupData(emit);
@@ -310,11 +333,13 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
       add(TestTableEvent.loadTestMachines(testTableId: prefillTestTableId));
     }
 
-    emit(state.copyWith(
-      currentUser: user ?? state.currentUser,
-      formData: newForm,
-      status: BaseStateStatus.success,
-    ));
+    emit(
+      state.copyWith(
+        currentUser: user ?? state.currentUser,
+        formData: newForm,
+        status: BaseStateStatus.success,
+      ),
+    );
   }
 
   // =================================================================
@@ -341,10 +366,7 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
     _lastQrLookupKey = key;
 
     // Reset ngay để state luôn thay đổi (kể cả khi kết quả giống lần trước).
-    emit(state.copyWith(
-      qrLookupMessage: null,
-      foundTestTable: null,
-    ));
+    emit(state.copyWith(qrLookupMessage: null, foundTestTable: null));
 
     // Đảm bảo có lookup data để tra — gọi API nếu cache rỗng.
     await _ensureLookupData(emit);
@@ -362,9 +384,7 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
     if (match.isEmpty) {
       // Reset key để user có thể quét lại cùng QR.
       _lastQrLookupKey = null;
-      emit(state.copyWith(
-        qrLookupMessage: 'Không tìm thấy bàn test',
-      ));
+      emit(state.copyWith(qrLookupMessage: 'Không tìm thấy bàn test'));
       return;
     }
 
@@ -372,18 +392,17 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
     if (found.isRegistrated == 1) {
       // Reset key để user có thể quét lại sau khi bàn được giải phóng.
       _lastQrLookupKey = null;
-      emit(state.copyWith(
-        foundTestTable: found,
-        qrLookupMessage: 'Bàn đang được sử dụng',
-      ));
+      emit(
+        state.copyWith(
+          foundTestTable: found,
+          qrLookupMessage: 'Bàn đang được sử dụng',
+        ),
+      );
       return;
     }
 
     // Thành công — không reset key, tránh navigate 2 lần.
-    emit(state.copyWith(
-      foundTestTable: found,
-      qrLookupMessage: null,
-    ));
+    emit(state.copyWith(foundTestTable: found, qrLookupMessage: null));
   }
 
   _onUpdateForm(
@@ -426,16 +445,18 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
 
     // Reset cờ conflict khi form đổi — phải check lại.
     final conflictChanged = prev != next;
-    emit(state.copyWith(
-      formData: next.copyWith(
-        // Khi clear testTableId → clear luôn machine đã chọn.
-        clearSelectedMachineIds: clearTestTableId,
+    emit(
+      state.copyWith(
+        formData: next.copyWith(
+          // Khi clear testTableId → clear luôn machine đã chọn.
+          clearSelectedMachineIds: clearTestTableId,
+        ),
+        conflictMessage: conflictChanged ? null : state.conflictMessage,
+        conflictPassed: conflictChanged ? false : state.conflictPassed,
+        message: null,
+        testMachines: clearTestTableId ? const [] : state.testMachines,
       ),
-      conflictMessage: conflictChanged ? null : state.conflictMessage,
-      conflictPassed: conflictChanged ? false : state.conflictPassed,
-      message: null,
-      testMachines: clearTestTableId ? const [] : state.testMachines,
-    ));
+    );
 
     // Nếu testTableId đổi → tải máy test của bàn mới.
     final prevTableId = prev.testTableId;
@@ -449,51 +470,63 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
   Future<void> _onCheckConflict(Emitter<TestTableState> emit) async {
     final form = state.formData;
     if (!form.isReady) {
-      emit(state.copyWith(
-        status: BaseStateStatus.failed,
-        message: 'Vui lòng nhập đầy đủ thông tin trước khi kiểm tra.',
-      ));
+      emit(
+        state.copyWith(
+          status: BaseStateStatus.failed,
+          message: 'Vui lòng nhập đầy đủ thông tin trước khi kiểm tra.',
+        ),
+      );
       return;
     }
 
-    emit(state.copyWith(
-      isSubmitting: true,
-      status: BaseStateStatus.loading,
-      message: null,
-      conflictMessage: null,
-      conflictPassed: false,
-    ));
+    emit(
+      state.copyWith(
+        isSubmitting: true,
+        status: BaseStateStatus.loading,
+        message: null,
+        conflictMessage: null,
+        conflictPassed: false,
+      ),
+    );
 
-    final res = await _repo.checkConflict(payload: {
-      'testTableId': form.testTableId,
-      'startDate': _dateOnly(form.startDate!),
-      'endDate': _dateOnly(form.endDate!),
-    });
+    final res = await _repo.checkConflict(
+      payload: {
+        'testTableId': form.testTableId,
+        'startDate': _dateOnly(form.startDate!),
+        'endDate': _dateOnly(form.endDate!),
+      },
+    );
 
     await res.fold(
       (error) async {
         _log.logE('Check conflict failed: $error');
-        emit(state.copyWith(
-          isSubmitting: false,
-          status: BaseStateStatus.failed,
-          conflictPassed: false,
-          conflictMessage: null,
-          message: error.getErrorMessage,
-        ));
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            status: BaseStateStatus.failed,
+            conflictPassed: false,
+            conflictMessage: null,
+            message: error.getErrorMessage,
+          ),
+        );
       },
       (message) async {
         // BE trả về message trong `data` (string). Nếu rỗng coi như trùng.
-        final hasConflict = (message ?? '').trim().isNotEmpty &&
-            !_isNoConflict(message);
-        emit(state.copyWith(
-          isSubmitting: false,
-          status: hasConflict
-              ? BaseStateStatus.failed
-              : BaseStateStatus.success,
-          conflictMessage: message,
-          conflictPassed: !hasConflict,
-          message: hasConflict ? message : 'Không trùng lặp, có thể lưu phiếu.',
-        ));
+        final hasConflict =
+            (message ?? '').trim().isNotEmpty && !_isNoConflict(message);
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            status: hasConflict
+                ? BaseStateStatus.failed
+                : BaseStateStatus.success,
+            conflictMessage: message,
+            conflictPassed: !hasConflict,
+            message: hasConflict
+                ? message
+                : 'Không trùng lặp, có thể lưu phiếu.',
+          ),
+        );
       },
     );
   }
@@ -505,58 +538,66 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
     final form = state.formData;
     if (!form.isReady) {
       _isSavingRegistration = false;
-      emit(state.copyWith(
-        status: BaseStateStatus.failed,
-        message: 'Vui lòng nhập đầy đủ thông tin trước khi lưu.',
-      ));
+      emit(
+        state.copyWith(
+          status: BaseStateStatus.failed,
+          message: 'Vui lòng nhập đầy đủ thông tin trước khi lưu.',
+        ),
+      );
       return;
     }
 
     try {
-      emit(state.copyWith(
-        isSubmitting: true,
-        status: BaseStateStatus.loading,
-        message: null,
-        conflictMessage: null,
-      ));
+      emit(
+        state.copyWith(
+          isSubmitting: true,
+          status: BaseStateStatus.loading,
+          message: null,
+          conflictMessage: null,
+        ),
+      );
 
       // Bước 1: gọi check-conflict trước.
-      final conflictRes = await _repo.checkConflict(payload: {
-        'testTableId': form.testTableId,
-        'startDate': _dateOnly(form.startDate!),
-        'endDate': _dateOnly(form.endDate!),
-      });
-
-      final conflictError = conflictRes.fold(
-        (error) => error,
-        (_) => null,
+      final conflictRes = await _repo.checkConflict(
+        payload: {
+          'testTableId': form.testTableId,
+          'startDate': _dateOnly(form.startDate!),
+          'endDate': _dateOnly(form.endDate!),
+        },
       );
+
+      final conflictError = conflictRes.fold((error) => error, (_) => null);
       if (conflictError != null) {
         _log.logE('Check conflict failed (pre-save): $conflictError');
-        emit(state.copyWith(
-          isSubmitting: false,
-          status: BaseStateStatus.failed,
-          submitSuccess: false,
-          conflictPassed: false,
-          conflictMessage: conflictError.getErrorMessage,
-          message: conflictError.getErrorMessage,
-        ));
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            status: BaseStateStatus.failed,
+            submitSuccess: false,
+            conflictPassed: false,
+            conflictMessage: conflictError.getErrorMessage,
+            message: conflictError.getErrorMessage,
+          ),
+        );
         return;
       }
 
       final conflictMessage = conflictRes.getOrElse(() => null);
-      final hasConflict = (conflictMessage ?? '').trim().isNotEmpty &&
+      final hasConflict =
+          (conflictMessage ?? '').trim().isNotEmpty &&
           !_isNoConflict(conflictMessage);
 
       if (hasConflict) {
-        emit(state.copyWith(
-          isSubmitting: false,
-          status: BaseStateStatus.failed,
-          submitSuccess: false,
-          conflictPassed: false,
-          conflictMessage: conflictMessage,
-          message: conflictMessage,
-        ));
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            status: BaseStateStatus.failed,
+            submitSuccess: false,
+            conflictPassed: false,
+            conflictMessage: conflictMessage,
+            message: conflictMessage,
+          ),
+        );
         return;
       }
 
@@ -584,49 +625,57 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
       await res.fold(
         (error) async {
           _log.logE('Save registration failed: $error');
-          emit(state.copyWith(
-            isSubmitting: false,
-            status: BaseStateStatus.failed,
-            submitSuccess: false,
-            conflictPassed: true,
-            message: error.getErrorMessage,
-          ));
+          emit(
+            state.copyWith(
+              isSubmitting: false,
+              status: BaseStateStatus.failed,
+              submitSuccess: false,
+              conflictPassed: true,
+              message: error.getErrorMessage,
+            ),
+          );
         },
         (createdId) async {
           _log.logI('Save registration success: id=$createdId');
-          emit(state.copyWith(
-            isSubmitting: false,
-            status: BaseStateStatus.success,
-            submitSuccess: true,
-            conflictPassed: true,
-            createdId: createdId,
-            message: 'Đăng ký bàn test thành công',
-          ));
+          emit(
+            state.copyWith(
+              isSubmitting: false,
+              status: BaseStateStatus.success,
+              submitSuccess: true,
+              conflictPassed: true,
+              createdId: createdId,
+              message: 'Đăng ký bàn test thành công',
+            ),
+          );
         },
       );
     } catch (e) {
       _log.logE('Save registration exception: $e');
-      emit(state.copyWith(
-        isSubmitting: false,
-        status: BaseStateStatus.failed,
-        submitSuccess: false,
-        message: 'Có lỗi xảy ra, vui lòng thử lại',
-      ));
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          status: BaseStateStatus.failed,
+          submitSuccess: false,
+          message: 'Có lỗi xảy ra, vui lòng thử lại',
+        ),
+      );
     } finally {
       _isSavingRegistration = false;
     }
   }
 
   _onResetSubmitFlags(Emitter<TestTableState> emit) {
-    emit(state.copyWith(
-      submitSuccess: false,
-      createdId: 0,
-      conflictMessage: null,
-      conflictPassed: false,
-      isSubmitting: false,
-      message: null,
-      status: BaseStateStatus.init,
-    ));
+    emit(
+      state.copyWith(
+        submitSuccess: false,
+        createdId: 0,
+        conflictMessage: null,
+        conflictPassed: false,
+        isSubmitting: false,
+        message: null,
+        status: BaseStateStatus.init,
+      ),
+    );
   }
 
   // =================================================================
@@ -635,11 +684,145 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
 
   /// Reset cờ deleteFeedback sau khi UI đã show snackbar.
   _onClearDeleteFeedback(Emitter<TestTableState> emit) {
-    emit(state.copyWith(
-      deleteSuccess: false,
-      deleteError: null,
-      isDeleting: false,
-    ));
+    emit(
+      state.copyWith(
+        deleteSuccess: false,
+        deleteError: null,
+        isDeleting: false,
+      ),
+    );
+  }
+
+  /// Reset cờ returnFeedback sau khi UI đã show snackbar.
+  _onClearReturnFeedback(Emitter<TestTableState> emit) {
+    emit(state.copyWith(returnSuccess: false, returnError: null));
+  }
+
+  // ===== Return (trả bàn — chỉ phiếu đã duyệt) ===========
+  // =================================================================
+
+  /// Trả bàn test: gọi API return, refresh list khi thành công.
+  Future<void> _onReturnCard(
+    Emitter<TestTableState> emit, {
+    required int registrationId,
+    required int returnBy,
+  }) async {
+    if (state.returningIds.contains(registrationId)) return;
+
+    final newReturningIds = {...state.returningIds, registrationId};
+    emit(
+      state.copyWith(
+        returningIds: newReturningIds,
+        returnError: null,
+        returnSuccess: false,
+      ),
+    );
+
+    final res = await _repo.returnRegistration(
+      registrationId: registrationId,
+      returnBy: returnBy,
+    );
+    res.fold(
+      (error) {
+        _log.logE('Return card failed: $error');
+        final updatedReturning = {...state.returningIds}
+          ..remove(registrationId);
+        emit(
+          state.copyWith(
+            returningIds: updatedReturning,
+            returnSuccess: false,
+            returnError: error.getErrorMessage,
+          ),
+        );
+      },
+      (_) {
+        _log.logI('Return card success: registrationId=$registrationId');
+        final updatedReturning = {...state.returningIds}
+          ..remove(registrationId);
+        // Bỏ card khỏi list (vì đã trả → phiếu không còn trong danh sách chờ duyệt).
+        final remainingCards = state.testCard
+            .where((c) => c.id != registrationId)
+            .toList();
+        emit(
+          state.copyWith(
+            testCard: remainingCards,
+            returningIds: updatedReturning,
+            returnSuccess: true,
+          ),
+        );
+      },
+    );
+  }
+
+  // =================================================================
+  // ============== Extend / Handover (chỉ phiếu đã duyệt) =========
+  // =================================================================
+
+  /// Gửi yêu cầu gia hạn / bàn giao — chờ duyệt (status = 0).
+  /// Backend sẽ tạo detail mới và gắn vào cùng registrationId.
+  Future<void> _onExtendHandoverSubmit(
+    Emitter<TestTableState> emit, {
+    required int registrationId,
+    required String startDate,
+    required String endDate,
+    required int ownerId,
+    required int approverId,
+    required int type,
+  }) async {
+    emit(
+      state.copyWith(
+        isSubmitting: true,
+        submitSuccess: false,
+        extendHandoverSuccess: false,
+        extendHandoverError: null,
+        message: null,
+      ),
+    );
+
+    final res = await _repo.extendHandoverRegistration(
+      registrationId: registrationId,
+      startDate: startDate,
+      endDate: endDate,
+      ownerId: ownerId,
+      approverId: approverId,
+      type: type,
+    );
+    res.fold(
+      (error) {
+        _log.logE('Extend/handover failed: $error');
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            submitSuccess: false,
+            extendHandoverSuccess: false,
+            extendHandoverError: error.getErrorMessage,
+          ),
+        );
+      },
+      (_) {
+        _log.logI(
+          'Extend/handover success: registrationId=$registrationId, type=$type',
+        );
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            submitSuccess: false,
+            extendHandoverSuccess: true,
+          ),
+        );
+      },
+    );
+  }
+
+  /// Reset cờ extendHandover feedback sau khi UI đã xử lý.
+  _onClearExtendHandoverFeedback(Emitter<TestTableState> emit) {
+    emit(
+      state.copyWith(
+        extendHandoverSuccess: false,
+        extendHandoverError: null,
+        message: null,
+      ),
+    );
   }
 
   // =================================================================
@@ -652,12 +835,14 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
     required int registrationId,
     TestCardItem? cardItem,
   }) async {
-    emit(state.copyWith(
-      isLoadingDetail: true,
-      status: BaseStateStatus.loading,
-      message: null,
-      testCardDetail: const [],
-    ));
+    emit(
+      state.copyWith(
+        isLoadingDetail: true,
+        status: BaseStateStatus.loading,
+        message: null,
+        testCardDetail: const [],
+      ),
+    );
 
     // 1. Đảm bảo đã có lookup data.
     await _ensureLookupData(emit);
@@ -668,19 +853,23 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
     await res.fold(
       (error) async {
         _log.logE('Get test card detail failed: $error');
-        emit(state.copyWith(
-          isLoadingDetail: false,
-          status: BaseStateStatus.failed,
-          message: error.getErrorMessage,
-        ));
+        emit(
+          state.copyWith(
+            isLoadingDetail: false,
+            status: BaseStateStatus.failed,
+            message: error.getErrorMessage,
+          ),
+        );
       },
       (details) async {
         if (details.isEmpty) {
-          emit(state.copyWith(
-            isLoadingDetail: false,
-            status: BaseStateStatus.failed,
-            message: 'Không tìm thấy chi tiết phiếu',
-          ));
+          emit(
+            state.copyWith(
+              isLoadingDetail: false,
+              status: BaseStateStatus.failed,
+              message: 'Không tìm thấy chi tiết phiếu',
+            ),
+          );
           return;
         }
 
@@ -690,7 +879,8 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
         // Ưu tiên lấy từ cardItem (list), fallback sang detail API.
         final projectId = detail.projectId ?? cardItem?.projectId;
         final projectCode = detail.projectCode ?? cardItem?.projectCode;
-        final registrationContent = detail.registrationContent ?? cardItem?.registrationContent;
+        final registrationContent =
+            detail.registrationContent ?? cardItem?.registrationContent;
         final testTableId = detail.testTableId ?? cardItem?.testTableId;
         final ownerId = detail.ownerId ?? cardItem?.ownerId;
         final approverId = detail.approverId ?? cardItem?.approverId;
@@ -744,13 +934,15 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
           add(TestTableEvent.loadTestMachines(testTableId: testTableId));
         }
 
-        emit(state.copyWith(
-          isLoadingDetail: false,
-          status: BaseStateStatus.success,
-          testCardDetail: details,
-          formData: formData,
-          message: null,
-        ));
+        emit(
+          state.copyWith(
+            isLoadingDetail: false,
+            status: BaseStateStatus.success,
+            testCardDetail: details,
+            formData: formData,
+            message: null,
+          ),
+        );
       },
     );
   }
@@ -768,21 +960,25 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
     final form = state.formData;
     if (!form.isReady) {
       _isSavingRegistration = false;
-      emit(state.copyWith(
-        status: BaseStateStatus.failed,
-        message: 'Vui lòng nhập đầy đủ thông tin trước khi lưu.',
-      ));
+      emit(
+        state.copyWith(
+          status: BaseStateStatus.failed,
+          message: 'Vui lòng nhập đầy đủ thông tin trước khi lưu.',
+        ),
+      );
       return;
     }
 
     try {
-      emit(state.copyWith(
-        isSubmitting: true,
-        status: BaseStateStatus.loading,
-        submitSuccess: false,
-        message: null,
-        conflictMessage: null,
-      ));
+      emit(
+        state.copyWith(
+          isSubmitting: true,
+          status: BaseStateStatus.loading,
+          submitSuccess: false,
+          message: null,
+          conflictMessage: null,
+        ),
+      );
 
       // Bước 1: gọi check-conflict trước (giống flow add).
       // Khi edit: truyền excludeDetailId để BE bỏ qua phiếu hiện tại,
@@ -797,36 +993,38 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
       }
       final conflictRes = await _repo.checkConflict(payload: conflictPayload);
 
-      final conflictError = conflictRes.fold(
-        (error) => error,
-        (_) => null,
-      );
+      final conflictError = conflictRes.fold((error) => error, (_) => null);
       if (conflictError != null) {
         _log.logE('Check conflict failed (pre-save edit): $conflictError');
-        emit(state.copyWith(
-          isSubmitting: false,
-          status: BaseStateStatus.failed,
-          submitSuccess: false,
-          conflictPassed: false,
-          conflictMessage: conflictError.getErrorMessage,
-          message: conflictError.getErrorMessage,
-        ));
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            status: BaseStateStatus.failed,
+            submitSuccess: false,
+            conflictPassed: false,
+            conflictMessage: conflictError.getErrorMessage,
+            message: conflictError.getErrorMessage,
+          ),
+        );
         return;
       }
 
       final conflictMessage = conflictRes.getOrElse(() => null);
-      final hasConflict = (conflictMessage ?? '').trim().isNotEmpty &&
+      final hasConflict =
+          (conflictMessage ?? '').trim().isNotEmpty &&
           !_isNoConflict(conflictMessage);
 
       if (hasConflict) {
-        emit(state.copyWith(
-          isSubmitting: false,
-          status: BaseStateStatus.failed,
-          submitSuccess: false,
-          conflictPassed: false,
-          conflictMessage: conflictMessage,
-          message: conflictMessage,
-        ));
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            status: BaseStateStatus.failed,
+            submitSuccess: false,
+            conflictPassed: false,
+            conflictMessage: conflictMessage,
+            message: conflictMessage,
+          ),
+        );
         return;
       }
 
@@ -863,31 +1061,37 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
       await res.fold(
         (error) async {
           _log.logE('Edit submit failed: $error');
-          emit(state.copyWith(
-            isSubmitting: false,
-            submitSuccess: false,
-            status: BaseStateStatus.failed,
-            message: error.getErrorMessage,
-          ));
+          emit(
+            state.copyWith(
+              isSubmitting: false,
+              submitSuccess: false,
+              status: BaseStateStatus.failed,
+              message: error.getErrorMessage,
+            ),
+          );
         },
         (_) async {
           _log.logI('Edit submit success');
-          emit(state.copyWith(
-            isSubmitting: false,
-            submitSuccess: true,
-            status: BaseStateStatus.success,
-            message: 'Cập nhật phiếu thành công',
-          ));
+          emit(
+            state.copyWith(
+              isSubmitting: false,
+              submitSuccess: true,
+              status: BaseStateStatus.success,
+              message: 'Cập nhật phiếu thành công',
+            ),
+          );
         },
       );
     } catch (e) {
       _log.logE('Edit submit exception: $e');
-      emit(state.copyWith(
-        isSubmitting: false,
-        submitSuccess: false,
-        status: BaseStateStatus.failed,
-        message: 'Có lỗi xảy ra khi cập nhật phiếu',
-      ));
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          submitSuccess: false,
+          status: BaseStateStatus.failed,
+          message: 'Có lỗi xảy ra khi cập nhật phiếu',
+        ),
+      );
     } finally {
       _isSavingRegistration = false;
       _log.logI('End edit submit');
@@ -903,38 +1107,45 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
     if (state.isDeleting || state.deletingIds.contains(masterId)) return;
 
     final newDeletingIds = {...state.deletingIds, masterId};
-    emit(state.copyWith(
-      deletingIds: newDeletingIds,
-      isDeleting: true,
-      deleteError: null,
-      deleteSuccess: false,
-    ));
+    emit(
+      state.copyWith(
+        deletingIds: newDeletingIds,
+        isDeleting: true,
+        deleteError: null,
+        deleteSuccess: false,
+      ),
+    );
 
     final res = await _repo.deleteRegistration(masterId: masterId);
     res.fold(
       (error) {
         _log.logE('Delete registration failed: $error');
         final updatedDeleting = {...state.deletingIds}..remove(masterId);
-        emit(state.copyWith(
-          deletingIds: updatedDeleting,
-          isDeleting: false,
-          deleteSuccess: false,
-          deleteError: error.getErrorMessage,
-          status: BaseStateStatus.failed,
-        ));
+        emit(
+          state.copyWith(
+            deletingIds: updatedDeleting,
+            isDeleting: false,
+            deleteSuccess: false,
+            deleteError: error.getErrorMessage,
+            status: BaseStateStatus.failed,
+          ),
+        );
       },
       (_) {
         final updatedDeleting = {...state.deletingIds}..remove(masterId);
         // Bỏ card khỏi state ngay để tránh Slidable rebuild lại với cùng key.
-        final remainingCards =
-            state.testCard.where((c) => c.id != masterId).toList();
-        emit(state.copyWith(
-          testCard: remainingCards,
-          deletingIds: updatedDeleting,
-          isDeleting: false,
-          deleteSuccess: true,
-          status: BaseStateStatus.success,
-        ));
+        final remainingCards = state.testCard
+            .where((c) => c.id != masterId)
+            .toList();
+        emit(
+          state.copyWith(
+            testCard: remainingCards,
+            deletingIds: updatedDeleting,
+            isDeleting: false,
+            deleteSuccess: true,
+            status: BaseStateStatus.success,
+          ),
+        );
       },
     );
   }
@@ -947,25 +1158,20 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
     Emitter<TestTableState> emit, {
     required int testTableId,
   }) async {
-    emit(state.copyWith(
-      isLoadingTestMachines: true,
-      testMachines: const [],
-    ));
+    emit(state.copyWith(isLoadingTestMachines: true, testMachines: const []));
 
     final res = await _repo.getTestMachineByTable(testTableId: testTableId);
     res.fold(
       (error) {
         _log.logE('Load test machines failed: $error');
-        emit(state.copyWith(
-          isLoadingTestMachines: false,
-          testMachines: const [],
-        ));
+        emit(
+          state.copyWith(isLoadingTestMachines: false, testMachines: const []),
+        );
       },
       (machines) {
-        emit(state.copyWith(
-          isLoadingTestMachines: false,
-          testMachines: machines,
-        ));
+        emit(
+          state.copyWith(isLoadingTestMachines: false, testMachines: machines),
+        );
       },
     );
   }

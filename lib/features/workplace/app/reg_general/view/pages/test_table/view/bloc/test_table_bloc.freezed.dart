@@ -43,7 +43,13 @@ mixin _$TestTableEvent {
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
     required TResult Function() clearDeleteFeedback,
+    required TResult Function() clearReturnFeedback,
+    required TResult Function(int registrationId, String startDate,
+            String endDate, int ownerId, int approverId, int type)
+        extendHandoverSubmit,
+    required TResult Function() clearExtendHandoverFeedback,
     required TResult Function(int masterId) deleteCard,
+    required TResult Function(int registrationId, int returnBy) returnCard,
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
@@ -78,7 +84,13 @@ mixin _$TestTableEvent {
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
     TResult? Function()? clearDeleteFeedback,
+    TResult? Function()? clearReturnFeedback,
+    TResult? Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult? Function()? clearExtendHandoverFeedback,
     TResult? Function(int masterId)? deleteCard,
+    TResult? Function(int registrationId, int returnBy)? returnCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
     TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
@@ -111,7 +123,13 @@ mixin _$TestTableEvent {
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
     TResult Function()? clearDeleteFeedback,
+    TResult Function()? clearReturnFeedback,
+    TResult Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult Function()? clearExtendHandoverFeedback,
     TResult Function(int masterId)? deleteCard,
+    TResult Function(int registrationId, int returnBy)? returnCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
@@ -132,7 +150,12 @@ mixin _$TestTableEvent {
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
     required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_ClearReturnFeedback value) clearReturnFeedback,
+    required TResult Function(_ExtendHandoverSubmit value) extendHandoverSubmit,
+    required TResult Function(_ClearExtendHandoverFeedback value)
+        clearExtendHandoverFeedback,
     required TResult Function(_DeleteCard value) deleteCard,
+    required TResult Function(_ReturnCard value) returnCard,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
@@ -153,7 +176,12 @@ mixin _$TestTableEvent {
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult? Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult? Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
     TResult? Function(_DeleteCard value)? deleteCard,
+    TResult? Function(_ReturnCard value)? returnCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     TResult? Function(_InitEdit value)? initEdit,
@@ -173,7 +201,12 @@ mixin _$TestTableEvent {
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
     TResult Function(_DeleteCard value)? deleteCard,
+    TResult Function(_ReturnCard value)? returnCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     TResult Function(_InitEdit value)? initEdit,
@@ -269,7 +302,13 @@ class _$InitImpl with DiagnosticableTreeMixin implements _Init {
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
     required TResult Function() clearDeleteFeedback,
+    required TResult Function() clearReturnFeedback,
+    required TResult Function(int registrationId, String startDate,
+            String endDate, int ownerId, int approverId, int type)
+        extendHandoverSubmit,
+    required TResult Function() clearExtendHandoverFeedback,
     required TResult Function(int masterId) deleteCard,
+    required TResult Function(int registrationId, int returnBy) returnCard,
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
@@ -307,7 +346,13 @@ class _$InitImpl with DiagnosticableTreeMixin implements _Init {
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
     TResult? Function()? clearDeleteFeedback,
+    TResult? Function()? clearReturnFeedback,
+    TResult? Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult? Function()? clearExtendHandoverFeedback,
     TResult? Function(int masterId)? deleteCard,
+    TResult? Function(int registrationId, int returnBy)? returnCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
     TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
@@ -343,7 +388,13 @@ class _$InitImpl with DiagnosticableTreeMixin implements _Init {
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
     TResult Function()? clearDeleteFeedback,
+    TResult Function()? clearReturnFeedback,
+    TResult Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult Function()? clearExtendHandoverFeedback,
     TResult Function(int masterId)? deleteCard,
+    TResult Function(int registrationId, int returnBy)? returnCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
@@ -370,7 +421,12 @@ class _$InitImpl with DiagnosticableTreeMixin implements _Init {
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
     required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_ClearReturnFeedback value) clearReturnFeedback,
+    required TResult Function(_ExtendHandoverSubmit value) extendHandoverSubmit,
+    required TResult Function(_ClearExtendHandoverFeedback value)
+        clearExtendHandoverFeedback,
     required TResult Function(_DeleteCard value) deleteCard,
+    required TResult Function(_ReturnCard value) returnCard,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
@@ -394,7 +450,12 @@ class _$InitImpl with DiagnosticableTreeMixin implements _Init {
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult? Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult? Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
     TResult? Function(_DeleteCard value)? deleteCard,
+    TResult? Function(_ReturnCard value)? returnCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     TResult? Function(_InitEdit value)? initEdit,
@@ -417,7 +478,12 @@ class _$InitImpl with DiagnosticableTreeMixin implements _Init {
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
     TResult Function(_DeleteCard value)? deleteCard,
+    TResult Function(_ReturnCard value)? returnCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     TResult Function(_InitEdit value)? initEdit,
@@ -504,7 +570,13 @@ class _$RefreshImpl with DiagnosticableTreeMixin implements _Refresh {
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
     required TResult Function() clearDeleteFeedback,
+    required TResult Function() clearReturnFeedback,
+    required TResult Function(int registrationId, String startDate,
+            String endDate, int ownerId, int approverId, int type)
+        extendHandoverSubmit,
+    required TResult Function() clearExtendHandoverFeedback,
     required TResult Function(int masterId) deleteCard,
+    required TResult Function(int registrationId, int returnBy) returnCard,
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
@@ -542,7 +614,13 @@ class _$RefreshImpl with DiagnosticableTreeMixin implements _Refresh {
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
     TResult? Function()? clearDeleteFeedback,
+    TResult? Function()? clearReturnFeedback,
+    TResult? Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult? Function()? clearExtendHandoverFeedback,
     TResult? Function(int masterId)? deleteCard,
+    TResult? Function(int registrationId, int returnBy)? returnCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
     TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
@@ -578,7 +656,13 @@ class _$RefreshImpl with DiagnosticableTreeMixin implements _Refresh {
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
     TResult Function()? clearDeleteFeedback,
+    TResult Function()? clearReturnFeedback,
+    TResult Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult Function()? clearExtendHandoverFeedback,
     TResult Function(int masterId)? deleteCard,
+    TResult Function(int registrationId, int returnBy)? returnCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
@@ -605,7 +689,12 @@ class _$RefreshImpl with DiagnosticableTreeMixin implements _Refresh {
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
     required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_ClearReturnFeedback value) clearReturnFeedback,
+    required TResult Function(_ExtendHandoverSubmit value) extendHandoverSubmit,
+    required TResult Function(_ClearExtendHandoverFeedback value)
+        clearExtendHandoverFeedback,
     required TResult Function(_DeleteCard value) deleteCard,
+    required TResult Function(_ReturnCard value) returnCard,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
@@ -629,7 +718,12 @@ class _$RefreshImpl with DiagnosticableTreeMixin implements _Refresh {
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult? Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult? Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
     TResult? Function(_DeleteCard value)? deleteCard,
+    TResult? Function(_ReturnCard value)? returnCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     TResult? Function(_InitEdit value)? initEdit,
@@ -652,7 +746,12 @@ class _$RefreshImpl with DiagnosticableTreeMixin implements _Refresh {
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
     TResult Function(_DeleteCard value)? deleteCard,
+    TResult Function(_ReturnCard value)? returnCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     TResult Function(_InitEdit value)? initEdit,
@@ -769,7 +868,13 @@ class _$ChangeKeywordImpl
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
     required TResult Function() clearDeleteFeedback,
+    required TResult Function() clearReturnFeedback,
+    required TResult Function(int registrationId, String startDate,
+            String endDate, int ownerId, int approverId, int type)
+        extendHandoverSubmit,
+    required TResult Function() clearExtendHandoverFeedback,
     required TResult Function(int masterId) deleteCard,
+    required TResult Function(int registrationId, int returnBy) returnCard,
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
@@ -807,7 +912,13 @@ class _$ChangeKeywordImpl
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
     TResult? Function()? clearDeleteFeedback,
+    TResult? Function()? clearReturnFeedback,
+    TResult? Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult? Function()? clearExtendHandoverFeedback,
     TResult? Function(int masterId)? deleteCard,
+    TResult? Function(int registrationId, int returnBy)? returnCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
     TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
@@ -843,7 +954,13 @@ class _$ChangeKeywordImpl
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
     TResult Function()? clearDeleteFeedback,
+    TResult Function()? clearReturnFeedback,
+    TResult Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult Function()? clearExtendHandoverFeedback,
     TResult Function(int masterId)? deleteCard,
+    TResult Function(int registrationId, int returnBy)? returnCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
@@ -870,7 +987,12 @@ class _$ChangeKeywordImpl
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
     required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_ClearReturnFeedback value) clearReturnFeedback,
+    required TResult Function(_ExtendHandoverSubmit value) extendHandoverSubmit,
+    required TResult Function(_ClearExtendHandoverFeedback value)
+        clearExtendHandoverFeedback,
     required TResult Function(_DeleteCard value) deleteCard,
+    required TResult Function(_ReturnCard value) returnCard,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
@@ -894,7 +1016,12 @@ class _$ChangeKeywordImpl
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult? Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult? Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
     TResult? Function(_DeleteCard value)? deleteCard,
+    TResult? Function(_ReturnCard value)? returnCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     TResult? Function(_InitEdit value)? initEdit,
@@ -917,7 +1044,12 @@ class _$ChangeKeywordImpl
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
     TResult Function(_DeleteCard value)? deleteCard,
+    TResult Function(_ReturnCard value)? returnCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     TResult Function(_InitEdit value)? initEdit,
@@ -1038,7 +1170,13 @@ class _$ChangeStatusImpl with DiagnosticableTreeMixin implements _ChangeStatus {
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
     required TResult Function() clearDeleteFeedback,
+    required TResult Function() clearReturnFeedback,
+    required TResult Function(int registrationId, String startDate,
+            String endDate, int ownerId, int approverId, int type)
+        extendHandoverSubmit,
+    required TResult Function() clearExtendHandoverFeedback,
     required TResult Function(int masterId) deleteCard,
+    required TResult Function(int registrationId, int returnBy) returnCard,
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
@@ -1076,7 +1214,13 @@ class _$ChangeStatusImpl with DiagnosticableTreeMixin implements _ChangeStatus {
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
     TResult? Function()? clearDeleteFeedback,
+    TResult? Function()? clearReturnFeedback,
+    TResult? Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult? Function()? clearExtendHandoverFeedback,
     TResult? Function(int masterId)? deleteCard,
+    TResult? Function(int registrationId, int returnBy)? returnCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
     TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
@@ -1112,7 +1256,13 @@ class _$ChangeStatusImpl with DiagnosticableTreeMixin implements _ChangeStatus {
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
     TResult Function()? clearDeleteFeedback,
+    TResult Function()? clearReturnFeedback,
+    TResult Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult Function()? clearExtendHandoverFeedback,
     TResult Function(int masterId)? deleteCard,
+    TResult Function(int registrationId, int returnBy)? returnCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
@@ -1139,7 +1289,12 @@ class _$ChangeStatusImpl with DiagnosticableTreeMixin implements _ChangeStatus {
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
     required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_ClearReturnFeedback value) clearReturnFeedback,
+    required TResult Function(_ExtendHandoverSubmit value) extendHandoverSubmit,
+    required TResult Function(_ClearExtendHandoverFeedback value)
+        clearExtendHandoverFeedback,
     required TResult Function(_DeleteCard value) deleteCard,
+    required TResult Function(_ReturnCard value) returnCard,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
@@ -1163,7 +1318,12 @@ class _$ChangeStatusImpl with DiagnosticableTreeMixin implements _ChangeStatus {
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult? Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult? Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
     TResult? Function(_DeleteCard value)? deleteCard,
+    TResult? Function(_ReturnCard value)? returnCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     TResult? Function(_InitEdit value)? initEdit,
@@ -1186,7 +1346,12 @@ class _$ChangeStatusImpl with DiagnosticableTreeMixin implements _ChangeStatus {
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
     TResult Function(_DeleteCard value)? deleteCard,
+    TResult Function(_ReturnCard value)? returnCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     TResult Function(_InitEdit value)? initEdit,
@@ -1319,7 +1484,13 @@ class _$ChangeDateRangeImpl
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
     required TResult Function() clearDeleteFeedback,
+    required TResult Function() clearReturnFeedback,
+    required TResult Function(int registrationId, String startDate,
+            String endDate, int ownerId, int approverId, int type)
+        extendHandoverSubmit,
+    required TResult Function() clearExtendHandoverFeedback,
     required TResult Function(int masterId) deleteCard,
+    required TResult Function(int registrationId, int returnBy) returnCard,
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
@@ -1357,7 +1528,13 @@ class _$ChangeDateRangeImpl
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
     TResult? Function()? clearDeleteFeedback,
+    TResult? Function()? clearReturnFeedback,
+    TResult? Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult? Function()? clearExtendHandoverFeedback,
     TResult? Function(int masterId)? deleteCard,
+    TResult? Function(int registrationId, int returnBy)? returnCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
     TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
@@ -1393,7 +1570,13 @@ class _$ChangeDateRangeImpl
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
     TResult Function()? clearDeleteFeedback,
+    TResult Function()? clearReturnFeedback,
+    TResult Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult Function()? clearExtendHandoverFeedback,
     TResult Function(int masterId)? deleteCard,
+    TResult Function(int registrationId, int returnBy)? returnCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
@@ -1420,7 +1603,12 @@ class _$ChangeDateRangeImpl
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
     required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_ClearReturnFeedback value) clearReturnFeedback,
+    required TResult Function(_ExtendHandoverSubmit value) extendHandoverSubmit,
+    required TResult Function(_ClearExtendHandoverFeedback value)
+        clearExtendHandoverFeedback,
     required TResult Function(_DeleteCard value) deleteCard,
+    required TResult Function(_ReturnCard value) returnCard,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
@@ -1444,7 +1632,12 @@ class _$ChangeDateRangeImpl
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult? Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult? Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
     TResult? Function(_DeleteCard value)? deleteCard,
+    TResult? Function(_ReturnCard value)? returnCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     TResult? Function(_InitEdit value)? initEdit,
@@ -1467,7 +1660,12 @@ class _$ChangeDateRangeImpl
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
     TResult Function(_DeleteCard value)? deleteCard,
+    TResult Function(_ReturnCard value)? returnCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     TResult Function(_InitEdit value)? initEdit,
@@ -1591,7 +1789,13 @@ class _$InitAddImpl with DiagnosticableTreeMixin implements _InitAdd {
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
     required TResult Function() clearDeleteFeedback,
+    required TResult Function() clearReturnFeedback,
+    required TResult Function(int registrationId, String startDate,
+            String endDate, int ownerId, int approverId, int type)
+        extendHandoverSubmit,
+    required TResult Function() clearExtendHandoverFeedback,
     required TResult Function(int masterId) deleteCard,
+    required TResult Function(int registrationId, int returnBy) returnCard,
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
@@ -1629,7 +1833,13 @@ class _$InitAddImpl with DiagnosticableTreeMixin implements _InitAdd {
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
     TResult? Function()? clearDeleteFeedback,
+    TResult? Function()? clearReturnFeedback,
+    TResult? Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult? Function()? clearExtendHandoverFeedback,
     TResult? Function(int masterId)? deleteCard,
+    TResult? Function(int registrationId, int returnBy)? returnCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
     TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
@@ -1665,7 +1875,13 @@ class _$InitAddImpl with DiagnosticableTreeMixin implements _InitAdd {
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
     TResult Function()? clearDeleteFeedback,
+    TResult Function()? clearReturnFeedback,
+    TResult Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult Function()? clearExtendHandoverFeedback,
     TResult Function(int masterId)? deleteCard,
+    TResult Function(int registrationId, int returnBy)? returnCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
@@ -1692,7 +1908,12 @@ class _$InitAddImpl with DiagnosticableTreeMixin implements _InitAdd {
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
     required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_ClearReturnFeedback value) clearReturnFeedback,
+    required TResult Function(_ExtendHandoverSubmit value) extendHandoverSubmit,
+    required TResult Function(_ClearExtendHandoverFeedback value)
+        clearExtendHandoverFeedback,
     required TResult Function(_DeleteCard value) deleteCard,
+    required TResult Function(_ReturnCard value) returnCard,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
@@ -1716,7 +1937,12 @@ class _$InitAddImpl with DiagnosticableTreeMixin implements _InitAdd {
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult? Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult? Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
     TResult? Function(_DeleteCard value)? deleteCard,
+    TResult? Function(_ReturnCard value)? returnCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     TResult? Function(_InitEdit value)? initEdit,
@@ -1739,7 +1965,12 @@ class _$InitAddImpl with DiagnosticableTreeMixin implements _InitAdd {
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
     TResult Function(_DeleteCard value)? deleteCard,
+    TResult Function(_ReturnCard value)? returnCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     TResult Function(_InitEdit value)? initEdit,
@@ -2037,7 +2268,13 @@ class _$UpdateFormImpl with DiagnosticableTreeMixin implements _UpdateForm {
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
     required TResult Function() clearDeleteFeedback,
+    required TResult Function() clearReturnFeedback,
+    required TResult Function(int registrationId, String startDate,
+            String endDate, int ownerId, int approverId, int type)
+        extendHandoverSubmit,
+    required TResult Function() clearExtendHandoverFeedback,
     required TResult Function(int masterId) deleteCard,
+    required TResult Function(int registrationId, int returnBy) returnCard,
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
@@ -2087,7 +2324,13 @@ class _$UpdateFormImpl with DiagnosticableTreeMixin implements _UpdateForm {
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
     TResult? Function()? clearDeleteFeedback,
+    TResult? Function()? clearReturnFeedback,
+    TResult? Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult? Function()? clearExtendHandoverFeedback,
     TResult? Function(int masterId)? deleteCard,
+    TResult? Function(int registrationId, int returnBy)? returnCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
     TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
@@ -2135,7 +2378,13 @@ class _$UpdateFormImpl with DiagnosticableTreeMixin implements _UpdateForm {
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
     TResult Function()? clearDeleteFeedback,
+    TResult Function()? clearReturnFeedback,
+    TResult Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult Function()? clearExtendHandoverFeedback,
     TResult Function(int masterId)? deleteCard,
+    TResult Function(int registrationId, int returnBy)? returnCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
@@ -2174,7 +2423,12 @@ class _$UpdateFormImpl with DiagnosticableTreeMixin implements _UpdateForm {
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
     required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_ClearReturnFeedback value) clearReturnFeedback,
+    required TResult Function(_ExtendHandoverSubmit value) extendHandoverSubmit,
+    required TResult Function(_ClearExtendHandoverFeedback value)
+        clearExtendHandoverFeedback,
     required TResult Function(_DeleteCard value) deleteCard,
+    required TResult Function(_ReturnCard value) returnCard,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
@@ -2198,7 +2452,12 @@ class _$UpdateFormImpl with DiagnosticableTreeMixin implements _UpdateForm {
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult? Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult? Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
     TResult? Function(_DeleteCard value)? deleteCard,
+    TResult? Function(_ReturnCard value)? returnCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     TResult? Function(_InitEdit value)? initEdit,
@@ -2221,7 +2480,12 @@ class _$UpdateFormImpl with DiagnosticableTreeMixin implements _UpdateForm {
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
     TResult Function(_DeleteCard value)? deleteCard,
+    TResult Function(_ReturnCard value)? returnCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     TResult Function(_InitEdit value)? initEdit,
@@ -2338,7 +2602,13 @@ class _$CheckConflictImpl
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
     required TResult Function() clearDeleteFeedback,
+    required TResult Function() clearReturnFeedback,
+    required TResult Function(int registrationId, String startDate,
+            String endDate, int ownerId, int approverId, int type)
+        extendHandoverSubmit,
+    required TResult Function() clearExtendHandoverFeedback,
     required TResult Function(int masterId) deleteCard,
+    required TResult Function(int registrationId, int returnBy) returnCard,
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
@@ -2376,7 +2646,13 @@ class _$CheckConflictImpl
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
     TResult? Function()? clearDeleteFeedback,
+    TResult? Function()? clearReturnFeedback,
+    TResult? Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult? Function()? clearExtendHandoverFeedback,
     TResult? Function(int masterId)? deleteCard,
+    TResult? Function(int registrationId, int returnBy)? returnCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
     TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
@@ -2412,7 +2688,13 @@ class _$CheckConflictImpl
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
     TResult Function()? clearDeleteFeedback,
+    TResult Function()? clearReturnFeedback,
+    TResult Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult Function()? clearExtendHandoverFeedback,
     TResult Function(int masterId)? deleteCard,
+    TResult Function(int registrationId, int returnBy)? returnCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
@@ -2439,7 +2721,12 @@ class _$CheckConflictImpl
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
     required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_ClearReturnFeedback value) clearReturnFeedback,
+    required TResult Function(_ExtendHandoverSubmit value) extendHandoverSubmit,
+    required TResult Function(_ClearExtendHandoverFeedback value)
+        clearExtendHandoverFeedback,
     required TResult Function(_DeleteCard value) deleteCard,
+    required TResult Function(_ReturnCard value) returnCard,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
@@ -2463,7 +2750,12 @@ class _$CheckConflictImpl
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult? Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult? Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
     TResult? Function(_DeleteCard value)? deleteCard,
+    TResult? Function(_ReturnCard value)? returnCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     TResult? Function(_InitEdit value)? initEdit,
@@ -2486,7 +2778,12 @@ class _$CheckConflictImpl
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
     TResult Function(_DeleteCard value)? deleteCard,
+    TResult Function(_ReturnCard value)? returnCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     TResult Function(_InitEdit value)? initEdit,
@@ -2576,7 +2873,13 @@ class _$SubmitRegistrationImpl
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
     required TResult Function() clearDeleteFeedback,
+    required TResult Function() clearReturnFeedback,
+    required TResult Function(int registrationId, String startDate,
+            String endDate, int ownerId, int approverId, int type)
+        extendHandoverSubmit,
+    required TResult Function() clearExtendHandoverFeedback,
     required TResult Function(int masterId) deleteCard,
+    required TResult Function(int registrationId, int returnBy) returnCard,
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
@@ -2614,7 +2917,13 @@ class _$SubmitRegistrationImpl
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
     TResult? Function()? clearDeleteFeedback,
+    TResult? Function()? clearReturnFeedback,
+    TResult? Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult? Function()? clearExtendHandoverFeedback,
     TResult? Function(int masterId)? deleteCard,
+    TResult? Function(int registrationId, int returnBy)? returnCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
     TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
@@ -2650,7 +2959,13 @@ class _$SubmitRegistrationImpl
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
     TResult Function()? clearDeleteFeedback,
+    TResult Function()? clearReturnFeedback,
+    TResult Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult Function()? clearExtendHandoverFeedback,
     TResult Function(int masterId)? deleteCard,
+    TResult Function(int registrationId, int returnBy)? returnCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
@@ -2677,7 +2992,12 @@ class _$SubmitRegistrationImpl
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
     required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_ClearReturnFeedback value) clearReturnFeedback,
+    required TResult Function(_ExtendHandoverSubmit value) extendHandoverSubmit,
+    required TResult Function(_ClearExtendHandoverFeedback value)
+        clearExtendHandoverFeedback,
     required TResult Function(_DeleteCard value) deleteCard,
+    required TResult Function(_ReturnCard value) returnCard,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
@@ -2701,7 +3021,12 @@ class _$SubmitRegistrationImpl
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult? Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult? Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
     TResult? Function(_DeleteCard value)? deleteCard,
+    TResult? Function(_ReturnCard value)? returnCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     TResult? Function(_InitEdit value)? initEdit,
@@ -2724,7 +3049,12 @@ class _$SubmitRegistrationImpl
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
     TResult Function(_DeleteCard value)? deleteCard,
+    TResult Function(_ReturnCard value)? returnCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     TResult Function(_InitEdit value)? initEdit,
@@ -2814,7 +3144,13 @@ class _$ResetSubmitFlagsImpl
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
     required TResult Function() clearDeleteFeedback,
+    required TResult Function() clearReturnFeedback,
+    required TResult Function(int registrationId, String startDate,
+            String endDate, int ownerId, int approverId, int type)
+        extendHandoverSubmit,
+    required TResult Function() clearExtendHandoverFeedback,
     required TResult Function(int masterId) deleteCard,
+    required TResult Function(int registrationId, int returnBy) returnCard,
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
@@ -2852,7 +3188,13 @@ class _$ResetSubmitFlagsImpl
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
     TResult? Function()? clearDeleteFeedback,
+    TResult? Function()? clearReturnFeedback,
+    TResult? Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult? Function()? clearExtendHandoverFeedback,
     TResult? Function(int masterId)? deleteCard,
+    TResult? Function(int registrationId, int returnBy)? returnCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
     TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
@@ -2888,7 +3230,13 @@ class _$ResetSubmitFlagsImpl
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
     TResult Function()? clearDeleteFeedback,
+    TResult Function()? clearReturnFeedback,
+    TResult Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult Function()? clearExtendHandoverFeedback,
     TResult Function(int masterId)? deleteCard,
+    TResult Function(int registrationId, int returnBy)? returnCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
@@ -2915,7 +3263,12 @@ class _$ResetSubmitFlagsImpl
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
     required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_ClearReturnFeedback value) clearReturnFeedback,
+    required TResult Function(_ExtendHandoverSubmit value) extendHandoverSubmit,
+    required TResult Function(_ClearExtendHandoverFeedback value)
+        clearExtendHandoverFeedback,
     required TResult Function(_DeleteCard value) deleteCard,
+    required TResult Function(_ReturnCard value) returnCard,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
@@ -2939,7 +3292,12 @@ class _$ResetSubmitFlagsImpl
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult? Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult? Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
     TResult? Function(_DeleteCard value)? deleteCard,
+    TResult? Function(_ReturnCard value)? returnCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     TResult? Function(_InitEdit value)? initEdit,
@@ -2962,7 +3320,12 @@ class _$ResetSubmitFlagsImpl
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
     TResult Function(_DeleteCard value)? deleteCard,
+    TResult Function(_ReturnCard value)? returnCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     TResult Function(_InitEdit value)? initEdit,
@@ -3053,7 +3416,13 @@ class _$ClearDeleteFeedbackImpl
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
     required TResult Function() clearDeleteFeedback,
+    required TResult Function() clearReturnFeedback,
+    required TResult Function(int registrationId, String startDate,
+            String endDate, int ownerId, int approverId, int type)
+        extendHandoverSubmit,
+    required TResult Function() clearExtendHandoverFeedback,
     required TResult Function(int masterId) deleteCard,
+    required TResult Function(int registrationId, int returnBy) returnCard,
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
@@ -3091,7 +3460,13 @@ class _$ClearDeleteFeedbackImpl
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
     TResult? Function()? clearDeleteFeedback,
+    TResult? Function()? clearReturnFeedback,
+    TResult? Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult? Function()? clearExtendHandoverFeedback,
     TResult? Function(int masterId)? deleteCard,
+    TResult? Function(int registrationId, int returnBy)? returnCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
     TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
@@ -3127,7 +3502,13 @@ class _$ClearDeleteFeedbackImpl
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
     TResult Function()? clearDeleteFeedback,
+    TResult Function()? clearReturnFeedback,
+    TResult Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult Function()? clearExtendHandoverFeedback,
     TResult Function(int masterId)? deleteCard,
+    TResult Function(int registrationId, int returnBy)? returnCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
@@ -3154,7 +3535,12 @@ class _$ClearDeleteFeedbackImpl
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
     required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_ClearReturnFeedback value) clearReturnFeedback,
+    required TResult Function(_ExtendHandoverSubmit value) extendHandoverSubmit,
+    required TResult Function(_ClearExtendHandoverFeedback value)
+        clearExtendHandoverFeedback,
     required TResult Function(_DeleteCard value) deleteCard,
+    required TResult Function(_ReturnCard value) returnCard,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
@@ -3178,7 +3564,12 @@ class _$ClearDeleteFeedbackImpl
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult? Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult? Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
     TResult? Function(_DeleteCard value)? deleteCard,
+    TResult? Function(_ReturnCard value)? returnCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     TResult? Function(_InitEdit value)? initEdit,
@@ -3201,7 +3592,12 @@ class _$ClearDeleteFeedbackImpl
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
     TResult Function(_DeleteCard value)? deleteCard,
+    TResult Function(_ReturnCard value)? returnCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     TResult Function(_InitEdit value)? initEdit,
@@ -3217,6 +3613,934 @@ class _$ClearDeleteFeedbackImpl
 
 abstract class _ClearDeleteFeedback implements TestTableEvent {
   const factory _ClearDeleteFeedback() = _$ClearDeleteFeedbackImpl;
+}
+
+/// @nodoc
+abstract class _$$ClearReturnFeedbackImplCopyWith<$Res> {
+  factory _$$ClearReturnFeedbackImplCopyWith(_$ClearReturnFeedbackImpl value,
+          $Res Function(_$ClearReturnFeedbackImpl) then) =
+      __$$ClearReturnFeedbackImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearReturnFeedbackImplCopyWithImpl<$Res>
+    extends _$TestTableEventCopyWithImpl<$Res, _$ClearReturnFeedbackImpl>
+    implements _$$ClearReturnFeedbackImplCopyWith<$Res> {
+  __$$ClearReturnFeedbackImplCopyWithImpl(_$ClearReturnFeedbackImpl _value,
+      $Res Function(_$ClearReturnFeedbackImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ClearReturnFeedbackImpl
+    with DiagnosticableTreeMixin
+    implements _ClearReturnFeedback {
+  const _$ClearReturnFeedbackImpl();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'TestTableEvent.clearReturnFeedback()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+        .add(DiagnosticsProperty('type', 'TestTableEvent.clearReturnFeedback'));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ClearReturnFeedbackImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() refresh,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function(int status) changeStatus,
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd)
+        changeDateRange,
+    required TResult Function(int? prefillTestTableId) initAdd,
+    required TResult Function(
+            ProjectItem? project,
+            int? testTableId,
+            List<int>? selectedMachineIds,
+            int? ownerId,
+            int? approverId,
+            DateTime? startDate,
+            bool clearProject,
+            bool clearTestTableId,
+            bool clearSelectedMachineIds,
+            bool clearOwnerId,
+            bool clearApproverId,
+            bool clearStartDate)
+        updateForm,
+    required TResult Function() checkConflict,
+    required TResult Function() submitRegistration,
+    required TResult Function() resetSubmitFlags,
+    required TResult Function() clearDeleteFeedback,
+    required TResult Function() clearReturnFeedback,
+    required TResult Function(int registrationId, String startDate,
+            String endDate, int ownerId, int approverId, int type)
+        extendHandoverSubmit,
+    required TResult Function() clearExtendHandoverFeedback,
+    required TResult Function(int masterId) deleteCard,
+    required TResult Function(int registrationId, int returnBy) returnCard,
+    required TResult Function(int testTableId) loadTestMachines,
+    required TResult Function(String barcode, int tableSide)
+        findTestTableByBarcode,
+    required TResult Function(int registrationId, TestCardItem? cardItem)
+        initEdit,
+    required TResult Function() editSubmit,
+  }) {
+    return clearReturnFeedback();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? refresh,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(int status)? changeStatus,
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult? Function(int? prefillTestTableId)? initAdd,
+    TResult? Function(
+            ProjectItem? project,
+            int? testTableId,
+            List<int>? selectedMachineIds,
+            int? ownerId,
+            int? approverId,
+            DateTime? startDate,
+            bool clearProject,
+            bool clearTestTableId,
+            bool clearSelectedMachineIds,
+            bool clearOwnerId,
+            bool clearApproverId,
+            bool clearStartDate)?
+        updateForm,
+    TResult? Function()? checkConflict,
+    TResult? Function()? submitRegistration,
+    TResult? Function()? resetSubmitFlags,
+    TResult? Function()? clearDeleteFeedback,
+    TResult? Function()? clearReturnFeedback,
+    TResult? Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult? Function()? clearExtendHandoverFeedback,
+    TResult? Function(int masterId)? deleteCard,
+    TResult? Function(int registrationId, int returnBy)? returnCard,
+    TResult? Function(int testTableId)? loadTestMachines,
+    TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult? Function()? editSubmit,
+  }) {
+    return clearReturnFeedback?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? refresh,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function(int status)? changeStatus,
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult Function(int? prefillTestTableId)? initAdd,
+    TResult Function(
+            ProjectItem? project,
+            int? testTableId,
+            List<int>? selectedMachineIds,
+            int? ownerId,
+            int? approverId,
+            DateTime? startDate,
+            bool clearProject,
+            bool clearTestTableId,
+            bool clearSelectedMachineIds,
+            bool clearOwnerId,
+            bool clearApproverId,
+            bool clearStartDate)?
+        updateForm,
+    TResult Function()? checkConflict,
+    TResult Function()? submitRegistration,
+    TResult Function()? resetSubmitFlags,
+    TResult Function()? clearDeleteFeedback,
+    TResult Function()? clearReturnFeedback,
+    TResult Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult Function()? clearExtendHandoverFeedback,
+    TResult Function(int masterId)? deleteCard,
+    TResult Function(int registrationId, int returnBy)? returnCard,
+    TResult Function(int testTableId)? loadTestMachines,
+    TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult Function()? editSubmit,
+    required TResult orElse(),
+  }) {
+    if (clearReturnFeedback != null) {
+      return clearReturnFeedback();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_ChangeStatus value) changeStatus,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_UpdateForm value) updateForm,
+    required TResult Function(_CheckConflict value) checkConflict,
+    required TResult Function(_SubmitRegistration value) submitRegistration,
+    required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
+    required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_ClearReturnFeedback value) clearReturnFeedback,
+    required TResult Function(_ExtendHandoverSubmit value) extendHandoverSubmit,
+    required TResult Function(_ClearExtendHandoverFeedback value)
+        clearExtendHandoverFeedback,
+    required TResult Function(_DeleteCard value) deleteCard,
+    required TResult Function(_ReturnCard value) returnCard,
+    required TResult Function(_LoadTestMachines value) loadTestMachines,
+    required TResult Function(_FindTestTableByBarcode value)
+        findTestTableByBarcode,
+    required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_EditSubmit value) editSubmit,
+  }) {
+    return clearReturnFeedback(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_ChangeStatus value)? changeStatus,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_UpdateForm value)? updateForm,
+    TResult? Function(_CheckConflict value)? checkConflict,
+    TResult? Function(_SubmitRegistration value)? submitRegistration,
+    TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult? Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult? Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
+    TResult? Function(_DeleteCard value)? deleteCard,
+    TResult? Function(_ReturnCard value)? returnCard,
+    TResult? Function(_LoadTestMachines value)? loadTestMachines,
+    TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_EditSubmit value)? editSubmit,
+  }) {
+    return clearReturnFeedback?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_ChangeStatus value)? changeStatus,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_UpdateForm value)? updateForm,
+    TResult Function(_CheckConflict value)? checkConflict,
+    TResult Function(_SubmitRegistration value)? submitRegistration,
+    TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
+    TResult Function(_DeleteCard value)? deleteCard,
+    TResult Function(_ReturnCard value)? returnCard,
+    TResult Function(_LoadTestMachines value)? loadTestMachines,
+    TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_EditSubmit value)? editSubmit,
+    required TResult orElse(),
+  }) {
+    if (clearReturnFeedback != null) {
+      return clearReturnFeedback(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearReturnFeedback implements TestTableEvent {
+  const factory _ClearReturnFeedback() = _$ClearReturnFeedbackImpl;
+}
+
+/// @nodoc
+abstract class _$$ExtendHandoverSubmitImplCopyWith<$Res> {
+  factory _$$ExtendHandoverSubmitImplCopyWith(_$ExtendHandoverSubmitImpl value,
+          $Res Function(_$ExtendHandoverSubmitImpl) then) =
+      __$$ExtendHandoverSubmitImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {int registrationId,
+      String startDate,
+      String endDate,
+      int ownerId,
+      int approverId,
+      int type});
+}
+
+/// @nodoc
+class __$$ExtendHandoverSubmitImplCopyWithImpl<$Res>
+    extends _$TestTableEventCopyWithImpl<$Res, _$ExtendHandoverSubmitImpl>
+    implements _$$ExtendHandoverSubmitImplCopyWith<$Res> {
+  __$$ExtendHandoverSubmitImplCopyWithImpl(_$ExtendHandoverSubmitImpl _value,
+      $Res Function(_$ExtendHandoverSubmitImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? registrationId = null,
+    Object? startDate = null,
+    Object? endDate = null,
+    Object? ownerId = null,
+    Object? approverId = null,
+    Object? type = null,
+  }) {
+    return _then(_$ExtendHandoverSubmitImpl(
+      registrationId: null == registrationId
+          ? _value.registrationId
+          : registrationId // ignore: cast_nullable_to_non_nullable
+              as int,
+      startDate: null == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      endDate: null == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      ownerId: null == ownerId
+          ? _value.ownerId
+          : ownerId // ignore: cast_nullable_to_non_nullable
+              as int,
+      approverId: null == approverId
+          ? _value.approverId
+          : approverId // ignore: cast_nullable_to_non_nullable
+              as int,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ExtendHandoverSubmitImpl
+    with DiagnosticableTreeMixin
+    implements _ExtendHandoverSubmit {
+  const _$ExtendHandoverSubmitImpl(
+      {required this.registrationId,
+      required this.startDate,
+      required this.endDate,
+      required this.ownerId,
+      required this.approverId,
+      required this.type});
+
+  @override
+  final int registrationId;
+  @override
+  final String startDate;
+  @override
+  final String endDate;
+  @override
+  final int ownerId;
+  @override
+  final int approverId;
+  @override
+  final int type;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'TestTableEvent.extendHandoverSubmit(registrationId: $registrationId, startDate: $startDate, endDate: $endDate, ownerId: $ownerId, approverId: $approverId, type: $type)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'TestTableEvent.extendHandoverSubmit'))
+      ..add(DiagnosticsProperty('registrationId', registrationId))
+      ..add(DiagnosticsProperty('startDate', startDate))
+      ..add(DiagnosticsProperty('endDate', endDate))
+      ..add(DiagnosticsProperty('ownerId', ownerId))
+      ..add(DiagnosticsProperty('approverId', approverId))
+      ..add(DiagnosticsProperty('type', type));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ExtendHandoverSubmitImpl &&
+            (identical(other.registrationId, registrationId) ||
+                other.registrationId == registrationId) &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate) &&
+            (identical(other.endDate, endDate) || other.endDate == endDate) &&
+            (identical(other.ownerId, ownerId) || other.ownerId == ownerId) &&
+            (identical(other.approverId, approverId) ||
+                other.approverId == approverId) &&
+            (identical(other.type, type) || other.type == type));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, registrationId, startDate,
+      endDate, ownerId, approverId, type);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ExtendHandoverSubmitImplCopyWith<_$ExtendHandoverSubmitImpl>
+      get copyWith =>
+          __$$ExtendHandoverSubmitImplCopyWithImpl<_$ExtendHandoverSubmitImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() refresh,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function(int status) changeStatus,
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd)
+        changeDateRange,
+    required TResult Function(int? prefillTestTableId) initAdd,
+    required TResult Function(
+            ProjectItem? project,
+            int? testTableId,
+            List<int>? selectedMachineIds,
+            int? ownerId,
+            int? approverId,
+            DateTime? startDate,
+            bool clearProject,
+            bool clearTestTableId,
+            bool clearSelectedMachineIds,
+            bool clearOwnerId,
+            bool clearApproverId,
+            bool clearStartDate)
+        updateForm,
+    required TResult Function() checkConflict,
+    required TResult Function() submitRegistration,
+    required TResult Function() resetSubmitFlags,
+    required TResult Function() clearDeleteFeedback,
+    required TResult Function() clearReturnFeedback,
+    required TResult Function(int registrationId, String startDate,
+            String endDate, int ownerId, int approverId, int type)
+        extendHandoverSubmit,
+    required TResult Function() clearExtendHandoverFeedback,
+    required TResult Function(int masterId) deleteCard,
+    required TResult Function(int registrationId, int returnBy) returnCard,
+    required TResult Function(int testTableId) loadTestMachines,
+    required TResult Function(String barcode, int tableSide)
+        findTestTableByBarcode,
+    required TResult Function(int registrationId, TestCardItem? cardItem)
+        initEdit,
+    required TResult Function() editSubmit,
+  }) {
+    return extendHandoverSubmit(
+        registrationId, startDate, endDate, ownerId, approverId, type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? refresh,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(int status)? changeStatus,
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult? Function(int? prefillTestTableId)? initAdd,
+    TResult? Function(
+            ProjectItem? project,
+            int? testTableId,
+            List<int>? selectedMachineIds,
+            int? ownerId,
+            int? approverId,
+            DateTime? startDate,
+            bool clearProject,
+            bool clearTestTableId,
+            bool clearSelectedMachineIds,
+            bool clearOwnerId,
+            bool clearApproverId,
+            bool clearStartDate)?
+        updateForm,
+    TResult? Function()? checkConflict,
+    TResult? Function()? submitRegistration,
+    TResult? Function()? resetSubmitFlags,
+    TResult? Function()? clearDeleteFeedback,
+    TResult? Function()? clearReturnFeedback,
+    TResult? Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult? Function()? clearExtendHandoverFeedback,
+    TResult? Function(int masterId)? deleteCard,
+    TResult? Function(int registrationId, int returnBy)? returnCard,
+    TResult? Function(int testTableId)? loadTestMachines,
+    TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult? Function()? editSubmit,
+  }) {
+    return extendHandoverSubmit?.call(
+        registrationId, startDate, endDate, ownerId, approverId, type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? refresh,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function(int status)? changeStatus,
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult Function(int? prefillTestTableId)? initAdd,
+    TResult Function(
+            ProjectItem? project,
+            int? testTableId,
+            List<int>? selectedMachineIds,
+            int? ownerId,
+            int? approverId,
+            DateTime? startDate,
+            bool clearProject,
+            bool clearTestTableId,
+            bool clearSelectedMachineIds,
+            bool clearOwnerId,
+            bool clearApproverId,
+            bool clearStartDate)?
+        updateForm,
+    TResult Function()? checkConflict,
+    TResult Function()? submitRegistration,
+    TResult Function()? resetSubmitFlags,
+    TResult Function()? clearDeleteFeedback,
+    TResult Function()? clearReturnFeedback,
+    TResult Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult Function()? clearExtendHandoverFeedback,
+    TResult Function(int masterId)? deleteCard,
+    TResult Function(int registrationId, int returnBy)? returnCard,
+    TResult Function(int testTableId)? loadTestMachines,
+    TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult Function()? editSubmit,
+    required TResult orElse(),
+  }) {
+    if (extendHandoverSubmit != null) {
+      return extendHandoverSubmit(
+          registrationId, startDate, endDate, ownerId, approverId, type);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_ChangeStatus value) changeStatus,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_UpdateForm value) updateForm,
+    required TResult Function(_CheckConflict value) checkConflict,
+    required TResult Function(_SubmitRegistration value) submitRegistration,
+    required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
+    required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_ClearReturnFeedback value) clearReturnFeedback,
+    required TResult Function(_ExtendHandoverSubmit value) extendHandoverSubmit,
+    required TResult Function(_ClearExtendHandoverFeedback value)
+        clearExtendHandoverFeedback,
+    required TResult Function(_DeleteCard value) deleteCard,
+    required TResult Function(_ReturnCard value) returnCard,
+    required TResult Function(_LoadTestMachines value) loadTestMachines,
+    required TResult Function(_FindTestTableByBarcode value)
+        findTestTableByBarcode,
+    required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_EditSubmit value) editSubmit,
+  }) {
+    return extendHandoverSubmit(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_ChangeStatus value)? changeStatus,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_UpdateForm value)? updateForm,
+    TResult? Function(_CheckConflict value)? checkConflict,
+    TResult? Function(_SubmitRegistration value)? submitRegistration,
+    TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult? Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult? Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
+    TResult? Function(_DeleteCard value)? deleteCard,
+    TResult? Function(_ReturnCard value)? returnCard,
+    TResult? Function(_LoadTestMachines value)? loadTestMachines,
+    TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_EditSubmit value)? editSubmit,
+  }) {
+    return extendHandoverSubmit?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_ChangeStatus value)? changeStatus,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_UpdateForm value)? updateForm,
+    TResult Function(_CheckConflict value)? checkConflict,
+    TResult Function(_SubmitRegistration value)? submitRegistration,
+    TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
+    TResult Function(_DeleteCard value)? deleteCard,
+    TResult Function(_ReturnCard value)? returnCard,
+    TResult Function(_LoadTestMachines value)? loadTestMachines,
+    TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_EditSubmit value)? editSubmit,
+    required TResult orElse(),
+  }) {
+    if (extendHandoverSubmit != null) {
+      return extendHandoverSubmit(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ExtendHandoverSubmit implements TestTableEvent {
+  const factory _ExtendHandoverSubmit(
+      {required final int registrationId,
+      required final String startDate,
+      required final String endDate,
+      required final int ownerId,
+      required final int approverId,
+      required final int type}) = _$ExtendHandoverSubmitImpl;
+
+  int get registrationId;
+  String get startDate;
+  String get endDate;
+  int get ownerId;
+  int get approverId;
+  int get type;
+  @JsonKey(ignore: true)
+  _$$ExtendHandoverSubmitImplCopyWith<_$ExtendHandoverSubmitImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ClearExtendHandoverFeedbackImplCopyWith<$Res> {
+  factory _$$ClearExtendHandoverFeedbackImplCopyWith(
+          _$ClearExtendHandoverFeedbackImpl value,
+          $Res Function(_$ClearExtendHandoverFeedbackImpl) then) =
+      __$$ClearExtendHandoverFeedbackImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearExtendHandoverFeedbackImplCopyWithImpl<$Res>
+    extends _$TestTableEventCopyWithImpl<$Res,
+        _$ClearExtendHandoverFeedbackImpl>
+    implements _$$ClearExtendHandoverFeedbackImplCopyWith<$Res> {
+  __$$ClearExtendHandoverFeedbackImplCopyWithImpl(
+      _$ClearExtendHandoverFeedbackImpl _value,
+      $Res Function(_$ClearExtendHandoverFeedbackImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ClearExtendHandoverFeedbackImpl
+    with DiagnosticableTreeMixin
+    implements _ClearExtendHandoverFeedback {
+  const _$ClearExtendHandoverFeedbackImpl();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'TestTableEvent.clearExtendHandoverFeedback()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty(
+        'type', 'TestTableEvent.clearExtendHandoverFeedback'));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ClearExtendHandoverFeedbackImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() refresh,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function(int status) changeStatus,
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd)
+        changeDateRange,
+    required TResult Function(int? prefillTestTableId) initAdd,
+    required TResult Function(
+            ProjectItem? project,
+            int? testTableId,
+            List<int>? selectedMachineIds,
+            int? ownerId,
+            int? approverId,
+            DateTime? startDate,
+            bool clearProject,
+            bool clearTestTableId,
+            bool clearSelectedMachineIds,
+            bool clearOwnerId,
+            bool clearApproverId,
+            bool clearStartDate)
+        updateForm,
+    required TResult Function() checkConflict,
+    required TResult Function() submitRegistration,
+    required TResult Function() resetSubmitFlags,
+    required TResult Function() clearDeleteFeedback,
+    required TResult Function() clearReturnFeedback,
+    required TResult Function(int registrationId, String startDate,
+            String endDate, int ownerId, int approverId, int type)
+        extendHandoverSubmit,
+    required TResult Function() clearExtendHandoverFeedback,
+    required TResult Function(int masterId) deleteCard,
+    required TResult Function(int registrationId, int returnBy) returnCard,
+    required TResult Function(int testTableId) loadTestMachines,
+    required TResult Function(String barcode, int tableSide)
+        findTestTableByBarcode,
+    required TResult Function(int registrationId, TestCardItem? cardItem)
+        initEdit,
+    required TResult Function() editSubmit,
+  }) {
+    return clearExtendHandoverFeedback();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? refresh,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(int status)? changeStatus,
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult? Function(int? prefillTestTableId)? initAdd,
+    TResult? Function(
+            ProjectItem? project,
+            int? testTableId,
+            List<int>? selectedMachineIds,
+            int? ownerId,
+            int? approverId,
+            DateTime? startDate,
+            bool clearProject,
+            bool clearTestTableId,
+            bool clearSelectedMachineIds,
+            bool clearOwnerId,
+            bool clearApproverId,
+            bool clearStartDate)?
+        updateForm,
+    TResult? Function()? checkConflict,
+    TResult? Function()? submitRegistration,
+    TResult? Function()? resetSubmitFlags,
+    TResult? Function()? clearDeleteFeedback,
+    TResult? Function()? clearReturnFeedback,
+    TResult? Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult? Function()? clearExtendHandoverFeedback,
+    TResult? Function(int masterId)? deleteCard,
+    TResult? Function(int registrationId, int returnBy)? returnCard,
+    TResult? Function(int testTableId)? loadTestMachines,
+    TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult? Function()? editSubmit,
+  }) {
+    return clearExtendHandoverFeedback?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? refresh,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function(int status)? changeStatus,
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult Function(int? prefillTestTableId)? initAdd,
+    TResult Function(
+            ProjectItem? project,
+            int? testTableId,
+            List<int>? selectedMachineIds,
+            int? ownerId,
+            int? approverId,
+            DateTime? startDate,
+            bool clearProject,
+            bool clearTestTableId,
+            bool clearSelectedMachineIds,
+            bool clearOwnerId,
+            bool clearApproverId,
+            bool clearStartDate)?
+        updateForm,
+    TResult Function()? checkConflict,
+    TResult Function()? submitRegistration,
+    TResult Function()? resetSubmitFlags,
+    TResult Function()? clearDeleteFeedback,
+    TResult Function()? clearReturnFeedback,
+    TResult Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult Function()? clearExtendHandoverFeedback,
+    TResult Function(int masterId)? deleteCard,
+    TResult Function(int registrationId, int returnBy)? returnCard,
+    TResult Function(int testTableId)? loadTestMachines,
+    TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult Function()? editSubmit,
+    required TResult orElse(),
+  }) {
+    if (clearExtendHandoverFeedback != null) {
+      return clearExtendHandoverFeedback();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_ChangeStatus value) changeStatus,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_UpdateForm value) updateForm,
+    required TResult Function(_CheckConflict value) checkConflict,
+    required TResult Function(_SubmitRegistration value) submitRegistration,
+    required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
+    required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_ClearReturnFeedback value) clearReturnFeedback,
+    required TResult Function(_ExtendHandoverSubmit value) extendHandoverSubmit,
+    required TResult Function(_ClearExtendHandoverFeedback value)
+        clearExtendHandoverFeedback,
+    required TResult Function(_DeleteCard value) deleteCard,
+    required TResult Function(_ReturnCard value) returnCard,
+    required TResult Function(_LoadTestMachines value) loadTestMachines,
+    required TResult Function(_FindTestTableByBarcode value)
+        findTestTableByBarcode,
+    required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_EditSubmit value) editSubmit,
+  }) {
+    return clearExtendHandoverFeedback(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_ChangeStatus value)? changeStatus,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_UpdateForm value)? updateForm,
+    TResult? Function(_CheckConflict value)? checkConflict,
+    TResult? Function(_SubmitRegistration value)? submitRegistration,
+    TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult? Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult? Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
+    TResult? Function(_DeleteCard value)? deleteCard,
+    TResult? Function(_ReturnCard value)? returnCard,
+    TResult? Function(_LoadTestMachines value)? loadTestMachines,
+    TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_EditSubmit value)? editSubmit,
+  }) {
+    return clearExtendHandoverFeedback?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_ChangeStatus value)? changeStatus,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_UpdateForm value)? updateForm,
+    TResult Function(_CheckConflict value)? checkConflict,
+    TResult Function(_SubmitRegistration value)? submitRegistration,
+    TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
+    TResult Function(_DeleteCard value)? deleteCard,
+    TResult Function(_ReturnCard value)? returnCard,
+    TResult Function(_LoadTestMachines value)? loadTestMachines,
+    TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_EditSubmit value)? editSubmit,
+    required TResult orElse(),
+  }) {
+    if (clearExtendHandoverFeedback != null) {
+      return clearExtendHandoverFeedback(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearExtendHandoverFeedback implements TestTableEvent {
+  const factory _ClearExtendHandoverFeedback() =
+      _$ClearExtendHandoverFeedbackImpl;
 }
 
 /// @nodoc
@@ -3317,7 +4641,13 @@ class _$DeleteCardImpl with DiagnosticableTreeMixin implements _DeleteCard {
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
     required TResult Function() clearDeleteFeedback,
+    required TResult Function() clearReturnFeedback,
+    required TResult Function(int registrationId, String startDate,
+            String endDate, int ownerId, int approverId, int type)
+        extendHandoverSubmit,
+    required TResult Function() clearExtendHandoverFeedback,
     required TResult Function(int masterId) deleteCard,
+    required TResult Function(int registrationId, int returnBy) returnCard,
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
@@ -3355,7 +4685,13 @@ class _$DeleteCardImpl with DiagnosticableTreeMixin implements _DeleteCard {
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
     TResult? Function()? clearDeleteFeedback,
+    TResult? Function()? clearReturnFeedback,
+    TResult? Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult? Function()? clearExtendHandoverFeedback,
     TResult? Function(int masterId)? deleteCard,
+    TResult? Function(int registrationId, int returnBy)? returnCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
     TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
@@ -3391,7 +4727,13 @@ class _$DeleteCardImpl with DiagnosticableTreeMixin implements _DeleteCard {
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
     TResult Function()? clearDeleteFeedback,
+    TResult Function()? clearReturnFeedback,
+    TResult Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult Function()? clearExtendHandoverFeedback,
     TResult Function(int masterId)? deleteCard,
+    TResult Function(int registrationId, int returnBy)? returnCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
@@ -3418,7 +4760,12 @@ class _$DeleteCardImpl with DiagnosticableTreeMixin implements _DeleteCard {
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
     required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_ClearReturnFeedback value) clearReturnFeedback,
+    required TResult Function(_ExtendHandoverSubmit value) extendHandoverSubmit,
+    required TResult Function(_ClearExtendHandoverFeedback value)
+        clearExtendHandoverFeedback,
     required TResult Function(_DeleteCard value) deleteCard,
+    required TResult Function(_ReturnCard value) returnCard,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
@@ -3442,7 +4789,12 @@ class _$DeleteCardImpl with DiagnosticableTreeMixin implements _DeleteCard {
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult? Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult? Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
     TResult? Function(_DeleteCard value)? deleteCard,
+    TResult? Function(_ReturnCard value)? returnCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     TResult? Function(_InitEdit value)? initEdit,
@@ -3465,7 +4817,12 @@ class _$DeleteCardImpl with DiagnosticableTreeMixin implements _DeleteCard {
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
     TResult Function(_DeleteCard value)? deleteCard,
+    TResult Function(_ReturnCard value)? returnCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     TResult Function(_InitEdit value)? initEdit,
@@ -3485,6 +4842,322 @@ abstract class _DeleteCard implements TestTableEvent {
   int get masterId;
   @JsonKey(ignore: true)
   _$$DeleteCardImplCopyWith<_$DeleteCardImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ReturnCardImplCopyWith<$Res> {
+  factory _$$ReturnCardImplCopyWith(
+          _$ReturnCardImpl value, $Res Function(_$ReturnCardImpl) then) =
+      __$$ReturnCardImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int registrationId, int returnBy});
+}
+
+/// @nodoc
+class __$$ReturnCardImplCopyWithImpl<$Res>
+    extends _$TestTableEventCopyWithImpl<$Res, _$ReturnCardImpl>
+    implements _$$ReturnCardImplCopyWith<$Res> {
+  __$$ReturnCardImplCopyWithImpl(
+      _$ReturnCardImpl _value, $Res Function(_$ReturnCardImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? registrationId = null,
+    Object? returnBy = null,
+  }) {
+    return _then(_$ReturnCardImpl(
+      registrationId: null == registrationId
+          ? _value.registrationId
+          : registrationId // ignore: cast_nullable_to_non_nullable
+              as int,
+      returnBy: null == returnBy
+          ? _value.returnBy
+          : returnBy // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ReturnCardImpl with DiagnosticableTreeMixin implements _ReturnCard {
+  const _$ReturnCardImpl(
+      {required this.registrationId, required this.returnBy});
+
+  @override
+  final int registrationId;
+  @override
+  final int returnBy;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'TestTableEvent.returnCard(registrationId: $registrationId, returnBy: $returnBy)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'TestTableEvent.returnCard'))
+      ..add(DiagnosticsProperty('registrationId', registrationId))
+      ..add(DiagnosticsProperty('returnBy', returnBy));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ReturnCardImpl &&
+            (identical(other.registrationId, registrationId) ||
+                other.registrationId == registrationId) &&
+            (identical(other.returnBy, returnBy) ||
+                other.returnBy == returnBy));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, registrationId, returnBy);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ReturnCardImplCopyWith<_$ReturnCardImpl> get copyWith =>
+      __$$ReturnCardImplCopyWithImpl<_$ReturnCardImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() refresh,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function(int status) changeStatus,
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd)
+        changeDateRange,
+    required TResult Function(int? prefillTestTableId) initAdd,
+    required TResult Function(
+            ProjectItem? project,
+            int? testTableId,
+            List<int>? selectedMachineIds,
+            int? ownerId,
+            int? approverId,
+            DateTime? startDate,
+            bool clearProject,
+            bool clearTestTableId,
+            bool clearSelectedMachineIds,
+            bool clearOwnerId,
+            bool clearApproverId,
+            bool clearStartDate)
+        updateForm,
+    required TResult Function() checkConflict,
+    required TResult Function() submitRegistration,
+    required TResult Function() resetSubmitFlags,
+    required TResult Function() clearDeleteFeedback,
+    required TResult Function() clearReturnFeedback,
+    required TResult Function(int registrationId, String startDate,
+            String endDate, int ownerId, int approverId, int type)
+        extendHandoverSubmit,
+    required TResult Function() clearExtendHandoverFeedback,
+    required TResult Function(int masterId) deleteCard,
+    required TResult Function(int registrationId, int returnBy) returnCard,
+    required TResult Function(int testTableId) loadTestMachines,
+    required TResult Function(String barcode, int tableSide)
+        findTestTableByBarcode,
+    required TResult Function(int registrationId, TestCardItem? cardItem)
+        initEdit,
+    required TResult Function() editSubmit,
+  }) {
+    return returnCard(registrationId, returnBy);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? refresh,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(int status)? changeStatus,
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult? Function(int? prefillTestTableId)? initAdd,
+    TResult? Function(
+            ProjectItem? project,
+            int? testTableId,
+            List<int>? selectedMachineIds,
+            int? ownerId,
+            int? approverId,
+            DateTime? startDate,
+            bool clearProject,
+            bool clearTestTableId,
+            bool clearSelectedMachineIds,
+            bool clearOwnerId,
+            bool clearApproverId,
+            bool clearStartDate)?
+        updateForm,
+    TResult? Function()? checkConflict,
+    TResult? Function()? submitRegistration,
+    TResult? Function()? resetSubmitFlags,
+    TResult? Function()? clearDeleteFeedback,
+    TResult? Function()? clearReturnFeedback,
+    TResult? Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult? Function()? clearExtendHandoverFeedback,
+    TResult? Function(int masterId)? deleteCard,
+    TResult? Function(int registrationId, int returnBy)? returnCard,
+    TResult? Function(int testTableId)? loadTestMachines,
+    TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult? Function()? editSubmit,
+  }) {
+    return returnCard?.call(registrationId, returnBy);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? refresh,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function(int status)? changeStatus,
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult Function(int? prefillTestTableId)? initAdd,
+    TResult Function(
+            ProjectItem? project,
+            int? testTableId,
+            List<int>? selectedMachineIds,
+            int? ownerId,
+            int? approverId,
+            DateTime? startDate,
+            bool clearProject,
+            bool clearTestTableId,
+            bool clearSelectedMachineIds,
+            bool clearOwnerId,
+            bool clearApproverId,
+            bool clearStartDate)?
+        updateForm,
+    TResult Function()? checkConflict,
+    TResult Function()? submitRegistration,
+    TResult Function()? resetSubmitFlags,
+    TResult Function()? clearDeleteFeedback,
+    TResult Function()? clearReturnFeedback,
+    TResult Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult Function()? clearExtendHandoverFeedback,
+    TResult Function(int masterId)? deleteCard,
+    TResult Function(int registrationId, int returnBy)? returnCard,
+    TResult Function(int testTableId)? loadTestMachines,
+    TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
+    TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
+    TResult Function()? editSubmit,
+    required TResult orElse(),
+  }) {
+    if (returnCard != null) {
+      return returnCard(registrationId, returnBy);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_ChangeStatus value) changeStatus,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_UpdateForm value) updateForm,
+    required TResult Function(_CheckConflict value) checkConflict,
+    required TResult Function(_SubmitRegistration value) submitRegistration,
+    required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
+    required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_ClearReturnFeedback value) clearReturnFeedback,
+    required TResult Function(_ExtendHandoverSubmit value) extendHandoverSubmit,
+    required TResult Function(_ClearExtendHandoverFeedback value)
+        clearExtendHandoverFeedback,
+    required TResult Function(_DeleteCard value) deleteCard,
+    required TResult Function(_ReturnCard value) returnCard,
+    required TResult Function(_LoadTestMachines value) loadTestMachines,
+    required TResult Function(_FindTestTableByBarcode value)
+        findTestTableByBarcode,
+    required TResult Function(_InitEdit value) initEdit,
+    required TResult Function(_EditSubmit value) editSubmit,
+  }) {
+    return returnCard(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_ChangeStatus value)? changeStatus,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_UpdateForm value)? updateForm,
+    TResult? Function(_CheckConflict value)? checkConflict,
+    TResult? Function(_SubmitRegistration value)? submitRegistration,
+    TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult? Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult? Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
+    TResult? Function(_DeleteCard value)? deleteCard,
+    TResult? Function(_ReturnCard value)? returnCard,
+    TResult? Function(_LoadTestMachines value)? loadTestMachines,
+    TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult? Function(_InitEdit value)? initEdit,
+    TResult? Function(_EditSubmit value)? editSubmit,
+  }) {
+    return returnCard?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_ChangeStatus value)? changeStatus,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_UpdateForm value)? updateForm,
+    TResult Function(_CheckConflict value)? checkConflict,
+    TResult Function(_SubmitRegistration value)? submitRegistration,
+    TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
+    TResult Function(_DeleteCard value)? deleteCard,
+    TResult Function(_ReturnCard value)? returnCard,
+    TResult Function(_LoadTestMachines value)? loadTestMachines,
+    TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
+    TResult Function(_InitEdit value)? initEdit,
+    TResult Function(_EditSubmit value)? editSubmit,
+    required TResult orElse(),
+  }) {
+    if (returnCard != null) {
+      return returnCard(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ReturnCard implements TestTableEvent {
+  const factory _ReturnCard(
+      {required final int registrationId,
+      required final int returnBy}) = _$ReturnCardImpl;
+
+  int get registrationId;
+  int get returnBy;
+  @JsonKey(ignore: true)
+  _$$ReturnCardImplCopyWith<_$ReturnCardImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -3589,7 +5262,13 @@ class _$LoadTestMachinesImpl
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
     required TResult Function() clearDeleteFeedback,
+    required TResult Function() clearReturnFeedback,
+    required TResult Function(int registrationId, String startDate,
+            String endDate, int ownerId, int approverId, int type)
+        extendHandoverSubmit,
+    required TResult Function() clearExtendHandoverFeedback,
     required TResult Function(int masterId) deleteCard,
+    required TResult Function(int registrationId, int returnBy) returnCard,
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
@@ -3627,7 +5306,13 @@ class _$LoadTestMachinesImpl
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
     TResult? Function()? clearDeleteFeedback,
+    TResult? Function()? clearReturnFeedback,
+    TResult? Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult? Function()? clearExtendHandoverFeedback,
     TResult? Function(int masterId)? deleteCard,
+    TResult? Function(int registrationId, int returnBy)? returnCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
     TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
@@ -3663,7 +5348,13 @@ class _$LoadTestMachinesImpl
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
     TResult Function()? clearDeleteFeedback,
+    TResult Function()? clearReturnFeedback,
+    TResult Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult Function()? clearExtendHandoverFeedback,
     TResult Function(int masterId)? deleteCard,
+    TResult Function(int registrationId, int returnBy)? returnCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
@@ -3690,7 +5381,12 @@ class _$LoadTestMachinesImpl
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
     required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_ClearReturnFeedback value) clearReturnFeedback,
+    required TResult Function(_ExtendHandoverSubmit value) extendHandoverSubmit,
+    required TResult Function(_ClearExtendHandoverFeedback value)
+        clearExtendHandoverFeedback,
     required TResult Function(_DeleteCard value) deleteCard,
+    required TResult Function(_ReturnCard value) returnCard,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
@@ -3714,7 +5410,12 @@ class _$LoadTestMachinesImpl
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult? Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult? Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
     TResult? Function(_DeleteCard value)? deleteCard,
+    TResult? Function(_ReturnCard value)? returnCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     TResult? Function(_InitEdit value)? initEdit,
@@ -3737,7 +5438,12 @@ class _$LoadTestMachinesImpl
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
     TResult Function(_DeleteCard value)? deleteCard,
+    TResult Function(_ReturnCard value)? returnCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     TResult Function(_InitEdit value)? initEdit,
@@ -3875,7 +5581,13 @@ class _$FindTestTableByBarcodeImpl
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
     required TResult Function() clearDeleteFeedback,
+    required TResult Function() clearReturnFeedback,
+    required TResult Function(int registrationId, String startDate,
+            String endDate, int ownerId, int approverId, int type)
+        extendHandoverSubmit,
+    required TResult Function() clearExtendHandoverFeedback,
     required TResult Function(int masterId) deleteCard,
+    required TResult Function(int registrationId, int returnBy) returnCard,
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
@@ -3913,7 +5625,13 @@ class _$FindTestTableByBarcodeImpl
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
     TResult? Function()? clearDeleteFeedback,
+    TResult? Function()? clearReturnFeedback,
+    TResult? Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult? Function()? clearExtendHandoverFeedback,
     TResult? Function(int masterId)? deleteCard,
+    TResult? Function(int registrationId, int returnBy)? returnCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
     TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
@@ -3949,7 +5667,13 @@ class _$FindTestTableByBarcodeImpl
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
     TResult Function()? clearDeleteFeedback,
+    TResult Function()? clearReturnFeedback,
+    TResult Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult Function()? clearExtendHandoverFeedback,
     TResult Function(int masterId)? deleteCard,
+    TResult Function(int registrationId, int returnBy)? returnCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
@@ -3976,7 +5700,12 @@ class _$FindTestTableByBarcodeImpl
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
     required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_ClearReturnFeedback value) clearReturnFeedback,
+    required TResult Function(_ExtendHandoverSubmit value) extendHandoverSubmit,
+    required TResult Function(_ClearExtendHandoverFeedback value)
+        clearExtendHandoverFeedback,
     required TResult Function(_DeleteCard value) deleteCard,
+    required TResult Function(_ReturnCard value) returnCard,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
@@ -4000,7 +5729,12 @@ class _$FindTestTableByBarcodeImpl
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult? Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult? Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
     TResult? Function(_DeleteCard value)? deleteCard,
+    TResult? Function(_ReturnCard value)? returnCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     TResult? Function(_InitEdit value)? initEdit,
@@ -4023,7 +5757,12 @@ class _$FindTestTableByBarcodeImpl
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
     TResult Function(_DeleteCard value)? deleteCard,
+    TResult Function(_ReturnCard value)? returnCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     TResult Function(_InitEdit value)? initEdit,
@@ -4171,7 +5910,13 @@ class _$InitEditImpl with DiagnosticableTreeMixin implements _InitEdit {
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
     required TResult Function() clearDeleteFeedback,
+    required TResult Function() clearReturnFeedback,
+    required TResult Function(int registrationId, String startDate,
+            String endDate, int ownerId, int approverId, int type)
+        extendHandoverSubmit,
+    required TResult Function() clearExtendHandoverFeedback,
     required TResult Function(int masterId) deleteCard,
+    required TResult Function(int registrationId, int returnBy) returnCard,
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
@@ -4209,7 +5954,13 @@ class _$InitEditImpl with DiagnosticableTreeMixin implements _InitEdit {
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
     TResult? Function()? clearDeleteFeedback,
+    TResult? Function()? clearReturnFeedback,
+    TResult? Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult? Function()? clearExtendHandoverFeedback,
     TResult? Function(int masterId)? deleteCard,
+    TResult? Function(int registrationId, int returnBy)? returnCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
     TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
@@ -4245,7 +5996,13 @@ class _$InitEditImpl with DiagnosticableTreeMixin implements _InitEdit {
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
     TResult Function()? clearDeleteFeedback,
+    TResult Function()? clearReturnFeedback,
+    TResult Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult Function()? clearExtendHandoverFeedback,
     TResult Function(int masterId)? deleteCard,
+    TResult Function(int registrationId, int returnBy)? returnCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
@@ -4272,7 +6029,12 @@ class _$InitEditImpl with DiagnosticableTreeMixin implements _InitEdit {
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
     required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_ClearReturnFeedback value) clearReturnFeedback,
+    required TResult Function(_ExtendHandoverSubmit value) extendHandoverSubmit,
+    required TResult Function(_ClearExtendHandoverFeedback value)
+        clearExtendHandoverFeedback,
     required TResult Function(_DeleteCard value) deleteCard,
+    required TResult Function(_ReturnCard value) returnCard,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
@@ -4296,7 +6058,12 @@ class _$InitEditImpl with DiagnosticableTreeMixin implements _InitEdit {
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult? Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult? Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
     TResult? Function(_DeleteCard value)? deleteCard,
+    TResult? Function(_ReturnCard value)? returnCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     TResult? Function(_InitEdit value)? initEdit,
@@ -4319,7 +6086,12 @@ class _$InitEditImpl with DiagnosticableTreeMixin implements _InitEdit {
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
     TResult Function(_DeleteCard value)? deleteCard,
+    TResult Function(_ReturnCard value)? returnCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     TResult Function(_InitEdit value)? initEdit,
@@ -4414,7 +6186,13 @@ class _$EditSubmitImpl with DiagnosticableTreeMixin implements _EditSubmit {
     required TResult Function() submitRegistration,
     required TResult Function() resetSubmitFlags,
     required TResult Function() clearDeleteFeedback,
+    required TResult Function() clearReturnFeedback,
+    required TResult Function(int registrationId, String startDate,
+            String endDate, int ownerId, int approverId, int type)
+        extendHandoverSubmit,
+    required TResult Function() clearExtendHandoverFeedback,
     required TResult Function(int masterId) deleteCard,
+    required TResult Function(int registrationId, int returnBy) returnCard,
     required TResult Function(int testTableId) loadTestMachines,
     required TResult Function(String barcode, int tableSide)
         findTestTableByBarcode,
@@ -4452,7 +6230,13 @@ class _$EditSubmitImpl with DiagnosticableTreeMixin implements _EditSubmit {
     TResult? Function()? submitRegistration,
     TResult? Function()? resetSubmitFlags,
     TResult? Function()? clearDeleteFeedback,
+    TResult? Function()? clearReturnFeedback,
+    TResult? Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult? Function()? clearExtendHandoverFeedback,
     TResult? Function(int masterId)? deleteCard,
+    TResult? Function(int registrationId, int returnBy)? returnCard,
     TResult? Function(int testTableId)? loadTestMachines,
     TResult? Function(String barcode, int tableSide)? findTestTableByBarcode,
     TResult? Function(int registrationId, TestCardItem? cardItem)? initEdit,
@@ -4488,7 +6272,13 @@ class _$EditSubmitImpl with DiagnosticableTreeMixin implements _EditSubmit {
     TResult Function()? submitRegistration,
     TResult Function()? resetSubmitFlags,
     TResult Function()? clearDeleteFeedback,
+    TResult Function()? clearReturnFeedback,
+    TResult Function(int registrationId, String startDate, String endDate,
+            int ownerId, int approverId, int type)?
+        extendHandoverSubmit,
+    TResult Function()? clearExtendHandoverFeedback,
     TResult Function(int masterId)? deleteCard,
+    TResult Function(int registrationId, int returnBy)? returnCard,
     TResult Function(int testTableId)? loadTestMachines,
     TResult Function(String barcode, int tableSide)? findTestTableByBarcode,
     TResult Function(int registrationId, TestCardItem? cardItem)? initEdit,
@@ -4515,7 +6305,12 @@ class _$EditSubmitImpl with DiagnosticableTreeMixin implements _EditSubmit {
     required TResult Function(_SubmitRegistration value) submitRegistration,
     required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
     required TResult Function(_ClearDeleteFeedback value) clearDeleteFeedback,
+    required TResult Function(_ClearReturnFeedback value) clearReturnFeedback,
+    required TResult Function(_ExtendHandoverSubmit value) extendHandoverSubmit,
+    required TResult Function(_ClearExtendHandoverFeedback value)
+        clearExtendHandoverFeedback,
     required TResult Function(_DeleteCard value) deleteCard,
+    required TResult Function(_ReturnCard value) returnCard,
     required TResult Function(_LoadTestMachines value) loadTestMachines,
     required TResult Function(_FindTestTableByBarcode value)
         findTestTableByBarcode,
@@ -4539,7 +6334,12 @@ class _$EditSubmitImpl with DiagnosticableTreeMixin implements _EditSubmit {
     TResult? Function(_SubmitRegistration value)? submitRegistration,
     TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult? Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult? Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult? Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult? Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
     TResult? Function(_DeleteCard value)? deleteCard,
+    TResult? Function(_ReturnCard value)? returnCard,
     TResult? Function(_LoadTestMachines value)? loadTestMachines,
     TResult? Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     TResult? Function(_InitEdit value)? initEdit,
@@ -4562,7 +6362,12 @@ class _$EditSubmitImpl with DiagnosticableTreeMixin implements _EditSubmit {
     TResult Function(_SubmitRegistration value)? submitRegistration,
     TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
     TResult Function(_ClearDeleteFeedback value)? clearDeleteFeedback,
+    TResult Function(_ClearReturnFeedback value)? clearReturnFeedback,
+    TResult Function(_ExtendHandoverSubmit value)? extendHandoverSubmit,
+    TResult Function(_ClearExtendHandoverFeedback value)?
+        clearExtendHandoverFeedback,
     TResult Function(_DeleteCard value)? deleteCard,
+    TResult Function(_ReturnCard value)? returnCard,
     TResult Function(_LoadTestMachines value)? loadTestMachines,
     TResult Function(_FindTestTableByBarcode value)? findTestTableByBarcode,
     TResult Function(_InitEdit value)? initEdit,

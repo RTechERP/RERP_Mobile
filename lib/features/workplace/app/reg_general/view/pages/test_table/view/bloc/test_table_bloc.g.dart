@@ -61,6 +61,16 @@ abstract class _$TestTableStateCWProxy {
 
   TestTableState deleteError(String? deleteError);
 
+  TestTableState returningIds(Set<int> returningIds);
+
+  TestTableState returnSuccess(bool returnSuccess);
+
+  TestTableState returnError(String? returnError);
+
+  TestTableState extendHandoverSuccess(bool extendHandoverSuccess);
+
+  TestTableState extendHandoverError(String? extendHandoverError);
+
   TestTableState testCardDetail(List<TestCardDetail> testCardDetail);
 
   TestTableState isLoadingDetail(bool isLoadingDetail);
@@ -99,6 +109,11 @@ abstract class _$TestTableStateCWProxy {
     bool? isDeleting,
     bool? deleteSuccess,
     String? deleteError,
+    Set<int>? returningIds,
+    bool? returnSuccess,
+    String? returnError,
+    bool? extendHandoverSuccess,
+    String? extendHandoverError,
     List<TestCardDetail>? testCardDetail,
     bool? isLoadingDetail,
   });
@@ -211,6 +226,26 @@ class _$TestTableStateCWProxyImpl implements _$TestTableStateCWProxy {
       this(deleteError: deleteError);
 
   @override
+  TestTableState returningIds(Set<int> returningIds) =>
+      this(returningIds: returningIds);
+
+  @override
+  TestTableState returnSuccess(bool returnSuccess) =>
+      this(returnSuccess: returnSuccess);
+
+  @override
+  TestTableState returnError(String? returnError) =>
+      this(returnError: returnError);
+
+  @override
+  TestTableState extendHandoverSuccess(bool extendHandoverSuccess) =>
+      this(extendHandoverSuccess: extendHandoverSuccess);
+
+  @override
+  TestTableState extendHandoverError(String? extendHandoverError) =>
+      this(extendHandoverError: extendHandoverError);
+
+  @override
   TestTableState testCardDetail(List<TestCardDetail> testCardDetail) =>
       this(testCardDetail: testCardDetail);
 
@@ -254,6 +289,11 @@ class _$TestTableStateCWProxyImpl implements _$TestTableStateCWProxy {
     Object? isDeleting = const $CopyWithPlaceholder(),
     Object? deleteSuccess = const $CopyWithPlaceholder(),
     Object? deleteError = const $CopyWithPlaceholder(),
+    Object? returningIds = const $CopyWithPlaceholder(),
+    Object? returnSuccess = const $CopyWithPlaceholder(),
+    Object? returnError = const $CopyWithPlaceholder(),
+    Object? extendHandoverSuccess = const $CopyWithPlaceholder(),
+    Object? extendHandoverError = const $CopyWithPlaceholder(),
     Object? testCardDetail = const $CopyWithPlaceholder(),
     Object? isLoadingDetail = const $CopyWithPlaceholder(),
   }) {
@@ -377,6 +417,30 @@ class _$TestTableStateCWProxyImpl implements _$TestTableStateCWProxy {
           ? _value.deleteError
           // ignore: cast_nullable_to_non_nullable
           : deleteError as String?,
+      returningIds:
+          returningIds == const $CopyWithPlaceholder() || returningIds == null
+              ? _value.returningIds
+              // ignore: cast_nullable_to_non_nullable
+              : returningIds as Set<int>,
+      returnSuccess:
+          returnSuccess == const $CopyWithPlaceholder() || returnSuccess == null
+              ? _value.returnSuccess
+              // ignore: cast_nullable_to_non_nullable
+              : returnSuccess as bool,
+      returnError: returnError == const $CopyWithPlaceholder()
+          ? _value.returnError
+          // ignore: cast_nullable_to_non_nullable
+          : returnError as String?,
+      extendHandoverSuccess:
+          extendHandoverSuccess == const $CopyWithPlaceholder() ||
+                  extendHandoverSuccess == null
+              ? _value.extendHandoverSuccess
+              // ignore: cast_nullable_to_non_nullable
+              : extendHandoverSuccess as bool,
+      extendHandoverError: extendHandoverError == const $CopyWithPlaceholder()
+          ? _value.extendHandoverError
+          // ignore: cast_nullable_to_non_nullable
+          : extendHandoverError as String?,
       testCardDetail: testCardDetail == const $CopyWithPlaceholder() ||
               testCardDetail == null
           ? _value.testCardDetail

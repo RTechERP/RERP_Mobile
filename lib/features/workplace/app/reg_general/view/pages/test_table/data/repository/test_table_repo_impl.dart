@@ -200,4 +200,52 @@ class TestTableRepoImpl implements TestTableRepo {
       return left(BaseError.httpInternalServerError(e.toString()));
     }
   }
+
+  @override
+  Future<Either<BaseError, void>> returnRegistration({
+    required int registrationId,
+    required int returnBy,
+  }) async {
+    try {
+      await _service.returnRegistration(
+        registrationId: registrationId,
+        returnBy: returnBy,
+      );
+      return right(null);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } on BaseError catch (e) {
+      return left(e);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<BaseError, void>> extendHandoverRegistration({
+    required int registrationId,
+    required String startDate,
+    required String endDate,
+    required int ownerId,
+    required int approverId,
+    required int type,
+  }) async {
+    try {
+      await _service.extendHandoverRegistration(
+        registrationId: registrationId,
+        startDate: startDate,
+        endDate: endDate,
+        ownerId: ownerId,
+        approverId: approverId,
+        type: type,
+      );
+      return right(null);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } on BaseError catch (e) {
+      return left(e);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
 }

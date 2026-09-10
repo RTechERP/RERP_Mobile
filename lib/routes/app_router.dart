@@ -18,6 +18,7 @@ import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/test_table
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/test_table/view/pages/test_table_add_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/test_table/view/pages/test_table_edit_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/test_table/view/pages/test_table_qr_scan_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/test_table/view/pages/test_table_extend_handover_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/test_table/data/datasource/models/test_table_model.dart';
 import 'package:rtc_erp/features/workplace/app/signature/view/bloc/my_signature_bloc.dart';
 import 'package:rtc_erp/features/workplace/app/signature/view/pages/signature_screen.dart';
@@ -1272,6 +1273,29 @@ class AppRouter {
                 );
               }
               return TestTableEditScreen(
+                registrationId: registrationId,
+                cardItem: cardItem,
+              );
+            },
+          ),
+          GoRoute(
+            path: RouteNames.testTableExtendHandover,
+            builder: (context, state) {
+              final registrationId = int.tryParse(
+                state.uri.queryParameters['registrationId'] ?? '',
+              );
+              final cardItem = state.extra as TestCardItem?;
+              if (registrationId == null ||
+                  registrationId == 0 ||
+                  cardItem == null) {
+                return Scaffold(
+                  appBar: AppBar(title: const Text('Gia hạn / Bàn giao')),
+                  body: const Center(
+                    child: Text('Không tìm thấy phiếu đăng ký.'),
+                  ),
+                );
+              }
+              return TestTableExtendHandoverScreen(
                 registrationId: registrationId,
                 cardItem: cardItem,
               );

@@ -205,6 +205,8 @@ class RouteNames {
   static const String testTableAdd = '/reg_general/test_table/add';
   static const String testTableEdit = '/reg_general/test_table/edit';
   static const String testTableQrScan = '/reg_general/test_table/qr-scan';
+  static const String testTableExtendHandover =
+      '/reg_general/test_table/extend-handover';
 
   // Signature Registration
   static const String signature = '/signature';

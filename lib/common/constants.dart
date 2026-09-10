@@ -488,4 +488,16 @@ class ApiEndPoint {
   /// API: POST /ESLRegistration/delete-master?masterID={masterID}.
   /// Body: `{ "masterID": <int> }`.
   static const String deleteRegistration = '/ESLRegistration/delete-master';
+
+  /// Trả bàn test (chỉ áp dụng khi phiếu đã duyệt — status == 1).
+  /// API: POST /ESLRegistration/return (form-data).
+  /// Body: `{ "registrationID": <int>, "returnBy": <int> }`.
+  static const String returnRegistration = '/ESLRegistration/return';
+
+  /// Gia hạn / bàn giao bàn test (chỉ áp dụng với phiếu đã duyệt).
+  /// API: POST /ESLRegistration/extend-handover (form-data).
+  /// Body: `{ "registrationID", "startDate", "endDate", "ownerID",
+  ///          "approverID", "type" (1 = gia hạn, 2 = bàn giao) }`.
+  static const String extendHandoverRegistration =
+      '/ESLRegistration/extend-handover';
 }
