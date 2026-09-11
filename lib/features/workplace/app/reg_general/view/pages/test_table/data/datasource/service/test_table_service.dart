@@ -41,15 +41,17 @@ class TestTableService extends DioBaseApiService {
     String startDate = '',
     String endDate = '',
   }) async {
+    // Khi các filter = 0/rỗng → bỏ khỏi query để BE trả full (kèm DetailsJson).
+    final query = <String, dynamic>{};
+    if (keyword.isNotEmpty) query['keyword'] = keyword;
+    if (employeeId != 0) query['employeeId'] = employeeId;
+    if (status != 0) query['status'] = status;
+    if (startDate.isNotEmpty) query['startDate'] = startDate;
+    if (endDate.isNotEmpty) query['endDate'] = endDate;
+
     return get<BaseData<List<TestCardItem>>>(
       ApiEndPoint.getTestTable,
-      query: {
-        'keyword': keyword,
-        'employeeId': employeeId,
-        'status': status,
-        'startDate': startDate,
-        'endDate': endDate,
-      },
+      query: query,
       parser: (json) => _parseList(
         json,
         TestCardItem.fromJson,

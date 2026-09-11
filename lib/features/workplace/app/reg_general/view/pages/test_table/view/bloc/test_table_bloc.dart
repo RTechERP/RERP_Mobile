@@ -142,9 +142,10 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
         lookupFetched: false,
       ),
     );
-    // Lấy currentUser trước để BE lọc theo employeeId.
+    // Lấy currentUser để hiển thị Owner (không truyền filter cho BE vì BE trả
+    // DetailsJson=null kèm filter).
     await _ensureCurrentUser(emit);
-    await _fetchTestCards(emit);
+    await _fetchTestCards(emit, skipFilters: true);
     // Tải luôn lookup data để màn add dùng được ngay khi user bấm "Thêm".
     await _ensureLookupData(emit);
   }
@@ -220,15 +221,15 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
     }
   }
 
-  Future<void> _fetchTestCards(Emitter<TestTableState> emit) async {
+  Future<void> _fetchTestCards(Emitter<TestTableState> emit, {bool skipFilters = false}) async {
     final start = state.dateStart;
     final end = state.dateEnd;
     final result = await _repo.getTestCardItem(
-      keyword: state.keyword,
-      employeeId: state.currentUser?.employeeId ?? 0,
-      status: state.statusFilter,
-      startDate: start == null ? '' : _dateOnly(start),
-      endDate: end == null ? '' : _dateOnly(end),
+      keyword: skipFilters ? '' : state.keyword,
+      employeeId: skipFilters ? 0 : (state.currentUser?.employeeId ?? 0),
+      status: skipFilters ? 0 : state.statusFilter,
+      startDate: skipFilters ? '' : (start == null ? '' : _dateOnly(start)),
+      endDate: skipFilters ? '' : (end == null ? '' : _dateOnly(end)),
     );
 
     await result.fold(

@@ -48,6 +48,8 @@ class TestTableRepoImpl implements TestTableRepo {
         keyword: keyword,
         employeeId: employeeId,
         status: status ?? 0,
+        startDate: startDate,
+        endDate: endDate,
       );
       if (res.status == 1 && res.data != null) {
         return right(res.data!);

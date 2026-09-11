@@ -2,6 +2,8 @@
 // Card đăng ký bàn test ESL - glassmorphism, compact.
 // Hỗ trợ swipe actions: "Xoá" (chưa duyệt) / "Trả bàn" (đã duyệt).
 
+import 'dart:convert';
+
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -13,6 +15,28 @@ import '../../data/datasource/models/test_table_model.dart';
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
+/// Parse danh sách detail từ detailsJson (mỗi detail là 1 object).
+List<Map<String, dynamic>> _parseDetails(String? detailsJson) {
+  if (detailsJson == null || detailsJson.trim().isEmpty) return const [];
+  try {
+    final decoded = jsonDecode(detailsJson);
+    if (decoded is! List || decoded.isEmpty) return const [];
+    return List<Map<String, dynamic>>.from(decoded);
+  } catch (_) {
+    return const [];
+  }
+}
+
+/// Label cho badge — chỉ 2 trạng thái (Chờ duyệt / Đã duyệt).
+String _statusLabel(int? s) {
+  return s == 1 ? 'Đã duyệt' : 'Chờ duyệt';
+}
+
+/// Màu cho badge theo status (2 trạng thái).
+Color _statusColor(int? s) {
+  return s == 1 ? AppColors.stateSuccessColor : AppColors.warning;
+}
+
 String _dash(String? v) {
   final t = v?.trim();
   return (t == null || t.isEmpty) ? '—' : t;
@@ -23,18 +47,9 @@ String _fmt(DateTime? d) {
   return DateFormat('dd/MM/yyyy').format(d.toLocal());
 }
 
-String _statusLabel(int? s) {
-  switch (s) {
-    case 1: return 'Đã duyệt';
-    case 2: return 'Từ chối';
-    case 3: return 'Hoàn thành';
-    default: return 'Chờ duyệt';
-  }
-}
-
 // ─── Card ────────────────────────────────────────────────────────────────────
 
-class TestTableCard extends StatelessWidget {
+class TestTableCard extends StatefulWidget {
   const TestTableCard({
     super.key,
     required this.item,
@@ -66,9 +81,18 @@ class TestTableCard extends StatelessWidget {
   final bool isDeleting;
 
   @override
+  State<TestTableCard> createState() => _TestTableCardState();
+}
+
+class _TestTableCardState extends State<TestTableCard> {
+  bool _isExpanded = false;
+
+  @override
   Widget build(BuildContext context) {
-    final sc = _statusColor(item.status);
-    final masterId = item.id;
+    final sc = _statusColor(widget.item.status);
+    final badgeLabel = _statusLabel(widget.item.status);
+    final masterId = widget.item.id;
+    final hasDetails = (widget.item.detailsJson ?? '').trim().isNotEmpty;
 
     final card = ClipRRect(
       borderRadius: BorderRadius.circular(16),
@@ -106,15 +130,22 @@ class TestTableCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildHeader(sc),
+              _buildHeader(sc, badgeLabel),
               if (_hasInfo) ...[
                 const SizedBox(height: 8),
                 _buildInfo(),
               ],
-              if (item.detailStartDate != null || item.detailEndDate != null) ...[
+              if (widget.item.detailStartDate != null || widget.item.detailEndDate != null) ...[
                 const SizedBox(height: 8),
                 _buildFooter(),
               ],
+              // ─── Expand: chi tiết detailsJson ────────────────────────────────
+              if (hasDetails) ...[
+                const SizedBox(height: 6),
+                _buildExpandable(),
+              ],
+              // ─── Footer: chevron expand/collapse (tap không bubble lên edit) ──
+              _buildFooterRow(hasDetails),
             ],
           ),
         ),
@@ -124,26 +155,25 @@ class TestTableCard extends StatelessWidget {
     // Nếu không có id thì chỉ render card thường.
     if (masterId == null) return card;
 
-    // Slidable: swipe phải để xoá (chưa duyệt) hoặc trả bàn (đã duyệt).
-    // Tap vào card → navigate đến trang edit.
+    // Swipe phải → action trả bàn / xoá theo status.
     return Slidable(
       key: ValueKey('test_card_$masterId'),
-      endActionPane: _buildActionPane(masterId),
+      endActionPane: _buildActionPane(masterId, widget.item.status ?? 0),
       child: GestureDetector(
-        onTap: onEdit != null ? () => onEdit!(masterId) : null,
+        onTap: widget.onEdit != null ? () => widget.onEdit!(masterId) : null,
         child: card,
       ),
     );
   }
 
   // ─── Action pane tùy theo trạng thái phiếu ─────────────────────────
-  ActionPane? _buildActionPane(int masterId) {
-    // Xác định swipe action dựa trên trạng thái.
-    final isApproved = item.status == 1;
-    final hasAction = isApproved ? onReturn != null : onDelete != null;
+  ActionPane? _buildActionPane(int masterId, int detailStatus) {
+    // Xác định swipe action dựa trên trạng thái phiếu.
+    final isApproved = detailStatus == 1;
+    final hasAction = isApproved ? widget.onReturn != null : widget.onDelete != null;
     if (!hasAction) return null;
 
-    final isLoading = isApproved ? isReturning : isDeleting;
+    final isLoading = isApproved ? widget.isReturning : widget.isDeleting;
 
     if (isApproved) {
       return ActionPane(
@@ -153,7 +183,7 @@ class TestTableCard extends StatelessWidget {
           SlidableAction(
             onPressed: isLoading
                 ? null
-                : (_) => onReturn?.call(masterId),
+                : (_) => widget.onReturn?.call(masterId),
             backgroundColor: AppColors.primaryERP,
             foregroundColor: Colors.white,
             icon: isLoading ? Icons.hourglass_top : Icons.keyboard_return,
@@ -172,7 +202,7 @@ class TestTableCard extends StatelessWidget {
           SlidableAction(
             onPressed: isLoading
                 ? null
-                : (_) => onDelete?.call(masterId),
+                : (_) => widget.onDelete?.call(masterId),
             backgroundColor: AppColors.alert,
             foregroundColor: Colors.white,
             icon: isLoading ? Icons.hourglass_top : Icons.delete,
@@ -186,17 +216,259 @@ class TestTableCard extends StatelessWidget {
     }
   }
 
-  // ─── Header: mã + status ─────────────────────────────────────────────────
-  Widget _buildHeader(Color sc) {
-    return Row(
+  // ─── Expandable: chi tiết detailsJson khi tap chevron ──────────────────
+  Widget _buildExpandable() {
+    final details = _parseDetails(widget.item.detailsJson);
+
+    // AnimatedSize + ClipRect tự co giãn chiều cao khi expand/collapse,
+    // tránh lỗi text nhảy/overflow mà AnimatedCrossFade hay gặp.
+    return AnimatedSize(
+      duration: const Duration(milliseconds: 220),
+      curve: Curves.easeInOut,
+      alignment: Alignment.topCenter,
+      child: ClipRect(
+        child: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 220),
+          child: _isExpanded
+              ? Padding(
+                  key: const ValueKey('expanded'),
+                  padding: const EdgeInsets.only(top: 6),
+                  child: _buildDetailsBody(details),
+                )
+              : const SizedBox(key: ValueKey('collapsed'), height: 0),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDetailsBody(List<Map<String, dynamic>> details) {
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                _dash(item.registrationCode),
+        Divider(height: 1, color: AppColors.borderColor.withValues(alpha: 0.5)),
+        const SizedBox(height: 6),
+        const Text(
+          'Lịch sử phiếu',
+          style: TextStyle(
+            fontSize: 11,
+            fontWeight: FontWeight.w700,
+            color: AppColors.textSecondaryColor,
+            letterSpacing: 0.3,
+          ),
+        ),
+        const SizedBox(height: 6),
+        // Mỗi detail là 1 card nhỏ với viền trái màu theo Type,
+        // body: statusChip • #{No} - {Loại} / Ngày / Người nhận BG / Người duyệt.
+        ...details.map((d) {
+          final st = d['Status'] as int?;
+          final statusColor = _statusColor(st);
+          final type = d['Type'] as int?;
+          final accent = _detailTypeColor(type);
+
+          // Ưu tiên field từ detail, fallback master.
+          final start = _readDate(d, 'StartDate') ??
+              _readDate(d, 'DetailStartDate') ??
+              widget.item.detailStartDate;
+          final end = _readDate(d, 'EndDate') ??
+              _readDate(d, 'DetailEndDate') ??
+              widget.item.detailEndDate;
+          final handover = _readStr(d, 'ReceiverName') ??
+              _readStr(d, 'HandoverName') ??
+              _readStr(d, 'OwnerFullName') ??
+              widget.item.ownerFullName;
+          final approver = _readStr(d, 'ApproverFullName') ??
+              widget.item.approverFullName;
+
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 8),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Container(
+                color: Colors.white.withValues(alpha: 0.55),
+                child: IntrinsicHeight(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      // Thanh accent trái — màu theo Type.
+                      Container(width: 3, color: accent),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              // Row 1: Type icon + #{No} - {Loại} + statusChip
+                              Row(
+                                children: [
+                                  Icon(_detailTypeIcon(type), size: 14, color: accent),
+                                  const SizedBox(width: 6),
+                                  Expanded(
+                                    child: Text(
+                                      '#${d['No'] ?? '-'} • ${_detailTypeLabel(type)}',
+                                      style: TextStyle(
+                                        fontSize: 12.5,
+                                        fontWeight: FontWeight.w700,
+                                        color: accent,
+                                        height: 1.2,
+                                      ),
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 6),
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 7,
+                                      vertical: 2,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: statusColor.withValues(alpha: 0.14),
+                                      borderRadius: BorderRadius.circular(20),
+                                      border: Border.all(
+                                        color: statusColor.withValues(alpha: 0.4),
+                                        width: 0.7,
+                                      ),
+                                    ),
+                                    child: Text(
+                                      _detailStatusLabel(st),
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w700,
+                                        color: statusColor,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              // Divider mảnh ngăn header / body
+                              Padding(
+                                padding: const EdgeInsets.only(top: 6, bottom: 6),
+                                child: Divider(
+                                  height: 1,
+                                  color: AppColors.borderColor.withValues(alpha: 0.35),
+                                ),
+                              ),
+                              if (start != null || end != null) ...[
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: _DateCell(
+                                        label: 'Bắt đầu',
+                                        date: start,
+                                        accent: accent,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 6),
+                                    Expanded(
+                                      child: _DateCell(
+                                        label: 'Kết thúc',
+                                        date: end,
+                                        accent: accent,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 6),
+                              ],
+                              if (handover != null && handover.trim().isNotEmpty) ...[
+                                _DetailLine(
+                                  icon: Icons.person_outline,
+                                  text: handover,
+                                  label: 'Người nhận BG',
+                                ),
+                                const SizedBox(height: 4),
+                              ],
+                              if (approver != null && approver.trim().isNotEmpty) ...[
+                                _DetailLine(
+                                  icon: Icons.verified_user_outlined,
+                                  text: approver,
+                                  label: 'Người duyệt',
+                                ),
+                              ],
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
+        }),
+      ],
+    );
+  }
+
+  // Label đầy đủ cho Type. 1 = Đăng ký, 2 = Gia hạn, 3 = Bàn giao.
+  String _detailTypeLabel(int? type) {
+    switch (type) {
+      case 1: return 'Đăng ký';
+      case 2: return 'Gia hạn';
+      case 3: return 'Bàn giao';
+      default: return '—';
+    }
+  }
+
+  // Icon tương ứng Type.
+  IconData _detailTypeIcon(int? type) {
+    switch (type) {
+      case 1: return Icons.fiber_new_outlined;
+      case 2: return Icons.update_outlined;
+      case 3: return Icons.swap_horiz_outlined;
+      default: return Icons.help_outline;
+    }
+  }
+
+  // Màu nhấn cho Type (thanh accent trái).
+  Color _detailTypeColor(int? type) {
+    switch (type) {
+      case 1: return AppColors.primaryERP;
+      case 2: return AppColors.warning;
+      case 3: return AppColors.stateSuccessColor;
+      default: return AppColors.textSecondaryColor;
+    }
+  }
+
+  // Label cho Status.
+  String _detailStatusLabel(int? s) {
+    switch (s) {
+      case 1: return 'Đã duyệt';
+      case 2: return 'Từ chối';
+      case 3: return 'Hoàn thành';
+      default: return 'Chờ duyệt';
+    }
+  }
+
+  // Đọc field kiểu Date từ map — BE có thể trả String ISO hoặc DateTime.
+  DateTime? _readDate(Map<String, dynamic> map, String key) {
+    final v = map[key];
+    if (v == null) return null;
+    if (v is DateTime) return v;
+    if (v is String && v.trim().isNotEmpty) {
+      return DateTime.tryParse(v);
+    }
+    return null;
+  }
+
+  // Đọc field kiểu String từ map.
+  String? _readStr(Map<String, dynamic> map, String key) {
+    final v = map[key];
+    if (v is String && v.trim().isNotEmpty) return v;
+    return null;
+  }
+
+  // ─── Header: mã + thiết bị + status badge ────────────────────────────────
+  Widget _buildHeader(Color sc, String badgeLabel) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Text(
+                _dash(widget.item.registrationCode),
                 style: const TextStyle(
                   fontWeight: FontWeight.w700,
                   fontSize: 14,
@@ -206,80 +478,93 @@ class TestTableCard extends StatelessWidget {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
-              const SizedBox(height: 2),
-              Row(
+            ),
+            const SizedBox(width: 6),
+            _TinyBadge(text: badgeLabel, color: sc),
+          ],
+        ),
+        const SizedBox(height: 2),
+        Row(
+          children: [
+            Icon(Icons.desktop_windows_outlined,
+                size: 12, color: AppColors.secondaryERP),
+            const SizedBox(width: 4),
+            Expanded(
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.desktop_windows_outlined,
-                      size: 12, color: AppColors.secondaryERP),
-                  const SizedBox(width: 4),
-
-                  Expanded(
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Flexible(
-                          child: Text(
-                            _dash(item.testTableName),
-                            style: const TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.secondaryERP,
-                              height: 1.2,
-                            ),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                        if (item.machineNames != null &&
-                            item.machineNames!.isNotEmpty) ...[
-                          const SizedBox(width: 4),
-                          Flexible(
-                            child: Text(
-                              '(${_dash(item.machineNames)})',
-                              style: const TextStyle(
-                                fontSize: 11,
-                                fontWeight: FontWeight.w400,
-                                color: AppColors.secondaryERP,
-                                height: 1.2,
-                              ),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ],
-                        const SizedBox(width: 4),
-                        _OnlineDot(online: item.online),
-                      ],
+                  Flexible(
+                    child: Text(
+                      _dash(widget.item.testTableName),
+                      style: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                        color: AppColors.secondaryERP,
+                        height: 1.2,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
+                  if (widget.item.machineNames != null &&
+                      widget.item.machineNames!.isNotEmpty) ...[
+                    const SizedBox(width: 4),
+                    Flexible(
+                      child: Text(
+                        '(${_dash(widget.item.machineNames)})',
+                        style: const TextStyle(
+                          fontSize: 11,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.secondaryERP,
+                          height: 1.2,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                  const SizedBox(width: 4),
+                  _OnlineDot(online: widget.item.online),
                 ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-        const SizedBox(width: 8),
-        _TinyBadge(text: _statusLabel(item.status), color: sc),
-        const SizedBox(width: 8),
-        _buildChipsRow(),
       ],
     );
   }
 
-  // ─── Chips row: pin + online ─────────────────────────────────────────────
-  Widget _buildChipsRow() {
-    // Online được hiển thị inline cạnh tên thiết bị (xem _OnlineDot),
-    // nên ở đây chỉ trả về SizedBox rỗng để giữ layout cũ.
-    return const SizedBox.shrink();
+  // ─── Footer row: chevron expand/collapse (tap chỉ toggle, không edit) ───
+  Widget _buildFooterRow(bool hasDetails) {
+    if (!hasDetails) return const SizedBox.shrink();
+    return Center(
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: () => setState(() => _isExpanded = !_isExpanded),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 4),
+          child: AnimatedRotation(
+            turns: _isExpanded ? 0.5 : 0,
+            duration: const Duration(milliseconds: 200),
+            child: Icon(
+              Icons.keyboard_arrow_down,
+              size: 20,
+              color: AppColors.textSecondaryColor,
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
   // ─── Info: gọn, 2 cột ────────────────────────────────────────────────────
   bool get _hasInfo {
-    return (item.projectCode ?? '').trim().isNotEmpty ||
-        (item.registrationContent ?? '').trim().isNotEmpty ||
-        (item.ownerFullName ?? '').trim().isNotEmpty ||
-        (item.ownerCode ?? '').trim().isNotEmpty ||
-        (item.ownerPhone ?? '').trim().isNotEmpty ||
-        (item.approverFullName ?? '').trim().isNotEmpty;
+    return (widget.item.projectCode ?? '').trim().isNotEmpty ||
+        (widget.item.registrationContent ?? '').trim().isNotEmpty ||
+        (widget.item.ownerFullName ?? '').trim().isNotEmpty ||
+        (widget.item.ownerCode ?? '').trim().isNotEmpty ||
+        (widget.item.ownerPhone ?? '').trim().isNotEmpty ||
+        (widget.item.approverFullName ?? '').trim().isNotEmpty;
   }
 
   Widget _buildInfo() {
@@ -288,18 +573,18 @@ class TestTableCard extends StatelessWidget {
       if (rows.isNotEmpty) rows.add(const _DotSep());
     }
 
-    if ((item.projectCode ?? '').trim().isNotEmpty) {
+    if ((widget.item.projectCode ?? '').trim().isNotEmpty) {
       addDivider();
       rows.add(_InfoLine(
         icon: Icons.folder_outlined,
-        text: _dash(item.projectCode),
+        text: _dash(widget.item.projectCode),
       ));
     }
-    if ((item.registrationContent ?? '').trim().isNotEmpty) {
+    if ((widget.item.registrationContent ?? '').trim().isNotEmpty) {
       addDivider();
       rows.add(_InfoLine(
         icon: Icons.description_outlined,
-        text: _dash(item.registrationContent),
+        text: _dash(widget.item.registrationContent),
       ));
     }
 
@@ -321,19 +606,19 @@ class TestTableCard extends StatelessWidget {
               crossAxisAlignment: WrapCrossAlignment.center,
               children: rows,
             ),
-          if ((item.ownerFullName ?? '').trim().isNotEmpty ||
-              (item.ownerCode ?? '').trim().isNotEmpty ||
-              (item.ownerPhone ?? '').trim().isNotEmpty) ...[
+          if ((widget.item.ownerFullName ?? '').trim().isNotEmpty ||
+              (widget.item.ownerCode ?? '').trim().isNotEmpty ||
+              (widget.item.ownerPhone ?? '').trim().isNotEmpty) ...[
             if (rows.isNotEmpty) const SizedBox(height: 8),
             _PersonRow(
-              name: _dash(item.ownerFullName),
-              code: _dash(item.ownerCode),
-              phone: _dash(item.ownerPhone),
+              name: _dash(widget.item.ownerFullName),
+              code: _dash(widget.item.ownerCode),
+              phone: _dash(widget.item.ownerPhone),
             ),
           ],
-          if ((item.approverFullName ?? '').trim().isNotEmpty) ...[
+          if ((widget.item.approverFullName ?? '').trim().isNotEmpty) ...[
             const SizedBox(height: 6),
-            _ApproverLine(name: _dash(item.approverFullName)),
+            _ApproverLine(name: _dash(widget.item.approverFullName)),
           ],
         ],
       ),
@@ -347,7 +632,7 @@ class TestTableCard extends StatelessWidget {
         Expanded(
           child: _DateCell(
             label: 'Bắt đầu',
-            date: item.detailStartDate,
+            date: widget.item.detailStartDate,
             accent: AppColors.secondaryERP,
           ),
         ),
@@ -355,16 +640,16 @@ class TestTableCard extends StatelessWidget {
         Expanded(
           child: _DateCell(
             label: 'Kết thúc',
-            date: item.detailEndDate,
+            date: widget.item.detailEndDate,
             accent: AppColors.warning,
           ),
         ),
-        if (item.status == 3 && item.actualReturnDate != null) ...[
+        if (widget.item.status == 3 && widget.item.actualReturnDate != null) ...[
           const SizedBox(width: 8),
           Expanded(
             child: _DateCell(
               label: 'Đã trả',
-              date: item.actualReturnDate,
+              date: widget.item.actualReturnDate,
               accent: AppColors.success,
               icon: Icons.check_circle,
             ),
@@ -372,17 +657,6 @@ class TestTableCard extends StatelessWidget {
         ],
       ],
     );
-  }
-}
-
-// ─── Color helper (private) ──────────────────────────────────────────────────
-
-Color _statusColor(int? s) {
-  switch (s) {
-    case 1: return AppColors.stateSuccessColor;
-    case 2: return AppColors.alert;
-    case 3: return AppColors.secondaryERP;
-    default: return AppColors.warning;
   }
 }
 
@@ -510,6 +784,54 @@ class _InfoLine extends StatelessWidget {
               fontWeight: FontWeight.w500,
               color: AppColors.enableText,
               height: 1.2,
+            ),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+/// Dòng chi tiết nhỏ trong expandable: icon + text (có label phụ tuỳ chọn).
+class _DetailLine extends StatelessWidget {
+  const _DetailLine({
+    required this.icon,
+    required this.text,
+    this.label,
+  });
+
+  final IconData icon;
+  final String text;
+  final String? label;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Icon(icon, size: 12, color: AppColors.gray),
+        const SizedBox(width: 4),
+        if (label != null) ...[
+          Text(
+            '$label: ',
+            style: const TextStyle(
+              fontSize: 11,
+              fontWeight: FontWeight.w500,
+              color: AppColors.textSecondaryColor,
+              height: 1.3,
+            ),
+          ),
+        ],
+        Expanded(
+          child: Text(
+            text,
+            style: const TextStyle(
+              fontSize: 11.5,
+              fontWeight: FontWeight.w500,
+              color: AppColors.enableText,
+              height: 1.3,
             ),
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
