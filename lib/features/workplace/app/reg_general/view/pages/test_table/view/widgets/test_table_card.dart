@@ -304,7 +304,7 @@ class _TestTableCardState extends State<TestTableCard> {
                                   const SizedBox(width: 6),
                                   Expanded(
                                     child: Text(
-                                      '#${d['No'] ?? '-'} • ${_detailTypeLabel(type)}',
+                                      '#${(d['No'] ?? 0) - 1} • ${_detailTypeLabel(type)}',
                                       style: TextStyle(
                                         fontSize: 12.5,
                                         fontWeight: FontWeight.w700,

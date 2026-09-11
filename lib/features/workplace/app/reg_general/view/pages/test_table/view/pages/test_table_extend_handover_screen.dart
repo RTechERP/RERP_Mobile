@@ -34,12 +34,16 @@ import '../../data/datasource/models/test_table_model.dart';
 import '../bloc/test_table_bloc.dart';
 
 /// Loại yêu cầu: gia hạn / bàn giao.
+/// Mapping theo backend:
+///   type=1: Đăng ký (tạo mới)
+///   type=2: Gia hạn
+///   type=3: Bàn giao
 enum ExtendHandoverType {
   /// Gia hạn — giữ nguyên người sử dụng.
-  extend(1, 'Gia hạn', Icons.update),
+  extend(2, 'Gia hạn', Icons.update),
 
   /// Bàn giao — đổi người sử dụng.
-  handover(2, 'Bàn giao', Icons.swap_horiz);
+  handover(3, 'Bàn giao', Icons.swap_horiz);
 
   final int apiValue;
   final String label;
@@ -80,8 +84,8 @@ class _TestTableExtendHandoverScreenState
   /// Ngày bắt đầu lấy từ card.
   late DateTime _startDate;
 
-  /// Tổng số lần đăng ký + gia hạn + bàn giao. Mặc định luôn là 2/3.
-  late final int _totalCount = 2;
+  /// Tổng số lần đăng ký + gia hạn + bàn giao, lấy từ detailsJson.
+  late final int _totalCount = _extractDetailCount(widget.cardItem);
 
   @override
   void initState() {
@@ -128,18 +132,28 @@ class _TestTableExtendHandoverScreenState
     return DateTime(now.year, now.month, now.day);
   }
 
-  /// Đếm tổng số lần đăng ký + gia hạn + bàn giao từ DetailsJson.
-  /// Nếu DetailsJson null/rỗng → mặc định 1 (chính phiếu hiện tại).
+  /// Lấy số lần sẽ tạo = No lớn nhất trong DetailsJson + 1
+  /// (API trả No là các lần đã có; +1 = lần đăng ký / gia hạn / bàn giao tiếp theo).
+  /// Nếu DetailsJson null/rỗng → mặc định 2 (lần tiếp theo khi vào màn).
   int _extractDetailCount(TestCardItem item) {
     final raw = item.detailsJson;
-    if (raw == null || raw.trim().isEmpty) return 1;
+    if (raw == null || raw.trim().isEmpty) return 2;
     try {
       final decoded = jsonDecode(raw);
-      if (decoded is List) return decoded.length;
+      if (decoded is List) {
+        int maxNo = 0;
+        for (final entry in decoded) {
+          if (entry is Map && entry['No'] is num) {
+            final n = (entry['No'] as num).toInt();
+            if (n > maxNo) maxNo = n;
+          }
+        }
+        return maxNo > 0 ? maxNo + 1 : 2;
+      }
     } catch (_) {
       // fall-through
     }
-    return 1;
+    return 2;
   }
 
   /// Sync endDate controller khi startDate thay đổi (được gọi từ BlocListener
@@ -189,6 +203,7 @@ class _TestTableExtendHandoverScreenState
   }
 
   void _onChangeType(ExtendHandoverType? value) {
+    debugPrint('[EH] onChanged called with $value');
     if (value == null) return;
     setState(() => _selectedType = value);
     _syncControllers(bloc.state);
@@ -277,13 +292,22 @@ class _TestTableExtendHandoverScreenState
     final endDate =
         _dateOnly(_startDate.add(const Duration(days: 7)));
 
+    // Đọc type từ FormBuilder để đồng bộ với formChoiceGroup.
+    final formState = _formKey.currentState;
+    debugPrint('[EH] formState=${formState != null}');
+    debugPrint('[EH] raw value=${formState?.value['eh_type']} (${formState?.value['eh_type'].runtimeType})');
+    debugPrint('[EH] _selectedType=${_selectedType}');
+    final formType = formState?.value['eh_type'] as ExtendHandoverType?;
+    final submitType = formType ?? _selectedType;
+    debugPrint('[EH] submitType=$submitType apiValue=${submitType.apiValue}');
+
     bloc.add(TestTableEvent.extendHandoverSubmit(
       registrationId: widget.registrationId,
       startDate: startDate,
       endDate: endDate,
       ownerId: ownerId,
       approverId: approverId,
-      type: _selectedType.apiValue,
+      type: submitType.apiValue,
     ));
   }
 
