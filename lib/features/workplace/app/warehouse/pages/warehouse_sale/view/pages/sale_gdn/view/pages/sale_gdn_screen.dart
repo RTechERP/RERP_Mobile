@@ -528,6 +528,8 @@ class _SaleGdnScreenState
         bill: item,
         isCurrentlySelected:
             bloc.state.selectedBillIds.contains(id),
+        currentEmployeeId: bloc.state.currentEmployeeId,
+        currentFullName: bloc.state.currentFullName,
       ),
     );
     if (!mounted) return;

@@ -57,6 +57,10 @@ abstract class _$SaleGdnStateCWProxy {
 
   SaleGdnState selectedBillIds(Set<int> selectedBillIds);
 
+  SaleGdnState currentEmployeeId(int currentEmployeeId);
+
+  SaleGdnState currentFullName(String currentFullName);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SaleGdnState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -89,6 +93,8 @@ abstract class _$SaleGdnStateCWProxy {
     String? selectedSenderName,
     String? selectedReceiverName,
     Set<int>? selectedBillIds,
+    int? currentEmployeeId,
+    String? currentFullName,
   });
 }
 
@@ -190,6 +196,14 @@ class _$SaleGdnStateCWProxyImpl implements _$SaleGdnStateCWProxy {
       this(selectedBillIds: selectedBillIds);
 
   @override
+  SaleGdnState currentEmployeeId(int currentEmployeeId) =>
+      this(currentEmployeeId: currentEmployeeId);
+
+  @override
+  SaleGdnState currentFullName(String currentFullName) =>
+      this(currentFullName: currentFullName);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SaleGdnState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -223,6 +237,8 @@ class _$SaleGdnStateCWProxyImpl implements _$SaleGdnStateCWProxy {
     Object? selectedSenderName = const $CopyWithPlaceholder(),
     Object? selectedReceiverName = const $CopyWithPlaceholder(),
     Object? selectedBillIds = const $CopyWithPlaceholder(),
+    Object? currentEmployeeId = const $CopyWithPlaceholder(),
+    Object? currentFullName = const $CopyWithPlaceholder(),
   }) {
     return SaleGdnState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -336,6 +352,16 @@ class _$SaleGdnStateCWProxyImpl implements _$SaleGdnStateCWProxy {
           ? _value.selectedBillIds
           // ignore: cast_nullable_to_non_nullable
           : selectedBillIds as Set<int>,
+      currentEmployeeId: currentEmployeeId == const $CopyWithPlaceholder() ||
+              currentEmployeeId == null
+          ? _value.currentEmployeeId
+          // ignore: cast_nullable_to_non_nullable
+          : currentEmployeeId as int,
+      currentFullName: currentFullName == const $CopyWithPlaceholder() ||
+              currentFullName == null
+          ? _value.currentFullName
+          // ignore: cast_nullable_to_non_nullable
+          : currentFullName as String,
     );
   }
 }

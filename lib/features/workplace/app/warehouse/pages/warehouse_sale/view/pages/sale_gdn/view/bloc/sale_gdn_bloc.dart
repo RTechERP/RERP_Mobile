@@ -9,6 +9,8 @@ import 'package:intl/intl.dart';
 import 'package:rtc_erp/base/bloc/index.dart';
 import 'package:rtc_erp/base/network/errors/error.dart';
 import 'package:rtc_erp/common/logger/index.dart';
+import 'package:rtc_erp/features/auth/data/datasource/models/user_model.dart';
+import 'package:rtc_erp/features/auth/data/repository/auth_repo.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/models/sale_gdn_model.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/repository/sale_gdn_repo.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/repository/sale_gdn_repository.dart';
@@ -40,9 +42,10 @@ extension _BaseErrorExt on BaseError {
 @injectable
 class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
   final SaleGdnRepo _repo;
+  final AuthRepo _authRepo;
   final LogUtils _log;
 
-  SaleGdnBloc(this._repo, this._log) : super(SaleGdnState.init()) {
+  SaleGdnBloc(this._repo, this._authRepo, this._log) : super(SaleGdnState.init()) {
     on<SaleGdnEvent>((event, emit) async {
       await event.when(
         init: () => _onInit(emit),
@@ -166,7 +169,29 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
   Future<void> _onInit(Emitter<SaleGdnState> emit) async {
     emit(state.copyWith(status: BaseStateStatus.loading));
 
-    final res = await _repo.getBillExports(payload: _buildPayload());
+    // Chạy song song: lấy phiếu + đọc current user (cache local).
+    final results = await Future.wait<
+        Object>([
+      _repo.getBillExports(payload: _buildPayload()),
+      _authRepo.getCurrentUser(),
+    ]);
+    final res = results[0] as Either<BaseError, List<BillExporResponse>>;
+    final userRes = results[1] as Either<BaseError, User?>;
+
+    // Lấy `id` (UserID) / fullName từ current user. Nếu lỗi thì giữ
+    // giá trị hiện tại của state (mặc định 0 / '').
+    //
+    // Lưu ý: dùng `user.id` (JsonKey 'ID' = UserID) thay vì
+    // `user.employeeId` (JsonKey 'EmployeeID') vì API `BillExport` trả
+    // `SenderID` = UserID, không phải EmployeeID.
+    final employeeId = userRes.fold(
+      (_) => state.currentEmployeeId,
+      (u) => u?.id ?? state.currentEmployeeId,
+    );
+    final fullName = userRes.fold(
+      (_) => state.currentFullName,
+      (u) => u?.fullName ?? state.currentFullName,
+    );
 
     await res.fold(
       (l) async {
@@ -174,6 +199,8 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
         emit(state.copyWith(
           status: BaseStateStatus.failed,
           message: l.truncatedMsg,
+          currentEmployeeId: employeeId,
+          currentFullName: fullName,
         ));
       },
       (r) async {
@@ -181,6 +208,8 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
         emit(state.copyWith(
           status: BaseStateStatus.success,
           gdns: r,
+          currentEmployeeId: employeeId,
+          currentFullName: fullName,
         ));
       },
     );

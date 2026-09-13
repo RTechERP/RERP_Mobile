@@ -37,6 +37,15 @@ class SaleGdnState extends BaseBlocState {
   /// Dùng cho thao tác hàng loạt (in, xuất file, ...).
   final Set<int> selectedBillIds;
 
+  /// `employeeId` của user đang đăng nhập. Để so sánh với `senderId` của
+  /// phiếu nhằm quyết định nhóm action "Chuẩn bị hàng" có hiển thị hay không.
+  /// User đặc biệt có `employeeId` = 30 sẽ thấy cả 4 action.
+  final int currentEmployeeId;
+
+  /// `fullName` của user đang đăng nhập. Để so sánh với `receiverFullName`
+  /// của phiếu nhằm quyết định nhóm action "Nhận hàng" có hiển thị hay không.
+  final String currentFullName;
+
   // ---------------------------------------------------------------------------
   // Lookup lists for BillExport form fields (fetched lazily on detail open)
   // ---------------------------------------------------------------------------
@@ -102,6 +111,8 @@ class SaleGdnState extends BaseBlocState {
     this.selectedSenderName,
     this.selectedReceiverName,
     this.selectedBillIds = const <int>{},
+    this.currentEmployeeId = 0,
+    this.currentFullName = '',
   });
 
   factory SaleGdnState.init() {
@@ -146,5 +157,7 @@ class SaleGdnState extends BaseBlocState {
         selectedSenderName,
         selectedReceiverName,
         selectedBillIds,
+        currentEmployeeId,
+        currentFullName,
       ];
 }

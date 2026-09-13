@@ -677,7 +677,7 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<SaleGdnBloc>(
-    () => SaleGdnBloc(getIt<SaleGdnRepo>(), getIt<LogUtils>()),
+    () => SaleGdnBloc(getIt<SaleGdnRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
   );
 
   getIt.registerFactory<MySignatureBloc>(
