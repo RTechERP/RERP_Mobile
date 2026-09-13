@@ -33,6 +33,10 @@ class SaleGdnState extends BaseBlocState {
   /// Tên người nhận đang lọc (null = tất cả).
   final String? selectedReceiverName;
 
+  /// Tập ID các phiếu đang được tick chọn (checkbox ở mỗi card).
+  /// Dùng cho thao tác hàng loạt (in, xuất file, ...).
+  final Set<int> selectedBillIds;
+
   // ---------------------------------------------------------------------------
   // Lookup lists for BillExport form fields (fetched lazily on detail open)
   // ---------------------------------------------------------------------------
@@ -97,6 +101,7 @@ class SaleGdnState extends BaseBlocState {
     this.scanResultMessage,
     this.selectedSenderName,
     this.selectedReceiverName,
+    this.selectedBillIds = const <int>{},
   });
 
   factory SaleGdnState.init() {
@@ -140,5 +145,6 @@ class SaleGdnState extends BaseBlocState {
         scanResultMessage,
         selectedSenderName,
         selectedReceiverName,
+        selectedBillIds,
       ];
 }

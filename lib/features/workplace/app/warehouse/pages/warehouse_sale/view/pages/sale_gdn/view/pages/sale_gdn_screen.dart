@@ -13,6 +13,7 @@ import 'package:rtc_erp/base/widgets/qr_barcode_scanner_page.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/models/sale_gdn_model.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/bloc/sale_gdn_bloc.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/widgets/sale_gdn_card.dart';
+import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/widgets/sale_gdn_prepared_received_sheet.dart';
 import 'package:rtc_erp/routes/route_names.dart';
 
 class SaleGdnScreen extends StatefulWidget {
@@ -220,9 +221,24 @@ class _SaleGdnScreenState
                 );
               }
               final item = filteredGdns[index - 1];
+              final isSelected =
+                  item.id != null && state.selectedBillIds.contains(item.id);
               return SaleGdnCard(
                 item: item,
+                isSelected: isSelected,
                 onTap: () => _openDetail(item),
+                // Bấm ô checkbox: tick + mở bottom sheet ngay trong 1 thao tác.
+                // Khi đóng sheet → bỏ tick (callback from sheet).
+                onCheckboxTap: () {
+                  if (item.id == null || item.id! <= 0) return;
+                  // Tick trước để user thấy phản hồi ngay khi sheet hiện.
+                  bloc.add(SaleGdnEvent.toggleBillSelection(
+                    billId: item.id!,
+                    selected: true,
+                  ));
+                  // Mở sheet. Khi sheet đóng → bỏ tick id này.
+                  _openPreparedReceivedSheet(item);
+                },
               );
             },
           ),
@@ -494,6 +510,48 @@ class _SaleGdnScreenState
     // Sau khi quét QR/Barcode (chuỗi mã phiếu) → bloc tìm theo FilterText.
     // Nếu đúng 1 kết quả thì UI tự động mở trang Detail; ngược lại báo snackbar.
     bloc.add(SaleGdnEvent.scanQrToDetail(code));
+  }
+
+  /// Mở bottom sheet hành động cho 1 phiếu: chuẩn bị hàng / nhận hàng.
+  /// Phiếu phải có `id` hợp lệ. Khi user chọn 1 hành động → snackbar demo
+  /// (API sẽ được nối ở bước sau theo hướng dẫn của người dùng).
+  /// Khi sheet đóng (chọn action hoặc bấm ra ngoài) → tự bỏ tick phiếu đó.
+  Future<void> _openPreparedReceivedSheet(BillExporResponse item) async {
+    final id = item.id;
+    if (id == null || id <= 0) return;
+
+    final action = await showModalBottomSheet<BillAction>(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (sheetContext) => PreparedReceivedActionSheet(
+        bill: item,
+        isCurrentlySelected:
+            bloc.state.selectedBillIds.contains(id),
+      ),
+    );
+    if (!mounted) return;
+
+    // Bỏ tick cho phiếu này — đúng yêu cầu: tick chỉ tồn tại trong khi
+    // sheet đang mở, đóng sheet là bỏ tick.
+    bloc.add(SaleGdnEvent.toggleBillSelection(
+      billId: id,
+      selected: false,
+    ));
+
+    // Demo snackbar khi user chọn action — sẽ thay bằng dispatch event
+    // cập nhật trạng thái khi API được xác nhận.
+    if (action != null) {
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(SnackBar(
+          content: Text(
+            '${item.code ?? '--'} · ${action.label} '
+            '(chưa nối API)',
+          ),
+          duration: const Duration(seconds: 2),
+        ));
+    }
   }
 }
 

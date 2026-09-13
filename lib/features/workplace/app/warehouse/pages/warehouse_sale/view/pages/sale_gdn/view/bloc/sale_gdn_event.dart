@@ -180,4 +180,14 @@ class SaleGdnEvent with _$SaleGdnEvent {
 
   /// User chọn nhà cung cấp (text) từ bottom-sheet.
   const factory SaleGdnEvent.selectNcc(int? nccId) = _SelectNcc;
+
+  /// Tick / bỏ tick chọn 1 phiếu (qua checkbox trên card).
+  /// Truyền cả `billId` và `selected` để bloc chỉ cập nhật đúng ID đó.
+  const factory SaleGdnEvent.toggleBillSelection({
+    required int billId,
+    required bool selected,
+  }) = _ToggleBillSelection;
+
+  /// Xoá toàn bộ tick chọn phiếu.
+  const factory SaleGdnEvent.clearBillSelection() = _ClearBillSelection;
 }

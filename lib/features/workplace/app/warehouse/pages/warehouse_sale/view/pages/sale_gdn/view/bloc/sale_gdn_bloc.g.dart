@@ -55,6 +55,8 @@ abstract class _$SaleGdnStateCWProxy {
 
   SaleGdnState selectedReceiverName(String? selectedReceiverName);
 
+  SaleGdnState selectedBillIds(Set<int> selectedBillIds);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SaleGdnState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -86,6 +88,7 @@ abstract class _$SaleGdnStateCWProxy {
     String? scanResultMessage,
     String? selectedSenderName,
     String? selectedReceiverName,
+    Set<int>? selectedBillIds,
   });
 }
 
@@ -183,6 +186,10 @@ class _$SaleGdnStateCWProxyImpl implements _$SaleGdnStateCWProxy {
       this(selectedReceiverName: selectedReceiverName);
 
   @override
+  SaleGdnState selectedBillIds(Set<int> selectedBillIds) =>
+      this(selectedBillIds: selectedBillIds);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SaleGdnState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -215,6 +222,7 @@ class _$SaleGdnStateCWProxyImpl implements _$SaleGdnStateCWProxy {
     Object? scanResultMessage = const $CopyWithPlaceholder(),
     Object? selectedSenderName = const $CopyWithPlaceholder(),
     Object? selectedReceiverName = const $CopyWithPlaceholder(),
+    Object? selectedBillIds = const $CopyWithPlaceholder(),
   }) {
     return SaleGdnState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -323,6 +331,11 @@ class _$SaleGdnStateCWProxyImpl implements _$SaleGdnStateCWProxy {
           ? _value.selectedReceiverName
           // ignore: cast_nullable_to_non_nullable
           : selectedReceiverName as String?,
+      selectedBillIds: selectedBillIds == const $CopyWithPlaceholder() ||
+              selectedBillIds == null
+          ? _value.selectedBillIds
+          // ignore: cast_nullable_to_non_nullable
+          : selectedBillIds as Set<int>,
     );
   }
 }

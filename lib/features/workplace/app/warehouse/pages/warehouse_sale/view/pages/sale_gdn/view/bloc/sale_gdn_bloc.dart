@@ -115,6 +115,9 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
         selectNcc: (id) => _selectNcc(emit, id),
         fetchAddressStockByCustomer: (customerId) =>
             _fetchAddressStockByCustomer(emit, customerId),
+        toggleBillSelection: (billId, selected) =>
+            _toggleBillSelection(emit, billId, selected),
+        clearBillSelection: () => _clearBillSelection(emit),
       );
     });
   }
@@ -186,7 +189,7 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
   /// Cập nhật `warehouseCode` cho bloc (lấy từ màn chọn khu vực).
   /// Chỉ set state, không gọi API.
   /// Sau khi set, screen sẽ tự dispatch `init` để fetch lại danh sách theo kho mới.
-  void _onSetWarehouseCode(Emitter<SaleGdnState> emit, String? code) {
+  _onSetWarehouseCode(Emitter<SaleGdnState> emit, String? code) {
     if (code == null || code.isEmpty) return;
     if (state.warehouseCode == code) return;
     emit(state.copyWith(warehouseCode: code));
@@ -197,6 +200,8 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
       status: BaseStateStatus.loading,
       isSearching: false,
       searchKeyword: '',
+      // Reset tick chọn khi reload list để tránh ID cũ không còn trong list.
+      selectedBillIds: const <int>{},
     ));
 
     final res = await _repo.getBillExports(payload: _buildPayload());
@@ -224,6 +229,7 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
     emit(state.copyWith(
       status: BaseStateStatus.loading,
       isSearching: true,
+      selectedBillIds: const <int>{},
     ));
 
     final res = await _repo.getBillExports(
@@ -254,6 +260,7 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
     emit(state.copyWith(
       status: BaseStateStatus.loading,
       isSearching: true,
+      selectedBillIds: const <int>{},
     ));
 
     final res = await _repo.getBillExports(
@@ -1572,6 +1579,26 @@ BillExporResponse? _findGdnInList(String code) {
     emit(state.copyWith(
       detail: current.copyWith(selectedNccId: nccId),
     ));
+  }
+
+  /// Tick / bỏ tick chọn 1 phiếu xuất kho theo `billId`.
+  /// Bỏ qua nếu `billId` không hợp lệ (<= 0) để tránh pollute Set.
+  _toggleBillSelection(
+      Emitter<SaleGdnState> emit, int billId, bool selected) {
+    if (billId <= 0) return;
+    final next = Set<int>.from(state.selectedBillIds);
+    if (selected) {
+      next.add(billId);
+    } else {
+      next.remove(billId);
+    }
+    emit(state.copyWith(selectedBillIds: next));
+  }
+
+  /// Xoá toàn bộ tick chọn phiếu (dùng khi reload list, search, refresh...).
+  _clearBillSelection(Emitter<SaleGdnState> emit) {
+    if (state.selectedBillIds.isEmpty) return;
+    emit(state.copyWith(selectedBillIds: const <int>{}));
   }
 }
 
