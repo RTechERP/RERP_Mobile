@@ -19,6 +19,7 @@ import '../../../../../../../../../common/widgets/date_range_picker.dart';
 import '../../../../../../../../../routes/route_names.dart';
 import '../bloc/test_table_bloc.dart';
 import '../widgets/test_table_card.dart';
+import '../../data/datasource/models/test_table_model.dart';
 
 class TestTableScreen extends StatefulWidget {
   const TestTableScreen({super.key});
@@ -393,6 +394,17 @@ class _TestTableScreenState extends BaseState<TestTableScreen, TestTableEvent,
                         // Card đã duyệt → mở trang gia hạn / bàn giao.
                         // Card chưa duyệt → mở trang edit như cũ.
                         final isApproved = item.status == 1;
+                        if (isApproved &&
+                            countDetailsJsonEntries(item.detailsJson) >= 2) {
+                          // Đã có 2 phiếu trong lịch sử → không cho vào màn.
+                          if (!context.mounted) return;
+                          showMessage(
+                            context,
+                            'Phiếu đã hết lượt không thể gia hạn / bàn giao.',
+                            type: SnackBarType.info,
+                          );
+                          return;
+                        }
                         if (isApproved) {
                           await context.push<bool>(
                             '${RouteNames.testTableExtendHandover}?registrationId=$masterId',

@@ -1295,6 +1295,41 @@ class AppRouter {
                   ),
                 );
               }
+              // Guard: nếu phiếu đã có 2 lần (entry trong DetailsJson)
+              // thì không cho vào màn gia hạn / bàn giao nữa.
+              final entryCount = countDetailsJsonEntries(cardItem.detailsJson);
+              if (entryCount >= 2) {
+                return Scaffold(
+                  appBar: AppBar(title: const Text('Gia hạn / Bàn giao')),
+                  body: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(24),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Icon(
+                            Icons.block_outlined,
+                            size: 48,
+                            color: Colors.grey,
+                          ),
+                          const SizedBox(height: 12),
+                          Text(
+                            'Phiếu đã có $entryCount lần đăng ký, '
+                            'không thể gia hạn / bàn giao thêm.',
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(fontSize: 15),
+                          ),
+                          const SizedBox(height: 16),
+                          ElevatedButton(
+                            onPressed: () => context.pop(),
+                            child: const Text('Quay lại'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              }
               return TestTableExtendHandoverScreen(
                 registrationId: registrationId,
                 cardItem: cardItem,

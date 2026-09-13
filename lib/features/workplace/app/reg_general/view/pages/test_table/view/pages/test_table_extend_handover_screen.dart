@@ -87,6 +87,12 @@ class _TestTableExtendHandoverScreenState
   /// Tổng số lần đăng ký + gia hạn + bàn giao, lấy từ detailsJson.
   late final int _totalCount = _extractDetailCount(widget.cardItem);
 
+  /// Sync endDate = startDate + 7 ngày.
+  void _syncEndDate() {
+    _endDateController.text =
+        DateFormat('dd/MM/yyyy').format(_startDate.add(const Duration(days: 7)));
+  }
+
   @override
   void initState() {
     super.initState();
@@ -97,6 +103,7 @@ class _TestTableExtendHandoverScreenState
 
     // Lấy startDate từ card.
     _startDate = _extractStartDate(widget.cardItem);
+    _syncEndDate();
 
     // Đảm bảo có lookup data cho screen này (cache từ list).
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -123,13 +130,58 @@ class _TestTableExtendHandoverScreenState
 
   /// Lấy ngày bắt đầu từ card (ưu tiên detailEndDate để nối tiếp,
   /// fallback sang detailStartDate).
+  /// Lấy ngày bắt đầu cho lần gia hạn / bàn giao tiếp theo:
+  ///   - Lấy từ detailsJson — entry có No lớn nhất (phiếu đã duyệt cuối cùng),
+  ///     dùng `EndDate` của entry đó làm startDate cho lần mới.
+  ///   - Fallback: top-level `detailEndDate ?? detailStartDate`.
+  ///   - Cuối cùng fallback về hôm nay.
   DateTime _extractStartDate(TestCardItem item) {
+    final fromDetails = _extractLastApprovedEndDate(item.detailsJson);
+    if (fromDetails != null) {
+      return DateTime(
+        fromDetails.year,
+        fromDetails.month,
+        fromDetails.day,
+      );
+    }
     final src = item.detailEndDate ?? item.detailStartDate;
     if (src != null) {
       return DateTime(src.year, src.month, src.day);
     }
     final now = DateTime.now();
     return DateTime(now.year, now.month, now.day);
+  }
+
+  /// Parse detailsJson, tìm entry có No lớn nhất và trả về EndDate của nó.
+  /// Hỗ trợ các key alias thường gặp: `EndDate`, `DetailEndDate`, `endDate`.
+  DateTime? _extractLastApprovedEndDate(String? raw) {
+    if (raw == null || raw.trim().isEmpty) return null;
+    try {
+      final decoded = jsonDecode(raw);
+      if (decoded is! List) return null;
+      Map? lastEntry;
+      int maxNo = -1;
+      for (final entry in decoded) {
+        if (entry is Map) {
+          final noVal = entry['No'];
+          final n = noVal is num ? noVal.toInt() : -1;
+          if (n > maxNo) {
+            maxNo = n;
+            lastEntry = entry;
+          }
+        }
+      }
+      if (lastEntry == null) return null;
+      for (final key in const ['EndDate', 'DetailEndDate', 'endDate']) {
+        final v = lastEntry[key];
+        if (v is String && v.isNotEmpty) {
+          return DateTime.tryParse(v);
+        }
+      }
+      return null;
+    } catch (_) {
+      return null;
+    }
   }
 
   /// Lấy số lần sẽ tạo = No lớn nhất trong DetailsJson + 1
@@ -159,9 +211,7 @@ class _TestTableExtendHandoverScreenState
   /// Sync endDate controller khi startDate thay đổi (được gọi từ BlocListener
   /// khi state lookup data đổi — startDate chỉ thay đổi qua date picker).
   void _syncControllers(TestTableState state) {
-    final endStr = DateFormat('dd/MM/yyyy')
-        .format(_startDate.add(const Duration(days: 7)));
-    _endDateController.text = endStr;
+    _syncEndDate();
 
     // Owner — gia hạn: lấy từ card, bàn giao: để trống cho user chọn.
     if (_selectedType == ExtendHandoverType.extend) {
@@ -464,6 +514,7 @@ class _TestTableExtendHandoverScreenState
                                     _startDate = DateTime(
                                       v.year, v.month, v.day,
                                     );
+                                    _syncEndDate();
                                   });
                                 },
                               ),

@@ -287,7 +287,7 @@ class TestTableFormData {
           : (selectedMachineIds ?? this.selectedMachineIds),
       ownerId: clearOwnerId ? null : (ownerId ?? this.ownerId),
       approverId: clearApproverId ? null : (approverId ?? this.approverId),
-      startDate: clearStartDate ? null : (startDate ?? this.startDate),
+      startDate: (startDate ?? (clearStartDate ? null : this.startDate)),
       registrationContent: clearRegistrationContent
           ? null
           : (registrationContent ?? this.registrationContent),

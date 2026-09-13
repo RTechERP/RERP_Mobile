@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'test_table_model.freezed.dart';
@@ -40,6 +42,31 @@ class TestCardItem with _$TestCardItem {
 
   factory TestCardItem.fromJson(Map<String, dynamic> json) =>
       _$TestCardItemFromJson(json);
+}
+
+/// Đếm số phiếu (entry) trong DetailsJson của card.
+/// Trả về 0 nếu null/rỗng/invalid; ngược lại trả về độ dài mảng JSON.
+int countDetailsJsonEntries(String? raw) {
+  if (raw == null || raw.trim().isEmpty) return 0;
+  try {
+    final decoded = _safeJsonDecode(raw);
+    if (decoded is List) return decoded.length;
+  } catch (_) {}
+  return 0;
+}
+
+/// Decode JSON an toàn — hỗ trợ khi DetailsJson bị wrap trong chuỗi JSON lồng
+/// (server đôi khi trả chuỗi đã escape).
+dynamic _safeJsonDecode(String raw) {
+  try {
+    return jsonDecode(raw);
+  } catch (_) {}
+  // Thử unescape: thay \" -> " rồi parse lại.
+  try {
+    final unescaped = raw.replaceAll(r'\n', '\n').replaceAll(r'\"', '"');
+    return jsonDecode(unescaped);
+  } catch (_) {}
+  return null;
 }
 
 /// Thông tin bàn test từ '/ESLTestTable/getall'.
