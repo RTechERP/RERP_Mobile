@@ -89,6 +89,7 @@ class PreparedReceivedActionSheet extends StatelessWidget {
     required this.isCurrentlySelected,
     required this.currentEmployeeId,
     required this.currentFullName,
+    this.isSubmitting = false,
   });
 
   final BillExporResponse bill;
@@ -100,15 +101,16 @@ class PreparedReceivedActionSheet extends StatelessWidget {
   /// `fullName` của user đang đăng nhập (so sánh với `receiverFullName`).
   final String currentFullName;
 
+  /// `true` khi đang gọi API update status — disable tất cả tile để tránh
+  /// user bấm đúp.
+  final bool isSubmitting;
+
   /// User đặc biệt — luôn thấy cả 4 action bất kể là người giao hay
   /// người nhận. Đặt `id` (UserID) = 1110.
   static const int _specialEmployeeId = 1110;
 
   @override
   Widget build(BuildContext context) {
-    final isPrepared = bill.isPrepared ?? false;
-    final isReceived = bill.isReceived ?? false;
-
     // Quyết định hiển thị nhóm "Chuẩn bị hàng".
     final canPrepared = _specialEmployeeId == currentEmployeeId ||
         (bill.senderId != null && bill.senderId == currentEmployeeId);
@@ -182,10 +184,7 @@ class PreparedReceivedActionSheet extends StatelessWidget {
                 icon: Icons.inventory_2_outlined,
                 color: AppColors.stateSuccessColor,
                 title: 'Đã chuẩn bị hàng',
-                subtitle: isPrepared
-                    ? 'Phiếu đang ở trạng thái đã chuẩn bị'
-                    : 'Đánh dấu phiếu đã chuẩn bị xong hàng',
-                enabled: !isPrepared,
+                enabled: !isSubmitting,
                 onTap: () => Navigator.pop(
                   context,
                   const BillAction(BillActionType.markPrepared),
@@ -195,8 +194,7 @@ class PreparedReceivedActionSheet extends StatelessWidget {
                 icon: Icons.inventory_outlined,
                 color: AppColors.stateErrorColor,
                 title: 'Huỷ chuẩn bị hàng',
-                subtitle: 'Bỏ đánh dấu đã chuẩn bị (nếu có)',
-                enabled: isPrepared,
+                enabled: !isSubmitting,
                 onTap: () => Navigator.pop(
                   context,
                   const BillAction(BillActionType.cancelPrepared),
@@ -212,10 +210,7 @@ class PreparedReceivedActionSheet extends StatelessWidget {
                 icon: Icons.check_circle_outline,
                 color: AppColors.stateSuccessColor,
                 title: 'Đã nhận hàng',
-                subtitle: isReceived
-                    ? 'Phiếu đang ở trạng thái đã nhận'
-                    : 'Đánh dấu khách đã nhận hàng',
-                enabled: !isReceived,
+                enabled: !isSubmitting,
                 onTap: () => Navigator.pop(
                   context,
                   const BillAction(BillActionType.markReceived),
@@ -225,8 +220,7 @@ class PreparedReceivedActionSheet extends StatelessWidget {
                 icon: Icons.cancel_outlined,
                 color: AppColors.stateErrorColor,
                 title: 'Huỷ nhận hàng',
-                subtitle: 'Bỏ đánh dấu đã nhận (nếu có)',
-                enabled: isReceived,
+                enabled: !isSubmitting,
                 onTap: () => Navigator.pop(
                   context,
                   const BillAction(BillActionType.cancelReceived),
@@ -286,13 +280,26 @@ class PreparedReceivedActionSheet extends StatelessWidget {
               color: AppColors.grey_bg,
               borderRadius: BorderRadius.circular(12),
             ),
-            child: Text(
-              bill.nameStatus ?? '--',
-              style: const TextStyle(
-                fontSize: 11,
-                fontWeight: FontWeight.w600,
-                color: AppColors.heading,
-              ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  bill.nameStatus ?? '--',
+                  style: const TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.heading,
+                  ),
+                ),
+                if (isSubmitting) ...[
+                  const SizedBox(width: 6),
+                  const SizedBox(
+                    width: 12,
+                    height: 12,
+                    child: CircularProgressIndicator(strokeWidth: 2),
+                  ),
+                ],
+              ],
             ),
           ),
         ],
@@ -307,7 +314,6 @@ class _ActionTile extends StatelessWidget {
     required this.icon,
     required this.color,
     required this.title,
-    required this.subtitle,
     required this.enabled,
     required this.onTap,
   });
@@ -315,7 +321,6 @@ class _ActionTile extends StatelessWidget {
   final IconData icon;
   final Color color;
   final String title;
-  final String subtitle;
   final bool enabled;
   final VoidCallback onTap;
 
@@ -361,16 +366,6 @@ class _ActionTile extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                         color: titleColor,
                       ),
-                    ),
-                    const SizedBox(height: 2),
-                    Text(
-                      subtitle,
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: subtitleColor,
-                      ),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
                     ),
                   ],
                 ),

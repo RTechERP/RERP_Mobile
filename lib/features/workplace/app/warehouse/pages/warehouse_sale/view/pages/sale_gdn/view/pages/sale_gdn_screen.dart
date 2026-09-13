@@ -8,6 +8,7 @@ import 'package:rtc_erp/base/widgets/base_widget.dart';
 import 'package:rtc_erp/common/app_theme/index.dart';
 import 'package:rtc_erp/common/helpers/select_bottom_sheet_helper.dart';
 import 'package:rtc_erp/common/utils/navigation/navigation_utils.dart';
+import 'package:rtc_erp/common/utils/snack_bar_helper.dart';
 import 'package:rtc_erp/common/widgets/date_range_picker.dart';
 import 'package:rtc_erp/base/widgets/qr_barcode_scanner_page.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/models/sale_gdn_model.dart';
@@ -65,7 +66,8 @@ class _SaleGdnScreenState
     return BlocListener<SaleGdnBloc, SaleGdnState>(
       listenWhen: (prev, curr) =>
           prev.openedDetailBill != curr.openedDetailBill ||
-          prev.scanResultMessage != curr.scanResultMessage,
+          prev.scanResultMessage != curr.scanResultMessage ||
+          prev.billStatusMessage != curr.billStatusMessage,
       listener: (context, state) {
         // Tự động mở trang Detail khi bloc tìm được đúng 1 phiếu từ QR/Barcode.
         final bill = state.openedDetailBill;
@@ -84,6 +86,19 @@ class _SaleGdnScreenState
             ..hideCurrentSnackBar()
             ..showSnackBar(SnackBar(content: Text(msg)));
           bloc.add(const SaleGdnEvent.clearScanResultMessage());
+        }
+        // Hiển thị snackbar kết quả check/huỷ trạng thái chuẩn bị/nhận hàng.
+        // Format message: 'success:<text>' | 'error:<text>'.
+        final status = state.billStatusMessage;
+        if (status != null && status.isNotEmpty) {
+          final isSuccess = status.startsWith('success:');
+          final text = status.substring(status.indexOf(':') + 1);
+          showMessage(
+            context,
+            text,
+            type: isSuccess ? SnackBarType.success : SnackBarType.error,
+          );
+          bloc.add(const SaleGdnEvent.clearBillStatusMessage());
         }
       },
       child: _buildBody(context),
@@ -530,6 +545,7 @@ class _SaleGdnScreenState
             bloc.state.selectedBillIds.contains(id),
         currentEmployeeId: bloc.state.currentEmployeeId,
         currentFullName: bloc.state.currentFullName,
+        isSubmitting: bloc.state.isUpdatingStatus,
       ),
     );
     if (!mounted) return;
@@ -541,18 +557,114 @@ class _SaleGdnScreenState
       selected: false,
     ));
 
-    // Demo snackbar khi user chọn action — sẽ thay bằng dispatch event
-    // cập nhật trạng thái khi API được xác nhận.
+    // Dispatch event tương ứng tới API check/huỷ trạng thái.
     if (action != null) {
-      ScaffoldMessenger.of(context)
-        ..hideCurrentSnackBar()
-        ..showSnackBar(SnackBar(
-          content: Text(
-            '${item.code ?? '--'} · ${action.label} '
-            '(chưa nối API)',
-          ),
-          duration: const Duration(seconds: 2),
-        ));
+      final currentEmployeeId = bloc.state.currentEmployeeId;
+      final currentFullName = bloc.state.currentFullName;
+      // User đặc biệt (id 1110) luôn có mọi quyền; ngoài ra phải là
+      // người giao/nhận của phiếu mới có quyền thao tác nhóm tương ứng.
+      const specialEmployeeId = 1110;
+      final isPreparedActor = currentEmployeeId == specialEmployeeId ||
+          (item.senderId != null && item.senderId == currentEmployeeId);
+      final isReceivedActor = currentEmployeeId == specialEmployeeId ||
+          ((item.receiverFullName ?? '').trim().isNotEmpty &&
+              (item.receiverFullName ?? '').trim() ==
+                  currentFullName.trim());
+
+      // Nhận hàng: phải là người nhận, phiếu phải chưa nhận hàng và phải
+      // được chuẩn bị trước.
+      if (action.type == BillActionType.markReceived) {
+        if (!isReceivedActor) {
+          showMessage(
+            context,
+            'Chỉ người nhận mới có quyền xác nhận nhận hàng',
+            type: SnackBarType.error,
+          );
+          return;
+        }
+        if (item.isOrderReceived == true) {
+          showMessage(
+            context,
+            'Phiếu đã ở trạng thái đã nhận hàng',
+            type: SnackBarType.error,
+          );
+          return;
+        }
+        if (item.isOrderPrepared != true) {
+          showMessage(
+            context,
+            'Hàng chưa được chuẩn bị không thể xác nhận nhận hàng',
+            type: SnackBarType.error,
+          );
+          return;
+        }
+      }
+      // Huỷ nhận hàng: chỉ người nhận, và phiếu phải đang ở trạng thái
+      // đã nhận hàng mới có gì để huỷ.
+      if (action.type == BillActionType.cancelReceived) {
+        if (!isReceivedActor) {
+          showMessage(
+            context,
+            'Chỉ người nhận mới có quyền huỷ nhận hàng',
+            type: SnackBarType.error,
+          );
+          return;
+        }
+        if (item.isOrderReceived != true) {
+          showMessage(
+            context,
+            'Phiếu chưa ở trạng thái đã nhận hàng',
+            type: SnackBarType.error,
+          );
+          return;
+        }
+      }
+      // Huỷ chuẩn bị: chỉ người giao (hoặc user đặc biệt) mới có quyền,
+      // và phiếu phải đang ở trạng thái đã chuẩn bị hàng mới có gì để huỷ.
+      if (action.type == BillActionType.cancelPrepared) {
+        if (!isPreparedActor) {
+          showMessage(
+            context,
+            'Chỉ người giao mới có quyền huỷ chuẩn bị hàng',
+            type: SnackBarType.error,
+          );
+          return;
+        }
+        if (item.isOrderPrepared != true) {
+          showMessage(
+            context,
+            'Phiếu chưa ở trạng thái đã chuẩn bị hàng',
+            type: SnackBarType.error,
+          );
+          return;
+        }
+      }
+      switch (action.type) {
+        case BillActionType.markPrepared:
+          bloc.add(SaleGdnEvent.updateBillStatusPreparing(
+            billId: id,
+            isPrepared: true,
+          ));
+          break;
+        case BillActionType.cancelPrepared:
+          bloc.add(SaleGdnEvent.updateBillStatusPreparing(
+            billId: id,
+            isPrepared: false,
+          ));
+          break;
+        case BillActionType.markReceived:
+          bloc.add(SaleGdnEvent.updateBillStatusReceive(
+            billId: id,
+            isReceived: true,
+          ));
+          break;
+        case BillActionType.cancelReceived:
+          bloc.add(SaleGdnEvent.updateBillStatusReceive(
+            billId: id,
+            isReceived: false,
+          ));
+          break;
+      }
     }
   }
 }

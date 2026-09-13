@@ -80,6 +80,10 @@ mixin _$BillExporResponse {
   bool? get isPrepared => throw _privateConstructorUsedError;
   @JsonKey(name: 'IsReceived')
   bool? get isReceived => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsOrderPrepared')
+  bool? get isOrderPrepared => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsOrderReceived')
+  bool? get isOrderReceived => throw _privateConstructorUsedError;
   @JsonKey(name: 'RequestDate')
   String? get requestDate => throw _privateConstructorUsedError;
   @JsonKey(name: 'PreparedDate')
@@ -164,6 +168,8 @@ abstract class $BillExporResponseCopyWith<$Res> {
       @JsonKey(name: 'WarehouseID') int? warehouseId,
       @JsonKey(name: 'IsPrepared') bool? isPrepared,
       @JsonKey(name: 'IsReceived') bool? isReceived,
+      @JsonKey(name: 'IsOrderPrepared') bool? isOrderPrepared,
+      @JsonKey(name: 'IsOrderReceived') bool? isOrderReceived,
       @JsonKey(name: 'RequestDate') String? requestDate,
       @JsonKey(name: 'PreparedDate') String? preparedDate,
       @JsonKey(name: 'BillDocumentExportType') int? billDocumentExportType,
@@ -229,6 +235,8 @@ class _$BillExporResponseCopyWithImpl<$Res, $Val extends BillExporResponse>
     Object? warehouseId = freezed,
     Object? isPrepared = freezed,
     Object? isReceived = freezed,
+    Object? isOrderPrepared = freezed,
+    Object? isOrderReceived = freezed,
     Object? requestDate = freezed,
     Object? preparedDate = freezed,
     Object? billDocumentExportType = freezed,
@@ -371,6 +379,14 @@ class _$BillExporResponseCopyWithImpl<$Res, $Val extends BillExporResponse>
           ? _value.isReceived
           : isReceived // ignore: cast_nullable_to_non_nullable
               as bool?,
+      isOrderPrepared: freezed == isOrderPrepared
+          ? _value.isOrderPrepared
+          : isOrderPrepared // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isOrderReceived: freezed == isOrderReceived
+          ? _value.isOrderReceived
+          : isOrderReceived // ignore: cast_nullable_to_non_nullable
+              as bool?,
       requestDate: freezed == requestDate
           ? _value.requestDate
           : requestDate // ignore: cast_nullable_to_non_nullable
@@ -494,6 +510,8 @@ abstract class _$$BillExporResponseImplCopyWith<$Res>
       @JsonKey(name: 'WarehouseID') int? warehouseId,
       @JsonKey(name: 'IsPrepared') bool? isPrepared,
       @JsonKey(name: 'IsReceived') bool? isReceived,
+      @JsonKey(name: 'IsOrderPrepared') bool? isOrderPrepared,
+      @JsonKey(name: 'IsOrderReceived') bool? isOrderReceived,
       @JsonKey(name: 'RequestDate') String? requestDate,
       @JsonKey(name: 'PreparedDate') String? preparedDate,
       @JsonKey(name: 'BillDocumentExportType') int? billDocumentExportType,
@@ -557,6 +575,8 @@ class __$$BillExporResponseImplCopyWithImpl<$Res>
     Object? warehouseId = freezed,
     Object? isPrepared = freezed,
     Object? isReceived = freezed,
+    Object? isOrderPrepared = freezed,
+    Object? isOrderReceived = freezed,
     Object? requestDate = freezed,
     Object? preparedDate = freezed,
     Object? billDocumentExportType = freezed,
@@ -699,6 +719,14 @@ class __$$BillExporResponseImplCopyWithImpl<$Res>
           ? _value.isReceived
           : isReceived // ignore: cast_nullable_to_non_nullable
               as bool?,
+      isOrderPrepared: freezed == isOrderPrepared
+          ? _value.isOrderPrepared
+          : isOrderPrepared // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isOrderReceived: freezed == isOrderReceived
+          ? _value.isOrderReceived
+          : isOrderReceived // ignore: cast_nullable_to_non_nullable
+              as bool?,
       requestDate: freezed == requestDate
           ? _value.requestDate
           : requestDate // ignore: cast_nullable_to_non_nullable
@@ -817,6 +845,8 @@ class _$BillExporResponseImpl implements _BillExporResponse {
       @JsonKey(name: 'WarehouseID') this.warehouseId,
       @JsonKey(name: 'IsPrepared') this.isPrepared,
       @JsonKey(name: 'IsReceived') this.isReceived,
+      @JsonKey(name: 'IsOrderPrepared') this.isOrderPrepared,
+      @JsonKey(name: 'IsOrderReceived') this.isOrderReceived,
       @JsonKey(name: 'RequestDate') this.requestDate,
       @JsonKey(name: 'PreparedDate') this.preparedDate,
       @JsonKey(name: 'BillDocumentExportType') this.billDocumentExportType,
@@ -932,6 +962,12 @@ class _$BillExporResponseImpl implements _BillExporResponse {
   @JsonKey(name: 'IsReceived')
   final bool? isReceived;
   @override
+  @JsonKey(name: 'IsOrderPrepared')
+  final bool? isOrderPrepared;
+  @override
+  @JsonKey(name: 'IsOrderReceived')
+  final bool? isOrderReceived;
+  @override
   @JsonKey(name: 'RequestDate')
   final String? requestDate;
   @override
@@ -994,7 +1030,7 @@ class _$BillExporResponseImpl implements _BillExporResponse {
 
   @override
   String toString() {
-    return 'BillExporResponse(totalPage: $totalPage, rowNum: $rowNum, warehouseName: $warehouseName, dateStatus: $dateStatus, id: $id, code: $code, typeBill: $typeBill, supplierId: $supplierId, customerId: $customerId, userId: $userId, senderId: $senderId, stockId: $stockId, description: $description, address: $address, creatDate: $creatDate, isApproved: $isApproved, status: $status, groupId: $groupId, khoTypeId: $khoTypeId, createdDate: $createdDate, updatedDate: $updatedDate, createdBy: $createdBy, updatedBy: $updatedBy, productType: $productType, addressStockId: $addressStockId, isMerge: $isMerge, unApprove: $unApprove, warehouseId: $warehouseId, isPrepared: $isPrepared, isReceived: $isReceived, requestDate: $requestDate, preparedDate: $preparedDate, billDocumentExportType: $billDocumentExportType, isDeleted: $isDeleted, billImportId: $billImportId, wareHouseTranferId: $wareHouseTranferId, isTransfer: $isTransfer, fullName: $fullName, customerName: $customerName, nameStatus: $nameStatus, fullNameSender: $fullNameSender, productTypeText: $productTypeText, employeeCode: $employeeCode, departmentName: $departmentName, nameNcc: $nameNcc, warehouseType: $warehouseType, deliveryTime: $deliveryTime, isAfterHours: $isAfterHours, isIncurredApproved: $isIncurredApproved, receiverFullName: $receiverFullName)';
+    return 'BillExporResponse(totalPage: $totalPage, rowNum: $rowNum, warehouseName: $warehouseName, dateStatus: $dateStatus, id: $id, code: $code, typeBill: $typeBill, supplierId: $supplierId, customerId: $customerId, userId: $userId, senderId: $senderId, stockId: $stockId, description: $description, address: $address, creatDate: $creatDate, isApproved: $isApproved, status: $status, groupId: $groupId, khoTypeId: $khoTypeId, createdDate: $createdDate, updatedDate: $updatedDate, createdBy: $createdBy, updatedBy: $updatedBy, productType: $productType, addressStockId: $addressStockId, isMerge: $isMerge, unApprove: $unApprove, warehouseId: $warehouseId, isPrepared: $isPrepared, isReceived: $isReceived, isOrderPrepared: $isOrderPrepared, isOrderReceived: $isOrderReceived, requestDate: $requestDate, preparedDate: $preparedDate, billDocumentExportType: $billDocumentExportType, isDeleted: $isDeleted, billImportId: $billImportId, wareHouseTranferId: $wareHouseTranferId, isTransfer: $isTransfer, fullName: $fullName, customerName: $customerName, nameStatus: $nameStatus, fullNameSender: $fullNameSender, productTypeText: $productTypeText, employeeCode: $employeeCode, departmentName: $departmentName, nameNcc: $nameNcc, warehouseType: $warehouseType, deliveryTime: $deliveryTime, isAfterHours: $isAfterHours, isIncurredApproved: $isIncurredApproved, receiverFullName: $receiverFullName)';
   }
 
   @override
@@ -1053,6 +1089,10 @@ class _$BillExporResponseImpl implements _BillExporResponse {
                 other.isPrepared == isPrepared) &&
             (identical(other.isReceived, isReceived) ||
                 other.isReceived == isReceived) &&
+            (identical(other.isOrderPrepared, isOrderPrepared) ||
+                other.isOrderPrepared == isOrderPrepared) &&
+            (identical(other.isOrderReceived, isOrderReceived) ||
+                other.isOrderReceived == isOrderReceived) &&
             (identical(other.requestDate, requestDate) ||
                 other.requestDate == requestDate) &&
             (identical(other.preparedDate, preparedDate) ||
@@ -1128,6 +1168,8 @@ class _$BillExporResponseImpl implements _BillExporResponse {
         warehouseId,
         isPrepared,
         isReceived,
+        isOrderPrepared,
+        isOrderReceived,
         requestDate,
         preparedDate,
         billDocumentExportType,
@@ -1197,6 +1239,8 @@ abstract class _BillExporResponse implements BillExporResponse {
           @JsonKey(name: 'WarehouseID') final int? warehouseId,
           @JsonKey(name: 'IsPrepared') final bool? isPrepared,
           @JsonKey(name: 'IsReceived') final bool? isReceived,
+          @JsonKey(name: 'IsOrderPrepared') final bool? isOrderPrepared,
+          @JsonKey(name: 'IsOrderReceived') final bool? isOrderReceived,
           @JsonKey(name: 'RequestDate') final String? requestDate,
           @JsonKey(name: 'PreparedDate') final String? preparedDate,
           @JsonKey(name: 'BillDocumentExportType')
@@ -1313,6 +1357,12 @@ abstract class _BillExporResponse implements BillExporResponse {
   @override
   @JsonKey(name: 'IsReceived')
   bool? get isReceived;
+  @override
+  @JsonKey(name: 'IsOrderPrepared')
+  bool? get isOrderPrepared;
+  @override
+  @JsonKey(name: 'IsOrderReceived')
+  bool? get isOrderReceived;
   @override
   @JsonKey(name: 'RequestDate')
   String? get requestDate;

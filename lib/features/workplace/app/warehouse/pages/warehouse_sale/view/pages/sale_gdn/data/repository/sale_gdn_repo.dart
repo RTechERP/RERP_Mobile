@@ -81,4 +81,16 @@ abstract class SaleGdnRepo {
   Future<Either<BaseError, List<AddressStockResponse>>> getAddressStockByCustomerId({
     required int customerId,
   });
+
+  /// Cập nhật / huỷ trạng thái "đã chuẩn bị hàng" cho danh sách phiếu xuất.
+  /// Truyền vào `payload` dạng `[{ "ID": <billId>, "IsOrderPrepared": bool }, ...]`.
+  Future<Either<BaseError, bool>> updateStatusPreparing({
+    required List<Map<String, dynamic>> payload,
+  });
+
+  /// Cập nhật / huỷ trạng thái "đã nhận hàng" cho danh sách phiếu xuất.
+  /// Truyền vào `payload` dạng `[{ "ID": <billId>, "IsOrderReceived": bool }, ...]`.
+  Future<Either<BaseError, bool>> updateStatusReceive({
+    required List<Map<String, dynamic>> payload,
+  });
 }

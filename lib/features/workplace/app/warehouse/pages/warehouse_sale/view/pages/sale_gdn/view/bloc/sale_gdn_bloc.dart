@@ -121,6 +121,19 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
         toggleBillSelection: (billId, selected) =>
             _toggleBillSelection(emit, billId, selected),
         clearBillSelection: () => _clearBillSelection(emit),
+        updateBillStatusPreparing: (billId, isPrepared) =>
+            _updateBillStatusPreparing(
+              emit,
+              billId: billId,
+              isPrepared: isPrepared,
+            ),
+        updateBillStatusReceive: (billId, isReceived) =>
+            _updateBillStatusReceive(
+              emit,
+              billId: billId,
+              isReceived: isReceived,
+            ),
+        clearBillStatusMessage: () => _clearBillStatusMessage(emit),
       );
     });
   }
@@ -1628,6 +1641,98 @@ BillExporResponse? _findGdnInList(String code) {
   _clearBillSelection(Emitter<SaleGdnState> emit) {
     if (state.selectedBillIds.isEmpty) return;
     emit(state.copyWith(selectedBillIds: const <int>{}));
+  }
+
+  /// Cập nhật / huỷ trạng thái "đã chuẩn bị hàng" cho 1 phiếu.
+  /// Gọi API `/billexport/status-preparing`, sau đó reload list để phản ánh
+  /// `IsPrepared` mới từ server và emit `billStatusMessage` để UI snackbar.
+  Future<void> _updateBillStatusPreparing(
+    Emitter<SaleGdnState> emit, {
+    required int billId,
+    required bool isPrepared,
+  }) async {
+    if (billId <= 0) return;
+    emit(state.copyWith(
+      isUpdatingStatus: true,
+      billStatusMessage: null,
+    ));
+
+    final payload = <Map<String, dynamic>>[
+      {'ID': billId, 'IsOrderPrepared': isPrepared},
+    ];
+    _log.logI('🔄 updateStatusPreparing billId=$billId isPrepared=$isPrepared');
+
+    final res = await _repo.updateStatusPreparing(payload: payload);
+
+    await res.fold(
+      (l) async {
+        _log.logE('❌ updateStatusPreparing failed: $l');
+        emit(state.copyWith(
+          isUpdatingStatus: false,
+          billStatusMessage: 'error:${l.truncatedMsg}',
+        ));
+      },
+      (r) async {
+        _log.logI('✅ updateStatusPreparing success');
+        final msg = isPrepared
+            ? 'Đã đánh dấu chuẩn bị hàng'
+            : 'Đã huỷ chuẩn bị hàng';
+        emit(state.copyWith(
+          isUpdatingStatus: false,
+          billStatusMessage: 'success:$msg',
+        ));
+        // Reload list để cập nhật `IsPrepared` từ server.
+        await _fetchGdns(emit);
+      },
+    );
+  }
+
+  /// Cập nhật / huỷ trạng thái "đã nhận hàng" cho 1 phiếu.
+  /// Gọi API `/billexport/status-receive`, sau đó reload list để phản ánh
+  /// `IsReceived` mới từ server và emit `billStatusMessage` để UI snackbar.
+  Future<void> _updateBillStatusReceive(
+    Emitter<SaleGdnState> emit, {
+    required int billId,
+    required bool isReceived,
+  }) async {
+    if (billId <= 0) return;
+    emit(state.copyWith(
+      isUpdatingStatus: true,
+      billStatusMessage: null,
+    ));
+
+    final payload = <Map<String, dynamic>>[
+      {'ID': billId, 'IsOrderReceived': isReceived},
+    ];
+    _log.logI('🔄 updateStatusReceive billId=$billId isReceived=$isReceived');
+
+    final res = await _repo.updateStatusReceive(payload: payload);
+
+    await res.fold(
+      (l) async {
+        _log.logE('❌ updateStatusReceive failed: $l');
+        emit(state.copyWith(
+          isUpdatingStatus: false,
+          billStatusMessage: 'error:${l.truncatedMsg}',
+        ));
+      },
+      (r) async {
+        _log.logI('✅ updateStatusReceive success');
+        final msg = isReceived ? 'Đã đánh dấu nhận hàng' : 'Đã huỷ nhận hàng';
+        emit(state.copyWith(
+          isUpdatingStatus: false,
+          billStatusMessage: 'success:$msg',
+        ));
+        // Reload list để cập nhật `IsReceived` từ server.
+        await _fetchGdns(emit);
+      },
+    );
+  }
+
+  /// Reset cờ one-shot `billStatusMessage` sau khi UI đã snackbar.
+  _clearBillStatusMessage(Emitter<SaleGdnState> emit) {
+    if (state.billStatusMessage == null) return;
+    emit(state.copyWith(billStatusMessage: null));
   }
 }
 

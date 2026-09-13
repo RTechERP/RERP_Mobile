@@ -110,11 +110,109 @@ class SaleGdnCard extends StatelessWidget {
                     label: 'Người nhận',
                     value: item.receiverFullName ?? '--',
                   ),
+                  const SizedBox(height: 10),
+                  _PreparedReceivedBadges(
+                    isPrepared: item.isOrderPrepared ?? false,
+                    isReceived: item.isOrderReceived ?? false,
+                  ),
                 ],
               ),
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+/// Hai pill trạng thái "Đã chuẩn bị" / "Đã nhận" để phân biệt nhanh phiếu
+/// trong list mà không cần mở sheet.
+class _PreparedReceivedBadges extends StatelessWidget {
+  const _PreparedReceivedBadges({
+    required this.isPrepared,
+    required this.isReceived,
+  });
+
+  final bool isPrepared;
+  final bool isReceived;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: _StatusBadge(
+            icon: Icons.inventory_2_outlined,
+            label: 'Chuẩn bị',
+            isDone: isPrepared,
+            color: AppColors.stateSuccessColor,
+          ),
+        ),
+        const SizedBox(width: 8),
+        Expanded(
+          child: _StatusBadge(
+            icon: Icons.check_circle_outline,
+            label: 'Nhận hàng',
+            isDone: isReceived,
+            color: AppColors.primaryERP,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _StatusBadge extends StatelessWidget {
+  const _StatusBadge({
+    required this.icon,
+    required this.label,
+    required this.isDone,
+    required this.color,
+  });
+
+  final IconData icon;
+  final String label;
+  final bool isDone;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+      decoration: BoxDecoration(
+        color: isDone
+            ? color.withValues(alpha: 0.12)
+            : AppColors.gray.withValues(alpha: 0.08),
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(
+          color: isDone
+              ? color.withValues(alpha: 0.45)
+              : AppColors.gray.withValues(alpha: 0.3),
+          width: 1,
+        ),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            isDone ? Icons.check_circle : Icons.radio_button_unchecked,
+            size: 14,
+            color: isDone ? color : AppColors.gray,
+          ),
+          const SizedBox(width: 6),
+          Flexible(
+            child: Text(
+              '$label: ${isDone ? "Đã xong" : "Chưa xong"}',
+              style: TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.w600,
+                color: isDone ? color : AppColors.gray,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -190,4 +190,22 @@ class SaleGdnEvent with _$SaleGdnEvent {
 
   /// Xoá toàn bộ tick chọn phiếu.
   const factory SaleGdnEvent.clearBillSelection() = _ClearBillSelection;
+
+  /// Cập nhật / huỷ trạng thái "đã chuẩn bị hàng" cho 1 phiếu.
+  /// `isPrepared = true` → tick; `false` → huỷ.
+  const factory SaleGdnEvent.updateBillStatusPreparing({
+    required int billId,
+    required bool isPrepared,
+  }) = _UpdateBillStatusPreparing;
+
+  /// Cập nhật / huỷ trạng thái "đã nhận hàng" cho 1 phiếu.
+  /// `isReceived = true` → tick; `false` → huỷ.
+  const factory SaleGdnEvent.updateBillStatusReceive({
+    required int billId,
+    required bool isReceived,
+  }) = _UpdateBillStatusReceive;
+
+  /// Reset cờ one-shot `billStatusMessage` sau khi UI đã show snackbar.
+  const factory SaleGdnEvent.clearBillStatusMessage() =
+      _ClearBillStatusMessage;
 }

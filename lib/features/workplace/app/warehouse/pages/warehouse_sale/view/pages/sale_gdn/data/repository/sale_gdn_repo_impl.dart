@@ -309,4 +309,40 @@ class SaleGdnRepoImpl implements SaleGdnRepo {
       return left(BaseError.httpInternalServerError(e.toString()));
     }
   }
+
+  @override
+  Future<Either<BaseError, bool>> updateStatusPreparing({
+    required List<Map<String, dynamic>> payload,
+  }) async {
+    try {
+      final res = await _service.updateStatusPreparing(payload: payload);
+      if (res.status != 1) {
+        return left(BaseError.httpInternalServerError(res.message ?? 'Lỗi'));
+      }
+      // Server có thể trả data = "" / null / true. Coerce về bool hợp lệ.
+      return right(res.data ?? true);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<BaseError, bool>> updateStatusReceive({
+    required List<Map<String, dynamic>> payload,
+  }) async {
+    try {
+      final res = await _service.updateStatusReceive(payload: payload);
+      if (res.status != 1) {
+        return left(BaseError.httpInternalServerError(res.message ?? 'Lỗi'));
+      }
+      // Server có thể trả data = "" / null / true. Coerce về bool hợp lệ.
+      return right(res.data ?? true);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
 }

@@ -61,6 +61,10 @@ abstract class _$SaleGdnStateCWProxy {
 
   SaleGdnState currentFullName(String currentFullName);
 
+  SaleGdnState isUpdatingStatus(bool isUpdatingStatus);
+
+  SaleGdnState billStatusMessage(String? billStatusMessage);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SaleGdnState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -95,6 +99,8 @@ abstract class _$SaleGdnStateCWProxy {
     Set<int>? selectedBillIds,
     int? currentEmployeeId,
     String? currentFullName,
+    bool? isUpdatingStatus,
+    String? billStatusMessage,
   });
 }
 
@@ -204,6 +210,14 @@ class _$SaleGdnStateCWProxyImpl implements _$SaleGdnStateCWProxy {
       this(currentFullName: currentFullName);
 
   @override
+  SaleGdnState isUpdatingStatus(bool isUpdatingStatus) =>
+      this(isUpdatingStatus: isUpdatingStatus);
+
+  @override
+  SaleGdnState billStatusMessage(String? billStatusMessage) =>
+      this(billStatusMessage: billStatusMessage);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SaleGdnState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -239,6 +253,8 @@ class _$SaleGdnStateCWProxyImpl implements _$SaleGdnStateCWProxy {
     Object? selectedBillIds = const $CopyWithPlaceholder(),
     Object? currentEmployeeId = const $CopyWithPlaceholder(),
     Object? currentFullName = const $CopyWithPlaceholder(),
+    Object? isUpdatingStatus = const $CopyWithPlaceholder(),
+    Object? billStatusMessage = const $CopyWithPlaceholder(),
   }) {
     return SaleGdnState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -362,6 +378,15 @@ class _$SaleGdnStateCWProxyImpl implements _$SaleGdnStateCWProxy {
           ? _value.currentFullName
           // ignore: cast_nullable_to_non_nullable
           : currentFullName as String,
+      isUpdatingStatus: isUpdatingStatus == const $CopyWithPlaceholder() ||
+              isUpdatingStatus == null
+          ? _value.isUpdatingStatus
+          // ignore: cast_nullable_to_non_nullable
+          : isUpdatingStatus as bool,
+      billStatusMessage: billStatusMessage == const $CopyWithPlaceholder()
+          ? _value.billStatusMessage
+          // ignore: cast_nullable_to_non_nullable
+          : billStatusMessage as String?,
     );
   }
 }

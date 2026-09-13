@@ -452,4 +452,12 @@ class ApiEndPoint {
   /// API: GET /AddressStock/get-by-customerID/?customerID={customerId}
   static const String getAddressStockByCustomerId =
       '/AddressStock/get-by-customerID';
+
+  /// Cập nhật / huỷ trạng thái "đã chuẩn bị hàng" cho danh sách phiếu xuất.
+  /// Body: `[{ "ID": <billId>, "IsOrderPrepared": true|false }, ...]`
+  static const String updateStatusPreparing = '/billexport/status-preparing';
+
+  /// Cập nhật / huỷ trạng thái "đã nhận hàng" cho danh sách phiếu xuất.
+  /// Body: `[{ "ID": <billId>, "IsOrderReceived": true|false }, ...]`
+  static const String updateStatusReceive = '/billexport/status-receive';
 }

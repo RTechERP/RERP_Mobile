@@ -36,6 +36,8 @@ class BillExporResponse with _$BillExporResponse {
     @JsonKey(name: 'WarehouseID') int? warehouseId,
     @JsonKey(name: 'IsPrepared') bool? isPrepared,
     @JsonKey(name: 'IsReceived') bool? isReceived,
+    @JsonKey(name: 'IsOrderPrepared') bool? isOrderPrepared,
+    @JsonKey(name: 'IsOrderReceived') bool? isOrderReceived,
     @JsonKey(name: 'RequestDate') String? requestDate,
     @JsonKey(name: 'PreparedDate') String? preparedDate,
     @JsonKey(name: 'BillDocumentExportType') int? billDocumentExportType,

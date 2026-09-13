@@ -46,6 +46,15 @@ class SaleGdnState extends BaseBlocState {
   /// của phiếu nhằm quyết định nhóm action "Nhận hàng" có hiển thị hay không.
   final String currentFullName;
 
+  /// `true` khi đang gọi API check / huỷ trạng thái chuẩn bị / nhận hàng.
+  /// UI dùng để disable các action tile hoặc hiển thị spinner.
+  final bool isUpdatingStatus;
+
+  /// One-shot: thông báo kết quả của API updateStatusPreparing/Receive.
+  /// UI hiển thị snackbar rồi reset về null để tránh hiển thị lại.
+  /// Format: `'success:<message>'` hoặc `'error:<message>'`.
+  final String? billStatusMessage;
+
   // ---------------------------------------------------------------------------
   // Lookup lists for BillExport form fields (fetched lazily on detail open)
   // ---------------------------------------------------------------------------
@@ -113,6 +122,8 @@ class SaleGdnState extends BaseBlocState {
     this.selectedBillIds = const <int>{},
     this.currentEmployeeId = 0,
     this.currentFullName = '',
+    this.isUpdatingStatus = false,
+    this.billStatusMessage,
   });
 
   factory SaleGdnState.init() {
@@ -159,5 +170,7 @@ class SaleGdnState extends BaseBlocState {
         selectedBillIds,
         currentEmployeeId,
         currentFullName,
+        isUpdatingStatus,
+        billStatusMessage,
       ];
 }
