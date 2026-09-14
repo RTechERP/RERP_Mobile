@@ -13,6 +13,7 @@ import 'package:rtc_erp/common/widgets/date_range_picker.dart';
 import 'package:rtc_erp/base/widgets/qr_barcode_scanner_page.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/models/sale_gdn_model.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/bloc/sale_gdn_bloc.dart';
+import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/widgets/sale_gdn_bulk_action_sheet.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/widgets/sale_gdn_card.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/widgets/sale_gdn_prepared_received_sheet.dart';
 import 'package:rtc_erp/routes/route_names.dart';
@@ -149,6 +150,59 @@ class _SaleGdnScreenState
             onPressed: _showSearchDialog,
             tooltip: 'Tìm kiếm',
           ),
+          BlocBuilder<SaleGdnBloc, SaleGdnState>(
+            buildWhen: (prev, curr) =>
+                prev.selectedBillIds.length != curr.selectedBillIds.length,
+            builder: (context, state) {
+              final count = state.selectedBillIds.length;
+              return Stack(
+                alignment: Alignment.center,
+                children: [
+                  IconButton(
+                    icon: Icon(
+                      Icons.checklist_rtl,
+                      color: count > 0
+                          ? AppColors.primaryERP
+                          : null,
+                    ),
+                    tooltip: count > 0
+                        ? 'Đã chọn $count phiếu'
+                        : 'Chọn nhiều phiếu',
+                    onPressed: count == 0 ? null : _onBulkActionTap,
+                  ),
+                  if (count > 0)
+                    Positioned(
+                      top: 4,
+                      right: 4,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 5,
+                          vertical: 1,
+                        ),
+                        decoration: BoxDecoration(
+                          color: AppColors.primaryERP,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        constraints: const BoxConstraints(
+                          minWidth: 18,
+                          minHeight: 18,
+                        ),
+                        child: Text(
+                          '$count',
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 11,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
+                            height: 1.1,
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
+              );
+            },
+          ),
           IconButton(
             icon: const Icon(Icons.qr_code_scanner_outlined),
             onPressed: _onQrScan,
@@ -242,17 +296,15 @@ class _SaleGdnScreenState
                 item: item,
                 isSelected: isSelected,
                 onTap: () => _openDetail(item),
-                // Bấm ô checkbox: tick + mở bottom sheet ngay trong 1 thao tác.
-                // Khi đóng sheet → bỏ tick (callback from sheet).
+                // Bấm ô checkbox: chỉ tick/bỏ tick (1 thao tác = 1 toggle).
+                // Sau khi tick ≥1 phiếu, user bấm icon checklist ở AppBar
+                // để mở `BulkBillActionSheet` xác nhận hàng loạt.
                 onCheckboxTap: () {
                   if (item.id == null || item.id! <= 0) return;
-                  // Tick trước để user thấy phản hồi ngay khi sheet hiện.
                   bloc.add(SaleGdnEvent.toggleBillSelection(
                     billId: item.id!,
-                    selected: true,
+                    selected: !isSelected,
                   ));
-                  // Mở sheet. Khi sheet đóng → bỏ tick id này.
-                  _openPreparedReceivedSheet(item);
                 },
               );
             },
@@ -527,6 +579,70 @@ class _SaleGdnScreenState
     bloc.add(SaleGdnEvent.scanQrToDetail(code));
   }
 
+  /// Mở bottom sheet xác nhận trạng thái cho nhiều phiếu đã chọn.
+  /// Trả về `(action, ids)` nếu user chọn 1 action; null nếu đóng sheet.
+  /// Sau đó dispatch event bulk tương ứng về bloc.
+  Future<void> _onBulkActionTap() async {
+    final state = bloc.state;
+    final selectedIds = state.selectedBillIds;
+    if (selectedIds.isEmpty) return;
+
+    // Lấy đầy đủ BillExporResponse cho từng ID đã chọn để hiển thị mã phiếu
+    // + người giao/nhận trong sheet.
+    final selectedBills = state.gdns
+        .where((b) => b.id != null && selectedIds.contains(b.id))
+        .toList();
+
+    if (!mounted) return;
+
+    final result = await showModalBottomSheet<(BulkAction, Set<int>)>(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (_) => BulkBillActionSheet(
+        bills: selectedBills,
+        isSubmitting: state.isUpdatingStatus,
+        currentEmployeeId: state.currentEmployeeId,
+        isCurrentUserAdmin: state.isCurrentUserAdmin,
+      ),
+    );
+
+    if (!mounted || result == null) return;
+
+    final (action, ids) = result;
+    if (ids.isEmpty) {
+      // User đã bỏ hết tick trong sheet → clear selection.
+      bloc.add(const SaleGdnEvent.clearBillSelection());
+      return;
+    }
+    switch (action) {
+      case BulkAction.markPrepared:
+        bloc.add(SaleGdnEvent.bulkUpdateBillStatusPreparing(
+          billIds: ids,
+          isPrepared: true,
+        ));
+        break;
+      case BulkAction.cancelPrepared:
+        bloc.add(SaleGdnEvent.bulkUpdateBillStatusPreparing(
+          billIds: ids,
+          isPrepared: false,
+        ));
+        break;
+      case BulkAction.markReceived:
+        bloc.add(SaleGdnEvent.bulkUpdateBillStatusReceive(
+          billIds: ids,
+          isReceived: true,
+        ));
+        break;
+      case BulkAction.cancelReceived:
+        bloc.add(SaleGdnEvent.bulkUpdateBillStatusReceive(
+          billIds: ids,
+          isReceived: false,
+        ));
+        break;
+    }
+  }
+
   /// Mở bottom sheet hành động cho 1 phiếu: chuẩn bị hàng / nhận hàng.
   /// Phiếu phải có `id` hợp lệ. Khi user chọn 1 hành động → snackbar demo
   /// (API sẽ được nối ở bước sau theo hướng dẫn của người dùng).
@@ -570,7 +686,6 @@ class _SaleGdnScreenState
           (item.senderId != null && item.senderId == currentEmployeeId);
       // Nhận hàng/huỷ nhận hàng: ai cũng có quyền (đã được sheet lọc
       // theo người giao/nhận ở tầng UI trước đó).
-      const isReceivedActor = true;
 
       // Nhận hàng: phiếu phải được chuẩn bị trước và chưa nhận hàng.
       if (action.type == BillActionType.markReceived) {
