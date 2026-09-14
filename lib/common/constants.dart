@@ -54,7 +54,7 @@ class ApiEndPoint {
   static const String getTeam = '/Team/department/2';
 
   static const String getProject = '/project/get-project-modal';
-
+  static const String getProjects = '/project/get-projects';
   static const String getProjectItemByUser =
       '/DailyReportTech/get-project-item-by-user';
 

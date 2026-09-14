@@ -190,6 +190,9 @@ import '../features/workplace/app/warehouse/pages/warehouse_agv/view/pages/wareh
 import '../features/workplace/app/warehouse/pages/warehouse_project/view/pages/warehouse_project_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_test/view/pages/warehouse_test_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_screen.dart';
+import '../features/workplace/app/project/project_menu_screen.dart';
+import '../features/workplace/app/project/project_list/view/bloc/project_list_bloc.dart';
+import '../features/workplace/app/project/project_list/view/pages/project_list_screen.dart';
 import '../features/workplace/app/week_plan/view/bloc/week_plan_bloc.dart';
 import '../features/workplace/app/week_plan/view/pages/week_plan_add_screen.dart';
 import '../features/workplace/app/week_plan/view/pages/week_plan_all_screen.dart';
@@ -1183,6 +1186,28 @@ class AppRouter {
           GoRoute(
             path: RouteNames.signatureAdd,
             builder: (context, state) => const SignatureAddScreen(),
+          ),
+        ],
+      ),
+
+      //---(Project)---//
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(
+            value: getIt<ProjectListBloc>(),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.projectMenu,
+            builder: (context, state) => const ProjectMenuScreen(),
+            routes: [
+              GoRoute(
+                path: RouteNames.projectList,
+                builder: (context, state) => const ProjectListScreen(),
+              ),
+            ],
           ),
         ],
       ),

@@ -162,6 +162,11 @@
     "grn": "Phiếu nhập",
     "gdn": "Phiếu xuất"
   },
+  "project": {
+    "menu": "Menu dự án",
+    "project_list": "DS dự án",
+    "list": "Danh sách dự án"
+  },
   "dio": {
     "cancel_request": "Request was cancelled",
     "connect_timeout": "Connection timeout",

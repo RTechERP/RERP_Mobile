@@ -95,6 +95,10 @@ import '../features/workplace/app/reg_work/view/pages/lunch/data/datasource/serv
 import '../features/workplace/app/reg_work/view/pages/lunch/data/repository/lunch_repo.dart';
 import '../features/workplace/app/reg_work/view/pages/lunch/data/repository/lunch_repo_impl.dart';
 import '../features/workplace/app/reg_work/view/pages/lunch/view/bloc/lunch_bloc.dart';
+import '../features/workplace/app/project/project_list/data/datasource/service/project_list_service.dart';
+import '../features/workplace/app/project/project_list/data/repository/project_list_repo.dart';
+import '../features/workplace/app/project/project_list/data/repository/project_list_repo_impl.dart';
+import '../features/workplace/app/project/project_list/view/bloc/project_list_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/data/datasource/service/in_out_service.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/data/repository/in_out_repo.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/data/repository/in_out_repo_impl.dart';
@@ -216,6 +220,9 @@ void configureDependencies() {
   );
 
   getIt.registerLazySingleton<LunchService>(() => LunchService(getIt<Dio>()));
+
+  getIt.registerLazySingleton<ProjectListService>(
+      () => ProjectListService(getIt<Dio>()));
 
   getIt.registerLazySingleton<InOutService>(() => InOutService(getIt<Dio>()));
 
@@ -344,6 +351,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<LunchRepo>(
     () => LunchRepoImpl(getIt<LunchService>()),
+  );
+
+  getIt.registerLazySingleton<ProjectListRepo>(
+    () => ProjectListRepoImpl(getIt<ProjectListService>()),
   );
 
   getIt.registerLazySingleton<InOutRepo>(
@@ -507,6 +518,10 @@ void configureDependencies() {
 
   getIt.registerFactory<LunchBloc>(
     () => LunchBloc(getIt<LunchRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
+  );
+
+  getIt.registerFactory<ProjectListBloc>(
+    () => ProjectListBloc(getIt<ProjectListRepo>(), getIt<LogUtils>()),
   );
 
   getIt.registerFactory<InOutBloc>(
