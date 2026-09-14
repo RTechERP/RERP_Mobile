@@ -11,6 +11,7 @@ import '../../../../../../../../../common/logger/index.dart';
 import '../../../../../../../../auth/data/datasource/models/user_model.dart';
 import '../../../../../../../../auth/data/repository/auth_repo.dart';
 import '../../data/datasource/models/test_table_model.dart';
+import '../../data/repository/test_table_repository.dart';
 import '../../data/repository/test_table_repo.dart';
 
 part 'test_table_event.dart';
@@ -260,11 +261,39 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
   // =================================================================
 
   /// Tải các lookup cần cho form add nếu chưa có.
-  /// Trả về `true` nếu cache đã có sẵn, `false` nếu vừa tải xong.
+  /// Ưu tiên đọc từ [TestTableLookupRepository] (SharedPreferences) — tránh
+  /// gọi lại 4 API khi user đã mở màn list / add / edit / QR trước đó.
+  /// Trả về `true` nếu cache đã có sẵn (không gọi API), `false` nếu vừa tải xong.
   Future<bool> _ensureLookupData(Emitter<TestTableState> emit) async {
     if (state.lookupFetched) return true;
 
-    // Tải 4 lookup song song; từng cái có thể fail độc lập — fallback [].
+    final employeeId = state.currentUser?.employeeId ?? 0;
+
+    // 1. Thử đọc cache trước — key theo employeeId (0 = chưa có user).
+    final cached = await TestTableRepository.getLookupCache(
+      employeeId: employeeId,
+      log: _log,
+    );
+    if (cached != null && cached.isUsable) {
+      _log.logI(
+        'TestTable lookup cache hit (user=$employeeId, '
+        'fetchedAt=${cached.fetchedAt})',
+      );
+      emit(
+        state.copyWith(
+          testTable: cached.testTables,
+          employee: cached.employees,
+          project: cached.projects,
+          approver: cached.approvers,
+          lookupFetched: true,
+        ),
+      );
+      return true;
+    }
+
+    // 2. Cache miss → gọi 4 lookup API song song; từng cái có thể fail
+    // độc lập — fallback [].
+    _log.logI('TestTable lookup cache miss (user=$employeeId) — fetching API');
     final testTableRes = await _repo.getTestTableItem();
     final employeeRes = await _repo.getEmployeeInfoItem();
     final projectRes = await _repo.getProjectItem();
@@ -274,6 +303,17 @@ class TestTableBloc extends BaseBloc<TestTableEvent, TestTableState> {
     final employee = employeeRes.getOrElse(() => <EmployeeInfoItem>[]);
     final project = projectRes.getOrElse(() => <ProjectItem>[]);
     final approver = approverRes.getOrElse(() => <ApproverItem>[]);
+
+    // Lưu cache cho lần mở màn sau — bất kể có data hay không để tránh
+    // re-fetch lặp lại khi user back-back liên tục.
+    await TestTableRepository.saveLookupCache(
+      employeeId: employeeId,
+      testTables: testTable,
+      employees: employee,
+      projects: project,
+      approvers: approver,
+      log: _log,
+    );
 
     emit(
       state.copyWith(
