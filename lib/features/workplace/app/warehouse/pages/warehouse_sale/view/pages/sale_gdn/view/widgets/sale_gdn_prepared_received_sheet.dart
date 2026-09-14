@@ -79,16 +79,17 @@ class BillAction {
 /// Quy tắc hiển thị actions (theo user hiện tại):
 /// - Nếu `currentEmployeeId` trùng `bill.senderId` (người giao) → hiển thị
 ///   nhóm "Chuẩn bị hàng": Đã chuẩn bị hàng / Huỷ chuẩn bị hàng.
-/// - Nếu `currentFullName` trùng `bill.receiverFullName` (người nhận) → hiển
+/// - Nếu `currentEmployeeId` trùng `bill.receiverId` (người nhận) → hiển
 ///   thị nhóm "Nhận hàng": Đã nhận hàng / Huỷ nhận hàng.
-/// - Nếu `currentEmployeeId == 30` (user đặc biệt) → hiển thị cả 4.
+/// - Nếu `currentEmployeeId == 1110` (user đặc biệt) hoặc `isCurrentUserAdmin`
+///   → hiển thị cả 4.
 class PreparedReceivedActionSheet extends StatelessWidget {
   const PreparedReceivedActionSheet({
     super.key,
     required this.bill,
     required this.isCurrentlySelected,
     required this.currentEmployeeId,
-    required this.currentFullName,
+    required this.isCurrentUserAdmin,
     this.isSubmitting = false,
   });
 
@@ -98,8 +99,9 @@ class PreparedReceivedActionSheet extends StatelessWidget {
   /// `employeeId` của user đang đăng nhập.
   final int currentEmployeeId;
 
-  /// `fullName` của user đang đăng nhập (so sánh với `receiverFullName`).
-  final String currentFullName;
+  /// `true` nếu user hiện tại là admin — được thao tác mọi phiếu giống
+  /// user đặc biệt (id 1110).
+  final bool isCurrentUserAdmin;
 
   /// `true` khi đang gọi API update status — disable tất cả tile để tránh
   /// user bấm đúp.
@@ -111,14 +113,14 @@ class PreparedReceivedActionSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final hasFullPermission = isCurrentUserAdmin ||
+        _specialEmployeeId == currentEmployeeId;
     // Quyết định hiển thị nhóm "Chuẩn bị hàng".
-    final canPrepared = _specialEmployeeId == currentEmployeeId ||
+    final canPrepared = hasFullPermission ||
         (bill.senderId != null && bill.senderId == currentEmployeeId);
     // Quyết định hiển thị nhóm "Nhận hàng".
-    final canReceived = _specialEmployeeId == currentEmployeeId ||
-        ((bill.receiverFullName ?? '').trim().isNotEmpty &&
-            (bill.receiverFullName ?? '').trim() ==
-                currentFullName.trim());
+    final canReceived = hasFullPermission ||
+        (bill.receiverId != null && bill.receiverId == currentEmployeeId);
 
     // Nếu không có quyền gì cả (hiếm) → hiển thị thông báo nhỏ.
     if (!canPrepared && !canReceived) {
@@ -204,7 +206,7 @@ class PreparedReceivedActionSheet extends StatelessWidget {
               if (canReceived)
                 const Divider(height: 1, indent: 16, endIndent: 16),
             ],
-            // Nhóm nhận hàng (chỉ hiện khi receiverFullName == currentFullName)
+            // Nhóm nhận hàng (chỉ hiện khi receiverId == currentEmployeeId)
             if (canReceived) ...[
               _ActionTile(
                 icon: Icons.check_circle_outline,
@@ -331,9 +333,6 @@ class _ActionTile extends StatelessWidget {
         : AppColors.grey_bg;
     final iconColor = enabled ? color : AppColors.gray;
     final titleColor = enabled ? AppColors.heading : AppColors.gray;
-    final subtitleColor = enabled
-        ? AppColors.gray
-        : AppColors.gray.withValues(alpha: 0.6);
 
     return InkWell(
       onTap: enabled ? onTap : null,

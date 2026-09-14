@@ -178,7 +178,6 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
     };
   }
 
-
   Future<void> _onInit(Emitter<SaleGdnState> emit) async {
     emit(state.copyWith(status: BaseStateStatus.loading));
 
@@ -205,6 +204,10 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
       (_) => state.currentFullName,
       (u) => u?.fullName ?? state.currentFullName,
     );
+    final isAdmin = userRes.fold(
+      (_) => state.isCurrentUserAdmin,
+      (u) => u?.isAdmin ?? state.isCurrentUserAdmin,
+    );
 
     await res.fold(
       (l) async {
@@ -214,6 +217,7 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
           message: l.truncatedMsg,
           currentEmployeeId: employeeId,
           currentFullName: fullName,
+          isCurrentUserAdmin: isAdmin,
         ));
       },
       (r) async {
@@ -223,6 +227,7 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
           gdns: r,
           currentEmployeeId: employeeId,
           currentFullName: fullName,
+          isCurrentUserAdmin: isAdmin,
         ));
       },
     );

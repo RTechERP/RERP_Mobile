@@ -124,6 +124,8 @@ mixin _$BillExporResponse {
   bool? get isIncurredApproved => throw _privateConstructorUsedError;
   @JsonKey(name: 'ReceiverFullName')
   String? get receiverFullName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ReceiverID')
+  int? get receiverId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -189,7 +191,8 @@ abstract class $BillExporResponseCopyWith<$Res> {
       @JsonKey(name: 'DeliveryTime') String? deliveryTime,
       @JsonKey(name: 'IsAfterHours') bool? isAfterHours,
       @JsonKey(name: 'IsIncurredApproved') bool? isIncurredApproved,
-      @JsonKey(name: 'ReceiverFullName') String? receiverFullName});
+      @JsonKey(name: 'ReceiverFullName') String? receiverFullName,
+      @JsonKey(name: 'ReceiverID') int? receiverId});
 }
 
 /// @nodoc
@@ -257,6 +260,7 @@ class _$BillExporResponseCopyWithImpl<$Res, $Val extends BillExporResponse>
     Object? isAfterHours = freezed,
     Object? isIncurredApproved = freezed,
     Object? receiverFullName = freezed,
+    Object? receiverId = freezed,
   }) {
     return _then(_value.copyWith(
       totalPage: freezed == totalPage
@@ -467,6 +471,10 @@ class _$BillExporResponseCopyWithImpl<$Res, $Val extends BillExporResponse>
           ? _value.receiverFullName
           : receiverFullName // ignore: cast_nullable_to_non_nullable
               as String?,
+      receiverId: freezed == receiverId
+          ? _value.receiverId
+          : receiverId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -531,7 +539,8 @@ abstract class _$$BillExporResponseImplCopyWith<$Res>
       @JsonKey(name: 'DeliveryTime') String? deliveryTime,
       @JsonKey(name: 'IsAfterHours') bool? isAfterHours,
       @JsonKey(name: 'IsIncurredApproved') bool? isIncurredApproved,
-      @JsonKey(name: 'ReceiverFullName') String? receiverFullName});
+      @JsonKey(name: 'ReceiverFullName') String? receiverFullName,
+      @JsonKey(name: 'ReceiverID') int? receiverId});
 }
 
 /// @nodoc
@@ -597,6 +606,7 @@ class __$$BillExporResponseImplCopyWithImpl<$Res>
     Object? isAfterHours = freezed,
     Object? isIncurredApproved = freezed,
     Object? receiverFullName = freezed,
+    Object? receiverId = freezed,
   }) {
     return _then(_$BillExporResponseImpl(
       totalPage: freezed == totalPage
@@ -807,6 +817,10 @@ class __$$BillExporResponseImplCopyWithImpl<$Res>
           ? _value.receiverFullName
           : receiverFullName // ignore: cast_nullable_to_non_nullable
               as String?,
+      receiverId: freezed == receiverId
+          ? _value.receiverId
+          : receiverId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -866,7 +880,8 @@ class _$BillExporResponseImpl implements _BillExporResponse {
       @JsonKey(name: 'DeliveryTime') this.deliveryTime,
       @JsonKey(name: 'IsAfterHours') this.isAfterHours,
       @JsonKey(name: 'IsIncurredApproved') this.isIncurredApproved,
-      @JsonKey(name: 'ReceiverFullName') this.receiverFullName});
+      @JsonKey(name: 'ReceiverFullName') this.receiverFullName,
+      @JsonKey(name: 'ReceiverID') this.receiverId});
 
   factory _$BillExporResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$BillExporResponseImplFromJson(json);
@@ -1027,10 +1042,13 @@ class _$BillExporResponseImpl implements _BillExporResponse {
   @override
   @JsonKey(name: 'ReceiverFullName')
   final String? receiverFullName;
+  @override
+  @JsonKey(name: 'ReceiverID')
+  final int? receiverId;
 
   @override
   String toString() {
-    return 'BillExporResponse(totalPage: $totalPage, rowNum: $rowNum, warehouseName: $warehouseName, dateStatus: $dateStatus, id: $id, code: $code, typeBill: $typeBill, supplierId: $supplierId, customerId: $customerId, userId: $userId, senderId: $senderId, stockId: $stockId, description: $description, address: $address, creatDate: $creatDate, isApproved: $isApproved, status: $status, groupId: $groupId, khoTypeId: $khoTypeId, createdDate: $createdDate, updatedDate: $updatedDate, createdBy: $createdBy, updatedBy: $updatedBy, productType: $productType, addressStockId: $addressStockId, isMerge: $isMerge, unApprove: $unApprove, warehouseId: $warehouseId, isPrepared: $isPrepared, isReceived: $isReceived, isOrderPrepared: $isOrderPrepared, isOrderReceived: $isOrderReceived, requestDate: $requestDate, preparedDate: $preparedDate, billDocumentExportType: $billDocumentExportType, isDeleted: $isDeleted, billImportId: $billImportId, wareHouseTranferId: $wareHouseTranferId, isTransfer: $isTransfer, fullName: $fullName, customerName: $customerName, nameStatus: $nameStatus, fullNameSender: $fullNameSender, productTypeText: $productTypeText, employeeCode: $employeeCode, departmentName: $departmentName, nameNcc: $nameNcc, warehouseType: $warehouseType, deliveryTime: $deliveryTime, isAfterHours: $isAfterHours, isIncurredApproved: $isIncurredApproved, receiverFullName: $receiverFullName)';
+    return 'BillExporResponse(totalPage: $totalPage, rowNum: $rowNum, warehouseName: $warehouseName, dateStatus: $dateStatus, id: $id, code: $code, typeBill: $typeBill, supplierId: $supplierId, customerId: $customerId, userId: $userId, senderId: $senderId, stockId: $stockId, description: $description, address: $address, creatDate: $creatDate, isApproved: $isApproved, status: $status, groupId: $groupId, khoTypeId: $khoTypeId, createdDate: $createdDate, updatedDate: $updatedDate, createdBy: $createdBy, updatedBy: $updatedBy, productType: $productType, addressStockId: $addressStockId, isMerge: $isMerge, unApprove: $unApprove, warehouseId: $warehouseId, isPrepared: $isPrepared, isReceived: $isReceived, isOrderPrepared: $isOrderPrepared, isOrderReceived: $isOrderReceived, requestDate: $requestDate, preparedDate: $preparedDate, billDocumentExportType: $billDocumentExportType, isDeleted: $isDeleted, billImportId: $billImportId, wareHouseTranferId: $wareHouseTranferId, isTransfer: $isTransfer, fullName: $fullName, customerName: $customerName, nameStatus: $nameStatus, fullNameSender: $fullNameSender, productTypeText: $productTypeText, employeeCode: $employeeCode, departmentName: $departmentName, nameNcc: $nameNcc, warehouseType: $warehouseType, deliveryTime: $deliveryTime, isAfterHours: $isAfterHours, isIncurredApproved: $isIncurredApproved, receiverFullName: $receiverFullName, receiverId: $receiverId)';
   }
 
   @override
@@ -1131,7 +1149,9 @@ class _$BillExporResponseImpl implements _BillExporResponse {
             (identical(other.isIncurredApproved, isIncurredApproved) ||
                 other.isIncurredApproved == isIncurredApproved) &&
             (identical(other.receiverFullName, receiverFullName) ||
-                other.receiverFullName == receiverFullName));
+                other.receiverFullName == receiverFullName) &&
+            (identical(other.receiverId, receiverId) ||
+                other.receiverId == receiverId));
   }
 
   @JsonKey(ignore: true)
@@ -1189,7 +1209,8 @@ class _$BillExporResponseImpl implements _BillExporResponse {
         deliveryTime,
         isAfterHours,
         isIncurredApproved,
-        receiverFullName
+        receiverFullName,
+        receiverId
       ]);
 
   @JsonKey(ignore: true)
@@ -1261,7 +1282,8 @@ abstract class _BillExporResponse implements BillExporResponse {
           @JsonKey(name: 'DeliveryTime') final String? deliveryTime,
           @JsonKey(name: 'IsAfterHours') final bool? isAfterHours,
           @JsonKey(name: 'IsIncurredApproved') final bool? isIncurredApproved,
-          @JsonKey(name: 'ReceiverFullName') final String? receiverFullName}) =
+          @JsonKey(name: 'ReceiverFullName') final String? receiverFullName,
+          @JsonKey(name: 'ReceiverID') final int? receiverId}) =
       _$BillExporResponseImpl;
 
   factory _BillExporResponse.fromJson(Map<String, dynamic> json) =
@@ -1423,6 +1445,9 @@ abstract class _BillExporResponse implements BillExporResponse {
   @override
   @JsonKey(name: 'ReceiverFullName')
   String? get receiverFullName;
+  @override
+  @JsonKey(name: 'ReceiverID')
+  int? get receiverId;
   @override
   @JsonKey(ignore: true)
   _$$BillExporResponseImplCopyWith<_$BillExporResponseImpl> get copyWith =>

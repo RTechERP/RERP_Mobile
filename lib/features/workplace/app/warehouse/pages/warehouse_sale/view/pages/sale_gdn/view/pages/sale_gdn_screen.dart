@@ -544,7 +544,7 @@ class _SaleGdnScreenState
         isCurrentlySelected:
             bloc.state.selectedBillIds.contains(id),
         currentEmployeeId: bloc.state.currentEmployeeId,
-        currentFullName: bloc.state.currentFullName,
+        isCurrentUserAdmin: bloc.state.isCurrentUserAdmin,
         isSubmitting: bloc.state.isUpdatingStatus,
       ),
     );
@@ -560,16 +560,17 @@ class _SaleGdnScreenState
     // Dispatch event tương ứng tới API check/huỷ trạng thái.
     if (action != null) {
       final currentEmployeeId = bloc.state.currentEmployeeId;
-      final currentFullName = bloc.state.currentFullName;
-      // User đặc biệt (id 1110) luôn có mọi quyền; ngoài ra phải là
-      // người giao/nhận của phiếu mới có quyền thao tác nhóm tương ứng.
+      final isCurrentUserAdmin = bloc.state.isCurrentUserAdmin;
+      // User đặc biệt (id 1110) hoặc admin luôn có mọi quyền; ngoài ra
+      // phải là người giao/nhận của phiếu mới có quyền thao tác nhóm
+      // tương ứng.
       const specialEmployeeId = 1110;
-      final isPreparedActor = currentEmployeeId == specialEmployeeId ||
+      final isPreparedActor = isCurrentUserAdmin ||
+          currentEmployeeId == specialEmployeeId ||
           (item.senderId != null && item.senderId == currentEmployeeId);
-      final isReceivedActor = currentEmployeeId == specialEmployeeId ||
-          ((item.receiverFullName ?? '').trim().isNotEmpty &&
-              (item.receiverFullName ?? '').trim() ==
-                  currentFullName.trim());
+      final isReceivedActor = isCurrentUserAdmin ||
+          currentEmployeeId == specialEmployeeId ||
+          (item.receiverId != null && item.receiverId == currentEmployeeId);
 
       // Nhận hàng: phải là người nhận, phiếu phải chưa nhận hàng và phải
       // được chuẩn bị trước.
