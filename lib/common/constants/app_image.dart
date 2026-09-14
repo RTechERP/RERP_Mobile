@@ -81,4 +81,5 @@ class AppImages {
   static const week_plan_timeline = 'assets/images/icons/apps/week_plan/89.png';
 
   static const signature = 'assets/images/icons/apps/week_plan/90.png';
+  static const test_table = 'assets/images/icons/apps/91.png';
 }
