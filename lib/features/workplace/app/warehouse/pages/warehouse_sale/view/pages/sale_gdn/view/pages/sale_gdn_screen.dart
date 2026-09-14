@@ -568,21 +568,12 @@ class _SaleGdnScreenState
       final isPreparedActor = isCurrentUserAdmin ||
           currentEmployeeId == specialEmployeeId ||
           (item.senderId != null && item.senderId == currentEmployeeId);
-      final isReceivedActor = isCurrentUserAdmin ||
-          currentEmployeeId == specialEmployeeId ||
-          (item.receiverId != null && item.receiverId == currentEmployeeId);
+      // Nhận hàng/huỷ nhận hàng: ai cũng có quyền (đã được sheet lọc
+      // theo người giao/nhận ở tầng UI trước đó).
+      const isReceivedActor = true;
 
-      // Nhận hàng: phải là người nhận, phiếu phải chưa nhận hàng và phải
-      // được chuẩn bị trước.
+      // Nhận hàng: phiếu phải được chuẩn bị trước và chưa nhận hàng.
       if (action.type == BillActionType.markReceived) {
-        if (!isReceivedActor) {
-          showMessage(
-            context,
-            'Chỉ người nhận mới có quyền xác nhận nhận hàng',
-            type: SnackBarType.error,
-          );
-          return;
-        }
         if (item.isOrderReceived == true) {
           showMessage(
             context,
@@ -600,17 +591,8 @@ class _SaleGdnScreenState
           return;
         }
       }
-      // Huỷ nhận hàng: chỉ người nhận, và phiếu phải đang ở trạng thái
-      // đã nhận hàng mới có gì để huỷ.
+      // Huỷ nhận hàng: phiếu phải đang ở trạng thái đã nhận hàng.
       if (action.type == BillActionType.cancelReceived) {
-        if (!isReceivedActor) {
-          showMessage(
-            context,
-            'Chỉ người nhận mới có quyền huỷ nhận hàng',
-            type: SnackBarType.error,
-          );
-          return;
-        }
         if (item.isOrderReceived != true) {
           showMessage(
             context,
