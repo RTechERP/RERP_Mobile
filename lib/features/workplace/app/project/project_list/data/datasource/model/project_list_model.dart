@@ -92,11 +92,11 @@ class ProjectListParams {
   final String projectStatus;
   final bool isAGV;
 
-  const ProjectListParams({
+  ProjectListParams({
     this.page = 1,
     this.size = 100,
     this.dateTimeS = '2025-01-01 00:00:00',
-    this.dateTimeE = '',
+    String? dateTimeE,
     this.keyword = '',
     this.customerId = 0,
     this.saleId = 0,
@@ -108,7 +108,12 @@ class ProjectListParams {
     this.bussinessFieldId = 0,
     this.projectStatus = '',
     this.isAGV = true,
-  });
+  }) : dateTimeE = dateTimeE ?? _now();
+
+  static String _now() {
+    final now = DateTime.now();
+    return '${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')} 23:59:59';
+  }
 
   Map<String, dynamic> toQueryParams() => {
         'page': page,

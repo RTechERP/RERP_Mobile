@@ -22,19 +22,20 @@ class ProjectListHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final df = DateFormat('dd/MM/yyyy');
     final now = DateTime.now();
+    final defaultStart = DateTime(2025, 1, 1);
 
-    // Nếu có filter date thì dùng date đó, không thì dùng ngày hiện tại
-    final displayStart = dateStart ?? now;
+    // Nếu có filter date thì dùng date đó, không thì dùng default query
+    final displayStart = dateStart ?? defaultStart;
     final displayEnd = dateEnd ?? now;
 
-    final hasRange = dateStart != null && dateEnd != null;
+    final hasRange = dateStart != null || dateEnd != null;
     final isSameDay = hasRange && _isSameDay(displayStart, displayEnd);
 
     final rangeText = hasRange
         ? (isSameDay
             ? df.format(displayStart)
             : '${df.format(displayStart)} - ${df.format(displayEnd)}')
-        : 'Hôm nay';
+        : '${df.format(defaultStart)} - ${df.format(now)}';
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),

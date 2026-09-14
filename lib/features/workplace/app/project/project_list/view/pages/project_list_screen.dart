@@ -66,14 +66,14 @@ class _ProjectListScreenState extends BaseState<
             onPressed: () {
               final now = DateTime.now();
               final todayStart = DateTime(now.year, now.month, now.day);
-              final tomorrow = todayStart.add(const Duration(days: 1));
+              final defaultStart = DateTime(2025, 1, 1);
 
               showModalBottomSheet(
                 context: context,
                 isScrollControlled: true,
                 builder: (_) => DateRangePicker(
-                  initialStart: bloc.state.dateStart ?? todayStart,
-                  initialEnd: bloc.state.dateEnd ?? tomorrow,
+                  initialStart: bloc.state.dateStart ?? defaultStart,
+                  initialEnd: bloc.state.dateEnd ?? todayStart,
                   onApply: (start, end) {
                     bloc.add(
                       ProjectListEvent.changeDateRange(
