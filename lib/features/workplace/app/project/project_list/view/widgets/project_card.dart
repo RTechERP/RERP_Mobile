@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../data/datasource/model/project_list_model.dart';
+import 'material_category_sheet.dart';
 import 'project_status_badge.dart';
 
 /// Card hiển thị thông tin một project trong danh sách với style glassmorphism.
@@ -16,7 +17,11 @@ class ProjectCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () => MaterialCategorySheet.show(
+        context,
+        projectCode: project.projectCode ?? '',
+        projectName: project.projectName ?? '',
+      ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(16),
         child: BackdropFilter(
