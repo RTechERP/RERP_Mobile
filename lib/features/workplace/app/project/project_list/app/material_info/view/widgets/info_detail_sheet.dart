@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 /// Field hiển thị label (gray) + value (bold) trong popup thông tin.
 /// Dùng cho cả text, icon và boolean.
-class InfoField extends StatelessWidget {
-  const InfoField({
+class InfoField extends StatelessWidget {  const InfoField({
     super.key,
     required this.label,
     this.value,

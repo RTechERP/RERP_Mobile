@@ -12,6 +12,9 @@ import '../../data/datasource/model/material_category_model.dart';
 import '../../../material_info/view/widgets/material_info_menu_sheet.dart';
 import '../../../material_info/view/widgets/material_info_detail_sheet.dart';
 import '../../../material_info/view/widgets/quote_request_detail_sheet.dart';
+import '../../../material_info/view/widgets/purchase_request_detail_sheet.dart';
+import '../../../material_info/view/widgets/import_warehouse_detail_sheet.dart';
+import '../../../material_info/view/widgets/stock_balance_detail_sheet.dart';
 
 /// Tab "Danh mục vật tư" - hiển thị bảng cha (5 cột):
 /// TT | Tên vật tư | Mã thiết bị | SL/1 máy | SL tổng.
@@ -113,9 +116,16 @@ class _MaterialCategoryTabState extends BaseState<MaterialCategoryTab,
                   case 'quote':
                     pending = QuoteRequestDetailSheet.show(ctx, item);
                     break;
+                  case 'purchase':
+                    pending = PurchaseRequestDetailSheet.show(ctx, item);
+                    break;
+                  case 'import':
+                    pending = ImportWarehouseDetailSheet.show(ctx, item);
+                    break;
+                  case 'stock':
+                    pending = StockBalanceDetailSheet.show(ctx, item);
+                    break;
                   default:
-                    // 3 menu còn lại: Yêu cầu mua hàng / Nhập kho / Tồn kho
-                    // sẽ được bổ sung sau.
                     break;
                 }
                 if (pending != null) unawaited(pending);
