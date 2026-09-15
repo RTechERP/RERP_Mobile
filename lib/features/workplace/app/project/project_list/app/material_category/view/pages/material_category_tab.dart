@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
@@ -8,6 +9,9 @@ import 'package:rtc_erp/common/app_theme/index.dart';
 
 import '../bloc/material_category_bloc.dart';
 import '../../data/datasource/model/material_category_model.dart';
+import '../../../material_info/view/widgets/material_info_menu_sheet.dart';
+import '../../../material_info/view/widgets/material_info_detail_sheet.dart';
+import '../../../material_info/view/widgets/quote_request_detail_sheet.dart';
 
 /// Tab "Danh mục vật tư" - hiển thị bảng cha (5 cột):
 /// TT | Tên vật tư | Mã thiết bị | SL/1 máy | SL tổng.
@@ -95,6 +99,27 @@ class _MaterialCategoryTabState extends BaseState<MaterialCategoryTab,
               onToggle: _toggle,
               pathLabel: '${index + 1}',
               parentIndex: index + 1,
+              onCardTap: (ctx, item) async {
+                final id = await MaterialInfoMenuSheet.show(
+                  ctx,
+                  material: item,
+                );
+                if (!ctx.mounted || id == null) return;
+                Future<void>? pending;
+                switch (id) {
+                  case 'detail':
+                    pending = MaterialInfoDetailSheet.show(ctx, item);
+                    break;
+                  case 'quote':
+                    pending = QuoteRequestDetailSheet.show(ctx, item);
+                    break;
+                  default:
+                    // 3 menu còn lại: Yêu cầu mua hàng / Nhập kho / Tồn kho
+                    // sẽ được bổ sung sau.
+                    break;
+                }
+                if (pending != null) unawaited(pending);
+              },
             );
           },
         );
@@ -182,6 +207,7 @@ class _BranchWidget extends StatelessWidget {
     required this.onToggle,
     required this.pathLabel,
     required this.parentIndex,
+    this.onCardTap,
   });
 
   final _CategoryNode node;
@@ -190,6 +216,8 @@ class _BranchWidget extends StatelessWidget {
   final ValueChanged<int> onToggle;
   final String pathLabel;
   final int parentIndex;
+  /// Callback khi tap vào thân card (mở sheet menu thông tin vật tư).
+  final void Function(BuildContext, MaterialCategoryItem)? onCardTap;
 
   @override
   Widget build(BuildContext context) {
@@ -218,6 +246,9 @@ class _BranchWidget extends StatelessWidget {
               hasChildren: node.hasChildren,
               onToggle:
                   node.hasChildren ? () => onToggle(node.item.id) : null,
+              onTap: onCardTap == null
+                  ? null
+                  : () => onCardTap!(context, node.item),
             ),
           ),
           // Render các con (đệ quy).
@@ -230,6 +261,7 @@ class _BranchWidget extends StatelessWidget {
               onToggle: onToggle,
               parentIndex: i + 1,
               pathLabel: '$pathLabel.${i + 1}',
+              onCardTap: onCardTap,
             ),
         ],
       ),
@@ -249,6 +281,7 @@ class _MaterialCard extends StatelessWidget {
     this.childCount = 0,
     this.hasChildren = false,
     this.onToggle,
+    this.onTap,
   });
 
   /// Không dùng, giữ để tương thích.
@@ -259,7 +292,10 @@ class _MaterialCard extends StatelessWidget {
   final bool isExpanded;
   final int childCount;
   final bool hasChildren;
+  /// Toggle expand/collapse (chỉ dùng khi hasChildren).
   final VoidCallback? onToggle;
+  /// Tap vào thân card (mở sheet menu thông tin vật tư).
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -272,10 +308,15 @@ class _MaterialCard extends StatelessWidget {
     final total =
         (item.totalQty == null) ? '--' : item.totalQty.toString();
 
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
         borderRadius: BorderRadius.circular(14),
+        onTap: onTap,
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(14),
         border: Border.all(color: const Color(0xFFE5E7EB)),
         boxShadow: [
           BoxShadow(
@@ -383,7 +424,7 @@ class _MaterialCard extends StatelessWidget {
             ],
           ],
         ),
-      ),
+      ))),
     );
   }
 }
