@@ -95,6 +95,12 @@ import '../features/workplace/app/reg_work/view/pages/lunch/data/datasource/serv
 import '../features/workplace/app/reg_work/view/pages/lunch/data/repository/lunch_repo.dart';
 import '../features/workplace/app/reg_work/view/pages/lunch/data/repository/lunch_repo_impl.dart';
 import '../features/workplace/app/reg_work/view/pages/lunch/view/bloc/lunch_bloc.dart';
+import '../features/workplace/app/project/project_list/app/material_category/data/datasource/service/material_category_service.dart';
+import '../features/workplace/app/project/project_list/app/material_category/data/repository/material_category_repo.dart';
+import '../features/workplace/app/project/project_list/app/material_category/data/repository/material_category_repo_impl.dart';
+import '../features/workplace/app/project/project_list/app/material_category/view/bloc/material_category_bloc.dart';
+import '../features/workplace/app/project/project_list/app/material_category/view/bloc/solution_bloc.dart';
+import '../features/workplace/app/project/project_list/app/material_category/view/bloc/version_bloc.dart';
 import '../features/workplace/app/project/project_list/data/datasource/service/project_list_service.dart';
 import '../features/workplace/app/project/project_list/data/repository/project_list_repo.dart';
 import '../features/workplace/app/project/project_list/data/repository/project_list_repo_impl.dart';
@@ -223,6 +229,9 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<ProjectListService>(
       () => ProjectListService(getIt<Dio>()));
+
+  getIt.registerLazySingleton<MaterialCategoryService>(
+      () => MaterialCategoryService());
 
   getIt.registerLazySingleton<InOutService>(() => InOutService(getIt<Dio>()));
 
@@ -355,6 +364,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<ProjectListRepo>(
     () => ProjectListRepoImpl(getIt<ProjectListService>()),
+  );
+
+  getIt.registerLazySingleton<MaterialCategoryRepo>(
+    () => MaterialCategoryRepoImpl(getIt<MaterialCategoryService>()),
   );
 
   getIt.registerLazySingleton<InOutRepo>(
@@ -523,6 +536,12 @@ void configureDependencies() {
   getIt.registerFactory<ProjectListBloc>(
     () => ProjectListBloc(getIt<ProjectListRepo>(), getIt<LogUtils>()),
   );
+
+  getIt.registerFactory<MaterialCategoryBloc>(() => MaterialCategoryBloc());
+
+  getIt.registerFactory<SolutionBloc>(() => SolutionBloc());
+
+  getIt.registerFactory<VersionBloc>(() => VersionBloc());
 
   getIt.registerFactory<InOutBloc>(
     () => InOutBloc(getIt<InOutRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),

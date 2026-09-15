@@ -1,81 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../../../../../common/app_theme/index.dart';
-
-/// Model hiển thị tạm cho một danh mục vật tư.
-/// Sẽ thay bằng model thật khi có API.
-class MaterialCategory {
-  const MaterialCategory({
-    required this.id,
-    required this.name,
-    required this.icon,
-    required this.color,
-  });
-
-  final int id;
-  final String name;
-  final IconData icon;
-  final Color color;
-}
-
-/// Danh sách danh mục vật tư tạm (sẽ thay bằng dữ liệu từ API sau).
-const List<MaterialCategory> _placeholderCategories = [
-  MaterialCategory(
-    id: 1,
-    name: 'Danh mục vật tư',
-    icon: Icons.electrical_services,
-    color: Colors.amber,
-  ),
-  // MaterialCategory(
-  //   id: 2,
-  //   name: 'Vật tư cơ khí',
-  //   icon: Icons.build_outlined,
-  //   color: Colors.blueGrey,
-  // ),
-  // MaterialCategory(
-  //   id: 3,
-  //   name: 'Dụng cụ thi công',
-  //   icon: Icons.handyman_outlined,
-  //   color: Colors.brown,
-  // ),
-  // MaterialCategory(
-  //   id: 4,
-  //   name: 'Vật tư tiêu hao',
-  //   icon: Icons.inventory_2_outlined,
-  //   color: Colors.teal,
-  // ),
-  // MaterialCategory(
-  //   id: 5,
-  //   name: 'Phụ kiện',
-  //   icon: Icons.extension_outlined,
-  //   color: Colors.purple,
-  // ),
-  // MaterialCategory(
-  //   id: 6,
-  //   name: 'Vật tư an toàn',
-  //   icon: Icons.health_and_safety_outlined,
-  //   color: Colors.red,
-  // ),
-];
+import '../../app/material_category/data/datasource/model/material_category_model.dart';
+import '../../app/material_category/data/datasource/service/material_category_service.dart';
+import '../../app/material_category/view/widgets/material_category_style.dart';
 
 /// Bottom sheet hiển thị menu danh mục vật tư khi tap vào card dự án.
+/// Tap vào một danh mục sẽ navigate tới màn MaterialCategoryScreen.
 class MaterialCategorySheet extends StatelessWidget {
   const MaterialCategorySheet({
     super.key,
     required this.projectCode,
     required this.projectName,
-    this.categories = _placeholderCategories,
+    required this.categories,
   });
 
   final String projectCode;
   final String projectName;
-  final List<MaterialCategory> categories;
+  final List<MaterialCategoryItem> categories;
 
   static Future<void> show(
     BuildContext context, {
     required String projectCode,
-        required String projectName,
-    List<MaterialCategory>? categories,
+    required String projectName,
   }) {
     return showModalBottomSheet<void>(
       context: context,
@@ -84,7 +32,7 @@ class MaterialCategorySheet extends StatelessWidget {
       builder: (_) => MaterialCategorySheet(
         projectCode: projectCode,
         projectName: projectName,
-        categories: categories ?? _placeholderCategories,
+        categories: MaterialCategoryService.previewCategories(),
       ),
     );
   }
@@ -134,7 +82,7 @@ class MaterialCategorySheet extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                       Text(
+                      Text(
                         projectName,
                         style: TextStyle(
                           fontSize: 16,
@@ -161,7 +109,7 @@ class MaterialCategorySheet extends StatelessWidget {
             ),
           ),
           const Divider(height: 1),
-          // Grid danh mục
+          // Grid danh mục - tap để điều hướng đến MaterialCategoryScreen
           Flexible(
             child: GridView.builder(
               padding: const EdgeInsets.all(16),
@@ -174,7 +122,13 @@ class MaterialCategorySheet extends StatelessWidget {
               itemCount: categories.length,
               itemBuilder: (context, index) {
                 final cat = categories[index];
-                return _CategoryTile(category: cat);
+                return _CategoryTile(
+                  category: cat,
+                  onTap: () {
+                    Navigator.pop(context);
+                    context.push('/project/menu/list/material-category');
+                  },
+                );
               },
             ),
           ),
@@ -186,24 +140,30 @@ class MaterialCategorySheet extends StatelessWidget {
 
 /// Một ô danh mục trong grid.
 class _CategoryTile extends StatelessWidget {
-  const _CategoryTile({required this.category});
+  const _CategoryTile({
+    required this.category,
+    required this.onTap,
+  });
 
-  final MaterialCategory category;
+  final MaterialCategoryItem category;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
+    final style = MaterialCategoryStyle.styleFor(category.id);
+
     return Material(
       color: Colors.transparent,
       child: InkWell(
         borderRadius: BorderRadius.circular(14),
-        onTap: () => Navigator.pop(context, category),
+        onTap: onTap,
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
           decoration: BoxDecoration(
-            color: category.color.withValues(alpha: 0.08),
+            color: style.color.withValues(alpha: 0.08),
             borderRadius: BorderRadius.circular(14),
             border: Border.all(
-              color: category.color.withValues(alpha: 0.25),
+              color: style.color.withValues(alpha: 0.25),
               width: 1,
             ),
           ),
@@ -213,10 +173,10 @@ class _CategoryTile extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  color: category.color.withValues(alpha: 0.15),
+                  color: style.color.withValues(alpha: 0.15),
                   shape: BoxShape.circle,
                 ),
-                child: Icon(category.icon, color: category.color, size: 24),
+                child: Icon(style.icon, color: style.color, size: 24),
               ),
               const SizedBox(height: 8),
               Text(

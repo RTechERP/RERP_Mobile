@@ -460,4 +460,7 @@ class ApiEndPoint {
   /// Cập nhật / huỷ trạng thái "đã nhận hàng" cho danh sách phiếu xuất.
   /// Body: `[{ "ID": <billId>, "IsOrderReceived": true|false }, ...]`
   static const String updateStatusReceive = '/billexport/status-receive';
+
+  // Material Category
+  static const String getMaterialCategories = '/MaterialCategory/get-material-categories';
 }

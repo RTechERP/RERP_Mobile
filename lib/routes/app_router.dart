@@ -191,6 +191,10 @@ import '../features/workplace/app/warehouse/pages/warehouse_project/view/pages/w
 import '../features/workplace/app/warehouse/pages/warehouse_test/view/pages/warehouse_test_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_screen.dart';
 import '../features/workplace/app/project/project_menu_screen.dart';
+import '../features/workplace/app/project/project_list/app/material_category/view/bloc/material_category_bloc.dart';
+import '../features/workplace/app/project/project_list/app/material_category/view/bloc/solution_bloc.dart';
+import '../features/workplace/app/project/project_list/app/material_category/view/bloc/version_bloc.dart';
+import '../features/workplace/app/project/project_list/app/material_category/view/pages/material_category_screen.dart';
 import '../features/workplace/app/project/project_list/view/bloc/project_list_bloc.dart';
 import '../features/workplace/app/project/project_list/view/pages/project_list_screen.dart';
 import '../features/workplace/app/week_plan/view/bloc/week_plan_bloc.dart';
@@ -1195,7 +1199,16 @@ class AppRouter {
         builder: (context, state, child) {
           return BlocProvider.value(
             value: getIt<ProjectListBloc>(),
-            child: child,
+            child: BlocProvider.value(
+              value: getIt<MaterialCategoryBloc>(),
+              child: BlocProvider.value(
+                value: getIt<SolutionBloc>(),
+                child: BlocProvider.value(
+                  value: getIt<VersionBloc>(),
+                  child: child,
+                ),
+              ),
+            ),
           );
         },
         routes: [
@@ -1206,6 +1219,13 @@ class AppRouter {
               GoRoute(
                 path: RouteNames.projectList,
                 builder: (context, state) => const ProjectListScreen(),
+                routes: [
+                  GoRoute(
+                    path: RouteNames.materialCategory,
+                    builder: (context, state) =>
+                        const MaterialCategoryScreen(),
+                  ),
+                ],
               ),
             ],
           ),
