@@ -51,6 +51,22 @@ abstract class _$SaleGdnStateCWProxy {
 
   SaleGdnState scanResultMessage(String? scanResultMessage);
 
+  SaleGdnState selectedSenderName(String? selectedSenderName);
+
+  SaleGdnState selectedReceiverName(String? selectedReceiverName);
+
+  SaleGdnState selectedBillIds(Set<int> selectedBillIds);
+
+  SaleGdnState currentEmployeeId(int currentEmployeeId);
+
+  SaleGdnState currentFullName(String currentFullName);
+
+  SaleGdnState isCurrentUserAdmin(bool isCurrentUserAdmin);
+
+  SaleGdnState isUpdatingStatus(bool isUpdatingStatus);
+
+  SaleGdnState billStatusMessage(String? billStatusMessage);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SaleGdnState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -80,6 +96,14 @@ abstract class _$SaleGdnStateCWProxy {
     GdnDetailState? detail,
     BillExporResponse? openedDetailBill,
     String? scanResultMessage,
+    String? selectedSenderName,
+    String? selectedReceiverName,
+    Set<int>? selectedBillIds,
+    int? currentEmployeeId,
+    String? currentFullName,
+    bool? isCurrentUserAdmin,
+    bool? isUpdatingStatus,
+    String? billStatusMessage,
   });
 }
 
@@ -169,6 +193,38 @@ class _$SaleGdnStateCWProxyImpl implements _$SaleGdnStateCWProxy {
       this(scanResultMessage: scanResultMessage);
 
   @override
+  SaleGdnState selectedSenderName(String? selectedSenderName) =>
+      this(selectedSenderName: selectedSenderName);
+
+  @override
+  SaleGdnState selectedReceiverName(String? selectedReceiverName) =>
+      this(selectedReceiverName: selectedReceiverName);
+
+  @override
+  SaleGdnState selectedBillIds(Set<int> selectedBillIds) =>
+      this(selectedBillIds: selectedBillIds);
+
+  @override
+  SaleGdnState currentEmployeeId(int currentEmployeeId) =>
+      this(currentEmployeeId: currentEmployeeId);
+
+  @override
+  SaleGdnState currentFullName(String currentFullName) =>
+      this(currentFullName: currentFullName);
+
+  @override
+  SaleGdnState isCurrentUserAdmin(bool isCurrentUserAdmin) =>
+      this(isCurrentUserAdmin: isCurrentUserAdmin);
+
+  @override
+  SaleGdnState isUpdatingStatus(bool isUpdatingStatus) =>
+      this(isUpdatingStatus: isUpdatingStatus);
+
+  @override
+  SaleGdnState billStatusMessage(String? billStatusMessage) =>
+      this(billStatusMessage: billStatusMessage);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SaleGdnState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -199,6 +255,14 @@ class _$SaleGdnStateCWProxyImpl implements _$SaleGdnStateCWProxy {
     Object? detail = const $CopyWithPlaceholder(),
     Object? openedDetailBill = const $CopyWithPlaceholder(),
     Object? scanResultMessage = const $CopyWithPlaceholder(),
+    Object? selectedSenderName = const $CopyWithPlaceholder(),
+    Object? selectedReceiverName = const $CopyWithPlaceholder(),
+    Object? selectedBillIds = const $CopyWithPlaceholder(),
+    Object? currentEmployeeId = const $CopyWithPlaceholder(),
+    Object? currentFullName = const $CopyWithPlaceholder(),
+    Object? isCurrentUserAdmin = const $CopyWithPlaceholder(),
+    Object? isUpdatingStatus = const $CopyWithPlaceholder(),
+    Object? billStatusMessage = const $CopyWithPlaceholder(),
   }) {
     return SaleGdnState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -299,6 +363,43 @@ class _$SaleGdnStateCWProxyImpl implements _$SaleGdnStateCWProxy {
           ? _value.scanResultMessage
           // ignore: cast_nullable_to_non_nullable
           : scanResultMessage as String?,
+      selectedSenderName: selectedSenderName == const $CopyWithPlaceholder()
+          ? _value.selectedSenderName
+          // ignore: cast_nullable_to_non_nullable
+          : selectedSenderName as String?,
+      selectedReceiverName: selectedReceiverName == const $CopyWithPlaceholder()
+          ? _value.selectedReceiverName
+          // ignore: cast_nullable_to_non_nullable
+          : selectedReceiverName as String?,
+      selectedBillIds: selectedBillIds == const $CopyWithPlaceholder() ||
+              selectedBillIds == null
+          ? _value.selectedBillIds
+          // ignore: cast_nullable_to_non_nullable
+          : selectedBillIds as Set<int>,
+      currentEmployeeId: currentEmployeeId == const $CopyWithPlaceholder() ||
+              currentEmployeeId == null
+          ? _value.currentEmployeeId
+          // ignore: cast_nullable_to_non_nullable
+          : currentEmployeeId as int,
+      currentFullName: currentFullName == const $CopyWithPlaceholder() ||
+              currentFullName == null
+          ? _value.currentFullName
+          // ignore: cast_nullable_to_non_nullable
+          : currentFullName as String,
+      isCurrentUserAdmin: isCurrentUserAdmin == const $CopyWithPlaceholder() ||
+              isCurrentUserAdmin == null
+          ? _value.isCurrentUserAdmin
+          // ignore: cast_nullable_to_non_nullable
+          : isCurrentUserAdmin as bool,
+      isUpdatingStatus: isUpdatingStatus == const $CopyWithPlaceholder() ||
+              isUpdatingStatus == null
+          ? _value.isUpdatingStatus
+          // ignore: cast_nullable_to_non_nullable
+          : isUpdatingStatus as bool,
+      billStatusMessage: billStatusMessage == const $CopyWithPlaceholder()
+          ? _value.billStatusMessage
+          // ignore: cast_nullable_to_non_nullable
+          : billStatusMessage as String?,
     );
   }
 }

@@ -19,12 +19,12 @@ mixin _$LunchEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(
-            int quantity, int location, String note, DateTime? dateOrder)
+    required TResult Function(int quantity, int location, String note,
+            int extraRiceQuantity, DateTime? dateOrder)
         submit,
     required TResult Function(int id) onCancelSubmit,
     required TResult Function(int id, int quantity, int location, String note,
-            DateTime? dateOrder)
+            int extraRiceQuantity, DateTime? dateOrder)
         onEditSubmit,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
@@ -34,12 +34,12 @@ mixin _$LunchEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(
-            int quantity, int location, String note, DateTime? dateOrder)?
+    TResult? Function(int quantity, int location, String note,
+            int extraRiceQuantity, DateTime? dateOrder)?
         submit,
     TResult? Function(int id)? onCancelSubmit,
     TResult? Function(int id, int quantity, int location, String note,
-            DateTime? dateOrder)?
+            int extraRiceQuantity, DateTime? dateOrder)?
         onEditSubmit,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
@@ -48,12 +48,12 @@ mixin _$LunchEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(
-            int quantity, int location, String note, DateTime? dateOrder)?
+    TResult Function(int quantity, int location, String note,
+            int extraRiceQuantity, DateTime? dateOrder)?
         submit,
     TResult Function(int id)? onCancelSubmit,
     TResult Function(int id, int quantity, int location, String note,
-            DateTime? dateOrder)?
+            int extraRiceQuantity, DateTime? dateOrder)?
         onEditSubmit,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
@@ -149,12 +149,12 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(
-            int quantity, int location, String note, DateTime? dateOrder)
+    required TResult Function(int quantity, int location, String note,
+            int extraRiceQuantity, DateTime? dateOrder)
         submit,
     required TResult Function(int id) onCancelSubmit,
     required TResult Function(int id, int quantity, int location, String note,
-            DateTime? dateOrder)
+            int extraRiceQuantity, DateTime? dateOrder)
         onEditSubmit,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
@@ -167,12 +167,12 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(
-            int quantity, int location, String note, DateTime? dateOrder)?
+    TResult? Function(int quantity, int location, String note,
+            int extraRiceQuantity, DateTime? dateOrder)?
         submit,
     TResult? Function(int id)? onCancelSubmit,
     TResult? Function(int id, int quantity, int location, String note,
-            DateTime? dateOrder)?
+            int extraRiceQuantity, DateTime? dateOrder)?
         onEditSubmit,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
@@ -184,12 +184,12 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(
-            int quantity, int location, String note, DateTime? dateOrder)?
+    TResult Function(int quantity, int location, String note,
+            int extraRiceQuantity, DateTime? dateOrder)?
         submit,
     TResult Function(int id)? onCancelSubmit,
     TResult Function(int id, int quantity, int location, String note,
-            DateTime? dateOrder)?
+            int extraRiceQuantity, DateTime? dateOrder)?
         onEditSubmit,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
@@ -255,7 +255,12 @@ abstract class _$$SubmitImplCopyWith<$Res> {
           _$SubmitImpl value, $Res Function(_$SubmitImpl) then) =
       __$$SubmitImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int quantity, int location, String note, DateTime? dateOrder});
+  $Res call(
+      {int quantity,
+      int location,
+      String note,
+      int extraRiceQuantity,
+      DateTime? dateOrder});
 }
 
 /// @nodoc
@@ -272,6 +277,7 @@ class __$$SubmitImplCopyWithImpl<$Res>
     Object? quantity = null,
     Object? location = null,
     Object? note = null,
+    Object? extraRiceQuantity = null,
     Object? dateOrder = freezed,
   }) {
     return _then(_$SubmitImpl(
@@ -287,6 +293,10 @@ class __$$SubmitImplCopyWithImpl<$Res>
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
               as String,
+      extraRiceQuantity: null == extraRiceQuantity
+          ? _value.extraRiceQuantity
+          : extraRiceQuantity // ignore: cast_nullable_to_non_nullable
+              as int,
       dateOrder: freezed == dateOrder
           ? _value.dateOrder
           : dateOrder // ignore: cast_nullable_to_non_nullable
@@ -302,6 +312,7 @@ class _$SubmitImpl implements _Submit {
       {required this.quantity,
       required this.location,
       required this.note,
+      required this.extraRiceQuantity,
       this.dateOrder});
 
   @override
@@ -311,11 +322,13 @@ class _$SubmitImpl implements _Submit {
   @override
   final String note;
   @override
+  final int extraRiceQuantity;
+  @override
   final DateTime? dateOrder;
 
   @override
   String toString() {
-    return 'LunchEvent.submit(quantity: $quantity, location: $location, note: $note, dateOrder: $dateOrder)';
+    return 'LunchEvent.submit(quantity: $quantity, location: $location, note: $note, extraRiceQuantity: $extraRiceQuantity, dateOrder: $dateOrder)';
   }
 
   @override
@@ -328,13 +341,15 @@ class _$SubmitImpl implements _Submit {
             (identical(other.location, location) ||
                 other.location == location) &&
             (identical(other.note, note) || other.note == note) &&
+            (identical(other.extraRiceQuantity, extraRiceQuantity) ||
+                other.extraRiceQuantity == extraRiceQuantity) &&
             (identical(other.dateOrder, dateOrder) ||
                 other.dateOrder == dateOrder));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, quantity, location, note, dateOrder);
+  int get hashCode => Object.hash(
+      runtimeType, quantity, location, note, extraRiceQuantity, dateOrder);
 
   @JsonKey(ignore: true)
   @override
@@ -346,54 +361,54 @@ class _$SubmitImpl implements _Submit {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(
-            int quantity, int location, String note, DateTime? dateOrder)
+    required TResult Function(int quantity, int location, String note,
+            int extraRiceQuantity, DateTime? dateOrder)
         submit,
     required TResult Function(int id) onCancelSubmit,
     required TResult Function(int id, int quantity, int location, String note,
-            DateTime? dateOrder)
+            int extraRiceQuantity, DateTime? dateOrder)
         onEditSubmit,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearSubmitState,
   }) {
-    return submit(quantity, location, note, dateOrder);
+    return submit(quantity, location, note, extraRiceQuantity, dateOrder);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(
-            int quantity, int location, String note, DateTime? dateOrder)?
+    TResult? Function(int quantity, int location, String note,
+            int extraRiceQuantity, DateTime? dateOrder)?
         submit,
     TResult? Function(int id)? onCancelSubmit,
     TResult? Function(int id, int quantity, int location, String note,
-            DateTime? dateOrder)?
+            int extraRiceQuantity, DateTime? dateOrder)?
         onEditSubmit,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
   }) {
-    return submit?.call(quantity, location, note, dateOrder);
+    return submit?.call(quantity, location, note, extraRiceQuantity, dateOrder);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(
-            int quantity, int location, String note, DateTime? dateOrder)?
+    TResult Function(int quantity, int location, String note,
+            int extraRiceQuantity, DateTime? dateOrder)?
         submit,
     TResult Function(int id)? onCancelSubmit,
     TResult Function(int id, int quantity, int location, String note,
-            DateTime? dateOrder)?
+            int extraRiceQuantity, DateTime? dateOrder)?
         onEditSubmit,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
     required TResult orElse(),
   }) {
     if (submit != null) {
-      return submit(quantity, location, note, dateOrder);
+      return submit(quantity, location, note, extraRiceQuantity, dateOrder);
     }
     return orElse();
   }
@@ -447,11 +462,13 @@ abstract class _Submit implements LunchEvent {
       {required final int quantity,
       required final int location,
       required final String note,
+      required final int extraRiceQuantity,
       final DateTime? dateOrder}) = _$SubmitImpl;
 
   int get quantity;
   int get location;
   String get note;
+  int get extraRiceQuantity;
   DateTime? get dateOrder;
   @JsonKey(ignore: true)
   _$$SubmitImplCopyWith<_$SubmitImpl> get copyWith =>
@@ -524,12 +541,12 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(
-            int quantity, int location, String note, DateTime? dateOrder)
+    required TResult Function(int quantity, int location, String note,
+            int extraRiceQuantity, DateTime? dateOrder)
         submit,
     required TResult Function(int id) onCancelSubmit,
     required TResult Function(int id, int quantity, int location, String note,
-            DateTime? dateOrder)
+            int extraRiceQuantity, DateTime? dateOrder)
         onEditSubmit,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
@@ -542,12 +559,12 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(
-            int quantity, int location, String note, DateTime? dateOrder)?
+    TResult? Function(int quantity, int location, String note,
+            int extraRiceQuantity, DateTime? dateOrder)?
         submit,
     TResult? Function(int id)? onCancelSubmit,
     TResult? Function(int id, int quantity, int location, String note,
-            DateTime? dateOrder)?
+            int extraRiceQuantity, DateTime? dateOrder)?
         onEditSubmit,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
@@ -559,12 +576,12 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(
-            int quantity, int location, String note, DateTime? dateOrder)?
+    TResult Function(int quantity, int location, String note,
+            int extraRiceQuantity, DateTime? dateOrder)?
         submit,
     TResult Function(int id)? onCancelSubmit,
     TResult Function(int id, int quantity, int location, String note,
-            DateTime? dateOrder)?
+            int extraRiceQuantity, DateTime? dateOrder)?
         onEditSubmit,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
@@ -636,7 +653,12 @@ abstract class _$$OnEditSubmitImplCopyWith<$Res> {
       __$$OnEditSubmitImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
-      {int id, int quantity, int location, String note, DateTime? dateOrder});
+      {int id,
+      int quantity,
+      int location,
+      String note,
+      int extraRiceQuantity,
+      DateTime? dateOrder});
 }
 
 /// @nodoc
@@ -654,6 +676,7 @@ class __$$OnEditSubmitImplCopyWithImpl<$Res>
     Object? quantity = null,
     Object? location = null,
     Object? note = null,
+    Object? extraRiceQuantity = null,
     Object? dateOrder = freezed,
   }) {
     return _then(_$OnEditSubmitImpl(
@@ -673,6 +696,10 @@ class __$$OnEditSubmitImplCopyWithImpl<$Res>
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
               as String,
+      extraRiceQuantity: null == extraRiceQuantity
+          ? _value.extraRiceQuantity
+          : extraRiceQuantity // ignore: cast_nullable_to_non_nullable
+              as int,
       dateOrder: freezed == dateOrder
           ? _value.dateOrder
           : dateOrder // ignore: cast_nullable_to_non_nullable
@@ -689,6 +716,7 @@ class _$OnEditSubmitImpl implements _OnEditSubmit {
       required this.quantity,
       required this.location,
       required this.note,
+      required this.extraRiceQuantity,
       this.dateOrder});
 
   @override
@@ -700,11 +728,13 @@ class _$OnEditSubmitImpl implements _OnEditSubmit {
   @override
   final String note;
   @override
+  final int extraRiceQuantity;
+  @override
   final DateTime? dateOrder;
 
   @override
   String toString() {
-    return 'LunchEvent.onEditSubmit(id: $id, quantity: $quantity, location: $location, note: $note, dateOrder: $dateOrder)';
+    return 'LunchEvent.onEditSubmit(id: $id, quantity: $quantity, location: $location, note: $note, extraRiceQuantity: $extraRiceQuantity, dateOrder: $dateOrder)';
   }
 
   @override
@@ -718,13 +748,15 @@ class _$OnEditSubmitImpl implements _OnEditSubmit {
             (identical(other.location, location) ||
                 other.location == location) &&
             (identical(other.note, note) || other.note == note) &&
+            (identical(other.extraRiceQuantity, extraRiceQuantity) ||
+                other.extraRiceQuantity == extraRiceQuantity) &&
             (identical(other.dateOrder, dateOrder) ||
                 other.dateOrder == dateOrder));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, quantity, location, note, dateOrder);
+  int get hashCode => Object.hash(
+      runtimeType, id, quantity, location, note, extraRiceQuantity, dateOrder);
 
   @JsonKey(ignore: true)
   @override
@@ -736,54 +768,57 @@ class _$OnEditSubmitImpl implements _OnEditSubmit {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(
-            int quantity, int location, String note, DateTime? dateOrder)
+    required TResult Function(int quantity, int location, String note,
+            int extraRiceQuantity, DateTime? dateOrder)
         submit,
     required TResult Function(int id) onCancelSubmit,
     required TResult Function(int id, int quantity, int location, String note,
-            DateTime? dateOrder)
+            int extraRiceQuantity, DateTime? dateOrder)
         onEditSubmit,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
     required TResult Function() clearSubmitState,
   }) {
-    return onEditSubmit(id, quantity, location, note, dateOrder);
+    return onEditSubmit(
+        id, quantity, location, note, extraRiceQuantity, dateOrder);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(
-            int quantity, int location, String note, DateTime? dateOrder)?
+    TResult? Function(int quantity, int location, String note,
+            int extraRiceQuantity, DateTime? dateOrder)?
         submit,
     TResult? Function(int id)? onCancelSubmit,
     TResult? Function(int id, int quantity, int location, String note,
-            DateTime? dateOrder)?
+            int extraRiceQuantity, DateTime? dateOrder)?
         onEditSubmit,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
   }) {
-    return onEditSubmit?.call(id, quantity, location, note, dateOrder);
+    return onEditSubmit?.call(
+        id, quantity, location, note, extraRiceQuantity, dateOrder);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(
-            int quantity, int location, String note, DateTime? dateOrder)?
+    TResult Function(int quantity, int location, String note,
+            int extraRiceQuantity, DateTime? dateOrder)?
         submit,
     TResult Function(int id)? onCancelSubmit,
     TResult Function(int id, int quantity, int location, String note,
-            DateTime? dateOrder)?
+            int extraRiceQuantity, DateTime? dateOrder)?
         onEditSubmit,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
     required TResult orElse(),
   }) {
     if (onEditSubmit != null) {
-      return onEditSubmit(id, quantity, location, note, dateOrder);
+      return onEditSubmit(
+          id, quantity, location, note, extraRiceQuantity, dateOrder);
     }
     return orElse();
   }
@@ -838,12 +873,14 @@ abstract class _OnEditSubmit implements LunchEvent {
       required final int quantity,
       required final int location,
       required final String note,
+      required final int extraRiceQuantity,
       final DateTime? dateOrder}) = _$OnEditSubmitImpl;
 
   int get id;
   int get quantity;
   int get location;
   String get note;
+  int get extraRiceQuantity;
   DateTime? get dateOrder;
   @JsonKey(ignore: true)
   _$$OnEditSubmitImplCopyWith<_$OnEditSubmitImpl> get copyWith =>
@@ -925,12 +962,12 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(
-            int quantity, int location, String note, DateTime? dateOrder)
+    required TResult Function(int quantity, int location, String note,
+            int extraRiceQuantity, DateTime? dateOrder)
         submit,
     required TResult Function(int id) onCancelSubmit,
     required TResult Function(int id, int quantity, int location, String note,
-            DateTime? dateOrder)
+            int extraRiceQuantity, DateTime? dateOrder)
         onEditSubmit,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
@@ -943,12 +980,12 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(
-            int quantity, int location, String note, DateTime? dateOrder)?
+    TResult? Function(int quantity, int location, String note,
+            int extraRiceQuantity, DateTime? dateOrder)?
         submit,
     TResult? Function(int id)? onCancelSubmit,
     TResult? Function(int id, int quantity, int location, String note,
-            DateTime? dateOrder)?
+            int extraRiceQuantity, DateTime? dateOrder)?
         onEditSubmit,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
@@ -960,12 +997,12 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(
-            int quantity, int location, String note, DateTime? dateOrder)?
+    TResult Function(int quantity, int location, String note,
+            int extraRiceQuantity, DateTime? dateOrder)?
         submit,
     TResult Function(int id)? onCancelSubmit,
     TResult Function(int id, int quantity, int location, String note,
-            DateTime? dateOrder)?
+            int extraRiceQuantity, DateTime? dateOrder)?
         onEditSubmit,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,
@@ -1072,12 +1109,12 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(
-            int quantity, int location, String note, DateTime? dateOrder)
+    required TResult Function(int quantity, int location, String note,
+            int extraRiceQuantity, DateTime? dateOrder)
         submit,
     required TResult Function(int id) onCancelSubmit,
     required TResult Function(int id, int quantity, int location, String note,
-            DateTime? dateOrder)
+            int extraRiceQuantity, DateTime? dateOrder)
         onEditSubmit,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
@@ -1090,12 +1127,12 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(
-            int quantity, int location, String note, DateTime? dateOrder)?
+    TResult? Function(int quantity, int location, String note,
+            int extraRiceQuantity, DateTime? dateOrder)?
         submit,
     TResult? Function(int id)? onCancelSubmit,
     TResult? Function(int id, int quantity, int location, String note,
-            DateTime? dateOrder)?
+            int extraRiceQuantity, DateTime? dateOrder)?
         onEditSubmit,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function()? clearSubmitState,
@@ -1107,12 +1144,12 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(
-            int quantity, int location, String note, DateTime? dateOrder)?
+    TResult Function(int quantity, int location, String note,
+            int extraRiceQuantity, DateTime? dateOrder)?
         submit,
     TResult Function(int id)? onCancelSubmit,
     TResult Function(int id, int quantity, int location, String note,
-            DateTime? dateOrder)?
+            int extraRiceQuantity, DateTime? dateOrder)?
         onEditSubmit,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function()? clearSubmitState,

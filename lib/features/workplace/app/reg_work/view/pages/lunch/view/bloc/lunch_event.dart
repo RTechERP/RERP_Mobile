@@ -7,6 +7,7 @@ class LunchEvent with _$LunchEvent{
     required int quantity,
     required int location,
     required String note,
+    required int extraRiceQuantity,
     DateTime? dateOrder,
   }) = _Submit;
   const factory LunchEvent.onCancelSubmit({
@@ -17,6 +18,7 @@ class LunchEvent with _$LunchEvent{
     required int quantity,
     required int location,
     required String note,
+    required int extraRiceQuantity,
     DateTime? dateOrder,
   }) = _OnEditSubmit;
   const factory LunchEvent.changeDateRange({

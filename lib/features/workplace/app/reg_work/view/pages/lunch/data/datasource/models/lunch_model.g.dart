@@ -21,6 +21,7 @@ _$LunchItemImpl _$$LunchItemImplFromJson(Map<String, dynamic> json) =>
       location: (json['Location'] as num?)?.toInt(),
       locationText: json['LocationText'] as String?,
       employeeId: (json['EmployeeID'] as num?)?.toInt(),
+      extraRiceQuantity: (json['ExtraRiceQuantity'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$LunchItemImplToJson(_$LunchItemImpl instance) =>
@@ -36,6 +37,7 @@ Map<String, dynamic> _$$LunchItemImplToJson(_$LunchItemImpl instance) =>
       'Location': instance.location,
       'LocationText': instance.locationText,
       'EmployeeID': instance.employeeId,
+      'ExtraRiceQuantity': instance.extraRiceQuantity,
     };
 
 _$SaveLunchItemImpl _$$SaveLunchItemImplFromJson(Map<String, dynamic> json) =>
@@ -60,6 +62,7 @@ _$SaveLunchItemImpl _$$SaveLunchItemImplFromJson(Map<String, dynamic> json) =>
       reasonDeciline: json['ReasonDeciline'] as String?,
       isDeleted: json['IsDeleted'] as bool?,
       location: (json['Location'] as num?)?.toInt(),
+      extraRiceQuantity: (json['ExtraRiceQuantity'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$SaveLunchItemImplToJson(_$SaveLunchItemImpl instance) =>
@@ -78,4 +81,5 @@ Map<String, dynamic> _$$SaveLunchItemImplToJson(_$SaveLunchItemImpl instance) =>
       'ReasonDeciline': instance.reasonDeciline,
       'IsDeleted': instance.isDeleted,
       'Location': instance.location,
+      'ExtraRiceQuantity': instance.extraRiceQuantity,
     };

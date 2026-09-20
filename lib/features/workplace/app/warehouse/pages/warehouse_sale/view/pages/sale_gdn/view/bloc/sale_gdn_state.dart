@@ -27,6 +27,38 @@ class SaleGdnState extends BaseBlocState {
   /// Trạng thái đang chọn (-1 = tất cả).
   final int selectedStatus;
 
+  /// Tên người giao đang lọc (lấy từ fullNameSender API, null = tất cả).
+  final String? selectedSenderName;
+
+  /// Tên người nhận đang lọc (null = tất cả).
+  final String? selectedReceiverName;
+
+  /// Tập ID các phiếu đang được tick chọn (checkbox ở mỗi card).
+  /// Dùng cho thao tác hàng loạt (in, xuất file, ...).
+  final Set<int> selectedBillIds;
+
+  /// `employeeId` của user đang đăng nhập. Để so sánh với `senderId` của
+  /// phiếu nhằm quyết định nhóm action "Chuẩn bị hàng" có hiển thị hay không.
+  /// User đặc biệt có `employeeId` = 30 sẽ thấy cả 4 action.
+  final int currentEmployeeId;
+
+  /// `fullName` của user đang đăng nhập. Để so sánh với `receiverFullName`
+  /// của phiếu nhằm quyết định nhóm action "Nhận hàng" có hiển thị hay không.
+  final String currentFullName;
+
+  /// `true` nếu user hiện tại có quyền admin (`User.IsAdmin`).
+  /// User admin được thao tác mọi phiếu (giống user đặc biệt).
+  final bool isCurrentUserAdmin;
+
+  /// `true` khi đang gọi API check / huỷ trạng thái chuẩn bị / nhận hàng.
+  /// UI dùng để disable các action tile hoặc hiển thị spinner.
+  final bool isUpdatingStatus;
+
+  /// One-shot: thông báo kết quả của API updateStatusPreparing/Receive.
+  /// UI hiển thị snackbar rồi reset về null để tránh hiển thị lại.
+  /// Format: `'success:<message>'` hoặc `'error:<message>'`.
+  final String? billStatusMessage;
+
   // ---------------------------------------------------------------------------
   // Lookup lists for BillExport form fields (fetched lazily on detail open)
   // ---------------------------------------------------------------------------
@@ -89,6 +121,14 @@ class SaleGdnState extends BaseBlocState {
     this.detail,
     this.openedDetailBill,
     this.scanResultMessage,
+    this.selectedSenderName,
+    this.selectedReceiverName,
+    this.selectedBillIds = const <int>{},
+    this.currentEmployeeId = 0,
+    this.currentFullName = '',
+    this.isCurrentUserAdmin = false,
+    this.isUpdatingStatus = false,
+    this.billStatusMessage,
   });
 
   factory SaleGdnState.init() {
@@ -130,5 +170,13 @@ class SaleGdnState extends BaseBlocState {
         detail,
         openedDetailBill,
         scanResultMessage,
+        selectedSenderName,
+        selectedReceiverName,
+        selectedBillIds,
+        currentEmployeeId,
+        currentFullName,
+        isCurrentUserAdmin,
+        isUpdatingStatus,
+        billStatusMessage,
       ];
 }

@@ -9,6 +9,8 @@ import 'package:intl/intl.dart';
 import 'package:rtc_erp/base/bloc/index.dart';
 import 'package:rtc_erp/base/network/errors/error.dart';
 import 'package:rtc_erp/common/logger/index.dart';
+import 'package:rtc_erp/features/auth/data/datasource/models/user_model.dart';
+import 'package:rtc_erp/features/auth/data/repository/auth_repo.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/models/sale_gdn_model.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/repository/sale_gdn_repo.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/repository/sale_gdn_repository.dart';
@@ -40,9 +42,10 @@ extension _BaseErrorExt on BaseError {
 @injectable
 class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
   final SaleGdnRepo _repo;
+  final AuthRepo _authRepo;
   final LogUtils _log;
 
-  SaleGdnBloc(this._repo, this._log) : super(SaleGdnState.init()) {
+  SaleGdnBloc(this._repo, this._authRepo, this._log) : super(SaleGdnState.init()) {
     on<SaleGdnEvent>((event, emit) async {
       await event.when(
         init: () => _onInit(emit),
@@ -58,6 +61,11 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
         filterByWarehouseType: (warehouseTypeId) =>
             _filterByWarehouseType(emit, warehouseTypeId),
         filterByStatus: (status) => _filterByStatus(emit, status),
+        filterBySender: (senderId) =>
+            _filterBySenderName(emit, senderId?.toString()),
+        filterBySenderName: (senderName) =>
+            _filterBySenderName(emit, senderName),
+        filterByReceiver: (receiverId) => _filterByReceiver(emit, receiverId),
         clearFilters: () => _clearFilters(emit),
         changeDateRange: (dateStart, dateEnd) =>
             _changeDateRange(emit, dateStart, dateEnd),
@@ -110,6 +118,34 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
         selectNcc: (id) => _selectNcc(emit, id),
         fetchAddressStockByCustomer: (customerId) =>
             _fetchAddressStockByCustomer(emit, customerId),
+        toggleBillSelection: (billId, selected) =>
+            _toggleBillSelection(emit, billId, selected),
+        clearBillSelection: () => _clearBillSelection(emit),
+        updateBillStatusPreparing: (billId, isPrepared) =>
+            _updateBillStatusPreparing(
+              emit,
+              billId: billId,
+              isPrepared: isPrepared,
+            ),
+        updateBillStatusReceive: (billId, isReceived) =>
+            _updateBillStatusReceive(
+              emit,
+              billId: billId,
+              isReceived: isReceived,
+            ),
+        bulkUpdateBillStatusPreparing: (billIds, isPrepared) =>
+            _bulkUpdateBillStatusPreparing(
+              emit,
+              billIds: billIds,
+              isPrepared: isPrepared,
+            ),
+        bulkUpdateBillStatusReceive: (billIds, isReceived) =>
+            _bulkUpdateBillStatusReceive(
+              emit,
+              billIds: billIds,
+              isReceived: isReceived,
+            ),
+        clearBillStatusMessage: () => _clearBillStatusMessage(emit),
       );
     });
   }
@@ -154,11 +190,36 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
     };
   }
 
-
   Future<void> _onInit(Emitter<SaleGdnState> emit) async {
     emit(state.copyWith(status: BaseStateStatus.loading));
 
-    final res = await _repo.getBillExports(payload: _buildPayload());
+    // Chạy song song: lấy phiếu + đọc current user (cache local).
+    final results = await Future.wait<
+        Object>([
+      _repo.getBillExports(payload: _buildPayload()),
+      _authRepo.getCurrentUser(),
+    ]);
+    final res = results[0] as Either<BaseError, List<BillExporResponse>>;
+    final userRes = results[1] as Either<BaseError, User?>;
+
+    // Lấy `id` (UserID) / fullName từ current user. Nếu lỗi thì giữ
+    // giá trị hiện tại của state (mặc định 0 / '').
+    //
+    // Lưu ý: dùng `user.id` (JsonKey 'ID' = UserID) thay vì
+    // `user.employeeId` (JsonKey 'EmployeeID') vì API `BillExport` trả
+    // `SenderID` = UserID, không phải EmployeeID.
+    final employeeId = userRes.fold(
+      (_) => state.currentEmployeeId,
+      (u) => u?.id ?? state.currentEmployeeId,
+    );
+    final fullName = userRes.fold(
+      (_) => state.currentFullName,
+      (u) => u?.fullName ?? state.currentFullName,
+    );
+    final isAdmin = userRes.fold(
+      (_) => state.isCurrentUserAdmin,
+      (u) => u?.isAdmin ?? state.isCurrentUserAdmin,
+    );
 
     await res.fold(
       (l) async {
@@ -166,6 +227,9 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
         emit(state.copyWith(
           status: BaseStateStatus.failed,
           message: l.truncatedMsg,
+          currentEmployeeId: employeeId,
+          currentFullName: fullName,
+          isCurrentUserAdmin: isAdmin,
         ));
       },
       (r) async {
@@ -173,6 +237,9 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
         emit(state.copyWith(
           status: BaseStateStatus.success,
           gdns: r,
+          currentEmployeeId: employeeId,
+          currentFullName: fullName,
+          isCurrentUserAdmin: isAdmin,
         ));
       },
     );
@@ -181,7 +248,7 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
   /// Cập nhật `warehouseCode` cho bloc (lấy từ màn chọn khu vực).
   /// Chỉ set state, không gọi API.
   /// Sau khi set, screen sẽ tự dispatch `init` để fetch lại danh sách theo kho mới.
-  void _onSetWarehouseCode(Emitter<SaleGdnState> emit, String? code) {
+  _onSetWarehouseCode(Emitter<SaleGdnState> emit, String? code) {
     if (code == null || code.isEmpty) return;
     if (state.warehouseCode == code) return;
     emit(state.copyWith(warehouseCode: code));
@@ -192,6 +259,8 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
       status: BaseStateStatus.loading,
       isSearching: false,
       searchKeyword: '',
+      // Reset tick chọn khi reload list để tránh ID cũ không còn trong list.
+      selectedBillIds: const <int>{},
     ));
 
     final res = await _repo.getBillExports(payload: _buildPayload());
@@ -219,6 +288,7 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
     emit(state.copyWith(
       status: BaseStateStatus.loading,
       isSearching: true,
+      selectedBillIds: const <int>{},
     ));
 
     final res = await _repo.getBillExports(
@@ -249,6 +319,7 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
     emit(state.copyWith(
       status: BaseStateStatus.loading,
       isSearching: true,
+      selectedBillIds: const <int>{},
     ));
 
     final res = await _repo.getBillExports(
@@ -466,10 +537,23 @@ BillExporResponse? _findGdnInList(String code) {
     await _fetchGdns(emit);
   }
 
+  Future<void> _filterBySenderName(
+    Emitter<SaleGdnState> emit,
+    String? senderName,
+  ) async {
+    emit(state.copyWith(selectedSenderName: senderName));
+  }
+
+  Future<void> _filterByReceiver(Emitter<SaleGdnState> emit, String? receiverName) async {
+    emit(state.copyWith(selectedReceiverName: receiverName));
+  }
+
   Future<void> _clearFilters(Emitter<SaleGdnState> emit) async {
     emit(state.copyWith(
       selectedWarehouseTypeIds: [],
       selectedStatus: -1,
+      selectedSenderName: null,
+      selectedReceiverName: null,
     ));
     await _fetchGdns(emit);
   }
@@ -1004,7 +1088,7 @@ BillExporResponse? _findGdnInList(String code) {
         ));
       },
       (saveResult) async {
-        final billExportId = saveResult.billExportId;
+        final billExportId = saveResult.billExport?.id;
         _log.logI('✅ saveBillExportData success: BillExportID=$billExportId');
 
         // Bước 4: Merge ảnh server mới upload + xoá ảnh đã mark.
@@ -1129,29 +1213,62 @@ BillExporResponse? _findGdnInList(String code) {
             0);
 
     // BillExport header
+    //
+    // Lưu ý: ưu tiên giá trị user vừa chọn trong form (`billInfoUpdated`),
+    // fallback về `billInfo` (server trả về từ getBillExportById), cuối
+    // cùng mới fallback về `bill` (danh sách GDN). Nếu chỉ dùng `bill` thì
+    // khi user đổi kho / loại kho / trạng thái / WarehouseType sẽ bị "rớt"
+    // về giá trị cũ và server trả lỗi validation.
     final billExport = <String, dynamic>{
       'ID': bill?.id,
       'Code': bill?.code,
       'TypeBill': bill?.typeBill,
-      'SupplierID': bill?.supplierId ?? 0,
-      'CustomerID': bill?.customerId ?? 0,
-      'UserID': bill?.userId ?? 0,
-      'SenderID': bill?.senderId ?? 0,
+      'SupplierID': billInfoUpdated.selectedSupplierId ??
+          billInfo?.supplierId ??
+          bill?.supplierId ??
+          0,
+      'CustomerID': billInfoUpdated.selectedCustomerId ??
+          billInfo?.customerId ??
+          bill?.customerId ??
+          0,
+      'UserID': billInfoUpdated.userId ?? billInfo?.userId ?? bill?.userId ?? 0,
+      'SenderID': billInfoUpdated.selectedSenderId ??
+          billInfo?.senderId ??
+          bill?.senderId ??
+          0,
       'StockID': bill?.stockId ?? 0,
       'Description': bill?.description ?? '',
-      'Address': bill?.address ?? '',
-      'Status': bill?.status ?? 2,
+      'Address': billInfoUpdated.deliveryAddress ??
+          billInfoUpdated.selectedCustomerAddress ??
+          bill?.address ??
+          '',
+      'Status': billInfoUpdated.selectedStatus ?? bill?.status ?? 2,
       'GroupID': bill?.groupId ?? '',
-      'WarehouseType': bill?.warehouseType ?? '',
-      'KhoTypeID': bill?.khoTypeId ?? 0,
+      'WarehouseType': billInfoUpdated.selectedLoaiKhoText ??
+          billInfo?.warehouseType ??
+          bill?.warehouseType ??
+          '',
+      'KhoTypeID': billInfoUpdated.selectedKhoTypeId ??
+          billInfo?.khoTypeId ??
+          bill?.khoTypeId ??
+          0,
       'CreatDate': bill?.creatDate ?? DateTime.now().toIso8601String(),
       'CreatedDate': bill?.createdDate ?? DateTime.now().toIso8601String(),
       'UpdatedDate': DateTime.now().toIso8601String(),
-      'ProductType': bill?.productType ?? 0,
+      'ProductType': billInfoUpdated.selectedProductType ??
+          bill?.productType ??
+          0,
       'AddressStockID': bill?.addressStockId ?? 0,
-      'WarehouseID': bill?.warehouseId ?? 0,
-      'RequestDate': bill?.requestDate ?? DateTime.now().toIso8601String(),
-      'DeliveryTime': bill?.deliveryTime ?? DateTime.now().toIso8601String(),
+      'WarehouseID': billInfoUpdated.selectedWarehouseId ??
+          billInfo?.warehouseId ??
+          bill?.warehouseId ??
+          0,
+      'RequestDate': billInfoUpdated.requestDate != null
+          ? DateFormat('yyyy-MM-ddTHH:mm:ss').format(billInfoUpdated.requestDate!)
+          : (bill?.requestDate ?? DateTime.now().toIso8601String()),
+      'DeliveryTime': billInfoUpdated.deliveryDate != null
+          ? DateFormat('yyyy-MM-ddTHH:mm:ss').format(billInfoUpdated.deliveryDate!)
+          : (bill?.deliveryTime ?? DateTime.now().toIso8601String()),
       'IsAfterHours': bill?.isAfterHours ?? false,
       'BillDocumentExportType': bill?.billDocumentExportType ?? 0,
       'IsApproved': bill?.isApproved ?? false,
@@ -1520,6 +1637,216 @@ BillExporResponse? _findGdnInList(String code) {
     if (current == null || emit.isDone) return;
     emit(state.copyWith(
       detail: current.copyWith(selectedNccId: nccId),
+    ));
+  }
+
+  /// Tick / bỏ tick chọn 1 phiếu xuất kho theo `billId`.
+  /// Bỏ qua nếu `billId` không hợp lệ (<= 0) để tránh pollute Set.
+  _toggleBillSelection(
+      Emitter<SaleGdnState> emit, int billId, bool selected) {
+    if (billId <= 0) return;
+    final next = Set<int>.from(state.selectedBillIds);
+    if (selected) {
+      next.add(billId);
+    } else {
+      next.remove(billId);
+    }
+    emit(state.copyWith(selectedBillIds: next));
+  }
+
+  /// Xoá toàn bộ tick chọn phiếu (dùng khi reload list, search, refresh...).
+  _clearBillSelection(Emitter<SaleGdnState> emit) {
+    if (state.selectedBillIds.isEmpty) return;
+    emit(state.copyWith(selectedBillIds: const <int>{}));
+  }
+
+  /// Cập nhật / huỷ trạng thái "đã chuẩn bị hàng" cho 1 phiếu.
+  /// Gọi API `/billexport/status-preparing`, sau đó reload list để phản ánh
+  /// `IsPrepared` mới từ server và emit `billStatusMessage` để UI snackbar.
+  Future<void> _updateBillStatusPreparing(
+    Emitter<SaleGdnState> emit, {
+    required int billId,
+    required bool isPrepared,
+  }) async {
+    if (billId <= 0) return;
+    emit(state.copyWith(
+      isUpdatingStatus: true,
+      billStatusMessage: null,
+    ));
+
+    final payload = <Map<String, dynamic>>[
+      {'ID': billId, 'IsOrderPrepared': isPrepared},
+    ];
+    _log.logI('🔄 updateStatusPreparing billId=$billId isPrepared=$isPrepared');
+
+    final res = await _repo.updateStatusPreparing(payload: payload);
+
+    await res.fold(
+      (l) async {
+        _log.logE('❌ updateStatusPreparing failed: $l');
+        emit(state.copyWith(
+          isUpdatingStatus: false,
+          billStatusMessage: 'error:${l.truncatedMsg}',
+        ));
+      },
+      (r) async {
+        _log.logI('✅ updateStatusPreparing success');
+        final msg = isPrepared
+            ? 'Đã đánh dấu chuẩn bị hàng'
+            : 'Đã huỷ chuẩn bị hàng';
+        emit(state.copyWith(
+          isUpdatingStatus: false,
+          billStatusMessage: 'success:$msg',
+        ));
+        // Reload list để cập nhật `IsPrepared` từ server.
+        await _fetchGdns(emit);
+      },
+    );
+  }
+
+  /// Cập nhật / huỷ trạng thái "đã nhận hàng" cho 1 phiếu.
+  /// Gọi API `/billexport/status-receive`, sau đó reload list để phản ánh
+  /// `IsReceived` mới từ server và emit `billStatusMessage` để UI snackbar.
+  Future<void> _updateBillStatusReceive(
+    Emitter<SaleGdnState> emit, {
+    required int billId,
+    required bool isReceived,
+  }) async {
+    if (billId <= 0) return;
+    emit(state.copyWith(
+      isUpdatingStatus: true,
+      billStatusMessage: null,
+    ));
+
+    final payload = <Map<String, dynamic>>[
+      {'ID': billId, 'IsOrderReceived': isReceived},
+    ];
+    _log.logI('🔄 updateStatusReceive billId=$billId isReceived=$isReceived');
+
+    final res = await _repo.updateStatusReceive(payload: payload);
+
+    await res.fold(
+      (l) async {
+        _log.logE('❌ updateStatusReceive failed: $l');
+        emit(state.copyWith(
+          isUpdatingStatus: false,
+          billStatusMessage: 'error:${l.truncatedMsg}',
+        ));
+      },
+      (r) async {
+        _log.logI('✅ updateStatusReceive success');
+        final msg = isReceived ? 'Đã đánh dấu nhận hàng' : 'Đã huỷ nhận hàng';
+        emit(state.copyWith(
+          isUpdatingStatus: false,
+          billStatusMessage: 'success:$msg',
+        ));
+        // Reload list để cập nhật `IsReceived` từ server.
+        await _fetchGdns(emit);
+      },
+    );
+  }
+
+  /// Reset cờ one-shot `billStatusMessage` sau khi UI đã snackbar.
+  _clearBillStatusMessage(Emitter<SaleGdnState> emit) {
+    if (state.billStatusMessage == null) return;
+    emit(state.copyWith(billStatusMessage: null));
+  }
+
+  /// Cập nhật trạng thái "đã chuẩn bị hàng" cho nhiều phiếu.
+  /// Gọi song song các API `/billexport/status-preparing`, tổng hợp kết quả,
+  /// reload list, clear selection và emit `billStatusMessage` tổng kết.
+  Future<void> _bulkUpdateBillStatusPreparing(
+    Emitter<SaleGdnState> emit, {
+    required Set<int> billIds,
+    required bool isPrepared,
+  }) async {
+    final ids = billIds.where((id) => id > 0).toSet();
+    if (ids.isEmpty) return;
+
+    emit(state.copyWith(
+      isUpdatingStatus: true,
+      billStatusMessage: null,
+    ));
+
+    _log.logI('🔄 bulk updateStatusPreparing count=${ids.length} '
+        'isPrepared=$isPrepared');
+
+    final payload = ids
+        .map((id) => {'ID': id, 'IsOrderPrepared': isPrepared})
+        .toList();
+    final res = await _repo.updateStatusPreparing(payload: payload);
+
+    // fold returns Future; closures assign `message` rồi trả Future.value.
+    // Dùng late để analyzer chấp nhận closure async.
+    final message = await res.fold<String>(
+      (l) {
+        _log.logE('❌ bulk updateStatusPreparing failed: $l');
+        return 'error:${l.truncatedMsg}';
+      },
+      (r) {
+        _log.logI('✅ bulk updateStatusPreparing success');
+        return 'success:'
+            '${isPrepared ? "Đã xác nhận chuẩn bị" : "Đã huỷ chuẩn bị"} '
+            '${ids.length} phiếu';
+      },
+    );
+
+    // Reload list để phản ánh trạng thái mới từ server.
+    await _fetchGdns(emit);
+
+    // Clear selection và emit message.
+    emit(state.copyWith(
+      isUpdatingStatus: false,
+      selectedBillIds: const <int>{},
+      billStatusMessage: message,
+    ));
+  }
+
+  /// Cập nhật trạng thái "đã nhận hàng" cho nhiều phiếu.
+  /// Gọi song song các API `/billexport/status-receive`, tổng hợp kết quả,
+  /// reload list, clear selection và emit `billStatusMessage` tổng kết.
+  Future<void> _bulkUpdateBillStatusReceive(
+    Emitter<SaleGdnState> emit, {
+    required Set<int> billIds,
+    required bool isReceived,
+  }) async {
+    final ids = billIds.where((id) => id > 0).toSet();
+    if (ids.isEmpty) return;
+
+    emit(state.copyWith(
+      isUpdatingStatus: true,
+      billStatusMessage: null,
+    ));
+
+    _log.logI('🔄 bulk updateStatusReceive count=${ids.length} '
+        'isReceived=$isReceived');
+
+    final payload = ids
+        .map((id) => {'ID': id, 'IsOrderReceived': isReceived})
+        .toList();
+    final res = await _repo.updateStatusReceive(payload: payload);
+
+    final message = await res.fold<String>(
+      (l) {
+        _log.logE('❌ bulk updateStatusReceive failed: $l');
+        return 'error:${l.truncatedMsg}';
+      },
+      (r) {
+        _log.logI('✅ bulk updateStatusReceive success');
+        return 'success:'
+            '${isReceived ? "Đã xác nhận nhận" : "Đã huỷ nhận"} '
+            '${ids.length} phiếu';
+      },
+    );
+
+    // Reload list để phản ánh trạng thái mới từ server.
+    await _fetchGdns(emit);
+
+    // Clear selection và emit message.
+    emit(state.copyWith(
+      isUpdatingStatus: false,
+      selectedBillIds: const <int>{},
+      billStatusMessage: message,
     ));
   }
 }

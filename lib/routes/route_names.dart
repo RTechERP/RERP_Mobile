@@ -200,6 +200,14 @@ class RouteNames {
   static const String stampAdd = '/reg_general/stamp/add';
   static const String stampDetail = '/reg_general/stamp/detail';
 
+  // Test Table Registration
+  static const String testTable = '/reg_general/test_table';
+  static const String testTableAdd = '/reg_general/test_table/add';
+  static const String testTableEdit = '/reg_general/test_table/edit';
+  static const String testTableQrScan = '/reg_general/test_table/qr-scan';
+  static const String testTableExtendHandover =
+      '/reg_general/test_table/extend-handover';
+
   // Signature Registration
   static const String signature = '/signature';
   static const String signatureAdd = '/signature/add';
@@ -239,4 +247,15 @@ class RouteNames {
   static const warehouseTest = '/warehouse_test';
   static const warehouseSaleGdn = '/warehouse_sale_gdn';
   static const warehouseSaleGdnDetail = '/warehouse_sale_gdn/detail';
+
+  // Summary Work
+  static const summaryWorkLeaving = '/summary-work/leaving';
+  static const summaryWorkInOut = '/summary-work/in-out';
+  static const summaryWorkWfh = '/summary-work/wfh';
+  static const summaryWorkFingerprint = '/summary-work/fingerprint';
+  static const summaryWorkOvertime = '/summary-work/overtime';
+  static const summaryWorkOvernight = '/summary-work/overnight';
+
+  // Chatbot
+  static const chatbot = '/chatbot';
 }

@@ -24,6 +24,13 @@ class SaleGdnEvent with _$SaleGdnEvent {
   const factory SaleGdnEvent.filterByWarehouseType(List<int> warehouseTypeIds) = _FilterByWarehouseType;
   const factory SaleGdnEvent.filterByStatus(int status) = _FilterByStatus;
   const factory SaleGdnEvent.clearFilters() = _ClearFilters;
+  const factory SaleGdnEvent.filterBySender(int? senderId) = _FilterBySender;
+
+  /// Filter theo tên người giao (lấy từ fullNameSender của API card).
+  const factory SaleGdnEvent.filterBySenderName(String? senderName) =
+      _FilterBySenderName;
+
+  const factory SaleGdnEvent.filterByReceiver(String? receiverName) = _FilterByReceiver;
 
   /// Thay đổi khoảng thời gian lọc và fetch lại danh sách phiếu xuất kho.
   const factory SaleGdnEvent.changeDateRange({
@@ -173,4 +180,48 @@ class SaleGdnEvent with _$SaleGdnEvent {
 
   /// User chọn nhà cung cấp (text) từ bottom-sheet.
   const factory SaleGdnEvent.selectNcc(int? nccId) = _SelectNcc;
+
+  /// Tick / bỏ tick chọn 1 phiếu (qua checkbox trên card).
+  /// Truyền cả `billId` và `selected` để bloc chỉ cập nhật đúng ID đó.
+  const factory SaleGdnEvent.toggleBillSelection({
+    required int billId,
+    required bool selected,
+  }) = _ToggleBillSelection;
+
+  /// Xoá toàn bộ tick chọn phiếu.
+  const factory SaleGdnEvent.clearBillSelection() = _ClearBillSelection;
+
+  /// Cập nhật / huỷ trạng thái "đã chuẩn bị hàng" cho 1 phiếu.
+  /// `isPrepared = true` → tick; `false` → huỷ.
+  const factory SaleGdnEvent.updateBillStatusPreparing({
+    required int billId,
+    required bool isPrepared,
+  }) = _UpdateBillStatusPreparing;
+
+  /// Cập nhật / huỷ trạng thái "đã nhận hàng" cho 1 phiếu.
+  /// `isReceived = true` → tick; `false` → huỷ.
+  const factory SaleGdnEvent.updateBillStatusReceive({
+    required int billId,
+    required bool isReceived,
+  }) = _UpdateBillStatusReceive;
+
+  /// Cập nhật trạng thái "đã chuẩn bị hàng" cho nhiều phiếu cùng lúc.
+  /// `isPrepared = true` → tick; `false` → huỷ.
+  /// Sau khi xong sẽ reload list và emit `billStatusMessage` tổng kết
+  /// (vd. "Đã xác nhận chuẩn bị 3 phiếu").
+  const factory SaleGdnEvent.bulkUpdateBillStatusPreparing({
+    required Set<int> billIds,
+    required bool isPrepared,
+  }) = _BulkUpdateBillStatusPreparing;
+
+  /// Cập nhật trạng thái "đã nhận hàng" cho nhiều phiếu cùng lúc.
+  /// `isReceived = true` → tick; `false` → huỷ.
+  const factory SaleGdnEvent.bulkUpdateBillStatusReceive({
+    required Set<int> billIds,
+    required bool isReceived,
+  }) = _BulkUpdateBillStatusReceive;
+
+  /// Reset cờ one-shot `billStatusMessage` sau khi UI đã show snackbar.
+  const factory SaleGdnEvent.clearBillStatusMessage() =
+      _ClearBillStatusMessage;
 }

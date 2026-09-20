@@ -17,6 +17,7 @@ class LunchItem with _$LunchItem {
     @JsonKey(name: 'Location') int? location,
     @JsonKey(name: 'LocationText') String? locationText,
     @JsonKey(name: 'EmployeeID') int? employeeId,
+    @JsonKey(name: 'ExtraRiceQuantity') int? extraRiceQuantity,
   }) = _LunchItem;
 
   factory LunchItem.fromJson(Map<String, dynamic> json) =>
@@ -42,6 +43,7 @@ class SaveLunchItem with _$SaveLunchItem {
     @JsonKey(name: 'ReasonDeciline') String? reasonDeciline,
     @JsonKey(name: 'IsDeleted') bool? isDeleted,
     @JsonKey(name: 'Location') int? location,
+    @JsonKey(name: 'ExtraRiceQuantity') int? extraRiceQuantity,
   }) = _SaveLunchItem;
 
   factory SaveLunchItem.fromJson(Map<String, dynamic> json) =>

@@ -10,20 +10,32 @@ class SaleGdnCard extends StatelessWidget {
     super.key,
     required this.item,
     this.onTap,
+    this.isSelected = false,
+    this.onCheckboxTap,
   });
 
   final BillExporResponse item;
   final VoidCallback? onTap;
 
+  /// Phiếu đang được tick chọn (checkbox). Khi true sẽ đổi border + tick.
+  final bool isSelected;
+
+  /// Callback khi user bấm vào ô checkbox (không kèm trạng thái mới —
+  /// widget cha dùng `isSelected` hiện tại để quyết định tick/bỏ tick
+  /// hoặc mở bottom sheet).
+  final VoidCallback? onCheckboxTap;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
+      behavior: HitTestBehavior.opaque,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(16),
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
-          child: Container(
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 180),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
               gradient: LinearGradient(
@@ -35,8 +47,10 @@ class SaleGdnCard extends StatelessWidget {
                 ],
               ),
               border: Border.all(
-                color: Colors.white.withValues(alpha: 0.6),
-                width: 1.5,
+                color: isSelected
+                    ? AppColors.primaryERP
+                    : Colors.white.withValues(alpha: 0.6),
+                width: isSelected ? 2 : 1.5,
               ),
               boxShadow: [
                 BoxShadow(
@@ -56,9 +70,21 @@ class SaleGdnCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _VoucherNumberChip(
-                    voucherNumber: item.code ?? '--',
-                    status: item.nameStatus,
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _SelectionCheckbox(
+                        isSelected: isSelected,
+                        onTap: onCheckboxTap,
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: _VoucherNumberChip(
+                          voucherNumber: item.code ?? '--',
+                          status: item.nameStatus,
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 14),
                   _InfoRow(
@@ -78,9 +104,180 @@ class SaleGdnCard extends StatelessWidget {
                     label: 'Người giao',
                     value: item.fullNameSender ?? '--',
                   ),
+                  const SizedBox(height: 8),
+                  _InfoRow(
+                    icon: Icons.person_pin_outlined,
+                    label: 'Người nhận',
+                    value: item.receiverFullName ?? '--',
+                  ),
+                  const SizedBox(height: 10),
+                  _PreparedReceivedBadges(
+                    isPrepared: item.isOrderPrepared ?? false,
+                    isReceived: item.isOrderReceived ?? false,
+                  ),
                 ],
               ),
             ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Hai pill trạng thái "Đã chuẩn bị" / "Đã nhận" để phân biệt nhanh phiếu
+/// trong list mà không cần mở sheet.
+class _PreparedReceivedBadges extends StatelessWidget {
+  const _PreparedReceivedBadges({
+    required this.isPrepared,
+    required this.isReceived,
+  });
+
+  final bool isPrepared;
+  final bool isReceived;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: _StatusBadge(
+            icon: Icons.inventory_2_outlined,
+            label: 'Chuẩn bị',
+            isDone: isPrepared,
+            color: AppColors.stateSuccessColor,
+          ),
+        ),
+        const SizedBox(width: 8),
+        Expanded(
+          child: _StatusBadge(
+            icon: Icons.check_circle_outline,
+            label: 'Nhận hàng',
+            isDone: isReceived,
+            color: AppColors.primaryERP,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _StatusBadge extends StatelessWidget {
+  const _StatusBadge({
+    required this.icon,
+    required this.label,
+    required this.isDone,
+    required this.color,
+  });
+
+  final IconData icon;
+  final String label;
+  final bool isDone;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+      decoration: BoxDecoration(
+        color: isDone
+            ? color.withValues(alpha: 0.12)
+            : AppColors.gray.withValues(alpha: 0.08),
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(
+          color: isDone
+              ? color.withValues(alpha: 0.45)
+              : AppColors.gray.withValues(alpha: 0.3),
+          width: 1,
+        ),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            isDone ? Icons.check_circle : Icons.radio_button_unchecked,
+            size: 14,
+            color: isDone ? color : AppColors.gray,
+          ),
+          const SizedBox(width: 6),
+          Flexible(
+            child: Text(
+              '$label: ${isDone ? "Đã xong" : "Chưa xong"}',
+              style: TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.w600,
+                color: isDone ? color : AppColors.gray,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Checkbox vuông ở góc card phiếu.
+///
+/// - Kích thước ô vuông: **32x32** (đủ lớn, dễ bấm).
+/// - Vùng bấm có `Padding 8px` bao ngoài → tổng ~**48x48** vượt chuẩn
+///   Material touch target, không bị hụt vào vùng card mở detail.
+/// - Dùng `Material InkWell` để có ripple rõ + chặn bubble hit-test
+///   lên GestureDetector của card.
+/// - Chỉ báo "đã bấm" (`VoidCallback onTap`), không truyền trạng thái mới
+///   — widget cha quyết định dựa trên `isSelected` hiện tại (tick trước,
+///   mở sheet sau, v.v.).
+class _SelectionCheckbox extends StatelessWidget {
+  const _SelectionCheckbox({
+    required this.isSelected,
+    required this.onTap,
+  });
+
+  final bool isSelected;
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    // Tap vùng trống (khi onTap null) cũng không làm gì, không bubble.
+    final isEnabled = onTap != null;
+    return Padding(
+      // Vùng đệm 8px quanh ô 32 → vùng bấm rộng 48x48.
+      padding: const EdgeInsets.all(8),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: isEnabled ? onTap : null,
+          borderRadius: BorderRadius.circular(8),
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 150),
+            width: 32,
+            height: 32,
+            decoration: BoxDecoration(
+              color: isSelected
+                  ? AppColors.primaryERP
+                  : Colors.white.withValues(alpha: 0.95),
+              borderRadius: BorderRadius.circular(7),
+              border: Border.all(
+                color: isSelected
+                    ? AppColors.primaryERP
+                    : AppColors.gray.withValues(alpha: 0.7),
+                width: isSelected ? 2 : 1.5,
+              ),
+              boxShadow: isSelected
+                  ? [
+                      BoxShadow(
+                        color: AppColors.primaryERP.withValues(alpha: 0.35),
+                        blurRadius: 6,
+                        offset: const Offset(0, 2),
+                      ),
+                    ]
+                  : null,
+            ),
+            alignment: Alignment.center,
+            child: isSelected
+                ? const Icon(Icons.check, size: 20, color: Colors.white)
+                : null,
           ),
         ),
       ),

@@ -187,6 +187,15 @@ class ApiEndPoint {
   static const String getWfh = '/EmployeeWFH/get-wfh';
   static const String saveWfh = '/EmployeeWFH/save-data';
 
+  static const String getEmployeeNoFingerprintPerson =
+      '/EmployeeNoFingerprint/get-employee-no-fingerprint-person';
+
+  static const String getEmployeeNightShiftPerson =
+      '/EmployeeNightShift/get-employee-night-shift-person';
+
+  static const String getSummaryOverTimePersonByDept =
+      '/EmployeeOverTime/get-summary-over-time-person-by-dept';
+
   static const String getMissed =
       '/EmployeeNoFingerprint/person';
 
@@ -196,8 +205,14 @@ class ApiEndPoint {
       '/EmployeeNoFingerprint/check-duplicate-enf';
 
   static const String getLeave = '/EmployeeOnLeave/get-onleave-person';
+  static const String getLeaveSummaryWork = '/EmployeeOnLeave/get-employee-onleave-person';
   static const String getLeavePhaseMulti = '/EmployeeOnLeave/get-multi';
   static const String saveLeave = '/EmployeeOnLeave/save-data';
+  static const String getEmployeeEarlyLatePerson =
+      '/EmployeeEarlyLate/get-employee-early-late-person';
+
+  static const String getEmployeeWFHPerson =
+      '/EmployeeWFH/get-wfh-person';
 
   static const String getLeaveTime =
       '/employeeonleave/list-summary-employee-on-leave';
@@ -440,4 +455,60 @@ class ApiEndPoint {
   /// API: GET /AddressStock/get-by-customerID/?customerID={customerId}
   static const String getAddressStockByCustomerId =
       '/AddressStock/get-by-customerID';
+
+  /// Cập nhật / huỷ trạng thái "đã chuẩn bị hàng" cho danh sách phiếu xuất.
+  /// Body: `[{ "ID": <billId>, "IsOrderPrepared": true|false }, ...]`
+  static const String updateStatusPreparing = '/billexport/status-preparing';
+
+  /// Cập nhật / huỷ trạng thái "đã nhận hàng" cho danh sách phiếu xuất.
+  /// Body: `[{ "ID": <billId>, "IsOrderReceived": true|false }, ...]`
+  static const String updateStatusReceive = '/billexport/status-receive';
+
+  /// Lấy chi tiết phiếu card theo registrationId.
+  /// API: GET /ESLRegistration/get-details?registrationId=X.
+  static const String getTestCardDetails = '/ESLRegistration/get-details';
+
+  static const String getTestTable = '/ESLRegistration/get-all-registration';
+
+  /// Bàn test ESL: GET /ESLTestTable/getall.
+  static const String getEslTestTable = '/ESLTestTable/getall';
+
+  /// Máy test theo bàn: GET /ESLTestMachine/get-by-table?testTableId=X.
+  static const String getTestMachineByTable =
+      '/ESLTestMachine/get-by-table';
+
+  /// Người duyệt: GET /ESLRegistration/get-all-user-approve.
+  static const String getAllUserApprove = '/ESLRegistration/get-all-user-approve';
+
+  /// Nhân viên: GET /Employee?status=&departmentid=&keyword=.
+  static const String getEmployee = '/Employee';
+
+  /// Dự án: GET /ProjectTask/get-all-project.
+  static const String getAllProject = '/ProjectTask/get-all-project';
+
+  /// Check xung đột trước khi lưu phiếu đăng ký bàn test.
+  /// API: POST /ESLRegistration/check-conflict (form-data).
+  static const String checkConflictRegistration =
+      '/ESLRegistration/check-conflict';
+
+  /// Lưu phiếu đăng ký bàn test (thêm mới / cập nhật).
+  /// API: POST /ESLRegistration/save (form-data).
+  static const String saveRegistration = '/ESLRegistration/save';
+
+  /// Xóa phiếu đăng ký bàn test.
+  /// API: POST /ESLRegistration/delete-master?masterID={masterID}.
+  /// Body: `{ "masterID": <int> }`.
+  static const String deleteRegistration = '/ESLRegistration/delete-master';
+
+  /// Trả bàn test (chỉ áp dụng khi phiếu đã duyệt — status == 1).
+  /// API: POST /ESLRegistration/return (form-data).
+  /// Body: `{ "registrationID": <int>, "returnBy": <int> }`.
+  static const String returnRegistration = '/ESLRegistration/return';
+
+  /// Gia hạn / bàn giao bàn test (chỉ áp dụng với phiếu đã duyệt).
+  /// API: POST /ESLRegistration/extend-handover (form-data).
+  /// Body: `{ "registrationID", "startDate", "endDate", "ownerID",
+  ///          "approverID", "type" (1 = gia hạn, 2 = bàn giao) }`.
+  static const String extendHandoverRegistration =
+      '/ESLRegistration/extend-handover';
 }

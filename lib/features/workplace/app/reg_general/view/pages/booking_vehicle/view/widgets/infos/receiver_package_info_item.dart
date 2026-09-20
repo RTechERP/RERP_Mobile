@@ -268,7 +268,7 @@ class _ReceiverPackageInfoItemState extends State<ReceiverPackageInfoItem> {
                           errorText: 'Vui lòng nhập tên người nhận',
                         ),
                       ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 16),
                       FormInputField(
                         icon: Icons.phone_outlined,
                         nameForm: 'receiver_phone_number_$i',
@@ -293,7 +293,61 @@ class _ReceiverPackageInfoItemState extends State<ReceiverPackageInfoItem> {
                           errorText: 'Vui lòng nhập tên kiện hàng',
                         ),
                       ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 16),
+                      FormInputField(
+                        icon: Icons.crop_square_outlined,
+                        nameForm: 'package_size_$i',
+                        nameTextField: 'package_size_text_$i',
+                        label: 'Kích thước (cm)',
+                        keyboardType: TextInputType.multiline,
+                        textInputAction: TextInputAction
+                            .newline,
+                        autoExpand: true,
+                        isRequired: true,
+                        validator: FormBuilderValidators.required(
+                          errorText: 'Vui lòng nhập kích thước',
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: FormInputField(
+                              icon: Icons.monitor_weight_outlined,
+                              nameForm: 'package_weight_$i',
+                              nameTextField: 'package_weight_text_$i',
+                              label: 'C.nặng (kg)',
+                              keyboardType: TextInputType.text,
+                              isRequired: true,
+                              validator: FormBuilderValidators.required(
+                                errorText: 'Vui lòng nhập cân nặng',
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: FormInputField(
+                              icon: Icons.inventory_2_outlined,
+                              nameForm: 'commercial_package_quantity_$i',
+                              nameTextField:
+                                  'commercial_package_quantity_text_$i',
+                              label: 'S.lượng',
+                              keyboardType: TextInputType.number,
+                              initialValue: '1',
+                              isRequired: true,
+                              validator: FormBuilderValidators.compose([
+                                FormBuilderValidators.required(
+                                  errorText: 'Vui lòng nhập số lượng kiện hàng',
+                                ),
+                                FormBuilderValidators.numeric(
+                                  errorText: 'Số lượng phải là số',
+                                ),
+                              ]),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
                       FormBuilderField<List<PlatformFile>>(
                         name: 'commercial_package_image_$i',
                         builder: (field) {
@@ -303,7 +357,7 @@ class _ReceiverPackageInfoItemState extends State<ReceiverPackageInfoItem> {
                             files: files,
                             onAddPressed: () async {
                               final picked =
-                                  await pickBookingVehiclePackageImagesFromGallery();
+                              await pickBookingVehiclePackageImagesFromGallery();
                               if (picked.isNotEmpty) {
                                 field.didChange([...files, ...picked]);
                                 setState(() {});
@@ -318,58 +372,7 @@ class _ReceiverPackageInfoItemState extends State<ReceiverPackageInfoItem> {
                           );
                         },
                       ),
-                      const SizedBox(height: 8),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: FormInputField(
-                              icon: Icons.crop_square_outlined,
-                              nameForm: 'package_size_$i',
-                              nameTextField: 'package_size_text_$i',
-                              label: 'Kích thước (cm)',
-                              keyboardType: TextInputType.number,
-                              isRequired: true,
-                              validator: FormBuilderValidators.required(
-                                errorText: 'Vui lòng nhập kích thước',
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          Expanded(
-                            child: FormInputField(
-                              icon: Icons.monitor_weight_outlined,
-                              nameForm: 'package_weight_$i',
-                              nameTextField: 'package_weight_text_$i',
-                              label: 'Cân nặng (kg)',
-                              keyboardType: TextInputType.number,
-                              isRequired: true,
-                              validator: FormBuilderValidators.required(
-                                errorText: 'Vui lòng nhập cân nặng',
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 8),
-                      FormInputField(
-                        icon: Icons.inventory_2_outlined,
-                        nameForm: 'commercial_package_quantity_$i',
-                        nameTextField:
-                            'commercial_package_quantity_text_$i',
-                        label: 'Số lượng kiện hàng',
-                        keyboardType: TextInputType.number,
-                        initialValue: '1',
-                        isRequired: true,
-                        validator: FormBuilderValidators.compose([
-                          FormBuilderValidators.required(
-                            errorText: 'Vui lòng nhập số lượng kiện hàng',
-                          ),
-                          FormBuilderValidators.numeric(
-                            errorText: 'Số lượng phải là số',
-                          ),
-                        ]),
-                      ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 16),
                       FormInputField(
                         icon: Icons.note_outlined,
                         nameForm: 'note_return_or_delivery_$i',

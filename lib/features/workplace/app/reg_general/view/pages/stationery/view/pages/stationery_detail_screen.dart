@@ -59,7 +59,7 @@ class _StationeryDetailScreenState
       listener: (context, state) {
         if (state.status == BaseStateStatus.removeSuccess) {
           context.showMessage(state.message!, type: SnackBarType.success);
-          context.pop();
+          context.pop(true);
         }
         if (state.status == BaseStateStatus.failed && state.message != null) {
           context.showMessage(state.message!, type: SnackBarType.error);
@@ -250,7 +250,9 @@ class _StationeryDetailScreenState
           // Duyệt TBP
           _ApprovalRow(
             label: 'Trưởng phòng (TBP)',
-            approverName: item.fullNameApproved ?? 'Chưa duyệt',
+            approverName: item.approvedId != null
+                ? 'Đã duyệt'
+                : 'Chưa duyệt',
             dateApprove: item.dateApproved != null
                 ? _dateTimeFormat.format(item.dateApproved!)
                 : '-',
@@ -322,15 +324,20 @@ class _StationeryDetailScreenState
     return item.isApproved != true && item.isAdminApproved != true;
   }
 
-  void _onEditTap(BuildContext context) {
+  /// Mở màn sửa; nếu cập nhật thành công thì pop detail với `true` về list.
+  Future<void> _onEditTap(BuildContext context) async {
     final state = bloc.state;
-    context.push(
+    final updated = await context.push<bool?>(
       RouteNames.stationeryEdit,
       extra: StationeryEditRouteArgs(
         item: widget.item,
         details: state.stationeryDetail,
       ),
     );
+    if (!mounted) return;
+    if (updated == true) {
+      context.pop(true);
+    }
   }
 
   void _showDeleteDialog(BuildContext context) {

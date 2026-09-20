@@ -28,26 +28,30 @@ class LunchBloc extends BaseBloc<LunchEvent, LunchState> {
     on<LunchEvent>((event, emit) async {
       await event.when(
         init: () => _onInit(emit),
-        submit: (quantity, location, note, dateOrder) => _onSubmit(
-          emit,
-          quantity: quantity,
-          location: location,
-          note: note,
-          dateOrder: dateOrder,
-        ),
+        submit: (quantity, location, note, extraRiceQuantity, dateOrder) =>
+            _onSubmit(
+              emit,
+              quantity: quantity,
+              location: location,
+              note: note,
+              extraRiceQuantity: extraRiceQuantity,
+              dateOrder: dateOrder,
+            ),
         onCancelSubmit: (id) => _onCancelSubmit(
           emit,
           id: id,
         ),
-        onEditSubmit: (id, quantity, location, note, dateOrder) =>
-            _onEditSubmit(
-              emit,
-              id: id,
-              quantity: quantity,
-              location: location,
-              note: note,
-              dateOrder: dateOrder,
-            ),
+        onEditSubmit:
+            (id, quantity, location, note, extraRiceQuantity, dateOrder) =>
+                _onEditSubmit(
+                  emit,
+                  id: id,
+                  quantity: quantity,
+                  location: location,
+                  note: note,
+                  extraRiceQuantity: extraRiceQuantity,
+                  dateOrder: dateOrder,
+                ),
         changeDateRange: (dateStart, dateEnd) =>
             _onChangeDateRange(
               emit,
@@ -125,7 +129,7 @@ class LunchBloc extends BaseBloc<LunchEvent, LunchState> {
             emit(state.copyWith(status: BaseStateStatus.failed));
           },
           (r) async {
-            _log.logI('✅ API success - total: $r');
+            _log.logI('✅ API success - total: ${r.map((e) => e.toJson()).toList()}');
             emit(
               state.copyWith(
                 status: BaseStateStatus.success,
@@ -209,6 +213,7 @@ class LunchBloc extends BaseBloc<LunchEvent, LunchState> {
     required int quantity,
     required int location,
     required String note,
+    required int extraRiceQuantity,
     DateTime? dateOrder,
   }) async {
     if (_isSubmittingReport) return;
@@ -245,8 +250,10 @@ class LunchBloc extends BaseBloc<LunchEvent, LunchState> {
         "ReasonDeciline": "",
         "IsDeleted": false,
         "Location": location,
+        "ExtraRiceQuantity": extraRiceQuantity,
       };
 
+      _log.logI('📤 Submit Lunch payload: $payload');
       final saveRes = await _lunchRepo.saveLunch(payload: payload);
       await saveRes.fold(
         (err) async {
@@ -299,6 +306,7 @@ class LunchBloc extends BaseBloc<LunchEvent, LunchState> {
     required int quantity,
     required int location,
     required String note,
+    required int extraRiceQuantity,
     DateTime? dateOrder,
   }) async {
     if (_isSubmittingReport) return;
@@ -344,6 +352,7 @@ class LunchBloc extends BaseBloc<LunchEvent, LunchState> {
         "ReasonDeciline": "",
         "IsDeleted": false,
         "Location": location,
+        "ExtraRiceQuantity": extraRiceQuantity,
       };
 
       final saveRes = await _lunchRepo.saveLunch(payload: payload);

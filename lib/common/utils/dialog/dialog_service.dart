@@ -770,6 +770,30 @@ class DialogService {
     return confirmed;
   }
 
+  /// Dialog xác nhận trả bàn test (chỉ áp dụng với phiếu đã duyệt).
+  static Future<bool> showConfirmReturn({required BuildContext context}) async {
+    bool confirmed = false;
+
+    await BaseDialog.twoOptionVerticalDialog(
+      context: context,
+      image: const Icon(Icons.keyboard_return, size: 64, color: AppColors.primaryERP),
+      title: 'Xác nhận trả bàn',
+      description: 'Bạn có chắc muốn trả bàn test này không?',
+      contentTopButton: 'Trả bàn',
+      topButtonFunc: () {
+        confirmed = true;
+        onBack(context);
+      },
+      contentBottomButton: 'Huỷ',
+      bottomButtonFunc: () {
+        confirmed = false;
+        onBack(context);
+      },
+    );
+
+    return confirmed;
+  }
+
   static Future<bool?> showConfirmDeleteSignature({
     required BuildContext context,
     String title = 'Xoá chữ ký',

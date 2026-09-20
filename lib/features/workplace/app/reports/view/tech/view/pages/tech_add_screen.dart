@@ -36,6 +36,11 @@ class _TechAddScreenState
   final _screenFormKey = GlobalKey<FormBuilderState>();
   bool _showExtraInfo = false;
 
+  /// Latch true khi submit gặp lỗi từ API.
+  /// Khi true: chặn thoát màn hình (OS back / AppBar back) và chặn luôn copy/share ở màn trước.
+  /// Reset về false khi người dùng nhấn Submit lại.
+  bool _hasSubmitError = false;
+
   DateTime? _initialReportDate() {
     final now = DateTime.now();
 
@@ -58,8 +63,18 @@ class _TechAddScreenState
 
   @override
   Widget renderUI(BuildContext context) {
-    return Stack(
-      children: [
+    return PopScope(
+      canPop: !_hasSubmitError && !bloc.state.isSubmitting,
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop) return;
+        showMessage(
+          context,
+          'Lỗi vui lòng tạo lại báo cáo trước khi thoát.',
+          type: SnackBarType.info,
+        );
+      },
+      child: Stack(
+        children: [
         BaseScaffold(
           appBar: AppBarCommon(
             title: const Text('Tạo báo cáo'),
@@ -596,6 +611,9 @@ class _TechAddScreenState
                       onSubmit: () async {
                         FocusScope.of(context).unfocus();
 
+                        // Reset trạng thái lỗi của lần submit trước (nếu có) trước khi thử lại
+                        setState(() => _hasSubmitError = false);
+
                         final formState = _screenFormKey.currentState;
                         if (formState == null) return;
 
@@ -658,6 +676,7 @@ class _TechAddScreenState
             if (state.status == BaseStateStatus.failed &&
                 state.message != null &&
                 state.message!.isNotEmpty) {
+              setState(() => _hasSubmitError = true);
               showMessage(context, state.message!, type: SnackBarType.error);
               return;
             }
@@ -705,6 +724,7 @@ class _TechAddScreenState
           },
         ),
       ],
+    ),
     );
   }
 }

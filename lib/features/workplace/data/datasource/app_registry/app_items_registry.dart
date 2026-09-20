@@ -220,6 +220,16 @@ class AppItemRegistry {
     ),
 
     AppItemModel(
+      id: 'reg_general:test_table',
+      name: 'reg_general.test_table'.tr(),
+      iconCodePoint: Icons.desktop_windows_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'reg_general',
+      route: RouteNames.testTable,
+      imageUrl: AppImages.test_table,
+    ),
+
+    AppItemModel(
       id: 'reg_general:poll',
       name: 'reg_general.poll'.tr(),
       iconCodePoint: Icons.poll_outlined.codePoint,
@@ -230,7 +240,7 @@ class AppItemRegistry {
     ),
   ];
 
-  static final List<AppItemModel> summaryword = [
+  static final List<AppItemModel> summarywork = [
     /// ================= SUMMARY WORK =================
     AppItemModel(
       id: 'summary_work:leaving',
@@ -238,7 +248,8 @@ class AppItemRegistry {
       iconCodePoint: Icons.event_busy_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'summary_work',
-      route: '/summary-work/leaving',
+      route: RouteNames.summaryWorkLeaving,
+      imageUrl: AppImages.app_leave,
     ),
 
     AppItemModel(
@@ -247,7 +258,8 @@ class AppItemRegistry {
       iconCodePoint: Icons.swap_horiz_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'summary_work',
-      route: '/summary-work/in-out',
+      route: RouteNames.summaryWorkInOut,
+      imageUrl: AppImages.app_in_out,
     ),
 
     AppItemModel(
@@ -256,7 +268,8 @@ class AppItemRegistry {
       iconCodePoint: Icons.home_work_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'summary_work',
-      route: '/summary-work/wfh',
+      route: RouteNames.summaryWorkWfh,
+      imageUrl: AppImages.app_wfh,
     ),
 
     AppItemModel(
@@ -265,7 +278,8 @@ class AppItemRegistry {
       iconCodePoint: Icons.fingerprint_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'summary_work',
-      route: '/summary-work/fingerprint',
+      route: RouteNames.summaryWorkFingerprint,
+      imageUrl: AppImages.app_missed,
     ),
 
     AppItemModel(
@@ -274,7 +288,8 @@ class AppItemRegistry {
       iconCodePoint: Icons.schedule_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'summary_work',
-      route: '/summary-work/overtime',
+      route: RouteNames.summaryWorkOvertime,
+      imageUrl: AppImages.app_overtime,
     ),
 
     AppItemModel(
@@ -283,7 +298,8 @@ class AppItemRegistry {
       iconCodePoint: Icons.nightlight_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'summary_work',
-      route: '/summary-work/overnight',
+      route: RouteNames.summaryWorkOvernight,
+      imageUrl: AppImages.app_overnight,
     ),
   ];
 
@@ -437,24 +453,24 @@ class AppItemRegistry {
       imageUrl: AppImages.warehouse_HN,
       route: RouteNames.warehouseSale,
     ),
-    // AppItemModel(
-    //   id: 'warehouse_area:ho_chi_minh',
-    //   name: 'warehouse.ho_chi_minh'.tr(),
-    //   iconCodePoint: Icons.warehouse_outlined.codePoint,
-    //   iconFontFamily: 'MaterialIcons',
-    //   tab: 'warehouse',
-    //   imageUrl: AppImages.warehouse_HCM,
-    //   route: RouteNames.warehouseDemo,
-    // ),
-    // AppItemModel(
-    //   id: 'warehouse_area:bac_ninh',
-    //   name: 'warehouse.bac_ninh'.tr(),
-    //   iconCodePoint: Icons.warehouse_outlined.codePoint,
-    //   iconFontFamily: 'MaterialIcons',
-    //   tab: 'warehouse',
-    //   imageUrl: AppImages.warehouse_BN,
-    //   route: RouteNames.warehouseAgv,
-    // ),
+    AppItemModel(
+      id: 'warehouse_area:ho_chi_minh',
+      name: 'warehouse.ho_chi_minh'.tr(),
+      iconCodePoint: Icons.warehouse_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'warehouse',
+      imageUrl: AppImages.warehouse_HCM,
+      route: RouteNames.warehouseDemo,
+    ),
+    AppItemModel(
+      id: 'warehouse_area:bac_ninh',
+      name: 'warehouse.bac_ninh'.tr(),
+      iconCodePoint: Icons.warehouse_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'warehouse',
+      imageUrl: AppImages.warehouse_BN,
+      route: RouteNames.warehouseAgv,
+    ),
     // AppItemModel(
     //   id: 'warehouse_area:dan_phuong',
     //   name: 'warehouse.dan_phuong'.tr(),

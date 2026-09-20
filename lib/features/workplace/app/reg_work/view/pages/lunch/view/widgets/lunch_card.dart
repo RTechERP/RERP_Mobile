@@ -100,6 +100,14 @@ class LunchCard extends StatelessWidget {
                               label: 'Số lượng',
                               value: '${item.quantity ?? 0}',
                             ),
+                            if ((item.extraRiceQuantity ?? 0) > 0) ...[
+                              const SizedBox(height: 8),
+                              _InfoRow(
+                                icon: Icons.restaurant_outlined,
+                                label: 'Cơm phụ',
+                                value: '${item.extraRiceQuantity} cốc',
+                              ),
+                            ],
                             if ((item.locationText ?? '').trim().isNotEmpty) ...[
                               const SizedBox(height: 8),
                               _InfoRow(

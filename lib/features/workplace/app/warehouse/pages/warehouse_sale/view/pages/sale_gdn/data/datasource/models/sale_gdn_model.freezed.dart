@@ -80,6 +80,10 @@ mixin _$BillExporResponse {
   bool? get isPrepared => throw _privateConstructorUsedError;
   @JsonKey(name: 'IsReceived')
   bool? get isReceived => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsOrderPrepared')
+  bool? get isOrderPrepared => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsOrderReceived')
+  bool? get isOrderReceived => throw _privateConstructorUsedError;
   @JsonKey(name: 'RequestDate')
   String? get requestDate => throw _privateConstructorUsedError;
   @JsonKey(name: 'PreparedDate')
@@ -120,6 +124,8 @@ mixin _$BillExporResponse {
   bool? get isIncurredApproved => throw _privateConstructorUsedError;
   @JsonKey(name: 'ReceiverFullName')
   String? get receiverFullName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ReceiverID')
+  int? get receiverId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -164,6 +170,8 @@ abstract class $BillExporResponseCopyWith<$Res> {
       @JsonKey(name: 'WarehouseID') int? warehouseId,
       @JsonKey(name: 'IsPrepared') bool? isPrepared,
       @JsonKey(name: 'IsReceived') bool? isReceived,
+      @JsonKey(name: 'IsOrderPrepared') bool? isOrderPrepared,
+      @JsonKey(name: 'IsOrderReceived') bool? isOrderReceived,
       @JsonKey(name: 'RequestDate') String? requestDate,
       @JsonKey(name: 'PreparedDate') String? preparedDate,
       @JsonKey(name: 'BillDocumentExportType') int? billDocumentExportType,
@@ -183,7 +191,8 @@ abstract class $BillExporResponseCopyWith<$Res> {
       @JsonKey(name: 'DeliveryTime') String? deliveryTime,
       @JsonKey(name: 'IsAfterHours') bool? isAfterHours,
       @JsonKey(name: 'IsIncurredApproved') bool? isIncurredApproved,
-      @JsonKey(name: 'ReceiverFullName') String? receiverFullName});
+      @JsonKey(name: 'ReceiverFullName') String? receiverFullName,
+      @JsonKey(name: 'ReceiverID') int? receiverId});
 }
 
 /// @nodoc
@@ -229,6 +238,8 @@ class _$BillExporResponseCopyWithImpl<$Res, $Val extends BillExporResponse>
     Object? warehouseId = freezed,
     Object? isPrepared = freezed,
     Object? isReceived = freezed,
+    Object? isOrderPrepared = freezed,
+    Object? isOrderReceived = freezed,
     Object? requestDate = freezed,
     Object? preparedDate = freezed,
     Object? billDocumentExportType = freezed,
@@ -249,6 +260,7 @@ class _$BillExporResponseCopyWithImpl<$Res, $Val extends BillExporResponse>
     Object? isAfterHours = freezed,
     Object? isIncurredApproved = freezed,
     Object? receiverFullName = freezed,
+    Object? receiverId = freezed,
   }) {
     return _then(_value.copyWith(
       totalPage: freezed == totalPage
@@ -371,6 +383,14 @@ class _$BillExporResponseCopyWithImpl<$Res, $Val extends BillExporResponse>
           ? _value.isReceived
           : isReceived // ignore: cast_nullable_to_non_nullable
               as bool?,
+      isOrderPrepared: freezed == isOrderPrepared
+          ? _value.isOrderPrepared
+          : isOrderPrepared // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isOrderReceived: freezed == isOrderReceived
+          ? _value.isOrderReceived
+          : isOrderReceived // ignore: cast_nullable_to_non_nullable
+              as bool?,
       requestDate: freezed == requestDate
           ? _value.requestDate
           : requestDate // ignore: cast_nullable_to_non_nullable
@@ -451,6 +471,10 @@ class _$BillExporResponseCopyWithImpl<$Res, $Val extends BillExporResponse>
           ? _value.receiverFullName
           : receiverFullName // ignore: cast_nullable_to_non_nullable
               as String?,
+      receiverId: freezed == receiverId
+          ? _value.receiverId
+          : receiverId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -494,6 +518,8 @@ abstract class _$$BillExporResponseImplCopyWith<$Res>
       @JsonKey(name: 'WarehouseID') int? warehouseId,
       @JsonKey(name: 'IsPrepared') bool? isPrepared,
       @JsonKey(name: 'IsReceived') bool? isReceived,
+      @JsonKey(name: 'IsOrderPrepared') bool? isOrderPrepared,
+      @JsonKey(name: 'IsOrderReceived') bool? isOrderReceived,
       @JsonKey(name: 'RequestDate') String? requestDate,
       @JsonKey(name: 'PreparedDate') String? preparedDate,
       @JsonKey(name: 'BillDocumentExportType') int? billDocumentExportType,
@@ -513,7 +539,8 @@ abstract class _$$BillExporResponseImplCopyWith<$Res>
       @JsonKey(name: 'DeliveryTime') String? deliveryTime,
       @JsonKey(name: 'IsAfterHours') bool? isAfterHours,
       @JsonKey(name: 'IsIncurredApproved') bool? isIncurredApproved,
-      @JsonKey(name: 'ReceiverFullName') String? receiverFullName});
+      @JsonKey(name: 'ReceiverFullName') String? receiverFullName,
+      @JsonKey(name: 'ReceiverID') int? receiverId});
 }
 
 /// @nodoc
@@ -557,6 +584,8 @@ class __$$BillExporResponseImplCopyWithImpl<$Res>
     Object? warehouseId = freezed,
     Object? isPrepared = freezed,
     Object? isReceived = freezed,
+    Object? isOrderPrepared = freezed,
+    Object? isOrderReceived = freezed,
     Object? requestDate = freezed,
     Object? preparedDate = freezed,
     Object? billDocumentExportType = freezed,
@@ -577,6 +606,7 @@ class __$$BillExporResponseImplCopyWithImpl<$Res>
     Object? isAfterHours = freezed,
     Object? isIncurredApproved = freezed,
     Object? receiverFullName = freezed,
+    Object? receiverId = freezed,
   }) {
     return _then(_$BillExporResponseImpl(
       totalPage: freezed == totalPage
@@ -699,6 +729,14 @@ class __$$BillExporResponseImplCopyWithImpl<$Res>
           ? _value.isReceived
           : isReceived // ignore: cast_nullable_to_non_nullable
               as bool?,
+      isOrderPrepared: freezed == isOrderPrepared
+          ? _value.isOrderPrepared
+          : isOrderPrepared // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isOrderReceived: freezed == isOrderReceived
+          ? _value.isOrderReceived
+          : isOrderReceived // ignore: cast_nullable_to_non_nullable
+              as bool?,
       requestDate: freezed == requestDate
           ? _value.requestDate
           : requestDate // ignore: cast_nullable_to_non_nullable
@@ -779,6 +817,10 @@ class __$$BillExporResponseImplCopyWithImpl<$Res>
           ? _value.receiverFullName
           : receiverFullName // ignore: cast_nullable_to_non_nullable
               as String?,
+      receiverId: freezed == receiverId
+          ? _value.receiverId
+          : receiverId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -817,6 +859,8 @@ class _$BillExporResponseImpl implements _BillExporResponse {
       @JsonKey(name: 'WarehouseID') this.warehouseId,
       @JsonKey(name: 'IsPrepared') this.isPrepared,
       @JsonKey(name: 'IsReceived') this.isReceived,
+      @JsonKey(name: 'IsOrderPrepared') this.isOrderPrepared,
+      @JsonKey(name: 'IsOrderReceived') this.isOrderReceived,
       @JsonKey(name: 'RequestDate') this.requestDate,
       @JsonKey(name: 'PreparedDate') this.preparedDate,
       @JsonKey(name: 'BillDocumentExportType') this.billDocumentExportType,
@@ -836,7 +880,8 @@ class _$BillExporResponseImpl implements _BillExporResponse {
       @JsonKey(name: 'DeliveryTime') this.deliveryTime,
       @JsonKey(name: 'IsAfterHours') this.isAfterHours,
       @JsonKey(name: 'IsIncurredApproved') this.isIncurredApproved,
-      @JsonKey(name: 'ReceiverFullName') this.receiverFullName});
+      @JsonKey(name: 'ReceiverFullName') this.receiverFullName,
+      @JsonKey(name: 'ReceiverID') this.receiverId});
 
   factory _$BillExporResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$BillExporResponseImplFromJson(json);
@@ -932,6 +977,12 @@ class _$BillExporResponseImpl implements _BillExporResponse {
   @JsonKey(name: 'IsReceived')
   final bool? isReceived;
   @override
+  @JsonKey(name: 'IsOrderPrepared')
+  final bool? isOrderPrepared;
+  @override
+  @JsonKey(name: 'IsOrderReceived')
+  final bool? isOrderReceived;
+  @override
   @JsonKey(name: 'RequestDate')
   final String? requestDate;
   @override
@@ -991,10 +1042,13 @@ class _$BillExporResponseImpl implements _BillExporResponse {
   @override
   @JsonKey(name: 'ReceiverFullName')
   final String? receiverFullName;
+  @override
+  @JsonKey(name: 'ReceiverID')
+  final int? receiverId;
 
   @override
   String toString() {
-    return 'BillExporResponse(totalPage: $totalPage, rowNum: $rowNum, warehouseName: $warehouseName, dateStatus: $dateStatus, id: $id, code: $code, typeBill: $typeBill, supplierId: $supplierId, customerId: $customerId, userId: $userId, senderId: $senderId, stockId: $stockId, description: $description, address: $address, creatDate: $creatDate, isApproved: $isApproved, status: $status, groupId: $groupId, khoTypeId: $khoTypeId, createdDate: $createdDate, updatedDate: $updatedDate, createdBy: $createdBy, updatedBy: $updatedBy, productType: $productType, addressStockId: $addressStockId, isMerge: $isMerge, unApprove: $unApprove, warehouseId: $warehouseId, isPrepared: $isPrepared, isReceived: $isReceived, requestDate: $requestDate, preparedDate: $preparedDate, billDocumentExportType: $billDocumentExportType, isDeleted: $isDeleted, billImportId: $billImportId, wareHouseTranferId: $wareHouseTranferId, isTransfer: $isTransfer, fullName: $fullName, customerName: $customerName, nameStatus: $nameStatus, fullNameSender: $fullNameSender, productTypeText: $productTypeText, employeeCode: $employeeCode, departmentName: $departmentName, nameNcc: $nameNcc, warehouseType: $warehouseType, deliveryTime: $deliveryTime, isAfterHours: $isAfterHours, isIncurredApproved: $isIncurredApproved, receiverFullName: $receiverFullName)';
+    return 'BillExporResponse(totalPage: $totalPage, rowNum: $rowNum, warehouseName: $warehouseName, dateStatus: $dateStatus, id: $id, code: $code, typeBill: $typeBill, supplierId: $supplierId, customerId: $customerId, userId: $userId, senderId: $senderId, stockId: $stockId, description: $description, address: $address, creatDate: $creatDate, isApproved: $isApproved, status: $status, groupId: $groupId, khoTypeId: $khoTypeId, createdDate: $createdDate, updatedDate: $updatedDate, createdBy: $createdBy, updatedBy: $updatedBy, productType: $productType, addressStockId: $addressStockId, isMerge: $isMerge, unApprove: $unApprove, warehouseId: $warehouseId, isPrepared: $isPrepared, isReceived: $isReceived, isOrderPrepared: $isOrderPrepared, isOrderReceived: $isOrderReceived, requestDate: $requestDate, preparedDate: $preparedDate, billDocumentExportType: $billDocumentExportType, isDeleted: $isDeleted, billImportId: $billImportId, wareHouseTranferId: $wareHouseTranferId, isTransfer: $isTransfer, fullName: $fullName, customerName: $customerName, nameStatus: $nameStatus, fullNameSender: $fullNameSender, productTypeText: $productTypeText, employeeCode: $employeeCode, departmentName: $departmentName, nameNcc: $nameNcc, warehouseType: $warehouseType, deliveryTime: $deliveryTime, isAfterHours: $isAfterHours, isIncurredApproved: $isIncurredApproved, receiverFullName: $receiverFullName, receiverId: $receiverId)';
   }
 
   @override
@@ -1053,6 +1107,10 @@ class _$BillExporResponseImpl implements _BillExporResponse {
                 other.isPrepared == isPrepared) &&
             (identical(other.isReceived, isReceived) ||
                 other.isReceived == isReceived) &&
+            (identical(other.isOrderPrepared, isOrderPrepared) ||
+                other.isOrderPrepared == isOrderPrepared) &&
+            (identical(other.isOrderReceived, isOrderReceived) ||
+                other.isOrderReceived == isOrderReceived) &&
             (identical(other.requestDate, requestDate) ||
                 other.requestDate == requestDate) &&
             (identical(other.preparedDate, preparedDate) ||
@@ -1091,7 +1149,9 @@ class _$BillExporResponseImpl implements _BillExporResponse {
             (identical(other.isIncurredApproved, isIncurredApproved) ||
                 other.isIncurredApproved == isIncurredApproved) &&
             (identical(other.receiverFullName, receiverFullName) ||
-                other.receiverFullName == receiverFullName));
+                other.receiverFullName == receiverFullName) &&
+            (identical(other.receiverId, receiverId) ||
+                other.receiverId == receiverId));
   }
 
   @JsonKey(ignore: true)
@@ -1128,6 +1188,8 @@ class _$BillExporResponseImpl implements _BillExporResponse {
         warehouseId,
         isPrepared,
         isReceived,
+        isOrderPrepared,
+        isOrderReceived,
         requestDate,
         preparedDate,
         billDocumentExportType,
@@ -1147,7 +1209,8 @@ class _$BillExporResponseImpl implements _BillExporResponse {
         deliveryTime,
         isAfterHours,
         isIncurredApproved,
-        receiverFullName
+        receiverFullName,
+        receiverId
       ]);
 
   @JsonKey(ignore: true)
@@ -1197,6 +1260,8 @@ abstract class _BillExporResponse implements BillExporResponse {
           @JsonKey(name: 'WarehouseID') final int? warehouseId,
           @JsonKey(name: 'IsPrepared') final bool? isPrepared,
           @JsonKey(name: 'IsReceived') final bool? isReceived,
+          @JsonKey(name: 'IsOrderPrepared') final bool? isOrderPrepared,
+          @JsonKey(name: 'IsOrderReceived') final bool? isOrderReceived,
           @JsonKey(name: 'RequestDate') final String? requestDate,
           @JsonKey(name: 'PreparedDate') final String? preparedDate,
           @JsonKey(name: 'BillDocumentExportType')
@@ -1217,7 +1282,8 @@ abstract class _BillExporResponse implements BillExporResponse {
           @JsonKey(name: 'DeliveryTime') final String? deliveryTime,
           @JsonKey(name: 'IsAfterHours') final bool? isAfterHours,
           @JsonKey(name: 'IsIncurredApproved') final bool? isIncurredApproved,
-          @JsonKey(name: 'ReceiverFullName') final String? receiverFullName}) =
+          @JsonKey(name: 'ReceiverFullName') final String? receiverFullName,
+          @JsonKey(name: 'ReceiverID') final int? receiverId}) =
       _$BillExporResponseImpl;
 
   factory _BillExporResponse.fromJson(Map<String, dynamic> json) =
@@ -1314,6 +1380,12 @@ abstract class _BillExporResponse implements BillExporResponse {
   @JsonKey(name: 'IsReceived')
   bool? get isReceived;
   @override
+  @JsonKey(name: 'IsOrderPrepared')
+  bool? get isOrderPrepared;
+  @override
+  @JsonKey(name: 'IsOrderReceived')
+  bool? get isOrderReceived;
+  @override
   @JsonKey(name: 'RequestDate')
   String? get requestDate;
   @override
@@ -1373,6 +1445,9 @@ abstract class _BillExporResponse implements BillExporResponse {
   @override
   @JsonKey(name: 'ReceiverFullName')
   String? get receiverFullName;
+  @override
+  @JsonKey(name: 'ReceiverID')
+  int? get receiverId;
   @override
   @JsonKey(ignore: true)
   _$$BillExporResponseImplCopyWith<_$BillExporResponseImpl> get copyWith =>
@@ -8413,8 +8488,15 @@ SaveBillExportDataResponse _$SaveBillExportDataResponseFromJson(
 
 /// @nodoc
 mixin _$SaveBillExportDataResponse {
-  @JsonKey(name: 'BillExportID')
-  int? get billExportId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'billExport')
+  BillExportPayload? get billExport => throw _privateConstructorUsedError;
+  @JsonKey(name: 'billExportDetail')
+  List<BillExportDetailPayload> get billExportDetail =>
+      throw _privateConstructorUsedError;
+  @JsonKey(name: 'DeletedDetailIDs')
+  List<int> get deletedDetailIds => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DeletedFileIds')
+  List<int> get deletedFileIds => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -8429,7 +8511,14 @@ abstract class $SaveBillExportDataResponseCopyWith<$Res> {
       _$SaveBillExportDataResponseCopyWithImpl<$Res,
           SaveBillExportDataResponse>;
   @useResult
-  $Res call({@JsonKey(name: 'BillExportID') int? billExportId});
+  $Res call(
+      {@JsonKey(name: 'billExport') BillExportPayload? billExport,
+      @JsonKey(name: 'billExportDetail')
+      List<BillExportDetailPayload> billExportDetail,
+      @JsonKey(name: 'DeletedDetailIDs') List<int> deletedDetailIds,
+      @JsonKey(name: 'DeletedFileIds') List<int> deletedFileIds});
+
+  $BillExportPayloadCopyWith<$Res>? get billExport;
 }
 
 /// @nodoc
@@ -8446,14 +8535,41 @@ class _$SaveBillExportDataResponseCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? billExportId = freezed,
+    Object? billExport = freezed,
+    Object? billExportDetail = null,
+    Object? deletedDetailIds = null,
+    Object? deletedFileIds = null,
   }) {
     return _then(_value.copyWith(
-      billExportId: freezed == billExportId
-          ? _value.billExportId
-          : billExportId // ignore: cast_nullable_to_non_nullable
-              as int?,
+      billExport: freezed == billExport
+          ? _value.billExport
+          : billExport // ignore: cast_nullable_to_non_nullable
+              as BillExportPayload?,
+      billExportDetail: null == billExportDetail
+          ? _value.billExportDetail
+          : billExportDetail // ignore: cast_nullable_to_non_nullable
+              as List<BillExportDetailPayload>,
+      deletedDetailIds: null == deletedDetailIds
+          ? _value.deletedDetailIds
+          : deletedDetailIds // ignore: cast_nullable_to_non_nullable
+              as List<int>,
+      deletedFileIds: null == deletedFileIds
+          ? _value.deletedFileIds
+          : deletedFileIds // ignore: cast_nullable_to_non_nullable
+              as List<int>,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BillExportPayloadCopyWith<$Res>? get billExport {
+    if (_value.billExport == null) {
+      return null;
+    }
+
+    return $BillExportPayloadCopyWith<$Res>(_value.billExport!, (value) {
+      return _then(_value.copyWith(billExport: value) as $Val);
+    });
   }
 }
 
@@ -8466,7 +8582,15 @@ abstract class _$$SaveBillExportDataResponseImplCopyWith<$Res>
       __$$SaveBillExportDataResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@JsonKey(name: 'BillExportID') int? billExportId});
+  $Res call(
+      {@JsonKey(name: 'billExport') BillExportPayload? billExport,
+      @JsonKey(name: 'billExportDetail')
+      List<BillExportDetailPayload> billExportDetail,
+      @JsonKey(name: 'DeletedDetailIDs') List<int> deletedDetailIds,
+      @JsonKey(name: 'DeletedFileIds') List<int> deletedFileIds});
+
+  @override
+  $BillExportPayloadCopyWith<$Res>? get billExport;
 }
 
 /// @nodoc
@@ -8482,13 +8606,28 @@ class __$$SaveBillExportDataResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? billExportId = freezed,
+    Object? billExport = freezed,
+    Object? billExportDetail = null,
+    Object? deletedDetailIds = null,
+    Object? deletedFileIds = null,
   }) {
     return _then(_$SaveBillExportDataResponseImpl(
-      billExportId: freezed == billExportId
-          ? _value.billExportId
-          : billExportId // ignore: cast_nullable_to_non_nullable
-              as int?,
+      billExport: freezed == billExport
+          ? _value.billExport
+          : billExport // ignore: cast_nullable_to_non_nullable
+              as BillExportPayload?,
+      billExportDetail: null == billExportDetail
+          ? _value._billExportDetail
+          : billExportDetail // ignore: cast_nullable_to_non_nullable
+              as List<BillExportDetailPayload>,
+      deletedDetailIds: null == deletedDetailIds
+          ? _value._deletedDetailIds
+          : deletedDetailIds // ignore: cast_nullable_to_non_nullable
+              as List<int>,
+      deletedFileIds: null == deletedFileIds
+          ? _value._deletedFileIds
+          : deletedFileIds // ignore: cast_nullable_to_non_nullable
+              as List<int>,
     ));
   }
 }
@@ -8497,19 +8636,56 @@ class __$$SaveBillExportDataResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SaveBillExportDataResponseImpl implements _SaveBillExportDataResponse {
   const _$SaveBillExportDataResponseImpl(
-      {@JsonKey(name: 'BillExportID') this.billExportId});
+      {@JsonKey(name: 'billExport') this.billExport,
+      @JsonKey(name: 'billExportDetail')
+      final List<BillExportDetailPayload> billExportDetail = const [],
+      @JsonKey(name: 'DeletedDetailIDs')
+      final List<int> deletedDetailIds = const [],
+      @JsonKey(name: 'DeletedFileIds')
+      final List<int> deletedFileIds = const []})
+      : _billExportDetail = billExportDetail,
+        _deletedDetailIds = deletedDetailIds,
+        _deletedFileIds = deletedFileIds;
 
   factory _$SaveBillExportDataResponseImpl.fromJson(
           Map<String, dynamic> json) =>
       _$$SaveBillExportDataResponseImplFromJson(json);
 
   @override
-  @JsonKey(name: 'BillExportID')
-  final int? billExportId;
+  @JsonKey(name: 'billExport')
+  final BillExportPayload? billExport;
+  final List<BillExportDetailPayload> _billExportDetail;
+  @override
+  @JsonKey(name: 'billExportDetail')
+  List<BillExportDetailPayload> get billExportDetail {
+    if (_billExportDetail is EqualUnmodifiableListView)
+      return _billExportDetail;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_billExportDetail);
+  }
+
+  final List<int> _deletedDetailIds;
+  @override
+  @JsonKey(name: 'DeletedDetailIDs')
+  List<int> get deletedDetailIds {
+    if (_deletedDetailIds is EqualUnmodifiableListView)
+      return _deletedDetailIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_deletedDetailIds);
+  }
+
+  final List<int> _deletedFileIds;
+  @override
+  @JsonKey(name: 'DeletedFileIds')
+  List<int> get deletedFileIds {
+    if (_deletedFileIds is EqualUnmodifiableListView) return _deletedFileIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_deletedFileIds);
+  }
 
   @override
   String toString() {
-    return 'SaveBillExportDataResponse(billExportId: $billExportId)';
+    return 'SaveBillExportDataResponse(billExport: $billExport, billExportDetail: $billExportDetail, deletedDetailIds: $deletedDetailIds, deletedFileIds: $deletedFileIds)';
   }
 
   @override
@@ -8517,13 +8693,24 @@ class _$SaveBillExportDataResponseImpl implements _SaveBillExportDataResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SaveBillExportDataResponseImpl &&
-            (identical(other.billExportId, billExportId) ||
-                other.billExportId == billExportId));
+            (identical(other.billExport, billExport) ||
+                other.billExport == billExport) &&
+            const DeepCollectionEquality()
+                .equals(other._billExportDetail, _billExportDetail) &&
+            const DeepCollectionEquality()
+                .equals(other._deletedDetailIds, _deletedDetailIds) &&
+            const DeepCollectionEquality()
+                .equals(other._deletedFileIds, _deletedFileIds));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, billExportId);
+  int get hashCode => Object.hash(
+      runtimeType,
+      billExport,
+      const DeepCollectionEquality().hash(_billExportDetail),
+      const DeepCollectionEquality().hash(_deletedDetailIds),
+      const DeepCollectionEquality().hash(_deletedFileIds));
 
   @JsonKey(ignore: true)
   @override
@@ -8543,18 +8730,244 @@ class _$SaveBillExportDataResponseImpl implements _SaveBillExportDataResponse {
 abstract class _SaveBillExportDataResponse
     implements SaveBillExportDataResponse {
   const factory _SaveBillExportDataResponse(
-          {@JsonKey(name: 'BillExportID') final int? billExportId}) =
+          {@JsonKey(name: 'billExport') final BillExportPayload? billExport,
+          @JsonKey(name: 'billExportDetail')
+          final List<BillExportDetailPayload> billExportDetail,
+          @JsonKey(name: 'DeletedDetailIDs') final List<int> deletedDetailIds,
+          @JsonKey(name: 'DeletedFileIds') final List<int> deletedFileIds}) =
       _$SaveBillExportDataResponseImpl;
 
   factory _SaveBillExportDataResponse.fromJson(Map<String, dynamic> json) =
       _$SaveBillExportDataResponseImpl.fromJson;
 
   @override
-  @JsonKey(name: 'BillExportID')
-  int? get billExportId;
+  @JsonKey(name: 'billExport')
+  BillExportPayload? get billExport;
+  @override
+  @JsonKey(name: 'billExportDetail')
+  List<BillExportDetailPayload> get billExportDetail;
+  @override
+  @JsonKey(name: 'DeletedDetailIDs')
+  List<int> get deletedDetailIds;
+  @override
+  @JsonKey(name: 'DeletedFileIds')
+  List<int> get deletedFileIds;
   @override
   @JsonKey(ignore: true)
   _$$SaveBillExportDataResponseImplCopyWith<_$SaveBillExportDataResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+SaveBillExportApiResponse _$SaveBillExportApiResponseFromJson(
+    Map<String, dynamic> json) {
+  return _SaveBillExportApiResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$SaveBillExportApiResponse {
+  @JsonKey(name: 'status')
+  int? get status => throw _privateConstructorUsedError;
+  @JsonKey(name: 'message')
+  String? get message => throw _privateConstructorUsedError;
+  @JsonKey(name: 'data')
+  SaveBillExportDataResponse? get data => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $SaveBillExportApiResponseCopyWith<SaveBillExportApiResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SaveBillExportApiResponseCopyWith<$Res> {
+  factory $SaveBillExportApiResponseCopyWith(SaveBillExportApiResponse value,
+          $Res Function(SaveBillExportApiResponse) then) =
+      _$SaveBillExportApiResponseCopyWithImpl<$Res, SaveBillExportApiResponse>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'status') int? status,
+      @JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'data') SaveBillExportDataResponse? data});
+
+  $SaveBillExportDataResponseCopyWith<$Res>? get data;
+}
+
+/// @nodoc
+class _$SaveBillExportApiResponseCopyWithImpl<$Res,
+        $Val extends SaveBillExportApiResponse>
+    implements $SaveBillExportApiResponseCopyWith<$Res> {
+  _$SaveBillExportApiResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? status = freezed,
+    Object? message = freezed,
+    Object? data = freezed,
+  }) {
+    return _then(_value.copyWith(
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      data: freezed == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as SaveBillExportDataResponse?,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SaveBillExportDataResponseCopyWith<$Res>? get data {
+    if (_value.data == null) {
+      return null;
+    }
+
+    return $SaveBillExportDataResponseCopyWith<$Res>(_value.data!, (value) {
+      return _then(_value.copyWith(data: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$SaveBillExportApiResponseImplCopyWith<$Res>
+    implements $SaveBillExportApiResponseCopyWith<$Res> {
+  factory _$$SaveBillExportApiResponseImplCopyWith(
+          _$SaveBillExportApiResponseImpl value,
+          $Res Function(_$SaveBillExportApiResponseImpl) then) =
+      __$$SaveBillExportApiResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'status') int? status,
+      @JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'data') SaveBillExportDataResponse? data});
+
+  @override
+  $SaveBillExportDataResponseCopyWith<$Res>? get data;
+}
+
+/// @nodoc
+class __$$SaveBillExportApiResponseImplCopyWithImpl<$Res>
+    extends _$SaveBillExportApiResponseCopyWithImpl<$Res,
+        _$SaveBillExportApiResponseImpl>
+    implements _$$SaveBillExportApiResponseImplCopyWith<$Res> {
+  __$$SaveBillExportApiResponseImplCopyWithImpl(
+      _$SaveBillExportApiResponseImpl _value,
+      $Res Function(_$SaveBillExportApiResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? status = freezed,
+    Object? message = freezed,
+    Object? data = freezed,
+  }) {
+    return _then(_$SaveBillExportApiResponseImpl(
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      data: freezed == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as SaveBillExportDataResponse?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$SaveBillExportApiResponseImpl implements _SaveBillExportApiResponse {
+  const _$SaveBillExportApiResponseImpl(
+      {@JsonKey(name: 'status') this.status,
+      @JsonKey(name: 'message') this.message,
+      @JsonKey(name: 'data') this.data});
+
+  factory _$SaveBillExportApiResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SaveBillExportApiResponseImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'status')
+  final int? status;
+  @override
+  @JsonKey(name: 'message')
+  final String? message;
+  @override
+  @JsonKey(name: 'data')
+  final SaveBillExportDataResponse? data;
+
+  @override
+  String toString() {
+    return 'SaveBillExportApiResponse(status: $status, message: $message, data: $data)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SaveBillExportApiResponseImpl &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.data, data) || other.data == data));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, status, message, data);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SaveBillExportApiResponseImplCopyWith<_$SaveBillExportApiResponseImpl>
+      get copyWith => __$$SaveBillExportApiResponseImplCopyWithImpl<
+          _$SaveBillExportApiResponseImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$SaveBillExportApiResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _SaveBillExportApiResponse implements SaveBillExportApiResponse {
+  const factory _SaveBillExportApiResponse(
+          {@JsonKey(name: 'status') final int? status,
+          @JsonKey(name: 'message') final String? message,
+          @JsonKey(name: 'data') final SaveBillExportDataResponse? data}) =
+      _$SaveBillExportApiResponseImpl;
+
+  factory _SaveBillExportApiResponse.fromJson(Map<String, dynamic> json) =
+      _$SaveBillExportApiResponseImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'status')
+  int? get status;
+  @override
+  @JsonKey(name: 'message')
+  String? get message;
+  @override
+  @JsonKey(name: 'data')
+  SaveBillExportDataResponse? get data;
+  @override
+  @JsonKey(ignore: true)
+  _$$SaveBillExportApiResponseImplCopyWith<_$SaveBillExportApiResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 

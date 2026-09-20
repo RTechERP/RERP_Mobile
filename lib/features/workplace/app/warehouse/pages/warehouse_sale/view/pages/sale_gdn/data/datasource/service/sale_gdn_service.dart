@@ -274,4 +274,46 @@ class SaleGdnService extends DioBaseApiService {
       ),
     );
   }
+
+  /// Cập nhật / huỷ trạng thái "đã chuẩn bị hàng" cho danh sách phiếu xuất.
+  /// API: POST /billexport/status-preparing
+  /// Body: `[{ "ID": <billId>, "IsOrderPrepared": true|false }, ...]`
+  /// Response mẫu: `{"status":1, "data":""}` — server trả chuỗi rỗng khi OK,
+  /// bool `true` khi có payload, hoặc `false` khi thất bại không qua status.
+  Future<BaseData<bool>> updateStatusPreparing({
+    required List<Map<String, dynamic>> payload,
+  }) async {
+    return post<BaseData<bool>>(
+      ApiEndPoint.updateStatusPreparing,
+      body: payload,
+      parser: (json) => BaseData<bool>.fromJson(
+        json,
+        (data) {
+          if (data is bool) return data;
+          if (data is String) return data.isEmpty || data == 'true';
+          return data != null;
+        },
+      ),
+    );
+  }
+
+  /// Cập nhật / huỷ trạng thái "đã nhận hàng" cho danh sách phiếu xuất.
+  /// API: POST /billexport/status-receive
+  /// Body: `[{ "ID": <billId>, "IsOrderReceived": true|false }, ...]`
+  Future<BaseData<bool>> updateStatusReceive({
+    required List<Map<String, dynamic>> payload,
+  }) async {
+    return post<BaseData<bool>>(
+      ApiEndPoint.updateStatusReceive,
+      body: payload,
+      parser: (json) => BaseData<bool>.fromJson(
+        json,
+        (data) {
+          if (data is bool) return data;
+          if (data is String) return data.isEmpty || data == 'true';
+          return data != null;
+        },
+      ),
+    );
+  }
 }

@@ -6,12 +6,16 @@ import 'package:rtc_erp/base/bloc/bloc_status.dart';
 import 'package:rtc_erp/base/widgets/base_scaffold.dart';
 import 'package:rtc_erp/base/widgets/base_widget.dart';
 import 'package:rtc_erp/common/app_theme/index.dart';
+import 'package:rtc_erp/common/helpers/select_bottom_sheet_helper.dart';
 import 'package:rtc_erp/common/utils/navigation/navigation_utils.dart';
+import 'package:rtc_erp/common/utils/snack_bar_helper.dart';
 import 'package:rtc_erp/common/widgets/date_range_picker.dart';
 import 'package:rtc_erp/base/widgets/qr_barcode_scanner_page.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/models/sale_gdn_model.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/bloc/sale_gdn_bloc.dart';
+import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/widgets/sale_gdn_bulk_action_sheet.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/widgets/sale_gdn_card.dart';
+import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/widgets/sale_gdn_prepared_received_sheet.dart';
 import 'package:rtc_erp/routes/route_names.dart';
 
 class SaleGdnScreen extends StatefulWidget {
@@ -63,7 +67,8 @@ class _SaleGdnScreenState
     return BlocListener<SaleGdnBloc, SaleGdnState>(
       listenWhen: (prev, curr) =>
           prev.openedDetailBill != curr.openedDetailBill ||
-          prev.scanResultMessage != curr.scanResultMessage,
+          prev.scanResultMessage != curr.scanResultMessage ||
+          prev.billStatusMessage != curr.billStatusMessage,
       listener: (context, state) {
         // Tự động mở trang Detail khi bloc tìm được đúng 1 phiếu từ QR/Barcode.
         final bill = state.openedDetailBill;
@@ -82,6 +87,19 @@ class _SaleGdnScreenState
             ..hideCurrentSnackBar()
             ..showSnackBar(SnackBar(content: Text(msg)));
           bloc.add(const SaleGdnEvent.clearScanResultMessage());
+        }
+        // Hiển thị snackbar kết quả check/huỷ trạng thái chuẩn bị/nhận hàng.
+        // Format message: 'success:<text>' | 'error:<text>'.
+        final status = state.billStatusMessage;
+        if (status != null && status.isNotEmpty) {
+          final isSuccess = status.startsWith('success:');
+          final text = status.substring(status.indexOf(':') + 1);
+          showMessage(
+            context,
+            text,
+            type: isSuccess ? SnackBarType.success : SnackBarType.error,
+          );
+          bloc.add(const SaleGdnEvent.clearBillStatusMessage());
         }
       },
       child: _buildBody(context),
@@ -109,10 +127,14 @@ class _SaleGdnScreenState
           BlocBuilder<SaleGdnBloc, SaleGdnState>(
             buildWhen: (prev, curr) =>
                 prev.selectedWarehouseTypeIds.length != curr.selectedWarehouseTypeIds.length ||
-                prev.selectedStatus != curr.selectedStatus,
+                prev.selectedStatus != curr.selectedStatus ||
+                prev.selectedSenderName != curr.selectedSenderName ||
+                prev.selectedReceiverName != curr.selectedReceiverName,
             builder: (context, state) {
               final hasFilter = state.selectedWarehouseTypeIds.isNotEmpty ||
-                  state.selectedStatus != -1;
+                  state.selectedStatus != -1 ||
+                  state.selectedSenderName != null ||
+                  state.selectedReceiverName != null;
               return IconButton(
                 icon: Icon(
                   Icons.filter_list,
@@ -128,6 +150,59 @@ class _SaleGdnScreenState
             onPressed: _showSearchDialog,
             tooltip: 'Tìm kiếm',
           ),
+          BlocBuilder<SaleGdnBloc, SaleGdnState>(
+            buildWhen: (prev, curr) =>
+                prev.selectedBillIds.length != curr.selectedBillIds.length,
+            builder: (context, state) {
+              final count = state.selectedBillIds.length;
+              return Stack(
+                alignment: Alignment.center,
+                children: [
+                  IconButton(
+                    icon: Icon(
+                      Icons.checklist_rtl,
+                      color: count > 0
+                          ? AppColors.primaryERP
+                          : null,
+                    ),
+                    tooltip: count > 0
+                        ? 'Đã chọn $count phiếu'
+                        : 'Chọn nhiều phiếu',
+                    onPressed: count == 0 ? null : _onBulkActionTap,
+                  ),
+                  if (count > 0)
+                    Positioned(
+                      top: 4,
+                      right: 4,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 5,
+                          vertical: 1,
+                        ),
+                        decoration: BoxDecoration(
+                          color: AppColors.primaryERP,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        constraints: const BoxConstraints(
+                          minWidth: 18,
+                          minHeight: 18,
+                        ),
+                        child: Text(
+                          '$count',
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 11,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
+                            height: 1.1,
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
+              );
+            },
+          ),
           IconButton(
             icon: const Icon(Icons.qr_code_scanner_outlined),
             onPressed: _onQrScan,
@@ -136,7 +211,18 @@ class _SaleGdnScreenState
         ],
       ),
       body: blocBuilder((context, state) {
-        final gdns = state.gdns;
+        final allGdns = state.gdns;
+        final filteredGdns = allGdns.where((g) {
+          if (state.selectedSenderName != null && g.fullNameSender != state.selectedSenderName) {
+            return false;
+          }
+          if (state.selectedReceiverName != null &&
+              g.receiverFullName != state.selectedReceiverName) {
+            return false;
+          }
+          return true;
+        }).toList();
+
         if (state.status == BaseStateStatus.loading) {
           return const Center(child: CircularProgressIndicator());
         }
@@ -162,7 +248,7 @@ class _SaleGdnScreenState
             ),
           );
         }
-        if (gdns.isEmpty) {
+        if (filteredGdns.isEmpty) {
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -192,21 +278,34 @@ class _SaleGdnScreenState
           },
           child: ListView.separated(
             padding: const EdgeInsets.all(16),
-            itemCount: gdns.length + 1,
+            itemCount: filteredGdns.length + 1,
             separatorBuilder: (context, index) => const SizedBox(height: 12),
             itemBuilder: (context, index) {
               if (index == 0) {
                 return _ListHeader(
-                  total: gdns.length,
+                  total: filteredGdns.length,
                   dateStart: state.dateStart,
                   dateEnd: state.dateEnd,
                   isSearching: state.searchKeyword.isNotEmpty,
                 );
               }
-              final item = gdns[index - 1];
+              final item = filteredGdns[index - 1];
+              final isSelected =
+                  item.id != null && state.selectedBillIds.contains(item.id);
               return SaleGdnCard(
                 item: item,
+                isSelected: isSelected,
                 onTap: () => _openDetail(item),
+                // Bấm ô checkbox: chỉ tick/bỏ tick (1 thao tác = 1 toggle).
+                // Sau khi tick ≥1 phiếu, user bấm icon checklist ở AppBar
+                // để mở `BulkBillActionSheet` xác nhận hàng loạt.
+                onCheckboxTap: () {
+                  if (item.id == null || item.id! <= 0) return;
+                  bloc.add(SaleGdnEvent.toggleBillSelection(
+                    billId: item.id!,
+                    selected: !isSelected,
+                  ));
+                },
               );
             },
           ),
@@ -368,12 +467,21 @@ class _SaleGdnScreenState
         warehouseTypes: bloc.state.warehouseTypes,
         selectedWarehouseTypeIds: bloc.state.selectedWarehouseTypeIds,
         selectedStatus: bloc.state.selectedStatus,
-        onApply: (warehouseTypeIds, status) {
+        selectedSenderName: bloc.state.selectedSenderName,
+        selectedReceiverName: bloc.state.selectedReceiverName,
+        gdns: bloc.state.gdns,
+        onApply: (warehouseTypeIds, status, senderName, receiverName) {
           if (warehouseTypeIds != bloc.state.selectedWarehouseTypeIds) {
             bloc.add(SaleGdnEvent.filterByWarehouseType(warehouseTypeIds));
           }
           if (status != bloc.state.selectedStatus) {
             bloc.add(SaleGdnEvent.filterByStatus(status));
+          }
+          if (senderName != bloc.state.selectedSenderName) {
+            bloc.add(SaleGdnEvent.filterBySenderName(senderName));
+          }
+          if (receiverName != bloc.state.selectedReceiverName) {
+            bloc.add(SaleGdnEvent.filterByReceiver(receiverName));
           }
         },
         onClear: () => bloc.add(const SaleGdnEvent.clearFilters()),
@@ -470,6 +578,193 @@ class _SaleGdnScreenState
     // Nếu đúng 1 kết quả thì UI tự động mở trang Detail; ngược lại báo snackbar.
     bloc.add(SaleGdnEvent.scanQrToDetail(code));
   }
+
+  /// Mở bottom sheet xác nhận trạng thái cho nhiều phiếu đã chọn.
+  /// Trả về `(action, ids)` nếu user chọn 1 action; null nếu đóng sheet.
+  /// Sau đó dispatch event bulk tương ứng về bloc.
+  Future<void> _onBulkActionTap() async {
+    final state = bloc.state;
+    final selectedIds = state.selectedBillIds;
+    if (selectedIds.isEmpty) return;
+
+    // Lấy đầy đủ BillExporResponse cho từng ID đã chọn để hiển thị mã phiếu
+    // + người giao/nhận trong sheet.
+    final selectedBills = state.gdns
+        .where((b) => b.id != null && selectedIds.contains(b.id))
+        .toList();
+
+    if (!mounted) return;
+
+    final result = await showModalBottomSheet<(BulkAction, Set<int>)>(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (_) => BulkBillActionSheet(
+        bills: selectedBills,
+        isSubmitting: state.isUpdatingStatus,
+        currentEmployeeId: state.currentEmployeeId,
+        isCurrentUserAdmin: state.isCurrentUserAdmin,
+      ),
+    );
+
+    if (!mounted || result == null) return;
+
+    final (action, ids) = result;
+    if (ids.isEmpty) {
+      // User đã bỏ hết tick trong sheet → clear selection.
+      bloc.add(const SaleGdnEvent.clearBillSelection());
+      return;
+    }
+    switch (action) {
+      case BulkAction.markPrepared:
+        bloc.add(SaleGdnEvent.bulkUpdateBillStatusPreparing(
+          billIds: ids,
+          isPrepared: true,
+        ));
+        break;
+      case BulkAction.cancelPrepared:
+        bloc.add(SaleGdnEvent.bulkUpdateBillStatusPreparing(
+          billIds: ids,
+          isPrepared: false,
+        ));
+        break;
+      case BulkAction.markReceived:
+        bloc.add(SaleGdnEvent.bulkUpdateBillStatusReceive(
+          billIds: ids,
+          isReceived: true,
+        ));
+        break;
+      case BulkAction.cancelReceived:
+        bloc.add(SaleGdnEvent.bulkUpdateBillStatusReceive(
+          billIds: ids,
+          isReceived: false,
+        ));
+        break;
+    }
+  }
+
+  /// Mở bottom sheet hành động cho 1 phiếu: chuẩn bị hàng / nhận hàng.
+  /// Phiếu phải có `id` hợp lệ. Khi user chọn 1 hành động → snackbar demo
+  /// (API sẽ được nối ở bước sau theo hướng dẫn của người dùng).
+  /// Khi sheet đóng (chọn action hoặc bấm ra ngoài) → tự bỏ tick phiếu đó.
+  Future<void> _openPreparedReceivedSheet(BillExporResponse item) async {
+    final id = item.id;
+    if (id == null || id <= 0) return;
+
+    final action = await showModalBottomSheet<BillAction>(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (sheetContext) => PreparedReceivedActionSheet(
+        bill: item,
+        isCurrentlySelected:
+            bloc.state.selectedBillIds.contains(id),
+        currentEmployeeId: bloc.state.currentEmployeeId,
+        isCurrentUserAdmin: bloc.state.isCurrentUserAdmin,
+        isSubmitting: bloc.state.isUpdatingStatus,
+      ),
+    );
+    if (!mounted) return;
+
+    // Bỏ tick cho phiếu này — đúng yêu cầu: tick chỉ tồn tại trong khi
+    // sheet đang mở, đóng sheet là bỏ tick.
+    bloc.add(SaleGdnEvent.toggleBillSelection(
+      billId: id,
+      selected: false,
+    ));
+
+    // Dispatch event tương ứng tới API check/huỷ trạng thái.
+    if (action != null) {
+      final currentEmployeeId = bloc.state.currentEmployeeId;
+      final isCurrentUserAdmin = bloc.state.isCurrentUserAdmin;
+      // User đặc biệt (id 1110) hoặc admin luôn có mọi quyền; ngoài ra
+      // phải là người giao/nhận của phiếu mới có quyền thao tác nhóm
+      // tương ứng.
+      const specialEmployeeId = 1110;
+      final isPreparedActor = isCurrentUserAdmin ||
+          currentEmployeeId == specialEmployeeId ||
+          (item.senderId != null && item.senderId == currentEmployeeId);
+      // Nhận hàng/huỷ nhận hàng: ai cũng có quyền (đã được sheet lọc
+      // theo người giao/nhận ở tầng UI trước đó).
+
+      // Nhận hàng: phiếu phải được chuẩn bị trước và chưa nhận hàng.
+      if (action.type == BillActionType.markReceived) {
+        if (item.isOrderReceived == true) {
+          showMessage(
+            context,
+            'Phiếu đã ở trạng thái đã nhận hàng',
+            type: SnackBarType.error,
+          );
+          return;
+        }
+        if (item.isOrderPrepared != true) {
+          showMessage(
+            context,
+            'Hàng chưa được chuẩn bị không thể xác nhận nhận hàng',
+            type: SnackBarType.error,
+          );
+          return;
+        }
+      }
+      // Huỷ nhận hàng: phiếu phải đang ở trạng thái đã nhận hàng.
+      if (action.type == BillActionType.cancelReceived) {
+        if (item.isOrderReceived != true) {
+          showMessage(
+            context,
+            'Phiếu chưa ở trạng thái đã nhận hàng',
+            type: SnackBarType.error,
+          );
+          return;
+        }
+      }
+      // Huỷ chuẩn bị: chỉ người giao (hoặc user đặc biệt) mới có quyền,
+      // và phiếu phải đang ở trạng thái đã chuẩn bị hàng mới có gì để huỷ.
+      if (action.type == BillActionType.cancelPrepared) {
+        if (!isPreparedActor) {
+          showMessage(
+            context,
+            'Chỉ người giao mới có quyền huỷ chuẩn bị hàng',
+            type: SnackBarType.error,
+          );
+          return;
+        }
+        if (item.isOrderPrepared != true) {
+          showMessage(
+            context,
+            'Phiếu chưa ở trạng thái đã chuẩn bị hàng',
+            type: SnackBarType.error,
+          );
+          return;
+        }
+      }
+      switch (action.type) {
+        case BillActionType.markPrepared:
+          bloc.add(SaleGdnEvent.updateBillStatusPreparing(
+            billId: id,
+            isPrepared: true,
+          ));
+          break;
+        case BillActionType.cancelPrepared:
+          bloc.add(SaleGdnEvent.updateBillStatusPreparing(
+            billId: id,
+            isPrepared: false,
+          ));
+          break;
+        case BillActionType.markReceived:
+          bloc.add(SaleGdnEvent.updateBillStatusReceive(
+            billId: id,
+            isReceived: true,
+          ));
+          break;
+        case BillActionType.cancelReceived:
+          bloc.add(SaleGdnEvent.updateBillStatusReceive(
+            billId: id,
+            isReceived: false,
+          ));
+          break;
+      }
+    }
+  }
 }
 
 /// Danh sách trạng thái cố định.
@@ -488,6 +783,9 @@ class _FilterSheet extends StatefulWidget {
     required this.warehouseTypes,
     required this.selectedWarehouseTypeIds,
     required this.selectedStatus,
+    required this.selectedSenderName,
+    required this.selectedReceiverName,
+    required this.gdns,
     required this.onApply,
     required this.onClear,
   });
@@ -495,7 +793,10 @@ class _FilterSheet extends StatefulWidget {
   final List<TypeWarehouseResponse> warehouseTypes;
   final List<int> selectedWarehouseTypeIds;
   final int selectedStatus;
-  final void Function(List<int> warehouseTypeIds, int status) onApply;
+  final String? selectedSenderName;
+  final String? selectedReceiverName;
+  final List<BillExporResponse> gdns;
+  final void Function(List<int> warehouseTypeIds, int status, String? senderName, String? receiverName) onApply;
   final VoidCallback onClear;
 
   @override
@@ -505,19 +806,23 @@ class _FilterSheet extends StatefulWidget {
 class _FilterSheetState extends State<_FilterSheet> {
   late List<int> _selectedWarehouseTypeIds;
   late int _selectedStatus;
+  late String? _selectedSenderName;
+  late String? _selectedReceiverName;
 
   @override
   void initState() {
     super.initState();
     _selectedWarehouseTypeIds = List<int>.from(widget.selectedWarehouseTypeIds);
     _selectedStatus = widget.selectedStatus;
+    _selectedSenderName = widget.selectedSenderName;
+    _selectedReceiverName = widget.selectedReceiverName;
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       constraints: BoxConstraints(
-        maxHeight: MediaQuery.of(context).size.height * 0.7,
+        maxHeight: MediaQuery.of(context).size.height * 0.85,
       ),
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -551,7 +856,6 @@ class _FilterSheetState extends State<_FilterSheet> {
                 shrinkWrap: true,
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 children: [
-                  // Loại kho
                   const Text(
                     'Loại kho',
                     style: TextStyle(
@@ -570,7 +874,6 @@ class _FilterSheetState extends State<_FilterSheet> {
                     )).toList(),
                   ),
                   const SizedBox(height: 24),
-                  // Trạng thái
                   const Text(
                     'Trạng thái',
                     style: TextStyle(
@@ -589,6 +892,22 @@ class _FilterSheetState extends State<_FilterSheet> {
                         label: opt['label'] as String,
                       );
                     }).toList(),
+                  ),
+                  const SizedBox(height: 24),
+                  // Người giao
+                  _buildPersonField(
+                    label: 'Người giao',
+                    selectedValue: _selectedSenderName,
+                    onTap: () => _openUserSheet(),
+                    onClear: () => setState(() => _selectedSenderName = null),
+                  ),
+                  const SizedBox(height: 16),
+                  // Người nhận
+                  _buildPersonField(
+                    label: 'Người nhận',
+                    selectedValue: _selectedReceiverName,
+                    onTap: () => _openReceiverSheet(),
+                    onClear: () => setState(() => _selectedReceiverName = null),
                   ),
                   const SizedBox(height: 24),
                 ],
@@ -622,7 +941,12 @@ class _FilterSheetState extends State<_FilterSheet> {
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {
-                        widget.onApply(_selectedWarehouseTypeIds, _selectedStatus);
+                        widget.onApply(
+                          _selectedWarehouseTypeIds,
+                          _selectedStatus,
+                          _selectedSenderName,
+                          _selectedReceiverName,
+                        );
                         context.pop();
                       },
                       style: ElevatedButton.styleFrom(
@@ -646,6 +970,116 @@ class _FilterSheetState extends State<_FilterSheet> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildPersonField({
+    required String label,
+    required Object? selectedValue,
+    required VoidCallback onTap,
+    required VoidCallback onClear,
+  }) {
+    final hasValue = selectedValue != null &&
+        (selectedValue is! String || selectedValue.isNotEmpty);
+    String displayText;
+    if (!hasValue) {
+      displayText = 'Chọn $label';
+    } else {
+      displayText = selectedValue as String;
+    }
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: const TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+            color: AppColors.heading,
+          ),
+        ),
+        const SizedBox(height: 8),
+        GestureDetector(
+          onTap: onTap,
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+            decoration: BoxDecoration(
+              color: AppColors.grey_bg,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: AppColors.borderColor),
+            ),
+            child: Row(
+              children: [
+                const Icon(Icons.person_outline, color: AppColors.gray, size: 20),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    displayText,
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: hasValue
+                          ? AppColors.heading
+                          : AppColors.gray.withValues(alpha: 0.6),
+                    ),
+                  ),
+                ),
+                if (hasValue)
+                  GestureDetector(
+                    onTap: onClear,
+                    child: const Icon(Icons.close, color: AppColors.gray, size: 20),
+                  )
+                else
+                  const Icon(Icons.keyboard_arrow_down, color: AppColors.gray, size: 20),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  void _openUserSheet() {
+    openSelectBottomSheet<String>(
+      context: context,
+      title: 'Chọn người giao',
+      items: _senderNames(),
+      displayText: (name) => name,
+      hintText: 'Tìm theo tên...',
+      initialSelectedItem: _selectedSenderName,
+      onSelected: (name) {
+        setState(() => _selectedSenderName = name);
+      },
+    );
+  }
+
+  List<String> _senderNames() {
+    return widget.gdns
+        .map((g) => g.fullNameSender)
+        .where((name) => name != null && name.isNotEmpty)
+        .map((name) => name!)
+        .toSet()
+        .toList()
+      ..sort();
+  }
+
+  void _openReceiverSheet() {
+    final receiverNames = widget.gdns
+        .map((g) => g.receiverFullName)
+        .where((name) => name != null && name.isNotEmpty)
+        .map((name) => name!)
+        .toSet()
+        .toList()
+      ..sort();
+    openSelectBottomSheet<String>(
+      context: context,
+      title: 'Chọn người nhận',
+      items: receiverNames,
+      displayText: (name) => name,
+      hintText: 'Tìm theo tên...',
+      initialSelectedItem: receiverNames.contains(_selectedReceiverName) ? _selectedReceiverName : null,
+      onSelected: (name) {
+        setState(() => _selectedReceiverName = name);
+      },
     );
   }
 
