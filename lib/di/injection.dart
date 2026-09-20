@@ -125,6 +125,10 @@ import '../features/workplace/app/reports/view/accountant/view/bloc/accountant_b
 import '../features/workplace/app/reports/view/marketing/view/bloc/marketing_bloc.dart';
 import '../features/workplace/app/reports/view/sale/view/bloc/sale_bloc.dart';
 import '../features/workplace/app/reports/view/tech/view/bloc/tech_bloc.dart';
+import '../features/chatbot/data/datasource/service/rio_chat_service.dart';
+import '../features/chatbot/data/repository/rio_chat_repo.dart';
+import '../features/chatbot/data/repository/rio_chat_repo_impl.dart';
+import '../features/chatbot/view/bloc/rio_chat_bloc.dart';
 import '../features/workplace/app/signature/data/datasource/service/signature_service.dart';
 import '../features/workplace/app/signature/data/repository/signature_repo.dart';
 import '../features/workplace/app/signature/data/repository/signature_repo_impl.dart';
@@ -328,6 +332,10 @@ void configureDependencies() {
   getIt.registerLazySingleton<TestTableService>(
     () => TestTableService(getIt<Dio>()),
   );
+
+  // Chatbot - Rio Chat
+  getIt.registerLazySingleton<RioChatService>(RioChatService.new);
+
   /// ===== REPOSITORY =====
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImpl(
@@ -470,6 +478,11 @@ void configureDependencies() {
   getIt.registerLazySingleton<TestTableRepo>(
       () => TestTableRepoImpl(getIt<TestTableService>()),
   );
+
+  getIt.registerLazySingleton<RioChatRepo>(
+    () => RioChatRepoImpl(getIt<RioChatService>()),
+  );
+
   /// ===== BLOCS =====
   getIt.registerFactory<AuthBloc>(
     () => AuthBloc(getIt<AuthRepo>(), getIt<LogUtils>()),
@@ -746,6 +759,13 @@ void configureDependencies() {
         () => TestTableBloc(
       getIt<LogUtils>(),
       getIt<TestTableRepo>(),getIt<AuthRepo>(),
+    ),
+  );
+
+  getIt.registerFactory<RioChatBloc>(
+    () => RioChatBloc(
+      getIt<RioChatRepo>(),
+      getIt<LogUtils>(),getIt<LocalStorage>(),
     ),
   );
 }
