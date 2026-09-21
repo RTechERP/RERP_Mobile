@@ -302,6 +302,10 @@ mixin _$ProjectItem {
   @JsonKey(name: 'PriotityText')
   double? get priotityText => throw _privateConstructorUsedError;
 
+  /// ID của yêu cầu dự án - dùng để gọi API giải pháp.
+  @JsonKey(name: 'ProjectRequestID')
+  int? get projectRequestId => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ProjectItemCopyWith<ProjectItem> get copyWith =>
@@ -365,7 +369,8 @@ abstract class $ProjectItemCopyWith<$Res> {
       @JsonKey(name: 'RealityPlanDate') dynamic realityPlanDate,
       @JsonKey(name: 'RealityProjectEndDate') dynamic realityProjectEndDate,
       @JsonKey(name: 'RowNum') int? rowNum,
-      @JsonKey(name: 'PriotityText') double? priotityText});
+      @JsonKey(name: 'PriotityText') double? priotityText,
+      @JsonKey(name: 'ProjectRequestID') int? projectRequestId});
 }
 
 /// @nodoc
@@ -432,6 +437,7 @@ class _$ProjectItemCopyWithImpl<$Res, $Val extends ProjectItem>
     Object? realityProjectEndDate = freezed,
     Object? rowNum = freezed,
     Object? priotityText = freezed,
+    Object? projectRequestId = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -638,6 +644,10 @@ class _$ProjectItemCopyWithImpl<$Res, $Val extends ProjectItem>
           ? _value.priotityText
           : priotityText // ignore: cast_nullable_to_non_nullable
               as double?,
+      projectRequestId: freezed == projectRequestId
+          ? _value.projectRequestId
+          : projectRequestId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -701,7 +711,8 @@ abstract class _$$ProjectItemImplCopyWith<$Res>
       @JsonKey(name: 'RealityPlanDate') dynamic realityPlanDate,
       @JsonKey(name: 'RealityProjectEndDate') dynamic realityProjectEndDate,
       @JsonKey(name: 'RowNum') int? rowNum,
-      @JsonKey(name: 'PriotityText') double? priotityText});
+      @JsonKey(name: 'PriotityText') double? priotityText,
+      @JsonKey(name: 'ProjectRequestID') int? projectRequestId});
 }
 
 /// @nodoc
@@ -766,6 +777,7 @@ class __$$ProjectItemImplCopyWithImpl<$Res>
     Object? realityProjectEndDate = freezed,
     Object? rowNum = freezed,
     Object? priotityText = freezed,
+    Object? projectRequestId = freezed,
   }) {
     return _then(_$ProjectItemImpl(
       id: freezed == id
@@ -972,6 +984,10 @@ class __$$ProjectItemImplCopyWithImpl<$Res>
           ? _value.priotityText
           : priotityText // ignore: cast_nullable_to_non_nullable
               as double?,
+      projectRequestId: freezed == projectRequestId
+          ? _value.projectRequestId
+          : projectRequestId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -1030,7 +1046,8 @@ class _$ProjectItemImpl implements _ProjectItem {
       @JsonKey(name: 'RealityPlanDate') this.realityPlanDate,
       @JsonKey(name: 'RealityProjectEndDate') this.realityProjectEndDate,
       @JsonKey(name: 'RowNum') this.rowNum,
-      @JsonKey(name: 'PriotityText') this.priotityText});
+      @JsonKey(name: 'PriotityText') this.priotityText,
+      @JsonKey(name: 'ProjectRequestID') this.projectRequestId});
 
   factory _$ProjectItemImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProjectItemImplFromJson(json);
@@ -1189,9 +1206,14 @@ class _$ProjectItemImpl implements _ProjectItem {
   @JsonKey(name: 'PriotityText')
   final double? priotityText;
 
+  /// ID của yêu cầu dự án - dùng để gọi API giải pháp.
+  @override
+  @JsonKey(name: 'ProjectRequestID')
+  final int? projectRequestId;
+
   @override
   String toString() {
-    return 'ProjectItem(id: $id, customerId: $customerId, projectCode: $projectCode, projectName: $projectName, projectShortName: $projectShortName, projectStatus: $projectStatus, userId: $userId, userTechnicalId: $userTechnicalId, note: $note, isApproved: $isApproved, contactId: $contactId, po: $po, projectType: $projectType, listCostId: $listCostId, planDateStart: $planDateStart, planDateEnd: $planDateEnd, actualDateStart: $actualDateStart, actualDateEnd: $actualDateEnd, eu: $eu, projectManager: $projectManager, currentState: $currentState, priotity: $priotity, poDate: $poDate, endUser: $endUser, createdBy: $createdBy, createdDate: $createdDate, updatedBy: $updatedBy, updatedDate: $updatedDate, businessFieldId: $businessFieldId, typeProject: $typeProject, isDeleted: $isDeleted, customerCode: $customerCode, customerName: $customerName, fullNameSale: $fullNameSale, contactName: $contactName, contactPhone: $contactPhone, contactEmail: $contactEmail, fullNameTech: $fullNameTech, projectStatusText: $projectStatusText, fullNamePM: $fullNamePM, personalPriotity: $personalPriotity, projectStatusName: $projectStatusName, pmId: $pmId, endUserName: $endUserName, dateLog: $dateLog, expectedPlanDate: $expectedPlanDate, expectedQuotationDate: $expectedQuotationDate, realityPlanDate: $realityPlanDate, realityProjectEndDate: $realityProjectEndDate, rowNum: $rowNum, priotityText: $priotityText)';
+    return 'ProjectItem(id: $id, customerId: $customerId, projectCode: $projectCode, projectName: $projectName, projectShortName: $projectShortName, projectStatus: $projectStatus, userId: $userId, userTechnicalId: $userTechnicalId, note: $note, isApproved: $isApproved, contactId: $contactId, po: $po, projectType: $projectType, listCostId: $listCostId, planDateStart: $planDateStart, planDateEnd: $planDateEnd, actualDateStart: $actualDateStart, actualDateEnd: $actualDateEnd, eu: $eu, projectManager: $projectManager, currentState: $currentState, priotity: $priotity, poDate: $poDate, endUser: $endUser, createdBy: $createdBy, createdDate: $createdDate, updatedBy: $updatedBy, updatedDate: $updatedDate, businessFieldId: $businessFieldId, typeProject: $typeProject, isDeleted: $isDeleted, customerCode: $customerCode, customerName: $customerName, fullNameSale: $fullNameSale, contactName: $contactName, contactPhone: $contactPhone, contactEmail: $contactEmail, fullNameTech: $fullNameTech, projectStatusText: $projectStatusText, fullNamePM: $fullNamePM, personalPriotity: $personalPriotity, projectStatusName: $projectStatusName, pmId: $pmId, endUserName: $endUserName, dateLog: $dateLog, expectedPlanDate: $expectedPlanDate, expectedQuotationDate: $expectedQuotationDate, realityPlanDate: $realityPlanDate, realityProjectEndDate: $realityProjectEndDate, rowNum: $rowNum, priotityText: $priotityText, projectRequestId: $projectRequestId)';
   }
 
   @override
@@ -1289,7 +1311,9 @@ class _$ProjectItemImpl implements _ProjectItem {
                 .equals(other.realityProjectEndDate, realityProjectEndDate) &&
             (identical(other.rowNum, rowNum) || other.rowNum == rowNum) &&
             (identical(other.priotityText, priotityText) ||
-                other.priotityText == priotityText));
+                other.priotityText == priotityText) &&
+            (identical(other.projectRequestId, projectRequestId) ||
+                other.projectRequestId == projectRequestId));
   }
 
   @JsonKey(ignore: true)
@@ -1346,7 +1370,8 @@ class _$ProjectItemImpl implements _ProjectItem {
         const DeepCollectionEquality().hash(realityPlanDate),
         const DeepCollectionEquality().hash(realityProjectEndDate),
         rowNum,
-        priotityText
+        priotityText,
+        projectRequestId
       ]);
 
   @JsonKey(ignore: true)
@@ -1417,7 +1442,8 @@ abstract class _ProjectItem implements ProjectItem {
           @JsonKey(name: 'RealityProjectEndDate')
           final dynamic realityProjectEndDate,
           @JsonKey(name: 'RowNum') final int? rowNum,
-          @JsonKey(name: 'PriotityText') final double? priotityText}) =
+          @JsonKey(name: 'PriotityText') final double? priotityText,
+          @JsonKey(name: 'ProjectRequestID') final int? projectRequestId}) =
       _$ProjectItemImpl;
 
   factory _ProjectItem.fromJson(Map<String, dynamic> json) =
@@ -1576,6 +1602,11 @@ abstract class _ProjectItem implements ProjectItem {
   @override
   @JsonKey(name: 'PriotityText')
   double? get priotityText;
+  @override
+
+  /// ID của yêu cầu dự án - dùng để gọi API giải pháp.
+  @JsonKey(name: 'ProjectRequestID')
+  int? get projectRequestId;
   @override
   @JsonKey(ignore: true)
   _$$ProjectItemImplCopyWith<_$ProjectItemImpl> get copyWith =>

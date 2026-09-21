@@ -27,6 +27,7 @@ import '../features/version/data/datasource/service/app_version_service.dart';
 import '../features/version/data/repository/app_version_repo.dart';
 import '../features/version/data/repository/app_version_repo_impl.dart';
 import '../features/version/view/bloc/app_version_bloc.dart';
+import '../features/workplace/app/project/project_list/app/material_category/data/repository/material_category_repo_impl.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/datasource/service/booking_vehicle_service.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repo_impl.dart';
@@ -101,7 +102,8 @@ import '../features/workplace/app/reg_work/view/pages/lunch/data/repository/lunc
 import '../features/workplace/app/reg_work/view/pages/lunch/view/bloc/lunch_bloc.dart';
 import '../features/workplace/app/project/project_list/app/material_category/data/datasource/service/material_category_service.dart';
 import '../features/workplace/app/project/project_list/app/material_category/data/repository/material_category_repo.dart';
-import '../features/workplace/app/project/project_list/app/material_category/data/repository/material_category_repo_impl.dart';
+import '../features/workplace/app/project/project_list/app/material_category/data/repository/solution_repo.dart';
+import '../features/workplace/app/project/project_list/app/material_category/data/repository/solution_repo_impl.dart';
 import '../features/workplace/app/project/project_list/app/material_category/view/bloc/material_category_bloc.dart';
 import '../features/workplace/app/project/project_list/app/material_category/view/bloc/solution_bloc.dart';
 import '../features/workplace/app/project/project_list/app/material_category/view/bloc/version_bloc.dart';
@@ -239,7 +241,7 @@ void configureDependencies() {
       () => ProjectListService(getIt<Dio>()));
 
   getIt.registerLazySingleton<MaterialCategoryService>(
-      () => MaterialCategoryService());
+      () => MaterialCategoryService(getIt<Dio>()));
 
   getIt.registerLazySingleton<InOutService>(() => InOutService(getIt<Dio>()));
 
@@ -383,6 +385,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<MaterialCategoryRepo>(
     () => MaterialCategoryRepoImpl(getIt<MaterialCategoryService>()),
+  );
+
+  getIt.registerLazySingleton<SolutionRepo>(
+    () => SolutionRepoImpl(getIt<MaterialCategoryService>()),
   );
 
   getIt.registerLazySingleton<InOutRepo>(
@@ -562,7 +568,9 @@ void configureDependencies() {
 
   getIt.registerFactory<MaterialCategoryBloc>(() => MaterialCategoryBloc());
 
-  getIt.registerFactory<SolutionBloc>(() => SolutionBloc());
+  getIt.registerFactory<SolutionBloc>(
+    () => SolutionBloc(getIt<SolutionRepo>(), getIt<LogUtils>()),
+  );
 
   getIt.registerFactory<VersionBloc>(() => VersionBloc());
 

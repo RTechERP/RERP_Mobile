@@ -21,6 +21,7 @@ class ProjectCard extends StatelessWidget {
         context,
         projectCode: project.projectCode ?? '',
         projectName: project.projectName ?? '',
+        projectId: project.id,
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(16),

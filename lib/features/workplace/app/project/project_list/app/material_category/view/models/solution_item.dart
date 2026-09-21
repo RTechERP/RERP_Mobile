@@ -62,6 +62,19 @@ class SolutionItem {
     required this.requestCode,
     this.poApproval = PoApproval.notRequired,
     this.gpDate,
+    // Các trường bổ sung từ API
+    this.projectRequestId,
+    this.projectCode,
+    this.projectName,
+    this.stt = 0,
+    this.createdBy,
+    this.createdDate,
+    this.updatedBy,
+    this.updatedDate,
+    this.statusSolution,
+    this.isApprovedPrice,
+    this.isApprovedPO,
+    this.note,
   });
 
   final int id;
@@ -72,6 +85,20 @@ class SolutionItem {
   final String requestCode;
   final PoApproval poApproval;
   final DateTime? gpDate;
+
+  // Các trường bổ sung từ API
+  final int? projectRequestId;
+  final String? projectCode;
+  final String? projectName;
+  final int stt;
+  final String? createdBy;
+  final String? createdDate;
+  final String? updatedBy;
+  final String? updatedDate;
+  final int? statusSolution;
+  final bool? isApprovedPrice;
+  final bool? isApprovedPO;
+  final String? note;
 }
 
 /// Mapping màu cho status chip tab Giải pháp.

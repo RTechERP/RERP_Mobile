@@ -13,6 +13,8 @@ abstract class _$SolutionStateCWProxy {
 
   SolutionState solutions(List<SolutionItem> solutions);
 
+  SolutionState projectRequestId(int? projectRequestId);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SolutionState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -23,6 +25,7 @@ abstract class _$SolutionStateCWProxy {
     BaseStateStatus? status,
     String? message,
     List<SolutionItem>? solutions,
+    int? projectRequestId,
   });
 }
 
@@ -43,6 +46,10 @@ class _$SolutionStateCWProxyImpl implements _$SolutionStateCWProxy {
       this(solutions: solutions);
 
   @override
+  SolutionState projectRequestId(int? projectRequestId) =>
+      this(projectRequestId: projectRequestId);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SolutionState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -54,6 +61,7 @@ class _$SolutionStateCWProxyImpl implements _$SolutionStateCWProxy {
     Object? status = const $CopyWithPlaceholder(),
     Object? message = const $CopyWithPlaceholder(),
     Object? solutions = const $CopyWithPlaceholder(),
+    Object? projectRequestId = const $CopyWithPlaceholder(),
   }) {
     return SolutionState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -68,6 +76,10 @@ class _$SolutionStateCWProxyImpl implements _$SolutionStateCWProxy {
           ? _value.solutions
           // ignore: cast_nullable_to_non_nullable
           : solutions as List<SolutionItem>,
+      projectRequestId: projectRequestId == const $CopyWithPlaceholder()
+          ? _value.projectRequestId
+          // ignore: cast_nullable_to_non_nullable
+          : projectRequestId as int?,
     );
   }
 }

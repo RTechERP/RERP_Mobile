@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../common/constants/app_image.dart';
 import '../../../../../common/utils/dialog/index.dart';
+import '../../../../common/app_theme/index.dart';
 import '../../../../routes/route_names.dart';
 import '../../../workplace/data/datasource/models/index.dart';
 import '../../view/widgets/wp_action_card.dart';
@@ -16,8 +17,9 @@ class ProjectMenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
-      appBar: AppBar(
+      appBar: AppBarCommon(
         title: const Text('Dự án'),
+        onBackTap: () => context.pop(),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(top: 12),

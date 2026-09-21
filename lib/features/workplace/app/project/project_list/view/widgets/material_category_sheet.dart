@@ -8,22 +8,25 @@ import '../../app/material_category/view/widgets/material_category_style.dart';
 
 /// Bottom sheet hiển thị menu danh mục vật tư khi tap vào card dự án.
 /// Tap vào một danh mục sẽ navigate tới màn MaterialCategoryScreen.
-class MaterialCategorySheet extends StatelessWidget {
+class MaterialCategorySheet extends StatefulWidget {
   const MaterialCategorySheet({
     super.key,
     required this.projectCode,
     required this.projectName,
     required this.categories,
+    this.projectId,
   });
 
   final String projectCode;
   final String projectName;
   final List<MaterialCategoryItem> categories;
+  final int? projectId;
 
   static Future<void> show(
     BuildContext context, {
     required String projectCode,
     required String projectName,
+    int? projectId,
   }) {
     return showModalBottomSheet<void>(
       context: context,
@@ -33,10 +36,16 @@ class MaterialCategorySheet extends StatelessWidget {
         projectCode: projectCode,
         projectName: projectName,
         categories: MaterialCategoryService.previewCategories(),
+        projectId: projectId,
       ),
     );
   }
 
+  @override
+  State<MaterialCategorySheet> createState() => _MaterialCategorySheetState();
+}
+
+class _MaterialCategorySheetState extends State<MaterialCategorySheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -83,7 +92,7 @@ class MaterialCategorySheet extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        projectName,
+                        widget.projectName,
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w700,
@@ -92,7 +101,7 @@ class MaterialCategorySheet extends StatelessWidget {
                       ),
                       const SizedBox(height: 2),
                       Text(
-                        projectCode,
+                        widget.projectCode,
                         style: const TextStyle(
                           fontSize: 12,
                           color: AppColors.gray,
@@ -119,14 +128,17 @@ class MaterialCategorySheet extends StatelessWidget {
                 mainAxisSpacing: 12,
                 childAspectRatio: 0.95,
               ),
-              itemCount: categories.length,
+              itemCount: widget.categories.length,
               itemBuilder: (context, index) {
-                final cat = categories[index];
+                final cat = widget.categories[index];
                 return _CategoryTile(
                   category: cat,
                   onTap: () {
                     Navigator.pop(context);
-                    context.push('/project/menu/list/material-category');
+                    final query = widget.projectId != null
+                        ? '?projectRequestId=${widget.projectId}'
+                        : '';
+                    context.push('/project/menu/list/material-category$query');
                   },
                 );
               },

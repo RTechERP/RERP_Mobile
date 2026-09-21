@@ -68,6 +68,8 @@ class ProjectItem with _$ProjectItem {
     @JsonKey(name: 'RealityProjectEndDate') dynamic realityProjectEndDate,
     @JsonKey(name: 'RowNum') int? rowNum,
     @JsonKey(name: 'PriotityText') double? priotityText,
+    /// ID của yêu cầu dự án - dùng để gọi API giải pháp.
+    @JsonKey(name: 'ProjectRequestID') int? projectRequestId,
   }) = _ProjectItem;
 
   factory ProjectItem.fromJson(Map<String, dynamic> json) =>

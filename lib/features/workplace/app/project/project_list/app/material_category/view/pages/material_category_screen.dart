@@ -12,7 +12,12 @@ import 'version_tab.dart';
 /// - Tab 2: Phiên bản (VersionTab)
 /// - Tab 3: Danh mục vật tư (dùng MaterialCategoryScreen theo URL)
 class MaterialCategoryScreen extends StatefulWidget {
-  const MaterialCategoryScreen({super.key});
+  const MaterialCategoryScreen({
+    super.key,
+    this.projectRequestId,
+  });
+
+  final int? projectRequestId;
 
   @override
   State<MaterialCategoryScreen> createState() =>
@@ -89,10 +94,10 @@ class _MaterialCategoryScreenState extends State<MaterialCategoryScreen>
           Expanded(
             child: TabBarView(
               controller: _tabController,
-              children: const [
-                SolutionTab(),
-                VersionTab(),
-                MaterialCategoryTab(),
+              children: [
+                SolutionTab(projectRequestId: widget.projectRequestId),
+                const VersionTab(),
+                const MaterialCategoryTab(),
               ],
             ),
           ),

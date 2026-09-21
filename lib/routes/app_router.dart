@@ -1231,8 +1231,14 @@ class AppRouter {
                 routes: [
                   GoRoute(
                     path: RouteNames.materialCategory,
-                    builder: (context, state) =>
-                        const MaterialCategoryScreen(),
+                    builder: (context, state) {
+                      final projectRequestId = int.tryParse(
+                        state.uri.queryParameters['projectRequestId'] ?? '',
+                      );
+                      return MaterialCategoryScreen(
+                        projectRequestId: projectRequestId,
+                      );
+                    },
                   ),
                 ],
               ),

@@ -75,6 +75,7 @@ _$ProjectItemImpl _$$ProjectItemImplFromJson(Map<String, dynamic> json) =>
       realityProjectEndDate: json['RealityProjectEndDate'],
       rowNum: (json['RowNum'] as num?)?.toInt(),
       priotityText: (json['PriotityText'] as num?)?.toDouble(),
+      projectRequestId: (json['ProjectRequestID'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$ProjectItemImplToJson(_$ProjectItemImpl instance) =>
@@ -130,4 +131,5 @@ Map<String, dynamic> _$$ProjectItemImplToJson(_$ProjectItemImpl instance) =>
       'RealityProjectEndDate': instance.realityProjectEndDate,
       'RowNum': instance.rowNum,
       'PriotityText': instance.priotityText,
+      'ProjectRequestID': instance.projectRequestId,
     };

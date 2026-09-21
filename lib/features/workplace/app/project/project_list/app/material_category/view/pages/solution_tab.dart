@@ -11,7 +11,9 @@ import '../models/solution_item.dart';
 
 /// Tab "Giải pháp" hiển thị danh sách giải pháp của dự án dạng card.
 class SolutionTab extends StatefulWidget {
-  const SolutionTab({super.key});
+  const SolutionTab({super.key, this.projectRequestId});
+
+  final int? projectRequestId;
 
   @override
   State<SolutionTab> createState() => _SolutionTabState();
@@ -22,7 +24,7 @@ class _SolutionTabState extends BaseState<SolutionTab, SolutionEvent,
   @override
   void initState() {
     super.initState();
-    bloc.add(const SolutionEvent.init());
+    bloc.add(SolutionEvent.init(projectRequestId: widget.projectRequestId));
   }
 
   @override

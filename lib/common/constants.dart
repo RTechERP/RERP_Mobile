@@ -511,4 +511,7 @@ class ApiEndPoint {
   ///          "approverID", "type" (1 = gia hạn, 2 = bàn giao) }`.
   static const String extendHandoverRegistration =
       '/ESLRegistration/extend-handover';
+
+  // Project Worker - Solution
+  static const String getSolution = '/projectworker/get-solution';
 }
