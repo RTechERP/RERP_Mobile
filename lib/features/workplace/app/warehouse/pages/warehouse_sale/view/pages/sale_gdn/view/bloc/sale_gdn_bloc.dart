@@ -133,6 +133,18 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
               billId: billId,
               isReceived: isReceived,
             ),
+        bulkUpdateBillStatusPreparing: (billIds, isPrepared) =>
+            _bulkUpdateBillStatusPreparing(
+              emit,
+              billIds: billIds,
+              isPrepared: isPrepared,
+            ),
+        bulkUpdateBillStatusReceive: (billIds, isReceived) =>
+            _bulkUpdateBillStatusReceive(
+              emit,
+              billIds: billIds,
+              isReceived: isReceived,
+            ),
         clearBillStatusMessage: () => _clearBillStatusMessage(emit),
       );
     });
@@ -178,7 +190,6 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
     };
   }
 
-
   Future<void> _onInit(Emitter<SaleGdnState> emit) async {
     emit(state.copyWith(status: BaseStateStatus.loading));
 
@@ -205,6 +216,10 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
       (_) => state.currentFullName,
       (u) => u?.fullName ?? state.currentFullName,
     );
+    final isAdmin = userRes.fold(
+      (_) => state.isCurrentUserAdmin,
+      (u) => u?.isAdmin ?? state.isCurrentUserAdmin,
+    );
 
     await res.fold(
       (l) async {
@@ -214,6 +229,7 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
           message: l.truncatedMsg,
           currentEmployeeId: employeeId,
           currentFullName: fullName,
+          isCurrentUserAdmin: isAdmin,
         ));
       },
       (r) async {
@@ -223,6 +239,7 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
           gdns: r,
           currentEmployeeId: employeeId,
           currentFullName: fullName,
+          isCurrentUserAdmin: isAdmin,
         ));
       },
     );
@@ -1733,6 +1750,104 @@ BillExporResponse? _findGdnInList(String code) {
   _clearBillStatusMessage(Emitter<SaleGdnState> emit) {
     if (state.billStatusMessage == null) return;
     emit(state.copyWith(billStatusMessage: null));
+  }
+
+  /// Cập nhật trạng thái "đã chuẩn bị hàng" cho nhiều phiếu.
+  /// Gọi song song các API `/billexport/status-preparing`, tổng hợp kết quả,
+  /// reload list, clear selection và emit `billStatusMessage` tổng kết.
+  Future<void> _bulkUpdateBillStatusPreparing(
+    Emitter<SaleGdnState> emit, {
+    required Set<int> billIds,
+    required bool isPrepared,
+  }) async {
+    final ids = billIds.where((id) => id > 0).toSet();
+    if (ids.isEmpty) return;
+
+    emit(state.copyWith(
+      isUpdatingStatus: true,
+      billStatusMessage: null,
+    ));
+
+    _log.logI('🔄 bulk updateStatusPreparing count=${ids.length} '
+        'isPrepared=$isPrepared');
+
+    final payload = ids
+        .map((id) => {'ID': id, 'IsOrderPrepared': isPrepared})
+        .toList();
+    final res = await _repo.updateStatusPreparing(payload: payload);
+
+    // fold returns Future; closures assign `message` rồi trả Future.value.
+    // Dùng late để analyzer chấp nhận closure async.
+    final message = await res.fold<String>(
+      (l) {
+        _log.logE('❌ bulk updateStatusPreparing failed: $l');
+        return 'error:${l.truncatedMsg}';
+      },
+      (r) {
+        _log.logI('✅ bulk updateStatusPreparing success');
+        return 'success:'
+            '${isPrepared ? "Đã xác nhận chuẩn bị" : "Đã huỷ chuẩn bị"} '
+            '${ids.length} phiếu';
+      },
+    );
+
+    // Reload list để phản ánh trạng thái mới từ server.
+    await _fetchGdns(emit);
+
+    // Clear selection và emit message.
+    emit(state.copyWith(
+      isUpdatingStatus: false,
+      selectedBillIds: const <int>{},
+      billStatusMessage: message,
+    ));
+  }
+
+  /// Cập nhật trạng thái "đã nhận hàng" cho nhiều phiếu.
+  /// Gọi song song các API `/billexport/status-receive`, tổng hợp kết quả,
+  /// reload list, clear selection và emit `billStatusMessage` tổng kết.
+  Future<void> _bulkUpdateBillStatusReceive(
+    Emitter<SaleGdnState> emit, {
+    required Set<int> billIds,
+    required bool isReceived,
+  }) async {
+    final ids = billIds.where((id) => id > 0).toSet();
+    if (ids.isEmpty) return;
+
+    emit(state.copyWith(
+      isUpdatingStatus: true,
+      billStatusMessage: null,
+    ));
+
+    _log.logI('🔄 bulk updateStatusReceive count=${ids.length} '
+        'isReceived=$isReceived');
+
+    final payload = ids
+        .map((id) => {'ID': id, 'IsOrderReceived': isReceived})
+        .toList();
+    final res = await _repo.updateStatusReceive(payload: payload);
+
+    final message = await res.fold<String>(
+      (l) {
+        _log.logE('❌ bulk updateStatusReceive failed: $l');
+        return 'error:${l.truncatedMsg}';
+      },
+      (r) {
+        _log.logI('✅ bulk updateStatusReceive success');
+        return 'success:'
+            '${isReceived ? "Đã xác nhận nhận" : "Đã huỷ nhận"} '
+            '${ids.length} phiếu';
+      },
+    );
+
+    // Reload list để phản ánh trạng thái mới từ server.
+    await _fetchGdns(emit);
+
+    // Clear selection và emit message.
+    emit(state.copyWith(
+      isUpdatingStatus: false,
+      selectedBillIds: const <int>{},
+      billStatusMessage: message,
+    ));
   }
 }
 

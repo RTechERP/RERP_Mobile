@@ -46,6 +46,10 @@ class SaleGdnState extends BaseBlocState {
   /// của phiếu nhằm quyết định nhóm action "Nhận hàng" có hiển thị hay không.
   final String currentFullName;
 
+  /// `true` nếu user hiện tại có quyền admin (`User.IsAdmin`).
+  /// User admin được thao tác mọi phiếu (giống user đặc biệt).
+  final bool isCurrentUserAdmin;
+
   /// `true` khi đang gọi API check / huỷ trạng thái chuẩn bị / nhận hàng.
   /// UI dùng để disable các action tile hoặc hiển thị spinner.
   final bool isUpdatingStatus;
@@ -122,6 +126,7 @@ class SaleGdnState extends BaseBlocState {
     this.selectedBillIds = const <int>{},
     this.currentEmployeeId = 0,
     this.currentFullName = '',
+    this.isCurrentUserAdmin = false,
     this.isUpdatingStatus = false,
     this.billStatusMessage,
   });
@@ -170,6 +175,7 @@ class SaleGdnState extends BaseBlocState {
         selectedBillIds,
         currentEmployeeId,
         currentFullName,
+        isCurrentUserAdmin,
         isUpdatingStatus,
         billStatusMessage,
       ];

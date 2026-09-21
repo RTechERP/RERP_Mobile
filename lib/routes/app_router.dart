@@ -13,9 +13,18 @@ import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/stamp/view
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/stamp/view/pages/stamp_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/stamp/view/pages/stamp_add_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/stamp/view/pages/stamp_detail_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/test_table/view/bloc/test_table_bloc.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/test_table/view/pages/test_table_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/test_table/view/pages/test_table_add_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/test_table/view/pages/test_table_edit_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/test_table/view/pages/test_table_qr_scan_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/test_table/view/pages/test_table_extend_handover_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/test_table/data/datasource/models/test_table_model.dart';
 import 'package:rtc_erp/features/workplace/app/signature/view/bloc/my_signature_bloc.dart';
 import 'package:rtc_erp/features/workplace/app/signature/view/pages/signature_screen.dart';
 import 'package:rtc_erp/features/workplace/app/signature/view/pages/signature_add_screen.dart';
+import 'package:rtc_erp/features/chatbot/view/bloc/rio_chat_bloc.dart';
+import 'package:rtc_erp/features/chatbot/view/pages/rio_chat_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/data/datasource/models/booking_vehicle_model.dart';
 import 'package:rtc_erp/features/workplace/app/favorites/view/pages/favorites_adding_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/view/bloc/booking_vehicle_bloc.dart';
@@ -1273,6 +1282,110 @@ class AppRouter {
         ],
       ),
 
+      //---(Test Table)---//
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(value: getIt<TestTableBloc>(), child: child);
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.testTable,
+            builder: (context, state) => const TestTableScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.testTableAdd,
+            builder: (context, state) {
+              final raw = state.uri.queryParameters['testTableId'];
+              final id = int.tryParse(raw ?? '');
+              return TestTableAddScreen(prefilledTestTableId: id);
+            },
+          ),
+          GoRoute(
+            path: RouteNames.testTableQrScan,
+            builder: (context, state) => const TestTableQrScanScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.testTableEdit,
+            builder: (context, state) {
+              final registrationId = int.tryParse(
+                state.uri.queryParameters['registrationId'] ?? '',
+              );
+              final cardItem = state.extra as TestCardItem?;
+              if (registrationId == null || registrationId == 0) {
+                return Scaffold(
+                  appBar: AppBar(title: const Text('Chỉnh sửa đăng ký bàn test')),
+                  body: const Center(
+                    child: Text('Không tìm thấy mã phiếu đăng ký.'),
+                  ),
+                );
+              }
+              return TestTableEditScreen(
+                registrationId: registrationId,
+                cardItem: cardItem,
+              );
+            },
+          ),
+          GoRoute(
+            path: RouteNames.testTableExtendHandover,
+            builder: (context, state) {
+              final registrationId = int.tryParse(
+                state.uri.queryParameters['registrationId'] ?? '',
+              );
+              final cardItem = state.extra as TestCardItem?;
+              if (registrationId == null ||
+                  registrationId == 0 ||
+                  cardItem == null) {
+                return Scaffold(
+                  appBar: AppBar(title: const Text('Gia hạn / Bàn giao')),
+                  body: const Center(
+                    child: Text('Không tìm thấy phiếu đăng ký.'),
+                  ),
+                );
+              }
+              // Guard: nếu phiếu đã có 2 lần (entry trong DetailsJson)
+              // thì không cho vào màn gia hạn / bàn giao nữa.
+              final entryCount = countDetailsJsonEntries(cardItem.detailsJson);
+              if (entryCount >= 2) {
+                return Scaffold(
+                  appBar: AppBar(title: const Text('Gia hạn / Bàn giao')),
+                  body: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(24),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Icon(
+                            Icons.block_outlined,
+                            size: 48,
+                            color: Colors.grey,
+                          ),
+                          const SizedBox(height: 12),
+                          Text(
+                            'Phiếu đã có $entryCount lần đăng ký, '
+                            'không thể gia hạn / bàn giao thêm.',
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(fontSize: 15),
+                          ),
+                          const SizedBox(height: 16),
+                          ElevatedButton(
+                            onPressed: () => context.pop(),
+                            child: const Text('Quay lại'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              }
+              return TestTableExtendHandoverScreen(
+                registrationId: registrationId,
+                cardItem: cardItem,
+              );
+            },
+          ),
+        ],
+      ),
+
       //---(Week Plan)---//
       ShellRoute(
         builder: (context, state, child) {
@@ -1590,6 +1703,15 @@ class AppRouter {
         builder: (context, state) => BlocProvider.value(
           value: getIt<SummaryOvertimeBloc>(),
           child: const SummaryOvertimeScreen(),
+        ),
+      ),
+
+      //---(Chatbot - Rio Chat)---//
+      GoRoute(
+        path: RouteNames.chatbot,
+        builder: (context, state) => BlocProvider.value(
+          value: getIt<RioChatBloc>(),
+          child: const RioChatScreen(),
         ),
       ),
     ],

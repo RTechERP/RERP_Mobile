@@ -205,6 +205,22 @@ class SaleGdnEvent with _$SaleGdnEvent {
     required bool isReceived,
   }) = _UpdateBillStatusReceive;
 
+  /// Cập nhật trạng thái "đã chuẩn bị hàng" cho nhiều phiếu cùng lúc.
+  /// `isPrepared = true` → tick; `false` → huỷ.
+  /// Sau khi xong sẽ reload list và emit `billStatusMessage` tổng kết
+  /// (vd. "Đã xác nhận chuẩn bị 3 phiếu").
+  const factory SaleGdnEvent.bulkUpdateBillStatusPreparing({
+    required Set<int> billIds,
+    required bool isPrepared,
+  }) = _BulkUpdateBillStatusPreparing;
+
+  /// Cập nhật trạng thái "đã nhận hàng" cho nhiều phiếu cùng lúc.
+  /// `isReceived = true` → tick; `false` → huỷ.
+  const factory SaleGdnEvent.bulkUpdateBillStatusReceive({
+    required Set<int> billIds,
+    required bool isReceived,
+  }) = _BulkUpdateBillStatusReceive;
+
   /// Reset cờ one-shot `billStatusMessage` sau khi UI đã show snackbar.
   const factory SaleGdnEvent.clearBillStatusMessage() =
       _ClearBillStatusMessage;

@@ -61,6 +61,7 @@ _$BillExporResponseImpl _$$BillExporResponseImplFromJson(
       isAfterHours: json['IsAfterHours'] as bool?,
       isIncurredApproved: json['IsIncurredApproved'] as bool?,
       receiverFullName: json['ReceiverFullName'] as String?,
+      receiverId: (json['ReceiverID'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$BillExporResponseImplToJson(
@@ -118,6 +119,7 @@ Map<String, dynamic> _$$BillExporResponseImplToJson(
       'IsAfterHours': instance.isAfterHours,
       'IsIncurredApproved': instance.isIncurredApproved,
       'ReceiverFullName': instance.receiverFullName,
+      'ReceiverID': instance.receiverId,
     };
 
 _$TypeWarehouseResponseImpl _$$TypeWarehouseResponseImplFromJson(

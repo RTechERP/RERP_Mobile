@@ -463,4 +463,52 @@ class ApiEndPoint {
 
   // Material Category
   static const String getMaterialCategories = '/MaterialCategory/get-material-categories';
+
+  /// Lấy chi tiết phiếu card theo registrationId.
+  /// API: GET /ESLRegistration/get-details?registrationId=X.
+  static const String getTestCardDetails = '/ESLRegistration/get-details';
+
+  static const String getTestTable = '/ESLRegistration/get-all-registration';
+
+  /// Bàn test ESL: GET /ESLTestTable/getall.
+  static const String getEslTestTable = '/ESLTestTable/getall';
+
+  /// Máy test theo bàn: GET /ESLTestMachine/get-by-table?testTableId=X.
+  static const String getTestMachineByTable =
+      '/ESLTestMachine/get-by-table';
+
+  /// Người duyệt: GET /ESLRegistration/get-all-user-approve.
+  static const String getAllUserApprove = '/ESLRegistration/get-all-user-approve';
+
+  /// Nhân viên: GET /Employee?status=&departmentid=&keyword=.
+  static const String getEmployee = '/Employee';
+
+  /// Dự án: GET /ProjectTask/get-all-project.
+  static const String getAllProject = '/ProjectTask/get-all-project';
+
+  /// Check xung đột trước khi lưu phiếu đăng ký bàn test.
+  /// API: POST /ESLRegistration/check-conflict (form-data).
+  static const String checkConflictRegistration =
+      '/ESLRegistration/check-conflict';
+
+  /// Lưu phiếu đăng ký bàn test (thêm mới / cập nhật).
+  /// API: POST /ESLRegistration/save (form-data).
+  static const String saveRegistration = '/ESLRegistration/save';
+
+  /// Xóa phiếu đăng ký bàn test.
+  /// API: POST /ESLRegistration/delete-master?masterID={masterID}.
+  /// Body: `{ "masterID": <int> }`.
+  static const String deleteRegistration = '/ESLRegistration/delete-master';
+
+  /// Trả bàn test (chỉ áp dụng khi phiếu đã duyệt — status == 1).
+  /// API: POST /ESLRegistration/return (form-data).
+  /// Body: `{ "registrationID": <int>, "returnBy": <int> }`.
+  static const String returnRegistration = '/ESLRegistration/return';
+
+  /// Gia hạn / bàn giao bàn test (chỉ áp dụng với phiếu đã duyệt).
+  /// API: POST /ESLRegistration/extend-handover (form-data).
+  /// Body: `{ "registrationID", "startDate", "endDate", "ownerID",
+  ///          "approverID", "type" (1 = gia hạn, 2 = bàn giao) }`.
+  static const String extendHandoverRegistration =
+      '/ESLRegistration/extend-handover';
 }

@@ -77,6 +77,10 @@ mixin _$SaleGdnEvent {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) =>
       throw _privateConstructorUsedError;
@@ -137,6 +141,10 @@ mixin _$SaleGdnEvent {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) =>
       throw _privateConstructorUsedError;
@@ -197,6 +205,10 @@ mixin _$SaleGdnEvent {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) =>
@@ -268,6 +280,10 @@ mixin _$SaleGdnEvent {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) =>
@@ -330,6 +346,10 @@ mixin _$SaleGdnEvent {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) =>
       throw _privateConstructorUsedError;
@@ -391,6 +411,10 @@ mixin _$SaleGdnEvent {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) =>
@@ -511,6 +535,10 @@ class _$InitImpl implements _Init {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return init();
@@ -574,6 +602,10 @@ class _$InitImpl implements _Init {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return init?.call();
@@ -637,6 +669,10 @@ class _$InitImpl implements _Init {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -714,6 +750,10 @@ class _$InitImpl implements _Init {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -779,6 +819,10 @@ class _$InitImpl implements _Init {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return init?.call(this);
@@ -843,6 +887,10 @@ class _$InitImpl implements _Init {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -954,6 +1002,10 @@ class _$FetchGdnsImpl implements _FetchGdns {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return fetchGdns();
@@ -1017,6 +1069,10 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return fetchGdns?.call();
@@ -1080,6 +1136,10 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -1157,6 +1217,10 @@ class _$FetchGdnsImpl implements _FetchGdns {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -1222,6 +1286,10 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return fetchGdns?.call(this);
@@ -1286,6 +1354,10 @@ class _$FetchGdnsImpl implements _FetchGdns {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -1424,6 +1496,10 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return searchByKeyword(keyword);
@@ -1487,6 +1563,10 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return searchByKeyword?.call(keyword);
@@ -1550,6 +1630,10 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -1627,6 +1711,10 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -1692,6 +1780,10 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return searchByKeyword?.call(this);
@@ -1756,6 +1848,10 @@ class _$SearchByKeywordImpl implements _SearchByKeyword {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -1901,6 +1997,10 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return searchByVoucherNumber(voucherNumber);
@@ -1964,6 +2064,10 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return searchByVoucherNumber?.call(voucherNumber);
@@ -2027,6 +2131,10 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -2104,6 +2212,10 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -2169,6 +2281,10 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return searchByVoucherNumber?.call(this);
@@ -2233,6 +2349,10 @@ class _$SearchByVoucherNumberImpl implements _SearchByVoucherNumber {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -2350,6 +2470,10 @@ class _$ClearSearchImpl implements _ClearSearch {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return clearSearch();
@@ -2413,6 +2537,10 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return clearSearch?.call();
@@ -2476,6 +2604,10 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -2553,6 +2685,10 @@ class _$ClearSearchImpl implements _ClearSearch {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -2618,6 +2754,10 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return clearSearch?.call(this);
@@ -2682,6 +2822,10 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -2820,6 +2964,10 @@ class _$ScanQrToDetailImpl implements _ScanQrToDetail {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return scanQrToDetail(code);
@@ -2883,6 +3031,10 @@ class _$ScanQrToDetailImpl implements _ScanQrToDetail {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return scanQrToDetail?.call(code);
@@ -2946,6 +3098,10 @@ class _$ScanQrToDetailImpl implements _ScanQrToDetail {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -3023,6 +3179,10 @@ class _$ScanQrToDetailImpl implements _ScanQrToDetail {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -3088,6 +3248,10 @@ class _$ScanQrToDetailImpl implements _ScanQrToDetail {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return scanQrToDetail?.call(this);
@@ -3152,6 +3316,10 @@ class _$ScanQrToDetailImpl implements _ScanQrToDetail {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -3268,6 +3436,10 @@ class _$ClearOpenedDetailImpl implements _ClearOpenedDetail {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return clearOpenedDetail();
@@ -3331,6 +3503,10 @@ class _$ClearOpenedDetailImpl implements _ClearOpenedDetail {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return clearOpenedDetail?.call();
@@ -3394,6 +3570,10 @@ class _$ClearOpenedDetailImpl implements _ClearOpenedDetail {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -3471,6 +3651,10 @@ class _$ClearOpenedDetailImpl implements _ClearOpenedDetail {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -3536,6 +3720,10 @@ class _$ClearOpenedDetailImpl implements _ClearOpenedDetail {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return clearOpenedDetail?.call(this);
@@ -3600,6 +3788,10 @@ class _$ClearOpenedDetailImpl implements _ClearOpenedDetail {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -3714,6 +3906,10 @@ class _$ClearScanResultMessageImpl implements _ClearScanResultMessage {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return clearScanResultMessage();
@@ -3777,6 +3973,10 @@ class _$ClearScanResultMessageImpl implements _ClearScanResultMessage {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return clearScanResultMessage?.call();
@@ -3840,6 +4040,10 @@ class _$ClearScanResultMessageImpl implements _ClearScanResultMessage {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -3917,6 +4121,10 @@ class _$ClearScanResultMessageImpl implements _ClearScanResultMessage {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -3982,6 +4190,10 @@ class _$ClearScanResultMessageImpl implements _ClearScanResultMessage {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return clearScanResultMessage?.call(this);
@@ -4046,6 +4258,10 @@ class _$ClearScanResultMessageImpl implements _ClearScanResultMessage {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -4158,6 +4374,10 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return fetchWarehouseTypes();
@@ -4221,6 +4441,10 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return fetchWarehouseTypes?.call();
@@ -4284,6 +4508,10 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -4361,6 +4589,10 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -4426,6 +4658,10 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return fetchWarehouseTypes?.call(this);
@@ -4490,6 +4726,10 @@ class _$FetchWarehouseTypesImpl implements _FetchWarehouseTypes {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -4638,6 +4878,10 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return filterByWarehouseType(warehouseTypeIds);
@@ -4701,6 +4945,10 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return filterByWarehouseType?.call(warehouseTypeIds);
@@ -4764,6 +5012,10 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -4841,6 +5093,10 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -4906,6 +5162,10 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return filterByWarehouseType?.call(this);
@@ -4970,6 +5230,10 @@ class _$FilterByWarehouseTypeImpl implements _FilterByWarehouseType {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -5114,6 +5378,10 @@ class _$FilterByStatusImpl implements _FilterByStatus {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return filterByStatus(status);
@@ -5177,6 +5445,10 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return filterByStatus?.call(status);
@@ -5240,6 +5512,10 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -5317,6 +5593,10 @@ class _$FilterByStatusImpl implements _FilterByStatus {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -5382,6 +5662,10 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return filterByStatus?.call(this);
@@ -5446,6 +5730,10 @@ class _$FilterByStatusImpl implements _FilterByStatus {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -5562,6 +5850,10 @@ class _$ClearFiltersImpl implements _ClearFilters {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return clearFilters();
@@ -5625,6 +5917,10 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return clearFilters?.call();
@@ -5688,6 +5984,10 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -5765,6 +6065,10 @@ class _$ClearFiltersImpl implements _ClearFilters {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -5830,6 +6134,10 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return clearFilters?.call(this);
@@ -5894,6 +6202,10 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -6033,6 +6345,10 @@ class _$FilterBySenderImpl implements _FilterBySender {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return filterBySender(senderId);
@@ -6096,6 +6412,10 @@ class _$FilterBySenderImpl implements _FilterBySender {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return filterBySender?.call(senderId);
@@ -6159,6 +6479,10 @@ class _$FilterBySenderImpl implements _FilterBySender {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -6236,6 +6560,10 @@ class _$FilterBySenderImpl implements _FilterBySender {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -6301,6 +6629,10 @@ class _$FilterBySenderImpl implements _FilterBySender {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return filterBySender?.call(this);
@@ -6365,6 +6697,10 @@ class _$FilterBySenderImpl implements _FilterBySender {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -6509,6 +6845,10 @@ class _$FilterBySenderNameImpl implements _FilterBySenderName {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return filterBySenderName(senderName);
@@ -6572,6 +6912,10 @@ class _$FilterBySenderNameImpl implements _FilterBySenderName {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return filterBySenderName?.call(senderName);
@@ -6635,6 +6979,10 @@ class _$FilterBySenderNameImpl implements _FilterBySenderName {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -6712,6 +7060,10 @@ class _$FilterBySenderNameImpl implements _FilterBySenderName {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -6777,6 +7129,10 @@ class _$FilterBySenderNameImpl implements _FilterBySenderName {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return filterBySenderName?.call(this);
@@ -6841,6 +7197,10 @@ class _$FilterBySenderNameImpl implements _FilterBySenderName {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -6986,6 +7346,10 @@ class _$FilterByReceiverImpl implements _FilterByReceiver {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return filterByReceiver(receiverName);
@@ -7049,6 +7413,10 @@ class _$FilterByReceiverImpl implements _FilterByReceiver {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return filterByReceiver?.call(receiverName);
@@ -7112,6 +7480,10 @@ class _$FilterByReceiverImpl implements _FilterByReceiver {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -7189,6 +7561,10 @@ class _$FilterByReceiverImpl implements _FilterByReceiver {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -7254,6 +7630,10 @@ class _$FilterByReceiverImpl implements _FilterByReceiver {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return filterByReceiver?.call(this);
@@ -7318,6 +7698,10 @@ class _$FilterByReceiverImpl implements _FilterByReceiver {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -7471,6 +7855,10 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return changeDateRange(dateStart, dateEnd);
@@ -7534,6 +7922,10 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
@@ -7597,6 +7989,10 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -7674,6 +8070,10 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -7739,6 +8139,10 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return changeDateRange?.call(this);
@@ -7803,6 +8207,10 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -7971,6 +8379,10 @@ class _$InitDetailImpl implements _InitDetail {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return initDetail(id, bill);
@@ -8034,6 +8446,10 @@ class _$InitDetailImpl implements _InitDetail {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return initDetail?.call(id, bill);
@@ -8097,6 +8513,10 @@ class _$InitDetailImpl implements _InitDetail {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -8174,6 +8594,10 @@ class _$InitDetailImpl implements _InitDetail {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -8239,6 +8663,10 @@ class _$InitDetailImpl implements _InitDetail {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return initDetail?.call(this);
@@ -8303,6 +8731,10 @@ class _$InitDetailImpl implements _InitDetail {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -8449,6 +8881,10 @@ class _$SetWarehouseCodeImpl implements _SetWarehouseCode {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return setWarehouseCode(warehouseCode);
@@ -8512,6 +8948,10 @@ class _$SetWarehouseCodeImpl implements _SetWarehouseCode {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return setWarehouseCode?.call(warehouseCode);
@@ -8575,6 +9015,10 @@ class _$SetWarehouseCodeImpl implements _SetWarehouseCode {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -8652,6 +9096,10 @@ class _$SetWarehouseCodeImpl implements _SetWarehouseCode {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -8717,6 +9165,10 @@ class _$SetWarehouseCodeImpl implements _SetWarehouseCode {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return setWarehouseCode?.call(this);
@@ -8781,6 +9233,10 @@ class _$SetWarehouseCodeImpl implements _SetWarehouseCode {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -8941,6 +9397,10 @@ class _$AddImagesImpl implements _AddImages {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return addImages(stt, imagePaths);
@@ -9004,6 +9464,10 @@ class _$AddImagesImpl implements _AddImages {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return addImages?.call(stt, imagePaths);
@@ -9067,6 +9531,10 @@ class _$AddImagesImpl implements _AddImages {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -9144,6 +9612,10 @@ class _$AddImagesImpl implements _AddImages {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -9209,6 +9681,10 @@ class _$AddImagesImpl implements _AddImages {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return addImages?.call(this);
@@ -9273,6 +9749,10 @@ class _$AddImagesImpl implements _AddImages {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -9428,6 +9908,10 @@ class _$MarkImageToDeleteImpl implements _MarkImageToDelete {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return markImageToDelete(fileId, localPath);
@@ -9491,6 +9975,10 @@ class _$MarkImageToDeleteImpl implements _MarkImageToDelete {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return markImageToDelete?.call(fileId, localPath);
@@ -9554,6 +10042,10 @@ class _$MarkImageToDeleteImpl implements _MarkImageToDelete {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -9631,6 +10123,10 @@ class _$MarkImageToDeleteImpl implements _MarkImageToDelete {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -9696,6 +10192,10 @@ class _$MarkImageToDeleteImpl implements _MarkImageToDelete {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return markImageToDelete?.call(this);
@@ -9760,6 +10260,10 @@ class _$MarkImageToDeleteImpl implements _MarkImageToDelete {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -9936,6 +10440,10 @@ class _$MarkImagesToDeleteBulkImpl implements _MarkImagesToDeleteBulk {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return markImagesToDeleteBulk(fileIds, localPaths);
@@ -9999,6 +10507,10 @@ class _$MarkImagesToDeleteBulkImpl implements _MarkImagesToDeleteBulk {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return markImagesToDeleteBulk?.call(fileIds, localPaths);
@@ -10062,6 +10574,10 @@ class _$MarkImagesToDeleteBulkImpl implements _MarkImagesToDeleteBulk {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -10139,6 +10655,10 @@ class _$MarkImagesToDeleteBulkImpl implements _MarkImagesToDeleteBulk {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -10204,6 +10724,10 @@ class _$MarkImagesToDeleteBulkImpl implements _MarkImagesToDeleteBulk {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return markImagesToDeleteBulk?.call(this);
@@ -10268,6 +10792,10 @@ class _$MarkImagesToDeleteBulkImpl implements _MarkImagesToDeleteBulk {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -10423,6 +10951,10 @@ class _$UnmarkImageToDeleteImpl implements _UnmarkImageToDelete {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return unmarkImageToDelete(fileId, localPath);
@@ -10486,6 +11018,10 @@ class _$UnmarkImageToDeleteImpl implements _UnmarkImageToDelete {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return unmarkImageToDelete?.call(fileId, localPath);
@@ -10549,6 +11085,10 @@ class _$UnmarkImageToDeleteImpl implements _UnmarkImageToDelete {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -10626,6 +11166,10 @@ class _$UnmarkImageToDeleteImpl implements _UnmarkImageToDelete {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -10691,6 +11235,10 @@ class _$UnmarkImageToDeleteImpl implements _UnmarkImageToDelete {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return unmarkImageToDelete?.call(this);
@@ -10755,6 +11303,10 @@ class _$UnmarkImageToDeleteImpl implements _UnmarkImageToDelete {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -10873,6 +11425,10 @@ class _$SubmitImagesImpl implements _SubmitImages {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return submitImages();
@@ -10936,6 +11492,10 @@ class _$SubmitImagesImpl implements _SubmitImages {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return submitImages?.call();
@@ -10999,6 +11559,10 @@ class _$SubmitImagesImpl implements _SubmitImages {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -11076,6 +11640,10 @@ class _$SubmitImagesImpl implements _SubmitImages {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -11141,6 +11709,10 @@ class _$SubmitImagesImpl implements _SubmitImages {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return submitImages?.call(this);
@@ -11205,6 +11777,10 @@ class _$SubmitImagesImpl implements _SubmitImages {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -11316,6 +11892,10 @@ class _$ClearUploadStatusImpl implements _ClearUploadStatus {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return clearUploadStatus();
@@ -11379,6 +11959,10 @@ class _$ClearUploadStatusImpl implements _ClearUploadStatus {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return clearUploadStatus?.call();
@@ -11442,6 +12026,10 @@ class _$ClearUploadStatusImpl implements _ClearUploadStatus {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -11519,6 +12107,10 @@ class _$ClearUploadStatusImpl implements _ClearUploadStatus {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -11584,6 +12176,10 @@ class _$ClearUploadStatusImpl implements _ClearUploadStatus {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return clearUploadStatus?.call(this);
@@ -11648,6 +12244,10 @@ class _$ClearUploadStatusImpl implements _ClearUploadStatus {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -11759,6 +12359,10 @@ class _$FetchLookupDataImpl implements _FetchLookupData {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return fetchLookupData();
@@ -11822,6 +12426,10 @@ class _$FetchLookupDataImpl implements _FetchLookupData {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return fetchLookupData?.call();
@@ -11885,6 +12493,10 @@ class _$FetchLookupDataImpl implements _FetchLookupData {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -11962,6 +12574,10 @@ class _$FetchLookupDataImpl implements _FetchLookupData {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -12027,6 +12643,10 @@ class _$FetchLookupDataImpl implements _FetchLookupData {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return fetchLookupData?.call(this);
@@ -12091,6 +12711,10 @@ class _$FetchLookupDataImpl implements _FetchLookupData {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -12202,6 +12826,10 @@ class _$PrefetchLookupDataImpl implements _PrefetchLookupData {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return prefetchLookupData();
@@ -12265,6 +12893,10 @@ class _$PrefetchLookupDataImpl implements _PrefetchLookupData {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return prefetchLookupData?.call();
@@ -12328,6 +12960,10 @@ class _$PrefetchLookupDataImpl implements _PrefetchLookupData {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -12405,6 +13041,10 @@ class _$PrefetchLookupDataImpl implements _PrefetchLookupData {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -12470,6 +13110,10 @@ class _$PrefetchLookupDataImpl implements _PrefetchLookupData {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return prefetchLookupData?.call(this);
@@ -12534,6 +13178,10 @@ class _$PrefetchLookupDataImpl implements _PrefetchLookupData {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -12645,6 +13293,10 @@ class _$FetchUsersImpl implements _FetchUsers {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return fetchUsers();
@@ -12708,6 +13360,10 @@ class _$FetchUsersImpl implements _FetchUsers {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return fetchUsers?.call();
@@ -12771,6 +13427,10 @@ class _$FetchUsersImpl implements _FetchUsers {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -12848,6 +13508,10 @@ class _$FetchUsersImpl implements _FetchUsers {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -12913,6 +13577,10 @@ class _$FetchUsersImpl implements _FetchUsers {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return fetchUsers?.call(this);
@@ -12977,6 +13645,10 @@ class _$FetchUsersImpl implements _FetchUsers {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -13116,6 +13788,10 @@ class _$SelectSupplierImpl implements _SelectSupplier {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return selectSupplier(supplierId);
@@ -13179,6 +13855,10 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return selectSupplier?.call(supplierId);
@@ -13242,6 +13922,10 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -13319,6 +14003,10 @@ class _$SelectSupplierImpl implements _SelectSupplier {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -13384,6 +14072,10 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return selectSupplier?.call(this);
@@ -13448,6 +14140,10 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -13591,6 +14287,10 @@ class _$SelectSenderImpl implements _SelectSender {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return selectSender(senderId);
@@ -13654,6 +14354,10 @@ class _$SelectSenderImpl implements _SelectSender {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return selectSender?.call(senderId);
@@ -13717,6 +14421,10 @@ class _$SelectSenderImpl implements _SelectSender {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -13794,6 +14502,10 @@ class _$SelectSenderImpl implements _SelectSender {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -13859,6 +14571,10 @@ class _$SelectSenderImpl implements _SelectSender {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return selectSender?.call(this);
@@ -13923,6 +14639,10 @@ class _$SelectSenderImpl implements _SelectSender {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -14067,6 +14787,10 @@ class _$SelectReceiverImpl implements _SelectReceiver {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return selectReceiver(receiverId);
@@ -14130,6 +14854,10 @@ class _$SelectReceiverImpl implements _SelectReceiver {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return selectReceiver?.call(receiverId);
@@ -14193,6 +14921,10 @@ class _$SelectReceiverImpl implements _SelectReceiver {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -14270,6 +15002,10 @@ class _$SelectReceiverImpl implements _SelectReceiver {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -14335,6 +15071,10 @@ class _$SelectReceiverImpl implements _SelectReceiver {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return selectReceiver?.call(this);
@@ -14399,6 +15139,10 @@ class _$SelectReceiverImpl implements _SelectReceiver {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -14543,6 +15287,10 @@ class _$SelectBorrowerImpl implements _SelectBorrower {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return selectBorrower(borrowerId);
@@ -14606,6 +15354,10 @@ class _$SelectBorrowerImpl implements _SelectBorrower {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return selectBorrower?.call(borrowerId);
@@ -14669,6 +15421,10 @@ class _$SelectBorrowerImpl implements _SelectBorrower {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -14746,6 +15502,10 @@ class _$SelectBorrowerImpl implements _SelectBorrower {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -14811,6 +15571,10 @@ class _$SelectBorrowerImpl implements _SelectBorrower {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return selectBorrower?.call(this);
@@ -14875,6 +15639,10 @@ class _$SelectBorrowerImpl implements _SelectBorrower {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -15019,6 +15787,10 @@ class _$SelectCustomerImpl implements _SelectCustomer {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return selectCustomer(customerId);
@@ -15082,6 +15854,10 @@ class _$SelectCustomerImpl implements _SelectCustomer {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return selectCustomer?.call(customerId);
@@ -15145,6 +15921,10 @@ class _$SelectCustomerImpl implements _SelectCustomer {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -15222,6 +16002,10 @@ class _$SelectCustomerImpl implements _SelectCustomer {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -15287,6 +16071,10 @@ class _$SelectCustomerImpl implements _SelectCustomer {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return selectCustomer?.call(this);
@@ -15351,6 +16139,10 @@ class _$SelectCustomerImpl implements _SelectCustomer {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -15495,6 +16287,10 @@ class _$SelectWarehouseImpl implements _SelectWarehouse {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return selectWarehouse(warehouseId);
@@ -15558,6 +16354,10 @@ class _$SelectWarehouseImpl implements _SelectWarehouse {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return selectWarehouse?.call(warehouseId);
@@ -15621,6 +16421,10 @@ class _$SelectWarehouseImpl implements _SelectWarehouse {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -15698,6 +16502,10 @@ class _$SelectWarehouseImpl implements _SelectWarehouse {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -15763,6 +16571,10 @@ class _$SelectWarehouseImpl implements _SelectWarehouse {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return selectWarehouse?.call(this);
@@ -15827,6 +16639,10 @@ class _$SelectWarehouseImpl implements _SelectWarehouse {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -15971,6 +16787,10 @@ class _$SelectKhoTypeImpl implements _SelectKhoType {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return selectKhoType(khoTypeId);
@@ -16034,6 +16854,10 @@ class _$SelectKhoTypeImpl implements _SelectKhoType {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return selectKhoType?.call(khoTypeId);
@@ -16097,6 +16921,10 @@ class _$SelectKhoTypeImpl implements _SelectKhoType {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -16174,6 +17002,10 @@ class _$SelectKhoTypeImpl implements _SelectKhoType {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -16239,6 +17071,10 @@ class _$SelectKhoTypeImpl implements _SelectKhoType {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return selectKhoType?.call(this);
@@ -16303,6 +17139,10 @@ class _$SelectKhoTypeImpl implements _SelectKhoType {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -16445,6 +17285,10 @@ class _$SelectStatusImpl implements _SelectStatus {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return selectStatus(status);
@@ -16508,6 +17352,10 @@ class _$SelectStatusImpl implements _SelectStatus {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return selectStatus?.call(status);
@@ -16571,6 +17419,10 @@ class _$SelectStatusImpl implements _SelectStatus {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -16648,6 +17500,10 @@ class _$SelectStatusImpl implements _SelectStatus {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -16713,6 +17569,10 @@ class _$SelectStatusImpl implements _SelectStatus {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return selectStatus?.call(this);
@@ -16777,6 +17637,10 @@ class _$SelectStatusImpl implements _SelectStatus {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -16920,6 +17784,10 @@ class _$SelectProjectImpl implements _SelectProject {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return selectProject(projectId);
@@ -16983,6 +17851,10 @@ class _$SelectProjectImpl implements _SelectProject {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return selectProject?.call(projectId);
@@ -17046,6 +17918,10 @@ class _$SelectProjectImpl implements _SelectProject {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -17123,6 +17999,10 @@ class _$SelectProjectImpl implements _SelectProject {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -17188,6 +18068,10 @@ class _$SelectProjectImpl implements _SelectProject {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return selectProject?.call(this);
@@ -17252,6 +18136,10 @@ class _$SelectProjectImpl implements _SelectProject {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -17395,6 +18283,10 @@ class _$ChangeDeliveryDateImpl implements _ChangeDeliveryDate {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return changeDeliveryDate(date);
@@ -17458,6 +18350,10 @@ class _$ChangeDeliveryDateImpl implements _ChangeDeliveryDate {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return changeDeliveryDate?.call(date);
@@ -17521,6 +18417,10 @@ class _$ChangeDeliveryDateImpl implements _ChangeDeliveryDate {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -17598,6 +18498,10 @@ class _$ChangeDeliveryDateImpl implements _ChangeDeliveryDate {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -17663,6 +18567,10 @@ class _$ChangeDeliveryDateImpl implements _ChangeDeliveryDate {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return changeDeliveryDate?.call(this);
@@ -17727,6 +18635,10 @@ class _$ChangeDeliveryDateImpl implements _ChangeDeliveryDate {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -17871,6 +18783,10 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return changeRequestDate(date);
@@ -17934,6 +18850,10 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return changeRequestDate?.call(date);
@@ -17997,6 +18917,10 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -18074,6 +18998,10 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -18139,6 +19067,10 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return changeRequestDate?.call(this);
@@ -18203,6 +19135,10 @@ class _$ChangeRequestDateImpl implements _ChangeRequestDate {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -18347,6 +19283,10 @@ class _$ChangeReceiveTimeImpl implements _ChangeReceiveTime {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return changeReceiveTime(time);
@@ -18410,6 +19350,10 @@ class _$ChangeReceiveTimeImpl implements _ChangeReceiveTime {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return changeReceiveTime?.call(time);
@@ -18473,6 +19417,10 @@ class _$ChangeReceiveTimeImpl implements _ChangeReceiveTime {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -18550,6 +19498,10 @@ class _$ChangeReceiveTimeImpl implements _ChangeReceiveTime {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -18615,6 +19567,10 @@ class _$ChangeReceiveTimeImpl implements _ChangeReceiveTime {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return changeReceiveTime?.call(this);
@@ -18679,6 +19635,10 @@ class _$ChangeReceiveTimeImpl implements _ChangeReceiveTime {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -18822,6 +19782,10 @@ class _$SelectLoaiKhoImpl implements _SelectLoaiKho {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return selectLoaiKho(text);
@@ -18885,6 +19849,10 @@ class _$SelectLoaiKhoImpl implements _SelectLoaiKho {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return selectLoaiKho?.call(text);
@@ -18948,6 +19916,10 @@ class _$SelectLoaiKhoImpl implements _SelectLoaiKho {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -19025,6 +19997,10 @@ class _$SelectLoaiKhoImpl implements _SelectLoaiKho {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -19090,6 +20066,10 @@ class _$SelectLoaiKhoImpl implements _SelectLoaiKho {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return selectLoaiKho?.call(this);
@@ -19154,6 +20134,10 @@ class _$SelectLoaiKhoImpl implements _SelectLoaiKho {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -19298,6 +20282,10 @@ class _$SelectProductTypeImpl implements _SelectProductType {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return selectProductType(productType);
@@ -19361,6 +20349,10 @@ class _$SelectProductTypeImpl implements _SelectProductType {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return selectProductType?.call(productType);
@@ -19424,6 +20416,10 @@ class _$SelectProductTypeImpl implements _SelectProductType {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -19501,6 +20497,10 @@ class _$SelectProductTypeImpl implements _SelectProductType {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -19566,6 +20566,10 @@ class _$SelectProductTypeImpl implements _SelectProductType {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return selectProductType?.call(this);
@@ -19630,6 +20634,10 @@ class _$SelectProductTypeImpl implements _SelectProductType {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -19786,6 +20794,10 @@ class _$SelectCustomerWithAddressImpl implements _SelectCustomerWithAddress {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return selectCustomerWithAddress(customerId, address);
@@ -19849,6 +20861,10 @@ class _$SelectCustomerWithAddressImpl implements _SelectCustomerWithAddress {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return selectCustomerWithAddress?.call(customerId, address);
@@ -19912,6 +20928,10 @@ class _$SelectCustomerWithAddressImpl implements _SelectCustomerWithAddress {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -19989,6 +21009,10 @@ class _$SelectCustomerWithAddressImpl implements _SelectCustomerWithAddress {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -20054,6 +21078,10 @@ class _$SelectCustomerWithAddressImpl implements _SelectCustomerWithAddress {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return selectCustomerWithAddress?.call(this);
@@ -20118,6 +21146,10 @@ class _$SelectCustomerWithAddressImpl implements _SelectCustomerWithAddress {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -20268,6 +21300,10 @@ class _$FetchAddressStockByCustomerImpl
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return fetchAddressStockByCustomer(customerId);
@@ -20331,6 +21367,10 @@ class _$FetchAddressStockByCustomerImpl
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return fetchAddressStockByCustomer?.call(customerId);
@@ -20394,6 +21434,10 @@ class _$FetchAddressStockByCustomerImpl
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -20471,6 +21515,10 @@ class _$FetchAddressStockByCustomerImpl
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -20536,6 +21584,10 @@ class _$FetchAddressStockByCustomerImpl
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return fetchAddressStockByCustomer?.call(this);
@@ -20600,6 +21652,10 @@ class _$FetchAddressStockByCustomerImpl
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -20746,6 +21802,10 @@ class _$ToggleTransferInternalImpl implements _ToggleTransferInternal {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return toggleTransferInternal(value);
@@ -20809,6 +21869,10 @@ class _$ToggleTransferInternalImpl implements _ToggleTransferInternal {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return toggleTransferInternal?.call(value);
@@ -20872,6 +21936,10 @@ class _$ToggleTransferInternalImpl implements _ToggleTransferInternal {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -20949,6 +22017,10 @@ class _$ToggleTransferInternalImpl implements _ToggleTransferInternal {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -21014,6 +22086,10 @@ class _$ToggleTransferInternalImpl implements _ToggleTransferInternal {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return toggleTransferInternal?.call(this);
@@ -21078,6 +22154,10 @@ class _$ToggleTransferInternalImpl implements _ToggleTransferInternal {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -21222,6 +22302,10 @@ class _$ToggleInternalImpl implements _ToggleInternal {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return toggleInternal(value);
@@ -21285,6 +22369,10 @@ class _$ToggleInternalImpl implements _ToggleInternal {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return toggleInternal?.call(value);
@@ -21348,6 +22436,10 @@ class _$ToggleInternalImpl implements _ToggleInternal {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -21425,6 +22517,10 @@ class _$ToggleInternalImpl implements _ToggleInternal {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -21490,6 +22586,10 @@ class _$ToggleInternalImpl implements _ToggleInternal {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return toggleInternal?.call(this);
@@ -21554,6 +22654,10 @@ class _$ToggleInternalImpl implements _ToggleInternal {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -21701,6 +22805,10 @@ class _$SelectInternalWarehouseImpl implements _SelectInternalWarehouse {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return selectInternalWarehouse(warehouseId);
@@ -21764,6 +22872,10 @@ class _$SelectInternalWarehouseImpl implements _SelectInternalWarehouse {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return selectInternalWarehouse?.call(warehouseId);
@@ -21827,6 +22939,10 @@ class _$SelectInternalWarehouseImpl implements _SelectInternalWarehouse {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -21904,6 +23020,10 @@ class _$SelectInternalWarehouseImpl implements _SelectInternalWarehouse {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -21969,6 +23089,10 @@ class _$SelectInternalWarehouseImpl implements _SelectInternalWarehouse {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return selectInternalWarehouse?.call(this);
@@ -22033,6 +23157,10 @@ class _$SelectInternalWarehouseImpl implements _SelectInternalWarehouse {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -22179,6 +23307,10 @@ class _$SelectInternalKhoTypeImpl implements _SelectInternalKhoType {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return selectInternalKhoType(khoTypeId);
@@ -22242,6 +23374,10 @@ class _$SelectInternalKhoTypeImpl implements _SelectInternalKhoType {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return selectInternalKhoType?.call(khoTypeId);
@@ -22305,6 +23441,10 @@ class _$SelectInternalKhoTypeImpl implements _SelectInternalKhoType {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -22382,6 +23522,10 @@ class _$SelectInternalKhoTypeImpl implements _SelectInternalKhoType {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -22447,6 +23591,10 @@ class _$SelectInternalKhoTypeImpl implements _SelectInternalKhoType {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return selectInternalKhoType?.call(this);
@@ -22511,6 +23659,10 @@ class _$SelectInternalKhoTypeImpl implements _SelectInternalKhoType {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -22656,6 +23808,10 @@ class _$ChangeDeliveryAddressImpl implements _ChangeDeliveryAddress {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return changeDeliveryAddress(address);
@@ -22719,6 +23875,10 @@ class _$ChangeDeliveryAddressImpl implements _ChangeDeliveryAddress {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return changeDeliveryAddress?.call(address);
@@ -22782,6 +23942,10 @@ class _$ChangeDeliveryAddressImpl implements _ChangeDeliveryAddress {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -22859,6 +24023,10 @@ class _$ChangeDeliveryAddressImpl implements _ChangeDeliveryAddress {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -22924,6 +24092,10 @@ class _$ChangeDeliveryAddressImpl implements _ChangeDeliveryAddress {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return changeDeliveryAddress?.call(this);
@@ -22988,6 +24160,10 @@ class _$ChangeDeliveryAddressImpl implements _ChangeDeliveryAddress {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -23131,6 +24307,10 @@ class _$SelectNccImpl implements _SelectNcc {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return selectNcc(nccId);
@@ -23194,6 +24374,10 @@ class _$SelectNccImpl implements _SelectNcc {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return selectNcc?.call(nccId);
@@ -23257,6 +24441,10 @@ class _$SelectNccImpl implements _SelectNcc {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -23334,6 +24522,10 @@ class _$SelectNccImpl implements _SelectNcc {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -23399,6 +24591,10 @@ class _$SelectNccImpl implements _SelectNcc {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return selectNcc?.call(this);
@@ -23463,6 +24659,10 @@ class _$SelectNccImpl implements _SelectNcc {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -23616,6 +24816,10 @@ class _$ToggleBillSelectionImpl implements _ToggleBillSelection {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return toggleBillSelection(billId, selected);
@@ -23679,6 +24883,10 @@ class _$ToggleBillSelectionImpl implements _ToggleBillSelection {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return toggleBillSelection?.call(billId, selected);
@@ -23742,6 +24950,10 @@ class _$ToggleBillSelectionImpl implements _ToggleBillSelection {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -23819,6 +25031,10 @@ class _$ToggleBillSelectionImpl implements _ToggleBillSelection {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -23884,6 +25100,10 @@ class _$ToggleBillSelectionImpl implements _ToggleBillSelection {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return toggleBillSelection?.call(this);
@@ -23948,6 +25168,10 @@ class _$ToggleBillSelectionImpl implements _ToggleBillSelection {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -24067,6 +25291,10 @@ class _$ClearBillSelectionImpl implements _ClearBillSelection {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return clearBillSelection();
@@ -24130,6 +25358,10 @@ class _$ClearBillSelectionImpl implements _ClearBillSelection {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return clearBillSelection?.call();
@@ -24193,6 +25425,10 @@ class _$ClearBillSelectionImpl implements _ClearBillSelection {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -24270,6 +25506,10 @@ class _$ClearBillSelectionImpl implements _ClearBillSelection {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -24335,6 +25575,10 @@ class _$ClearBillSelectionImpl implements _ClearBillSelection {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return clearBillSelection?.call(this);
@@ -24399,6 +25643,10 @@ class _$ClearBillSelectionImpl implements _ClearBillSelection {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -24549,6 +25797,10 @@ class _$UpdateBillStatusPreparingImpl implements _UpdateBillStatusPreparing {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return updateBillStatusPreparing(billId, isPrepared);
@@ -24612,6 +25864,10 @@ class _$UpdateBillStatusPreparingImpl implements _UpdateBillStatusPreparing {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return updateBillStatusPreparing?.call(billId, isPrepared);
@@ -24675,6 +25931,10 @@ class _$UpdateBillStatusPreparingImpl implements _UpdateBillStatusPreparing {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -24752,6 +26012,10 @@ class _$UpdateBillStatusPreparingImpl implements _UpdateBillStatusPreparing {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -24817,6 +26081,10 @@ class _$UpdateBillStatusPreparingImpl implements _UpdateBillStatusPreparing {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return updateBillStatusPreparing?.call(this);
@@ -24881,6 +26149,10 @@ class _$UpdateBillStatusPreparingImpl implements _UpdateBillStatusPreparing {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -25039,6 +26311,10 @@ class _$UpdateBillStatusReceiveImpl implements _UpdateBillStatusReceive {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return updateBillStatusReceive(billId, isReceived);
@@ -25102,6 +26378,10 @@ class _$UpdateBillStatusReceiveImpl implements _UpdateBillStatusReceive {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return updateBillStatusReceive?.call(billId, isReceived);
@@ -25165,6 +26445,10 @@ class _$UpdateBillStatusReceiveImpl implements _UpdateBillStatusReceive {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -25242,6 +26526,10 @@ class _$UpdateBillStatusReceiveImpl implements _UpdateBillStatusReceive {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -25307,6 +26595,10 @@ class _$UpdateBillStatusReceiveImpl implements _UpdateBillStatusReceive {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return updateBillStatusReceive?.call(this);
@@ -25371,6 +26663,10 @@ class _$UpdateBillStatusReceiveImpl implements _UpdateBillStatusReceive {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -25390,6 +26686,1055 @@ abstract class _UpdateBillStatusReceive implements SaleGdnEvent {
   bool get isReceived;
   @JsonKey(ignore: true)
   _$$UpdateBillStatusReceiveImplCopyWith<_$UpdateBillStatusReceiveImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$BulkUpdateBillStatusPreparingImplCopyWith<$Res> {
+  factory _$$BulkUpdateBillStatusPreparingImplCopyWith(
+          _$BulkUpdateBillStatusPreparingImpl value,
+          $Res Function(_$BulkUpdateBillStatusPreparingImpl) then) =
+      __$$BulkUpdateBillStatusPreparingImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Set<int> billIds, bool isPrepared});
+}
+
+/// @nodoc
+class __$$BulkUpdateBillStatusPreparingImplCopyWithImpl<$Res>
+    extends _$SaleGdnEventCopyWithImpl<$Res,
+        _$BulkUpdateBillStatusPreparingImpl>
+    implements _$$BulkUpdateBillStatusPreparingImplCopyWith<$Res> {
+  __$$BulkUpdateBillStatusPreparingImplCopyWithImpl(
+      _$BulkUpdateBillStatusPreparingImpl _value,
+      $Res Function(_$BulkUpdateBillStatusPreparingImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? billIds = null,
+    Object? isPrepared = null,
+  }) {
+    return _then(_$BulkUpdateBillStatusPreparingImpl(
+      billIds: null == billIds
+          ? _value._billIds
+          : billIds // ignore: cast_nullable_to_non_nullable
+              as Set<int>,
+      isPrepared: null == isPrepared
+          ? _value.isPrepared
+          : isPrepared // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$BulkUpdateBillStatusPreparingImpl
+    implements _BulkUpdateBillStatusPreparing {
+  const _$BulkUpdateBillStatusPreparingImpl(
+      {required final Set<int> billIds, required this.isPrepared})
+      : _billIds = billIds;
+
+  final Set<int> _billIds;
+  @override
+  Set<int> get billIds {
+    if (_billIds is EqualUnmodifiableSetView) return _billIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_billIds);
+  }
+
+  @override
+  final bool isPrepared;
+
+  @override
+  String toString() {
+    return 'SaleGdnEvent.bulkUpdateBillStatusPreparing(billIds: $billIds, isPrepared: $isPrepared)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BulkUpdateBillStatusPreparingImpl &&
+            const DeepCollectionEquality().equals(other._billIds, _billIds) &&
+            (identical(other.isPrepared, isPrepared) ||
+                other.isPrepared == isPrepared));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_billIds), isPrepared);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BulkUpdateBillStatusPreparingImplCopyWith<
+          _$BulkUpdateBillStatusPreparingImpl>
+      get copyWith => __$$BulkUpdateBillStatusPreparingImplCopyWithImpl<
+          _$BulkUpdateBillStatusPreparingImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() fetchGdns,
+    required TResult Function(String keyword) searchByKeyword,
+    required TResult Function(String voucherNumber) searchByVoucherNumber,
+    required TResult Function() clearSearch,
+    required TResult Function(String code) scanQrToDetail,
+    required TResult Function() clearOpenedDetail,
+    required TResult Function() clearScanResultMessage,
+    required TResult Function() fetchWarehouseTypes,
+    required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
+    required TResult Function(int status) filterByStatus,
+    required TResult Function() clearFilters,
+    required TResult Function(int? senderId) filterBySender,
+    required TResult Function(String? senderName) filterBySenderName,
+    required TResult Function(String? receiverName) filterByReceiver,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
+    required TResult Function(int stt, List<String> imagePaths) addImages,
+    required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
+    required TResult Function(int? fileId, String? localPath)
+        unmarkImageToDelete,
+    required TResult Function() submitImages,
+    required TResult Function() clearUploadStatus,
+    required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
+    required TResult Function() fetchUsers,
+    required TResult Function(int? supplierId) selectSupplier,
+    required TResult Function(int? senderId) selectSender,
+    required TResult Function(int? receiverId) selectReceiver,
+    required TResult Function(int? borrowerId) selectBorrower,
+    required TResult Function(int? customerId) selectCustomer,
+    required TResult Function(int? warehouseId) selectWarehouse,
+    required TResult Function(int? khoTypeId) selectKhoType,
+    required TResult Function(int? status) selectStatus,
+    required TResult Function(int? projectId) selectProject,
+    required TResult Function(DateTime? date) changeDeliveryDate,
+    required TResult Function(DateTime? date) changeRequestDate,
+    required TResult Function(DateTime? time) changeReceiveTime,
+    required TResult Function(String? text) selectLoaiKho,
+    required TResult Function(int? productType) selectProductType,
+    required TResult Function(int? customerId, String? address)
+        selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
+    required TResult Function(bool value) toggleTransferInternal,
+    required TResult Function(bool value) toggleInternal,
+    required TResult Function(int? warehouseId) selectInternalWarehouse,
+    required TResult Function(int? khoTypeId) selectInternalKhoType,
+    required TResult Function(String? address) changeDeliveryAddress,
+    required TResult Function(int? nccId) selectNcc,
+    required TResult Function(int billId, bool selected) toggleBillSelection,
+    required TResult Function() clearBillSelection,
+    required TResult Function(int billId, bool isPrepared)
+        updateBillStatusPreparing,
+    required TResult Function(int billId, bool isReceived)
+        updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
+    required TResult Function() clearBillStatusMessage,
+  }) {
+    return bulkUpdateBillStatusPreparing(billIds, isPrepared);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? fetchGdns,
+    TResult? Function(String keyword)? searchByKeyword,
+    TResult? Function(String voucherNumber)? searchByVoucherNumber,
+    TResult? Function()? clearSearch,
+    TResult? Function(String code)? scanQrToDetail,
+    TResult? Function()? clearOpenedDetail,
+    TResult? Function()? clearScanResultMessage,
+    TResult? Function()? fetchWarehouseTypes,
+    TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
+    TResult? Function(int status)? filterByStatus,
+    TResult? Function()? clearFilters,
+    TResult? Function(int? senderId)? filterBySender,
+    TResult? Function(String? senderName)? filterBySenderName,
+    TResult? Function(String? receiverName)? filterByReceiver,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
+    TResult? Function(int stt, List<String> imagePaths)? addImages,
+    TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
+    TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
+    TResult? Function()? submitImages,
+    TResult? Function()? clearUploadStatus,
+    TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
+    TResult? Function()? fetchUsers,
+    TResult? Function(int? supplierId)? selectSupplier,
+    TResult? Function(int? senderId)? selectSender,
+    TResult? Function(int? receiverId)? selectReceiver,
+    TResult? Function(int? borrowerId)? selectBorrower,
+    TResult? Function(int? customerId)? selectCustomer,
+    TResult? Function(int? warehouseId)? selectWarehouse,
+    TResult? Function(int? khoTypeId)? selectKhoType,
+    TResult? Function(int? status)? selectStatus,
+    TResult? Function(int? projectId)? selectProject,
+    TResult? Function(DateTime? date)? changeDeliveryDate,
+    TResult? Function(DateTime? date)? changeRequestDate,
+    TResult? Function(DateTime? time)? changeReceiveTime,
+    TResult? Function(String? text)? selectLoaiKho,
+    TResult? Function(int? productType)? selectProductType,
+    TResult? Function(int? customerId, String? address)?
+        selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
+    TResult? Function(bool value)? toggleTransferInternal,
+    TResult? Function(bool value)? toggleInternal,
+    TResult? Function(int? warehouseId)? selectInternalWarehouse,
+    TResult? Function(int? khoTypeId)? selectInternalKhoType,
+    TResult? Function(String? address)? changeDeliveryAddress,
+    TResult? Function(int? nccId)? selectNcc,
+    TResult? Function(int billId, bool selected)? toggleBillSelection,
+    TResult? Function()? clearBillSelection,
+    TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
+    TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
+    TResult? Function()? clearBillStatusMessage,
+  }) {
+    return bulkUpdateBillStatusPreparing?.call(billIds, isPrepared);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? fetchGdns,
+    TResult Function(String keyword)? searchByKeyword,
+    TResult Function(String voucherNumber)? searchByVoucherNumber,
+    TResult Function()? clearSearch,
+    TResult Function(String code)? scanQrToDetail,
+    TResult Function()? clearOpenedDetail,
+    TResult Function()? clearScanResultMessage,
+    TResult Function()? fetchWarehouseTypes,
+    TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
+    TResult Function(int status)? filterByStatus,
+    TResult Function()? clearFilters,
+    TResult Function(int? senderId)? filterBySender,
+    TResult Function(String? senderName)? filterBySenderName,
+    TResult Function(String? receiverName)? filterByReceiver,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
+    TResult Function(int stt, List<String> imagePaths)? addImages,
+    TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
+    TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
+    TResult Function()? submitImages,
+    TResult Function()? clearUploadStatus,
+    TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
+    TResult Function()? fetchUsers,
+    TResult Function(int? supplierId)? selectSupplier,
+    TResult Function(int? senderId)? selectSender,
+    TResult Function(int? receiverId)? selectReceiver,
+    TResult Function(int? borrowerId)? selectBorrower,
+    TResult Function(int? customerId)? selectCustomer,
+    TResult Function(int? warehouseId)? selectWarehouse,
+    TResult Function(int? khoTypeId)? selectKhoType,
+    TResult Function(int? status)? selectStatus,
+    TResult Function(int? projectId)? selectProject,
+    TResult Function(DateTime? date)? changeDeliveryDate,
+    TResult Function(DateTime? date)? changeRequestDate,
+    TResult Function(DateTime? time)? changeReceiveTime,
+    TResult Function(String? text)? selectLoaiKho,
+    TResult Function(int? productType)? selectProductType,
+    TResult Function(int? customerId, String? address)?
+        selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
+    TResult Function(bool value)? toggleTransferInternal,
+    TResult Function(bool value)? toggleInternal,
+    TResult Function(int? warehouseId)? selectInternalWarehouse,
+    TResult Function(int? khoTypeId)? selectInternalKhoType,
+    TResult Function(String? address)? changeDeliveryAddress,
+    TResult Function(int? nccId)? selectNcc,
+    TResult Function(int billId, bool selected)? toggleBillSelection,
+    TResult Function()? clearBillSelection,
+    TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
+    TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
+    TResult Function()? clearBillStatusMessage,
+    required TResult orElse(),
+  }) {
+    if (bulkUpdateBillStatusPreparing != null) {
+      return bulkUpdateBillStatusPreparing(billIds, isPrepared);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_FetchGdns value) fetchGdns,
+    required TResult Function(_SearchByKeyword value) searchByKeyword,
+    required TResult Function(_SearchByVoucherNumber value)
+        searchByVoucherNumber,
+    required TResult Function(_ClearSearch value) clearSearch,
+    required TResult Function(_ScanQrToDetail value) scanQrToDetail,
+    required TResult Function(_ClearOpenedDetail value) clearOpenedDetail,
+    required TResult Function(_ClearScanResultMessage value)
+        clearScanResultMessage,
+    required TResult Function(_FetchWarehouseTypes value) fetchWarehouseTypes,
+    required TResult Function(_FilterByWarehouseType value)
+        filterByWarehouseType,
+    required TResult Function(_FilterByStatus value) filterByStatus,
+    required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_FilterBySender value) filterBySender,
+    required TResult Function(_FilterBySenderName value) filterBySenderName,
+    required TResult Function(_FilterByReceiver value) filterByReceiver,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
+    required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
+    required TResult Function(_SubmitImages value) submitImages,
+    required TResult Function(_ClearUploadStatus value) clearUploadStatus,
+    required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
+    required TResult Function(_FetchUsers value) fetchUsers,
+    required TResult Function(_SelectSupplier value) selectSupplier,
+    required TResult Function(_SelectSender value) selectSender,
+    required TResult Function(_SelectReceiver value) selectReceiver,
+    required TResult Function(_SelectBorrower value) selectBorrower,
+    required TResult Function(_SelectCustomer value) selectCustomer,
+    required TResult Function(_SelectWarehouse value) selectWarehouse,
+    required TResult Function(_SelectKhoType value) selectKhoType,
+    required TResult Function(_SelectStatus value) selectStatus,
+    required TResult Function(_SelectProject value) selectProject,
+    required TResult Function(_ChangeDeliveryDate value) changeDeliveryDate,
+    required TResult Function(_ChangeRequestDate value) changeRequestDate,
+    required TResult Function(_ChangeReceiveTime value) changeReceiveTime,
+    required TResult Function(_SelectLoaiKho value) selectLoaiKho,
+    required TResult Function(_SelectProductType value) selectProductType,
+    required TResult Function(_SelectCustomerWithAddress value)
+        selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
+    required TResult Function(_ToggleTransferInternal value)
+        toggleTransferInternal,
+    required TResult Function(_ToggleInternal value) toggleInternal,
+    required TResult Function(_SelectInternalWarehouse value)
+        selectInternalWarehouse,
+    required TResult Function(_SelectInternalKhoType value)
+        selectInternalKhoType,
+    required TResult Function(_ChangeDeliveryAddress value)
+        changeDeliveryAddress,
+    required TResult Function(_SelectNcc value) selectNcc,
+    required TResult Function(_ToggleBillSelection value) toggleBillSelection,
+    required TResult Function(_ClearBillSelection value) clearBillSelection,
+    required TResult Function(_UpdateBillStatusPreparing value)
+        updateBillStatusPreparing,
+    required TResult Function(_UpdateBillStatusReceive value)
+        updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
+    required TResult Function(_ClearBillStatusMessage value)
+        clearBillStatusMessage,
+  }) {
+    return bulkUpdateBillStatusPreparing(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_FetchGdns value)? fetchGdns,
+    TResult? Function(_SearchByKeyword value)? searchByKeyword,
+    TResult? Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
+    TResult? Function(_ClearSearch value)? clearSearch,
+    TResult? Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult? Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult? Function(_ClearScanResultMessage value)? clearScanResultMessage,
+    TResult? Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
+    TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
+    TResult? Function(_FilterByStatus value)? filterByStatus,
+    TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_FilterBySender value)? filterBySender,
+    TResult? Function(_FilterBySenderName value)? filterBySenderName,
+    TResult? Function(_FilterByReceiver value)? filterByReceiver,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
+    TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
+    TResult? Function(_SubmitImages value)? submitImages,
+    TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
+    TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
+    TResult? Function(_FetchUsers value)? fetchUsers,
+    TResult? Function(_SelectSupplier value)? selectSupplier,
+    TResult? Function(_SelectSender value)? selectSender,
+    TResult? Function(_SelectReceiver value)? selectReceiver,
+    TResult? Function(_SelectBorrower value)? selectBorrower,
+    TResult? Function(_SelectCustomer value)? selectCustomer,
+    TResult? Function(_SelectWarehouse value)? selectWarehouse,
+    TResult? Function(_SelectKhoType value)? selectKhoType,
+    TResult? Function(_SelectStatus value)? selectStatus,
+    TResult? Function(_SelectProject value)? selectProject,
+    TResult? Function(_ChangeDeliveryDate value)? changeDeliveryDate,
+    TResult? Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult? Function(_ChangeReceiveTime value)? changeReceiveTime,
+    TResult? Function(_SelectLoaiKho value)? selectLoaiKho,
+    TResult? Function(_SelectProductType value)? selectProductType,
+    TResult? Function(_SelectCustomerWithAddress value)?
+        selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
+    TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
+    TResult? Function(_ToggleInternal value)? toggleInternal,
+    TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
+    TResult? Function(_SelectInternalKhoType value)? selectInternalKhoType,
+    TResult? Function(_ChangeDeliveryAddress value)? changeDeliveryAddress,
+    TResult? Function(_SelectNcc value)? selectNcc,
+    TResult? Function(_ToggleBillSelection value)? toggleBillSelection,
+    TResult? Function(_ClearBillSelection value)? clearBillSelection,
+    TResult? Function(_UpdateBillStatusPreparing value)?
+        updateBillStatusPreparing,
+    TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
+    TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
+  }) {
+    return bulkUpdateBillStatusPreparing?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_FetchGdns value)? fetchGdns,
+    TResult Function(_SearchByKeyword value)? searchByKeyword,
+    TResult Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
+    TResult Function(_ClearSearch value)? clearSearch,
+    TResult Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult Function(_ClearScanResultMessage value)? clearScanResultMessage,
+    TResult Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
+    TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
+    TResult Function(_FilterByStatus value)? filterByStatus,
+    TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_FilterBySender value)? filterBySender,
+    TResult Function(_FilterBySenderName value)? filterBySenderName,
+    TResult Function(_FilterByReceiver value)? filterByReceiver,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
+    TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
+    TResult Function(_SubmitImages value)? submitImages,
+    TResult Function(_ClearUploadStatus value)? clearUploadStatus,
+    TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
+    TResult Function(_FetchUsers value)? fetchUsers,
+    TResult Function(_SelectSupplier value)? selectSupplier,
+    TResult Function(_SelectSender value)? selectSender,
+    TResult Function(_SelectReceiver value)? selectReceiver,
+    TResult Function(_SelectBorrower value)? selectBorrower,
+    TResult Function(_SelectCustomer value)? selectCustomer,
+    TResult Function(_SelectWarehouse value)? selectWarehouse,
+    TResult Function(_SelectKhoType value)? selectKhoType,
+    TResult Function(_SelectStatus value)? selectStatus,
+    TResult Function(_SelectProject value)? selectProject,
+    TResult Function(_ChangeDeliveryDate value)? changeDeliveryDate,
+    TResult Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult Function(_ChangeReceiveTime value)? changeReceiveTime,
+    TResult Function(_SelectLoaiKho value)? selectLoaiKho,
+    TResult Function(_SelectProductType value)? selectProductType,
+    TResult Function(_SelectCustomerWithAddress value)?
+        selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
+    TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
+    TResult Function(_ToggleInternal value)? toggleInternal,
+    TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
+    TResult Function(_SelectInternalKhoType value)? selectInternalKhoType,
+    TResult Function(_ChangeDeliveryAddress value)? changeDeliveryAddress,
+    TResult Function(_SelectNcc value)? selectNcc,
+    TResult Function(_ToggleBillSelection value)? toggleBillSelection,
+    TResult Function(_ClearBillSelection value)? clearBillSelection,
+    TResult Function(_UpdateBillStatusPreparing value)?
+        updateBillStatusPreparing,
+    TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
+    TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
+    required TResult orElse(),
+  }) {
+    if (bulkUpdateBillStatusPreparing != null) {
+      return bulkUpdateBillStatusPreparing(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _BulkUpdateBillStatusPreparing implements SaleGdnEvent {
+  const factory _BulkUpdateBillStatusPreparing(
+      {required final Set<int> billIds,
+      required final bool isPrepared}) = _$BulkUpdateBillStatusPreparingImpl;
+
+  Set<int> get billIds;
+  bool get isPrepared;
+  @JsonKey(ignore: true)
+  _$$BulkUpdateBillStatusPreparingImplCopyWith<
+          _$BulkUpdateBillStatusPreparingImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$BulkUpdateBillStatusReceiveImplCopyWith<$Res> {
+  factory _$$BulkUpdateBillStatusReceiveImplCopyWith(
+          _$BulkUpdateBillStatusReceiveImpl value,
+          $Res Function(_$BulkUpdateBillStatusReceiveImpl) then) =
+      __$$BulkUpdateBillStatusReceiveImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Set<int> billIds, bool isReceived});
+}
+
+/// @nodoc
+class __$$BulkUpdateBillStatusReceiveImplCopyWithImpl<$Res>
+    extends _$SaleGdnEventCopyWithImpl<$Res, _$BulkUpdateBillStatusReceiveImpl>
+    implements _$$BulkUpdateBillStatusReceiveImplCopyWith<$Res> {
+  __$$BulkUpdateBillStatusReceiveImplCopyWithImpl(
+      _$BulkUpdateBillStatusReceiveImpl _value,
+      $Res Function(_$BulkUpdateBillStatusReceiveImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? billIds = null,
+    Object? isReceived = null,
+  }) {
+    return _then(_$BulkUpdateBillStatusReceiveImpl(
+      billIds: null == billIds
+          ? _value._billIds
+          : billIds // ignore: cast_nullable_to_non_nullable
+              as Set<int>,
+      isReceived: null == isReceived
+          ? _value.isReceived
+          : isReceived // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$BulkUpdateBillStatusReceiveImpl
+    implements _BulkUpdateBillStatusReceive {
+  const _$BulkUpdateBillStatusReceiveImpl(
+      {required final Set<int> billIds, required this.isReceived})
+      : _billIds = billIds;
+
+  final Set<int> _billIds;
+  @override
+  Set<int> get billIds {
+    if (_billIds is EqualUnmodifiableSetView) return _billIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_billIds);
+  }
+
+  @override
+  final bool isReceived;
+
+  @override
+  String toString() {
+    return 'SaleGdnEvent.bulkUpdateBillStatusReceive(billIds: $billIds, isReceived: $isReceived)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BulkUpdateBillStatusReceiveImpl &&
+            const DeepCollectionEquality().equals(other._billIds, _billIds) &&
+            (identical(other.isReceived, isReceived) ||
+                other.isReceived == isReceived));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_billIds), isReceived);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BulkUpdateBillStatusReceiveImplCopyWith<_$BulkUpdateBillStatusReceiveImpl>
+      get copyWith => __$$BulkUpdateBillStatusReceiveImplCopyWithImpl<
+          _$BulkUpdateBillStatusReceiveImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() fetchGdns,
+    required TResult Function(String keyword) searchByKeyword,
+    required TResult Function(String voucherNumber) searchByVoucherNumber,
+    required TResult Function() clearSearch,
+    required TResult Function(String code) scanQrToDetail,
+    required TResult Function() clearOpenedDetail,
+    required TResult Function() clearScanResultMessage,
+    required TResult Function() fetchWarehouseTypes,
+    required TResult Function(List<int> warehouseTypeIds) filterByWarehouseType,
+    required TResult Function(int status) filterByStatus,
+    required TResult Function() clearFilters,
+    required TResult Function(int? senderId) filterBySender,
+    required TResult Function(String? senderName) filterBySenderName,
+    required TResult Function(String? receiverName) filterByReceiver,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int id, BillExporResponse? bill) initDetail,
+    required TResult Function(String? warehouseCode) setWarehouseCode,
+    required TResult Function(int stt, List<String> imagePaths) addImages,
+    required TResult Function(int? fileId, String? localPath) markImageToDelete,
+    required TResult Function(Set<int> fileIds, Set<String> localPaths)
+        markImagesToDeleteBulk,
+    required TResult Function(int? fileId, String? localPath)
+        unmarkImageToDelete,
+    required TResult Function() submitImages,
+    required TResult Function() clearUploadStatus,
+    required TResult Function() fetchLookupData,
+    required TResult Function() prefetchLookupData,
+    required TResult Function() fetchUsers,
+    required TResult Function(int? supplierId) selectSupplier,
+    required TResult Function(int? senderId) selectSender,
+    required TResult Function(int? receiverId) selectReceiver,
+    required TResult Function(int? borrowerId) selectBorrower,
+    required TResult Function(int? customerId) selectCustomer,
+    required TResult Function(int? warehouseId) selectWarehouse,
+    required TResult Function(int? khoTypeId) selectKhoType,
+    required TResult Function(int? status) selectStatus,
+    required TResult Function(int? projectId) selectProject,
+    required TResult Function(DateTime? date) changeDeliveryDate,
+    required TResult Function(DateTime? date) changeRequestDate,
+    required TResult Function(DateTime? time) changeReceiveTime,
+    required TResult Function(String? text) selectLoaiKho,
+    required TResult Function(int? productType) selectProductType,
+    required TResult Function(int? customerId, String? address)
+        selectCustomerWithAddress,
+    required TResult Function(int customerId) fetchAddressStockByCustomer,
+    required TResult Function(bool value) toggleTransferInternal,
+    required TResult Function(bool value) toggleInternal,
+    required TResult Function(int? warehouseId) selectInternalWarehouse,
+    required TResult Function(int? khoTypeId) selectInternalKhoType,
+    required TResult Function(String? address) changeDeliveryAddress,
+    required TResult Function(int? nccId) selectNcc,
+    required TResult Function(int billId, bool selected) toggleBillSelection,
+    required TResult Function() clearBillSelection,
+    required TResult Function(int billId, bool isPrepared)
+        updateBillStatusPreparing,
+    required TResult Function(int billId, bool isReceived)
+        updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
+    required TResult Function() clearBillStatusMessage,
+  }) {
+    return bulkUpdateBillStatusReceive(billIds, isReceived);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? fetchGdns,
+    TResult? Function(String keyword)? searchByKeyword,
+    TResult? Function(String voucherNumber)? searchByVoucherNumber,
+    TResult? Function()? clearSearch,
+    TResult? Function(String code)? scanQrToDetail,
+    TResult? Function()? clearOpenedDetail,
+    TResult? Function()? clearScanResultMessage,
+    TResult? Function()? fetchWarehouseTypes,
+    TResult? Function(List<int> warehouseTypeIds)? filterByWarehouseType,
+    TResult? Function(int status)? filterByStatus,
+    TResult? Function()? clearFilters,
+    TResult? Function(int? senderId)? filterBySender,
+    TResult? Function(String? senderName)? filterBySenderName,
+    TResult? Function(String? receiverName)? filterByReceiver,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int id, BillExporResponse? bill)? initDetail,
+    TResult? Function(String? warehouseCode)? setWarehouseCode,
+    TResult? Function(int stt, List<String> imagePaths)? addImages,
+    TResult? Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult? Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
+    TResult? Function(int? fileId, String? localPath)? unmarkImageToDelete,
+    TResult? Function()? submitImages,
+    TResult? Function()? clearUploadStatus,
+    TResult? Function()? fetchLookupData,
+    TResult? Function()? prefetchLookupData,
+    TResult? Function()? fetchUsers,
+    TResult? Function(int? supplierId)? selectSupplier,
+    TResult? Function(int? senderId)? selectSender,
+    TResult? Function(int? receiverId)? selectReceiver,
+    TResult? Function(int? borrowerId)? selectBorrower,
+    TResult? Function(int? customerId)? selectCustomer,
+    TResult? Function(int? warehouseId)? selectWarehouse,
+    TResult? Function(int? khoTypeId)? selectKhoType,
+    TResult? Function(int? status)? selectStatus,
+    TResult? Function(int? projectId)? selectProject,
+    TResult? Function(DateTime? date)? changeDeliveryDate,
+    TResult? Function(DateTime? date)? changeRequestDate,
+    TResult? Function(DateTime? time)? changeReceiveTime,
+    TResult? Function(String? text)? selectLoaiKho,
+    TResult? Function(int? productType)? selectProductType,
+    TResult? Function(int? customerId, String? address)?
+        selectCustomerWithAddress,
+    TResult? Function(int customerId)? fetchAddressStockByCustomer,
+    TResult? Function(bool value)? toggleTransferInternal,
+    TResult? Function(bool value)? toggleInternal,
+    TResult? Function(int? warehouseId)? selectInternalWarehouse,
+    TResult? Function(int? khoTypeId)? selectInternalKhoType,
+    TResult? Function(String? address)? changeDeliveryAddress,
+    TResult? Function(int? nccId)? selectNcc,
+    TResult? Function(int billId, bool selected)? toggleBillSelection,
+    TResult? Function()? clearBillSelection,
+    TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
+    TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
+    TResult? Function()? clearBillStatusMessage,
+  }) {
+    return bulkUpdateBillStatusReceive?.call(billIds, isReceived);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? fetchGdns,
+    TResult Function(String keyword)? searchByKeyword,
+    TResult Function(String voucherNumber)? searchByVoucherNumber,
+    TResult Function()? clearSearch,
+    TResult Function(String code)? scanQrToDetail,
+    TResult Function()? clearOpenedDetail,
+    TResult Function()? clearScanResultMessage,
+    TResult Function()? fetchWarehouseTypes,
+    TResult Function(List<int> warehouseTypeIds)? filterByWarehouseType,
+    TResult Function(int status)? filterByStatus,
+    TResult Function()? clearFilters,
+    TResult Function(int? senderId)? filterBySender,
+    TResult Function(String? senderName)? filterBySenderName,
+    TResult Function(String? receiverName)? filterByReceiver,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int id, BillExporResponse? bill)? initDetail,
+    TResult Function(String? warehouseCode)? setWarehouseCode,
+    TResult Function(int stt, List<String> imagePaths)? addImages,
+    TResult Function(int? fileId, String? localPath)? markImageToDelete,
+    TResult Function(Set<int> fileIds, Set<String> localPaths)?
+        markImagesToDeleteBulk,
+    TResult Function(int? fileId, String? localPath)? unmarkImageToDelete,
+    TResult Function()? submitImages,
+    TResult Function()? clearUploadStatus,
+    TResult Function()? fetchLookupData,
+    TResult Function()? prefetchLookupData,
+    TResult Function()? fetchUsers,
+    TResult Function(int? supplierId)? selectSupplier,
+    TResult Function(int? senderId)? selectSender,
+    TResult Function(int? receiverId)? selectReceiver,
+    TResult Function(int? borrowerId)? selectBorrower,
+    TResult Function(int? customerId)? selectCustomer,
+    TResult Function(int? warehouseId)? selectWarehouse,
+    TResult Function(int? khoTypeId)? selectKhoType,
+    TResult Function(int? status)? selectStatus,
+    TResult Function(int? projectId)? selectProject,
+    TResult Function(DateTime? date)? changeDeliveryDate,
+    TResult Function(DateTime? date)? changeRequestDate,
+    TResult Function(DateTime? time)? changeReceiveTime,
+    TResult Function(String? text)? selectLoaiKho,
+    TResult Function(int? productType)? selectProductType,
+    TResult Function(int? customerId, String? address)?
+        selectCustomerWithAddress,
+    TResult Function(int customerId)? fetchAddressStockByCustomer,
+    TResult Function(bool value)? toggleTransferInternal,
+    TResult Function(bool value)? toggleInternal,
+    TResult Function(int? warehouseId)? selectInternalWarehouse,
+    TResult Function(int? khoTypeId)? selectInternalKhoType,
+    TResult Function(String? address)? changeDeliveryAddress,
+    TResult Function(int? nccId)? selectNcc,
+    TResult Function(int billId, bool selected)? toggleBillSelection,
+    TResult Function()? clearBillSelection,
+    TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
+    TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
+    TResult Function()? clearBillStatusMessage,
+    required TResult orElse(),
+  }) {
+    if (bulkUpdateBillStatusReceive != null) {
+      return bulkUpdateBillStatusReceive(billIds, isReceived);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_FetchGdns value) fetchGdns,
+    required TResult Function(_SearchByKeyword value) searchByKeyword,
+    required TResult Function(_SearchByVoucherNumber value)
+        searchByVoucherNumber,
+    required TResult Function(_ClearSearch value) clearSearch,
+    required TResult Function(_ScanQrToDetail value) scanQrToDetail,
+    required TResult Function(_ClearOpenedDetail value) clearOpenedDetail,
+    required TResult Function(_ClearScanResultMessage value)
+        clearScanResultMessage,
+    required TResult Function(_FetchWarehouseTypes value) fetchWarehouseTypes,
+    required TResult Function(_FilterByWarehouseType value)
+        filterByWarehouseType,
+    required TResult Function(_FilterByStatus value) filterByStatus,
+    required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_FilterBySender value) filterBySender,
+    required TResult Function(_FilterBySenderName value) filterBySenderName,
+    required TResult Function(_FilterByReceiver value) filterByReceiver,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_InitDetail value) initDetail,
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
+    required TResult Function(_AddImages value) addImages,
+    required TResult Function(_MarkImageToDelete value) markImageToDelete,
+    required TResult Function(_MarkImagesToDeleteBulk value)
+        markImagesToDeleteBulk,
+    required TResult Function(_UnmarkImageToDelete value) unmarkImageToDelete,
+    required TResult Function(_SubmitImages value) submitImages,
+    required TResult Function(_ClearUploadStatus value) clearUploadStatus,
+    required TResult Function(_FetchLookupData value) fetchLookupData,
+    required TResult Function(_PrefetchLookupData value) prefetchLookupData,
+    required TResult Function(_FetchUsers value) fetchUsers,
+    required TResult Function(_SelectSupplier value) selectSupplier,
+    required TResult Function(_SelectSender value) selectSender,
+    required TResult Function(_SelectReceiver value) selectReceiver,
+    required TResult Function(_SelectBorrower value) selectBorrower,
+    required TResult Function(_SelectCustomer value) selectCustomer,
+    required TResult Function(_SelectWarehouse value) selectWarehouse,
+    required TResult Function(_SelectKhoType value) selectKhoType,
+    required TResult Function(_SelectStatus value) selectStatus,
+    required TResult Function(_SelectProject value) selectProject,
+    required TResult Function(_ChangeDeliveryDate value) changeDeliveryDate,
+    required TResult Function(_ChangeRequestDate value) changeRequestDate,
+    required TResult Function(_ChangeReceiveTime value) changeReceiveTime,
+    required TResult Function(_SelectLoaiKho value) selectLoaiKho,
+    required TResult Function(_SelectProductType value) selectProductType,
+    required TResult Function(_SelectCustomerWithAddress value)
+        selectCustomerWithAddress,
+    required TResult Function(_FetchAddressStockByCustomer value)
+        fetchAddressStockByCustomer,
+    required TResult Function(_ToggleTransferInternal value)
+        toggleTransferInternal,
+    required TResult Function(_ToggleInternal value) toggleInternal,
+    required TResult Function(_SelectInternalWarehouse value)
+        selectInternalWarehouse,
+    required TResult Function(_SelectInternalKhoType value)
+        selectInternalKhoType,
+    required TResult Function(_ChangeDeliveryAddress value)
+        changeDeliveryAddress,
+    required TResult Function(_SelectNcc value) selectNcc,
+    required TResult Function(_ToggleBillSelection value) toggleBillSelection,
+    required TResult Function(_ClearBillSelection value) clearBillSelection,
+    required TResult Function(_UpdateBillStatusPreparing value)
+        updateBillStatusPreparing,
+    required TResult Function(_UpdateBillStatusReceive value)
+        updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
+    required TResult Function(_ClearBillStatusMessage value)
+        clearBillStatusMessage,
+  }) {
+    return bulkUpdateBillStatusReceive(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_FetchGdns value)? fetchGdns,
+    TResult? Function(_SearchByKeyword value)? searchByKeyword,
+    TResult? Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
+    TResult? Function(_ClearSearch value)? clearSearch,
+    TResult? Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult? Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult? Function(_ClearScanResultMessage value)? clearScanResultMessage,
+    TResult? Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
+    TResult? Function(_FilterByWarehouseType value)? filterByWarehouseType,
+    TResult? Function(_FilterByStatus value)? filterByStatus,
+    TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_FilterBySender value)? filterBySender,
+    TResult? Function(_FilterBySenderName value)? filterBySenderName,
+    TResult? Function(_FilterByReceiver value)? filterByReceiver,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_InitDetail value)? initDetail,
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
+    TResult? Function(_AddImages value)? addImages,
+    TResult? Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult? Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
+    TResult? Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
+    TResult? Function(_SubmitImages value)? submitImages,
+    TResult? Function(_ClearUploadStatus value)? clearUploadStatus,
+    TResult? Function(_FetchLookupData value)? fetchLookupData,
+    TResult? Function(_PrefetchLookupData value)? prefetchLookupData,
+    TResult? Function(_FetchUsers value)? fetchUsers,
+    TResult? Function(_SelectSupplier value)? selectSupplier,
+    TResult? Function(_SelectSender value)? selectSender,
+    TResult? Function(_SelectReceiver value)? selectReceiver,
+    TResult? Function(_SelectBorrower value)? selectBorrower,
+    TResult? Function(_SelectCustomer value)? selectCustomer,
+    TResult? Function(_SelectWarehouse value)? selectWarehouse,
+    TResult? Function(_SelectKhoType value)? selectKhoType,
+    TResult? Function(_SelectStatus value)? selectStatus,
+    TResult? Function(_SelectProject value)? selectProject,
+    TResult? Function(_ChangeDeliveryDate value)? changeDeliveryDate,
+    TResult? Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult? Function(_ChangeReceiveTime value)? changeReceiveTime,
+    TResult? Function(_SelectLoaiKho value)? selectLoaiKho,
+    TResult? Function(_SelectProductType value)? selectProductType,
+    TResult? Function(_SelectCustomerWithAddress value)?
+        selectCustomerWithAddress,
+    TResult? Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
+    TResult? Function(_ToggleTransferInternal value)? toggleTransferInternal,
+    TResult? Function(_ToggleInternal value)? toggleInternal,
+    TResult? Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
+    TResult? Function(_SelectInternalKhoType value)? selectInternalKhoType,
+    TResult? Function(_ChangeDeliveryAddress value)? changeDeliveryAddress,
+    TResult? Function(_SelectNcc value)? selectNcc,
+    TResult? Function(_ToggleBillSelection value)? toggleBillSelection,
+    TResult? Function(_ClearBillSelection value)? clearBillSelection,
+    TResult? Function(_UpdateBillStatusPreparing value)?
+        updateBillStatusPreparing,
+    TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
+    TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
+  }) {
+    return bulkUpdateBillStatusReceive?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_FetchGdns value)? fetchGdns,
+    TResult Function(_SearchByKeyword value)? searchByKeyword,
+    TResult Function(_SearchByVoucherNumber value)? searchByVoucherNumber,
+    TResult Function(_ClearSearch value)? clearSearch,
+    TResult Function(_ScanQrToDetail value)? scanQrToDetail,
+    TResult Function(_ClearOpenedDetail value)? clearOpenedDetail,
+    TResult Function(_ClearScanResultMessage value)? clearScanResultMessage,
+    TResult Function(_FetchWarehouseTypes value)? fetchWarehouseTypes,
+    TResult Function(_FilterByWarehouseType value)? filterByWarehouseType,
+    TResult Function(_FilterByStatus value)? filterByStatus,
+    TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_FilterBySender value)? filterBySender,
+    TResult Function(_FilterBySenderName value)? filterBySenderName,
+    TResult Function(_FilterByReceiver value)? filterByReceiver,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_InitDetail value)? initDetail,
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
+    TResult Function(_AddImages value)? addImages,
+    TResult Function(_MarkImageToDelete value)? markImageToDelete,
+    TResult Function(_MarkImagesToDeleteBulk value)? markImagesToDeleteBulk,
+    TResult Function(_UnmarkImageToDelete value)? unmarkImageToDelete,
+    TResult Function(_SubmitImages value)? submitImages,
+    TResult Function(_ClearUploadStatus value)? clearUploadStatus,
+    TResult Function(_FetchLookupData value)? fetchLookupData,
+    TResult Function(_PrefetchLookupData value)? prefetchLookupData,
+    TResult Function(_FetchUsers value)? fetchUsers,
+    TResult Function(_SelectSupplier value)? selectSupplier,
+    TResult Function(_SelectSender value)? selectSender,
+    TResult Function(_SelectReceiver value)? selectReceiver,
+    TResult Function(_SelectBorrower value)? selectBorrower,
+    TResult Function(_SelectCustomer value)? selectCustomer,
+    TResult Function(_SelectWarehouse value)? selectWarehouse,
+    TResult Function(_SelectKhoType value)? selectKhoType,
+    TResult Function(_SelectStatus value)? selectStatus,
+    TResult Function(_SelectProject value)? selectProject,
+    TResult Function(_ChangeDeliveryDate value)? changeDeliveryDate,
+    TResult Function(_ChangeRequestDate value)? changeRequestDate,
+    TResult Function(_ChangeReceiveTime value)? changeReceiveTime,
+    TResult Function(_SelectLoaiKho value)? selectLoaiKho,
+    TResult Function(_SelectProductType value)? selectProductType,
+    TResult Function(_SelectCustomerWithAddress value)?
+        selectCustomerWithAddress,
+    TResult Function(_FetchAddressStockByCustomer value)?
+        fetchAddressStockByCustomer,
+    TResult Function(_ToggleTransferInternal value)? toggleTransferInternal,
+    TResult Function(_ToggleInternal value)? toggleInternal,
+    TResult Function(_SelectInternalWarehouse value)? selectInternalWarehouse,
+    TResult Function(_SelectInternalKhoType value)? selectInternalKhoType,
+    TResult Function(_ChangeDeliveryAddress value)? changeDeliveryAddress,
+    TResult Function(_SelectNcc value)? selectNcc,
+    TResult Function(_ToggleBillSelection value)? toggleBillSelection,
+    TResult Function(_ClearBillSelection value)? clearBillSelection,
+    TResult Function(_UpdateBillStatusPreparing value)?
+        updateBillStatusPreparing,
+    TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
+    TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
+    required TResult orElse(),
+  }) {
+    if (bulkUpdateBillStatusReceive != null) {
+      return bulkUpdateBillStatusReceive(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _BulkUpdateBillStatusReceive implements SaleGdnEvent {
+  const factory _BulkUpdateBillStatusReceive(
+      {required final Set<int> billIds,
+      required final bool isReceived}) = _$BulkUpdateBillStatusReceiveImpl;
+
+  Set<int> get billIds;
+  bool get isReceived;
+  @JsonKey(ignore: true)
+  _$$BulkUpdateBillStatusReceiveImplCopyWith<_$BulkUpdateBillStatusReceiveImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -25493,6 +27838,10 @@ class _$ClearBillStatusMessageImpl implements _ClearBillStatusMessage {
         updateBillStatusPreparing,
     required TResult Function(int billId, bool isReceived)
         updateBillStatusReceive,
+    required TResult Function(Set<int> billIds, bool isPrepared)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(Set<int> billIds, bool isReceived)
+        bulkUpdateBillStatusReceive,
     required TResult Function() clearBillStatusMessage,
   }) {
     return clearBillStatusMessage();
@@ -25556,6 +27905,10 @@ class _$ClearBillStatusMessageImpl implements _ClearBillStatusMessage {
     TResult? Function()? clearBillSelection,
     TResult? Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult? Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult? Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult? Function()? clearBillStatusMessage,
   }) {
     return clearBillStatusMessage?.call();
@@ -25619,6 +27972,10 @@ class _$ClearBillStatusMessageImpl implements _ClearBillStatusMessage {
     TResult Function()? clearBillSelection,
     TResult Function(int billId, bool isPrepared)? updateBillStatusPreparing,
     TResult Function(int billId, bool isReceived)? updateBillStatusReceive,
+    TResult Function(Set<int> billIds, bool isPrepared)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(Set<int> billIds, bool isReceived)?
+        bulkUpdateBillStatusReceive,
     TResult Function()? clearBillStatusMessage,
     required TResult orElse(),
   }) {
@@ -25696,6 +28053,10 @@ class _$ClearBillStatusMessageImpl implements _ClearBillStatusMessage {
         updateBillStatusPreparing,
     required TResult Function(_UpdateBillStatusReceive value)
         updateBillStatusReceive,
+    required TResult Function(_BulkUpdateBillStatusPreparing value)
+        bulkUpdateBillStatusPreparing,
+    required TResult Function(_BulkUpdateBillStatusReceive value)
+        bulkUpdateBillStatusReceive,
     required TResult Function(_ClearBillStatusMessage value)
         clearBillStatusMessage,
   }) {
@@ -25761,6 +28122,10 @@ class _$ClearBillStatusMessageImpl implements _ClearBillStatusMessage {
     TResult? Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult? Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult? Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult? Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult? Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
   }) {
     return clearBillStatusMessage?.call(this);
@@ -25825,6 +28190,10 @@ class _$ClearBillStatusMessageImpl implements _ClearBillStatusMessage {
     TResult Function(_UpdateBillStatusPreparing value)?
         updateBillStatusPreparing,
     TResult Function(_UpdateBillStatusReceive value)? updateBillStatusReceive,
+    TResult Function(_BulkUpdateBillStatusPreparing value)?
+        bulkUpdateBillStatusPreparing,
+    TResult Function(_BulkUpdateBillStatusReceive value)?
+        bulkUpdateBillStatusReceive,
     TResult Function(_ClearBillStatusMessage value)? clearBillStatusMessage,
     required TResult orElse(),
   }) {

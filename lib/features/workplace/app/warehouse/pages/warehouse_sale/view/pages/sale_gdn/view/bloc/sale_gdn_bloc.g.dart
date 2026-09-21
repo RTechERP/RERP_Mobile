@@ -61,6 +61,8 @@ abstract class _$SaleGdnStateCWProxy {
 
   SaleGdnState currentFullName(String currentFullName);
 
+  SaleGdnState isCurrentUserAdmin(bool isCurrentUserAdmin);
+
   SaleGdnState isUpdatingStatus(bool isUpdatingStatus);
 
   SaleGdnState billStatusMessage(String? billStatusMessage);
@@ -99,6 +101,7 @@ abstract class _$SaleGdnStateCWProxy {
     Set<int>? selectedBillIds,
     int? currentEmployeeId,
     String? currentFullName,
+    bool? isCurrentUserAdmin,
     bool? isUpdatingStatus,
     String? billStatusMessage,
   });
@@ -210,6 +213,10 @@ class _$SaleGdnStateCWProxyImpl implements _$SaleGdnStateCWProxy {
       this(currentFullName: currentFullName);
 
   @override
+  SaleGdnState isCurrentUserAdmin(bool isCurrentUserAdmin) =>
+      this(isCurrentUserAdmin: isCurrentUserAdmin);
+
+  @override
   SaleGdnState isUpdatingStatus(bool isUpdatingStatus) =>
       this(isUpdatingStatus: isUpdatingStatus);
 
@@ -253,6 +260,7 @@ class _$SaleGdnStateCWProxyImpl implements _$SaleGdnStateCWProxy {
     Object? selectedBillIds = const $CopyWithPlaceholder(),
     Object? currentEmployeeId = const $CopyWithPlaceholder(),
     Object? currentFullName = const $CopyWithPlaceholder(),
+    Object? isCurrentUserAdmin = const $CopyWithPlaceholder(),
     Object? isUpdatingStatus = const $CopyWithPlaceholder(),
     Object? billStatusMessage = const $CopyWithPlaceholder(),
   }) {
@@ -378,6 +386,11 @@ class _$SaleGdnStateCWProxyImpl implements _$SaleGdnStateCWProxy {
           ? _value.currentFullName
           // ignore: cast_nullable_to_non_nullable
           : currentFullName as String,
+      isCurrentUserAdmin: isCurrentUserAdmin == const $CopyWithPlaceholder() ||
+              isCurrentUserAdmin == null
+          ? _value.isCurrentUserAdmin
+          // ignore: cast_nullable_to_non_nullable
+          : isCurrentUserAdmin as bool,
       isUpdatingStatus: isUpdatingStatus == const $CopyWithPlaceholder() ||
               isUpdatingStatus == null
           ? _value.isUpdatingStatus

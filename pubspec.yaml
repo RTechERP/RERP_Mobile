@@ -3,7 +3,7 @@ description: "RTC ERP"
 
 publish_to: 'none'
 
-version: 1.6.2+39
+version: 1.7.0+40
 
 environment:
   sdk: ^3.10.7
@@ -208,6 +208,7 @@ flutter:
     - assets/images/icons/apps/week_plan/88.png
     - assets/images/icons/apps/week_plan/89.png
     - assets/images/icons/apps/week_plan/90.png
+    - assets/images/icons/apps/91.png
     - assets/images/icons/apps/92.png
 
     # Trans

@@ -58,6 +58,7 @@ class BillExporResponse with _$BillExporResponse {
     @JsonKey(name: 'IsAfterHours') bool? isAfterHours,
     @JsonKey(name: 'IsIncurredApproved') bool? isIncurredApproved,
     @JsonKey(name: 'ReceiverFullName') String? receiverFullName,
+    @JsonKey(name: 'ReceiverID') int? receiverId,
   }) = _BillExporResponse;
 
   factory BillExporResponse.fromJson(Map<String, dynamic> json) =>

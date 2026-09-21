@@ -55,6 +55,10 @@ import '../features/workplace/app/reg_general/view/pages/stamp/data/datasource/s
 import '../features/workplace/app/reg_general/view/pages/stamp/data/repository/stamp_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/stamp/data/repository/stamp_repo_impl.dart';
 import '../features/workplace/app/reg_general/view/pages/stamp/view/bloc/stamp_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/test_table/data/datasource/service/test_table_service.dart';
+import '../features/workplace/app/reg_general/view/pages/test_table/data/repository/test_table_repo.dart';
+import '../features/workplace/app/reg_general/view/pages/test_table/data/repository/test_table_repo_impl.dart';
+import '../features/workplace/app/reg_general/view/pages/test_table/view/bloc/test_table_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/work_requirement/data/datasource/service/work_requirement_service.dart';
 import '../features/workplace/app/reg_general/view/pages/work_requirement/data/repository/work_requirement_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/work_requirement/data/repository/work_requirement_repo_impl.dart';
@@ -131,6 +135,10 @@ import '../features/workplace/app/reports/view/accountant/view/bloc/accountant_b
 import '../features/workplace/app/reports/view/marketing/view/bloc/marketing_bloc.dart';
 import '../features/workplace/app/reports/view/sale/view/bloc/sale_bloc.dart';
 import '../features/workplace/app/reports/view/tech/view/bloc/tech_bloc.dart';
+import '../features/chatbot/data/datasource/service/rio_chat_service.dart';
+import '../features/chatbot/data/repository/rio_chat_repo.dart';
+import '../features/chatbot/data/repository/rio_chat_repo_impl.dart';
+import '../features/chatbot/view/bloc/rio_chat_bloc.dart';
 import '../features/workplace/app/signature/data/datasource/service/signature_service.dart';
 import '../features/workplace/app/signature/data/repository/signature_repo.dart';
 import '../features/workplace/app/signature/data/repository/signature_repo_impl.dart';
@@ -337,6 +345,13 @@ void configureDependencies() {
         () => SummaryOvertimeService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<TestTableService>(
+    () => TestTableService(getIt<Dio>()),
+  );
+
+  // Chatbot - Rio Chat
+  getIt.registerLazySingleton<RioChatService>(RioChatService.new);
+
   /// ===== REPOSITORY =====
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImpl(
@@ -482,6 +497,14 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<SummaryOvertimeRepo>(
     () => SummaryOvertimeRepoImpl(getIt<SummaryOvertimeService>()),
+  );
+
+  getIt.registerLazySingleton<TestTableRepo>(
+      () => TestTableRepoImpl(getIt<TestTableService>()),
+  );
+
+  getIt.registerLazySingleton<RioChatRepo>(
+    () => RioChatRepoImpl(getIt<RioChatService>()),
   );
 
   /// ===== BLOCS =====
@@ -763,6 +786,20 @@ void configureDependencies() {
       getIt<SummaryOvertimeRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<TestTableBloc>(
+        () => TestTableBloc(
+      getIt<LogUtils>(),
+      getIt<TestTableRepo>(),getIt<AuthRepo>(),
+    ),
+  );
+
+  getIt.registerFactory<RioChatBloc>(
+    () => RioChatBloc(
+      getIt<RioChatRepo>(),
+      getIt<LogUtils>(),getIt<LocalStorage>(),
     ),
   );
 }

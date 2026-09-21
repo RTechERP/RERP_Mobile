@@ -83,4 +83,5 @@ class AppImages {
   static const signature = 'assets/images/icons/apps/week_plan/90.png';
 
   static const project = 'assets/images/icons/apps/92.png';
+  static const test_table = 'assets/images/icons/apps/91.png';
 }
