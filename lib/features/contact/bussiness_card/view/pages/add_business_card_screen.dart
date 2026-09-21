@@ -4,11 +4,13 @@ import 'dart:math' as math;
 import 'package:camerawesome/camerawesome_plugin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../base/bloc/index.dart';
 import '../../../../../common/app_theme/index.dart';
 import '../../../../../common/logger/index.dart';
 import '../../../../../common/utils/snack_bar_helper.dart';
-import '../../data/datasource/services/ollama_vision_service.dart';
+import '../bloc/business_card_bloc.dart';
 
 /// Mute camera shutter sound on iOS/Android.
 class _CameraSoundMuter {
@@ -42,7 +44,6 @@ class AddBusinessCardScreen extends StatefulWidget {
 
 class _AddBusinessCardScreenState extends State<AddBusinessCardScreen>
     with TickerProviderStateMixin {
-  final OllamaVisionService _ollamaService = OllamaVisionService();
   final LogUtils _log = LogUtils();
 
   bool _isProcessing = false;
@@ -95,7 +96,6 @@ class _AddBusinessCardScreenState extends State<AddBusinessCardScreen>
 
   @override
   void dispose() {
-    _ollamaService.dispose();
     _blinkController.dispose();
     _progressController.dispose();
     _stabilityTimer?.cancel();
@@ -131,19 +131,12 @@ class _AddBusinessCardScreenState extends State<AddBusinessCardScreen>
         return;
       }
 
-      _log.logI('[Scan] captured path=$path, calling Ollama');
-      final ollamaResult = await _ollamaService.extractBusinessCard(path);
-      final scannedData = ollamaResult.toMap();
-
-      if (!mounted) return;
-      Navigator.pop(context, scannedData);
-    } on OllamaConnectionException catch (e) {
-      if (!mounted) return;
-      SnackBarHelper().showError(context, e.message);
-      setState(() => _isProcessing = false);
+      _log.logI('[Scan] captured path=$path, dispatching ScanCard event');
+      context.read<BusinessCardBloc>().add(BusinessCardEvent.scanCard(path));
+      // State changes are handled by BlocListener in build() — see below.
     } catch (e) {
       if (!mounted) return;
-      SnackBarHelper().showError(context, 'Lỗi khi xử lý ảnh: $e');
+      SnackBarHelper().showError(context, 'Lỗi khi chụp ảnh: $e');
       setState(() => _isProcessing = false);
     }
   }
@@ -274,7 +267,22 @@ class _AddBusinessCardScreenState extends State<AddBusinessCardScreen>
 
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Stack(
+      body: BlocListener<BusinessCardBloc, BusinessCardState>(
+        listenWhen: (prev, curr) => prev.status != curr.status,
+        listener: (context, state) {
+          if (state.status == BaseStateStatus.success &&
+              state.scannedData.isNotEmpty) {
+            // Bloc trả về dữ liệu scan → pop về caller.
+            Navigator.pop(context, state.scannedData);
+          } else if (state.status == BaseStateStatus.failed) {
+            SnackBarHelper().showError(
+              context,
+              state.message ?? 'Lỗi khi quét danh thiếp',
+            );
+            setState(() => _isProcessing = false);
+          }
+        },
+        child: Stack(
         fit: StackFit.expand,
         children: [
           // Camera preview với image analysis cho edge/stability detection.
@@ -359,6 +367,7 @@ class _AddBusinessCardScreenState extends State<AddBusinessCardScreen>
             child: Center(child: _buildHint()),
           ),
         ],
+        ),
       ),
     );
   }

@@ -16,6 +16,7 @@ import '../features/contact/contact/data/repository/contact_repo.dart';
 import '../features/contact/contact/data/repository/contact_repo_impl.dart';
 import '../features/contact/contact/view/bloc/contact_bloc.dart';
 import '../features/contact/bussiness_card/data/datasource/services/business_card_service.dart';
+import '../features/contact/bussiness_card/data/datasource/services/ollama_host_resolver.dart';
 import '../features/contact/bussiness_card/data/repository/business_card_repo.dart';
 import '../features/contact/bussiness_card/data/repository/business_card_repo_impl.dart';
 import '../features/contact/bussiness_card/view/bloc/business_card_bloc.dart';
@@ -301,7 +302,13 @@ void configureDependencies() {
     () => ContactService(getIt<Dio>()),
   );
 
-  getIt.registerLazySingleton<BusinessCardService>(() => BusinessCardService());
+  getIt.registerLazySingleton<BusinessCardService>(
+    () => BusinessCardService(getIt<Dio>(), getIt<LogUtils>()),
+  );
+
+  getIt.registerLazySingleton<OllamaHostResolver>(
+    () => OllamaHostResolver(getIt<LogUtils>()),
+  );
 
   getIt.registerLazySingleton<SaleGdnService>(
     () => SaleGdnService(getIt<Dio>()),
@@ -692,7 +699,10 @@ void configureDependencies() {
   );
 
   getIt.registerLazySingleton<BusinessCardRepo>(
-    () => BusinessCardRepoImpl(getIt<BusinessCardService>()),
+    () => BusinessCardRepoImpl(
+      getIt<BusinessCardService>(),
+      getIt<OllamaHostResolver>(),
+    ),
   );
 
   getIt.registerFactory<ContactBloc>(

@@ -21,6 +21,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../../../../base/bloc/index.dart';
 import '../../../../../../common/app_theme/index.dart';
 import '../../../../../../di/injection.dart';
+import '../../../bussiness_card/view/bloc/business_card_bloc.dart';
 import '../../../bussiness_card/view/pages/add_business_card_screen.dart';
 import '../../../bussiness_card/view/pages/business_card_detail_screen.dart';
 import '../../../bussiness_card/view/pages/confirm_business_card_screen.dart';
@@ -685,7 +686,12 @@ class _ContactViewState extends State<_ContactView>
   Future<void> _openAddBusinessCard(BuildContext context) async {
     final scannedData = await Navigator.push<Map<String, String>>(
       context,
-      MaterialPageRoute(builder: (_) => const AddBusinessCardScreen()),
+      MaterialPageRoute(
+        builder: (_) => BlocProvider<BusinessCardBloc>(
+          create: (_) => getIt<BusinessCardBloc>(),
+          child: const AddBusinessCardScreen(),
+        ),
+      ),
     );
 
     if (scannedData == null || !context.mounted) return;

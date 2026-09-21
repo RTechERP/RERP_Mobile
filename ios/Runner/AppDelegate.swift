@@ -21,8 +21,18 @@ import FirebaseMessaging
 
     GeneratedPluginRegistrant.register(with: self)
 
-    // Setup camera mute channel
-    let controller = window?.rootViewController as! FlutterViewController
+    // App dùng scene-based lifecycle (UIApplicationSceneManifest trong Info.plist),
+    // nên `self.window` của AppDelegate là nil. Lấy FlutterViewController từ
+    // scene đang active để đăng ký MethodChannel mà không cần force-unwrap.
+    DispatchQueue.main.async { [weak self] in
+      self?.registerCameraMuteChannel()
+    }
+
+    return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+  }
+
+  private func registerCameraMuteChannel() {
+    guard let controller = activeFlutterViewController() else { return }
     let channel = FlutterMethodChannel(
       name: "com.rerp/camera_mute",
       binaryMessenger: controller.binaryMessenger
@@ -35,8 +45,17 @@ import FirebaseMessaging
         result(FlutterMethodNotImplemented)
       }
     }
+  }
 
-    return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+  private func activeFlutterViewController() -> FlutterViewController? {
+    let scenes = UIApplication.shared.connectedScenes
+      .compactMap { $0 as? UIWindowScene }
+    for scene in scenes {
+      if let controller = scene.windows.first?.rootViewController as? FlutterViewController {
+        return controller
+      }
+    }
+    return nil
   }
 
   private func muteShutterSound() {

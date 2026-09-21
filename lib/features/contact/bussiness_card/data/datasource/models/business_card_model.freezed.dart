@@ -557,3 +557,271 @@ abstract class _BusinessCardModel implements BusinessCardModel {
   _$$BusinessCardModelImplCopyWith<_$BusinessCardModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+BusinessCardVisionResult _$BusinessCardVisionResultFromJson(
+    Map<String, dynamic> json) {
+  return _BusinessCardVisionResult.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BusinessCardVisionResult {
+  String? get name => throw _privateConstructorUsedError;
+  String? get phone => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
+  String? get company => throw _privateConstructorUsedError;
+  String? get address => throw _privateConstructorUsedError;
+  String? get position => throw _privateConstructorUsedError;
+  String? get website => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BusinessCardVisionResultCopyWith<BusinessCardVisionResult> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BusinessCardVisionResultCopyWith<$Res> {
+  factory $BusinessCardVisionResultCopyWith(BusinessCardVisionResult value,
+          $Res Function(BusinessCardVisionResult) then) =
+      _$BusinessCardVisionResultCopyWithImpl<$Res, BusinessCardVisionResult>;
+  @useResult
+  $Res call(
+      {String? name,
+      String? phone,
+      String? email,
+      String? company,
+      String? address,
+      String? position,
+      String? website});
+}
+
+/// @nodoc
+class _$BusinessCardVisionResultCopyWithImpl<$Res,
+        $Val extends BusinessCardVisionResult>
+    implements $BusinessCardVisionResultCopyWith<$Res> {
+  _$BusinessCardVisionResultCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = freezed,
+    Object? phone = freezed,
+    Object? email = freezed,
+    Object? company = freezed,
+    Object? address = freezed,
+    Object? position = freezed,
+    Object? website = freezed,
+  }) {
+    return _then(_value.copyWith(
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phone: freezed == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      company: freezed == company
+          ? _value.company
+          : company // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      position: freezed == position
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as String?,
+      website: freezed == website
+          ? _value.website
+          : website // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$BusinessCardVisionResultImplCopyWith<$Res>
+    implements $BusinessCardVisionResultCopyWith<$Res> {
+  factory _$$BusinessCardVisionResultImplCopyWith(
+          _$BusinessCardVisionResultImpl value,
+          $Res Function(_$BusinessCardVisionResultImpl) then) =
+      __$$BusinessCardVisionResultImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String? name,
+      String? phone,
+      String? email,
+      String? company,
+      String? address,
+      String? position,
+      String? website});
+}
+
+/// @nodoc
+class __$$BusinessCardVisionResultImplCopyWithImpl<$Res>
+    extends _$BusinessCardVisionResultCopyWithImpl<$Res,
+        _$BusinessCardVisionResultImpl>
+    implements _$$BusinessCardVisionResultImplCopyWith<$Res> {
+  __$$BusinessCardVisionResultImplCopyWithImpl(
+      _$BusinessCardVisionResultImpl _value,
+      $Res Function(_$BusinessCardVisionResultImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = freezed,
+    Object? phone = freezed,
+    Object? email = freezed,
+    Object? company = freezed,
+    Object? address = freezed,
+    Object? position = freezed,
+    Object? website = freezed,
+  }) {
+    return _then(_$BusinessCardVisionResultImpl(
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phone: freezed == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      company: freezed == company
+          ? _value.company
+          : company // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      position: freezed == position
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as String?,
+      website: freezed == website
+          ? _value.website
+          : website // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$BusinessCardVisionResultImpl implements _BusinessCardVisionResult {
+  const _$BusinessCardVisionResultImpl(
+      {this.name,
+      this.phone,
+      this.email,
+      this.company,
+      this.address,
+      this.position,
+      this.website});
+
+  factory _$BusinessCardVisionResultImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BusinessCardVisionResultImplFromJson(json);
+
+  @override
+  final String? name;
+  @override
+  final String? phone;
+  @override
+  final String? email;
+  @override
+  final String? company;
+  @override
+  final String? address;
+  @override
+  final String? position;
+  @override
+  final String? website;
+
+  @override
+  String toString() {
+    return 'BusinessCardVisionResult(name: $name, phone: $phone, email: $email, company: $company, address: $address, position: $position, website: $website)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BusinessCardVisionResultImpl &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.company, company) || other.company == company) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.position, position) ||
+                other.position == position) &&
+            (identical(other.website, website) || other.website == website));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, name, phone, email, company, address, position, website);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BusinessCardVisionResultImplCopyWith<_$BusinessCardVisionResultImpl>
+      get copyWith => __$$BusinessCardVisionResultImplCopyWithImpl<
+          _$BusinessCardVisionResultImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BusinessCardVisionResultImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BusinessCardVisionResult implements BusinessCardVisionResult {
+  const factory _BusinessCardVisionResult(
+      {final String? name,
+      final String? phone,
+      final String? email,
+      final String? company,
+      final String? address,
+      final String? position,
+      final String? website}) = _$BusinessCardVisionResultImpl;
+
+  factory _BusinessCardVisionResult.fromJson(Map<String, dynamic> json) =
+      _$BusinessCardVisionResultImpl.fromJson;
+
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  String? get company;
+  @override
+  String? get address;
+  @override
+  String? get position;
+  @override
+  String? get website;
+  @override
+  @JsonKey(ignore: true)
+  _$$BusinessCardVisionResultImplCopyWith<_$BusinessCardVisionResultImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}

@@ -19,32 +19,38 @@ mixin _$BusinessCardEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(String path) scanCard,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(String path)? scanCard,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(String path)? scanCard,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_ScanCard value) scanCard,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_ScanCard value)? scanCard,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_ScanCard value)? scanCard,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -106,6 +112,7 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(String path) scanCard,
   }) {
     return init();
   }
@@ -114,6 +121,7 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(String path)? scanCard,
   }) {
     return init?.call();
   }
@@ -122,6 +130,7 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(String path)? scanCard,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -134,6 +143,7 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_ScanCard value) scanCard,
   }) {
     return init(this);
   }
@@ -142,6 +152,7 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_ScanCard value)? scanCard,
   }) {
     return init?.call(this);
   }
@@ -150,6 +161,7 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_ScanCard value)? scanCard,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -161,4 +173,137 @@ class _$InitImpl implements _Init {
 
 abstract class _Init implements BusinessCardEvent {
   const factory _Init() = _$InitImpl;
+}
+
+/// @nodoc
+abstract class _$$ScanCardImplCopyWith<$Res> {
+  factory _$$ScanCardImplCopyWith(
+          _$ScanCardImpl value, $Res Function(_$ScanCardImpl) then) =
+      __$$ScanCardImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String path});
+}
+
+/// @nodoc
+class __$$ScanCardImplCopyWithImpl<$Res>
+    extends _$BusinessCardEventCopyWithImpl<$Res, _$ScanCardImpl>
+    implements _$$ScanCardImplCopyWith<$Res> {
+  __$$ScanCardImplCopyWithImpl(
+      _$ScanCardImpl _value, $Res Function(_$ScanCardImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? path = null,
+  }) {
+    return _then(_$ScanCardImpl(
+      null == path
+          ? _value.path
+          : path // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ScanCardImpl implements _ScanCard {
+  const _$ScanCardImpl(this.path);
+
+  @override
+  final String path;
+
+  @override
+  String toString() {
+    return 'BusinessCardEvent.scanCard(path: $path)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ScanCardImpl &&
+            (identical(other.path, path) || other.path == path));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, path);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ScanCardImplCopyWith<_$ScanCardImpl> get copyWith =>
+      __$$ScanCardImplCopyWithImpl<_$ScanCardImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(String path) scanCard,
+  }) {
+    return scanCard(path);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(String path)? scanCard,
+  }) {
+    return scanCard?.call(path);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(String path)? scanCard,
+    required TResult orElse(),
+  }) {
+    if (scanCard != null) {
+      return scanCard(path);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ScanCard value) scanCard,
+  }) {
+    return scanCard(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ScanCard value)? scanCard,
+  }) {
+    return scanCard?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ScanCard value)? scanCard,
+    required TResult orElse(),
+  }) {
+    if (scanCard != null) {
+      return scanCard(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ScanCard implements BusinessCardEvent {
+  const factory _ScanCard(final String path) = _$ScanCardImpl;
+
+  String get path;
+  @JsonKey(ignore: true)
+  _$$ScanCardImplCopyWith<_$ScanCardImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

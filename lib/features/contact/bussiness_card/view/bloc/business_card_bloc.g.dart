@@ -11,6 +11,10 @@ abstract class _$BusinessCardStateCWProxy {
 
   BusinessCardState message(String? message);
 
+  BusinessCardState cards(List<BusinessCardModel> cards);
+
+  BusinessCardState scannedData(Map<String, String> scannedData);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BusinessCardState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -20,6 +24,8 @@ abstract class _$BusinessCardStateCWProxy {
   BusinessCardState call({
     BaseStateStatus? status,
     String? message,
+    List<BusinessCardModel>? cards,
+    Map<String, String>? scannedData,
   });
 }
 
@@ -36,6 +42,13 @@ class _$BusinessCardStateCWProxyImpl implements _$BusinessCardStateCWProxy {
   BusinessCardState message(String? message) => this(message: message);
 
   @override
+  BusinessCardState cards(List<BusinessCardModel> cards) => this(cards: cards);
+
+  @override
+  BusinessCardState scannedData(Map<String, String> scannedData) =>
+      this(scannedData: scannedData);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BusinessCardState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -46,6 +59,8 @@ class _$BusinessCardStateCWProxyImpl implements _$BusinessCardStateCWProxy {
   BusinessCardState call({
     Object? status = const $CopyWithPlaceholder(),
     Object? message = const $CopyWithPlaceholder(),
+    Object? cards = const $CopyWithPlaceholder(),
+    Object? scannedData = const $CopyWithPlaceholder(),
   }) {
     return BusinessCardState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -56,6 +71,15 @@ class _$BusinessCardStateCWProxyImpl implements _$BusinessCardStateCWProxy {
           ? _value.message
           // ignore: cast_nullable_to_non_nullable
           : message as String?,
+      cards: cards == const $CopyWithPlaceholder() || cards == null
+          ? _value.cards
+          // ignore: cast_nullable_to_non_nullable
+          : cards as List<BusinessCardModel>,
+      scannedData:
+          scannedData == const $CopyWithPlaceholder() || scannedData == null
+              ? _value.scannedData
+              // ignore: cast_nullable_to_non_nullable
+              : scannedData as Map<String, String>,
     );
   }
 }

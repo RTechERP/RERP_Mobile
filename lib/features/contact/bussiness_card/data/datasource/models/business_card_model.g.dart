@@ -53,3 +53,27 @@ Map<String, dynamic> _$$BusinessCardModelImplToJson(
       'ImagePath': instance.imagePath,
       'IsFavorite': instance.isFavorite,
     };
+
+_$BusinessCardVisionResultImpl _$$BusinessCardVisionResultImplFromJson(
+        Map<String, dynamic> json) =>
+    _$BusinessCardVisionResultImpl(
+      name: json['name'] as String?,
+      phone: json['phone'] as String?,
+      email: json['email'] as String?,
+      company: json['company'] as String?,
+      address: json['address'] as String?,
+      position: json['position'] as String?,
+      website: json['website'] as String?,
+    );
+
+Map<String, dynamic> _$$BusinessCardVisionResultImplToJson(
+        _$BusinessCardVisionResultImpl instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'phone': instance.phone,
+      'email': instance.email,
+      'company': instance.company,
+      'address': instance.address,
+      'position': instance.position,
+      'website': instance.website,
+    };

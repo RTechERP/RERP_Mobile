@@ -43,11 +43,10 @@ class ContactBloc extends BaseBloc<ContactEvent, ContactState> {
     ));
 
     final result = await _repo.getContact(departmentID: departmentID, keyword: keyword);
+    final cardsResult = await _businessCardRepo.getBusinessCards();
 
     List<BusinessCardModel> businessCards = [];
-    try {
-      businessCards = await _businessCardRepo.getBusinessCards();
-    } catch (_) {}
+    cardsResult.fold((_) {}, (cards) => businessCards = cards);
 
     result.fold(
       (error) {
