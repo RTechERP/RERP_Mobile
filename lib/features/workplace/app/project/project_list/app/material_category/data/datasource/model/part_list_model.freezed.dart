@@ -209,7 +209,7 @@ mixin _$PartListModel {
   @JsonKey(name: 'LeadTime')
   String? get leadTime => throw _privateConstructorUsedError;
   @JsonKey(name: 'Status')
-  String? get status => throw _privateConstructorUsedError;
+  int? get status => throw _privateConstructorUsedError;
   @JsonKey(name: 'NCC')
   String? get ncc => throw _privateConstructorUsedError;
   @JsonKey(name: 'IsDeleted')
@@ -365,7 +365,7 @@ abstract class $PartListModelCopyWith<$Res> {
       @JsonKey(name: 'Amount') double? amount,
       @JsonKey(name: 'VAT') String? vat,
       @JsonKey(name: 'LeadTime') String? leadTime,
-      @JsonKey(name: 'Status') String? status,
+      @JsonKey(name: 'Status') int? status,
       @JsonKey(name: 'NCC') String? ncc,
       @JsonKey(name: 'IsDeleted') bool? isDeleted,
       @JsonKey(name: 'Quality') String? quality,
@@ -903,7 +903,7 @@ class _$PartListModelCopyWithImpl<$Res, $Val extends PartListModel>
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       ncc: freezed == ncc
           ? _value.ncc
           : ncc // ignore: cast_nullable_to_non_nullable
@@ -1104,7 +1104,7 @@ abstract class _$$PartListModelImplCopyWith<$Res>
       @JsonKey(name: 'Amount') double? amount,
       @JsonKey(name: 'VAT') String? vat,
       @JsonKey(name: 'LeadTime') String? leadTime,
-      @JsonKey(name: 'Status') String? status,
+      @JsonKey(name: 'Status') int? status,
       @JsonKey(name: 'NCC') String? ncc,
       @JsonKey(name: 'IsDeleted') bool? isDeleted,
       @JsonKey(name: 'Quality') String? quality,
@@ -1640,7 +1640,7 @@ class __$$PartListModelImplCopyWithImpl<$Res>
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       ncc: freezed == ncc
           ? _value.ncc
           : ncc // ignore: cast_nullable_to_non_nullable
@@ -2148,7 +2148,7 @@ class _$PartListModelImpl implements _PartListModel {
   final String? leadTime;
   @override
   @JsonKey(name: 'Status')
-  final String? status;
+  final int? status;
   @override
   @JsonKey(name: 'NCC')
   final String? ncc;
@@ -2630,7 +2630,7 @@ abstract class _PartListModel implements PartListModel {
       @JsonKey(name: 'Amount') final double? amount,
       @JsonKey(name: 'VAT') final String? vat,
       @JsonKey(name: 'LeadTime') final String? leadTime,
-      @JsonKey(name: 'Status') final String? status,
+      @JsonKey(name: 'Status') final int? status,
       @JsonKey(name: 'NCC') final String? ncc,
       @JsonKey(name: 'IsDeleted') final bool? isDeleted,
       @JsonKey(name: 'Quality') final String? quality,
@@ -2942,7 +2942,7 @@ abstract class _PartListModel implements PartListModel {
   String? get leadTime;
   @override
   @JsonKey(name: 'Status')
-  String? get status;
+  int? get status;
   @override
   @JsonKey(name: 'NCC')
   String? get ncc;

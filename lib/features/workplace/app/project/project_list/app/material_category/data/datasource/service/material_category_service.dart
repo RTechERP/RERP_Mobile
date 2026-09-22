@@ -21,28 +21,28 @@ class MaterialCategoryService extends DioBaseApiService {
   Future<List<PartListModel>> getPartList({
     required int projectId,
     required int projectPartListVersionId,
+    required int projectTypeId,
     String keyword = '',
-    int partlistTypeId = 8,
     int isDeleted = 0,
     bool isConsumable = false,
     int isApprovedTbp = -1,
     int isApprovedPurchase = -1,
   }) async {
-    final result = await post<List<PartListModel>>(
+    final body = {
+      'ProjectID': projectId,
+      'ProjectPartListVersionID': projectPartListVersionId,
+      'PartlistTypeID': projectTypeId,
+      'Keywords': keyword,
+      'IsDeleted': isDeleted,
+      'IsConsumable': isConsumable,
+      'IsApprovedTBP': isApprovedTbp,
+      'IsApprovedPurchase': isApprovedPurchase,
+    };
+    final result = await post<dynamic>(
       ApiEndPoint.getPartList,
-      body: {
-        'ProjectID': projectId,
-        'ProjectPartListVersionID': projectPartListVersionId,
-        'Keywords': keyword,
-        'PartlistTypeID': partlistTypeId,
-        'IsDeleted': isDeleted,
-        'IsConsumable': isConsumable,
-        'IsApprovedTBP': isApprovedTbp,
-        'IsApprovedPurchase': isApprovedPurchase,
-      },
-      parser: (json) => _parsePartListResponse(json),
+      body: body,
     );
-    return result;
+    return _parsePartListResponse(result);
   }
 
   /// Parse response part list - có thể trả về List trực tiếp hoặc wrapped.

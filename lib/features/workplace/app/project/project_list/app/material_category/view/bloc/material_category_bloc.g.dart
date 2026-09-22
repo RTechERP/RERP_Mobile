@@ -19,6 +19,8 @@ abstract class _$MaterialCategoryStateCWProxy {
 
   MaterialCategoryState projectPartListVersionId(int? projectPartListVersionId);
 
+  MaterialCategoryState projectTypeId(int? projectTypeId);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `MaterialCategoryState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -32,6 +34,7 @@ abstract class _$MaterialCategoryStateCWProxy {
     String? searchKeyword,
     int? projectId,
     int? projectPartListVersionId,
+    int? projectTypeId,
   });
 }
 
@@ -65,6 +68,10 @@ class _$MaterialCategoryStateCWProxyImpl
       this(projectPartListVersionId: projectPartListVersionId);
 
   @override
+  MaterialCategoryState projectTypeId(int? projectTypeId) =>
+      this(projectTypeId: projectTypeId);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `MaterialCategoryState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -79,6 +86,7 @@ class _$MaterialCategoryStateCWProxyImpl
     Object? searchKeyword = const $CopyWithPlaceholder(),
     Object? projectId = const $CopyWithPlaceholder(),
     Object? projectPartListVersionId = const $CopyWithPlaceholder(),
+    Object? projectTypeId = const $CopyWithPlaceholder(),
   }) {
     return MaterialCategoryState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -108,6 +116,10 @@ class _$MaterialCategoryStateCWProxyImpl
               ? _value.projectPartListVersionId
               // ignore: cast_nullable_to_non_nullable
               : projectPartListVersionId as int?,
+      projectTypeId: projectTypeId == const $CopyWithPlaceholder()
+          ? _value.projectTypeId
+          // ignore: cast_nullable_to_non_nullable
+          : projectTypeId as int?,
     );
   }
 }

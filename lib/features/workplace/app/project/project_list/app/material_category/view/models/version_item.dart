@@ -65,6 +65,7 @@ class VersionItem {
     required this.type,
     required this.projectTypeName,
     required this.fullNameCreated,
+    this.projectTypeId,
     this.statusVersionText,
     this.stt = 0,
     this.codeNew,
@@ -84,6 +85,9 @@ class VersionItem {
   final VersionType type;
   final String projectTypeName;
   final String fullNameCreated;
+
+  /// Loại dự án (lấy từ `ProjectTypeID` API), dùng để gọi `PartlistTypeID`.
+  final int? projectTypeId;
 
   /// Text mô tả trạng thái version từ API (VD: "Giải pháp").
   final String? statusVersionText;

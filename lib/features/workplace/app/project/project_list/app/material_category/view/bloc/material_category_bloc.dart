@@ -21,8 +21,8 @@ class MaterialCategoryBloc
   MaterialCategoryBloc(this._repo) : super(MaterialCategoryState.init()) {
     on<MaterialCategoryEvent>((event, emit) async {
       await event.when(
-        init: (projectId, projectPartListVersionId, keyword) =>
-            _onInit(emit, projectId, projectPartListVersionId, keyword),
+        init: (projectId, projectPartListVersionId, projectTypeId, keyword) =>
+            _onInit(emit, projectId, projectPartListVersionId, projectTypeId, keyword),
         refresh: () => _onRefresh(emit),
         search: (keyword) => _onSearch(emit, keyword: keyword),
         changeKeyword: (keyword) => _onChangeKeyword(emit, keyword: keyword),
@@ -34,19 +34,25 @@ class MaterialCategoryBloc
     Emitter<MaterialCategoryState> emit,
     int projectId,
     int projectPartListVersionId,
+    int projectTypeId,
     String? keyword,
   ) async {
     emit(state.copyWith(
       status: BaseStateStatus.loading,
       projectId: projectId,
       projectPartListVersionId: projectPartListVersionId,
+      projectTypeId: projectTypeId,
       searchKeyword: keyword ?? '',
+      // Dispose data cũ để hiển thị loading indicator khi user chọn
+      // version khác ở tab Phiên bản.
+      categories: [],
     ));
 
     try {
       final result = await _repo.getPartList(
         projectId: projectId,
         projectPartListVersionId: projectPartListVersionId,
+        projectTypeId: projectTypeId,
         keyword: keyword ?? '',
       );
       result.fold(
@@ -54,10 +60,12 @@ class MaterialCategoryBloc
           status: BaseStateStatus.failed,
           message: error.getErrorMessage,
         )),
-        (data) => emit(state.copyWith(
-          status: BaseStateStatus.success,
-          categories: data,
-        )),
+        (data) {
+          emit(state.copyWith(
+            status: BaseStateStatus.success,
+            categories: data,
+          ));
+        },
       );
     } catch (e) {
       emit(state.copyWith(
@@ -75,7 +83,7 @@ class MaterialCategoryBloc
       final result = await _repo.getPartList(
         projectId: state.projectId!,
         projectPartListVersionId: state.projectPartListVersionId!,
-        keyword: state.searchKeyword,
+        keyword: state.searchKeyword, projectTypeId: state.projectTypeId!,
       );
       result.fold(
         (error) => emit(state.copyWith(
@@ -109,7 +117,7 @@ class MaterialCategoryBloc
       final result = await _repo.getPartList(
         projectId: state.projectId!,
         projectPartListVersionId: state.projectPartListVersionId!,
-        keyword: state.searchKeyword,
+        keyword: state.searchKeyword, projectTypeId: state.projectTypeId!,
       );
       result.fold(
         (error) => emit(state.copyWith(

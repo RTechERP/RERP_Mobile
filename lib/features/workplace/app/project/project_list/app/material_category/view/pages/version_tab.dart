@@ -22,7 +22,7 @@ class VersionTab extends StatefulWidget {
   });
 
   /// Callback khi user tap vào một phiên bản - truyền projectId + versionId.
-  final void Function(int projectId, int versionId) onVersionSelected;
+  final void Function(int projectId, int versionId, int projectTypeId) onVersionSelected;
 
   /// ID dự án (projectRequestId) - ưu tiên dùng làm projectId khi gọi API
   /// thay vì ProjectID trong response version (là id giải pháp).
@@ -101,6 +101,7 @@ class _VersionTabState extends BaseShareState<VersionTab, VersionEvent,
                   widget.onVersionSelected(
                     widget.projectId ?? item.projectId!,
                     item.id,
+                    item.projectTypeId ?? 0,
                   );
                 }
               },

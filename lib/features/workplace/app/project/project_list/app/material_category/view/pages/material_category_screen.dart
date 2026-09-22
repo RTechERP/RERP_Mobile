@@ -57,7 +57,7 @@ class _MaterialCategoryScreenState extends State<MaterialCategoryScreen>
     super.dispose();
   }
 
-  void _onVersionSelected(int projectId, int versionId) {
+  void _onVersionSelected(int projectId, int versionId, int projectTypeId) {
     setState(() {
       _selectedVersionId = versionId;
     });
@@ -65,15 +65,21 @@ class _MaterialCategoryScreenState extends State<MaterialCategoryScreen>
     context.read<MaterialCategoryBloc>().add(MaterialCategoryEvent.init(
           projectId: projectId,
           projectPartListVersionId: versionId,
+          projectTypeId: projectTypeId,
         ));
     _tabController.animateTo(2);
   }
 
   /// Dispatch lệnh load vật tư cho 1 version cụ thể, không chuyển tab.
-  void _loadMaterialForVersion(BuildContext context, int versionId) {
+  void _loadMaterialForVersion(
+    BuildContext context,
+    int versionId,
+    int projectTypeId,
+  ) {
     context.read<MaterialCategoryBloc>().add(MaterialCategoryEvent.init(
           projectId: widget.projectRequestId ?? 0,
           projectPartListVersionId: versionId,
+          projectTypeId: projectTypeId,
         ));
   }
 
@@ -98,7 +104,7 @@ class _MaterialCategoryScreenState extends State<MaterialCategoryScreen>
     final first = state.versions.first;
     if (first.id == _autoDispatchedVersionId) return;
     _autoDispatchedVersionId = first.id;
-    _loadMaterialForVersion(context, first.id);
+    _loadMaterialForVersion(context, first.id, first.projectTypeId ?? 0);
   }
 
   @override
@@ -118,9 +124,6 @@ class _MaterialCategoryScreenState extends State<MaterialCategoryScreen>
           ),
           BlocProvider<VersionBloc>(
             create: (_) => getIt<VersionBloc>(),
-          ),
-          BlocProvider<MaterialCategoryBloc>(
-            create: (_) => getIt<MaterialCategoryBloc>(),
           ),
         ],
         child: MultiBlocListener(

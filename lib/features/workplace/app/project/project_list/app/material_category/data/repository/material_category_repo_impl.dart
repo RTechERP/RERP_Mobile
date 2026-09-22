@@ -16,15 +16,15 @@ class MaterialCategoryRepoImpl implements MaterialCategoryRepo {
   Future<Either<BaseError, List<PartListModel>>> getPartList({
     required int projectId,
     required int projectPartListVersionId,
+    required int projectTypeId,
     String keyword = '',
-    int partlistTypeId = 8,
   }) async {
     try {
       final data = await _service.getPartList(
         projectId: projectId,
         projectPartListVersionId: projectPartListVersionId,
+        projectTypeId: projectTypeId,
         keyword: keyword,
-        partlistTypeId: partlistTypeId,
       );
       return right(data);
     } catch (e) {

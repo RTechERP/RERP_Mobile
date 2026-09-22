@@ -90,6 +90,7 @@ class VersionBloc extends BaseBloc<VersionEvent, VersionState> {
       type: type,
       projectTypeName: model.projectTypeName ?? '--',
       fullNameCreated: model.fullNameCreated ?? '--',
+      projectTypeId: model.projectTypeId,
       statusVersionText: model.statusVersionText,
       stt: model.stt ?? 0,
       codeNew: model.codeNew,

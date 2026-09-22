@@ -7,7 +7,7 @@ abstract class MaterialCategoryRepo {
   Future<Either<BaseError, List<PartListModel>>> getPartList({
     required int projectId,
     required int projectPartListVersionId,
+    required int projectTypeId,
     String keyword = '',
-    int partlistTypeId = 8,
   });
 }

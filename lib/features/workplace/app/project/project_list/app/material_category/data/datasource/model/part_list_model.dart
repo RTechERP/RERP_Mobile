@@ -102,7 +102,7 @@ class PartListModel with _$PartListModel {
     @JsonKey(name: 'Amount') double? amount,
     @JsonKey(name: 'VAT') String? vat,
     @JsonKey(name: 'LeadTime') String? leadTime,
-    @JsonKey(name: 'Status') String? status,
+    @JsonKey(name: 'Status') int? status,
     @JsonKey(name: 'NCC') String? ncc,
     @JsonKey(name: 'IsDeleted') bool? isDeleted,
     @JsonKey(name: 'Quality') String? quality,

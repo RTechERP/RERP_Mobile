@@ -6,6 +6,7 @@ class MaterialCategoryState extends BaseBlocState {
   final String searchKeyword;
   final int? projectId;
   final int? projectPartListVersionId;
+  final int? projectTypeId;
 
   const MaterialCategoryState({
     required super.status,
@@ -14,6 +15,7 @@ class MaterialCategoryState extends BaseBlocState {
     this.searchKeyword = '',
     this.projectId,
     this.projectPartListVersionId,
+    this.projectTypeId,
   });
 
   factory MaterialCategoryState.init() => const MaterialCategoryState(
@@ -45,5 +47,6 @@ class MaterialCategoryState extends BaseBlocState {
         searchKeyword,
         projectId,
         projectPartListVersionId,
+        projectTypeId,
       ];
 }

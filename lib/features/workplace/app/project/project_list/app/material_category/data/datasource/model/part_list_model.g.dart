@@ -106,7 +106,7 @@ _$PartListModelImpl _$$PartListModelImplFromJson(Map<String, dynamic> json) =>
       amount: (json['Amount'] as num?)?.toDouble(),
       vat: json['VAT'] as String?,
       leadTime: json['LeadTime'] as String?,
-      status: json['Status'] as String?,
+      status: (json['Status'] as num?)?.toInt(),
       ncc: json['NCC'] as String?,
       isDeleted: json['IsDeleted'] as bool?,
       quality: json['Quality'] as String?,
