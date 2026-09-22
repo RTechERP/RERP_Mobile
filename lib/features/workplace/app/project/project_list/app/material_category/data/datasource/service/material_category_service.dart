@@ -3,7 +3,7 @@ import 'package:rtc_erp/base/network/dio/dio_base_api_service.dart';
 import 'package:rtc_erp/base/network/models/base_data.dart';
 
 import '../../../../../../../../../../common/constants.dart';
-import '../model/material_category_model.dart';
+import '../model/part_list_model.dart';
 import '../model/solution_model.dart';
 import '../model/version_model.dart';
 
@@ -15,15 +15,52 @@ import '../model/version_model.dart';
 class MaterialCategoryService extends DioBaseApiService {
   MaterialCategoryService(super.dio);
 
-  /// Lấy danh sách danh mục vật tư.
-  /// TODO: cập nhật path + response khi backend cung cấp endpoint.
-  Future<List<MaterialCategoryItem>> getMaterialCategories({
+  /// Lấy danh sách vật tư theo phiên bản.
+  /// Endpoint: POST /ProjectPartList/get-all
+  /// Payload: { projectId, projectPartListVersionId, keywords, partlistTypeId, isDeleted, isConsumable, isApprovedTBP, isApprovedPurchase }
+  Future<List<PartListModel>> getPartList({
+    required int projectId,
+    required int projectPartListVersionId,
     String keyword = '',
+    int partlistTypeId = 8,
+    int isDeleted = 0,
+    bool isConsumable = false,
+    int isApprovedTbp = -1,
+    int isApprovedPurchase = -1,
   }) async {
-    // TODO: thay bằng API call thực tế khi backend sẵn sàng.
-    throw UnimplementedError(
-      'getMaterialCategories chưa được triển khai (thiếu endpoint backend).',
+    final result = await post<List<PartListModel>>(
+      ApiEndPoint.getPartList,
+      body: {
+        'ProjectID': projectId,
+        'ProjectPartListVersionID': projectPartListVersionId,
+        'Keywords': keyword,
+        'PartlistTypeID': partlistTypeId,
+        'IsDeleted': isDeleted,
+        'IsConsumable': isConsumable,
+        'IsApprovedTBP': isApprovedTbp,
+        'IsApprovedPurchase': isApprovedPurchase,
+      },
+      parser: (json) => _parsePartListResponse(json),
     );
+    return result;
+  }
+
+  /// Parse response part list - có thể trả về List trực tiếp hoặc wrapped.
+  List<PartListModel> _parsePartListResponse(dynamic json) {
+    if (json is List) {
+      return json
+          .map((e) => PartListModel.fromJson(e as Map<String, dynamic>))
+          .toList();
+    }
+    if (json is Map<String, dynamic>) {
+      final data = json['data'];
+      if (data is List) {
+        return data
+            .map((e) => PartListModel.fromJson(e as Map<String, dynamic>))
+            .toList();
+      }
+    }
+    return <PartListModel>[];
   }
 
   /// Lấy danh sách giải pháp theo projectRequestId.

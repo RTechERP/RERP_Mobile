@@ -5,7 +5,7 @@ import 'package:injectable/injectable.dart';
 import 'package:rtc_erp/base/bloc/index.dart';
 import 'package:rtc_erp/base/network/errors/extension.dart';
 
-import '../../data/datasource/model/material_category_model.dart';
+import '../../data/datasource/model/part_list_model.dart';
 import '../../data/repository/material_category_repo.dart';
 
 part 'material_category_event.dart';
@@ -21,7 +21,8 @@ class MaterialCategoryBloc
   MaterialCategoryBloc(this._repo) : super(MaterialCategoryState.init()) {
     on<MaterialCategoryEvent>((event, emit) async {
       await event.when(
-        init: () => _onInit(emit),
+        init: (projectId, projectPartListVersionId, keyword) =>
+            _onInit(emit, projectId, projectPartListVersionId, keyword),
         refresh: () => _onRefresh(emit),
         search: (keyword) => _onSearch(emit, keyword: keyword),
         changeKeyword: (keyword) => _onChangeKeyword(emit, keyword: keyword),
@@ -29,12 +30,24 @@ class MaterialCategoryBloc
     });
   }
 
-  Future<void> _onInit(Emitter<MaterialCategoryState> emit) async {
-    emit(state.copyWith(status: BaseStateStatus.loading));
+  Future<void> _onInit(
+    Emitter<MaterialCategoryState> emit,
+    int projectId,
+    int projectPartListVersionId,
+    String? keyword,
+  ) async {
+    emit(state.copyWith(
+      status: BaseStateStatus.loading,
+      projectId: projectId,
+      projectPartListVersionId: projectPartListVersionId,
+      searchKeyword: keyword ?? '',
+    ));
 
     try {
-      final result = await _repo.getMaterialCategories(
-        keyword: state.searchKeyword,
+      final result = await _repo.getPartList(
+        projectId: projectId,
+        projectPartListVersionId: projectPartListVersionId,
+        keyword: keyword ?? '',
       );
       result.fold(
         (error) => emit(state.copyWith(
@@ -55,10 +68,13 @@ class MaterialCategoryBloc
   }
 
   Future<void> _onRefresh(Emitter<MaterialCategoryState> emit) async {
+    if (state.projectId == null || state.projectPartListVersionId == null) return;
     emit(state.copyWith(status: BaseStateStatus.loading));
 
     try {
-      final result = await _repo.getMaterialCategories(
+      final result = await _repo.getPartList(
+        projectId: state.projectId!,
+        projectPartListVersionId: state.projectPartListVersionId!,
         keyword: state.searchKeyword,
       );
       result.fold(
@@ -83,13 +99,16 @@ class MaterialCategoryBloc
     Emitter<MaterialCategoryState> emit, {
     String? keyword,
   }) async {
+    if (state.projectId == null || state.projectPartListVersionId == null) return;
     emit(state.copyWith(
       status: BaseStateStatus.loading,
       searchKeyword: keyword ?? state.searchKeyword,
     ));
 
     try {
-      final result = await _repo.getMaterialCategories(
+      final result = await _repo.getPartList(
+        projectId: state.projectId!,
+        projectPartListVersionId: state.projectPartListVersionId!,
         keyword: state.searchKeyword,
       );
       result.fold(
@@ -117,4 +136,3 @@ class MaterialCategoryBloc
     emit(state.copyWith(searchKeyword: keyword));
   }
 }
-

@@ -6,7 +6,6 @@ import 'package:rtc_erp/base/bloc/index.dart';
 import 'package:rtc_erp/base/widgets/base_widget.dart';
 import 'package:rtc_erp/common/app_theme/index.dart';
 
-import '../bloc/solution_bloc.dart';
 import '../bloc/version_bloc.dart';
 import '../models/version_item.dart';
 
@@ -16,7 +15,18 @@ import '../models/version_item.dart';
 /// tránh truyền qua prop vì TabBarView swap widget dẫn tới prop lỗi thời
 /// khi remount.
 class VersionTab extends StatefulWidget {
-  const VersionTab({super.key});
+  const VersionTab({
+    super.key,
+    required this.onVersionSelected,
+    this.projectId,
+  });
+
+  /// Callback khi user tap vào một phiên bản - truyền projectId + versionId.
+  final void Function(int projectId, int versionId) onVersionSelected;
+
+  /// ID dự án (projectRequestId) - ưu tiên dùng làm projectId khi gọi API
+  /// thay vì ProjectID trong response version (là id giải pháp).
+  final int? projectId;
 
   @override
   State<VersionTab> createState() => _VersionTabState();
@@ -24,32 +34,12 @@ class VersionTab extends StatefulWidget {
 
 class _VersionTabState extends BaseShareState<VersionTab, VersionEvent,
     VersionState, VersionBloc> {
-  int? _lastDispatchedId;
-
-  @override
   VersionBloc provideBloc(BuildContext context) =>
       BlocProvider.of<VersionBloc>(context);
 
-  /// Dispatch VersionEvent.init khi id solution đầu tiên thay đổi.
-  void _onSolutionChanged(int? newId) {
-    if (newId == _lastDispatchedId) return;
-    _lastDispatchedId = newId;
-    bloc.add(VersionEvent.init(projectSolutionId: newId));
-  }
-
   @override
   Widget renderUI(BuildContext context) {
-    // BlocSelector rebuild mỗi khi id solution đầu tiên đổi.
-    // Dispatch init trong postFrame để tránh build vô hạn.
-    return BlocSelector<SolutionBloc, SolutionState, int?>(
-      selector: (state) =>
-          state.solutions.isNotEmpty ? state.solutions.first.id : null,
-      builder: (context, solutionId) {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          if (!mounted) return;
-          _onSolutionChanged(solutionId);
-        });
-        return BlocBuilder<VersionBloc, VersionState>(
+    return BlocBuilder<VersionBloc, VersionState>(
       bloc: bloc,
       builder: (context, state) {
         if (state.status == BaseStateStatus.loading && state.versions.isEmpty) {
@@ -106,6 +96,14 @@ class _VersionTabState extends BaseShareState<VersionTab, VersionEvent,
             children.add(VersionCard(
               index: i + 1,
               item: item,
+              onTap: () {
+                if (item.projectId != null) {
+                  widget.onVersionSelected(
+                    widget.projectId ?? item.projectId!,
+                    item.id,
+                  );
+                }
+              },
             ));
             if (i < entry.value.length - 1) {
               children.add(const SizedBox(height: 12));
@@ -119,8 +117,6 @@ class _VersionTabState extends BaseShareState<VersionTab, VersionEvent,
           padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
           children: children,
         );
-      },
-    );
       },
     );
   }
@@ -178,10 +174,16 @@ class _VersionTypeHeader extends StatelessWidget {
 
 /// Card hiển thị thông tin một phiên bản.
 class VersionCard extends StatelessWidget {
-  const VersionCard({super.key, required this.index, required this.item});
+  const VersionCard({
+    super.key,
+    required this.index,
+    required this.item,
+    this.onTap,
+  });
 
   final int index;
   final VersionItem item;
+  final VoidCallback? onTap;
 
   String _formatDate(String? raw) {
     if (raw == null || raw.isEmpty) return '--';
@@ -195,7 +197,9 @@ class VersionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
+    return GestureDetector(
+      onTap: onTap,
+      child: ClipRRect(
       borderRadius: BorderRadius.circular(16),
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
@@ -326,67 +330,7 @@ class VersionCard extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-/// Block label + value với icon (dùng trong card).
-class _InfoBlock extends StatelessWidget {
-  const _InfoBlock({
-    required this.icon,
-    required this.label,
-    required this.value,
-  });
-
-  final IconData icon;
-  final String label;
-  final String value;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-      decoration: BoxDecoration(
-        color: Colors.grey[50],
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: Colors.grey[200]!),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Icon(icon, size: 12, color: AppColors.gray),
-              const SizedBox(width: 4),
-              Flexible(
-                child: Text(
-                  label,
-                  style: const TextStyle(
-                    fontSize: 11,
-                    color: AppColors.gray,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 4),
-          Text(
-            value,
-            style: const TextStyle(
-              fontSize: 13,
-              fontWeight: FontWeight.w600,
-              color: AppColors.enableText,
-              height: 1.2,
-            ),
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ],
-      ),
-    );
+    ));
   }
 }
 

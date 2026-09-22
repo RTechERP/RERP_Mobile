@@ -1,75 +1,40 @@
 import 'package:flutter/material.dart';
 
-import '../../../material_category/data/datasource/model/material_category_model.dart';
+import '../../../material_category/data/datasource/model/part_list_model.dart';
 import 'info_detail_sheet.dart';
 
-/// Popup chi tiết "Nhập kho" — 4 trường.
+/// Popup chi tiết "Nhập kho" — hiển thị dữ liệu từ PartListModel.
 class ImportWarehouseDetailSheet {
   ImportWarehouseDetailSheet._();
 
-  static Future<void> show(BuildContext context, MaterialCategoryItem item) {
+  static Future<void> show(BuildContext context, {required PartListModel partListItem}) {
     return InfoDetailSheet.show(
       context,
       title: 'Nhập kho',
       icon: Icons.inventory_2_outlined,
       iconColor: const Color(0xFF43A047),
-      subtitle: '${item.code} · ${item.name}',
-      children: _buildFields(item),
+      subtitle: '${partListItem.productCode ?? '--'} · ${partListItem.groupMaterial ?? 'Vật tư'}',
+      children: _buildFields(partListItem),
     );
   }
 
-  static List<Widget> _buildFields(MaterialCategoryItem item) {
-    final i = MockImport.forItem(item);
-
+  static List<Widget> _buildFields(PartListModel item) {
     return [
       const InfoSectionHeader('Thông tin phiếu nhập'),
-      InfoField(label: 'Ngày nhập kho', value: i.importedAt),
-      InfoField(label: 'Mã phiếu nhập', value: i.importCode),
-      InfoField(label: 'Người nhập kho', value: i.importer),
-      InfoField(label: 'Kho nhập', value: i.warehouse),
+      InfoField(label: 'Ngày nhập kho', value: _formatDate(item.dateImport)),
+      InfoField(label: 'Mã phiếu nhập', value: item.billImportCode),
+      InfoField(label: 'SL nhập kho', value: item.quantityReturn?.toStringAsFixed(0)),
+      InfoField(label: 'Bill xuất kho', value: item.billExportCode),
     ];
   }
-}
 
-class MockImport {
-  MockImport({
-    required this.importedAt,
-    required this.importCode,
-    required this.importer,
-    required this.warehouse,
-  });
-
-  final String? importedAt;
-  final String? importCode;
-  final String? importer;
-  final String? warehouse;
-
-  static MockImport forItem(MaterialCategoryItem item) {
-    final seed = item.id;
-    String? pickText(int mod, List<String?> opts) {
-      if ((seed + mod * 5) % 4 == 0) return null;
-      return opts[(seed + mod * 11) % opts.length];
+  static String? _formatDate(String? raw) {
+    if (raw == null || raw.isEmpty) return null;
+    try {
+      final d = DateTime.parse(raw);
+      return '${d.day.toString().padLeft(2, '0')}/${d.month.toString().padLeft(2, '0')}/${d.year}';
+    } catch (_) {
+      return raw;
     }
-
-    return MockImport(
-      importedAt: pickText(1, [
-        '15/05/2026 09:30',
-        '22/06/2026 14:00',
-        '03/07/2026 10:15',
-      ]),
-      importCode: pickText(2, ['PN-001', 'PN-002', 'PN-003', 'PN-004']),
-      importer: pickText(3, [
-        'Nguyễn Văn K',
-        'Trần Thị L',
-        'Lê Văn M',
-      ]),
-      warehouse: pickText(4, [
-        'Kho Hà Nội',
-        'Kho Hồ Chí Minh',
-        'Kho Đan Phượng',
-        'Kho Hải Phòng',
-        'Kho Bắc Ninh',
-      ]),
-    );
   }
 }

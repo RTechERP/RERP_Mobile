@@ -2,7 +2,11 @@ part of 'material_category_bloc.dart';
 
 @freezed
 class MaterialCategoryEvent with _$MaterialCategoryEvent {
-  const factory MaterialCategoryEvent.init() = _Init;
+  const factory MaterialCategoryEvent.init({
+    required int projectId,
+    required int projectPartListVersionId,
+    String? keyword,
+  }) = _Init;
   const factory MaterialCategoryEvent.refresh() = _Refresh;
   const factory MaterialCategoryEvent.search({
     String? keyword,

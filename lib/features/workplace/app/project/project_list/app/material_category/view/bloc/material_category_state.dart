@@ -2,14 +2,18 @@ part of 'material_category_bloc.dart';
 
 @CopyWith()
 class MaterialCategoryState extends BaseBlocState {
-  final List<MaterialCategoryItem> categories;
+  final List<PartListModel> categories;
   final String searchKeyword;
+  final int? projectId;
+  final int? projectPartListVersionId;
 
   const MaterialCategoryState({
     required super.status,
     super.message,
     this.categories = const [],
     this.searchKeyword = '',
+    this.projectId,
+    this.projectPartListVersionId,
   });
 
   factory MaterialCategoryState.init() => const MaterialCategoryState(
@@ -18,14 +22,18 @@ class MaterialCategoryState extends BaseBlocState {
         searchKeyword: '',
       );
 
-  /// Lọc theo searchKeyword. Lọc trên `name` và `code`.
-  List<MaterialCategoryItem> get filteredCategories {
+  /// Lọc theo searchKeyword. Lọc trên productCode, groupMaterial, manufacturer.
+  List<PartListModel> get filteredCategories {
     if (searchKeyword.isEmpty) return categories;
     final keywordLower = searchKeyword.toLowerCase();
     return categories.where((item) {
-      final nameMatch = item.name.toLowerCase().contains(keywordLower);
-      final codeMatch = item.code.toLowerCase().contains(keywordLower);
-      return nameMatch || codeMatch;
+      final codeMatch =
+          (item.productCode ?? '').toLowerCase().contains(keywordLower);
+      final groupMatch =
+          (item.groupMaterial ?? '').toLowerCase().contains(keywordLower);
+      final makerMatch =
+          (item.manufacturer ?? '').toLowerCase().contains(keywordLower);
+      return codeMatch || groupMatch || makerMatch;
     }).toList();
   }
 
@@ -35,5 +43,7 @@ class MaterialCategoryState extends BaseBlocState {
         message,
         categories,
         searchKeyword,
+        projectId,
+        projectPartListVersionId,
       ];
 }

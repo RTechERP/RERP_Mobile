@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../../../../../common/app_theme/index.dart';
-import '../../../material_category/data/datasource/model/material_category_model.dart';
+import '../../../material_category/data/datasource/model/part_list_model.dart';
 import '../../data/model/material_info_menu_item.dart';
 
 /// Bottom sheet hiển thị menu "Thông tin vật tư" khi tap vào 1 phiếu vật tư.
@@ -10,31 +10,36 @@ import '../../data/model/material_info_menu_item.dart';
 class MaterialInfoMenuSheet extends StatelessWidget {
   const MaterialInfoMenuSheet({
     super.key,
-    required this.material,
+    required this.partListItem,
   });
 
-  final MaterialCategoryItem material;
+  final PartListModel partListItem;
 
   /// Mở bottom sheet menu. Trả về id của menu được chọn (vd 'detail', 'quote'),
   /// hoặc null nếu đóng bằng cách khác (tap backdrop, nút close, back...).
   static Future<String?> show(
     BuildContext context, {
-    required MaterialCategoryItem material,
+    required PartListModel partListItem,
   }) {
     return showModalBottomSheet<String>(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (_) => MaterialInfoMenuSheet(material: material),
+      builder: (_) => MaterialInfoMenuSheet(partListItem: partListItem),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final code = material.code.isEmpty ? '--' : material.code;
-    final device = (material.deviceCode == null || material.deviceCode!.isEmpty)
-        ? '--'
-        : material.deviceCode!;
+    final name = (partListItem.groupMaterial ?? '').isNotEmpty
+        ? partListItem.groupMaterial!
+        : 'Vật tư';
+    final code = (partListItem.productCode ?? '').isNotEmpty
+        ? partListItem.productCode!
+        : '--';
+    final maker = (partListItem.manufacturer ?? '').isNotEmpty
+        ? partListItem.manufacturer!
+        : '--';
 
     return Container(
       constraints: BoxConstraints(
@@ -80,7 +85,7 @@ class MaterialInfoMenuSheet extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        material.name,
+                        name,
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w700,
@@ -91,7 +96,7 @@ class MaterialInfoMenuSheet extends StatelessWidget {
                       ),
                       const SizedBox(height: 2),
                       Text(
-                        '$code · $device',
+                        '$code · $maker',
                         style: const TextStyle(
                           fontSize: 12,
                           color: AppColors.gray,
@@ -122,10 +127,10 @@ class MaterialInfoMenuSheet extends StatelessWidget {
               ),
               itemCount: MaterialInfoMenuItem.menuItems.length,
               itemBuilder: (context, index) {
-                final item = MaterialInfoMenuItem.menuItems[index];
+                final menu = MaterialInfoMenuItem.menuItems[index];
                 return _MenuTile(
-                  item: item,
-                  onTap: () => Navigator.pop(context, item.id),
+                  menu: menu,
+                  onTap: () => Navigator.pop(context, menu.id),
                 );
               },
             ),
@@ -136,14 +141,11 @@ class MaterialInfoMenuSheet extends StatelessWidget {
   }
 }
 
-/// 1 ô menu trong grid.
+/// Một ô menu trong grid.
 class _MenuTile extends StatelessWidget {
-  const _MenuTile({
-    required this.item,
-    required this.onTap,
-  });
+  const _MenuTile({required this.menu, required this.onTap});
 
-  final MaterialInfoMenuItem item;
+  final MaterialInfoMenuItem menu;
   final VoidCallback onTap;
 
   @override
@@ -156,10 +158,10 @@ class _MenuTile extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
           decoration: BoxDecoration(
-            color: item.color.withValues(alpha: 0.08),
+            color: menu.color.withValues(alpha: 0.08),
             borderRadius: BorderRadius.circular(14),
             border: Border.all(
-              color: item.color.withValues(alpha: 0.25),
+              color: menu.color.withValues(alpha: 0.25),
               width: 1,
             ),
           ),
@@ -169,14 +171,14 @@ class _MenuTile extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  color: item.color.withValues(alpha: 0.15),
+                  color: menu.color.withValues(alpha: 0.15),
                   shape: BoxShape.circle,
                 ),
-                child: Icon(item.icon, color: item.color, size: 24),
+                child: Icon(menu.icon, color: menu.color, size: 24),
               ),
               const SizedBox(height: 8),
               Text(
-                item.name,
+                menu.name,
                 textAlign: TextAlign.center,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,

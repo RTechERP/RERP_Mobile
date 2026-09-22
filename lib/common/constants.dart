@@ -518,4 +518,8 @@ class ApiEndPoint {
   /// Phiên bản danh mục vật tư.
   /// GET /ProjectPartListVersion/get-all?projectSolutionId={id}&isPO={bool}.
   static const String getVersions = '/ProjectPartListVersion/get-all';
+
+  /// Danh sách vật tư theo phiên bản.
+  /// POST /ProjectPartList/get-all.
+  static const String getPartList = '/ProjectPartList/get-all';
 }

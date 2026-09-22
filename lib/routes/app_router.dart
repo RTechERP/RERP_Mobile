@@ -1235,8 +1235,12 @@ class AppRouter {
                       final projectRequestId = int.tryParse(
                         state.uri.queryParameters['projectRequestId'] ?? '',
                       );
+                      final versionId = int.tryParse(
+                        state.uri.queryParameters['versionId'] ?? '',
+                      );
                       return MaterialCategoryScreen(
                         projectRequestId: projectRequestId,
+                        versionId: versionId,
                       );
                     },
                   ),

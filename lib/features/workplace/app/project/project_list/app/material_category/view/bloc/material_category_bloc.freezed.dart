@@ -18,7 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$MaterialCategoryEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(
+            int projectId, int projectPartListVersionId, String? keyword)
+        init,
     required TResult Function() refresh,
     required TResult Function(String? keyword) search,
     required TResult Function(String keyword) changeKeyword,
@@ -26,7 +28,9 @@ mixin _$MaterialCategoryEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(
+            int projectId, int projectPartListVersionId, String? keyword)?
+        init,
     TResult? Function()? refresh,
     TResult? Function(String? keyword)? search,
     TResult? Function(String keyword)? changeKeyword,
@@ -34,7 +38,9 @@ mixin _$MaterialCategoryEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(
+            int projectId, int projectPartListVersionId, String? keyword)?
+        init,
     TResult Function()? refresh,
     TResult Function(String? keyword)? search,
     TResult Function(String keyword)? changeKeyword,
@@ -92,6 +98,8 @@ abstract class _$$InitImplCopyWith<$Res> {
   factory _$$InitImplCopyWith(
           _$InitImpl value, $Res Function(_$InitImpl) then) =
       __$$InitImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int projectId, int projectPartListVersionId, String? keyword});
 }
 
 /// @nodoc
@@ -100,60 +108,113 @@ class __$$InitImplCopyWithImpl<$Res>
     implements _$$InitImplCopyWith<$Res> {
   __$$InitImplCopyWithImpl(_$InitImpl _value, $Res Function(_$InitImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? projectId = null,
+    Object? projectPartListVersionId = null,
+    Object? keyword = freezed,
+  }) {
+    return _then(_$InitImpl(
+      projectId: null == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int,
+      projectPartListVersionId: null == projectPartListVersionId
+          ? _value.projectPartListVersionId
+          : projectPartListVersionId // ignore: cast_nullable_to_non_nullable
+              as int,
+      keyword: freezed == keyword
+          ? _value.keyword
+          : keyword // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$InitImpl implements _Init {
-  const _$InitImpl();
+  const _$InitImpl(
+      {required this.projectId,
+      required this.projectPartListVersionId,
+      this.keyword});
+
+  @override
+  final int projectId;
+  @override
+  final int projectPartListVersionId;
+  @override
+  final String? keyword;
 
   @override
   String toString() {
-    return 'MaterialCategoryEvent.init()';
+    return 'MaterialCategoryEvent.init(projectId: $projectId, projectPartListVersionId: $projectPartListVersionId, keyword: $keyword)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$InitImpl &&
+            (identical(other.projectId, projectId) ||
+                other.projectId == projectId) &&
+            (identical(
+                    other.projectPartListVersionId, projectPartListVersionId) ||
+                other.projectPartListVersionId == projectPartListVersionId) &&
+            (identical(other.keyword, keyword) || other.keyword == keyword));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, projectId, projectPartListVersionId, keyword);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitImplCopyWith<_$InitImpl> get copyWith =>
+      __$$InitImplCopyWithImpl<_$InitImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(
+            int projectId, int projectPartListVersionId, String? keyword)
+        init,
     required TResult Function() refresh,
     required TResult Function(String? keyword) search,
     required TResult Function(String keyword) changeKeyword,
   }) {
-    return init();
+    return init(projectId, projectPartListVersionId, keyword);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(
+            int projectId, int projectPartListVersionId, String? keyword)?
+        init,
     TResult? Function()? refresh,
     TResult? Function(String? keyword)? search,
     TResult? Function(String keyword)? changeKeyword,
   }) {
-    return init?.call();
+    return init?.call(projectId, projectPartListVersionId, keyword);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(
+            int projectId, int projectPartListVersionId, String? keyword)?
+        init,
     TResult Function()? refresh,
     TResult Function(String? keyword)? search,
     TResult Function(String keyword)? changeKeyword,
     required TResult orElse(),
   }) {
     if (init != null) {
-      return init();
+      return init(projectId, projectPartListVersionId, keyword);
     }
     return orElse();
   }
@@ -197,7 +258,17 @@ class _$InitImpl implements _Init {
 }
 
 abstract class _Init implements MaterialCategoryEvent {
-  const factory _Init() = _$InitImpl;
+  const factory _Init(
+      {required final int projectId,
+      required final int projectPartListVersionId,
+      final String? keyword}) = _$InitImpl;
+
+  int get projectId;
+  int get projectPartListVersionId;
+  String? get keyword;
+  @JsonKey(ignore: true)
+  _$$InitImplCopyWith<_$InitImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -238,7 +309,9 @@ class _$RefreshImpl implements _Refresh {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(
+            int projectId, int projectPartListVersionId, String? keyword)
+        init,
     required TResult Function() refresh,
     required TResult Function(String? keyword) search,
     required TResult Function(String keyword) changeKeyword,
@@ -249,7 +322,9 @@ class _$RefreshImpl implements _Refresh {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(
+            int projectId, int projectPartListVersionId, String? keyword)?
+        init,
     TResult? Function()? refresh,
     TResult? Function(String? keyword)? search,
     TResult? Function(String keyword)? changeKeyword,
@@ -260,7 +335,9 @@ class _$RefreshImpl implements _Refresh {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(
+            int projectId, int projectPartListVersionId, String? keyword)?
+        init,
     TResult Function()? refresh,
     TResult Function(String? keyword)? search,
     TResult Function(String keyword)? changeKeyword,
@@ -378,7 +455,9 @@ class _$SearchImpl implements _Search {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(
+            int projectId, int projectPartListVersionId, String? keyword)
+        init,
     required TResult Function() refresh,
     required TResult Function(String? keyword) search,
     required TResult Function(String keyword) changeKeyword,
@@ -389,7 +468,9 @@ class _$SearchImpl implements _Search {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(
+            int projectId, int projectPartListVersionId, String? keyword)?
+        init,
     TResult? Function()? refresh,
     TResult? Function(String? keyword)? search,
     TResult? Function(String keyword)? changeKeyword,
@@ -400,7 +481,9 @@ class _$SearchImpl implements _Search {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(
+            int projectId, int projectPartListVersionId, String? keyword)?
+        init,
     TResult Function()? refresh,
     TResult Function(String? keyword)? search,
     TResult Function(String keyword)? changeKeyword,
@@ -523,7 +606,9 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(
+            int projectId, int projectPartListVersionId, String? keyword)
+        init,
     required TResult Function() refresh,
     required TResult Function(String? keyword) search,
     required TResult Function(String keyword) changeKeyword,
@@ -534,7 +619,9 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(
+            int projectId, int projectPartListVersionId, String? keyword)?
+        init,
     TResult? Function()? refresh,
     TResult? Function(String? keyword)? search,
     TResult? Function(String keyword)? changeKeyword,
@@ -545,7 +632,9 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(
+            int projectId, int projectPartListVersionId, String? keyword)?
+        init,
     TResult Function()? refresh,
     TResult Function(String? keyword)? search,
     TResult Function(String keyword)? changeKeyword,

@@ -11,9 +11,13 @@ abstract class _$MaterialCategoryStateCWProxy {
 
   MaterialCategoryState message(String? message);
 
-  MaterialCategoryState categories(List<MaterialCategoryItem> categories);
+  MaterialCategoryState categories(List<PartListModel> categories);
 
   MaterialCategoryState searchKeyword(String searchKeyword);
+
+  MaterialCategoryState projectId(int? projectId);
+
+  MaterialCategoryState projectPartListVersionId(int? projectPartListVersionId);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `MaterialCategoryState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -24,8 +28,10 @@ abstract class _$MaterialCategoryStateCWProxy {
   MaterialCategoryState call({
     BaseStateStatus? status,
     String? message,
-    List<MaterialCategoryItem>? categories,
+    List<PartListModel>? categories,
     String? searchKeyword,
+    int? projectId,
+    int? projectPartListVersionId,
   });
 }
 
@@ -43,12 +49,20 @@ class _$MaterialCategoryStateCWProxyImpl
   MaterialCategoryState message(String? message) => this(message: message);
 
   @override
-  MaterialCategoryState categories(List<MaterialCategoryItem> categories) =>
+  MaterialCategoryState categories(List<PartListModel> categories) =>
       this(categories: categories);
 
   @override
   MaterialCategoryState searchKeyword(String searchKeyword) =>
       this(searchKeyword: searchKeyword);
+
+  @override
+  MaterialCategoryState projectId(int? projectId) => this(projectId: projectId);
+
+  @override
+  MaterialCategoryState projectPartListVersionId(
+          int? projectPartListVersionId) =>
+      this(projectPartListVersionId: projectPartListVersionId);
 
   @override
 
@@ -63,6 +77,8 @@ class _$MaterialCategoryStateCWProxyImpl
     Object? message = const $CopyWithPlaceholder(),
     Object? categories = const $CopyWithPlaceholder(),
     Object? searchKeyword = const $CopyWithPlaceholder(),
+    Object? projectId = const $CopyWithPlaceholder(),
+    Object? projectPartListVersionId = const $CopyWithPlaceholder(),
   }) {
     return MaterialCategoryState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -77,12 +93,21 @@ class _$MaterialCategoryStateCWProxyImpl
           categories == const $CopyWithPlaceholder() || categories == null
               ? _value.categories
               // ignore: cast_nullable_to_non_nullable
-              : categories as List<MaterialCategoryItem>,
+              : categories as List<PartListModel>,
       searchKeyword:
           searchKeyword == const $CopyWithPlaceholder() || searchKeyword == null
               ? _value.searchKeyword
               // ignore: cast_nullable_to_non_nullable
               : searchKeyword as String,
+      projectId: projectId == const $CopyWithPlaceholder()
+          ? _value.projectId
+          // ignore: cast_nullable_to_non_nullable
+          : projectId as int?,
+      projectPartListVersionId:
+          projectPartListVersionId == const $CopyWithPlaceholder()
+              ? _value.projectPartListVersionId
+              // ignore: cast_nullable_to_non_nullable
+              : projectPartListVersionId as int?,
     );
   }
 }
