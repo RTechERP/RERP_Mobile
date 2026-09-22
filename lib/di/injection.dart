@@ -104,6 +104,8 @@ import '../features/workplace/app/project/project_list/app/material_category/dat
 import '../features/workplace/app/project/project_list/app/material_category/data/repository/material_category_repo.dart';
 import '../features/workplace/app/project/project_list/app/material_category/data/repository/solution_repo.dart';
 import '../features/workplace/app/project/project_list/app/material_category/data/repository/solution_repo_impl.dart';
+import '../features/workplace/app/project/project_list/app/material_category/data/repository/version_repo.dart';
+import '../features/workplace/app/project/project_list/app/material_category/data/repository/version_repo_impl.dart';
 import '../features/workplace/app/project/project_list/app/material_category/view/bloc/material_category_bloc.dart';
 import '../features/workplace/app/project/project_list/app/material_category/view/bloc/solution_bloc.dart';
 import '../features/workplace/app/project/project_list/app/material_category/view/bloc/version_bloc.dart';
@@ -238,10 +240,12 @@ void configureDependencies() {
   getIt.registerLazySingleton<LunchService>(() => LunchService(getIt<Dio>()));
 
   getIt.registerLazySingleton<ProjectListService>(
-      () => ProjectListService(getIt<Dio>()));
+    () => ProjectListService(getIt<Dio>()),
+  );
 
   getIt.registerLazySingleton<MaterialCategoryService>(
-      () => MaterialCategoryService(getIt<Dio>()));
+    () => MaterialCategoryService(getIt<Dio>()),
+  );
 
   getIt.registerLazySingleton<InOutService>(() => InOutService(getIt<Dio>()));
 
@@ -332,19 +336,19 @@ void configureDependencies() {
   );
 
   getIt.registerLazySingleton<SummaryWfhService>(
-        () => SummaryWfhService(getIt<Dio>()),
+    () => SummaryWfhService(getIt<Dio>()),
   );
 
   getIt.registerLazySingleton<SummaryMissedService>(
-        () => SummaryMissedService(getIt<Dio>()),
+    () => SummaryMissedService(getIt<Dio>()),
   );
 
   getIt.registerLazySingleton<SummaryOvernightService>(
-        () => SummaryOvernightService(getIt<Dio>()),
+    () => SummaryOvernightService(getIt<Dio>()),
   );
 
   getIt.registerLazySingleton<SummaryOvertimeService>(
-        () => SummaryOvertimeService(getIt<Dio>()),
+    () => SummaryOvertimeService(getIt<Dio>()),
   );
 
   getIt.registerLazySingleton<TestTableService>(
@@ -389,6 +393,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<SolutionRepo>(
     () => SolutionRepoImpl(getIt<MaterialCategoryService>()),
+  );
+
+  getIt.registerLazySingleton<VersionRepo>(
+    () => VersionRepoImpl(getIt<MaterialCategoryService>()),
   );
 
   getIt.registerLazySingleton<InOutRepo>(
@@ -506,7 +514,7 @@ void configureDependencies() {
   );
 
   getIt.registerLazySingleton<TestTableRepo>(
-      () => TestTableRepoImpl(getIt<TestTableService>()),
+    () => TestTableRepoImpl(getIt<TestTableService>()),
   );
 
   getIt.registerLazySingleton<RioChatRepo>(
@@ -566,13 +574,17 @@ void configureDependencies() {
     () => ProjectListBloc(getIt<ProjectListRepo>(), getIt<LogUtils>()),
   );
 
-  getIt.registerFactory<MaterialCategoryBloc>(() => MaterialCategoryBloc());
+  getIt.registerFactory<MaterialCategoryBloc>(
+    () => MaterialCategoryBloc(getIt<MaterialCategoryRepo>()),
+  );
 
   getIt.registerFactory<SolutionBloc>(
     () => SolutionBloc(getIt<SolutionRepo>(), getIt<LogUtils>()),
   );
 
-  getIt.registerFactory<VersionBloc>(() => VersionBloc());
+  getIt.registerFactory<VersionBloc>(
+    () => VersionBloc(getIt<VersionRepo>(), getIt<LogUtils>()),
+  );
 
   getIt.registerFactory<InOutBloc>(
     () => InOutBloc(getIt<InOutRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
@@ -742,7 +754,8 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<SaleGdnBloc>(
-    () => SaleGdnBloc(getIt<SaleGdnRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
+    () =>
+        SaleGdnBloc(getIt<SaleGdnRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
   );
 
   getIt.registerFactory<MySignatureBloc>(
@@ -766,7 +779,7 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<SummaryWfhBloc>(
-        () => SummaryWfhBloc(
+    () => SummaryWfhBloc(
       getIt<SummaryWfhRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
@@ -774,7 +787,7 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<SummaryMissedBloc>(
-        () => SummaryMissedBloc(
+    () => SummaryMissedBloc(
       getIt<SummaryMissedRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
@@ -782,7 +795,7 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<SummaryOvernightBloc>(
-        () => SummaryOvernightBloc(
+    () => SummaryOvernightBloc(
       getIt<SummaryOvernightRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
@@ -790,7 +803,7 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<SummaryOvertimeBloc>(
-        () => SummaryOvertimeBloc(
+    () => SummaryOvertimeBloc(
       getIt<SummaryOvertimeRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
@@ -798,16 +811,18 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<TestTableBloc>(
-        () => TestTableBloc(
+    () => TestTableBloc(
       getIt<LogUtils>(),
-      getIt<TestTableRepo>(),getIt<AuthRepo>(),
+      getIt<TestTableRepo>(),
+      getIt<AuthRepo>(),
     ),
   );
 
   getIt.registerFactory<RioChatBloc>(
     () => RioChatBloc(
       getIt<RioChatRepo>(),
-      getIt<LogUtils>(),getIt<LocalStorage>(),
+      getIt<LogUtils>(),
+      getIt<LocalStorage>(),
     ),
   );
 }

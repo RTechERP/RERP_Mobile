@@ -10,22 +10,21 @@ import '../bloc/solution_bloc.dart';
 import '../models/solution_item.dart';
 
 /// Tab "Giải pháp" hiển thị danh sách giải pháp của dự án dạng card.
+///
+/// Bloc do MaterialCategoryScreen cung cấp; tab này không close bloc
+/// khi dispose để bloc sống xuyên suốt màn hình.
 class SolutionTab extends StatefulWidget {
-  const SolutionTab({super.key, this.projectRequestId});
-
-  final int? projectRequestId;
+  const SolutionTab({super.key});
 
   @override
   State<SolutionTab> createState() => _SolutionTabState();
 }
 
-class _SolutionTabState extends BaseState<SolutionTab, SolutionEvent,
+class _SolutionTabState extends BaseShareState<SolutionTab, SolutionEvent,
     SolutionState, SolutionBloc> {
   @override
-  void initState() {
-    super.initState();
-    bloc.add(SolutionEvent.init(projectRequestId: widget.projectRequestId));
-  }
+  SolutionBloc provideBloc(BuildContext context) =>
+      BlocProvider.of<SolutionBloc>(context);
 
   @override
   Widget renderUI(BuildContext context) {

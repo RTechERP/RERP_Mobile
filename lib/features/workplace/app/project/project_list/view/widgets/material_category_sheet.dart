@@ -3,8 +3,12 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../app/material_category/data/datasource/model/material_category_model.dart';
-import '../../app/material_category/data/datasource/service/material_category_service.dart';
 import '../../app/material_category/view/widgets/material_category_style.dart';
+
+/// Menu tĩnh các danh mục - không lấy từ API.
+const _menuItems = [
+  MaterialCategoryItem(id: 1, code: 'DMVT', name: 'DM vật tư'),
+];
 
 /// Bottom sheet hiển thị menu danh mục vật tư khi tap vào card dự án.
 /// Tap vào một danh mục sẽ navigate tới màn MaterialCategoryScreen.
@@ -35,7 +39,7 @@ class MaterialCategorySheet extends StatefulWidget {
       builder: (_) => MaterialCategorySheet(
         projectCode: projectCode,
         projectName: projectName,
-        categories: MaterialCategoryService.previewCategories(),
+        categories: _menuItems,
         projectId: projectId,
       ),
     );

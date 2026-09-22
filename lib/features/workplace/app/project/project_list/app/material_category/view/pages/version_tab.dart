@@ -6,10 +6,15 @@ import 'package:rtc_erp/base/bloc/index.dart';
 import 'package:rtc_erp/base/widgets/base_widget.dart';
 import 'package:rtc_erp/common/app_theme/index.dart';
 
+import '../bloc/solution_bloc.dart';
 import '../bloc/version_bloc.dart';
 import '../models/version_item.dart';
 
-/// Tab "Phiên bản" hiển thị danh sách phiên bản của dự án dạng card.
+/// Tab "Phiên bản" hiển thị danh sách phiên bản (GP + PO) của giải pháp.
+///
+/// Tự đọc SolutionBloc đang hoạt động để lấy solutionId (solution đầu tiên),
+/// tránh truyền qua prop vì TabBarView swap widget dẫn tới prop lỗi thời
+/// khi remount.
 class VersionTab extends StatefulWidget {
   const VersionTab({super.key});
 
@@ -17,17 +22,34 @@ class VersionTab extends StatefulWidget {
   State<VersionTab> createState() => _VersionTabState();
 }
 
-class _VersionTabState extends BaseState<VersionTab, VersionEvent,
+class _VersionTabState extends BaseShareState<VersionTab, VersionEvent,
     VersionState, VersionBloc> {
+  int? _lastDispatchedId;
+
   @override
-  void initState() {
-    super.initState();
-    bloc.add(const VersionEvent.init());
+  VersionBloc provideBloc(BuildContext context) =>
+      BlocProvider.of<VersionBloc>(context);
+
+  /// Dispatch VersionEvent.init khi id solution đầu tiên thay đổi.
+  void _onSolutionChanged(int? newId) {
+    if (newId == _lastDispatchedId) return;
+    _lastDispatchedId = newId;
+    bloc.add(VersionEvent.init(projectSolutionId: newId));
   }
 
   @override
   Widget renderUI(BuildContext context) {
-    return BlocBuilder<VersionBloc, VersionState>(
+    // BlocSelector rebuild mỗi khi id solution đầu tiên đổi.
+    // Dispatch init trong postFrame để tránh build vô hạn.
+    return BlocSelector<SolutionBloc, SolutionState, int?>(
+      selector: (state) =>
+          state.solutions.isNotEmpty ? state.solutions.first.id : null,
+      builder: (context, solutionId) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (!mounted) return;
+          _onSolutionChanged(solutionId);
+        });
+        return BlocBuilder<VersionBloc, VersionState>(
       bloc: bloc,
       builder: (context, state) {
         if (state.status == BaseStateStatus.loading && state.versions.isEmpty) {
@@ -99,6 +121,8 @@ class _VersionTabState extends BaseState<VersionTab, VersionEvent,
         );
       },
     );
+      },
+    );
   }
 }
 
@@ -115,8 +139,6 @@ class _VersionTypeHeader extends StatelessWidget {
         return Icons.lightbulb_outline;
       case VersionType.poVersion:
         return Icons.receipt_long_outlined;
-      case VersionType.unknown:
-        return Icons.help_outline;
     }
   }
 
@@ -126,8 +148,6 @@ class _VersionTypeHeader extends StatelessWidget {
         return AppColors.primaryERP;
       case VersionType.poVersion:
         return const Color(0xFF16A34A);
-      case VersionType.unknown:
-        return AppColors.gray;
     }
   }
 
@@ -156,12 +176,22 @@ class _VersionTypeHeader extends StatelessWidget {
   }
 }
 
-/// Card hiển thị thông tin một phiên bản (style giống ProjectCard).
+/// Card hiển thị thông tin một phiên bản.
 class VersionCard extends StatelessWidget {
   const VersionCard({super.key, required this.index, required this.item});
 
   final int index;
   final VersionItem item;
+
+  String _formatDate(String? raw) {
+    if (raw == null || raw.isEmpty) return '--';
+    try {
+      final d = DateTime.parse(raw);
+      return '${d.day.toString().padLeft(2, '0')}/${d.month.toString().padLeft(2, '0')}/${d.year}';
+    } catch (_) {
+      return raw;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -202,7 +232,7 @@ class VersionCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // STT + Mã + Menu
+                // STT + CodeNew + Menu
                 Row(
                   children: [
                     _StatusPill(
@@ -213,23 +243,26 @@ class VersionCard extends StatelessWidget {
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
-                        item.code,
+                        item.codeNew?.isNotEmpty == true
+                            ? item.codeNew!
+                            : item.code,
                         style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w700,
                           color: AppColors.primaryERP,
                           height: 1.2,
                         ),
-                        maxLines: 1,
+                        maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    _VersionMenuButton(item: item),
+                    _VersionMenuButton(item: item, formatDate: _formatDate),
                   ],
                 ),
                 const SizedBox(height: 10),
                 // Mô tả
-                if (item.description.trim().isNotEmpty)
+                if (item.description.trim().isNotEmpty &&
+                    item.description.trim() != '--')
                   Text(
                     item.description,
                     style: const TextStyle(
@@ -242,16 +275,28 @@ class VersionCard extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                 const SizedBox(height: 12),
-                // TBP Duyệt
-                if (item.tbpApprover.trim().isNotEmpty) ...[
-                  _InfoRow(
-                    icon: Icons.person_outline,
-                    label: 'TBP Duyệt',
-                    value: item.tbpApprover,
-                  ),
-                  const SizedBox(height: 10),
-                ],
-                // Trạng thái: Sử dụng - Duyệt - Phát sinh
+                // Người tạo + Loại dự án
+                // Row(
+                //   children: [
+                //     Expanded(
+                //       child: _InfoBlock(
+                //         icon: Icons.person_outline,
+                //         label: 'Người tạo',
+                //         value: item.fullNameCreated,
+                //       ),
+                //     ),
+                //     const SizedBox(width: 8),
+                //     Expanded(
+                //       child: _InfoBlock(
+                //         icon: Icons.category_outlined,
+                //         label: 'Loại',
+                //         value: item.projectTypeName,
+                //       ),
+                //     ),
+                //   ],
+                // ),
+                // const SizedBox(height: 10),
+                // Trạng thái: Sử dụng - Duyệt
                 Row(
                   children: [
                     Expanded(
@@ -274,30 +319,8 @@ class VersionCard extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: _StatusBlock(
-                        label: 'Phát sinh',
-                        pill: _StatusPill(
-                          label: item.incident.label,
-                          color: VersionStatusColors.colorForIncident(
-                              item.incident),
-                        ),
-                      ),
-                    ),
                   ],
                 ),
-                // Nội dung phát sinh (chỉ hiện khi có)
-                if (item.incidentContent.trim().isNotEmpty) ...[
-                  const SizedBox(height: 10),
-                  _InfoRow(
-                    icon: Icons.warning_amber_outlined,
-                    label: 'Nội dung PS',
-                    value: item.incidentContent,
-                    valueColor:
-                        VersionStatusColors.colorForIncident(item.incident),
-                  ),
-                ],
               ],
             ),
           ),
@@ -307,11 +330,72 @@ class VersionCard extends StatelessWidget {
   }
 }
 
+/// Block label + value với icon (dùng trong card).
+class _InfoBlock extends StatelessWidget {
+  const _InfoBlock({
+    required this.icon,
+    required this.label,
+    required this.value,
+  });
+
+  final IconData icon;
+  final String label;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+      decoration: BoxDecoration(
+        color: Colors.grey[50],
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: Colors.grey[200]!),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(icon, size: 12, color: AppColors.gray),
+              const SizedBox(width: 4),
+              Flexible(
+                child: Text(
+                  label,
+                  style: const TextStyle(
+                    fontSize: 11,
+                    color: AppColors.gray,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 4),
+          Text(
+            value,
+            style: const TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+              color: AppColors.enableText,
+              height: 1.2,
+            ),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 /// Nút 3 chấm dọc - mở bottom sheet chi tiết.
 class _VersionMenuButton extends StatelessWidget {
-  const _VersionMenuButton({required this.item});
+  const _VersionMenuButton({required this.item, required this.formatDate});
 
   final VersionItem item;
+  final String Function(String?) formatDate;
 
   @override
   Widget build(BuildContext context) {
@@ -320,7 +404,7 @@ class _VersionMenuButton extends StatelessWidget {
         context: context,
         isScrollControlled: true,
         backgroundColor: Colors.transparent,
-        builder: (_) => _VersionDetailSheet(item: item),
+        builder: (_) => _VersionDetailSheet(item: item, formatDate: formatDate),
       ),
       child: Container(
         padding: const EdgeInsets.all(4),
@@ -336,9 +420,10 @@ class _VersionMenuButton extends StatelessWidget {
 
 /// Bottom sheet chi tiết Version.
 class _VersionDetailSheet extends StatelessWidget {
-  const _VersionDetailSheet({required this.item});
+  const _VersionDetailSheet({required this.item, required this.formatDate});
 
   final VersionItem item;
+  final String Function(String?) formatDate;
 
   @override
   Widget build(BuildContext context) {
@@ -353,7 +438,6 @@ class _VersionDetailSheet extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Handle bar
           Container(
             margin: const EdgeInsets.only(top: 12),
             width: 40,
@@ -363,14 +447,13 @@ class _VersionDetailSheet extends StatelessWidget {
               borderRadius: BorderRadius.circular(2),
             ),
           ),
-          // Header
           Padding(
             padding: const EdgeInsets.all(20),
             child: Row(
               children: [
                 Expanded(
                   child: Text(
-                    item.code,
+                    item.codeNew?.isNotEmpty == true ? item.codeNew! : item.code,
                     style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w700,
@@ -386,7 +469,6 @@ class _VersionDetailSheet extends StatelessWidget {
             ),
           ),
           const Divider(height: 1),
-          // Content
           Flexible(
             child: SingleChildScrollView(
               padding: const EdgeInsets.all(20),
@@ -394,7 +476,8 @@ class _VersionDetailSheet extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Mô tả
-                  if (item.description.trim().isNotEmpty)
+                  if (item.description.trim().isNotEmpty &&
+                      item.description.trim() != '--')
                     _DetailSection(
                       title: 'Mô tả',
                       child: Container(
@@ -414,7 +497,6 @@ class _VersionDetailSheet extends StatelessWidget {
                         ),
                       ),
                     ),
-                  // Sử dụng + Duyệt
                   _DetailRow(items: [
                     _DetailItem(
                       label: 'Sử dụng',
@@ -427,46 +509,34 @@ class _VersionDetailSheet extends StatelessWidget {
                       label: 'Duyệt',
                       value: item.approval.label,
                       icon: Icons.check_circle_outline,
-                      valueColor: VersionStatusColors.colorForApproval(
-                          item.approval),
+                      valueColor:
+                          VersionStatusColors.colorForApproval(item.approval),
                     ),
                   ]),
-                  // TBP Duyệt + Phát sinh
                   _DetailRow(items: [
                     _DetailItem(
-                      label: 'TBP Duyệt',
-                      value: item.tbpApprover,
-                      icon: Icons.person_outline,
+                      label: 'Loại',
+                      value: item.projectTypeName,
+                      icon: Icons.category_outlined,
                     ),
                     _DetailItem(
-                      label: 'Phát sinh',
-                      value: item.incident.label,
-                      icon: Icons.warning_amber_outlined,
-                      valueColor: VersionStatusColors.colorForIncident(
-                          item.incident),
+                      label: 'Người tạo',
+                      value: item.fullNameCreated,
+                      icon: Icons.person_outline,
                     ),
                   ]),
-                  // Nội dung phát sinh (chỉ khi có)
-                  if (item.incidentContent.trim().isNotEmpty)
-                    _DetailSection(
-                      title: 'Nội dung phát sinh',
-                      child: Container(
-                        padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          color: Colors.grey[50],
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(color: Colors.grey[200]!),
-                        ),
-                        child: Text(
-                          item.incidentContent,
-                          style: const TextStyle(
-                            fontSize: 14,
-                            color: AppColors.enableText,
-                            height: 1.4,
-                          ),
-                        ),
-                      ),
+                  _DetailRow(items: [
+                    _DetailItem(
+                      label: 'Ngày tạo',
+                      value: formatDate(item.createdDate),
+                      icon: Icons.event_outlined,
                     ),
+                    _DetailItem(
+                      label: 'Ngày cập nhật',
+                      value: formatDate(item.updatedDate),
+                      icon: Icons.update_outlined,
+                    ),
+                  ]),
                 ],
               ),
             ),
@@ -606,53 +676,6 @@ class _StatusBlock extends StatelessWidget {
         ),
         const SizedBox(height: 6),
         pill,
-      ],
-    );
-  }
-}
-
-/// Dòng thông tin icon + label: value trong card.
-class _InfoRow extends StatelessWidget {
-  const _InfoRow({
-    required this.icon,
-    required this.label,
-    required this.value,
-    this.valueColor,
-  });
-
-  final IconData icon;
-  final String label;
-  final String value;
-  final Color? valueColor;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Icon(icon, size: 14, color: AppColors.gray),
-        const SizedBox(width: 6),
-        Text(
-          '$label: ',
-          style: const TextStyle(
-            fontSize: 12,
-            color: AppColors.gray,
-            height: 1.2,
-          ),
-        ),
-        Expanded(
-          child: Text(
-            value,
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w500,
-              color: valueColor ?? AppColors.enableText,
-              height: 1.2,
-            ),
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ),
       ],
     );
   }

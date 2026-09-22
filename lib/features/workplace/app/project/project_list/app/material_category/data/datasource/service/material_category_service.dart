@@ -5,31 +5,25 @@ import 'package:rtc_erp/base/network/models/base_data.dart';
 import '../../../../../../../../../../common/constants.dart';
 import '../model/material_category_model.dart';
 import '../model/solution_model.dart';
+import '../model/version_model.dart';
 
 /// Service cung cấp dữ liệu cho màn Danh mục vật tư gồm:
-/// - Danh mục vật tư (mock, sẽ thay bằng API khi backend sẵn sàng).
+/// - Danh mục vật tư (API - TODO: cập nhật path khi backend sẵn sàng).
 /// - Giải pháp (API GET /projectworker/get-solution/{projectRequestId}).
+/// - Phiên bản (API GET /ProjectPartListVersion/get-all).
 @injectable
 class MaterialCategoryService extends DioBaseApiService {
   MaterialCategoryService(super.dio);
 
   /// Lấy danh sách danh mục vật tư.
-  /// Hiện tại trả về dữ liệu tĩnh (mock) - sẽ thay bằng API call khi backend sẵn sàng.
+  /// TODO: cập nhật path + response khi backend cung cấp endpoint.
   Future<List<MaterialCategoryItem>> getMaterialCategories({
     String keyword = '',
   }) async {
-    // Mock data tĩnh - sẽ thay bằng API call khi backend sẵn sàng.
-    await Future.delayed(const Duration(milliseconds: 300));
-
-    final all = _mockData;
-
-    if (keyword.isEmpty) return all;
-
-    final lower = keyword.toLowerCase();
-    return all.where((item) {
-      return item.name.toLowerCase().contains(lower) ||
-          item.code.toLowerCase().contains(lower);
-    }).toList();
+    // TODO: thay bằng API call thực tế khi backend sẵn sàng.
+    throw UnimplementedError(
+      'getMaterialCategories chưa được triển khai (thiếu endpoint backend).',
+    );
   }
 
   /// Lấy danh sách giải pháp theo projectRequestId.
@@ -44,6 +38,37 @@ class MaterialCategoryService extends DioBaseApiService {
       ),
     );
     return result.data ?? <SolutionModel>[];
+  }
+
+  /// Lấy danh sách phiên bản theo projectSolutionId, gọi đồng thời cả hai API
+  /// với isPO = true / false. Trả về cặp (versions giải pháp, versions PO).
+  /// Endpoint: GET /ProjectPartListVersion/get-all
+  /// Response format: `{ status, message, data: List of VersionModel }`.
+  Future<({List<VersionModel> solutionVersions, List<VersionModel> poVersions})>
+      getVersions(int projectSolutionId) async {
+    final results = await Future.wait([
+      get<BaseData<List<VersionModel>>>(
+        ApiEndPoint.getVersions,
+        query: {'projectSolutionId': projectSolutionId, 'isPO': false},
+        parser: (json) => _parseList(
+          json,
+          VersionModel.fromJson,
+        ),
+      ),
+      get<BaseData<List<VersionModel>>>(
+        ApiEndPoint.getVersions,
+        query: {'projectSolutionId': projectSolutionId, 'isPO': true},
+        parser: (json) => _parseList(
+          json,
+          VersionModel.fromJson,
+        ),
+      ),
+    ]);
+
+    return (
+      solutionVersions: results[0].data ?? <VersionModel>[],
+      poVersions: results[1].data ?? <VersionModel>[],
+    );
   }
 
   /// Parse response thành BaseData&lt;List&lt;T&gt;&gt;, hỗ trợ nhiều format khác nhau.
@@ -78,19 +103,4 @@ class MaterialCategoryService extends DioBaseApiService {
       },
     );
   }
-
-  /// Mock data tĩnh - sẽ thay bằng API call khi backend sẵn sàng.
-  static final List<MaterialCategoryItem> _mockData = [
-    MaterialCategoryItem(
-      id: 1,
-      code: 'MCD-001',
-      name: 'Danh mục vật tư',
-      note: 'Danh mục chính',
-      isActive: true,
-    ),
-  ];
-
-  /// Trả về danh sách danh mục tĩnh để hiển thị preview trong bottom sheet
-  /// mà không cần khởi tạo bloc.
-  static List<MaterialCategoryItem> previewCategories() => _mockData;
 }

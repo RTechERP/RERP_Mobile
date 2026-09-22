@@ -514,4 +514,8 @@ class ApiEndPoint {
 
   // Project Worker - Solution
   static const String getSolution = '/projectworker/get-solution';
+
+  /// Phiên bản danh mục vật tư.
+  /// GET /ProjectPartListVersion/get-all?projectSolutionId={id}&isPO={bool}.
+  static const String getVersions = '/ProjectPartListVersion/get-all';
 }

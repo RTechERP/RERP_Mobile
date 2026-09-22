@@ -18,19 +18,19 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$VersionEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(int? projectSolutionId) init,
     required TResult Function() refresh,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(int? projectSolutionId)? init,
     TResult? Function()? refresh,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(int? projectSolutionId)? init,
     TResult Function()? refresh,
     required TResult orElse(),
   }) =>
@@ -79,6 +79,8 @@ abstract class _$$InitImplCopyWith<$Res> {
   factory _$$InitImplCopyWith(
           _$InitImpl value, $Res Function(_$InitImpl) then) =
       __$$InitImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int? projectSolutionId});
 }
 
 /// @nodoc
@@ -87,54 +89,79 @@ class __$$InitImplCopyWithImpl<$Res>
     implements _$$InitImplCopyWith<$Res> {
   __$$InitImplCopyWithImpl(_$InitImpl _value, $Res Function(_$InitImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? projectSolutionId = freezed,
+  }) {
+    return _then(_$InitImpl(
+      projectSolutionId: freezed == projectSolutionId
+          ? _value.projectSolutionId
+          : projectSolutionId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$InitImpl implements _Init {
-  const _$InitImpl();
+  const _$InitImpl({this.projectSolutionId});
+
+  @override
+  final int? projectSolutionId;
 
   @override
   String toString() {
-    return 'VersionEvent.init()';
+    return 'VersionEvent.init(projectSolutionId: $projectSolutionId)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$InitImpl &&
+            (identical(other.projectSolutionId, projectSolutionId) ||
+                other.projectSolutionId == projectSolutionId));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, projectSolutionId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitImplCopyWith<_$InitImpl> get copyWith =>
+      __$$InitImplCopyWithImpl<_$InitImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(int? projectSolutionId) init,
     required TResult Function() refresh,
   }) {
-    return init();
+    return init(projectSolutionId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(int? projectSolutionId)? init,
     TResult? Function()? refresh,
   }) {
-    return init?.call();
+    return init?.call(projectSolutionId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(int? projectSolutionId)? init,
     TResult Function()? refresh,
     required TResult orElse(),
   }) {
     if (init != null) {
-      return init();
+      return init(projectSolutionId);
     }
     return orElse();
   }
@@ -172,7 +199,12 @@ class _$InitImpl implements _Init {
 }
 
 abstract class _Init implements VersionEvent {
-  const factory _Init() = _$InitImpl;
+  const factory _Init({final int? projectSolutionId}) = _$InitImpl;
+
+  int? get projectSolutionId;
+  @JsonKey(ignore: true)
+  _$$InitImplCopyWith<_$InitImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -213,7 +245,7 @@ class _$RefreshImpl implements _Refresh {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
+    required TResult Function(int? projectSolutionId) init,
     required TResult Function() refresh,
   }) {
     return refresh();
@@ -222,7 +254,7 @@ class _$RefreshImpl implements _Refresh {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
+    TResult? Function(int? projectSolutionId)? init,
     TResult? Function()? refresh,
   }) {
     return refresh?.call();
@@ -231,7 +263,7 @@ class _$RefreshImpl implements _Refresh {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
+    TResult Function(int? projectSolutionId)? init,
     TResult Function()? refresh,
     required TResult orElse(),
   }) {

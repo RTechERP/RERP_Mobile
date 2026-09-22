@@ -13,6 +13,8 @@ abstract class _$VersionStateCWProxy {
 
   VersionState versions(List<VersionItem> versions);
 
+  VersionState projectSolutionId(int? projectSolutionId);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `VersionState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -23,6 +25,7 @@ abstract class _$VersionStateCWProxy {
     BaseStateStatus? status,
     String? message,
     List<VersionItem>? versions,
+    int? projectSolutionId,
   });
 }
 
@@ -42,6 +45,10 @@ class _$VersionStateCWProxyImpl implements _$VersionStateCWProxy {
   VersionState versions(List<VersionItem> versions) => this(versions: versions);
 
   @override
+  VersionState projectSolutionId(int? projectSolutionId) =>
+      this(projectSolutionId: projectSolutionId);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `VersionState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -53,6 +60,7 @@ class _$VersionStateCWProxyImpl implements _$VersionStateCWProxy {
     Object? status = const $CopyWithPlaceholder(),
     Object? message = const $CopyWithPlaceholder(),
     Object? versions = const $CopyWithPlaceholder(),
+    Object? projectSolutionId = const $CopyWithPlaceholder(),
   }) {
     return VersionState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -67,6 +75,10 @@ class _$VersionStateCWProxyImpl implements _$VersionStateCWProxy {
           ? _value.versions
           // ignore: cast_nullable_to_non_nullable
           : versions as List<VersionItem>,
+      projectSolutionId: projectSolutionId == const $CopyWithPlaceholder()
+          ? _value.projectSolutionId
+          // ignore: cast_nullable_to_non_nullable
+          : projectSolutionId as int?,
     );
   }
 }

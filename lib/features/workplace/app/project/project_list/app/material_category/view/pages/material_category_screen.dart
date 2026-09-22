@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rtc_erp/base/widgets/base_scaffold.dart';
 import 'package:rtc_erp/common/app_theme/index.dart';
+import 'package:rtc_erp/di/injection.dart';
 
+import '../bloc/solution_bloc.dart';
+import '../bloc/version_bloc.dart';
 import 'material_category_tab.dart';
 import 'solution_tab.dart';
 import 'version_tab.dart';
 
 /// Màn hình chi tiết dự án với 3 tab:
 /// - Tab 1: Giải pháp (SolutionTab)
-/// - Tab 2: Phiên bản (VersionTab)
-/// - Tab 3: Danh mục vật tư (dùng MaterialCategoryScreen theo URL)
+/// - Tab 2: Phiên bản (VersionTab) - lấy solutionId từ solution đầu tiên
+/// - Tab 3: Danh mục vật tư (MaterialCategoryTab)
 class MaterialCategoryScreen extends StatefulWidget {
   const MaterialCategoryScreen({
     super.key,
@@ -47,63 +51,75 @@ class _MaterialCategoryScreenState extends State<MaterialCategoryScreen>
         title: Text('Danh mục vật tư', style: AppStyles.headingTitle2),
         onBackTap: () => context.pop(),
       ),
-      body: Column(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border(
-                bottom: BorderSide(
-                  color: AppColors.gray.withValues(alpha: 0.2),
-                ),
-              ),
-            ),
-            child: TabBar(
-              controller: _tabController,
-              indicatorColor: AppColors.primaryERP,
-              indicatorWeight: 3,
-              labelColor: AppColors.primaryERP,
-              unselectedLabelColor: AppColors.gray,
-              labelStyle: const TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w600,
-              ),
-              unselectedLabelStyle: const TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w500,
-              ),
-              tabs: const [
-                Tab(
-                  icon: Icon(Icons.lightbulb_outline, size: 18),
-                  text: 'Giải pháp',
-                  iconMargin: EdgeInsets.only(bottom: 4),
-                ),
-                Tab(
-                  icon: Icon(Icons.layers_outlined, size: 18),
-                  text: 'Phiên bản',
-                  iconMargin: EdgeInsets.only(bottom: 4),
-                ),
-                Tab(
-                  icon: Icon(Icons.category_outlined, size: 18),
-                  text: 'Vật tư',
-                  iconMargin: EdgeInsets.only(bottom: 4),
-                ),
-              ],
-            ),
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider<SolutionBloc>(
+            create: (_) => getIt<SolutionBloc>()
+              ..add(SolutionEvent.init(
+                projectRequestId: widget.projectRequestId,
+              )),
           ),
-          Expanded(
-            child: TabBarView(
-              controller: _tabController,
-              children: [
-                SolutionTab(projectRequestId: widget.projectRequestId),
-                const VersionTab(),
-                const MaterialCategoryTab(),
-              ],
-            ),
+          BlocProvider<VersionBloc>(
+            create: (_) => getIt<VersionBloc>(),
           ),
         ],
+        child: Column(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border(
+                  bottom: BorderSide(
+                    color: AppColors.gray.withValues(alpha: 0.2),
+                  ),
+                ),
+              ),
+              child: TabBar(
+                controller: _tabController,
+                indicatorColor: AppColors.primaryERP,
+                indicatorWeight: 3,
+                labelColor: AppColors.primaryERP,
+                unselectedLabelColor: AppColors.gray,
+                labelStyle: const TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w600,
+                ),
+                unselectedLabelStyle: const TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                ),
+                tabs: const [
+                  Tab(
+                    icon: Icon(Icons.lightbulb_outline, size: 18),
+                    text: 'Giải pháp',
+                    iconMargin: EdgeInsets.only(bottom: 4),
+                  ),
+                  Tab(
+                    icon: Icon(Icons.layers_outlined, size: 18),
+                    text: 'Phiên bản',
+                    iconMargin: EdgeInsets.only(bottom: 4),
+                  ),
+                  Tab(
+                    icon: Icon(Icons.category_outlined, size: 18),
+                    text: 'Vật tư',
+                    iconMargin: EdgeInsets.only(bottom: 4),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: TabBarView(
+                controller: _tabController,
+                children: [
+                  SolutionTab(),
+                  const VersionTab(),
+                  const MaterialCategoryTab(),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
-
