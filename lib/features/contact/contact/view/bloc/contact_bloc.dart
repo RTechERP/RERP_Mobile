@@ -5,8 +5,8 @@ import 'package:injectable/injectable.dart';
 
 
 import '../../../../../base/bloc/index.dart';
-import '../../../../../features/contact/bussiness_card/data/datasource/models/business_card_model.dart';
-import '../../../../../features/contact/bussiness_card/data/repository/business_card_repo.dart';
+import '../../../../../features/contact/business_card/data/datasource/models/business_card_model.dart';
+import '../../../../../features/contact/business_card/data/repository/business_card_repo.dart';
 import '../../data/datasource/models/contact_model.dart';
 import '../../data/repository/contact_repo.dart';
 

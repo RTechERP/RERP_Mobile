@@ -31,16 +31,19 @@ class _ConfirmBusinessCardScreenState extends State<ConfirmBusinessCardScreen> {
   @override
   void initState() {
     super.initState();
-    _nameController = TextEditingController(text: _extractField('FN') ?? _extractField('NAME'));
-    _phoneController = TextEditingController(text: _extractField('TEL') ?? _extractField('PHONE'));
-    _emailController = TextEditingController(text: _extractField('EMAIL'));
-    _companyController = TextEditingController(text: _extractField('ORG') ?? _extractField('COMPANY'));
-    _addressController = TextEditingController(text: _extractField('ADR') ?? _extractField('ADDRESS'));
-    _positionController = TextEditingController(text: _extractField('TITLE') ?? _extractField('ROLE'));
+    _nameController = TextEditingController(text: _extractField('NAME') ?? _extractField('FN') ?? _extractField('Name'));
+    _phoneController = TextEditingController(text: _extractField('PHONE') ?? _extractField('TEL') ?? _extractField('Phone'));
+    _emailController = TextEditingController(text: _extractField('EMAIL') ?? _extractField('Email'));
+    _companyController = TextEditingController(text: _extractField('COMPANY') ?? _extractField('ORG') ?? _extractField('Company'));
+    _addressController = TextEditingController(text: _extractField('ADDRESS') ?? _extractField('ADR') ?? _extractField('Address'));
+    _positionController = TextEditingController(text: _extractField('POSITION') ?? _extractField('TITLE') ?? _extractField('Role') ?? _extractField('Position'));
   }
 
   String? _extractField(String key) {
-    return widget.scannedData[key.toUpperCase()] ?? widget.scannedData[key];
+    // Try uppercase first, then lowercase (API returns mixed case)
+    return widget.scannedData[key.toUpperCase()] ??
+           widget.scannedData[key.toLowerCase()] ??
+           widget.scannedData[key];
   }
 
   @override

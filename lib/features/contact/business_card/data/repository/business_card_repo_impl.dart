@@ -4,61 +4,69 @@ import 'package:injectable/injectable.dart';
 import '../../../../../base/network/errors/error.dart';
 import '../datasource/models/business_card_model.dart';
 import '../datasource/services/business_card_service.dart';
-import '../datasource/services/business_card_vision_helpers.dart';
-import '../datasource/services/ollama_host_resolver.dart';
 import 'business_card_repo.dart';
 
 @LazySingleton(as: BusinessCardRepo)
 class BusinessCardRepoImpl implements BusinessCardRepo {
-  BusinessCardRepoImpl(this._service, this._hostResolver);
+  BusinessCardRepoImpl(this._service);
 
   final BusinessCardService _service;
-  final OllamaHostResolver _hostResolver;
 
   @override
   Future<Either<BaseError, List<BusinessCardModel>>> getBusinessCards({
     int departmentID = 0,
     String? keyword,
     int? isFavorite,
-  }) {
-    return _service.getBusinessCards(
-      departmentID: departmentID,
-      keyword: keyword,
-      isFavorite: isFavorite,
-    );
+  }) async {
+    try {
+      final cards = await _service.getBusinessCards(
+        departmentID: departmentID,
+        keyword: keyword,
+        isFavorite: isFavorite,
+      );
+      return right(cards);
+    } catch (e) {
+      return left(BaseError.httpUnknownError(e.toString()));
+    }
   }
 
   @override
   Future<Either<BaseError, Map<String, String>>> scanBusinessCard(
     String imagePath,
   ) async {
-    // 1. Resolve Ollama host (auto-discovery LAN/loopback).
-    final baseUrl = await _hostResolver.resolve();
-    if (baseUrl == null) {
-      return left(
-        const BaseError.httpUnknownError(
-          'Không tìm thấy Ollama đang chạy. '
-          '�ảảm bảo Ollama đã khởi động và listen trên 0.0.0.0:11434.',
-        ),
+    try {
+      final baseData = await _service.scanBusinessCardImage(
+        imagePath: imagePath,
       );
+
+      // Kiểm tra status
+      if (baseData.status == 1 && baseData.data != null) {
+        final response = baseData.data!;
+        
+        // Convert to Map<String, String> for compatibility with UI
+        final Map<String, String> result = {
+          'NAME': response.name ?? '',
+          'PHONE': response.phone ?? '',
+          'EMAIL': response.email ?? '',
+          'COMPANY': response.company ?? '',
+          'ADDRESS': response.address ?? '',
+          'POSITION': response.position ?? '',
+          'WEBSITE': response.website ?? '',
+        };
+
+        return right(result);
+      } else {
+        final errorMsg = baseData.message ?? baseData.msg ?? 'Lỗi khi quét danh thiếp';
+        return left(BaseError.httpUnknownError(errorMsg));
+      }
+    } catch (e) {
+      return left(BaseError.httpUnknownError(e.toString()));
     }
-
-    // 2. Gọi service thống nhất — encode + call Ollama + parse.
-    final result = await _service.scanBusinessCardImage(
-      imagePath: imagePath,
-      ollamaUrl: baseUrl,
-    );
-
-    return result.fold(
-      left,
-      (vision) => right(businessCardVisionResultToMap(vision)),
-    );
   }
 
   @override
   Future<bool> isOllamaAvailable() async {
-    final baseUrl = await _hostResolver.resolve();
-    if (baseUrl == null) return false;
-    return _hostResolver.isAvailable(baseUrl);
+    // No longer needed - using backend API
+    return true;
   }
 }

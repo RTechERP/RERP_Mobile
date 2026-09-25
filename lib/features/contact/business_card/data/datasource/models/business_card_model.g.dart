@@ -54,26 +54,26 @@ Map<String, dynamic> _$$BusinessCardModelImplToJson(
       'IsFavorite': instance.isFavorite,
     };
 
-_$BusinessCardVisionResultImpl _$$BusinessCardVisionResultImplFromJson(
+_$ScanBusinessCardResponseImpl _$$ScanBusinessCardResponseImplFromJson(
         Map<String, dynamic> json) =>
-    _$BusinessCardVisionResultImpl(
-      name: json['name'] as String?,
-      phone: json['phone'] as String?,
-      email: json['email'] as String?,
-      company: json['company'] as String?,
-      address: json['address'] as String?,
-      position: json['position'] as String?,
-      website: json['website'] as String?,
+    _$ScanBusinessCardResponseImpl(
+      name: json['Name'] as String?,
+      phone: json['Phone'] as String?,
+      email: json['Email'] as String?,
+      company: json['Company'] as String?,
+      address: json['Address'] as String?,
+      position: json['Position'] as String?,
+      website: json['Website'] as String?,
     );
 
-Map<String, dynamic> _$$BusinessCardVisionResultImplToJson(
-        _$BusinessCardVisionResultImpl instance) =>
+Map<String, dynamic> _$$ScanBusinessCardResponseImplToJson(
+        _$ScanBusinessCardResponseImpl instance) =>
     <String, dynamic>{
-      'name': instance.name,
-      'phone': instance.phone,
-      'email': instance.email,
-      'company': instance.company,
-      'address': instance.address,
-      'position': instance.position,
-      'website': instance.website,
+      'Name': instance.name,
+      'Phone': instance.phone,
+      'Email': instance.email,
+      'Company': instance.company,
+      'Address': instance.address,
+      'Position': instance.position,
+      'Website': instance.website,
     };

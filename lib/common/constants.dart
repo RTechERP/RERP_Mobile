@@ -426,6 +426,7 @@ class ApiEndPoint {
 
   // Business Card
   static const String getBusinessCard = '/Home/get-business-card';
+  static const String scanBusinessCard = '/rio/scan-business-card';
 
   // BusinessConfig
   static const String getDepartmentIds = '/BusinessConfig/get-department-ids';

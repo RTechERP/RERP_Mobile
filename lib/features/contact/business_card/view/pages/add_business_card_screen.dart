@@ -31,7 +31,6 @@ class _AddBusinessCardScreenState extends State<AddBusinessCardScreen> {
   }
 
   Future<void> _startScanning() async {
-    if (_isProcessing) return;
     setState(() => _isProcessing = true);
 
     try {
@@ -49,6 +48,8 @@ class _AddBusinessCardScreenState extends State<AddBusinessCardScreen> {
       }
 
       final path = docs.first;
+      // Đánh dấu đã scan xong, chuyển sang giai đoạn gọi API
+      setState(() => _isProcessing = false);
       context.read<BusinessCardBloc>().add(BusinessCardEvent.scanCard(path));
     } on CunningDocumentScannerException catch (e) {
       if (!mounted) return;
@@ -65,7 +66,7 @@ class _AddBusinessCardScreenState extends State<AddBusinessCardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: BlocListener<BusinessCardBloc, BusinessCardState>(
+      body: BlocConsumer<BusinessCardBloc, BusinessCardState>(
         listenWhen: (prev, curr) => prev.status != curr.status,
         listener: (context, state) {
           if (state.status == BaseStateStatus.success &&
@@ -79,72 +80,112 @@ class _AddBusinessCardScreenState extends State<AddBusinessCardScreen> {
             Navigator.pop(context);
           }
         },
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            // Loading state khi đang xử lý
-            Center(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const SizedBox(
-                    width: 48,
-                    height: 48,
-                    child: CircularProgressIndicator(
-                      color: Colors.white,
-                      strokeWidth: 3,
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    _isProcessing ? 'Đang mở máy quét...' : 'Đang xử lý...',
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            // Nút hủy
-            Positioned(
-              top: MediaQuery.of(context).padding.top + 8,
-              left: 8,
-              right: 8,
-              child: Row(
-                children: [
-                  IconButton(
-                    onPressed: () => Navigator.pop(context),
-                    icon: Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: Colors.white.withValues(alpha: 0.15),
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Icon(Icons.close, color: Colors.white, size: 22),
-                    ),
-                  ),
-                  const Expanded(
-                    child: Text(
-                      'Quét danh thiếp',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
+        buildWhen: (prev, curr) => prev.status != curr.status,
+        builder: (context, state) {
+          return Stack(
+            fit: StackFit.expand,
+            children: [
+              // Loading state với message động
+              Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SizedBox(
+                      width: 48,
+                      height: 48,
+                      child: CircularProgressIndicator(
                         color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
+                        strokeWidth: 3,
                       ),
                     ),
-                  ),
-                  const SizedBox(width: 48),
-                ],
+                    const SizedBox(height: 16),
+                    Text(
+                      _getLoadingMessage(state.status),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      _getLoadingDescription(state.status),
+                      style: TextStyle(
+                        color: Colors.white.withValues(alpha: 0.7),
+                        fontSize: 14,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
-        ),
+
+              // Nút hủy
+              Positioned(
+                top: MediaQuery.of(context).padding.top + 8,
+                left: 8,
+                right: 8,
+                child: Row(
+                  children: [
+                    IconButton(
+                      onPressed: () => Navigator.pop(context),
+                      icon: Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: Colors.white.withValues(alpha: 0.15),
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(Icons.close, color: Colors.white, size: 22),
+                      ),
+                    ),
+                    const Expanded(
+                      child: Text(
+                        'Quét danh thiếp',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 48),
+                  ],
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
+  }
+
+  /// Trả về message phù hợp với trạng thái hiện tại.
+  String _getLoadingMessage(BaseStateStatus status) {
+    if (_isProcessing) {
+      return 'Đang mở máy quét...';
+    }
+    
+    switch (status) {
+      case BaseStateStatus.loading:
+        return 'Đang xử lý AI...';
+      default:
+        return 'Đang xử lý...';
+    }
+  }
+
+  /// Trả về mô tả chi tiết cho từng trạng thái.
+  String _getLoadingDescription(BaseStateStatus status) {
+    if (_isProcessing) {
+      return 'Vui lòng chụp ảnh danh thiếp';
+    }
+    
+    switch (status) {
+      case BaseStateStatus.loading:
+        return 'AI đang trích xuất thông tin từ danh thiếp\nVui lòng chờ trong giây lát...';
+      default:
+        return '';
+    }
   }
 }

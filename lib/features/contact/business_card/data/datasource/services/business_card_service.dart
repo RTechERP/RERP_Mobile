@@ -1,76 +1,37 @@
-import 'dart:convert';
 import 'dart:io';
-import 'dart:typed_data';
 
-import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:image/image.dart' as img;
 import 'package:injectable/injectable.dart';
 
-import '../../../../../../base/network/errors/error.dart';
-import '../../../../../../base/network/errors/extension.dart';
-import '../../../../../../common/config/index.dart';
-import '../../../../../../common/logger/index.dart';
+import '../../../../../../base/network/dio/dio_base_api_service.dart';
+import '../../../../../../base/network/models/base_data.dart';
+import '../../../../../../common/constants.dart';
 import '../models/business_card_model.dart';
-
-/// Lỗi riêng của vision — truyền message thân thiện cho UI.
-class BusinessCardVisionException implements Exception {
-  const BusinessCardVisionException(this.message);
-  final String message;
-  @override
-  String toString() => message;
-}
-
-/// Exception cho image encode.
-class BusinessCardImageException implements Exception {
-  const BusinessCardImageException(this.message);
-  final String message;
-  @override
-  String toString() => message;
-}
 
 /// Service thống nhất cho danh thiếp.
 ///
 /// Đóng gói 2 nhóm chức năng:
 /// - CRUD: lấy danh sách, filter.
-/// - Vision: encode ảnh + gọi Ollama trích xuất thông tin danh thiếp.
+/// - Scan: gửi ảnh lên API /rio/scan-business-card để trích xuất thông tin.
 @lazySingleton
-class BusinessCardService {
-  BusinessCardService(this._dio, this._log);
+class BusinessCardService extends DioBaseApiService {
+  BusinessCardService(super.dio);
 
-  // ignore: unused_field — reserved cho HTTP call CRUD khi backend sẵn sàng.
-  final Dio _dio;
-  final LogUtils _log;
-
-  // -------------------------------------------------------------------------
-  // CRUD
-  // -------------------------------------------------------------------------
-
-  /// Lấy danh sách danh thiếp, hỗ trợ filter theo phòng ban / từ khoá /
-  /// yêu thích.
-  Future<Either<BaseError, List<BusinessCardModel>>> getBusinessCards({
+  /// Lấy danh sách danh thiếp, hỗ trợ filter theo từ khoá / yêu thích.
+  Future<List<BusinessCardModel>> getBusinessCards({
     int departmentID = 0,
     String? keyword,
     int? isFavorite,
   }) async {
-    try {
-      // final response = await _dio.get<List<dynamic>>(
-      //   ApiEndpoints.businessCards,
-      //   queryParameters: {...},
-      // );
-      // final list = (response.data ?? [])
-      //     .map((e) => BusinessCardModel.fromJson(e as Map<String, dynamic>))
-      //     .toList();
-      // return right(list);
+    // TODO: Implement with real API when backend is ready
+    // final response = await get<List<dynamic>>(
+    //   ApiEndPoint.getBusinessCard,
+    //   query: {...},
+    // );
+    // return (response ?? []).map((e) => BusinessCardModel.fromJson(e)).toList();
 
-      final filtered =
-          _filter(_fakeData, keyword: keyword, isFavorite: isFavorite);
-      return right(filtered);
-    } on DioException catch (e) {
-      return left(e.baseError);
-    } catch (e) {
-      return left(BaseError.httpInternalServerError('Lỗi không xác định: $e'));
-    }
+    final filtered = _filter(_fakeData, keyword: keyword, isFavorite: isFavorite);
+    return filtered;
   }
 
   List<BusinessCardModel> _filter(
@@ -97,182 +58,49 @@ class BusinessCardService {
     return result.toList();
   }
 
-  // -------------------------------------------------------------------------
-  // Vision
-  // -------------------------------------------------------------------------
-
-  /// Trích xuất thông tin danh thiếp từ ảnh qua Ollama.
+  /// Trích xuất thông tin danh thiếp từ ảnh qua API /rio/scan-business-card.
   ///
   /// [imagePath]: đường dẫn file ảnh (file:// hoặc path thuần).
-  /// [ollamaUrl]: base URL của Ollama (đã resolve ở tầng repo/caller).
-  Future<Either<BaseError, BusinessCardVisionResult>> scanBusinessCardImage({
+  Future<BaseData<ScanBusinessCardResponse>> scanBusinessCardImage({
     required String imagePath,
-    required String ollamaUrl,
-    String model = 'qwen2.5vl:latest',
   }) async {
-    // 1. Encode + resize ảnh.
-    String base64Image;
-    try {
-      base64Image = _encodeImage(imagePath);
-    } catch (e) {
-      return left(BaseError.httpUnknownError(
-        e is BusinessCardImageException
-            ? e.message
-            : 'Lỗi đọc ảnh: $e',
-      ));
-    }
-
-    // 2. Gọi Ollama vision API.
-    final dio = Dio(BaseOptions(
-      baseUrl: ollamaUrl,
-      connectTimeout: const Duration(seconds: ApiConfig.connectTimeout),
-      receiveTimeout: const Duration(seconds: 90),
-      sendTimeout: const Duration(seconds: 30),
-      headers: const {'Content-Type': 'application/json'},
-    ));
-
-    try {
-      final response = await dio.post<dynamic>(
-        '/api/generate',
-        data: {
-          'model': model,
-          'prompt': _visionPrompt,
-          'images': [base64Image],
-          'stream': false,
-          'format': 'json',
-          'options': {
-            'num_predict': 400,
-            'temperature': 0.1,
-            'top_k': 20,
-          },
-          'keep_alive': '5m',
-        },
-      );
-
-      _log.logD(
-        '[Vision] status=${response.statusCode} '
-        'ollamaUrl=$ollamaUrl model=$model',
-      );
-
-      if (response.statusCode != 200 || response.data == null) {
-        return left(BaseError.httpUnknownError('Phản hồi không hợp lệ'));
-      }
-
-      return right(_parseResponse(response.data));
-    } on DioException catch (e) {
-      _log.logE('[Vision] DioException: ${e.type} | ${e.message}');
-      if (e.type == DioExceptionType.connectionError ||
-          e.type == DioExceptionType.connectionTimeout) {
-        return left(BaseError.httpUnknownError(
-          'Lỗi kết nối server',
-        ));
-      }
-      return left(e.baseError);
-    } catch (e) {
-      _log.logE('[Vision] Unexpected error: $e');
-      return left(
-          BaseError.httpInternalServerError('Lỗi không xác định: $e'));
-    }
-  }
-
-  /// Encode ảnh thành base64 JPEG, resize tối đa 1024px.
-  String _encodeImage(String filePath, {int maxDim = 1024}) {
-    String cleanPath = filePath;
+    // Clean path if starts with file://
+    String cleanPath = imagePath;
     if (cleanPath.startsWith('file://')) {
       cleanPath = Uri.parse(cleanPath).toFilePath();
     }
+
+    // Read file bytes
     final file = File(cleanPath);
     if (!file.existsSync()) {
-      throw const BusinessCardImageException('File ảnh không tồn tại');
+      throw Exception('File ảnh không tồn tại');
     }
-    final bytes = file.readAsBytesSync();
-    return _encodeImageBytes(bytes, maxDim: maxDim);
+    final bytes = await file.readAsBytes();
+
+    // Create multipart file
+    final fileName = cleanPath.split('/').last;
+    final multipartFile = MultipartFile.fromBytes(
+      bytes,
+      filename: fileName.isEmpty ? 'image.jpg' : fileName,
+    );
+
+    // Build form data
+    final formData = FormData.fromMap({
+      'image': multipartFile,
+    });
+
+    return post<BaseData<ScanBusinessCardResponse>>(
+      ApiEndPoint.scanBusinessCard,
+      body: formData,
+      options: Options(
+        contentType: 'multipart/form-data',
+      ),
+      parser: (json) => BaseData<ScanBusinessCardResponse>.fromJson(
+        json as Map<String, dynamic>,
+        (data) => ScanBusinessCardResponse.fromJson(data as Map<String, dynamic>),
+      ),
+    );
   }
-
-  String _encodeImageBytes(Uint8List originalBytes, {int maxDim = 1024}) {
-    final decoded = img.decodeImage(originalBytes);
-    if (decoded == null) {
-      throw const BusinessCardImageException('Không decode được ảnh');
-    }
-    final shouldResize =
-        decoded.width > maxDim || decoded.height > maxDim;
-    final resized = shouldResize
-        ? img.copyResize(
-            decoded,
-            width: decoded.width > decoded.height ? maxDim : null,
-            height: decoded.height >= decoded.width ? maxDim : null,
-            interpolation: img.Interpolation.linear,
-          )
-        : decoded;
-    return base64Encode(img.encodeJpg(resized, quality: 85));
-  }
-
-  /// Parse response từ Ollama thành [BusinessCardVisionResult].
-  BusinessCardVisionResult _parseResponse(dynamic data) {
-    String raw;
-    if (data is Map) {
-      raw = (data['response'] ?? '').toString();
-      if (raw.isEmpty && data['thinking'] != null) {
-        raw = data['thinking'].toString();
-      }
-    } else if (data is String) {
-      raw = data;
-    } else {
-      raw = jsonEncode(data);
-    }
-
-    // Strip markdown code block nếu có.
-    final match =
-        RegExp(r'```(?:json)?\s*([\s\S]*?)```').firstMatch(raw.trim());
-    final text = (match?.group(1) ?? raw).trim();
-
-    try {
-      final map = jsonDecode(text) as Map<String, dynamic>;
-      return BusinessCardVisionResult(
-        name: _stringOrNull(map['name']),
-        phone: _normalizePhone(_stringOrNull(map['phone']) ?? ''),
-        email: _stringOrNull(map['email']),
-        company: _stringOrNull(map['company']),
-        address: _stringOrNull(map['address']),
-        position: _stringOrNull(map['position']),
-        website: _stringOrNull(map['website']),
-      );
-    } catch (_) {
-      return const BusinessCardVisionResult();
-    }
-  }
-
-  String? _stringOrNull(dynamic value) {
-    if (value == null) return null;
-    final s = value.toString().trim();
-    return s.isEmpty ? null : s;
-  }
-
-  String _normalizePhone(String raw) {
-    if (raw.isEmpty) return raw;
-    final hasPlus = raw.trim().startsWith('+');
-    final digits = raw.replaceAll(RegExp(r'[^\d]'), '');
-    if (hasPlus) return '+$digits';
-    if (digits.startsWith('84') && digits.length >= 10) {
-      return '0${digits.substring(2)}';
-    }
-    return digits;
-  }
-
-  /// Prompt ép Ollama trả JSON thuần.
-  static const String _visionPrompt = '''
-Bạn là một model trích xuất thông tin danh thiếp. Đọc ảnh danh thiếp và trả về JSON với các trường sau (chỉ JSON, không kèm markdown, không giải thích):
-{
-  "name": "Họ và tên",
-  "phone": "Số điện thoại",
-  "email": "Email",
-  "company": "Tên công ty",
-  "address": "Địa chỉ",
-  "position": "Chức vụ",
-  "website": "Website"
-}
-Nếu không tìm thấy trường nào thì để giá trị rỗng "". Trả về JSON thuần túy.
-''';
 
   // -------------------------------------------------------------------------
   // Fake data (dev)

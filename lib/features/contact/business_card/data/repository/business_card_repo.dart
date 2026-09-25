@@ -10,11 +10,11 @@ abstract class BusinessCardRepo {
     int? isFavorite,
   });
 
-  /// Trích xuất thông tin danh thiếp từ ảnh qua Ollama vision.
+  /// Trích xuất thông tin danh thiếp từ ảnh qua API /rio/scan-business-card.
   Future<Either<BaseError, Map<String, String>>> scanBusinessCard(
     String imagePath,
   );
 
-  /// Kiểm tra Ollama có đang online và model có sẵn không.
+  /// Kiểm tra service có sẵn sàng không (luôn true với backend API).
   Future<bool> isOllamaAvailable();
 }

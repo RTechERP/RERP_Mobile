@@ -4,7 +4,6 @@ import 'package:injectable/injectable.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 
 import '../../../../../base/bloc/index.dart';
-import '../../../../../base/network/errors/extension.dart';
 import '../../../../../common/logger/index.dart';
 import '../../data/datasource/models/business_card_model.dart';
 import '../../data/repository/business_card_repo.dart';
@@ -37,7 +36,7 @@ class BusinessCardBloc extends BaseBloc<BusinessCardEvent, BusinessCardState> {
         _log.logE('BusinessCard: load list failed: $error');
         emit(state.copyWith(
           status: BaseStateStatus.failed,
-          message: error.getErrorMessage,
+          message: error.toString(),
         ));
       },
       (cards) {
@@ -61,7 +60,7 @@ class BusinessCardBloc extends BaseBloc<BusinessCardEvent, BusinessCardState> {
         _log.logE('BusinessCard: scan failed: $error');
         emit(state.copyWith(
           status: BaseStateStatus.failed,
-          message: error.getErrorMessage,
+          message: error.toString(),
         ));
       },
       (scannedData) {

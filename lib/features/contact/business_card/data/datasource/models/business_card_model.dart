@@ -31,22 +31,21 @@ class BusinessCardModel with _$BusinessCardModel {
       _$BusinessCardModelFromJson(json);
 }
 
-/// Kết quả trích xuất thông tin danh thiếp từ Ollama vision.
+/// Kết quả trích xuất thông tin danh thiếp từ API scan.
 ///
-/// Model thuần data — không chứa logic. Việc gọi Ollama + parse JSON nằm
-/// ở tầng service.
+/// Model thuần data — không chứa logic.
 @freezed
-class BusinessCardVisionResult with _$BusinessCardVisionResult {
-  const factory BusinessCardVisionResult({
-    String? name,
-    String? phone,
-    String? email,
-    String? company,
-    String? address,
-    String? position,
-    String? website,
-  }) = _BusinessCardVisionResult;
+class ScanBusinessCardResponse with _$ScanBusinessCardResponse {
+  const factory ScanBusinessCardResponse({
+    @JsonKey(name: 'Name') String? name,
+    @JsonKey(name: 'Phone') String? phone,
+    @JsonKey(name: 'Email') String? email,
+    @JsonKey(name: 'Company') String? company,
+    @JsonKey(name: 'Address') String? address,
+    @JsonKey(name: 'Position') String? position,
+    @JsonKey(name: 'Website') String? website,
+  }) = _ScanBusinessCardResponse;
 
-  factory BusinessCardVisionResult.fromJson(Map<String, dynamic> json) =>
-      _$BusinessCardVisionResultFromJson(json);
+  factory ScanBusinessCardResponse.fromJson(Map<String, dynamic> json) =>
+      _$ScanBusinessCardResponseFromJson(json);
 }

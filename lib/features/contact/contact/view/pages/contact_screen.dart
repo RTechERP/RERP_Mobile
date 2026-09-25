@@ -21,12 +21,12 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../../../../base/bloc/index.dart';
 import '../../../../../../common/app_theme/index.dart';
 import '../../../../../../di/injection.dart';
-import '../../../bussiness_card/view/bloc/business_card_bloc.dart';
-import '../../../bussiness_card/view/pages/add_business_card_screen.dart';
-import '../../../bussiness_card/view/pages/business_card_detail_screen.dart';
-import '../../../bussiness_card/view/pages/confirm_business_card_screen.dart';
+import '../../../business_card/view/bloc/business_card_bloc.dart';
+import '../../../business_card/view/pages/add_business_card_screen.dart';
+import '../../../business_card/view/pages/business_card_detail_screen.dart';
+import '../../../business_card/view/pages/confirm_business_card_screen.dart';
 import '../bloc/contact_bloc.dart';
-import '../../../bussiness_card/data/datasource/models/business_card_model.dart';
+import '../../../business_card/data/datasource/models/business_card_model.dart';
 import '../../data/datasource/models/contact_model.dart';
 import 'contact_detail_screen.dart';
 

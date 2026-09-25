@@ -15,7 +15,7 @@ class BusinessCardState extends BaseBlocState {
 
   final List<BusinessCardModel> cards;
 
-  /// Kết quả scan từ Ollama vision — key viết HOA (NAME, PHONE, EMAIL,...)
+  /// Kết quả scan từ API /rio/scan-business-card — key viết HOA (NAME, PHONE, EMAIL,...)
   /// để tương thích với `ConfirmBusinessCardScreen`.
   final Map<String, String> scannedData;
 }
