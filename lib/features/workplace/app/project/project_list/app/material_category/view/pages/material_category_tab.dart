@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rtc_erp/base/bloc/index.dart';
 import 'package:rtc_erp/common/app_theme/index.dart';
+import 'package:rtc_erp/common/widgets/form/form_left_border_card.dart';
 
 import '../bloc/material_category_bloc.dart';
 import '../../data/datasource/model/part_list_model.dart';
 import '../../../material_info/view/widgets/material_info_menu_sheet.dart';
+import '../../../material_info/data/model/material_info_menu_item.dart';
 import '../../../material_info/view/widgets/material_info_detail_sheet.dart';
 import '../../../material_info/view/widgets/quote_request_detail_sheet.dart';
 import '../../../material_info/view/widgets/purchase_request_detail_sheet.dart';
@@ -30,6 +32,13 @@ class MaterialCategoryTab extends StatefulWidget {
 class _MaterialCategoryTabState extends State<MaterialCategoryTab> {
   /// Tập id các node cha đang được mở rộng.
   final Set<int> _expandedIds = <int>{};
+
+  /// Tập id các phiếu đang được chọn (qua checkbox).
+  /// Tự động cascade: chọn cha → con cũng được chọn.
+  final Set<int> _selectedIds = <int>{};
+
+  /// Cây hiện tại — cache sau khi build để xử lý chọn không cần rebuild.
+  List<_PartListNode> _currentTree = const [];
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +73,7 @@ class _MaterialCategoryTabState extends State<MaterialCategoryTab> {
         }
 
         final tree = _buildTree(state.filteredCategories);
+        _currentTree = tree;
 
         if (tree.isEmpty) {
           return Center(
@@ -87,11 +97,26 @@ class _MaterialCategoryTabState extends State<MaterialCategoryTab> {
           );
         }
 
-        return ListView.builder(
-          physics: const AlwaysScrollableScrollPhysics(),
-          padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
-          itemCount: tree.length,
-          itemBuilder: (context, index) => _buildNode(context, tree[index], 0),
+        return Stack(
+          children: [
+            ListView.builder(
+              physics: const AlwaysScrollableScrollPhysics(),
+              padding: const EdgeInsets.fromLTRB(16, 8, 16, 96),
+              itemCount: tree.length,
+              itemBuilder: (context, index) => _buildNode(context, tree[index], 0),
+            ),
+            if (_selectedIds.isNotEmpty)
+              Positioned(
+                left: 16,
+                right: 16,
+                bottom: 16,
+                child: _SelectionActionBar(
+                  count: _selectedIds.length,
+                  onAction: _openBulkMenu,
+                  onClear: () => setState(() => _selectedIds.clear()),
+                ),
+              ),
+          ],
         );
       },
     );
@@ -136,6 +161,7 @@ class _MaterialCategoryTabState extends State<MaterialCategoryTab> {
     final hasChildren = node.children.isNotEmpty;
     final nodeId = node.item.id!;
     final expanded = _expandedIds.contains(nodeId);
+    final selected = _selectedIds.contains(nodeId);
 
     return Padding(
       padding: EdgeInsets.only(bottom: 10),
@@ -149,6 +175,7 @@ class _MaterialCategoryTabState extends State<MaterialCategoryTab> {
             hasChildren: hasChildren,
             childCount: node.children.length,
             expanded: expanded,
+            selected: selected,
             onToggleExpand: hasChildren
                 ? () => setState(() {
                       if (expanded) {
@@ -159,6 +186,7 @@ class _MaterialCategoryTabState extends State<MaterialCategoryTab> {
                     })
                 : null,
             onTap: () => _openMenu(context, node.item),
+            onToggleSelect: () => _toggleSelection(nodeId),
           ),
           AnimatedCrossFade(
             duration: const Duration(milliseconds: 220),
@@ -214,6 +242,88 @@ class _MaterialCategoryTabState extends State<MaterialCategoryTab> {
         break;
     }
     if (pending != null) unawaited(pending);
+  }
+
+  /// Toggle chọn/bỏ chọn 1 phiếu qua checkbox (dấu tròn).
+  ///
+  /// Hành vi:
+  /// - Check cha → tự động check tất cả con cháu.
+  /// - Uncheck cha → tự động uncheck tất cả con cháu.
+  /// - Không tự mở sheet: action bar nổi sẽ xuất hiện khi có phiếu chọn,
+  ///   user bấm "Thao tác" trên bar để mở bottom sheet bulk.
+  void _toggleSelection(int id) {
+    final node = _findNode(id, _currentTree);
+    if (node == null) return;
+
+    final willSelect = !_selectedIds.contains(id);
+    _collectDescendantIds(node).forEach((d) {
+      if (willSelect) {
+        _selectedIds.add(d);
+      } else {
+        _selectedIds.remove(d);
+      }
+    });
+
+    setState(() {});
+  }
+
+  /// Mở bottom sheet [MaterialInfoMenuSheet] với 4 nhóm thao tác bulk.
+  /// Gọi từ action bar khi user bấm "Thao tác". Không truyền vật tư nên sheet
+  /// không hiện header, chỉ có lưới 4 nhóm. Mỗi nhóm mở tiếp sheet con.
+  Future<void> _openBulkMenu() async {
+    final pickedCount = _selectedIds.length;
+    if (pickedCount == 0) return;
+
+    final messenger = ScaffoldMessenger.maybeOf(context);
+    final actionId = await MaterialInfoMenuSheet.show(
+      context,
+      menuItems: MaterialInfoMenuItem.bulkMenuItems,
+    );
+    if (!mounted || actionId == null) return;
+
+    messenger?.hideCurrentSnackBar();
+    messenger?.showSnackBar(
+      SnackBar(
+        content: Text(
+          'Đã gửi "${_findMenuLabel(actionId)}" cho $pickedCount phiếu',
+        ),
+        behavior: SnackBarBehavior.floating,
+        duration: const Duration(seconds: 2),
+      ),
+    );
+    setState(() => _selectedIds.clear());
+  }
+
+  /// Tìm tên hiển thị của 1 menu theo id, tra cả nhóm cha lẫn nhóm con.
+  /// Dùng cho snackbar xác nhận sau khi bulk thao tác xong.
+  String _findMenuLabel(String id) {
+    for (final group in MaterialInfoMenuItem.bulkMenuItems) {
+      if (group.id == id) return group.name;
+      for (final child in group.children) {
+        if (child.id == id) return child.name;
+      }
+    }
+    return id;
+  }
+
+  /// Tìm node theo id trong cây (DFS).
+  _PartListNode? _findNode(int id, List<_PartListNode> nodes) {
+    for (final n in nodes) {
+      if (n.item.id == id) return n;
+      final found = _findNode(id, n.children);
+      if (found != null) return found;
+    }
+    return null;
+  }
+
+  /// Gom id của node hiện tại và mọi con cháu (dùng khi cascade check).
+  Set<int> _collectDescendantIds(_PartListNode node) {
+    final result = <int>{};
+    if (node.item.id != null) result.add(node.item.id!);
+    for (final c in node.children) {
+      result.addAll(_collectDescendantIds(c));
+    }
+    return result;
   }
 }
 
@@ -313,8 +423,10 @@ class _PartListCard extends StatelessWidget {
     required this.hasChildren,
     required this.childCount,
     required this.expanded,
+    required this.selected,
     this.onToggleExpand,
     this.onTap,
+    this.onToggleSelect,
   });
 
   final PartListModel item;
@@ -323,8 +435,10 @@ class _PartListCard extends StatelessWidget {
   final bool hasChildren;
   final int childCount;
   final bool expanded;
+  final bool selected;
   final VoidCallback? onToggleExpand;
   final VoidCallback? onTap;
+  final VoidCallback? onToggleSelect;
 
   bool get _isParent => depth == 0 && hasChildren;
 
@@ -357,85 +471,78 @@ class _PartListCard extends StatelessWidget {
               hasChildren: hasChildren,
               isLastChild: isLastChild,
             ),
+          // Cột checkbox riêng — width cố định, độc lập với body card.
+          Padding(
+            padding: const EdgeInsets.only(right: 6),
+            child: Center(
+              child: _SelectCircle(
+                selected: selected,
+                isParent: _isParent,
+                onTap: onToggleSelect,
+              ),
+            ),
+          ),
           Expanded(
-            child: Material(
-              color: Colors.transparent,
-              borderRadius: BorderRadius.circular(theme.radius),
-              child: InkWell(
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 180),
+              curve: Curves.easeOut,
+              decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(theme.radius),
-                onTap: onTap,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: theme.background,
+                boxShadow: theme.shadow,
+              ),
+              child: Material(
+                color: Colors.transparent,
+                borderRadius: BorderRadius.circular(theme.radius),
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(theme.radius),
+                  onTap: onTap,
+                  child: FormLeftBorderCard(
+                    // Đã chọn → viền trái chuyển teal. Chưa chọn → cha dùng
+                    // primary, con dùng xám theo depth.
+                    borderColor: selected
+                        ? AppColors.tealA700
+                        : (_isParent ? AppColors.primaryERP : theme.border),
+                    borderWidth: selected
+                        ? 4
+                        : (_isParent ? 4 : 3),
+                    backgroundColor: selected
+                        ? AppColors.tealA700.withValues(alpha: 0.06)
+                        : theme.background,
                     borderRadius: BorderRadius.circular(theme.radius),
-                    border: Border.all(color: theme.border),
-                    boxShadow: theme.shadow,
-                  ),
-                  child: Stack(
-                    children: [
-                      if (_isParent)
-                        Positioned(
-                          left: 0,
-                          top: 0,
-                          bottom: 0,
-                          child: Container(
-                            width: 4,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                colors: [
-                                  AppColors.primaryERP,
-                                  AppColors.primaryERP
-                                      .withValues(alpha: 0.7),
-                                ],
-                              ),
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(14),
-                                bottomLeft: Radius.circular(14),
-                              ),
+                    padding: const EdgeInsets.fromLTRB(14, 10, 12, 12),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _StatusStack(
+                          tbpText: item.isApprovedTbpText,
+                          purchaseText: item.isApprovedPurchaseText,
+                        ),
+                        if (item.isApprovedTbpText != null &&
+                            item.isApprovedTbpText!.isNotEmpty)
+                          const SizedBox(height: 8),
+                        _buildHeader(
+                          groupName: groupName,
+                          theme: theme,
+                        ),
+                        if (_shouldShowMeta())
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: _buildMetaLine(deviceCode: deviceCode),
+                          ),
+                        Padding(
+                          padding: EdgeInsets.only(top: _shouldShowMeta() ? 10 : 12),
+                          child: _buildQtyRow(qtyMin: qtyMin, qtyFull: qtyFull),
+                        ),
+                        if (unitPrice != '--' || totalPrice != '--')
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: _buildPriceRow(
+                              unitPrice: unitPrice,
+                              totalPrice: totalPrice,
                             ),
                           ),
-                        ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(
-                          _isParent ? 14 : 12,
-                          10,
-                          12,
-                          12,
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            _StatusStack(
-                              tbpText: item.isApprovedTbpText,
-                              purchaseText: item.isApprovedPurchaseText,
-                            ),
-                            if (item.isApprovedTbpText != null &&
-                                item.isApprovedTbpText!.isNotEmpty)
-                              const SizedBox(height: 8),
-                            _buildHeader(groupName: groupName),
-                            if (_shouldShowMeta())
-                              Padding(
-                                padding: const EdgeInsets.only(top: 10),
-                                child: _buildMetaLine(deviceCode: deviceCode),
-                              ),
-                            Padding(
-                              padding: EdgeInsets.only(top: _shouldShowMeta() ? 10 : 12),
-                              child: _buildQtyRow(qtyMin: qtyMin, qtyFull: qtyFull),
-                            ),
-                            if (unitPrice != '--' || totalPrice != '--')
-                              Padding(
-                                padding: const EdgeInsets.only(top: 10),
-                                child: _buildPriceRow(
-                                  unitPrice: unitPrice,
-                                  totalPrice: totalPrice,
-                                ),
-                              ),
-                          ],
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -446,7 +553,7 @@ class _PartListCard extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader({required String groupName}) {
+  Widget _buildHeader({required String groupName, required _CardTheme theme}) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -629,6 +736,124 @@ class _PartListCard extends StatelessWidget {
   }
 }
 
+/// Action bar nổi phía dưới — hiện khi có ít nhất 1 phiếu được chọn.
+/// Gồm: badge số phiếu + nút "Thao tác" (mở menu bulk) + nút close (clear).
+class _SelectionActionBar extends StatelessWidget {
+  const _SelectionActionBar({
+    required this.count,
+    required this.onAction,
+    required this.onClear,
+  });
+
+  final int count;
+  final VoidCallback onAction;
+  final VoidCallback onClear;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: Container(
+        padding: const EdgeInsets.fromLTRB(14, 10, 8, 10),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.16),
+              blurRadius: 18,
+              offset: const Offset(0, 6),
+            ),
+          ],
+          border: Border.all(
+            color: AppColors.tealA700.withValues(alpha: 0.35),
+            width: 1,
+          ),
+        ),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              decoration: BoxDecoration(
+                color: AppColors.tealA700.withValues(alpha: 0.12),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(
+                    Icons.check_circle_rounded,
+                    size: 18,
+                    color: AppColors.tealA700,
+                  ),
+                  const SizedBox(width: 6),
+                  Text(
+                    '$count phiếu',
+                    style: const TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.tealA700,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const Spacer(),
+            Material(
+              color: Colors.transparent,
+              child: InkWell(
+                onTap: onClear,
+                borderRadius: BorderRadius.circular(10),
+                child: Container(
+                  padding: const EdgeInsets.all(8),
+                  child: const Icon(
+                    Icons.close_rounded,
+                    size: 20,
+                    color: AppColors.gray,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(width: 4),
+            Material(
+              color: AppColors.tealA700,
+              borderRadius: BorderRadius.circular(12),
+              child: InkWell(
+                onTap: onAction,
+                borderRadius: BorderRadius.circular(12),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 10,
+                  ),
+                  child: Row(
+                    children: const [
+                      Icon(
+                        Icons.tune_rounded,
+                        size: 18,
+                        color: Colors.white,
+                      ),
+                      SizedBox(width: 6),
+                      Text(
+                        'Thao tác',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 /// Theme áp dụng cho card theo vai trò (cha / con sâu / lá nông).
 class _CardTheme {
   const _CardTheme({
@@ -681,6 +906,58 @@ class _CardTheme {
       border: Color(0xFFE6EAF0),
       radius: 12,
       shadow: _childShadow,
+    );
+  }
+}
+
+/// Dấu tròn (checkbox) chọn/bỏ chọn phiếu. Tap độc lập với onTap của card.
+class _SelectCircle extends StatelessWidget {
+  const _SelectCircle({
+    required this.selected,
+    required this.isParent,
+    this.onTap,
+  });
+
+  final bool selected;
+  final bool isParent;
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final double size = isParent ? 26 : 22;
+    return Material(
+      color: Colors.transparent,
+      shape: const CircleBorder(),
+      child: InkWell(
+        onTap: onTap,
+        customBorder: const CircleBorder(),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 160),
+          width: size,
+          height: size,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: selected ? AppColors.tealA700 : Colors.white,
+            border: Border.all(
+              color: selected
+                  ? AppColors.tealA700
+                  : AppColors.gray.withValues(alpha: 0.55),
+              width: 1.6,
+            ),
+          ),
+          alignment: Alignment.center,
+          child: AnimatedScale(
+            scale: selected ? 1 : 0,
+            duration: const Duration(milliseconds: 140),
+            curve: Curves.easeOutBack,
+            child: Icon(
+              Icons.check_rounded,
+              size: size * 0.68,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

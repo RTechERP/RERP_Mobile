@@ -4,41 +4,61 @@ import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../material_category/data/datasource/model/part_list_model.dart';
 import '../../data/model/material_info_menu_item.dart';
 
-/// Bottom sheet hiển thị menu "Thông tin vật tư" khi tap vào 1 phiếu vật tư.
+/// Bottom sheet hiển thị menu chức năng của vật tư.
 ///
-/// Tap vào 1 mục sẽ đóng sheet; logic điều hướng chi tiết để router xử lý sau.
+/// Cùng 1 widget dùng cho 2 ngữ cảnh:
+/// - Tap body card (có [partListItem]): hiện header tên - mã - hãng + 5 mục
+///   [MaterialInfoMenuItem.menuItems].
+/// - Tap dấu tròn chọn phiếu (không truyền [partListItem]): chỉ hiện 4 mục
+///   [MaterialInfoMenuItem.bulkMenuItems], không có header.
 class MaterialInfoMenuSheet extends StatelessWidget {
   const MaterialInfoMenuSheet({
     super.key,
-    required this.partListItem,
+    required this.menuItems,
+    this.partListItem,
+    this.title,
   });
 
-  final PartListModel partListItem;
+  /// Vật tư đại diện cho header. `null` → bỏ qua header, chỉ hiện lưới menu.
+  final PartListModel? partListItem;
+  final List<MaterialInfoMenuItem> menuItems;
+
+  /// Tiêu đề hiển thị khi [partListItem] là null (sheet con 1 cấp).
+  final String? title;
 
   /// Mở bottom sheet menu. Trả về id của menu được chọn (vd 'detail', 'quote'),
   /// hoặc null nếu đóng bằng cách khác (tap backdrop, nút close, back...).
+  ///
+  /// Bỏ [partListItem] để hiện sheet không header (dùng cho thao tác bulk).
   static Future<String?> show(
     BuildContext context, {
-    required PartListModel partListItem,
+    PartListModel? partListItem,
+    List<MaterialInfoMenuItem>? menuItems,
+    String? title,
   }) {
     return showModalBottomSheet<String>(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (_) => MaterialInfoMenuSheet(partListItem: partListItem),
+      builder: (_) => MaterialInfoMenuSheet(
+        partListItem: partListItem,
+        menuItems: menuItems ?? MaterialInfoMenuItem.menuItems,
+        title: title,
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final name = (partListItem.groupMaterial ?? '').isNotEmpty
-        ? partListItem.groupMaterial!
+    final item = partListItem;
+    final name = (item?.groupMaterial ?? '').isNotEmpty
+        ? item!.groupMaterial!
         : 'Vật tư';
-    final code = (partListItem.productCode ?? '').isNotEmpty
-        ? partListItem.productCode!
+    final code = (item?.productCode ?? '').isNotEmpty
+        ? item!.productCode!
         : '--';
-    final maker = (partListItem.manufacturer ?? '').isNotEmpty
-        ? partListItem.manufacturer!
+    final maker = (item?.manufacturer ?? '').isNotEmpty
+        ? item!.manufacturer!
         : '--';
 
     return Container(
@@ -62,75 +82,101 @@ class MaterialInfoMenuSheet extends StatelessWidget {
               borderRadius: BorderRadius.circular(2),
             ),
           ),
-          // Header: icon + tên phiếu + mã + close
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 16, 12, 12),
-            child: Row(
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: AppColors.primaryERP.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: const Icon(
-                    Icons.inventory_2_outlined,
-                    color: AppColors.primaryERP,
-                    size: 20,
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        name,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.enableText,
-                        ),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
+          // Header: icon + tên phiếu + mã (khi có vật tư),
+          // hoặc tiêu đề nhóm (khi mở sheet con 1 cấp).
+          if (partListItem != null || title != null) ...[
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 16, 12, 12),
+              child: Row(
+                children: [
+                  if (title == null)
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: AppColors.primaryERP.withValues(alpha: 0.1),
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                      const SizedBox(height: 2),
-                      Text(
-                        '$code · $maker',
-                        style: const TextStyle(
-                          fontSize: 12,
-                          color: AppColors.gray,
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
+                      child: const Icon(
+                        Icons.inventory_2_outlined,
+                        color: AppColors.primaryERP,
+                        size: 20,
                       ),
-                    ],
+                    ),
+                  if (title == null) const SizedBox(width: 12),
+                  Expanded(
+                    child: title != null
+                        ? Text(
+                            title!,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                              color: AppColors.enableText,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          )
+                        : Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                name,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700,
+                                  color: AppColors.enableText,
+                                ),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              const SizedBox(height: 2),
+                              Text(
+                                '$code · $maker',
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  color: AppColors.gray,
+                                ),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ],
+                          ),
                   ),
-                ),
-                IconButton(
-                  onPressed: () => Navigator.pop(context),
-                  icon: const Icon(Icons.close, color: AppColors.gray),
-                ),
-              ],
+                  IconButton(
+                    onPressed: () => Navigator.pop(context),
+                    icon: const Icon(Icons.close, color: AppColors.gray),
+                  ),
+                ],
+              ),
             ),
-          ),
-          const Divider(height: 1),
-          // Grid menu
+            const Divider(height: 1),
+          ],
+          // Grid menu — 4 mục dùng 2 cột, 5 mục dùng 3 cột cho vừa khung.
           Flexible(
             child: GridView.builder(
               padding: const EdgeInsets.all(16),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: menuItems.length > 4 ? 3 : 2,
                 crossAxisSpacing: 12,
                 mainAxisSpacing: 12,
                 childAspectRatio: 0.95,
               ),
-              itemCount: MaterialInfoMenuItem.menuItems.length,
+              itemCount: menuItems.length,
               itemBuilder: (context, index) {
-                final menu = MaterialInfoMenuItem.menuItems[index];
+                final menu = menuItems[index];
                 return _MenuTile(
                   menu: menu,
-                  onTap: () => Navigator.pop(context, menu.id),
+                  onTap: () {
+                    // Có nhóm con → mở sheet con thay vì đóng sheet hiện tại.
+                    if (menu.children.isNotEmpty) {
+                      MaterialInfoMenuSheet.show(
+                        context,
+                        title: menu.name,
+                        menuItems: menu.children,
+                      );
+                      return;
+                    }
+                    Navigator.pop(context, menu.id);
+                  },
                 );
               },
             ),
@@ -168,13 +214,36 @@ class _MenuTile extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: menu.color.withValues(alpha: 0.15),
-                  shape: BoxShape.circle,
-                ),
-                child: Icon(menu.icon, color: menu.color, size: 24),
+              Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: menu.color.withValues(alpha: 0.15),
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(menu.icon, color: menu.color, size: 24),
+                  ),
+                  if (menu.children.isNotEmpty)
+                    Positioned(
+                      right: -2,
+                      bottom: -2,
+                      child: Container(
+                        padding: const EdgeInsets.all(3),
+                        decoration: BoxDecoration(
+                          color: menu.color,
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.white, width: 1.5),
+                        ),
+                        child: const Icon(
+                          Icons.arrow_forward_rounded,
+                          size: 10,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                ],
               ),
               const SizedBox(height: 8),
               Text(
