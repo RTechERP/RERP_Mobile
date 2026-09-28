@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../base/bloc/index.dart';
 import '../../../../base/widgets/base_scaffold.dart';
 import '../../../../common/app_theme/index.dart';
+import '../../../../common/constants/app_image.dart';
 import '../../../../common/utils/dialog/index.dart';
 import '../../../../base/widgets/base_widget.dart';
 import '../bloc/rio_chat_bloc.dart';
 import '../widgets/chat_bubble.dart';
-import '../widgets/typing_indicator.dart';
+import '../widgets/bot_emotion_theme.dart';
+import '../../data/utils/chatbot_emotion.dart';
 
 /// Màn hình Rio Chat.
 class RioChatScreen extends StatefulWidget {
@@ -23,6 +26,14 @@ class _RioChatScreenState
   final _messageController = TextEditingController();
   final _scrollController = ScrollController();
   final _focusNode = FocusNode();
+
+  /// Snapshot frame trước — dùng để phát hiện message/pending mới.
+  /// Tránh scroll ép khi user đang đọc lại tin nhắn cũ.
+  int _lastMessagesLength = 0;
+  bool _lastHasPending = false;
+
+  /// Cờ cục bộ chặn gửi lặp trong cùng frame (state chưa kịp cập nhật).
+  bool _sending = false;
 
   @override
   void initState() {
@@ -53,19 +64,32 @@ class _RioChatScreenState
   void _sendMessage() {
     final message = _messageController.text.trim();
     if (message.isEmpty) return;
+    // Chặn gửi lặp trong cùng frame (bloc.state chưa được cập nhật khi user
+    // nhấn Enter/button liên tục).
+    if (_sending || bloc.state.isWaiting) return;
 
+    _sending = true;
     _messageController.clear();
     _focusNode.unfocus();
     bloc.add(SendMessage(message));
-    _scrollToBottom(); // Scroll khi gửi message
   }
 
   @override
   void listener(BuildContext context, RioChatState state) {
     super.listener(context, state);
 
-    // Chỉ scroll khi có answer mới (bot trả lời xong)
-    if (state.messages.isNotEmpty) {
+    // Reset cờ khi pending đã được xử lý xong.
+    if (!state.isWaiting && _sending) {
+      _sending = false;
+    }
+
+    final hasPending = state.pendingMessage != null;
+    final messagesChanged = state.messages.length != _lastMessagesLength;
+    final pendingChanged = hasPending != _lastHasPending;
+
+    if (messagesChanged || pendingChanged) {
+      _lastMessagesLength = state.messages.length;
+      _lastHasPending = hasPending;
       _scrollToBottom();
     }
 
@@ -89,18 +113,7 @@ class _RioChatScreenState
         ),
         title: Row(
           children: [
-            Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: AppColors.primaryERP.withValues(alpha: 0.1),
-                shape: BoxShape.circle,
-              ),
-              child: Icon(
-                Icons.smart_toy_outlined,
-                color: AppColors.primaryERP,
-                size: 20,
-              ),
-            ),
+            const _AppBarAvatar(),
             const SizedBox(width: 12),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -140,6 +153,7 @@ class _RioChatScreenState
       body: Column(
         children: [
           Expanded(child: _buildChatContent()),
+          _buildWaitingPreview(),
           _buildMessageInput(),
         ],
       ),
@@ -167,14 +181,17 @@ class _RioChatScreenState
           for (final msg in state.messages) ...[
             ChatBubble(content: msg.question, isUser: true),
             const SizedBox(height: 8),
-            ChatBubble(content: msg.answer!, isUser: false),
+            ChatBubble(
+              content: msg.answer!,
+              isUser: false,
+              emotion: detectEmotion(msg.answer!),
+            ),
             const SizedBox(height: 16),
           ],
-          // Tin nhắn đang chờ
+          // Tin nhắn đang chờ — câu hỏi của user vẫn hiện trong list,
+          // phần trả lời được preview bằng card dưới ô nhập (kiểu Snapchat).
           if (state.pendingMessage != null) ...[
             ChatBubble(content: state.pendingMessage!.question, isUser: true),
-            const SizedBox(height: 8),
-            const TypingIndicator(),
             const SizedBox(height: 16),
           ],
         ],
@@ -183,8 +200,8 @@ class _RioChatScreenState
   }
 
   Widget _buildWelcome() {
+    // Không gắn controller — Welcome không cần scroll programmatic.
     return SingleChildScrollView(
-      controller: _scrollController,
       padding: const EdgeInsets.all(32),
       child: Column(
         children: [
@@ -195,10 +212,10 @@ class _RioChatScreenState
               color: AppColors.primaryERP.withValues(alpha: 0.1),
               shape: BoxShape.circle,
             ),
-            child: Icon(
-              Icons.smart_toy_outlined,
-              size: 64,
-              color: AppColors.primaryERP,
+            child: Image.asset(
+              AppImages.chatbot_exciting,
+              width: 80,
+              height: 80,
             ),
           ),
           const SizedBox(height: 24),
@@ -223,6 +240,41 @@ class _RioChatScreenState
         ],
       ),
     );
+  }
+
+  /// Preview emotion của Rio ngay trên ô nhập khi đang chờ trả lời.
+  /// Snap-style: chỉ hiện khi `state.isWaiting`, animation fade + scale nhẹ.
+  Widget _buildWaitingPreview() {
+    return blocBuilder((context, state) {
+      if (!state.isWaiting || state.pendingMessage == null) {
+        return const SizedBox.shrink();
+      }
+
+      // Đoán sơ bộ emotion từ câu hỏi đang chờ để Rio "ngụ ý" phản ứng;
+      // fallback questioning nếu không match keyword nào.
+      final guess = detectEmotion(state.pendingMessage!.question);
+
+      return Padding(
+        padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 220),
+            transitionBuilder: (child, anim) => FadeTransition(
+              opacity: anim,
+              child: ScaleTransition(
+                scale: Tween<double>(begin: 0.95, end: 1).animate(anim),
+                child: child,
+              ),
+            ),
+            child: _WaitingEmotionPreview(
+              key: ValueKey(state.pendingMessage!.question),
+              emotion: guess,
+            ),
+          ),
+        ),
+      );
+    });
   }
 
   Widget _buildMessageInput() {
@@ -318,6 +370,189 @@ class _RioChatScreenState
           ),
         ],
       ),
+    );
+  }
+}
+
+/// Card preview emotion của Rio khi đang chờ trả lời — đặt ngay trên ô nhập.
+///
+/// Không dùng `FormLeftBorderCard` nữa: thay vào đó là pill bo tròn với avatar
+/// Rio lớn (~56px) + 3 chấm typing nhảy bên cạnh. Tông màu theo emotion dự
+/// đoán để người dùng thấy được Rio "đang phản ứng" với câu hỏi.
+class _WaitingEmotionPreview extends StatefulWidget {
+  const _WaitingEmotionPreview({super.key, required this.emotion});
+
+  final ChatbotEmotion emotion;
+
+  @override
+  State<_WaitingEmotionPreview> createState() => _WaitingEmotionPreviewState();
+}
+
+class _WaitingEmotionPreviewState extends State<_WaitingEmotionPreview>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1200),
+    )..repeat();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = BotEmotionTheme.of(widget.emotion);
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      decoration: BoxDecoration(
+        color: theme.background,
+        gradient: theme.gradient,
+        borderRadius: BorderRadius.circular(28),
+        border: Border.all(color: theme.accent.withValues(alpha: 0.35), width: 1),
+        boxShadow: [
+          BoxShadow(
+            color: theme.accent.withValues(alpha: 0.18),
+            blurRadius: 14,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // Avatar emotion lớn — điểm nhấn chính.
+          Container(
+            padding: const EdgeInsets.all(3),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.circle,
+              border: Border.all(color: theme.accent, width: 2),
+              boxShadow: [
+                BoxShadow(
+                  color: theme.accent.withValues(alpha: 0.25),
+                  blurRadius: 10,
+                  offset: const Offset(0, 3),
+                ),
+              ],
+            ),
+            child: ClipOval(
+              child: Image.asset(
+                widget.emotion.imageAsset,
+                width: 48,
+                height: 48,
+                fit: BoxFit.cover,
+                filterQuality: FilterQuality.high,
+                gaplessPlayback: true,
+              ),
+            ),
+          ),
+          const SizedBox(width: 12),
+          // Tên Rio + trạng thái + 3 chấm typing.
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'Rio',
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w700,
+                      color: theme.accent,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 2),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'đang trả lời',
+                    style: TextStyle(
+                      fontSize: 11,
+                      color: AppColors.hintText,
+                    ),
+                  ),
+                  const SizedBox(width: 4),
+                  AnimatedBuilder(
+                    animation: _controller,
+                    builder: (context, _) {
+                      return Row(
+                        children: List.generate(3, (i) {
+                          final delay = i * 0.2;
+                          final v = (_controller.value - delay) % 1.0;
+                          final opacity =
+                              (v < 0.5 ? v * 2 : (1 - v) * 2).clamp(0.3, 1.0);
+                          return Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 1.5),
+                            width: 5,
+                            height: 5,
+                            decoration: BoxDecoration(
+                              color:
+                                  theme.accent.withValues(alpha: opacity),
+                              shape: BoxShape.circle,
+                            ),
+                          );
+                        }),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Avatar Rio trên AppBar — hiển thị emotion phù hợp với trạng thái.
+class _AppBarAvatar extends StatelessWidget {
+  const _AppBarAvatar();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<RioChatBloc, RioChatState>(
+      builder: (context, state) {
+        // Khi chờ trả lời: questioning.
+        // Ngược lại: lấy emotion từ câu trả lời gần nhất; mặc định exciting.
+        final emotion = state.isWaiting
+            ? ChatbotEmotion.questioning
+            : (state.messages.isNotEmpty && state.messages.last.answer != null
+                ? detectEmotion(state.messages.last.answer!)
+                : ChatbotEmotion.exciting);
+
+        return Container(
+          padding: const EdgeInsets.all(6),
+          decoration: BoxDecoration(
+            color: AppColors.primaryERP.withValues(alpha: 0.1),
+            shape: BoxShape.circle,
+          ),
+          child: ClipOval(
+            child: Image.asset(
+              emotion.imageAsset,
+              width: 24,
+              height: 24,
+              fit: BoxFit.cover,
+              filterQuality: FilterQuality.high,
+              gaplessPlayback: true,
+            ),
+          ),
+        );
+      },
     );
   }
 }

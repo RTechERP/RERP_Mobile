@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../common/app_theme/index.dart';
+import '../../../../common/constants/app_image.dart';
 import '../../../../routes/route_names.dart';
 
 /// Widget hiển thị bong bóng chatbot nổi trên các màn hình.
@@ -75,25 +75,25 @@ class _ChatbotFloatingBubbleState extends State<ChatbotFloatingBubble> {
                 width: _isDragging ? _bubbleSizeDragging : _bubbleSize,
                 height: _isDragging ? _bubbleSizeDragging : _bubbleSize,
                 decoration: BoxDecoration(
-                  color: AppColors.primaryERP,
                   shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.primaryERP.withValues(alpha: 0.4),
-                      blurRadius: 12,
-                      offset: const Offset(0, 4),
-                    ),
-                    BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.2),
-                      blurRadius: 8,
-                      offset: const Offset(0, 2),
-                    ),
-                  ],
+                  // boxShadow: [
+                  //   BoxShadow(
+                  //     color: Colors.black.withValues(alpha: 0.2),
+                  //     blurRadius: 8,
+                  //     offset: const Offset(0, 2),
+                  //   ),
+                  // ],
                 ),
-                child: const Icon(
-                  Icons.smart_toy_outlined,
-                  color: Colors.white,
-                  size: 28,
+                child: Padding(
+                  padding: EdgeInsets.all(4),
+                  child: ClipOval(
+                    child: Image.asset(
+                      AppImages.chatbot_exciting,
+                      fit: BoxFit.cover,
+                      filterQuality: FilterQuality.high,
+                      gaplessPlayback: true,
+                    ),
+                  ),
                 ),
               ),
             ),

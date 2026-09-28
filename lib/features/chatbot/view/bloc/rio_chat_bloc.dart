@@ -85,8 +85,9 @@ class RioChatBloc extends BaseBloc<RioChatEvent, RioChatState> {
     await res.fold(
       (l) async {
         _log.logE('RioChat: Send failed: $l');
+        // Giữ pendingMessage (câu user vẫn hiển thị, bubble cam) — chỉ
+        // phát lỗi để UI show toast. Sau đó user có thể gửi lại.
         emit(state.copyWith(
-          clearPending: true,
           error: l.getErrorMessage,
         ));
       },

@@ -152,6 +152,14 @@ flutter:
     # Images
     - assets/images/icons/logo/logo_app.png
     - assets/images/icons/logo/logo_splash.png
+    - assets/images/icons/apps/chatbot/speechless.png
+    - assets/images/icons/apps/chatbot/smile.png
+    - assets/images/icons/apps/chatbot/agree.png
+    - assets/images/icons/apps/chatbot/happy.png
+    - assets/images/icons/apps/chatbot/exciting.png
+    - assets/images/icons/apps/chatbot/questioning.png
+    - assets/images/icons/apps/chatbot/love.png
+    - assets/images/icons/apps/chatbot/angry.png
     - assets/images/icons/apps/reg_work/01.png
     - assets/images/icons/apps/reg_work/02.png
     - assets/images/icons/apps/reg_work/03.png
