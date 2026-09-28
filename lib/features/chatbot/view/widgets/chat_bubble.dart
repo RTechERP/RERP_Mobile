@@ -183,16 +183,11 @@ class _BotAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(3),
-      decoration: BoxDecoration(
-        color: accent.withValues(alpha: 0.12),
-        shape: BoxShape.circle,
-        border: Border.all(color: accent.withValues(alpha: 0.35), width: 1),
-      ),
       child: ClipOval(
         child: Image.asset(
           emotion.imageAsset,
-          width: 20,
-          height: 20,
+          width: 48,
+          height: 48,
           fit: BoxFit.cover,
           filterQuality: FilterQuality.high,
           gaplessPlayback: true,
