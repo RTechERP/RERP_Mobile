@@ -41,4 +41,17 @@ class MaterialCategoryRepoImpl implements MaterialCategoryRepo {
       return left(BaseError.httpInternalServerError(e.toString()));
     }
   }
+
+  @override
+  Future<Either<BaseError, Unit>> approveFix(
+    PartListModel item, {
+    required bool isFix,
+  }) async {
+    try {
+      await _service.approveFix(item, isFix: isFix);
+      return right(unit);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
 }

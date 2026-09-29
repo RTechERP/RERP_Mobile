@@ -130,6 +130,8 @@ _$PartListModelImpl _$$PartListModelImplFromJson(Map<String, dynamic> json) =>
       statusText: json['StatusText'] as String?,
       reciver: json['Reciver'] as String?,
       khoType: json['KhoType'] as String?,
+      isLeaf: json['IsLeaf'] as bool?,
+      isNewCode: json['IsNewCode'] as bool?,
     );
 
 Map<String, dynamic> _$$PartListModelImplToJson(_$PartListModelImpl instance) =>
@@ -252,4 +254,6 @@ Map<String, dynamic> _$$PartListModelImplToJson(_$PartListModelImpl instance) =>
       'StatusText': instance.statusText,
       'Reciver': instance.reciver,
       'KhoType': instance.khoType,
+      'IsLeaf': instance.isLeaf,
+      'IsNewCode': instance.isNewCode,
     };

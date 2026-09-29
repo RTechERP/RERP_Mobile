@@ -527,4 +527,9 @@ class ApiEndPoint {
   /// POST /ProjectPartList/approved-newcode?isApprovedNew={bool}.
   /// Body: `PartListModel` của vật tư cần cập nhật.
   static const String approvedNewCode = '/ProjectPartList/approved-newcode';
+
+  /// Duyệt tích xanh / huỷ duyệt tích xanh cho 1 vật tư.
+  /// POST /ProjectPartList/approved-fix?isFix={bool}.
+  /// Body: danh sách rút gọn các field của vật tư cần cập nhật.
+  static const String approvedFix = '/ProjectPartList/approved-fix';
 }

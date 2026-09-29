@@ -57,6 +57,41 @@ class MaterialCategoryService extends DioBaseApiService {
     );
   }
 
+  /// Duyệt / huỷ duyệt tích xanh cho 1 vật tư.
+  /// Endpoint: POST /ProjectPartList/approved-fix?isFix={bool}
+  /// Body: List rút gọn các field bắt buộc (ID, ProjectID, ProjectTypeID,
+  /// ProjectPartListVersionID, TT, ProductCode, GroupMaterial, Manufacturer,
+  /// Unit, IsLeaf, IsNewCode, IsDeleted) — backend chỉ nhận field có trong DTO.
+  /// isFix=true  → duyệt tích xanh.
+  /// isFix=false → huỷ duyệt tích xanh.
+  Future<void> approveFix(PartListModel item, {required bool isFix}) async {
+    await post<dynamic>(
+      ApiEndPoint.approvedFix,
+      body: [_toFixPayload(item)],
+      query: {'isFix': isFix},
+    );
+  }
+
+  /// Build payload rút gọn cho API approved-fix.
+  /// Backend DTO là `bool` non-nullable, nên phải default `false` thay vì gửi
+  /// null — JSON `null` không thể convert sang System.Boolean.
+  Map<String, dynamic> _toFixPayload(PartListModel item) {
+    return {
+      'ID': item.id,
+      'ProjectID': item.projectId,
+      'ProjectTypeID': item.projectTypeId,
+      'ProjectPartListVersionID': item.projectPartListVersionId,
+      'TT': item.tt,
+      'ProductCode': item.productCode,
+      'GroupMaterial': item.groupMaterial,
+      'Manufacturer': item.manufacturer,
+      'Unit': item.unit,
+      'IsLeaf': item.isLeaf ?? false,
+      'IsNewCode': item.isNewCode ?? false,
+      'IsDeleted': item.isDeleted ?? false,
+    };
+  }
+
   /// Parse response part list - có thể trả về List trực tiếp hoặc wrapped.
   List<PartListModel> _parsePartListResponse(dynamic json) {
     if (json is List) {

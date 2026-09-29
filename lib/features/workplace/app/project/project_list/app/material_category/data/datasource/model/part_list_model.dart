@@ -126,6 +126,8 @@ class PartListModel with _$PartListModel {
     @JsonKey(name: 'StatusText') String? statusText,
     @JsonKey(name: 'Reciver') String? reciver,
     @JsonKey(name: 'KhoType') String? khoType,
+    @JsonKey(name: 'IsLeaf') bool? isLeaf,
+    @JsonKey(name: 'IsNewCode') bool? isNewCode,
   }) = _PartListModel;
 
   factory PartListModel.fromJson(Map<String, dynamic> json) =>

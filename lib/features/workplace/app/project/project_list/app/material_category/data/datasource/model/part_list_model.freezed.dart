@@ -256,6 +256,10 @@ mixin _$PartListModel {
   String? get reciver => throw _privateConstructorUsedError;
   @JsonKey(name: 'KhoType')
   String? get khoType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsLeaf')
+  bool? get isLeaf => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsNewCode')
+  bool? get isNewCode => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -388,7 +392,9 @@ abstract class $PartListModelCopyWith<$Res> {
       @JsonKey(name: 'IsSameUnit') int? isSameUnit,
       @JsonKey(name: 'StatusText') String? statusText,
       @JsonKey(name: 'Reciver') String? reciver,
-      @JsonKey(name: 'KhoType') String? khoType});
+      @JsonKey(name: 'KhoType') String? khoType,
+      @JsonKey(name: 'IsLeaf') bool? isLeaf,
+      @JsonKey(name: 'IsNewCode') bool? isNewCode});
 }
 
 /// @nodoc
@@ -522,6 +528,8 @@ class _$PartListModelCopyWithImpl<$Res, $Val extends PartListModel>
     Object? statusText = freezed,
     Object? reciver = freezed,
     Object? khoType = freezed,
+    Object? isLeaf = freezed,
+    Object? isNewCode = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -996,6 +1004,14 @@ class _$PartListModelCopyWithImpl<$Res, $Val extends PartListModel>
           ? _value.khoType
           : khoType // ignore: cast_nullable_to_non_nullable
               as String?,
+      isLeaf: freezed == isLeaf
+          ? _value.isLeaf
+          : isLeaf // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isNewCode: freezed == isNewCode
+          ? _value.isNewCode
+          : isNewCode // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 }
@@ -1127,7 +1143,9 @@ abstract class _$$PartListModelImplCopyWith<$Res>
       @JsonKey(name: 'IsSameUnit') int? isSameUnit,
       @JsonKey(name: 'StatusText') String? statusText,
       @JsonKey(name: 'Reciver') String? reciver,
-      @JsonKey(name: 'KhoType') String? khoType});
+      @JsonKey(name: 'KhoType') String? khoType,
+      @JsonKey(name: 'IsLeaf') bool? isLeaf,
+      @JsonKey(name: 'IsNewCode') bool? isNewCode});
 }
 
 /// @nodoc
@@ -1259,6 +1277,8 @@ class __$$PartListModelImplCopyWithImpl<$Res>
     Object? statusText = freezed,
     Object? reciver = freezed,
     Object? khoType = freezed,
+    Object? isLeaf = freezed,
+    Object? isNewCode = freezed,
   }) {
     return _then(_$PartListModelImpl(
       id: freezed == id
@@ -1733,6 +1753,14 @@ class __$$PartListModelImplCopyWithImpl<$Res>
           ? _value.khoType
           : khoType // ignore: cast_nullable_to_non_nullable
               as String?,
+      isLeaf: freezed == isLeaf
+          ? _value.isLeaf
+          : isLeaf // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isNewCode: freezed == isNewCode
+          ? _value.isNewCode
+          : isNewCode // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -1859,7 +1887,9 @@ class _$PartListModelImpl implements _PartListModel {
       @JsonKey(name: 'IsSameUnit') this.isSameUnit,
       @JsonKey(name: 'StatusText') this.statusText,
       @JsonKey(name: 'Reciver') this.reciver,
-      @JsonKey(name: 'KhoType') this.khoType});
+      @JsonKey(name: 'KhoType') this.khoType,
+      @JsonKey(name: 'IsLeaf') this.isLeaf,
+      @JsonKey(name: 'IsNewCode') this.isNewCode});
 
   factory _$PartListModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$PartListModelImplFromJson(json);
@@ -2218,10 +2248,16 @@ class _$PartListModelImpl implements _PartListModel {
   @override
   @JsonKey(name: 'KhoType')
   final String? khoType;
+  @override
+  @JsonKey(name: 'IsLeaf')
+  final bool? isLeaf;
+  @override
+  @JsonKey(name: 'IsNewCode')
+  final bool? isNewCode;
 
   @override
   String toString() {
-    return 'PartListModel(id: $id, projectId: $projectId, stt: $stt, tt: $tt, groupMaterial: $groupMaterial, model: $model, productCode: $productCode, manufacturer: $manufacturer, unit: $unit, qtyMin: $qtyMin, qtyFull: $qtyFull, remainQuantity: $remainQuantity, unitPriceQuote: $unitPriceQuote, totalPriceQuote: $totalPriceQuote, nameNccPriceQuote: $nameNccPriceQuote, leadTimeQuote: $leadTimeQuote, amountExport: $amountExport, statusPriceRequest: $statusPriceRequest, statusPriceRequestText: $statusPriceRequestText, isApprovedTbp: $isApprovedTbp, isApprovedTbpText: $isApprovedTbpText, isApprovedPurchase: $isApprovedPurchase, isApprovedPurchaseText: $isApprovedPurchaseText, billExportCode: $billExportCode, note: $note, countChild: $countChild, projectPartListVersionId: $projectPartListVersionId, partListTypeId: $partListTypeId, parentId: $parentId, createdDate: $createdDate, createdBy: $createdBy, updatedDate: $updatedDate, updatedBy: $updatedBy, specialCode: $specialCode, projectTypeId: $projectTypeId, statusVersion: $statusVersion, descriptionVersion: $descriptionVersion, code: $code, datePriceRequest: $datePriceRequest, deadlinePriceRequest: $deadlinePriceRequest, fullNameRequestPrice: $fullNameRequestPrice, employeeIdRequestPrice: $employeeIdRequestPrice, datePriceQuote: $datePriceQuote, dateExpectedQuote: $dateExpectedQuote, currencyQuote: $currencyQuote, currencyRateQuote: $currencyRateQuote, totalPriceExchangeQuote: $totalPriceExchangeQuote, noteQuote: $noteQuote, isCheckPrice: $isCheckPrice, totalDayLeadTimeQuote: $totalDayLeadTimeQuote, supplierSaleQuoteId: $supplierSaleQuoteId, fullNameQuote: $fullNameQuote, unitPriceHistory: $unitPriceHistory, currencyCode: $currencyCode, projectCode: $projectCode, isFix: $isFix, isProductSale: $isProductSale, totalHn: $totalHn, totalHcm: $totalHcm, totalHp: $totalHp, totalBn: $totalBn, totalBh: $totalBh, totalDp: $totalDp, totalExport: $totalExport, statusRequest: $statusRequest, effectiveDate: $effectiveDate, targetPrice: $targetPrice, leadTimeTechnical: $leadTimeTechnical, isOverQty: $isOverQty, companyName: $companyName, reasonUnPrice: $reasonUnPrice, unitPricePurchase: $unitPricePurchase, totalPricePurchase: $totalPricePurchase, billCodePurchase: $billCodePurchase, requestDatePurchase: $requestDatePurchase, expectedDatePurchase: $expectedDatePurchase, supplierNamePurchase: $supplierNamePurchase, notePurchase: $notePurchase, currencyPurchase: $currencyPurchase, totalDayLeadTimePurchase: $totalDayLeadTimePurchase, leadTimePurchase: $leadTimePurchase, currencyRatePurchase: $currencyRatePurchase, totalPriceExchangePurchase: $totalPriceExchangePurchase, fullNameRequestPurchase: $fullNameRequestPurchase, fullNamePurchase: $fullNamePurchase, quantityReturn: $quantityReturn, dateImport: $dateImport, billImportCode: $billImportCode, fullNameCreated: $fullNameCreated, productNewCode: $productNewCode, price: $price, amount: $amount, vat: $vat, leadTime: $leadTime, status: $status, ncc: $ncc, isDeleted: $isDeleted, quality: $quality, orderDate: $orderDate, returnDate: $returnDate, orderCode: $orderCode, priceOrder: $priceOrder, totalPriceOrder: $totalPriceOrder, warehouse1: $warehouse1, warehouse2: $warehouse2, warehouse3: $warehouse3, warehouse4: $warehouse4, warehouse6: $warehouse6, productId: $productId, someBill: $someBill, dateSomeBill: $dateSomeBill, isSameProductName: $isSameProductName, isSameProductCode: $isSameProductCode, isSameMaker: $isSameMaker, isSameUnit: $isSameUnit, statusText: $statusText, reciver: $reciver, khoType: $khoType)';
+    return 'PartListModel(id: $id, projectId: $projectId, stt: $stt, tt: $tt, groupMaterial: $groupMaterial, model: $model, productCode: $productCode, manufacturer: $manufacturer, unit: $unit, qtyMin: $qtyMin, qtyFull: $qtyFull, remainQuantity: $remainQuantity, unitPriceQuote: $unitPriceQuote, totalPriceQuote: $totalPriceQuote, nameNccPriceQuote: $nameNccPriceQuote, leadTimeQuote: $leadTimeQuote, amountExport: $amountExport, statusPriceRequest: $statusPriceRequest, statusPriceRequestText: $statusPriceRequestText, isApprovedTbp: $isApprovedTbp, isApprovedTbpText: $isApprovedTbpText, isApprovedPurchase: $isApprovedPurchase, isApprovedPurchaseText: $isApprovedPurchaseText, billExportCode: $billExportCode, note: $note, countChild: $countChild, projectPartListVersionId: $projectPartListVersionId, partListTypeId: $partListTypeId, parentId: $parentId, createdDate: $createdDate, createdBy: $createdBy, updatedDate: $updatedDate, updatedBy: $updatedBy, specialCode: $specialCode, projectTypeId: $projectTypeId, statusVersion: $statusVersion, descriptionVersion: $descriptionVersion, code: $code, datePriceRequest: $datePriceRequest, deadlinePriceRequest: $deadlinePriceRequest, fullNameRequestPrice: $fullNameRequestPrice, employeeIdRequestPrice: $employeeIdRequestPrice, datePriceQuote: $datePriceQuote, dateExpectedQuote: $dateExpectedQuote, currencyQuote: $currencyQuote, currencyRateQuote: $currencyRateQuote, totalPriceExchangeQuote: $totalPriceExchangeQuote, noteQuote: $noteQuote, isCheckPrice: $isCheckPrice, totalDayLeadTimeQuote: $totalDayLeadTimeQuote, supplierSaleQuoteId: $supplierSaleQuoteId, fullNameQuote: $fullNameQuote, unitPriceHistory: $unitPriceHistory, currencyCode: $currencyCode, projectCode: $projectCode, isFix: $isFix, isProductSale: $isProductSale, totalHn: $totalHn, totalHcm: $totalHcm, totalHp: $totalHp, totalBn: $totalBn, totalBh: $totalBh, totalDp: $totalDp, totalExport: $totalExport, statusRequest: $statusRequest, effectiveDate: $effectiveDate, targetPrice: $targetPrice, leadTimeTechnical: $leadTimeTechnical, isOverQty: $isOverQty, companyName: $companyName, reasonUnPrice: $reasonUnPrice, unitPricePurchase: $unitPricePurchase, totalPricePurchase: $totalPricePurchase, billCodePurchase: $billCodePurchase, requestDatePurchase: $requestDatePurchase, expectedDatePurchase: $expectedDatePurchase, supplierNamePurchase: $supplierNamePurchase, notePurchase: $notePurchase, currencyPurchase: $currencyPurchase, totalDayLeadTimePurchase: $totalDayLeadTimePurchase, leadTimePurchase: $leadTimePurchase, currencyRatePurchase: $currencyRatePurchase, totalPriceExchangePurchase: $totalPriceExchangePurchase, fullNameRequestPurchase: $fullNameRequestPurchase, fullNamePurchase: $fullNamePurchase, quantityReturn: $quantityReturn, dateImport: $dateImport, billImportCode: $billImportCode, fullNameCreated: $fullNameCreated, productNewCode: $productNewCode, price: $price, amount: $amount, vat: $vat, leadTime: $leadTime, status: $status, ncc: $ncc, isDeleted: $isDeleted, quality: $quality, orderDate: $orderDate, returnDate: $returnDate, orderCode: $orderCode, priceOrder: $priceOrder, totalPriceOrder: $totalPriceOrder, warehouse1: $warehouse1, warehouse2: $warehouse2, warehouse3: $warehouse3, warehouse4: $warehouse4, warehouse6: $warehouse6, productId: $productId, someBill: $someBill, dateSomeBill: $dateSomeBill, isSameProductName: $isSameProductName, isSameProductCode: $isSameProductCode, isSameMaker: $isSameMaker, isSameUnit: $isSameUnit, statusText: $statusText, reciver: $reciver, khoType: $khoType, isLeaf: $isLeaf, isNewCode: $isNewCode)';
   }
 
   @override
@@ -2385,7 +2421,9 @@ class _$PartListModelImpl implements _PartListModel {
             (identical(other.isSameUnit, isSameUnit) || other.isSameUnit == isSameUnit) &&
             (identical(other.statusText, statusText) || other.statusText == statusText) &&
             (identical(other.reciver, reciver) || other.reciver == reciver) &&
-            (identical(other.khoType, khoType) || other.khoType == khoType));
+            (identical(other.khoType, khoType) || other.khoType == khoType) &&
+            (identical(other.isLeaf, isLeaf) || other.isLeaf == isLeaf) &&
+            (identical(other.isNewCode, isNewCode) || other.isNewCode == isNewCode));
   }
 
   @JsonKey(ignore: true)
@@ -2509,7 +2547,9 @@ class _$PartListModelImpl implements _PartListModel {
         isSameUnit,
         statusText,
         reciver,
-        khoType
+        khoType,
+        isLeaf,
+        isNewCode
       ]);
 
   @JsonKey(ignore: true)
@@ -2653,7 +2693,9 @@ abstract class _PartListModel implements PartListModel {
       @JsonKey(name: 'IsSameUnit') final int? isSameUnit,
       @JsonKey(name: 'StatusText') final String? statusText,
       @JsonKey(name: 'Reciver') final String? reciver,
-      @JsonKey(name: 'KhoType') final String? khoType}) = _$PartListModelImpl;
+      @JsonKey(name: 'KhoType') final String? khoType,
+      @JsonKey(name: 'IsLeaf') final bool? isLeaf,
+      @JsonKey(name: 'IsNewCode') final bool? isNewCode}) = _$PartListModelImpl;
 
   factory _PartListModel.fromJson(Map<String, dynamic> json) =
       _$PartListModelImpl.fromJson;
@@ -3012,6 +3054,12 @@ abstract class _PartListModel implements PartListModel {
   @override
   @JsonKey(name: 'KhoType')
   String? get khoType;
+  @override
+  @JsonKey(name: 'IsLeaf')
+  bool? get isLeaf;
+  @override
+  @JsonKey(name: 'IsNewCode')
+  bool? get isNewCode;
   @override
   @JsonKey(ignore: true)
   _$$PartListModelImplCopyWith<_$PartListModelImpl> get copyWith =>

@@ -27,7 +27,8 @@ class MaterialCategoryBloc
         search: (keyword) => _onSearch(emit, keyword: keyword),
         changeKeyword: (keyword) => _onChangeKeyword(emit, keyword: keyword),
         cancelApproveNew: (item) => _onCancelApproveNew(emit, item),
-        refreshAfterApprove: () => _onRefreshAfterApprove(emit),
+        approveFix: (item, isFix) => _onApproveFix(emit, item, isFix),
+        refreshAfterApprove: (message) => _onRefreshAfterApprove(emit, message),
       );
     });
   }
@@ -177,7 +178,53 @@ class MaterialCategoryBloc
           ));
           // Refresh ngầm để đồng bộ cờ mới nhất; lỗi refresh không ảnh hưởng
           // snackbar vừa hiện. Dùng add() thay vì emit ngoài handler.
-          add(const MaterialCategoryEvent.refreshAfterApprove());
+          add(const MaterialCategoryEvent.refreshAfterApprove(
+            message: 'Đã huỷ duyệt mới',
+          ));
+        },
+      );
+    } catch (e) {
+      emit(state.copyWith(
+        status: BaseStateStatus.failed,
+        message: e.toString(),
+      ));
+    }
+  }
+
+  /// Duyệt / huỷ duyệt tích xanh cho 1 vật tư. Emit success ngay khi API trả
+  /// 200 để UI hiện snackbar phản hồi tức thì; đồng thời fire-and-forget
+  /// refresh list để cập nhật cờ IsFix mới nhất.
+  Future<void> _onApproveFix(
+    Emitter<MaterialCategoryState> emit,
+    PartListModel item,
+    bool isFix,
+  ) async {
+    if (state.projectId == null || state.projectPartListVersionId == null) {
+      emit(state.copyWith(
+        status: BaseStateStatus.failed,
+        message: 'Thiếu thông tin dự án để duyệt tích xanh',
+      ));
+      return;
+    }
+
+    emit(state.copyWith(status: BaseStateStatus.loading));
+
+    final successMessage =
+        isFix ? 'Đã duyệt tích xanh' : 'Đã huỷ duyệt tích xanh';
+
+    try {
+      final result = await _repo.approveFix(item, isFix: isFix);
+      await result.fold(
+        (error) async => emit(state.copyWith(
+          status: BaseStateStatus.failed,
+          message: error.getErrorMessage,
+        )),
+        (_) async {
+          emit(state.copyWith(
+            status: BaseStateStatus.success,
+            message: successMessage,
+          ));
+          add(MaterialCategoryEvent.refreshAfterApprove(message: successMessage));
         },
       );
     } catch (e) {
@@ -190,7 +237,10 @@ class MaterialCategoryBloc
 
   /// Refresh list sau khi duyệt/huỷ duyệt — chạy ngầm, không emit loading.
   /// Lỗi network chỉ bỏ qua; thành công thì cập nhật categories + message.
-  Future<void> _onRefreshAfterApprove(Emitter<MaterialCategoryState> emit) async {
+  Future<void> _onRefreshAfterApprove(
+    Emitter<MaterialCategoryState> emit,
+    String message,
+  ) async {
     if (state.projectId == null || state.projectPartListVersionId == null) {
       return;
     }
@@ -205,7 +255,7 @@ class MaterialCategoryBloc
       (data) => emit(state.copyWith(
         status: BaseStateStatus.success,
         categories: data,
-        message: 'Đã huỷ duyệt mới',
+        message: message,
       )),
     );
   }

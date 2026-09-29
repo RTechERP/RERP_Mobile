@@ -22,8 +22,17 @@ class MaterialCategoryEvent with _$MaterialCategoryEvent {
     required PartListModel item,
   }) = _CancelApproveNew;
 
+  /// Duyệt / huỷ duyệt tích xanh cho 1 vật tư.
+  /// isFix=true  → duyệt tích xanh.
+  /// isFix=false → huỷ duyệt tích xanh.
+  const factory MaterialCategoryEvent.approveFix({
+    required PartListModel item,
+    required bool isFix,
+  }) = _ApproveFix;
+
   /// Refresh ngầm sau khi duyệt/huỷ duyệt thành công — không emit loading,
   /// không đè message hiện tại.
-  const factory MaterialCategoryEvent.refreshAfterApprove() =
-      _RefreshAfterApprove;
+  const factory MaterialCategoryEvent.refreshAfterApprove({
+    required String message,
+  }) = _RefreshAfterApprove;
 }

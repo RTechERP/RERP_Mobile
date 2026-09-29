@@ -300,6 +300,18 @@ class _MaterialCategoryTabState extends State<MaterialCategoryTab>
       return;
     }
 
+    // Duyệt tích xanh (TBP).
+    if (actionId == 'bulk.tbp.approve_stock') {
+      await _approveFixBulk(isFix: true);
+      return;
+    }
+
+    // Huỷ duyệt tích xanh (TBP).
+    if (actionId == 'bulk.tbp.cancel_approve_stock') {
+      await _approveFixBulk(isFix: false);
+      return;
+    }
+
     showMessage(
       context,
       'Không có vật tư hợp lệ để Duyệt mã mới',
@@ -347,6 +359,53 @@ class _MaterialCategoryTabState extends State<MaterialCategoryTab>
       showMessage(
         context,
         'Huỷ duyệt thất bại: ${errors.join("; ")}',
+        type: SnackBarType.error,
+      );
+    }
+    setState(() => _selectedIds.clear());
+  }
+
+  /// Duyệt / huỷ duyệt tích xanh (TBP) cho toàn bộ vật tư đang chọn.
+  /// isFix=true  → duyệt tích xanh.
+  /// isFix=false → huỷ duyệt tích xanh.
+  /// Cùng pattern với [_cancelApproveNewBulk]: gọi tuần tự từng item, gom
+  /// lỗi, snackbar tổng kết cuối hàm.
+  Future<void> _approveFixBulk({required bool isFix}) async {
+    final selectedItems = _resolveSelectedItems();
+    if (selectedItems.isEmpty) {
+      showMessage(
+        context,
+        'Không có vật tư nào để ${isFix ? "duyệt" : "huỷ duyệt"} tích xanh',
+        type: SnackBarType.error,
+      );
+      return;
+    }
+
+    final bloc = context.read<MaterialCategoryBloc>();
+    final errors = <String>[];
+    final actionLabel = isFix ? 'Duyệt tích xanh' : 'Huỷ duyệt tích xanh';
+
+    for (final item in selectedItems) {
+      if (!mounted) return;
+      bloc.add(MaterialCategoryEvent.approveFix(item: item, isFix: isFix));
+      await bloc.stream.firstWhere(
+        (s) =>
+            s.status == BaseStateStatus.success ||
+            s.status == BaseStateStatus.failed,
+      );
+      final latest = bloc.state;
+      if (latest.status == BaseStateStatus.failed) {
+        errors.add('${item.productCode ?? "--"}: ${latest.message ?? "lỗi"}');
+      }
+    }
+
+    if (!mounted) return;
+    if (errors.isEmpty) {
+      showMessage(context, '$actionLabel ${selectedItems.length} phiếu');
+    } else {
+      showMessage(
+        context,
+        '$actionLabel thất bại: ${errors.join("; ")}',
         type: SnackBarType.error,
       );
     }
