@@ -53,10 +53,48 @@ class MaterialCategoryService extends DioBaseApiService {
   Future<void> cancelApproveNew(PartListModel item) async {
     final result = await post<dynamic>(
       ApiEndPoint.approvedNewCode,
-      body: [item.toJson()],
+      body: [_toFixPayload(item)],
       query: {'isApprovedNew': false},
     );
     _throwIfApiFailed(result);
+  }
+
+  /// Check điều kiện duyệt mới trước khi gọi API duyệt thật.
+  /// Endpoint: POST /ProjectPartList/check-approve-newcode.
+  /// Body: List of PartListModel JSON.
+  /// Trả về `message` từ response body — repo sẽ so sánh với chuỗi
+  /// "Đã xử lý thành công!" để quyết định có gọi tiếp API duyệt hay không.
+  /// Dùng [_toFixPayload] thay vì `item.toJson()` để tránh gửi `IsLeaf`/`IsNewCode`
+  /// null — backend C# không convert được null sang `System.Boolean` (400).
+  Future<String> checkApproveNew(PartListModel item) async {
+    final result = await post<dynamic>(
+      ApiEndPoint.checkApproveNewCode,
+      body: [_toFixPayload(item)],
+    );
+    return _extractMessage(result);
+  }
+
+  /// Duyệt mới cho 1 vật tư (TBP).
+  /// Endpoint: POST /ProjectPartList/approved-newcode?isApprovedNew=true.
+  /// Body: List of PartListModel JSON.
+  /// Gọi sau khi [checkApproveNew] trả message "Đã xử lý thành công!".
+  Future<void> approveNew(PartListModel item) async {
+    final result = await post<dynamic>(
+      ApiEndPoint.approvedNewCode,
+      body: [_toFixPayload(item)],
+      query: {'isApprovedNew': true},
+    );
+    _throwIfApiFailed(result);
+  }
+
+  /// Trích `message` từ response body (Map). Trả về chuỗi rỗng nếu body
+  /// không phải Map hoặc thiếu field `message`.
+  String _extractMessage(dynamic data) {
+    if (data is Map) {
+      final m = data['message'];
+      if (m is String) return m;
+    }
+    return '';
   }
 
   /// Duyệt / huỷ duyệt tích xanh cho 1 vật tư.

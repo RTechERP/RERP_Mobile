@@ -22,6 +22,13 @@ class MaterialCategoryEvent with _$MaterialCategoryEvent {
     required PartListModel item,
   }) = _CancelApproveNew;
 
+  /// Duyệt mới (TBP) cho 1 vật tư.
+  /// Flow 2 bước: gọi API check trước; nếu message == "Đã xử lý thành công!"
+  /// thì gọi tiếp API duyệt. Sau khi duyệt thành công sẽ tự refresh list.
+  const factory MaterialCategoryEvent.approveNew({
+    required PartListModel item,
+  }) = _ApproveNew;
+
   /// Duyệt / huỷ duyệt tích xanh cho 1 vật tư.
   /// isFix=true  → duyệt tích xanh.
   /// isFix=false → huỷ duyệt tích xanh.

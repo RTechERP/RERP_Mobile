@@ -43,6 +43,29 @@ class MaterialCategoryRepoImpl implements MaterialCategoryRepo {
     }
   }
 
+  /// Duyệt mới (TBP) — flow 2 bước: check trước rồi duyệt.
+  /// Nếu API check trả message khác "Đã xử lý thành công!" thì trả về lỗi
+  /// với chính message backend (vd: "Mã SP đã tồn tại...") để hiện snackbar.
+  /// Đặt `checkOkMessage` cho phép test hoặc tuỳ biến sau này.
+  static const String checkOkMessage = 'Đã xử lý thành công!';
+
+  @override
+  Future<Either<BaseError, Unit>> approveNew(PartListModel item) async {
+    try {
+      final msg = await _service.checkApproveNew(item);
+      if (msg.trim() != checkOkMessage) {
+        // Backend trả message lỗi nghiệp vụ — hiển thị nguyên văn.
+        return left(BaseError.httpInternalServerError(
+          msg.isEmpty ? 'Không thể duyệt mới' : msg,
+        ));
+      }
+      await _service.approveNew(item);
+      return right(unit);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(_extractMessage(e)));
+    }
+  }
+
   @override
   Future<Either<BaseError, Unit>> approveFix(
     PartListModel item, {

@@ -25,6 +25,7 @@ mixin _$MaterialCategoryEvent {
     required TResult Function(String? keyword) search,
     required TResult Function(String keyword) changeKeyword,
     required TResult Function(PartListModel item) cancelApproveNew,
+    required TResult Function(PartListModel item) approveNew,
     required TResult Function(PartListModel item, bool isFix) approveFix,
     required TResult Function(String message) refreshAfterApprove,
     required TResult Function(String warehouseCode, List<PartListModel> items)
@@ -40,6 +41,7 @@ mixin _$MaterialCategoryEvent {
     TResult? Function(String? keyword)? search,
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function(PartListModel item)? cancelApproveNew,
+    TResult? Function(PartListModel item)? approveNew,
     TResult? Function(PartListModel item, bool isFix)? approveFix,
     TResult? Function(String message)? refreshAfterApprove,
     TResult? Function(String warehouseCode, List<PartListModel> items)?
@@ -55,6 +57,7 @@ mixin _$MaterialCategoryEvent {
     TResult Function(String? keyword)? search,
     TResult Function(String keyword)? changeKeyword,
     TResult Function(PartListModel item)? cancelApproveNew,
+    TResult Function(PartListModel item)? approveNew,
     TResult Function(PartListModel item, bool isFix)? approveFix,
     TResult Function(String message)? refreshAfterApprove,
     TResult Function(String warehouseCode, List<PartListModel> items)?
@@ -69,6 +72,7 @@ mixin _$MaterialCategoryEvent {
     required TResult Function(_Search value) search,
     required TResult Function(_ChangeKeyword value) changeKeyword,
     required TResult Function(_CancelApproveNew value) cancelApproveNew,
+    required TResult Function(_ApproveNew value) approveNew,
     required TResult Function(_ApproveFix value) approveFix,
     required TResult Function(_RefreshAfterApprove value) refreshAfterApprove,
     required TResult Function(_RequestExportTransfer value)
@@ -82,6 +86,7 @@ mixin _$MaterialCategoryEvent {
     TResult? Function(_Search value)? search,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
     TResult? Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult? Function(_ApproveNew value)? approveNew,
     TResult? Function(_ApproveFix value)? approveFix,
     TResult? Function(_RefreshAfterApprove value)? refreshAfterApprove,
     TResult? Function(_RequestExportTransfer value)? requestExportTransfer,
@@ -94,6 +99,7 @@ mixin _$MaterialCategoryEvent {
     TResult Function(_Search value)? search,
     TResult Function(_ChangeKeyword value)? changeKeyword,
     TResult Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult Function(_ApproveNew value)? approveNew,
     TResult Function(_ApproveFix value)? approveFix,
     TResult Function(_RefreshAfterApprove value)? refreshAfterApprove,
     TResult Function(_RequestExportTransfer value)? requestExportTransfer,
@@ -228,6 +234,7 @@ class _$InitImpl implements _Init {
     required TResult Function(String? keyword) search,
     required TResult Function(String keyword) changeKeyword,
     required TResult Function(PartListModel item) cancelApproveNew,
+    required TResult Function(PartListModel item) approveNew,
     required TResult Function(PartListModel item, bool isFix) approveFix,
     required TResult Function(String message) refreshAfterApprove,
     required TResult Function(String warehouseCode, List<PartListModel> items)
@@ -246,6 +253,7 @@ class _$InitImpl implements _Init {
     TResult? Function(String? keyword)? search,
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function(PartListModel item)? cancelApproveNew,
+    TResult? Function(PartListModel item)? approveNew,
     TResult? Function(PartListModel item, bool isFix)? approveFix,
     TResult? Function(String message)? refreshAfterApprove,
     TResult? Function(String warehouseCode, List<PartListModel> items)?
@@ -265,6 +273,7 @@ class _$InitImpl implements _Init {
     TResult Function(String? keyword)? search,
     TResult Function(String keyword)? changeKeyword,
     TResult Function(PartListModel item)? cancelApproveNew,
+    TResult Function(PartListModel item)? approveNew,
     TResult Function(PartListModel item, bool isFix)? approveFix,
     TResult Function(String message)? refreshAfterApprove,
     TResult Function(String warehouseCode, List<PartListModel> items)?
@@ -285,6 +294,7 @@ class _$InitImpl implements _Init {
     required TResult Function(_Search value) search,
     required TResult Function(_ChangeKeyword value) changeKeyword,
     required TResult Function(_CancelApproveNew value) cancelApproveNew,
+    required TResult Function(_ApproveNew value) approveNew,
     required TResult Function(_ApproveFix value) approveFix,
     required TResult Function(_RefreshAfterApprove value) refreshAfterApprove,
     required TResult Function(_RequestExportTransfer value)
@@ -301,6 +311,7 @@ class _$InitImpl implements _Init {
     TResult? Function(_Search value)? search,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
     TResult? Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult? Function(_ApproveNew value)? approveNew,
     TResult? Function(_ApproveFix value)? approveFix,
     TResult? Function(_RefreshAfterApprove value)? refreshAfterApprove,
     TResult? Function(_RequestExportTransfer value)? requestExportTransfer,
@@ -316,6 +327,7 @@ class _$InitImpl implements _Init {
     TResult Function(_Search value)? search,
     TResult Function(_ChangeKeyword value)? changeKeyword,
     TResult Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult Function(_ApproveNew value)? approveNew,
     TResult Function(_ApproveFix value)? approveFix,
     TResult Function(_RefreshAfterApprove value)? refreshAfterApprove,
     TResult Function(_RequestExportTransfer value)? requestExportTransfer,
@@ -389,6 +401,7 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(String? keyword) search,
     required TResult Function(String keyword) changeKeyword,
     required TResult Function(PartListModel item) cancelApproveNew,
+    required TResult Function(PartListModel item) approveNew,
     required TResult Function(PartListModel item, bool isFix) approveFix,
     required TResult Function(String message) refreshAfterApprove,
     required TResult Function(String warehouseCode, List<PartListModel> items)
@@ -407,6 +420,7 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(String? keyword)? search,
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function(PartListModel item)? cancelApproveNew,
+    TResult? Function(PartListModel item)? approveNew,
     TResult? Function(PartListModel item, bool isFix)? approveFix,
     TResult? Function(String message)? refreshAfterApprove,
     TResult? Function(String warehouseCode, List<PartListModel> items)?
@@ -425,6 +439,7 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(String? keyword)? search,
     TResult Function(String keyword)? changeKeyword,
     TResult Function(PartListModel item)? cancelApproveNew,
+    TResult Function(PartListModel item)? approveNew,
     TResult Function(PartListModel item, bool isFix)? approveFix,
     TResult Function(String message)? refreshAfterApprove,
     TResult Function(String warehouseCode, List<PartListModel> items)?
@@ -445,6 +460,7 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_Search value) search,
     required TResult Function(_ChangeKeyword value) changeKeyword,
     required TResult Function(_CancelApproveNew value) cancelApproveNew,
+    required TResult Function(_ApproveNew value) approveNew,
     required TResult Function(_ApproveFix value) approveFix,
     required TResult Function(_RefreshAfterApprove value) refreshAfterApprove,
     required TResult Function(_RequestExportTransfer value)
@@ -461,6 +477,7 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_Search value)? search,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
     TResult? Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult? Function(_ApproveNew value)? approveNew,
     TResult? Function(_ApproveFix value)? approveFix,
     TResult? Function(_RefreshAfterApprove value)? refreshAfterApprove,
     TResult? Function(_RequestExportTransfer value)? requestExportTransfer,
@@ -476,6 +493,7 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_Search value)? search,
     TResult Function(_ChangeKeyword value)? changeKeyword,
     TResult Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult Function(_ApproveNew value)? approveNew,
     TResult Function(_ApproveFix value)? approveFix,
     TResult Function(_RefreshAfterApprove value)? refreshAfterApprove,
     TResult Function(_RequestExportTransfer value)? requestExportTransfer,
@@ -563,6 +581,7 @@ class _$SearchImpl implements _Search {
     required TResult Function(String? keyword) search,
     required TResult Function(String keyword) changeKeyword,
     required TResult Function(PartListModel item) cancelApproveNew,
+    required TResult Function(PartListModel item) approveNew,
     required TResult Function(PartListModel item, bool isFix) approveFix,
     required TResult Function(String message) refreshAfterApprove,
     required TResult Function(String warehouseCode, List<PartListModel> items)
@@ -581,6 +600,7 @@ class _$SearchImpl implements _Search {
     TResult? Function(String? keyword)? search,
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function(PartListModel item)? cancelApproveNew,
+    TResult? Function(PartListModel item)? approveNew,
     TResult? Function(PartListModel item, bool isFix)? approveFix,
     TResult? Function(String message)? refreshAfterApprove,
     TResult? Function(String warehouseCode, List<PartListModel> items)?
@@ -599,6 +619,7 @@ class _$SearchImpl implements _Search {
     TResult Function(String? keyword)? search,
     TResult Function(String keyword)? changeKeyword,
     TResult Function(PartListModel item)? cancelApproveNew,
+    TResult Function(PartListModel item)? approveNew,
     TResult Function(PartListModel item, bool isFix)? approveFix,
     TResult Function(String message)? refreshAfterApprove,
     TResult Function(String warehouseCode, List<PartListModel> items)?
@@ -619,6 +640,7 @@ class _$SearchImpl implements _Search {
     required TResult Function(_Search value) search,
     required TResult Function(_ChangeKeyword value) changeKeyword,
     required TResult Function(_CancelApproveNew value) cancelApproveNew,
+    required TResult Function(_ApproveNew value) approveNew,
     required TResult Function(_ApproveFix value) approveFix,
     required TResult Function(_RefreshAfterApprove value) refreshAfterApprove,
     required TResult Function(_RequestExportTransfer value)
@@ -635,6 +657,7 @@ class _$SearchImpl implements _Search {
     TResult? Function(_Search value)? search,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
     TResult? Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult? Function(_ApproveNew value)? approveNew,
     TResult? Function(_ApproveFix value)? approveFix,
     TResult? Function(_RefreshAfterApprove value)? refreshAfterApprove,
     TResult? Function(_RequestExportTransfer value)? requestExportTransfer,
@@ -650,6 +673,7 @@ class _$SearchImpl implements _Search {
     TResult Function(_Search value)? search,
     TResult Function(_ChangeKeyword value)? changeKeyword,
     TResult Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult Function(_ApproveNew value)? approveNew,
     TResult Function(_ApproveFix value)? approveFix,
     TResult Function(_RefreshAfterApprove value)? refreshAfterApprove,
     TResult Function(_RequestExportTransfer value)? requestExportTransfer,
@@ -742,6 +766,7 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     required TResult Function(String? keyword) search,
     required TResult Function(String keyword) changeKeyword,
     required TResult Function(PartListModel item) cancelApproveNew,
+    required TResult Function(PartListModel item) approveNew,
     required TResult Function(PartListModel item, bool isFix) approveFix,
     required TResult Function(String message) refreshAfterApprove,
     required TResult Function(String warehouseCode, List<PartListModel> items)
@@ -760,6 +785,7 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult? Function(String? keyword)? search,
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function(PartListModel item)? cancelApproveNew,
+    TResult? Function(PartListModel item)? approveNew,
     TResult? Function(PartListModel item, bool isFix)? approveFix,
     TResult? Function(String message)? refreshAfterApprove,
     TResult? Function(String warehouseCode, List<PartListModel> items)?
@@ -778,6 +804,7 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult Function(String? keyword)? search,
     TResult Function(String keyword)? changeKeyword,
     TResult Function(PartListModel item)? cancelApproveNew,
+    TResult Function(PartListModel item)? approveNew,
     TResult Function(PartListModel item, bool isFix)? approveFix,
     TResult Function(String message)? refreshAfterApprove,
     TResult Function(String warehouseCode, List<PartListModel> items)?
@@ -798,6 +825,7 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     required TResult Function(_Search value) search,
     required TResult Function(_ChangeKeyword value) changeKeyword,
     required TResult Function(_CancelApproveNew value) cancelApproveNew,
+    required TResult Function(_ApproveNew value) approveNew,
     required TResult Function(_ApproveFix value) approveFix,
     required TResult Function(_RefreshAfterApprove value) refreshAfterApprove,
     required TResult Function(_RequestExportTransfer value)
@@ -814,6 +842,7 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult? Function(_Search value)? search,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
     TResult? Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult? Function(_ApproveNew value)? approveNew,
     TResult? Function(_ApproveFix value)? approveFix,
     TResult? Function(_RefreshAfterApprove value)? refreshAfterApprove,
     TResult? Function(_RequestExportTransfer value)? requestExportTransfer,
@@ -829,6 +858,7 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult Function(_Search value)? search,
     TResult Function(_ChangeKeyword value)? changeKeyword,
     TResult Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult Function(_ApproveNew value)? approveNew,
     TResult Function(_ApproveFix value)? approveFix,
     TResult Function(_RefreshAfterApprove value)? refreshAfterApprove,
     TResult Function(_RequestExportTransfer value)? requestExportTransfer,
@@ -933,6 +963,7 @@ class _$CancelApproveNewImpl implements _CancelApproveNew {
     required TResult Function(String? keyword) search,
     required TResult Function(String keyword) changeKeyword,
     required TResult Function(PartListModel item) cancelApproveNew,
+    required TResult Function(PartListModel item) approveNew,
     required TResult Function(PartListModel item, bool isFix) approveFix,
     required TResult Function(String message) refreshAfterApprove,
     required TResult Function(String warehouseCode, List<PartListModel> items)
@@ -951,6 +982,7 @@ class _$CancelApproveNewImpl implements _CancelApproveNew {
     TResult? Function(String? keyword)? search,
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function(PartListModel item)? cancelApproveNew,
+    TResult? Function(PartListModel item)? approveNew,
     TResult? Function(PartListModel item, bool isFix)? approveFix,
     TResult? Function(String message)? refreshAfterApprove,
     TResult? Function(String warehouseCode, List<PartListModel> items)?
@@ -969,6 +1001,7 @@ class _$CancelApproveNewImpl implements _CancelApproveNew {
     TResult Function(String? keyword)? search,
     TResult Function(String keyword)? changeKeyword,
     TResult Function(PartListModel item)? cancelApproveNew,
+    TResult Function(PartListModel item)? approveNew,
     TResult Function(PartListModel item, bool isFix)? approveFix,
     TResult Function(String message)? refreshAfterApprove,
     TResult Function(String warehouseCode, List<PartListModel> items)?
@@ -989,6 +1022,7 @@ class _$CancelApproveNewImpl implements _CancelApproveNew {
     required TResult Function(_Search value) search,
     required TResult Function(_ChangeKeyword value) changeKeyword,
     required TResult Function(_CancelApproveNew value) cancelApproveNew,
+    required TResult Function(_ApproveNew value) approveNew,
     required TResult Function(_ApproveFix value) approveFix,
     required TResult Function(_RefreshAfterApprove value) refreshAfterApprove,
     required TResult Function(_RequestExportTransfer value)
@@ -1005,6 +1039,7 @@ class _$CancelApproveNewImpl implements _CancelApproveNew {
     TResult? Function(_Search value)? search,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
     TResult? Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult? Function(_ApproveNew value)? approveNew,
     TResult? Function(_ApproveFix value)? approveFix,
     TResult? Function(_RefreshAfterApprove value)? refreshAfterApprove,
     TResult? Function(_RequestExportTransfer value)? requestExportTransfer,
@@ -1020,6 +1055,7 @@ class _$CancelApproveNewImpl implements _CancelApproveNew {
     TResult Function(_Search value)? search,
     TResult Function(_ChangeKeyword value)? changeKeyword,
     TResult Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult Function(_ApproveNew value)? approveNew,
     TResult Function(_ApproveFix value)? approveFix,
     TResult Function(_RefreshAfterApprove value)? refreshAfterApprove,
     TResult Function(_RequestExportTransfer value)? requestExportTransfer,
@@ -1039,6 +1075,202 @@ abstract class _CancelApproveNew implements MaterialCategoryEvent {
   PartListModel get item;
   @JsonKey(ignore: true)
   _$$CancelApproveNewImplCopyWith<_$CancelApproveNewImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ApproveNewImplCopyWith<$Res> {
+  factory _$$ApproveNewImplCopyWith(
+          _$ApproveNewImpl value, $Res Function(_$ApproveNewImpl) then) =
+      __$$ApproveNewImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({PartListModel item});
+
+  $PartListModelCopyWith<$Res> get item;
+}
+
+/// @nodoc
+class __$$ApproveNewImplCopyWithImpl<$Res>
+    extends _$MaterialCategoryEventCopyWithImpl<$Res, _$ApproveNewImpl>
+    implements _$$ApproveNewImplCopyWith<$Res> {
+  __$$ApproveNewImplCopyWithImpl(
+      _$ApproveNewImpl _value, $Res Function(_$ApproveNewImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? item = null,
+  }) {
+    return _then(_$ApproveNewImpl(
+      item: null == item
+          ? _value.item
+          : item // ignore: cast_nullable_to_non_nullable
+              as PartListModel,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PartListModelCopyWith<$Res> get item {
+    return $PartListModelCopyWith<$Res>(_value.item, (value) {
+      return _then(_value.copyWith(item: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$ApproveNewImpl implements _ApproveNew {
+  const _$ApproveNewImpl({required this.item});
+
+  @override
+  final PartListModel item;
+
+  @override
+  String toString() {
+    return 'MaterialCategoryEvent.approveNew(item: $item)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ApproveNewImpl &&
+            (identical(other.item, item) || other.item == item));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, item);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ApproveNewImplCopyWith<_$ApproveNewImpl> get copyWith =>
+      __$$ApproveNewImplCopyWithImpl<_$ApproveNewImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)
+        init,
+    required TResult Function() refresh,
+    required TResult Function(String? keyword) search,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function(PartListModel item) cancelApproveNew,
+    required TResult Function(PartListModel item) approveNew,
+    required TResult Function(PartListModel item, bool isFix) approveFix,
+    required TResult Function(String message) refreshAfterApprove,
+    required TResult Function(String warehouseCode, List<PartListModel> items)
+        requestExportTransfer,
+  }) {
+    return approveNew(item);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)?
+        init,
+    TResult? Function()? refresh,
+    TResult? Function(String? keyword)? search,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(PartListModel item)? cancelApproveNew,
+    TResult? Function(PartListModel item)? approveNew,
+    TResult? Function(PartListModel item, bool isFix)? approveFix,
+    TResult? Function(String message)? refreshAfterApprove,
+    TResult? Function(String warehouseCode, List<PartListModel> items)?
+        requestExportTransfer,
+  }) {
+    return approveNew?.call(item);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)?
+        init,
+    TResult Function()? refresh,
+    TResult Function(String? keyword)? search,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function(PartListModel item)? cancelApproveNew,
+    TResult Function(PartListModel item)? approveNew,
+    TResult Function(PartListModel item, bool isFix)? approveFix,
+    TResult Function(String message)? refreshAfterApprove,
+    TResult Function(String warehouseCode, List<PartListModel> items)?
+        requestExportTransfer,
+    required TResult orElse(),
+  }) {
+    if (approveNew != null) {
+      return approveNew(item);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_CancelApproveNew value) cancelApproveNew,
+    required TResult Function(_ApproveNew value) approveNew,
+    required TResult Function(_ApproveFix value) approveFix,
+    required TResult Function(_RefreshAfterApprove value) refreshAfterApprove,
+    required TResult Function(_RequestExportTransfer value)
+        requestExportTransfer,
+  }) {
+    return approveNew(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult? Function(_ApproveNew value)? approveNew,
+    TResult? Function(_ApproveFix value)? approveFix,
+    TResult? Function(_RefreshAfterApprove value)? refreshAfterApprove,
+    TResult? Function(_RequestExportTransfer value)? requestExportTransfer,
+  }) {
+    return approveNew?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_Search value)? search,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult Function(_ApproveNew value)? approveNew,
+    TResult Function(_ApproveFix value)? approveFix,
+    TResult Function(_RefreshAfterApprove value)? refreshAfterApprove,
+    TResult Function(_RequestExportTransfer value)? requestExportTransfer,
+    required TResult orElse(),
+  }) {
+    if (approveNew != null) {
+      return approveNew(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ApproveNew implements MaterialCategoryEvent {
+  const factory _ApproveNew({required final PartListModel item}) =
+      _$ApproveNewImpl;
+
+  PartListModel get item;
+  @JsonKey(ignore: true)
+  _$$ApproveNewImplCopyWith<_$ApproveNewImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1131,6 +1363,7 @@ class _$ApproveFixImpl implements _ApproveFix {
     required TResult Function(String? keyword) search,
     required TResult Function(String keyword) changeKeyword,
     required TResult Function(PartListModel item) cancelApproveNew,
+    required TResult Function(PartListModel item) approveNew,
     required TResult Function(PartListModel item, bool isFix) approveFix,
     required TResult Function(String message) refreshAfterApprove,
     required TResult Function(String warehouseCode, List<PartListModel> items)
@@ -1149,6 +1382,7 @@ class _$ApproveFixImpl implements _ApproveFix {
     TResult? Function(String? keyword)? search,
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function(PartListModel item)? cancelApproveNew,
+    TResult? Function(PartListModel item)? approveNew,
     TResult? Function(PartListModel item, bool isFix)? approveFix,
     TResult? Function(String message)? refreshAfterApprove,
     TResult? Function(String warehouseCode, List<PartListModel> items)?
@@ -1167,6 +1401,7 @@ class _$ApproveFixImpl implements _ApproveFix {
     TResult Function(String? keyword)? search,
     TResult Function(String keyword)? changeKeyword,
     TResult Function(PartListModel item)? cancelApproveNew,
+    TResult Function(PartListModel item)? approveNew,
     TResult Function(PartListModel item, bool isFix)? approveFix,
     TResult Function(String message)? refreshAfterApprove,
     TResult Function(String warehouseCode, List<PartListModel> items)?
@@ -1187,6 +1422,7 @@ class _$ApproveFixImpl implements _ApproveFix {
     required TResult Function(_Search value) search,
     required TResult Function(_ChangeKeyword value) changeKeyword,
     required TResult Function(_CancelApproveNew value) cancelApproveNew,
+    required TResult Function(_ApproveNew value) approveNew,
     required TResult Function(_ApproveFix value) approveFix,
     required TResult Function(_RefreshAfterApprove value) refreshAfterApprove,
     required TResult Function(_RequestExportTransfer value)
@@ -1203,6 +1439,7 @@ class _$ApproveFixImpl implements _ApproveFix {
     TResult? Function(_Search value)? search,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
     TResult? Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult? Function(_ApproveNew value)? approveNew,
     TResult? Function(_ApproveFix value)? approveFix,
     TResult? Function(_RefreshAfterApprove value)? refreshAfterApprove,
     TResult? Function(_RequestExportTransfer value)? requestExportTransfer,
@@ -1218,6 +1455,7 @@ class _$ApproveFixImpl implements _ApproveFix {
     TResult Function(_Search value)? search,
     TResult Function(_ChangeKeyword value)? changeKeyword,
     TResult Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult Function(_ApproveNew value)? approveNew,
     TResult Function(_ApproveFix value)? approveFix,
     TResult Function(_RefreshAfterApprove value)? refreshAfterApprove,
     TResult Function(_RequestExportTransfer value)? requestExportTransfer,
@@ -1314,6 +1552,7 @@ class _$RefreshAfterApproveImpl implements _RefreshAfterApprove {
     required TResult Function(String? keyword) search,
     required TResult Function(String keyword) changeKeyword,
     required TResult Function(PartListModel item) cancelApproveNew,
+    required TResult Function(PartListModel item) approveNew,
     required TResult Function(PartListModel item, bool isFix) approveFix,
     required TResult Function(String message) refreshAfterApprove,
     required TResult Function(String warehouseCode, List<PartListModel> items)
@@ -1332,6 +1571,7 @@ class _$RefreshAfterApproveImpl implements _RefreshAfterApprove {
     TResult? Function(String? keyword)? search,
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function(PartListModel item)? cancelApproveNew,
+    TResult? Function(PartListModel item)? approveNew,
     TResult? Function(PartListModel item, bool isFix)? approveFix,
     TResult? Function(String message)? refreshAfterApprove,
     TResult? Function(String warehouseCode, List<PartListModel> items)?
@@ -1350,6 +1590,7 @@ class _$RefreshAfterApproveImpl implements _RefreshAfterApprove {
     TResult Function(String? keyword)? search,
     TResult Function(String keyword)? changeKeyword,
     TResult Function(PartListModel item)? cancelApproveNew,
+    TResult Function(PartListModel item)? approveNew,
     TResult Function(PartListModel item, bool isFix)? approveFix,
     TResult Function(String message)? refreshAfterApprove,
     TResult Function(String warehouseCode, List<PartListModel> items)?
@@ -1370,6 +1611,7 @@ class _$RefreshAfterApproveImpl implements _RefreshAfterApprove {
     required TResult Function(_Search value) search,
     required TResult Function(_ChangeKeyword value) changeKeyword,
     required TResult Function(_CancelApproveNew value) cancelApproveNew,
+    required TResult Function(_ApproveNew value) approveNew,
     required TResult Function(_ApproveFix value) approveFix,
     required TResult Function(_RefreshAfterApprove value) refreshAfterApprove,
     required TResult Function(_RequestExportTransfer value)
@@ -1386,6 +1628,7 @@ class _$RefreshAfterApproveImpl implements _RefreshAfterApprove {
     TResult? Function(_Search value)? search,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
     TResult? Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult? Function(_ApproveNew value)? approveNew,
     TResult? Function(_ApproveFix value)? approveFix,
     TResult? Function(_RefreshAfterApprove value)? refreshAfterApprove,
     TResult? Function(_RequestExportTransfer value)? requestExportTransfer,
@@ -1401,6 +1644,7 @@ class _$RefreshAfterApproveImpl implements _RefreshAfterApprove {
     TResult Function(_Search value)? search,
     TResult Function(_ChangeKeyword value)? changeKeyword,
     TResult Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult Function(_ApproveNew value)? approveNew,
     TResult Function(_ApproveFix value)? approveFix,
     TResult Function(_RefreshAfterApprove value)? refreshAfterApprove,
     TResult Function(_RequestExportTransfer value)? requestExportTransfer,
@@ -1514,6 +1758,7 @@ class _$RequestExportTransferImpl implements _RequestExportTransfer {
     required TResult Function(String? keyword) search,
     required TResult Function(String keyword) changeKeyword,
     required TResult Function(PartListModel item) cancelApproveNew,
+    required TResult Function(PartListModel item) approveNew,
     required TResult Function(PartListModel item, bool isFix) approveFix,
     required TResult Function(String message) refreshAfterApprove,
     required TResult Function(String warehouseCode, List<PartListModel> items)
@@ -1532,6 +1777,7 @@ class _$RequestExportTransferImpl implements _RequestExportTransfer {
     TResult? Function(String? keyword)? search,
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function(PartListModel item)? cancelApproveNew,
+    TResult? Function(PartListModel item)? approveNew,
     TResult? Function(PartListModel item, bool isFix)? approveFix,
     TResult? Function(String message)? refreshAfterApprove,
     TResult? Function(String warehouseCode, List<PartListModel> items)?
@@ -1550,6 +1796,7 @@ class _$RequestExportTransferImpl implements _RequestExportTransfer {
     TResult Function(String? keyword)? search,
     TResult Function(String keyword)? changeKeyword,
     TResult Function(PartListModel item)? cancelApproveNew,
+    TResult Function(PartListModel item)? approveNew,
     TResult Function(PartListModel item, bool isFix)? approveFix,
     TResult Function(String message)? refreshAfterApprove,
     TResult Function(String warehouseCode, List<PartListModel> items)?
@@ -1570,6 +1817,7 @@ class _$RequestExportTransferImpl implements _RequestExportTransfer {
     required TResult Function(_Search value) search,
     required TResult Function(_ChangeKeyword value) changeKeyword,
     required TResult Function(_CancelApproveNew value) cancelApproveNew,
+    required TResult Function(_ApproveNew value) approveNew,
     required TResult Function(_ApproveFix value) approveFix,
     required TResult Function(_RefreshAfterApprove value) refreshAfterApprove,
     required TResult Function(_RequestExportTransfer value)
@@ -1586,6 +1834,7 @@ class _$RequestExportTransferImpl implements _RequestExportTransfer {
     TResult? Function(_Search value)? search,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
     TResult? Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult? Function(_ApproveNew value)? approveNew,
     TResult? Function(_ApproveFix value)? approveFix,
     TResult? Function(_RefreshAfterApprove value)? refreshAfterApprove,
     TResult? Function(_RequestExportTransfer value)? requestExportTransfer,
@@ -1601,6 +1850,7 @@ class _$RequestExportTransferImpl implements _RequestExportTransfer {
     TResult Function(_Search value)? search,
     TResult Function(_ChangeKeyword value)? changeKeyword,
     TResult Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult Function(_ApproveNew value)? approveNew,
     TResult Function(_ApproveFix value)? approveFix,
     TResult Function(_RefreshAfterApprove value)? refreshAfterApprove,
     TResult Function(_RequestExportTransfer value)? requestExportTransfer,

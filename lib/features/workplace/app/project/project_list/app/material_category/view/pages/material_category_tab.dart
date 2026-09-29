@@ -300,6 +300,12 @@ class _MaterialCategoryTabState extends State<MaterialCategoryTab>
       return;
     }
 
+    // Duyệt mới (TBP): gọi check trước, nếu OK thì duyệt (repo xử lý).
+    if (actionId == 'bulk.tbp.approve') {
+      await _approveNewBulk();
+      return;
+    }
+
     // Duyệt tích xanh (TBP).
     if (actionId == 'bulk.tbp.approve_stock') {
       await _approveFixBulk(isFix: true);
@@ -427,6 +433,52 @@ class _MaterialCategoryTabState extends State<MaterialCategoryTab>
       showMessage(
         context,
         'Huỷ duyệt thất bại: ${errors.join("; ")}',
+        type: SnackBarType.error,
+      );
+    }
+    setState(() => _selectedIds.clear());
+  }
+
+  /// Duyệt mới (TBP) cho toàn bộ vật tư đang chọn.
+  /// Cùng pattern với [_cancelApproveNewBulk]: gọi tuần tự từng item, gom
+  /// lỗi, snackbar tổng kết cuối hàm. Mỗi item repo sẽ gọi check trước —
+  /// nếu check trả lỗi thì dừng luôn không gọi API duyệt.
+  Future<void> _approveNewBulk() async {
+    final selectedItems = _resolveSelectedItems();
+    if (selectedItems.isEmpty) {
+      showMessage(
+        context,
+        'Không có vật tư nào để duyệt mới',
+        type: SnackBarType.error,
+      );
+      return;
+    }
+
+    final bloc = context.read<MaterialCategoryBloc>();
+    final errors = <String>[];
+
+    for (final item in selectedItems) {
+      if (!mounted) return;
+      bloc.add(MaterialCategoryEvent.approveNew(item: item));
+      // Đợi bloc emit success/failed trước khi gọi tiếp để có message mới nhất.
+      await bloc.stream.firstWhere(
+        (s) =>
+            s.status == BaseStateStatus.success ||
+            s.status == BaseStateStatus.failed,
+      );
+      final latest = bloc.state;
+      if (latest.status == BaseStateStatus.failed) {
+        errors.add('${item.productCode ?? "--"}: ${latest.message ?? "lỗi"}');
+      }
+    }
+
+    if (!mounted) return;
+    if (errors.isEmpty) {
+      showMessage(context, 'Đã duyệt mới ${selectedItems.length} phiếu');
+    } else {
+      showMessage(
+        context,
+        'Duyệt mới thất bại: ${errors.join("; ")}',
         type: SnackBarType.error,
       );
     }

@@ -528,6 +528,13 @@ class ApiEndPoint {
   /// Body: `PartListModel` của vật tư cần cập nhật.
   static const String approvedNewCode = '/ProjectPartList/approved-newcode';
 
+  /// Check trước khi duyệt mới — backend validate điều kiện nghiệp vụ và
+  /// trả `{ status, message }`. Nếu `message == "Đã xử lý thành công!"`
+  /// thì mới được phép gọi tiếp [approvedNewCode].
+  /// POST /ProjectPartList/check-approve-newcode.
+  static const String checkApproveNewCode =
+      '/ProjectPartList/check-approve-newcode';
+
   /// Duyệt tích xanh / huỷ duyệt tích xanh cho 1 vật tư.
   /// POST /ProjectPartList/approved-fix?isFix={bool}.
   /// Body: danh sách rút gọn các field của vật tư cần cập nhật.

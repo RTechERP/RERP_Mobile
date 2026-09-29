@@ -15,6 +15,12 @@ abstract class MaterialCategoryRepo {
   /// Trả về [Unit] khi thành công, [BaseError] khi thất bại.
   Future<Either<BaseError, Unit>> cancelApproveNew(PartListModel item);
 
+  /// Duyệt mới (TBP) cho 1 vật tư — flow 2 bước:
+  /// 1. Gọi API check để xác thực điều kiện nghiệp vụ.
+  /// 2. Nếu message trả về == "Đã xử lý thành công!" thì gọi tiếp API duyệt.
+  /// Trả về [Unit] khi thành công, [BaseError] khi thất bại (kèm message backend).
+  Future<Either<BaseError, Unit>> approveNew(PartListModel item);
+
   /// Duyệt / huỷ duyệt tích xanh cho 1 vật tư.
   /// isFix=true  → duyệt tích xanh.
   /// isFix=false → huỷ duỷ duyệt tích xanh.

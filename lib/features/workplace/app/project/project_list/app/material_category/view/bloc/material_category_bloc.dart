@@ -27,6 +27,7 @@ class MaterialCategoryBloc
         search: (keyword) => _onSearch(emit, keyword: keyword),
         changeKeyword: (keyword) => _onChangeKeyword(emit, keyword: keyword),
         cancelApproveNew: (item) => _onCancelApproveNew(emit, item),
+        approveNew: (item) => _onApproveNew(emit, item),
         approveFix: (item, isFix) => _onApproveFix(emit, item, isFix),
         refreshAfterApprove: (message) => _onRefreshAfterApprove(emit, message),
         requestExportTransfer: (warehouseCode, items) =>
@@ -182,6 +183,48 @@ class MaterialCategoryBloc
           // snackbar vừa hiện. Dùng add() thay vì emit ngoài handler.
           add(const MaterialCategoryEvent.refreshAfterApprove(
             message: 'Đã huỷ duyệt mới',
+          ));
+        },
+      );
+    } catch (e) {
+      emit(state.copyWith(
+        status: BaseStateStatus.failed,
+        message: e.toString(),
+      ));
+    }
+  }
+
+  /// Duyệt mới (TBP) cho 1 vật tư. Cùng pattern với [_onCancelApproveNew]:
+  /// repo sẽ gọi check trước rồi mới duyệt; nếu check fail thì trả message
+  /// backend để hiện snackbar. Khi duyệt thành công thì refresh list ngầm.
+  Future<void> _onApproveNew(
+    Emitter<MaterialCategoryState> emit,
+    PartListModel item,
+  ) async {
+    if (state.projectId == null || state.projectPartListVersionId == null) {
+      emit(state.copyWith(
+        status: BaseStateStatus.failed,
+        message: 'Thiếu thông tin dự án để duyệt mới',
+      ));
+      return;
+    }
+
+    emit(state.copyWith(status: BaseStateStatus.loading));
+
+    try {
+      final result = await _repo.approveNew(item);
+      await result.fold(
+        (error) async => emit(state.copyWith(
+          status: BaseStateStatus.failed,
+          message: error.getErrorMessage,
+        )),
+        (_) async {
+          emit(state.copyWith(
+            status: BaseStateStatus.success,
+            message: 'Đã duyệt mới',
+          ));
+          add(const MaterialCategoryEvent.refreshAfterApprove(
+            message: 'Đã duyệt mới',
           ));
         },
       );
