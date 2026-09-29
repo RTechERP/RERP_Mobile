@@ -45,6 +45,18 @@ class MaterialCategoryService extends DioBaseApiService {
     return _parsePartListResponse(result);
   }
 
+  /// Huỷ duyệt mới cho 1 vật tư (TBP).
+  /// Endpoint: POST /ProjectPartList/approved-newcode?isApprovedNew=false
+  /// Body: List of PartListModel JSON trực tiếp — không wrapper.
+  /// Truyền List 1 phần tử để dễ mở rộng batch sau này.
+  Future<void> cancelApproveNew(PartListModel item) async {
+    await post<dynamic>(
+      ApiEndPoint.approvedNewCode,
+      body: [item.toJson()],
+      query: {'isApprovedNew': false},
+    );
+  }
+
   /// Parse response part list - có thể trả về List trực tiếp hoặc wrapped.
   List<PartListModel> _parsePartListResponse(dynamic json) {
     if (json is List) {

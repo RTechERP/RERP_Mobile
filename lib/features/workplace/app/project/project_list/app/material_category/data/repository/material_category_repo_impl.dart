@@ -31,4 +31,14 @@ class MaterialCategoryRepoImpl implements MaterialCategoryRepo {
       return left(BaseError.httpInternalServerError(e.toString()));
     }
   }
+
+  @override
+  Future<Either<BaseError, Unit>> cancelApproveNew(PartListModel item) async {
+    try {
+      await _service.cancelApproveNew(item);
+      return right(unit);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
 }

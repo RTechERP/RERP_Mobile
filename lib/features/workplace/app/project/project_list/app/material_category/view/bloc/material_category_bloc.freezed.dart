@@ -24,6 +24,8 @@ mixin _$MaterialCategoryEvent {
     required TResult Function() refresh,
     required TResult Function(String? keyword) search,
     required TResult Function(String keyword) changeKeyword,
+    required TResult Function(PartListModel item) cancelApproveNew,
+    required TResult Function() refreshAfterApprove,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -34,6 +36,8 @@ mixin _$MaterialCategoryEvent {
     TResult? Function()? refresh,
     TResult? Function(String? keyword)? search,
     TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(PartListModel item)? cancelApproveNew,
+    TResult? Function()? refreshAfterApprove,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -44,6 +48,8 @@ mixin _$MaterialCategoryEvent {
     TResult Function()? refresh,
     TResult Function(String? keyword)? search,
     TResult Function(String keyword)? changeKeyword,
+    TResult Function(PartListModel item)? cancelApproveNew,
+    TResult Function()? refreshAfterApprove,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -53,6 +59,8 @@ mixin _$MaterialCategoryEvent {
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_CancelApproveNew value) cancelApproveNew,
+    required TResult Function(_RefreshAfterApprove value) refreshAfterApprove,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -61,6 +69,8 @@ mixin _$MaterialCategoryEvent {
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult? Function(_RefreshAfterApprove value)? refreshAfterApprove,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +79,8 @@ mixin _$MaterialCategoryEvent {
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult Function(_RefreshAfterApprove value)? refreshAfterApprove,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -199,6 +211,8 @@ class _$InitImpl implements _Init {
     required TResult Function() refresh,
     required TResult Function(String? keyword) search,
     required TResult Function(String keyword) changeKeyword,
+    required TResult Function(PartListModel item) cancelApproveNew,
+    required TResult Function() refreshAfterApprove,
   }) {
     return init(projectId, projectPartListVersionId, projectTypeId, keyword);
   }
@@ -212,6 +226,8 @@ class _$InitImpl implements _Init {
     TResult? Function()? refresh,
     TResult? Function(String? keyword)? search,
     TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(PartListModel item)? cancelApproveNew,
+    TResult? Function()? refreshAfterApprove,
   }) {
     return init?.call(
         projectId, projectPartListVersionId, projectTypeId, keyword);
@@ -226,6 +242,8 @@ class _$InitImpl implements _Init {
     TResult Function()? refresh,
     TResult Function(String? keyword)? search,
     TResult Function(String keyword)? changeKeyword,
+    TResult Function(PartListModel item)? cancelApproveNew,
+    TResult Function()? refreshAfterApprove,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -241,6 +259,8 @@ class _$InitImpl implements _Init {
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_CancelApproveNew value) cancelApproveNew,
+    required TResult Function(_RefreshAfterApprove value) refreshAfterApprove,
   }) {
     return init(this);
   }
@@ -252,6 +272,8 @@ class _$InitImpl implements _Init {
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult? Function(_RefreshAfterApprove value)? refreshAfterApprove,
   }) {
     return init?.call(this);
   }
@@ -263,6 +285,8 @@ class _$InitImpl implements _Init {
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult Function(_RefreshAfterApprove value)? refreshAfterApprove,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -332,6 +356,8 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function() refresh,
     required TResult Function(String? keyword) search,
     required TResult Function(String keyword) changeKeyword,
+    required TResult Function(PartListModel item) cancelApproveNew,
+    required TResult Function() refreshAfterApprove,
   }) {
     return refresh();
   }
@@ -345,6 +371,8 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function()? refresh,
     TResult? Function(String? keyword)? search,
     TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(PartListModel item)? cancelApproveNew,
+    TResult? Function()? refreshAfterApprove,
   }) {
     return refresh?.call();
   }
@@ -358,6 +386,8 @@ class _$RefreshImpl implements _Refresh {
     TResult Function()? refresh,
     TResult Function(String? keyword)? search,
     TResult Function(String keyword)? changeKeyword,
+    TResult Function(PartListModel item)? cancelApproveNew,
+    TResult Function()? refreshAfterApprove,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -373,6 +403,8 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_CancelApproveNew value) cancelApproveNew,
+    required TResult Function(_RefreshAfterApprove value) refreshAfterApprove,
   }) {
     return refresh(this);
   }
@@ -384,6 +416,8 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult? Function(_RefreshAfterApprove value)? refreshAfterApprove,
   }) {
     return refresh?.call(this);
   }
@@ -395,6 +429,8 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult Function(_RefreshAfterApprove value)? refreshAfterApprove,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -478,6 +514,8 @@ class _$SearchImpl implements _Search {
     required TResult Function() refresh,
     required TResult Function(String? keyword) search,
     required TResult Function(String keyword) changeKeyword,
+    required TResult Function(PartListModel item) cancelApproveNew,
+    required TResult Function() refreshAfterApprove,
   }) {
     return search(keyword);
   }
@@ -491,6 +529,8 @@ class _$SearchImpl implements _Search {
     TResult? Function()? refresh,
     TResult? Function(String? keyword)? search,
     TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(PartListModel item)? cancelApproveNew,
+    TResult? Function()? refreshAfterApprove,
   }) {
     return search?.call(keyword);
   }
@@ -504,6 +544,8 @@ class _$SearchImpl implements _Search {
     TResult Function()? refresh,
     TResult Function(String? keyword)? search,
     TResult Function(String keyword)? changeKeyword,
+    TResult Function(PartListModel item)? cancelApproveNew,
+    TResult Function()? refreshAfterApprove,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -519,6 +561,8 @@ class _$SearchImpl implements _Search {
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_CancelApproveNew value) cancelApproveNew,
+    required TResult Function(_RefreshAfterApprove value) refreshAfterApprove,
   }) {
     return search(this);
   }
@@ -530,6 +574,8 @@ class _$SearchImpl implements _Search {
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult? Function(_RefreshAfterApprove value)? refreshAfterApprove,
   }) {
     return search?.call(this);
   }
@@ -541,6 +587,8 @@ class _$SearchImpl implements _Search {
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult Function(_RefreshAfterApprove value)? refreshAfterApprove,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -629,6 +677,8 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     required TResult Function() refresh,
     required TResult Function(String? keyword) search,
     required TResult Function(String keyword) changeKeyword,
+    required TResult Function(PartListModel item) cancelApproveNew,
+    required TResult Function() refreshAfterApprove,
   }) {
     return changeKeyword(keyword);
   }
@@ -642,6 +692,8 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult? Function()? refresh,
     TResult? Function(String? keyword)? search,
     TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(PartListModel item)? cancelApproveNew,
+    TResult? Function()? refreshAfterApprove,
   }) {
     return changeKeyword?.call(keyword);
   }
@@ -655,6 +707,8 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult Function()? refresh,
     TResult Function(String? keyword)? search,
     TResult Function(String keyword)? changeKeyword,
+    TResult Function(PartListModel item)? cancelApproveNew,
+    TResult Function()? refreshAfterApprove,
     required TResult orElse(),
   }) {
     if (changeKeyword != null) {
@@ -670,6 +724,8 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_Search value) search,
     required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_CancelApproveNew value) cancelApproveNew,
+    required TResult Function(_RefreshAfterApprove value) refreshAfterApprove,
   }) {
     return changeKeyword(this);
   }
@@ -681,6 +737,8 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_Search value)? search,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult? Function(_RefreshAfterApprove value)? refreshAfterApprove,
   }) {
     return changeKeyword?.call(this);
   }
@@ -692,6 +750,8 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult Function(_Refresh value)? refresh,
     TResult Function(_Search value)? search,
     TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult Function(_RefreshAfterApprove value)? refreshAfterApprove,
     required TResult orElse(),
   }) {
     if (changeKeyword != null) {
@@ -709,4 +769,312 @@ abstract class _ChangeKeyword implements MaterialCategoryEvent {
   @JsonKey(ignore: true)
   _$$ChangeKeywordImplCopyWith<_$ChangeKeywordImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CancelApproveNewImplCopyWith<$Res> {
+  factory _$$CancelApproveNewImplCopyWith(_$CancelApproveNewImpl value,
+          $Res Function(_$CancelApproveNewImpl) then) =
+      __$$CancelApproveNewImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({PartListModel item});
+
+  $PartListModelCopyWith<$Res> get item;
+}
+
+/// @nodoc
+class __$$CancelApproveNewImplCopyWithImpl<$Res>
+    extends _$MaterialCategoryEventCopyWithImpl<$Res, _$CancelApproveNewImpl>
+    implements _$$CancelApproveNewImplCopyWith<$Res> {
+  __$$CancelApproveNewImplCopyWithImpl(_$CancelApproveNewImpl _value,
+      $Res Function(_$CancelApproveNewImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? item = null,
+  }) {
+    return _then(_$CancelApproveNewImpl(
+      item: null == item
+          ? _value.item
+          : item // ignore: cast_nullable_to_non_nullable
+              as PartListModel,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PartListModelCopyWith<$Res> get item {
+    return $PartListModelCopyWith<$Res>(_value.item, (value) {
+      return _then(_value.copyWith(item: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$CancelApproveNewImpl implements _CancelApproveNew {
+  const _$CancelApproveNewImpl({required this.item});
+
+  @override
+  final PartListModel item;
+
+  @override
+  String toString() {
+    return 'MaterialCategoryEvent.cancelApproveNew(item: $item)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CancelApproveNewImpl &&
+            (identical(other.item, item) || other.item == item));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, item);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CancelApproveNewImplCopyWith<_$CancelApproveNewImpl> get copyWith =>
+      __$$CancelApproveNewImplCopyWithImpl<_$CancelApproveNewImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)
+        init,
+    required TResult Function() refresh,
+    required TResult Function(String? keyword) search,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function(PartListModel item) cancelApproveNew,
+    required TResult Function() refreshAfterApprove,
+  }) {
+    return cancelApproveNew(item);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)?
+        init,
+    TResult? Function()? refresh,
+    TResult? Function(String? keyword)? search,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(PartListModel item)? cancelApproveNew,
+    TResult? Function()? refreshAfterApprove,
+  }) {
+    return cancelApproveNew?.call(item);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)?
+        init,
+    TResult Function()? refresh,
+    TResult Function(String? keyword)? search,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function(PartListModel item)? cancelApproveNew,
+    TResult Function()? refreshAfterApprove,
+    required TResult orElse(),
+  }) {
+    if (cancelApproveNew != null) {
+      return cancelApproveNew(item);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_CancelApproveNew value) cancelApproveNew,
+    required TResult Function(_RefreshAfterApprove value) refreshAfterApprove,
+  }) {
+    return cancelApproveNew(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult? Function(_RefreshAfterApprove value)? refreshAfterApprove,
+  }) {
+    return cancelApproveNew?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_Search value)? search,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult Function(_RefreshAfterApprove value)? refreshAfterApprove,
+    required TResult orElse(),
+  }) {
+    if (cancelApproveNew != null) {
+      return cancelApproveNew(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CancelApproveNew implements MaterialCategoryEvent {
+  const factory _CancelApproveNew({required final PartListModel item}) =
+      _$CancelApproveNewImpl;
+
+  PartListModel get item;
+  @JsonKey(ignore: true)
+  _$$CancelApproveNewImplCopyWith<_$CancelApproveNewImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RefreshAfterApproveImplCopyWith<$Res> {
+  factory _$$RefreshAfterApproveImplCopyWith(_$RefreshAfterApproveImpl value,
+          $Res Function(_$RefreshAfterApproveImpl) then) =
+      __$$RefreshAfterApproveImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$RefreshAfterApproveImplCopyWithImpl<$Res>
+    extends _$MaterialCategoryEventCopyWithImpl<$Res, _$RefreshAfterApproveImpl>
+    implements _$$RefreshAfterApproveImplCopyWith<$Res> {
+  __$$RefreshAfterApproveImplCopyWithImpl(_$RefreshAfterApproveImpl _value,
+      $Res Function(_$RefreshAfterApproveImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$RefreshAfterApproveImpl implements _RefreshAfterApprove {
+  const _$RefreshAfterApproveImpl();
+
+  @override
+  String toString() {
+    return 'MaterialCategoryEvent.refreshAfterApprove()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RefreshAfterApproveImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)
+        init,
+    required TResult Function() refresh,
+    required TResult Function(String? keyword) search,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function(PartListModel item) cancelApproveNew,
+    required TResult Function() refreshAfterApprove,
+  }) {
+    return refreshAfterApprove();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)?
+        init,
+    TResult? Function()? refresh,
+    TResult? Function(String? keyword)? search,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(PartListModel item)? cancelApproveNew,
+    TResult? Function()? refreshAfterApprove,
+  }) {
+    return refreshAfterApprove?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)?
+        init,
+    TResult Function()? refresh,
+    TResult Function(String? keyword)? search,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function(PartListModel item)? cancelApproveNew,
+    TResult Function()? refreshAfterApprove,
+    required TResult orElse(),
+  }) {
+    if (refreshAfterApprove != null) {
+      return refreshAfterApprove();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_CancelApproveNew value) cancelApproveNew,
+    required TResult Function(_RefreshAfterApprove value) refreshAfterApprove,
+  }) {
+    return refreshAfterApprove(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult? Function(_RefreshAfterApprove value)? refreshAfterApprove,
+  }) {
+    return refreshAfterApprove?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_Search value)? search,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult Function(_RefreshAfterApprove value)? refreshAfterApprove,
+    required TResult orElse(),
+  }) {
+    if (refreshAfterApprove != null) {
+      return refreshAfterApprove(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RefreshAfterApprove implements MaterialCategoryEvent {
+  const factory _RefreshAfterApprove() = _$RefreshAfterApproveImpl;
 }

@@ -48,11 +48,13 @@ class _MaterialCategoryTabState extends State<MaterialCategoryTab>
   Widget build(BuildContext context) {
     return BlocBuilder<MaterialCategoryBloc, MaterialCategoryState>(
       builder: (context, state) {
-        if (state.status == BaseStateStatus.loading && state.categories.isEmpty) {
+        if (state.status == BaseStateStatus.loading &&
+            state.categories.isEmpty) {
           return const Center(child: CircularProgressIndicator());
         }
 
-        if (state.status == BaseStateStatus.failed && state.categories.isEmpty) {
+        if (state.status == BaseStateStatus.failed &&
+            state.categories.isEmpty) {
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -107,7 +109,8 @@ class _MaterialCategoryTabState extends State<MaterialCategoryTab>
               physics: const AlwaysScrollableScrollPhysics(),
               padding: const EdgeInsets.fromLTRB(16, 8, 16, 96),
               itemCount: tree.length,
-              itemBuilder: (context, index) => _buildNode(context, tree[index], 0),
+              itemBuilder: (context, index) =>
+                  _buildNode(context, tree[index], 0),
             ),
             if (_selectedIds.isNotEmpty)
               Positioned(
@@ -182,12 +185,12 @@ class _MaterialCategoryTabState extends State<MaterialCategoryTab>
             selected: selected,
             onToggleExpand: hasChildren
                 ? () => setState(() {
-                      if (expanded) {
-                        _expandedIds.remove(nodeId);
-                      } else {
-                        _expandedIds.add(nodeId);
-                      }
-                    })
+                    if (expanded) {
+                      _expandedIds.remove(nodeId);
+                    } else {
+                      _expandedIds.add(nodeId);
+                    }
+                  })
                 : null,
             onTap: () => _openMenu(context, node.item),
             onToggleSelect: () => _toggleSelection(nodeId),
@@ -210,7 +213,8 @@ class _MaterialCategoryTabState extends State<MaterialCategoryTab>
                   for (int i = 0; i < node.children.length; i++)
                     _buildNode(
                       context,
-                      node.children[i]..isLastChild = i == node.children.length - 1,
+                      node.children[i]
+                        ..isLastChild = i == node.children.length - 1,
                       depth + 1,
                     ),
                 ],
@@ -290,10 +294,62 @@ class _MaterialCategoryTabState extends State<MaterialCategoryTab>
       return;
     }
 
+    // Huỷ duyệt mới (TBP) gọi API tuần tự cho từng phiếu đã chọn.
+    if (actionId == 'bulk.tbp.cancel_approve') {
+      await _cancelApproveNewBulk();
+      return;
+    }
+
     showMessage(
       context,
-      'Đã gửi "${_findMenuLabel(actionId)}" cho $pickedCount phiếu',
+      'Không có vật tư hợp lệ để Duyệt mã mới',
+      type: SnackBarType.error,
     );
+    setState(() => _selectedIds.clear());
+  }
+
+  /// Huỷ duyệt mới (TBP) cho toàn bộ vật tư đang được chọn.
+  /// Gọi API tuần tự từng item; nếu 1 cái lỗi thì dừng lại và báo lỗi.
+  /// Bloc sẽ tự refresh lại danh sách sau khi từng lệnh thành công.
+  Future<void> _cancelApproveNewBulk() async {
+    final selectedItems = _resolveSelectedItems();
+    if (selectedItems.isEmpty) {
+      showMessage(
+        context,
+        'Không có vật tư nào để huỷ duyệt',
+        type: SnackBarType.error,
+      );
+      return;
+    }
+
+    final bloc = context.read<MaterialCategoryBloc>();
+    final errors = <String>[];
+
+    for (final item in selectedItems) {
+      if (!mounted) return;
+      bloc.add(MaterialCategoryEvent.cancelApproveNew(item: item));
+      // Đợi bloc emit success/failed trước khi gọi tiếp để có message mới nhất.
+      await bloc.stream.firstWhere(
+        (s) =>
+            s.status == BaseStateStatus.success ||
+            s.status == BaseStateStatus.failed,
+      );
+      final latest = bloc.state;
+      if (latest.status == BaseStateStatus.failed) {
+        errors.add('${item.productCode ?? "--"}: ${latest.message ?? "lỗi"}');
+      }
+    }
+
+    if (!mounted) return;
+    if (errors.isEmpty) {
+      showMessage(context, 'Đã huỷ duyệt ${selectedItems.length} phiếu');
+    } else {
+      showMessage(
+        context,
+        'Huỷ duyệt thất bại: ${errors.join("; ")}',
+        type: SnackBarType.error,
+      );
+    }
     setState(() => _selectedIds.clear());
   }
 
@@ -303,8 +359,11 @@ class _MaterialCategoryTabState extends State<MaterialCategoryTab>
   Future<void> _openQuoteRequestCreate() async {
     final selectedItems = _resolveSelectedItems();
     if (selectedItems.isEmpty) {
-      showMessage(context, 'Không có vật tư nào để tạo phiếu',
-          type: SnackBarType.error);
+      showMessage(
+        context,
+        'Không có vật tư nào để tạo phiếu',
+        type: SnackBarType.error,
+      );
       return;
     }
 
@@ -589,9 +648,7 @@ class _PartListCard extends StatelessWidget {
                     borderColor: selected
                         ? AppColors.tealA700
                         : (_isParent ? AppColors.primaryERP : theme.border),
-                    borderWidth: selected
-                        ? 4
-                        : (_isParent ? 4 : 3),
+                    borderWidth: selected ? 4 : (_isParent ? 4 : 3),
                     backgroundColor: selected
                         ? AppColors.tealA700.withValues(alpha: 0.06)
                         : theme.background,
@@ -607,17 +664,16 @@ class _PartListCard extends StatelessWidget {
                         if (item.isApprovedTbpText != null &&
                             item.isApprovedTbpText!.isNotEmpty)
                           const SizedBox(height: 8),
-                        _buildHeader(
-                          groupName: groupName,
-                          theme: theme,
-                        ),
+                        _buildHeader(groupName: groupName, theme: theme),
                         if (_shouldShowMeta())
                           Padding(
                             padding: const EdgeInsets.only(top: 10),
                             child: _buildMetaLine(deviceCode: deviceCode),
                           ),
                         Padding(
-                          padding: EdgeInsets.only(top: _shouldShowMeta() ? 10 : 12),
+                          padding: EdgeInsets.only(
+                            top: _shouldShowMeta() ? 10 : 12,
+                          ),
                           child: _buildQtyRow(qtyMin: qtyMin, qtyFull: qtyFull),
                         ),
                         if (unitPrice != '--' || totalPrice != '--')
@@ -673,8 +729,7 @@ class _PartListCard extends StatelessWidget {
 
   /// Meta chỉ hiển thị khi có TT hoặc có mã thiết bị.
   bool _shouldShowMeta() {
-    return (item.tt ?? '').isNotEmpty ||
-        (item.productCode ?? '').isNotEmpty;
+    return (item.tt ?? '').isNotEmpty || (item.productCode ?? '').isNotEmpty;
   }
 
   /// Dòng meta gọn: TT | Mã thiết bị.
@@ -726,10 +781,7 @@ class _PartListCard extends StatelessWidget {
     );
   }
 
-  Widget _buildQtyRow({
-    required String qtyMin,
-    required String qtyFull,
-  }) {
+  Widget _buildQtyRow({required String qtyMin, required String qtyFull}) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       decoration: BoxDecoration(
@@ -915,11 +967,7 @@ class _SelectionActionBar extends StatelessWidget {
                   ),
                   child: Row(
                     children: const [
-                      Icon(
-                        Icons.tune_rounded,
-                        size: 18,
-                        color: Colors.white,
-                      ),
+                      Icon(Icons.tune_rounded, size: 18, color: Colors.white),
                       SizedBox(width: 6),
                       Text(
                         'Thao tác',
@@ -956,19 +1004,11 @@ class _CardTheme {
   final List<BoxShadow> shadow;
 
   static const _parentShadow = <BoxShadow>[
-    BoxShadow(
-      color: Color(0x140F172A),
-      blurRadius: 12,
-      offset: Offset(0, 4),
-    ),
+    BoxShadow(color: Color(0x140F172A), blurRadius: 12, offset: Offset(0, 4)),
   ];
 
   static const _childShadow = <BoxShadow>[
-    BoxShadow(
-      color: Color(0x0A0F172A),
-      blurRadius: 6,
-      offset: Offset(0, 2),
-    ),
+    BoxShadow(color: Color(0x0A0F172A), blurRadius: 6, offset: Offset(0, 2)),
   ];
 
   factory _CardTheme.forRole({required bool isParent, required int depth}) {
@@ -1168,10 +1208,7 @@ class _ChildCountBadge extends StatelessWidget {
 /// Cụm status chip gồm: TBP + Mua (chỉ hiển thị khi có text).
 /// Xếp dạng Wrap để tự rớt dòng khi hẹp, căn phải.
 class _StatusStack extends StatelessWidget {
-  const _StatusStack({
-    required this.tbpText,
-    required this.purchaseText,
-  });
+  const _StatusStack({required this.tbpText, required this.purchaseText});
 
   final String? tbpText;
   final String? purchaseText;

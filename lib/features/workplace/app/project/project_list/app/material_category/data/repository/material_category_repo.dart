@@ -10,4 +10,8 @@ abstract class MaterialCategoryRepo {
     required int projectTypeId,
     String keyword = '',
   });
+
+  /// Huỷ duyệt mới (TBP) cho 1 vật tư.
+  /// Trả về [Unit] khi thành công, [BaseError] khi thất bại.
+  Future<Either<BaseError, Unit>> cancelApproveNew(PartListModel item);
 }
