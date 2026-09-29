@@ -3,9 +3,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rtc_erp/base/bloc/index.dart';
+import 'package:rtc_erp/base/widgets/base_widget.dart';
 import 'package:rtc_erp/common/app_theme/index.dart';
 import 'package:rtc_erp/common/widgets/form/form_left_border_card.dart';
 
+import '../../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../bloc/material_category_bloc.dart';
 import '../../data/datasource/model/part_list_model.dart';
 import '../../../material_info/view/widgets/material_info_menu_sheet.dart';
@@ -15,6 +17,7 @@ import '../../../material_info/view/widgets/quote_request_detail_sheet.dart';
 import '../../../material_info/view/widgets/purchase_request_detail_sheet.dart';
 import '../../../material_info/view/widgets/import_warehouse_detail_sheet.dart';
 import '../../../material_info/view/widgets/stock_balance_detail_sheet.dart';
+import '../../../material_info/view/pages/quote_request_create_page.dart';
 
 /// Tab "Danh mục vật tư" - hiển thị danh sách vật tư dạng cây cha - con.
 ///
@@ -29,7 +32,8 @@ class MaterialCategoryTab extends StatefulWidget {
   State<MaterialCategoryTab> createState() => _MaterialCategoryTabState();
 }
 
-class _MaterialCategoryTabState extends State<MaterialCategoryTab> {
+class _MaterialCategoryTabState extends State<MaterialCategoryTab>
+    with BaseMethodMixin<MaterialCategoryState> {
   /// Tập id các node cha đang được mở rộng.
   final Set<int> _expandedIds = <int>{};
 
@@ -274,24 +278,107 @@ class _MaterialCategoryTabState extends State<MaterialCategoryTab> {
     final pickedCount = _selectedIds.length;
     if (pickedCount == 0) return;
 
-    final messenger = ScaffoldMessenger.maybeOf(context);
     final actionId = await MaterialInfoMenuSheet.show(
       context,
       menuItems: MaterialInfoMenuItem.bulkMenuItems,
     );
     if (!mounted || actionId == null) return;
 
-    messenger?.hideCurrentSnackBar();
-    messenger?.showSnackBar(
-      SnackBar(
-        content: Text(
-          'Đã gửi "${_findMenuLabel(actionId)}" cho $pickedCount phiếu',
-        ),
-        behavior: SnackBarBehavior.floating,
-        duration: const Duration(seconds: 2),
-      ),
+    // Một số lệnh điều hướng sang trang riêng (form tạo phiếu) thay vì snackbar.
+    if (actionId == 'bulk.quote.create') {
+      await _openQuoteRequestCreate();
+      return;
+    }
+
+    showMessage(
+      context,
+      'Đã gửi "${_findMenuLabel(actionId)}" cho $pickedCount phiếu',
     );
     setState(() => _selectedIds.clear());
+  }
+
+  /// Mở trang tạo yêu cầu báo giá với danh sách vật tư đã chọn.
+  /// Chuẩn hoá: với mỗi id được chọn, nếu là node cha có con → lấy toàn bộ
+  /// con cháu; nếu là lá → lấy chính nó. Trùng id thì bỏ.
+  Future<void> _openQuoteRequestCreate() async {
+    final selectedItems = _resolveSelectedItems();
+    if (selectedItems.isEmpty) {
+      showMessage(context, 'Không có vật tư nào để tạo phiếu',
+          type: SnackBarType.error);
+      return;
+    }
+
+    final confirmed = await Navigator.of(context).push<bool>(
+      MaterialPageRoute(
+        builder: (_) => QuoteRequestCreatePage(selectedItems: selectedItems),
+      ),
+    );
+    if (!mounted) return;
+
+    if (confirmed == true) {
+      showMessage(
+        context,
+        'Đã tạo yêu cầu báo giá cho ${selectedItems.length} vật tư',
+      );
+      setState(() => _selectedIds.clear());
+    }
+  }
+
+  /// Chuẩn hoá [Set] id đã chọn thành danh sách [PartListModel] phẳng.
+  ///
+  /// Rule:
+  /// - Nếu id thuộc node cha (có con) → chỉ lấy con cháu, bỏ node cha gốc.
+  /// - Nếu id thuộc node lá → lấy chính node đó.
+  /// - Bỏ trùng theo `item.id` để tránh liệt kê 1 vật tư 2 lần khi user
+  ///   check cả node cha và node con.
+  List<PartListModel> _resolveSelectedItems() {
+    final result = <PartListModel>[];
+    final seenIds = <int>{};
+    for (final root in _currentTree) {
+      _collectForIds(root, _selectedIds, result, seenIds);
+    }
+    return result;
+  }
+
+  void _collectForIds(
+    _PartListNode node,
+    Set<int> selectedIds,
+    List<PartListModel> out,
+    Set<int> seenIds,
+  ) {
+    final id = node.item.id;
+    if (id != null && selectedIds.contains(id)) {
+      // Node được chọn:
+      // - Có con → chỉ lấy con cháu, bỏ chính node cha gốc
+      //   (vd chọn "Cấu hình Camera Align" → chỉ lấy vật tư con, không lấy
+      //   header nhóm).
+      // - Là lá → lấy chính nó.
+      if (node.children.isEmpty) {
+        if (seenIds.add(id)) out.add(node.item);
+      } else {
+        for (final c in node.children) {
+          for (final desc in _walkSubtree(c)) {
+            final did = desc.item.id;
+            if (did != null && seenIds.add(did)) {
+              out.add(desc.item);
+            }
+          }
+        }
+      }
+      return;
+    }
+    // Không được chọn → tiếp tục xuống con để bắt trường hợp lá chọn riêng.
+    for (final c in node.children) {
+      _collectForIds(c, selectedIds, out, seenIds);
+    }
+  }
+
+  /// Trả về chính node và toàn bộ con cháu theo DFS.
+  Iterable<_PartListNode> _walkSubtree(_PartListNode root) sync* {
+    yield root;
+    for (final c in root.children) {
+      yield* _walkSubtree(c);
+    }
   }
 
   /// Tìm tên hiển thị của 1 menu theo id, tra cả nhóm cha lẫn nhóm con.

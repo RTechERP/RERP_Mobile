@@ -165,14 +165,18 @@ class MaterialInfoMenuSheet extends StatelessWidget {
                 final menu = menuItems[index];
                 return _MenuTile(
                   menu: menu,
-                  onTap: () {
-                    // Có nhóm con → mở sheet con thay vì đóng sheet hiện tại.
+                  onTap: () async {
+                    // Có nhóm con → mở sheet con bằng await để nhận id khi
+                    // user chọn xong; bỏ qua nếu user đóng sheet con rỗng.
                     if (menu.children.isNotEmpty) {
-                      MaterialInfoMenuSheet.show(
+                      final childId = await MaterialInfoMenuSheet.show(
                         context,
                         title: menu.name,
                         menuItems: menu.children,
                       );
+                      if (childId != null && context.mounted) {
+                        Navigator.pop(context, childId);
+                      }
                       return;
                     }
                     Navigator.pop(context, menu.id);
