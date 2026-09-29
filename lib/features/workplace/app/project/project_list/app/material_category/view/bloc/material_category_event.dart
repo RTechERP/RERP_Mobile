@@ -35,4 +35,12 @@ class MaterialCategoryEvent with _$MaterialCategoryEvent {
   const factory MaterialCategoryEvent.refreshAfterApprove({
     required String message,
   }) = _RefreshAfterApprove;
+
+  /// Yêu cầu chuyển kho cho nhiều vật tư sang kho [warehouseCode].
+  /// [warehouseCode] = "HN" | "HCM" | "BN" | "HP" | "DP".
+  /// Emit success ngay khi API trả 200 + refresh list để cập nhật tồn kho.
+  const factory MaterialCategoryEvent.requestExportTransfer({
+    required String warehouseCode,
+    required List<PartListModel> items,
+  }) = _RequestExportTransfer;
 }

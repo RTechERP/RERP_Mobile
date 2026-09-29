@@ -29,6 +29,8 @@ class MaterialCategoryBloc
         cancelApproveNew: (item) => _onCancelApproveNew(emit, item),
         approveFix: (item, isFix) => _onApproveFix(emit, item, isFix),
         refreshAfterApprove: (message) => _onRefreshAfterApprove(emit, message),
+        requestExportTransfer: (warehouseCode, items) =>
+            _onRequestExportTransfer(emit, warehouseCode, items),
       );
     });
   }
@@ -258,5 +260,59 @@ class MaterialCategoryBloc
         message: message,
       )),
     );
+  }
+
+  /// Yêu cầu chuyển kho cho nhiều vật tư sang kho [warehouseCode].
+  /// Cùng pattern với [_onApproveFix]: emit success ngay khi API trả 200 để UI
+  /// phản hồi tức thì; đồng thời fire-and-forget refresh list để cập nhật
+  /// tồn kho mới nhất.
+  Future<void> _onRequestExportTransfer(
+    Emitter<MaterialCategoryState> emit,
+    String warehouseCode,
+    List<PartListModel> items,
+  ) async {
+    if (state.projectId == null || state.projectPartListVersionId == null) {
+      emit(state.copyWith(
+        status: BaseStateStatus.failed,
+        message: 'Thiếu thông tin dự án để chuyển kho',
+      ));
+      return;
+    }
+    if (items.isEmpty) {
+      emit(state.copyWith(
+        status: BaseStateStatus.failed,
+        message: 'Không có vật tư nào để chuyển kho',
+      ));
+      return;
+    }
+
+    emit(state.copyWith(status: BaseStateStatus.loading));
+
+    try {
+      final result = await _repo.requestExportTransfer(
+        warehouseCode: warehouseCode,
+        items: items,
+      );
+      await result.fold(
+        (error) async => emit(state.copyWith(
+          status: BaseStateStatus.failed,
+          message: error.getErrorMessage,
+        )),
+        (_) async {
+          emit(state.copyWith(
+            status: BaseStateStatus.success,
+            message: 'Đã chuyển kho',
+          ));
+          add(const MaterialCategoryEvent.refreshAfterApprove(
+            message: 'Đã chuyển kho',
+          ));
+        },
+      );
+    } catch (e) {
+      emit(state.copyWith(
+        status: BaseStateStatus.failed,
+        message: e.toString(),
+      ));
+    }
   }
 }

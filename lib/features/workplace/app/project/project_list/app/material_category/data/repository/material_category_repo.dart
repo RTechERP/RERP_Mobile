@@ -17,9 +17,16 @@ abstract class MaterialCategoryRepo {
 
   /// Duyệt / huỷ duyệt tích xanh cho 1 vật tư.
   /// isFix=true  → duyệt tích xanh.
-  /// isFix=false → huỷ duyệt tích xanh.
+  /// isFix=false → huỷ duỷ duyệt tích xanh.
   Future<Either<BaseError, Unit>> approveFix(
     PartListModel item, {
     required bool isFix,
+  });
+
+  /// Yêu cầu chuyển kho cho nhiều vật tư sang kho [warehouseCode].
+  /// Trả về [Unit] khi thành công, [BaseError] khi thất bại.
+  Future<Either<BaseError, Unit>> requestExportTransfer({
+    required String warehouseCode,
+    required List<PartListModel> items,
   });
 }

@@ -312,11 +312,79 @@ class _MaterialCategoryTabState extends State<MaterialCategoryTab>
       return;
     }
 
+    // Chuyển kho — 5 kho tương ứng 5 child id (bulk.transfer.hn, ...).
+    final transferCode = _mapTransferWarehouseCode(actionId);
+    if (transferCode != null) {
+      await _transferBulk(transferCode);
+      return;
+    }
+
     showMessage(
       context,
       'Không có vật tư hợp lệ để Duyệt mã mới',
       type: SnackBarType.error,
     );
+    setState(() => _selectedIds.clear());
+  }
+
+  /// Map child id của menu chuyển kho sang mã kho gửi lên API.
+  /// Trả về null nếu id không phải chuyển kho.
+  /// Mapping: hn=HN, hcm=HCM, bacninh=BN, haiphong=HP, danphuong=DP.
+  String? _mapTransferWarehouseCode(String actionId) {
+    switch (actionId) {
+      case 'bulk.transfer.hn':
+        return 'HN';
+      case 'bulk.transfer.hcm':
+        return 'HCM';
+      case 'bulk.transfer.bacninh':
+        return 'BN';
+      case 'bulk.transfer.haiphong':
+        return 'HP';
+      case 'bulk.transfer.danphuong':
+        return 'DP';
+      default:
+        return null;
+    }
+  }
+
+  /// Yêu cầu chuyển kho cho toàn bộ vật tư đang chọn sang kho [warehouseCode].
+  /// Gọi 1 lần duy nhất với toàn bộ list (backend nhận batch qua ListItem).
+  /// Bloc tự refresh list sau khi API trả 200.
+  Future<void> _transferBulk(String warehouseCode) async {
+    final selectedItems = _resolveSelectedItems();
+    if (selectedItems.isEmpty) {
+      showMessage(
+        context,
+        'Không có vật tư nào để chuyển kho',
+        type: SnackBarType.error,
+      );
+      return;
+    }
+
+    final bloc = context.read<MaterialCategoryBloc>();
+    bloc.add(MaterialCategoryEvent.requestExportTransfer(
+      warehouseCode: warehouseCode,
+      items: selectedItems,
+    ));
+
+    // Đợi bloc emit success/failed để có message mới nhất.
+    await bloc.stream.firstWhere(
+      (s) =>
+          s.status == BaseStateStatus.success ||
+          s.status == BaseStateStatus.failed,
+    );
+
+    if (!mounted) return;
+    final latest = bloc.state;
+    if (latest.status == BaseStateStatus.failed) {
+      showMessage(
+        context,
+        latest.message ?? 'Chuyển kho thất bại',
+        type: SnackBarType.error,
+      );
+    } else {
+      showMessage(context, 'Đã chuyển ${selectedItems.length} phiếu sang kho $warehouseCode');
+    }
     setState(() => _selectedIds.clear());
   }
 

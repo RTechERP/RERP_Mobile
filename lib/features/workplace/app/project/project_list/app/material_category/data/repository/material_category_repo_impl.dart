@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rtc_erp/base/network/errors/error.dart';
 
@@ -28,7 +29,7 @@ class MaterialCategoryRepoImpl implements MaterialCategoryRepo {
       );
       return right(data);
     } catch (e) {
-      return left(BaseError.httpInternalServerError(e.toString()));
+      return left(BaseError.httpInternalServerError(_extractMessage(e)));
     }
   }
 
@@ -38,7 +39,7 @@ class MaterialCategoryRepoImpl implements MaterialCategoryRepo {
       await _service.cancelApproveNew(item);
       return right(unit);
     } catch (e) {
-      return left(BaseError.httpInternalServerError(e.toString()));
+      return left(BaseError.httpInternalServerError(_extractMessage(e)));
     }
   }
 
@@ -51,7 +52,45 @@ class MaterialCategoryRepoImpl implements MaterialCategoryRepo {
       await _service.approveFix(item, isFix: isFix);
       return right(unit);
     } catch (e) {
-      return left(BaseError.httpInternalServerError(e.toString()));
+      return left(BaseError.httpInternalServerError(_extractMessage(e)));
     }
+  }
+
+  @override
+  Future<Either<BaseError, Unit>> requestExportTransfer({
+    required String warehouseCode,
+    required List<PartListModel> items,
+  }) async {
+    try {
+      await _service.requestExport(
+        warehouseCode: warehouseCode,
+        items: items,
+      );
+      return right(unit);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(_extractMessage(e)));
+    }
+  }
+
+  /// Trích nội dung `message` từ exception.
+  /// - DioException: lấy từ `response.data` (body trả về), ưu tiên `message`.
+  /// - Exception khác: trả về `e.toString()`.
+  /// Tránh hiện `DioException [bad response]: ...` thay vì message backend.
+  String _extractMessage(Object e) {
+    if (e is DioException) {
+      final data = e.response?.data;
+      if (data is Map) {
+        final m = data['message'] ??
+            data['msg'] ??
+            data['Message'] ??
+            data['errorDescription'] ??
+            data['title'];
+        if (m is String && m.isNotEmpty) return m;
+      }
+      if (data is String && data.trim().isNotEmpty) return data.trim();
+      final raw = e.message;
+      if (raw != null && raw.isNotEmpty && raw != 'null') return raw;
+    }
+    return e.toString();
   }
 }

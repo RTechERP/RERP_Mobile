@@ -169,7 +169,38 @@ class MaterialInfoMenuItem {
       name: 'Yêu cầu chuyển kho',
       icon: Icons.swap_horiz_rounded,
       color: Color(0xFF2E7D32),
-      children: _warehouses,
+      children: [
+        MaterialInfoMenuItem(
+          id: 'bulk.transfer.hn',
+          name: 'Hà Nội',
+          icon: Icons.location_city_outlined,
+          color: Color(0xFFE65100),
+        ),
+        MaterialInfoMenuItem(
+          id: 'bulk.transfer.hcm',
+          name: 'HCM',
+          icon: Icons.apartment_rounded,
+          color: Color(0xFFE65100),
+        ),
+        MaterialInfoMenuItem(
+          id: 'bulk.transfer.bacninh',
+          name: 'Bắc Ninh',
+          icon: Icons.factory_outlined,
+          color: Color(0xFFE65100),
+        ),
+        MaterialInfoMenuItem(
+          id: 'bulk.transfer.haiphong',
+          name: 'Hải Phòng',
+          icon: Icons.anchor_rounded,
+          color: Color(0xFFE65100),
+        ),
+        MaterialInfoMenuItem(
+          id: 'bulk.transfer.danphuong',
+          name: 'Đan Phượng',
+          icon: Icons.agriculture_outlined,
+          color: Color(0xFFE65100),
+        ),
+      ],
     ),
   ];
 }

@@ -532,4 +532,9 @@ class ApiEndPoint {
   /// POST /ProjectPartList/approved-fix?isFix={bool}.
   /// Body: danh sách rút gọn các field của vật tư cần cập nhật.
   static const String approvedFix = '/ProjectPartList/approved-fix';
+
+  /// Yêu cầu chuyển kho cho vật tư.
+  /// POST /ProjectPartList/request-export.
+  /// Body: `{ "WarehouseCode": "HN|HCM|BN|HP|DP", "ListItem": [ ... ] }`.
+  static const String requestExport = '/ProjectPartList/request-export';
 }

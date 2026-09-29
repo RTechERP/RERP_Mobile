@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rtc_erp/base/network/dio/dio_base_api_service.dart';
 import 'package:rtc_erp/base/network/models/base_data.dart';
@@ -50,11 +51,12 @@ class MaterialCategoryService extends DioBaseApiService {
   /// Body: List of PartListModel JSON trực tiếp — không wrapper.
   /// Truyền List 1 phần tử để dễ mở rộng batch sau này.
   Future<void> cancelApproveNew(PartListModel item) async {
-    await post<dynamic>(
+    final result = await post<dynamic>(
       ApiEndPoint.approvedNewCode,
       body: [item.toJson()],
       query: {'isApprovedNew': false},
     );
+    _throwIfApiFailed(result);
   }
 
   /// Duyệt / huỷ duyệt tích xanh cho 1 vật tư.
@@ -65,11 +67,12 @@ class MaterialCategoryService extends DioBaseApiService {
   /// isFix=true  → duyệt tích xanh.
   /// isFix=false → huỷ duyệt tích xanh.
   Future<void> approveFix(PartListModel item, {required bool isFix}) async {
-    await post<dynamic>(
+    final result = await post<dynamic>(
       ApiEndPoint.approvedFix,
       body: [_toFixPayload(item)],
       query: {'isFix': isFix},
     );
+    _throwIfApiFailed(result);
   }
 
   /// Build payload rút gọn cho API approved-fix.
@@ -89,6 +92,70 @@ class MaterialCategoryService extends DioBaseApiService {
       'IsLeaf': item.isLeaf ?? false,
       'IsNewCode': item.isNewCode ?? false,
       'IsDeleted': item.isDeleted ?? false,
+    };
+  }
+
+  /// Yêu cầu chuyển kho cho nhiều vật tư.
+  /// Endpoint: POST /ProjectPartList/request-export
+  /// Body: { "WarehouseCode": "HN|HCM|BN|HP|DP", "ListItem": [ ... ] }
+  /// Trong đó mỗi item chỉ cần các field backend yêu cầu:
+  /// ID, RemainQuantity, QuantityReturn, QtyFull, ProductNewCode,
+  /// GroupMaterial, Unit, ProjectCode, ProjectID, ProductID, TT, WarehouseID.
+  ///
+  /// Mặc dù API trả HTTP 200, body có thể báo lỗi nghiệp vụ qua
+  /// `{ status: 0, message: "..." }`. Hàm sẽ ném [DioException] để bloc
+  /// hiện snackbar đúng message backend.
+  Future<void> requestExport({
+    required String warehouseCode,
+    required List<PartListModel> items,
+  }) async {
+    final result = await post<dynamic>(
+      ApiEndPoint.requestExport,
+      body: {
+        'WarehouseCode': warehouseCode,
+        'ListItem': items.map(_toTransferItem).toList(),
+      },
+    );
+    _throwIfApiFailed(result);
+  }
+
+  /// Validate response body dạng `{ status, message, data, error }`.
+  /// Nếu `status == 0` thì ném DioException để chuyển về flow lỗi, đảm bảo
+  /// bloc hiện đúng message backend thay vì snackbar "thành công" giả.
+  void _throwIfApiFailed(dynamic data) {
+    if (data is! Map) return;
+    final status = data['status'];
+    final message = data['message'];
+    if (status == 0 && message is String && message.isNotEmpty) {
+      throw DioException(
+        requestOptions: RequestOptions(path: ''),
+        response: Response<dynamic>(
+          requestOptions: RequestOptions(path: ''),
+          statusCode: 400,
+          data: data,
+        ),
+        type: DioExceptionType.badResponse,
+        message: message,
+      );
+    }
+  }
+
+  /// Build 1 item trong ListItem của API request-export.
+  /// Các field kiểu số gửi 0 thay vì null để backend C# nhận đúng kiểu dữ liệu.
+  Map<String, dynamic> _toTransferItem(PartListModel item) {
+    return {
+      'ID': item.id,
+      'RemainQuantity': item.remainQuantity ?? 0,
+      'QuantityReturn': item.quantityReturn ?? 0,
+      'QtyFull': item.qtyFull ?? 0,
+      'ProductNewCode': item.productNewCode ?? '',
+      'GroupMaterial': item.groupMaterial ?? '',
+      'Unit': item.unit ?? '',
+      'ProjectCode': item.projectCode ?? '',
+      'ProjectID': item.projectId,
+      'ProductID': item.productId ?? 0,
+      'TT': item.tt ?? '',
+      'WarehouseID': 0,
     };
   }
 
