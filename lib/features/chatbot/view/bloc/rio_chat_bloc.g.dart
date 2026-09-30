@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'rio_chat_bloc_state.dart';
+part of 'rio_chat_bloc.dart';
 
 // **************************************************************************
 // CopyWithGenerator
@@ -11,13 +11,11 @@ abstract class _$RioChatStateCWProxy {
 
   RioChatState message(String? message);
 
-  RioChatState history(List<RioChatMessage> history);
+  RioChatState messages(List<ChatMessage> messages);
 
-  RioChatState sendingQuestion(String? sendingQuestion);
+  RioChatState pendingMessage(ChatMessage? pendingMessage);
 
-  RioChatState isTyping(bool isTyping);
-
-  RioChatState error(String? error);
+  RioChatState chatHistory(List<ChatHistorySessionModel> chatHistory);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `RioChatState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -28,10 +26,9 @@ abstract class _$RioChatStateCWProxy {
   RioChatState call({
     BaseStateStatus? status,
     String? message,
-    List<RioChatMessage>? history,
-    String? sendingQuestion,
-    bool? isTyping,
-    String? error,
+    List<ChatMessage>? messages,
+    ChatMessage? pendingMessage,
+    List<ChatHistorySessionModel>? chatHistory,
   });
 }
 
@@ -48,20 +45,17 @@ class _$RioChatStateCWProxyImpl implements _$RioChatStateCWProxy {
   RioChatState message(String? message) => this(message: message);
 
   @override
-  RioChatState history(List<RioChatMessage> history) => this(history: history);
+  RioChatState messages(List<ChatMessage> messages) => this(messages: messages);
 
   @override
-  RioChatState sendingQuestion(String? sendingQuestion) =>
-      this(sendingQuestion: sendingQuestion);
+  RioChatState pendingMessage(ChatMessage? pendingMessage) =>
+      this(pendingMessage: pendingMessage);
 
   @override
-  RioChatState isTyping(bool isTyping) => this(isTyping: isTyping);
+  RioChatState chatHistory(List<ChatHistorySessionModel> chatHistory) =>
+      this(chatHistory: chatHistory);
 
   @override
-  RioChatState error(String? error) => this(error: error);
-
-  @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `RioChatState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -71,10 +65,9 @@ class _$RioChatStateCWProxyImpl implements _$RioChatStateCWProxy {
   RioChatState call({
     Object? status = const $CopyWithPlaceholder(),
     Object? message = const $CopyWithPlaceholder(),
-    Object? history = const $CopyWithPlaceholder(),
-    Object? sendingQuestion = const $CopyWithPlaceholder(),
-    Object? isTyping = const $CopyWithPlaceholder(),
-    Object? error = const $CopyWithPlaceholder(),
+    Object? messages = const $CopyWithPlaceholder(),
+    Object? pendingMessage = const $CopyWithPlaceholder(),
+    Object? chatHistory = const $CopyWithPlaceholder(),
   }) {
     return RioChatState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -85,22 +78,19 @@ class _$RioChatStateCWProxyImpl implements _$RioChatStateCWProxy {
           ? _value.message
           // ignore: cast_nullable_to_non_nullable
           : message as String?,
-      history: history == const $CopyWithPlaceholder() || history == null
-          ? _value.history
+      messages: messages == const $CopyWithPlaceholder() || messages == null
+          ? _value.messages
           // ignore: cast_nullable_to_non_nullable
-          : history as List<RioChatMessage>,
-      sendingQuestion: sendingQuestion == const $CopyWithPlaceholder()
-          ? _value.sendingQuestion
+          : messages as List<ChatMessage>,
+      pendingMessage: pendingMessage == const $CopyWithPlaceholder()
+          ? _value.pendingMessage
           // ignore: cast_nullable_to_non_nullable
-          : sendingQuestion as String?,
-      isTyping: isTyping == const $CopyWithPlaceholder() || isTyping == null
-          ? _value.isTyping
+          : pendingMessage as ChatMessage?,
+      chatHistory:
+          chatHistory == const $CopyWithPlaceholder() || chatHistory == null
+          ? _value.chatHistory
           // ignore: cast_nullable_to_non_nullable
-          : isTyping as bool,
-      error: error == const $CopyWithPlaceholder()
-          ? _value.error
-          // ignore: cast_nullable_to_non_nullable
-          : error as String?,
+          : chatHistory as List<ChatHistorySessionModel>,
     );
   }
 }

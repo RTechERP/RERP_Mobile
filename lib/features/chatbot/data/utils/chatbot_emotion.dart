@@ -1,4 +1,3 @@
-
 import '../../../../common/constants/index.dart';
 
 /// Enum cảm xúc của chatbot Rio, khớp với các ảnh avatar trong assets.
@@ -66,65 +65,158 @@ ChatbotEmotion detectEmotion(String text) {
 
   // Câu hỏi / thắc mắc → questioning
   if (_matchesAny(lower, [
-    'ban co the', 'ban có thể', 'cho minh biet', 'cho toi biet',
-    'cho mình biết', 'cho tôi biết', 'ban giup', 'bạn giúp',
-    'lam the nao', 'làm thế nào', 'nhu the nao', 'như thế nào',
-    '?', 'la gi', 'là gì', 'bao nhieu', 'bao nhiêu', 'khi nao', 'khi nào',
-    'o dau', 'ở đâu', 'tai sao', 'tại sao', 'nhu the nao', 'why', 'how',
+    'ban co the',
+    'ban có thể',
+    'cho minh biet',
+    'cho toi biet',
+    'cho mình biết',
+    'cho tôi biết',
+    'ban giup',
+    'bạn giúp',
+    'lam the nao',
+    'làm thế nào',
+    'nhu the nao',
+    'như thế nào',
+    '?',
+    'la gi',
+    'là gì',
+    'bao nhieu',
+    'bao nhiêu',
+    'khi nao',
+    'khi nào',
+    'o dau',
+    'ở đâu',
+    'tai sao',
+    'tại sao',
+    'nhu the nao',
+    'why',
+    'how',
   ])) {
     return ChatbotEmotion.questioning;
   }
 
   // Tiêu cực → angry
   if (_matchesAny(lower, [
-    'khong the', 'không thể', 'that bai', 'thất bại', 'loi', 'lỗi',
-    'tu choi', 'từ chối', 'khong duoc', 'không được', 'that bai',
-    'that vong', 'thất vọng', 'khong hop le', 'không hợp lệ',
-    'xay ra loi', 'xảy ra lỗi', 'khong thanh cong', 'không thành công',
+    'khong the',
+    'không thể',
+    'that bai',
+    'thất bại',
+    'loi',
+    'lỗi',
+    'tu choi',
+    'từ chối',
+    'khong duoc',
+    'không được',
+    'that bai',
+    'that vong',
+    'thất vọng',
+    'khong hop le',
+    'không hợp lệ',
+    'xay ra loi',
+    'xảy ra lỗi',
+    'khong thanh cong',
+    'không thành công',
   ])) {
     return ChatbotEmotion.angry;
   }
 
   // Bất ngờ / không biết → speechless
   if (_matchesAny(lower, [
-    'toi khong biet', 'tôi không biết', 'chua ro', 'chưa rõ',
-    'khong chac chan', 'không chắc chắn', 'that su khong biet',
-    'thật sự không biết', 'vượt quá khả năng', 'vuot qua kha nang',
+    'toi khong biet',
+    'tôi không biết',
+    'chua ro',
+    'chưa rõ',
+    'khong chac chan',
+    'không chắc chắn',
+    'that su khong biet',
+    'thật sự không biết',
+    'vượt quá khả năng',
+    'vuot qua kha nang',
   ])) {
     return ChatbotEmotion.speechless;
   }
 
   // Tình cảm / yêu thích → love
   if (_matchesAny(lower, [
-    'yeu', 'yêu', 'thich', 'thích', 'cam on', 'cảm ơn', 'cam on ban',
-    'cảm ơn bạn', 'yeu cau', 'yêu cầu', 'tu van', 'tư vấn',
-    'tam su', 'tâm sự', 'rat tot', 'rất tốt',
+    'yeu',
+    'yêu',
+    'thich',
+    'thích',
+    'cam on',
+    'cảm ơn',
+    'cam on ban',
+    'cảm ơn bạn',
+    'yeu cau',
+    'yêu cầu',
+    'tu van',
+    'tư vấn',
+    'tam su',
+    'tâm sự',
+    'rat tot',
+    'rất tốt',
   ])) {
     return ChatbotEmotion.love;
   }
 
   // Vui / tích cực → happy
   if (_matchesAny(lower, [
-    'vuive', 'vui vẻ', 'tuoi cuoi', 'tươi cười', 'cuoi', 'cười',
-    'tot', 'tốt', 'thanh cong', 'thành công', 'chuc mung', 'chúc mừng',
-    'hay qua', 'hay quá', 'tuyet voi', 'tuyệt vời', 'rat vui', 'rất vui',
+    'vuive',
+    'vui vẻ',
+    'tuoi cuoi',
+    'tươi cười',
+    'cuoi',
+    'cười',
+    'tot',
+    'tốt',
+    'thanh cong',
+    'thành công',
+    'chuc mung',
+    'chúc mừng',
+    'hay qua',
+    'hay quá',
+    'tuyet voi',
+    'tuyệt vời',
+    'rat vui',
+    'rất vui',
   ])) {
     return ChatbotEmotion.happy;
   }
 
   // Đồng ý / chấp nhận → agree
   if (_matchesAny(lower, [
-    'dong y', 'đồng ý', 'chap nhan', 'chấp nhận', 'duoc', 'được',
-    'ok', 'okay', 'o roi', 'ơ rồi', 'xac nhan', 'xác nhận',
-    'roi nhe', 'rồi nhé', 'xong roi', 'xong rồi',
+    'dong y',
+    'đồng ý',
+    'chap nhan',
+    'chấp nhận',
+    'duoc',
+    'được',
+    'ok',
+    'okay',
+    'o roi',
+    'ơ rồi',
+    'xac nhan',
+    'xác nhận',
+    'roi nhe',
+    'rồi nhé',
+    'xong roi',
+    'xong rồi',
   ])) {
     return ChatbotEmotion.agree;
   }
 
   // Nhẹ nhàng / bình thường → smile
   if (_matchesAny(lower, [
-    'chao', 'chào', 'xin chao', 'xin chào', 'hi', 'hello', 'alo',
-    'gui', 'gửi', 'tam', 'tạm',
+    'chao',
+    'chào',
+    'xin chao',
+    'xin chào',
+    'hi',
+    'hello',
+    'alo',
+    'gui',
+    'gửi',
+    'tam',
+    'tạm',
   ])) {
     return ChatbotEmotion.smile;
   }

@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import '../../../../common/app_theme/index.dart';
 import '../../../../common/widgets/form/index.dart';
 import '../../data/utils/chatbot_emotion.dart';
+
 /// Widget hiển thị một tin nhắn trong chat.
 ///
 /// - User bubble: container cam với viền phải, co theo nội dung (max 78% width).
@@ -51,10 +52,7 @@ class ChatBubble extends StatelessWidget {
                 color: AppColors.orangeA500.withValues(alpha: 0.08),
                 borderRadius: const BorderRadius.all(Radius.circular(14)),
                 border: Border(
-                  right: BorderSide(
-                    color: AppColors.orangeA500,
-                    width: 3,
-                  ),
+                  right: BorderSide(color: AppColors.orangeA500, width: 3),
                 ),
               ),
               alignment: Alignment.centerRight,
@@ -101,7 +99,10 @@ class ChatBubble extends StatelessWidget {
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    _BotAvatar(emotion: activeEmotion, accent: AppColors.blueA500),
+                    _BotAvatar(
+                      emotion: activeEmotion,
+                      accent: AppColors.blueA500,
+                    ),
                     const SizedBox(width: 8),
                     Text(
                       'Rio',
@@ -147,18 +148,13 @@ class _MessageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment:
-          textColor == AppColors.enableText
-              ? CrossAxisAlignment.start
-              : CrossAxisAlignment.end,
+      crossAxisAlignment: textColor == AppColors.enableText
+          ? CrossAxisAlignment.start
+          : CrossAxisAlignment.end,
       children: [
         Text(
           content,
-          style: TextStyle(
-            fontSize: 14,
-            color: textColor,
-            height: 1.4,
-          ),
+          style: TextStyle(fontSize: 14, color: textColor, height: 1.4),
         ),
         if (timestamp != null) ...[
           const SizedBox(height: 6),

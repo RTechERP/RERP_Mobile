@@ -8,10 +8,7 @@ import 'bot_emotion_theme.dart';
 /// Nhận [emotion] để giữ phong cách bubble nhất quán với emotion Rio sẽ dùng
 /// sau khi trả lời xong (mặc định [ChatbotEmotion.questioning]).
 class TypingIndicator extends StatefulWidget {
-  const TypingIndicator({
-    super.key,
-    this.emotion = ChatbotEmotion.questioning,
-  });
+  const TypingIndicator({super.key, this.emotion = ChatbotEmotion.questioning});
 
   final ChatbotEmotion emotion;
 
@@ -102,8 +99,11 @@ class _TypingIndicatorState extends State<TypingIndicator>
                     children: List.generate(3, (index) {
                       final delay = index * 0.2;
                       final value = (_controller.value - delay) % 1.0;
-                      final opacity = (value < 0.5 ? value * 2 : (1 - value) * 2)
-                          .clamp(0.3, 1.0);
+                      final opacity =
+                          (value < 0.5 ? value * 2 : (1 - value) * 2).clamp(
+                            0.3,
+                            1.0,
+                          );
                       return Container(
                         margin: const EdgeInsets.symmetric(horizontal: 2),
                         width: 8,

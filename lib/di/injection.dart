@@ -314,19 +314,19 @@ void configureDependencies() {
   );
 
   getIt.registerLazySingleton<SummaryWfhService>(
-        () => SummaryWfhService(getIt<Dio>()),
+    () => SummaryWfhService(getIt<Dio>()),
   );
 
   getIt.registerLazySingleton<SummaryMissedService>(
-        () => SummaryMissedService(getIt<Dio>()),
+    () => SummaryMissedService(getIt<Dio>()),
   );
 
   getIt.registerLazySingleton<SummaryOvernightService>(
-        () => SummaryOvernightService(getIt<Dio>()),
+    () => SummaryOvernightService(getIt<Dio>()),
   );
 
   getIt.registerLazySingleton<SummaryOvertimeService>(
-        () => SummaryOvertimeService(getIt<Dio>()),
+    () => SummaryOvertimeService(getIt<Dio>()),
   );
 
   getIt.registerLazySingleton<TestTableService>(
@@ -334,7 +334,9 @@ void configureDependencies() {
   );
 
   // Chatbot - Rio Chat
-  getIt.registerLazySingleton<RioChatService>(RioChatService.new);
+  getIt.registerLazySingleton<RioChatService>(
+    () => RioChatService(getIt<Dio>()),
+  );
 
   /// ===== REPOSITORY =====
   getIt.registerLazySingleton<AuthRepo>(
@@ -476,7 +478,7 @@ void configureDependencies() {
   );
 
   getIt.registerLazySingleton<TestTableRepo>(
-      () => TestTableRepoImpl(getIt<TestTableService>()),
+    () => TestTableRepoImpl(getIt<TestTableService>()),
   );
 
   getIt.registerLazySingleton<RioChatRepo>(
@@ -700,7 +702,8 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<SaleGdnBloc>(
-    () => SaleGdnBloc(getIt<SaleGdnRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
+    () =>
+        SaleGdnBloc(getIt<SaleGdnRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
   );
 
   getIt.registerFactory<MySignatureBloc>(
@@ -724,7 +727,7 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<SummaryWfhBloc>(
-        () => SummaryWfhBloc(
+    () => SummaryWfhBloc(
       getIt<SummaryWfhRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
@@ -732,7 +735,7 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<SummaryMissedBloc>(
-        () => SummaryMissedBloc(
+    () => SummaryMissedBloc(
       getIt<SummaryMissedRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
@@ -740,7 +743,7 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<SummaryOvernightBloc>(
-        () => SummaryOvernightBloc(
+    () => SummaryOvernightBloc(
       getIt<SummaryOvernightRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
@@ -748,7 +751,7 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<SummaryOvertimeBloc>(
-        () => SummaryOvertimeBloc(
+    () => SummaryOvertimeBloc(
       getIt<SummaryOvertimeRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
@@ -756,16 +759,18 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<TestTableBloc>(
-        () => TestTableBloc(
+    () => TestTableBloc(
       getIt<LogUtils>(),
-      getIt<TestTableRepo>(),getIt<AuthRepo>(),
+      getIt<TestTableRepo>(),
+      getIt<AuthRepo>(),
     ),
   );
 
   getIt.registerFactory<RioChatBloc>(
     () => RioChatBloc(
       getIt<RioChatRepo>(),
-      getIt<LogUtils>(),getIt<LocalStorage>(),
+      getIt<LogUtils>(),
+      getIt<LocalStorage>(),
     ),
   );
 }

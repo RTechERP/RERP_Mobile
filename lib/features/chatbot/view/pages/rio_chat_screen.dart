@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../../base/bloc/index.dart';
-import '../../../../base/widgets/base_scaffold.dart';
 import '../../../../common/app_theme/index.dart';
 import '../../../../common/constants/app_image.dart';
 import '../../../../common/utils/dialog/index.dart';
 import '../../../../base/widgets/base_widget.dart';
 import '../bloc/rio_chat_bloc.dart';
 import '../widgets/chat_bubble.dart';
+import '../widgets/chat_history_drawer.dart';
 import '../../data/utils/chatbot_emotion.dart';
 
 /// Màn hình Rio Chat.
@@ -37,7 +36,8 @@ class _RioChatScreenState
   @override
   void initState() {
     super.initState();
-    bloc.add(const InitChat());
+    bloc.add(const RioChatEvent.init());
+    bloc.add(const RioChatEvent.loadHistory());
   }
 
   @override
@@ -70,7 +70,7 @@ class _RioChatScreenState
     _sending = true;
     _messageController.clear();
     _focusNode.unfocus();
-    bloc.add(SendMessage(message));
+    bloc.add(RioChatEvent.sendMessage(message: message));
   }
 
   @override
@@ -107,14 +107,15 @@ class _RioChatScreenState
     }
 
     // Hiện lỗi
-    if (state.error != null) {
-      DialogService.showToastFailed(context: context, mess: state.error!);
+    if (state.message != null) {
+      DialogService.showToastFailed(context: context, mess: state.message!);
     }
   }
 
   @override
   Widget renderUI(BuildContext context) {
-    return BaseScaffold(
+    return Scaffold(
+      drawer: const ChatHistoryDrawer(),
       appBar: AppBar(
         elevation: 0,
         scrolledUnderElevation: 0,
@@ -122,7 +123,7 @@ class _RioChatScreenState
         surfaceTintColor: Colors.white,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () => context.pop(),
+          onPressed: () => Navigator.of(context).pop(),
         ),
         title: Row(
           children: [
@@ -160,6 +161,13 @@ class _RioChatScreenState
               tooltip: 'Xóa lịch sử chat',
             );
           }),
+          Builder(
+            builder: (innerContext) => IconButton(
+              icon: const Icon(Icons.history),
+              tooltip: 'Lịch sử chat',
+              onPressed: () => Scaffold.of(innerContext).openDrawer(),
+            ),
+          ),
         ],
       ),
       body: Column(
@@ -363,7 +371,7 @@ class _RioChatScreenState
           TextButton(
             onPressed: () {
               Navigator.pop(ctx);
-              bloc.add(const ClearChat());
+              bloc.add(const RioChatEvent.clear());
             },
             style: TextButton.styleFrom(foregroundColor: AppColors.redA500),
             child: const Text('Xóa'),

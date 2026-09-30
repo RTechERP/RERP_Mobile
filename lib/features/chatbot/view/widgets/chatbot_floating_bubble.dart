@@ -38,10 +38,11 @@ class _ChatbotFloatingBubbleState extends State<ChatbotFloatingBubble> {
     setState(() {
       // Kéo phải → dx tăng (khoảng cách từ right tăng) → bubble dịch trái.
       _position = Offset(
-        (_position.dx - details.delta.dx)
-            .clamp(0.0, size.width - bubbleSize),
-        (_position.dy - details.delta.dy)
-            .clamp(0.0, size.height - bubbleSize - _bottomSafeOffset),
+        (_position.dx - details.delta.dx).clamp(0.0, size.width - bubbleSize),
+        (_position.dy - details.delta.dy).clamp(
+          0.0,
+          size.height - bubbleSize - _bottomSafeOffset,
+        ),
       );
     });
   }
@@ -61,10 +62,7 @@ class _ChatbotFloatingBubbleState extends State<ChatbotFloatingBubble> {
       _position = Offset(_edgeMargin, _position.dy);
     } else {
       // Ngược lại → snap sát trái (dx = screenWidth - bubble - margin).
-      _position = Offset(
-        screenWidth - bubbleSize - _edgeMargin,
-        _position.dy,
-      );
+      _position = Offset(screenWidth - bubbleSize - _edgeMargin, _position.dy);
     }
   }
 
