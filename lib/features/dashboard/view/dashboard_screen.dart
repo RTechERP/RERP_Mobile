@@ -41,11 +41,20 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   /// Check the celebration API once after entering the dashboard.
-  /// Skips silently when the user has no birthday/seniority today.
+  /// Skips silently when the user has no birthday/seniority today or
+  /// when the API's employeeID doesn't match the logged-in user.
   Future<void> _maybeShowCelebration() async {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (!mounted) return;
-      await CelebrationHelper.tryShowPopup(context);
+      // Pull the current user from AuthBloc — celebration is only
+      // shown for the employee that's actually signed in.
+      final authBloc = context.read<AuthBloc>();
+      final user = authBloc.state.user;
+      if (user == null) return;
+      await CelebrationHelper.tryShowPopup(
+        context,
+        currentUserId: user.employeeId,
+      );
     });
   }
 

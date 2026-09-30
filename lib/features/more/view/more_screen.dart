@@ -168,7 +168,7 @@ class _MoreScreenState extends State<MoreScreen> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
                 child: _TestCelebrationButton(
-                  onShowPopup: () => CelebrationHelper.tryShowPopup(context),
+                  onShowPopup: () => CelebrationHelper.tryShowPopup(context, currentUserId: user!.employeeId),
                   onShowFakeBirthday: () => _showFakeCelebration(
                     context,
                     isBirthday: true,

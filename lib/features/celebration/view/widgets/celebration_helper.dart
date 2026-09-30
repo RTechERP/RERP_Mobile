@@ -24,19 +24,37 @@ class CelebrationHelper {
     _shownKey = null;
   }
 
-  /// Fetch celebration info. Returns the item when the user has either
-  /// birthday or seniority, otherwise `null`.
-  static Future<CelebrationItem?> fetchIfCelebration() async {
+  /// Fetch celebration info for [currentUserId]. Returns the item when
+  /// the API's `EmployeeID` matches the logged-in user AND either
+  /// `IsBirthday` or `IsSeniority` is true. Returns `null` otherwise —
+  /// including when the API returns a celebration flag for someone
+  /// else (different employee).
+  static Future<CelebrationItem?> fetchIfCelebration(int currentUserId) async {
     try {
+      debugPrint('[CelebrationHelper] resolving CelebrationRepo from getIt');
       final repo = getIt<CelebrationRepo>();
+      debugPrint('[CelebrationHelper] calling checkBirthdaySeniority API');
       final result = await repo.checkBirthdaySeniority();
-      return result.fold((_) => null, (item) {
+      return result.fold((_) {
+        debugPrint('[CelebrationHelper] API returned error');
+        return null;
+      }, (item) {
+        debugPrint('[CelebrationHelper] API item: employeeID=${item.employeeID} '
+            'isBirthday=${item.isBirthday} isSeniority=${item.isSeniority}');
+        // Defensive: API is keyed on the session user, but if the
+        // backend ever drifts (cache, impersonation, etc.) we still
+        // refuse to show the popup for a different employee.
+        if ((item.employeeID ?? -1) != currentUserId) {
+          debugPrint('[CelebrationHelper] employeeID mismatch (api=${item.employeeID} vs current=$currentUserId), skip');
+          return null;
+        }
         final isBirthday = item.isBirthday ?? false;
         final isSeniority = item.isSeniority ?? false;
         if (!isBirthday && !isSeniority) return null;
         return item;
       });
-    } catch (_) {
+    } catch (e, st) {
+      debugPrint('[CelebrationHelper] fetchIfCelebration EXCEPTION: $e\n$st');
       return null;
     }
   }
@@ -45,22 +63,34 @@ class CelebrationHelper {
   ///
   /// - Skips when [context] is not mounted.
   /// - Skips when the API returns no birthday/seniority flag.
+  /// - Skips when the API's `EmployeeID` doesn't match [currentUserId].
   /// - Skips when a popup was already shown in the current session
   ///   for the same employee + flag combination.
-  static Future<void> tryShowPopup(BuildContext context) async {
-    if (!context.mounted) return;
+  static Future<void> tryShowPopup(
+    BuildContext context, {
+    required int currentUserId,
+  }) async {
+    debugPrint('[CelebrationHelper] tryShowPopup called, currentUserId=$currentUserId');
+    if (!context.mounted) {
+      debugPrint('[CelebrationHelper] context not mounted, skip');
+      return;
+    }
 
-    final item = await fetchIfCelebration();
+    final item = await fetchIfCelebration(currentUserId);
+    debugPrint('[CelebrationHelper] fetchIfCelebration returned ${item?.employeeID} '
+        'isBirthday=${item?.isBirthday} isSeniority=${item?.isSeniority}');
     if (item == null) return;
 
     final key =
         '${item.employeeID ?? 0}-${item.isBirthday ?? false}-${item.isSeniority ?? false}';
+    debugPrint('[CelebrationHelper] key=$key hasShown=$_hasShownInSession');
     if (_hasShownInSession && _shownKey == key) return;
     _hasShownInSession = true;
     _shownKey = key;
 
     if (!context.mounted) return;
 
+    debugPrint('[CelebrationHelper] showing popup dialog');
     await showGeneralDialog<void>(
       context: context,
       barrierDismissible: true,
