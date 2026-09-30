@@ -85,6 +85,9 @@ class AppImages {
 
   static const birthday = 'assets/images/celebrations/birthday.png';
   static const birthday_music = 'images/celebrations/birthday.mp3';
-  static const seniority = 'assets/images/celebrations/seniority.png';
-  static const seniority_music = '';
+  static const seniority_5yrs = 'assets/images/celebrations/seniority_5yrs.png';
+  static const seniority_5yrs_music = 'images/celebrations/seniority_5yrs.mp3';
+  static const seniority_10yrs =
+      'assets/images/celebrations/seniority_10yrs.png';
+  static const seniority_10yrs_music = 'images/celebrations/seniority_10yrs.mp3';
 }
