@@ -255,4 +255,7 @@ class RouteNames {
   static const summaryWorkFingerprint = '/summary-work/fingerprint';
   static const summaryWorkOvertime = '/summary-work/overtime';
   static const summaryWorkOvernight = '/summary-work/overnight';
+
+  // Celebration (Birthday / Seniority popup)
+  static const celebration = '/celebration';
 }

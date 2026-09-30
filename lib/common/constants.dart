@@ -508,4 +508,7 @@ class ApiEndPoint {
   ///          "approverID", "type" (1 = gia hạn, 2 = bàn giao) }`.
   static const String extendHandoverRegistration =
       '/ESLRegistration/extend-handover';
+
+  // Celebration (Birthday/Seniority)
+  static const String checkBirthdaySeniority = '/home/check-birthday-seniority';
 }

@@ -207,6 +207,9 @@ import '../features/workplace/app/week_plan/view/pages/week_plan_menu_screen.dar
 import '../features/workplace/app/week_plan/view/pages/week_plan_my_task_screen.dart';
 import '../features/workplace/app/week_plan/view/pages/week_plan_related_screen.dart';
 import '../features/workplace/app/week_plan/view/pages/week_plan_timeline_screen.dart';
+import '../features/celebration/view/pages/celebration_popup_screen.dart';
+import '../features/celebration/view/bloc/celebration_bloc.dart';
+import '../features/celebration/data/repository/celebration_repo.dart';
 import '../features/workplace/view/bloc/workspace_bloc.dart';
 
 class AppRouter {
@@ -1656,6 +1659,16 @@ class AppRouter {
         builder: (context, state) => BlocProvider.value(
           value: getIt<SummaryOvertimeBloc>(),
           child: const SummaryOvertimeScreen(),
+        ),
+      ),
+
+      // Celebration popup (birthday/seniority)
+      GoRoute(
+        path: RouteNames.celebration,
+        builder: (context, state) => BlocProvider(
+          create: (_) => CelebrationBloc(getIt<CelebrationRepo>())
+            ..add(const CelebrationEvent.checkBirthdaySeniority()),
+          child: const CelebrationPopupScreen(),
         ),
       ),
     ],

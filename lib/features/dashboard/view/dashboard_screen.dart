@@ -12,6 +12,7 @@ import '../../../common/utils/bottom_bar.dart';
 import '../../../common/utils/dialog/dialog_service.dart';
 import '../../../routes/route_names.dart';
 import '../../auth/view/bloc/auth_bloc.dart';
+import '../../celebration/view/widgets/celebration_helper.dart';
 import '../../contact/view/pages/contact_screen.dart';
 import '../../more/view/more_screen.dart';
 import '../../workplace/view/workspace_screen.dart';
@@ -36,6 +37,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
   void initState() {
     super.initState();
     _tabController = PersistentTabController(initialIndex: 0);
+    _maybeShowCelebration();
+  }
+
+  /// Check the celebration API once after entering the dashboard.
+  /// Skips silently when the user has no birthday/seniority today.
+  Future<void> _maybeShowCelebration() async {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (!mounted) return;
+      await CelebrationHelper.tryShowPopup(context);
+    });
   }
 
   /// Xử lý nút back trên Android.

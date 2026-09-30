@@ -82,4 +82,9 @@ class AppImages {
 
   static const signature = 'assets/images/icons/apps/week_plan/90.png';
   static const test_table = 'assets/images/icons/apps/91.png';
+
+  static const birthday = 'assets/images/celebrations/birthday.png';
+  static const birthday_music = 'images/celebrations/birthday.mp3';
+  static const seniority = 'assets/images/celebrations/seniority.png';
+  static const seniority_music = '';
 }
