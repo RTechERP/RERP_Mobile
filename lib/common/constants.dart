@@ -247,6 +247,12 @@ class ApiEndPoint {
 
   static const String getWorkTripById = '/EmployeeBussiness/get-by-id';
 
+  /// Đặt phòng nhà nghỉ — danh sách phiếu đặt.
+  /// API: GET /AccommodationBooking/data-accommodation-booking
+  /// Query: dateStart, dateEnd, projectId, employeeId, filterText.
+  static const String getBookingGuestHouse =
+      '/AccommodationBooking/data-accommodation-booking';
+
   /// Lấy phiếu đặt xe theo ngày cho work_trip.
   static const String getVehicleBookingsForBussiness =
       '/EmployeeBussiness/get-vehicle-bookings-for-bussiness';

@@ -122,6 +122,16 @@ class AppItemRegistry {
     ),
 
     AppItemModel(
+      id: 'reg_general:booking_guest_house',
+      name: 'reg_general.booking_guest_house'.tr(),
+      iconCodePoint: Icons.hotel_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'reg_general',
+      route: RouteNames.bookingGuestHouse,
+      imageUrl: AppImages.reg_regneral_booking,
+    ),
+
+    AppItemModel(
       id: 'reg_general:booking_car',
       name: 'reg_general.booking_car'.tr(),
       iconCodePoint: Icons.directions_car_outlined.codePoint,

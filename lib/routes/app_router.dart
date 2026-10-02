@@ -27,6 +27,8 @@ import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_ve
 import 'package:rtc_erp/features/workplace/app/favorites/view/pages/favorites_adding_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/view/bloc/booking_vehicle_bloc.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_guest_house/view/bloc/booking_guest_house_bloc.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_guest_house/view/pages/booking_guest_house_page.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/meeting_room/view/pages/meeting_room_add_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/reg_general_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/work_category/view/pages/work_category_screen.dart';
@@ -875,6 +877,22 @@ class AppRouter {
                 ),
               );
             },
+          ),
+        ],
+      ),
+
+      //---(BookingGuestHouse)---//
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(
+            value: getIt<BookingGuestHouseBloc>(),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.bookingGuestHouse,
+            builder: (context, state) => const BookingGuestHousePage(),
           ),
         ],
       ),

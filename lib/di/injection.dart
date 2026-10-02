@@ -31,6 +31,10 @@ import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/da
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repo_impl.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/bloc/booking_vehicle_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/booking_guest_house/data/datasource/service/booking_guest_house_service.dart';
+import '../features/workplace/app/reg_general/view/pages/booking_guest_house/data/repository/booking_guest_house_repo.dart';
+import '../features/workplace/app/reg_general/view/pages/booking_guest_house/data/repository/booking_guest_house_repo_impl.dart';
+import '../features/workplace/app/reg_general/view/pages/booking_guest_house/view/bloc/booking_guest_house_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/contract_registration/data/datasource/service/contract_registration_service.dart';
 import '../features/workplace/app/reg_general/view/pages/contract_registration/data/repository/contract_registration_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/contract_registration/data/repository/contract_registration_repo_impl.dart';
@@ -219,6 +223,10 @@ void configureDependencies() {
     () => BookingVehicleService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<BookingGuestHouseService>(
+    () => BookingGuestHouseService(getIt<Dio>()),
+  );
+
   getIt.registerLazySingleton<LunchService>(() => LunchService(getIt<Dio>()));
 
   getIt.registerLazySingleton<InOutService>(() => InOutService(getIt<Dio>()));
@@ -347,6 +355,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<BookingVehicleRepo>(
     () => BookingVehicleRepoImpl(getIt<BookingVehicleService>()),
+  );
+
+  getIt.registerLazySingleton<BookingGuestHouseRepo>(
+    () => BookingGuestHouseRepoImpl(getIt<BookingGuestHouseService>()),
   );
 
   getIt.registerLazySingleton<LunchRepo>(
@@ -511,6 +523,13 @@ void configureDependencies() {
     () => BookingVehicleBloc(
       getIt<BookingVehicleRepo>(),
       getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<BookingGuestHouseBloc>(
+    () => BookingGuestHouseBloc(
+      getIt<BookingGuestHouseRepo>(),
       getIt<LogUtils>(),
     ),
   );

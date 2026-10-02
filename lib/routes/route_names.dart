@@ -162,6 +162,9 @@ class RouteNames {
 
   static const bookingVehicleEdit = '/reg_general/booking_vehicle/Edit';
 
+  /// Đặt phòng nhà nghỉ — danh sách phiếu đặt.
+  static const bookingGuestHouse = '/reg_general/booking_guest_house';
+
   static const workCategory = '/reg_general/work_category';
 
   static const workCategoryAdd = '/reg_general/work_category/add';
