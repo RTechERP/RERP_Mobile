@@ -28,4 +28,10 @@ abstract class BookingGuestHouseRepo {
   Future<Either<BaseError, List<EmployeeFilterItem>>> getEmployees({
     String keyword,
   });
+
+  /// Lấy danh sách tỉnh/thành phục vụ lọc lưu trú.
+  /// [employeeId] - ID nhân viên (mặc định `0` = tất cả).
+  Future<Either<BaseError, List<ProvinceFilterItem>>> getProvinces({
+    int employeeId,
+  });
 }

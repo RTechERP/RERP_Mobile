@@ -1385,8 +1385,16 @@ mixin _$EmployeeFilterItem {
   int? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'UserID')
   int? get userId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Code')
+  String? get code => throw _privateConstructorUsedError;
   @JsonKey(name: 'FullName')
   String? get fullName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DepartmentID')
+  int? get departmentId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DepartmentName')
+  String? get departmentName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'SDTCaNhan')
+  String? get sdtCaNhan => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1403,7 +1411,11 @@ abstract class $EmployeeFilterItemCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'ID') int? id,
       @JsonKey(name: 'UserID') int? userId,
-      @JsonKey(name: 'FullName') String? fullName});
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'DepartmentID') int? departmentId,
+      @JsonKey(name: 'DepartmentName') String? departmentName,
+      @JsonKey(name: 'SDTCaNhan') String? sdtCaNhan});
 }
 
 /// @nodoc
@@ -1421,7 +1433,11 @@ class _$EmployeeFilterItemCopyWithImpl<$Res, $Val extends EmployeeFilterItem>
   $Res call({
     Object? id = freezed,
     Object? userId = freezed,
+    Object? code = freezed,
     Object? fullName = freezed,
+    Object? departmentId = freezed,
+    Object? departmentName = freezed,
+    Object? sdtCaNhan = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -1432,9 +1448,25 @@ class _$EmployeeFilterItemCopyWithImpl<$Res, $Val extends EmployeeFilterItem>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
       fullName: freezed == fullName
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departmentId: freezed == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentName: freezed == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sdtCaNhan: freezed == sdtCaNhan
+          ? _value.sdtCaNhan
+          : sdtCaNhan // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -1451,7 +1483,11 @@ abstract class _$$EmployeeFilterItemImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'ID') int? id,
       @JsonKey(name: 'UserID') int? userId,
-      @JsonKey(name: 'FullName') String? fullName});
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'DepartmentID') int? departmentId,
+      @JsonKey(name: 'DepartmentName') String? departmentName,
+      @JsonKey(name: 'SDTCaNhan') String? sdtCaNhan});
 }
 
 /// @nodoc
@@ -1467,7 +1503,11 @@ class __$$EmployeeFilterItemImplCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? userId = freezed,
+    Object? code = freezed,
     Object? fullName = freezed,
+    Object? departmentId = freezed,
+    Object? departmentName = freezed,
+    Object? sdtCaNhan = freezed,
   }) {
     return _then(_$EmployeeFilterItemImpl(
       id: freezed == id
@@ -1478,9 +1518,25 @@ class __$$EmployeeFilterItemImplCopyWithImpl<$Res>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
       fullName: freezed == fullName
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departmentId: freezed == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentName: freezed == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sdtCaNhan: freezed == sdtCaNhan
+          ? _value.sdtCaNhan
+          : sdtCaNhan // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -1492,7 +1548,11 @@ class _$EmployeeFilterItemImpl implements _EmployeeFilterItem {
   const _$EmployeeFilterItemImpl(
       {@JsonKey(name: 'ID') this.id,
       @JsonKey(name: 'UserID') this.userId,
-      @JsonKey(name: 'FullName') this.fullName});
+      @JsonKey(name: 'Code') this.code,
+      @JsonKey(name: 'FullName') this.fullName,
+      @JsonKey(name: 'DepartmentID') this.departmentId,
+      @JsonKey(name: 'DepartmentName') this.departmentName,
+      @JsonKey(name: 'SDTCaNhan') this.sdtCaNhan});
 
   factory _$EmployeeFilterItemImpl.fromJson(Map<String, dynamic> json) =>
       _$$EmployeeFilterItemImplFromJson(json);
@@ -1504,12 +1564,24 @@ class _$EmployeeFilterItemImpl implements _EmployeeFilterItem {
   @JsonKey(name: 'UserID')
   final int? userId;
   @override
+  @JsonKey(name: 'Code')
+  final String? code;
+  @override
   @JsonKey(name: 'FullName')
   final String? fullName;
+  @override
+  @JsonKey(name: 'DepartmentID')
+  final int? departmentId;
+  @override
+  @JsonKey(name: 'DepartmentName')
+  final String? departmentName;
+  @override
+  @JsonKey(name: 'SDTCaNhan')
+  final String? sdtCaNhan;
 
   @override
   String toString() {
-    return 'EmployeeFilterItem(id: $id, userId: $userId, fullName: $fullName)';
+    return 'EmployeeFilterItem(id: $id, userId: $userId, code: $code, fullName: $fullName, departmentId: $departmentId, departmentName: $departmentName, sdtCaNhan: $sdtCaNhan)';
   }
 
   @override
@@ -1519,13 +1591,21 @@ class _$EmployeeFilterItemImpl implements _EmployeeFilterItem {
             other is _$EmployeeFilterItemImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.code, code) || other.code == code) &&
             (identical(other.fullName, fullName) ||
-                other.fullName == fullName));
+                other.fullName == fullName) &&
+            (identical(other.departmentId, departmentId) ||
+                other.departmentId == departmentId) &&
+            (identical(other.departmentName, departmentName) ||
+                other.departmentName == departmentName) &&
+            (identical(other.sdtCaNhan, sdtCaNhan) ||
+                other.sdtCaNhan == sdtCaNhan));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, userId, fullName);
+  int get hashCode => Object.hash(runtimeType, id, userId, code, fullName,
+      departmentId, departmentName, sdtCaNhan);
 
   @JsonKey(ignore: true)
   @override
@@ -1546,7 +1626,11 @@ abstract class _EmployeeFilterItem implements EmployeeFilterItem {
   const factory _EmployeeFilterItem(
           {@JsonKey(name: 'ID') final int? id,
           @JsonKey(name: 'UserID') final int? userId,
-          @JsonKey(name: 'FullName') final String? fullName}) =
+          @JsonKey(name: 'Code') final String? code,
+          @JsonKey(name: 'FullName') final String? fullName,
+          @JsonKey(name: 'DepartmentID') final int? departmentId,
+          @JsonKey(name: 'DepartmentName') final String? departmentName,
+          @JsonKey(name: 'SDTCaNhan') final String? sdtCaNhan}) =
       _$EmployeeFilterItemImpl;
 
   factory _EmployeeFilterItem.fromJson(Map<String, dynamic> json) =
@@ -1559,10 +1643,191 @@ abstract class _EmployeeFilterItem implements EmployeeFilterItem {
   @JsonKey(name: 'UserID')
   int? get userId;
   @override
+  @JsonKey(name: 'Code')
+  String? get code;
+  @override
   @JsonKey(name: 'FullName')
   String? get fullName;
   @override
+  @JsonKey(name: 'DepartmentID')
+  int? get departmentId;
+  @override
+  @JsonKey(name: 'DepartmentName')
+  String? get departmentName;
+  @override
+  @JsonKey(name: 'SDTCaNhan')
+  String? get sdtCaNhan;
+  @override
   @JsonKey(ignore: true)
   _$$EmployeeFilterItemImplCopyWith<_$EmployeeFilterItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ProvinceFilterItem _$ProvinceFilterItemFromJson(Map<String, dynamic> json) {
+  return _ProvinceFilterItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ProvinceFilterItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProvinceName')
+  String? get provinceName => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ProvinceFilterItemCopyWith<ProvinceFilterItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProvinceFilterItemCopyWith<$Res> {
+  factory $ProvinceFilterItemCopyWith(
+          ProvinceFilterItem value, $Res Function(ProvinceFilterItem) then) =
+      _$ProvinceFilterItemCopyWithImpl<$Res, ProvinceFilterItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'ProvinceName') String? provinceName});
+}
+
+/// @nodoc
+class _$ProvinceFilterItemCopyWithImpl<$Res, $Val extends ProvinceFilterItem>
+    implements $ProvinceFilterItemCopyWith<$Res> {
+  _$ProvinceFilterItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? provinceName = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      provinceName: freezed == provinceName
+          ? _value.provinceName
+          : provinceName // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ProvinceFilterItemImplCopyWith<$Res>
+    implements $ProvinceFilterItemCopyWith<$Res> {
+  factory _$$ProvinceFilterItemImplCopyWith(_$ProvinceFilterItemImpl value,
+          $Res Function(_$ProvinceFilterItemImpl) then) =
+      __$$ProvinceFilterItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'ProvinceName') String? provinceName});
+}
+
+/// @nodoc
+class __$$ProvinceFilterItemImplCopyWithImpl<$Res>
+    extends _$ProvinceFilterItemCopyWithImpl<$Res, _$ProvinceFilterItemImpl>
+    implements _$$ProvinceFilterItemImplCopyWith<$Res> {
+  __$$ProvinceFilterItemImplCopyWithImpl(_$ProvinceFilterItemImpl _value,
+      $Res Function(_$ProvinceFilterItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? provinceName = freezed,
+  }) {
+    return _then(_$ProvinceFilterItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      provinceName: freezed == provinceName
+          ? _value.provinceName
+          : provinceName // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ProvinceFilterItemImpl implements _ProvinceFilterItem {
+  const _$ProvinceFilterItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'ProvinceName') this.provinceName});
+
+  factory _$ProvinceFilterItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProvinceFilterItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'ProvinceName')
+  final String? provinceName;
+
+  @override
+  String toString() {
+    return 'ProvinceFilterItem(id: $id, provinceName: $provinceName)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProvinceFilterItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.provinceName, provinceName) ||
+                other.provinceName == provinceName));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, provinceName);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProvinceFilterItemImplCopyWith<_$ProvinceFilterItemImpl> get copyWith =>
+      __$$ProvinceFilterItemImplCopyWithImpl<_$ProvinceFilterItemImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ProvinceFilterItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ProvinceFilterItem implements ProvinceFilterItem {
+  const factory _ProvinceFilterItem(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'ProvinceName') final String? provinceName}) =
+      _$ProvinceFilterItemImpl;
+
+  factory _ProvinceFilterItem.fromJson(Map<String, dynamic> json) =
+      _$ProvinceFilterItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'ProvinceName')
+  String? get provinceName;
+  @override
+  @JsonKey(ignore: true)
+  _$$ProvinceFilterItemImplCopyWith<_$ProvinceFilterItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

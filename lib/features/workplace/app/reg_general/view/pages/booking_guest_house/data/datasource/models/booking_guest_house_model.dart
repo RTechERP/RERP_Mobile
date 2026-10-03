@@ -89,16 +89,33 @@ class ProjectFilterItem with _$ProjectFilterItem {
       _$ProjectFilterItemFromJson(json);
 }
 
-/// Model nhân viên (người đăng ký) cho bộ lọc.
+/// Model nhân viên (người đăng ký) cho bộ lọc + dùng để fill thông tin người ở.
 // Tương ứng API: GET /Employee?status=0&departmentID=0&keyword=
 @freezed
 class EmployeeFilterItem with _$EmployeeFilterItem {
   const factory EmployeeFilterItem({
     @JsonKey(name: 'ID') int? id,
     @JsonKey(name: 'UserID') int? userId,
+    @JsonKey(name: 'Code') String? code,
     @JsonKey(name: 'FullName') String? fullName,
+    @JsonKey(name: 'DepartmentID') int? departmentId,
+    @JsonKey(name: 'DepartmentName') String? departmentName,
+    @JsonKey(name: 'SDTCaNhan') String? sdtCaNhan,
   }) = _EmployeeFilterItem;
 
   factory EmployeeFilterItem.fromJson(Map<String, dynamic> json) =>
       _$EmployeeFilterItemFromJson(json);
+}
+
+/// Model tỉnh/thành phụl vụ lọc lưu trú.
+// Tương ứng API: GET /vehiclebookingmanagement/get-province-departure?employeeId=0
+@freezed
+class ProvinceFilterItem with _$ProvinceFilterItem {
+  const factory ProvinceFilterItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'ProvinceName') String? provinceName,
+  }) = _ProvinceFilterItem;
+
+  factory ProvinceFilterItem.fromJson(Map<String, dynamic> json) =>
+      _$ProvinceFilterItemFromJson(json);
 }

@@ -15,6 +15,7 @@ import '../../../../../../../../../common/widgets/date_range_picker.dart';
 import '../../../../../../../../../common/helpers/index.dart';
 import '../../data/datasource/models/booking_guest_house_model.dart';
 import '../bloc/booking_guest_house_bloc.dart';
+import '../../../../../../../../../routes/route_names.dart';
 import '../widgets/booking_guest_house_card.dart';
 
 class BookingGuestHousePage extends StatefulWidget {
@@ -210,60 +211,79 @@ class _BookingGuestHousePageState
             const SizedBox(width: 4),
           ],
         ),
-        body: BlocBuilder<BookingGuestHouseBloc, BookingGuestHouseState>(
-          builder: (context, state) {
-            if (state.status == BaseStateStatus.loading) {
-              return const Center(child: CircularProgressIndicator());
-            }
+        body: Stack(
+          children: [
+            BlocBuilder<BookingGuestHouseBloc, BookingGuestHouseState>(
+              builder: (context, state) {
+                if (state.status == BaseStateStatus.loading) {
+                  return const Center(child: CircularProgressIndicator());
+                }
 
-            if (state.status == BaseStateStatus.failed) {
-              return Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Image.asset(AppImages.error, width: 320),
-                      const SizedBox(height: 12),
-                      Text(
-                        (state.message ?? '').trim().isNotEmpty
-                            ? state.message!.trim()
-                            : 'Load dữ liệu thất bại',
-                        textAlign: TextAlign.center,
+                if (state.status == BaseStateStatus.failed) {
+                  return Center(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Image.asset(AppImages.error, width: 320),
+                          const SizedBox(height: 12),
+                          Text(
+                            (state.message ?? '').trim().isNotEmpty
+                                ? state.message!.trim()
+                                : 'Load dữ liệu thất bại',
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ),
-              );
-            }
+                    ),
+                  );
+                }
 
-            return Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
-                  child: _ListHeader(
-                    total: state.bookings.length,
-                    dateStart: state.dateStart,
-                    dateEnd: state.dateEnd,
-                    isSearching: state.filterText.isNotEmpty,
-                    selectedProject: state.selectedProject,
-                    selectedEmployee: state.selectedEmployee,
-                  ),
+                return Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
+                      child: _ListHeader(
+                        total: state.bookings.length,
+                        dateStart: state.dateStart,
+                        dateEnd: state.dateEnd,
+                        isSearching: state.filterText.isNotEmpty,
+                        selectedProject: state.selectedProject,
+                        selectedEmployee: state.selectedEmployee,
+                      ),
+                    ),
+                    Expanded(
+                      child: RefreshIndicator(
+                        onRefresh: () async {
+                          bloc.add(const BookingGuestHouseEvent.refresh());
+                          await bloc.stream.firstWhere(
+                            (s) => s.status != BaseStateStatus.loading,
+                          );
+                        },
+                        child: _buildList(state),
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
+            if (!_isSearching)
+              Positioned(
+                right: 16,
+                bottom: 16 + MediaQuery.of(context).padding.bottom,
+                child: FloatingActionButton(
+                  heroTag: 'bookingGuestHouseAdd',
+                  backgroundColor: AppColors.primaryERP,
+                  foregroundColor: Colors.white,
+                  tooltip: 'Thêm phiếu đặt',
+                  onPressed: () {
+                    context.push(RouteNames.bookingGuestHouseAdd);
+                  },
+                  child: const Icon(Icons.add),
                 ),
-                Expanded(
-                  child: RefreshIndicator(
-                    onRefresh: () async {
-                      bloc.add(const BookingGuestHouseEvent.refresh());
-                      await bloc.stream.firstWhere(
-                        (s) => s.status != BaseStateStatus.loading,
-                      );
-                    },
-                    child: _buildList(state),
-                  ),
-                ),
-              ],
-            );
-          },
+              ),
+          ],
         ),
       ),
     );

@@ -51,8 +51,24 @@ class BookingGuestHouseService extends DioBaseApiService {
     );
   }
 
+  /// Lấy danh sách tỉnh/thành phục vụ lọc lưu trú.
+  /// API: GET /vehiclebookingmanagement/get-province-departure?employeeId=0
+  Future<BaseData<List<ProvinceFilterItem>>> getProvinces({
+    int employeeId = 0,
+  }) {
+    return get<BaseData<List<ProvinceFilterItem>>>(
+      ApiEndPoint.getProvinceDeparture,
+      query: {'employeeId': employeeId},
+      parser: (json) => _parseListGeneric<ProvinceFilterItem>(
+            json,
+            (e) => ProvinceFilterItem.fromJson(e as Map<String, dynamic>),
+          ),
+    );
+  }
+
   /// Lấy danh sách nhân viên cho bộ lọc người đăng ký.
   /// API: GET /Employee?status=0&departmentID=0&keyword=
+  /// Response có thể là mảng trực tiếp `[...]` hoặc envelope `BaseData`.
   Future<BaseData<List<EmployeeFilterItem>>> getEmployees({
     String keyword = '',
   }) {
@@ -63,20 +79,10 @@ class BookingGuestHouseService extends DioBaseApiService {
         'departmentID': 0,
         'keyword': keyword,
       },
-      parser: (json) => BaseData<List<EmployeeFilterItem>>.fromJson(
-        json,
-        (data) {
-          if (data is List) {
-            return data
-                .map(
-                  (e) =>
-                      EmployeeFilterItem.fromJson(e as Map<String, dynamic>),
-                )
-                .toList();
-          }
-          return <EmployeeFilterItem>[];
-        },
-      ),
+      parser: (json) => _parseListGeneric<EmployeeFilterItem>(
+            json,
+            (e) => EmployeeFilterItem.fromJson(e as Map<String, dynamic>),
+          ),
     );
   }
 
@@ -108,6 +114,28 @@ class BookingGuestHouseService extends DioBaseApiService {
               .toList();
         }
         return <BookingGuestHouseItem>[];
+      },
+    );
+  }
+
+  /// Generic parse cho các list đơn giản (Province, Employee...).
+  /// Response có thể là mảng trực tiếp `[ {...} ]` hoặc envelope chuẩn.
+  BaseData<List<T>> _parseListGeneric<T>(
+    dynamic json,
+    T Function(dynamic e) mapper,
+  ) {
+    if (json is List) {
+      return BaseData<List<T>>.fromJson(
+        {'status': 1, 'data': json},
+        (data) =>
+            (data as List).map(mapper).toList(),
+      );
+    }
+    return BaseData<List<T>>.fromJson(
+      json as Map<String, dynamic>,
+      (data) {
+        if (data is List) return data.map(mapper).toList();
+        return <T>[];
       },
     );
   }

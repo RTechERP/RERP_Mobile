@@ -1,5 +1,5 @@
 // Bloc cho màn Đặt phòng nhà nghỉ.
-// Phụ trách: gọi API lấy danh sách phiếu đặt phòng nhà nghỉ theo khoảng ngày.
+// Quản lý danh sách phiếu (theo khoảng ngày, lọc project/employee).
 
 import 'dart:ui';
 

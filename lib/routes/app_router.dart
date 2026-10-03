@@ -28,7 +28,7 @@ import 'package:rtc_erp/features/workplace/app/favorites/view/pages/favorites_ad
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/view/bloc/booking_vehicle_bloc.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_guest_house/view/bloc/booking_guest_house_bloc.dart';
-import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_guest_house/view/pages/booking_guest_house_page.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_guest_house/view/pages/booking_guest_house_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/meeting_room/view/pages/meeting_room_add_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/reg_general_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/work_category/view/pages/work_category_screen.dart';
@@ -49,6 +49,7 @@ import '../features/more/view/settings/notification/bloc/notification_bloc.dart'
 import '../features/more/view/settings/notification/page/notification_settings_screen.dart';
 import '../features/more/view/pages/avatar_viewer_screen.dart';
 import '../features/workplace/app/general_form/view/bloc/general_form_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/booking_guest_house/view/pages/booking_guest_house_add_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_add_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_edit_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_detail_screen.dart';
@@ -893,6 +894,11 @@ class AppRouter {
           GoRoute(
             path: RouteNames.bookingGuestHouse,
             builder: (context, state) => const BookingGuestHousePage(),
+          ),
+          GoRoute(
+            path: RouteNames.bookingGuestHouseAdd,
+            builder: (context, state) =>
+                const BookingGuestHouseAddScreen(),
           ),
         ],
       ),

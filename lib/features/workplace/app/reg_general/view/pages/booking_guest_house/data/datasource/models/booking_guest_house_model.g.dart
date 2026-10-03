@@ -131,7 +131,11 @@ _$EmployeeFilterItemImpl _$$EmployeeFilterItemImplFromJson(
     _$EmployeeFilterItemImpl(
       id: (json['ID'] as num?)?.toInt(),
       userId: (json['UserID'] as num?)?.toInt(),
+      code: json['Code'] as String?,
       fullName: json['FullName'] as String?,
+      departmentId: (json['DepartmentID'] as num?)?.toInt(),
+      departmentName: json['DepartmentName'] as String?,
+      sdtCaNhan: json['SDTCaNhan'] as String?,
     );
 
 Map<String, dynamic> _$$EmployeeFilterItemImplToJson(
@@ -139,5 +143,23 @@ Map<String, dynamic> _$$EmployeeFilterItemImplToJson(
     <String, dynamic>{
       'ID': instance.id,
       'UserID': instance.userId,
+      'Code': instance.code,
       'FullName': instance.fullName,
+      'DepartmentID': instance.departmentId,
+      'DepartmentName': instance.departmentName,
+      'SDTCaNhan': instance.sdtCaNhan,
+    };
+
+_$ProvinceFilterItemImpl _$$ProvinceFilterItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ProvinceFilterItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      provinceName: json['ProvinceName'] as String?,
+    );
+
+Map<String, dynamic> _$$ProvinceFilterItemImplToJson(
+        _$ProvinceFilterItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'ProvinceName': instance.provinceName,
     };
