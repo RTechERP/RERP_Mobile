@@ -56,6 +56,7 @@ class _$RioChatStateCWProxyImpl implements _$RioChatStateCWProxy {
       this(chatHistory: chatHistory);
 
   @override
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `RioChatState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -88,9 +89,9 @@ class _$RioChatStateCWProxyImpl implements _$RioChatStateCWProxy {
           : pendingMessage as ChatMessage?,
       chatHistory:
           chatHistory == const $CopyWithPlaceholder() || chatHistory == null
-          ? _value.chatHistory
-          // ignore: cast_nullable_to_non_nullable
-          : chatHistory as List<ChatHistorySessionModel>,
+              ? _value.chatHistory
+              // ignore: cast_nullable_to_non_nullable
+              : chatHistory as List<ChatHistorySessionModel>,
     );
   }
 }

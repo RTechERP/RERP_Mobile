@@ -6,8 +6,9 @@ part 'rio_chat_model.g.dart';
 @freezed
 class RioChatResponse with _$RioChatResponse {
   const factory RioChatResponse({
-    @JsonKey(name: 'question') String? question,
-    @JsonKey(name: 'answer') String? answer,
+    @JsonKey(name: 'SessionID') int? sessionId,
+    @JsonKey(name: 'Question') String? question,
+    @JsonKey(name: 'Answer') String? answer,
   }) = _RioChatResponse;
 
   factory RioChatResponse.fromJson(Map<String, dynamic> json) =>

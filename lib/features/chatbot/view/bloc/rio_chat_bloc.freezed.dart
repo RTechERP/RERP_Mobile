@@ -12,8 +12,7 @@ part of 'rio_chat_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$RioChatEvent {
@@ -25,7 +24,8 @@ mixin _$RioChatEvent {
     required TResult Function(String message) sendMessage,
     required TResult Function() clear,
     required TResult Function() startNew,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
@@ -34,7 +34,8 @@ mixin _$RioChatEvent {
     TResult? Function(String message)? sendMessage,
     TResult? Function()? clear,
     TResult? Function()? startNew,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
@@ -44,7 +45,8 @@ mixin _$RioChatEvent {
     TResult Function()? clear,
     TResult Function()? startNew,
     required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(RioChatInit value) init,
@@ -53,7 +55,8 @@ mixin _$RioChatEvent {
     required TResult Function(RioChatSendMessage value) sendMessage,
     required TResult Function(RioChatClear value) clear,
     required TResult Function(RioChatStartNew value) startNew,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(RioChatInit value)? init,
@@ -62,7 +65,8 @@ mixin _$RioChatEvent {
     TResult? Function(RioChatSendMessage value)? sendMessage,
     TResult? Function(RioChatClear value)? clear,
     TResult? Function(RioChatStartNew value)? startNew,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(RioChatInit value)? init,
@@ -72,15 +76,15 @@ mixin _$RioChatEvent {
     TResult Function(RioChatClear value)? clear,
     TResult Function(RioChatStartNew value)? startNew,
     required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $RioChatEventCopyWith<$Res> {
   factory $RioChatEventCopyWith(
-    RioChatEvent value,
-    $Res Function(RioChatEvent) then,
-  ) = _$RioChatEventCopyWithImpl<$Res, RioChatEvent>;
+          RioChatEvent value, $Res Function(RioChatEvent) then) =
+      _$RioChatEventCopyWithImpl<$Res, RioChatEvent>;
 }
 
 /// @nodoc
@@ -97,9 +101,8 @@ class _$RioChatEventCopyWithImpl<$Res, $Val extends RioChatEvent>
 /// @nodoc
 abstract class _$$RioChatInitImplCopyWith<$Res> {
   factory _$$RioChatInitImplCopyWith(
-    _$RioChatInitImpl value,
-    $Res Function(_$RioChatInitImpl) then,
-  ) = __$$RioChatInitImplCopyWithImpl<$Res>;
+          _$RioChatInitImpl value, $Res Function(_$RioChatInitImpl) then) =
+      __$$RioChatInitImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -107,9 +110,8 @@ class __$$RioChatInitImplCopyWithImpl<$Res>
     extends _$RioChatEventCopyWithImpl<$Res, _$RioChatInitImpl>
     implements _$$RioChatInitImplCopyWith<$Res> {
   __$$RioChatInitImplCopyWithImpl(
-    _$RioChatInitImpl _value,
-    $Res Function(_$RioChatInitImpl) _then,
-  ) : super(_value, _then);
+      _$RioChatInitImpl _value, $Res Function(_$RioChatInitImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -224,20 +226,18 @@ abstract class RioChatInit implements RioChatEvent {
 
 /// @nodoc
 abstract class _$$RioChatLoadHistoryImplCopyWith<$Res> {
-  factory _$$RioChatLoadHistoryImplCopyWith(
-    _$RioChatLoadHistoryImpl value,
-    $Res Function(_$RioChatLoadHistoryImpl) then,
-  ) = __$$RioChatLoadHistoryImplCopyWithImpl<$Res>;
+  factory _$$RioChatLoadHistoryImplCopyWith(_$RioChatLoadHistoryImpl value,
+          $Res Function(_$RioChatLoadHistoryImpl) then) =
+      __$$RioChatLoadHistoryImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class __$$RioChatLoadHistoryImplCopyWithImpl<$Res>
     extends _$RioChatEventCopyWithImpl<$Res, _$RioChatLoadHistoryImpl>
     implements _$$RioChatLoadHistoryImplCopyWith<$Res> {
-  __$$RioChatLoadHistoryImplCopyWithImpl(
-    _$RioChatLoadHistoryImpl _value,
-    $Res Function(_$RioChatLoadHistoryImpl) _then,
-  ) : super(_value, _then);
+  __$$RioChatLoadHistoryImplCopyWithImpl(_$RioChatLoadHistoryImpl _value,
+      $Res Function(_$RioChatLoadHistoryImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -352,10 +352,9 @@ abstract class RioChatLoadHistory implements RioChatEvent {
 
 /// @nodoc
 abstract class _$$RioChatSelectSessionImplCopyWith<$Res> {
-  factory _$$RioChatSelectSessionImplCopyWith(
-    _$RioChatSelectSessionImpl value,
-    $Res Function(_$RioChatSelectSessionImpl) then,
-  ) = __$$RioChatSelectSessionImplCopyWithImpl<$Res>;
+  factory _$$RioChatSelectSessionImplCopyWith(_$RioChatSelectSessionImpl value,
+          $Res Function(_$RioChatSelectSessionImpl) then) =
+      __$$RioChatSelectSessionImplCopyWithImpl<$Res>;
   @useResult
   $Res call({int sessionId});
 }
@@ -364,22 +363,21 @@ abstract class _$$RioChatSelectSessionImplCopyWith<$Res> {
 class __$$RioChatSelectSessionImplCopyWithImpl<$Res>
     extends _$RioChatEventCopyWithImpl<$Res, _$RioChatSelectSessionImpl>
     implements _$$RioChatSelectSessionImplCopyWith<$Res> {
-  __$$RioChatSelectSessionImplCopyWithImpl(
-    _$RioChatSelectSessionImpl _value,
-    $Res Function(_$RioChatSelectSessionImpl) _then,
-  ) : super(_value, _then);
+  __$$RioChatSelectSessionImplCopyWithImpl(_$RioChatSelectSessionImpl _value,
+      $Res Function(_$RioChatSelectSessionImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? sessionId = null}) {
-    return _then(
-      _$RioChatSelectSessionImpl(
-        sessionId: null == sessionId
-            ? _value.sessionId
-            : sessionId // ignore: cast_nullable_to_non_nullable
-                  as int,
-      ),
-    );
+  $Res call({
+    Object? sessionId = null,
+  }) {
+    return _then(_$RioChatSelectSessionImpl(
+      sessionId: null == sessionId
+          ? _value.sessionId
+          : sessionId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
   }
 }
 
@@ -412,11 +410,9 @@ class _$RioChatSelectSessionImpl implements RioChatSelectSession {
   @override
   @pragma('vm:prefer-inline')
   _$$RioChatSelectSessionImplCopyWith<_$RioChatSelectSessionImpl>
-  get copyWith =>
-      __$$RioChatSelectSessionImplCopyWithImpl<_$RioChatSelectSessionImpl>(
-        this,
-        _$identity,
-      );
+      get copyWith =>
+          __$$RioChatSelectSessionImplCopyWithImpl<_$RioChatSelectSessionImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -512,15 +508,14 @@ abstract class RioChatSelectSession implements RioChatEvent {
   int get sessionId;
   @JsonKey(ignore: true)
   _$$RioChatSelectSessionImplCopyWith<_$RioChatSelectSessionImpl>
-  get copyWith => throw _privateConstructorUsedError;
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$RioChatSendMessageImplCopyWith<$Res> {
-  factory _$$RioChatSendMessageImplCopyWith(
-    _$RioChatSendMessageImpl value,
-    $Res Function(_$RioChatSendMessageImpl) then,
-  ) = __$$RioChatSendMessageImplCopyWithImpl<$Res>;
+  factory _$$RioChatSendMessageImplCopyWith(_$RioChatSendMessageImpl value,
+          $Res Function(_$RioChatSendMessageImpl) then) =
+      __$$RioChatSendMessageImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
@@ -529,22 +524,21 @@ abstract class _$$RioChatSendMessageImplCopyWith<$Res> {
 class __$$RioChatSendMessageImplCopyWithImpl<$Res>
     extends _$RioChatEventCopyWithImpl<$Res, _$RioChatSendMessageImpl>
     implements _$$RioChatSendMessageImplCopyWith<$Res> {
-  __$$RioChatSendMessageImplCopyWithImpl(
-    _$RioChatSendMessageImpl _value,
-    $Res Function(_$RioChatSendMessageImpl) _then,
-  ) : super(_value, _then);
+  __$$RioChatSendMessageImplCopyWithImpl(_$RioChatSendMessageImpl _value,
+      $Res Function(_$RioChatSendMessageImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? message = null}) {
-    return _then(
-      _$RioChatSendMessageImpl(
-        message: null == message
-            ? _value.message
-            : message // ignore: cast_nullable_to_non_nullable
-                  as String,
-      ),
-    );
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$RioChatSendMessageImpl(
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 
@@ -577,9 +571,7 @@ class _$RioChatSendMessageImpl implements RioChatSendMessage {
   @pragma('vm:prefer-inline')
   _$$RioChatSendMessageImplCopyWith<_$RioChatSendMessageImpl> get copyWith =>
       __$$RioChatSendMessageImplCopyWithImpl<_$RioChatSendMessageImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -681,9 +673,8 @@ abstract class RioChatSendMessage implements RioChatEvent {
 /// @nodoc
 abstract class _$$RioChatClearImplCopyWith<$Res> {
   factory _$$RioChatClearImplCopyWith(
-    _$RioChatClearImpl value,
-    $Res Function(_$RioChatClearImpl) then,
-  ) = __$$RioChatClearImplCopyWithImpl<$Res>;
+          _$RioChatClearImpl value, $Res Function(_$RioChatClearImpl) then) =
+      __$$RioChatClearImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -691,9 +682,8 @@ class __$$RioChatClearImplCopyWithImpl<$Res>
     extends _$RioChatEventCopyWithImpl<$Res, _$RioChatClearImpl>
     implements _$$RioChatClearImplCopyWith<$Res> {
   __$$RioChatClearImplCopyWithImpl(
-    _$RioChatClearImpl _value,
-    $Res Function(_$RioChatClearImpl) _then,
-  ) : super(_value, _then);
+      _$RioChatClearImpl _value, $Res Function(_$RioChatClearImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -808,10 +798,9 @@ abstract class RioChatClear implements RioChatEvent {
 
 /// @nodoc
 abstract class _$$RioChatStartNewImplCopyWith<$Res> {
-  factory _$$RioChatStartNewImplCopyWith(
-    _$RioChatStartNewImpl value,
-    $Res Function(_$RioChatStartNewImpl) then,
-  ) = __$$RioChatStartNewImplCopyWithImpl<$Res>;
+  factory _$$RioChatStartNewImplCopyWith(_$RioChatStartNewImpl value,
+          $Res Function(_$RioChatStartNewImpl) then) =
+      __$$RioChatStartNewImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -819,9 +808,8 @@ class __$$RioChatStartNewImplCopyWithImpl<$Res>
     extends _$RioChatEventCopyWithImpl<$Res, _$RioChatStartNewImpl>
     implements _$$RioChatStartNewImplCopyWith<$Res> {
   __$$RioChatStartNewImplCopyWithImpl(
-    _$RioChatStartNewImpl _value,
-    $Res Function(_$RioChatStartNewImpl) _then,
-  ) : super(_value, _then);
+      _$RioChatStartNewImpl _value, $Res Function(_$RioChatStartNewImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
