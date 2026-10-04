@@ -125,6 +125,10 @@ import '../features/workplace/app/reports/view/accountant/view/bloc/accountant_b
 import '../features/workplace/app/reports/view/marketing/view/bloc/marketing_bloc.dart';
 import '../features/workplace/app/reports/view/sale/view/bloc/sale_bloc.dart';
 import '../features/workplace/app/reports/view/tech/view/bloc/tech_bloc.dart';
+import '../features/chatbot/data/datasource/service/rio_chat_service.dart';
+import '../features/chatbot/data/repository/rio_chat_repo.dart';
+import '../features/chatbot/data/repository/rio_chat_repo_impl.dart';
+import '../features/chatbot/view/bloc/rio_chat_bloc.dart';
 import '../features/workplace/app/signature/data/datasource/service/signature_service.dart';
 import '../features/workplace/app/signature/data/repository/signature_repo.dart';
 import '../features/workplace/app/signature/data/repository/signature_repo_impl.dart';
@@ -310,24 +314,30 @@ void configureDependencies() {
   );
 
   getIt.registerLazySingleton<SummaryWfhService>(
-        () => SummaryWfhService(getIt<Dio>()),
+    () => SummaryWfhService(getIt<Dio>()),
   );
 
   getIt.registerLazySingleton<SummaryMissedService>(
-        () => SummaryMissedService(getIt<Dio>()),
+    () => SummaryMissedService(getIt<Dio>()),
   );
 
   getIt.registerLazySingleton<SummaryOvernightService>(
-        () => SummaryOvernightService(getIt<Dio>()),
+    () => SummaryOvernightService(getIt<Dio>()),
   );
 
   getIt.registerLazySingleton<SummaryOvertimeService>(
-        () => SummaryOvertimeService(getIt<Dio>()),
+    () => SummaryOvertimeService(getIt<Dio>()),
   );
 
   getIt.registerLazySingleton<TestTableService>(
     () => TestTableService(getIt<Dio>()),
   );
+
+  // Chatbot - Rio Chat
+  getIt.registerLazySingleton<RioChatService>(
+    () => RioChatService(getIt<Dio>()),
+  );
+
   /// ===== REPOSITORY =====
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImpl(
@@ -468,8 +478,13 @@ void configureDependencies() {
   );
 
   getIt.registerLazySingleton<TestTableRepo>(
-      () => TestTableRepoImpl(getIt<TestTableService>()),
+    () => TestTableRepoImpl(getIt<TestTableService>()),
   );
+
+  getIt.registerLazySingleton<RioChatRepo>(
+    () => RioChatRepoImpl(getIt<RioChatService>()),
+  );
+
   /// ===== BLOCS =====
   getIt.registerFactory<AuthBloc>(
     () => AuthBloc(getIt<AuthRepo>(), getIt<LogUtils>()),
@@ -687,7 +702,8 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<SaleGdnBloc>(
-    () => SaleGdnBloc(getIt<SaleGdnRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
+    () =>
+        SaleGdnBloc(getIt<SaleGdnRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
   );
 
   getIt.registerFactory<MySignatureBloc>(
@@ -711,7 +727,7 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<SummaryWfhBloc>(
-        () => SummaryWfhBloc(
+    () => SummaryWfhBloc(
       getIt<SummaryWfhRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
@@ -719,7 +735,7 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<SummaryMissedBloc>(
-        () => SummaryMissedBloc(
+    () => SummaryMissedBloc(
       getIt<SummaryMissedRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
@@ -727,7 +743,7 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<SummaryOvernightBloc>(
-        () => SummaryOvernightBloc(
+    () => SummaryOvernightBloc(
       getIt<SummaryOvernightRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
@@ -735,7 +751,7 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<SummaryOvertimeBloc>(
-        () => SummaryOvertimeBloc(
+    () => SummaryOvertimeBloc(
       getIt<SummaryOvertimeRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
@@ -743,9 +759,18 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<TestTableBloc>(
-        () => TestTableBloc(
+    () => TestTableBloc(
       getIt<LogUtils>(),
-      getIt<TestTableRepo>(),getIt<AuthRepo>(),
+      getIt<TestTableRepo>(),
+      getIt<AuthRepo>(),
+    ),
+  );
+
+  getIt.registerFactory<RioChatBloc>(
+    () => RioChatBloc(
+      getIt<RioChatRepo>(),
+      getIt<LogUtils>(),
+      getIt<LocalStorage>(),
     ),
   );
 }

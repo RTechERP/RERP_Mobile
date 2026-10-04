@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
-class FormLeftBorderCard extends StatelessWidget {
+/// Card có viền bên phải — mirror của [FormLeftBorderCard].
+///
+/// Dùng cho các tin nhắn của user trong chat, đối xứng với user/ bot bubble.
+class FormRightBorderCard extends StatelessWidget {
   /// Nội dung chính
   final Widget child;
 
-  /// Màu viền bên trái
+  /// Màu viền bên phải
   final Color borderColor;
 
   /// Độ dày viền
@@ -34,7 +37,7 @@ class FormLeftBorderCard extends StatelessWidget {
   /// Đặt `false` để card bó theo chiều dài nội dung — phù hợp chat bubble.
   final bool expand;
 
-  const FormLeftBorderCard({
+  const FormRightBorderCard({
     super.key,
     required this.child,
     required this.borderColor,
@@ -52,14 +55,14 @@ class FormLeftBorderCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    final card = Container(
       width: expand ? double.infinity : null,
       padding: padding,
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: borderRadius,
         border: Border(
-          left: BorderSide(
+          right: BorderSide(
             color: borderColor,
             width: borderWidth,
           ),
@@ -68,17 +71,19 @@ class FormLeftBorderCard extends StatelessWidget {
       child: Row(
         crossAxisAlignment: crossAxisAlignment,
         children: [
+          Expanded(child: child),
           if (icon != null) ...[
+            SizedBox(width: spacing),
             Icon(
               icon,
               size: iconSize,
               color: iconColor ?? borderColor,
             ),
-            SizedBox(width: spacing),
           ],
-          Expanded(child: child),
         ],
       ),
     );
+
+    return card;
   }
 }

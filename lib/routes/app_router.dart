@@ -23,6 +23,8 @@ import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/test_table
 import 'package:rtc_erp/features/workplace/app/signature/view/bloc/my_signature_bloc.dart';
 import 'package:rtc_erp/features/workplace/app/signature/view/pages/signature_screen.dart';
 import 'package:rtc_erp/features/workplace/app/signature/view/pages/signature_add_screen.dart';
+import 'package:rtc_erp/features/chatbot/view/bloc/rio_chat_bloc.dart';
+import 'package:rtc_erp/features/chatbot/view/pages/rio_chat_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/data/datasource/models/booking_vehicle_model.dart';
 import 'package:rtc_erp/features/workplace/app/favorites/view/pages/favorites_adding_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/view/bloc/booking_vehicle_bloc.dart';
@@ -1656,6 +1658,15 @@ class AppRouter {
         builder: (context, state) => BlocProvider.value(
           value: getIt<SummaryOvertimeBloc>(),
           child: const SummaryOvertimeScreen(),
+        ),
+      ),
+
+      //---(Chatbot - Rio Chat)---//
+      GoRoute(
+        path: RouteNames.chatbot,
+        builder: (context, state) => BlocProvider.value(
+          value: getIt<RioChatBloc>(),
+          child: const RioChatScreen(),
         ),
       ),
     ],
