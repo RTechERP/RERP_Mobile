@@ -25,10 +25,12 @@ class CelebrationHelper {
   }
 
   /// Fetch celebration info for [currentUserId]. Returns the item when
-  /// the API's `EmployeeID` matches the logged-in user AND either
-  /// `IsBirthday` or `IsSeniority` is true. Returns `null` otherwise —
-  /// including when the API returns a celebration flag for someone
-  /// else (different employee).
+  /// the API's `EmployeeID` matches the logged-in user AND `IsBirthday`
+  /// is true. Returns `null` otherwise — including when the API returns
+  /// a celebration flag for someone else (different employee).
+  ///
+  /// TODO: chúc mừng thâm niên (seniority) tạm thời chưa cho chạy.
+  /// Bỏ comment nhánh `isSeniority` bên dưới khi mở lại tính năng.
   static Future<CelebrationItem?> fetchIfCelebration(int currentUserId) async {
     try {
       debugPrint('[CelebrationHelper] resolving CelebrationRepo from getIt');
@@ -49,8 +51,9 @@ class CelebrationHelper {
           return null;
         }
         final isBirthday = item.isBirthday ?? false;
-        final isSeniority = item.isSeniority ?? false;
-        if (!isBirthday && !isSeniority) return null;
+        // Tạm thời chỉ cho chạy chúc mừng sinh nhật, thâm niên để lại để sau.
+        // if (!isBirthday && !isSeniority) return null;
+        if (!isBirthday) return null;
         return item;
       });
     } catch (e, st) {

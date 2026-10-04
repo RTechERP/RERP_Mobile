@@ -24,6 +24,10 @@ class _BirthdayOverlay extends StatelessWidget {
     final departmentName = item.departmentName ?? '';
     final birthday = _formatDate(item.birthOfDate);
 
+    // Only show the date line when the API actually returned a birth date,
+    // so we never render a bare "Sinh nhật " with nothing after it.
+    final dateLabel = birthday.isEmpty ? 'Sinh nhật' : 'Sinh nhật $birthday';
+
     // Use artworkHeight as the reference unit so offsets are stable across
     // screen sizes. The overlay always sits on top of an artwork panel of
     // fixed height (see CelebrationSizes.artworkHeight = 220), so ratios
@@ -59,25 +63,37 @@ class _BirthdayOverlay extends StatelessWidget {
                 // Date — top-right block (was "06/08" placeholder).
                 // Offsets are absolute (px) relative to the artwork unit so
                 // they don't drift on tall vs short devices.
+                //
+                // Box width must fit "Sinh nhật dd/MM/yyyy" (~240px at
+                // fontSize 12). The old artwork only baked in a short
+                // "06/08", so this block was far narrower and clipped the
+                // date away. FittedBox is a safety net: it only shrinks the
+                // text when the available width is genuinely too small.
                 Positioned(
-                  left: isIOS ? unit * 0.52 : w * 0.34,
-                  right: isIOS ? unit * 0.45 : w * 0.28,
-                  top: isIOS ? unit * 0.432 : h * 0.149,
+                  left: isIOS ? unit * 0.10 : w * 0.10,
+                  right: isIOS ? unit * 0.45 : w * 0.3,
+                  top: isIOS ? unit * 0.44 : h * 0.153,
                   child: Transform.rotate(
                     angle: -0.03,
-                    child: Text(
-                      'Sinh nhật $birthday',
-                      maxLines: 1,
-                      style: AppStyles.s12h18w600.copyWith(
-                        color: const Color(0xFFB71C1C),
-                        fontWeight: FontWeight.w600,
-                        shadows: [
-                          Shadow(
-                            color: AppColors.black.withValues(alpha: 0.12),
-                            blurRadius: 4,
-                            offset: const Offset(0, 1),
-                          ),
-                        ],
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                        dateLabel,
+                        maxLines: 1,
+                        softWrap: false,
+                        textAlign: TextAlign.right,
+                        style: AppStyles.s12h18w600.copyWith(
+                          color: const Color(0xFFB71C1C),
+                          fontWeight: FontWeight.w600,
+                          shadows: [
+                            Shadow(
+                              color: AppColors.black.withValues(alpha: 0.12),
+                              blurRadius: 4,
+                              offset: const Offset(0, 1),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
