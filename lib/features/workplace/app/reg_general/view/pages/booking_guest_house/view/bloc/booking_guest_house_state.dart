@@ -25,6 +25,9 @@ class BookingGuestHouseState extends BaseBlocState {
   /// ID phiếu vừa lưu thành công (null = chưa submit hoặc submit lỗi).
   final int? lastSubmittedId;
 
+  /// Cờ đánh dấu xoá thành công — UI dùng để báo toast.
+  final bool deleteSuccess;
+
   /// Danh sách dự án cho bộ lọc.
   final List<ProjectFilterItem> projects;
 
@@ -51,6 +54,7 @@ class BookingGuestHouseState extends BaseBlocState {
     this.isSubmitting = false,
     this.submitSuccess = false,
     this.lastSubmittedId,
+    this.deleteSuccess = false,
     this.projects = const [],
     this.employees = const [],
     this.selectedProject,
@@ -68,6 +72,7 @@ class BookingGuestHouseState extends BaseBlocState {
     isSubmitting: false,
     submitSuccess: false,
     lastSubmittedId: null,
+    deleteSuccess: false,
     projects: const [],
     employees: const [],
     selectedProject: null,
@@ -87,6 +92,7 @@ class BookingGuestHouseState extends BaseBlocState {
     isSubmitting,
     submitSuccess,
     lastSubmittedId,
+    deleteSuccess,
     projects,
     employees,
     selectedProject,

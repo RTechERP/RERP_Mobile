@@ -130,4 +130,25 @@ class BookingGuestHouseRepoImpl implements BookingGuestHouseRepo {
       return left(BaseError.httpInternalServerError(e.toString()));
     }
   }
+
+  @override
+  Future<Either<BaseError, void>> deleteBookingGuestHouse({
+    required List<int> ids,
+  }) async {
+    try {
+      final res = await _service.deleteBookingGuestHouse(ids: ids);
+      if (res.status == 1) {
+        return right(null);
+      }
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? res.msg ?? 'Xoá phiếu đặt phòng thất bại',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
 }

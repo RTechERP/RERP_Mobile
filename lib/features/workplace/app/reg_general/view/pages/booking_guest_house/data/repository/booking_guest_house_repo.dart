@@ -41,4 +41,10 @@ abstract class BookingGuestHouseRepo {
       saveBookingGuestHouse({
     required Map<String, dynamic> payload,
   });
+
+  /// Xoá phiếu đặt phòng nhà nghỉ.
+  /// [ids] - danh sách ID phiếu cần xoá (API nhận mảng, ví dụ `[19]`).
+  Future<Either<BaseError, void>> deleteBookingGuestHouse({
+    required List<int> ids,
+  });
 }

@@ -118,6 +118,17 @@ class BookingGuestHouseService extends DioBaseApiService {
     );
   }
 
+  /// Xoá phiếu đặt phòng nhà nghỉ.
+  /// API: POST /AccommodationBooking/delete
+  /// Body: `[19]` — mảng ID cần xoá (API nhận nhiều ID trong 1 lần gọi).
+  Future<BaseData<void>> deleteBookingGuestHouse({required List<int> ids}) {
+    return post<BaseData<void>>(
+      ApiEndPoint.deleteBookingGuestHouse,
+      body: ids,
+      parser: (json) => BaseData<void>.fromJson(json, (_) {}),
+    );
+  }
+
   /// Parser defensive cho response save — chấp nhận nhiều dạng JSON
   /// server có thể trả về.
   BaseData<BookingGuestHouseSaveResponse> _parseSaveResponse(dynamic json) {

@@ -11,6 +11,8 @@ import 'package:injectable/injectable.dart';
 import '../../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../../common/logger/index.dart';
+import 'package:collection/collection.dart';
+import 'package:rtc_erp/features/auth/data/repository/auth_repository.dart';
 import '../../data/datasource/models/booking_guest_house_model.dart';
 import '../../data/repository/booking_guest_house_repo.dart';
 
@@ -45,6 +47,7 @@ class BookingGuestHouseBloc
         changeEmployeeFilter: (employee) =>
             _onChangeEmployeeFilter(emit, employee: employee),
         submit: (payload) => _onSubmit(emit, payload: payload),
+        deleteBooking: (id) => _onDeleteBooking(emit, id: id),
       );
     });
   }
@@ -328,6 +331,90 @@ class BookingGuestHouseBloc
             isSubmitting: false,
             submitSuccess: true,
             lastSubmittedId: created.id,
+            message: null,
+          ),
+        );
+      },
+    );
+  }
+
+  //---(Delete Booking)---//
+
+  /// Xoá phiếu đặt phòng nhà nghỉ — gọi API `POST /AccommodationBooking/delete`
+  /// với body `[id]`.
+  ///
+  /// Chỉ cho phép xoá phiếu do chính user đang đăng nhập tạo (`RegisterID` khớp
+  /// `EmployeeID` của currentUser). Vượt quyền → trả message, không gọi API.
+  ///
+  /// Thành công → emit `deleteSuccess` + xoá luôn item khỏi `bookings` để list
+  /// cập nhật tức thì (không gọi lại API). Thất bại → giữ nguyên danh sách và
+  /// trả message cho UI hiển thị.
+  Future<void> _onDeleteBooking(
+    Emitter<BookingGuestHouseState> emit, {
+    required int id,
+  }) async {
+    emit(state.copyWith(deleteSuccess: false, message: null));
+
+    // Chặn xoá phiếu của người khác: RegisterID của phiếu phải bằng EmployeeID
+    // của user đang đăng nhập.
+    final target = state.bookings.firstWhereOrNull((b) => b.id == id);
+    if (target == null) {
+      emit(
+        state.copyWith(
+          deleteSuccess: false,
+          message: 'Không tìm thấy phiếu cần xoá',
+        ),
+      );
+      return;
+    }
+
+    final currentUser = await AuthRepository.getCurrentUser(log: _log);
+    if (currentUser == null) {
+      emit(
+        state.copyWith(
+          deleteSuccess: false,
+          message: 'Không xác định được người đăng nhập, không thể xoá phiếu',
+        ),
+      );
+      return;
+    }
+
+    if (target.registerId != currentUser.employeeId) {
+      _log.logW(
+        '⛔ Chặn xoá phiếu $id — RegisterID=${target.registerId} '
+        '≠ currentUser.employeeId=${currentUser.employeeId}',
+      );
+      emit(
+        state.copyWith(
+          deleteSuccess: false,
+          message: 'Bạn không thể xoá phiếu của người khác',
+        ),
+      );
+      return;
+    }
+
+    _log.logI('🗑️ deleteBookingGuestHouse ids=[$id]');
+
+    final res = await _repo.deleteBookingGuestHouse(ids: [id]);
+
+    await res.fold(
+      (err) async {
+        _log.logE('❌ deleteBookingGuestHouse failed: $err');
+        emit(
+          state.copyWith(
+            deleteSuccess: false,
+            message: err.getErrorMessage,
+          ),
+        );
+      },
+      (_) async {
+        _log.logI('✅ deleteBookingGuestHouse OK id=$id');
+        emit(
+          state.copyWith(
+            deleteSuccess: true,
+            bookings: state.bookings
+                .where((b) => b.id != id)
+                .toList(growable: false),
             message: null,
           ),
         );

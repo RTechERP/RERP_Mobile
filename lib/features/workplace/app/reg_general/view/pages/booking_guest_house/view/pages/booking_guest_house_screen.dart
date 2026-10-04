@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
@@ -10,6 +11,7 @@ import '../../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/constants/index.dart';
+import '../../../../../../../../../common/utils/dialog/index.dart';
 import '../../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../../common/widgets/date_range_picker.dart';
 import '../../../../../../../../../common/helpers/index.dart';
@@ -136,13 +138,25 @@ class _BookingGuestHousePageState
     return BlocListener<BookingGuestHouseBloc, BookingGuestHouseState>(
       listenWhen: (prev, curr) =>
           prev.status != curr.status ||
+          prev.deleteSuccess != curr.deleteSuccess ||
           (curr.message != null &&
               curr.message!.isNotEmpty &&
               prev.message != curr.message),
       listener: (context, state) {
-        if (state.status == BaseStateStatus.failed &&
-            (state.message ?? '').isNotEmpty) {
-          showMessage(context, state.message!, type: SnackBarType.error);
+        // Bắt mọi message mới phát ra, không phụ thuộc status — các nhánh chặn
+        // xoá (sai RegisterID, không đọc được currentUser) chỉ set message
+        // mà không đổi status.
+        final message = (state.message ?? '').trim();
+        if (message.isNotEmpty) {
+          showMessage(context, message, type: SnackBarType.error);
+          return;
+        }
+        if (state.deleteSuccess) {
+          showMessage(
+            context,
+            'Xoá phiếu đặt phòng thành công',
+            type: SnackBarType.success,
+          );
         }
       },
       child: BaseScaffold(
@@ -321,11 +335,40 @@ class _BookingGuestHousePageState
       separatorBuilder: (_, _) => const SizedBox(height: 10),
       itemBuilder: (context, index) {
         final item = state.bookings[index];
-        return BookingGuestHouseCard(
-          item: item,
-          onTap: () {
-            // TODO: mở màn chi tiết khi có route
-          },
+        final id = item.id;
+
+        return Slidable(
+          key: ValueKey('booking_guest_house_$id'),
+          groupTag: 'booking_guest_house_slidable',
+          endActionPane: ActionPane(
+            motion: const DrawerMotion(),
+            extentRatio: 0.28,
+            children: [
+              SlidableAction(
+                onPressed: (actionContext) async {
+                  Slidable.of(actionContext)?.close();
+                  final confirmed = await DialogService.showConfirmDelete(
+                    context: context,
+                  );
+                  if (!confirmed || !mounted) return;
+                  bloc.add(BookingGuestHouseEvent.deleteBooking(id: id));
+                },
+                backgroundColor: AppColors.alert,
+                foregroundColor: Colors.white,
+                icon: Icons.delete_outline,
+                label: 'Xoá',
+              ),
+            ],
+          ),
+          child: Builder(
+            builder: (slidableCtx) => BookingGuestHouseCard(
+              item: item,
+              onTap: () {
+                Slidable.of(slidableCtx)?.close();
+                // TODO: mở màn chi tiết khi có route
+              },
+            ),
+          ),
         );
       },
     );

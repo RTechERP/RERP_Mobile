@@ -27,6 +27,8 @@ abstract class _$BookingGuestHouseStateCWProxy {
 
   BookingGuestHouseState lastSubmittedId(int? lastSubmittedId);
 
+  BookingGuestHouseState deleteSuccess(bool deleteSuccess);
+
   BookingGuestHouseState projects(List<ProjectFilterItem> projects);
 
   BookingGuestHouseState employees(List<EmployeeFilterItem> employees);
@@ -54,6 +56,7 @@ abstract class _$BookingGuestHouseStateCWProxy {
     bool? isSubmitting,
     bool? submitSuccess,
     int? lastSubmittedId,
+    bool? deleteSuccess,
     List<ProjectFilterItem>? projects,
     List<EmployeeFilterItem>? employees,
     ProjectFilterItem? selectedProject,
@@ -107,6 +110,10 @@ class _$BookingGuestHouseStateCWProxyImpl
       this(lastSubmittedId: lastSubmittedId);
 
   @override
+  BookingGuestHouseState deleteSuccess(bool deleteSuccess) =>
+      this(deleteSuccess: deleteSuccess);
+
+  @override
   BookingGuestHouseState projects(List<ProjectFilterItem> projects) =>
       this(projects: projects);
 
@@ -146,6 +153,7 @@ class _$BookingGuestHouseStateCWProxyImpl
     Object? isSubmitting = const $CopyWithPlaceholder(),
     Object? submitSuccess = const $CopyWithPlaceholder(),
     Object? lastSubmittedId = const $CopyWithPlaceholder(),
+    Object? deleteSuccess = const $CopyWithPlaceholder(),
     Object? projects = const $CopyWithPlaceholder(),
     Object? employees = const $CopyWithPlaceholder(),
     Object? selectedProject = const $CopyWithPlaceholder(),
@@ -197,6 +205,11 @@ class _$BookingGuestHouseStateCWProxyImpl
           ? _value.lastSubmittedId
           // ignore: cast_nullable_to_non_nullable
           : lastSubmittedId as int?,
+      deleteSuccess:
+          deleteSuccess == const $CopyWithPlaceholder() || deleteSuccess == null
+              ? _value.deleteSuccess
+              // ignore: cast_nullable_to_non_nullable
+              : deleteSuccess as bool,
       projects: projects == const $CopyWithPlaceholder() || projects == null
           ? _value.projects
           // ignore: cast_nullable_to_non_nullable

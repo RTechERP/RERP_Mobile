@@ -45,4 +45,9 @@ class BookingGuestHouseEvent with _$BookingGuestHouseEvent {
   const factory BookingGuestHouseEvent.submit({
     required Map<String, dynamic> payload,
   }) = _Submit;
+
+  /// Xoá phiếu đặt phòng nhà nghỉ.
+  /// [id] - ID phiếu cần xoá (API nhận mảng `[id]`).
+  const factory BookingGuestHouseEvent.deleteBooking({required int id}) =
+      _DeleteBooking;
 }
