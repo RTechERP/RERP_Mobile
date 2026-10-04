@@ -38,6 +38,14 @@ class _BookingGuestHouseAddScreenState
         > {
   final _formKey = GlobalKey<FormBuilderState>();
 
+  //---(Controllers cho các field read-only do chọn từ picker/sheet)---//
+  // Hiển thị trong FormInputField + dùng để FormBuilder validator đọc value.
+  final _startDateCtrl = TextEditingController();
+  final _endDateCtrl = TextEditingController();
+  final _projectCtrl = TextEditingController();
+  final _tbpCtrl = TextEditingController();
+  final _provinceCtrl = TextEditingController();
+
   //---(Lookup data)---//
   List<ProjectFilterItem> _projects = const [];
   List<EmployeeFilterItem> _employees = const [];
@@ -49,6 +57,8 @@ class _BookingGuestHouseAddScreenState
   int? _currentEmployeeId;
 
   //---(Form state — Card 1)---//
+  // DateTime/Object state vẫn giữ để build payload; FormInputField chỉ là
+  // UI cho value text.
   ProjectFilterItem? _selectedProject;
   EmployeeFilterItem? _selectedTbp; // TBP duyệt
   ProvinceFilterItem? _selectedProvince;
@@ -79,6 +89,16 @@ class _BookingGuestHouseAddScreenState
       _loadLookups();
       _loadCurrentUser();
     });
+  }
+
+  @override
+  void dispose() {
+    _startDateCtrl.dispose();
+    _endDateCtrl.dispose();
+    _projectCtrl.dispose();
+    _tbpCtrl.dispose();
+    _provinceCtrl.dispose();
+    super.dispose();
   }
 
   //---(Loaders)---//
@@ -127,12 +147,16 @@ class _BookingGuestHouseAddScreenState
     if (_roommateLineCount < 1) return;
 
     // PatchValue cho dòng 0 (currentUser) trong cùng setState.
+    // `roommate_roommate_name_0` phải có ở đây vì field "Tên người ở cùng" dùng
+    // key riêng, không tự suy ra từ `roommate_full_name_0`.
     setState(() {
       _selectedRoommateEmployees[0] = matched;
       _infoFieldValues = {
         ..._infoFieldValues,
         'roommate_full_name_0': user.fullName,
         'roommate_full_name_text_0': user.fullName,
+        'roommate_roommate_name_0': user.fullName,
+        'roommate_roommate_name_text_0': user.fullName,
         'roommate_code_0': user.code,
         'roommate_code_text_0': user.code,
         'roommate_phone_0': matched?.sdtCaNhan ?? '',
@@ -145,6 +169,8 @@ class _BookingGuestHouseAddScreenState
     _formKey.currentState?.patchValue({
       'roommate_full_name_0': user.fullName,
       'roommate_full_name_text_0': user.fullName,
+      'roommate_roommate_name_0': user.fullName,
+      'roommate_roommate_name_text_0': user.fullName,
       'roommate_code_0': user.code,
       'roommate_code_text_0': user.code,
       'roommate_phone_0': matched?.sdtCaNhan ?? '',
@@ -167,8 +193,7 @@ class _BookingGuestHouseAddScreenState
         listeners: [
           BlocListener<BookingGuestHouseBloc, BookingGuestHouseState>(
             listenWhen: (prev, curr) =>
-                prev.submitSuccess != curr.submitSuccess &&
-                curr.submitSuccess,
+                prev.submitSuccess != curr.submitSuccess && curr.submitSuccess,
             listener: (context, state) {
               // Submit thành công → pop về màn list, list sẽ tự reload qua
               // BookingGuestHousePage.initState (đã chạy init() ngay khi vào).
@@ -232,61 +257,87 @@ class _BookingGuestHouseAddScreenState
           Row(
             children: [
               Expanded(
-                child: _DateField(
-                  label: 'Từ ngày',
-                  value: _startDate,
-                  required: true,
-                  onChanged: (d) => setState(() {
-                    _startDate = d;
-                    if (_endDate != null && d.isAfter(_endDate!)) {
-                      _endDate = d;
-                    }
-                  }),
+                child: FormInputField(
+                  nameForm: 'start_date',
+                  nameTextField: 'start_date_text',
+                  label: 'Ngày ở',
+                  icon: Icons.calendar_today_outlined,
+                  controller: _startDateCtrl,
+                  readOnly: true,
+                  isRequired: true,
+                  onTap: _pickStartDate,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (v) => v == null || v.isEmpty
+                      ? 'Chọn ngày ở'
+                      : null,
                 ),
               ),
               const SizedBox(width: 12),
               Expanded(
-                child: _DateField(
-                  label: 'Đến ngày',
-                  value: _endDate,
-                  required: true,
-                  firstDate: null,
-                  onChanged: (d) => setState(() => _endDate = d),
+                child: FormInputField(
+                  nameForm: 'end_date',
+                  nameTextField: 'end_date_text',
+                  label: 'Ngày về',
+                  icon: Icons.calendar_today_outlined,
+                  controller: _endDateCtrl,
+                  readOnly: true,
+                  isRequired: true,
+                  onTap: _pickEndDate,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (v) => v == null || v.isEmpty
+                      ? 'Chọn ngày về'
+                      : null,
                 ),
               ),
             ],
           ),
           const SizedBox(height: 12),
 
-          _SelectField(
+          FormInputField(
+            nameForm: 'project',
+            nameTextField: 'project_text',
             label: 'Dự án',
             icon: Icons.account_tree_outlined,
-            valueText: _selectedProject == null
-                ? null
-                : _projectText(_selectedProject!),
-            required: true,
-            hint: 'Chọn dự án',
+            controller: _projectCtrl,
+            readOnly: true,
+            isRequired: true,
             onTap: _openProjectSheet,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            validator: (v) => v == null || v.isEmpty
+                ? 'Vui lòng chọn dự án'
+                : null,
           ),
           const SizedBox(height: 12),
 
-          _SelectField(
+          FormInputField(
+            nameForm: 'tbp',
+            nameTextField: 'tbp_text',
             label: 'TBP Duyệt',
             icon: Icons.verified_user_outlined,
-            valueText: _selectedTbp?.fullName,
-            required: true,
-            hint: 'Chọn TBP duyệt',
+            controller: _tbpCtrl,
+            readOnly: true,
+            isRequired: true,
             onTap: _openTbpSheet,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            validator: (v) => v == null || v.isEmpty
+                ? 'Vui lòng chọn TBP duyệt'
+                : null,
           ),
           const SizedBox(height: 12),
 
-          _SelectField(
+          FormInputField(
+            nameForm: 'province',
+            nameTextField: 'province_text',
             label: 'Tỉnh lưu trú',
             icon: Icons.location_city_outlined,
-            valueText: _selectedProvince?.provinceName,
-            required: true,
-            hint: 'Chọn tỉnh lưu trú',
+            controller: _provinceCtrl,
+            readOnly: true,
+            isRequired: true,
             onTap: _openProvinceSheet,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            validator: (v) => v == null || v.isEmpty
+                ? 'Vui lòng chọn tỉnh lưu trú'
+                : null,
           ),
           const SizedBox(height: 12),
 
@@ -295,8 +346,13 @@ class _BookingGuestHouseAddScreenState
             nameTextField: 'address_text',
             label: 'Địa chỉ cụ thể',
             icon: Icons.place_outlined,
+            keyboardType: TextInputType.multiline,
+            textInputAction: TextInputAction.newline,
             isRequired: true,
-            maxLines: 1,
+            autoExpand: true,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            validator: (v) =>
+                v?.isNotEmpty == true ? null : 'Vui lòng nhập địa chỉ cụ thể',
           ),
           const SizedBox(height: 12),
 
@@ -305,7 +361,8 @@ class _BookingGuestHouseAddScreenState
             nameTextField: 'note_text',
             label: 'Ghi chú',
             icon: Icons.note_outlined,
-            maxLines: 3,
+            keyboardType: TextInputType.multiline,
+            textInputAction: TextInputAction.newline,
             autoExpand: true,
           ),
         ],
@@ -347,14 +404,25 @@ class _BookingGuestHouseAddScreenState
       index: index,
       employeeOptions: _employees,
       infoFieldValues: _infoFieldValues,
-      prefillEmployee:
-          index == 0 ? _selectedRoommateEmployees[0] : null,
+      prefillEmployee: index == 0 ? _selectedRoommateEmployees[0] : null,
       onChanged: (patch) {
         if (!mounted) return;
+        // Resolve EmployeeFilterItem từ employeeId vừa pick để dùng khi submit
+        // (cần fullName / code / phone / department từ server).
+        final pickedId = patch['roommate_employee_id_$index'] as int?;
+        EmployeeFilterItem? resolvedEmployee;
+        if (pickedId != null && pickedId > 0) {
+          resolvedEmployee = _employees.firstWhereOrNull(
+            (e) => e.id == pickedId,
+          );
+        }
         setState(() {
           _infoFieldValues = {..._infoFieldValues, ...patch};
+          _selectedRoommateEmployees[index] = resolvedEmployee;
         });
       },
+      // Chỉ cho phép xoá slip 1 trở đi — slip 0 luôn là currentUser.
+      onRemove: index >= 1 ? () => _removeRoommate(index) : null,
     );
   }
 
@@ -364,27 +432,8 @@ class _BookingGuestHouseAddScreenState
     final formState = _formKey.currentState;
     if (formState == null) return;
 
-    if (_startDate == null) {
-      showMessage(context, 'Vui lòng chọn từ ngày', type: SnackBarType.error);
-      return;
-    }
-    if (_endDate == null) {
-      showMessage(context, 'Vui lòng chọn đến ngày', type: SnackBarType.error);
-      return;
-    }
-    if (_selectedProject == null) {
-      showMessage(context, 'Vui lòng chọn dự án', type: SnackBarType.error);
-      return;
-    }
-    if (_selectedTbp == null) {
-      showMessage(context, 'Vui lòng chọn TBP duyệt', type: SnackBarType.error);
-      return;
-    }
-    if (_selectedProvince == null) {
-      showMessage(context, 'Vui lòng chọn tỉnh lưu trú', type: SnackBarType.error);
-      return;
-    }
-
+    // FormBuilder tự kích hoạt validate xuyên suốt form khi saveAndValidate()
+    // → render error inline cho mọi field chưa pass validator.
     if (!formState.saveAndValidate()) {
       showMessage(
         context,
@@ -417,28 +466,27 @@ class _BookingGuestHouseAddScreenState
     required int index,
     required int accommodationBookingId,
   }) {
-    final emp = index == 0 ? _selectedRoommateEmployees[0] : null;
+    // Resolve Employee cho MỌI slip — slip 0 = currentUser (auto-fill lúc init),
+    // slip n >= 1 = user chọn từ picker (patch cập nhật map ngay khi chọn).
+    final emp = _selectedRoommateEmployees[index];
 
-    final fullName = (emp?.fullName ??
-            _infoFieldValues['roommate_full_name_$index'] ??
-            '')
+    final fullName =
+        (emp?.fullName ?? _infoFieldValues['roommate_full_name_$index'] ?? '')
+            .toString()
+            .trim();
+    final code = (emp?.code ?? _infoFieldValues['roommate_code_$index'] ?? '')
         .toString()
         .trim();
-    final code = (emp?.code ??
-            _infoFieldValues['roommate_code_$index'] ??
-            '')
-        .toString()
-        .trim();
-    final phone = (emp?.sdtCaNhan ??
-            _infoFieldValues['roommate_phone_$index'] ??
-            '')
-        .toString()
-        .trim();
-    final department = (emp?.departmentName ??
-            _infoFieldValues['roommate_department_$index'] ??
-            '')
-        .toString()
-        .trim();
+    final phone =
+        (emp?.sdtCaNhan ?? _infoFieldValues['roommate_phone_$index'] ?? '')
+            .toString()
+            .trim();
+    final department =
+        (emp?.departmentName ??
+                _infoFieldValues['roommate_department_$index'] ??
+                '')
+            .toString()
+            .trim();
     final note = (_infoFieldValues['roommate_note_$index'] ?? '')
         .toString()
         .trim();
@@ -446,7 +494,10 @@ class _BookingGuestHouseAddScreenState
     return <String, dynamic>{
       'ID': 0,
       'AccommodationBookingID': accommodationBookingId,
-      'EmployeeID': emp?.id ?? 0,
+      // Ưu tiên EmployeeID từ EmployeeFilterItem đã chọn (resolve thật từ
+      // server), fallback về ID trong infoFieldValues nếu user nhập tay.
+      'EmployeeID':
+          emp?.id ?? _infoFieldValues['roommate_employee_id_$index'] ?? 0,
       'PhoneNumber': phone,
       'FullName': fullName,
       'DepartmentName': department,
@@ -481,10 +532,7 @@ class _BookingGuestHouseAddScreenState
       // Bỏ qua dòng rỗng hoàn toàn (sau shift / trước khi nhập) để không tạo
       // detail rỗng gửi lên server.
       if (name.isEmpty && phone.isEmpty) continue;
-      details.add(_buildRoommateDetail(
-        index: i,
-        accommodationBookingId: 0,
-      ));
+      details.add(_buildRoommateDetail(index: i, accommodationBookingId: 0));
     }
 
     return <String, dynamic>{
@@ -537,54 +585,37 @@ class _BookingGuestHouseAddScreenState
               ),
             ],
           ),
-          child: Row(
-            children: [
-              Expanded(
-                child: OutlinedButton(
-                  onPressed: isSubmitting ? null : () => context.pop(),
-                  style: OutlinedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 14),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  child: const Text('Huỷ'),
+          child: SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: isSubmitting ? null : _onSave,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.primaryERP,
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(vertical: 14),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
                 ),
               ),
-              const SizedBox(width: 12),
-              Expanded(
-                flex: 2,
-                child: ElevatedButton(
-                  onPressed: isSubmitting ? null : _onSave,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.primaryERP,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 14),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  child: isSubmitting
-                      ? const SizedBox(
-                          height: 20,
-                          width: 20,
-                          child: CircularProgressIndicator(
-                            strokeWidth: 2,
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                              Colors.white,
-                            ),
-                          ),
-                        )
-                      : const Text(
-                          'Lưu phiếu',
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                          ),
+              child: isSubmitting
+                  ? const SizedBox(
+                      height: 20,
+                      width: 20,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          Colors.white,
                         ),
-                ),
-              ),
-            ],
+                      ),
+                    )
+                  : const Text(
+                      'Lưu phiếu',
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+            ),
           ),
         );
       },
@@ -603,7 +634,6 @@ class _BookingGuestHouseAddScreenState
     });
   }
 
-  // ignore: unused_element
   void _removeRoommate(int index) {
     // Luôn giữ ít nhất 1 slip (slip(0) = currentUser).
     if (_roommateLineCount <= 1) return;
@@ -641,6 +671,50 @@ class _BookingGuestHouseAddScreenState
     });
   }
 
+  Future<void> _pickStartDate() async {
+    final picked = await _showDatePicker(_startDate);
+    if (picked == null || !mounted) return;
+    setState(() {
+      _startDate = picked;
+      _startDateCtrl.text = DateFormat('dd/MM/yyyy').format(picked);
+      // Đảm bảo đến ngày không trước từ ngày.
+      if (_endDate != null && picked.isAfter(_endDate!)) {
+        _endDate = picked;
+        _endDateCtrl.text = DateFormat('dd/MM/yyyy').format(picked);
+      }
+      _formKey.currentState?.patchValue({
+        'start_date': _startDateCtrl.text,
+        'start_date_text': _startDateCtrl.text,
+      });
+    });
+  }
+
+  Future<void> _pickEndDate() async {
+    final picked = await _showDatePicker(_endDate, firstDate: _startDate);
+    if (picked == null || !mounted) return;
+    setState(() {
+      _endDate = picked;
+      _endDateCtrl.text = DateFormat('dd/MM/yyyy').format(picked);
+      _formKey.currentState?.patchValue({
+        'end_date': _endDateCtrl.text,
+        'end_date_text': _endDateCtrl.text,
+      });
+    });
+  }
+
+  Future<DateTime?> _showDatePicker(
+    DateTime? value, {
+    DateTime? firstDate,
+  }) async {
+    final now = DateTime.now();
+    return showDatePicker(
+      context: context,
+      initialDate: value ?? now,
+      firstDate: firstDate ?? DateTime(now.year - 1),
+      lastDate: DateTime(now.year + 2),
+    );
+  }
+
   Future<void> _openProjectSheet() async {
     if (_projects.isEmpty) {
       await _loadLookups();
@@ -655,7 +729,14 @@ class _BookingGuestHouseAddScreenState
       displayText: (p) => _projectText(p),
       onSelected: (p) {
         if (!mounted) return;
-        setState(() => _selectedProject = p);
+        setState(() {
+          _selectedProject = p;
+          _projectCtrl.text = _projectText(p);
+          _formKey.currentState?.patchValue({
+            'project': _projectCtrl.text,
+            'project_text': _projectCtrl.text,
+          });
+        });
       },
     );
   }
@@ -674,7 +755,14 @@ class _BookingGuestHouseAddScreenState
       displayText: (e) => e.fullName ?? 'N/A',
       onSelected: (e) {
         if (!mounted) return;
-        setState(() => _selectedTbp = e);
+        setState(() {
+          _selectedTbp = e;
+          _tbpCtrl.text = e.fullName ?? '';
+          _formKey.currentState?.patchValue({
+            'tbp': _tbpCtrl.text,
+            'tbp_text': _tbpCtrl.text,
+          });
+        });
       },
     );
   }
@@ -693,7 +781,14 @@ class _BookingGuestHouseAddScreenState
       displayText: (p) => p.provinceName ?? 'N/A',
       onSelected: (p) {
         if (!mounted) return;
-        setState(() => _selectedProvince = p);
+        setState(() {
+          _selectedProvince = p;
+          _provinceCtrl.text = p.provinceName ?? '';
+          _formKey.currentState?.patchValue({
+            'province': _provinceCtrl.text,
+            'province_text': _provinceCtrl.text,
+          });
+        });
       },
     );
   }
@@ -705,126 +800,5 @@ class _BookingGuestHouseAddScreenState
       return '${p.projectCode} - ${p.projectName ?? ''}';
     }
     return p.projectName ?? 'N/A';
-  }
-}
-
-/// Field chọn ngày (read-only tap-to-pick).
-class _DateField extends StatelessWidget {
-  const _DateField({
-    required this.label,
-    required this.value,
-    required this.onChanged,
-    this.required = false,
-    this.firstDate,
-  });
-
-  final String label;
-  final DateTime? value;
-  final ValueChanged<DateTime> onChanged;
-  final bool required;
-  final DateTime? firstDate;
-
-  @override
-  Widget build(BuildContext context) {
-    final df = DateFormat('dd/MM/yyyy');
-    final error = value == null && required;
-
-    return InkWell(
-      borderRadius: BorderRadius.circular(10),
-      onTap: () async {
-        final now = DateTime.now();
-        final initial = value ?? now;
-        final picked = await showDatePicker(
-          context: context,
-          initialDate: initial,
-firstDate: firstDate ?? DateTime(now.year - 1),
-                  lastDate: DateTime(now.year + 2),
-        );
-        if (picked != null) onChanged(picked);
-      },
-      child: InputDecorator(
-        decoration: InputDecoration(
-          labelText: required ? '$label *' : label,
-          prefixIcon: Icon(
-            Icons.calendar_today_outlined,
-            color: error ? Colors.red : AppColors.primaryERP,
-            size: 20,
-          ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          errorText: error ? 'Vui lòng chọn $label'.toLowerCase() : null,
-        ),
-        child: Text(
-          value == null ? 'Chọn ngày' : df.format(value!),
-          style: TextStyle(
-            color: value == null ? Colors.grey.shade600 : Colors.black87,
-            fontSize: 14,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-/// Field hiển thị + mở bottom sheet chọn.
-class _SelectField extends StatelessWidget {
-  // ignore: unused_element_parameter
-  const _SelectField({
-    required this.label,
-    required this.icon,
-    required this.valueText,
-    required this.onTap,
-    this.required = false,
-    this.hint,
-  });
-
-  final String label;
-  final IconData icon;
-  final String? valueText;
-  final bool required;
-  final String? hint;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final hasValue = valueText != null && valueText!.isNotEmpty;
-
-    return InkWell(
-      borderRadius: BorderRadius.circular(10),
-      onTap: onTap,
-      child: InputDecorator(
-        decoration: InputDecoration(
-          labelText: required ? '$label *' : label,
-          prefixIcon: Icon(
-            icon,
-            color: hasValue ? AppColors.primaryERP : Colors.grey.shade600,
-            size: 20,
-          ),
-          suffixIcon: hasValue
-              ? const Icon(
-                  Icons.close,
-                  color: Colors.grey,
-                  size: 18,
-                )
-              : Icon(
-                  Icons.arrow_drop_down,
-                  color: Colors.grey.shade600,
-                ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ),
-        child: Text(
-          hasValue ? valueText! : (hint ?? 'Chọn $label'.toLowerCase()),
-          style: TextStyle(
-            color: hasValue ? Colors.black87 : Colors.grey.shade600,
-            fontSize: 14,
-          ),
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-        ),
-      ),
-    );
   }
 }
