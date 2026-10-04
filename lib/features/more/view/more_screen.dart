@@ -28,6 +28,10 @@ import '../../../../routes/route_names.dart';
 import '../../../../common/utils/snack_bar_helper.dart';
 import '../../../../di/injection.dart';
 import '../../auth/view/bloc/auth_bloc.dart';
+// Tạm thời ẩn bảng test Celebration — bỏ comment 3 import dưới khi bật lại.
+// import '../../celebration/data/datasource/model/celebration_model.dart';
+// import '../../celebration/view/pages/celebration_popup_screen.dart';
+// import '../../celebration/view/widgets/celebration_helper.dart';
 
 /// Màn hình "Thêm" — tab thứ 5 trong DashboardScreen.
 ///
@@ -161,6 +165,31 @@ class _MoreScreenState extends State<MoreScreen> {
                   ],
                 ),
               ),
+              //---(Test Celebration Popup)---//
+              // Tạm thời ẩn bảng test Celebration. Bỏ comment khối dưới để
+              // bật lại khi cần kiểm tra giao diện chúc mừng.
+              /*
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+                child: _TestCelebrationButton(
+                  onShowPopup: () => CelebrationHelper.tryShowPopup(context, currentUserId: user!.employeeId),
+                  onShowFakeBirthday: () => _showFakeCelebration(
+                    context,
+                    isBirthday: true,
+                  ),
+                  onShowFakeSeniority5: () => _showFakeCelebration(
+                    context,
+                    isBirthday: false,
+                    seniorityYears: 5,
+                  ),
+                  onShowFakeSeniority10: () => _showFakeCelebration(
+                    context,
+                    isBirthday: false,
+                    seniorityYears: 10,
+                  ),
+                ),
+              ),
+              */
               //---(Đăng xuất)---//
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
@@ -879,3 +908,215 @@ class _LogoutButton extends StatelessWidget {
     );
   }
 }
+
+/// Test-only buttons to manually trigger the celebration popup.
+/// TODO: remove after verifying the celebration UI.
+/// Tạm thời comment toàn bộ widget test Celebration — bỏ comment khối dưới
+/// (kèm 3 import celebration ở đầu file) khi cần kiểm tra lại giao diện.
+/*
+class _TestCelebrationButton extends StatelessWidget {
+  const _TestCelebrationButton({
+    required this.onShowPopup,
+    required this.onShowFakeBirthday,
+    required this.onShowFakeSeniority5,
+    required this.onShowFakeSeniority10,
+  });
+
+  final VoidCallback onShowPopup;
+  final VoidCallback onShowFakeBirthday;
+  final VoidCallback onShowFakeSeniority5;
+  final VoidCallback onShowFakeSeniority10;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.white,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: AppColors.primaryERP.withValues(alpha: 0.4),
+        ),
+        boxShadow: const [
+          BoxShadow(
+            color: Color(0x14000000),
+            blurRadius: 12,
+            offset: Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(14, 12, 14, 8),
+            child: Row(
+              children: [
+                Container(
+                  width: 32,
+                  height: 32,
+                  decoration: BoxDecoration(
+                    gradient: AppColors.gradientERP,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Icon(
+                    Icons.celebration_outlined,
+                    color: Colors.white,
+                    size: 16,
+                  ),
+                ),
+                const SizedBox(width: 10),
+                const Expanded(
+                  child: Text(
+                    'Test Celebration (Dev)',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.heading,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const Divider(height: 1, color: Color(0xFFEFF1F6)),
+          _TestRow(
+            label: 'Gọi API thật',
+            icon: Icons.cloud_outlined,
+            color: AppColors.primaryERP,
+            onTap: onShowPopup,
+          ),
+          _TestRow(
+            label: 'Fake: Sinh nhật',
+            icon: Icons.cake_outlined,
+            color: const Color(0xFFFF6F61),
+            onTap: onShowFakeBirthday,
+          ),
+          _TestRow(
+            label: 'Fake: 5 năm',
+            icon: Icons.workspace_premium_outlined,
+            color: const Color(0xFF4F8FE0),
+            onTap: onShowFakeSeniority5,
+          ),
+          _TestRow(
+            label: 'Fake: 10 năm',
+            icon: Icons.workspace_premium,
+            color: const Color(0xFFFFA500),
+            onTap: onShowFakeSeniority10,
+            isLast: true,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _TestRow extends StatelessWidget {
+  const _TestRow({
+    required this.label,
+    required this.icon,
+    required this.color,
+    required this.onTap,
+    this.isLast = false,
+  });
+
+  final String label;
+  final IconData icon;
+  final Color color;
+  final VoidCallback onTap;
+  final bool isLast;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+          child: Row(
+            children: [
+              Icon(icon, size: 18, color: color),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  label,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.heading,
+                  ),
+                ),
+              ),
+              const Icon(
+                Icons.play_arrow_rounded,
+                size: 18,
+                color: AppColors.gray,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Show a fake celebration popup with hard-coded data for UI preview.
+void _showFakeCelebration(
+  BuildContext context, {
+  required bool isBirthday,
+  int seniorityYears = 0,
+}) {
+  final user = context.read<AuthBloc>().state.user;
+  final fullName = user?.fullName.trim().isNotEmpty == true
+      ? user!.fullName.trim()
+      : 'Nguyễn Quang Hưng';
+  final position = user?.positionName.trim() ?? 'Nhân viên Kỹ thuật';
+  final department = user?.departmentName.trim() ?? 'Software Development Dept';
+
+  final fakeItem = CelebrationItem(
+    employeeID: user?.employeeId ?? 689,
+    fullName: fullName,
+    code: user?.code ?? 'R0356',
+    departmentName: department,
+    positionName: position,
+    gioiTinh: 1,
+    imagePath: user?.imagePath ?? '',
+    birthOfDate: DateTime(2002, 10, 21),
+    startWorking: DateTime(2026, 1, 19),
+    isBirthday: isBirthday,
+    isSeniority: !isBirthday,
+    isSeniority5Year: seniorityYears == 5,
+    isSeniority10Year: seniorityYears == 10,
+    seniorityYears: seniorityYears,
+    totalYearsWorking: seniorityYears,
+  );
+
+  // Drive the popup directly with the fake item via InheritedWidget override.
+  showGeneralDialog<void>(
+    context: context,
+    barrierDismissible: true,
+    barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
+    barrierColor: Colors.black.withValues(alpha: 0.55),
+    transitionDuration: const Duration(milliseconds: 320),
+    pageBuilder: (ctx, _, _) {
+      return CelebrationOverride(
+        item: fakeItem,
+        child: const CelebrationPopupScreen(),
+      );
+    },
+    transitionBuilder: (ctx, animation, _, child) {
+      final curved = CurvedAnimation(
+        parent: animation,
+        curve: Curves.easeOutCubic,
+        reverseCurve: Curves.easeInCubic,
+      );
+      return FadeTransition(
+        opacity: curved,
+        child: ScaleTransition(
+          scale: Tween<double>(begin: 0.92, end: 1.0).animate(curved),
+          child: child,
+        ),
+      );
+    },
+  );
+}
+*/

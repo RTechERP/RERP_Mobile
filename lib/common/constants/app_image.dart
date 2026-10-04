@@ -91,4 +91,12 @@ class AppImages {
   static const chatbot_questioning = 'assets/images/icons/apps/chatbot/questioning.png';
   static const chatbot_love = 'assets/images/icons/apps/chatbot/love.png';
   static const chatbot_angry = 'assets/images/icons/apps/chatbot/angry.png';
+
+  static const birthday = 'assets/images/celebrations/birthday.png';
+  static const birthday_music = 'images/celebrations/birthday.mp3';
+  static const seniority_5yrs = 'assets/images/celebrations/seniority_5yrs.png';
+  static const seniority_5yrs_music = 'images/celebrations/seniority_5yrs.mp3';
+  static const seniority_10yrs =
+      'assets/images/celebrations/seniority_10yrs.png';
+  static const seniority_10yrs_music = 'images/celebrations/seniority_10yrs.mp3';
 }

@@ -104,6 +104,9 @@ dependencies:
   smooth_sheets: ^1.0.0
   easy_stepper: ^1.0.1
   signature: ^5.5.0
+  confetti: ^0.8.0
+  google_fonts: ^6.2.1
+  audioplayers: ^6.1.0
 
 flutter_native_splash:
   color: "#FFFFFF"
@@ -217,6 +220,10 @@ flutter:
     - assets/images/icons/apps/week_plan/89.png
     - assets/images/icons/apps/week_plan/90.png
     - assets/images/icons/apps/91.png
+    - assets/images/celebrations/birthday.png
+    - assets/images/celebrations/birthday.mp3
+    - assets/images/celebrations/seniority_5yrs.png
+    - assets/images/celebrations/seniority_10yrs.png
 
     # Trans
     - assets/trans/vi-VN.json
@@ -232,6 +239,9 @@ flutter:
     - assets/lotties/Loading.json
 
     # Fonts
+    # Tên file phải theo đúng convention của package google_fonts
+    # (<Family>-<Weight>.ttf) để package tự load từ asset, không gọi network.
+    - assets/fonts/DancingScript-Bold.ttf
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

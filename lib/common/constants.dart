@@ -514,4 +514,7 @@ class ApiEndPoint {
   /// Chi tiết 1 session chat kèm messages. API: GET /Rio/chat-history/{id}.
   static String rioChatHistoryDetail(int sessionId) =>
       '/Rio/chat-history/$sessionId';
+
+  // Celebration (Birthday/Seniority)
+  static const String checkBirthdaySeniority = '/home/check-birthday-seniority';
 }
