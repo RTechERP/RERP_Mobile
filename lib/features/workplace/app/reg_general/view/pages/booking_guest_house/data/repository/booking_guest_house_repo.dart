@@ -34,4 +34,11 @@ abstract class BookingGuestHouseRepo {
   Future<Either<BaseError, List<ProvinceFilterItem>>> getProvinces({
     int employeeId,
   });
+
+  /// Lưu phiếu đặt phòng nhà nghỉ.
+  /// Body: `{ "accommodationBooking": {...}, "accommodationBookingDetails": [...], "idDeleteds": [] }`.
+  Future<Either<BaseError, BookingGuestHouseSaveResponse>>
+      saveBookingGuestHouse({
+    required Map<String, dynamic> payload,
+  });
 }

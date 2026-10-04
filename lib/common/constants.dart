@@ -253,6 +253,11 @@ class ApiEndPoint {
   static const String getBookingGuestHouse =
       '/AccommodationBooking/data-accommodation-booking';
 
+  /// Đặt phòng nhà nghỉ — lưu phiếu (thêm mới).
+  /// API: POST /AccommodationBooking/save-data
+  /// Body: `{ "accommodationBooking": {...}, "accommodationBookingDetails": [...], "idDeleteds": [] }`.
+  static const String saveBookingGuestHouse = '/AccommodationBooking/save-data';
+
   /// Lấy phiếu đặt xe theo ngày cho work_trip.
   static const String getVehicleBookingsForBussiness =
       '/EmployeeBussiness/get-vehicle-bookings-for-bussiness';

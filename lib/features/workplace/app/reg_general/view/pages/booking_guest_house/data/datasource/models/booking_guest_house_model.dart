@@ -119,3 +119,56 @@ class ProvinceFilterItem with _$ProvinceFilterItem {
   factory ProvinceFilterItem.fromJson(Map<String, dynamic> json) =>
       _$ProvinceFilterItemFromJson(json);
 }
+
+/// Model chi tiết phiếu đặt phòng — một dòng trong `accommodationBookingDetails`.
+/// Tương ứng payload: `{ ID, AccommodationBookingID, EmployeeID, PhoneNumber,
+/// FullName, DepartmentName, Note, EmployeeCode }`.
+@freezed
+class BookingGuestHouseDetailItem with _$BookingGuestHouseDetailItem {
+  const factory BookingGuestHouseDetailItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'AccommodationBookingID') int? accommodationBookingId,
+    @JsonKey(name: 'EmployeeID') int? employeeId,
+    @JsonKey(name: 'PhoneNumber') String? phoneNumber,
+    @JsonKey(name: 'FullName') String? fullName,
+    @JsonKey(name: 'DepartmentName') String? departmentName,
+    @JsonKey(name: 'Note') String? note,
+    @JsonKey(name: 'EmployeeCode') String? employeeCode,
+  }) = _BookingGuestHouseDetailItem;
+
+  factory BookingGuestHouseDetailItem.fromJson(Map<String, dynamic> json) =>
+      _$BookingGuestHouseDetailItemFromJson(json);
+}
+
+/// Model đại diện object `accommodationBooking` trong payload save-data.
+@freezed
+class AccommodationBookingPayload with _$AccommodationBookingPayload {
+  const factory AccommodationBookingPayload({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'RegisterID') int? registerId,
+    @JsonKey(name: 'ProjectID') int? projectId,
+    @JsonKey(name: 'ProvinceID') int? provinceId,
+    @JsonKey(name: 'StartDate') DateTime? startDate,
+    @JsonKey(name: 'EndDate') DateTime? endDate,
+    @JsonKey(name: 'Note') String? note,
+    @JsonKey(name: 'ApprovedTBP') int? approvedTBP,
+    @JsonKey(name: 'SpecificDestinationAddress') String?
+        specificDestinationAddress,
+    @JsonKey(name: 'Address') String? address,
+  }) = _AccommodationBookingPayload;
+
+  factory AccommodationBookingPayload.fromJson(Map<String, dynamic> json) =>
+      _$AccommodationBookingPayloadFromJson(json);
+}
+
+/// Response tối thiểu từ API `/AccommodationBooking/save-data`.
+/// Thường server trả `{ status, message, data: <id> }` — chỉ cần `id`.
+@freezed
+class BookingGuestHouseSaveResponse with _$BookingGuestHouseSaveResponse {
+  const factory BookingGuestHouseSaveResponse({
+    @JsonKey(name: 'ID') int? id,
+  }) = _BookingGuestHouseSaveResponse;
+
+  factory BookingGuestHouseSaveResponse.fromJson(Map<String, dynamic> json) =>
+      _$BookingGuestHouseSaveResponseFromJson(json);
+}

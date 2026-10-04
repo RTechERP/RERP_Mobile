@@ -5,7 +5,6 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
@@ -45,7 +44,9 @@ class _BookingGuestHouseAddScreenState
   List<ProvinceFilterItem> _provinces = const [];
   bool _loadingLookups = false;
 
-  //---(Current user dùng để auto-fill người ở 1)---//
+  //---(Current user dùng để auto-fill người ở 1 + RegisterID payload)---//
+  /// EmployeeID của user đang đăng nhập — dùng làm `RegisterID` trong payload.
+  int? _currentEmployeeId;
 
   //---(Form state — Card 1)---//
   ProjectFilterItem? _selectedProject;
@@ -107,6 +108,9 @@ class _BookingGuestHouseAddScreenState
     final user = res.getOrElse(() => null);
     if (user == null) return;
 
+    // Lưu EmployeeID làm RegisterID cho payload.
+    _currentEmployeeId = user.employeeId;
+
     // Gọi Employee API để lấy SĐT + phòng ban (User model không có).
     final repo = GetIt.I<BookingGuestHouseRepo>();
     final empRes = await repo.getEmployees(keyword: user.code);
@@ -159,18 +163,42 @@ class _BookingGuestHouseAddScreenState
         title: const Text('Đặt phòng nhà nghỉ'),
         onBackTap: () => context.pop(),
       ),
-      body: BlocListener<BookingGuestHouseBloc, BookingGuestHouseState>(
-        listenWhen: (prev, curr) =>
-            prev.message != curr.message && (curr.message ?? '').isNotEmpty,
-        listener: (context, state) {
-          showMessage(
-            context,
-            state.message!,
-            type: state.status == BaseStateStatus.failed
-                ? SnackBarType.error
-                : SnackBarType.success,
-          );
-        },
+      body: MultiBlocListener(
+        listeners: [
+          BlocListener<BookingGuestHouseBloc, BookingGuestHouseState>(
+            listenWhen: (prev, curr) =>
+                prev.submitSuccess != curr.submitSuccess &&
+                curr.submitSuccess,
+            listener: (context, state) {
+              // Submit thành công → pop về màn list, list sẽ tự reload qua
+              // BookingGuestHousePage.initState (đã chạy init() ngay khi vào).
+              showMessage(
+                context,
+                state.lastSubmittedId != null
+                    ? 'Lưu phiếu thành công (#${state.lastSubmittedId})'
+                    : 'Lưu phiếu thành công',
+                type: SnackBarType.success,
+              );
+              if (context.canPop()) {
+                context.pop();
+              }
+            },
+          ),
+          BlocListener<BookingGuestHouseBloc, BookingGuestHouseState>(
+            listenWhen: (prev, curr) =>
+                prev.isSubmitting != curr.isSubmitting &&
+                curr.isSubmitting == false &&
+                !curr.submitSuccess &&
+                (curr.message ?? '').isNotEmpty,
+            listener: (context, state) {
+              showMessage(
+                context,
+                state.message ?? 'Lưu phiếu thất bại',
+                type: SnackBarType.error,
+              );
+            },
+          ),
+        ],
         child: FormBuilder(
           key: _formKey,
           child: Column(
@@ -366,76 +394,200 @@ class _BookingGuestHouseAddScreenState
       return;
     }
 
-    // UI-only: in payload ra console, không gọi API.
-    final df = DateFormat('yyyy-MM-dd');
-    debugPrint('--- BookingGuestHouseAdd payload ---');
-    debugPrint('dateStart: ${df.format(_startDate!)}');
-    debugPrint('dateEnd: ${df.format(_endDate!)}');
-    debugPrint('projectId: ${_selectedProject?.id}');
-    debugPrint('tbpId: ${_selectedTbp?.id}');
-    debugPrint('province: ${_selectedProvince?.toString()}');
-    debugPrint('roommates: $_roommateLineCount');
+    if (_currentEmployeeId == null || _currentEmployeeId == 0) {
+      showMessage(
+        context,
+        'Không xác định được nhân viên đăng ký. Vui lòng thử lại.',
+        type: SnackBarType.error,
+      );
+      return;
+    }
 
-    showMessage(
-      context,
-      'Validate thành công — chưa gắn API POST',
-      type: SnackBarType.success,
-    );
+    // Build payload và dispatch submit event — UI chờ BlocListener phản hồi.
+    final payload = _buildSubmitPayload();
+    bloc.add(BookingGuestHouseEvent.submit(payload: payload));
+  }
+
+  /// Build 1 dòng `accommodationBookingDetails` từ dữ liệu form của dòng người ở i.
+  ///
+  /// Ưu tiên resolve EmployeeID / PhoneNumber / DepartmentName / EmployeeCode
+  /// từ EmployeeFilterItem (nếu đã chọn nhân viên), fallback về value nhập tay
+  /// từ FormBuilder (đã được sync vào [_infoFieldValues]).
+  Map<String, dynamic> _buildRoommateDetail({
+    required int index,
+    required int accommodationBookingId,
+  }) {
+    final emp = index == 0 ? _selectedRoommateEmployees[0] : null;
+
+    final fullName = (emp?.fullName ??
+            _infoFieldValues['roommate_full_name_$index'] ??
+            '')
+        .toString()
+        .trim();
+    final code = (emp?.code ??
+            _infoFieldValues['roommate_code_$index'] ??
+            '')
+        .toString()
+        .trim();
+    final phone = (emp?.sdtCaNhan ??
+            _infoFieldValues['roommate_phone_$index'] ??
+            '')
+        .toString()
+        .trim();
+    final department = (emp?.departmentName ??
+            _infoFieldValues['roommate_department_$index'] ??
+            '')
+        .toString()
+        .trim();
+    final note = (_infoFieldValues['roommate_note_$index'] ?? '')
+        .toString()
+        .trim();
+
+    return <String, dynamic>{
+      'ID': 0,
+      'AccommodationBookingID': accommodationBookingId,
+      'EmployeeID': emp?.id ?? 0,
+      'PhoneNumber': phone,
+      'FullName': fullName,
+      'DepartmentName': department,
+      'Note': note.isEmpty ? null : note,
+      'EmployeeCode': code,
+    };
+  }
+
+  /// Build payload cuối cùng theo schema `/AccommodationBooking/save-data`.
+  Map<String, dynamic> _buildSubmitPayload() {
+    final accommodationBooking = <String, dynamic>{
+      'ID': 0,
+      'RegisterID': _currentEmployeeId,
+      'ProjectID': _selectedProject?.id ?? 0,
+      'ProvinceID': _selectedProvince?.id ?? 0,
+      'StartDate': _toApiIso(_startDate),
+      'EndDate': _toApiIso(_endDate),
+      'Note': _readFormText('note'),
+      'ApprovedTBP': _selectedTbp?.id ?? 0,
+      'SpecificDestinationAddress': _readFormText('address'),
+      'Address': _readFormText('address'),
+    };
+
+    final details = <Map<String, dynamic>>[];
+    for (var i = 0; i < _roommateLineCount; i++) {
+      final name = (_infoFieldValues['roommate_full_name_$i'] ?? '')
+          .toString()
+          .trim();
+      final phone = (_infoFieldValues['roommate_phone_$i'] ?? '')
+          .toString()
+          .trim();
+      // Bỏ qua dòng rỗng hoàn toàn (sau shift / trước khi nhập) để không tạo
+      // detail rỗng gửi lên server.
+      if (name.isEmpty && phone.isEmpty) continue;
+      details.add(_buildRoommateDetail(
+        index: i,
+        accommodationBookingId: 0,
+      ));
+    }
+
+    return <String, dynamic>{
+      'accommodationBooking': accommodationBooking,
+      'accommodationBookingDetails': details,
+      'idDeleteds': <int>[],
+    };
+  }
+
+  String _readFormText(String name) {
+    final v = _formKey.currentState?.value[name];
+    if (v == null) return '';
+    return v.toString().trim();
+  }
+
+  /// Convert DateTime → chuỗi `yyyy-MM-ddTHH:mm:ss.000Z` (UTC) khớp payload mẫu.
+  String _toApiIso(DateTime? d) {
+    if (d == null) return '';
+    final utc = d.toUtc();
+    final y = utc.year.toString().padLeft(4, '0');
+    final m = utc.month.toString().padLeft(2, '0');
+    final day = utc.day.toString().padLeft(2, '0');
+    final h = utc.hour.toString().padLeft(2, '0');
+    final mi = utc.minute.toString().padLeft(2, '0');
+    final s = utc.second.toString().padLeft(2, '0');
+    return '$y-$m-${day}T$h:$mi:$s.000Z';
   }
 
   Widget _buildBottomBar() {
-    return Container(
-      padding: EdgeInsets.fromLTRB(
-        16,
-        12,
-        16,
-        12 + MediaQuery.of(context).padding.bottom,
-      ),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 8,
-            offset: const Offset(0, -2),
+    return BlocBuilder<BookingGuestHouseBloc, BookingGuestHouseState>(
+      buildWhen: (prev, curr) =>
+          prev.isSubmitting != curr.isSubmitting ||
+          prev.submitSuccess != curr.submitSuccess,
+      builder: (context, state) {
+        final isSubmitting = state.isSubmitting;
+        return Container(
+          padding: EdgeInsets.fromLTRB(
+            16,
+            12,
+            16,
+            12 + MediaQuery.of(context).padding.bottom,
           ),
-        ],
-      ),
-      child: Row(
-        children: [
-          Expanded(
-            child: OutlinedButton(
-              onPressed: () => context.pop(),
-              style: OutlinedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 14),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.05),
+                blurRadius: 8,
+                offset: const Offset(0, -2),
+              ),
+            ],
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                child: OutlinedButton(
+                  onPressed: isSubmitting ? null : () => context.pop(),
+                  style: OutlinedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: const Text('Huỷ'),
                 ),
               ),
-              child: const Text('Huỷ'),
-            ),
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            flex: 2,
-            child: ElevatedButton(
-              onPressed: _onSave,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.primaryERP,
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(vertical: 14),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+              const SizedBox(width: 12),
+              Expanded(
+                flex: 2,
+                child: ElevatedButton(
+                  onPressed: isSubmitting ? null : _onSave,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.primaryERP,
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: isSubmitting
+                      ? const SizedBox(
+                          height: 20,
+                          width: 20,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              Colors.white,
+                            ),
+                          ),
+                        )
+                      : const Text(
+                          'Lưu phiếu',
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                 ),
               ),
-              child: const Text(
-                'Lưu phiếu',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
-              ),
-            ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 

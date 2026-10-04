@@ -163,3 +163,75 @@ Map<String, dynamic> _$$ProvinceFilterItemImplToJson(
       'ID': instance.id,
       'ProvinceName': instance.provinceName,
     };
+
+_$BookingGuestHouseDetailItemImpl _$$BookingGuestHouseDetailItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$BookingGuestHouseDetailItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      accommodationBookingId: (json['AccommodationBookingID'] as num?)?.toInt(),
+      employeeId: (json['EmployeeID'] as num?)?.toInt(),
+      phoneNumber: json['PhoneNumber'] as String?,
+      fullName: json['FullName'] as String?,
+      departmentName: json['DepartmentName'] as String?,
+      note: json['Note'] as String?,
+      employeeCode: json['EmployeeCode'] as String?,
+    );
+
+Map<String, dynamic> _$$BookingGuestHouseDetailItemImplToJson(
+        _$BookingGuestHouseDetailItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'AccommodationBookingID': instance.accommodationBookingId,
+      'EmployeeID': instance.employeeId,
+      'PhoneNumber': instance.phoneNumber,
+      'FullName': instance.fullName,
+      'DepartmentName': instance.departmentName,
+      'Note': instance.note,
+      'EmployeeCode': instance.employeeCode,
+    };
+
+_$AccommodationBookingPayloadImpl _$$AccommodationBookingPayloadImplFromJson(
+        Map<String, dynamic> json) =>
+    _$AccommodationBookingPayloadImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      registerId: (json['RegisterID'] as num?)?.toInt(),
+      projectId: (json['ProjectID'] as num?)?.toInt(),
+      provinceId: (json['ProvinceID'] as num?)?.toInt(),
+      startDate: json['StartDate'] == null
+          ? null
+          : DateTime.parse(json['StartDate'] as String),
+      endDate: json['EndDate'] == null
+          ? null
+          : DateTime.parse(json['EndDate'] as String),
+      note: json['Note'] as String?,
+      approvedTBP: (json['ApprovedTBP'] as num?)?.toInt(),
+      specificDestinationAddress: json['SpecificDestinationAddress'] as String?,
+      address: json['Address'] as String?,
+    );
+
+Map<String, dynamic> _$$AccommodationBookingPayloadImplToJson(
+        _$AccommodationBookingPayloadImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'RegisterID': instance.registerId,
+      'ProjectID': instance.projectId,
+      'ProvinceID': instance.provinceId,
+      'StartDate': instance.startDate?.toIso8601String(),
+      'EndDate': instance.endDate?.toIso8601String(),
+      'Note': instance.note,
+      'ApprovedTBP': instance.approvedTBP,
+      'SpecificDestinationAddress': instance.specificDestinationAddress,
+      'Address': instance.address,
+    };
+
+_$BookingGuestHouseSaveResponseImpl
+    _$$BookingGuestHouseSaveResponseImplFromJson(Map<String, dynamic> json) =>
+        _$BookingGuestHouseSaveResponseImpl(
+          id: (json['ID'] as num?)?.toInt(),
+        );
+
+Map<String, dynamic> _$$BookingGuestHouseSaveResponseImplToJson(
+        _$BookingGuestHouseSaveResponseImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+    };

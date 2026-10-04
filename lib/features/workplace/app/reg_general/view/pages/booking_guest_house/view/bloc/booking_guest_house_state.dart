@@ -16,6 +16,15 @@ class BookingGuestHouseState extends BaseBlocState {
   /// Loading khi refresh / pull-to-refresh.
   final bool isRefreshing;
 
+  /// Loading khi submit form lưu phiếu.
+  final bool isSubmitting;
+
+  /// Cờ đánh dấu submit thành công — UI dùng để pop về màn list.
+  final bool submitSuccess;
+
+  /// ID phiếu vừa lưu thành công (null = chưa submit hoặc submit lỗi).
+  final int? lastSubmittedId;
+
   /// Danh sách dự án cho bộ lọc.
   final List<ProjectFilterItem> projects;
 
@@ -39,6 +48,9 @@ class BookingGuestHouseState extends BaseBlocState {
     this.dateEnd,
     this.filterText = '',
     this.isRefreshing = false,
+    this.isSubmitting = false,
+    this.submitSuccess = false,
+    this.lastSubmittedId,
     this.projects = const [],
     this.employees = const [],
     this.selectedProject,
@@ -53,6 +65,9 @@ class BookingGuestHouseState extends BaseBlocState {
     dateEnd: null,
     filterText: '',
     isRefreshing: false,
+    isSubmitting: false,
+    submitSuccess: false,
+    lastSubmittedId: null,
     projects: const [],
     employees: const [],
     selectedProject: null,
@@ -69,6 +84,9 @@ class BookingGuestHouseState extends BaseBlocState {
     dateEnd,
     filterText,
     isRefreshing,
+    isSubmitting,
+    submitSuccess,
+    lastSubmittedId,
     projects,
     employees,
     selectedProject,

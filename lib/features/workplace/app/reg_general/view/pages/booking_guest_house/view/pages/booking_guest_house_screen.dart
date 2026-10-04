@@ -277,8 +277,13 @@ class _BookingGuestHousePageState
                   backgroundColor: AppColors.primaryERP,
                   foregroundColor: Colors.white,
                   tooltip: 'Thêm phiếu đặt',
-                  onPressed: () {
-                    context.push(RouteNames.bookingGuestHouseAdd);
+                  onPressed: () async {
+                    // Đợi Add screen pop về → reload list để hiển thị phiếu
+                    // vừa tạo (Add screen dispatch submitSuccess khi lưu OK).
+                    await context.push(RouteNames.bookingGuestHouseAdd);
+                    if (!mounted) return;
+                    bloc.add(const BookingGuestHouseEvent.init());
+                    bloc.add(const BookingGuestHouseEvent.loadFilters());
                   },
                   child: const Icon(Icons.add),
                 ),

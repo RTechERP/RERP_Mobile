@@ -21,6 +21,12 @@ abstract class _$BookingGuestHouseStateCWProxy {
 
   BookingGuestHouseState isRefreshing(bool isRefreshing);
 
+  BookingGuestHouseState isSubmitting(bool isSubmitting);
+
+  BookingGuestHouseState submitSuccess(bool submitSuccess);
+
+  BookingGuestHouseState lastSubmittedId(int? lastSubmittedId);
+
   BookingGuestHouseState projects(List<ProjectFilterItem> projects);
 
   BookingGuestHouseState employees(List<EmployeeFilterItem> employees);
@@ -45,6 +51,9 @@ abstract class _$BookingGuestHouseStateCWProxy {
     DateTime? dateEnd,
     String? filterText,
     bool? isRefreshing,
+    bool? isSubmitting,
+    bool? submitSuccess,
+    int? lastSubmittedId,
     List<ProjectFilterItem>? projects,
     List<EmployeeFilterItem>? employees,
     ProjectFilterItem? selectedProject,
@@ -86,6 +95,18 @@ class _$BookingGuestHouseStateCWProxyImpl
       this(isRefreshing: isRefreshing);
 
   @override
+  BookingGuestHouseState isSubmitting(bool isSubmitting) =>
+      this(isSubmitting: isSubmitting);
+
+  @override
+  BookingGuestHouseState submitSuccess(bool submitSuccess) =>
+      this(submitSuccess: submitSuccess);
+
+  @override
+  BookingGuestHouseState lastSubmittedId(int? lastSubmittedId) =>
+      this(lastSubmittedId: lastSubmittedId);
+
+  @override
   BookingGuestHouseState projects(List<ProjectFilterItem> projects) =>
       this(projects: projects);
 
@@ -122,6 +143,9 @@ class _$BookingGuestHouseStateCWProxyImpl
     Object? dateEnd = const $CopyWithPlaceholder(),
     Object? filterText = const $CopyWithPlaceholder(),
     Object? isRefreshing = const $CopyWithPlaceholder(),
+    Object? isSubmitting = const $CopyWithPlaceholder(),
+    Object? submitSuccess = const $CopyWithPlaceholder(),
+    Object? lastSubmittedId = const $CopyWithPlaceholder(),
     Object? projects = const $CopyWithPlaceholder(),
     Object? employees = const $CopyWithPlaceholder(),
     Object? selectedProject = const $CopyWithPlaceholder(),
@@ -159,6 +183,20 @@ class _$BookingGuestHouseStateCWProxyImpl
               ? _value.isRefreshing
               // ignore: cast_nullable_to_non_nullable
               : isRefreshing as bool,
+      isSubmitting:
+          isSubmitting == const $CopyWithPlaceholder() || isSubmitting == null
+              ? _value.isSubmitting
+              // ignore: cast_nullable_to_non_nullable
+              : isSubmitting as bool,
+      submitSuccess:
+          submitSuccess == const $CopyWithPlaceholder() || submitSuccess == null
+              ? _value.submitSuccess
+              // ignore: cast_nullable_to_non_nullable
+              : submitSuccess as bool,
+      lastSubmittedId: lastSubmittedId == const $CopyWithPlaceholder()
+          ? _value.lastSubmittedId
+          // ignore: cast_nullable_to_non_nullable
+          : lastSubmittedId as int?,
       projects: projects == const $CopyWithPlaceholder() || projects == null
           ? _value.projects
           // ignore: cast_nullable_to_non_nullable

@@ -44,6 +44,7 @@ class BookingGuestHouseBloc
             _onChangeProjectFilter(emit, project: project),
         changeEmployeeFilter: (employee) =>
             _onChangeEmployeeFilter(emit, employee: employee),
+        submit: (payload) => _onSubmit(emit, payload: payload),
       );
     });
   }
@@ -281,6 +282,52 @@ class BookingGuestHouseBloc
             dateStart: dateStart,
             dateEnd: dateEnd,
             filterText: filterText,
+            message: null,
+          ),
+        );
+      },
+    );
+  }
+
+  //---(Submit)---//
+
+  /// Lưu phiếu đặt phòng nhà nghỉ — gọi API `/AccommodationBooking/save-data`.
+  /// Payload là Map do UI build sẵn (đã chuẩn hoá theo schema server).
+  Future<void> _onSubmit(
+    Emitter<BookingGuestHouseState> emit, {
+    required Map<String, dynamic> payload,
+  }) async {
+    emit(
+      state.copyWith(
+        isSubmitting: true,
+        submitSuccess: false,
+        lastSubmittedId: null,
+        message: null,
+      ),
+    );
+
+    _log.logI('📋 saveBookingGuestHouse payload: $payload');
+
+    final res = await _repo.saveBookingGuestHouse(payload: payload);
+
+    await res.fold(
+      (err) async {
+        _log.logE('❌ saveBookingGuestHouse failed: $err');
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            submitSuccess: false,
+            message: err.getErrorMessage,
+          ),
+        );
+      },
+      (created) async {
+        _log.logI('✅ saveBookingGuestHouse OK id=${created.id}');
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            submitSuccess: true,
+            lastSubmittedId: created.id,
             message: null,
           ),
         );

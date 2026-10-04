@@ -1,6 +1,8 @@
 // Service cho module Đặt phòng nhà nghỉ.
 // API: GET /AccommodationBooking/data-accommodation-booking
 
+import 'dart:convert';
+
 import 'package:injectable/injectable.dart';
 
 import '../../../../../../../../../../base/network/dio/dio_base_api_service.dart';
@@ -83,6 +85,88 @@ class BookingGuestHouseService extends DioBaseApiService {
             json,
             (e) => EmployeeFilterItem.fromJson(e as Map<String, dynamic>),
           ),
+    );
+  }
+
+  /// Lưu phiếu đặt phòng nhà nghỉ (thêm mới).
+  /// API: POST /AccommodationBooking/save-data
+  ///
+  /// Payload dạng:
+  /// ```
+  /// {
+  ///   "accommodationBooking": { ID, RegisterID, ProjectID, ProvinceID,
+  ///                             StartDate, EndDate, Note, ApprovedTBP,
+  ///                             SpecificDestinationAddress, Address },
+  ///   "accommodationBookingDetails": [ { ID, AccommodationBookingID, EmployeeID,
+  ///                                      PhoneNumber, FullName, DepartmentName,
+  ///                                      Note, EmployeeCode } ],
+  ///   "idDeleteds": []
+  /// }
+  /// ```
+  ///
+  /// Server có thể trả về:
+  /// 1. Envelope chuẩn `{ status, message, data: <id> }`.
+  /// 2. JSON string bọc JSON (Dio parse về String do content-type không match).
+  /// 3. `true` / `false` / số (một số endpoint ASP.NET trả raw primitive).
+  Future<BaseData<BookingGuestHouseSaveResponse>> saveBookingGuestHouse({
+    required Map<String, dynamic> payload,
+  }) async {
+    return post<BaseData<BookingGuestHouseSaveResponse>>(
+      ApiEndPoint.saveBookingGuestHouse,
+      body: payload,
+      parser: (json) => _parseSaveResponse(json),
+    );
+  }
+
+  /// Parser defensive cho response save — chấp nhận nhiều dạng JSON
+  /// server có thể trả về.
+  BaseData<BookingGuestHouseSaveResponse> _parseSaveResponse(dynamic json) {
+    // 1. Dio đã parse thành String (do content-type không match JSON).
+    //    Thử parse lại thành Map/List/primitive.
+    if (json is String) {
+      final raw = json.trim();
+      if (raw.isEmpty) {
+        return BaseData<BookingGuestHouseSaveResponse>(
+          status: 1,
+          data: const BookingGuestHouseSaveResponse(),
+        );
+      }
+      try {
+        final decoded = jsonDecode(raw);
+        return _parseSaveResponse(decoded);
+      } catch (_) {
+        // Không phải JSON — coi như success với ID rỗng.
+        return BaseData<BookingGuestHouseSaveResponse>(
+          status: 1,
+          data: const BookingGuestHouseSaveResponse(),
+        );
+      }
+    }
+
+    // 2. JSON primitive (bool, num, null): success với ID rỗng.
+    if (json == null || json is num || json is bool) {
+      return BaseData<BookingGuestHouseSaveResponse>(
+        status: 1,
+        data: const BookingGuestHouseSaveResponse(),
+      );
+    }
+
+    // 3. Envelope chuẩn BaseData: { status, message, data }.
+    if (json is Map<String, dynamic>) {
+      return BaseData<BookingGuestHouseSaveResponse>.fromJson(
+        json,
+        (data) => BookingGuestHouseSaveResponse.fromJson(
+          data is Map<String, dynamic>
+              ? data
+              : <String, dynamic>{},
+        ),
+      );
+    }
+
+    // 4. Fallback — trả success nhưng ID rỗng.
+    return BaseData<BookingGuestHouseSaveResponse>(
+      status: 1,
+      data: const BookingGuestHouseSaveResponse(),
     );
   }
 

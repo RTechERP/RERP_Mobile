@@ -39,4 +39,10 @@ class BookingGuestHouseEvent with _$BookingGuestHouseEvent {
   const factory BookingGuestHouseEvent.changeEmployeeFilter({
     required EmployeeFilterItem? employee,
   }) = _ChangeEmployeeFilter;
+
+  /// Gửi payload lưu phiếu đặt phòng nhà nghỉ.
+  /// Body: `{ "accommodationBooking": {...}, "accommodationBookingDetails": [...], "idDeleteds": [] }`.
+  const factory BookingGuestHouseEvent.submit({
+    required Map<String, dynamic> payload,
+  }) = _Submit;
 }
