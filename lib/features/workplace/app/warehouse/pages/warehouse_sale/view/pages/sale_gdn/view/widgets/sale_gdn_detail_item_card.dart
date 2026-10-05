@@ -148,6 +148,12 @@ class SaleGdnDetailItemCard extends StatelessWidget {
             label: 'Mã sản phẩm',
             value: item.productCode,
           ),
+          const SizedBox(height: 6),
+          // Mã sản phẩm theo dự án
+          _CodeRow(
+            label: 'Mã sp theo dự án',
+            value: item.productFullName,
+          ),
           const SizedBox(height: 10),
           // SL tồn + Số lượng
           Row(
