@@ -72,8 +72,9 @@ class _CelebrationContentState extends State<_CelebrationContent>
   late final ConfettiController _confettiController;
   late final AnimationController _sparkleController;
 
-  // Plays the birthday jingle while the popup is open. Created lazily so
-  // seniority popups (no music) don't pay the resource cost.
+  // Plays the jingle while the popup is open. Created lazily so popups
+  // that resolve to no celebration (no birthday/seniority flag) don't
+  // pay the resource cost.
   AudioPlayer? _audioPlayer;
 
   // Stable seed for sparkle positions so they don't jump on rebuild.
@@ -102,9 +103,13 @@ class _CelebrationContentState extends State<_CelebrationContent>
       duration: const Duration(milliseconds: 1100),
     )..repeat();
 
-    // Background jingle — only for birthday popups. Looped softly under
-    // the celebration visuals until the user dismisses.
-    if (widget.item.isBirthday == true) {
+    // Background jingle — one track per occasion. Looped softly under the
+    // celebration visuals until the user dismisses. When both flags are
+    // true the birthday track wins, matching the theme chosen in
+    // _CelebrationTheme.forType.
+    final isBirthday = widget.item.isBirthday == true;
+    final isSeniority = widget.item.isSeniority == true;
+    if (isBirthday || isSeniority) {
       // Mix with the user's currently playing music (don't kill their
       // song) and duck it slightly so the jingle stays audible.
       AudioPlayer.global.setAudioContext(
@@ -123,10 +128,19 @@ class _CelebrationContentState extends State<_CelebrationContent>
         ),
       );
 
-      _audioPlayer = AudioPlayer(playerId: 'birthday_jingle')
-        ..setReleaseMode(ReleaseMode.loop)
-        ..setVolume(0.6)
-        ..play(AssetSource(AppImages.birthday_music));
+      _audioPlayer =
+          AudioPlayer(
+              playerId: isBirthday ? 'birthday_jingle' : 'seniority_jingle',
+            )
+            ..setReleaseMode(ReleaseMode.loop)
+            ..setVolume(0.6)
+            ..play(
+              AssetSource(
+                isBirthday
+                    ? AppImages.birthday_music
+                    : AppImages.seniority_music,
+              ),
+            );
     }
   }
 
@@ -239,4 +253,3 @@ class _CelebrationContentState extends State<_CelebrationContent>
     );
   }
 }
-

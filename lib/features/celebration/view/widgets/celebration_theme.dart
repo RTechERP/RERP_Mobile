@@ -23,27 +23,17 @@ class _CelebrationTheme {
     );
   }
 
-  /// Festive seniority artwork for 10+ years (square).
-  factory _CelebrationTheme.seniorityHigh() {
+  /// Festive seniority artwork. [seniorityYears] is the `SeniorityYears`
+  /// value from the API and drives the overlay copy.
+  factory _CelebrationTheme.seniorityMid({required int seniorityYears}) {
     return _CelebrationTheme(
-      backgroundImage: AppImages.seniority_10yrs,
-      aspectRatio: 0.55,
-      backdropTop: const Color(0xFFE1BEE7),
-      backdropBottom: const Color(0xFFFFCCBC),
-      buttonStyle: _ButtonStyle.seniorityHigh,
-      overlayBuilder: (item) => _SeniorityOverlay(item: item, years: 10),
-    );
-  }
-
-  /// Festive seniority artwork for 5+ years (landscape).
-  factory _CelebrationTheme.seniorityMid() {
-    return _CelebrationTheme(
-      backgroundImage: AppImages.seniority_5yrs,
+      backgroundImage: AppImages.seniority,
       aspectRatio: 0.55,
       backdropTop: const Color(0xFFBBDEFB),
       backdropBottom: const Color(0xFFB2EBF2),
-      buttonStyle: _ButtonStyle.seniorityMid,
-      overlayBuilder: (item) => _SeniorityOverlay(item: item, years: 5),
+      buttonStyle: _ButtonStyle.seniority,
+      overlayBuilder: (item) =>
+          _SeniorityOverlay(item: item, years: seniorityYears),
     );
   }
 
@@ -52,8 +42,7 @@ class _CelebrationTheme {
     required int seniorityYears,
   }) {
     if (isBirthday) return _CelebrationTheme.birthday();
-    if (seniorityYears >= 10) return _CelebrationTheme.seniorityHigh();
-    return _CelebrationTheme.seniorityMid();
+    return _CelebrationTheme.seniorityMid(seniorityYears: seniorityYears);
   }
 
   final String backgroundImage;

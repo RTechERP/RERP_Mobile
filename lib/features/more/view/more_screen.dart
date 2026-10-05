@@ -29,9 +29,9 @@ import '../../../../common/utils/snack_bar_helper.dart';
 import '../../../../di/injection.dart';
 import '../../auth/view/bloc/auth_bloc.dart';
 // Tạm thời ẩn bảng test Celebration — bỏ comment 3 import dưới khi bật lại.
-// import '../../celebration/data/datasource/model/celebration_model.dart';
-// import '../../celebration/view/pages/celebration_popup_screen.dart';
-// import '../../celebration/view/widgets/celebration_helper.dart';
+import '../../celebration/data/datasource/model/celebration_model.dart';
+import '../../celebration/view/pages/celebration_popup_screen.dart';
+import '../../celebration/view/widgets/celebration_helper.dart';
 
 /// Màn hình "Thêm" — tab thứ 5 trong DashboardScreen.
 ///
@@ -165,31 +165,27 @@ class _MoreScreenState extends State<MoreScreen> {
                   ],
                 ),
               ),
+
               //---(Test Celebration Popup)---//
               // Tạm thời ẩn bảng test Celebration. Bỏ comment khối dưới để
               // bật lại khi cần kiểm tra giao diện chúc mừng.
-              /*
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
                 child: _TestCelebrationButton(
-                  onShowPopup: () => CelebrationHelper.tryShowPopup(context, currentUserId: user!.employeeId),
-                  onShowFakeBirthday: () => _showFakeCelebration(
+                  onShowPopup: () => CelebrationHelper.tryShowPopup(
                     context,
-                    isBirthday: true,
+                    currentUserId: user!.employeeId,
                   ),
-                  onShowFakeSeniority5: () => _showFakeCelebration(
-                    context,
-                    isBirthday: false,
-                    seniorityYears: 5,
-                  ),
-                  onShowFakeSeniority10: () => _showFakeCelebration(
+                  onShowFakeBirthday: () =>
+                      _showFakeCelebration(context, isBirthday: true),
+                  onShowFakeSeniority: () => _showFakeCelebration(
                     context,
                     isBirthday: false,
                     seniorityYears: 10,
                   ),
                 ),
               ),
-              */
+
               //---(Đăng xuất)---//
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
@@ -296,8 +292,7 @@ class _MoreScreenState extends State<MoreScreen> {
                   ),
                 ),
                 title: Text('more.pick_from_gallery'.tr()),
-                onTap: () =>
-                    sheetContext.pop(ImageSource.gallery),
+                onTap: () => sheetContext.pop(ImageSource.gallery),
               ),
               ListTile(
                 leading: Container(
@@ -327,10 +322,7 @@ class _MoreScreenState extends State<MoreScreen> {
   }
 
   /// Hiển thị ảnh đại diện full màn hình với khả năng zoom.
-  Future<void> _showAvatarViewer(
-    BuildContext context,
-    String avatarUrl,
-  ) async {
+  Future<void> _showAvatarViewer(BuildContext context, String avatarUrl) async {
     final userName = context.read<AuthBloc>().state.user?.fullName ?? '';
     await context.push(
       RouteNames.avatarViewer,
@@ -913,19 +905,17 @@ class _LogoutButton extends StatelessWidget {
 /// TODO: remove after verifying the celebration UI.
 /// Tạm thời comment toàn bộ widget test Celebration — bỏ comment khối dưới
 /// (kèm 3 import celebration ở đầu file) khi cần kiểm tra lại giao diện.
-/*
+
 class _TestCelebrationButton extends StatelessWidget {
   const _TestCelebrationButton({
     required this.onShowPopup,
     required this.onShowFakeBirthday,
-    required this.onShowFakeSeniority5,
-    required this.onShowFakeSeniority10,
+    required this.onShowFakeSeniority,
   });
 
   final VoidCallback onShowPopup;
   final VoidCallback onShowFakeBirthday;
-  final VoidCallback onShowFakeSeniority5;
-  final VoidCallback onShowFakeSeniority10;
+  final VoidCallback onShowFakeSeniority;
 
   @override
   Widget build(BuildContext context) {
@@ -933,9 +923,7 @@ class _TestCelebrationButton extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: AppColors.primaryERP.withValues(alpha: 0.4),
-        ),
+        border: Border.all(color: AppColors.primaryERP.withValues(alpha: 0.4)),
         boxShadow: const [
           BoxShadow(
             color: Color(0x14000000),
@@ -991,16 +979,10 @@ class _TestCelebrationButton extends StatelessWidget {
             onTap: onShowFakeBirthday,
           ),
           _TestRow(
-            label: 'Fake: 5 năm',
+            label: 'Fake: Thâm niên',
             icon: Icons.workspace_premium_outlined,
             color: const Color(0xFF4F8FE0),
-            onTap: onShowFakeSeniority5,
-          ),
-          _TestRow(
-            label: 'Fake: 10 năm',
-            icon: Icons.workspace_premium,
-            color: const Color(0xFFFFA500),
-            onTap: onShowFakeSeniority10,
+            onTap: onShowFakeSeniority,
             isLast: true,
           ),
         ],
@@ -1084,8 +1066,6 @@ void _showFakeCelebration(
     startWorking: DateTime(2026, 1, 19),
     isBirthday: isBirthday,
     isSeniority: !isBirthday,
-    isSeniority5Year: seniorityYears == 5,
-    isSeniority10Year: seniorityYears == 10,
     seniorityYears: seniorityYears,
     totalYearsWorking: seniorityYears,
   );
@@ -1119,4 +1099,3 @@ void _showFakeCelebration(
     },
   );
 }
-*/

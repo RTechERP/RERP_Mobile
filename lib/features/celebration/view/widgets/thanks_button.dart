@@ -200,17 +200,7 @@ enum _ButtonStyle {
     label: 'Cảm ơn!',
   ),
 
-  /// Seniority 10+ years — gold/amber gradient, trophy icon, premium feel.
-  seniorityHigh(
-    gradientTop: Color(0xFFFFD54F),
-    gradientBottom: Color(0xFFFF8F00),
-    glowColor: Color(0xFFFFB300),
-    icon: Icons.emoji_events_rounded,
-    label: 'Cảm ơn!',
-  ),
-
-  /// Seniority 5–9 years — blue→teal gradient, badge icon, fresh tone.
-  seniorityMid(
+  seniority(
     gradientTop: Color(0xFF64B5F6),
     gradientBottom: Color(0xFF26A69A),
     glowColor: Color(0xFF26A69A),
