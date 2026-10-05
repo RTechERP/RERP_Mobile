@@ -29,9 +29,9 @@ import '../../../../common/utils/snack_bar_helper.dart';
 import '../../../../di/injection.dart';
 import '../../auth/view/bloc/auth_bloc.dart';
 // Tạm thời ẩn bảng test Celebration — bỏ comment 3 import dưới khi bật lại.
-import '../../celebration/data/datasource/model/celebration_model.dart';
-import '../../celebration/view/pages/celebration_popup_screen.dart';
-import '../../celebration/view/widgets/celebration_helper.dart';
+// import '../../celebration/data/datasource/model/celebration_model.dart';
+// import '../../celebration/view/pages/celebration_popup_screen.dart';
+// import '../../celebration/view/widgets/celebration_helper.dart';
 
 /// Màn hình "Thêm" — tab thứ 5 trong DashboardScreen.
 ///
@@ -169,6 +169,7 @@ class _MoreScreenState extends State<MoreScreen> {
               //---(Test Celebration Popup)---//
               // Tạm thời ẩn bảng test Celebration. Bỏ comment khối dưới để
               // bật lại khi cần kiểm tra giao diện chúc mừng.
+              /*
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
                 child: _TestCelebrationButton(
@@ -185,6 +186,7 @@ class _MoreScreenState extends State<MoreScreen> {
                   ),
                 ),
               ),
+               */
 
               //---(Đăng xuất)---//
               Padding(
@@ -905,7 +907,7 @@ class _LogoutButton extends StatelessWidget {
 /// TODO: remove after verifying the celebration UI.
 /// Tạm thời comment toàn bộ widget test Celebration — bỏ comment khối dưới
 /// (kèm 3 import celebration ở đầu file) khi cần kiểm tra lại giao diện.
-
+/*
 class _TestCelebrationButton extends StatelessWidget {
   const _TestCelebrationButton({
     required this.onShowPopup,
@@ -1042,6 +1044,7 @@ class _TestRow extends StatelessWidget {
 }
 
 /// Show a fake celebration popup with hard-coded data for UI preview.
+
 void _showFakeCelebration(
   BuildContext context, {
   required bool isBirthday,
@@ -1099,3 +1102,4 @@ void _showFakeCelebration(
     },
   );
 }
+*/
