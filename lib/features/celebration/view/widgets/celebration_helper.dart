@@ -25,37 +25,44 @@ class CelebrationHelper {
   }
 
   /// Fetch celebration info for [currentUserId]. Returns the item when
-  /// the API's `EmployeeID` matches the logged-in user AND `IsBirthday`
-  /// is true. Returns `null` otherwise — including when the API returns
-  /// a celebration flag for someone else (different employee).
+  /// the API's `EmployeeID` matches the logged-in user AND at least one of
+  /// `IsBirthday` / `IsSeniority` is true. Returns `null` otherwise —
+  /// including when the API returns a celebration flag for someone else
+  /// (different employee).
   ///
-  /// TODO: chúc mừng thâm niên (seniority) tạm thời chưa cho chạy.
-  /// Bỏ comment nhánh `isSeniority` bên dưới khi mở lại tính năng.
+  /// When both flags are true the birthday celebration wins, since it is
+  /// the more specific occasion for the current day.
   static Future<CelebrationItem?> fetchIfCelebration(int currentUserId) async {
     try {
       debugPrint('[CelebrationHelper] resolving CelebrationRepo from getIt');
       final repo = getIt<CelebrationRepo>();
       debugPrint('[CelebrationHelper] calling checkBirthdaySeniority API');
       final result = await repo.checkBirthdaySeniority();
-      return result.fold((_) {
-        debugPrint('[CelebrationHelper] API returned error');
-        return null;
-      }, (item) {
-        debugPrint('[CelebrationHelper] API item: employeeID=${item.employeeID} '
-            'isBirthday=${item.isBirthday} isSeniority=${item.isSeniority}');
-        // Defensive: API is keyed on the session user, but if the
-        // backend ever drifts (cache, impersonation, etc.) we still
-        // refuse to show the popup for a different employee.
-        if ((item.employeeID ?? -1) != currentUserId) {
-          debugPrint('[CelebrationHelper] employeeID mismatch (api=${item.employeeID} vs current=$currentUserId), skip');
+      return result.fold(
+        (_) {
+          debugPrint('[CelebrationHelper] API returned error');
           return null;
-        }
-        final isBirthday = item.isBirthday ?? false;
-        // Tạm thời chỉ cho chạy chúc mừng sinh nhật, thâm niên để lại để sau.
-        // if (!isBirthday && !isSeniority) return null;
-        if (!isBirthday) return null;
-        return item;
-      });
+        },
+        (item) {
+          debugPrint(
+            '[CelebrationHelper] API item: employeeID=${item.employeeID} '
+            'isBirthday=${item.isBirthday} isSeniority=${item.isSeniority}',
+          );
+          // Defensive: API is keyed on the session user, but if the
+          // backend ever drifts (cache, impersonation, etc.) we still
+          // refuse to show the popup for a different employee.
+          if ((item.employeeID ?? -1) != currentUserId) {
+            debugPrint(
+              '[CelebrationHelper] employeeID mismatch (api=${item.employeeID} vs current=$currentUserId), skip',
+            );
+            return null;
+          }
+          final isBirthday = item.isBirthday ?? false;
+          final isSeniority = item.isSeniority ?? false;
+          if (!isBirthday && !isSeniority) return null;
+          return item;
+        },
+      );
     } catch (e, st) {
       debugPrint('[CelebrationHelper] fetchIfCelebration EXCEPTION: $e\n$st');
       return null;
@@ -73,15 +80,19 @@ class CelebrationHelper {
     BuildContext context, {
     required int currentUserId,
   }) async {
-    debugPrint('[CelebrationHelper] tryShowPopup called, currentUserId=$currentUserId');
+    debugPrint(
+      '[CelebrationHelper] tryShowPopup called, currentUserId=$currentUserId',
+    );
     if (!context.mounted) {
       debugPrint('[CelebrationHelper] context not mounted, skip');
       return;
     }
 
     final item = await fetchIfCelebration(currentUserId);
-    debugPrint('[CelebrationHelper] fetchIfCelebration returned ${item?.employeeID} '
-        'isBirthday=${item?.isBirthday} isSeniority=${item?.isSeniority}');
+    debugPrint(
+      '[CelebrationHelper] fetchIfCelebration returned ${item?.employeeID} '
+      'isBirthday=${item?.isBirthday} isSeniority=${item?.isSeniority}',
+    );
     if (item == null) return;
 
     final key =
@@ -97,14 +108,14 @@ class CelebrationHelper {
     await showGeneralDialog<void>(
       context: context,
       barrierDismissible: true,
-      barrierLabel:
-          MaterialLocalizations.of(context).modalBarrierDismissLabel,
+      barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
       barrierColor: Colors.black.withValues(alpha: 0.55),
       transitionDuration: const Duration(milliseconds: 320),
       pageBuilder: (ctx, _, _) {
         return BlocProvider(
-          create: (_) => CelebrationBloc(getIt<CelebrationRepo>())
-            ..add(const CelebrationEvent.checkBirthdaySeniority()),
+          create: (_) =>
+              CelebrationBloc(getIt<CelebrationRepo>())
+                ..add(const CelebrationEvent.checkBirthdaySeniority()),
           child: const CelebrationPopupScreen(),
         );
       },

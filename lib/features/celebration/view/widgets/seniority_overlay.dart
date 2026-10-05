@@ -1,130 +1,156 @@
 part of '../pages/celebration_popup_screen.dart';
 
-/// Seniority text overlay rendered on top of a 5-year or 10-year
-/// artwork. The artwork (5yrs landscape / 10yrs portrait) already
-/// carries the celebratory ribbon, so this overlay only prints the
-/// recipient's name + department and a short wishes line. `years`
-/// switches the wishes copy and is clamped to 5 / 10 / other.
+/// Seniority text overlay rendered on top of the seniority artwork.
+/// The artwork already carries the celebratory ribbon, so this overlay
+/// only prints the year milestone, the recipient's name + department
+/// and a short wishes line. `years` is the `SeniorityYears` value
+/// coming from the API, so the copy always matches the real milestone.
 class _SeniorityOverlay extends StatelessWidget {
   const _SeniorityOverlay({required this.item, required this.years});
 
   final CelebrationItem item;
   final int years;
 
-  /// 5-year artwork (landscape, name plate in the upper half).
-  /// Android: fractional against the Stack size. Wishes is anchored
-  /// with `wishesTop` + `wishesHeight` so the 4-line copy lands inside
-  /// the tilted ribbon instead of spilling below it.
-  static const _seniority5Android = _SeniorityPlacement(
+  /// Layout for the single seniority artwork (portrait, name plate in
+  /// the lower-middle). Android scales against the rendered Stack size
+  /// via fractional offsets.
+  static const _seniorityAndroid = _SeniorityPlacement(
     nameLeft: 0.08,
     nameRight: 0.08,
-    nameTop: 0.40,
-    nameHeight: 0.20,
-    wishesLeft: 0.10,
-    wishesRight: 0.10,
-    wishesTop: 0.45,
-    wishesHeight: 0.35,
-    anniversaryLeft: 0.06,
-    anniversaryRight: 0.55,
-    anniversaryTop: 0.10,
-    anniversaryHeight: 0.10,
-  );
-
-  /// 5-year artwork (landscape). iOS: unit-anchored legacy offsets.
-  static const _seniority5Ios = _SeniorityPlacement(
-    nameLeft: 0.10,
-    nameRight: 0.10,
-    nameTop: 1.02,
-    nameHeight: 0.20,
-    wishesLeft: 0.1,
-    wishesRight: 1.0,
-    wishesBottom: 0.17,
-    anniversaryLeft: 0.1,
-    anniversaryRight: 0.1,
-    anniversaryTop: 0.33,
-    anniversaryHeight: 0.12,
-  );
-
-  /// 10-year artwork (portrait, name plate lower-middle).
-  /// Android: fractional against the Stack size.
-  static const _seniority10Android = _SeniorityPlacement(
-    nameLeft: 0.08,
-    nameRight: 0.08,
-    nameTop: 0.58,
-    nameHeight: 0.18,
+    nameTop: 0.275,
     wishesLeft: 0.12,
     wishesRight: 0.18,
-    wishesBottom: 0.40,
-    anniversaryLeft: 0.06,
-    anniversaryRight: 0.55,
-    anniversaryTop: 0.10,
-    anniversaryHeight: 0.10,
+    wishesBottom: 0.54,
+    yearsLeft: 0.555,
+    yearsRight: 0.10,
+    yearsTop: 0.555,
   );
 
-  /// 10-year artwork (portrait). iOS: unit-anchored legacy offsets.
-  static const _seniority10Ios = _SeniorityPlacement(
+  /// Same artwork. iOS: unit-anchored legacy offsets.
+  static const _seniorityIos = _SeniorityPlacement(
     nameLeft: 0.05,
     nameRight: 0.05,
-    nameTop: 0.95,
-    nameHeight: 0.18,
+    nameTop: 0.8,
     wishesLeft: 0.2,
     wishesRight: 0.25,
-    wishesBottom: 0.49,
-    anniversaryLeft: 0.1,
-    anniversaryRight: 0.1,
-    anniversaryTop: 0.21,
-    anniversaryHeight: 0.12,
+    wishesBottom: 1.55,
+    yearsLeft: 0.85,
+    yearsRight: 0.1,
+    yearsTop: 1.58,
   );
 
   _SeniorityPlacement _pickPlacement() {
-    assert(
-      years == 5 || years == 10,
-      '_SeniorityOverlay only supports 5-year and 10-year art; got $years.',
+    return Platform.isIOS ? _seniorityIos : _seniorityAndroid;
+  }
+
+  /// Wishes copy driven by the API's `SeniorityYears` value.
+  String _wishesFor() {
+    return 'Trân trọng cảm ơn $years năm cống hiến của bạn — '
+        'chúc bạn thật nhiều sức khỏe và thành công '
+        'trên hành trình sắp tới!';
+  }
+
+  /// Big year numeral ("10") stamped in bright metallic gold.
+  ///
+  /// Cinzel is a formal Roman-capital serif, so the numeral reads as a
+  /// milestone badge rather than handwriting.
+  ///
+  /// The numeral is two layers:
+  ///
+  /// 1. A stroked copy in dark gold acts as a thin bevel around the glyphs
+  ///    and carries the drop shadow that lifts the badge off the artwork
+  ///    (nổi).
+  /// 2. The diagonal bright-gold gradient sits on top as the fill.
+  ///
+  /// Both layers use [BlendMode.srcIn] so the gradient *replaces* the glyph
+  /// pixels instead of blending with them. This matters: the default
+  /// `srcATop` mixes the shader with the text's own color, which at the
+  /// anti-aliased edges drags the gold toward the dark theme text color
+  /// and makes the whole numeral look black. The gradient therefore also
+  /// keeps to gold tones only — no brown/black stops — and the fill layer
+  /// carries no shadows, so nothing dark bleeds into the gold.
+  ///
+  /// Each [ShaderMask] builds its gradient from the child's real bounds,
+  /// so the sheen still tracks the glyphs after [FittedBox] scales the
+  /// numeral down to fit.
+  Widget _yearNumeral() {
+    final baseStyle = AppStyles.s10h10w600.copyWith(
+      fontSize: 75,
+      fontWeight: FontWeight.w600,
+      height: 1.0,
+      letterSpacing: 2,
     );
-    final isTen = years >= 10;
-    final isIOS = Platform.isIOS;
-    if (isTen && isIOS) return _seniority10Ios;
-    if (isTen) return _seniority10Android;
-    if (isIOS) return _seniority5Ios;
-    return _seniority5Android;
-  }
+    final numeral = GoogleFonts.cinzel(textStyle: baseStyle);
 
-  String _wishesFor(int years) {
-    switch (years) {
-      case 5:
-        return 'Cảm ơn bạn đã 5đồng hành\n'
-            'cùng công ty suốt 5 năm qua\n'
-            '— chúc bạn luôn vững vàng\n'
-            'và tiếp tục tỏa sáng!';
-      case 10:
-        return 'Trân trọng cảm ơn 10 năm cống hiến của bạn — '
-            'chúc bạn thật nhiều sức khỏe và thành công '
-            'trên hành trình sắp tới!';
-      default:
-        return 'Trân trọng cảm ơn $years năm cống hiến của bạn — '
-            'chúc bạn thật nhiều sức khỏe và thành công!';
-    }
-  }
+    // Dark bevel + drop shadow. The shadow lives on this layer so the
+    // bright fill on top stays free of dark pixels. Kept light so the
+    // numeral reads bright rather than heavy.
+    final bevel = Text(
+      '$years',
+      maxLines: 1,
+      softWrap: false,
+      style: numeral.copyWith(
+        shadows: const [
+          Shadow(color: Color(0x4D7A5200), blurRadius: 8, offset: Offset(0, 3)),
+        ],
+        foreground: Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 1.6
+          ..strokeJoin = StrokeJoin.round,
+      ),
+    );
 
-  /// Badge copy — only the two supported milestones get the festive
-  /// "Kỷ niệm X năm" stamp; any other value renders a generic line.
-  String _anniversaryFor(int years) {
-    switch (years) {
-      case 5:
-        return 'Kỷ niệm 5 năm';
-      case 10:
-        return 'Kỷ niệm 10 năm';
-      default:
-        return '$years năm';
-    }
+    // Bright diagonal gold fill = the metallic sheen. No shadows here.
+    final fill = Text(
+      '$years',
+      maxLines: 1,
+      softWrap: false,
+      style: numeral.copyWith(color: Colors.white),
+    );
+
+    return FittedBox(
+      fit: BoxFit.scaleDown,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          ShaderMask(
+            blendMode: BlendMode.srcIn,
+            shaderCallback: (b) => const LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [Color(0xFFB07C10), Color(0xFF8A5D00)],
+            ).createShader(b),
+            child: bevel,
+          ),
+          ShaderMask(
+            blendMode: BlendMode.srcIn,
+            // Light, high-key gold ramp — bright champagne at the top-left
+            // easing to a soft honey tone. Deliberately avoids the dark
+            // amber/bronze stops that made the numeral look heavy.
+            shaderCallback: (b) => const LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Color(0xFFFFFDF2),
+                Color(0xFFFFF8E1),
+                Color(0xFFFFE9A8),
+                Color(0xFFFFE082),
+                Color(0xFFFFD54F),
+              ],
+              stops: [0.0, 0.24, 0.5, 0.74, 1.0],
+            ).createShader(b),
+            child: fill,
+          ),
+        ],
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     final fullName = item.fullName ?? '';
     final departmentName = item.departmentName ?? '';
-    final wishes = _wishesFor(years);
-    final anniversaryText = _anniversaryFor(years);
+    final wishes = _wishesFor();
     final placement = _pickPlacement();
 
     // Reference unit for iOS legacy offsets. Same constant the artwork
@@ -147,89 +173,27 @@ class _SeniorityOverlay extends StatelessWidget {
             final h = constraints.maxHeight;
 
             // iOS keeps `unit`-anchored offsets; Android scales with
-            // the rendered Stack.
-            double nameLeft = isIOS
-                ? placement.nameLeft * unit
-                : w * placement.nameLeft;
-            double nameRight = isIOS
-                ? placement.nameRight * unit
-                : w * placement.nameRight;
-            double nameTop = isIOS
-                ? placement.nameTop * unit
-                : h * placement.nameTop;
-            double wishesLeft = isIOS
-                ? placement.wishesLeft * unit
-                : w * placement.wishesLeft;
-            double wishesRight = isIOS
-                ? placement.wishesRight * unit
-                : w * placement.wishesRight;
-            // Anchored by `bottom` for 10-year; 5-year uses top+height
-            // so the wishes block sits inside the tilted ribbon.
-            final double? wishesBottom = placement.wishesBottom == null
-                ? null
-                : h * placement.wishesBottom!;
-            final double? wishesTop = placement.wishesTop == null
-                ? null
-                : (isIOS ? placement.wishesTop! * unit : h * placement.wishesTop!);
-            final double? wishesHeight = placement.wishesHeight == null
-                ? null
-                : (isIOS
-                    ? placement.wishesHeight! * unit
-                    : h * placement.wishesHeight!);
-            double anniversaryLeft = isIOS
-                ? placement.anniversaryLeft * unit
-                : w * placement.anniversaryLeft;
-            double anniversaryRight = isIOS
-                ? placement.anniversaryRight * unit
-                : w * placement.anniversaryRight;
-            double anniversaryTop = isIOS
-                ? placement.anniversaryTop * unit
-                : h * placement.anniversaryTop;
-            double anniversaryHeight = isIOS
-                ? placement.anniversaryHeight * unit
-                : h * placement.anniversaryHeight;
+            // the rendered Stack. Horizontal offsets are fractions of
+            // the width, vertical ones fractions of the height.
+            double hOffset(double f) => isIOS ? f * unit : w * f;
+            double vOffset(double f) => isIOS ? f * unit : h * f;
 
             return Stack(
               children: [
-                // Anniversary badge — "Kỷ niệm X năm" stamped on the
-                // artwork like a sticker. Top-left so it doesn't fight
-                // with the name plate below.
-                Positioned(
-                  left: anniversaryLeft,
-                  right: anniversaryRight,
-                  top: anniversaryTop,
-                  height: anniversaryHeight,
-                  child: Center(
-                    child: FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Text(
-                        anniversaryText,
-                        maxLines: 1,
-                        softWrap: false,
-                        style: GoogleFonts.dancingScript(
-                          textStyle: AppStyles.s10h10w600.copyWith(
-                            color: const Color(0xFFB71C1C),
-                            fontSize: 22,
-                            fontWeight: FontWeight.w700,
-                            height: 1.1,
-                            shadows: [
-                              Shadow(
-                                color: Colors.white.withValues(alpha: 0.9),
-                                blurRadius: 6,
-                                offset: const Offset(0, 1),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
+                // Big year numeral — formal Cinzel in metallic gold, in the
+                // blank band above the name plate.
+                if (years > 0)
+                  Positioned(
+                    left: hOffset(placement.yearsLeft),
+                    right: hOffset(placement.yearsRight),
+                    top: vOffset(placement.yearsTop),
+                    child: _yearNumeral(),
                   ),
-                ),
                 // Name + Department — slightly rotated for a handwritten feel.
                 Positioned(
-                  left: nameLeft,
-                  right: nameRight,
-                  top: nameTop,
+                  left: hOffset(placement.nameLeft),
+                  right: hOffset(placement.nameRight),
+                  top: vOffset(placement.nameTop),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -266,37 +230,31 @@ class _SeniorityOverlay extends StatelessWidget {
                   ),
                 ),
                 // Wishes — handwriting font for a festive, personal feel.
-                // 5-year artwork is rotated for a handwritten vibe; 10-year
-                // art is rendered upright and kept to 2 lines so it doesn't
+                // Rendered upright and capped at 3 lines so it doesn't
                 // spill outside the ribbon.
                 Positioned(
-                  left: wishesLeft,
-                  right: wishesRight,
-                  top: wishesTop,
-                  bottom: wishesBottom,
-                  height: wishesHeight,
-                  child: Transform.rotate(
-                    angle: years == 5 ? -0.2 : 0,
-                    child: Text(
-                      wishes,
-                      textAlign: TextAlign.center,
-                      maxLines: years == 5 ? 4 : 3,
-                      softWrap: true,
-                      overflow: TextOverflow.ellipsis,
-                      style: GoogleFonts.dancingScript(
-                        textStyle: AppStyles.s10h10w600.copyWith(
-                          color: const Color(0xFFD81B60),
-                          fontSize: years == 5 ? 9 : 16,
-                          fontWeight: FontWeight.w700,
-                          height: 1.2,
-                          shadows: [
-                            Shadow(
-                              color: Colors.white.withValues(alpha: 0.85),
-                              blurRadius: 6,
-                              offset: const Offset(0, 1),
-                            ),
-                          ],
-                        ),
+                  left: hOffset(placement.wishesLeft),
+                  right: hOffset(placement.wishesRight),
+                  bottom: vOffset(placement.wishesBottom),
+                  child: Text(
+                    wishes,
+                    textAlign: TextAlign.center,
+                    maxLines: 3,
+                    softWrap: true,
+                    overflow: TextOverflow.ellipsis,
+                    style: GoogleFonts.dancingScript(
+                      textStyle: AppStyles.s10h10w600.copyWith(
+                        color: const Color(0xFFD81B60),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        height: 1.2,
+                        shadows: [
+                          Shadow(
+                            color: Colors.white.withValues(alpha: 0.85),
+                            blurRadius: 6,
+                            offset: const Offset(0, 1),
+                          ),
+                        ],
                       ),
                     ),
                   ),
