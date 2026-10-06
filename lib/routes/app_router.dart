@@ -206,6 +206,7 @@ import '../features/workplace/app/project/project_list/app/material_category/vie
 import '../features/workplace/app/project/project_list/app/material_category/view/pages/material_category_screen.dart';
 import '../features/workplace/app/project/project_list/view/bloc/project_list_bloc.dart';
 import '../features/workplace/app/project/project_list/view/pages/project_list_screen.dart';
+import '../features/workplace/app/project/project_list/view/pages/project_add_screen.dart';
 import '../features/workplace/app/week_plan/view/bloc/week_plan_bloc.dart';
 import '../features/workplace/app/week_plan/view/pages/week_plan_add_screen.dart';
 import '../features/workplace/app/week_plan/view/pages/week_plan_all_screen.dart';
@@ -1232,6 +1233,10 @@ class AppRouter {
                 path: RouteNames.projectList,
                 builder: (context, state) => const ProjectListScreen(),
                 routes: [
+                  GoRoute(
+                    path: RouteNames.projectAdd,
+                    builder: (context, state) => const ProjectAddScreen(),
+                  ),
                   GoRoute(
                     path: RouteNames.materialCategory,
                     builder: (context, state) {

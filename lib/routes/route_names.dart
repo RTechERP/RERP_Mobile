@@ -262,6 +262,7 @@ class RouteNames {
   // Project
   static const projectMenu = '/project/menu';
   static const projectList = 'list';
+  static const projectAdd = 'add';
   static const materialCategory = 'material-category';
 
   // Celebration (Birthday / Seniority popup)

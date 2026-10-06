@@ -32,6 +32,10 @@ import '../features/version/data/repository/app_version_repo.dart';
 import '../features/version/data/repository/app_version_repo_impl.dart';
 import '../features/version/view/bloc/app_version_bloc.dart';
 import '../features/workplace/app/project/project_list/app/material_category/data/repository/material_category_repo_impl.dart';
+import '../features/workplace/app/project/project_list/app/project_add/data/datasource/service/project_add_service.dart';
+import '../features/workplace/app/project/project_list/app/project_add/data/repository/project_add_repo.dart';
+import '../features/workplace/app/project/project_list/app/project_add/data/repository/project_add_repo_impl.dart';
+import '../features/workplace/app/project/project_list/app/project_add/view/bloc/project_add_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/datasource/service/booking_vehicle_service.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repo_impl.dart';
@@ -251,6 +255,10 @@ void configureDependencies() {
     () => MaterialCategoryService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<ProjectAddService>(
+    () => ProjectAddService(getIt<Dio>()),
+  );
+
   getIt.registerLazySingleton<InOutService>(() => InOutService(getIt<Dio>()));
 
   getIt.registerLazySingleton<WfhService>(() => WfhService(getIt<Dio>()));
@@ -407,6 +415,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<VersionRepo>(
     () => VersionRepoImpl(getIt<MaterialCategoryService>()),
+  );
+
+  getIt.registerLazySingleton<ProjectAddRepo>(
+    () => ProjectAddRepoImpl(getIt<ProjectAddService>()),
   );
 
   getIt.registerLazySingleton<InOutRepo>(
@@ -594,6 +606,10 @@ void configureDependencies() {
 
   getIt.registerFactory<VersionBloc>(
     () => VersionBloc(getIt<VersionRepo>(), getIt<LogUtils>()),
+  );
+
+  getIt.registerFactory<ProjectAddBloc>(
+    () => ProjectAddBloc(getIt<ProjectAddRepo>(), getIt<LogUtils>()),
   );
 
   getIt.registerFactory<InOutBloc>(

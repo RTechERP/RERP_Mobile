@@ -507,6 +507,39 @@ class ApiEndPoint {
   static const String extendHandoverRegistration =
       '/ESLRegistration/extend-handover';
 
+  // Project lookup APIs (form tạo / lọc dự án)
+  /// Hãng (firm base) cho bottom sheet hãng. API: GET /project/get-firm-bases
+  static const String getProjectFirmBases = '/project/get-firm-bases';
+
+  /// Danh sách khách hàng. API: GET /project/get-customers
+  static const String getProjectCustomers = '/project/get-customers';
+
+  /// Loại dự án (project type base). API: GET /get-project-type-bases
+  static const String getProjectTypeBases = '/get-project-type-bases';
+
+  /// Danh sách PM. API: GET /project/get-pms
+  static const String getProjectPms = '/project/get-pms';
+
+  /// Trạng thái dự án. API: GET /project/get-project-status
+  static const String getProjectStatuses = '/project/get-project-status';
+
+  /// Lĩnh vực khách hàng. API: GET /project/get-customer-industries
+  static const String getProjectCustomerIndustries =
+      '/project/get-customer-industries';
+
+  /// User-team. API: GET /project/get-user-teams
+  static const String getProjectUserTeams = '/project/get-user-teams';
+
+  /// Danh sách dự án (modal). API: GET /project/get-project-modal
+  static const String getProjectModal = '/project/get-project-modal';
+
+  /// Loại ứng dụng. API: GET /project/get-application-types
+  static const String getProjectApplicationTypes =
+      '/project/get-application-types';
+
+  /// Công nghệ. API: GET /project/get-technologies
+  static const String getProjectTechnologies = '/project/get-technologies';
+
   // Project Worker - Solution
   static const String getSolution = '/projectworker/get-solution';
 

@@ -7,6 +7,7 @@ import 'package:rtc_erp/base/widgets/base_scaffold.dart';
 import 'package:rtc_erp/base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/widgets/date_range_picker.dart';
+import '../../../../../../../../../routes/route_names.dart' show RouteNames;
 import '../bloc/project_list_bloc.dart';
 import '../widgets/project_card.dart';
 import '../widgets/project_empty_view.dart';
@@ -54,6 +55,15 @@ class _ProjectListScreenState extends BaseState<
   @override
   Widget renderUI(BuildContext context) {
     return BaseScaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => context.push(
+          '${RouteNames.projectMenu}/${RouteNames.projectList}/${RouteNames.projectAdd}',
+        ),
+        backgroundColor: AppColors.primaryERP,
+        elevation: 6,
+        shape: const CircleBorder(),
+        child: const Icon(Icons.add, color: Colors.white),
+      ),
       appBar: AppBarCommon(
         title: Text('project.list'.tr(), style: AppStyles.headingTitle2),
         actions: [
