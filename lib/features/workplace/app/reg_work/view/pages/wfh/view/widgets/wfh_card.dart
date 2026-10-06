@@ -40,7 +40,7 @@ class WfhCard extends StatelessWidget {
     return ApprovalStatus.prepare;
   }
 
-  ApprovalStatus _bgdStatus() => _mapBoolToStatus(item.isApproved);
+  ApprovalStatus _bgdStatus() => _mapBoolToStatus(item.isApprovedBGD);
 
   ApprovalStatus _tbpStatus() {
     final v = item.isApproved;
@@ -110,7 +110,7 @@ class WfhCard extends StatelessWidget {
                       const SizedBox(width: 6),
                       _ApprovalBadge(role: 'HR', status: hr),
                       const SizedBox(width: 6),
-                      _ApprovalBadge(role: 'BGD', status: bgd),
+                      _ApprovalBadge(role: 'BGD', status: bgd, customText: item.isApprovedBGDText),
                     ],
                   ),
 
@@ -273,12 +273,14 @@ class _InfoRow extends StatelessWidget {
 }
 
 class _ApprovalBadge extends StatelessWidget {
-  const _ApprovalBadge({required this.role, required this.status});
+  const _ApprovalBadge({required this.role, required this.status, this.customText});
 
   final String role;
   final ApprovalStatus status;
+  final String? customText;
 
   String get _statusText {
+    if (customText != null && customText!.isNotEmpty) return customText!;
     switch (status) {
       case ApprovalStatus.approved:
         return 'Đã duyệt';
