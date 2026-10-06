@@ -3,6 +3,7 @@ export 'form_input_decoration.dart';
 export 'form_radio_group.dart';
 export 'form_readonly_field.dart';
 export 'form_left_border_card.dart';
+export 'form_right_border_card.dart';
 export 'form_type_dropdown.dart';
 export 'form_input_field.dart';
 export 'form_actions.dart';

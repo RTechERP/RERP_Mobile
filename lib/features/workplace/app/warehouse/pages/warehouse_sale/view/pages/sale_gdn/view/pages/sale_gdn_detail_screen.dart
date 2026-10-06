@@ -32,11 +32,40 @@ class SaleGdnDetailScreen extends StatefulWidget {
 
 class _SaleGdnDetailScreenState
     extends BaseState<SaleGdnDetailScreen, SaleGdnEvent, SaleGdnState, SaleGdnBloc> {
+  /// Từ khoá đang lọc dòng chi tiết theo ProductNewCode / ProductCode /
+  /// ProductFullName (UI-only, không gọi lại API).
+  String _searchKeyword = '';
+
+  /// Controller cho thanh tìm kiếm inline trên AppBar.
+  late final TextEditingController _searchController;
+
+  /// Cờ bật/tắt thanh tìm kiếm trên AppBar.
+  bool _isSearchOpen = false;
+
   @override
   void initState() {
     super.initState();
+    _searchController = TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       bloc.add(SaleGdnEvent.initDetail(id: widget.billId, bill: widget.bill));
+    });
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  void _openSearch() {
+    setState(() => _isSearchOpen = true);
+  }
+
+  void _closeSearch() {
+    setState(() {
+      _isSearchOpen = false;
+      _searchController.clear();
+      _searchKeyword = '';
     });
   }
 
@@ -84,8 +113,28 @@ class _SaleGdnDetailScreenState
       children: [
         BaseScaffold(
           appBar: AppBarCommon(
-            title: Text(widget.bill?.code ?? 'Chi tiết phiếu xuất'),
+            title: _isSearchOpen
+                ? _buildSearchField()
+                : Text(widget.bill?.code ?? 'Chi tiết phiếu xuất'),
             onBackTap: () => context.pop(),
+            actions: [
+              IconButton(
+                icon: Icon(
+                  _isSearchOpen ? Icons.close_outlined : Icons.search_outlined,
+                  color: AppColors.heading,
+                  size: 24,
+                ),
+                tooltip: _isSearchOpen ? 'Bỏ tìm' : 'Tìm sản phẩm',
+                onPressed: () {
+                  if (_isSearchOpen) {
+                    _closeSearch();
+                  } else {
+                    _openSearch();
+                  }
+                },
+              ),
+              const SizedBox(width: 4),
+            ],
           ),
           body: blocBuilder((context, state) {
             final detail = state.detail;
@@ -121,10 +170,20 @@ class _SaleGdnDetailScreenState
               }
             }
 
+            // Lọc dòng chi tiết theo từ khoá UI theo 3 field: ProductNewCode,
+            // ProductCode, ProductFullName. Trùng khớp không phân biệt hoa
+            // thường. Nếu không có từ khoá thì trả về toàn bộ danh sách.
+            final filteredDetails = _applyKeywordFilter(detail.details);
+            if (filteredDetails.isEmpty) {
+              return SaleGdnEmptyView(
+                message: 'Không có dòng nào khớp "$_searchKeyword"',
+              );
+            }
+
             return ListView.separated(
               padding: const EdgeInsets.all(16),
               // +1 cho bill info card ở đầu.
-              itemCount: detail.details.length + 1,
+              itemCount: filteredDetails.length + 1,
               separatorBuilder: (_, _) => const SizedBox(height: 12),
               itemBuilder: (context, index) {
                 // Index 0: Form phiếu chi tiết (SaleGdnForm).
@@ -205,7 +264,7 @@ class _SaleGdnDetailScreenState
                   );
                 }
                 final detailIndex = index - 1;
-                final detailItem = detail.details[detailIndex];
+                final detailItem = filteredDetails[detailIndex];
                 final stt = detailItem.stt ?? (detailIndex + 1);
                 // Tra `childId` từ DetailGDNResponse theo cùng vị trí `stt`.
                 DetailGDNResponse? matchedFull;
@@ -298,6 +357,48 @@ class _SaleGdnDetailScreenState
     if (confirmed == null || confirmed.isEmpty) return;
 
     bloc.add(SaleGdnEvent.addImages(stt: stt, imagePaths: confirmed));
+  }
+
+  /// TextField nhập từ khoá tìm kiếm hiển thị trên AppBar.
+  /// Lọc realtime theo 3 field: ProductNewCode, ProductCode, ProductFullName.
+  Widget _buildSearchField() {
+    return TextField(
+      controller: _searchController,
+      autofocus: true,
+      textInputAction: TextInputAction.search,
+      style: const TextStyle(fontSize: 16, color: AppColors.heading),
+      cursorColor: AppColors.primaryERP,
+      decoration: const InputDecoration(
+        hintText: 'Tìm theo mã / tên sản phẩm',
+        hintStyle: TextStyle(fontSize: 14),
+        border: InputBorder.none,
+        isCollapsed: true,
+        contentPadding: EdgeInsets.symmetric(vertical: 12),
+      ),
+      onChanged: (value) {
+        setState(() => _searchKeyword = value);
+      },
+    );
+  }
+
+  /// Lọc danh sách dòng chi tiết theo `_searchKeyword` (UI-only).
+  /// Khớp `contains` không phân biệt hoa thường trên 3 field của API:
+  /// `productNewCode`, `productCode`, `productFullName`.
+  /// Trả về nguyên danh sách nếu không có từ khoá.
+  List<ViewGDNDetailResponse> _applyKeywordFilter(
+    List<ViewGDNDetailResponse> source,
+  ) {
+    final keyword = _searchKeyword.trim();
+    if (keyword.isEmpty) return source;
+    final lower = keyword.toLowerCase();
+    return source.where((item) {
+      final newCode = (item.productNewCode ?? '').toLowerCase();
+      final code = item.productCode?.toLowerCase() ?? '';
+      final fullName = item.productFullName?.toLowerCase() ?? '';
+      return newCode.contains(lower) ||
+          code.contains(lower) ||
+          fullName.contains(lower);
+    }).toList();
   }
 
   /// Mở bottomSheet chọn nhiều ảnh (server + local) của dòng để xoá.

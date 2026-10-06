@@ -14,6 +14,7 @@ import '../../../../common/app_theme/index.dart';
 import '../../../../common/constants/index.dart';
 import '../../../../common/utils/snack_bar_helper.dart';
 import '../../../../common/widgets/form/index.dart';
+import '../../../celebration/view/widgets/celebration_helper.dart';
 import '../bloc/auth_bloc.dart';
 
 /// Màn hình đăng nhập.
@@ -53,7 +54,7 @@ class _LoginScreenState
 
   /// Lắng nghe state changes - xử lý loading, error, navigate.
   @override
-  void listener(BuildContext context, AuthState state) {
+  Future<void> listener(BuildContext context, AuthState state) async {
     super.listener(context, state);
 
     if (state.status == BaseStateStatus.loading) {
@@ -61,10 +62,22 @@ class _LoginScreenState
     }
 
     if (state.status == BaseStateStatus.failed) {
+      if (!context.mounted) return;
       context.showMessage(state.message ?? '', type: SnackBarType.error);
     }
 
     if (state.status == BaseStateStatus.success && state.user != null) {
+      // Show birthday/seniority popup (if any) before leaving the login
+      // screen so the dialog anchors to a still-mounted context. The
+      // helper silently skips when the API's employeeID doesn't match
+      // the logged-in user, so the no-op path is fast.
+      debugPrint('[LoginScreen] login success, currentUserId=${state.user!.employeeId}, '
+          'calling CelebrationHelper.tryShowPopup');
+      await CelebrationHelper.tryShowPopup(
+        context,
+        currentUserId: state.user!.employeeId,
+      );
+      if (!context.mounted) return;
       context.go('/dashboard');
     }
 
