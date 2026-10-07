@@ -242,6 +242,28 @@ class ApiEndPoint {
 
   static const String getWorkTripById = '/EmployeeBussiness/get-by-id';
 
+  /// Đặt phòng nhà nghỉ — danh sách phiếu đặt.
+  /// API: GET /AccommodationBooking/data-accommodation-booking
+  /// Query: dateStart, dateEnd, projectId, employeeId, filterText.
+  static const String getBookingGuestHouse =
+      '/AccommodationBooking/data-accommodation-booking';
+
+  /// Đặt phòng nhà nghỉ — lưu phiếu (thêm mới).
+  /// API: POST /AccommodationBooking/save-data
+  /// Body: `{ "accommodationBooking": {...}, "accommodationBookingDetails": [...], "idDeleteds": [] }`.
+  static const String saveBookingGuestHouse = '/AccommodationBooking/save-data';
+
+  /// Đặt phòng nhà nghỉ — xoá phiếu.
+  /// API: POST /AccommodationBooking/delete
+  /// Body: `[19]` — mảng ID cần xoá.
+  static const String deleteBookingGuestHouse = '/AccommodationBooking/delete';
+
+  /// Đặt phòng nhà nghỉ — lấy chi tiết 1 phiếu (kèm danh sách người ở).
+  /// API: GET /AccommodationBooking/accommodation-booking-by-id?id=23
+  /// Query: `id=23`.
+  static const String getBookingGuestHouseById =
+      '/AccommodationBooking/accommodation-booking-by-id';
+
   /// Lấy phiếu đặt xe theo ngày cho work_trip.
   static const String getVehicleBookingsForBussiness =
       '/EmployeeBussiness/get-vehicle-bookings-for-bussiness';

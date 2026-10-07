@@ -43,6 +43,9 @@ class FormInputField extends StatefulWidget {
   /// Giới hạn số ký tự. Hiển thị counter bên dưới field khi có giá trị.
   final int? maxLength;
 
+  /// Widget hiển thị ở cuối field (ví dụ: nút X để clear).
+  final Widget? suffixIcon;
+
   const FormInputField({
     super.key,
     required this.nameForm,
@@ -67,6 +70,7 @@ class FormInputField extends StatefulWidget {
     this.autovalidateMode = AutovalidateMode.onUserInteraction,
     this.autoExpand = false,
     this.maxLength,
+    this.suffixIcon,
   });
 
   @override
@@ -163,6 +167,7 @@ class _FormInputFieldState extends State<FormInputField> {
             hasError: showError,
             errorText: field.errorText,
             isRequired: widget.isRequired,
+            suffixIcon: widget.suffixIcon,
           ),
           onChanged: (v) {
             field.didChange(v);

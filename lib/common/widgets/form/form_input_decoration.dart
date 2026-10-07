@@ -9,6 +9,7 @@ InputDecoration formInputDecoration(
       bool hasError = false,
       String? errorText,
       bool isRequired = false,
+      Widget? suffixIcon,
     }) {
   final error = Colors.redAccent;
   final normal = AppColors.hintText;
@@ -37,6 +38,7 @@ InputDecoration formInputDecoration(
       icon,
       color: hasError ? error : normal,
     ),
+    suffixIcon: suffixIcon,
 
     filled: true,
     fillColor: AppColors.white,
