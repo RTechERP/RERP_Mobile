@@ -151,4 +151,26 @@ class BookingGuestHouseRepoImpl implements BookingGuestHouseRepo {
       return left(BaseError.httpInternalServerError(e.toString()));
     }
   }
+
+  @override
+  Future<Either<BaseError, BookingGuestHouseDetailData>>
+      getBookingGuestHouseById({
+    required int id,
+  }) async {
+    try {
+      final res = await _service.getBookingGuestHouseById(id: id);
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? res.msg ?? 'Không tải được chi tiết đặt phòng',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
 }

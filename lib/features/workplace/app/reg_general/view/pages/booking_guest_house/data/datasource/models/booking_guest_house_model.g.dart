@@ -224,6 +224,113 @@ Map<String, dynamic> _$$AccommodationBookingPayloadImplToJson(
       'Address': instance.address,
     };
 
+_$BookingGuestHouseDetailDataImpl _$$BookingGuestHouseDetailDataImplFromJson(
+        Map<String, dynamic> json) =>
+    _$BookingGuestHouseDetailDataImpl(
+      info: BookingDetail.fromJson(
+          json['accommodationBooking'] as Map<String, dynamic>),
+      persons: (json['accommodationBookingDetail'] as List<dynamic>)
+          .map((e) => BookingDetailPerson.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$$BookingGuestHouseDetailDataImplToJson(
+        _$BookingGuestHouseDetailDataImpl instance) =>
+    <String, dynamic>{
+      'accommodationBooking': instance.info,
+      'accommodationBookingDetail': instance.persons,
+    };
+
+_$BookingDetailImpl _$$BookingDetailImplFromJson(Map<String, dynamic> json) =>
+    _$BookingDetailImpl(
+      id: (json['ID'] as num).toInt(),
+      registerId: (json['RegisterID'] as num?)?.toInt(),
+      projectId: (json['ProjectID'] as num?)?.toInt(),
+      provinceId: (json['ProvinceID'] as num?)?.toInt(),
+      startDate: json['StartDate'] == null
+          ? null
+          : DateTime.parse(json['StartDate'] as String),
+      endDate: json['EndDate'] == null
+          ? null
+          : DateTime.parse(json['EndDate'] as String),
+      createdBy: json['CreatedBy'] as String?,
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+      updatedBy: json['UpdatedBy'] as String?,
+      updatedDate: json['UpdatedDate'] == null
+          ? null
+          : DateTime.parse(json['UpdatedDate'] as String),
+      isDeleted: json['IsDeleted'] as bool?,
+      note: json['Note'] as String?,
+      address: json['Address'] as String?,
+      isApprovedTBP: json['IsApprovedTBP'] as bool?,
+      approvedTBP: (json['ApprovedTBP'] as num?)?.toInt(),
+      approvedTBPDate: json['ApprovedTBPDate'] == null
+          ? null
+          : DateTime.parse(json['ApprovedTBPDate'] as String),
+    );
+
+Map<String, dynamic> _$$BookingDetailImplToJson(_$BookingDetailImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'RegisterID': instance.registerId,
+      'ProjectID': instance.projectId,
+      'ProvinceID': instance.provinceId,
+      'StartDate': instance.startDate?.toIso8601String(),
+      'EndDate': instance.endDate?.toIso8601String(),
+      'CreatedBy': instance.createdBy,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'UpdatedBy': instance.updatedBy,
+      'UpdatedDate': instance.updatedDate?.toIso8601String(),
+      'IsDeleted': instance.isDeleted,
+      'Note': instance.note,
+      'Address': instance.address,
+      'IsApprovedTBP': instance.isApprovedTBP,
+      'ApprovedTBP': instance.approvedTBP,
+      'ApprovedTBPDate': instance.approvedTBPDate?.toIso8601String(),
+    };
+
+_$BookingDetailPersonImpl _$$BookingDetailPersonImplFromJson(
+        Map<String, dynamic> json) =>
+    _$BookingDetailPersonImpl(
+      id: (json['ID'] as num).toInt(),
+      accommodationBookingId: (json['AccommodationBookingID'] as num?)?.toInt(),
+      employeeId: (json['EmployeeID'] as num?)?.toInt(),
+      phoneNumber: json['PhoneNumber'],
+      createdBy: json['CreatedBy'] as String?,
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+      updatedBy: json['UpdatedBy'] as String?,
+      updatedDate: json['UpdatedDate'] == null
+          ? null
+          : DateTime.parse(json['UpdatedDate'] as String),
+      isDeleted: json['IsDeleted'] as bool?,
+      fullName: json['FullName'] as String?,
+      departmentName: json['DepartmentName'] as String?,
+      note: json['Note'] as String?,
+      employeeCode: json['EmployeeCode'] as String?,
+    );
+
+Map<String, dynamic> _$$BookingDetailPersonImplToJson(
+        _$BookingDetailPersonImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'AccommodationBookingID': instance.accommodationBookingId,
+      'EmployeeID': instance.employeeId,
+      'PhoneNumber': instance.phoneNumber,
+      'CreatedBy': instance.createdBy,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'UpdatedBy': instance.updatedBy,
+      'UpdatedDate': instance.updatedDate?.toIso8601String(),
+      'IsDeleted': instance.isDeleted,
+      'FullName': instance.fullName,
+      'DepartmentName': instance.departmentName,
+      'Note': instance.note,
+      'EmployeeCode': instance.employeeCode,
+    };
+
 _$BookingGuestHouseSaveResponseImpl
     _$$BookingGuestHouseSaveResponseImplFromJson(Map<String, dynamic> json) =>
         _$BookingGuestHouseSaveResponseImpl(

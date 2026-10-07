@@ -360,13 +360,19 @@ class _BookingGuestHousePageState
               ),
             ],
           ),
-          child: Builder(
-            builder: (slidableCtx) => BookingGuestHouseCard(
-              item: item,
-              onTap: () {
-                Slidable.of(slidableCtx)?.close();
-                // TODO: mở màn chi tiết khi có route
-              },
+              child: Builder(
+                builder: (slidableCtx) => BookingGuestHouseCard(
+                  item: item,
+                  onTap: () {
+                    Slidable.of(slidableCtx)?.close();
+                    // Mở màn chi tiết — truyền `id` (int) để màn detail tự
+                    // gọi API `/AccommodationBooking/accommodation-booking-by-id`
+                    // lấy dữ liệu đầy đủ (info + danh sách người ở).
+                    context.push(
+                      RouteNames.bookingGuestHouseDetail,
+                      extra: item.id,
+                    );
+                  },
             ),
           ),
         );

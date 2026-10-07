@@ -34,6 +34,9 @@ class BookingGuestHouseState extends BaseBlocState {
   /// Danh sách nhân viên (người đăng ký) cho bộ lọc.
   final List<EmployeeFilterItem> employees;
 
+  /// Danh sách tỉnh/thành cho bộ lọc lưu trú.
+  final List<ProvinceFilterItem> provinces;
+
   /// Dự án đang được chọn lọc. Null = hiển thị tất cả.
   final ProjectFilterItem? selectedProject;
 
@@ -42,6 +45,15 @@ class BookingGuestHouseState extends BaseBlocState {
 
   /// Loading khi tải danh sách lọc dự án / nhân viên.
   final bool isLoadingFilters;
+
+  /// Loading khi tải chi tiết 1 phiếu (màn detail).
+  final bool isDetailLoading;
+
+  /// Chi tiết 1 phiếu (kèm danh sách người ở) — null = chưa load hoặc load lỗi.
+  final BookingGuestHouseDetailData? detailData;
+
+  /// Lỗi khi tải chi tiết phiếu (null = OK).
+  final String? detailMessage;
 
   const BookingGuestHouseState({
     required super.status,
@@ -57,9 +69,13 @@ class BookingGuestHouseState extends BaseBlocState {
     this.deleteSuccess = false,
     this.projects = const [],
     this.employees = const [],
+    this.provinces = const [],
     this.selectedProject,
     this.selectedEmployee,
     this.isLoadingFilters = false,
+    this.isDetailLoading = false,
+    this.detailData,
+    this.detailMessage,
   });
 
   factory BookingGuestHouseState.init() => BookingGuestHouseState(
@@ -75,9 +91,13 @@ class BookingGuestHouseState extends BaseBlocState {
     deleteSuccess: false,
     projects: const [],
     employees: const [],
+    provinces: const [],
     selectedProject: null,
     selectedEmployee: null,
     isLoadingFilters: false,
+    isDetailLoading: false,
+    detailData: null,
+    detailMessage: null,
   );
 
   @override
@@ -95,8 +115,12 @@ class BookingGuestHouseState extends BaseBlocState {
     deleteSuccess,
     projects,
     employees,
+    provinces,
     selectedProject,
     selectedEmployee,
     isLoadingFilters,
+    isDetailLoading,
+    detailData,
+    detailMessage,
   ];
 }

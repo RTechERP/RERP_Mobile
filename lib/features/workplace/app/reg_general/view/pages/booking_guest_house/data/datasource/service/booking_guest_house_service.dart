@@ -129,6 +129,78 @@ class BookingGuestHouseService extends DioBaseApiService {
     );
   }
 
+  /// Lấy chi tiết 1 phiếu đặt phòng nhà nghỉ (kèm danh sách người ở).
+  /// API: GET `/AccommodationBooking/accommodation-booking-by-id?id=<id>`
+  /// Query: `id=<id>`.
+  ///
+  /// Server trả thẳng object `{ "accommodationBooking", "accommodationBookingDetail" }`
+  /// (không bọc envelope `BaseData`) — xem `_parseDetail`.
+  Future<BaseData<BookingGuestHouseDetailData>>
+      getBookingGuestHouseById({required int id}) {
+    return get<BaseData<BookingGuestHouseDetailData>>(
+      ApiEndPoint.getBookingGuestHouseById,
+      query: <String, dynamic>{'id': id},
+      parser: (json) => _parseDetail(json),
+    );
+  }
+
+  /// Parser cho response detail — server có thể trả:
+  /// 1. trực tiếp object detail (không envelope): parse luôn.
+  /// 2. envelope `BaseData<...>` chuẩn của project.
+  BaseData<BookingGuestHouseDetailData> _parseDetail(dynamic json) {
+    // 1. Chuỗi JSON — parse lại thành Map.
+    if (json is String) {
+      final raw = json.trim();
+      if (raw.isEmpty) {
+        final r = BaseData<BookingGuestHouseDetailData>(status: 0);
+        r.message = 'Response rỗng';
+        return r;
+      }
+      try {
+        final decoded = jsonDecode(raw);
+        return _parseDetail(decoded);
+      } catch (_) {
+        final r = BaseData<BookingGuestHouseDetailData>(status: 0);
+        r.message = 'Không parse được JSON';
+        return r;
+      }
+    }
+
+    // 2. Đã là envelope `{ status, message, data }` → parse chuẩn.
+    if (json is Map<String, dynamic>) {
+      // Nếu object có key `accommodationBooking` (cấu trúc BRTC) → đây là
+      // server trả thẳng object detail, không bọc BaseData.
+      if (json.containsKey('accommodationBooking') ||
+          json.containsKey('accommodationBookingDetail')) {
+        try {
+          final data = BookingGuestHouseDetailData.fromJson(json);
+          return BaseData<BookingGuestHouseDetailData>(
+            status: 1,
+            data: data,
+          );
+        } catch (e) {
+          final r = BaseData<BookingGuestHouseDetailData>(status: 0);
+          r.message = 'Lỗi parse detail: $e';
+          return r;
+        }
+      }
+
+      // Còn lại: parse theo envelope.
+      return BaseData<BookingGuestHouseDetailData>.fromJson(
+        json,
+        (data) => BookingGuestHouseDetailData.fromJson(
+          data is Map<String, dynamic>
+              ? data
+              : <String, dynamic>{},
+        ),
+      );
+    }
+
+    final r = BaseData<BookingGuestHouseDetailData>(status: 0);
+    r.message = 'Response không đúng format';
+    return r;
+  }
+
   /// Parser defensive cho response save — chấp nhận nhiều dạng JSON
   /// server có thể trả về.
   BaseData<BookingGuestHouseSaveResponse> _parseSaveResponse(dynamic json) {

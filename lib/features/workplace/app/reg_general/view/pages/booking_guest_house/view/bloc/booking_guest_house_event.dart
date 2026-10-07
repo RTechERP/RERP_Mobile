@@ -50,4 +50,9 @@ class BookingGuestHouseEvent with _$BookingGuestHouseEvent {
   /// [id] - ID phiếu cần xoá (API nhận mảng `[id]`).
   const factory BookingGuestHouseEvent.deleteBooking({required int id}) =
       _DeleteBooking;
+
+  /// Tải chi tiết 1 phiếu (kèm danh sách người ở).
+  /// Gọi API `GET /AccommodationBooking/accommodation-booking-by-id?id=<id>`.
+  const factory BookingGuestHouseEvent.loadDetail({required int id}) =
+      _LoadDetail;
 }

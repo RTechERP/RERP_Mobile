@@ -48,6 +48,7 @@ class BookingGuestHouseBloc
             _onChangeEmployeeFilter(emit, employee: employee),
         submit: (payload) => _onSubmit(emit, payload: payload),
         deleteBooking: (id) => _onDeleteBooking(emit, id: id),
+        loadDetail: (id) => _onLoadDetail(emit, id: id),
       );
     });
   }
@@ -151,12 +152,14 @@ class BookingGuestHouseBloc
   Future<void> _onLoadFilters(Emitter<BookingGuestHouseState> emit) async {
     emit(state.copyWith(isLoadingFilters: true));
 
-    // Gọi song song 2 API.
+    // Gọi song song 3 API: dự án + nhân viên + tỉnh/thành.
     final projectRes = await _repo.getProjects();
     final employeeRes = await _repo.getEmployees();
+    final provinceRes = await _repo.getProvinces();
 
     List<ProjectFilterItem> projects = [];
     List<EmployeeFilterItem> employees = [];
+    List<ProvinceFilterItem> provinces = [];
 
     projectRes.fold(
       (err) => _log.logE('❌ getProjects failed: $err'),
@@ -168,10 +171,16 @@ class BookingGuestHouseBloc
       (data) => employees = data,
     );
 
+    provinceRes.fold(
+      (err) => _log.logE('❌ getProvinces failed: $err'),
+      (data) => provinces = data,
+    );
+
     emit(state.copyWith(
       isLoadingFilters: false,
       projects: projects,
       employees: employees,
+      provinces: provinces,
     ));
   }
 
@@ -452,5 +461,41 @@ class BookingGuestHouseBloc
     final mi = utc.minute.toString().padLeft(2, '0');
     final s = utc.second.toString().padLeft(2, '0');
     return '$y-$m-${day}T$h:$mi:$s.000Z';
+  }
+
+  //---(Load Detail)---//
+
+  /// Tải chi tiết 1 phiếu (kèm danh sách người ở).
+  /// API: GET `/AccommodationBooking/accommodation-booking-by-id?id=<id>`.
+  Future<void> _onLoadDetail(
+    Emitter<BookingGuestHouseState> emit, {
+    required int id,
+  }) async {
+    emit(state.copyWith(
+      isDetailLoading: true,
+      detailMessage: null,
+      detailData: null,
+    ));
+
+    final res = await _repo.getBookingGuestHouseById(id: id);
+
+    res.fold(
+      (err) {
+        _log.logE('❌ getBookingGuestHouseById failed: $err');
+        emit(state.copyWith(
+          isDetailLoading: false,
+          detailMessage: err.getErrorMessage,
+          detailData: null,
+        ));
+      },
+      (data) {
+        _log.logI('✅ getBookingGuestHouseById OK id=$id persons=${data.persons.length}');
+        emit(state.copyWith(
+          isDetailLoading: false,
+          detailData: data,
+          detailMessage: null,
+        ));
+      },
+    );
   }
 }

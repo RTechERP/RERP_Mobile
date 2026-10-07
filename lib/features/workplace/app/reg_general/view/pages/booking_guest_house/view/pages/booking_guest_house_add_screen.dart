@@ -254,40 +254,36 @@ class _BookingGuestHouseAddScreenState
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
+          Column(
             children: [
-              Expanded(
-                child: FormInputField(
-                  nameForm: 'start_date',
-                  nameTextField: 'start_date_text',
-                  label: 'Ngày ở',
-                  icon: Icons.calendar_today_outlined,
-                  controller: _startDateCtrl,
-                  readOnly: true,
-                  isRequired: true,
-                  onTap: _pickStartDate,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  validator: (v) => v == null || v.isEmpty
-                      ? 'Chọn ngày ở'
-                      : null,
-                ),
+              FormInputField(
+                nameForm: 'start_date',
+                nameTextField: 'start_date_text',
+                label: 'Ở từ ngày',
+                icon: Icons.calendar_today_outlined,
+                controller: _startDateCtrl,
+                readOnly: true,
+                isRequired: true,
+                onTap: _pickStartDate,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (v) => v == null || v.isEmpty
+                    ? 'Chọn ngày ở'
+                    : null,
               ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: FormInputField(
-                  nameForm: 'end_date',
-                  nameTextField: 'end_date_text',
-                  label: 'Ngày về',
-                  icon: Icons.calendar_today_outlined,
-                  controller: _endDateCtrl,
-                  readOnly: true,
-                  isRequired: true,
-                  onTap: _pickEndDate,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  validator: (v) => v == null || v.isEmpty
-                      ? 'Chọn ngày về'
-                      : null,
-                ),
+              const SizedBox(height: 12),
+              FormInputField(
+                nameForm: 'end_date',
+                nameTextField: 'end_date_text',
+                label: 'Đến ngày',
+                icon: Icons.calendar_today_outlined,
+                controller: _endDateCtrl,
+                readOnly: true,
+                isRequired: true,
+                onTap: _pickEndDate,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (v) => v == null || v.isEmpty
+                    ? 'Chọn ngày về'
+                    : null,
               ),
             ],
           ),

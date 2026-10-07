@@ -2541,6 +2541,1173 @@ abstract class _AccommodationBookingPayload
       get copyWith => throw _privateConstructorUsedError;
 }
 
+BookingGuestHouseDetailData _$BookingGuestHouseDetailDataFromJson(
+    Map<String, dynamic> json) {
+  return _BookingGuestHouseDetailData.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BookingGuestHouseDetailData {
+  @JsonKey(name: 'accommodationBooking')
+  BookingDetail get info => throw _privateConstructorUsedError;
+  @JsonKey(name: 'accommodationBookingDetail')
+  List<BookingDetailPerson> get persons => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BookingGuestHouseDetailDataCopyWith<BookingGuestHouseDetailData>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BookingGuestHouseDetailDataCopyWith<$Res> {
+  factory $BookingGuestHouseDetailDataCopyWith(
+          BookingGuestHouseDetailData value,
+          $Res Function(BookingGuestHouseDetailData) then) =
+      _$BookingGuestHouseDetailDataCopyWithImpl<$Res,
+          BookingGuestHouseDetailData>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'accommodationBooking') BookingDetail info,
+      @JsonKey(name: 'accommodationBookingDetail')
+      List<BookingDetailPerson> persons});
+
+  $BookingDetailCopyWith<$Res> get info;
+}
+
+/// @nodoc
+class _$BookingGuestHouseDetailDataCopyWithImpl<$Res,
+        $Val extends BookingGuestHouseDetailData>
+    implements $BookingGuestHouseDetailDataCopyWith<$Res> {
+  _$BookingGuestHouseDetailDataCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? info = null,
+    Object? persons = null,
+  }) {
+    return _then(_value.copyWith(
+      info: null == info
+          ? _value.info
+          : info // ignore: cast_nullable_to_non_nullable
+              as BookingDetail,
+      persons: null == persons
+          ? _value.persons
+          : persons // ignore: cast_nullable_to_non_nullable
+              as List<BookingDetailPerson>,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BookingDetailCopyWith<$Res> get info {
+    return $BookingDetailCopyWith<$Res>(_value.info, (value) {
+      return _then(_value.copyWith(info: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$BookingGuestHouseDetailDataImplCopyWith<$Res>
+    implements $BookingGuestHouseDetailDataCopyWith<$Res> {
+  factory _$$BookingGuestHouseDetailDataImplCopyWith(
+          _$BookingGuestHouseDetailDataImpl value,
+          $Res Function(_$BookingGuestHouseDetailDataImpl) then) =
+      __$$BookingGuestHouseDetailDataImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'accommodationBooking') BookingDetail info,
+      @JsonKey(name: 'accommodationBookingDetail')
+      List<BookingDetailPerson> persons});
+
+  @override
+  $BookingDetailCopyWith<$Res> get info;
+}
+
+/// @nodoc
+class __$$BookingGuestHouseDetailDataImplCopyWithImpl<$Res>
+    extends _$BookingGuestHouseDetailDataCopyWithImpl<$Res,
+        _$BookingGuestHouseDetailDataImpl>
+    implements _$$BookingGuestHouseDetailDataImplCopyWith<$Res> {
+  __$$BookingGuestHouseDetailDataImplCopyWithImpl(
+      _$BookingGuestHouseDetailDataImpl _value,
+      $Res Function(_$BookingGuestHouseDetailDataImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? info = null,
+    Object? persons = null,
+  }) {
+    return _then(_$BookingGuestHouseDetailDataImpl(
+      info: null == info
+          ? _value.info
+          : info // ignore: cast_nullable_to_non_nullable
+              as BookingDetail,
+      persons: null == persons
+          ? _value._persons
+          : persons // ignore: cast_nullable_to_non_nullable
+              as List<BookingDetailPerson>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$BookingGuestHouseDetailDataImpl
+    implements _BookingGuestHouseDetailData {
+  const _$BookingGuestHouseDetailDataImpl(
+      {@JsonKey(name: 'accommodationBooking') required this.info,
+      @JsonKey(name: 'accommodationBookingDetail')
+      required final List<BookingDetailPerson> persons})
+      : _persons = persons;
+
+  factory _$BookingGuestHouseDetailDataImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$BookingGuestHouseDetailDataImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'accommodationBooking')
+  final BookingDetail info;
+  final List<BookingDetailPerson> _persons;
+  @override
+  @JsonKey(name: 'accommodationBookingDetail')
+  List<BookingDetailPerson> get persons {
+    if (_persons is EqualUnmodifiableListView) return _persons;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_persons);
+  }
+
+  @override
+  String toString() {
+    return 'BookingGuestHouseDetailData(info: $info, persons: $persons)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BookingGuestHouseDetailDataImpl &&
+            (identical(other.info, info) || other.info == info) &&
+            const DeepCollectionEquality().equals(other._persons, _persons));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, info, const DeepCollectionEquality().hash(_persons));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BookingGuestHouseDetailDataImplCopyWith<_$BookingGuestHouseDetailDataImpl>
+      get copyWith => __$$BookingGuestHouseDetailDataImplCopyWithImpl<
+          _$BookingGuestHouseDetailDataImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BookingGuestHouseDetailDataImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BookingGuestHouseDetailData
+    implements BookingGuestHouseDetailData {
+  const factory _BookingGuestHouseDetailData(
+      {@JsonKey(name: 'accommodationBooking') required final BookingDetail info,
+      @JsonKey(name: 'accommodationBookingDetail')
+      required final List<BookingDetailPerson>
+          persons}) = _$BookingGuestHouseDetailDataImpl;
+
+  factory _BookingGuestHouseDetailData.fromJson(Map<String, dynamic> json) =
+      _$BookingGuestHouseDetailDataImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'accommodationBooking')
+  BookingDetail get info;
+  @override
+  @JsonKey(name: 'accommodationBookingDetail')
+  List<BookingDetailPerson> get persons;
+  @override
+  @JsonKey(ignore: true)
+  _$$BookingGuestHouseDetailDataImplCopyWith<_$BookingGuestHouseDetailDataImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+BookingDetail _$BookingDetailFromJson(Map<String, dynamic> json) {
+  return _BookingDetail.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BookingDetail {
+  @JsonKey(name: 'ID')
+  int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'RegisterID')
+  int? get registerId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectID')
+  int? get projectId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProvinceID')
+  int? get provinceId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'StartDate')
+  DateTime? get startDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EndDate')
+  DateTime? get endDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Note')
+  String? get note => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Address')
+  String? get address => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsApprovedTBP')
+  bool? get isApprovedTBP => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ApprovedTBP')
+  int? get approvedTBP => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ApprovedTBPDate')
+  DateTime? get approvedTBPDate => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BookingDetailCopyWith<BookingDetail> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BookingDetailCopyWith<$Res> {
+  factory $BookingDetailCopyWith(
+          BookingDetail value, $Res Function(BookingDetail) then) =
+      _$BookingDetailCopyWithImpl<$Res, BookingDetail>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int id,
+      @JsonKey(name: 'RegisterID') int? registerId,
+      @JsonKey(name: 'ProjectID') int? projectId,
+      @JsonKey(name: 'ProvinceID') int? provinceId,
+      @JsonKey(name: 'StartDate') DateTime? startDate,
+      @JsonKey(name: 'EndDate') DateTime? endDate,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'Address') String? address,
+      @JsonKey(name: 'IsApprovedTBP') bool? isApprovedTBP,
+      @JsonKey(name: 'ApprovedTBP') int? approvedTBP,
+      @JsonKey(name: 'ApprovedTBPDate') DateTime? approvedTBPDate});
+}
+
+/// @nodoc
+class _$BookingDetailCopyWithImpl<$Res, $Val extends BookingDetail>
+    implements $BookingDetailCopyWith<$Res> {
+  _$BookingDetailCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? registerId = freezed,
+    Object? projectId = freezed,
+    Object? provinceId = freezed,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+    Object? isDeleted = freezed,
+    Object? note = freezed,
+    Object? address = freezed,
+    Object? isApprovedTBP = freezed,
+    Object? approvedTBP = freezed,
+    Object? approvedTBPDate = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      registerId: freezed == registerId
+          ? _value.registerId
+          : registerId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      provinceId: freezed == provinceId
+          ? _value.provinceId
+          : provinceId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isApprovedTBP: freezed == isApprovedTBP
+          ? _value.isApprovedTBP
+          : isApprovedTBP // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      approvedTBP: freezed == approvedTBP
+          ? _value.approvedTBP
+          : approvedTBP // ignore: cast_nullable_to_non_nullable
+              as int?,
+      approvedTBPDate: freezed == approvedTBPDate
+          ? _value.approvedTBPDate
+          : approvedTBPDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$BookingDetailImplCopyWith<$Res>
+    implements $BookingDetailCopyWith<$Res> {
+  factory _$$BookingDetailImplCopyWith(
+          _$BookingDetailImpl value, $Res Function(_$BookingDetailImpl) then) =
+      __$$BookingDetailImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int id,
+      @JsonKey(name: 'RegisterID') int? registerId,
+      @JsonKey(name: 'ProjectID') int? projectId,
+      @JsonKey(name: 'ProvinceID') int? provinceId,
+      @JsonKey(name: 'StartDate') DateTime? startDate,
+      @JsonKey(name: 'EndDate') DateTime? endDate,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'Address') String? address,
+      @JsonKey(name: 'IsApprovedTBP') bool? isApprovedTBP,
+      @JsonKey(name: 'ApprovedTBP') int? approvedTBP,
+      @JsonKey(name: 'ApprovedTBPDate') DateTime? approvedTBPDate});
+}
+
+/// @nodoc
+class __$$BookingDetailImplCopyWithImpl<$Res>
+    extends _$BookingDetailCopyWithImpl<$Res, _$BookingDetailImpl>
+    implements _$$BookingDetailImplCopyWith<$Res> {
+  __$$BookingDetailImplCopyWithImpl(
+      _$BookingDetailImpl _value, $Res Function(_$BookingDetailImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? registerId = freezed,
+    Object? projectId = freezed,
+    Object? provinceId = freezed,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+    Object? isDeleted = freezed,
+    Object? note = freezed,
+    Object? address = freezed,
+    Object? isApprovedTBP = freezed,
+    Object? approvedTBP = freezed,
+    Object? approvedTBPDate = freezed,
+  }) {
+    return _then(_$BookingDetailImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      registerId: freezed == registerId
+          ? _value.registerId
+          : registerId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      provinceId: freezed == provinceId
+          ? _value.provinceId
+          : provinceId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isApprovedTBP: freezed == isApprovedTBP
+          ? _value.isApprovedTBP
+          : isApprovedTBP // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      approvedTBP: freezed == approvedTBP
+          ? _value.approvedTBP
+          : approvedTBP // ignore: cast_nullable_to_non_nullable
+              as int?,
+      approvedTBPDate: freezed == approvedTBPDate
+          ? _value.approvedTBPDate
+          : approvedTBPDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$BookingDetailImpl implements _BookingDetail {
+  const _$BookingDetailImpl(
+      {@JsonKey(name: 'ID') required this.id,
+      @JsonKey(name: 'RegisterID') this.registerId,
+      @JsonKey(name: 'ProjectID') this.projectId,
+      @JsonKey(name: 'ProvinceID') this.provinceId,
+      @JsonKey(name: 'StartDate') this.startDate,
+      @JsonKey(name: 'EndDate') this.endDate,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'UpdatedBy') this.updatedBy,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate,
+      @JsonKey(name: 'IsDeleted') this.isDeleted,
+      @JsonKey(name: 'Note') this.note,
+      @JsonKey(name: 'Address') this.address,
+      @JsonKey(name: 'IsApprovedTBP') this.isApprovedTBP,
+      @JsonKey(name: 'ApprovedTBP') this.approvedTBP,
+      @JsonKey(name: 'ApprovedTBPDate') this.approvedTBPDate});
+
+  factory _$BookingDetailImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BookingDetailImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int id;
+  @override
+  @JsonKey(name: 'RegisterID')
+  final int? registerId;
+  @override
+  @JsonKey(name: 'ProjectID')
+  final int? projectId;
+  @override
+  @JsonKey(name: 'ProvinceID')
+  final int? provinceId;
+  @override
+  @JsonKey(name: 'StartDate')
+  final DateTime? startDate;
+  @override
+  @JsonKey(name: 'EndDate')
+  final DateTime? endDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  final String? createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  final String? updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final DateTime? updatedDate;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  final bool? isDeleted;
+  @override
+  @JsonKey(name: 'Note')
+  final String? note;
+  @override
+  @JsonKey(name: 'Address')
+  final String? address;
+  @override
+  @JsonKey(name: 'IsApprovedTBP')
+  final bool? isApprovedTBP;
+  @override
+  @JsonKey(name: 'ApprovedTBP')
+  final int? approvedTBP;
+  @override
+  @JsonKey(name: 'ApprovedTBPDate')
+  final DateTime? approvedTBPDate;
+
+  @override
+  String toString() {
+    return 'BookingDetail(id: $id, registerId: $registerId, projectId: $projectId, provinceId: $provinceId, startDate: $startDate, endDate: $endDate, createdBy: $createdBy, createdDate: $createdDate, updatedBy: $updatedBy, updatedDate: $updatedDate, isDeleted: $isDeleted, note: $note, address: $address, isApprovedTBP: $isApprovedTBP, approvedTBP: $approvedTBP, approvedTBPDate: $approvedTBPDate)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BookingDetailImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.registerId, registerId) ||
+                other.registerId == registerId) &&
+            (identical(other.projectId, projectId) ||
+                other.projectId == projectId) &&
+            (identical(other.provinceId, provinceId) ||
+                other.provinceId == provinceId) &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate) &&
+            (identical(other.endDate, endDate) || other.endDate == endDate) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.note, note) || other.note == note) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.isApprovedTBP, isApprovedTBP) ||
+                other.isApprovedTBP == isApprovedTBP) &&
+            (identical(other.approvedTBP, approvedTBP) ||
+                other.approvedTBP == approvedTBP) &&
+            (identical(other.approvedTBPDate, approvedTBPDate) ||
+                other.approvedTBPDate == approvedTBPDate));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      registerId,
+      projectId,
+      provinceId,
+      startDate,
+      endDate,
+      createdBy,
+      createdDate,
+      updatedBy,
+      updatedDate,
+      isDeleted,
+      note,
+      address,
+      isApprovedTBP,
+      approvedTBP,
+      approvedTBPDate);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BookingDetailImplCopyWith<_$BookingDetailImpl> get copyWith =>
+      __$$BookingDetailImplCopyWithImpl<_$BookingDetailImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BookingDetailImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BookingDetail implements BookingDetail {
+  const factory _BookingDetail(
+          {@JsonKey(name: 'ID') required final int id,
+          @JsonKey(name: 'RegisterID') final int? registerId,
+          @JsonKey(name: 'ProjectID') final int? projectId,
+          @JsonKey(name: 'ProvinceID') final int? provinceId,
+          @JsonKey(name: 'StartDate') final DateTime? startDate,
+          @JsonKey(name: 'EndDate') final DateTime? endDate,
+          @JsonKey(name: 'CreatedBy') final String? createdBy,
+          @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+          @JsonKey(name: 'UpdatedBy') final String? updatedBy,
+          @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
+          @JsonKey(name: 'IsDeleted') final bool? isDeleted,
+          @JsonKey(name: 'Note') final String? note,
+          @JsonKey(name: 'Address') final String? address,
+          @JsonKey(name: 'IsApprovedTBP') final bool? isApprovedTBP,
+          @JsonKey(name: 'ApprovedTBP') final int? approvedTBP,
+          @JsonKey(name: 'ApprovedTBPDate') final DateTime? approvedTBPDate}) =
+      _$BookingDetailImpl;
+
+  factory _BookingDetail.fromJson(Map<String, dynamic> json) =
+      _$BookingDetailImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int get id;
+  @override
+  @JsonKey(name: 'RegisterID')
+  int? get registerId;
+  @override
+  @JsonKey(name: 'ProjectID')
+  int? get projectId;
+  @override
+  @JsonKey(name: 'ProvinceID')
+  int? get provinceId;
+  @override
+  @JsonKey(name: 'StartDate')
+  DateTime? get startDate;
+  @override
+  @JsonKey(name: 'EndDate')
+  DateTime? get endDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted;
+  @override
+  @JsonKey(name: 'Note')
+  String? get note;
+  @override
+  @JsonKey(name: 'Address')
+  String? get address;
+  @override
+  @JsonKey(name: 'IsApprovedTBP')
+  bool? get isApprovedTBP;
+  @override
+  @JsonKey(name: 'ApprovedTBP')
+  int? get approvedTBP;
+  @override
+  @JsonKey(name: 'ApprovedTBPDate')
+  DateTime? get approvedTBPDate;
+  @override
+  @JsonKey(ignore: true)
+  _$$BookingDetailImplCopyWith<_$BookingDetailImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+BookingDetailPerson _$BookingDetailPersonFromJson(Map<String, dynamic> json) {
+  return _BookingDetailPerson.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BookingDetailPerson {
+  @JsonKey(name: 'ID')
+  int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AccommodationBookingID')
+  int? get accommodationBookingId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PhoneNumber')
+  dynamic get phoneNumber => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FullName')
+  String? get fullName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DepartmentName')
+  String? get departmentName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Note')
+  String? get note => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeCode')
+  String? get employeeCode => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BookingDetailPersonCopyWith<BookingDetailPerson> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BookingDetailPersonCopyWith<$Res> {
+  factory $BookingDetailPersonCopyWith(
+          BookingDetailPerson value, $Res Function(BookingDetailPerson) then) =
+      _$BookingDetailPersonCopyWithImpl<$Res, BookingDetailPerson>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int id,
+      @JsonKey(name: 'AccommodationBookingID') int? accommodationBookingId,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'PhoneNumber') dynamic phoneNumber,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'DepartmentName') String? departmentName,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'EmployeeCode') String? employeeCode});
+}
+
+/// @nodoc
+class _$BookingDetailPersonCopyWithImpl<$Res, $Val extends BookingDetailPerson>
+    implements $BookingDetailPersonCopyWith<$Res> {
+  _$BookingDetailPersonCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? accommodationBookingId = freezed,
+    Object? employeeId = freezed,
+    Object? phoneNumber = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+    Object? isDeleted = freezed,
+    Object? fullName = freezed,
+    Object? departmentName = freezed,
+    Object? note = freezed,
+    Object? employeeCode = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      accommodationBookingId: freezed == accommodationBookingId
+          ? _value.accommodationBookingId
+          : accommodationBookingId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departmentName: freezed == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      employeeCode: freezed == employeeCode
+          ? _value.employeeCode
+          : employeeCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$BookingDetailPersonImplCopyWith<$Res>
+    implements $BookingDetailPersonCopyWith<$Res> {
+  factory _$$BookingDetailPersonImplCopyWith(_$BookingDetailPersonImpl value,
+          $Res Function(_$BookingDetailPersonImpl) then) =
+      __$$BookingDetailPersonImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int id,
+      @JsonKey(name: 'AccommodationBookingID') int? accommodationBookingId,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'PhoneNumber') dynamic phoneNumber,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'DepartmentName') String? departmentName,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'EmployeeCode') String? employeeCode});
+}
+
+/// @nodoc
+class __$$BookingDetailPersonImplCopyWithImpl<$Res>
+    extends _$BookingDetailPersonCopyWithImpl<$Res, _$BookingDetailPersonImpl>
+    implements _$$BookingDetailPersonImplCopyWith<$Res> {
+  __$$BookingDetailPersonImplCopyWithImpl(_$BookingDetailPersonImpl _value,
+      $Res Function(_$BookingDetailPersonImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? accommodationBookingId = freezed,
+    Object? employeeId = freezed,
+    Object? phoneNumber = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+    Object? isDeleted = freezed,
+    Object? fullName = freezed,
+    Object? departmentName = freezed,
+    Object? note = freezed,
+    Object? employeeCode = freezed,
+  }) {
+    return _then(_$BookingDetailPersonImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      accommodationBookingId: freezed == accommodationBookingId
+          ? _value.accommodationBookingId
+          : accommodationBookingId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departmentName: freezed == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      employeeCode: freezed == employeeCode
+          ? _value.employeeCode
+          : employeeCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$BookingDetailPersonImpl implements _BookingDetailPerson {
+  const _$BookingDetailPersonImpl(
+      {@JsonKey(name: 'ID') required this.id,
+      @JsonKey(name: 'AccommodationBookingID') this.accommodationBookingId,
+      @JsonKey(name: 'EmployeeID') this.employeeId,
+      @JsonKey(name: 'PhoneNumber') this.phoneNumber,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'UpdatedBy') this.updatedBy,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate,
+      @JsonKey(name: 'IsDeleted') this.isDeleted,
+      @JsonKey(name: 'FullName') this.fullName,
+      @JsonKey(name: 'DepartmentName') this.departmentName,
+      @JsonKey(name: 'Note') this.note,
+      @JsonKey(name: 'EmployeeCode') this.employeeCode});
+
+  factory _$BookingDetailPersonImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BookingDetailPersonImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int id;
+  @override
+  @JsonKey(name: 'AccommodationBookingID')
+  final int? accommodationBookingId;
+  @override
+  @JsonKey(name: 'EmployeeID')
+  final int? employeeId;
+  @override
+  @JsonKey(name: 'PhoneNumber')
+  final dynamic phoneNumber;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  final String? createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  final String? updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final DateTime? updatedDate;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  final bool? isDeleted;
+  @override
+  @JsonKey(name: 'FullName')
+  final String? fullName;
+  @override
+  @JsonKey(name: 'DepartmentName')
+  final String? departmentName;
+  @override
+  @JsonKey(name: 'Note')
+  final String? note;
+  @override
+  @JsonKey(name: 'EmployeeCode')
+  final String? employeeCode;
+
+  @override
+  String toString() {
+    return 'BookingDetailPerson(id: $id, accommodationBookingId: $accommodationBookingId, employeeId: $employeeId, phoneNumber: $phoneNumber, createdBy: $createdBy, createdDate: $createdDate, updatedBy: $updatedBy, updatedDate: $updatedDate, isDeleted: $isDeleted, fullName: $fullName, departmentName: $departmentName, note: $note, employeeCode: $employeeCode)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BookingDetailPersonImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.accommodationBookingId, accommodationBookingId) ||
+                other.accommodationBookingId == accommodationBookingId) &&
+            (identical(other.employeeId, employeeId) ||
+                other.employeeId == employeeId) &&
+            const DeepCollectionEquality()
+                .equals(other.phoneNumber, phoneNumber) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName) &&
+            (identical(other.departmentName, departmentName) ||
+                other.departmentName == departmentName) &&
+            (identical(other.note, note) || other.note == note) &&
+            (identical(other.employeeCode, employeeCode) ||
+                other.employeeCode == employeeCode));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      accommodationBookingId,
+      employeeId,
+      const DeepCollectionEquality().hash(phoneNumber),
+      createdBy,
+      createdDate,
+      updatedBy,
+      updatedDate,
+      isDeleted,
+      fullName,
+      departmentName,
+      note,
+      employeeCode);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BookingDetailPersonImplCopyWith<_$BookingDetailPersonImpl> get copyWith =>
+      __$$BookingDetailPersonImplCopyWithImpl<_$BookingDetailPersonImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BookingDetailPersonImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BookingDetailPerson implements BookingDetailPerson {
+  const factory _BookingDetailPerson(
+          {@JsonKey(name: 'ID') required final int id,
+          @JsonKey(name: 'AccommodationBookingID')
+          final int? accommodationBookingId,
+          @JsonKey(name: 'EmployeeID') final int? employeeId,
+          @JsonKey(name: 'PhoneNumber') final dynamic phoneNumber,
+          @JsonKey(name: 'CreatedBy') final String? createdBy,
+          @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+          @JsonKey(name: 'UpdatedBy') final String? updatedBy,
+          @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
+          @JsonKey(name: 'IsDeleted') final bool? isDeleted,
+          @JsonKey(name: 'FullName') final String? fullName,
+          @JsonKey(name: 'DepartmentName') final String? departmentName,
+          @JsonKey(name: 'Note') final String? note,
+          @JsonKey(name: 'EmployeeCode') final String? employeeCode}) =
+      _$BookingDetailPersonImpl;
+
+  factory _BookingDetailPerson.fromJson(Map<String, dynamic> json) =
+      _$BookingDetailPersonImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int get id;
+  @override
+  @JsonKey(name: 'AccommodationBookingID')
+  int? get accommodationBookingId;
+  @override
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId;
+  @override
+  @JsonKey(name: 'PhoneNumber')
+  dynamic get phoneNumber;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted;
+  @override
+  @JsonKey(name: 'FullName')
+  String? get fullName;
+  @override
+  @JsonKey(name: 'DepartmentName')
+  String? get departmentName;
+  @override
+  @JsonKey(name: 'Note')
+  String? get note;
+  @override
+  @JsonKey(name: 'EmployeeCode')
+  String? get employeeCode;
+  @override
+  @JsonKey(ignore: true)
+  _$$BookingDetailPersonImplCopyWith<_$BookingDetailPersonImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 BookingGuestHouseSaveResponse _$BookingGuestHouseSaveResponseFromJson(
     Map<String, dynamic> json) {
   return _BookingGuestHouseSaveResponse.fromJson(json);

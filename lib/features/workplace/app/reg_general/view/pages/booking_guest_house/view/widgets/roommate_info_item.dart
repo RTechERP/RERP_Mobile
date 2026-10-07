@@ -31,8 +31,8 @@ class RoommateInfoItem extends StatefulWidget {
   /// Danh sách Employee có thể pick.
   final List<EmployeeFilterItem> employeeOptions;
 
-  /// Source-of-truth cho dữ liệu dòng: parent cung cấp Map<String, dynamic>
-  /// với key `roommate_*_$i` và `roommate_*_text_$i`.
+  /// Source-of-truth cho dữ liệu dòng: parent cung cấp
+  /// `Map<String, dynamic>` với key `roommate_*_$i` và `roommate_*_text_$i`.
   final Map<String, dynamic> infoFieldValues;
 
   /// Prefill Employee (currentUser cho dòng 0).
@@ -100,6 +100,12 @@ class _RoommateInfoItemState extends State<RoommateInfoItem> {
     // value hiển thị (không cần đợi didUpdateWidget post-frame).
     if (_selectedEmployee != null) {
       _applyEmployeeToControllers(_selectedEmployee);
+    } else if (_isPrefilledByState) {
+      // Trường hợp detail screen: parent đẩy thẳng fullName/code/department/
+      // phone vào infoFieldValues (không qua EmployeeFilterItem). Hydrate
+      // controller từ state luôn để lần build đầu đã có value (không cần
+      // đợi post-frame + FormFieldState bind).
+      _applyStateToControllers();
     }
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
@@ -127,6 +133,32 @@ class _RoommateInfoItemState extends State<RoommateInfoItem> {
     final name = widget.infoFieldValues['roommate_full_name_$i'];
     return (code is String && code.trim().isNotEmpty) ||
         (name is String && name.trim().isNotEmpty);
+  }
+
+  /// Hydrate 5 controller từ `infoFieldValues` (dùng cho chế độ readOnly —
+  /// detail screen, nơi parent không cung cấp `EmployeeFilterItem`).
+  void _applyStateToControllers() {
+    final i = widget.index;
+    final name =
+        (widget.infoFieldValues['roommate_full_name_$i'] as String?)?.trim() ??
+            '';
+    final dept =
+        (widget.infoFieldValues['roommate_department_$i'] as String?)?.trim() ??
+            '';
+    final code =
+        (widget.infoFieldValues['roommate_code_$i'] as String?)?.trim() ?? '';
+    final roommateName = (widget
+                .infoFieldValues['roommate_roommate_name_$i'] as String?)
+            ?.trim() ??
+        name;
+    final phone =
+        (widget.infoFieldValues['roommate_phone_$i'] as String?)?.trim() ?? '';
+
+    _nameCtrl.text = name;
+    _departmentCtrl.text = dept;
+    _codeCtrl.text = code;
+    _roommateNameCtrl.text = roommateName;
+    _phoneCtrl.text = phone;
   }
 
   @override

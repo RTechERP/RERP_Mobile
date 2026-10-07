@@ -161,6 +161,72 @@ class AccommodationBookingPayload with _$AccommodationBookingPayload {
       _$AccommodationBookingPayloadFromJson(json);
 }
 
+/// Chi tiết 1 phiếu đặt phòng nhà nghỉ — response từ API
+/// `GET /AccommodationBooking/accommodation-booking-by-id?id=<id>`.
+///
+/// Server trả thẳng object `{ accommodationBooking, accommodationBookingDetail }`
+/// (không bọc `BaseData`), nên model này parse trực tiếp từ JSON.
+@freezed
+class BookingGuestHouseDetailData with _$BookingGuestHouseDetailData {
+  const factory BookingGuestHouseDetailData({
+    @JsonKey(name: 'accommodationBooking') required BookingDetail info,
+    @JsonKey(name: 'accommodationBookingDetail')
+    required List<BookingDetailPerson> persons,
+  }) = _BookingGuestHouseDetailData;
+
+  factory BookingGuestHouseDetailData.fromJson(Map<String, dynamic> json) =>
+      _$BookingGuestHouseDetailDataFromJson(json);
+}
+
+/// Object `accommodationBooking` — thông tin đăng ký của phiếu.
+@freezed
+class BookingDetail with _$BookingDetail {
+  const factory BookingDetail({
+    @JsonKey(name: 'ID') required int id,
+    @JsonKey(name: 'RegisterID') int? registerId,
+    @JsonKey(name: 'ProjectID') int? projectId,
+    @JsonKey(name: 'ProvinceID') int? provinceId,
+    @JsonKey(name: 'StartDate') DateTime? startDate,
+    @JsonKey(name: 'EndDate') DateTime? endDate,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+    @JsonKey(name: 'Note') String? note,
+    @JsonKey(name: 'Address') String? address,
+    @JsonKey(name: 'IsApprovedTBP') bool? isApprovedTBP,
+    @JsonKey(name: 'ApprovedTBP') int? approvedTBP,
+    @JsonKey(name: 'ApprovedTBPDate') DateTime? approvedTBPDate,
+  }) = _BookingDetail;
+
+  factory BookingDetail.fromJson(Map<String, dynamic> json) =>
+      _$BookingDetailFromJson(json);
+}
+
+/// Object trong mảng `accommodationBookingDetail` — 1 dòng người ở cùng.
+@freezed
+class BookingDetailPerson with _$BookingDetailPerson {
+  const factory BookingDetailPerson({
+    @JsonKey(name: 'ID') required int id,
+    @JsonKey(name: 'AccommodationBookingID') int? accommodationBookingId,
+    @JsonKey(name: 'EmployeeID') int? employeeId,
+    @JsonKey(name: 'PhoneNumber') dynamic phoneNumber,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+    @JsonKey(name: 'FullName') String? fullName,
+    @JsonKey(name: 'DepartmentName') String? departmentName,
+    @JsonKey(name: 'Note') String? note,
+    @JsonKey(name: 'EmployeeCode') String? employeeCode,
+  }) = _BookingDetailPerson;
+
+  factory BookingDetailPerson.fromJson(Map<String, dynamic> json) =>
+      _$BookingDetailPersonFromJson(json);
+}
+
 /// Response tối thiểu từ API `/AccommodationBooking/save-data`.
 /// Thường server trả `{ status, message, data: <id> }` — chỉ cần `id`.
 @freezed

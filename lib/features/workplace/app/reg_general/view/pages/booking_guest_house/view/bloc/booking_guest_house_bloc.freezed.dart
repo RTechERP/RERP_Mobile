@@ -29,6 +29,7 @@ mixin _$BookingGuestHouseEvent {
         changeEmployeeFilter,
     required TResult Function(Map<String, dynamic> payload) submit,
     required TResult Function(int id) deleteBooking,
+    required TResult Function(int id) loadDetail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -42,6 +43,7 @@ mixin _$BookingGuestHouseEvent {
     TResult? Function(EmployeeFilterItem? employee)? changeEmployeeFilter,
     TResult? Function(Map<String, dynamic> payload)? submit,
     TResult? Function(int id)? deleteBooking,
+    TResult? Function(int id)? loadDetail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +57,7 @@ mixin _$BookingGuestHouseEvent {
     TResult Function(EmployeeFilterItem? employee)? changeEmployeeFilter,
     TResult Function(Map<String, dynamic> payload)? submit,
     TResult Function(int id)? deleteBooking,
+    TResult Function(int id)? loadDetail,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -69,6 +72,7 @@ mixin _$BookingGuestHouseEvent {
     required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
     required TResult Function(_Submit value) submit,
     required TResult Function(_DeleteBooking value) deleteBooking,
+    required TResult Function(_LoadDetail value) loadDetail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -82,6 +86,7 @@ mixin _$BookingGuestHouseEvent {
     TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_DeleteBooking value)? deleteBooking,
+    TResult? Function(_LoadDetail value)? loadDetail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -95,6 +100,7 @@ mixin _$BookingGuestHouseEvent {
     TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult Function(_Submit value)? submit,
     TResult Function(_DeleteBooking value)? deleteBooking,
+    TResult Function(_LoadDetail value)? loadDetail,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -202,6 +208,7 @@ class _$InitImpl implements _Init {
         changeEmployeeFilter,
     required TResult Function(Map<String, dynamic> payload) submit,
     required TResult Function(int id) deleteBooking,
+    required TResult Function(int id) loadDetail,
   }) {
     return init(dateStart, dateEnd);
   }
@@ -218,6 +225,7 @@ class _$InitImpl implements _Init {
     TResult? Function(EmployeeFilterItem? employee)? changeEmployeeFilter,
     TResult? Function(Map<String, dynamic> payload)? submit,
     TResult? Function(int id)? deleteBooking,
+    TResult? Function(int id)? loadDetail,
   }) {
     return init?.call(dateStart, dateEnd);
   }
@@ -234,6 +242,7 @@ class _$InitImpl implements _Init {
     TResult Function(EmployeeFilterItem? employee)? changeEmployeeFilter,
     TResult Function(Map<String, dynamic> payload)? submit,
     TResult Function(int id)? deleteBooking,
+    TResult Function(int id)? loadDetail,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -254,6 +263,7 @@ class _$InitImpl implements _Init {
     required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
     required TResult Function(_Submit value) submit,
     required TResult Function(_DeleteBooking value) deleteBooking,
+    required TResult Function(_LoadDetail value) loadDetail,
   }) {
     return init(this);
   }
@@ -270,6 +280,7 @@ class _$InitImpl implements _Init {
     TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_DeleteBooking value)? deleteBooking,
+    TResult? Function(_LoadDetail value)? loadDetail,
   }) {
     return init?.call(this);
   }
@@ -286,6 +297,7 @@ class _$InitImpl implements _Init {
     TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult Function(_Submit value)? submit,
     TResult Function(_DeleteBooking value)? deleteBooking,
+    TResult Function(_LoadDetail value)? loadDetail,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -391,6 +403,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
         changeEmployeeFilter,
     required TResult Function(Map<String, dynamic> payload) submit,
     required TResult Function(int id) deleteBooking,
+    required TResult Function(int id) loadDetail,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -407,6 +420,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(EmployeeFilterItem? employee)? changeEmployeeFilter,
     TResult? Function(Map<String, dynamic> payload)? submit,
     TResult? Function(int id)? deleteBooking,
+    TResult? Function(int id)? loadDetail,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -423,6 +437,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(EmployeeFilterItem? employee)? changeEmployeeFilter,
     TResult Function(Map<String, dynamic> payload)? submit,
     TResult Function(int id)? deleteBooking,
+    TResult Function(int id)? loadDetail,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -443,6 +458,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
     required TResult Function(_Submit value) submit,
     required TResult Function(_DeleteBooking value) deleteBooking,
+    required TResult Function(_LoadDetail value) loadDetail,
   }) {
     return changeDateRange(this);
   }
@@ -459,6 +475,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_DeleteBooking value)? deleteBooking,
+    TResult? Function(_LoadDetail value)? loadDetail,
   }) {
     return changeDateRange?.call(this);
   }
@@ -475,6 +492,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult Function(_Submit value)? submit,
     TResult Function(_DeleteBooking value)? deleteBooking,
+    TResult Function(_LoadDetail value)? loadDetail,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -573,6 +591,7 @@ class _$ChangeFilterTextImpl implements _ChangeFilterText {
         changeEmployeeFilter,
     required TResult Function(Map<String, dynamic> payload) submit,
     required TResult Function(int id) deleteBooking,
+    required TResult Function(int id) loadDetail,
   }) {
     return changeFilterText(filterText);
   }
@@ -589,6 +608,7 @@ class _$ChangeFilterTextImpl implements _ChangeFilterText {
     TResult? Function(EmployeeFilterItem? employee)? changeEmployeeFilter,
     TResult? Function(Map<String, dynamic> payload)? submit,
     TResult? Function(int id)? deleteBooking,
+    TResult? Function(int id)? loadDetail,
   }) {
     return changeFilterText?.call(filterText);
   }
@@ -605,6 +625,7 @@ class _$ChangeFilterTextImpl implements _ChangeFilterText {
     TResult Function(EmployeeFilterItem? employee)? changeEmployeeFilter,
     TResult Function(Map<String, dynamic> payload)? submit,
     TResult Function(int id)? deleteBooking,
+    TResult Function(int id)? loadDetail,
     required TResult orElse(),
   }) {
     if (changeFilterText != null) {
@@ -625,6 +646,7 @@ class _$ChangeFilterTextImpl implements _ChangeFilterText {
     required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
     required TResult Function(_Submit value) submit,
     required TResult Function(_DeleteBooking value) deleteBooking,
+    required TResult Function(_LoadDetail value) loadDetail,
   }) {
     return changeFilterText(this);
   }
@@ -641,6 +663,7 @@ class _$ChangeFilterTextImpl implements _ChangeFilterText {
     TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_DeleteBooking value)? deleteBooking,
+    TResult? Function(_LoadDetail value)? loadDetail,
   }) {
     return changeFilterText?.call(this);
   }
@@ -657,6 +680,7 @@ class _$ChangeFilterTextImpl implements _ChangeFilterText {
     TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult Function(_Submit value)? submit,
     TResult Function(_DeleteBooking value)? deleteBooking,
+    TResult Function(_LoadDetail value)? loadDetail,
     required TResult orElse(),
   }) {
     if (changeFilterText != null) {
@@ -725,6 +749,7 @@ class _$RefreshImpl implements _Refresh {
         changeEmployeeFilter,
     required TResult Function(Map<String, dynamic> payload) submit,
     required TResult Function(int id) deleteBooking,
+    required TResult Function(int id) loadDetail,
   }) {
     return refresh();
   }
@@ -741,6 +766,7 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(EmployeeFilterItem? employee)? changeEmployeeFilter,
     TResult? Function(Map<String, dynamic> payload)? submit,
     TResult? Function(int id)? deleteBooking,
+    TResult? Function(int id)? loadDetail,
   }) {
     return refresh?.call();
   }
@@ -757,6 +783,7 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(EmployeeFilterItem? employee)? changeEmployeeFilter,
     TResult Function(Map<String, dynamic> payload)? submit,
     TResult Function(int id)? deleteBooking,
+    TResult Function(int id)? loadDetail,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -777,6 +804,7 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
     required TResult Function(_Submit value) submit,
     required TResult Function(_DeleteBooking value) deleteBooking,
+    required TResult Function(_LoadDetail value) loadDetail,
   }) {
     return refresh(this);
   }
@@ -793,6 +821,7 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_DeleteBooking value)? deleteBooking,
+    TResult? Function(_LoadDetail value)? loadDetail,
   }) {
     return refresh?.call(this);
   }
@@ -809,6 +838,7 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult Function(_Submit value)? submit,
     TResult Function(_DeleteBooking value)? deleteBooking,
+    TResult Function(_LoadDetail value)? loadDetail,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -871,6 +901,7 @@ class _$LoadFiltersImpl implements _LoadFilters {
         changeEmployeeFilter,
     required TResult Function(Map<String, dynamic> payload) submit,
     required TResult Function(int id) deleteBooking,
+    required TResult Function(int id) loadDetail,
   }) {
     return loadFilters();
   }
@@ -887,6 +918,7 @@ class _$LoadFiltersImpl implements _LoadFilters {
     TResult? Function(EmployeeFilterItem? employee)? changeEmployeeFilter,
     TResult? Function(Map<String, dynamic> payload)? submit,
     TResult? Function(int id)? deleteBooking,
+    TResult? Function(int id)? loadDetail,
   }) {
     return loadFilters?.call();
   }
@@ -903,6 +935,7 @@ class _$LoadFiltersImpl implements _LoadFilters {
     TResult Function(EmployeeFilterItem? employee)? changeEmployeeFilter,
     TResult Function(Map<String, dynamic> payload)? submit,
     TResult Function(int id)? deleteBooking,
+    TResult Function(int id)? loadDetail,
     required TResult orElse(),
   }) {
     if (loadFilters != null) {
@@ -923,6 +956,7 @@ class _$LoadFiltersImpl implements _LoadFilters {
     required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
     required TResult Function(_Submit value) submit,
     required TResult Function(_DeleteBooking value) deleteBooking,
+    required TResult Function(_LoadDetail value) loadDetail,
   }) {
     return loadFilters(this);
   }
@@ -939,6 +973,7 @@ class _$LoadFiltersImpl implements _LoadFilters {
     TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_DeleteBooking value)? deleteBooking,
+    TResult? Function(_LoadDetail value)? loadDetail,
   }) {
     return loadFilters?.call(this);
   }
@@ -955,6 +990,7 @@ class _$LoadFiltersImpl implements _LoadFilters {
     TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult Function(_Submit value)? submit,
     TResult Function(_DeleteBooking value)? deleteBooking,
+    TResult Function(_LoadDetail value)? loadDetail,
     required TResult orElse(),
   }) {
     if (loadFilters != null) {
@@ -1059,6 +1095,7 @@ class _$ChangeProjectFilterImpl implements _ChangeProjectFilter {
         changeEmployeeFilter,
     required TResult Function(Map<String, dynamic> payload) submit,
     required TResult Function(int id) deleteBooking,
+    required TResult Function(int id) loadDetail,
   }) {
     return changeProjectFilter(project);
   }
@@ -1075,6 +1112,7 @@ class _$ChangeProjectFilterImpl implements _ChangeProjectFilter {
     TResult? Function(EmployeeFilterItem? employee)? changeEmployeeFilter,
     TResult? Function(Map<String, dynamic> payload)? submit,
     TResult? Function(int id)? deleteBooking,
+    TResult? Function(int id)? loadDetail,
   }) {
     return changeProjectFilter?.call(project);
   }
@@ -1091,6 +1129,7 @@ class _$ChangeProjectFilterImpl implements _ChangeProjectFilter {
     TResult Function(EmployeeFilterItem? employee)? changeEmployeeFilter,
     TResult Function(Map<String, dynamic> payload)? submit,
     TResult Function(int id)? deleteBooking,
+    TResult Function(int id)? loadDetail,
     required TResult orElse(),
   }) {
     if (changeProjectFilter != null) {
@@ -1111,6 +1150,7 @@ class _$ChangeProjectFilterImpl implements _ChangeProjectFilter {
     required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
     required TResult Function(_Submit value) submit,
     required TResult Function(_DeleteBooking value) deleteBooking,
+    required TResult Function(_LoadDetail value) loadDetail,
   }) {
     return changeProjectFilter(this);
   }
@@ -1127,6 +1167,7 @@ class _$ChangeProjectFilterImpl implements _ChangeProjectFilter {
     TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_DeleteBooking value)? deleteBooking,
+    TResult? Function(_LoadDetail value)? loadDetail,
   }) {
     return changeProjectFilter?.call(this);
   }
@@ -1143,6 +1184,7 @@ class _$ChangeProjectFilterImpl implements _ChangeProjectFilter {
     TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult Function(_Submit value)? submit,
     TResult Function(_DeleteBooking value)? deleteBooking,
+    TResult Function(_LoadDetail value)? loadDetail,
     required TResult orElse(),
   }) {
     if (changeProjectFilter != null) {
@@ -1255,6 +1297,7 @@ class _$ChangeEmployeeFilterImpl implements _ChangeEmployeeFilter {
         changeEmployeeFilter,
     required TResult Function(Map<String, dynamic> payload) submit,
     required TResult Function(int id) deleteBooking,
+    required TResult Function(int id) loadDetail,
   }) {
     return changeEmployeeFilter(employee);
   }
@@ -1271,6 +1314,7 @@ class _$ChangeEmployeeFilterImpl implements _ChangeEmployeeFilter {
     TResult? Function(EmployeeFilterItem? employee)? changeEmployeeFilter,
     TResult? Function(Map<String, dynamic> payload)? submit,
     TResult? Function(int id)? deleteBooking,
+    TResult? Function(int id)? loadDetail,
   }) {
     return changeEmployeeFilter?.call(employee);
   }
@@ -1287,6 +1331,7 @@ class _$ChangeEmployeeFilterImpl implements _ChangeEmployeeFilter {
     TResult Function(EmployeeFilterItem? employee)? changeEmployeeFilter,
     TResult Function(Map<String, dynamic> payload)? submit,
     TResult Function(int id)? deleteBooking,
+    TResult Function(int id)? loadDetail,
     required TResult orElse(),
   }) {
     if (changeEmployeeFilter != null) {
@@ -1307,6 +1352,7 @@ class _$ChangeEmployeeFilterImpl implements _ChangeEmployeeFilter {
     required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
     required TResult Function(_Submit value) submit,
     required TResult Function(_DeleteBooking value) deleteBooking,
+    required TResult Function(_LoadDetail value) loadDetail,
   }) {
     return changeEmployeeFilter(this);
   }
@@ -1323,6 +1369,7 @@ class _$ChangeEmployeeFilterImpl implements _ChangeEmployeeFilter {
     TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_DeleteBooking value)? deleteBooking,
+    TResult? Function(_LoadDetail value)? loadDetail,
   }) {
     return changeEmployeeFilter?.call(this);
   }
@@ -1339,6 +1386,7 @@ class _$ChangeEmployeeFilterImpl implements _ChangeEmployeeFilter {
     TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult Function(_Submit value)? submit,
     TResult Function(_DeleteBooking value)? deleteBooking,
+    TResult Function(_LoadDetail value)? loadDetail,
     required TResult orElse(),
   }) {
     if (changeEmployeeFilter != null) {
@@ -1441,6 +1489,7 @@ class _$SubmitImpl implements _Submit {
         changeEmployeeFilter,
     required TResult Function(Map<String, dynamic> payload) submit,
     required TResult Function(int id) deleteBooking,
+    required TResult Function(int id) loadDetail,
   }) {
     return submit(payload);
   }
@@ -1457,6 +1506,7 @@ class _$SubmitImpl implements _Submit {
     TResult? Function(EmployeeFilterItem? employee)? changeEmployeeFilter,
     TResult? Function(Map<String, dynamic> payload)? submit,
     TResult? Function(int id)? deleteBooking,
+    TResult? Function(int id)? loadDetail,
   }) {
     return submit?.call(payload);
   }
@@ -1473,6 +1523,7 @@ class _$SubmitImpl implements _Submit {
     TResult Function(EmployeeFilterItem? employee)? changeEmployeeFilter,
     TResult Function(Map<String, dynamic> payload)? submit,
     TResult Function(int id)? deleteBooking,
+    TResult Function(int id)? loadDetail,
     required TResult orElse(),
   }) {
     if (submit != null) {
@@ -1493,6 +1544,7 @@ class _$SubmitImpl implements _Submit {
     required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
     required TResult Function(_Submit value) submit,
     required TResult Function(_DeleteBooking value) deleteBooking,
+    required TResult Function(_LoadDetail value) loadDetail,
   }) {
     return submit(this);
   }
@@ -1509,6 +1561,7 @@ class _$SubmitImpl implements _Submit {
     TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_DeleteBooking value)? deleteBooking,
+    TResult? Function(_LoadDetail value)? loadDetail,
   }) {
     return submit?.call(this);
   }
@@ -1525,6 +1578,7 @@ class _$SubmitImpl implements _Submit {
     TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult Function(_Submit value)? submit,
     TResult Function(_DeleteBooking value)? deleteBooking,
+    TResult Function(_LoadDetail value)? loadDetail,
     required TResult orElse(),
   }) {
     if (submit != null) {
@@ -1619,6 +1673,7 @@ class _$DeleteBookingImpl implements _DeleteBooking {
         changeEmployeeFilter,
     required TResult Function(Map<String, dynamic> payload) submit,
     required TResult Function(int id) deleteBooking,
+    required TResult Function(int id) loadDetail,
   }) {
     return deleteBooking(id);
   }
@@ -1635,6 +1690,7 @@ class _$DeleteBookingImpl implements _DeleteBooking {
     TResult? Function(EmployeeFilterItem? employee)? changeEmployeeFilter,
     TResult? Function(Map<String, dynamic> payload)? submit,
     TResult? Function(int id)? deleteBooking,
+    TResult? Function(int id)? loadDetail,
   }) {
     return deleteBooking?.call(id);
   }
@@ -1651,6 +1707,7 @@ class _$DeleteBookingImpl implements _DeleteBooking {
     TResult Function(EmployeeFilterItem? employee)? changeEmployeeFilter,
     TResult Function(Map<String, dynamic> payload)? submit,
     TResult Function(int id)? deleteBooking,
+    TResult Function(int id)? loadDetail,
     required TResult orElse(),
   }) {
     if (deleteBooking != null) {
@@ -1671,6 +1728,7 @@ class _$DeleteBookingImpl implements _DeleteBooking {
     required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
     required TResult Function(_Submit value) submit,
     required TResult Function(_DeleteBooking value) deleteBooking,
+    required TResult Function(_LoadDetail value) loadDetail,
   }) {
     return deleteBooking(this);
   }
@@ -1687,6 +1745,7 @@ class _$DeleteBookingImpl implements _DeleteBooking {
     TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult? Function(_Submit value)? submit,
     TResult? Function(_DeleteBooking value)? deleteBooking,
+    TResult? Function(_LoadDetail value)? loadDetail,
   }) {
     return deleteBooking?.call(this);
   }
@@ -1703,6 +1762,7 @@ class _$DeleteBookingImpl implements _DeleteBooking {
     TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult Function(_Submit value)? submit,
     TResult Function(_DeleteBooking value)? deleteBooking,
+    TResult Function(_LoadDetail value)? loadDetail,
     required TResult orElse(),
   }) {
     if (deleteBooking != null) {
@@ -1718,5 +1778,188 @@ abstract class _DeleteBooking implements BookingGuestHouseEvent {
   int get id;
   @JsonKey(ignore: true)
   _$$DeleteBookingImplCopyWith<_$DeleteBookingImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LoadDetailImplCopyWith<$Res> {
+  factory _$$LoadDetailImplCopyWith(
+          _$LoadDetailImpl value, $Res Function(_$LoadDetailImpl) then) =
+      __$$LoadDetailImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id});
+}
+
+/// @nodoc
+class __$$LoadDetailImplCopyWithImpl<$Res>
+    extends _$BookingGuestHouseEventCopyWithImpl<$Res, _$LoadDetailImpl>
+    implements _$$LoadDetailImplCopyWith<$Res> {
+  __$$LoadDetailImplCopyWithImpl(
+      _$LoadDetailImpl _value, $Res Function(_$LoadDetailImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$LoadDetailImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LoadDetailImpl implements _LoadDetail {
+  const _$LoadDetailImpl({required this.id});
+
+  @override
+  final int id;
+
+  @override
+  String toString() {
+    return 'BookingGuestHouseEvent.loadDetail(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadDetailImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadDetailImplCopyWith<_$LoadDetailImpl> get copyWith =>
+      __$$LoadDetailImplCopyWithImpl<_$LoadDetailImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd) init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String filterText) changeFilterText,
+    required TResult Function() refresh,
+    required TResult Function() loadFilters,
+    required TResult Function(ProjectFilterItem? project) changeProjectFilter,
+    required TResult Function(EmployeeFilterItem? employee)
+        changeEmployeeFilter,
+    required TResult Function(Map<String, dynamic> payload) submit,
+    required TResult Function(int id) deleteBooking,
+    required TResult Function(int id) loadDetail,
+  }) {
+    return loadDetail(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String filterText)? changeFilterText,
+    TResult? Function()? refresh,
+    TResult? Function()? loadFilters,
+    TResult? Function(ProjectFilterItem? project)? changeProjectFilter,
+    TResult? Function(EmployeeFilterItem? employee)? changeEmployeeFilter,
+    TResult? Function(Map<String, dynamic> payload)? submit,
+    TResult? Function(int id)? deleteBooking,
+    TResult? Function(int id)? loadDetail,
+  }) {
+    return loadDetail?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String filterText)? changeFilterText,
+    TResult Function()? refresh,
+    TResult Function()? loadFilters,
+    TResult Function(ProjectFilterItem? project)? changeProjectFilter,
+    TResult Function(EmployeeFilterItem? employee)? changeEmployeeFilter,
+    TResult Function(Map<String, dynamic> payload)? submit,
+    TResult Function(int id)? deleteBooking,
+    TResult Function(int id)? loadDetail,
+    required TResult orElse(),
+  }) {
+    if (loadDetail != null) {
+      return loadDetail(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeFilterText value) changeFilterText,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_LoadFilters value) loadFilters,
+    required TResult Function(_ChangeProjectFilter value) changeProjectFilter,
+    required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
+    required TResult Function(_Submit value) submit,
+    required TResult Function(_DeleteBooking value) deleteBooking,
+    required TResult Function(_LoadDetail value) loadDetail,
+  }) {
+    return loadDetail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeFilterText value)? changeFilterText,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_LoadFilters value)? loadFilters,
+    TResult? Function(_ChangeProjectFilter value)? changeProjectFilter,
+    TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult? Function(_Submit value)? submit,
+    TResult? Function(_DeleteBooking value)? deleteBooking,
+    TResult? Function(_LoadDetail value)? loadDetail,
+  }) {
+    return loadDetail?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeFilterText value)? changeFilterText,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_LoadFilters value)? loadFilters,
+    TResult Function(_ChangeProjectFilter value)? changeProjectFilter,
+    TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult Function(_Submit value)? submit,
+    TResult Function(_DeleteBooking value)? deleteBooking,
+    TResult Function(_LoadDetail value)? loadDetail,
+    required TResult orElse(),
+  }) {
+    if (loadDetail != null) {
+      return loadDetail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadDetail implements BookingGuestHouseEvent {
+  const factory _LoadDetail({required final int id}) = _$LoadDetailImpl;
+
+  int get id;
+  @JsonKey(ignore: true)
+  _$$LoadDetailImplCopyWith<_$LoadDetailImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

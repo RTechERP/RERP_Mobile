@@ -169,6 +169,10 @@ class RouteNames {
   static const bookingGuestHouseAdd =
       '/reg_general/booking_guest_house/add';
 
+  /// Đặt phòng nhà nghỉ — chi tiết phiếu đặt.
+  static const bookingGuestHouseDetail =
+      '/reg_general/booking_guest_house/detail';
+
   static const workCategory = '/reg_general/work_category';
 
   static const workCategoryAdd = '/reg_general/work_category/add';

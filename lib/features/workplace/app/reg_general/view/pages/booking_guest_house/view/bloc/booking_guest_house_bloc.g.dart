@@ -33,11 +33,19 @@ abstract class _$BookingGuestHouseStateCWProxy {
 
   BookingGuestHouseState employees(List<EmployeeFilterItem> employees);
 
+  BookingGuestHouseState provinces(List<ProvinceFilterItem> provinces);
+
   BookingGuestHouseState selectedProject(ProjectFilterItem? selectedProject);
 
   BookingGuestHouseState selectedEmployee(EmployeeFilterItem? selectedEmployee);
 
   BookingGuestHouseState isLoadingFilters(bool isLoadingFilters);
+
+  BookingGuestHouseState isDetailLoading(bool isDetailLoading);
+
+  BookingGuestHouseState detailData(BookingGuestHouseDetailData? detailData);
+
+  BookingGuestHouseState detailMessage(String? detailMessage);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BookingGuestHouseState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -59,9 +67,13 @@ abstract class _$BookingGuestHouseStateCWProxy {
     bool? deleteSuccess,
     List<ProjectFilterItem>? projects,
     List<EmployeeFilterItem>? employees,
+    List<ProvinceFilterItem>? provinces,
     ProjectFilterItem? selectedProject,
     EmployeeFilterItem? selectedEmployee,
     bool? isLoadingFilters,
+    bool? isDetailLoading,
+    BookingGuestHouseDetailData? detailData,
+    String? detailMessage,
   });
 }
 
@@ -122,6 +134,10 @@ class _$BookingGuestHouseStateCWProxyImpl
       this(employees: employees);
 
   @override
+  BookingGuestHouseState provinces(List<ProvinceFilterItem> provinces) =>
+      this(provinces: provinces);
+
+  @override
   BookingGuestHouseState selectedProject(ProjectFilterItem? selectedProject) =>
       this(selectedProject: selectedProject);
 
@@ -133,6 +149,18 @@ class _$BookingGuestHouseStateCWProxyImpl
   @override
   BookingGuestHouseState isLoadingFilters(bool isLoadingFilters) =>
       this(isLoadingFilters: isLoadingFilters);
+
+  @override
+  BookingGuestHouseState isDetailLoading(bool isDetailLoading) =>
+      this(isDetailLoading: isDetailLoading);
+
+  @override
+  BookingGuestHouseState detailData(BookingGuestHouseDetailData? detailData) =>
+      this(detailData: detailData);
+
+  @override
+  BookingGuestHouseState detailMessage(String? detailMessage) =>
+      this(detailMessage: detailMessage);
 
   @override
 
@@ -156,9 +184,13 @@ class _$BookingGuestHouseStateCWProxyImpl
     Object? deleteSuccess = const $CopyWithPlaceholder(),
     Object? projects = const $CopyWithPlaceholder(),
     Object? employees = const $CopyWithPlaceholder(),
+    Object? provinces = const $CopyWithPlaceholder(),
     Object? selectedProject = const $CopyWithPlaceholder(),
     Object? selectedEmployee = const $CopyWithPlaceholder(),
     Object? isLoadingFilters = const $CopyWithPlaceholder(),
+    Object? isDetailLoading = const $CopyWithPlaceholder(),
+    Object? detailData = const $CopyWithPlaceholder(),
+    Object? detailMessage = const $CopyWithPlaceholder(),
   }) {
     return BookingGuestHouseState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -218,6 +250,10 @@ class _$BookingGuestHouseStateCWProxyImpl
           ? _value.employees
           // ignore: cast_nullable_to_non_nullable
           : employees as List<EmployeeFilterItem>,
+      provinces: provinces == const $CopyWithPlaceholder() || provinces == null
+          ? _value.provinces
+          // ignore: cast_nullable_to_non_nullable
+          : provinces as List<ProvinceFilterItem>,
       selectedProject: selectedProject == const $CopyWithPlaceholder()
           ? _value.selectedProject
           // ignore: cast_nullable_to_non_nullable
@@ -231,6 +267,19 @@ class _$BookingGuestHouseStateCWProxyImpl
           ? _value.isLoadingFilters
           // ignore: cast_nullable_to_non_nullable
           : isLoadingFilters as bool,
+      isDetailLoading: isDetailLoading == const $CopyWithPlaceholder() ||
+              isDetailLoading == null
+          ? _value.isDetailLoading
+          // ignore: cast_nullable_to_non_nullable
+          : isDetailLoading as bool,
+      detailData: detailData == const $CopyWithPlaceholder()
+          ? _value.detailData
+          // ignore: cast_nullable_to_non_nullable
+          : detailData as BookingGuestHouseDetailData?,
+      detailMessage: detailMessage == const $CopyWithPlaceholder()
+          ? _value.detailMessage
+          // ignore: cast_nullable_to_non_nullable
+          : detailMessage as String?,
     );
   }
 }

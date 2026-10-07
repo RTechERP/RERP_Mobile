@@ -47,4 +47,12 @@ abstract class BookingGuestHouseRepo {
   Future<Either<BaseError, void>> deleteBookingGuestHouse({
     required List<int> ids,
   });
+
+  /// Lấy chi tiết 1 phiếu đặt phòng nhà nghỉ (kèm danh sách người ở).
+  /// [id] - ID phiếu cần lấy.
+  /// API: GET `/AccommodationBooking/accommodation-booking-by-id?id=<id>`
+  Future<Either<BaseError, BookingGuestHouseDetailData>>
+      getBookingGuestHouseById({
+    required int id,
+  });
 }
