@@ -42,6 +42,8 @@ mixin _$LunchItem {
   String? get locationText => throw _privateConstructorUsedError;
   @JsonKey(name: 'EmployeeID')
   int? get employeeId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ExtraRiceQuantity')
+  int? get extraRiceQuantity => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -65,7 +67,8 @@ abstract class $LunchItemCopyWith<$Res> {
       @JsonKey(name: 'RowNumber') int? rowNumber,
       @JsonKey(name: 'Location') int? location,
       @JsonKey(name: 'LocationText') String? locationText,
-      @JsonKey(name: 'EmployeeID') int? employeeId});
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'ExtraRiceQuantity') int? extraRiceQuantity});
 }
 
 /// @nodoc
@@ -92,6 +95,7 @@ class _$LunchItemCopyWithImpl<$Res, $Val extends LunchItem>
     Object? location = freezed,
     Object? locationText = freezed,
     Object? employeeId = freezed,
+    Object? extraRiceQuantity = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -138,6 +142,10 @@ class _$LunchItemCopyWithImpl<$Res, $Val extends LunchItem>
           ? _value.employeeId
           : employeeId // ignore: cast_nullable_to_non_nullable
               as int?,
+      extraRiceQuantity: freezed == extraRiceQuantity
+          ? _value.extraRiceQuantity
+          : extraRiceQuantity // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -161,7 +169,8 @@ abstract class _$$LunchItemImplCopyWith<$Res>
       @JsonKey(name: 'RowNumber') int? rowNumber,
       @JsonKey(name: 'Location') int? location,
       @JsonKey(name: 'LocationText') String? locationText,
-      @JsonKey(name: 'EmployeeID') int? employeeId});
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'ExtraRiceQuantity') int? extraRiceQuantity});
 }
 
 /// @nodoc
@@ -186,6 +195,7 @@ class __$$LunchItemImplCopyWithImpl<$Res>
     Object? location = freezed,
     Object? locationText = freezed,
     Object? employeeId = freezed,
+    Object? extraRiceQuantity = freezed,
   }) {
     return _then(_$LunchItemImpl(
       id: null == id
@@ -232,6 +242,10 @@ class __$$LunchItemImplCopyWithImpl<$Res>
           ? _value.employeeId
           : employeeId // ignore: cast_nullable_to_non_nullable
               as int?,
+      extraRiceQuantity: freezed == extraRiceQuantity
+          ? _value.extraRiceQuantity
+          : extraRiceQuantity // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -250,7 +264,8 @@ class _$LunchItemImpl implements _LunchItem {
       @JsonKey(name: 'RowNumber') this.rowNumber,
       @JsonKey(name: 'Location') this.location,
       @JsonKey(name: 'LocationText') this.locationText,
-      @JsonKey(name: 'EmployeeID') this.employeeId});
+      @JsonKey(name: 'EmployeeID') this.employeeId,
+      @JsonKey(name: 'ExtraRiceQuantity') this.extraRiceQuantity});
 
   factory _$LunchItemImpl.fromJson(Map<String, dynamic> json) =>
       _$$LunchItemImplFromJson(json);
@@ -288,10 +303,13 @@ class _$LunchItemImpl implements _LunchItem {
   @override
   @JsonKey(name: 'EmployeeID')
   final int? employeeId;
+  @override
+  @JsonKey(name: 'ExtraRiceQuantity')
+  final int? extraRiceQuantity;
 
   @override
   String toString() {
-    return 'LunchItem(id: $id, code: $code, fullName: $fullName, quantity: $quantity, dateOrder: $dateOrder, note: $note, isApproved: $isApproved, rowNumber: $rowNumber, location: $location, locationText: $locationText, employeeId: $employeeId)';
+    return 'LunchItem(id: $id, code: $code, fullName: $fullName, quantity: $quantity, dateOrder: $dateOrder, note: $note, isApproved: $isApproved, rowNumber: $rowNumber, location: $location, locationText: $locationText, employeeId: $employeeId, extraRiceQuantity: $extraRiceQuantity)';
   }
 
   @override
@@ -317,7 +335,9 @@ class _$LunchItemImpl implements _LunchItem {
             (identical(other.locationText, locationText) ||
                 other.locationText == locationText) &&
             (identical(other.employeeId, employeeId) ||
-                other.employeeId == employeeId));
+                other.employeeId == employeeId) &&
+            (identical(other.extraRiceQuantity, extraRiceQuantity) ||
+                other.extraRiceQuantity == extraRiceQuantity));
   }
 
   @JsonKey(ignore: true)
@@ -334,7 +354,8 @@ class _$LunchItemImpl implements _LunchItem {
       rowNumber,
       location,
       locationText,
-      employeeId);
+      employeeId,
+      extraRiceQuantity);
 
   @JsonKey(ignore: true)
   @override
@@ -352,17 +373,19 @@ class _$LunchItemImpl implements _LunchItem {
 
 abstract class _LunchItem implements LunchItem {
   const factory _LunchItem(
-      {@JsonKey(name: 'ID') required final int id,
-      @JsonKey(name: 'Code') final String? code,
-      @JsonKey(name: 'FullName') final String? fullName,
-      @JsonKey(name: 'Quantity') final int? quantity,
-      @JsonKey(name: 'DateOrder') final DateTime? dateOrder,
-      @JsonKey(name: 'Note') final String? note,
-      @JsonKey(name: 'IsApproved') final bool? isApproved,
-      @JsonKey(name: 'RowNumber') final int? rowNumber,
-      @JsonKey(name: 'Location') final int? location,
-      @JsonKey(name: 'LocationText') final String? locationText,
-      @JsonKey(name: 'EmployeeID') final int? employeeId}) = _$LunchItemImpl;
+          {@JsonKey(name: 'ID') required final int id,
+          @JsonKey(name: 'Code') final String? code,
+          @JsonKey(name: 'FullName') final String? fullName,
+          @JsonKey(name: 'Quantity') final int? quantity,
+          @JsonKey(name: 'DateOrder') final DateTime? dateOrder,
+          @JsonKey(name: 'Note') final String? note,
+          @JsonKey(name: 'IsApproved') final bool? isApproved,
+          @JsonKey(name: 'RowNumber') final int? rowNumber,
+          @JsonKey(name: 'Location') final int? location,
+          @JsonKey(name: 'LocationText') final String? locationText,
+          @JsonKey(name: 'EmployeeID') final int? employeeId,
+          @JsonKey(name: 'ExtraRiceQuantity') final int? extraRiceQuantity}) =
+      _$LunchItemImpl;
 
   factory _LunchItem.fromJson(Map<String, dynamic> json) =
       _$LunchItemImpl.fromJson;
@@ -400,6 +423,9 @@ abstract class _LunchItem implements LunchItem {
   @override
   @JsonKey(name: 'EmployeeID')
   int? get employeeId;
+  @override
+  @JsonKey(name: 'ExtraRiceQuantity')
+  int? get extraRiceQuantity;
   @override
   @JsonKey(ignore: true)
   _$$LunchItemImplCopyWith<_$LunchItemImpl> get copyWith =>
@@ -440,6 +466,8 @@ mixin _$SaveLunchItem {
   bool? get isDeleted => throw _privateConstructorUsedError;
   @JsonKey(name: 'Location')
   int? get location => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ExtraRiceQuantity')
+  int? get extraRiceQuantity => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -467,7 +495,8 @@ abstract class $SaveLunchItemCopyWith<$Res> {
       @JsonKey(name: 'DecilineApprove') int? decilineApprove,
       @JsonKey(name: 'ReasonDeciline') String? reasonDeciline,
       @JsonKey(name: 'IsDeleted') bool? isDeleted,
-      @JsonKey(name: 'Location') int? location});
+      @JsonKey(name: 'Location') int? location,
+      @JsonKey(name: 'ExtraRiceQuantity') int? extraRiceQuantity});
 }
 
 /// @nodoc
@@ -497,6 +526,7 @@ class _$SaveLunchItemCopyWithImpl<$Res, $Val extends SaveLunchItem>
     Object? reasonDeciline = freezed,
     Object? isDeleted = freezed,
     Object? location = freezed,
+    Object? extraRiceQuantity = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -555,6 +585,10 @@ class _$SaveLunchItemCopyWithImpl<$Res, $Val extends SaveLunchItem>
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as int?,
+      extraRiceQuantity: freezed == extraRiceQuantity
+          ? _value.extraRiceQuantity
+          : extraRiceQuantity // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -581,7 +615,8 @@ abstract class _$$SaveLunchItemImplCopyWith<$Res>
       @JsonKey(name: 'DecilineApprove') int? decilineApprove,
       @JsonKey(name: 'ReasonDeciline') String? reasonDeciline,
       @JsonKey(name: 'IsDeleted') bool? isDeleted,
-      @JsonKey(name: 'Location') int? location});
+      @JsonKey(name: 'Location') int? location,
+      @JsonKey(name: 'ExtraRiceQuantity') int? extraRiceQuantity});
 }
 
 /// @nodoc
@@ -609,6 +644,7 @@ class __$$SaveLunchItemImplCopyWithImpl<$Res>
     Object? reasonDeciline = freezed,
     Object? isDeleted = freezed,
     Object? location = freezed,
+    Object? extraRiceQuantity = freezed,
   }) {
     return _then(_$SaveLunchItemImpl(
       id: null == id
@@ -667,6 +703,10 @@ class __$$SaveLunchItemImplCopyWithImpl<$Res>
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as int?,
+      extraRiceQuantity: freezed == extraRiceQuantity
+          ? _value.extraRiceQuantity
+          : extraRiceQuantity // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -688,7 +728,8 @@ class _$SaveLunchItemImpl implements _SaveLunchItem {
       @JsonKey(name: 'DecilineApprove') this.decilineApprove,
       @JsonKey(name: 'ReasonDeciline') this.reasonDeciline,
       @JsonKey(name: 'IsDeleted') this.isDeleted,
-      @JsonKey(name: 'Location') this.location});
+      @JsonKey(name: 'Location') this.location,
+      @JsonKey(name: 'ExtraRiceQuantity') this.extraRiceQuantity});
 
   factory _$SaveLunchItemImpl.fromJson(Map<String, dynamic> json) =>
       _$$SaveLunchItemImplFromJson(json);
@@ -735,10 +776,13 @@ class _$SaveLunchItemImpl implements _SaveLunchItem {
   @override
   @JsonKey(name: 'Location')
   final int? location;
+  @override
+  @JsonKey(name: 'ExtraRiceQuantity')
+  final int? extraRiceQuantity;
 
   @override
   String toString() {
-    return 'SaveLunchItem(id: $id, employeeId: $employeeId, quantity: $quantity, dateOrder: $dateOrder, note: $note, isApproved: $isApproved, createdDate: $createdDate, createdBy: $createdBy, updatedDate: $updatedDate, updatedBy: $updatedBy, decilineApprove: $decilineApprove, reasonDeciline: $reasonDeciline, isDeleted: $isDeleted, location: $location)';
+    return 'SaveLunchItem(id: $id, employeeId: $employeeId, quantity: $quantity, dateOrder: $dateOrder, note: $note, isApproved: $isApproved, createdDate: $createdDate, createdBy: $createdBy, updatedDate: $updatedDate, updatedBy: $updatedBy, decilineApprove: $decilineApprove, reasonDeciline: $reasonDeciline, isDeleted: $isDeleted, location: $location, extraRiceQuantity: $extraRiceQuantity)';
   }
 
   @override
@@ -771,7 +815,9 @@ class _$SaveLunchItemImpl implements _SaveLunchItem {
             (identical(other.isDeleted, isDeleted) ||
                 other.isDeleted == isDeleted) &&
             (identical(other.location, location) ||
-                other.location == location));
+                other.location == location) &&
+            (identical(other.extraRiceQuantity, extraRiceQuantity) ||
+                other.extraRiceQuantity == extraRiceQuantity));
   }
 
   @JsonKey(ignore: true)
@@ -791,7 +837,8 @@ class _$SaveLunchItemImpl implements _SaveLunchItem {
       decilineApprove,
       reasonDeciline,
       isDeleted,
-      location);
+      location,
+      extraRiceQuantity);
 
   @JsonKey(ignore: true)
   @override
@@ -809,20 +856,22 @@ class _$SaveLunchItemImpl implements _SaveLunchItem {
 
 abstract class _SaveLunchItem implements SaveLunchItem {
   const factory _SaveLunchItem(
-      {@JsonKey(name: 'ID') required final int id,
-      @JsonKey(name: 'EmployeeID') final int? employeeId,
-      @JsonKey(name: 'Quantity') final int? quantity,
-      @JsonKey(name: 'DateOrder') final DateTime? dateOrder,
-      @JsonKey(name: 'Note') final String? note,
-      @JsonKey(name: 'IsApproved') final bool? isApproved,
-      @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
-      @JsonKey(name: 'CreatedBy') final String? createdBy,
-      @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
-      @JsonKey(name: 'UpdatedBy') final String? updatedBy,
-      @JsonKey(name: 'DecilineApprove') final int? decilineApprove,
-      @JsonKey(name: 'ReasonDeciline') final String? reasonDeciline,
-      @JsonKey(name: 'IsDeleted') final bool? isDeleted,
-      @JsonKey(name: 'Location') final int? location}) = _$SaveLunchItemImpl;
+          {@JsonKey(name: 'ID') required final int id,
+          @JsonKey(name: 'EmployeeID') final int? employeeId,
+          @JsonKey(name: 'Quantity') final int? quantity,
+          @JsonKey(name: 'DateOrder') final DateTime? dateOrder,
+          @JsonKey(name: 'Note') final String? note,
+          @JsonKey(name: 'IsApproved') final bool? isApproved,
+          @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+          @JsonKey(name: 'CreatedBy') final String? createdBy,
+          @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
+          @JsonKey(name: 'UpdatedBy') final String? updatedBy,
+          @JsonKey(name: 'DecilineApprove') final int? decilineApprove,
+          @JsonKey(name: 'ReasonDeciline') final String? reasonDeciline,
+          @JsonKey(name: 'IsDeleted') final bool? isDeleted,
+          @JsonKey(name: 'Location') final int? location,
+          @JsonKey(name: 'ExtraRiceQuantity') final int? extraRiceQuantity}) =
+      _$SaveLunchItemImpl;
 
   factory _SaveLunchItem.fromJson(Map<String, dynamic> json) =
       _$SaveLunchItemImpl.fromJson;
@@ -869,6 +918,9 @@ abstract class _SaveLunchItem implements SaveLunchItem {
   @override
   @JsonKey(name: 'Location')
   int? get location;
+  @override
+  @JsonKey(name: 'ExtraRiceQuantity')
+  int? get extraRiceQuantity;
   @override
   @JsonKey(ignore: true)
   _$$SaveLunchItemImplCopyWith<_$SaveLunchItemImpl> get copyWith =>

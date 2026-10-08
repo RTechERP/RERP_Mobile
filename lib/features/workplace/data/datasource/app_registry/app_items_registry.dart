@@ -220,6 +220,16 @@ class AppItemRegistry {
     ),
 
     AppItemModel(
+      id: 'reg_general:test_table',
+      name: 'reg_general.test_table'.tr(),
+      iconCodePoint: Icons.desktop_windows_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'reg_general',
+      route: RouteNames.testTable,
+      imageUrl: AppImages.test_table,
+    ),
+
+    AppItemModel(
       id: 'reg_general:poll',
       name: 'reg_general.poll'.tr(),
       iconCodePoint: Icons.poll_outlined.codePoint,
@@ -230,7 +240,7 @@ class AppItemRegistry {
     ),
   ];
 
-  static final List<AppItemModel> summaryword = [
+  static final List<AppItemModel> summarywork = [
     /// ================= SUMMARY WORK =================
     AppItemModel(
       id: 'summary_work:leaving',
@@ -238,7 +248,8 @@ class AppItemRegistry {
       iconCodePoint: Icons.event_busy_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'summary_work',
-      route: '/summary-work/leaving',
+      route: RouteNames.summaryWorkLeaving,
+      imageUrl: AppImages.app_leave,
     ),
 
     AppItemModel(
@@ -247,7 +258,8 @@ class AppItemRegistry {
       iconCodePoint: Icons.swap_horiz_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'summary_work',
-      route: '/summary-work/in-out',
+      route: RouteNames.summaryWorkInOut,
+      imageUrl: AppImages.app_in_out,
     ),
 
     AppItemModel(
@@ -256,7 +268,8 @@ class AppItemRegistry {
       iconCodePoint: Icons.home_work_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'summary_work',
-      route: '/summary-work/wfh',
+      route: RouteNames.summaryWorkWfh,
+      imageUrl: AppImages.app_wfh,
     ),
 
     AppItemModel(
@@ -265,7 +278,8 @@ class AppItemRegistry {
       iconCodePoint: Icons.fingerprint_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'summary_work',
-      route: '/summary-work/fingerprint',
+      route: RouteNames.summaryWorkFingerprint,
+      imageUrl: AppImages.app_missed,
     ),
 
     AppItemModel(
@@ -274,7 +288,8 @@ class AppItemRegistry {
       iconCodePoint: Icons.schedule_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'summary_work',
-      route: '/summary-work/overtime',
+      route: RouteNames.summaryWorkOvertime,
+      imageUrl: AppImages.app_overtime,
     ),
 
     AppItemModel(
@@ -283,7 +298,8 @@ class AppItemRegistry {
       iconCodePoint: Icons.nightlight_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'summary_work',
-      route: '/summary-work/overnight',
+      route: RouteNames.summaryWorkOvernight,
+      imageUrl: AppImages.app_overnight,
     ),
   ];
 
@@ -388,40 +404,42 @@ class AppItemRegistry {
       iconCodePoint: Icons.warehouse_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'warehouse',
-      route: RouteNames.warehouseArea,
+      imageUrl: AppImages.warehouse_sale,
+      route: RouteNames.warehouseSaleArea,
     ),
-    AppItemModel(
-      id: 'warehouse:demo',
-      name: 'warehouse.demo'.tr(),
-      iconCodePoint: Icons.warehouse_outlined.codePoint,
-      iconFontFamily: 'MaterialIcons',
-      tab: 'warehouse',
-      route: RouteNames.warehouseDemo,
-    ),
-    AppItemModel(
-      id: 'warehouse:agv',
-      name: 'warehouse.agv'.tr(),
-      iconCodePoint: Icons.warehouse_outlined.codePoint,
-      iconFontFamily: 'MaterialIcons',
-      tab: 'warehouse',
-      route: RouteNames.warehouseAgv,
-    ),
-    AppItemModel(
-      id: 'warehouse:project',
-      name: 'warehouse.project'.tr(),
-      iconCodePoint: Icons.warehouse_outlined.codePoint,
-      iconFontFamily: 'MaterialIcons',
-      tab: 'warehouse',
-      route: RouteNames.warehouseProject,
-    ),
-    AppItemModel(
-      id: 'warehouse:test',
-      name: 'warehouse.test'.tr(),
-      iconCodePoint: Icons.warehouse_outlined.codePoint,
-      iconFontFamily: 'MaterialIcons',
-      tab: 'warehouse',
-      route: RouteNames.warehouseTest,
-    ),
+    // AppItemModel(
+    //   id: 'warehouse:demo',
+    //   name: 'warehouse.demo'.tr(),
+    //   iconCodePoint: Icons.warehouse_outlined.codePoint,
+    //   iconFontFamily: 'MaterialIcons',
+    //   tab: 'warehouse',
+    //   route: RouteNames.warehouseDemoArea,
+    // ),
+    // AppItemModel(
+    //   id: 'warehouse:agv',
+    //   name: 'warehouse.agv'.tr(),
+    //   iconCodePoint: Icons.warehouse_outlined.codePoint,
+    //   iconFontFamily: 'MaterialIcons',
+    //   tab: 'warehouse',
+    //   route: RouteNames.warehouseAgvArea,
+    // ),
+    // AppItemModel(
+    //   id: 'warehouse:project',
+    //   name: 'warehouse.project'.tr(),
+    //   iconCodePoint: Icons.warehouse_outlined.codePoint,
+    //   iconFontFamily: 'MaterialIcons',
+    //   tab: 'warehouse',
+    //   imageUrl: AppImages.warehouse_project,
+    //   route: RouteNames.warehouseProjectArea,
+    // ),
+    // AppItemModel(
+    //   id: 'warehouse:test',
+    //   name: 'warehouse.test'.tr(),
+    //   iconCodePoint: Icons.warehouse_outlined.codePoint,
+    //   iconFontFamily: 'MaterialIcons',
+    //   tab: 'warehouse',
+    //   route: RouteNames.warehouseTestArea,
+    // ),
   ];
 
   static final List<AppItemModel> warehouse_area = [
@@ -432,6 +450,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.warehouse_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'warehouse',
+      imageUrl: AppImages.warehouse_HN,
       route: RouteNames.warehouseSale,
     ),
     AppItemModel(
@@ -440,6 +459,7 @@ class AppItemRegistry {
       iconCodePoint: Icons.warehouse_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'warehouse',
+      imageUrl: AppImages.warehouse_HCM,
       route: RouteNames.warehouseDemo,
     ),
     AppItemModel(
@@ -448,20 +468,52 @@ class AppItemRegistry {
       iconCodePoint: Icons.warehouse_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'warehouse',
+      imageUrl: AppImages.warehouse_BN,
       route: RouteNames.warehouseAgv,
     ),
+    // AppItemModel(
+    //   id: 'warehouse_area:dan_phuong',
+    //   name: 'warehouse.dan_phuong'.tr(),
+    //   iconCodePoint: Icons.warehouse_outlined.codePoint,
+    //   iconFontFamily: 'MaterialIcons',
+    //   tab: 'warehouse',
+    //   imageUrl: AppImages.warehouse_DP,
+    //   route: RouteNames.warehouseProject,
+    // ),
+  ];
+
+  static final List<AppItemModel> warehouse_sale = [
+    /// ================= WAREHOUSE SALE =================
+    // AppItemModel(
+    //   id: 'warehouse_sale:grn',
+    //   name: 'warehouse_sale.grn'.tr(),
+    //   iconCodePoint: Icons.warehouse_outlined.codePoint,
+    //   iconFontFamily: 'MaterialIcons',
+    //   tab: 'warehouse',
+    //   route: RouteNames.warehouseDemo,
+    // ),
     AppItemModel(
-      id: 'warehouse_area:dan_phuong',
-      name: 'warehouse.dan_phuong'.tr(),
+      id: 'warehouse_sale:gdn',
+      name: 'warehouse_sale.gdn'.tr(),
       iconCodePoint: Icons.warehouse_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'warehouse',
-      route: RouteNames.warehouseProject,
+      imageUrl: AppImages.warehouse_gdn,
+      route: RouteNames.warehouseSaleGdn,
     ),
   ];
   static final List<AppItemModel> all = [
     ...regwork,
     ...reggeneral,
+    // Signature - standalone feature
+    AppItemModel(
+      id: 'signature',
+      name: 'Chữ ký',
+      iconCodePoint: Icons.draw_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'signature',
+      route: RouteNames.signature,
+    ),
     // ...weekplan,
     // ...summaryword,
     // ...generalforms,

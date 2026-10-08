@@ -11,9 +11,10 @@ import '../bloc/stationery_bloc.dart';
 /// Một dòng VPP trong form:
 ///
 /// [Hàng 1] Chọn VPP (isRequired) | Xoá
-/// [Hàng 2] ĐVT | SL (isRequired) | SL nhận
-/// [Hàng 3] Checkbox vượt định mức (readonly, tự tính) | TextField lý do vượt
-/// [Hàng 4] TextField ghi chú
+/// [Hàng 2] Đơn vị tính | Số lượng nhận
+/// [Hàng 3] Số lượng (isRequired)
+/// [Hàng 4] Checkbox vượt định mức (readonly, tự tính) | TextField lý do vượt
+/// [Hàng 5] TextField ghi chú
 class StationerySlipRow extends StatefulWidget {
   const StationerySlipRow({
     super.key,
@@ -183,69 +184,22 @@ class _StationerySlipRowState extends State<StationerySlipRow> {
 
           const SizedBox(height: 10),
 
-          // Hàng 2: ĐVT - SL (isRequired) - SL nhận
+          // Hàng 2: Đơn vị tính | Số lượng nhận
           Row(
             children: [
-              // ĐVT — dùng StatefulWidget để cập nhật khi supply đổi
               Expanded(
-                flex: 2,
                 child: _UnitCell(
                   value: widget.slip.unit,
                   label: 'ĐVT',
+                  icon: Icons.straighten,
                 ),
               ),
               const SizedBox(width: 8),
-              // Số lượng (isRequired)
               Expanded(
-                flex: 2,
-                child: TextField(
-                  controller: _qtyController,
-                  keyboardType: TextInputType.number,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(fontSize: 14),
-                  decoration: InputDecoration(
-                    label: Text.rich(
-                      TextSpan(
-                        text: 'SL',
-                        children: const [
-                          TextSpan(text: ' *', style: TextStyle(color: Colors.red)),
-                        ],
-                      ),
-                    ),
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 16,
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(14),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(14),
-                      borderSide: BorderSide(color: AppColors.borderColor, width: 1.4),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(14),
-                      borderSide: BorderSide(color: AppColors.primaryERP, width: 1.4),
-                    ),
-                    errorText: widget.slip.quantity <= 0 ? 'SL phải > 0' : null,
-                    errorStyle: const TextStyle(fontSize: 10, height: 0),
-                    isDense: false,
-                  ),
-                  onChanged: (val) {
-                    final qty = int.tryParse(val);
-                    if (qty != null && qty > 0) {
-                      widget.onQuantityChanged(qty);
-                    }
-                  },
-                ),
-              ),
-              const SizedBox(width: 8),
-              // SL nhận
-              Expanded(
-                flex: 2,
                 child: _UnitCell(
                   value: widget.slip.receivedQuantity.toString(),
                   label: 'SL nhận',
+                  icon: Icons.inbox,
                 ),
               ),
             ],
@@ -253,7 +207,51 @@ class _StationerySlipRowState extends State<StationerySlipRow> {
 
           const SizedBox(height: 10),
 
-          // Hàng 3: Checkbox vượt định mức (readonly) + TextField lý do
+          // Hàng 3: Số lượng (isRequired)
+          TextField(
+            controller: _qtyController,
+            keyboardType: TextInputType.number,
+            style: const TextStyle(fontSize: 14),
+            decoration: InputDecoration(
+              label: Text.rich(
+                TextSpan(
+                  text: 'Số lượng',
+                  children: const [
+                    TextSpan(text: ' *', style: TextStyle(color: Colors.red)),
+                  ],
+                ),
+              ),
+              prefixIcon: const Icon(Icons.pin_outlined, size: 20),
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 12,
+                vertical: 16,
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(14),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(14),
+                borderSide: BorderSide(color: AppColors.borderColor, width: 1.4),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(14),
+                borderSide: BorderSide(color: AppColors.primaryERP, width: 1.4),
+              ),
+              errorText: widget.slip.quantity <= 0 ? 'Số lượng phải > 0' : null,
+              errorStyle: const TextStyle(fontSize: 10, height: 0),
+              isDense: false,
+            ),
+            onChanged: (val) {
+              final qty = int.tryParse(val);
+              if (qty != null && qty > 0) {
+                widget.onQuantityChanged(qty);
+              }
+            },
+          ),
+
+          const SizedBox(height: 10),
+
+          // Hàng 4: Checkbox vượt định mức (readonly) + TextField lý do
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -307,13 +305,14 @@ class _StationerySlipRowState extends State<StationerySlipRow> {
 
           const SizedBox(height: 10),
 
-          // Hàng 4: Ghi chú
+          // Hàng 5: Ghi chú
           FormInputField(
             nameForm: 'note_${widget.slipIndex}',
             nameTextField: 'note_text_${widget.slipIndex}',
             label: 'Ghi chú',
             icon: Icons.note_outlined,
             controller: _noteController,
+            onChanged: (v) => widget.onNoteChanged(v ?? ''),
           ),
         ],
       ),
@@ -326,10 +325,12 @@ class _UnitCell extends StatefulWidget {
   const _UnitCell({
     required this.value,
     required this.label,
+    required this.icon,
   });
 
   final String value;
   final String label;
+  final IconData icon;
 
   @override
   State<_UnitCell> createState() => _UnitCellState();
@@ -366,10 +367,7 @@ class _UnitCellState extends State<_UnitCell> {
       style: const TextStyle(fontSize: 14, color: Colors.black87),
       decoration: InputDecoration(
         labelText: widget.label,
-        prefixIcon: Icon(
-          widget.label == 'SL nhận' ? Icons.inbox : Icons.straighten,
-          size: 20,
-        ),
+        prefixIcon: Icon(widget.icon, size: 20),
         contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14),

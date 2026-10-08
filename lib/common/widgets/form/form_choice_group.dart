@@ -78,6 +78,19 @@ class FormChoiceGroup<T> extends StatefulWidget {
 }
 
 class _FormChoiceGroupState<T> extends State<FormChoiceGroup<T>> {
+  /// Đánh dấu đã patch initialValue vào FormBuilder chưa,
+  /// tránh postFrameCallback ghi đè lên value user vừa chọn khi parent rebuild.
+  bool _initialPatched = false;
+
+  @override
+  void didUpdateWidget(covariant FormChoiceGroup<T> oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // Nếu initialValue đổi (vd reload data), cho phép patch lại.
+    if (oldWidget.initialValue != widget.initialValue) {
+      _initialPatched = false;
+    }
+  }
+
   FormFieldValidator<T>? get _effectiveValidator {
     if (widget.isRequired) {
       return (v) {
@@ -174,9 +187,17 @@ class _FormChoiceGroupState<T> extends State<FormChoiceGroup<T>> {
           onChanged: widget.onChanged,
           onReset: () {},
           builder: (field) {
-            if (field.value == null && widget.initialValue != null) {
+            if (!_initialPatched &&
+                field.value == null &&
+                widget.initialValue != null) {
+              _initialPatched = true;
               WidgetsBinding.instance.addPostFrameCallback((_) {
+                if (!mounted) return;
+                if (field.value != null) return;
                 field.didChange(widget.initialValue);
+                // Đồng thời patch vào FormBuilder để formState.value lưu được.
+                final formState = FormBuilder.of(field.context);
+                formState?.patchValue({widget.name: widget.initialValue});
               });
             }
             final displayValue = _resolveDisplayValue(field.value);

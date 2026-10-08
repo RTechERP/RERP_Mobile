@@ -218,10 +218,18 @@ class _WorkPlaceScreenState
 
                       context.push(route);
                     },
-                    title: 'tab.applications'.tr(),
+                    title: 'tab.personal'.tr(),
                     expandable: true,
                     collapsedItemCount: 11,
                     items: [
+                      AppItemModel(
+                        id: 'summary_work',
+                        iconCodePoint:
+                            Icons.content_paste_search_outlined.codePoint,
+                        name: 'applications.summary_work'.tr(),
+                        imageUrl: AppImages.app_menu_summary_work,
+                        route: RouteNames.summarywork,
+                      ),
                       AppItemModel(
                         id: 'reg_work',
                         iconCodePoint: Icons.person_pin_outlined.codePoint,
@@ -243,6 +251,25 @@ class _WorkPlaceScreenState
                         route: RouteNames.report,
                         imageUrl: AppImages.app_menu_report,
                       ),
+                    ],
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  WpActionCard(
+                    onItemTap: (item) {
+                      final route = item.route;
+                      if (route == null || route.isEmpty) {
+                        DialogService.showProcessing(context: context);
+                        return;
+                      }
+
+                      context.push(route);
+                    },
+                    title: 'tab.applications'.tr(),
+                    expandable: true,
+                    collapsedItemCount: 11,
+                    items: [
                       AppItemModel(
                         id: 'general_forms',
                         iconCodePoint: Icons.file_copy_outlined.codePoint,
@@ -250,13 +277,6 @@ class _WorkPlaceScreenState
                         route: RouteNames.generalforms,
                         imageUrl: AppImages.app_menu_general_form,
                       ),
-                      // AppItemModel(
-                      //   id: 'summary_work',
-                      //   iconCodePoint:
-                      //       Icons.content_paste_search_outlined.codePoint,
-                      //   name: 'applications.summary_work'.tr(),
-                      //   imageUrl: AppImages.app_menu_summary_work,
-                      // ),
                       AppItemModel(
                         id: 'week_plan',
                         iconCodePoint: Icons.newspaper_outlined.codePoint,
@@ -285,6 +305,27 @@ class _WorkPlaceScreenState
                       //   name: 'applications.stock'.tr(),
                       //   imageUrl: AppImages.app_menu_stock,
                       // ),
+                      // AppItemModel(
+                      //   id: 'warehouse',
+                      //   iconCodePoint: Icons.warehouse_outlined.codePoint,
+                      //   name: 'applications.warehouse'.tr(),
+                      //   route: RouteNames.warehouse,
+                      // ),
+                      AppItemModel(
+                        id: 'warehouse',
+                        iconCodePoint: Icons.warehouse_outlined.codePoint,
+                        name: 'applications.warehouse'.tr(),
+                        route: RouteNames.warehouse,
+                        imageUrl: AppImages.warehouse,
+                      ),
+
+                      AppItemModel(
+                        id: 'signature',
+                        iconCodePoint: Icons.assignment.codePoint,
+                        name: 'Chữ ký',
+                        route: RouteNames.signature,
+                        imageUrl: AppImages.signature,
+                      ),
                       // AppItemModel(
                       //   id: 'warehouse',
                       //   iconCodePoint: Icons.warehouse_outlined.codePoint,

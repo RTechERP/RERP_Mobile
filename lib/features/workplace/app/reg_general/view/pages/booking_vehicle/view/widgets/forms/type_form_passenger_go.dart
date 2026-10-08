@@ -18,6 +18,7 @@ class TypeFormPassengerGo extends StatefulWidget {
     required this.arrivalProvinces,
     required this.formKey,
     required this.typeTransportKey,
+    this.isSelfVehicle = false,
   });
 
   final List<BookingVehicleProjectItem> projects;
@@ -25,6 +26,7 @@ class TypeFormPassengerGo extends StatefulWidget {
   final List<ProvinceArrivesItem> arrivalProvinces;
   final GlobalKey<FormBuilderState> formKey;
   final GlobalKey<FormBuilderFieldState> typeTransportKey;
+  final bool isSelfVehicle;
 
   @override
   State<TypeFormPassengerGo> createState() => _TypeFormPassengerGoState();
@@ -41,9 +43,8 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
   bool get _isReturnPointOther =>
       _returnPointValue.trim() == _otherPointLabel;
 
-  /// Đọc danh sách dự án: ưu tiên in-memory repository cache (đã được
-  /// hydrate lúc vào màn list hoặc app start). Fallback [widget.projects]
-  /// từ BlocBuilder nếu cache rỗng (rất hiếm).
+  bool get _isSelfVehicle => widget.isSelfVehicle;
+
   List<BookingVehicleProjectItem> get _projects {
     final fromCache = BookingVehicleRepository.projectsSync;
     if (fromCache.isNotEmpty) return fromCache;
@@ -161,6 +162,91 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
     );
   }
 
+  List<Widget> _buildReturnFields() {
+    if (_isSelfVehicle) return [];
+
+    return [
+      const SizedBox(height: 8),
+      FormDateTimePicker(
+        icon: Icons.departure_board_outlined,
+        nameForm: 'time_return',
+        nameTimePicker: 'time_return_picker',
+        label: 'Thời gian cần về (nếu có)',
+        inputType: InputType.both,
+        format: DateFormat('dd/MM/yyyy - HH:mm'),
+      ),
+      const SizedBox(height: 8),
+      Row(
+        children: [
+          Expanded(
+            child: FormBuilderTextField(
+              name: 'starting_point',
+              readOnly: true,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              decoration: formInputDecoration(
+                context,
+                label: 'Xuất phát',
+                icon: Icons.location_on_outlined,
+                isRequired: true,
+              ),
+              validator: FormBuilderValidators.required(
+                errorText: 'Vui lòng chọn điểm xuất phát',
+              ),
+              onTap: _pickStartingPoint,
+            ),
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: FormBuilderTextField(
+              name: 'return_point',
+              readOnly: true,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              decoration: formInputDecoration(
+                context,
+                label: 'Điểm về',
+                icon: Icons.navigation_outlined,
+                isRequired: true,
+              ),
+              validator: FormBuilderValidators.required(
+                errorText: 'Vui lòng chọn điểm về',
+              ),
+              onTap: _pickReturnPoint,
+            ),
+          ),
+        ],
+      ),
+    ];
+  }
+
+  List<Widget> _buildReturnAddressField() {
+    if (_isSelfVehicle) return [];
+
+    return [
+      const SizedBox(height: 8),
+      FormBuilderTextField(
+        name: 'return_address',
+        initialValue: 'VP Hà Nội',
+        enabled: _isReturnPointOther,
+        readOnly: !_isReturnPointOther,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        decoration: formInputDecoration(
+          context,
+          label: 'Địa chỉ quay về cụ thể',
+          icon: Icons.navigation_outlined,
+          isRequired: _isReturnPointOther,
+        ),
+        validator: (v) {
+          if (!(_isReturnPointOther)) return null;
+          final val = v?.trim() ?? '';
+          if (val.isEmpty) {
+            return 'Vui lòng nhập địa chỉ quay về cụ thể';
+          }
+          return null;
+        },
+      ),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     final now = DateTime.now();
@@ -258,57 +344,9 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
             ),
             firstDate: startOfToday,
           ),
-          const SizedBox(height: 8),
 
-          FormDateTimePicker(
-            icon: Icons.departure_board_outlined,
-            nameForm: 'time_return',
-            nameTimePicker: 'time_return_picker',
-            label: 'Thời gian cần về (nếu có)',
-            inputType: InputType.both,
-            format: DateFormat('dd/MM/yyyy - HH:mm'),
-          ),
-          const SizedBox(height: 8),
+          ..._buildReturnFields(),
 
-          Row(
-            children: [
-              Expanded(
-                child: FormBuilderTextField(
-                  name: 'starting_point',
-                  readOnly: true,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  decoration: formInputDecoration(
-                    context,
-                    label: 'Xuất phát',
-                    icon: Icons.location_on_outlined,
-                    isRequired: true,
-                  ),
-                  validator: FormBuilderValidators.required(
-                    errorText: 'Vui lòng chọn điểm xuất phát',
-                  ),
-                  onTap: _pickStartingPoint,
-                ),
-              ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: FormBuilderTextField(
-                  name: 'return_point',
-                  readOnly: true,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  decoration: formInputDecoration(
-                    context,
-                    label: 'Điểm về',
-                    icon: Icons.navigation_outlined,
-                    isRequired: true,
-                  ),
-                  validator: FormBuilderValidators.required(
-                    errorText: 'Vui lòng chọn điểm về',
-                  ),
-                  onTap: _pickReturnPoint,
-                ),
-              ),
-            ],
-          ),
           const SizedBox(height: 8),
 
           FormBuilderTextField(
@@ -331,28 +369,8 @@ class _TypeFormPassengerGoState extends State<TypeFormPassengerGo> {
               return null;
             },
           ),
-          const SizedBox(height: 8),
-          FormBuilderTextField(
-            name: 'return_address',
-            initialValue: 'VP Hà Nội',
-            enabled: _isReturnPointOther,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            decoration: formInputDecoration(
-              context,
-              label: 'Địa chỉ quay về cụ thể',
-              icon: Icons.navigation_outlined,
-              isRequired: _isReturnPointOther,
-            ),
-            validator: (v) {
-              if (!(_isReturnPointOther)) return null;
-              final val = v?.trim() ?? '';
-              if (val.isEmpty) {
-                return 'Vui lòng nhập địa chỉ quay về cụ thể';
-              }
-              return null;
-            },
-          ),
-          const SizedBox(height: 8),
+
+          ..._buildReturnAddressField(),
 
           const SizedBox(height: 8),
 

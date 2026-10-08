@@ -21,4 +21,10 @@ class WorkTripEvent with _$WorkTripEvent {
   const factory WorkTripEvent.fetchCopy({required int id}) = _FetchCopy;
   /// Xoá dữ liệu sao chép sau khi đã navigate.
   const factory WorkTripEvent.clearCopyData() = _ClearCopyData;
+  /// Load danh sách phiếu đặt xe từ API.
+  const factory WorkTripEvent.loadBookingVehicleList() = _LoadBookingVehicleList;
+
+  /// Đổi filter trạng thái duyệt (-1 tất cả, 0 chưa duyệt, 1 đã duyệt).
+  const factory WorkTripEvent.changeApprovalFilter({required int filter}) =
+      _ChangeApprovalFilter;
 }

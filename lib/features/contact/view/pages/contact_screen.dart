@@ -221,7 +221,7 @@ class _ContactViewState extends State<_ContactView>
               const SizedBox(width: 4),
             ],
             bottom: PreferredSize(
-              preferredSize: Size.fromHeight(_isSearchVisible ? 60 : 48),
+              preferredSize: Size.fromHeight(_isSearchVisible ? 100 : 48),
               child: _isSearchVisible ? _buildSearchField() : _buildTabBar(),
             ),
           ),
@@ -294,78 +294,101 @@ class _ContactViewState extends State<_ContactView>
     );
   }
 
-  /// Thanh tìm kiếm trong AppBar.
+  /// Thanh tìm kiếm trong AppBar kèm số liên hệ tương ứng.
   Widget _buildSearchField() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 6, 16, 6),
-      child: Row(
-        children: [
-          Expanded(
-            child: TextField(
-              controller: _searchController,
-              autofocus: true,
-              decoration: InputDecoration(
-                hintText: 'Tìm kiếm tên, phòng ban...',
-                hintStyle: const TextStyle(
-                  color: AppColors.hintText,
-                  fontSize: 14,
-                ),
-                prefixIcon: const Icon(
-                  Icons.search_outlined,
-                  color: AppColors.hintText,
-                  size: 22,
-                ),
-                filled: true,
-                fillColor: AppColors.bgCard,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide.none,
-                ),
-                contentPadding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 12,
+    final matchedCount = _filteredContacts.length;
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(16, 6, 16, 6),
+          child: Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: _searchController,
+                  autofocus: true,
+                  decoration: InputDecoration(
+                    hintText: 'Tìm kiếm tên, phòng ban...',
+                    hintStyle: const TextStyle(
+                      color: AppColors.hintText,
+                      fontSize: 14,
+                    ),
+                    prefixIcon: const Icon(
+                      Icons.search_outlined,
+                      color: AppColors.hintText,
+                      size: 22,
+                    ),
+                    filled: true,
+                    fillColor: AppColors.bgCard,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide.none,
+                    ),
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 12,
+                    ),
+                  ),
+                  onChanged: (value) {
+                    _debounceTimer?.cancel();
+                    _debounceTimer =
+                        Timer(const Duration(milliseconds: 400), () {
+                      setState(() {
+                        _searchQuery = value.trim();
+                        _cachedSearchQuery = '';
+                        _cachedFilteredContacts = [];
+                      });
+                    });
+                  },
                 ),
               ),
-              onChanged: (value) {
-                _debounceTimer?.cancel();
-                _debounceTimer = Timer(const Duration(milliseconds: 400), () {
+              const SizedBox(width: 8),
+              GestureDetector(
+                onTap: () {
+                  _debounceTimer?.cancel();
                   setState(() {
-                    _searchQuery = value.trim();
+                    _isSearchVisible = false;
+                    _searchQuery = '';
                     _cachedSearchQuery = '';
                     _cachedFilteredContacts = [];
+                    _searchController.clear();
                   });
-                });
-              },
-            ),
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(8),
+                  child: const Icon(
+                    Icons.close,
+                    color: AppColors.heading,
+                    size: 24,
+                  ),
+                ),
+              ),
+            ],
           ),
-          const SizedBox(width: 8),
-          GestureDetector(
-            onTap: () {
-              _debounceTimer?.cancel();
-              setState(() {
-                _isSearchVisible = false;
-                _searchQuery = '';
-                _cachedSearchQuery = '';
-                _cachedFilteredContacts = [];
-                _searchController.clear();
-              });
-            },
-            child: Container(
-              padding: const EdgeInsets.all(8),
-              child: const Icon(
-                Icons.close,
-                color: AppColors.heading,
-                size: 24,
+        ),
+        // Dòng hiển thị số nhân viên tương ứng với từ khóa tìm kiếm
+        Padding(
+          padding: const EdgeInsets.fromLTRB(20, 0, 16, 8),
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              'Nhân viên tương ứng ($matchedCount)',
+              style: const TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.w600,
+                color: AppColors.secondaryERP,
               ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
   /// TabBar lọc liên hệ.
   Widget _buildTabBar() {
+    final totalCount = _filteredContacts.length;
     return TabBar(
       controller: _tabController,
       labelColor: AppColors.primaryERP,
@@ -382,9 +405,9 @@ class _ContactViewState extends State<_ContactView>
       indicatorWeight: 2.5,
       dividerColor: Colors.transparent,
       onTap: (_) => setState(() {}),
-      tabs: const [
-        Tab(text: 'Tất cả'),
-        Tab(text: 'Phòng ban'),
+      tabs: [
+        Tab(text: 'Tất cả ($totalCount)'),
+        const Tab(text: 'Phòng ban'),
       ],
     );
   }

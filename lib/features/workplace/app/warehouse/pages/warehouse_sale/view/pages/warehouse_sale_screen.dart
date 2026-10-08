@@ -1,27 +1,31 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rtc_erp/features/workplace/data/datasource/app_registry/app_items_registry.dart';
 
 import '../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../common/app_theme/index.dart';
-import '../../../../../../../../common/utils/dialog/index.dart';
-import '../../../../../../data/datasource/app_registry/app_items_registry.dart';
 import '../../../../../../view/widgets/wp_action_card.dart';
-class WarehouseSaleScreen extends StatefulWidget {
-  const WarehouseSaleScreen({super.key});
 
-  @override
-  State<WarehouseSaleScreen> createState() => _WarehouseSaleScreenState();
-}
+class WarehouseSaleScreen extends StatelessWidget {
+  final String areaId;
+  final String areaName;
 
-class _WarehouseSaleScreenState extends State<WarehouseSaleScreen> {
+  const WarehouseSaleScreen({
+    super.key,
+    required this.areaId,
+    required this.areaName,
+  });
+
+  String get title => '${'warehouse.sale'.tr()} - $areaName';
+
   @override
   Widget build(BuildContext context) {
-    final items = AppItemRegistry.warehouse_area;
+    final items = AppItemRegistry.warehouse_sale;
     return BaseScaffold(
       appBar: AppBarCommon(
         title: Text(
-          'warehouse.area'.tr(),
+          title,
           style: AppStyles.headingTitle2,
         ),
       ),
@@ -32,17 +36,19 @@ class _WarehouseSaleScreenState extends State<WarehouseSaleScreen> {
             child: Column(
               children: [
                 WpActionCard(
-                  title: 'warehouse_sale.function'.tr(),
+                  title: 'warehouse.sale'.tr(),
                   expandable: true,
                   collapsedItemCount: 11,
                   items: items,
                   onItemTap: (item) {
-                    final route = item.route;
-                    if (route == null || route.isEmpty) {
-                      DialogService.showProcessing(context: context);
-                      return;
+                    if (item.route != null) {
+                      context.push(
+                        item.route!,
+                        // Truyền `areaId` để màn phiếu xuất tự map sang
+                        // `warehouseCode` (HN/HCM/BN).
+                        extra: {'areaId': areaId},
+                      );
                     }
-                    context.push(route);
                   },
                 ),
               ],

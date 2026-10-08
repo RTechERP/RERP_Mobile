@@ -116,8 +116,7 @@ class ApiEndPoint {
 
   static const String saveSaleAdminReport = '/DailyReportSaleAdmin/save-data';
 
-  static const String saveReportAccounting =
-      '/DailyReportAccounting/save-data';
+  static const String saveReportAccounting = '/DailyReportAccounting/save-data';
 
   static const String getAdminTypeReport =
       '/DailyReportSaleAdmin/get-reporttypes';
@@ -131,14 +130,11 @@ class ApiEndPoint {
   static const String getSaleAdminById = '/DailyReportSaleAdmin/get-details';
 
   // Accountant
-  static const String getAccountantReport =
-      '/DailyReportAccounting/get-data';
+  static const String getAccountantReport = '/DailyReportAccounting/get-data';
 
-  static const String deleteReportAccounting =
-      '/DailyReportAccounting/delete';
+  static const String deleteReportAccounting = '/DailyReportAccounting/delete';
 
-  static const String getAccountantById =
-      '/DailyReportAccounting/get-by-id';
+  static const String getAccountantById = '/DailyReportAccounting/get-by-id';
 
   static const String getMeetingRoom = '/bookingroom/get-booking-room';
 
@@ -187,8 +183,16 @@ class ApiEndPoint {
   static const String getWfh = '/EmployeeWFH/get-wfh';
   static const String saveWfh = '/EmployeeWFH/save-data';
 
-  static const String getMissed =
-      '/EmployeeNoFingerprint/person';
+  static const String getEmployeeNoFingerprintPerson =
+      '/EmployeeNoFingerprint/get-employee-no-fingerprint-person';
+
+  static const String getEmployeeNightShiftPerson =
+      '/EmployeeNightShift/get-employee-night-shift-person';
+
+  static const String getSummaryOverTimePersonByDept =
+      '/EmployeeOverTime/get-summary-over-time-person-by-dept';
+
+  static const String getMissed = '/EmployeeNoFingerprint/person';
 
   static const String saveMissed = '/EmployeeNoFingerprint/savedata';
 
@@ -196,8 +200,14 @@ class ApiEndPoint {
       '/EmployeeNoFingerprint/check-duplicate-enf';
 
   static const String getLeave = '/EmployeeOnLeave/get-onleave-person';
+  static const String getLeaveSummaryWork =
+      '/EmployeeOnLeave/get-employee-onleave-person';
   static const String getLeavePhaseMulti = '/EmployeeOnLeave/get-multi';
   static const String saveLeave = '/EmployeeOnLeave/save-data';
+  static const String getEmployeeEarlyLatePerson =
+      '/EmployeeEarlyLate/get-employee-early-late-person';
+
+  static const String getEmployeeWFHPerson = '/EmployeeWFH/get-wfh-person';
 
   static const String getLeaveTime =
       '/employeeonleave/list-summary-employee-on-leave';
@@ -232,8 +242,11 @@ class ApiEndPoint {
 
   static const String getWorkTripById = '/EmployeeBussiness/get-by-id';
 
-  static const String getOvernight =
-      '/EmployeeNightShift/person';
+  /// Lấy phiếu đặt xe theo ngày cho work_trip.
+  static const String getVehicleBookingsForBussiness =
+      '/EmployeeBussiness/get-vehicle-bookings-for-bussiness';
+
+  static const String getOvernight = '/EmployeeNightShift/person';
 
   static const String saveOvernight = '/EmployeeNightShift/save-data';
 
@@ -368,6 +381,17 @@ class ApiEndPoint {
   static const String getStampDocumentTypes = '/TrackingMarks/document-types';
   static const String getStampTaxCompanies = '/TrackingMarks/tax-companies';
 
+  // Signature Registration
+  static const String getSignature = '/TrackingSigns/get-all';
+  static const String saveSignature = '/TrackingSigns/save';
+  static const String getSignatureDetail = '/TrackingSigns';
+  static const String deleteSignature = '/TrackingSigns/delete-tracking-signs';
+
+  // Employee Signature
+  static const String getEmployeeSignature = '/Employee/signature';
+  static const String saveEmployeeSignature = '/Employee/upload-signature';
+  static const String deleteEmployeeSignature = '/Employee/delete-signature';
+
   // Poll
   static const String getPolls = '/pollform/all';
   static const String getDetailPoll = '/pollform';
@@ -404,4 +428,104 @@ class ApiEndPoint {
 
   // Contact
   static const String getContact = '/Home/get-all-contact';
+
+  // BusinessConfig
+  static const String getDepartmentIds = '/BusinessConfig/get-department-ids';
+
+  // Warehouse
+  static const String getBillExport = '/BillExport';
+  static const String getBillExportById = '/billexport/{id}';
+  static const String getBillExportDetail = '/billexport/get-bill-detail/{id}';
+  static const String getSuppliers = '/billexport/get-suppliers';
+  static const String getSenders = '/billexport/get-senders';
+  static const String getCustomers = '/billexport/get-customers';
+  static const String getAllProjects = '/billexport/get-all-project';
+  static const String getWarehouses = '/billexport/get-warehouses';
+  static const String getProductGroupNew = '/ProductGroup/product-group-new';
+  static const String getProductGroup = '/BillExport/get-product-group';
+  static const String getViewExportDetail =
+      '/BillExport/get-view-export-detail';
+  static const String getBillExportFiles = '/BillExport/files';
+  static const String uploadBillExportFiles = '/BillExport/upload-files';
+  static const String deleteBillExportFile = '/BillExport/delete-file/{fileId}';
+  static const String saveBillExportData = '/BillExport/save-data';
+
+  /// Danh sách người dùng (Employee) cho dropdown người giao/người nhận.
+  /// API: GET /billexport/get-users
+  static const String getBillExportUsers = '/billexport/get-users';
+
+  /// Lấy danh sách địa chỉ giao hàng theo customerID.
+  /// API: GET /AddressStock/get-by-customerID/?customerID={customerId}
+  static const String getAddressStockByCustomerId =
+      '/AddressStock/get-by-customerID';
+
+  /// Cập nhật / huỷ trạng thái "đã chuẩn bị hàng" cho danh sách phiếu xuất.
+  /// Body: `[{ "ID": <billId>, "IsOrderPrepared": true|false }, ...]`
+  static const String updateStatusPreparing = '/billexport/status-preparing';
+
+  /// Cập nhật / huỷ trạng thái "đã nhận hàng" cho danh sách phiếu xuất.
+  /// Body: `[{ "ID": <billId>, "IsOrderReceived": true|false }, ...]`
+  static const String updateStatusReceive = '/billexport/status-receive';
+
+  /// Lấy chi tiết phiếu card theo registrationId.
+  /// API: GET /ESLRegistration/get-details?registrationId=X.
+  static const String getTestCardDetails = '/ESLRegistration/get-details';
+
+  static const String getTestTable = '/ESLRegistration/get-all-registration';
+
+  /// Bàn test ESL: GET /ESLTestTable/getall.
+  static const String getEslTestTable = '/ESLTestTable/getall';
+
+  /// Máy test theo bàn: GET /ESLTestMachine/get-by-table?testTableId=X.
+  static const String getTestMachineByTable = '/ESLTestMachine/get-by-table';
+
+  /// Người duyệt: GET /ESLRegistration/get-all-user-approve.
+  static const String getAllUserApprove =
+      '/ESLRegistration/get-all-user-approve';
+
+  /// Nhân viên: GET /Employee?status=&departmentid=&keyword=.
+  static const String getEmployee = '/Employee';
+
+  /// Dự án: GET /ProjectTask/get-all-project.
+  static const String getAllProject = '/ProjectTask/get-all-project';
+
+  /// Check xung đột trước khi lưu phiếu đăng ký bàn test.
+  /// API: POST /ESLRegistration/check-conflict (form-data).
+  static const String checkConflictRegistration =
+      '/ESLRegistration/check-conflict';
+
+  /// Lưu phiếu đăng ký bàn test (thêm mới / cập nhật).
+  /// API: POST /ESLRegistration/save (form-data).
+  static const String saveRegistration = '/ESLRegistration/save';
+
+  /// Xóa phiếu đăng ký bàn test.
+  /// API: POST /ESLRegistration/delete-master?masterID={masterID}.
+  /// Body: `{ "masterID": <int> }`.
+  static const String deleteRegistration = '/ESLRegistration/delete-master';
+
+  /// Trả bàn test (chỉ áp dụng khi phiếu đã duyệt — status == 1).
+  /// API: POST /ESLRegistration/return (form-data).
+  /// Body: `{ "registrationID": <int>, "returnBy": <int> }`.
+  static const String returnRegistration = '/ESLRegistration/return';
+
+  /// Gia hạn / bàn giao bàn test (chỉ áp dụng với phiếu đã duyệt).
+  /// API: POST /ESLRegistration/extend-handover (form-data).
+  /// Body: `{ "registrationID", "startDate", "endDate", "ownerID",
+  ///          "approverID", "type" (1 = gia hạn, 2 = bàn giao) }`.
+  static const String extendHandoverRegistration =
+      '/ESLRegistration/extend-handover';
+
+  // Rio Chat
+  /// Gửi tin nhắn tới Rio Chat. API: POST /Rio/chat, body `{ message }`.
+  static const String rioChat = '/Rio/chat';
+
+  /// Lấy lịch sử các session chat. API: GET /Rio/chat-history.
+  static const String rioChatHistory = '/Rio/chat-history';
+
+  /// Chi tiết 1 session chat kèm messages. API: GET /Rio/chat-history/{id}.
+  static String rioChatHistoryDetail(int sessionId) =>
+      '/Rio/chat-history/$sessionId';
+
+  // Celebration (Birthday/Seniority)
+  static const String checkBirthdaySeniority = '/home/check-birthday-seniority';
 }

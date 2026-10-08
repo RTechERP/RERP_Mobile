@@ -64,11 +64,17 @@ class _TechEditScreenState
     return MultiBlocListener(
       listeners: [
         BlocListener<TechBloc, TechState>(
+          // Chỉ can thiệp khi locationType đổi qua 'other' lần đầu,
+          // tránh gán ngược vào controller khi user đang gõ (gây loop event).
           listenWhen: (p, c) =>
-              p.location != c.location || p.locationType != c.locationType,
+              p.locationType != c.locationType && c.locationType == 'other',
           listener: (context, state) {
-            if (state.locationType == 'other') {
-              _locationController.text = state.location ?? '';
+            final newValue = state.location ?? '';
+            if (_locationController.text != newValue) {
+              _locationController.value = TextEditingValue(
+                text: newValue,
+                selection: TextSelection.collapsed(offset: newValue.length),
+              );
             }
           },
         ),

@@ -7,6 +7,7 @@ import '../../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../../common/logger/index.dart';
 import '../../../../../../../../../common/utils/datetime_utils.dart';
+import '../../../../../../../../auth/data/datasource/models/user_model.dart';
 import '../../../../../../../../auth/data/repository/auth_repo.dart';
 import '../../data/datasource/models/work_trip_model.dart';
 import '../../data/repository/work_trip_repo.dart';
@@ -47,6 +48,9 @@ class WorkTripBloc extends BaseBloc<WorkTripEvent, WorkTripState> {
         fetchCopy: (id) => _onFetchCopy(emit, id: id),
         clearCopyData: () async =>
             emit(state.copyWith(copyData: null, isFetchingCopy: false)),
+        loadBookingVehicleList: () => _onLoadBookingVehicleList(emit),
+        changeApprovalFilter: (filter) =>
+            _onChangeApprovalFilter(emit, filter: filter),
       );
     });
   }
@@ -54,15 +58,16 @@ class WorkTripBloc extends BaseBloc<WorkTripEvent, WorkTripState> {
   Map<String, dynamic> _listPayload({
     required int month,
     required int year,
+    required int approvalFilter,
   }) {
     final dateStart = DateTime(year, month, 1).toUtc();
     final dateEnd = DateTime.utc(year, month + 1, 0, 23, 59, 59);
     return <String, dynamic>{
       'DateStart': dateStart.toIso8601String(),
       'DateEnd': dateEnd.toIso8601String(),
-      'KeyWord': '',
+      'Keyword': '',
       'EmployeeID': 0,
-      'IsApprove': -1,
+      'IsApproved': approvalFilter,
       'NotCheckIn': -1,
       'Type': null,
       'VehicleID': null,
@@ -107,6 +112,7 @@ DateTime _normalizeToMinute(DateTime dt) =>
         final payload = _listPayload(
           month: rangeStart.month,
           year: rangeStart.year,
+          approvalFilter: state.approvalFilter,
         );
 
         _log.logI('WorkTripBloc _onInit payload: $payload');
@@ -130,6 +136,7 @@ DateTime _normalizeToMinute(DateTime dt) =>
               dateEnd: rangeEnd,
               employeeId: user?.employeeId,
               loginName: user?.loginName,
+              currentEmployee: user,
             ));
           },
         );
@@ -232,6 +239,7 @@ DateTime _normalizeToMinute(DateTime dt) =>
       var vehicles = state.workTripVehicles;
       var projects = state.workTripProjects;
       FillApproverItem? fillApprover = state.approveId;
+      List<int> saleDepartmentIds = state.saleDepartmentIds;
 
       if (approvers.isEmpty || types.isEmpty || vehicles.isEmpty) {
         _log.logI('WorkTripBloc initAdd: reading from cache first');
@@ -282,6 +290,15 @@ DateTime _normalizeToMinute(DateTime dt) =>
         }
       }
 
+      // Luôn tải danh sách department IDs từ API
+      if (saleDepartmentIds.isEmpty) {
+        final deptRes = await _workTripRepo.getDepartmentIds(configType: 1);
+        deptRes.fold(
+          (l) => _log.logE('getDepartmentIds failed: $l'),
+          (r) => saleDepartmentIds = r,
+        );
+      }
+
       _log.logI('✅ WorkTripBloc initAdd success');
       emit(state.copyWith(
         status: BaseStateStatus.success,
@@ -292,6 +309,8 @@ DateTime _normalizeToMinute(DateTime dt) =>
         employeeId: user.employeeId,
         loginName: user.loginName,
         approveId: fillApprover,
+        currentEmployee: user,
+        saleDepartmentIds: saleDepartmentIds,
       ));
     } finally {
       _isInitAddInFlight = false;
@@ -304,12 +323,15 @@ DateTime _normalizeToMinute(DateTime dt) =>
     required DateTime dateEnd,
   }) async {
     final lo = dateStart.isAfter(dateEnd) ? dateEnd : dateStart;
-    final (rangeStart, rangeEnd) = _calendarMonthBounds(lo);
+    final hi = dateStart.isAfter(dateEnd) ? dateStart : dateEnd;
+
+    // Hiển thị header theo tháng đầu tiên trong range (giữ UX cũ).
+    final (rangeStart, _) = _calendarMonthBounds(lo);
 
     emit(state.copyWith(
       status: BaseStateStatus.loading,
       dateStart: rangeStart,
-      dateEnd: rangeEnd,
+      dateEnd: hi,
     ));
 
     final userRes = await _authRepo.getCurrentUser();
@@ -322,7 +344,15 @@ DateTime _normalizeToMinute(DateTime dt) =>
         final payload = _listPayload(
           month: rangeStart.month,
           year: rangeStart.year,
+          approvalFilter: state.approvalFilter,
         );
+        // Override DateStart/DateEnd bằng đúng khoảng user chọn (đầu ngày → cuối ngày, UTC).
+        payload['DateStart'] = lo.toUtc().toIso8601String();
+        payload['DateEnd'] = DateTime.utc(hi.year, hi.month, hi.day, 23, 59, 59)
+            .toIso8601String();
+
+        _log.logI('WorkTripBloc changeDateRange payload: $payload');
+
         final res = await _workTripRepo.getWorkTrip(payload: payload);
         await res.fold(
           (l) async => emit(state.copyWith(
@@ -333,7 +363,7 @@ DateTime _normalizeToMinute(DateTime dt) =>
             status: BaseStateStatus.success,
             workTrips: r,
             dateStart: rangeStart,
-            dateEnd: rangeEnd,
+            dateEnd: hi,
           )),
         );
       },
@@ -372,7 +402,7 @@ DateTime _normalizeToMinute(DateTime dt) =>
       final costWorkEarly = data.workEarly ? 50000.0 : 0.0;
       final costOvernight = data.overnightType > 0 ? 35000.0 : 0.0;
       final overnight = data.overnightType > 0;
-      final costVehicle = data.costVehicle;
+      final costVehicle = data.selfVehicle ? 0.0 : data.costVehicle;
       final totalMoney =
           data.costBussiness + costVehicle + costWorkEarly + costOvernight;
 
@@ -384,6 +414,12 @@ DateTime _normalizeToMinute(DateTime dt) =>
       final vehicleIdForMain = data.needsVehicleRecord
           ? 0
           : (data.vehicles.isNotEmpty ? data.vehicles.first.vehicleTypeId : 0);
+
+      // Case A: Chủ động PT (selfVehicle = true)
+      // Case B: Dùng Ô tô công ty (selfVehicle = false)
+      final isSelfTransport = data.selfVehicle;
+      final isApprovedBgd = isSelfTransport ? false : null;
+      final vehicleBookingId = isSelfTransport ? data.bookingVehicleId : null;
 
       final bussinessObject = <String, dynamic>{
         'ID': 0,
@@ -406,6 +442,11 @@ DateTime _normalizeToMinute(DateTime dt) =>
         'OvernightType': data.overnightType,
         'IsProblem': data.isProblem,
         'Reason': data.reason.isEmpty ? ' ' : data.reason,
+        'VehicleBookingID': vehicleBookingId,
+        'CustomerName': data.customerName ?? '',
+        'CompanyName': data.companyName ?? '',
+        'IsApprovedBGD': isApprovedBgd,
+        'IsSelfTransport': isSelfTransport,
       };
 
       final payload = <String, dynamic>{
@@ -421,6 +462,20 @@ DateTime _normalizeToMinute(DateTime dt) =>
                   }
                 : null,
       };
+
+      // Case A (selfVehicle=true): KHÔNG gửi employeeBussinessVehicle
+      // Case B (selfVehicle=false): Gửi "Ô tô công ty" mặc định khi không có xe máy/khác
+      if (!isSelfTransport && !data.needsVehicleRecord) {
+        payload['employeeBussinessVehicle'] = <String, dynamic>{
+          'ID': 0,
+          'EmployeeBussinesID': 0,
+          'EmployeeVehicleBussinessID': 2, // Ô tô công ty
+          'Cost': 0,
+          'BillImage': '',
+          'Note': '',
+          'VehicleName': 'Ô tô công ty',
+        };
+      }
 
       // Gửi employeeBussinessVehicle khi chọn Xe máy hoặc Phương tiện khác.
       // Phương tiện khác → EmployeeVehicleBussinessID = 0, VehicleName = tên tuỳ chỉnh.
@@ -577,11 +632,17 @@ DateTime _normalizeToMinute(DateTime dt) =>
       final costWorkEarly = data.workEarly ? 50000.0 : 0.0;
       final costOvernight = data.overnightType > 0 ? 35000.0 : 0.0;
       final overnight = data.overnightType > 0;
-      final costVehicle = data.costVehicle;
+      final costVehicle = data.selfVehicle ? 0.0 : data.costVehicle;
       final totalMoney =
           data.costBussiness + costVehicle + costWorkEarly + costOvernight;
 
       final dayStr = toVnIso8601(_normalizeToMinute(data.dayBussiness));
+
+      // Case A: Chủ động PT (selfVehicle = true)
+      // Case B: Dùng Ô tô công ty (selfVehicle = false)
+      final isSelfTransport = data.selfVehicle;
+      final isApprovedBgd = isSelfTransport ? false : null;
+      final vehicleBookingId = isSelfTransport ? data.bookingVehicleId : null;
 
       final bussinessObject = <String, dynamic>{
         'ID': id,
@@ -604,6 +665,11 @@ DateTime _normalizeToMinute(DateTime dt) =>
         'OvernightType': data.overnightType,
         'IsProblem': data.isProblem,
         'Reason': data.reason.isEmpty ? ' ' : data.reason,
+        'VehicleBookingID': vehicleBookingId,
+        'CustomerName': data.customerName ?? '',
+        'CompanyName': data.companyName ?? '',
+        'IsApprovedBGD': isApprovedBgd,
+        'IsSelfTransport': isSelfTransport,
       };
 
       final payload = <String, dynamic>{
@@ -619,6 +685,20 @@ DateTime _normalizeToMinute(DateTime dt) =>
                   }
                 : null,
       };
+
+      // Case A (selfVehicle=true): KHÔNG gửi employeeBussinessVehicle
+      // Case B (selfVehicle=false): Gửi "Ô tô công ty" mặc định khi không có xe máy/khác
+      if (!isSelfTransport && !data.needsVehicleRecord) {
+        payload['employeeBussinessVehicle'] = <String, dynamic>{
+          'ID': 0,
+          'EmployeeBussinesID': id,
+          'EmployeeVehicleBussinessID': 2, // Ô tô công ty
+          'Cost': 0,
+          'BillImage': '',
+          'Note': '',
+          'VehicleName': 'Ô tô công ty',
+        };
+      }
 
       if (data.needsVehicleRecord) {
         final v = data.vehicleRecord!;
@@ -733,6 +813,94 @@ DateTime _normalizeToMinute(DateTime dt) =>
         status: BaseStateStatus.failed,
         message: 'Không tải được chi tiết đơn',
       ));
+    }
+  }
+
+  Future<void> _onChangeApprovalFilter(
+    Emitter<WorkTripState> emit, {
+    required int filter,
+  }) async {
+    if (filter == state.approvalFilter) return;
+
+    emit(state.copyWith(
+      status: BaseStateStatus.loading,
+      approvalFilter: filter,
+    ));
+
+    final now = DateTime.now();
+    final defaultBounds = _calendarMonthBounds(now);
+    var rangeStart = defaultBounds.$1;
+    var rangeEnd = defaultBounds.$2;
+
+    // Giữ nguyên khoảng ngày user đã chọn trước đó, fallback về tháng hiện tại.
+    if (state.dateStart != null && state.dateEnd != null) {
+      rangeStart = state.dateStart!;
+      rangeEnd = state.dateEnd!;
+    }
+
+    final lo = rangeStart.isAfter(rangeEnd) ? rangeEnd : rangeStart;
+    final hi = rangeStart.isAfter(rangeEnd) ? rangeStart : rangeEnd;
+
+    final payload = _listPayload(
+      month: lo.month,
+      year: lo.year,
+      approvalFilter: filter,
+    );
+    // Override DateStart/DateEnd bằng đúng khoảng user chọn (đầu ngày → cuối ngày, UTC).
+    payload['DateStart'] = lo.toUtc().toIso8601String();
+    payload['DateEnd'] =
+        DateTime.utc(hi.year, hi.month, hi.day, 23, 59, 59).toIso8601String();
+
+    _log.logI('WorkTripBloc changeApprovalFilter payload: $payload');
+
+    final res = await _workTripRepo.getWorkTrip(payload: payload);
+    await res.fold(
+      (l) async => emit(state.copyWith(
+        status: BaseStateStatus.failed,
+        message: l.getErrorMessage,
+      )),
+      (r) async => emit(state.copyWith(
+        status: BaseStateStatus.success,
+        workTrips: r,
+      )),
+    );
+  }
+
+  Future<void> _onLoadBookingVehicleList(Emitter<WorkTripState> emit) async {
+    try {
+      // Lấy employeeId từ currentEmployee (đã được set trong _onInit / _onInitAdd);
+      // fallback gọi lại AuthRepo nếu currentEmployee chưa sẵn sàng.
+      var employeeId = state.currentEmployee?.employeeId;
+      if (employeeId == null) {
+        final userRes = await _authRepo.getCurrentUser();
+        final user = userRes.fold((_) => null, (u) => u);
+        employeeId = user?.employeeId;
+      }
+      if (employeeId == null) {
+        _log.logE('❌ WorkTripBloc loadBookingVehicleList: no employeeId');
+        return;
+      }
+
+      final now = DateTime.now();
+      final dayStart = DateTime(now.year, now.month, now.day);
+      final dayEnd = DateTime(now.year, now.month, now.day, 23, 59, 59);
+
+      final res = await _workTripRepo.getVehicleBookingsForBussiness(
+        employeeId: employeeId,
+        dateStart: dayStart,
+        dateEnd: dayEnd,
+      );
+      res.fold(
+        (l) {
+          _log.logE('❌ WorkTripBloc loadBookingVehicleList failed: $l');
+        },
+        (list) {
+          _log.logI('✅ WorkTripBloc loadBookingVehicleList success: ${list.length} items');
+          emit(state.copyWith(selfVehicleList: list));
+        },
+      );
+    } catch (e) {
+      _log.logE('❌ WorkTripBloc loadBookingVehicleList exception: $e');
     }
   }
 }

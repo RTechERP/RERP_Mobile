@@ -202,6 +202,18 @@ class RouteNames {
   static const String stampAdd = '/reg_general/stamp/add';
   static const String stampDetail = '/reg_general/stamp/detail';
 
+  // Test Table Registration
+  static const String testTable = '/reg_general/test_table';
+  static const String testTableAdd = '/reg_general/test_table/add';
+  static const String testTableEdit = '/reg_general/test_table/edit';
+  static const String testTableQrScan = '/reg_general/test_table/qr-scan';
+  static const String testTableExtendHandover =
+      '/reg_general/test_table/extend-handover';
+
+  // Signature Registration
+  static const String signature = '/signature';
+  static const String signatureAdd = '/signature/add';
+
   // More - Settings
   static const notificationSettings = '/more/notification_settings';
   static const avatarViewer = '/more/avatar_viewer';
@@ -244,9 +256,30 @@ class RouteNames {
 
   // Warehouse
   static const warehouseArea = '/warehouse_area';
+  static const warehouseSaleArea = '/warehouse_sale_area';
+  static const warehouseDemoArea = '/warehouse_demo_area';
+  static const warehouseAgvArea = '/warehouse_agv_area';
+  static const warehouseProjectArea = '/warehouse_project_area';
+  static const warehouseTestArea = '/warehouse_test_area';
   static const warehouseSale = '/warehouse_sale';
   static const warehouseDemo = '/warehouse_demo';
   static const warehouseAgv = '/warehouse_agv';
   static const warehouseProject = '/warehouse_project';
   static const warehouseTest = '/warehouse_test';
+  static const warehouseSaleGdn = '/warehouse_sale_gdn';
+  static const warehouseSaleGdnDetail = '/warehouse_sale_gdn/detail';
+
+  // Summary Work
+  static const summaryWorkLeaving = '/summary-work/leaving';
+  static const summaryWorkInOut = '/summary-work/in-out';
+  static const summaryWorkWfh = '/summary-work/wfh';
+  static const summaryWorkFingerprint = '/summary-work/fingerprint';
+  static const summaryWorkOvertime = '/summary-work/overtime';
+  static const summaryWorkOvernight = '/summary-work/overnight';
+
+  // Chatbot
+  static const chatbot = '/chatbot';
+
+  // Celebration (Birthday / Seniority popup)
+  static const celebration = '/celebration';
 }

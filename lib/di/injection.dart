@@ -7,11 +7,14 @@ import '../common/local_data/shared_pref.dart';
 import '../common/logger/index.dart';
 import '../common/utils/snack_bar_helper.dart';
 
-
 import '../features/auth/data/datasource/service/auth_service.dart';
 import '../features/auth/data/repository/auth_repo.dart';
 import '../features/auth/data/repository/auth_repo_impl.dart';
 import '../features/auth/view/bloc/auth_bloc.dart';
+import '../features/celebration/data/datasource/service/celebration_service.dart';
+import '../features/celebration/data/repository/celebration_repo.dart';
+import '../features/celebration/data/repository/celebration_repo_impl.dart';
+import '../features/celebration/view/bloc/celebration_bloc.dart';
 import '../features/contact/data/datasource/services/contact_service.dart';
 import '../features/contact/data/repository/contact_repo.dart';
 import '../features/contact/data/repository/contact_repo_impl.dart';
@@ -61,6 +64,10 @@ import '../features/workplace/app/reg_general/view/pages/stamp/data/datasource/s
 import '../features/workplace/app/reg_general/view/pages/stamp/data/repository/stamp_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/stamp/data/repository/stamp_repo_impl.dart';
 import '../features/workplace/app/reg_general/view/pages/stamp/view/bloc/stamp_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/test_table/data/datasource/service/test_table_service.dart';
+import '../features/workplace/app/reg_general/view/pages/test_table/data/repository/test_table_repo.dart';
+import '../features/workplace/app/reg_general/view/pages/test_table/data/repository/test_table_repo_impl.dart';
+import '../features/workplace/app/reg_general/view/pages/test_table/view/bloc/test_table_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/work_requirement/data/datasource/service/work_requirement_service.dart';
 import '../features/workplace/app/reg_general/view/pages/work_requirement/data/repository/work_requirement_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/work_requirement/data/repository/work_requirement_repo_impl.dart';
@@ -81,6 +88,14 @@ import '../features/workplace/app/reg_work/view/pages/leave/data/datasource/serv
 import '../features/workplace/app/reg_work/view/pages/leave/data/repository/leave_repo.dart';
 import '../features/workplace/app/reg_work/view/pages/leave/data/repository/leave_repo_impl.dart';
 import '../features/workplace/app/reg_work/view/pages/leave/view/bloc/leave_bloc.dart';
+import '../features/workplace/app/summary_work/leave/data/datasource/service/summary_leave_service.dart';
+import '../features/workplace/app/summary_work/leave/data/repository/summary_leave_repo.dart';
+import '../features/workplace/app/summary_work/leave/data/repository/summary_leave_repo_impl.dart';
+import '../features/workplace/app/summary_work/leave/view/bloc/summary_leave_bloc.dart';
+import '../features/workplace/app/summary_work/in_out/data/datasource/service/summary_in_out_service.dart';
+import '../features/workplace/app/summary_work/in_out/data/repository/summary_in_out_repo.dart';
+import '../features/workplace/app/summary_work/in_out/data/repository/summary_in_out_repo_impl.dart';
+import '../features/workplace/app/summary_work/in_out/view/bloc/summary_in_out_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/overnight/data/datasource/service/overnight_service.dart';
 import '../features/workplace/app/reg_work/view/pages/overnight/data/repository/overnight_repo.dart';
 import '../features/workplace/app/reg_work/view/pages/overnight/data/repository/overnight_repo_impl.dart';
@@ -119,6 +134,34 @@ import '../features/workplace/app/reports/view/accountant/view/bloc/accountant_b
 import '../features/workplace/app/reports/view/marketing/view/bloc/marketing_bloc.dart';
 import '../features/workplace/app/reports/view/sale/view/bloc/sale_bloc.dart';
 import '../features/workplace/app/reports/view/tech/view/bloc/tech_bloc.dart';
+import '../features/chatbot/data/datasource/service/rio_chat_service.dart';
+import '../features/chatbot/data/repository/rio_chat_repo.dart';
+import '../features/chatbot/data/repository/rio_chat_repo_impl.dart';
+import '../features/chatbot/view/bloc/rio_chat_bloc.dart';
+import '../features/workplace/app/signature/data/datasource/service/signature_service.dart';
+import '../features/workplace/app/signature/data/repository/signature_repo.dart';
+import '../features/workplace/app/signature/data/repository/signature_repo_impl.dart';
+import '../features/workplace/app/signature/view/bloc/my_signature_bloc.dart';
+import '../features/workplace/app/summary_work/wfh/data/datasource/service/summary_wfh_service.dart';
+import '../features/workplace/app/summary_work/wfh/data/repository/summary_wfh_repo.dart';
+import '../features/workplace/app/summary_work/wfh/data/repository/summary_wfh_repo_impl.dart';
+import '../features/workplace/app/summary_work/wfh/view/bloc/summary_wfh_bloc.dart';
+import '../features/workplace/app/summary_work/missed/data/datasource/service/summary_missed_service.dart';
+import '../features/workplace/app/summary_work/missed/data/repository/summary_missed_repo.dart';
+import '../features/workplace/app/summary_work/missed/data/repository/summary_missed_repo_impl.dart';
+import '../features/workplace/app/summary_work/missed/view/bloc/summary_missed_bloc.dart';
+import '../features/workplace/app/summary_work/overnight/data/datasource/service/summary_overnight_service.dart';
+import '../features/workplace/app/summary_work/overnight/data/repository/summary_overnight_repo.dart';
+import '../features/workplace/app/summary_work/overnight/data/repository/summary_overnight_repo_impl.dart';
+import '../features/workplace/app/summary_work/overnight/view/bloc/summary_overnight_bloc.dart';
+import '../features/workplace/app/summary_work/overtime/data/datasource/service/summary_overtime_service.dart';
+import '../features/workplace/app/summary_work/overtime/data/repository/summary_overtime_repo.dart';
+import '../features/workplace/app/summary_work/overtime/data/repository/summary_overtime_repo_impl.dart';
+import '../features/workplace/app/summary_work/overtime/view/bloc/summary_overtime_bloc.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/service/sale_gdn_service.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/repository/sale_gdn_repo.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/repository/sale_gdn_repo_impl.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/bloc/sale_gdn_bloc.dart';
 import '../features/workplace/app/week_plan/data/datasource/service/week_plan_service.dart';
 import '../features/workplace/app/week_plan/data/repository/week_plan_repo.dart';
 import '../features/workplace/app/week_plan/data/repository/week_plan_repo_impl.dart';
@@ -225,9 +268,7 @@ void configureDependencies() {
     () => StationeryService(getIt<Dio>()),
   );
 
-  getIt.registerLazySingleton<StampService>(
-    () => StampService(getIt<Dio>()),
-  );
+  getIt.registerLazySingleton<StampService>(() => StampService(getIt<Dio>()));
 
   getIt.registerLazySingleton<WorkRequirementService>(
     () => WorkRequirementService(getIt<Dio>()),
@@ -267,6 +308,51 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<ContactService>(
     () => ContactService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<CelebrationService>(
+    () => CelebrationService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<SaleGdnService>(
+    () => SaleGdnService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<SignatureService>(
+    () => SignatureService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<SummaryLeaveService>(
+    () => SummaryLeaveService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<SummaryInOutService>(
+    () => SummaryInOutService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<SummaryWfhService>(
+    () => SummaryWfhService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<SummaryMissedService>(
+    () => SummaryMissedService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<SummaryOvernightService>(
+    () => SummaryOvernightService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<SummaryOvertimeService>(
+    () => SummaryOvertimeService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<TestTableService>(
+    () => TestTableService(getIt<Dio>()),
+  );
+
+  // Chatbot - Rio Chat
+  getIt.registerLazySingleton<RioChatService>(
+    () => RioChatService(getIt<Dio>()),
   );
 
   /// ===== REPOSITORY =====
@@ -376,6 +462,46 @@ void configureDependencies() {
     () => AppVersionRepoImpl(getIt<AppVersionService>()),
   );
 
+  getIt.registerLazySingleton<SaleGdnRepo>(
+    () => SaleGdnRepoImpl(getIt<SaleGdnService>()),
+  );
+
+  getIt.registerLazySingleton<SignatureRepo>(
+    () => SignatureRepoImpl(getIt<SignatureService>()),
+  );
+
+  getIt.registerLazySingleton<SummaryLeaveRepo>(
+    () => SummaryLeaveRepoImpl(getIt<SummaryLeaveService>()),
+  );
+
+  getIt.registerLazySingleton<SummaryInOutRepo>(
+    () => SummaryInOutRepoImpl(getIt<SummaryInOutService>()),
+  );
+
+  getIt.registerLazySingleton<SummaryWfhRepo>(
+    () => SummaryWfhRepoImpl(getIt<SummaryWfhService>()),
+  );
+
+  getIt.registerLazySingleton<SummaryMissedRepo>(
+    () => SummaryMissedRepoImpl(getIt<SummaryMissedService>()),
+  );
+
+  getIt.registerLazySingleton<SummaryOvernightRepo>(
+    () => SummaryOvernightRepoImpl(getIt<SummaryOvernightService>()),
+  );
+
+  getIt.registerLazySingleton<SummaryOvertimeRepo>(
+    () => SummaryOvertimeRepoImpl(getIt<SummaryOvertimeService>()),
+  );
+
+  getIt.registerLazySingleton<TestTableRepo>(
+    () => TestTableRepoImpl(getIt<TestTableService>()),
+  );
+
+  getIt.registerLazySingleton<RioChatRepo>(
+    () => RioChatRepoImpl(getIt<RioChatService>()),
+  );
+
   getIt.registerLazySingleton<ApproveTimesheetRepo>(
     () => ApproveTimesheetRepoImpl(getIt<ApproveTimeSheetService>()),
   );
@@ -447,11 +573,7 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<LeaveBloc>(
-    () => LeaveBloc(
-      getIt<LeaveRepo>(),
-      getIt<AuthRepo>(),
-      getIt<LogUtils>(),
-    ),
+    () => LeaveBloc(getIt<LeaveRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
   );
 
   getIt.registerFactory<OvertimeBloc>(
@@ -548,10 +670,7 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<WeekPlanApprovalBloc>(
-    () => WeekPlanApprovalBloc(
-      getIt<WeekPlanRepo>(),
-      getIt<LogUtils>(),
-    ),
+    () => WeekPlanApprovalBloc(getIt<WeekPlanRepo>(), getIt<LogUtils>()),
   );
 
   getIt.registerLazySingleton<SalaryPinService>(
@@ -594,8 +713,14 @@ void configureDependencies() {
     () => ContactRepoImpl(getIt<ContactService>()),
   );
 
-  getIt.registerFactory<ContactBloc>(
-    () => ContactBloc(getIt<ContactRepo>()),
+  getIt.registerLazySingleton<CelebrationRepo>(
+    () => CelebrationRepoImpl(getIt<CelebrationService>()),
+  );
+
+  getIt.registerFactory<ContactBloc>(() => ContactBloc(getIt<ContactRepo>()));
+
+  getIt.registerFactory<CelebrationBloc>(
+    () => CelebrationBloc(getIt<CelebrationRepo>()),
   );
 
   getIt.registerFactory<AccountantBloc>(
@@ -618,9 +743,79 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<GeneralFormBloc>(
-    () => GeneralFormBloc(
-      getIt<GeneralFormRepo>(),
+    () => GeneralFormBloc(getIt<GeneralFormRepo>(), getIt<LogUtils>()),
+  );
+
+  getIt.registerFactory<SaleGdnBloc>(
+    () =>
+        SaleGdnBloc(getIt<SaleGdnRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
+  );
+
+  getIt.registerFactory<MySignatureBloc>(
+    () => MySignatureBloc(getIt<SignatureRepo>(), getIt<LogUtils>()),
+  );
+
+  getIt.registerFactory<SummaryLeaveBloc>(
+    () => SummaryLeaveBloc(
+      getIt<SummaryLeaveRepo>(),
+      getIt<AuthRepo>(),
       getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<SummaryInOutBloc>(
+    () => SummaryInOutBloc(
+      getIt<SummaryInOutRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<SummaryWfhBloc>(
+    () => SummaryWfhBloc(
+      getIt<SummaryWfhRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<SummaryMissedBloc>(
+    () => SummaryMissedBloc(
+      getIt<SummaryMissedRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<SummaryOvernightBloc>(
+    () => SummaryOvernightBloc(
+      getIt<SummaryOvernightRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<SummaryOvertimeBloc>(
+    () => SummaryOvertimeBloc(
+      getIt<SummaryOvertimeRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<TestTableBloc>(
+    () => TestTableBloc(
+      getIt<LogUtils>(),
+      getIt<TestTableRepo>(),
+      getIt<AuthRepo>(),
+    ),
+  );
+
+  getIt.registerFactory<RioChatBloc>(
+    () => RioChatBloc(
+      getIt<RioChatRepo>(),
+      getIt<LogUtils>(),
+      getIt<LocalStorage>(),
     ),
   );
 }

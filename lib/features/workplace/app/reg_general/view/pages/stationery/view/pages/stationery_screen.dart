@@ -42,8 +42,15 @@ class _StationeryScreenState
     bloc.add(const StationeryEvent.init());
   }
 
-  void _openDetail(StationeryItem item) {
-    context.push(RouteNames.stationeryDetail, extra: item);
+  /// Mở chi tiết; reload list khi detail pop `true` (sau sửa hoặc xóa thành công).
+  Future<void> _openDetail(StationeryItem item) async {
+    final result = await context.push<bool?>(
+      RouteNames.stationeryDetail,
+      extra: item,
+    );
+    if (result == true && mounted) {
+      bloc.add(const StationeryEvent.init());
+    }
   }
 
   void _openAdd() async {

@@ -21,6 +21,12 @@ import '../../data/datasource/models/work_trip_model.dart';
 import '../bloc/work_trip_bloc.dart';
 import '../widgets/work_trip_add_constants.dart';
 
+bool _isSaleDepartment(WorkTripState state) {
+  final deptId = state.currentEmployee?.departmentId;
+  if (deptId == null) return false;
+  return state.saleDepartmentIds.contains(deptId);
+}
+
 class WorkTripDetailScreen extends StatefulWidget {
   const WorkTripDetailScreen({super.key, this.item});
 
@@ -31,8 +37,13 @@ class WorkTripDetailScreen extends StatefulWidget {
 }
 
 class _WorkTripDetailScreenState
-    extends BaseState<WorkTripDetailScreen, WorkTripEvent, WorkTripState,
-        WorkTripBloc> {
+    extends
+        BaseState<
+          WorkTripDetailScreen,
+          WorkTripEvent,
+          WorkTripState,
+          WorkTripBloc
+        > {
   final _formKey = GlobalKey<FormBuilderState>();
   bool _detailApplied = false;
   bool _autoValidate = false;
@@ -49,10 +60,29 @@ class _WorkTripDetailScreenState
   int? _selectedProjectId;
   String _selectedProjectText = '';
 
+  // ── Booking vehicle state ──────────────────────────────────────────────────
+  int? _bookingVehicleId;
+  String _customerName = '';
+  String _companyName = '';
+  bool _selfVehicle = false;
+  bool _hasBookingVehicle() =>
+      _bookingVehicleId != null && _bookingVehicleId != 0;
+
+  // ── Vehicle cost from API ──────────────────────────────────────────────────
+  double _vehicleCost = 0;
+  String _vehicleName = '';
+  bool _hasApiVehicleCost = false;
+
   // ── Computed ───────────────────────────────────────────────────────────────
   double get _earlyDepartFee => _workEarly ? 50000.0 : 0.0;
   double get _overnightFee => _overnightType > 0 ? 35000.0 : 0.0;
-  double get _totalCost => _selectedTypeCost + _earlyDepartFee + _overnightFee;
+  double get _effectiveVehicleCost =>
+      (_hasBookingVehicle() || _selfVehicle) ? 0.0 : _vehicleCost;
+  double get _totalCost =>
+      _selectedTypeCost +
+      _effectiveVehicleCost +
+      _earlyDepartFee +
+      _overnightFee;
 
   @override
   void initState() {
@@ -62,8 +92,12 @@ class _WorkTripDetailScreenState
       final id = widget.item?.id;
       if (id == null) return;
       bloc.add(const WorkTripEvent.clearSubmitState());
-      if (bloc.state.approvers.isEmpty) {
+      if (bloc.state.approvers.isEmpty ||
+          bloc.state.saleDepartmentIds.isEmpty) {
         bloc.add(const WorkTripEvent.initAdd());
+      }
+      if (bloc.state.selfVehicleList.isEmpty) {
+        bloc.add(const WorkTripEvent.loadBookingVehicleList());
       }
       bloc.add(WorkTripEvent.fetchDetail(id: id));
     });
@@ -83,6 +117,62 @@ class _WorkTripDetailScreenState
       _overnightLabel = _dinnerLabel(detail.overnightType ?? 0);
       _selectedProjectId = detail.projectId;
       _selectedProjectText = _projectName(state, detail.projectId);
+      _bookingVehicleId = detail.vehicleBookingId ?? 0;
+
+      final companyVehicle = detail.vehicleId == null || detail.vehicleId == 0
+          ? state.workTripVehicles.cast<WorkTripTypeVehicle?>().firstWhere(
+              (vehicle) => (vehicle?.vehicleName ?? '').toLowerCase().contains(
+                'ô tô công ty',
+              ),
+              orElse: () => null,
+            )
+          : state.workTripVehicles.cast<WorkTripTypeVehicle?>().firstWhere(
+              (vehicle) => vehicle?.id == detail.vehicleId,
+              orElse: () => null,
+            );
+      _vehicleName =
+          companyVehicle?.vehicleName ??
+          (detail.vehicleId == null || detail.vehicleId == 0
+              ? 'Ô tô công ty'
+              : '');
+
+      _hasApiVehicleCost = detail.costVehicle != null;
+      // CostVehicle từ API là giá trị chính thức, kể cả khi bằng 0.
+      if (detail.costVehicle != null) {
+        _vehicleCost = detail.costVehicle!;
+      } else if (detail.vehicleId != null && detail.vehicleId != 0) {
+        // Chỉ tra danh sách phương tiện khi API không trả về CostVehicle.
+        final matchedVehicles = state.workTripVehicles
+            .where((v) => v.id == detail.vehicleId)
+            .toList();
+        _vehicleCost = matchedVehicles.isNotEmpty
+            ? (matchedVehicles.first.cost ?? 0)
+            : 0;
+      } else {
+        _vehicleCost = 0;
+      }
+
+      // Lấy CompanyNameArrives từ danh sách phiếu đặt xe (cùng employee, cùng ngày).
+      // Nếu không tìm thấy (self-vehicle mới được tạo sau detail load) → fallback
+      // dùng giá trị customerName/companyName đã lưu trong detail.
+      final matchedVehicle = state.selfVehicleList.firstWhere(
+        (v) => v.id == _bookingVehicleId,
+        orElse: () => const WorkTripSelfVehicle(),
+      );
+      final companyNameArrives = matchedVehicle.companyNameArrives;
+      _customerName =
+          (companyNameArrives != null && companyNameArrives.isNotEmpty)
+          ? companyNameArrives
+          : (detail.customerName ?? '');
+      _companyName =
+          (companyNameArrives != null && companyNameArrives.isNotEmpty)
+          ? companyNameArrives
+          : (detail.companyName ?? '');
+
+      // Ưu tiên isSelfTransport, fallback selfVehicle, và tự set true nếu có booking vehicle
+      _selfVehicle =
+          (detail.isSelfTransport ?? false) ||
+          (_bookingVehicleId != null && _bookingVehicleId != 0);
     });
   }
 
@@ -103,8 +193,7 @@ class _WorkTripDetailScreenState
   String _typeName(WorkTripState state, int? typeBusiness) {
     if (typeBusiness == null) return widget.item?.typeName ?? '';
     try {
-      final found =
-          state.workTripTypes.firstWhere((t) => t.id == typeBusiness);
+      final found = state.workTripTypes.firstWhere((t) => t.id == typeBusiness);
       return found.typeName ?? widget.item?.typeName ?? '';
     } catch (_) {
       return widget.item?.typeName ?? '';
@@ -114,12 +203,161 @@ class _WorkTripDetailScreenState
   String _projectName(WorkTripState state, int? projectId) {
     if (projectId == null || projectId == 0) return '';
     try {
-      final found =
-          state.workTripProjects.firstWhere((p) => p.id == projectId);
+      final found = state.workTripProjects.firstWhere((p) => p.id == projectId);
       return '${found.projectCode ?? ''} - ${found.projectName ?? ''}'.trim();
     } catch (_) {
       return widget.item?.projectText ?? '';
     }
+  }
+
+  String _bookingVehicleLabel(WorkTripState state) {
+    if (!_hasBookingVehicle()) return '';
+    final matched = state.selfVehicleList.firstWhere(
+      (v) => v.id == _bookingVehicleId,
+      orElse: () => const WorkTripSelfVehicle(),
+    );
+    // Chỉ hiển thị khi tìm thấy trong list với displayLabel
+    if (matched.id != null &&
+        matched.displayLabel != null &&
+        matched.displayLabel!.isNotEmpty) {
+      return matched.displayLabel!;
+    }
+    return '';
+  }
+
+  /// Đồng bộ customer/company/selfVehicle từ `selfVehicleList` sau khi detail đã apply
+  /// (trong trường hợp danh sách phiếu đặt xe tải chậm hơn chi tiết).
+  void _syncBookingVehicleFields(WorkTripState state) {
+    if (!_hasBookingVehicle()) return;
+    final matched = state.selfVehicleList.firstWhere(
+      (v) => v.id == _bookingVehicleId,
+      orElse: () => const WorkTripSelfVehicle(),
+    );
+    final companyNameArrives = matched.companyNameArrives;
+    // Nếu tìm thấy phiếu đặt xe trong list → set selfVehicle = true
+    final hasMatchedVehicle = matched.id != null && matched.id != 0;
+    if (!hasMatchedVehicle &&
+        (companyNameArrives == null || companyNameArrives.isEmpty)) {
+      return;
+    }
+    setState(() {
+      if (companyNameArrives != null && companyNameArrives.isNotEmpty) {
+        _customerName = companyNameArrives;
+        _companyName = companyNameArrives;
+      }
+      if (hasMatchedVehicle) {
+        _selfVehicle = true;
+      }
+    });
+  }
+
+  /// Đồng bộ _vehicleCost từ workTripVehicles khi detail không có CostVehicle
+  void _syncVehicleCost(WorkTripState state) {
+    if (_hasApiVehicleCost) return;
+    if (state.detailItem == null) return;
+
+    final detail = state.detailItem!;
+    final matchedVehicle = detail.vehicleId == null || detail.vehicleId == 0
+        ? state.workTripVehicles.cast<WorkTripTypeVehicle?>().firstWhere(
+            (vehicle) => (vehicle?.vehicleName ?? '').toLowerCase().contains(
+              'ô tô công ty',
+            ),
+            orElse: () => null,
+          )
+        : state.workTripVehicles.cast<WorkTripTypeVehicle?>().firstWhere(
+            (vehicle) => vehicle?.id == detail.vehicleId,
+            orElse: () => null,
+          );
+    if (matchedVehicle != null && _vehicleName != matchedVehicle.vehicleName) {
+      setState(() {
+        _vehicleName = matchedVehicle.vehicleName ?? '';
+      });
+    }
+    if (detail.vehicleId != null && detail.vehicleId != 0) {
+      final matched = state.workTripVehicles
+          .where((v) => v.id == detail.vehicleId)
+          .toList();
+      if (matched.isNotEmpty) {
+        setState(() {
+          _vehicleCost = matched.first.cost ?? 0;
+        });
+        return;
+      }
+    }
+    // Fallback: dùng xe mặc định đầu tiên
+    if (state.workTripVehicles.isNotEmpty) {
+      setState(() {
+        _vehicleCost = state.workTripVehicles.first.cost ?? 0;
+      });
+    }
+  }
+
+  Future<void> _openBookingVehicleSheet(WorkTripState state) async {
+    FocusManager.instance.primaryFocus?.unfocus();
+    final items = state.selfVehicleList;
+    if (items.isEmpty) {
+      context.showMessage('Chưa có phiếu đặt xe', type: SnackBarType.error);
+      return;
+    }
+
+    await openSelectBottomSheet<WorkTripSelfVehicle>(
+      context: context,
+      title: 'Chọn phiếu đặt xe',
+      items: items,
+      displayText: (item) => item.displayLabel ?? '',
+      onSelected: (item) {
+        setState(() {
+          _bookingVehicleId = item.id;
+          _companyName = item.companyNameArrives ?? '';
+          _selfVehicle = true;
+          _customerName = item.companyNameArrives ?? '';
+        });
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          final form = _formKey.currentState;
+          form?.fields['wtd_self_vehicle']?.didChange(true);
+          form?.fields['wtd_company_name']?.didChange(
+            item.companyNameArrives ?? '',
+          );
+          form?.fields['wtd_customer_name']?.didChange(
+            item.companyNameArrives ?? '',
+          );
+          // Fill project từ phiếu đặt xe
+          if (item.projectId != null && item.projectId != 0) {
+            _selectedProjectId = item.projectId;
+            _selectedProjectText = item.projectFullName ?? '';
+            form?.fields['wtd_project_id']?.didChange(
+              item.projectId.toString(),
+            );
+            form?.fields['wtd_project_text']?.didChange(
+              item.projectFullName ?? '',
+            );
+          }
+        });
+      },
+    );
+  }
+
+  void _clearBookingVehicle() {
+    final vehicles = bloc.state.workTripVehicles;
+    setState(() {
+      _bookingVehicleId = null;
+      _customerName = '';
+      _companyName = '';
+      _selfVehicle = false;
+    });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final form = _formKey.currentState;
+      form?.fields['wtd_self_vehicle']?.didChange(false);
+      form?.fields['wtd_customer_name']?.didChange('');
+      form?.fields['wtd_company_name']?.didChange('');
+      // Chỉ khôi phục giá xe mặc định nếu API không trả CostVehicle.
+      if (!_hasApiVehicleCost && vehicles.isNotEmpty) {
+        final defaultVehicle = vehicles.first;
+        setState(() {
+          _vehicleCost = defaultVehicle.cost ?? 0;
+        });
+      }
+    });
   }
 
   String _dinnerLabel(int overnightType) {
@@ -185,8 +423,7 @@ class _WorkTripDetailScreenState
       displayText: (p) =>
           '${p.projectCode ?? ''} - ${p.projectName ?? ''}'.trim(),
       onSelected: (p) {
-        final text =
-            '${p.projectCode ?? ''} - ${p.projectName ?? ''}'.trim();
+        final text = '${p.projectCode ?? ''} - ${p.projectName ?? ''}'.trim();
         setState(() {
           _selectedProjectId = p.id;
           _selectedProjectText = text;
@@ -200,8 +437,7 @@ class _WorkTripDetailScreenState
   // ── Helpers ────────────────────────────────────────────────────────────────
 
   bool _getIsProblem() {
-    final v =
-        _formKey.currentState?.fields['wtd_is_problem']?.value as bool?;
+    final v = _formKey.currentState?.fields['wtd_is_problem']?.value as bool?;
     return v ?? false;
   }
 
@@ -250,7 +486,6 @@ class _WorkTripDetailScreenState
           location: location,
           projectId: _selectedProjectId,
           costBussiness: _selectedTypeCost,
-          // Giữ nguyên phí phương tiện gốc từ API
           costVehicleOverride: detail.costVehicle ?? 0,
           notCheckIn: notCheckIn,
           workEarly: _workEarly,
@@ -258,6 +493,10 @@ class _WorkTripDetailScreenState
           reason: reason,
           note: note,
           fileInfo: fileInfo,
+          bookingVehicleId: _bookingVehicleId,
+          customerName: _customerName,
+          companyName: _companyName,
+          selfVehicle: _selfVehicle,
         ),
       ),
     );
@@ -272,7 +511,11 @@ class _WorkTripDetailScreenState
           p.editSuccess != c.editSuccess ||
           p.message != c.message ||
           p.status != c.status ||
-          (p.detailItem == null && c.detailItem != null),
+          (p.detailItem == null && c.detailItem != null) ||
+          (p.selfVehicleList != c.selfVehicleList && _detailApplied) ||
+          (p.workTripVehicles != c.workTripVehicles &&
+              _detailApplied &&
+              _effectiveVehicleCost == 0),
       listener: (context, state) {
         if (state.status == BaseStateStatus.failed &&
             (state.message ?? '').isNotEmpty) {
@@ -287,6 +530,17 @@ class _WorkTripDetailScreenState
         }
         if (state.detailItem != null) {
           _applyDetail(state.detailItem!, state);
+        }
+        // Sau khi detail đã apply: nếu selfVehicleList vừa tải xong,
+        // re-sync customer/company/phiếu đặt xe từ danh sách mới nhất.
+        if (_detailApplied) {
+          _syncBookingVehicleFields(state);
+        }
+        // Nếu workTripVehicles vừa được populate và _effectiveVehicleCost vẫn = 0, re-sync
+        if (_detailApplied &&
+            _effectiveVehicleCost == 0 &&
+            state.workTripVehicles.isNotEmpty) {
+          _syncVehicleCost(state);
         }
       },
       child: BlocBuilder<WorkTripBloc, WorkTripState>(
@@ -344,7 +598,7 @@ class _WorkTripDetailScreenState
                   return Positioned.fill(
                     child: AbsorbPointer(
                       child: Container(
-                        color: Colors.black.withValues(alpha:0.45),
+                        color: Colors.black.withValues(alpha: 0.45),
                         alignment: Alignment.center,
                         child: Lottie.asset(
                           'assets/lotties/Loading.json',
@@ -411,7 +665,9 @@ class _WorkTripDetailScreenState
             initialValue: approverName,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             isRequired: true,
-            onTap: state.status == BaseStateStatus.loading ? null : _openApproverSheet,
+            onTap: state.status == BaseStateStatus.loading
+                ? null
+                : _openApproverSheet,
             validator: (v) {
               if (v == null || v.isEmpty) return 'Vui lòng chọn người duyệt';
               return null;
@@ -428,13 +684,12 @@ class _WorkTripDetailScreenState
               style: TextStyle(fontSize: 14),
             ),
             onChanged: (value) {
-              if (value == true &&
-                  !state.isSupplementaryRegistrationOpen) {
+              if (value == true && !state.isSupplementaryRegistrationOpen) {
                 WidgetsBinding.instance.addPostFrameCallback((_) {
                   if (!mounted) return;
-                  _formKey.currentState
-                      ?.fields['wtd_is_problem']
-                      ?.didChange(false);
+                  _formKey.currentState?.fields['wtd_is_problem']?.didChange(
+                    false,
+                  );
                 });
                 context.showMessage(
                   'Nhân sự chưa mở đăng ký bổ sung',
@@ -450,8 +705,7 @@ class _WorkTripDetailScreenState
           const SizedBox(height: 8),
           FormFilePicker(
             name: 'wtd_attachment',
-            label:
-                'File đính kèm${_getIsProblem() ? ' (bắt buộc)' : ''}',
+            label: 'File đính kèm${_getIsProblem() ? ' (bắt buộc)' : ''}',
             icon: Icons.attach_file_outlined,
             allowMultiple: true,
             onChanged: (_) => setState(() {}),
@@ -469,6 +723,99 @@ class _WorkTripDetailScreenState
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 4),
+
+          // Phiếu đặt xe / Tên khách hàng / Tên công ty — chỉ hiển thị với phòng ban Sale
+          if (_isSaleDepartment(state)) ...[
+            // Phiếu đặt xe (disable nếu không có danh sách xe, cho chọn nếu có)
+            // Khi đã chọn → thêm nút X để xoá.
+            Row(
+              children: [
+                Expanded(
+                  child: GestureDetector(
+                    onTap: state.selfVehicleList.isEmpty
+                        ? null
+                        : () => _openBookingVehicleSheet(state),
+                    child: AbsorbPointer(
+                      absorbing: state.selfVehicleList.isEmpty,
+                      child: _ReadonlyTextField(
+                        icon: Icons.confirmation_number_outlined,
+                        label: 'Phiếu đặt xe',
+                        value: _hasBookingVehicle()
+                            ? _bookingVehicleLabel(state)
+                            : '',
+                        hint: state.selfVehicleList.isEmpty
+                            ? 'Không có danh sách đặt xe'
+                            : 'Chọn phiếu đặt xe',
+                        showArrow: state.selfVehicleList.isNotEmpty,
+                      ),
+                    ),
+                  ),
+                ),
+                if (_hasBookingVehicle()) ...[
+                  const SizedBox(width: 8),
+                  InkWell(
+                    onTap: _clearBookingVehicle,
+                    borderRadius: BorderRadius.circular(20),
+                    child: Container(
+                      padding: const EdgeInsets.all(6),
+                      decoration: BoxDecoration(
+                        color: Colors.red.shade50,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(
+                        Icons.close,
+                        size: 18,
+                        color: Colors.red.shade400,
+                      ),
+                    ),
+                  ),
+                ],
+              ],
+            ),
+            const SizedBox(height: 12),
+
+            // Tên khách hàng (isRequired, readonly, pre-filled)
+            FormInputField(
+              nameForm: 'wtd_customer_name',
+              nameTextField: 'wtd_customer_name_tf',
+              label: 'Tên khách hàng',
+              icon: Icons.person_outline,
+              initialValue: _customerName,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              isRequired: true,
+              onChanged: (value) {
+                _customerName = value ?? '';
+              },
+              validator: (v) {
+                if (v == null || v.trim().isEmpty) {
+                  return 'Vui lòng nhập tên khách hàng';
+                }
+                return null;
+              },
+            ),
+            const SizedBox(height: 12),
+
+            // Tên công ty (isRequired, readonly, pre-filled)
+            FormInputField(
+              nameForm: 'wtd_company_name',
+              nameTextField: 'wtd_company_name_tf',
+              label: 'Tên công ty',
+              icon: Icons.business_outlined,
+              initialValue: _companyName,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              isRequired: true,
+              onChanged: (value) {
+                _companyName = value ?? '';
+              },
+              validator: (v) {
+                if (v == null || v.trim().isEmpty) {
+                  return 'Vui lòng nhập tên công ty';
+                }
+                return null;
+              },
+            ),
+            const SizedBox(height: 12),
+          ],
 
           // Dự án
           FormBuilderField<String>(
@@ -505,7 +852,9 @@ class _WorkTripDetailScreenState
             autovalidateMode: AutovalidateMode.onUserInteraction,
             isRequired: true,
             validator: (v) {
-              if (v == null || v.trim().isEmpty) return 'Vui lòng nhập lý do công tác';
+              if (v == null || v.trim().isEmpty) {
+                return 'Vui lòng nhập lý do công tác';
+              }
               return null;
             },
           ),
@@ -558,11 +907,41 @@ class _WorkTripDetailScreenState
           ),
           const SizedBox(height: 12),
 
-          // Phí phương tiện (readonly, từ detail)
+          // Checkbox "Chủ động phương tiện"
+          // - Có phiếu đặt xe → disabled (chỉ đọc)
+          // - Không có phiếu đặt xe → cho phép chỉnh sửa
+          if (_isSaleDepartment(state)) ...[
+            FormCheckbox(
+              name: 'wtd_self_vehicle',
+              initialValue: _selfVehicle,
+              enabled: !_hasBookingVehicle(),
+              title: const Text(
+                'Chủ động phương tiện',
+                style: TextStyle(fontSize: 14),
+              ),
+              onChanged: (value) {
+                setState(() => _selfVehicle = value ?? false);
+              },
+            ),
+            const SizedBox(height: 12),
+          ],
+
+          // Phương tiện (readonly)
+          _ReadonlyTextField(
+            icon: Icons.directions_car_outlined,
+            label: 'Phương tiện',
+            value: _hasBookingVehicle() || _selfVehicle
+                ? 'Chủ động phương tiện'
+                : _vehicleName,
+            hint: 'Không có phương tiện',
+          ),
+          const SizedBox(height: 12),
+
+          // Phí phương tiện (readonly)
           _ReadonlyMoneyField(
             icon: Icons.directions_car_outlined,
             label: 'Phí phương tiện',
-            value: detail.costVehicle ?? 0,
+            value: _effectiveVehicleCost,
           ),
           const SizedBox(height: 8),
 
@@ -614,12 +993,16 @@ class _WorkTripDetailScreenState
             initialValue: _overnightType,
             onChanged: (val) {
               if (val == null) return;
-              final opt = kDinnerAllowanceOptions.firstWhere((o) => o.value == val);
+              final opt = kDinnerAllowanceOptions.firstWhere(
+                (o) => o.value == val,
+              );
               setState(() {
                 _overnightType = val;
                 _overnightLabel = opt.label;
               });
-              _formKey.currentState?.fields['wtd_overnight_text']?.didChange(opt.label);
+              _formKey.currentState?.fields['wtd_overnight_text']?.didChange(
+                opt.label,
+              );
             },
           ),
           FormBuilderField<String>(
@@ -688,7 +1071,8 @@ class _WorkTripDetailScreenState
               runSpacing: 8,
               children: options.map((option) {
                 final isSelected = field.value == option.value;
-                final primaryColor = option.selectedColor ?? AppColors.primaryERP;
+                final primaryColor =
+                    option.selectedColor ?? AppColors.primaryERP;
 
                 return GestureDetector(
                   onTap: enabled
@@ -699,8 +1083,10 @@ class _WorkTripDetailScreenState
                       : null,
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 200),
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 8,
+                    ),
                     decoration: BoxDecoration(
                       color: isSelected
                           ? primaryColor.withValues(alpha: 0.1)
@@ -717,8 +1103,9 @@ class _WorkTripDetailScreenState
                       option.label,
                       style: TextStyle(
                         fontSize: 13,
-                        fontWeight:
-                            isSelected ? FontWeight.w600 : FontWeight.w500,
+                        fontWeight: isSelected
+                            ? FontWeight.w600
+                            : FontWeight.w500,
                         color: isSelected
                             ? primaryColor
                             : AppColors.textSecondaryColor,
@@ -740,13 +1127,8 @@ class _ChoiceOption<T> {
   final String label;
   final Color? selectedColor;
 
-  _ChoiceOption({
-    required this.value,
-    required this.label,
-    this.selectedColor,
-  });
+  _ChoiceOption({required this.value, required this.label, this.selectedColor});
 }
-
 
 // ── Helper widgets (identical to add screen) ───────────────────────────────────
 
@@ -792,6 +1174,65 @@ class _ReadonlyMoneyField extends StatelessWidget {
               ],
             ),
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ReadonlyTextField extends StatelessWidget {
+  const _ReadonlyTextField({
+    required this.icon,
+    required this.label,
+    required this.value,
+    this.hint,
+    this.showArrow = true,
+  });
+
+  final IconData icon;
+  final String label;
+  final String value;
+  final String? hint;
+  final bool showArrow;
+
+  @override
+  Widget build(BuildContext context) {
+    final hasValue = value.isNotEmpty;
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+      decoration: BoxDecoration(
+        color: Colors.grey.shade100,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Colors.grey.shade300),
+      ),
+      child: Row(
+        children: [
+          Icon(icon, size: 20, color: Colors.grey.shade600),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  label,
+                  style: TextStyle(fontSize: 11, color: Colors.grey.shade600),
+                ),
+                Text(
+                  hasValue ? value : (hint ?? ''),
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: hasValue ? Colors.black87 : Colors.grey,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          if (showArrow)
+            Icon(
+              Icons.arrow_forward_ios,
+              size: 14,
+              color: Colors.grey.shade400,
+            ),
         ],
       ),
     );

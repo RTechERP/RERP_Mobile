@@ -880,7 +880,19 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
               ));
               return true;
             },
-            (r) async => false,
+            (r) async {
+              // BE trả về status==1 nhưng data rỗng → coi như lỗi
+              if (r.isEmpty) {
+                emit(state.copyWith(
+                  isSubmitting: false,
+                  submitSuccess: false,
+                  status: BaseStateStatus.failed,
+                  message: 'Lưu dữ liệu thất bại. Vui lòng báo cáo lại',
+                ));
+                return true;
+              }
+              return false;
+            },
           );
 
           if (isFailed) {

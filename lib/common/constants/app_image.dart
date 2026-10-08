@@ -64,4 +64,39 @@ class AppImages {
   static const reg_general_stamp = 'assets/images/icons/apps/21.png';
   static const reg_general_poll_form =
       'assets/images/icons/apps/poll_form/poll.png';
+
+  static const warehouse_HN = 'assets/images/icons/apps/warehouse/74.png';
+  static const warehouse_HCM = 'assets/images/icons/apps/warehouse/78.png';
+  static const warehouse_BN = 'assets/images/icons/apps/warehouse/79.png';
+  static const warehouse_DP = 'assets/images/icons/apps/warehouse/80.png';
+  static const warehouse_sale = 'assets/images/icons/apps/warehouse/75.png';
+  static const warehouse_gdn = 'assets/images/icons/apps/warehouse/77.png';
+  static const warehouse_project = 'assets/images/icons/apps/warehouse/81.png';
+  static const warehouse = 'assets/images/icons/apps/warehouse/83.png';
+
+  static const week_plan_my_task = 'assets/images/icons/apps/week_plan/85.png';
+  static const week_plan_assign = 'assets/images/icons/apps/week_plan/86.png';
+  static const week_plan_related = 'assets/images/icons/apps/week_plan/87.png';
+  static const week_plan_overall = 'assets/images/icons/apps/week_plan/88.png';
+  static const week_plan_timeline = 'assets/images/icons/apps/week_plan/89.png';
+
+  static const signature = 'assets/images/icons/apps/week_plan/90.png';
+  static const test_table = 'assets/images/icons/apps/91.png';
+
+  static const chatbot_speechless = 'assets/images/icons/apps/chatbot/speechless.png';
+  static const chatbot_smile = 'assets/images/icons/apps/chatbot/smile.png';
+  static const chatbot_agree = 'assets/images/icons/apps/chatbot/agree.png';
+  static const chatbot_happy = 'assets/images/icons/apps/chatbot/happy.png';
+  static const chatbot_exciting = 'assets/images/icons/apps/chatbot/exciting.png';
+  static const chatbot_questioning = 'assets/images/icons/apps/chatbot/questioning.png';
+  static const chatbot_love = 'assets/images/icons/apps/chatbot/love.png';
+  static const chatbot_angry = 'assets/images/icons/apps/chatbot/angry.png';
+
+  static const birthday = 'assets/images/celebrations/birthday.png';
+  static const birthday_music = 'images/celebrations/birthday.mp3';
+  static const seniority = 'assets/images/celebrations/seniority.png';
+
+  /// Nhạc nền cho overlay thâm niên. Lưu ý path bỏ tiền tố `assets/`
+  /// vì `AssetSource` tự thêm, giống `birthday_music`.
+  static const seniority_music = 'images/celebrations/seniority.mp3';
 }

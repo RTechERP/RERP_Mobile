@@ -29,6 +29,8 @@ mixin _$WorkTripEvent {
     required TResult Function(int id, WorkTripSubmitData data) editSubmit,
     required TResult Function(int id) fetchCopy,
     required TResult Function() clearCopyData,
+    required TResult Function() loadBookingVehicleList,
+    required TResult Function(int filter) changeApprovalFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,6 +45,8 @@ mixin _$WorkTripEvent {
     TResult? Function(int id, WorkTripSubmitData data)? editSubmit,
     TResult? Function(int id)? fetchCopy,
     TResult? Function()? clearCopyData,
+    TResult? Function()? loadBookingVehicleList,
+    TResult? Function(int filter)? changeApprovalFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +61,8 @@ mixin _$WorkTripEvent {
     TResult Function(int id, WorkTripSubmitData data)? editSubmit,
     TResult Function(int id)? fetchCopy,
     TResult Function()? clearCopyData,
+    TResult Function()? loadBookingVehicleList,
+    TResult Function(int filter)? changeApprovalFilter,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -72,6 +78,9 @@ mixin _$WorkTripEvent {
     required TResult Function(_EditSubmit value) editSubmit,
     required TResult Function(_FetchCopy value) fetchCopy,
     required TResult Function(_ClearCopyData value) clearCopyData,
+    required TResult Function(_LoadBookingVehicleList value)
+        loadBookingVehicleList,
+    required TResult Function(_ChangeApprovalFilter value) changeApprovalFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -86,6 +95,8 @@ mixin _$WorkTripEvent {
     TResult? Function(_EditSubmit value)? editSubmit,
     TResult? Function(_FetchCopy value)? fetchCopy,
     TResult? Function(_ClearCopyData value)? clearCopyData,
+    TResult? Function(_LoadBookingVehicleList value)? loadBookingVehicleList,
+    TResult? Function(_ChangeApprovalFilter value)? changeApprovalFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -100,6 +111,8 @@ mixin _$WorkTripEvent {
     TResult Function(_EditSubmit value)? editSubmit,
     TResult Function(_FetchCopy value)? fetchCopy,
     TResult Function(_ClearCopyData value)? clearCopyData,
+    TResult Function(_LoadBookingVehicleList value)? loadBookingVehicleList,
+    TResult Function(_ChangeApprovalFilter value)? changeApprovalFilter,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -171,6 +184,8 @@ class _$InitImpl implements _Init {
     required TResult Function(int id, WorkTripSubmitData data) editSubmit,
     required TResult Function(int id) fetchCopy,
     required TResult Function() clearCopyData,
+    required TResult Function() loadBookingVehicleList,
+    required TResult Function(int filter) changeApprovalFilter,
   }) {
     return init();
   }
@@ -188,6 +203,8 @@ class _$InitImpl implements _Init {
     TResult? Function(int id, WorkTripSubmitData data)? editSubmit,
     TResult? Function(int id)? fetchCopy,
     TResult? Function()? clearCopyData,
+    TResult? Function()? loadBookingVehicleList,
+    TResult? Function(int filter)? changeApprovalFilter,
   }) {
     return init?.call();
   }
@@ -205,6 +222,8 @@ class _$InitImpl implements _Init {
     TResult Function(int id, WorkTripSubmitData data)? editSubmit,
     TResult Function(int id)? fetchCopy,
     TResult Function()? clearCopyData,
+    TResult Function()? loadBookingVehicleList,
+    TResult Function(int filter)? changeApprovalFilter,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -226,6 +245,9 @@ class _$InitImpl implements _Init {
     required TResult Function(_EditSubmit value) editSubmit,
     required TResult Function(_FetchCopy value) fetchCopy,
     required TResult Function(_ClearCopyData value) clearCopyData,
+    required TResult Function(_LoadBookingVehicleList value)
+        loadBookingVehicleList,
+    required TResult Function(_ChangeApprovalFilter value) changeApprovalFilter,
   }) {
     return init(this);
   }
@@ -243,6 +265,8 @@ class _$InitImpl implements _Init {
     TResult? Function(_EditSubmit value)? editSubmit,
     TResult? Function(_FetchCopy value)? fetchCopy,
     TResult? Function(_ClearCopyData value)? clearCopyData,
+    TResult? Function(_LoadBookingVehicleList value)? loadBookingVehicleList,
+    TResult? Function(_ChangeApprovalFilter value)? changeApprovalFilter,
   }) {
     return init?.call(this);
   }
@@ -260,6 +284,8 @@ class _$InitImpl implements _Init {
     TResult Function(_EditSubmit value)? editSubmit,
     TResult Function(_FetchCopy value)? fetchCopy,
     TResult Function(_ClearCopyData value)? clearCopyData,
+    TResult Function(_LoadBookingVehicleList value)? loadBookingVehicleList,
+    TResult Function(_ChangeApprovalFilter value)? changeApprovalFilter,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -322,6 +348,8 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function(int id, WorkTripSubmitData data) editSubmit,
     required TResult Function(int id) fetchCopy,
     required TResult Function() clearCopyData,
+    required TResult Function() loadBookingVehicleList,
+    required TResult Function(int filter) changeApprovalFilter,
   }) {
     return initAdd();
   }
@@ -339,6 +367,8 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(int id, WorkTripSubmitData data)? editSubmit,
     TResult? Function(int id)? fetchCopy,
     TResult? Function()? clearCopyData,
+    TResult? Function()? loadBookingVehicleList,
+    TResult? Function(int filter)? changeApprovalFilter,
   }) {
     return initAdd?.call();
   }
@@ -356,6 +386,8 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(int id, WorkTripSubmitData data)? editSubmit,
     TResult Function(int id)? fetchCopy,
     TResult Function()? clearCopyData,
+    TResult Function()? loadBookingVehicleList,
+    TResult Function(int filter)? changeApprovalFilter,
     required TResult orElse(),
   }) {
     if (initAdd != null) {
@@ -377,6 +409,9 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function(_EditSubmit value) editSubmit,
     required TResult Function(_FetchCopy value) fetchCopy,
     required TResult Function(_ClearCopyData value) clearCopyData,
+    required TResult Function(_LoadBookingVehicleList value)
+        loadBookingVehicleList,
+    required TResult Function(_ChangeApprovalFilter value) changeApprovalFilter,
   }) {
     return initAdd(this);
   }
@@ -394,6 +429,8 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(_EditSubmit value)? editSubmit,
     TResult? Function(_FetchCopy value)? fetchCopy,
     TResult? Function(_ClearCopyData value)? clearCopyData,
+    TResult? Function(_LoadBookingVehicleList value)? loadBookingVehicleList,
+    TResult? Function(_ChangeApprovalFilter value)? changeApprovalFilter,
   }) {
     return initAdd?.call(this);
   }
@@ -411,6 +448,8 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(_EditSubmit value)? editSubmit,
     TResult Function(_FetchCopy value)? fetchCopy,
     TResult Function(_ClearCopyData value)? clearCopyData,
+    TResult Function(_LoadBookingVehicleList value)? loadBookingVehicleList,
+    TResult Function(_ChangeApprovalFilter value)? changeApprovalFilter,
     required TResult orElse(),
   }) {
     if (initAdd != null) {
@@ -499,6 +538,8 @@ class _$SubmitImpl implements _Submit {
     required TResult Function(int id, WorkTripSubmitData data) editSubmit,
     required TResult Function(int id) fetchCopy,
     required TResult Function() clearCopyData,
+    required TResult Function() loadBookingVehicleList,
+    required TResult Function(int filter) changeApprovalFilter,
   }) {
     return submit(data);
   }
@@ -516,6 +557,8 @@ class _$SubmitImpl implements _Submit {
     TResult? Function(int id, WorkTripSubmitData data)? editSubmit,
     TResult? Function(int id)? fetchCopy,
     TResult? Function()? clearCopyData,
+    TResult? Function()? loadBookingVehicleList,
+    TResult? Function(int filter)? changeApprovalFilter,
   }) {
     return submit?.call(data);
   }
@@ -533,6 +576,8 @@ class _$SubmitImpl implements _Submit {
     TResult Function(int id, WorkTripSubmitData data)? editSubmit,
     TResult Function(int id)? fetchCopy,
     TResult Function()? clearCopyData,
+    TResult Function()? loadBookingVehicleList,
+    TResult Function(int filter)? changeApprovalFilter,
     required TResult orElse(),
   }) {
     if (submit != null) {
@@ -554,6 +599,9 @@ class _$SubmitImpl implements _Submit {
     required TResult Function(_EditSubmit value) editSubmit,
     required TResult Function(_FetchCopy value) fetchCopy,
     required TResult Function(_ClearCopyData value) clearCopyData,
+    required TResult Function(_LoadBookingVehicleList value)
+        loadBookingVehicleList,
+    required TResult Function(_ChangeApprovalFilter value) changeApprovalFilter,
   }) {
     return submit(this);
   }
@@ -571,6 +619,8 @@ class _$SubmitImpl implements _Submit {
     TResult? Function(_EditSubmit value)? editSubmit,
     TResult? Function(_FetchCopy value)? fetchCopy,
     TResult? Function(_ClearCopyData value)? clearCopyData,
+    TResult? Function(_LoadBookingVehicleList value)? loadBookingVehicleList,
+    TResult? Function(_ChangeApprovalFilter value)? changeApprovalFilter,
   }) {
     return submit?.call(this);
   }
@@ -588,6 +638,8 @@ class _$SubmitImpl implements _Submit {
     TResult Function(_EditSubmit value)? editSubmit,
     TResult Function(_FetchCopy value)? fetchCopy,
     TResult Function(_ClearCopyData value)? clearCopyData,
+    TResult Function(_LoadBookingVehicleList value)? loadBookingVehicleList,
+    TResult Function(_ChangeApprovalFilter value)? changeApprovalFilter,
     required TResult orElse(),
   }) {
     if (submit != null) {
@@ -682,6 +734,8 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     required TResult Function(int id, WorkTripSubmitData data) editSubmit,
     required TResult Function(int id) fetchCopy,
     required TResult Function() clearCopyData,
+    required TResult Function() loadBookingVehicleList,
+    required TResult Function(int filter) changeApprovalFilter,
   }) {
     return onCancelSubmit(id);
   }
@@ -699,6 +753,8 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     TResult? Function(int id, WorkTripSubmitData data)? editSubmit,
     TResult? Function(int id)? fetchCopy,
     TResult? Function()? clearCopyData,
+    TResult? Function()? loadBookingVehicleList,
+    TResult? Function(int filter)? changeApprovalFilter,
   }) {
     return onCancelSubmit?.call(id);
   }
@@ -716,6 +772,8 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     TResult Function(int id, WorkTripSubmitData data)? editSubmit,
     TResult Function(int id)? fetchCopy,
     TResult Function()? clearCopyData,
+    TResult Function()? loadBookingVehicleList,
+    TResult Function(int filter)? changeApprovalFilter,
     required TResult orElse(),
   }) {
     if (onCancelSubmit != null) {
@@ -737,6 +795,9 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     required TResult Function(_EditSubmit value) editSubmit,
     required TResult Function(_FetchCopy value) fetchCopy,
     required TResult Function(_ClearCopyData value) clearCopyData,
+    required TResult Function(_LoadBookingVehicleList value)
+        loadBookingVehicleList,
+    required TResult Function(_ChangeApprovalFilter value) changeApprovalFilter,
   }) {
     return onCancelSubmit(this);
   }
@@ -754,6 +815,8 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     TResult? Function(_EditSubmit value)? editSubmit,
     TResult? Function(_FetchCopy value)? fetchCopy,
     TResult? Function(_ClearCopyData value)? clearCopyData,
+    TResult? Function(_LoadBookingVehicleList value)? loadBookingVehicleList,
+    TResult? Function(_ChangeApprovalFilter value)? changeApprovalFilter,
   }) {
     return onCancelSubmit?.call(this);
   }
@@ -771,6 +834,8 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     TResult Function(_EditSubmit value)? editSubmit,
     TResult Function(_FetchCopy value)? fetchCopy,
     TResult Function(_ClearCopyData value)? clearCopyData,
+    TResult Function(_LoadBookingVehicleList value)? loadBookingVehicleList,
+    TResult Function(_ChangeApprovalFilter value)? changeApprovalFilter,
     required TResult orElse(),
   }) {
     if (onCancelSubmit != null) {
@@ -874,6 +939,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(int id, WorkTripSubmitData data) editSubmit,
     required TResult Function(int id) fetchCopy,
     required TResult Function() clearCopyData,
+    required TResult Function() loadBookingVehicleList,
+    required TResult Function(int filter) changeApprovalFilter,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -891,6 +958,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(int id, WorkTripSubmitData data)? editSubmit,
     TResult? Function(int id)? fetchCopy,
     TResult? Function()? clearCopyData,
+    TResult? Function()? loadBookingVehicleList,
+    TResult? Function(int filter)? changeApprovalFilter,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -908,6 +977,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(int id, WorkTripSubmitData data)? editSubmit,
     TResult Function(int id)? fetchCopy,
     TResult Function()? clearCopyData,
+    TResult Function()? loadBookingVehicleList,
+    TResult Function(int filter)? changeApprovalFilter,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -929,6 +1000,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_EditSubmit value) editSubmit,
     required TResult Function(_FetchCopy value) fetchCopy,
     required TResult Function(_ClearCopyData value) clearCopyData,
+    required TResult Function(_LoadBookingVehicleList value)
+        loadBookingVehicleList,
+    required TResult Function(_ChangeApprovalFilter value) changeApprovalFilter,
   }) {
     return changeDateRange(this);
   }
@@ -946,6 +1020,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_EditSubmit value)? editSubmit,
     TResult? Function(_FetchCopy value)? fetchCopy,
     TResult? Function(_ClearCopyData value)? clearCopyData,
+    TResult? Function(_LoadBookingVehicleList value)? loadBookingVehicleList,
+    TResult? Function(_ChangeApprovalFilter value)? changeApprovalFilter,
   }) {
     return changeDateRange?.call(this);
   }
@@ -963,6 +1039,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_EditSubmit value)? editSubmit,
     TResult Function(_FetchCopy value)? fetchCopy,
     TResult Function(_ClearCopyData value)? clearCopyData,
+    TResult Function(_LoadBookingVehicleList value)? loadBookingVehicleList,
+    TResult Function(_ChangeApprovalFilter value)? changeApprovalFilter,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -1033,6 +1111,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(int id, WorkTripSubmitData data) editSubmit,
     required TResult Function(int id) fetchCopy,
     required TResult Function() clearCopyData,
+    required TResult Function() loadBookingVehicleList,
+    required TResult Function(int filter) changeApprovalFilter,
   }) {
     return clearSubmitState();
   }
@@ -1050,6 +1130,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(int id, WorkTripSubmitData data)? editSubmit,
     TResult? Function(int id)? fetchCopy,
     TResult? Function()? clearCopyData,
+    TResult? Function()? loadBookingVehicleList,
+    TResult? Function(int filter)? changeApprovalFilter,
   }) {
     return clearSubmitState?.call();
   }
@@ -1067,6 +1149,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(int id, WorkTripSubmitData data)? editSubmit,
     TResult Function(int id)? fetchCopy,
     TResult Function()? clearCopyData,
+    TResult Function()? loadBookingVehicleList,
+    TResult Function(int filter)? changeApprovalFilter,
     required TResult orElse(),
   }) {
     if (clearSubmitState != null) {
@@ -1088,6 +1172,9 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(_EditSubmit value) editSubmit,
     required TResult Function(_FetchCopy value) fetchCopy,
     required TResult Function(_ClearCopyData value) clearCopyData,
+    required TResult Function(_LoadBookingVehicleList value)
+        loadBookingVehicleList,
+    required TResult Function(_ChangeApprovalFilter value) changeApprovalFilter,
   }) {
     return clearSubmitState(this);
   }
@@ -1105,6 +1192,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(_EditSubmit value)? editSubmit,
     TResult? Function(_FetchCopy value)? fetchCopy,
     TResult? Function(_ClearCopyData value)? clearCopyData,
+    TResult? Function(_LoadBookingVehicleList value)? loadBookingVehicleList,
+    TResult? Function(_ChangeApprovalFilter value)? changeApprovalFilter,
   }) {
     return clearSubmitState?.call(this);
   }
@@ -1122,6 +1211,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(_EditSubmit value)? editSubmit,
     TResult Function(_FetchCopy value)? fetchCopy,
     TResult Function(_ClearCopyData value)? clearCopyData,
+    TResult Function(_LoadBookingVehicleList value)? loadBookingVehicleList,
+    TResult Function(_ChangeApprovalFilter value)? changeApprovalFilter,
     required TResult orElse(),
   }) {
     if (clearSubmitState != null) {
@@ -1210,6 +1301,8 @@ class _$FetchDetailImpl implements _FetchDetail {
     required TResult Function(int id, WorkTripSubmitData data) editSubmit,
     required TResult Function(int id) fetchCopy,
     required TResult Function() clearCopyData,
+    required TResult Function() loadBookingVehicleList,
+    required TResult Function(int filter) changeApprovalFilter,
   }) {
     return fetchDetail(id);
   }
@@ -1227,6 +1320,8 @@ class _$FetchDetailImpl implements _FetchDetail {
     TResult? Function(int id, WorkTripSubmitData data)? editSubmit,
     TResult? Function(int id)? fetchCopy,
     TResult? Function()? clearCopyData,
+    TResult? Function()? loadBookingVehicleList,
+    TResult? Function(int filter)? changeApprovalFilter,
   }) {
     return fetchDetail?.call(id);
   }
@@ -1244,6 +1339,8 @@ class _$FetchDetailImpl implements _FetchDetail {
     TResult Function(int id, WorkTripSubmitData data)? editSubmit,
     TResult Function(int id)? fetchCopy,
     TResult Function()? clearCopyData,
+    TResult Function()? loadBookingVehicleList,
+    TResult Function(int filter)? changeApprovalFilter,
     required TResult orElse(),
   }) {
     if (fetchDetail != null) {
@@ -1265,6 +1362,9 @@ class _$FetchDetailImpl implements _FetchDetail {
     required TResult Function(_EditSubmit value) editSubmit,
     required TResult Function(_FetchCopy value) fetchCopy,
     required TResult Function(_ClearCopyData value) clearCopyData,
+    required TResult Function(_LoadBookingVehicleList value)
+        loadBookingVehicleList,
+    required TResult Function(_ChangeApprovalFilter value) changeApprovalFilter,
   }) {
     return fetchDetail(this);
   }
@@ -1282,6 +1382,8 @@ class _$FetchDetailImpl implements _FetchDetail {
     TResult? Function(_EditSubmit value)? editSubmit,
     TResult? Function(_FetchCopy value)? fetchCopy,
     TResult? Function(_ClearCopyData value)? clearCopyData,
+    TResult? Function(_LoadBookingVehicleList value)? loadBookingVehicleList,
+    TResult? Function(_ChangeApprovalFilter value)? changeApprovalFilter,
   }) {
     return fetchDetail?.call(this);
   }
@@ -1299,6 +1401,8 @@ class _$FetchDetailImpl implements _FetchDetail {
     TResult Function(_EditSubmit value)? editSubmit,
     TResult Function(_FetchCopy value)? fetchCopy,
     TResult Function(_ClearCopyData value)? clearCopyData,
+    TResult Function(_LoadBookingVehicleList value)? loadBookingVehicleList,
+    TResult Function(_ChangeApprovalFilter value)? changeApprovalFilter,
     required TResult orElse(),
   }) {
     if (fetchDetail != null) {
@@ -1400,6 +1504,8 @@ class _$EditSubmitImpl implements _EditSubmit {
     required TResult Function(int id, WorkTripSubmitData data) editSubmit,
     required TResult Function(int id) fetchCopy,
     required TResult Function() clearCopyData,
+    required TResult Function() loadBookingVehicleList,
+    required TResult Function(int filter) changeApprovalFilter,
   }) {
     return editSubmit(id, data);
   }
@@ -1417,6 +1523,8 @@ class _$EditSubmitImpl implements _EditSubmit {
     TResult? Function(int id, WorkTripSubmitData data)? editSubmit,
     TResult? Function(int id)? fetchCopy,
     TResult? Function()? clearCopyData,
+    TResult? Function()? loadBookingVehicleList,
+    TResult? Function(int filter)? changeApprovalFilter,
   }) {
     return editSubmit?.call(id, data);
   }
@@ -1434,6 +1542,8 @@ class _$EditSubmitImpl implements _EditSubmit {
     TResult Function(int id, WorkTripSubmitData data)? editSubmit,
     TResult Function(int id)? fetchCopy,
     TResult Function()? clearCopyData,
+    TResult Function()? loadBookingVehicleList,
+    TResult Function(int filter)? changeApprovalFilter,
     required TResult orElse(),
   }) {
     if (editSubmit != null) {
@@ -1455,6 +1565,9 @@ class _$EditSubmitImpl implements _EditSubmit {
     required TResult Function(_EditSubmit value) editSubmit,
     required TResult Function(_FetchCopy value) fetchCopy,
     required TResult Function(_ClearCopyData value) clearCopyData,
+    required TResult Function(_LoadBookingVehicleList value)
+        loadBookingVehicleList,
+    required TResult Function(_ChangeApprovalFilter value) changeApprovalFilter,
   }) {
     return editSubmit(this);
   }
@@ -1472,6 +1585,8 @@ class _$EditSubmitImpl implements _EditSubmit {
     TResult? Function(_EditSubmit value)? editSubmit,
     TResult? Function(_FetchCopy value)? fetchCopy,
     TResult? Function(_ClearCopyData value)? clearCopyData,
+    TResult? Function(_LoadBookingVehicleList value)? loadBookingVehicleList,
+    TResult? Function(_ChangeApprovalFilter value)? changeApprovalFilter,
   }) {
     return editSubmit?.call(this);
   }
@@ -1489,6 +1604,8 @@ class _$EditSubmitImpl implements _EditSubmit {
     TResult Function(_EditSubmit value)? editSubmit,
     TResult Function(_FetchCopy value)? fetchCopy,
     TResult Function(_ClearCopyData value)? clearCopyData,
+    TResult Function(_LoadBookingVehicleList value)? loadBookingVehicleList,
+    TResult Function(_ChangeApprovalFilter value)? changeApprovalFilter,
     required TResult orElse(),
   }) {
     if (editSubmit != null) {
@@ -1585,6 +1702,8 @@ class _$FetchCopyImpl implements _FetchCopy {
     required TResult Function(int id, WorkTripSubmitData data) editSubmit,
     required TResult Function(int id) fetchCopy,
     required TResult Function() clearCopyData,
+    required TResult Function() loadBookingVehicleList,
+    required TResult Function(int filter) changeApprovalFilter,
   }) {
     return fetchCopy(id);
   }
@@ -1602,6 +1721,8 @@ class _$FetchCopyImpl implements _FetchCopy {
     TResult? Function(int id, WorkTripSubmitData data)? editSubmit,
     TResult? Function(int id)? fetchCopy,
     TResult? Function()? clearCopyData,
+    TResult? Function()? loadBookingVehicleList,
+    TResult? Function(int filter)? changeApprovalFilter,
   }) {
     return fetchCopy?.call(id);
   }
@@ -1619,6 +1740,8 @@ class _$FetchCopyImpl implements _FetchCopy {
     TResult Function(int id, WorkTripSubmitData data)? editSubmit,
     TResult Function(int id)? fetchCopy,
     TResult Function()? clearCopyData,
+    TResult Function()? loadBookingVehicleList,
+    TResult Function(int filter)? changeApprovalFilter,
     required TResult orElse(),
   }) {
     if (fetchCopy != null) {
@@ -1640,6 +1763,9 @@ class _$FetchCopyImpl implements _FetchCopy {
     required TResult Function(_EditSubmit value) editSubmit,
     required TResult Function(_FetchCopy value) fetchCopy,
     required TResult Function(_ClearCopyData value) clearCopyData,
+    required TResult Function(_LoadBookingVehicleList value)
+        loadBookingVehicleList,
+    required TResult Function(_ChangeApprovalFilter value) changeApprovalFilter,
   }) {
     return fetchCopy(this);
   }
@@ -1657,6 +1783,8 @@ class _$FetchCopyImpl implements _FetchCopy {
     TResult? Function(_EditSubmit value)? editSubmit,
     TResult? Function(_FetchCopy value)? fetchCopy,
     TResult? Function(_ClearCopyData value)? clearCopyData,
+    TResult? Function(_LoadBookingVehicleList value)? loadBookingVehicleList,
+    TResult? Function(_ChangeApprovalFilter value)? changeApprovalFilter,
   }) {
     return fetchCopy?.call(this);
   }
@@ -1674,6 +1802,8 @@ class _$FetchCopyImpl implements _FetchCopy {
     TResult Function(_EditSubmit value)? editSubmit,
     TResult Function(_FetchCopy value)? fetchCopy,
     TResult Function(_ClearCopyData value)? clearCopyData,
+    TResult Function(_LoadBookingVehicleList value)? loadBookingVehicleList,
+    TResult Function(_ChangeApprovalFilter value)? changeApprovalFilter,
     required TResult orElse(),
   }) {
     if (fetchCopy != null) {
@@ -1741,6 +1871,8 @@ class _$ClearCopyDataImpl implements _ClearCopyData {
     required TResult Function(int id, WorkTripSubmitData data) editSubmit,
     required TResult Function(int id) fetchCopy,
     required TResult Function() clearCopyData,
+    required TResult Function() loadBookingVehicleList,
+    required TResult Function(int filter) changeApprovalFilter,
   }) {
     return clearCopyData();
   }
@@ -1758,6 +1890,8 @@ class _$ClearCopyDataImpl implements _ClearCopyData {
     TResult? Function(int id, WorkTripSubmitData data)? editSubmit,
     TResult? Function(int id)? fetchCopy,
     TResult? Function()? clearCopyData,
+    TResult? Function()? loadBookingVehicleList,
+    TResult? Function(int filter)? changeApprovalFilter,
   }) {
     return clearCopyData?.call();
   }
@@ -1775,6 +1909,8 @@ class _$ClearCopyDataImpl implements _ClearCopyData {
     TResult Function(int id, WorkTripSubmitData data)? editSubmit,
     TResult Function(int id)? fetchCopy,
     TResult Function()? clearCopyData,
+    TResult Function()? loadBookingVehicleList,
+    TResult Function(int filter)? changeApprovalFilter,
     required TResult orElse(),
   }) {
     if (clearCopyData != null) {
@@ -1796,6 +1932,9 @@ class _$ClearCopyDataImpl implements _ClearCopyData {
     required TResult Function(_EditSubmit value) editSubmit,
     required TResult Function(_FetchCopy value) fetchCopy,
     required TResult Function(_ClearCopyData value) clearCopyData,
+    required TResult Function(_LoadBookingVehicleList value)
+        loadBookingVehicleList,
+    required TResult Function(_ChangeApprovalFilter value) changeApprovalFilter,
   }) {
     return clearCopyData(this);
   }
@@ -1813,6 +1952,8 @@ class _$ClearCopyDataImpl implements _ClearCopyData {
     TResult? Function(_EditSubmit value)? editSubmit,
     TResult? Function(_FetchCopy value)? fetchCopy,
     TResult? Function(_ClearCopyData value)? clearCopyData,
+    TResult? Function(_LoadBookingVehicleList value)? loadBookingVehicleList,
+    TResult? Function(_ChangeApprovalFilter value)? changeApprovalFilter,
   }) {
     return clearCopyData?.call(this);
   }
@@ -1830,6 +1971,8 @@ class _$ClearCopyDataImpl implements _ClearCopyData {
     TResult Function(_EditSubmit value)? editSubmit,
     TResult Function(_FetchCopy value)? fetchCopy,
     TResult Function(_ClearCopyData value)? clearCopyData,
+    TResult Function(_LoadBookingVehicleList value)? loadBookingVehicleList,
+    TResult Function(_ChangeApprovalFilter value)? changeApprovalFilter,
     required TResult orElse(),
   }) {
     if (clearCopyData != null) {
@@ -1841,4 +1984,369 @@ class _$ClearCopyDataImpl implements _ClearCopyData {
 
 abstract class _ClearCopyData implements WorkTripEvent {
   const factory _ClearCopyData() = _$ClearCopyDataImpl;
+}
+
+/// @nodoc
+abstract class _$$LoadBookingVehicleListImplCopyWith<$Res> {
+  factory _$$LoadBookingVehicleListImplCopyWith(
+          _$LoadBookingVehicleListImpl value,
+          $Res Function(_$LoadBookingVehicleListImpl) then) =
+      __$$LoadBookingVehicleListImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LoadBookingVehicleListImplCopyWithImpl<$Res>
+    extends _$WorkTripEventCopyWithImpl<$Res, _$LoadBookingVehicleListImpl>
+    implements _$$LoadBookingVehicleListImplCopyWith<$Res> {
+  __$$LoadBookingVehicleListImplCopyWithImpl(
+      _$LoadBookingVehicleListImpl _value,
+      $Res Function(_$LoadBookingVehicleListImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$LoadBookingVehicleListImpl implements _LoadBookingVehicleList {
+  const _$LoadBookingVehicleListImpl();
+
+  @override
+  String toString() {
+    return 'WorkTripEvent.loadBookingVehicleList()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadBookingVehicleListImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() initAdd,
+    required TResult Function(WorkTripSubmitData data) submit,
+    required TResult Function(int id) onCancelSubmit,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() clearSubmitState,
+    required TResult Function(int id) fetchDetail,
+    required TResult Function(int id, WorkTripSubmitData data) editSubmit,
+    required TResult Function(int id) fetchCopy,
+    required TResult Function() clearCopyData,
+    required TResult Function() loadBookingVehicleList,
+    required TResult Function(int filter) changeApprovalFilter,
+  }) {
+    return loadBookingVehicleList();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? initAdd,
+    TResult? Function(WorkTripSubmitData data)? submit,
+    TResult? Function(int id)? onCancelSubmit,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? fetchDetail,
+    TResult? Function(int id, WorkTripSubmitData data)? editSubmit,
+    TResult? Function(int id)? fetchCopy,
+    TResult? Function()? clearCopyData,
+    TResult? Function()? loadBookingVehicleList,
+    TResult? Function(int filter)? changeApprovalFilter,
+  }) {
+    return loadBookingVehicleList?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? initAdd,
+    TResult Function(WorkTripSubmitData data)? submit,
+    TResult Function(int id)? onCancelSubmit,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? clearSubmitState,
+    TResult Function(int id)? fetchDetail,
+    TResult Function(int id, WorkTripSubmitData data)? editSubmit,
+    TResult Function(int id)? fetchCopy,
+    TResult Function()? clearCopyData,
+    TResult Function()? loadBookingVehicleList,
+    TResult Function(int filter)? changeApprovalFilter,
+    required TResult orElse(),
+  }) {
+    if (loadBookingVehicleList != null) {
+      return loadBookingVehicleList();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_Submit value) submit,
+    required TResult Function(_OnCancelSubmit value) onCancelSubmit,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_FetchDetail value) fetchDetail,
+    required TResult Function(_EditSubmit value) editSubmit,
+    required TResult Function(_FetchCopy value) fetchCopy,
+    required TResult Function(_ClearCopyData value) clearCopyData,
+    required TResult Function(_LoadBookingVehicleList value)
+        loadBookingVehicleList,
+    required TResult Function(_ChangeApprovalFilter value) changeApprovalFilter,
+  }) {
+    return loadBookingVehicleList(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_Submit value)? submit,
+    TResult? Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_FetchDetail value)? fetchDetail,
+    TResult? Function(_EditSubmit value)? editSubmit,
+    TResult? Function(_FetchCopy value)? fetchCopy,
+    TResult? Function(_ClearCopyData value)? clearCopyData,
+    TResult? Function(_LoadBookingVehicleList value)? loadBookingVehicleList,
+    TResult? Function(_ChangeApprovalFilter value)? changeApprovalFilter,
+  }) {
+    return loadBookingVehicleList?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_Submit value)? submit,
+    TResult Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_FetchDetail value)? fetchDetail,
+    TResult Function(_EditSubmit value)? editSubmit,
+    TResult Function(_FetchCopy value)? fetchCopy,
+    TResult Function(_ClearCopyData value)? clearCopyData,
+    TResult Function(_LoadBookingVehicleList value)? loadBookingVehicleList,
+    TResult Function(_ChangeApprovalFilter value)? changeApprovalFilter,
+    required TResult orElse(),
+  }) {
+    if (loadBookingVehicleList != null) {
+      return loadBookingVehicleList(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadBookingVehicleList implements WorkTripEvent {
+  const factory _LoadBookingVehicleList() = _$LoadBookingVehicleListImpl;
+}
+
+/// @nodoc
+abstract class _$$ChangeApprovalFilterImplCopyWith<$Res> {
+  factory _$$ChangeApprovalFilterImplCopyWith(_$ChangeApprovalFilterImpl value,
+          $Res Function(_$ChangeApprovalFilterImpl) then) =
+      __$$ChangeApprovalFilterImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int filter});
+}
+
+/// @nodoc
+class __$$ChangeApprovalFilterImplCopyWithImpl<$Res>
+    extends _$WorkTripEventCopyWithImpl<$Res, _$ChangeApprovalFilterImpl>
+    implements _$$ChangeApprovalFilterImplCopyWith<$Res> {
+  __$$ChangeApprovalFilterImplCopyWithImpl(_$ChangeApprovalFilterImpl _value,
+      $Res Function(_$ChangeApprovalFilterImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filter = null,
+  }) {
+    return _then(_$ChangeApprovalFilterImpl(
+      filter: null == filter
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChangeApprovalFilterImpl implements _ChangeApprovalFilter {
+  const _$ChangeApprovalFilterImpl({required this.filter});
+
+  @override
+  final int filter;
+
+  @override
+  String toString() {
+    return 'WorkTripEvent.changeApprovalFilter(filter: $filter)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangeApprovalFilterImpl &&
+            (identical(other.filter, filter) || other.filter == filter));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, filter);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangeApprovalFilterImplCopyWith<_$ChangeApprovalFilterImpl>
+      get copyWith =>
+          __$$ChangeApprovalFilterImplCopyWithImpl<_$ChangeApprovalFilterImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() initAdd,
+    required TResult Function(WorkTripSubmitData data) submit,
+    required TResult Function(int id) onCancelSubmit,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() clearSubmitState,
+    required TResult Function(int id) fetchDetail,
+    required TResult Function(int id, WorkTripSubmitData data) editSubmit,
+    required TResult Function(int id) fetchCopy,
+    required TResult Function() clearCopyData,
+    required TResult Function() loadBookingVehicleList,
+    required TResult Function(int filter) changeApprovalFilter,
+  }) {
+    return changeApprovalFilter(filter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? initAdd,
+    TResult? Function(WorkTripSubmitData data)? submit,
+    TResult? Function(int id)? onCancelSubmit,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? fetchDetail,
+    TResult? Function(int id, WorkTripSubmitData data)? editSubmit,
+    TResult? Function(int id)? fetchCopy,
+    TResult? Function()? clearCopyData,
+    TResult? Function()? loadBookingVehicleList,
+    TResult? Function(int filter)? changeApprovalFilter,
+  }) {
+    return changeApprovalFilter?.call(filter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? initAdd,
+    TResult Function(WorkTripSubmitData data)? submit,
+    TResult Function(int id)? onCancelSubmit,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? clearSubmitState,
+    TResult Function(int id)? fetchDetail,
+    TResult Function(int id, WorkTripSubmitData data)? editSubmit,
+    TResult Function(int id)? fetchCopy,
+    TResult Function()? clearCopyData,
+    TResult Function()? loadBookingVehicleList,
+    TResult Function(int filter)? changeApprovalFilter,
+    required TResult orElse(),
+  }) {
+    if (changeApprovalFilter != null) {
+      return changeApprovalFilter(filter);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_Submit value) submit,
+    required TResult Function(_OnCancelSubmit value) onCancelSubmit,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_FetchDetail value) fetchDetail,
+    required TResult Function(_EditSubmit value) editSubmit,
+    required TResult Function(_FetchCopy value) fetchCopy,
+    required TResult Function(_ClearCopyData value) clearCopyData,
+    required TResult Function(_LoadBookingVehicleList value)
+        loadBookingVehicleList,
+    required TResult Function(_ChangeApprovalFilter value) changeApprovalFilter,
+  }) {
+    return changeApprovalFilter(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_Submit value)? submit,
+    TResult? Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_FetchDetail value)? fetchDetail,
+    TResult? Function(_EditSubmit value)? editSubmit,
+    TResult? Function(_FetchCopy value)? fetchCopy,
+    TResult? Function(_ClearCopyData value)? clearCopyData,
+    TResult? Function(_LoadBookingVehicleList value)? loadBookingVehicleList,
+    TResult? Function(_ChangeApprovalFilter value)? changeApprovalFilter,
+  }) {
+    return changeApprovalFilter?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_Submit value)? submit,
+    TResult Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_FetchDetail value)? fetchDetail,
+    TResult Function(_EditSubmit value)? editSubmit,
+    TResult Function(_FetchCopy value)? fetchCopy,
+    TResult Function(_ClearCopyData value)? clearCopyData,
+    TResult Function(_LoadBookingVehicleList value)? loadBookingVehicleList,
+    TResult Function(_ChangeApprovalFilter value)? changeApprovalFilter,
+    required TResult orElse(),
+  }) {
+    if (changeApprovalFilter != null) {
+      return changeApprovalFilter(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangeApprovalFilter implements WorkTripEvent {
+  const factory _ChangeApprovalFilter({required final int filter}) =
+      _$ChangeApprovalFilterImpl;
+
+  int get filter;
+  @JsonKey(ignore: true)
+  _$$ChangeApprovalFilterImplCopyWith<_$ChangeApprovalFilterImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

@@ -13,6 +13,18 @@ import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/stamp/view
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/stamp/view/pages/stamp_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/stamp/view/pages/stamp_add_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/stamp/view/pages/stamp_detail_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/test_table/view/bloc/test_table_bloc.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/test_table/view/pages/test_table_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/test_table/view/pages/test_table_add_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/test_table/view/pages/test_table_edit_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/test_table/view/pages/test_table_qr_scan_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/test_table/view/pages/test_table_extend_handover_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/test_table/data/datasource/models/test_table_model.dart';
+import 'package:rtc_erp/features/workplace/app/signature/view/bloc/my_signature_bloc.dart';
+import 'package:rtc_erp/features/workplace/app/signature/view/pages/signature_screen.dart';
+import 'package:rtc_erp/features/workplace/app/signature/view/pages/signature_add_screen.dart';
+import 'package:rtc_erp/features/chatbot/view/bloc/rio_chat_bloc.dart';
+import 'package:rtc_erp/features/chatbot/view/pages/rio_chat_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/data/datasource/models/booking_vehicle_model.dart';
 import 'package:rtc_erp/features/workplace/app/favorites/view/pages/favorites_adding_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/view/bloc/booking_vehicle_bloc.dart';
@@ -169,7 +181,30 @@ import '../features/workplace/app/reports/view/tech/view/pages/tech_add_screen.d
 import '../features/workplace/app/reports/view/tech/view/pages/tech_detail_screen.dart';
 import '../features/workplace/app/reports/view/tech/view/pages/tech_edit_screen.dart';
 import '../features/workplace/app/reports/view/tech/view/pages/tech_screen.dart';
+import '../features/workplace/app/summary_work/leave/view/bloc/summary_leave_bloc.dart';
+import '../features/workplace/app/summary_work/in_out/view/bloc/summary_in_out_bloc.dart';
+import '../features/workplace/app/summary_work/summary_work_screen.dart';
+import '../features/workplace/app/summary_work/leave/view/pages/summary_leave_screen.dart';
+import '../features/workplace/app/summary_work/in_out/view/pages/summary_in_out_screen.dart';
+import '../features/workplace/app/summary_work/wfh/view/bloc/summary_wfh_bloc.dart';
+import '../features/workplace/app/summary_work/wfh/view/pages/summary_wfh_screen.dart';
+import '../features/workplace/app/summary_work/missed/view/bloc/summary_missed_bloc.dart';
+import '../features/workplace/app/summary_work/missed/view/pages/summary_missed_screen.dart';
+import '../features/workplace/app/summary_work/overnight/view/bloc/summary_overnight_bloc.dart';
+import '../features/workplace/app/summary_work/overnight/view/pages/summary_overnight_screen.dart';
+import '../features/workplace/app/summary_work/overtime/view/bloc/summary_overtime_bloc.dart';
+import '../features/workplace/app/summary_work/overtime/view/pages/summary_overtime_screen.dart';
+import '../features/workplace/app/warehouse/enums/warehouse_type.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_area_screen.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/warehouse_demo_screen.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/models/sale_gdn_model.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/pages/sale_gdn_detail_screen.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/bloc/sale_gdn_bloc.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/pages/sale_gdn_screen.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/warehouse_sale_screen.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_agv/view/pages/warehouse_agv_screen.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_project/view/pages/warehouse_project_screen.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_test/view/pages/warehouse_test_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_screen.dart';
 import '../features/workplace/app/week_plan/view/bloc/week_plan_bloc.dart';
 import '../features/workplace/app/week_plan/view/pages/week_plan_add_screen.dart';
@@ -181,6 +216,9 @@ import '../features/workplace/app/week_plan/view/pages/week_plan_menu_screen.dar
 import '../features/workplace/app/week_plan/view/pages/week_plan_my_task_screen.dart';
 import '../features/workplace/app/week_plan/view/pages/week_plan_related_screen.dart';
 import '../features/workplace/app/week_plan/view/pages/week_plan_timeline_screen.dart';
+import '../features/celebration/view/pages/celebration_popup_screen.dart';
+import '../features/celebration/view/bloc/celebration_bloc.dart';
+import '../features/celebration/data/repository/celebration_repo.dart';
 import '../features/workplace/view/bloc/workspace_bloc.dart';
 
 class AppRouter {
@@ -456,8 +494,8 @@ class AppRouter {
             providers: [
               BlocProvider.value(value: getIt<SalaryBloc>()),
               BlocProvider.value(value: getIt<TimekeepingBloc>()),
-              // BlocProvider.value(value: getIt<FingerPrintBloc>()),
 
+              // BlocProvider.value(value: getIt<FingerPrintBloc>()),
             ],
             child: child,
           );
@@ -497,10 +535,7 @@ class AppRouter {
                 cardType = extra['cardType'] as SalaryCardType?;
                 month = extra['month'] as DateTime?;
               }
-              return SalaryCardDetailScreen(
-                cardType: cardType,
-                month: month,
-              );
+              return SalaryCardDetailScreen(cardType: cardType, month: month);
             },
           ),
         ],
@@ -1151,13 +1186,30 @@ class AppRouter {
         ],
       ),
 
-      //---(Stamp)---//
+      //---(Signature)---//
       ShellRoute(
         builder: (context, state, child) {
           return BlocProvider.value(
-            value: getIt<StampBloc>(),
+            value: getIt<MySignatureBloc>(),
             child: child,
           );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.signature,
+            builder: (context, state) => const SignatureScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.signatureAdd,
+            builder: (context, state) => const SignatureAddScreen(),
+          ),
+        ],
+      ),
+
+      //---(Stamp)---//
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(value: getIt<StampBloc>(), child: child);
         },
         routes: [
           GoRoute(
@@ -1172,9 +1224,7 @@ class AppRouter {
                 return StampAddScreen(payload: extra);
               }
               if (extra is StampItem) {
-                return StampAddScreen(
-                  payload: StampRoutePayload(item: extra),
-                );
+                return StampAddScreen(payload: StampRoutePayload(item: extra));
               }
               return const StampAddScreen();
             },
@@ -1187,9 +1237,115 @@ class AppRouter {
                 return StampDetailScreen(payload: extra);
               }
               if (extra is StampItem) {
-                return StampDetailScreen(payload: StampRoutePayload(item: extra));
+                return StampDetailScreen(
+                  payload: StampRoutePayload(item: extra),
+                );
               }
               return const StampDetailScreen(payload: StampRoutePayload());
+            },
+          ),
+        ],
+      ),
+
+      //---(Test Table)---//
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(value: getIt<TestTableBloc>(), child: child);
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.testTable,
+            builder: (context, state) => const TestTableScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.testTableAdd,
+            builder: (context, state) {
+              final raw = state.uri.queryParameters['testTableId'];
+              final id = int.tryParse(raw ?? '');
+              return TestTableAddScreen(prefilledTestTableId: id);
+            },
+          ),
+          GoRoute(
+            path: RouteNames.testTableQrScan,
+            builder: (context, state) => const TestTableQrScanScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.testTableEdit,
+            builder: (context, state) {
+              final registrationId = int.tryParse(
+                state.uri.queryParameters['registrationId'] ?? '',
+              );
+              final cardItem = state.extra as TestCardItem?;
+              if (registrationId == null || registrationId == 0) {
+                return Scaffold(
+                  appBar: AppBar(title: const Text('Chỉnh sửa đăng ký bàn test')),
+                  body: const Center(
+                    child: Text('Không tìm thấy mã phiếu đăng ký.'),
+                  ),
+                );
+              }
+              return TestTableEditScreen(
+                registrationId: registrationId,
+                cardItem: cardItem,
+              );
+            },
+          ),
+          GoRoute(
+            path: RouteNames.testTableExtendHandover,
+            builder: (context, state) {
+              final registrationId = int.tryParse(
+                state.uri.queryParameters['registrationId'] ?? '',
+              );
+              final cardItem = state.extra as TestCardItem?;
+              if (registrationId == null ||
+                  registrationId == 0 ||
+                  cardItem == null) {
+                return Scaffold(
+                  appBar: AppBar(title: const Text('Gia hạn / Bàn giao')),
+                  body: const Center(
+                    child: Text('Không tìm thấy phiếu đăng ký.'),
+                  ),
+                );
+              }
+              // Guard: nếu phiếu đã có 2 lần (entry trong DetailsJson)
+              // thì không cho vào màn gia hạn / bàn giao nữa.
+              final entryCount = countDetailsJsonEntries(cardItem.detailsJson);
+              if (entryCount >= 2) {
+                return Scaffold(
+                  appBar: AppBar(title: const Text('Gia hạn / Bàn giao')),
+                  body: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(24),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Icon(
+                            Icons.block_outlined,
+                            size: 48,
+                            color: Colors.grey,
+                          ),
+                          const SizedBox(height: 12),
+                          Text(
+                            'Phiếu đã có $entryCount lần đăng ký, '
+                            'không thể gia hạn / bàn giao thêm.',
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(fontSize: 15),
+                          ),
+                          const SizedBox(height: 16),
+                          ElevatedButton(
+                            onPressed: () => context.pop(),
+                            child: const Text('Quay lại'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              }
+              return TestTableExtendHandoverScreen(
+                registrationId: registrationId,
+                cardItem: cardItem,
+              );
             },
           ),
         ],
@@ -1198,10 +1354,7 @@ class AppRouter {
       //---(Week Plan)---//
       ShellRoute(
         builder: (context, state, child) {
-          return BlocProvider.value(
-            value: getIt<WeekPlanBloc>(),
-            child: child,
-          );
+          return BlocProvider.value(value: getIt<WeekPlanBloc>(), child: child);
         },
         routes: [
           GoRoute(
@@ -1234,9 +1387,7 @@ class AppRouter {
           ),
           GoRoute(
             path: RouteNames.weekplanAdd,
-            builder: (context, state) => WeekPlanAddScreen(
-              extra: state.extra,
-            ),
+            builder: (context, state) => WeekPlanAddScreen(extra: state.extra),
           ),
           GoRoute(
             path: RouteNames.weekplanDetail,
@@ -1250,10 +1401,7 @@ class AppRouter {
               } else if (extra is int) {
                 taskId = extra;
               }
-              return WeekPlanDetailScreen(
-                taskId: taskId,
-                extra: addExtra,
-              );
+              return WeekPlanDetailScreen(taskId: taskId, extra: addExtra);
             },
           ),
           // Legacy route - redirect to menu
@@ -1267,10 +1415,7 @@ class AppRouter {
       // Poll
       ShellRoute(
         builder: (context, state, child) {
-          return BlocProvider.value(
-            value: getIt<PollBloc>(),
-            child: child,
-          );
+          return BlocProvider.value(value: getIt<PollBloc>(), child: child);
         },
         routes: [
           GoRoute(
@@ -1308,7 +1453,8 @@ class AppRouter {
             builder: (context, state) {
               final extra = state.extra as Map<String, dynamic>?;
               final documentId = extra?['documentId'] as int? ?? 0;
-              final documentName = extra?['documentName'] as String? ?? 'Chi tiết biểu mẫu';
+              final documentName =
+                  extra?['documentName'] as String? ?? 'Chi tiết biểu mẫu';
               return GeneralFormDetailScreen(
                 documentId: documentId,
                 documentName: documentName,
@@ -1435,9 +1581,197 @@ class AppRouter {
         builder: (context, state) => const WarehouseScreen(),
       ),
 
+      // Warehouse Sale Area
       GoRoute(
-        path: RouteNames.warehouseArea,
-        builder: (context, state) => const WarehouseAreaScreen(),
+        path: RouteNames.warehouseSaleArea,
+        builder: (context, state) =>
+            const WarehouseAreaScreen(warehouseType: WarehouseType.sale),
+      ),
+
+      // Warehouse Demo Area
+      GoRoute(
+        path: RouteNames.warehouseDemoArea,
+        builder: (context, state) =>
+            const WarehouseAreaScreen(warehouseType: WarehouseType.demo),
+      ),
+
+      // Warehouse AGV Area
+      GoRoute(
+        path: RouteNames.warehouseAgvArea,
+        builder: (context, state) =>
+            const WarehouseAreaScreen(warehouseType: WarehouseType.agv),
+      ),
+
+      // Warehouse Project Area
+      GoRoute(
+        path: RouteNames.warehouseProjectArea,
+        builder: (context, state) =>
+            const WarehouseAreaScreen(warehouseType: WarehouseType.project),
+      ),
+
+      // Warehouse Test Area
+      GoRoute(
+        path: RouteNames.warehouseTestArea,
+        builder: (context, state) =>
+            const WarehouseAreaScreen(warehouseType: WarehouseType.test),
+      ),
+
+      // Warehouse Sale
+      GoRoute(
+        path: RouteNames.warehouseSale,
+        builder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>?;
+          return WarehouseSaleScreen(
+            areaId: extra?['areaId'] as String? ?? '',
+            areaName: extra?['areaName'] as String? ?? '',
+          );
+        },
+      ),
+
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(value: getIt<SaleGdnBloc>(), child: child);
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.warehouseSaleGdn,
+            builder: (context, state) {
+              final extra = state.extra as Map<String, dynamic>?;
+              return SaleGdnScreen(areaId: extra?['areaId'] as String?);
+            },
+          ),
+          GoRoute(
+            path: RouteNames.warehouseSaleGdnDetail,
+            builder: (context, state) {
+              final extra = state.extra as Map<String, dynamic>?;
+              final billId = extra?['billId'] as int? ?? 0;
+              final bill = extra?['bill'] as BillExporResponse?;
+              return SaleGdnDetailScreen(billId: billId, bill: bill);
+            },
+          ),
+        ],
+      ),
+
+      // Warehouse Demo
+      GoRoute(
+        path: RouteNames.warehouseDemo,
+        builder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>?;
+          return WarehouseDemoScreen(
+            areaId: extra?['areaId'] as String? ?? '',
+            areaName: extra?['areaName'] as String? ?? '',
+          );
+        },
+      ),
+
+      // Warehouse AGV
+      GoRoute(
+        path: RouteNames.warehouseAgv,
+        builder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>?;
+          return WarehouseAgvScreen(
+            areaId: extra?['areaId'] as String? ?? '',
+            areaName: extra?['areaName'] as String? ?? '',
+          );
+        },
+      ),
+
+      // Warehouse Project
+      GoRoute(
+        path: RouteNames.warehouseProject,
+        builder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>?;
+          return WarehouseProjectScreen(
+            areaId: extra?['areaId'] as String? ?? '',
+            areaName: extra?['areaName'] as String? ?? '',
+          );
+        },
+      ),
+
+      // Warehouse Test
+      GoRoute(
+        path: RouteNames.warehouseTest,
+        builder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>?;
+          return WarehouseTestScreen(
+            areaId: extra?['areaId'] as String? ?? '',
+            areaName: extra?['areaName'] as String? ?? '',
+          );
+        },
+      ),
+
+      //---(Summary Work)---//
+      GoRoute(
+        path: RouteNames.summarywork,
+        builder: (context, state) => const SummaryWorkScreen(),
+      ),
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(
+            value: getIt<SummaryLeaveBloc>(),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.summaryWorkLeaving,
+            builder: (context, state) => const SummaryLeaveScreen(),
+          ),
+        ],
+      ),
+      GoRoute(
+        path: RouteNames.summaryWorkInOut,
+        builder: (context, state) => BlocProvider.value(
+          value: getIt<SummaryInOutBloc>(),
+          child: const SummaryInOutScreen(),
+        ),
+      ),
+      GoRoute(
+        path: RouteNames.summaryWorkWfh,
+        builder: (context, state) => BlocProvider.value(
+          value: getIt<SummaryWfhBloc>(),
+          child: const SummaryWfhScreen(),
+        ),
+      ),
+      GoRoute(
+        path: RouteNames.summaryWorkFingerprint,
+        builder: (context, state) => BlocProvider.value(
+          value: getIt<SummaryMissedBloc>(),
+          child: const SummaryMissedScreen(),
+        ),
+      ),
+      GoRoute(
+        path: RouteNames.summaryWorkOvernight,
+        builder: (context, state) => BlocProvider.value(
+          value: getIt<SummaryOvernightBloc>(),
+          child: const SummaryOvernightScreen(),
+        ),
+      ),
+      GoRoute(
+        path: RouteNames.summaryWorkOvertime,
+        builder: (context, state) => BlocProvider.value(
+          value: getIt<SummaryOvertimeBloc>(),
+          child: const SummaryOvertimeScreen(),
+        ),
+      ),
+
+      //---(Chatbot - Rio Chat)---//
+      GoRoute(
+        path: RouteNames.chatbot,
+        builder: (context, state) => BlocProvider.value(
+          value: getIt<RioChatBloc>(),
+          child: const RioChatScreen(),
+        ),
+      ),
+
+      // Celebration popup (birthday/seniority)
+      GoRoute(
+        path: RouteNames.celebration,
+        builder: (context, state) => BlocProvider(
+          create: (_) => CelebrationBloc(getIt<CelebrationRepo>())
+            ..add(const CelebrationEvent.checkBirthdaySeniority()),
+          child: const CelebrationPopupScreen(),
+        ),
       ),
     ],
   );

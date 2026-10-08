@@ -67,6 +67,10 @@ class BookingVehicleState extends BaseBlocState {
   /// Approver được chọn từ bottom sheet — dùng thẳng cho ApprovedTBP payload.
   final int? selectedApproverEmployeeId;
 
+  /// Danh sách ID phòng ban Sale, lấy từ API `/BusinessConfig/get-department-ids?configType=1`.
+  /// Nếu departmentId của user nằm trong danh sách này → được phép chọn "Chủ động phương tiện".
+  final List<int> saleDepartmentIds;
+
   const BookingVehicleState({
     required super.status,
     super.message,
@@ -102,6 +106,7 @@ class BookingVehicleState extends BaseBlocState {
     this.infoFieldValues = const {},
     this.bookingTypeGroup = 0,
     this.selectedApproverEmployeeId,
+    this.saleDepartmentIds = const [],
   });
 
   factory BookingVehicleState.init() => const BookingVehicleState(
@@ -136,6 +141,7 @@ class BookingVehicleState extends BaseBlocState {
     infoFieldValues: {},
     bookingTypeGroup: 0,
     selectedApproverEmployeeId: null,
+    saleDepartmentIds: const [],
   );
 
   @override
@@ -172,5 +178,6 @@ class BookingVehicleState extends BaseBlocState {
     infoFieldValues,
     bookingTypeGroup,
     selectedApproverEmployeeId,
+    saleDepartmentIds,
   ];
 }

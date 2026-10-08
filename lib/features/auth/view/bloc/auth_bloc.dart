@@ -20,6 +20,7 @@ import '../../data/datasource/models/auth_model.dart';
 import '../../data/datasource/models/user_model.dart';
 import '../../data/repository/auth_repo.dart';
 import '../../data/repository/auth_repository.dart';
+import '../../../celebration/view/widgets/celebration_helper.dart';
 import '../../../../common/logger/logger.dart';
 
 part 'auth_event.dart';
@@ -238,6 +239,7 @@ class AuthBloc extends BaseBloc<AuthEvent, AuthState> {
     AuthScheduledLogout.cancel();
     await AuthRepository.clearAll(log: _log);
     PermissionService.reset();
+    CelebrationHelper.resetGuard();
 
     if (emit.isDone) return;
 

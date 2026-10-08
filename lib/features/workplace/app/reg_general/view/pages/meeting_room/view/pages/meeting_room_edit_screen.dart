@@ -84,8 +84,10 @@ class _MeetingRoomEditScreenState
         final code = user.code?.trim();
 
         // ✅ Có cả code + name
-        if (code != null && code.isNotEmpty &&
-            name != null && name.isNotEmpty) {
+        if (code != null &&
+            code.isNotEmpty &&
+            name != null &&
+            name.isNotEmpty) {
           return '$code - $name';
         }
 
@@ -167,7 +169,8 @@ class _MeetingRoomEditScreenState
 
               // Prefill phòng ban khi danh sách departs đã tới, nhưng chỉ khi field còn rỗng.
               final currentDepartValue = departField?.value;
-              final isDepartEmpty = currentDepartValue == null ||
+              final isDepartEmpty =
+                  currentDepartValue == null ||
                   currentDepartValue.toString().trim().isEmpty;
 
               if (departField != null && isDepartEmpty) {
@@ -236,7 +239,8 @@ class _MeetingRoomEditScreenState
                   prev.content != curr.content,
               builder: (context, state) {
                 final detail = state.detailMeetingRoom;
-                final canEdit = detail != null && state.employeeId == detail.employeeId;
+                final canEdit =
+                    detail != null && state.employeeId == detail.employeeId;
 
                 return FormBuilder(
                   key: _formKey,
@@ -278,10 +282,19 @@ class _MeetingRoomEditScreenState
                                     format: DateFormat('dd/MM/yyyy'),
                                     isRequired: true,
                                     validator: (v) {
-                                      if (v == null) return 'Vui lòng chọn ngày';
+                                      if (v == null)
+                                        return 'Vui lòng chọn ngày';
                                       final today = DateTime.now();
-                                      final todayOnly = DateTime(today.year, today.month, today.day);
-                                      final pickedDate = DateTime(v.year, v.month, v.day);
+                                      final todayOnly = DateTime(
+                                        today.year,
+                                        today.month,
+                                        today.day,
+                                      );
+                                      final pickedDate = DateTime(
+                                        v.year,
+                                        v.month,
+                                        v.day,
+                                      );
                                       if (pickedDate.isBefore(todayOnly)) {
                                         return 'Không được chọn ngày trước hiện tại';
                                       }
@@ -317,34 +330,52 @@ class _MeetingRoomEditScreenState
                                           format: DateFormat('HH:mm'),
                                           isRequired: true,
                                           validator: (v) {
-                                            if (v == null) return 'Vui lòng chọn giờ bắt đầu';
-                                            if (v.hour < 8) return 'Giờ bắt đầu không được trước 08:00';
-                                            if (v.hour > 17 || (v.hour == 17 && v.minute > 0)) {
+                                            if (v == null)
+                                              return 'Vui lòng chọn giờ bắt đầu';
+                                            if (v.hour < 8)
+                                              return 'Giờ bắt đầu không được trước 08:00';
+                                            if (v.hour > 17 ||
+                                                (v.hour == 17 &&
+                                                    v.minute > 0)) {
                                               return 'Giờ bắt đầu không được quá 17:00';
                                             }
                                             return null;
                                           },
                                           onChanged: (v) {
-                                            if (v != null && _selectedDate != null) {
-                                              final newStart = combine(_selectedDate!, v);
+                                            if (v != null &&
+                                                _selectedDate != null) {
+                                              final newStart = combine(
+                                                _selectedDate!,
+                                                v,
+                                              );
 
                                               _startTime = newStart;
 
                                               // ❗ reset endTime nếu invalid
-                                              if (_endTime != null && !_endTime!.isAfter(_startTime!)) {
+                                              if (_endTime != null &&
+                                                  !_endTime!.isAfter(
+                                                    _startTime!,
+                                                  )) {
                                                 _endTime = null;
-                                                _isEndTimeManuallyChanged = false;
+                                                _isEndTimeManuallyChanged =
+                                                    false;
 
-                                                _formKey.currentState?.fields['end_time_picker']
+                                                _formKey
+                                                    .currentState
+                                                    ?.fields['end_time_picker']
                                                     ?.didChange(null);
                                               }
 
                                               // ✅ auto +2h nếu user chưa chỉnh endTime
                                               if (!_isEndTimeManuallyChanged) {
-                                                final newEnd = newStart.add(const Duration(hours: 2));
+                                                final newEnd = newStart.add(
+                                                  const Duration(hours: 2),
+                                                );
                                                 _endTime = newEnd;
 
-                                                _formKey.currentState?.fields['end_time_picker']
+                                                _formKey
+                                                    .currentState
+                                                    ?.fields['end_time_picker']
                                                     ?.didChange(newEnd);
                                               }
                                             }
@@ -366,16 +397,28 @@ class _MeetingRoomEditScreenState
                                           format: DateFormat('HH:mm'),
                                           isRequired: true,
                                           validator: (v) {
-                                            if (v == null) return 'Vui lòng chọn giờ kết thúc';
-                                            if (_startTime != null && !v.isAfter(_startTime!)) {
-                                              return 'Giờ kết thúc phải lớn hơn giờ bắt đầu';
+                                            if (v == null)
+                                              return 'Vui lòng chọn giờ kết thúc';
+                                            if (_startTime != null) {
+                                              final startMinutes =
+                                                  _startTime!.hour * 60 +
+                                                  _startTime!.minute;
+                                              final endMinutes =
+                                                  v.hour * 60 + v.minute;
+                                              if (endMinutes <= startMinutes) {
+                                                return 'Giờ kết thúc phải lớn hơn giờ bắt đầu';
+                                              }
                                             }
                                             return null;
                                           },
                                           onChanged: (v) {
-                                            if (v != null && _selectedDate != null) {
+                                            if (v != null &&
+                                                _selectedDate != null) {
                                               _isEndTimeManuallyChanged = true;
-                                              _endTime = combine(_selectedDate!, v);
+                                              _endTime = combine(
+                                                _selectedDate!,
+                                                v,
+                                              );
                                             }
                                           },
                                         ),
@@ -414,7 +457,8 @@ class _MeetingRoomEditScreenState
                                         icon: Icons.apartment,
                                         isRequired: true,
                                         validator: (v) {
-                                          if (v == null || v.isEmpty) return 'Vui lòng chọn phòng ban';
+                                          if (v == null || v.isEmpty)
+                                            return 'Vui lòng chọn phòng ban';
                                           return null;
                                         },
                                       ),
@@ -462,7 +506,8 @@ class _MeetingRoomEditScreenState
                                         readOnly: true,
                                         isRequired: true,
                                         validator: (v) {
-                                          if (v == null || v.isEmpty) return 'Vui lòng chọn phòng họp';
+                                          if (v == null || v.isEmpty)
+                                            return 'Vui lòng chọn phòng họp';
                                           return null;
                                         },
                                       ),
@@ -482,7 +527,8 @@ class _MeetingRoomEditScreenState
                                     controller: _contentController,
                                     isRequired: true,
                                     validator: (v) {
-                                      if (v == null || v.trim().isEmpty) return 'Vui lòng nhập nội dung cuộc họp';
+                                      if (v == null || v.trim().isEmpty)
+                                        return 'Vui lòng nhập nội dung cuộc họp';
                                       return null;
                                     },
                                     onChanged: (v) {
@@ -510,7 +556,8 @@ class _MeetingRoomEditScreenState
                             onSubmit: () {
                               FocusScope.of(context).unfocus();
 
-                              if (!(_formKey.currentState?.saveAndValidate() ?? false)) {
+                              if (!(_formKey.currentState?.saveAndValidate() ??
+                                  false)) {
                                 return;
                               }
 
@@ -545,7 +592,7 @@ class _MeetingRoomEditScreenState
               child: AbsorbPointer(
                 absorbing: true,
                 child: Container(
-                  color: Colors.black.withValues(alpha:0.45),
+                  color: Colors.black.withValues(alpha: 0.45),
                   alignment: Alignment.center,
                   child: Lottie.asset(
                     'assets/lotties/Loading.json',

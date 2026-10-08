@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../data/datasource/models/stationery_model.dart';
 
-/// Card một dòng VPP trong màn chi tiết.
+/// Card một dòng VPP trong màn chi tiết, gồm SL/ĐVT và Reason/Note.
 class StationeryDetailCard extends StatelessWidget {
   const StationeryDetailCard({
     super.key,

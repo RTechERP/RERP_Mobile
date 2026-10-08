@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'app.dart';
@@ -14,6 +15,12 @@ import 'common/app/app_initializer.dart';
 Future<void> bootstrap(String envFile) async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppInitializer.init(envFile);
+
+  // Chặn runtime fetching: mọi Google Font phải có sẵn trong `assets/fonts`
+  // (đặt tên `<Family>-<Weight>.ttf`). Nếu thiếu thì báo lỗi ngay thay vì
+  // âm thầm gọi mạng — popup chúc mừng hiện ngay sau login nên không thể
+  // chờ request font chậm.
+  GoogleFonts.config.allowRuntimeFetching = false;
 
   Bloc.observer = const AppBlocObserver();
   await EasyLocalization.ensureInitialized();
