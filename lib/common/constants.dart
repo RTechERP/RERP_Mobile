@@ -116,8 +116,7 @@ class ApiEndPoint {
 
   static const String saveSaleAdminReport = '/DailyReportSaleAdmin/save-data';
 
-  static const String saveReportAccounting =
-      '/DailyReportAccounting/save-data';
+  static const String saveReportAccounting = '/DailyReportAccounting/save-data';
 
   static const String getAdminTypeReport =
       '/DailyReportSaleAdmin/get-reporttypes';
@@ -131,14 +130,11 @@ class ApiEndPoint {
   static const String getSaleAdminById = '/DailyReportSaleAdmin/get-details';
 
   // Accountant
-  static const String getAccountantReport =
-      '/DailyReportAccounting/get-data';
+  static const String getAccountantReport = '/DailyReportAccounting/get-data';
 
-  static const String deleteReportAccounting =
-      '/DailyReportAccounting/delete';
+  static const String deleteReportAccounting = '/DailyReportAccounting/delete';
 
-  static const String getAccountantById =
-      '/DailyReportAccounting/get-by-id';
+  static const String getAccountantById = '/DailyReportAccounting/get-by-id';
 
   static const String getMeetingRoom = '/bookingroom/get-booking-room';
 
@@ -196,8 +192,7 @@ class ApiEndPoint {
   static const String getSummaryOverTimePersonByDept =
       '/EmployeeOverTime/get-summary-over-time-person-by-dept';
 
-  static const String getMissed =
-      '/EmployeeNoFingerprint/person';
+  static const String getMissed = '/EmployeeNoFingerprint/person';
 
   static const String saveMissed = '/EmployeeNoFingerprint/savedata';
 
@@ -205,14 +200,14 @@ class ApiEndPoint {
       '/EmployeeNoFingerprint/check-duplicate-enf';
 
   static const String getLeave = '/EmployeeOnLeave/get-onleave-person';
-  static const String getLeaveSummaryWork = '/EmployeeOnLeave/get-employee-onleave-person';
+  static const String getLeaveSummaryWork =
+      '/EmployeeOnLeave/get-employee-onleave-person';
   static const String getLeavePhaseMulti = '/EmployeeOnLeave/get-multi';
   static const String saveLeave = '/EmployeeOnLeave/save-data';
   static const String getEmployeeEarlyLatePerson =
       '/EmployeeEarlyLate/get-employee-early-late-person';
 
-  static const String getEmployeeWFHPerson =
-      '/EmployeeWFH/get-wfh-person';
+  static const String getEmployeeWFHPerson = '/EmployeeWFH/get-wfh-person';
 
   static const String getLeaveTime =
       '/employeeonleave/list-summary-employee-on-leave';
@@ -251,8 +246,7 @@ class ApiEndPoint {
   static const String getVehicleBookingsForBussiness =
       '/EmployeeBussiness/get-vehicle-bookings-for-bussiness';
 
-  static const String getOvernight =
-      '/EmployeeNightShift/person';
+  static const String getOvernight = '/EmployeeNightShift/person';
 
   static const String saveOvernight = '/EmployeeNightShift/save-data';
 
@@ -442,7 +436,8 @@ class ApiEndPoint {
   static const String getWarehouses = '/billexport/get-warehouses';
   static const String getProductGroupNew = '/ProductGroup/product-group-new';
   static const String getProductGroup = '/BillExport/get-product-group';
-  static const String getViewExportDetail = '/BillExport/get-view-export-detail';
+  static const String getViewExportDetail =
+      '/BillExport/get-view-export-detail';
   static const String getBillExportFiles = '/BillExport/files';
   static const String uploadBillExportFiles = '/BillExport/upload-files';
   static const String deleteBillExportFile = '/BillExport/delete-file/{fileId}';
@@ -475,11 +470,11 @@ class ApiEndPoint {
   static const String getEslTestTable = '/ESLTestTable/getall';
 
   /// Máy test theo bàn: GET /ESLTestMachine/get-by-table?testTableId=X.
-  static const String getTestMachineByTable =
-      '/ESLTestMachine/get-by-table';
+  static const String getTestMachineByTable = '/ESLTestMachine/get-by-table';
 
   /// Người duyệt: GET /ESLRegistration/get-all-user-approve.
-  static const String getAllUserApprove = '/ESLRegistration/get-all-user-approve';
+  static const String getAllUserApprove =
+      '/ESLRegistration/get-all-user-approve';
 
   /// Nhân viên: GET /Employee?status=&departmentid=&keyword=.
   static const String getEmployee = '/Employee';
@@ -512,4 +507,18 @@ class ApiEndPoint {
   ///          "approverID", "type" (1 = gia hạn, 2 = bàn giao) }`.
   static const String extendHandoverRegistration =
       '/ESLRegistration/extend-handover';
+
+  // Rio Chat
+  /// Gửi tin nhắn tới Rio Chat. API: POST /Rio/chat, body `{ message }`.
+  static const String rioChat = '/Rio/chat';
+
+  /// Lấy lịch sử các session chat. API: GET /Rio/chat-history.
+  static const String rioChatHistory = '/Rio/chat-history';
+
+  /// Chi tiết 1 session chat kèm messages. API: GET /Rio/chat-history/{id}.
+  static String rioChatHistoryDetail(int sessionId) =>
+      '/Rio/chat-history/$sessionId';
+
+  // Celebration (Birthday/Seniority)
+  static const String checkBirthdaySeniority = '/home/check-birthday-seniority';
 }

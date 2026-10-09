@@ -30,6 +30,10 @@ class FormLeftBorderCard extends StatelessWidget {
   /// Alignment
   final CrossAxisAlignment crossAxisAlignment;
 
+  /// Khi `true` (mặc định) card giãn full width — phù hợp form.
+  /// Đặt `false` để card bó theo chiều dài nội dung — phù hợp chat bubble.
+  final bool expand;
+
   const FormLeftBorderCard({
     super.key,
     required this.child,
@@ -43,12 +47,13 @@ class FormLeftBorderCard extends StatelessWidget {
     this.iconSize = 20,
     this.spacing = 8,
     this.crossAxisAlignment = CrossAxisAlignment.start,
+    this.expand = true,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
+      width: expand ? double.infinity : null,
       padding: padding,
       decoration: BoxDecoration(
         color: backgroundColor,

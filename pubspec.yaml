@@ -4,6 +4,7 @@ description: "RTC ERP"
 publish_to: 'none'
 
 version: 1.7.1+41
+version: 1.8.1+43
 
 environment:
   sdk: ^3.10.7
@@ -106,6 +107,9 @@ dependencies:
   smooth_sheets: ^1.0.0
   easy_stepper: ^1.0.1
   signature: ^5.5.0
+  confetti: ^0.8.0
+  google_fonts: ^6.2.1
+  audioplayers: ^6.1.0
 
 flutter_native_splash:
   color: "#FFFFFF"
@@ -154,6 +158,14 @@ flutter:
     # Images
     - assets/images/icons/logo/logo_app.png
     - assets/images/icons/logo/logo_splash.png
+    - assets/images/icons/apps/chatbot/speechless.png
+    - assets/images/icons/apps/chatbot/smile.png
+    - assets/images/icons/apps/chatbot/agree.png
+    - assets/images/icons/apps/chatbot/happy.png
+    - assets/images/icons/apps/chatbot/exciting.png
+    - assets/images/icons/apps/chatbot/questioning.png
+    - assets/images/icons/apps/chatbot/love.png
+    - assets/images/icons/apps/chatbot/angry.png
     - assets/images/icons/apps/reg_work/01.png
     - assets/images/icons/apps/reg_work/02.png
     - assets/images/icons/apps/reg_work/03.png
@@ -211,6 +223,10 @@ flutter:
     - assets/images/icons/apps/week_plan/89.png
     - assets/images/icons/apps/week_plan/90.png
     - assets/images/icons/apps/91.png
+    - assets/images/celebrations/birthday.png
+    - assets/images/celebrations/birthday.mp3
+    - assets/images/celebrations/seniority.png
+    - assets/images/celebrations/seniority.mp3
 
     # Trans
     - assets/trans/vi-VN.json
@@ -226,6 +242,15 @@ flutter:
     - assets/lotties/Loading.json
 
     # Fonts
+    # Tên file phải theo đúng convention của package google_fonts
+    # (<Family>-<Weight>.ttf) để package tự load từ asset, không gọi network.
+    - assets/fonts/DancingScript-Bold.ttf
+    - assets/fonts/Cinzel-Bold.ttf
+    # Lời chúc thâm niên — serif trang trọng, phủ đủ dấu tiếng Việt
+    # (Cinzel thiếu 13 dấu nên không dùng cho text tiếng Việt).
+    - assets/fonts/PlayfairDisplay-Regular.ttf
+    - assets/fonts/PlayfairDisplay-SemiBold.ttf
+    - assets/fonts/PlayfairDisplay-Bold.ttf
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

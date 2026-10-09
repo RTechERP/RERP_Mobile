@@ -258,4 +258,7 @@ class RouteNames {
 
   // Chatbot
   static const chatbot = '/chatbot';
+
+  // Celebration (Birthday / Seniority popup)
+  static const celebration = '/celebration';
 }

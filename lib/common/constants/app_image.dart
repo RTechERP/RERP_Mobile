@@ -82,4 +82,21 @@ class AppImages {
 
   static const signature = 'assets/images/icons/apps/week_plan/90.png';
   static const test_table = 'assets/images/icons/apps/91.png';
+
+  static const chatbot_speechless = 'assets/images/icons/apps/chatbot/speechless.png';
+  static const chatbot_smile = 'assets/images/icons/apps/chatbot/smile.png';
+  static const chatbot_agree = 'assets/images/icons/apps/chatbot/agree.png';
+  static const chatbot_happy = 'assets/images/icons/apps/chatbot/happy.png';
+  static const chatbot_exciting = 'assets/images/icons/apps/chatbot/exciting.png';
+  static const chatbot_questioning = 'assets/images/icons/apps/chatbot/questioning.png';
+  static const chatbot_love = 'assets/images/icons/apps/chatbot/love.png';
+  static const chatbot_angry = 'assets/images/icons/apps/chatbot/angry.png';
+
+  static const birthday = 'assets/images/celebrations/birthday.png';
+  static const birthday_music = 'images/celebrations/birthday.mp3';
+  static const seniority = 'assets/images/celebrations/seniority.png';
+
+  /// Nhạc nền cho overlay thâm niên. Lưu ý path bỏ tiền tố `assets/`
+  /// vì `AssetSource` tự thêm, giống `birthday_music`.
+  static const seniority_music = 'images/celebrations/seniority.mp3';
 }
