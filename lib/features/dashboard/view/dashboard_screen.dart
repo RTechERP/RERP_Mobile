@@ -13,7 +13,6 @@ import '../../../common/utils/dialog/dialog_service.dart';
 import '../../../routes/route_names.dart';
 import '../../auth/view/bloc/auth_bloc.dart';
 import '../../celebration/view/widgets/celebration_helper.dart';
-import '../../contact/view/pages/contact_screen.dart';
 import '../../contact/contact/view/pages/contact_screen.dart';
 import '../../more/view/more_screen.dart';
 import '../../workplace/view/workspace_screen.dart';
