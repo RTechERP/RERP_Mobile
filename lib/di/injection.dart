@@ -578,12 +578,12 @@ void configureDependencies() {
     ),
   );
 
-  getIt.registerFactory<BookingGuestHouseBloc>(
-    () => BookingGuestHouseBloc(
-      getIt<BookingGuestHouseRepo>(),
-      getIt<LogUtils>(),
-    ),
-  );
+getIt.registerLazySingleton<BookingGuestHouseBloc>(
+  () => BookingGuestHouseBloc(
+    getIt<BookingGuestHouseRepo>(),
+    getIt<LogUtils>(),
+  ),
+);
 
   getIt.registerFactory<LunchBloc>(
     () => LunchBloc(getIt<LunchRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),

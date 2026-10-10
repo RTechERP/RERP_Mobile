@@ -6,7 +6,6 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../../../../base/widgets/base_scaffold.dart';
-import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../../common/utils/snack_bar_helper.dart';
@@ -21,7 +20,11 @@ import '../bloc/booking_guest_house_bloc.dart';
 import '../widgets/roommate_info_item.dart';
 
 class BookingGuestHouseAddScreen extends StatefulWidget {
-  const BookingGuestHouseAddScreen({super.key});
+  const BookingGuestHouseAddScreen({super.key, this.id});
+
+  /// ID phiếu cần chỉnh sửa. Khi null → thêm mới; khi có → load detail
+  /// để fill form và submit sẽ update (giữ nguyên ID trong payload).
+  final int? id;
 
   @override
   State<BookingGuestHouseAddScreen> createState() =>
@@ -29,13 +32,7 @@ class BookingGuestHouseAddScreen extends StatefulWidget {
 }
 
 class _BookingGuestHouseAddScreenState
-    extends
-        BaseState<
-          BookingGuestHouseAddScreen,
-          BookingGuestHouseEvent,
-          BookingGuestHouseState,
-          BookingGuestHouseBloc
-        > {
+    extends State<BookingGuestHouseAddScreen> {
   final _formKey = GlobalKey<FormBuilderState>();
 
   //---(Controllers cho các field read-only do chọn từ picker/sheet)---//
@@ -45,12 +42,6 @@ class _BookingGuestHouseAddScreenState
   final _projectCtrl = TextEditingController();
   final _tbpCtrl = TextEditingController();
   final _provinceCtrl = TextEditingController();
-
-  //---(Lookup data)---//
-  List<ProjectFilterItem> _projects = const [];
-  List<EmployeeFilterItem> _employees = const [];
-  List<ProvinceFilterItem> _provinces = const [];
-  bool _loadingLookups = false;
 
   //---(Current user dùng để auto-fill người ở 1 + RegisterID payload)---//
   /// EmployeeID của user đang đăng nhập — dùng làm `RegisterID` trong payload.
@@ -81,13 +72,29 @@ class _BookingGuestHouseAddScreenState
   /// Tăng mỗi lần add/delete để force rebuild tất cả RoommateInfoItem.
   int _roommateFormGeneration = 0;
 
+  /// Cờ đánh dấu đã fill form từ detail (edit mode) chưa — tránh gọi
+  /// _populateFromDetail nhiều lần khi BlocBuilder rebuild.
+  bool _populated = false;
+
   @override
   void initState() {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _loadLookups();
-      _loadCurrentUser();
+      // Add mode: auto-fill currentUser vào slip 0.
+      // 3 API lookup (projects/employees/provinces) đã được list screen
+      // load sẵn qua loadFilters, share qua ShellRoute provider — chỉ cần
+      // đọc `state.projects/employees/provinces` ở bloc khi mở bottom sheet,
+      // KHÔNG gọi API ở đây.
+      if (widget.id == null) {
+        _loadCurrentUser();
+      } else {
+        // Edit mode: load detail để fill form. Lookup data dùng từ bloc state.
+        // Nếu mở thẳng edit mà chưa qua list (deep link), lookup sẽ rỗng
+        // → _populateFromDetail fallback text theo id.
+        final bloc = context.read<BookingGuestHouseBloc>();
+        bloc.add(BookingGuestHouseEvent.loadDetail(id: widget.id!));
+      }
     });
   }
 
@@ -101,24 +108,164 @@ class _BookingGuestHouseAddScreenState
     super.dispose();
   }
 
+  //---(Snack helper — thay cho BaseState.showMessage đã mất khi refactor)---//
+  void _showSnack(
+    String message, {
+    SnackBarType type = SnackBarType.success,
+  }) {
+    final helper = GetIt.I<SnackBarHelper>();
+    switch (type) {
+      case SnackBarType.error:
+        helper.showError(context, message);
+      case SnackBarType.info:
+        helper.showInfo(context, message);
+      default:
+        helper.showSuccess(context, message);
+    }
+  }
+
   //---(Loaders)---//
 
-  Future<void> _loadLookups() async {
-    if (_loadingLookups) return;
-    setState(() => _loadingLookups = true);
-    final repo = GetIt.I<BookingGuestHouseRepo>();
-
-    final projectsRes = await repo.getProjects();
-    final employeesRes = await repo.getEmployees();
-    final provincesRes = await repo.getProvinces();
-
+  /// Fill form từ detail khi edit mode (widget.id != null).
+  /// Resolve project/tỉnh theo id từ state.projects/provinces; resolve
+  /// roommate Employee theo id từ state.employees. TBP Duyệt lấy thẳng
+  /// info.approvedTBP (employeeId) → lookup tên trong employees.
+  ///
+  /// Dữ liệu lookup (projects/employees/provinces) đã được list screen load
+  /// sẵn qua loadFilters khi mở tính năng. Nếu mở thẳng edit mà chưa qua
+  /// list (deep link), state có thể rỗng → fallback text theo id.
+  void _populateFromDetail(BookingGuestHouseDetailData data) {
     if (!mounted) return;
-    setState(() {
-      _projects = projectsRes.fold((_) => <ProjectFilterItem>[], (d) => d);
-      _employees = employeesRes.fold((_) => <EmployeeFilterItem>[], (d) => d);
-      _provinces = provincesRes.fold((_) => <ProvinceFilterItem>[], (d) => d);
-      _loadingLookups = false;
-    });
+    final bloc = context.read<BookingGuestHouseBloc>();
+    final state = bloc.state;
+    final info = data.info;
+
+    // 1) Project / Province — match theo id.
+    _selectedProject = _findProject(info.projectId, state.projects);
+    _selectedProvince = _findProvince(info.provinceId, state.provinces);
+    _selectedTbp = _findEmployee(info.approvedTBP, state.employees);
+
+    // 2) Date.
+    _startDate = info.startDate;
+    _endDate = info.endDate;
+
+    // 3) Controllers text.
+    _startDateCtrl.text =
+        info.startDate == null ? '' : DateFormat('dd/MM/yyyy').format(info.startDate!);
+    _endDateCtrl.text =
+        info.endDate == null ? '' : DateFormat('dd/MM/yyyy').format(info.endDate!);
+    _projectCtrl.text = _selectedProject == null
+        ? (info.projectId == null || info.projectId == 0
+            ? ''
+            : 'Dự án #${info.projectId}')
+        : _projectText(_selectedProject!);
+    _tbpCtrl.text = _selectedTbp?.fullName ??
+        (info.approvedTBP == null || info.approvedTBP == 0
+            ? ''
+            : 'NV #${info.approvedTBP}');
+    _provinceCtrl.text = _selectedProvince?.provinceName ??
+        (info.provinceId == null || info.provinceId == 0
+            ? ''
+            : 'Tỉnh #${info.provinceId}');
+
+    // 4) FormBuilder value.
+    final patch = <String, dynamic>{
+      'start_date': _startDateCtrl.text,
+      'start_date_text': _startDateCtrl.text,
+      'end_date': _endDateCtrl.text,
+      'end_date_text': _endDateCtrl.text,
+      'project': _projectCtrl.text,
+      'project_text': _projectCtrl.text,
+      'tbp': _tbpCtrl.text,
+      'tbp_text': _tbpCtrl.text,
+      'province': _provinceCtrl.text,
+      'province_text': _provinceCtrl.text,
+      'address': info.address ?? '',
+      'address_text': info.address ?? '',
+      'note': info.note ?? '',
+      'note_text': info.note ?? '',
+    };
+    _formKey.currentState?.patchValue(patch);
+
+    // 5) Roommate list — từ data.persons.
+    final persons = data.persons;
+    _roommateLineCount = persons.isEmpty ? 1 : persons.length;
+    _selectedRoommateEmployees.clear();
+    _infoFieldValues = {};
+
+    for (var i = 0; i < _roommateLineCount; i++) {
+      // Nếu vượt quá số người trong response → tạo dòng trống.
+      final p = i < persons.length ? persons[i] : null;
+      final emp = p == null
+          ? null
+          : _findEmployee(p.employeeId, state.employees);
+      _selectedRoommateEmployees[i] = emp;
+
+      final fullName = (p?.fullName ?? '').trim();
+      final code = (p?.employeeCode ?? '').trim();
+      final phone = _phoneToString(p?.phoneNumber);
+      final dept = (p?.departmentName ?? '').trim();
+      final note = (p?.note ?? '').trim();
+
+      _infoFieldValues = {
+        ..._infoFieldValues,
+        'roommate_full_name_$i': fullName,
+        'roommate_full_name_text_$i': fullName,
+        'roommate_roommate_name_$i': fullName,
+        'roommate_roommate_name_text_$i': fullName,
+        'roommate_code_$i': code,
+        'roommate_code_text_$i': code,
+        'roommate_phone_$i': phone,
+        'roommate_phone_text_$i': phone,
+        'roommate_department_$i': dept,
+        'roommate_department_text_$i': dept,
+        'roommate_note_$i': note,
+        'roommate_note_text_$i': note,
+        if (p?.id != null) 'roommate_detail_id_$i': p!.id,
+        if (emp?.id != null) 'roommate_employee_id_$i': emp!.id,
+      };
+    }
+    _roommateFormGeneration++;
+  }
+
+  ProjectFilterItem? _findProject(int? id, List<ProjectFilterItem> items) {
+    if (id == null) return null;
+    for (final p in items) {
+      if (p.id == id) return p;
+    }
+    return null;
+  }
+
+  ProvinceFilterItem? _findProvince(int? id, List<ProvinceFilterItem> items) {
+    if (id == null) return null;
+    for (final p in items) {
+      if (p.id == id) return p;
+    }
+    return null;
+  }
+
+  EmployeeFilterItem? _findEmployee(int? id, List<EmployeeFilterItem> items) {
+    if (id == null) return null;
+    for (final e in items) {
+      if (e.id == id) return e;
+    }
+    return null;
+  }
+
+  /// Convert dynamic phone về String. SĐT thiếu số 0 đầu → prepend '0'
+  /// (giống helper trong registration_tab).
+  String _phoneToString(dynamic v) {
+    if (v == null) return '';
+    String s;
+    if (v is String) {
+      s = v.trim();
+    } else {
+      s = v.toString();
+    }
+    if (s.length == 9 && !s.startsWith('0')) {
+      return '0$s';
+    }
+    return s;
   }
 
   Future<void> _loadCurrentUser() async {
@@ -183,10 +330,12 @@ class _BookingGuestHouseAddScreenState
   //---(UI)---//
 
   @override
+  Widget build(BuildContext context) => renderUI(context);
+
   Widget renderUI(BuildContext context) {
     return BaseScaffold(
       appBar: AppBarCommon(
-        title: const Text('Đặt phòng nhà nghỉ'),
+        title: Text(widget.id == null ? 'Đặt phòng nhà nghỉ' : 'Chỉnh sửa đặt phòng'),
         onBackTap: () => context.pop(),
       ),
       body: MultiBlocListener(
@@ -197,10 +346,11 @@ class _BookingGuestHouseAddScreenState
             listener: (context, state) {
               // Submit thành công → pop về màn list, list sẽ tự reload qua
               // BookingGuestHousePage.initState (đã chạy init() ngay khi vào).
-              showMessage(
-                context,
+              _showSnack(
                 state.lastSubmittedId != null
-                    ? 'Lưu phiếu thành công (#${state.lastSubmittedId})'
+                    ? (widget.id == null
+                          ? 'Lưu phiếu thành công (#${state.lastSubmittedId})'
+                          : 'Chỉnh sửa phiếu thành công (#${state.lastSubmittedId})')
                     : 'Lưu phiếu thành công',
                 type: SnackBarType.success,
               );
@@ -216,8 +366,7 @@ class _BookingGuestHouseAddScreenState
                 !curr.submitSuccess &&
                 (curr.message ?? '').isNotEmpty,
             listener: (context, state) {
-              showMessage(
-                context,
+              _showSnack(
                 state.message ?? 'Lưu phiếu thất bại',
                 type: SnackBarType.error,
               );
@@ -226,20 +375,53 @@ class _BookingGuestHouseAddScreenState
         ],
         child: FormBuilder(
           key: _formKey,
-          child: Column(
-            children: [
-              Expanded(
-                child: ListView(
-                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
-                  children: [
-                    _buildRegistrationCard(),
-                    const SizedBox(height: 12),
-                    _buildRoommateCard(),
-                  ],
-                ),
-              ),
-              _buildBottomBar(),
-            ],
+          child: BlocBuilder<BookingGuestHouseBloc, BookingGuestHouseState>(
+            buildWhen: (prev, curr) =>
+                prev.isDetailLoading != curr.isDetailLoading ||
+                prev.detailData != curr.detailData ||
+                prev.projects != curr.projects ||
+                prev.employees != curr.employees ||
+                prev.provinces != curr.provinces,
+            builder: (context, state) {
+              // Edit mode: fill form 1 lần khi detail vừa có data + lookup đã
+              // load xong (tránh gọi trong build → setState trong build).
+              if (widget.id != null &&
+                  state.detailData != null &&
+                  !_populated) {
+                _populated = true;
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  if (!mounted) return;
+                  _populateFromDetail(state.detailData!);
+                });
+              }
+              // Edit mode: hiển thị spinner khi đang load detail lần đầu
+              // (tránh form rỗng flash ra trước khi patchValue xong).
+              if (widget.id != null &&
+                  state.isDetailLoading &&
+                  state.detailData == null) {
+                return const Center(
+                  child: Padding(
+                    padding: EdgeInsets.all(32),
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+              }
+              return Column(
+                children: [
+                  Expanded(
+                    child: ListView(
+                      padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
+                      children: [
+                        _buildRegistrationCard(),
+                        const SizedBox(height: 12),
+                        _buildRoommateCard(),
+                      ],
+                    ),
+                  ),
+                  _buildBottomBar(),
+                ],
+              );
+            },
           ),
         ),
       ),
@@ -398,7 +580,8 @@ class _BookingGuestHouseAddScreenState
     return RoommateInfoItem(
       key: ValueKey('roommate_${index}_$_roommateFormGeneration'),
       index: index,
-      employeeOptions: _employees,
+      employeeOptions:
+          context.read<BookingGuestHouseBloc>().state.employees,
       infoFieldValues: _infoFieldValues,
       prefillEmployee: index == 0 ? _selectedRoommateEmployees[0] : null,
       onChanged: (patch) {
@@ -408,9 +591,11 @@ class _BookingGuestHouseAddScreenState
         final pickedId = patch['roommate_employee_id_$index'] as int?;
         EmployeeFilterItem? resolvedEmployee;
         if (pickedId != null && pickedId > 0) {
-          resolvedEmployee = _employees.firstWhereOrNull(
-            (e) => e.id == pickedId,
-          );
+          resolvedEmployee = context
+              .read<BookingGuestHouseBloc>()
+              .state
+              .employees
+              .firstWhereOrNull((e) => e.id == pickedId);
         }
         setState(() {
           _infoFieldValues = {..._infoFieldValues, ...patch};
@@ -431,8 +616,7 @@ class _BookingGuestHouseAddScreenState
     // FormBuilder tự kích hoạt validate xuyên suốt form khi saveAndValidate()
     // → render error inline cho mọi field chưa pass validator.
     if (!formState.saveAndValidate()) {
-      showMessage(
-        context,
+      _showSnack(
         'Vui lòng điền đầy đủ các trường bắt buộc',
         type: SnackBarType.error,
       );
@@ -440,8 +624,7 @@ class _BookingGuestHouseAddScreenState
     }
 
     if (_currentEmployeeId == null || _currentEmployeeId == 0) {
-      showMessage(
-        context,
+      _showSnack(
         'Không xác định được nhân viên đăng ký. Vui lòng thử lại.',
         type: SnackBarType.error,
       );
@@ -450,7 +633,9 @@ class _BookingGuestHouseAddScreenState
 
     // Build payload và dispatch submit event — UI chờ BlocListener phản hồi.
     final payload = _buildSubmitPayload();
-    bloc.add(BookingGuestHouseEvent.submit(payload: payload));
+    context.read<BookingGuestHouseBloc>().add(
+          BookingGuestHouseEvent.submit(payload: payload),
+        );
   }
 
   /// Build 1 dòng `accommodationBookingDetails` từ dữ liệu form của dòng người ở i.
@@ -487,8 +672,12 @@ class _BookingGuestHouseAddScreenState
         .toString()
         .trim();
 
+    // Lấy ID của dòng roommate từ response (khi edit) nếu có. Server cần ID
+    // để update đúng dòng thay vì tạo mới.
+    final existingDetailId = _infoFieldValues['roommate_detail_id_$index'] ?? 0;
+
     return <String, dynamic>{
-      'ID': 0,
+      'ID': existingDetailId,
       'AccommodationBookingID': accommodationBookingId,
       // Ưu tiên EmployeeID từ EmployeeFilterItem đã chọn (resolve thật từ
       // server), fallback về ID trong infoFieldValues nếu user nhập tay.
@@ -503,9 +692,15 @@ class _BookingGuestHouseAddScreenState
   }
 
   /// Build payload cuối cùng theo schema `/AccommodationBooking/save-data`.
+  /// Khi edit (widget.id != null) → truyền `ID` của phiếu trong
+  /// `accommodationBooking` để server xử lý update thay vì tạo mới.
+  /// Nếu có thông tin từ detail (info.id) thì ưu tiên dùng id đó.
   Map<String, dynamic> _buildSubmitPayload() {
+    final detail = context.read<BookingGuestHouseBloc>().state.detailData;
+    final bookingId = widget.id ?? detail?.info.id ?? 0;
+
     final accommodationBooking = <String, dynamic>{
-      'ID': 0,
+      'ID': bookingId,
       'RegisterID': _currentEmployeeId,
       'ProjectID': _selectedProject?.id ?? 0,
       'ProvinceID': _selectedProvince?.id ?? 0,
@@ -528,7 +723,7 @@ class _BookingGuestHouseAddScreenState
       // Bỏ qua dòng rỗng hoàn toàn (sau shift / trước khi nhập) để không tạo
       // detail rỗng gửi lên server.
       if (name.isEmpty && phone.isEmpty) continue;
-      details.add(_buildRoommateDetail(index: i, accommodationBookingId: 0));
+      details.add(_buildRoommateDetail(index: i, accommodationBookingId: bookingId));
     }
 
     return <String, dynamic>{
@@ -712,15 +907,13 @@ class _BookingGuestHouseAddScreenState
   }
 
   Future<void> _openProjectSheet() async {
-    if (_projects.isEmpty) {
-      await _loadLookups();
-    }
     if (!mounted) return;
+    final projects = context.read<BookingGuestHouseBloc>().state.projects;
     await openSelectBottomSheet<ProjectFilterItem>(
       context: context,
       title: 'Chọn dự án',
       hintText: 'Tìm theo mã / tên dự án',
-      items: _projects,
+      items: projects,
       initialSelectedItem: _selectedProject,
       displayText: (p) => _projectText(p),
       onSelected: (p) {
@@ -738,15 +931,13 @@ class _BookingGuestHouseAddScreenState
   }
 
   Future<void> _openTbpSheet() async {
-    if (_employees.isEmpty) {
-      await _loadLookups();
-    }
     if (!mounted) return;
+    final employees = context.read<BookingGuestHouseBloc>().state.employees;
     await openSelectBottomSheet<EmployeeFilterItem>(
       context: context,
       title: 'Chọn TBP duyệt',
       hintText: 'Tìm theo tên nhân viên',
-      items: _employees,
+      items: employees,
       initialSelectedItem: _selectedTbp,
       displayText: (e) => e.fullName ?? 'N/A',
       onSelected: (e) {
@@ -764,15 +955,13 @@ class _BookingGuestHouseAddScreenState
   }
 
   Future<void> _openProvinceSheet() async {
-    if (_provinces.isEmpty) {
-      await _loadLookups();
-    }
     if (!mounted) return;
+    final provinces = context.read<BookingGuestHouseBloc>().state.provinces;
     await openSelectBottomSheet<ProvinceFilterItem>(
       context: context,
       title: 'Chọn tỉnh lưu trú',
       hintText: 'Tìm theo tên tỉnh',
-      items: _provinces,
+      items: provinces,
       initialSelectedItem: _selectedProvince,
       displayText: (p) => p.provinceName ?? 'N/A',
       onSelected: (p) {

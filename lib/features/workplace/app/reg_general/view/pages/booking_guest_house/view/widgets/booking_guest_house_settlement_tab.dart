@@ -80,7 +80,8 @@ class _BookingGuestHouseSettlementTabState
     // [BookingGuestHouseBloc.state.employees] theo `info.approvedTBP`
     // (employeeId) để fill sẵn, không cho user chọn lại. Khi chưa duyệt →
     // giữ rỗng. Controller được fill qua [BlocListener] dưới đây (listen
-    // employees) để tránh race với `loadFilters` async ở detail screen.
+    // employees) để chắc chắn chạy sau khi state.employees đã có data từ
+    // list screen.
     _tbpCtrl = TextEditingController();
     _invoiceCtrl = TextEditingController();
     _bankNameCtrl = TextEditingController();
@@ -217,8 +218,7 @@ class _BookingGuestHouseSettlementTabState
                   // Field "TBP duyệt" trên tab Quyết toán — tự fill tên TBP
                   // từ bloc state.employees (lookup theo info.approvedTBP)
                   // khi phiếu đã được TBP duyệt. Wrap BlocBuilder để
-                  // rebuild khi employees load xong (tránh race với
-                  // loadFilters async ở detail screen).
+                  // rebuild khi employees có data (load từ list screen).
                   BlocBuilder<BookingGuestHouseBloc, BookingGuestHouseState>(
                     buildWhen: (prev, curr) =>
                         prev.employees != curr.employees,

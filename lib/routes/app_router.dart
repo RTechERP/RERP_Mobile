@@ -52,7 +52,9 @@ import '../features/more/view/settings/notification/page/notification_settings_s
 import '../features/more/view/pages/avatar_viewer_screen.dart';
 import '../features/workplace/app/general_form/view/bloc/general_form_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_guest_house/view/pages/booking_guest_house_add_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/booking_guest_house/view/pages/booking_guest_house_advance_request_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_guest_house/view/pages/booking_guest_house_detail_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/booking_guest_house/view/pages/booking_guest_house_settlement_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_add_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_edit_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_detail_screen.dart';
@@ -907,8 +909,13 @@ class AppRouter {
           ),
           GoRoute(
             path: RouteNames.bookingGuestHouseAdd,
-            builder: (context, state) =>
-                const BookingGuestHouseAddScreen(),
+            builder: (context, state) => BlocProvider.value(
+              // Share singleton với ShellRoute/list screen — projects/employees/
+              // provinces đã load ở list tồn tại ở bloc state, add screen dùng
+              // lại không cần gọi API.
+              value: getIt<BookingGuestHouseBloc>(),
+              child: const BookingGuestHouseAddScreen(),
+            ),
           ),
           GoRoute(
             path: RouteNames.bookingGuestHouseDetail,
@@ -918,6 +925,44 @@ class AppRouter {
                 return const BookingGuestHousePage();
               }
               return BookingGuestHouseDetailScreen(id: extra);
+            },
+          ),
+          GoRoute(
+            // Edit mode: mở lại add_screen với id để load detail + fill form.
+            path: RouteNames.bookingGuestHouseEdit,
+            builder: (context, state) {
+              final extra = state.extra;
+              if (extra is! int) {
+                return const BookingGuestHousePage();
+              }
+              return BlocProvider.value(
+                // Share singleton với list (xem comment ở route
+                // bookingGuestHouseAdd).
+                value: getIt<BookingGuestHouseBloc>(),
+                child: BookingGuestHouseAddScreen(id: extra),
+              );
+            },
+          ),
+          GoRoute(
+            // Cập nhật TTQT: form cũ (đầy đủ field + file bill/hoá đơn).
+            path: RouteNames.bookingGuestHouseSettlement,
+            builder: (context, state) {
+              final extra = state.extra;
+              if (extra is! int) {
+                return const BookingGuestHousePage();
+              }
+              return BookingGuestHouseSettlementScreen(id: extra);
+            },
+          ),
+          GoRoute(
+            // Đề nghị tạm ứng: form mới 10 field theo yêu cầu bổ sung.
+            path: RouteNames.bookingGuestHouseAdvance,
+            builder: (context, state) {
+              final extra = state.extra;
+              if (extra is! int) {
+                return const BookingGuestHousePage();
+              }
+              return BookingGuestHouseAdvanceRequestScreen(id: extra);
             },
           ),
         ],

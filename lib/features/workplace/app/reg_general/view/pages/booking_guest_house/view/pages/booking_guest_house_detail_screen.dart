@@ -55,19 +55,15 @@ class _BookingGuestHouseDetailScreenState
     super.initState();
     _tabController = TabController(length: 2, vsync: this)
       ..addListener(_handleTabChanged);
-    // Trigger load detail + filters ngay khi mở màn.
-    // - loadDetail: lấy chi tiết phiếu (info + người ở).
-    // - loadFilters: chỉ chạy khi list dự án / nhân viên / tỉnh rỗng
-    //   (case 1: user vào detail trực tiếp, chưa qua list → list rỗng;
-    //   case 2: đã load từ list screen trước đó → giữ cache, không gọi lại).
+    // Trigger load detail ngay khi mở màn. 3 API lookup (projects/employees/
+    // provinces) KHÔNG gọi ở đây — đã được list screen load sẵn qua
+    // loadFilters khi mở tính năng, share qua ShellRoute provider. Nếu mở
+    // thẳng detail (deep link) mà chưa qua list, dữ liệu lookup sẽ rỗng
+    // và các tab sẽ fallback text theo id (xem _resolve*Name).
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       final bloc = context.read<BookingGuestHouseBloc>();
       bloc.add(BookingGuestHouseEvent.loadDetail(id: widget.id));
-      final s = bloc.state;
-      if (s.projects.isEmpty || s.employees.isEmpty || s.provinces.isEmpty) {
-        bloc.add(const BookingGuestHouseEvent.loadFilters());
-      }
     });
   }
 
