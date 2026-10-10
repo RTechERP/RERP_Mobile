@@ -27,6 +27,7 @@ import '../features/version/data/datasource/service/app_version_service.dart';
 import '../features/version/data/repository/app_version_repo.dart';
 import '../features/version/data/repository/app_version_repo_impl.dart';
 import '../features/version/view/bloc/app_version_bloc.dart';
+import '../features/workplace/app/project/project_list/app/material_category/data/repository/material_category_repo_impl.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/datasource/service/booking_vehicle_service.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repo_impl.dart';
@@ -103,6 +104,19 @@ import '../features/workplace/app/reg_work/view/pages/lunch/data/datasource/serv
 import '../features/workplace/app/reg_work/view/pages/lunch/data/repository/lunch_repo.dart';
 import '../features/workplace/app/reg_work/view/pages/lunch/data/repository/lunch_repo_impl.dart';
 import '../features/workplace/app/reg_work/view/pages/lunch/view/bloc/lunch_bloc.dart';
+import '../features/workplace/app/project/project_list/app/material_category/data/datasource/service/material_category_service.dart';
+import '../features/workplace/app/project/project_list/app/material_category/data/repository/material_category_repo.dart';
+import '../features/workplace/app/project/project_list/app/material_category/data/repository/solution_repo.dart';
+import '../features/workplace/app/project/project_list/app/material_category/data/repository/solution_repo_impl.dart';
+import '../features/workplace/app/project/project_list/app/material_category/data/repository/version_repo.dart';
+import '../features/workplace/app/project/project_list/app/material_category/data/repository/version_repo_impl.dart';
+import '../features/workplace/app/project/project_list/app/material_category/view/bloc/material_category_bloc.dart';
+import '../features/workplace/app/project/project_list/app/material_category/view/bloc/solution_bloc.dart';
+import '../features/workplace/app/project/project_list/app/material_category/view/bloc/version_bloc.dart';
+import '../features/workplace/app/project/project_list/data/datasource/service/project_list_service.dart';
+import '../features/workplace/app/project/project_list/data/repository/project_list_repo.dart';
+import '../features/workplace/app/project/project_list/data/repository/project_list_repo_impl.dart';
+import '../features/workplace/app/project/project_list/view/bloc/project_list_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/data/datasource/service/in_out_service.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/data/repository/in_out_repo.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/data/repository/in_out_repo_impl.dart';
@@ -129,6 +143,10 @@ import '../features/workplace/app/reports/view/accountant/view/bloc/accountant_b
 import '../features/workplace/app/reports/view/marketing/view/bloc/marketing_bloc.dart';
 import '../features/workplace/app/reports/view/sale/view/bloc/sale_bloc.dart';
 import '../features/workplace/app/reports/view/tech/view/bloc/tech_bloc.dart';
+import '../features/chatbot/data/datasource/service/rio_chat_service.dart';
+import '../features/chatbot/data/repository/rio_chat_repo.dart';
+import '../features/chatbot/data/repository/rio_chat_repo_impl.dart';
+import '../features/chatbot/view/bloc/rio_chat_bloc.dart';
 import '../features/workplace/app/signature/data/datasource/service/signature_service.dart';
 import '../features/workplace/app/signature/data/repository/signature_repo.dart';
 import '../features/workplace/app/signature/data/repository/signature_repo_impl.dart';
@@ -229,6 +247,14 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<LunchService>(() => LunchService(getIt<Dio>()));
 
+  getIt.registerLazySingleton<ProjectListService>(
+    () => ProjectListService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<MaterialCategoryService>(
+    () => MaterialCategoryService(getIt<Dio>()),
+  );
+
   getIt.registerLazySingleton<InOutService>(() => InOutService(getIt<Dio>()));
 
   getIt.registerLazySingleton<WfhService>(() => WfhService(getIt<Dio>()));
@@ -318,24 +344,28 @@ void configureDependencies() {
   );
 
   getIt.registerLazySingleton<SummaryWfhService>(
-        () => SummaryWfhService(getIt<Dio>()),
+    () => SummaryWfhService(getIt<Dio>()),
   );
 
   getIt.registerLazySingleton<SummaryMissedService>(
-        () => SummaryMissedService(getIt<Dio>()),
+    () => SummaryMissedService(getIt<Dio>()),
   );
 
   getIt.registerLazySingleton<SummaryOvernightService>(
-        () => SummaryOvernightService(getIt<Dio>()),
+    () => SummaryOvernightService(getIt<Dio>()),
   );
 
   getIt.registerLazySingleton<SummaryOvertimeService>(
-        () => SummaryOvertimeService(getIt<Dio>()),
+    () => SummaryOvertimeService(getIt<Dio>()),
   );
 
   getIt.registerLazySingleton<TestTableService>(
     () => TestTableService(getIt<Dio>()),
   );
+
+  // Chatbot - Rio Chat
+  getIt.registerLazySingleton<RioChatService>(RioChatService.new);
+
   /// ===== REPOSITORY =====
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImpl(
@@ -363,6 +393,22 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<LunchRepo>(
     () => LunchRepoImpl(getIt<LunchService>()),
+  );
+
+  getIt.registerLazySingleton<ProjectListRepo>(
+    () => ProjectListRepoImpl(getIt<ProjectListService>()),
+  );
+
+  getIt.registerLazySingleton<MaterialCategoryRepo>(
+    () => MaterialCategoryRepoImpl(getIt<MaterialCategoryService>()),
+  );
+
+  getIt.registerLazySingleton<SolutionRepo>(
+    () => SolutionRepoImpl(getIt<MaterialCategoryService>()),
+  );
+
+  getIt.registerLazySingleton<VersionRepo>(
+    () => VersionRepoImpl(getIt<MaterialCategoryService>()),
   );
 
   getIt.registerLazySingleton<InOutRepo>(
@@ -480,8 +526,13 @@ void configureDependencies() {
   );
 
   getIt.registerLazySingleton<TestTableRepo>(
-      () => TestTableRepoImpl(getIt<TestTableService>()),
+    () => TestTableRepoImpl(getIt<TestTableService>()),
   );
+
+  getIt.registerLazySingleton<RioChatRepo>(
+    () => RioChatRepoImpl(getIt<RioChatService>()),
+  );
+
   /// ===== BLOCS =====
   getIt.registerFactory<AuthBloc>(
     () => AuthBloc(getIt<AuthRepo>(), getIt<LogUtils>()),
@@ -536,6 +587,22 @@ void configureDependencies() {
 
   getIt.registerFactory<LunchBloc>(
     () => LunchBloc(getIt<LunchRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
+  );
+
+  getIt.registerFactory<ProjectListBloc>(
+    () => ProjectListBloc(getIt<ProjectListRepo>(), getIt<LogUtils>()),
+  );
+
+  getIt.registerFactory<MaterialCategoryBloc>(
+    () => MaterialCategoryBloc(getIt<MaterialCategoryRepo>()),
+  );
+
+  getIt.registerFactory<SolutionBloc>(
+    () => SolutionBloc(getIt<SolutionRepo>(), getIt<LogUtils>()),
+  );
+
+  getIt.registerFactory<VersionBloc>(
+    () => VersionBloc(getIt<VersionRepo>(), getIt<LogUtils>()),
   );
 
   getIt.registerFactory<InOutBloc>(
@@ -706,7 +773,8 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<SaleGdnBloc>(
-    () => SaleGdnBloc(getIt<SaleGdnRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
+    () =>
+        SaleGdnBloc(getIt<SaleGdnRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
   );
 
   getIt.registerFactory<MySignatureBloc>(
@@ -730,7 +798,7 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<SummaryWfhBloc>(
-        () => SummaryWfhBloc(
+    () => SummaryWfhBloc(
       getIt<SummaryWfhRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
@@ -738,7 +806,7 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<SummaryMissedBloc>(
-        () => SummaryMissedBloc(
+    () => SummaryMissedBloc(
       getIt<SummaryMissedRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
@@ -746,7 +814,7 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<SummaryOvernightBloc>(
-        () => SummaryOvernightBloc(
+    () => SummaryOvernightBloc(
       getIt<SummaryOvernightRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
@@ -754,7 +822,7 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<SummaryOvertimeBloc>(
-        () => SummaryOvertimeBloc(
+    () => SummaryOvertimeBloc(
       getIt<SummaryOvertimeRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
@@ -762,9 +830,18 @@ void configureDependencies() {
   );
 
   getIt.registerFactory<TestTableBloc>(
-        () => TestTableBloc(
+    () => TestTableBloc(
       getIt<LogUtils>(),
-      getIt<TestTableRepo>(),getIt<AuthRepo>(),
+      getIt<TestTableRepo>(),
+      getIt<AuthRepo>(),
+    ),
+  );
+
+  getIt.registerFactory<RioChatBloc>(
+    () => RioChatBloc(
+      getIt<RioChatRepo>(),
+      getIt<LogUtils>(),
+      getIt<LocalStorage>(),
     ),
   );
 }

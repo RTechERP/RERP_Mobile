@@ -54,7 +54,7 @@ class ApiEndPoint {
   static const String getTeam = '/Team/department/2';
 
   static const String getProject = '/project/get-project-modal';
-
+  static const String getProjects = '/project/get-projects';
   static const String getProjectItemByUser =
       '/DailyReportTech/get-project-item-by-user';
 
@@ -483,6 +483,9 @@ class ApiEndPoint {
   /// Body: `[{ "ID": <billId>, "IsOrderReceived": true|false }, ...]`
   static const String updateStatusReceive = '/billexport/status-receive';
 
+  // Material Category
+  static const String getMaterialCategories = '/MaterialCategory/get-material-categories';
+
   /// Lấy chi tiết phiếu card theo registrationId.
   /// API: GET /ESLRegistration/get-details?registrationId=X.
   static const String getTestCardDetails = '/ESLRegistration/get-details';
@@ -530,4 +533,37 @@ class ApiEndPoint {
   ///          "approverID", "type" (1 = gia hạn, 2 = bàn giao) }`.
   static const String extendHandoverRegistration =
       '/ESLRegistration/extend-handover';
+
+  // Project Worker - Solution
+  static const String getSolution = '/projectworker/get-solution';
+
+  /// Phiên bản danh mục vật tư.
+  /// GET /ProjectPartListVersion/get-all?projectSolutionId={id}&isPO={bool}.
+  static const String getVersions = '/ProjectPartListVersion/get-all';
+
+  /// Danh sách vật tư theo phiên bản.
+  /// POST /ProjectPartList/get-all.
+  static const String getPartList = '/ProjectPartList/get-all';
+
+  /// Duyệt mới / huỷ duyệt mới cho 1 vật tư trong danh sách vật tư.
+  /// POST /ProjectPartList/approved-newcode?isApprovedNew={bool}.
+  /// Body: `PartListModel` của vật tư cần cập nhật.
+  static const String approvedNewCode = '/ProjectPartList/approved-newcode';
+
+  /// Check trước khi duyệt mới — backend validate điều kiện nghiệp vụ và
+  /// trả `{ status, message }`. Nếu `message == "Đã xử lý thành công!"`
+  /// thì mới được phép gọi tiếp [approvedNewCode].
+  /// POST /ProjectPartList/check-approve-newcode.
+  static const String checkApproveNewCode =
+      '/ProjectPartList/check-approve-newcode';
+
+  /// Duyệt tích xanh / huỷ duyệt tích xanh cho 1 vật tư.
+  /// POST /ProjectPartList/approved-fix?isFix={bool}.
+  /// Body: danh sách rút gọn các field của vật tư cần cập nhật.
+  static const String approvedFix = '/ProjectPartList/approved-fix';
+
+  /// Yêu cầu chuyển kho cho vật tư.
+  /// POST /ProjectPartList/request-export.
+  /// Body: `{ "WarehouseCode": "HN|HCM|BN|HP|DP", "ListItem": [ ... ] }`.
+  static const String requestExport = '/ProjectPartList/request-export';
 }

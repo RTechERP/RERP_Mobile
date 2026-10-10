@@ -294,6 +294,14 @@ class _WorkPlaceScreenState
                       ),
 
                       AppItemModel(
+                        id: 'project',
+                        iconCodePoint: Icons.work_outline.codePoint,
+                        name: 'Dự án',
+                        route: RouteNames.projectMenu,
+                        imageUrl: AppImages.project,
+                      ),
+
+                      AppItemModel(
                         id: 'signature',
                         iconCodePoint: Icons.assignment.codePoint,
                         name: 'Chữ ký',

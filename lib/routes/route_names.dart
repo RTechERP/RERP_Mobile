@@ -266,4 +266,12 @@ class RouteNames {
   static const summaryWorkFingerprint = '/summary-work/fingerprint';
   static const summaryWorkOvertime = '/summary-work/overtime';
   static const summaryWorkOvernight = '/summary-work/overnight';
+
+  // Chatbot
+  static const chatbot = '/chatbot';
+
+  // Project
+  static const projectMenu = '/project/menu';
+  static const projectList = 'list';
+  static const materialCategory = 'material-category';
 }

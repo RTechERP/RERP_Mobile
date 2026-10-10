@@ -14,11 +14,20 @@ String _messageFromResponseData(dynamic data) {
     return t.isEmpty ? '' : t;
   }
   if (data is Map) {
+    // Một số backend (vd .NET) bọc lỗi trong object `error` riêng.
+    final err = data['error'] ?? data['Error'];
+    if (err is Map) {
+      final inner = err['message'] ?? err['Message'];
+      if (inner != null) return inner.toString();
+    }
+    if (err is String && err.isNotEmpty) return err;
+
     final m = data['message'] ??
         data['msg'] ??
         data['Message'] ??
-        data['error'] ??
-        data['ErrorMessage'];
+        data['errorDescription'] ??
+        data['error_description'] ??
+        data['title'];
     if (m != null) return m.toString();
   }
   return '';

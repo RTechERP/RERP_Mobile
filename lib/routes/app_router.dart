@@ -23,6 +23,8 @@ import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/test_table
 import 'package:rtc_erp/features/workplace/app/signature/view/bloc/my_signature_bloc.dart';
 import 'package:rtc_erp/features/workplace/app/signature/view/pages/signature_screen.dart';
 import 'package:rtc_erp/features/workplace/app/signature/view/pages/signature_add_screen.dart';
+import 'package:rtc_erp/features/chatbot/view/bloc/rio_chat_bloc.dart';
+import 'package:rtc_erp/features/chatbot/view/pages/rio_chat_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/data/datasource/models/booking_vehicle_model.dart';
 import 'package:rtc_erp/features/workplace/app/favorites/view/pages/favorites_adding_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/view/bloc/booking_vehicle_bloc.dart';
@@ -201,6 +203,13 @@ import '../features/workplace/app/warehouse/pages/warehouse_agv/view/pages/wareh
 import '../features/workplace/app/warehouse/pages/warehouse_project/view/pages/warehouse_project_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_test/view/pages/warehouse_test_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_screen.dart';
+import '../features/workplace/app/project/project_menu_screen.dart';
+import '../features/workplace/app/project/project_list/app/material_category/view/bloc/material_category_bloc.dart';
+import '../features/workplace/app/project/project_list/app/material_category/view/bloc/solution_bloc.dart';
+import '../features/workplace/app/project/project_list/app/material_category/view/bloc/version_bloc.dart';
+import '../features/workplace/app/project/project_list/app/material_category/view/pages/material_category_screen.dart';
+import '../features/workplace/app/project/project_list/view/bloc/project_list_bloc.dart';
+import '../features/workplace/app/project/project_list/view/pages/project_list_screen.dart';
 import '../features/workplace/app/week_plan/view/bloc/week_plan_bloc.dart';
 import '../features/workplace/app/week_plan/view/pages/week_plan_add_screen.dart';
 import '../features/workplace/app/week_plan/view/pages/week_plan_all_screen.dart';
@@ -1229,6 +1238,54 @@ class AppRouter {
         ],
       ),
 
+      //---(Project)---//
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(
+            value: getIt<ProjectListBloc>(),
+            child: BlocProvider.value(
+              value: getIt<MaterialCategoryBloc>(),
+              child: BlocProvider.value(
+                value: getIt<SolutionBloc>(),
+                child: BlocProvider.value(
+                  value: getIt<VersionBloc>(),
+                  child: child,
+                ),
+              ),
+            ),
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.projectMenu,
+            builder: (context, state) => const ProjectMenuScreen(),
+            routes: [
+              GoRoute(
+                path: RouteNames.projectList,
+                builder: (context, state) => const ProjectListScreen(),
+                routes: [
+                  GoRoute(
+                    path: RouteNames.materialCategory,
+                    builder: (context, state) {
+                      final projectRequestId = int.tryParse(
+                        state.uri.queryParameters['projectRequestId'] ?? '',
+                      );
+                      final versionId = int.tryParse(
+                        state.uri.queryParameters['versionId'] ?? '',
+                      );
+                      return MaterialCategoryScreen(
+                        projectRequestId: projectRequestId,
+                        versionId: versionId,
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
+
       //---(Stamp)---//
       ShellRoute(
         builder: (context, state, child) {
@@ -1691,6 +1748,15 @@ class AppRouter {
         builder: (context, state) => BlocProvider.value(
           value: getIt<SummaryOvertimeBloc>(),
           child: const SummaryOvertimeScreen(),
+        ),
+      ),
+
+      //---(Chatbot - Rio Chat)---//
+      GoRoute(
+        path: RouteNames.chatbot,
+        builder: (context, state) => BlocProvider.value(
+          value: getIt<RioChatBloc>(),
+          child: const RioChatScreen(),
         ),
       ),
     ],
