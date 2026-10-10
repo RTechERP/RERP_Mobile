@@ -37,6 +37,14 @@ class BookingGuestHouseState extends BaseBlocState {
   /// Danh sách tỉnh/thành cho bộ lọc lưu trú.
   final List<ProvinceFilterItem> provinces;
 
+  /// Danh sách công ty phát hành hóa đơn — picker "Công ty"
+  /// trong form Cập nhật TTQT + Đề nghị tạm ứng.
+  final List<TaxCompanyItem> taxCompanies;
+
+  /// Danh sách ngân hàng — picker "Ngân hàng" trong
+  /// form Cập nhật TTQT + Đề nghị tạm ứng.
+  final List<BankItem> banks;
+
   /// Dự án đang được chọn lọc. Null = hiển thị tất cả.
   final ProjectFilterItem? selectedProject;
 
@@ -70,6 +78,8 @@ class BookingGuestHouseState extends BaseBlocState {
     this.projects = const [],
     this.employees = const [],
     this.provinces = const [],
+    this.taxCompanies = const [],
+    this.banks = const [],
     this.selectedProject,
     this.selectedEmployee,
     this.isLoadingFilters = false,
@@ -92,6 +102,8 @@ class BookingGuestHouseState extends BaseBlocState {
     projects: const [],
     employees: const [],
     provinces: const [],
+    taxCompanies: const [],
+    banks: const [],
     selectedProject: null,
     selectedEmployee: null,
     isLoadingFilters: false,
@@ -116,6 +128,8 @@ class BookingGuestHouseState extends BaseBlocState {
     projects,
     employees,
     provinces,
+    taxCompanies,
+    banks,
     selectedProject,
     selectedEmployee,
     isLoadingFilters,

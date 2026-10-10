@@ -20,6 +20,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../../../../common/app_theme/index.dart';
+import '../../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../../common/widgets/form/index.dart';
 import '../../data/datasource/models/booking_guest_house_model.dart';
 import '../bloc/booking_guest_house_bloc.dart';
@@ -58,6 +59,7 @@ class _BookingGuestHouseSettlementTabState
   late final TextEditingController _recipientCtrl;
   late final TextEditingController _hotelCtrl;
   late final TextEditingController _tbpCtrl;
+  EmployeeFilterItem? _tbpSelected;
   late final TextEditingController _invoiceCtrl;
   late final TextEditingController _bankNameCtrl;
   late final TextEditingController _bankAccountCtrl;
@@ -136,6 +138,42 @@ class _BookingGuestHouseSettlementTabState
   }
 
   //---(File pickers — chỉ enable khi đã duyệt TBP)---//
+
+  /// Mở bottom sheet chọn TBP duyệt từ `state.employees`.
+  Future<void> _pickTbp() async {
+    if (!_canEdit) return;
+    final state = context.read<BookingGuestHouseBloc>().state;
+    if (state.employees.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            'Chưa có dữ liệu nhân viên. Vui lòng quay lại danh sách.',
+          ),
+          behavior: SnackBarBehavior.floating,
+        ),
+      );
+      return;
+    }
+    await openSelectBottomSheet<EmployeeFilterItem>(
+      context: context,
+      title: 'Chọn TBP duyệt',
+      hintText: 'Tìm theo tên / mã nhân viên',
+      items: state.employees,
+      initialSelectedItem: _tbpSelected,
+      displayText: (e) {
+        final name = (e.fullName ?? '').trim();
+        final code = (e.code ?? '').trim();
+        if (code.isNotEmpty) return '$code - $name';
+        return name.isEmpty ? 'N/A' : name;
+      },
+      onSelected: (e) {
+        setState(() {
+          _tbpSelected = e;
+          _tbpCtrl.text = (e.fullName ?? '').trim();
+        });
+      },
+    );
+  }
 
   Future<void> _pickInvoiceFiles() async {
     if (!_canEdit) return;
@@ -219,17 +257,25 @@ class _BookingGuestHouseSettlementTabState
                   // từ bloc state.employees (lookup theo info.approvedTBP)
                   // khi phiếu đã được TBP duyệt. Wrap BlocBuilder để
                   // rebuild khi employees có data (load từ list screen).
+                  // Cho phép mở bottom sheet chọn lại khi có quyền edit.
                   BlocBuilder<BookingGuestHouseBloc, BookingGuestHouseState>(
                     buildWhen: (prev, curr) =>
                         prev.employees != curr.employees,
                     builder: (context, state) {
-                      if (widget.detail.info.isApprovedTBP == true &&
+                      if (widget.detail.info.approvedTBP != null &&
                           _tbpCtrl.text.isEmpty) {
                         final name = _resolveTbpName(
                           widget.detail.info.approvedTBP,
                           state.employees,
                         );
-                        if (name != null) _tbpCtrl.text = name;
+                        if (name != null) {
+                          _tbpCtrl.text = name;
+                          _tbpSelected ??= state.employees.firstWhere(
+                            (e) =>
+                                e.id == widget.detail.info.approvedTBP,
+                            orElse: () => state.employees.first,
+                          );
+                        }
                       }
                       return FormInputField(
                         nameForm: 'payment_tbp',
@@ -240,8 +286,9 @@ class _BookingGuestHouseSettlementTabState
                         enabled: _canEdit,
                         readOnly: !_canEdit,
                         isRequired: true,
+                        onTap: _pickTbp,
                         validator: (v) => v == null || v.trim().isEmpty
-                            ? 'Vui lòng nhập TBP duyệt'
+                            ? 'Vui lòng chọn TBP duyệt'
                             : null,
                       );
                     },

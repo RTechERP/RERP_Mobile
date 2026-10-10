@@ -120,6 +120,49 @@ class ProvinceFilterItem with _$ProvinceFilterItem {
       _$ProvinceFilterItemFromJson(json);
 }
 
+/// Model công ty phát hành hóa đơn — dùng cho picker "Công ty" trong
+/// form Cập nhật TTQT + Đề nghị tạm ứng.
+/// Tương ứng API: GET /TaxCompany/get-tax-companies
+@freezed
+class TaxCompanyItem with _$TaxCompanyItem {
+  const factory TaxCompanyItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'Name') String? name,
+    @JsonKey(name: 'TaxCode') String? taxCode,
+    @JsonKey(name: 'Address') String? address,
+    @JsonKey(name: 'PhoneNumber') String? phoneNumber,
+    @JsonKey(name: 'Director') String? director,
+    @JsonKey(name: 'Position') String? position,
+    @JsonKey(name: 'FullName') String? fullName,
+    @JsonKey(name: 'BuyerEnglish') String? buyerEnglish,
+    @JsonKey(name: 'AddressBuyerEnglish') String? addressBuyerEnglish,
+    @JsonKey(name: 'LegalRepresentativeEnglish') String?
+        legalRepresentativeEnglish,
+    @JsonKey(name: 'BuyerVietnamese') String? buyerVietnamese,
+    @JsonKey(name: 'AddressBuyerVienamese') String? addressBuyerVienamese,
+    @JsonKey(name: 'TaxVietnamese') String? taxVietnamese,
+  }) = _TaxCompanyItem;
+
+  factory TaxCompanyItem.fromJson(Map<String, dynamic> json) =>
+      _$TaxCompanyItemFromJson(json);
+}
+
+/// Model ngân hàng — dùng cho picker "Ngân hàng" trong
+/// form Cập nhật TTQT + Đề nghị tạm ứng.
+/// Tương ứng API: GET /banklist
+@freezed
+class BankItem with _$BankItem {
+  const factory BankItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'STT') int? stt,
+    @JsonKey(name: 'BankName') String? bankName,
+  }) = _BankItem;
+
+  factory BankItem.fromJson(Map<String, dynamic> json) =>
+      _$BankItemFromJson(json);
+}
+
 /// Model chi tiết phiếu đặt phòng — một dòng trong `accommodationBookingDetails`.
 /// Tương ứng payload: `{ ID, AccommodationBookingID, EmployeeID, PhoneNumber,
 /// FullName, DepartmentName, Note, EmployeeCode }`.

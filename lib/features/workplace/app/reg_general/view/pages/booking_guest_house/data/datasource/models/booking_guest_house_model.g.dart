@@ -164,6 +164,59 @@ Map<String, dynamic> _$$ProvinceFilterItemImplToJson(
       'ProvinceName': instance.provinceName,
     };
 
+_$TaxCompanyItemImpl _$$TaxCompanyItemImplFromJson(Map<String, dynamic> json) =>
+    _$TaxCompanyItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      code: json['Code'] as String?,
+      name: json['Name'] as String?,
+      taxCode: json['TaxCode'] as String?,
+      address: json['Address'] as String?,
+      phoneNumber: json['PhoneNumber'] as String?,
+      director: json['Director'] as String?,
+      position: json['Position'] as String?,
+      fullName: json['FullName'] as String?,
+      buyerEnglish: json['BuyerEnglish'] as String?,
+      addressBuyerEnglish: json['AddressBuyerEnglish'] as String?,
+      legalRepresentativeEnglish: json['LegalRepresentativeEnglish'] as String?,
+      buyerVietnamese: json['BuyerVietnamese'] as String?,
+      addressBuyerVienamese: json['AddressBuyerVienamese'] as String?,
+      taxVietnamese: json['TaxVietnamese'] as String?,
+    );
+
+Map<String, dynamic> _$$TaxCompanyItemImplToJson(
+        _$TaxCompanyItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'Code': instance.code,
+      'Name': instance.name,
+      'TaxCode': instance.taxCode,
+      'Address': instance.address,
+      'PhoneNumber': instance.phoneNumber,
+      'Director': instance.director,
+      'Position': instance.position,
+      'FullName': instance.fullName,
+      'BuyerEnglish': instance.buyerEnglish,
+      'AddressBuyerEnglish': instance.addressBuyerEnglish,
+      'LegalRepresentativeEnglish': instance.legalRepresentativeEnglish,
+      'BuyerVietnamese': instance.buyerVietnamese,
+      'AddressBuyerVienamese': instance.addressBuyerVienamese,
+      'TaxVietnamese': instance.taxVietnamese,
+    };
+
+_$BankItemImpl _$$BankItemImplFromJson(Map<String, dynamic> json) =>
+    _$BankItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      stt: (json['STT'] as num?)?.toInt(),
+      bankName: json['BankName'] as String?,
+    );
+
+Map<String, dynamic> _$$BankItemImplToJson(_$BankItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'STT': instance.stt,
+      'BankName': instance.bankName,
+    };
+
 _$BookingGuestHouseDetailItemImpl _$$BookingGuestHouseDetailItemImplFromJson(
         Map<String, dynamic> json) =>
     _$BookingGuestHouseDetailItemImpl(

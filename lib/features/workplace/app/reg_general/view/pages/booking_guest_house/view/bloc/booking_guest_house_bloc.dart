@@ -152,14 +152,19 @@ class BookingGuestHouseBloc
   Future<void> _onLoadFilters(Emitter<BookingGuestHouseState> emit) async {
     emit(state.copyWith(isLoadingFilters: true));
 
-    // Gọi song song 3 API: dự án + nhân viên + tỉnh/thành.
+    // Gọi song song 5 API: dự án + nhân viên + tỉnh/thành +
+    // công ty (TaxCompany) + ngân hàng (banklist).
     final projectRes = await _repo.getProjects();
     final employeeRes = await _repo.getEmployees();
     final provinceRes = await _repo.getProvinces();
+    final taxCompanyRes = await _repo.getTaxCompanies();
+    final bankRes = await _repo.getBankList();
 
     List<ProjectFilterItem> projects = [];
     List<EmployeeFilterItem> employees = [];
     List<ProvinceFilterItem> provinces = [];
+    List<TaxCompanyItem> taxCompanies = [];
+    List<BankItem> banks = [];
 
     projectRes.fold(
       (err) => _log.logE('❌ getProjects failed: $err'),
@@ -176,11 +181,23 @@ class BookingGuestHouseBloc
       (data) => provinces = data,
     );
 
+    taxCompanyRes.fold(
+      (err) => _log.logE('❌ getTaxCompanies failed: $err'),
+      (data) => taxCompanies = data,
+    );
+
+    bankRes.fold(
+      (err) => _log.logE('❌ getBankList failed: $err'),
+      (data) => banks = data,
+    );
+
     emit(state.copyWith(
       isLoadingFilters: false,
       projects: projects,
       employees: employees,
       provinces: provinces,
+      taxCompanies: taxCompanies,
+      banks: banks,
     ));
   }
 

@@ -1832,6 +1832,695 @@ abstract class _ProvinceFilterItem implements ProvinceFilterItem {
       throw _privateConstructorUsedError;
 }
 
+TaxCompanyItem _$TaxCompanyItemFromJson(Map<String, dynamic> json) {
+  return _TaxCompanyItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$TaxCompanyItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Code')
+  String? get code => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Name')
+  String? get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TaxCode')
+  String? get taxCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Address')
+  String? get address => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PhoneNumber')
+  String? get phoneNumber => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Director')
+  String? get director => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Position')
+  String? get position => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FullName')
+  String? get fullName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'BuyerEnglish')
+  String? get buyerEnglish => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AddressBuyerEnglish')
+  String? get addressBuyerEnglish => throw _privateConstructorUsedError;
+  @JsonKey(name: 'LegalRepresentativeEnglish')
+  String? get legalRepresentativeEnglish => throw _privateConstructorUsedError;
+  @JsonKey(name: 'BuyerVietnamese')
+  String? get buyerVietnamese => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AddressBuyerVienamese')
+  String? get addressBuyerVienamese => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TaxVietnamese')
+  String? get taxVietnamese => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $TaxCompanyItemCopyWith<TaxCompanyItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TaxCompanyItemCopyWith<$Res> {
+  factory $TaxCompanyItemCopyWith(
+          TaxCompanyItem value, $Res Function(TaxCompanyItem) then) =
+      _$TaxCompanyItemCopyWithImpl<$Res, TaxCompanyItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'Name') String? name,
+      @JsonKey(name: 'TaxCode') String? taxCode,
+      @JsonKey(name: 'Address') String? address,
+      @JsonKey(name: 'PhoneNumber') String? phoneNumber,
+      @JsonKey(name: 'Director') String? director,
+      @JsonKey(name: 'Position') String? position,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'BuyerEnglish') String? buyerEnglish,
+      @JsonKey(name: 'AddressBuyerEnglish') String? addressBuyerEnglish,
+      @JsonKey(name: 'LegalRepresentativeEnglish')
+      String? legalRepresentativeEnglish,
+      @JsonKey(name: 'BuyerVietnamese') String? buyerVietnamese,
+      @JsonKey(name: 'AddressBuyerVienamese') String? addressBuyerVienamese,
+      @JsonKey(name: 'TaxVietnamese') String? taxVietnamese});
+}
+
+/// @nodoc
+class _$TaxCompanyItemCopyWithImpl<$Res, $Val extends TaxCompanyItem>
+    implements $TaxCompanyItemCopyWith<$Res> {
+  _$TaxCompanyItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? code = freezed,
+    Object? name = freezed,
+    Object? taxCode = freezed,
+    Object? address = freezed,
+    Object? phoneNumber = freezed,
+    Object? director = freezed,
+    Object? position = freezed,
+    Object? fullName = freezed,
+    Object? buyerEnglish = freezed,
+    Object? addressBuyerEnglish = freezed,
+    Object? legalRepresentativeEnglish = freezed,
+    Object? buyerVietnamese = freezed,
+    Object? addressBuyerVienamese = freezed,
+    Object? taxVietnamese = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      taxCode: freezed == taxCode
+          ? _value.taxCode
+          : taxCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      director: freezed == director
+          ? _value.director
+          : director // ignore: cast_nullable_to_non_nullable
+              as String?,
+      position: freezed == position
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      buyerEnglish: freezed == buyerEnglish
+          ? _value.buyerEnglish
+          : buyerEnglish // ignore: cast_nullable_to_non_nullable
+              as String?,
+      addressBuyerEnglish: freezed == addressBuyerEnglish
+          ? _value.addressBuyerEnglish
+          : addressBuyerEnglish // ignore: cast_nullable_to_non_nullable
+              as String?,
+      legalRepresentativeEnglish: freezed == legalRepresentativeEnglish
+          ? _value.legalRepresentativeEnglish
+          : legalRepresentativeEnglish // ignore: cast_nullable_to_non_nullable
+              as String?,
+      buyerVietnamese: freezed == buyerVietnamese
+          ? _value.buyerVietnamese
+          : buyerVietnamese // ignore: cast_nullable_to_non_nullable
+              as String?,
+      addressBuyerVienamese: freezed == addressBuyerVienamese
+          ? _value.addressBuyerVienamese
+          : addressBuyerVienamese // ignore: cast_nullable_to_non_nullable
+              as String?,
+      taxVietnamese: freezed == taxVietnamese
+          ? _value.taxVietnamese
+          : taxVietnamese // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$TaxCompanyItemImplCopyWith<$Res>
+    implements $TaxCompanyItemCopyWith<$Res> {
+  factory _$$TaxCompanyItemImplCopyWith(_$TaxCompanyItemImpl value,
+          $Res Function(_$TaxCompanyItemImpl) then) =
+      __$$TaxCompanyItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'Name') String? name,
+      @JsonKey(name: 'TaxCode') String? taxCode,
+      @JsonKey(name: 'Address') String? address,
+      @JsonKey(name: 'PhoneNumber') String? phoneNumber,
+      @JsonKey(name: 'Director') String? director,
+      @JsonKey(name: 'Position') String? position,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'BuyerEnglish') String? buyerEnglish,
+      @JsonKey(name: 'AddressBuyerEnglish') String? addressBuyerEnglish,
+      @JsonKey(name: 'LegalRepresentativeEnglish')
+      String? legalRepresentativeEnglish,
+      @JsonKey(name: 'BuyerVietnamese') String? buyerVietnamese,
+      @JsonKey(name: 'AddressBuyerVienamese') String? addressBuyerVienamese,
+      @JsonKey(name: 'TaxVietnamese') String? taxVietnamese});
+}
+
+/// @nodoc
+class __$$TaxCompanyItemImplCopyWithImpl<$Res>
+    extends _$TaxCompanyItemCopyWithImpl<$Res, _$TaxCompanyItemImpl>
+    implements _$$TaxCompanyItemImplCopyWith<$Res> {
+  __$$TaxCompanyItemImplCopyWithImpl(
+      _$TaxCompanyItemImpl _value, $Res Function(_$TaxCompanyItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? code = freezed,
+    Object? name = freezed,
+    Object? taxCode = freezed,
+    Object? address = freezed,
+    Object? phoneNumber = freezed,
+    Object? director = freezed,
+    Object? position = freezed,
+    Object? fullName = freezed,
+    Object? buyerEnglish = freezed,
+    Object? addressBuyerEnglish = freezed,
+    Object? legalRepresentativeEnglish = freezed,
+    Object? buyerVietnamese = freezed,
+    Object? addressBuyerVienamese = freezed,
+    Object? taxVietnamese = freezed,
+  }) {
+    return _then(_$TaxCompanyItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      taxCode: freezed == taxCode
+          ? _value.taxCode
+          : taxCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      director: freezed == director
+          ? _value.director
+          : director // ignore: cast_nullable_to_non_nullable
+              as String?,
+      position: freezed == position
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      buyerEnglish: freezed == buyerEnglish
+          ? _value.buyerEnglish
+          : buyerEnglish // ignore: cast_nullable_to_non_nullable
+              as String?,
+      addressBuyerEnglish: freezed == addressBuyerEnglish
+          ? _value.addressBuyerEnglish
+          : addressBuyerEnglish // ignore: cast_nullable_to_non_nullable
+              as String?,
+      legalRepresentativeEnglish: freezed == legalRepresentativeEnglish
+          ? _value.legalRepresentativeEnglish
+          : legalRepresentativeEnglish // ignore: cast_nullable_to_non_nullable
+              as String?,
+      buyerVietnamese: freezed == buyerVietnamese
+          ? _value.buyerVietnamese
+          : buyerVietnamese // ignore: cast_nullable_to_non_nullable
+              as String?,
+      addressBuyerVienamese: freezed == addressBuyerVienamese
+          ? _value.addressBuyerVienamese
+          : addressBuyerVienamese // ignore: cast_nullable_to_non_nullable
+              as String?,
+      taxVietnamese: freezed == taxVietnamese
+          ? _value.taxVietnamese
+          : taxVietnamese // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$TaxCompanyItemImpl implements _TaxCompanyItem {
+  const _$TaxCompanyItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'Code') this.code,
+      @JsonKey(name: 'Name') this.name,
+      @JsonKey(name: 'TaxCode') this.taxCode,
+      @JsonKey(name: 'Address') this.address,
+      @JsonKey(name: 'PhoneNumber') this.phoneNumber,
+      @JsonKey(name: 'Director') this.director,
+      @JsonKey(name: 'Position') this.position,
+      @JsonKey(name: 'FullName') this.fullName,
+      @JsonKey(name: 'BuyerEnglish') this.buyerEnglish,
+      @JsonKey(name: 'AddressBuyerEnglish') this.addressBuyerEnglish,
+      @JsonKey(name: 'LegalRepresentativeEnglish')
+      this.legalRepresentativeEnglish,
+      @JsonKey(name: 'BuyerVietnamese') this.buyerVietnamese,
+      @JsonKey(name: 'AddressBuyerVienamese') this.addressBuyerVienamese,
+      @JsonKey(name: 'TaxVietnamese') this.taxVietnamese});
+
+  factory _$TaxCompanyItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TaxCompanyItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'Code')
+  final String? code;
+  @override
+  @JsonKey(name: 'Name')
+  final String? name;
+  @override
+  @JsonKey(name: 'TaxCode')
+  final String? taxCode;
+  @override
+  @JsonKey(name: 'Address')
+  final String? address;
+  @override
+  @JsonKey(name: 'PhoneNumber')
+  final String? phoneNumber;
+  @override
+  @JsonKey(name: 'Director')
+  final String? director;
+  @override
+  @JsonKey(name: 'Position')
+  final String? position;
+  @override
+  @JsonKey(name: 'FullName')
+  final String? fullName;
+  @override
+  @JsonKey(name: 'BuyerEnglish')
+  final String? buyerEnglish;
+  @override
+  @JsonKey(name: 'AddressBuyerEnglish')
+  final String? addressBuyerEnglish;
+  @override
+  @JsonKey(name: 'LegalRepresentativeEnglish')
+  final String? legalRepresentativeEnglish;
+  @override
+  @JsonKey(name: 'BuyerVietnamese')
+  final String? buyerVietnamese;
+  @override
+  @JsonKey(name: 'AddressBuyerVienamese')
+  final String? addressBuyerVienamese;
+  @override
+  @JsonKey(name: 'TaxVietnamese')
+  final String? taxVietnamese;
+
+  @override
+  String toString() {
+    return 'TaxCompanyItem(id: $id, code: $code, name: $name, taxCode: $taxCode, address: $address, phoneNumber: $phoneNumber, director: $director, position: $position, fullName: $fullName, buyerEnglish: $buyerEnglish, addressBuyerEnglish: $addressBuyerEnglish, legalRepresentativeEnglish: $legalRepresentativeEnglish, buyerVietnamese: $buyerVietnamese, addressBuyerVienamese: $addressBuyerVienamese, taxVietnamese: $taxVietnamese)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TaxCompanyItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.taxCode, taxCode) || other.taxCode == taxCode) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber) &&
+            (identical(other.director, director) ||
+                other.director == director) &&
+            (identical(other.position, position) ||
+                other.position == position) &&
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName) &&
+            (identical(other.buyerEnglish, buyerEnglish) ||
+                other.buyerEnglish == buyerEnglish) &&
+            (identical(other.addressBuyerEnglish, addressBuyerEnglish) ||
+                other.addressBuyerEnglish == addressBuyerEnglish) &&
+            (identical(other.legalRepresentativeEnglish,
+                    legalRepresentativeEnglish) ||
+                other.legalRepresentativeEnglish ==
+                    legalRepresentativeEnglish) &&
+            (identical(other.buyerVietnamese, buyerVietnamese) ||
+                other.buyerVietnamese == buyerVietnamese) &&
+            (identical(other.addressBuyerVienamese, addressBuyerVienamese) ||
+                other.addressBuyerVienamese == addressBuyerVienamese) &&
+            (identical(other.taxVietnamese, taxVietnamese) ||
+                other.taxVietnamese == taxVietnamese));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      code,
+      name,
+      taxCode,
+      address,
+      phoneNumber,
+      director,
+      position,
+      fullName,
+      buyerEnglish,
+      addressBuyerEnglish,
+      legalRepresentativeEnglish,
+      buyerVietnamese,
+      addressBuyerVienamese,
+      taxVietnamese);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TaxCompanyItemImplCopyWith<_$TaxCompanyItemImpl> get copyWith =>
+      __$$TaxCompanyItemImplCopyWithImpl<_$TaxCompanyItemImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$TaxCompanyItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _TaxCompanyItem implements TaxCompanyItem {
+  const factory _TaxCompanyItem(
+      {@JsonKey(name: 'ID') final int? id,
+      @JsonKey(name: 'Code') final String? code,
+      @JsonKey(name: 'Name') final String? name,
+      @JsonKey(name: 'TaxCode') final String? taxCode,
+      @JsonKey(name: 'Address') final String? address,
+      @JsonKey(name: 'PhoneNumber') final String? phoneNumber,
+      @JsonKey(name: 'Director') final String? director,
+      @JsonKey(name: 'Position') final String? position,
+      @JsonKey(name: 'FullName') final String? fullName,
+      @JsonKey(name: 'BuyerEnglish') final String? buyerEnglish,
+      @JsonKey(name: 'AddressBuyerEnglish') final String? addressBuyerEnglish,
+      @JsonKey(name: 'LegalRepresentativeEnglish')
+      final String? legalRepresentativeEnglish,
+      @JsonKey(name: 'BuyerVietnamese') final String? buyerVietnamese,
+      @JsonKey(name: 'AddressBuyerVienamese')
+      final String? addressBuyerVienamese,
+      @JsonKey(name: 'TaxVietnamese')
+      final String? taxVietnamese}) = _$TaxCompanyItemImpl;
+
+  factory _TaxCompanyItem.fromJson(Map<String, dynamic> json) =
+      _$TaxCompanyItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'Code')
+  String? get code;
+  @override
+  @JsonKey(name: 'Name')
+  String? get name;
+  @override
+  @JsonKey(name: 'TaxCode')
+  String? get taxCode;
+  @override
+  @JsonKey(name: 'Address')
+  String? get address;
+  @override
+  @JsonKey(name: 'PhoneNumber')
+  String? get phoneNumber;
+  @override
+  @JsonKey(name: 'Director')
+  String? get director;
+  @override
+  @JsonKey(name: 'Position')
+  String? get position;
+  @override
+  @JsonKey(name: 'FullName')
+  String? get fullName;
+  @override
+  @JsonKey(name: 'BuyerEnglish')
+  String? get buyerEnglish;
+  @override
+  @JsonKey(name: 'AddressBuyerEnglish')
+  String? get addressBuyerEnglish;
+  @override
+  @JsonKey(name: 'LegalRepresentativeEnglish')
+  String? get legalRepresentativeEnglish;
+  @override
+  @JsonKey(name: 'BuyerVietnamese')
+  String? get buyerVietnamese;
+  @override
+  @JsonKey(name: 'AddressBuyerVienamese')
+  String? get addressBuyerVienamese;
+  @override
+  @JsonKey(name: 'TaxVietnamese')
+  String? get taxVietnamese;
+  @override
+  @JsonKey(ignore: true)
+  _$$TaxCompanyItemImplCopyWith<_$TaxCompanyItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+BankItem _$BankItemFromJson(Map<String, dynamic> json) {
+  return _BankItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BankItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'STT')
+  int? get stt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'BankName')
+  String? get bankName => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BankItemCopyWith<BankItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BankItemCopyWith<$Res> {
+  factory $BankItemCopyWith(BankItem value, $Res Function(BankItem) then) =
+      _$BankItemCopyWithImpl<$Res, BankItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'BankName') String? bankName});
+}
+
+/// @nodoc
+class _$BankItemCopyWithImpl<$Res, $Val extends BankItem>
+    implements $BankItemCopyWith<$Res> {
+  _$BankItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? stt = freezed,
+    Object? bankName = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      bankName: freezed == bankName
+          ? _value.bankName
+          : bankName // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$BankItemImplCopyWith<$Res>
+    implements $BankItemCopyWith<$Res> {
+  factory _$$BankItemImplCopyWith(
+          _$BankItemImpl value, $Res Function(_$BankItemImpl) then) =
+      __$$BankItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'BankName') String? bankName});
+}
+
+/// @nodoc
+class __$$BankItemImplCopyWithImpl<$Res>
+    extends _$BankItemCopyWithImpl<$Res, _$BankItemImpl>
+    implements _$$BankItemImplCopyWith<$Res> {
+  __$$BankItemImplCopyWithImpl(
+      _$BankItemImpl _value, $Res Function(_$BankItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? stt = freezed,
+    Object? bankName = freezed,
+  }) {
+    return _then(_$BankItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      bankName: freezed == bankName
+          ? _value.bankName
+          : bankName // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$BankItemImpl implements _BankItem {
+  const _$BankItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'STT') this.stt,
+      @JsonKey(name: 'BankName') this.bankName});
+
+  factory _$BankItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BankItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'STT')
+  final int? stt;
+  @override
+  @JsonKey(name: 'BankName')
+  final String? bankName;
+
+  @override
+  String toString() {
+    return 'BankItem(id: $id, stt: $stt, bankName: $bankName)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BankItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.stt, stt) || other.stt == stt) &&
+            (identical(other.bankName, bankName) ||
+                other.bankName == bankName));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, stt, bankName);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BankItemImplCopyWith<_$BankItemImpl> get copyWith =>
+      __$$BankItemImplCopyWithImpl<_$BankItemImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BankItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BankItem implements BankItem {
+  const factory _BankItem(
+      {@JsonKey(name: 'ID') final int? id,
+      @JsonKey(name: 'STT') final int? stt,
+      @JsonKey(name: 'BankName') final String? bankName}) = _$BankItemImpl;
+
+  factory _BankItem.fromJson(Map<String, dynamic> json) =
+      _$BankItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'STT')
+  int? get stt;
+  @override
+  @JsonKey(name: 'BankName')
+  String? get bankName;
+  @override
+  @JsonKey(ignore: true)
+  _$$BankItemImplCopyWith<_$BankItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 BookingGuestHouseDetailItem _$BookingGuestHouseDetailItemFromJson(
     Map<String, dynamic> json) {
   return _BookingGuestHouseDetailItem.fromJson(json);

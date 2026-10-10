@@ -508,6 +508,16 @@ class ApiEndPoint {
   /// Dự án: GET /ProjectTask/get-all-project.
   static const String getAllProject = '/ProjectTask/get-all-project';
 
+  /// Danh sách công ty phát hành hóa đơn — cho picker "Công ty" trong
+  /// form Cập nhật TTQT + Đề nghị tạm ứng.
+  /// API: GET /TaxCompany/get-tax-companies
+  static const String getTaxCompanies = '/TaxCompany/get-tax-companies';
+
+  /// Danh sách ngân hàng — cho picker "Ngân hàng" trong
+  /// form Cập nhật TTQT + Đề nghị tạm ứng.
+  /// API: GET /banklist
+  static const String getBankList = '/banklist';
+
   /// Check xung đột trước khi lưu phiếu đăng ký bàn test.
   /// API: POST /ESLRegistration/check-conflict (form-data).
   static const String checkConflictRegistration =

@@ -88,6 +88,30 @@ class BookingGuestHouseService extends DioBaseApiService {
     );
   }
 
+  /// Lấy danh sách công ty phát hành hóa đơn — cho picker "Công ty".
+  /// API: GET /TaxCompany/get-tax-companies
+  Future<BaseData<List<TaxCompanyItem>>> getTaxCompanies() {
+    return get<BaseData<List<TaxCompanyItem>>>(
+      ApiEndPoint.getTaxCompanies,
+      parser: (json) => _parseListGeneric<TaxCompanyItem>(
+        json,
+        (e) => TaxCompanyItem.fromJson(e as Map<String, dynamic>),
+      ),
+    );
+  }
+
+  /// Lấy danh sách ngân hàng — cho picker "Ngân hàng".
+  /// API: GET /banklist
+  Future<BaseData<List<BankItem>>> getBankList() {
+    return get<BaseData<List<BankItem>>>(
+      ApiEndPoint.getBankList,
+      parser: (json) => _parseListGeneric<BankItem>(
+        json,
+        (e) => BankItem.fromJson(e as Map<String, dynamic>),
+      ),
+    );
+  }
+
   /// Lưu phiếu đặt phòng nhà nghỉ (thêm mới).
   /// API: POST /AccommodationBooking/save-data
   ///

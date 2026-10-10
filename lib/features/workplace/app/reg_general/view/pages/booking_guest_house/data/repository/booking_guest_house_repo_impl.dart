@@ -110,6 +110,44 @@ class BookingGuestHouseRepoImpl implements BookingGuestHouseRepo {
   }
 
   @override
+  Future<Either<BaseError, List<TaxCompanyItem>>> getTaxCompanies() async {
+    try {
+      final res = await _service.getTaxCompanies();
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? res.msg ?? 'Không thể tải danh sách công ty',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<BankItem>>> getBankList() async {
+    try {
+      final res = await _service.getBankList();
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? res.msg ?? 'Không thể tải danh sách ngân hàng',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
+
+  @override
   Future<Either<BaseError, BookingGuestHouseSaveResponse>>
       saveBookingGuestHouse({
     required Map<String, dynamic> payload,

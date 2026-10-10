@@ -11,12 +11,12 @@
 // Field set (theo yêu cầu bổ sung):
 //   - TBP duyệt (isRequired, readonly, auto-fill từ info.approvedTBP)
 //   - Dự án (isRequired, picker từ state.projects)
-//   - Công ty (optional, text rỗng)
+//   - Công ty (optional, picker từ state.taxCompanies)
 //   - Bộ phận (optional, text rỗng)
 //   - Lý do (isRequired, auto-fill theo khoảng ngày)
 //   - Loại chuyển khoản (isRequired, picker: Chuyển khoản / Tiền mặt)
 //   - Số tài khoản (isRequired, text, chỉ chữ số)
-//   - Ngân hàng (isRequired, text)
+//   - Ngân hàng (isRequired, picker từ state.banks)
 //   - Số tiền tạm ứng (isRequired, number, format "x.xxx.xxx VNĐ")
 //   - Ghi chú (optional, multiline)
 
@@ -55,8 +55,10 @@ class _BookingGuestHouseAdvanceRequestScreenState
   static final DateFormat _dateFmt = DateFormat('dd/MM/yyyy');
 
   //---(Controllers cho 10 field text theo UI mới)---//
-  /// TBP duyệt — readonly, auto-fill từ info.approvedTBP.
+  /// TBP duyệt — auto-fill từ info.approvedTBP, có thể chọn lại qua
+  /// bottom sheet.
   late final TextEditingController _tbpCtrl;
+  EmployeeFilterItem? _tbpSelected;
 
   /// Dự án đã chọn (TextEditingController làm value cho FormBuilder; chọn
   /// qua bottom sheet, hiển thị "Mã - Tên").
@@ -64,6 +66,8 @@ class _BookingGuestHouseAdvanceRequestScreenState
   ProjectFilterItem? _projectSelected;
 
   late final TextEditingController _companyCtrl;
+  TaxCompanyItem? _companySelected;
+
   late final TextEditingController _departmentCtrl;
   late final TextEditingController _reasonCtrl;
 
@@ -76,6 +80,7 @@ class _BookingGuestHouseAdvanceRequestScreenState
 
   late final TextEditingController _bankAccountCtrl;
   late final TextEditingController _bankNameCtrl;
+  BankItem? _bankSelected;
 
   /// Số tiền tạm ứng — text có format "x.xxx.xxx VNĐ"; parse ngược về số
   /// khi cần submit.
@@ -195,6 +200,97 @@ class _BookingGuestHouseAdvanceRequestScreenState
           _projectCtrl.text = (project.projectCode ?? '').isNotEmpty
               ? '${project.projectCode} - ${project.projectName ?? ''}'
               : (project.projectName ?? '');
+        });
+      },
+    );
+  }
+
+  /// Mở bottom sheet chọn TBP duyệt từ `state.employees`. Khi user chọn,
+  /// lưu lại employeeId + tên để dùng cho submit.
+  Future<void> _pickTbp() async {
+    final state = context.read<BookingGuestHouseBloc>().state;
+    if (state.employees.isEmpty) {
+      _showNoDataHint(context, 'nhân viên');
+      return;
+    }
+    await openSelectBottomSheet<EmployeeFilterItem>(
+      context: context,
+      title: 'Chọn TBP duyệt',
+      hintText: 'Tìm theo tên / mã nhân viên',
+      items: state.employees,
+      initialSelectedItem: _tbpSelected,
+      displayText: (e) {
+        final name = (e.fullName ?? '').trim();
+        final code = (e.code ?? '').trim();
+        if (code.isNotEmpty) return '$code - $name';
+        return name.isEmpty ? 'N/A' : name;
+      },
+      onSelected: (e) {
+        setState(() {
+          _tbpSelected = e;
+          _tbpCtrl.text = (e.fullName ?? '').trim();
+        });
+      },
+    );
+  }
+
+  /// Mở bottom sheet chọn công ty từ `state.taxCompanies`.
+  Future<void> _pickTaxCompany() async {
+    final state = context.read<BookingGuestHouseBloc>().state;
+    if (state.taxCompanies.isEmpty) {
+      context.read<BookingGuestHouseBloc>().add(
+        const BookingGuestHouseEvent.loadFilters(),
+      );
+      _showNoDataHint(context, 'công ty');
+      return;
+    }
+    await openSelectBottomSheet<TaxCompanyItem>(
+      context: context,
+      title: 'Chọn công ty',
+      hintText: 'Tìm theo tên / mã số thuế',
+      items: state.taxCompanies,
+      initialSelectedItem: _companySelected,
+      displayText: (c) {
+        // Ưu tiên Name, fallback TaxCode.
+        final name = (c.name ?? '').trim();
+        if (name.isNotEmpty) return name;
+        final tax = (c.taxCode ?? '').trim();
+        if (tax.isEmpty) return 'N/A';
+        return 'MST: $tax';
+      },
+      onSelected: (company) {
+        setState(() {
+          _companySelected = company;
+          _companyCtrl.text = (company.name ?? '').trim().isEmpty
+              ? 'MST: ${(company.taxCode ?? '').trim()}'
+              : (company.name ?? '').trim();
+        });
+      },
+    );
+  }
+
+  /// Mở bottom sheet chọn ngân hàng từ `state.banks`.
+  Future<void> _pickBank() async {
+    final state = context.read<BookingGuestHouseBloc>().state;
+    if (state.banks.isEmpty) {
+      context.read<BookingGuestHouseBloc>().add(
+        const BookingGuestHouseEvent.loadFilters(),
+      );
+      _showNoDataHint(context, 'ngân hàng');
+      return;
+    }
+    await openSelectBottomSheet<BankItem>(
+      context: context,
+      title: 'Chọn ngân hàng',
+      hintText: 'Tìm theo tên ngân hàng',
+      items: state.banks,
+      initialSelectedItem: _bankSelected,
+      displayText: (b) =>
+          (b.bankName ?? '').trim().isEmpty ? 'N/A' : b.bankName!.trim(),
+      onSelected: (bank) {
+        setState(() {
+          _bankSelected = bank;
+          _bankNameCtrl.text = (bank.bankName ?? '').trim();
         });
       },
     );
@@ -402,18 +498,27 @@ class _BookingGuestHouseAdvanceRequestScreenState
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  //---(TBP duyệt — readonly, auto-fill từ info.approvedTBP)---//
+                  //---(TBP duyệt — auto-fill từ info.approvedTBP, có thể
+                  //    chọn lại qua bottom sheet)---//
                   BlocBuilder<BookingGuestHouseBloc, BookingGuestHouseState>(
                     buildWhen: (prev, curr) =>
                         prev.employees != curr.employees,
                     builder: (context, state) {
-                      if (detail.info.isApprovedTBP == true &&
+                      if (detail.info.approvedTBP != null &&
                           _tbpCtrl.text.isEmpty) {
                         final name = _resolveTbpName(
                           detail.info.approvedTBP,
                           state.employees,
                         );
-                        if (name != null) _tbpCtrl.text = name;
+                        if (name != null) {
+                          _tbpCtrl.text = name;
+                          // Lưu lại employee đã chọn để initialSelectedItem
+                          // đúng khi mở bottom sheet.
+                          _tbpSelected ??= state.employees.firstWhere(
+                            (e) => e.id == detail.info.approvedTBP,
+                            orElse: () => state.employees.first,
+                          );
+                        }
                       }
                       return FormInputField(
                         nameForm: 'advance_tbp',
@@ -422,9 +527,9 @@ class _BookingGuestHouseAdvanceRequestScreenState
                         icon: Icons.verified_user_outlined,
                         controller: _tbpCtrl,
                         isRequired: true,
-                        readOnly: true,
+                        onTap: _pickTbp,
                         validator: (v) => v == null || v.trim().isEmpty
-                            ? 'Vui lòng nhập TBP duyệt'
+                            ? 'Vui lòng chọn TBP duyệt'
                             : null,
                       );
                     },
@@ -469,13 +574,15 @@ class _BookingGuestHouseAdvanceRequestScreenState
                   ),
                   const SizedBox(height: 12),
 
-                  //---(Công ty — optional, text rỗng)---//
+                  //---(Công ty — optional, picker từ state.taxCompanies)---//
                   FormInputField(
                     nameForm: 'advance_company',
                     nameTextField: 'advance_company_text',
                     label: 'Công ty',
                     icon: Icons.business_outlined,
                     controller: _companyCtrl,
+                    readOnly: true,
+                    onTap: _pickTaxCompany,
                   ),
                   const SizedBox(height: 12),
 
@@ -550,7 +657,7 @@ class _BookingGuestHouseAdvanceRequestScreenState
                   ),
                   const SizedBox(height: 12),
 
-                  //---(Ngân hàng — isRequired)---//
+                  //---(Ngân hàng — isRequired, picker từ state.banks)---//
                   FormInputField(
                     nameForm: 'advance_bank_name',
                     nameTextField: 'advance_bank_name_text',
@@ -558,8 +665,10 @@ class _BookingGuestHouseAdvanceRequestScreenState
                     icon: Icons.account_balance,
                     controller: _bankNameCtrl,
                     isRequired: true,
+                    readOnly: true,
+                    onTap: _pickBank,
                     validator: (v) => v == null || v.trim().isEmpty
-                        ? 'Vui lòng nhập ngân hàng'
+                        ? 'Vui lòng chọn ngân hàng'
                         : null,
                   ),
                   const SizedBox(height: 12),

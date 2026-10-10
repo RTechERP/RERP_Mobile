@@ -35,6 +35,16 @@ abstract class BookingGuestHouseRepo {
     int employeeId,
   });
 
+  /// Lấy danh sách công ty phát hành hóa đơn — picker "Công ty" trong
+  /// form Cập nhật TTQT + Đề nghị tạm ứng.
+  /// API: GET /TaxCompany/get-tax-companies
+  Future<Either<BaseError, List<TaxCompanyItem>>> getTaxCompanies();
+
+  /// Lấy danh sách ngân hàng — picker "Ngân hàng" trong
+  /// form Cập nhật TTQT + Đề nghị tạm ứng.
+  /// API: GET /banklist
+  Future<Either<BaseError, List<BankItem>>> getBankList();
+
   /// Lưu phiếu đặt phòng nhà nghỉ.
   /// Body: `{ "accommodationBooking": {...}, "accommodationBookingDetails": [...], "idDeleteds": [] }`.
   Future<Either<BaseError, BookingGuestHouseSaveResponse>>

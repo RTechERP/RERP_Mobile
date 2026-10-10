@@ -35,6 +35,10 @@ abstract class _$BookingGuestHouseStateCWProxy {
 
   BookingGuestHouseState provinces(List<ProvinceFilterItem> provinces);
 
+  BookingGuestHouseState taxCompanies(List<TaxCompanyItem> taxCompanies);
+
+  BookingGuestHouseState banks(List<BankItem> banks);
+
   BookingGuestHouseState selectedProject(ProjectFilterItem? selectedProject);
 
   BookingGuestHouseState selectedEmployee(EmployeeFilterItem? selectedEmployee);
@@ -68,6 +72,8 @@ abstract class _$BookingGuestHouseStateCWProxy {
     List<ProjectFilterItem>? projects,
     List<EmployeeFilterItem>? employees,
     List<ProvinceFilterItem>? provinces,
+    List<TaxCompanyItem>? taxCompanies,
+    List<BankItem>? banks,
     ProjectFilterItem? selectedProject,
     EmployeeFilterItem? selectedEmployee,
     bool? isLoadingFilters,
@@ -138,6 +144,13 @@ class _$BookingGuestHouseStateCWProxyImpl
       this(provinces: provinces);
 
   @override
+  BookingGuestHouseState taxCompanies(List<TaxCompanyItem> taxCompanies) =>
+      this(taxCompanies: taxCompanies);
+
+  @override
+  BookingGuestHouseState banks(List<BankItem> banks) => this(banks: banks);
+
+  @override
   BookingGuestHouseState selectedProject(ProjectFilterItem? selectedProject) =>
       this(selectedProject: selectedProject);
 
@@ -185,6 +198,8 @@ class _$BookingGuestHouseStateCWProxyImpl
     Object? projects = const $CopyWithPlaceholder(),
     Object? employees = const $CopyWithPlaceholder(),
     Object? provinces = const $CopyWithPlaceholder(),
+    Object? taxCompanies = const $CopyWithPlaceholder(),
+    Object? banks = const $CopyWithPlaceholder(),
     Object? selectedProject = const $CopyWithPlaceholder(),
     Object? selectedEmployee = const $CopyWithPlaceholder(),
     Object? isLoadingFilters = const $CopyWithPlaceholder(),
@@ -254,6 +269,15 @@ class _$BookingGuestHouseStateCWProxyImpl
           ? _value.provinces
           // ignore: cast_nullable_to_non_nullable
           : provinces as List<ProvinceFilterItem>,
+      taxCompanies:
+          taxCompanies == const $CopyWithPlaceholder() || taxCompanies == null
+              ? _value.taxCompanies
+              // ignore: cast_nullable_to_non_nullable
+              : taxCompanies as List<TaxCompanyItem>,
+      banks: banks == const $CopyWithPlaceholder() || banks == null
+          ? _value.banks
+          // ignore: cast_nullable_to_non_nullable
+          : banks as List<BankItem>,
       selectedProject: selectedProject == const $CopyWithPlaceholder()
           ? _value.selectedProject
           // ignore: cast_nullable_to_non_nullable
