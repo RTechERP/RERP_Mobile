@@ -584,10 +584,19 @@ class BookingActionsSheet extends StatelessWidget {
               itemCount: 3,
               itemBuilder: (context, index) {
                 if (index == 0) {
+                  // Tile "Chỉnh sửa" — đổi sang màu xanh lá cây khi
+                  // phiếu đã được TBP duyệt (đồng bộ với 2 tile còn
+                  // lại). Khi chưa duyệt → giữ màu primaryERP (đỏ)
+                  // để phân biệt affordance: "phiếu chưa duyệt vẫn
+                  // sửa được" (sửa thông tin đăng ký) vs "phiếu đã
+                  // duyệt chỉ sửa được quyết toán/tạm ứng" (xanh).
+                  final editColor = status == TbpStatus.approved
+                      ? approvedColor
+                      : AppColors.primaryERP;
                   return _CategoryTile(
                     label: 'Chỉnh sửa',
                     icon: Icons.edit_outlined,
-                    color: AppColors.primaryERP,
+                    color: editColor,
                     // Pop sheet rồi delegate về page state — page state
                     // sở hữu `_bloc` + `mounted` + chịu trách nhiệm
                     // reload list sau khi Edit screen pop (xem

@@ -53,7 +53,6 @@ import '../features/more/view/pages/avatar_viewer_screen.dart';
 import '../features/workplace/app/general_form/view/bloc/general_form_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_guest_house/view/pages/booking_guest_house_add_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_guest_house/view/pages/booking_guest_house_advance_request_screen.dart';
-import '../features/workplace/app/reg_general/view/pages/booking_guest_house/view/pages/booking_guest_house_detail_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_guest_house/view/pages/booking_guest_house_settlement_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_add_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_edit_screen.dart';
@@ -916,16 +915,6 @@ class AppRouter {
               value: getIt<BookingGuestHouseBloc>(),
               child: const BookingGuestHouseAddScreen(),
             ),
-          ),
-          GoRoute(
-            path: RouteNames.bookingGuestHouseDetail,
-            builder: (context, state) {
-              final extra = state.extra;
-              if (extra is! int) {
-                return const BookingGuestHousePage();
-              }
-              return BookingGuestHouseDetailScreen(id: extra);
-            },
           ),
           GoRoute(
             // Edit mode: mở lại add_screen với id để load detail + fill form.

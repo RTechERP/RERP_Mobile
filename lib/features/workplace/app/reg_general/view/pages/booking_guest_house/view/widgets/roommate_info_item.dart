@@ -23,6 +23,7 @@ class RoommateInfoItem extends StatefulWidget {
     this.prefillEmployee,
     required this.onChanged,
     this.onRemove,
+    this.onReady,
   });
 
   /// Index dòng (0 = slip đầu tiên = currentUser).
@@ -44,6 +45,14 @@ class RoommateInfoItem extends StatefulWidget {
 
   /// Callback yêu cầu parent xoá slip này (chỉ gọi khi index > 0).
   final VoidCallback? onRemove;
+
+  /// Gọi 1 lần SAU khi widget đã mount xong + FormFieldState đã được tạo
+  /// (qua `onFieldCreated` của FormInputField) + `_hydrateFromState` đã
+  /// đồng bộ controller từ `infoFieldValues`. Parent dùng callback này
+  /// để `patchValue` của FormBuilder — chỉ khi đó `formState.value` mới
+  /// chắc chắn có data (vì patchValue gọi `field.didChange` để sync vào
+  /// FormBuilder internal map; nếu field chưa tồn tại, patchValue miss).
+  final VoidCallback? onReady;
 
   @override
   State<RoommateInfoItem> createState() => _RoommateInfoItemState();
@@ -267,6 +276,11 @@ class _RoommateInfoItemState extends State<RoommateInfoItem> {
     if (phoneVal != null && phoneVal.trim().isNotEmpty) {
       phoneField?.didChange(phoneVal.trim());
     }
+    // Báo cho parent biết widget đã sẵn sàng — FormFieldState đã được tạo
+    // (onFieldCreated) + value đã sync vào FormBuilder internal map qua
+    // didChange. Parent có thể gọi `patchValue` an toàn (field đã register
+    // trong formState.fields).
+    widget.onReady?.call();
   }
 
   void _syncFieldsToEmployee(EmployeeFilterItem? employee) {
@@ -278,6 +292,7 @@ class _RoommateInfoItemState extends State<RoommateInfoItem> {
     codeField?.didChange(employee?.code ?? employee?.id?.toString() ?? '');
     roommateNameField?.didChange(employee?.fullName ?? '');
     phoneField?.didChange(employee?.sdtCaNhan ?? '');
+    widget.onReady?.call();
   }
 
   void _emitInfoPatch({

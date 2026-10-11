@@ -47,6 +47,11 @@ class _BookingGuestHouseAddScreenState
   /// EmployeeID của user đang đăng nhập — dùng làm `RegisterID` trong payload.
   int? _currentEmployeeId;
 
+  /// Cờ phiếu đã được TBP duyệt — fill từ detail khi edit mode để các
+  /// field trong form (TBP Duyệt, ...) biết `enabled`. Mặc định false
+  /// (create mode / chưa load detail).
+  bool _isApprovedTBP = false;
+
   //---(Form state — Card 1)---//
   // DateTime/Object state vẫn giữ để build payload; FormInputField chỉ là
   // UI cho value text.
@@ -71,6 +76,13 @@ class _BookingGuestHouseAddScreenState
 
   /// Tăng mỗi lần add/delete để force rebuild tất cả RoommateInfoItem.
   int _roommateFormGeneration = 0;
+
+  /// Generation mà mỗi slip RoommateInfoItem đã gọi `onReady` lần cuối.
+  /// Khi gen++ (qua _populateFromDetail), các value cũ bị "stale" và slip
+  /// phải gọi lại onReady với gen mới → parent patchValue chắc chắn
+  /// sau khi TẤT CẢ slip đã sẵn sàng cho gen hiện tại.
+  /// Lưu map theo index slip → gen (int).
+  final Map<int, int> _readySlipsForGen = <int, int>{};
 
   /// Cờ đánh dấu đã fill form từ detail (edit mode) chưa — tránh gọi
   /// _populateFromDetail nhiều lần khi BlocBuilder rebuild.
@@ -145,6 +157,17 @@ class _BookingGuestHouseAddScreenState
     _selectedProvince = _findProvince(info.provinceId, state.provinces);
     _selectedTbp = _findEmployee(info.approvedTBP, state.employees);
 
+    // RegisterID trong phiếu gốc = employeeId của người đăng ký — dùng
+    // làm RegisterID khi submit update, tránh phụ thuộc vào API currentUser
+    // (edit mode không gọi _loadCurrentUser).
+    if (info.registerId != null && info.registerId! > 0) {
+      _currentEmployeeId = info.registerId;
+    }
+
+    // Lưu cờ TBP duyệt để các FormInputField trong _buildRegistrationCard
+    // biết `enabled` — khi phiếu đã duyệt, TBP Duyệt disable (chỉ xem).
+    _isApprovedTBP = info.isApprovedTBP == true;
+
     // 2) Date.
     _startDate = info.startDate;
     _endDate = info.endDate;
@@ -168,23 +191,10 @@ class _BookingGuestHouseAddScreenState
             ? ''
             : 'Tỉnh #${info.provinceId}');
 
-    // 4) FormBuilder value.
-    final patch = <String, dynamic>{
-      'start_date': _startDateCtrl.text,
-      'start_date_text': _startDateCtrl.text,
-      'end_date': _endDateCtrl.text,
-      'end_date_text': _endDateCtrl.text,
-      'project': _projectCtrl.text,
-      'project_text': _projectCtrl.text,
-      'tbp': _tbpCtrl.text,
-      'tbp_text': _tbpCtrl.text,
-      'province': _provinceCtrl.text,
-      'province_text': _provinceCtrl.text,
-      'address': info.address ?? '',
-      'address_text': info.address ?? '',
-      'note': info.note ?? '',
-      'note_text': info.note ?? '',
-    };
+    // 4) FormBuilder value (chỉ các field ngoài RoommateInfoItem).
+    _addressValue = info.address ?? '';
+    _noteValue = info.note ?? '';
+    final patch = _buildRegistrationPatch();
     _formKey.currentState?.patchValue(patch);
 
     // 5) Roommate list — từ data.persons.
@@ -226,7 +236,37 @@ class _BookingGuestHouseAddScreenState
       };
     }
     _roommateFormGeneration++;
+    // Reset ready map cho gen mới.
+    _readySlipsForGen.clear();
   }
+
+  /// Build patch cho FormBuilder các field ngoài RoommateInfoItem (date,
+  /// project, tbp, province, address, note). Tách ra để delay-patchValue
+  /// (50ms sau setState) dùng lại được.
+  Map<String, dynamic> _buildRegistrationPatch() {
+    return <String, dynamic>{
+      'start_date': _startDateCtrl.text,
+      'start_date_text': _startDateCtrl.text,
+      'end_date': _endDateCtrl.text,
+      'end_date_text': _endDateCtrl.text,
+      'project': _projectCtrl.text,
+      'project_text': _projectCtrl.text,
+      'tbp': _tbpCtrl.text,
+      'tbp_text': _tbpCtrl.text,
+      'province': _provinceCtrl.text,
+      'province_text': _provinceCtrl.text,
+      'address': _addressValue,
+      'address_text': _addressValue,
+      'note': _noteValue,
+      'note_text': _noteValue,
+    };
+  }
+
+  /// Value từ `info` (cached) cho field Address / Note — không qua
+  /// TextEditingController vì FormInputField cho 2 field này dùng
+  /// controller nội bộ (không có external controller).
+  String _addressValue = '';
+  String _noteValue = '';
 
   ProjectFilterItem? _findProject(int? id, List<ProjectFilterItem> items) {
     if (id == null) return null;
@@ -373,16 +413,16 @@ class _BookingGuestHouseAddScreenState
             },
           ),
         ],
-        child: FormBuilder(
-          key: _formKey,
-          child: BlocBuilder<BookingGuestHouseBloc, BookingGuestHouseState>(
-            buildWhen: (prev, curr) =>
-                prev.isDetailLoading != curr.isDetailLoading ||
-                prev.detailData != curr.detailData ||
-                prev.projects != curr.projects ||
-                prev.employees != curr.employees ||
-                prev.provinces != curr.provinces,
-            builder: (context, state) {
+          child: FormBuilder(
+            key: _formKey,
+            // Không dùng buildWhen — phải rebuild mỗi khi AddScreen
+            // setState (vd: _populateFromDetail vừa set _isApprovedTBP =
+            // true → cần re-render FormInputField TBP Duyệt với
+            // `enabled: false`). Nếu dùng buildWhen, BlocBuilder chỉ
+            // chạy khi state thay đổi; state không đổi sau setState bên
+            // ngoài → builder skip → `enabled` giữ giá trị cũ.
+            child: BlocBuilder<BookingGuestHouseBloc, BookingGuestHouseState>(
+              builder: (context, state) {
               // Edit mode: fill form 1 lần khi detail vừa có data + lookup đã
               // load xong (tránh gọi trong build → setState trong build).
               if (widget.id != null &&
@@ -392,6 +432,27 @@ class _BookingGuestHouseAddScreenState
                 WidgetsBinding.instance.addPostFrameCallback((_) {
                   if (!mounted) return;
                   _populateFromDetail(state.detailData!);
+                  // Trigger rebuild để field TBP Duyệt nhận
+                  // `enabled: !_isApprovedTBP` mới set trong _populateFromDetail
+                  // + ValueKey RoommateInfoItem đổi (gen++) → RoommateInfoItem
+                  // mới mount + FormField mới register với FormBuilder.
+                  if (mounted) setState(() {});
+                  // PatchValue cho field NGOÀI RoommateInfoItem (date, project,
+                  // tbp, province, address, note). Cần delay vì field này
+                  // cũng bị rebuild sau setState → có thể chưa mount kịp
+                  // ở postFrame. 50ms đủ cho form đơn giản (ít field).
+                  Future.delayed(const Duration(milliseconds: 50), () {
+                    if (!mounted) return;
+                    _formKey.currentState?.patchValue(_buildRegistrationPatch());
+                  });
+                  // PatchValue cho field ROOMMATE chạy qua callback onReady
+                  // của RoommateInfoItem — chỉ chạy khi TẤT CẢ slip đã
+                  // FormFieldState bound + value sync vào FormBuilder map
+                  // (qua didChange). Đây là fix bug "validate fail ở edit
+                  // mode dù UI đã hiển thị data": trước đây patchValue
+                  // chạy ở postFrame / Future.delayed, có thể vẫn sớm
+                  // hơn FormField mount → patchValue miss âm thức →
+                  // formState.value rỗng → saveAndValidate fail.
                 });
               }
               // Edit mode: hiển thị spinner khi đang load detail lần đầu
@@ -493,6 +554,11 @@ class _BookingGuestHouseAddScreenState
             label: 'TBP Duyệt',
             icon: Icons.verified_user_outlined,
             controller: _tbpCtrl,
+            // enabled=false để Material style màu xám + không cho phép
+            // tương tác kể cả tap (readOnly chỉ chặn bàn phím). Phiếu đã
+            // được TBP duyệt (_isApprovedTBP) thì giữ nguyên; user chỉ
+            // mở được _openTbpSheet khi chưa duyệt.
+            enabled: !_isApprovedTBP,
             readOnly: true,
             isRequired: true,
             onTap: _openTbpSheet,
@@ -604,7 +670,32 @@ class _BookingGuestHouseAddScreenState
       },
       // Chỉ cho phép xoá slip 1 trở đi — slip 0 luôn là currentUser.
       onRemove: index >= 1 ? () => _removeRoommate(index) : null,
+      // RoommateInfoItem gọi onReady SAU khi FormFieldState đã được tạo +
+      // value đã được đẩy vào FormBuilder internal map (qua didChange
+      // trong _hydrateFromState / _syncFieldsToEmployee). Đây là tín hiệu
+      // CHẮC CHẮN rằng field đã register trong formState.fields → patchValue
+      // sẽ tìm thấy field + set value. Nếu patchValue chạy ở postFrame /
+      // Future.delayed, có thể vẫn sớm hơn FormField mount → miss âm thức
+      // (đó là bug "validate fail ở edit mode dù UI đã hiển thị").
+      // Mỗi slip onReady 1 lần khi mount xong — patchValue chỉ chạy khi
+      // TẤT CẢ slip đã sẵn sàng cho gen hiện tại.
+      onReady: widget.id != null
+          ? () {
+              if (!mounted) return;
+              _readySlipsForGen[index] = _roommateFormGeneration;
+              if (_isAllReadyForCurrentGen()) {
+                _formKey.currentState?.patchValue(_infoFieldValues);
+              }
+            }
+          : null,
     );
+  }
+
+  bool _isAllReadyForCurrentGen() {
+    for (var i = 0; i < _roommateLineCount; i++) {
+      if (_readySlipsForGen[i] != _roommateFormGeneration) return false;
+    }
+    return true;
   }
 
   //---(Bottom bar)---//
@@ -831,6 +922,7 @@ class _BookingGuestHouseAddScreenState
       _roommateLineCount = newCount;
       _selectedRoommateEmployees[oldCount] = null;
       _roommateFormGeneration++;
+      _readySlipsForGen.clear();
     });
   }
 
@@ -868,6 +960,7 @@ class _BookingGuestHouseAddScreenState
       // Đồng bộ infoFieldValues theo shifted.
       _infoFieldValues = {..._infoFieldValues, ...shifted};
       _roommateFormGeneration++;
+      _readySlipsForGen.clear();
     });
   }
 
