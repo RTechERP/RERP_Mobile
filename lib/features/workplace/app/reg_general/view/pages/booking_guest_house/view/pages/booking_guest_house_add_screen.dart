@@ -695,9 +695,18 @@ class _BookingGuestHouseAddScreenState
   /// Khi edit (widget.id != null) → truyền `ID` của phiếu trong
   /// `accommodationBooking` để server xử lý update thay vì tạo mới.
   /// Nếu có thông tin từ detail (info.id) thì ưu tiên dùng id đó.
+  ///
+  /// QUAN TRỌNG: bloc là singleton (share qua ShellRoute provider) nên
+  /// `state.detailData` có thể còn rác từ lần mở edit trước. Khi tạo
+  /// mới (widget.id == null) phải ép `bookingId = 0` thay vì fallback
+  /// `detail?.info.id` — nếu không sẽ gửi nhầm `ID` phiếu của người
+  /// khác lên server, BE sẽ 400 vì "trùng đăng ký" hoặc overwrite phiếu
+  /// người khác.
   Map<String, dynamic> _buildSubmitPayload() {
     final detail = context.read<BookingGuestHouseBloc>().state.detailData;
-    final bookingId = widget.id ?? detail?.info.id ?? 0;
+    final bookingId = widget.id != null
+        ? (widget.id ?? detail?.info.id ?? 0)
+        : 0;
 
     final accommodationBooking = <String, dynamic>{
       'ID': bookingId,
@@ -898,10 +907,18 @@ class _BookingGuestHouseAddScreenState
     DateTime? firstDate,
   }) async {
     final now = DateTime.now();
+    final resolvedFirst = firstDate ?? DateTime(now.year - 1);
+    // initialDate phải nằm trong [firstDate, lastDate]; clamp nếu value
+    // (lần pick trước) bị trước firstDate hiện tại (vd. user đổi startDate
+    // sau khi đã pick endDate).
+    DateTime initial = value ?? now;
+    if (initial.isBefore(resolvedFirst)) {
+      initial = resolvedFirst;
+    }
     return showDatePicker(
       context: context,
-      initialDate: value ?? now,
-      firstDate: firstDate ?? DateTime(now.year - 1),
+      initialDate: initial,
+      firstDate: resolvedFirst,
       lastDate: DateTime(now.year + 2),
     );
   }

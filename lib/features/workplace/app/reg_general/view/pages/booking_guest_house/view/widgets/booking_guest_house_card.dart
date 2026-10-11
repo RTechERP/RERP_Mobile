@@ -70,7 +70,16 @@ class BookingGuestHouseCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _TinyBadge(text: arrangementBadge, color: arrangementColor),
+                  Row(
+                    children: [
+                      _TbpBadge(item: item),
+                      const SizedBox(width: 6),
+                      _TinyBadge(
+                        text: arrangementBadge,
+                        color: arrangementColor,
+                      ),
+                    ],
+                  ),
                   const SizedBox(height: 12),
                   _InfoRow(
                     icon: Icons.person_outline,
@@ -231,5 +240,25 @@ class _TinyBadge extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+/// Badge trạng thái duyệt TBP hiển thị trên card. Đồng bộ style với
+/// `_TinyBadge` (pill tròn, alpha 12% nền + 40% viền, chữ 9px đậm).
+/// - `IsApprovedTBP == true`  → "Đã duyệt TBP" (xanh lá)
+/// - ngược lại               → "Chờ duyệt TBP" (vàng)
+class _TbpBadge extends StatelessWidget {
+  const _TbpBadge({required this.item});
+
+  final BookingGuestHouseItem item;
+
+  @override
+  Widget build(BuildContext context) {
+    final approved = item.isApprovedTBP == true;
+    final color = approved
+        ? AppColors.success
+        : AppColors.warning;
+    final label = approved ? 'TBP đã duyệt' : 'Chờ duyệt TBP';
+    return _TinyBadge(text: label, color: color);
   }
 }

@@ -8,6 +8,7 @@ import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../../../../base/bloc/index.dart';
+import '../../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/constants/index.dart';
@@ -137,15 +138,16 @@ class _BookingGuestHousePageState extends State<BookingGuestHousePage> {
   Widget build(BuildContext context) {
     return BlocListener<BookingGuestHouseBloc, BookingGuestHouseState>(
       listenWhen: (prev, curr) =>
-          prev.status != curr.status ||
-          prev.deleteSuccess != curr.deleteSuccess ||
+          // Message mới phát ra (vd. lỗi xoá phiếu, cảnh báo quyền).
           (curr.message != null &&
               curr.message!.isNotEmpty &&
-              prev.message != curr.message),
+              prev.message != curr.message) ||
+          // Chỉ ăn success khi vừa chuyển từ `false → true` — nếu không,
+          // state cờ này còn nguyên sau lần xoá trước, mỗi lần vào lại
+          // màn (hoặc bất kỳ emit nào khác không có message) sẽ khiến
+          // snackbar "Xoá thành công" hiện lặp lại.
+          (!prev.deleteSuccess && curr.deleteSuccess),
       listener: (context, state) {
-        // Bắt mọi message mới phát ra, không phụ thuộc status — các nhánh chặn
-        // xoá (sai RegisterID, không đọc được currentUser) chỉ set message
-        // mà không đổi status.
         final message = (state.message ?? '').trim();
         if (message.isNotEmpty) {
           GetIt.I<SnackBarHelper>().showError(context, message);
@@ -416,25 +418,12 @@ class BookingActionsSheet extends StatelessWidget {
       ? 'Đặt phòng nhà nghỉ'
       : (item.fullName ?? '').trim();
 
-  /// Trạng thái duyệt TBP dựa trên `approvedTBP` (int) trong model.
-  /// null/0 = chưa duyệt, 1 = đã duyệt, 2 = từ chối.
+  /// Trạng thái duyệt TBP dựa trên `IsApprovedTBP` (bool) trong model.
+  /// - true  → đã duyệt
+  /// - false → chờ duyệt (chưa duyệt / đang xử lý)
+  /// (Lưu ý: `approvedTBP` (int) là employeeId của TBP duyệt, không phải
+  /// trạng thái — KHÔNG dùng để check ở đây.)
   TbpStatus get _tbpStatus {
-    final raw = item.approvedTBP;
-    if (raw is int) {
-      switch (raw) {
-        case 1:
-          return TbpStatus.approved;
-        case 2:
-          return TbpStatus.rejected;
-        default:
-          return TbpStatus.pending;
-      }
-    }
-    if (raw is num) {
-      if (raw == 1) return TbpStatus.approved;
-      if (raw == 2) return TbpStatus.rejected;
-    }
-    // Fallback: dùng `isApprovedTBP` (bool) nếu server không trả int.
     if (item.isApprovedTBP == true) return TbpStatus.approved;
     return TbpStatus.pending;
   }
@@ -549,6 +538,18 @@ class BookingActionsSheet extends StatelessWidget {
                     icon: Icons.edit_note_outlined,
                     color: tileColor,
                     onTap: () {
+                      // Chặn nếu chưa được TBP duyệt (status != approved).
+                      // Theo quy tắc nghiệp vụ, chỉ được nhập TT quyết
+                      // toán sau khi đơn đăng ký được TBP duyệt đơn.
+                      if (status != TbpStatus.approved) {
+                        Navigator.pop(context);
+                        context.showMessage(
+                          'Vui lòng chờ TBP duyệt đơn trước khi nhập '
+                          'thông tin quyết toán!',
+                          type: SnackBarType.error,
+                        );
+                        return;
+                      }
                       Navigator.pop(context);
                       context.push(
                         RouteNames.bookingGuestHouseSettlement,
@@ -562,6 +563,18 @@ class BookingActionsSheet extends StatelessWidget {
                   icon: Icons.receipt_long_outlined,
                   color: tileColor,
                   onTap: () {
+                    // Chặn nếu chưa được TBP duyệt (status != approved).
+                    // Theo mục 3.3 (Đề nghị tạm ứng) — chỉ được tạo ĐNTU
+                    // sau khi đơn đăng ký được TBP duyệt.
+                    if (status != TbpStatus.approved) {
+                      Navigator.pop(context);
+                      context.showMessage(
+                        'Vui lòng chờ TBP duyệt đơn trước khi tạo '
+                        'đề nghị tạm ứng',
+                        type: SnackBarType.error,
+                      );
+                      return;
+                    }
                     Navigator.pop(context);
                     context.push(
                       RouteNames.bookingGuestHouseAdvance,
