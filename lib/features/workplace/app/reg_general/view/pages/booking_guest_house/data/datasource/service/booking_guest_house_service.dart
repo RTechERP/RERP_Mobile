@@ -168,6 +168,79 @@ class BookingGuestHouseService extends DioBaseApiService {
     );
   }
 
+  /// Tạo / tạo lại đề nghị tạm ứng (ĐNTU) cho 1 phiếu đặt phòng nhà nghỉ.
+  /// API: POST `/AccommodationBookingPaymentOrder/create-advance`
+  /// Body: AccommodationBookingAdvanceRequest (xem mục 4.6 spec):
+  /// ```
+  /// {
+  ///   AccommodationBookingID, ApprovedTBPID, Reason, ProjectID,
+  ///   TransferType, BankAccount, BankListID, BankName, TotalAmount,
+  ///   Note, CompanyID, CompanyName, DepartmentName, RecipientName
+  /// }
+  /// ```
+  /// Khi phiếu cũ bị hủy duyệt ở bước hiện tại, BE tự tạo lại trên
+  /// chính master cũ — response có `data.IsRecreated = true` + message
+  /// "Đã tạo lại đề nghị tạm ứng (chờ TBP duyệt lại)".
+  Future<BaseData<BookingGuestHouseAdvanceResponse>>
+      createBookingGuestHouseAdvance({
+    required Map<String, dynamic> payload,
+  }) async {
+    return post<BaseData<BookingGuestHouseAdvanceResponse>>(
+      ApiEndPoint.createBookingGuestHouseAdvance,
+      body: payload,
+      parser: (json) => _parseAdvanceResponse(json),
+    );
+  }
+
+  /// Parser defensive cho response create-advance — chấp nhận nhiều dạng
+  /// JSON server có thể trả (envelope `BaseData`, raw object, string bọc JSON).
+  BaseData<BookingGuestHouseAdvanceResponse> _parseAdvanceResponse(
+    dynamic json,
+  ) {
+    if (json is String) {
+      final raw = json.trim();
+      if (raw.isEmpty) {
+        return BaseData<BookingGuestHouseAdvanceResponse>(
+          status: 1,
+          data: const BookingGuestHouseAdvanceResponse(),
+        );
+      }
+      try {
+        return _parseAdvanceResponse(jsonDecode(raw));
+      } catch (_) {
+        return BaseData<BookingGuestHouseAdvanceResponse>(
+          status: 1,
+          data: const BookingGuestHouseAdvanceResponse(),
+        );
+      }
+    }
+
+    if (json is Map<String, dynamic>) {
+      // BE trả thẳng `{ ID, Code, DetailID, IsRecreated }` (không envelope)
+      // — detect bằng presence của key `Code` (ĐNTU...) hoặc `ID`.
+      if (json.containsKey('Code') || json.containsKey('ID')) {
+        return BaseData<BookingGuestHouseAdvanceResponse>(
+          status: 1,
+          data: BookingGuestHouseAdvanceResponse.fromJson(json),
+        );
+      }
+      // Còn lại: parse theo envelope chuẩn `{ status, message, data }`.
+      return BaseData<BookingGuestHouseAdvanceResponse>.fromJson(
+        json,
+        (data) => BookingGuestHouseAdvanceResponse.fromJson(
+          data is Map<String, dynamic>
+              ? data
+              : <String, dynamic>{},
+        ),
+      );
+    }
+
+    return BaseData<BookingGuestHouseAdvanceResponse>(
+      status: 1,
+      data: const BookingGuestHouseAdvanceResponse(),
+    );
+  }
+
   /// Parser cho response detail — server có thể trả:
   /// 1. trực tiếp object detail (không envelope): parse luôn.
   /// 2. envelope `BaseData<...>` chuẩn của project.

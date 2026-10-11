@@ -387,7 +387,55 @@ class _BookingGuestHousePageState extends State<BookingGuestHousePage> {
     BuildContext context,
     BookingGuestHouseItem item,
   ) {
-    BookingActionsSheet.show(context, item: item);
+    BookingActionsSheet.show(
+      context,
+      item: item,
+      onEdit: () => _openEdit(context, item),
+      onSettlement: () => _openSettlement(context, item),
+      onAdvance: () => _openAdvance(context, item),
+    );
+  }
+
+  /// Mở màn chỉnh sửa. Đợi screen pop về → init lại list (giống FAB
+  /// Add). Logic đặt ở State này (không phải trong sheet) để dùng được
+  /// `_bloc` private getter + `mounted` getter chuẩn — tránh phải xử
+  /// lý `context.mounted == false` sau khi sheet đã bị pop.
+  Future<void> _openEdit(
+    BuildContext context,
+    BookingGuestHouseItem item,
+  ) async {
+    await context.push(RouteNames.bookingGuestHouseEdit, extra: item.id);
+    if (!mounted) return;
+    _bloc.add(const BookingGuestHouseEvent.init());
+    _bloc.add(const BookingGuestHouseEvent.loadFilters());
+  }
+
+  /// Mở màn cập nhật quyết toán.
+  Future<void> _openSettlement(
+    BuildContext context,
+    BookingGuestHouseItem item,
+  ) async {
+    await context.push(
+      RouteNames.bookingGuestHouseSettlement,
+      extra: item.id,
+    );
+    if (!mounted) return;
+    _bloc.add(const BookingGuestHouseEvent.init());
+    _bloc.add(const BookingGuestHouseEvent.loadFilters());
+  }
+
+  /// Mở màn đề nghị tạm ứng.
+  Future<void> _openAdvance(
+    BuildContext context,
+    BookingGuestHouseItem item,
+  ) async {
+    await context.push(
+      RouteNames.bookingGuestHouseAdvance,
+      extra: item.id,
+    );
+    if (!mounted) return;
+    _bloc.add(const BookingGuestHouseEvent.init());
+    _bloc.add(const BookingGuestHouseEvent.loadFilters());
   }
 }
 
@@ -398,19 +446,36 @@ class _BookingGuestHousePageState extends State<BookingGuestHousePage> {
 /// ô danh mục (icon tròn + label). Tap 1 ô → đóng sheet + push route
 /// tương ứng.
 class BookingActionsSheet extends StatelessWidget {
-  const BookingActionsSheet({super.key, required this.item});
+  const BookingActionsSheet({
+    super.key,
+    required this.item,
+    required this.onEdit,
+    required this.onSettlement,
+    required this.onAdvance,
+  });
 
   final BookingGuestHouseItem item;
+  final VoidCallback onEdit;
+  final VoidCallback onSettlement;
+  final VoidCallback onAdvance;
 
   static Future<void> show(
     BuildContext context, {
     required BookingGuestHouseItem item,
+    required VoidCallback onEdit,
+    required VoidCallback onSettlement,
+    required VoidCallback onAdvance,
   }) {
     return showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (_) => BookingActionsSheet(item: item),
+      builder: (_) => BookingActionsSheet(
+        item: item,
+        onEdit: onEdit,
+        onSettlement: onSettlement,
+        onAdvance: onAdvance,
+      ),
     );
   }
 
@@ -523,12 +588,14 @@ class BookingActionsSheet extends StatelessWidget {
                     label: 'Chỉnh sửa',
                     icon: Icons.edit_outlined,
                     color: AppColors.primaryERP,
+                    // Pop sheet rồi delegate về page state — page state
+                    // sở hữu `_bloc` + `mounted` + chịu trách nhiệm
+                    // reload list sau khi Edit screen pop (xem
+                    // `_openEdit`). Tránh xử lý `context` của sheet
+                    // (đã unmounted sau khi pop) ở đây.
                     onTap: () {
                       Navigator.pop(context);
-                      context.push(
-                        RouteNames.bookingGuestHouseEdit,
-                        extra: item.id,
-                      );
+                      onEdit();
                     },
                   );
                 }
@@ -551,10 +618,7 @@ class BookingActionsSheet extends StatelessWidget {
                         return;
                       }
                       Navigator.pop(context);
-                      context.push(
-                        RouteNames.bookingGuestHouseSettlement,
-                        extra: item.id,
-                      );
+                      onSettlement();
                     },
                   );
                 }
@@ -576,10 +640,7 @@ class BookingActionsSheet extends StatelessWidget {
                       return;
                     }
                     Navigator.pop(context);
-                    context.push(
-                      RouteNames.bookingGuestHouseAdvance,
-                      extra: item.id,
-                    );
+                    onAdvance();
                   },
                 );
               },

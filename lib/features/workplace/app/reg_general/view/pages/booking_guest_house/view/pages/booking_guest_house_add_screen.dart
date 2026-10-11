@@ -809,7 +809,7 @@ class _BookingGuestHouseAddScreenState
                       ),
                     )
                   : const Text(
-                      'Lưu phiếu',
+                      'Lưu',
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,

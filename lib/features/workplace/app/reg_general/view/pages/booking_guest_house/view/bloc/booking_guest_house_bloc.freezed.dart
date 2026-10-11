@@ -30,6 +30,23 @@ mixin _$BookingGuestHouseEvent {
     required TResult Function(Map<String, dynamic> payload) submit,
     required TResult Function(int id) deleteBooking,
     required TResult Function(int id) loadDetail,
+    required TResult Function(Map<String, dynamic> payload) submitAdvance,
+    required TResult Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)
+        submitAdvanceForm,
+    required TResult Function() clearAdvanceSubmitState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -44,6 +61,23 @@ mixin _$BookingGuestHouseEvent {
     TResult? Function(Map<String, dynamic> payload)? submit,
     TResult? Function(int id)? deleteBooking,
     TResult? Function(int id)? loadDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitAdvance,
+    TResult? Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)?
+        submitAdvanceForm,
+    TResult? Function()? clearAdvanceSubmitState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -58,6 +92,23 @@ mixin _$BookingGuestHouseEvent {
     TResult Function(Map<String, dynamic> payload)? submit,
     TResult Function(int id)? deleteBooking,
     TResult Function(int id)? loadDetail,
+    TResult Function(Map<String, dynamic> payload)? submitAdvance,
+    TResult Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)?
+        submitAdvanceForm,
+    TResult Function()? clearAdvanceSubmitState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -73,6 +124,10 @@ mixin _$BookingGuestHouseEvent {
     required TResult Function(_Submit value) submit,
     required TResult Function(_DeleteBooking value) deleteBooking,
     required TResult Function(_LoadDetail value) loadDetail,
+    required TResult Function(_SubmitAdvance value) submitAdvance,
+    required TResult Function(_SubmitAdvanceForm value) submitAdvanceForm,
+    required TResult Function(_ClearAdvanceSubmitState value)
+        clearAdvanceSubmitState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -87,6 +142,9 @@ mixin _$BookingGuestHouseEvent {
     TResult? Function(_Submit value)? submit,
     TResult? Function(_DeleteBooking value)? deleteBooking,
     TResult? Function(_LoadDetail value)? loadDetail,
+    TResult? Function(_SubmitAdvance value)? submitAdvance,
+    TResult? Function(_SubmitAdvanceForm value)? submitAdvanceForm,
+    TResult? Function(_ClearAdvanceSubmitState value)? clearAdvanceSubmitState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -101,6 +159,9 @@ mixin _$BookingGuestHouseEvent {
     TResult Function(_Submit value)? submit,
     TResult Function(_DeleteBooking value)? deleteBooking,
     TResult Function(_LoadDetail value)? loadDetail,
+    TResult Function(_SubmitAdvance value)? submitAdvance,
+    TResult Function(_SubmitAdvanceForm value)? submitAdvanceForm,
+    TResult Function(_ClearAdvanceSubmitState value)? clearAdvanceSubmitState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -209,6 +270,23 @@ class _$InitImpl implements _Init {
     required TResult Function(Map<String, dynamic> payload) submit,
     required TResult Function(int id) deleteBooking,
     required TResult Function(int id) loadDetail,
+    required TResult Function(Map<String, dynamic> payload) submitAdvance,
+    required TResult Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)
+        submitAdvanceForm,
+    required TResult Function() clearAdvanceSubmitState,
   }) {
     return init(dateStart, dateEnd);
   }
@@ -226,6 +304,23 @@ class _$InitImpl implements _Init {
     TResult? Function(Map<String, dynamic> payload)? submit,
     TResult? Function(int id)? deleteBooking,
     TResult? Function(int id)? loadDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitAdvance,
+    TResult? Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)?
+        submitAdvanceForm,
+    TResult? Function()? clearAdvanceSubmitState,
   }) {
     return init?.call(dateStart, dateEnd);
   }
@@ -243,6 +338,23 @@ class _$InitImpl implements _Init {
     TResult Function(Map<String, dynamic> payload)? submit,
     TResult Function(int id)? deleteBooking,
     TResult Function(int id)? loadDetail,
+    TResult Function(Map<String, dynamic> payload)? submitAdvance,
+    TResult Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)?
+        submitAdvanceForm,
+    TResult Function()? clearAdvanceSubmitState,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -264,6 +376,10 @@ class _$InitImpl implements _Init {
     required TResult Function(_Submit value) submit,
     required TResult Function(_DeleteBooking value) deleteBooking,
     required TResult Function(_LoadDetail value) loadDetail,
+    required TResult Function(_SubmitAdvance value) submitAdvance,
+    required TResult Function(_SubmitAdvanceForm value) submitAdvanceForm,
+    required TResult Function(_ClearAdvanceSubmitState value)
+        clearAdvanceSubmitState,
   }) {
     return init(this);
   }
@@ -281,6 +397,9 @@ class _$InitImpl implements _Init {
     TResult? Function(_Submit value)? submit,
     TResult? Function(_DeleteBooking value)? deleteBooking,
     TResult? Function(_LoadDetail value)? loadDetail,
+    TResult? Function(_SubmitAdvance value)? submitAdvance,
+    TResult? Function(_SubmitAdvanceForm value)? submitAdvanceForm,
+    TResult? Function(_ClearAdvanceSubmitState value)? clearAdvanceSubmitState,
   }) {
     return init?.call(this);
   }
@@ -298,6 +417,9 @@ class _$InitImpl implements _Init {
     TResult Function(_Submit value)? submit,
     TResult Function(_DeleteBooking value)? deleteBooking,
     TResult Function(_LoadDetail value)? loadDetail,
+    TResult Function(_SubmitAdvance value)? submitAdvance,
+    TResult Function(_SubmitAdvanceForm value)? submitAdvanceForm,
+    TResult Function(_ClearAdvanceSubmitState value)? clearAdvanceSubmitState,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -404,6 +526,23 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(Map<String, dynamic> payload) submit,
     required TResult Function(int id) deleteBooking,
     required TResult Function(int id) loadDetail,
+    required TResult Function(Map<String, dynamic> payload) submitAdvance,
+    required TResult Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)
+        submitAdvanceForm,
+    required TResult Function() clearAdvanceSubmitState,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -421,6 +560,23 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(Map<String, dynamic> payload)? submit,
     TResult? Function(int id)? deleteBooking,
     TResult? Function(int id)? loadDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitAdvance,
+    TResult? Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)?
+        submitAdvanceForm,
+    TResult? Function()? clearAdvanceSubmitState,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -438,6 +594,23 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(Map<String, dynamic> payload)? submit,
     TResult Function(int id)? deleteBooking,
     TResult Function(int id)? loadDetail,
+    TResult Function(Map<String, dynamic> payload)? submitAdvance,
+    TResult Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)?
+        submitAdvanceForm,
+    TResult Function()? clearAdvanceSubmitState,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -459,6 +632,10 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_Submit value) submit,
     required TResult Function(_DeleteBooking value) deleteBooking,
     required TResult Function(_LoadDetail value) loadDetail,
+    required TResult Function(_SubmitAdvance value) submitAdvance,
+    required TResult Function(_SubmitAdvanceForm value) submitAdvanceForm,
+    required TResult Function(_ClearAdvanceSubmitState value)
+        clearAdvanceSubmitState,
   }) {
     return changeDateRange(this);
   }
@@ -476,6 +653,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_Submit value)? submit,
     TResult? Function(_DeleteBooking value)? deleteBooking,
     TResult? Function(_LoadDetail value)? loadDetail,
+    TResult? Function(_SubmitAdvance value)? submitAdvance,
+    TResult? Function(_SubmitAdvanceForm value)? submitAdvanceForm,
+    TResult? Function(_ClearAdvanceSubmitState value)? clearAdvanceSubmitState,
   }) {
     return changeDateRange?.call(this);
   }
@@ -493,6 +673,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_Submit value)? submit,
     TResult Function(_DeleteBooking value)? deleteBooking,
     TResult Function(_LoadDetail value)? loadDetail,
+    TResult Function(_SubmitAdvance value)? submitAdvance,
+    TResult Function(_SubmitAdvanceForm value)? submitAdvanceForm,
+    TResult Function(_ClearAdvanceSubmitState value)? clearAdvanceSubmitState,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -592,6 +775,23 @@ class _$ChangeFilterTextImpl implements _ChangeFilterText {
     required TResult Function(Map<String, dynamic> payload) submit,
     required TResult Function(int id) deleteBooking,
     required TResult Function(int id) loadDetail,
+    required TResult Function(Map<String, dynamic> payload) submitAdvance,
+    required TResult Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)
+        submitAdvanceForm,
+    required TResult Function() clearAdvanceSubmitState,
   }) {
     return changeFilterText(filterText);
   }
@@ -609,6 +809,23 @@ class _$ChangeFilterTextImpl implements _ChangeFilterText {
     TResult? Function(Map<String, dynamic> payload)? submit,
     TResult? Function(int id)? deleteBooking,
     TResult? Function(int id)? loadDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitAdvance,
+    TResult? Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)?
+        submitAdvanceForm,
+    TResult? Function()? clearAdvanceSubmitState,
   }) {
     return changeFilterText?.call(filterText);
   }
@@ -626,6 +843,23 @@ class _$ChangeFilterTextImpl implements _ChangeFilterText {
     TResult Function(Map<String, dynamic> payload)? submit,
     TResult Function(int id)? deleteBooking,
     TResult Function(int id)? loadDetail,
+    TResult Function(Map<String, dynamic> payload)? submitAdvance,
+    TResult Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)?
+        submitAdvanceForm,
+    TResult Function()? clearAdvanceSubmitState,
     required TResult orElse(),
   }) {
     if (changeFilterText != null) {
@@ -647,6 +881,10 @@ class _$ChangeFilterTextImpl implements _ChangeFilterText {
     required TResult Function(_Submit value) submit,
     required TResult Function(_DeleteBooking value) deleteBooking,
     required TResult Function(_LoadDetail value) loadDetail,
+    required TResult Function(_SubmitAdvance value) submitAdvance,
+    required TResult Function(_SubmitAdvanceForm value) submitAdvanceForm,
+    required TResult Function(_ClearAdvanceSubmitState value)
+        clearAdvanceSubmitState,
   }) {
     return changeFilterText(this);
   }
@@ -664,6 +902,9 @@ class _$ChangeFilterTextImpl implements _ChangeFilterText {
     TResult? Function(_Submit value)? submit,
     TResult? Function(_DeleteBooking value)? deleteBooking,
     TResult? Function(_LoadDetail value)? loadDetail,
+    TResult? Function(_SubmitAdvance value)? submitAdvance,
+    TResult? Function(_SubmitAdvanceForm value)? submitAdvanceForm,
+    TResult? Function(_ClearAdvanceSubmitState value)? clearAdvanceSubmitState,
   }) {
     return changeFilterText?.call(this);
   }
@@ -681,6 +922,9 @@ class _$ChangeFilterTextImpl implements _ChangeFilterText {
     TResult Function(_Submit value)? submit,
     TResult Function(_DeleteBooking value)? deleteBooking,
     TResult Function(_LoadDetail value)? loadDetail,
+    TResult Function(_SubmitAdvance value)? submitAdvance,
+    TResult Function(_SubmitAdvanceForm value)? submitAdvanceForm,
+    TResult Function(_ClearAdvanceSubmitState value)? clearAdvanceSubmitState,
     required TResult orElse(),
   }) {
     if (changeFilterText != null) {
@@ -750,6 +994,23 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(Map<String, dynamic> payload) submit,
     required TResult Function(int id) deleteBooking,
     required TResult Function(int id) loadDetail,
+    required TResult Function(Map<String, dynamic> payload) submitAdvance,
+    required TResult Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)
+        submitAdvanceForm,
+    required TResult Function() clearAdvanceSubmitState,
   }) {
     return refresh();
   }
@@ -767,6 +1028,23 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(Map<String, dynamic> payload)? submit,
     TResult? Function(int id)? deleteBooking,
     TResult? Function(int id)? loadDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitAdvance,
+    TResult? Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)?
+        submitAdvanceForm,
+    TResult? Function()? clearAdvanceSubmitState,
   }) {
     return refresh?.call();
   }
@@ -784,6 +1062,23 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(Map<String, dynamic> payload)? submit,
     TResult Function(int id)? deleteBooking,
     TResult Function(int id)? loadDetail,
+    TResult Function(Map<String, dynamic> payload)? submitAdvance,
+    TResult Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)?
+        submitAdvanceForm,
+    TResult Function()? clearAdvanceSubmitState,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -805,6 +1100,10 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_Submit value) submit,
     required TResult Function(_DeleteBooking value) deleteBooking,
     required TResult Function(_LoadDetail value) loadDetail,
+    required TResult Function(_SubmitAdvance value) submitAdvance,
+    required TResult Function(_SubmitAdvanceForm value) submitAdvanceForm,
+    required TResult Function(_ClearAdvanceSubmitState value)
+        clearAdvanceSubmitState,
   }) {
     return refresh(this);
   }
@@ -822,6 +1121,9 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_Submit value)? submit,
     TResult? Function(_DeleteBooking value)? deleteBooking,
     TResult? Function(_LoadDetail value)? loadDetail,
+    TResult? Function(_SubmitAdvance value)? submitAdvance,
+    TResult? Function(_SubmitAdvanceForm value)? submitAdvanceForm,
+    TResult? Function(_ClearAdvanceSubmitState value)? clearAdvanceSubmitState,
   }) {
     return refresh?.call(this);
   }
@@ -839,6 +1141,9 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_Submit value)? submit,
     TResult Function(_DeleteBooking value)? deleteBooking,
     TResult Function(_LoadDetail value)? loadDetail,
+    TResult Function(_SubmitAdvance value)? submitAdvance,
+    TResult Function(_SubmitAdvanceForm value)? submitAdvanceForm,
+    TResult Function(_ClearAdvanceSubmitState value)? clearAdvanceSubmitState,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -902,6 +1207,23 @@ class _$LoadFiltersImpl implements _LoadFilters {
     required TResult Function(Map<String, dynamic> payload) submit,
     required TResult Function(int id) deleteBooking,
     required TResult Function(int id) loadDetail,
+    required TResult Function(Map<String, dynamic> payload) submitAdvance,
+    required TResult Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)
+        submitAdvanceForm,
+    required TResult Function() clearAdvanceSubmitState,
   }) {
     return loadFilters();
   }
@@ -919,6 +1241,23 @@ class _$LoadFiltersImpl implements _LoadFilters {
     TResult? Function(Map<String, dynamic> payload)? submit,
     TResult? Function(int id)? deleteBooking,
     TResult? Function(int id)? loadDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitAdvance,
+    TResult? Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)?
+        submitAdvanceForm,
+    TResult? Function()? clearAdvanceSubmitState,
   }) {
     return loadFilters?.call();
   }
@@ -936,6 +1275,23 @@ class _$LoadFiltersImpl implements _LoadFilters {
     TResult Function(Map<String, dynamic> payload)? submit,
     TResult Function(int id)? deleteBooking,
     TResult Function(int id)? loadDetail,
+    TResult Function(Map<String, dynamic> payload)? submitAdvance,
+    TResult Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)?
+        submitAdvanceForm,
+    TResult Function()? clearAdvanceSubmitState,
     required TResult orElse(),
   }) {
     if (loadFilters != null) {
@@ -957,6 +1313,10 @@ class _$LoadFiltersImpl implements _LoadFilters {
     required TResult Function(_Submit value) submit,
     required TResult Function(_DeleteBooking value) deleteBooking,
     required TResult Function(_LoadDetail value) loadDetail,
+    required TResult Function(_SubmitAdvance value) submitAdvance,
+    required TResult Function(_SubmitAdvanceForm value) submitAdvanceForm,
+    required TResult Function(_ClearAdvanceSubmitState value)
+        clearAdvanceSubmitState,
   }) {
     return loadFilters(this);
   }
@@ -974,6 +1334,9 @@ class _$LoadFiltersImpl implements _LoadFilters {
     TResult? Function(_Submit value)? submit,
     TResult? Function(_DeleteBooking value)? deleteBooking,
     TResult? Function(_LoadDetail value)? loadDetail,
+    TResult? Function(_SubmitAdvance value)? submitAdvance,
+    TResult? Function(_SubmitAdvanceForm value)? submitAdvanceForm,
+    TResult? Function(_ClearAdvanceSubmitState value)? clearAdvanceSubmitState,
   }) {
     return loadFilters?.call(this);
   }
@@ -991,6 +1354,9 @@ class _$LoadFiltersImpl implements _LoadFilters {
     TResult Function(_Submit value)? submit,
     TResult Function(_DeleteBooking value)? deleteBooking,
     TResult Function(_LoadDetail value)? loadDetail,
+    TResult Function(_SubmitAdvance value)? submitAdvance,
+    TResult Function(_SubmitAdvanceForm value)? submitAdvanceForm,
+    TResult Function(_ClearAdvanceSubmitState value)? clearAdvanceSubmitState,
     required TResult orElse(),
   }) {
     if (loadFilters != null) {
@@ -1096,6 +1462,23 @@ class _$ChangeProjectFilterImpl implements _ChangeProjectFilter {
     required TResult Function(Map<String, dynamic> payload) submit,
     required TResult Function(int id) deleteBooking,
     required TResult Function(int id) loadDetail,
+    required TResult Function(Map<String, dynamic> payload) submitAdvance,
+    required TResult Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)
+        submitAdvanceForm,
+    required TResult Function() clearAdvanceSubmitState,
   }) {
     return changeProjectFilter(project);
   }
@@ -1113,6 +1496,23 @@ class _$ChangeProjectFilterImpl implements _ChangeProjectFilter {
     TResult? Function(Map<String, dynamic> payload)? submit,
     TResult? Function(int id)? deleteBooking,
     TResult? Function(int id)? loadDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitAdvance,
+    TResult? Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)?
+        submitAdvanceForm,
+    TResult? Function()? clearAdvanceSubmitState,
   }) {
     return changeProjectFilter?.call(project);
   }
@@ -1130,6 +1530,23 @@ class _$ChangeProjectFilterImpl implements _ChangeProjectFilter {
     TResult Function(Map<String, dynamic> payload)? submit,
     TResult Function(int id)? deleteBooking,
     TResult Function(int id)? loadDetail,
+    TResult Function(Map<String, dynamic> payload)? submitAdvance,
+    TResult Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)?
+        submitAdvanceForm,
+    TResult Function()? clearAdvanceSubmitState,
     required TResult orElse(),
   }) {
     if (changeProjectFilter != null) {
@@ -1151,6 +1568,10 @@ class _$ChangeProjectFilterImpl implements _ChangeProjectFilter {
     required TResult Function(_Submit value) submit,
     required TResult Function(_DeleteBooking value) deleteBooking,
     required TResult Function(_LoadDetail value) loadDetail,
+    required TResult Function(_SubmitAdvance value) submitAdvance,
+    required TResult Function(_SubmitAdvanceForm value) submitAdvanceForm,
+    required TResult Function(_ClearAdvanceSubmitState value)
+        clearAdvanceSubmitState,
   }) {
     return changeProjectFilter(this);
   }
@@ -1168,6 +1589,9 @@ class _$ChangeProjectFilterImpl implements _ChangeProjectFilter {
     TResult? Function(_Submit value)? submit,
     TResult? Function(_DeleteBooking value)? deleteBooking,
     TResult? Function(_LoadDetail value)? loadDetail,
+    TResult? Function(_SubmitAdvance value)? submitAdvance,
+    TResult? Function(_SubmitAdvanceForm value)? submitAdvanceForm,
+    TResult? Function(_ClearAdvanceSubmitState value)? clearAdvanceSubmitState,
   }) {
     return changeProjectFilter?.call(this);
   }
@@ -1185,6 +1609,9 @@ class _$ChangeProjectFilterImpl implements _ChangeProjectFilter {
     TResult Function(_Submit value)? submit,
     TResult Function(_DeleteBooking value)? deleteBooking,
     TResult Function(_LoadDetail value)? loadDetail,
+    TResult Function(_SubmitAdvance value)? submitAdvance,
+    TResult Function(_SubmitAdvanceForm value)? submitAdvanceForm,
+    TResult Function(_ClearAdvanceSubmitState value)? clearAdvanceSubmitState,
     required TResult orElse(),
   }) {
     if (changeProjectFilter != null) {
@@ -1298,6 +1725,23 @@ class _$ChangeEmployeeFilterImpl implements _ChangeEmployeeFilter {
     required TResult Function(Map<String, dynamic> payload) submit,
     required TResult Function(int id) deleteBooking,
     required TResult Function(int id) loadDetail,
+    required TResult Function(Map<String, dynamic> payload) submitAdvance,
+    required TResult Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)
+        submitAdvanceForm,
+    required TResult Function() clearAdvanceSubmitState,
   }) {
     return changeEmployeeFilter(employee);
   }
@@ -1315,6 +1759,23 @@ class _$ChangeEmployeeFilterImpl implements _ChangeEmployeeFilter {
     TResult? Function(Map<String, dynamic> payload)? submit,
     TResult? Function(int id)? deleteBooking,
     TResult? Function(int id)? loadDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitAdvance,
+    TResult? Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)?
+        submitAdvanceForm,
+    TResult? Function()? clearAdvanceSubmitState,
   }) {
     return changeEmployeeFilter?.call(employee);
   }
@@ -1332,6 +1793,23 @@ class _$ChangeEmployeeFilterImpl implements _ChangeEmployeeFilter {
     TResult Function(Map<String, dynamic> payload)? submit,
     TResult Function(int id)? deleteBooking,
     TResult Function(int id)? loadDetail,
+    TResult Function(Map<String, dynamic> payload)? submitAdvance,
+    TResult Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)?
+        submitAdvanceForm,
+    TResult Function()? clearAdvanceSubmitState,
     required TResult orElse(),
   }) {
     if (changeEmployeeFilter != null) {
@@ -1353,6 +1831,10 @@ class _$ChangeEmployeeFilterImpl implements _ChangeEmployeeFilter {
     required TResult Function(_Submit value) submit,
     required TResult Function(_DeleteBooking value) deleteBooking,
     required TResult Function(_LoadDetail value) loadDetail,
+    required TResult Function(_SubmitAdvance value) submitAdvance,
+    required TResult Function(_SubmitAdvanceForm value) submitAdvanceForm,
+    required TResult Function(_ClearAdvanceSubmitState value)
+        clearAdvanceSubmitState,
   }) {
     return changeEmployeeFilter(this);
   }
@@ -1370,6 +1852,9 @@ class _$ChangeEmployeeFilterImpl implements _ChangeEmployeeFilter {
     TResult? Function(_Submit value)? submit,
     TResult? Function(_DeleteBooking value)? deleteBooking,
     TResult? Function(_LoadDetail value)? loadDetail,
+    TResult? Function(_SubmitAdvance value)? submitAdvance,
+    TResult? Function(_SubmitAdvanceForm value)? submitAdvanceForm,
+    TResult? Function(_ClearAdvanceSubmitState value)? clearAdvanceSubmitState,
   }) {
     return changeEmployeeFilter?.call(this);
   }
@@ -1387,6 +1872,9 @@ class _$ChangeEmployeeFilterImpl implements _ChangeEmployeeFilter {
     TResult Function(_Submit value)? submit,
     TResult Function(_DeleteBooking value)? deleteBooking,
     TResult Function(_LoadDetail value)? loadDetail,
+    TResult Function(_SubmitAdvance value)? submitAdvance,
+    TResult Function(_SubmitAdvanceForm value)? submitAdvanceForm,
+    TResult Function(_ClearAdvanceSubmitState value)? clearAdvanceSubmitState,
     required TResult orElse(),
   }) {
     if (changeEmployeeFilter != null) {
@@ -1490,6 +1978,23 @@ class _$SubmitImpl implements _Submit {
     required TResult Function(Map<String, dynamic> payload) submit,
     required TResult Function(int id) deleteBooking,
     required TResult Function(int id) loadDetail,
+    required TResult Function(Map<String, dynamic> payload) submitAdvance,
+    required TResult Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)
+        submitAdvanceForm,
+    required TResult Function() clearAdvanceSubmitState,
   }) {
     return submit(payload);
   }
@@ -1507,6 +2012,23 @@ class _$SubmitImpl implements _Submit {
     TResult? Function(Map<String, dynamic> payload)? submit,
     TResult? Function(int id)? deleteBooking,
     TResult? Function(int id)? loadDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitAdvance,
+    TResult? Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)?
+        submitAdvanceForm,
+    TResult? Function()? clearAdvanceSubmitState,
   }) {
     return submit?.call(payload);
   }
@@ -1524,6 +2046,23 @@ class _$SubmitImpl implements _Submit {
     TResult Function(Map<String, dynamic> payload)? submit,
     TResult Function(int id)? deleteBooking,
     TResult Function(int id)? loadDetail,
+    TResult Function(Map<String, dynamic> payload)? submitAdvance,
+    TResult Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)?
+        submitAdvanceForm,
+    TResult Function()? clearAdvanceSubmitState,
     required TResult orElse(),
   }) {
     if (submit != null) {
@@ -1545,6 +2084,10 @@ class _$SubmitImpl implements _Submit {
     required TResult Function(_Submit value) submit,
     required TResult Function(_DeleteBooking value) deleteBooking,
     required TResult Function(_LoadDetail value) loadDetail,
+    required TResult Function(_SubmitAdvance value) submitAdvance,
+    required TResult Function(_SubmitAdvanceForm value) submitAdvanceForm,
+    required TResult Function(_ClearAdvanceSubmitState value)
+        clearAdvanceSubmitState,
   }) {
     return submit(this);
   }
@@ -1562,6 +2105,9 @@ class _$SubmitImpl implements _Submit {
     TResult? Function(_Submit value)? submit,
     TResult? Function(_DeleteBooking value)? deleteBooking,
     TResult? Function(_LoadDetail value)? loadDetail,
+    TResult? Function(_SubmitAdvance value)? submitAdvance,
+    TResult? Function(_SubmitAdvanceForm value)? submitAdvanceForm,
+    TResult? Function(_ClearAdvanceSubmitState value)? clearAdvanceSubmitState,
   }) {
     return submit?.call(this);
   }
@@ -1579,6 +2125,9 @@ class _$SubmitImpl implements _Submit {
     TResult Function(_Submit value)? submit,
     TResult Function(_DeleteBooking value)? deleteBooking,
     TResult Function(_LoadDetail value)? loadDetail,
+    TResult Function(_SubmitAdvance value)? submitAdvance,
+    TResult Function(_SubmitAdvanceForm value)? submitAdvanceForm,
+    TResult Function(_ClearAdvanceSubmitState value)? clearAdvanceSubmitState,
     required TResult orElse(),
   }) {
     if (submit != null) {
@@ -1674,6 +2223,23 @@ class _$DeleteBookingImpl implements _DeleteBooking {
     required TResult Function(Map<String, dynamic> payload) submit,
     required TResult Function(int id) deleteBooking,
     required TResult Function(int id) loadDetail,
+    required TResult Function(Map<String, dynamic> payload) submitAdvance,
+    required TResult Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)
+        submitAdvanceForm,
+    required TResult Function() clearAdvanceSubmitState,
   }) {
     return deleteBooking(id);
   }
@@ -1691,6 +2257,23 @@ class _$DeleteBookingImpl implements _DeleteBooking {
     TResult? Function(Map<String, dynamic> payload)? submit,
     TResult? Function(int id)? deleteBooking,
     TResult? Function(int id)? loadDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitAdvance,
+    TResult? Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)?
+        submitAdvanceForm,
+    TResult? Function()? clearAdvanceSubmitState,
   }) {
     return deleteBooking?.call(id);
   }
@@ -1708,6 +2291,23 @@ class _$DeleteBookingImpl implements _DeleteBooking {
     TResult Function(Map<String, dynamic> payload)? submit,
     TResult Function(int id)? deleteBooking,
     TResult Function(int id)? loadDetail,
+    TResult Function(Map<String, dynamic> payload)? submitAdvance,
+    TResult Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)?
+        submitAdvanceForm,
+    TResult Function()? clearAdvanceSubmitState,
     required TResult orElse(),
   }) {
     if (deleteBooking != null) {
@@ -1729,6 +2329,10 @@ class _$DeleteBookingImpl implements _DeleteBooking {
     required TResult Function(_Submit value) submit,
     required TResult Function(_DeleteBooking value) deleteBooking,
     required TResult Function(_LoadDetail value) loadDetail,
+    required TResult Function(_SubmitAdvance value) submitAdvance,
+    required TResult Function(_SubmitAdvanceForm value) submitAdvanceForm,
+    required TResult Function(_ClearAdvanceSubmitState value)
+        clearAdvanceSubmitState,
   }) {
     return deleteBooking(this);
   }
@@ -1746,6 +2350,9 @@ class _$DeleteBookingImpl implements _DeleteBooking {
     TResult? Function(_Submit value)? submit,
     TResult? Function(_DeleteBooking value)? deleteBooking,
     TResult? Function(_LoadDetail value)? loadDetail,
+    TResult? Function(_SubmitAdvance value)? submitAdvance,
+    TResult? Function(_SubmitAdvanceForm value)? submitAdvanceForm,
+    TResult? Function(_ClearAdvanceSubmitState value)? clearAdvanceSubmitState,
   }) {
     return deleteBooking?.call(this);
   }
@@ -1763,6 +2370,9 @@ class _$DeleteBookingImpl implements _DeleteBooking {
     TResult Function(_Submit value)? submit,
     TResult Function(_DeleteBooking value)? deleteBooking,
     TResult Function(_LoadDetail value)? loadDetail,
+    TResult Function(_SubmitAdvance value)? submitAdvance,
+    TResult Function(_SubmitAdvanceForm value)? submitAdvanceForm,
+    TResult Function(_ClearAdvanceSubmitState value)? clearAdvanceSubmitState,
     required TResult orElse(),
   }) {
     if (deleteBooking != null) {
@@ -1857,6 +2467,23 @@ class _$LoadDetailImpl implements _LoadDetail {
     required TResult Function(Map<String, dynamic> payload) submit,
     required TResult Function(int id) deleteBooking,
     required TResult Function(int id) loadDetail,
+    required TResult Function(Map<String, dynamic> payload) submitAdvance,
+    required TResult Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)
+        submitAdvanceForm,
+    required TResult Function() clearAdvanceSubmitState,
   }) {
     return loadDetail(id);
   }
@@ -1874,6 +2501,23 @@ class _$LoadDetailImpl implements _LoadDetail {
     TResult? Function(Map<String, dynamic> payload)? submit,
     TResult? Function(int id)? deleteBooking,
     TResult? Function(int id)? loadDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitAdvance,
+    TResult? Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)?
+        submitAdvanceForm,
+    TResult? Function()? clearAdvanceSubmitState,
   }) {
     return loadDetail?.call(id);
   }
@@ -1891,6 +2535,23 @@ class _$LoadDetailImpl implements _LoadDetail {
     TResult Function(Map<String, dynamic> payload)? submit,
     TResult Function(int id)? deleteBooking,
     TResult Function(int id)? loadDetail,
+    TResult Function(Map<String, dynamic> payload)? submitAdvance,
+    TResult Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)?
+        submitAdvanceForm,
+    TResult Function()? clearAdvanceSubmitState,
     required TResult orElse(),
   }) {
     if (loadDetail != null) {
@@ -1912,6 +2573,10 @@ class _$LoadDetailImpl implements _LoadDetail {
     required TResult Function(_Submit value) submit,
     required TResult Function(_DeleteBooking value) deleteBooking,
     required TResult Function(_LoadDetail value) loadDetail,
+    required TResult Function(_SubmitAdvance value) submitAdvance,
+    required TResult Function(_SubmitAdvanceForm value) submitAdvanceForm,
+    required TResult Function(_ClearAdvanceSubmitState value)
+        clearAdvanceSubmitState,
   }) {
     return loadDetail(this);
   }
@@ -1929,6 +2594,9 @@ class _$LoadDetailImpl implements _LoadDetail {
     TResult? Function(_Submit value)? submit,
     TResult? Function(_DeleteBooking value)? deleteBooking,
     TResult? Function(_LoadDetail value)? loadDetail,
+    TResult? Function(_SubmitAdvance value)? submitAdvance,
+    TResult? Function(_SubmitAdvanceForm value)? submitAdvanceForm,
+    TResult? Function(_ClearAdvanceSubmitState value)? clearAdvanceSubmitState,
   }) {
     return loadDetail?.call(this);
   }
@@ -1946,6 +2614,9 @@ class _$LoadDetailImpl implements _LoadDetail {
     TResult Function(_Submit value)? submit,
     TResult Function(_DeleteBooking value)? deleteBooking,
     TResult Function(_LoadDetail value)? loadDetail,
+    TResult Function(_SubmitAdvance value)? submitAdvance,
+    TResult Function(_SubmitAdvanceForm value)? submitAdvanceForm,
+    TResult Function(_ClearAdvanceSubmitState value)? clearAdvanceSubmitState,
     required TResult orElse(),
   }) {
     if (loadDetail != null) {
@@ -1962,4 +2633,979 @@ abstract class _LoadDetail implements BookingGuestHouseEvent {
   @JsonKey(ignore: true)
   _$$LoadDetailImplCopyWith<_$LoadDetailImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SubmitAdvanceImplCopyWith<$Res> {
+  factory _$$SubmitAdvanceImplCopyWith(
+          _$SubmitAdvanceImpl value, $Res Function(_$SubmitAdvanceImpl) then) =
+      __$$SubmitAdvanceImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Map<String, dynamic> payload});
+}
+
+/// @nodoc
+class __$$SubmitAdvanceImplCopyWithImpl<$Res>
+    extends _$BookingGuestHouseEventCopyWithImpl<$Res, _$SubmitAdvanceImpl>
+    implements _$$SubmitAdvanceImplCopyWith<$Res> {
+  __$$SubmitAdvanceImplCopyWithImpl(
+      _$SubmitAdvanceImpl _value, $Res Function(_$SubmitAdvanceImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? payload = null,
+  }) {
+    return _then(_$SubmitAdvanceImpl(
+      payload: null == payload
+          ? _value._payload
+          : payload // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SubmitAdvanceImpl implements _SubmitAdvance {
+  const _$SubmitAdvanceImpl({required final Map<String, dynamic> payload})
+      : _payload = payload;
+
+  final Map<String, dynamic> _payload;
+  @override
+  Map<String, dynamic> get payload {
+    if (_payload is EqualUnmodifiableMapView) return _payload;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_payload);
+  }
+
+  @override
+  String toString() {
+    return 'BookingGuestHouseEvent.submitAdvance(payload: $payload)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SubmitAdvanceImpl &&
+            const DeepCollectionEquality().equals(other._payload, _payload));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_payload));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SubmitAdvanceImplCopyWith<_$SubmitAdvanceImpl> get copyWith =>
+      __$$SubmitAdvanceImplCopyWithImpl<_$SubmitAdvanceImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd) init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String filterText) changeFilterText,
+    required TResult Function() refresh,
+    required TResult Function() loadFilters,
+    required TResult Function(ProjectFilterItem? project) changeProjectFilter,
+    required TResult Function(EmployeeFilterItem? employee)
+        changeEmployeeFilter,
+    required TResult Function(Map<String, dynamic> payload) submit,
+    required TResult Function(int id) deleteBooking,
+    required TResult Function(int id) loadDetail,
+    required TResult Function(Map<String, dynamic> payload) submitAdvance,
+    required TResult Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)
+        submitAdvanceForm,
+    required TResult Function() clearAdvanceSubmitState,
+  }) {
+    return submitAdvance(payload);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String filterText)? changeFilterText,
+    TResult? Function()? refresh,
+    TResult? Function()? loadFilters,
+    TResult? Function(ProjectFilterItem? project)? changeProjectFilter,
+    TResult? Function(EmployeeFilterItem? employee)? changeEmployeeFilter,
+    TResult? Function(Map<String, dynamic> payload)? submit,
+    TResult? Function(int id)? deleteBooking,
+    TResult? Function(int id)? loadDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitAdvance,
+    TResult? Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)?
+        submitAdvanceForm,
+    TResult? Function()? clearAdvanceSubmitState,
+  }) {
+    return submitAdvance?.call(payload);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String filterText)? changeFilterText,
+    TResult Function()? refresh,
+    TResult Function()? loadFilters,
+    TResult Function(ProjectFilterItem? project)? changeProjectFilter,
+    TResult Function(EmployeeFilterItem? employee)? changeEmployeeFilter,
+    TResult Function(Map<String, dynamic> payload)? submit,
+    TResult Function(int id)? deleteBooking,
+    TResult Function(int id)? loadDetail,
+    TResult Function(Map<String, dynamic> payload)? submitAdvance,
+    TResult Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)?
+        submitAdvanceForm,
+    TResult Function()? clearAdvanceSubmitState,
+    required TResult orElse(),
+  }) {
+    if (submitAdvance != null) {
+      return submitAdvance(payload);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeFilterText value) changeFilterText,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_LoadFilters value) loadFilters,
+    required TResult Function(_ChangeProjectFilter value) changeProjectFilter,
+    required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
+    required TResult Function(_Submit value) submit,
+    required TResult Function(_DeleteBooking value) deleteBooking,
+    required TResult Function(_LoadDetail value) loadDetail,
+    required TResult Function(_SubmitAdvance value) submitAdvance,
+    required TResult Function(_SubmitAdvanceForm value) submitAdvanceForm,
+    required TResult Function(_ClearAdvanceSubmitState value)
+        clearAdvanceSubmitState,
+  }) {
+    return submitAdvance(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeFilterText value)? changeFilterText,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_LoadFilters value)? loadFilters,
+    TResult? Function(_ChangeProjectFilter value)? changeProjectFilter,
+    TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult? Function(_Submit value)? submit,
+    TResult? Function(_DeleteBooking value)? deleteBooking,
+    TResult? Function(_LoadDetail value)? loadDetail,
+    TResult? Function(_SubmitAdvance value)? submitAdvance,
+    TResult? Function(_SubmitAdvanceForm value)? submitAdvanceForm,
+    TResult? Function(_ClearAdvanceSubmitState value)? clearAdvanceSubmitState,
+  }) {
+    return submitAdvance?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeFilterText value)? changeFilterText,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_LoadFilters value)? loadFilters,
+    TResult Function(_ChangeProjectFilter value)? changeProjectFilter,
+    TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult Function(_Submit value)? submit,
+    TResult Function(_DeleteBooking value)? deleteBooking,
+    TResult Function(_LoadDetail value)? loadDetail,
+    TResult Function(_SubmitAdvance value)? submitAdvance,
+    TResult Function(_SubmitAdvanceForm value)? submitAdvanceForm,
+    TResult Function(_ClearAdvanceSubmitState value)? clearAdvanceSubmitState,
+    required TResult orElse(),
+  }) {
+    if (submitAdvance != null) {
+      return submitAdvance(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SubmitAdvance implements BookingGuestHouseEvent {
+  const factory _SubmitAdvance({required final Map<String, dynamic> payload}) =
+      _$SubmitAdvanceImpl;
+
+  Map<String, dynamic> get payload;
+  @JsonKey(ignore: true)
+  _$$SubmitAdvanceImplCopyWith<_$SubmitAdvanceImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SubmitAdvanceFormImplCopyWith<$Res> {
+  factory _$$SubmitAdvanceFormImplCopyWith(_$SubmitAdvanceFormImpl value,
+          $Res Function(_$SubmitAdvanceFormImpl) then) =
+      __$$SubmitAdvanceFormImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {int accommodationBookingId,
+      int? approvedTbpId,
+      int? projectId,
+      int? companyId,
+      String companyName,
+      String departmentName,
+      String reason,
+      int transferType,
+      String bankAccount,
+      int bankListId,
+      String bankName,
+      int totalAmount,
+      String? note});
+}
+
+/// @nodoc
+class __$$SubmitAdvanceFormImplCopyWithImpl<$Res>
+    extends _$BookingGuestHouseEventCopyWithImpl<$Res, _$SubmitAdvanceFormImpl>
+    implements _$$SubmitAdvanceFormImplCopyWith<$Res> {
+  __$$SubmitAdvanceFormImplCopyWithImpl(_$SubmitAdvanceFormImpl _value,
+      $Res Function(_$SubmitAdvanceFormImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? accommodationBookingId = null,
+    Object? approvedTbpId = freezed,
+    Object? projectId = freezed,
+    Object? companyId = freezed,
+    Object? companyName = null,
+    Object? departmentName = null,
+    Object? reason = null,
+    Object? transferType = null,
+    Object? bankAccount = null,
+    Object? bankListId = null,
+    Object? bankName = null,
+    Object? totalAmount = null,
+    Object? note = freezed,
+  }) {
+    return _then(_$SubmitAdvanceFormImpl(
+      accommodationBookingId: null == accommodationBookingId
+          ? _value.accommodationBookingId
+          : accommodationBookingId // ignore: cast_nullable_to_non_nullable
+              as int,
+      approvedTbpId: freezed == approvedTbpId
+          ? _value.approvedTbpId
+          : approvedTbpId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      companyId: freezed == companyId
+          ? _value.companyId
+          : companyId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      companyName: null == companyName
+          ? _value.companyName
+          : companyName // ignore: cast_nullable_to_non_nullable
+              as String,
+      departmentName: null == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String,
+      reason: null == reason
+          ? _value.reason
+          : reason // ignore: cast_nullable_to_non_nullable
+              as String,
+      transferType: null == transferType
+          ? _value.transferType
+          : transferType // ignore: cast_nullable_to_non_nullable
+              as int,
+      bankAccount: null == bankAccount
+          ? _value.bankAccount
+          : bankAccount // ignore: cast_nullable_to_non_nullable
+              as String,
+      bankListId: null == bankListId
+          ? _value.bankListId
+          : bankListId // ignore: cast_nullable_to_non_nullable
+              as int,
+      bankName: null == bankName
+          ? _value.bankName
+          : bankName // ignore: cast_nullable_to_non_nullable
+              as String,
+      totalAmount: null == totalAmount
+          ? _value.totalAmount
+          : totalAmount // ignore: cast_nullable_to_non_nullable
+              as int,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SubmitAdvanceFormImpl implements _SubmitAdvanceForm {
+  const _$SubmitAdvanceFormImpl(
+      {required this.accommodationBookingId,
+      this.approvedTbpId,
+      this.projectId,
+      this.companyId,
+      required this.companyName,
+      required this.departmentName,
+      required this.reason,
+      required this.transferType,
+      required this.bankAccount,
+      required this.bankListId,
+      required this.bankName,
+      required this.totalAmount,
+      this.note});
+
+  /// ID phiếu đặt phòng — UI lấy từ `widget.id`.
+  @override
+  final int accommodationBookingId;
+
+  /// ID TBP duyệt (ưu tiên). Null → bloc fallback `detail.info.approvedTBP`.
+  @override
+  final int? approvedTbpId;
+
+  /// ID dự án (ưu tiên). Null → bloc fallback `detail.info.projectId`.
+  @override
+  final int? projectId;
+
+  /// ID công ty. Null → bloc fallback `currentUser.taxCompanyId`.
+  @override
+  final int? companyId;
+
+  /// Tên công ty (auto-fill từ currentUser + lookup state.taxCompanies).
+  @override
+  final String companyName;
+
+  /// Tên bộ phận (auto-fill từ currentUser).
+  @override
+  final String departmentName;
+
+  /// Lý do tạm ứng.
+  @override
+  final String reason;
+
+  /// Loại chuyển khoản (1..6 theo enum `TransferType`).
+  @override
+  final int transferType;
+
+  /// Số tài khoản ngân hàng (chỉ chữ số).
+  @override
+  final String bankAccount;
+
+  /// ID ngân hàng; bloc lookup `BankName` chuẩn hoá từ `state.banks`.
+  @override
+  final int bankListId;
+
+  /// Tên ngân hàng (text hiển thị — fallback khi không lookup được).
+  @override
+  final String bankName;
+
+  /// Số tiền tạm ứng (đã parse từ "x.xxx.xxx" → int).
+  @override
+  final int totalAmount;
+
+  /// Ghi chú (optional).
+  @override
+  final String? note;
+
+  @override
+  String toString() {
+    return 'BookingGuestHouseEvent.submitAdvanceForm(accommodationBookingId: $accommodationBookingId, approvedTbpId: $approvedTbpId, projectId: $projectId, companyId: $companyId, companyName: $companyName, departmentName: $departmentName, reason: $reason, transferType: $transferType, bankAccount: $bankAccount, bankListId: $bankListId, bankName: $bankName, totalAmount: $totalAmount, note: $note)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SubmitAdvanceFormImpl &&
+            (identical(other.accommodationBookingId, accommodationBookingId) ||
+                other.accommodationBookingId == accommodationBookingId) &&
+            (identical(other.approvedTbpId, approvedTbpId) ||
+                other.approvedTbpId == approvedTbpId) &&
+            (identical(other.projectId, projectId) ||
+                other.projectId == projectId) &&
+            (identical(other.companyId, companyId) ||
+                other.companyId == companyId) &&
+            (identical(other.companyName, companyName) ||
+                other.companyName == companyName) &&
+            (identical(other.departmentName, departmentName) ||
+                other.departmentName == departmentName) &&
+            (identical(other.reason, reason) || other.reason == reason) &&
+            (identical(other.transferType, transferType) ||
+                other.transferType == transferType) &&
+            (identical(other.bankAccount, bankAccount) ||
+                other.bankAccount == bankAccount) &&
+            (identical(other.bankListId, bankListId) ||
+                other.bankListId == bankListId) &&
+            (identical(other.bankName, bankName) ||
+                other.bankName == bankName) &&
+            (identical(other.totalAmount, totalAmount) ||
+                other.totalAmount == totalAmount) &&
+            (identical(other.note, note) || other.note == note));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      accommodationBookingId,
+      approvedTbpId,
+      projectId,
+      companyId,
+      companyName,
+      departmentName,
+      reason,
+      transferType,
+      bankAccount,
+      bankListId,
+      bankName,
+      totalAmount,
+      note);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SubmitAdvanceFormImplCopyWith<_$SubmitAdvanceFormImpl> get copyWith =>
+      __$$SubmitAdvanceFormImplCopyWithImpl<_$SubmitAdvanceFormImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd) init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String filterText) changeFilterText,
+    required TResult Function() refresh,
+    required TResult Function() loadFilters,
+    required TResult Function(ProjectFilterItem? project) changeProjectFilter,
+    required TResult Function(EmployeeFilterItem? employee)
+        changeEmployeeFilter,
+    required TResult Function(Map<String, dynamic> payload) submit,
+    required TResult Function(int id) deleteBooking,
+    required TResult Function(int id) loadDetail,
+    required TResult Function(Map<String, dynamic> payload) submitAdvance,
+    required TResult Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)
+        submitAdvanceForm,
+    required TResult Function() clearAdvanceSubmitState,
+  }) {
+    return submitAdvanceForm(
+        accommodationBookingId,
+        approvedTbpId,
+        projectId,
+        companyId,
+        companyName,
+        departmentName,
+        reason,
+        transferType,
+        bankAccount,
+        bankListId,
+        bankName,
+        totalAmount,
+        note);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String filterText)? changeFilterText,
+    TResult? Function()? refresh,
+    TResult? Function()? loadFilters,
+    TResult? Function(ProjectFilterItem? project)? changeProjectFilter,
+    TResult? Function(EmployeeFilterItem? employee)? changeEmployeeFilter,
+    TResult? Function(Map<String, dynamic> payload)? submit,
+    TResult? Function(int id)? deleteBooking,
+    TResult? Function(int id)? loadDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitAdvance,
+    TResult? Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)?
+        submitAdvanceForm,
+    TResult? Function()? clearAdvanceSubmitState,
+  }) {
+    return submitAdvanceForm?.call(
+        accommodationBookingId,
+        approvedTbpId,
+        projectId,
+        companyId,
+        companyName,
+        departmentName,
+        reason,
+        transferType,
+        bankAccount,
+        bankListId,
+        bankName,
+        totalAmount,
+        note);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String filterText)? changeFilterText,
+    TResult Function()? refresh,
+    TResult Function()? loadFilters,
+    TResult Function(ProjectFilterItem? project)? changeProjectFilter,
+    TResult Function(EmployeeFilterItem? employee)? changeEmployeeFilter,
+    TResult Function(Map<String, dynamic> payload)? submit,
+    TResult Function(int id)? deleteBooking,
+    TResult Function(int id)? loadDetail,
+    TResult Function(Map<String, dynamic> payload)? submitAdvance,
+    TResult Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)?
+        submitAdvanceForm,
+    TResult Function()? clearAdvanceSubmitState,
+    required TResult orElse(),
+  }) {
+    if (submitAdvanceForm != null) {
+      return submitAdvanceForm(
+          accommodationBookingId,
+          approvedTbpId,
+          projectId,
+          companyId,
+          companyName,
+          departmentName,
+          reason,
+          transferType,
+          bankAccount,
+          bankListId,
+          bankName,
+          totalAmount,
+          note);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeFilterText value) changeFilterText,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_LoadFilters value) loadFilters,
+    required TResult Function(_ChangeProjectFilter value) changeProjectFilter,
+    required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
+    required TResult Function(_Submit value) submit,
+    required TResult Function(_DeleteBooking value) deleteBooking,
+    required TResult Function(_LoadDetail value) loadDetail,
+    required TResult Function(_SubmitAdvance value) submitAdvance,
+    required TResult Function(_SubmitAdvanceForm value) submitAdvanceForm,
+    required TResult Function(_ClearAdvanceSubmitState value)
+        clearAdvanceSubmitState,
+  }) {
+    return submitAdvanceForm(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeFilterText value)? changeFilterText,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_LoadFilters value)? loadFilters,
+    TResult? Function(_ChangeProjectFilter value)? changeProjectFilter,
+    TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult? Function(_Submit value)? submit,
+    TResult? Function(_DeleteBooking value)? deleteBooking,
+    TResult? Function(_LoadDetail value)? loadDetail,
+    TResult? Function(_SubmitAdvance value)? submitAdvance,
+    TResult? Function(_SubmitAdvanceForm value)? submitAdvanceForm,
+    TResult? Function(_ClearAdvanceSubmitState value)? clearAdvanceSubmitState,
+  }) {
+    return submitAdvanceForm?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeFilterText value)? changeFilterText,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_LoadFilters value)? loadFilters,
+    TResult Function(_ChangeProjectFilter value)? changeProjectFilter,
+    TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult Function(_Submit value)? submit,
+    TResult Function(_DeleteBooking value)? deleteBooking,
+    TResult Function(_LoadDetail value)? loadDetail,
+    TResult Function(_SubmitAdvance value)? submitAdvance,
+    TResult Function(_SubmitAdvanceForm value)? submitAdvanceForm,
+    TResult Function(_ClearAdvanceSubmitState value)? clearAdvanceSubmitState,
+    required TResult orElse(),
+  }) {
+    if (submitAdvanceForm != null) {
+      return submitAdvanceForm(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SubmitAdvanceForm implements BookingGuestHouseEvent {
+  const factory _SubmitAdvanceForm(
+      {required final int accommodationBookingId,
+      final int? approvedTbpId,
+      final int? projectId,
+      final int? companyId,
+      required final String companyName,
+      required final String departmentName,
+      required final String reason,
+      required final int transferType,
+      required final String bankAccount,
+      required final int bankListId,
+      required final String bankName,
+      required final int totalAmount,
+      final String? note}) = _$SubmitAdvanceFormImpl;
+
+  /// ID phiếu đặt phòng — UI lấy từ `widget.id`.
+  int get accommodationBookingId;
+
+  /// ID TBP duyệt (ưu tiên). Null → bloc fallback `detail.info.approvedTBP`.
+  int? get approvedTbpId;
+
+  /// ID dự án (ưu tiên). Null → bloc fallback `detail.info.projectId`.
+  int? get projectId;
+
+  /// ID công ty. Null → bloc fallback `currentUser.taxCompanyId`.
+  int? get companyId;
+
+  /// Tên công ty (auto-fill từ currentUser + lookup state.taxCompanies).
+  String get companyName;
+
+  /// Tên bộ phận (auto-fill từ currentUser).
+  String get departmentName;
+
+  /// Lý do tạm ứng.
+  String get reason;
+
+  /// Loại chuyển khoản (1..6 theo enum `TransferType`).
+  int get transferType;
+
+  /// Số tài khoản ngân hàng (chỉ chữ số).
+  String get bankAccount;
+
+  /// ID ngân hàng; bloc lookup `BankName` chuẩn hoá từ `state.banks`.
+  int get bankListId;
+
+  /// Tên ngân hàng (text hiển thị — fallback khi không lookup được).
+  String get bankName;
+
+  /// Số tiền tạm ứng (đã parse từ "x.xxx.xxx" → int).
+  int get totalAmount;
+
+  /// Ghi chú (optional).
+  String? get note;
+  @JsonKey(ignore: true)
+  _$$SubmitAdvanceFormImplCopyWith<_$SubmitAdvanceFormImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ClearAdvanceSubmitStateImplCopyWith<$Res> {
+  factory _$$ClearAdvanceSubmitStateImplCopyWith(
+          _$ClearAdvanceSubmitStateImpl value,
+          $Res Function(_$ClearAdvanceSubmitStateImpl) then) =
+      __$$ClearAdvanceSubmitStateImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearAdvanceSubmitStateImplCopyWithImpl<$Res>
+    extends _$BookingGuestHouseEventCopyWithImpl<$Res,
+        _$ClearAdvanceSubmitStateImpl>
+    implements _$$ClearAdvanceSubmitStateImplCopyWith<$Res> {
+  __$$ClearAdvanceSubmitStateImplCopyWithImpl(
+      _$ClearAdvanceSubmitStateImpl _value,
+      $Res Function(_$ClearAdvanceSubmitStateImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ClearAdvanceSubmitStateImpl implements _ClearAdvanceSubmitState {
+  const _$ClearAdvanceSubmitStateImpl();
+
+  @override
+  String toString() {
+    return 'BookingGuestHouseEvent.clearAdvanceSubmitState()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ClearAdvanceSubmitStateImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd) init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String filterText) changeFilterText,
+    required TResult Function() refresh,
+    required TResult Function() loadFilters,
+    required TResult Function(ProjectFilterItem? project) changeProjectFilter,
+    required TResult Function(EmployeeFilterItem? employee)
+        changeEmployeeFilter,
+    required TResult Function(Map<String, dynamic> payload) submit,
+    required TResult Function(int id) deleteBooking,
+    required TResult Function(int id) loadDetail,
+    required TResult Function(Map<String, dynamic> payload) submitAdvance,
+    required TResult Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)
+        submitAdvanceForm,
+    required TResult Function() clearAdvanceSubmitState,
+  }) {
+    return clearAdvanceSubmitState();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String filterText)? changeFilterText,
+    TResult? Function()? refresh,
+    TResult? Function()? loadFilters,
+    TResult? Function(ProjectFilterItem? project)? changeProjectFilter,
+    TResult? Function(EmployeeFilterItem? employee)? changeEmployeeFilter,
+    TResult? Function(Map<String, dynamic> payload)? submit,
+    TResult? Function(int id)? deleteBooking,
+    TResult? Function(int id)? loadDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitAdvance,
+    TResult? Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)?
+        submitAdvanceForm,
+    TResult? Function()? clearAdvanceSubmitState,
+  }) {
+    return clearAdvanceSubmitState?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String filterText)? changeFilterText,
+    TResult Function()? refresh,
+    TResult Function()? loadFilters,
+    TResult Function(ProjectFilterItem? project)? changeProjectFilter,
+    TResult Function(EmployeeFilterItem? employee)? changeEmployeeFilter,
+    TResult Function(Map<String, dynamic> payload)? submit,
+    TResult Function(int id)? deleteBooking,
+    TResult Function(int id)? loadDetail,
+    TResult Function(Map<String, dynamic> payload)? submitAdvance,
+    TResult Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)?
+        submitAdvanceForm,
+    TResult Function()? clearAdvanceSubmitState,
+    required TResult orElse(),
+  }) {
+    if (clearAdvanceSubmitState != null) {
+      return clearAdvanceSubmitState();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeFilterText value) changeFilterText,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_LoadFilters value) loadFilters,
+    required TResult Function(_ChangeProjectFilter value) changeProjectFilter,
+    required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
+    required TResult Function(_Submit value) submit,
+    required TResult Function(_DeleteBooking value) deleteBooking,
+    required TResult Function(_LoadDetail value) loadDetail,
+    required TResult Function(_SubmitAdvance value) submitAdvance,
+    required TResult Function(_SubmitAdvanceForm value) submitAdvanceForm,
+    required TResult Function(_ClearAdvanceSubmitState value)
+        clearAdvanceSubmitState,
+  }) {
+    return clearAdvanceSubmitState(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeFilterText value)? changeFilterText,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_LoadFilters value)? loadFilters,
+    TResult? Function(_ChangeProjectFilter value)? changeProjectFilter,
+    TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult? Function(_Submit value)? submit,
+    TResult? Function(_DeleteBooking value)? deleteBooking,
+    TResult? Function(_LoadDetail value)? loadDetail,
+    TResult? Function(_SubmitAdvance value)? submitAdvance,
+    TResult? Function(_SubmitAdvanceForm value)? submitAdvanceForm,
+    TResult? Function(_ClearAdvanceSubmitState value)? clearAdvanceSubmitState,
+  }) {
+    return clearAdvanceSubmitState?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeFilterText value)? changeFilterText,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_LoadFilters value)? loadFilters,
+    TResult Function(_ChangeProjectFilter value)? changeProjectFilter,
+    TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult Function(_Submit value)? submit,
+    TResult Function(_DeleteBooking value)? deleteBooking,
+    TResult Function(_LoadDetail value)? loadDetail,
+    TResult Function(_SubmitAdvance value)? submitAdvance,
+    TResult Function(_SubmitAdvanceForm value)? submitAdvanceForm,
+    TResult Function(_ClearAdvanceSubmitState value)? clearAdvanceSubmitState,
+    required TResult orElse(),
+  }) {
+    if (clearAdvanceSubmitState != null) {
+      return clearAdvanceSubmitState(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearAdvanceSubmitState implements BookingGuestHouseEvent {
+  const factory _ClearAdvanceSubmitState() = _$ClearAdvanceSubmitStateImpl;
 }

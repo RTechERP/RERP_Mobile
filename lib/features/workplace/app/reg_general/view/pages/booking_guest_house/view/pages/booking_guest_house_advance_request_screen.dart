@@ -1,25 +1,4 @@
-// Màn "Đề nghị tạm ứng" cho phiếu Đặt phòng nhà nghỉ.
-//
-// Mở từ bottomSheet menu khi chạm 1 phiếu trong danh sách. UI form
-// theo yêu cầu bổ sung — tách riêng với "Cập nhật TTQT" (UI cũ, còn
-// bill/file đính kèm). Màn này chỉ gồm 10 field TT tạm ứng, không có
-// file đính kèm.
-//
-// Màn này nhận `id` (int) của phiếu, tự gọi bloc load detail. Trong khi
-// load → spinner; load lỗi → snackbar + pop.
-//
-// Field set (theo yêu cầu bổ sung):
-//   - TBP duyệt (isRequired, readonly, auto-fill từ info.approvedTBP)
-//   - Dự án (isRequired, picker từ state.projects)
-//   - Công ty (optional, picker từ state.taxCompanies)
-//   - Bộ phận (optional, text rỗng)
-//   - Lý do (isRequired, auto-fill theo khoảng ngày)
-//   - Loại chuyển khoản (isRequired, picker: Chuyển khoản / Tiền mặt)
-//   - Số tài khoản (isRequired, text, chỉ chữ số)
-//   - Ngân hàng (isRequired, picker từ state.banks)
-//   - Số tiền tạm ứng (isRequired, number, format "x.xxx.xxx VNĐ")
-//   - Ghi chú (optional, multiline)
-
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -28,14 +7,50 @@ import 'package:intl/intl.dart';
 
 import '../../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
+import '../../../../../../../../../common/logger/index.dart';
+import '../../../../../../../../../common/utils/formatter/thousands_input_formatter.dart';
 import '../../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../../common/widgets/form/index.dart';
 import '../../../../../../../../../common/helpers/index.dart';
+import '../../../../../../../../../di/injection.dart';
+import '../../../../../../../../../features/auth/data/datasource/models/user_model.dart';
+import '../../../../../../../../../features/auth/data/repository/auth_repository.dart';
 import '../../data/datasource/models/booking_guest_house_model.dart';
 import '../bloc/booking_guest_house_bloc.dart';
 
-/// Loại chuyển khoản cho đề nghị tạm ứng.
-enum TransferType { bankTransfer, cash }
+/// Loại chuyển khoản cho đề nghị tạm ứng (theo mục 2.5 spec).
+///
+/// Mapping `value` (gửi BE) ↔ label (hiển thị trên UI):
+/// - 1 → "Chuyển khoản RTC"
+/// - 2 → "Chuyển khoản MVI"
+/// - 3 → "Chuyển khoản APR"
+/// - 4 → "Chuyển khoản Yonko"
+/// - 5 → "Chuyển khoản cá nhân" (mặc định)
+/// - 6 → "Chuyển khoản R-Tech"
+enum TransferType {
+  personal(5, 'Chuyển khoản cá nhân'),
+  rtc(1, 'Chuyển khoản RTC'),
+  mvi(2, 'Chuyển khoản MVI'),
+  apr(3, 'Chuyển khoản APR'),
+  yonko(4, 'Chuyển khoản Yonko'),
+  rTech(6, 'Chuyển khoản R-Tech');
+
+  const TransferType(this.value, this.label);
+
+  /// Giá trị `TransferType` gửi BE.
+  final int value;
+
+  /// Label tiếng Việt hiển thị trên UI.
+  final String label;
+
+  /// Map int → enum (BE trả về 1..6). Trả `personal` làm fallback.
+  static TransferType fromValue(int? v) {
+    for (final t in TransferType.values) {
+      if (t.value == v) return t;
+    }
+    return TransferType.personal;
+  }
+}
 
 class BookingGuestHouseAdvanceRequestScreen extends StatefulWidget {
   const BookingGuestHouseAdvanceRequestScreen({super.key, required this.id});
@@ -72,21 +87,28 @@ class _BookingGuestHouseAdvanceRequestScreenState
   late final TextEditingController _reasonCtrl;
 
   /// Loại chuyển khoản — lưu enum + controller cho FormBuilder.
-  TransferType _transferType = TransferType.bankTransfer;
+  /// Mặc định "Chuyển khoản cá nhân" (TransferType = 5) theo spec 2.5.
+  TransferType _transferType = TransferType.personal;
   late final TextEditingController _transferTypeCtrl;
-  String get _transferTypeLabel => _transferType == TransferType.bankTransfer
-      ? 'Chuyển khoản'
-      : 'Tiền mặt';
+  String get _transferTypeLabel => _transferType.label;
 
   late final TextEditingController _bankAccountCtrl;
   late final TextEditingController _bankNameCtrl;
   BankItem? _bankSelected;
 
-  /// Số tiền tạm ứng — text có format "x.xxx.xxx VNĐ"; parse ngược về số
-  /// khi cần submit.
+  /// Số tiền tạm ứng — text có format "x.xxx.xxx" do
+  /// `ThousandsInputFormatter` áp dụng ngay khi user gõ (đơn vị "VNĐ"
+  /// hiển thị ở `suffixIcon` chứ không chèn vào text, để user xoá/backspace
+  /// dễ). Tránh set controller trong `onChanged` gây StackOverflow.
   late final TextEditingController _amountCtrl;
 
   late final TextEditingController _noteCtrl;
+
+  /// User đang đăng nhập — load qua `AuthRepository` ở `initState` để
+  /// fill Công ty (lookup taxCompanyId trong state.taxCompanies) + Bộ
+  /// phận. Lưu vào UI state (giống `LunchAddScreen._loadCurrentEmployeeId`).
+  /// Bloc chỉ cần khi submit (qua `_onSubmitAdvanceForm`) — không cache.
+  User? _currentUser;
 
   @override
   void initState() {
@@ -102,16 +124,35 @@ class _BookingGuestHouseAdvanceRequestScreenState
     _amountCtrl = TextEditingController();
     _noteCtrl = TextEditingController();
 
-    // Trigger load detail ngay khi mở màn. 3 API lookup (projects/employees/
-    // provinces) KHÔNG gọi ở đây — đã được list screen load sẵn qua
-    // loadFilters khi mở tính năng. Nếu mở thẳng đề nghị tạm ứng (deep
-    // link) mà chưa qua list, dữ liệu lookup sẽ rỗng và UI sẽ fallback
-    // text theo id.
+    // Khởi tạo màn: load currentUser + dispatch load detail + load
+    // filters (idempotent — bloc tự skip nếu đã có data). UI gọi
+    // action qua `add(...)` — không đọc state trong method helper.
+    _loadCurrentUser();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
-      final bloc = context.read<BookingGuestHouseBloc>();
-      bloc.add(BookingGuestHouseEvent.loadDetail(id: widget.id));
+      context.read<BookingGuestHouseBloc>().add(
+        BookingGuestHouseEvent.loadDetail(id: widget.id),
+      );
+      // Trigger loadFilters nếu list/employee/bank rỗng (deep link).
+      if (context.read<BookingGuestHouseBloc>().state.projects.isEmpty ||
+          context.read<BookingGuestHouseBloc>().state.employees.isEmpty ||
+          context.read<BookingGuestHouseBloc>().state.banks.isEmpty) {
+        context
+            .read<BookingGuestHouseBloc>()
+            .add(const BookingGuestHouseEvent.loadFilters());
+      }
     });
+  }
+
+  /// Load `currentUser` qua `AuthRepository` — pattern giống
+  /// `LunchAddScreen._loadCurrentEmployeeId`. Lưu vào UI state để
+  /// auto-fill Bộ phận + lookup Công ty qua `state.taxCompanies`.
+  Future<void> _loadCurrentUser() async {
+    final user = await AuthRepository.fetchAndSaveCurrentUser(
+      log: getIt.get<LogUtils>(),
+    );
+    if (!mounted) return;
+    setState(() => _currentUser = user);
   }
 
   @override
@@ -138,7 +179,7 @@ class _BookingGuestHouseAdvanceRequestScreenState
     if (s == null && e == null) return '';
     final sText = s == null ? '...' : _dateFmt.format(s);
     final eText = e == null ? '...' : _dateFmt.format(e);
-    return 'Thanh toán tiền nhà nghỉ từ $sText đến $eText';
+    return 'Tạm ứng tiền nhà nghỉ từ $sText đến $eText';
   }
 
   /// Map `approvedTBP` (employeeId) → tên nhân viên từ
@@ -154,22 +195,179 @@ class _BookingGuestHouseAdvanceRequestScreenState
     return null;
   }
 
-  /// Format số tiền: chèn `.` mỗi 3 chữ số từ phải sang trái, thêm ` VNĐ`.
-  /// Ví dụ: `1500000` → `1.500.000 VNĐ`.
-  String _formatVnd(String rawDigits) {
-    final digits = rawDigits.replaceAll(RegExp(r'[^0-9]'), '');
-    if (digits.isEmpty) return '';
-    final n = int.tryParse(digits) ?? 0;
-    final formatted = n.toString().replaceAllMapped(
-      RegExp(r'(\d)(?=(\d{3})+(?!\d))'),
-      (m) => '${m[1]}.',
-    );
-    return '$formatted VNĐ';
-  }
-
-  /// Parse ngược từ text hiển thị (có `.` và ` VNĐ`) → chỉ chữ số.
+  /// Parse ngược từ text hiện thị (có dấu `.`) → chỉ chữ số.
+  /// Dùng khi build payload submit và validate (xem validator amount).
   String _parseVndToDigits(String text) =>
       text.replaceAll(RegExp(r'[^0-9]'), '');
+
+  //---(Auto-fill theo pattern BaseState)---//
+
+  /// Fill Công ty + Bộ phận từ currentUser (UI state) + lookup tên
+  /// công ty trong `state.taxCompanies`. Gọi từ `BlocBuilder` của field
+  /// Công ty — nơi đã có `state` từ builder.
+  ///
+  /// Theo pattern của `LunchAddScreen._loadCurrentEmployeeId`: UI tự
+  /// load user qua `AuthRepository`, lưu vào UI state, dùng để
+  /// render/fill. Bloc không cần biết về user này — chỉ cần khi submit
+  /// (qua `_onSubmitAdvanceForm`).
+  void _autoFillCompanyAndDepartment(BookingGuestHouseState state) {
+    final user = _currentUser;
+    if (user == null) return;
+    final deptName = user.departmentName.trim();
+    if (deptName.isNotEmpty && _departmentCtrl.text.isEmpty) {
+      _departmentCtrl.text = deptName;
+    }
+    if (_companyCtrl.text.isNotEmpty) return;
+    final companyId = user.taxCompanyId;
+    if (companyId == 0) return;
+    final match = state.taxCompanies.firstWhereOrNull((c) => c.id == companyId);
+    if (match == null) {
+      // taxCompanies chưa load → trigger loadFilters (bloc tự skip nếu
+      // đã loading). Đây là event action, hợp lệ trong event handler.
+      if (state.taxCompanies.isEmpty) {
+        context.read<BookingGuestHouseBloc>().add(
+          const BookingGuestHouseEvent.loadFilters(),
+        );
+      }
+      return;
+    }
+    final label = (match.name ?? '').trim();
+    if (label.isNotEmpty) _companyCtrl.text = label;
+  }
+
+  /// Auto-fill form từ `detailData` (chế độ editable). Fill TBP +
+  /// Dự án (lookup tên trong `state.employees` / `state.projects`) +
+  /// Lý do mặc định theo khoảng ngày. Mỗi controller chỉ fill nếu
+  /// còn rỗng — tránh đè value user đang gõ.
+  void _autoFillFromDetail(
+    BookingGuestHouseDetailData detail,
+    BookingGuestHouseState state,
+  ) {
+    // TBP duyệt
+    if (_tbpCtrl.text.isEmpty && detail.info.approvedTBP != null) {
+      final name = _resolveTbpName(detail.info.approvedTBP, state.employees);
+      if (name != null) {
+        _tbpCtrl.text = name;
+        _tbpSelected ??= state.employees.firstWhere(
+          (e) => e.id == detail.info.approvedTBP,
+          orElse: () => state.employees.first,
+        );
+      }
+    }
+
+    // Dự án
+    if (_projectSelected == null &&
+        detail.info.projectId != null &&
+        state.projects.isNotEmpty) {
+      for (final p in state.projects) {
+        if (p.id == detail.info.projectId) {
+          _projectSelected = p;
+          _projectCtrl.text = (p.projectCode ?? '').isNotEmpty
+              ? '${p.projectCode} - ${p.projectName ?? ''}'
+              : (p.projectName ?? '');
+          break;
+        }
+      }
+    }
+
+    // Lý do
+    if (_reasonCtrl.text.isEmpty) {
+      _reasonCtrl.text = _defaultReasonText(detail.info);
+    }
+  }
+
+  /// Auto-fill form từ `sourceItem.advance*` (chế độ view-only khi
+  /// `advanceDetailStatus == 4`). Lookup tên TBP/Dự án/Ngân hàng từ
+  /// `state.employees`/`state.projects`/`state.banks`.
+  ///
+  /// `sourceItem` ở đây resolve từ `state.bookings.firstWhereOrNull`
+  /// (gọi trong BlocBuilder khi widget build).
+  void _autoFillFromSourceItem(
+    BookingGuestHouseItem item,
+    BookingGuestHouseState state,
+  ) {
+    // TBP
+    final advanceTbpId = item.advanceApprovedTbpId;
+    if (advanceTbpId != null && advanceTbpId != 0) {
+      final match =
+          state.employees.firstWhereOrNull((e) => e.id == advanceTbpId);
+      _tbpCtrl.text = (match?.fullName ?? '').trim().isNotEmpty
+          ? match!.fullName!.trim()
+          : (item.advanceRecipientName ?? '');
+      _tbpSelected = match;
+    }
+
+    // Dự án
+    final advanceProjectId = item.advanceProjectId;
+    if (advanceProjectId != null && advanceProjectId != 0) {
+      final match =
+          state.projects.firstWhereOrNull((p) => p.id == advanceProjectId);
+      if (match != null) {
+        _projectSelected = match;
+        _projectCtrl.text = (match.projectCode ?? '').isNotEmpty
+            ? '${match.projectCode} - ${match.projectName ?? ''}'
+            : (match.projectName ?? '');
+      }
+    }
+
+    // Công ty
+    final advanceCompanyName = (item.advanceCompanyName ?? '').trim();
+    if (advanceCompanyName.isNotEmpty) {
+      _companyCtrl.text = advanceCompanyName;
+    }
+
+    // Bộ phận
+    final advanceDeptName = (item.advanceDepartmentName ?? '').trim();
+    if (advanceDeptName.isNotEmpty) {
+      _departmentCtrl.text = advanceDeptName;
+    }
+
+    // Lý do
+    _reasonCtrl.text = (item.advanceReason ?? '').trim();
+
+    // Loại CK
+    _transferType = TransferType.fromValue(item.advanceTransferType);
+    _transferTypeCtrl.text = _transferType.label;
+
+    // Số TK
+    _bankAccountCtrl.text = (item.advanceBankAccount ?? '').trim();
+
+    // Ngân hàng
+    final advanceBankListId = item.advanceBankListId;
+    if (advanceBankListId != null && advanceBankListId != 0) {
+      final match =
+          state.banks.firstWhereOrNull((b) => b.id == advanceBankListId);
+      if (match != null) {
+        _bankSelected = match;
+        _bankNameCtrl.text = (match.bankName ?? '').trim();
+      } else {
+        _bankNameCtrl.text = (item.advanceBankName ?? '').trim();
+      }
+    } else {
+      _bankNameCtrl.text = (item.advanceBankName ?? '').trim();
+    }
+
+    // Số tiền
+    final totalAmount = item.advanceTotalAmount;
+    if (totalAmount != null) {
+      final digits = totalAmount.toInt().toString();
+      final grouped = digits.replaceAllMapped(
+        RegExp(r'(\d)(?=(\d{3})+(?!\d))'),
+        (m) => '${m[1]}.',
+      );
+      _amountCtrl.text = grouped;
+    }
+
+    // Ghi chú
+    _noteCtrl.text = (item.advanceNote ?? '').trim();
+  }
+
+  /// Parse số tiền hiện tại trong `_amountCtrl` (text "x.xxx.xxx") → int.
+  int? get _amountValue {
+    final digits = _parseVndToDigits(_amountCtrl.text);
+    if (digits.isEmpty) return null;
+    return int.tryParse(digits);
+  }
 
   /// Mở bottom sheet chọn dự án từ `BookingGuestHouseState.projects`.
   Future<void> _pickProject() async {
@@ -234,41 +432,6 @@ class _BookingGuestHouseAdvanceRequestScreenState
     );
   }
 
-  /// Mở bottom sheet chọn công ty từ `state.taxCompanies`.
-  Future<void> _pickTaxCompany() async {
-    final state = context.read<BookingGuestHouseBloc>().state;
-    if (state.taxCompanies.isEmpty) {
-      context.read<BookingGuestHouseBloc>().add(
-        const BookingGuestHouseEvent.loadFilters(),
-      );
-      _showNoDataHint(context, 'công ty');
-      return;
-    }
-    await openSelectBottomSheet<TaxCompanyItem>(
-      context: context,
-      title: 'Chọn công ty',
-      hintText: 'Tìm theo tên / mã số thuế',
-      items: state.taxCompanies,
-      initialSelectedItem: _companySelected,
-      displayText: (c) {
-        // Ưu tiên Name, fallback TaxCode.
-        final name = (c.name ?? '').trim();
-        if (name.isNotEmpty) return name;
-        final tax = (c.taxCode ?? '').trim();
-        if (tax.isEmpty) return 'N/A';
-        return 'MST: $tax';
-      },
-      onSelected: (company) {
-        setState(() {
-          _companySelected = company;
-          _companyCtrl.text = (company.name ?? '').trim().isEmpty
-              ? 'MST: ${(company.taxCode ?? '').trim()}'
-              : (company.name ?? '').trim();
-        });
-      },
-    );
-  }
-
   /// Mở bottom sheet chọn ngân hàng từ `state.banks`.
   Future<void> _pickBank() async {
     final state = context.read<BookingGuestHouseBloc>().state;
@@ -296,84 +459,21 @@ class _BookingGuestHouseAdvanceRequestScreenState
     );
   }
 
-  /// Mở bottom sheet chọn loại chuyển khoản — 2 giá trị cố định.
+  /// Mở bottom sheet chọn loại chuyển khoản — 6 giá trị theo mục 2.5
+  /// spec. Dùng `openSelectBottomSheet` chuẩn của project để đồng bộ
+  /// UX với các picker khác (Dự án, Ngân hàng, TBP).
   Future<void> _pickTransferType() async {
-    final result = await showModalBottomSheet<TransferType>(
+    await openSelectBottomSheet<TransferType>(
       context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      builder: (sheetCtx) {
-        Widget tile(TransferType type, String label) {
-          return InkWell(
-            onTap: () => Navigator.of(sheetCtx).pop(type),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 16,
-              ),
-              child: Row(
-                children: [
-                  Icon(
-                    _transferType == type
-                        ? Icons.radio_button_checked
-                        : Icons.radio_button_unchecked,
-                    color: AppColors.primaryERP,
-                  ),
-                  const SizedBox(width: 12),
-                  Text(
-                    label,
-                    style: const TextStyle(fontSize: 15),
-                  ),
-                ],
-              ),
-            ),
-          );
-        }
-
-        return Container(
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-          ),
-          child: SafeArea(
-            top: false,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(top: 12),
-                  width: 40,
-                  height: 4,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: BorderRadius.circular(2),
-                  ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.fromLTRB(20, 16, 20, 8),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Chọn loại chuyển khoản',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ),
-                ),
-                tile(TransferType.bankTransfer, 'Chuyển khoản'),
-                tile(TransferType.cash, 'Tiền mặt'),
-                const SizedBox(height: 8),
-              ],
-            ),
-          ),
-        );
+      title: 'Chọn loại chuyển khoản',
+      hintText: 'Tìm theo tên loại chuyển khoản',
+      items: TransferType.values,
+      initialSelectedItem: _transferType,
+      displayText: (t) => t.label,
+      onSelected: (type) {
+        setState(() => _transferType = type);
       },
     );
-    if (result != null && mounted) {
-      setState(() => _transferType = result);
-    }
   }
 
   void _showNoDataHint(BuildContext context, String what) {
@@ -385,6 +485,11 @@ class _BookingGuestHouseAdvanceRequestScreenState
     );
   }
 
+  /// Submit đề nghị tạm ứng — build DTO `AdvancePaymentOrderRequest` từ
+  /// giá trị form rồi dispatch `BookingGuestHouseEvent.submitAdvanceForm`.
+  /// Bloc tự resolve `currentUser` + `detailData` + build payload Map cuối
+  /// cùng + validate. UI chỉ lo thu thập giá trị form (10 field + 3 object
+  /// đã chọn) — không build payload Map hay gọi AuthRepository.
   void _onSave() {
     final formState = _formKey.currentState;
     if (formState == null) return;
@@ -396,38 +501,163 @@ class _BookingGuestHouseAdvanceRequestScreenState
       return;
     }
 
-    // TODO: wire submit khi có API lưu đề nghị tạm ứng. Tạm thời báo
-    // thành công để confirm form đã validate OK + pop về list.
-    context.showMessage(
-      'Lưu đề nghị tạm ứng thành công',
-      type: SnackBarType.success,
-    );
-    if (mounted && context.canPop()) {
-      context.pop();
+    final amount = _amountValue;
+    if (amount == null || amount <= 0) {
+      context.showMessage(
+        'Số tiền tạm ứng không hợp lệ',
+        type: SnackBarType.error,
+      );
+      return;
     }
+
+    final bank = _bankSelected;
+    if (bank == null) {
+      context.showMessage(
+        'Vui lòng chọn ngân hàng',
+        type: SnackBarType.error,
+      );
+      return;
+    }
+
+    // Công ty — lấy từ controller (đã auto-fill). Nếu user không có
+    // taxCompanyId → fallback 0 cho companyId (bloc sẽ dùng giá trị này).
+    // UI dùng `_currentUser` (UI state, load ở initState) thay vì đọc
+    // từ bloc state — theo pattern của `LunchAddScreen`.
+    final companyId = _companySelected?.id ?? _currentUser?.taxCompanyId;
+
+    //---(Dispatch event thuần — bloc tự build payload + validate +
+    //    resolve currentUser)---//
+    context.read<BookingGuestHouseBloc>().add(
+      BookingGuestHouseEvent.submitAdvanceForm(
+        accommodationBookingId: widget.id,
+        approvedTbpId: _tbpSelected?.id,
+        projectId: _projectSelected?.id,
+        companyId: companyId,
+        companyName: _companyCtrl.text.trim(),
+        departmentName: _departmentCtrl.text.trim(),
+        reason: _reasonCtrl.text.trim(),
+        transferType: _transferType.value,
+        bankAccount: _bankAccountCtrl.text.trim(),
+        bankListId: bank.id ?? 0,
+        bankName: _bankNameCtrl.text.trim(),
+        totalAmount: amount,
+        note: _noteCtrl.text.trim().isEmpty ? null : _noteCtrl.text.trim(),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<BookingGuestHouseBloc, BookingGuestHouseState>(
+      //---(Listen khi state thay đổi: fill form + show snackbar + reset)---//
       listenWhen: (prev, curr) =>
-          (prev.detailData != curr.detailData && curr.detailData != null) ||
+          //---(Fill form khi các phần state liên quan thay đổi)---//
+          prev.employees != curr.employees ||
+          prev.projects != curr.projects ||
+          prev.banks != curr.banks ||
+          prev.taxCompanies != curr.taxCompanies ||
+          prev.detailData != curr.detailData ||
+          //---(Snackbar lỗi)---//
           (prev.detailMessage != curr.detailMessage &&
-              curr.detailMessage != null),
+              curr.detailMessage != null) ||
+          //---(Success → show toast + reset + pop)---//
+          (!prev.advanceSuccess && curr.advanceSuccess) ||
+          //---(Submit fail)---//
+          (prev.isSubmittingAdvance &&
+              !curr.isSubmittingAdvance &&
+              !curr.advanceSuccess &&
+              (curr.message ?? '').isNotEmpty),
       listener: (context, state) {
-        if (state.detailMessage != null && state.detailMessage!.isNotEmpty) {
-          context.showMessage(state.detailMessage!, type: SnackBarType.error);
+        //---(Fill Công ty + Bộ phận từ currentUser + taxCompanies)---//
+        _autoFillCompanyAndDepartment(state);
+
+        //---(Fill TBP/Project/Lý do từ detailData — editable)---//
+        if (state.detailData != null) {
+          _autoFillFromDetail(state.detailData!, state);
         }
-        // Fill lý do mặc định ngay khi detail vừa load xong (chỉ fill khi
-        // controller rỗng — tránh đè value user đang gõ).
-        if (state.detailData != null && _reasonCtrl.text.isEmpty) {
-          _reasonCtrl.text = _defaultReasonText(state.detailData!.info);
+
+        //---(Fill view-only từ sourceItem trong state.bookings)---//
+        final source = state.bookings.firstWhereOrNull(
+          (b) => b.id == widget.id,
+        );
+        final isViewOnly =
+            source != null && source.advanceDetailStatus == 4;
+        if (isViewOnly) {
+          _autoFillFromSourceItem(source, state);
+        }
+
+        //---(View-only → show snackbar cảnh báo 1 lần)---//
+        // if (isViewOnly) {
+        //   final code = (source.advancePaymentOrderCode ?? '').trim();
+        //   final msg = code.isNotEmpty
+        //       ? 'Đã tạo ĐNTT tạm ứng $code — không sửa được'
+        //       : 'Đã tạo ĐNTT tạm ứng — không sửa được';
+        //   WidgetsBinding.instance.addPostFrameCallback((_) {
+        //     if (!mounted) return;
+        //     context.showMessage(msg, type: SnackBarType.info);
+        //   });
+        // }
+
+        //---(Lỗi load detail)---//
+        if (state.detailMessage != null && state.detailMessage!.isNotEmpty) {
+          context.showMessage(
+            state.detailMessage!,
+            type: SnackBarType.error,
+          );
+        }
+
+        //---(Submit success → show toast + clear state + pop)---//
+        if (state.advanceSuccess) {
+          final res = state.lastAdvanceResponse;
+          final code = (res?.code ?? '').trim();
+          final isRecreated = res?.isRecreated == true;
+          final msg = state.message?.trim().isNotEmpty == true
+              ? state.message!.trim()
+              : (isRecreated
+                  ? 'Đã tạo lại đề nghị tạm ứng${code.isNotEmpty ? ' ($code)' : ''} — chờ TBP duyệt lại'
+                  : 'Tạo đề nghị tạm ứng thành công${code.isNotEmpty ? ' ($code)' : ''}');
+          context.showMessage(msg, type: SnackBarType.success);
+          // Clear cờ để lần sau mở lại màn thấy form sạch (giống
+          // pattern `LunchAddScreen` với `clearSubmitState`).
+          context
+              .read<BookingGuestHouseBloc>()
+              .add(const BookingGuestHouseEvent.clearAdvanceSubmitState());
+          if (context.canPop()) context.pop();
+        }
+
+        //---(Submit fail)---//
+        if (state.message != null &&
+            state.message!.isNotEmpty &&
+            !state.advanceSuccess &&
+            !state.isSubmittingAdvance) {
+          context.showMessage(
+            state.message!,
+            type: SnackBarType.error,
+          );
         }
       },
+      //---(Build UI từ state)---//
+      buildWhen: (prev, curr) =>
+          prev.isDetailLoading != curr.isDetailLoading ||
+          prev.detailData != curr.detailData ||
+          prev.detailMessage != curr.detailMessage ||
+          prev.taxCompanies != curr.taxCompanies ||
+          prev.employees != curr.employees ||
+          prev.projects != curr.projects ||
+          prev.banks != curr.banks ||
+          prev.bookings != curr.bookings ||
+          prev.isSubmittingAdvance != curr.isSubmittingAdvance,
       builder: (context, state) {
         final detail = state.detailData;
-        final isLoading = state.isDetailLoading && detail == null;
-        final errorMsg = (detail == null && !isLoading)
+        // View-only: resolve từ state.bookings theo widget.id.
+        final source = state.bookings.firstWhereOrNull(
+          (b) => b.id == widget.id,
+        );
+        final isViewOnly =
+            source != null && source.advanceDetailStatus == 4;
+        final isLoading =
+            state.isDetailLoading && detail == null && !isViewOnly;
+        final errorMsg = (!isLoading && detail == null && !isViewOnly)
             ? state.detailMessage
             : null;
 
@@ -437,21 +667,30 @@ class _BookingGuestHouseAdvanceRequestScreenState
             title: const Text('Đề nghị tạm ứng'),
             onBackTap: () => context.pop(),
           ),
-          body: _buildBody(
-            isLoading: isLoading,
-            errorMsg: errorMsg,
-            detail: detail,
+          // Dismiss keyboard khi user tap ra ngoài field text/number.
+          body: GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () => FocusScope.of(context).unfocus(),
+            child: _buildBody(
+              state: state,
+              isLoading: isLoading,
+              errorMsg: errorMsg,
+              detail: detail,
+              isViewOnly: isViewOnly,
+            ),
           ),
-          bottomNavigationBar: _buildBottomBar(),
+          bottomNavigationBar: _buildBottomBar(isViewOnly: isViewOnly),
         );
       },
     );
   }
 
   Widget _buildBody({
+    required BookingGuestHouseState state,
     required bool isLoading,
     required String? errorMsg,
     required BookingGuestHouseDetailData? detail,
+    required bool isViewOnly,
   }) {
     if (isLoading) {
       return const Center(
@@ -484,13 +723,55 @@ class _BookingGuestHouseAdvanceRequestScreenState
         ),
       );
     }
-    if (detail == null) return const SizedBox.shrink();
+    if (detail == null && !isViewOnly) return const SizedBox.shrink();
+
+    // `editable` = false khi đã có ĐNTT tạm ứng (view-only) → áp dụng
+    // cho tất cả FormInputField bên dưới. 2 field "Công ty" + "Bộ phận"
+    // vẫn `enabled: false` cố định vì user không bao giờ được sửa.
+    final editable = !isViewOnly;
 
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          //---(Banner cảnh báo khi view-only)---//
+          if (isViewOnly)
+            Container(
+              margin: const EdgeInsets.only(bottom: 12),
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: const Color(0xFFFFF7E0),
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                  color: const Color(0xFFFFC107),
+                  width: 0.8,
+                ),
+              ),
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.lock_outline,
+                    color: Color(0xFFB78103),
+                    size: 20,
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Text(
+                      'Đã tạo ĐNTT tạm ứng'
+                      '${(state.bookings.firstWhereOrNull((b) => b.id == widget.id)?.advancePaymentOrderCode ?? '').isNotEmpty ? ' ${state.bookings.firstWhereOrNull((b) => b.id == widget.id)!.advancePaymentOrderCode}' : ''}'
+                      ' — không sửa được',
+                      style: const TextStyle(
+                        fontSize: 13,
+                        color: Color(0xFF8A6100),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
           FormCard(
             title: 'Thông tin tạm ứng',
             child: FormBuilder(
@@ -498,105 +779,62 @@ class _BookingGuestHouseAdvanceRequestScreenState
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  //---(TBP duyệt — auto-fill từ info.approvedTBP, có thể
-                  //    chọn lại qua bottom sheet)---//
-                  BlocBuilder<BookingGuestHouseBloc, BookingGuestHouseState>(
-                    buildWhen: (prev, curr) =>
-                        prev.employees != curr.employees,
-                    builder: (context, state) {
-                      if (detail.info.approvedTBP != null &&
-                          _tbpCtrl.text.isEmpty) {
-                        final name = _resolveTbpName(
-                          detail.info.approvedTBP,
-                          state.employees,
-                        );
-                        if (name != null) {
-                          _tbpCtrl.text = name;
-                          // Lưu lại employee đã chọn để initialSelectedItem
-                          // đúng khi mở bottom sheet.
-                          _tbpSelected ??= state.employees.firstWhere(
-                            (e) => e.id == detail.info.approvedTBP,
-                            orElse: () => state.employees.first,
-                          );
-                        }
-                      }
-                      return FormInputField(
-                        nameForm: 'advance_tbp',
-                        nameTextField: 'advance_tbp_text',
-                        label: 'TBP duyệt',
-                        icon: Icons.verified_user_outlined,
-                        controller: _tbpCtrl,
-                        isRequired: true,
-                        onTap: _pickTbp,
-                        validator: (v) => v == null || v.trim().isEmpty
-                            ? 'Vui lòng chọn TBP duyệt'
-                            : null,
-                      );
-                    },
+                  //---(TBP duyệt)---//
+                  FormInputField(
+                    nameForm: 'advance_tbp',
+                    nameTextField: 'advance_tbp_text',
+                    label: 'TBP duyệt',
+                    icon: Icons.verified_user_outlined,
+                    controller: _tbpCtrl,
+                    isRequired: true,
+                    enabled: editable,
+                    onTap: _pickTbp,
+                    validator: (v) => v == null || v.trim().isEmpty
+                        ? 'Vui lòng chọn TBP duyệt'
+                        : null,
                   ),
                   const SizedBox(height: 12),
 
-                  //---(Dự án — picker từ state.projects; auto-fill nếu
-                  //    info.projectId match)---//
-                  BlocBuilder<BookingGuestHouseBloc, BookingGuestHouseState>(
-                    buildWhen: (prev, curr) =>
-                        prev.projects != curr.projects,
-                    builder: (context, state) {
-                      // Auto-fill dự án lần đầu khi projects vừa load xong.
-                      if (_projectSelected == null &&
-                          detail.info.projectId != null &&
-                          state.projects.isNotEmpty) {
-                        for (final p in state.projects) {
-                          if (p.id == detail.info.projectId) {
-                            _projectSelected = p;
-                            _projectCtrl.text = (p.projectCode ?? '')
-                                    .isNotEmpty
-                                ? '${p.projectCode} - ${p.projectName ?? ''}'
-                                : (p.projectName ?? '');
-                            break;
-                          }
-                        }
-                      }
-                      return FormInputField(
-                        nameForm: 'advance_project',
-                        nameTextField: 'advance_project_text',
-                        label: 'Dự án',
-                        icon: Icons.account_tree_outlined,
-                        controller: _projectCtrl,
-                        isRequired: true,
-                        readOnly: true,
-                        onTap: _pickProject,
-                        validator: (v) => v == null || v.trim().isEmpty
-                            ? 'Vui lòng chọn dự án'
-                            : null,
-                      );
-                    },
+                  //---(Dự án)---//
+                  FormInputField(
+                    nameForm: 'advance_project',
+                    nameTextField: 'advance_project_text',
+                    label: 'Dự án',
+                    icon: Icons.account_tree_outlined,
+                    controller: _projectCtrl,
+                    isRequired: true,
+                    readOnly: true,
+                    enabled: editable,
+                    onTap: _pickProject,
+                    validator: (v) => v == null || v.trim().isEmpty
+                        ? 'Vui lòng chọn dự án'
+                        : null,
                   ),
                   const SizedBox(height: 12),
 
-                  //---(Công ty — optional, picker từ state.taxCompanies)---//
+                  //---(Công ty)---//
                   FormInputField(
                     nameForm: 'advance_company',
                     nameTextField: 'advance_company_text',
                     label: 'Công ty',
                     icon: Icons.business_outlined,
                     controller: _companyCtrl,
-                    readOnly: true,
-                    onTap: _pickTaxCompany,
+                    enabled: false,
                   ),
                   const SizedBox(height: 12),
 
-                  //---(Bộ phận — optional, text rỗng)---//
+                  //---(Bộ phận)---//
                   FormInputField(
                     nameForm: 'advance_department',
                     nameTextField: 'advance_department_text',
                     label: 'Bộ phận',
                     icon: Icons.groups_outlined,
                     controller: _departmentCtrl,
+                    enabled: false,
                   ),
                   const SizedBox(height: 12),
 
-                  //---(Lý do — isRequired)---//
+                  //---(Lý do)---//
                   FormInputField(
                     nameForm: 'advance_reason',
                     nameTextField: 'advance_reason_text',
@@ -604,6 +842,7 @@ class _BookingGuestHouseAdvanceRequestScreenState
                     icon: Icons.help_outline,
                     controller: _reasonCtrl,
                     isRequired: true,
+                    enabled: editable,
                     autoExpand: true,
                     validator: (v) => v == null || v.trim().isEmpty
                         ? 'Vui lòng nhập lý do'
@@ -611,11 +850,9 @@ class _BookingGuestHouseAdvanceRequestScreenState
                   ),
                   const SizedBox(height: 12),
 
-                  //---(Loại chuyển khoản — picker "Chuyển khoản" / "Tiền mặt")---//
+                  //---(Loại chuyển khoản)---//
                   Builder(
                     builder: (_) {
-                      // Đồng bộ text controller với enum hiện tại mỗi lần
-                      // rebuild (tránh stale text sau khi user đổi qua sheet).
                       if (_transferTypeCtrl.text != _transferTypeLabel) {
                         _transferTypeCtrl.text = _transferTypeLabel;
                       }
@@ -627,6 +864,7 @@ class _BookingGuestHouseAdvanceRequestScreenState
                         controller: _transferTypeCtrl,
                         isRequired: true,
                         readOnly: true,
+                        enabled: editable,
                         onTap: _pickTransferType,
                         validator: (v) => v == null || v.trim().isEmpty
                             ? 'Vui lòng chọn loại chuyển khoản'
@@ -636,7 +874,7 @@ class _BookingGuestHouseAdvanceRequestScreenState
                   ),
                   const SizedBox(height: 12),
 
-                  //---(Số tài khoản — isRequired, chỉ cho nhập chữ số qua validator)---//
+                  //---(Số tài khoản)---//
                   FormInputField(
                     nameForm: 'advance_bank_account',
                     nameTextField: 'advance_bank_account_text',
@@ -644,6 +882,7 @@ class _BookingGuestHouseAdvanceRequestScreenState
                     icon: Icons.account_balance_outlined,
                     controller: _bankAccountCtrl,
                     isRequired: true,
+                    enabled: editable,
                     keyboardType: TextInputType.number,
                     validator: (v) {
                       if (v == null || v.trim().isEmpty) {
@@ -657,7 +896,7 @@ class _BookingGuestHouseAdvanceRequestScreenState
                   ),
                   const SizedBox(height: 12),
 
-                  //---(Ngân hàng — isRequired, picker từ state.banks)---//
+                  //---(Ngân hàng)---//
                   FormInputField(
                     nameForm: 'advance_bank_name',
                     nameTextField: 'advance_bank_name_text',
@@ -666,6 +905,7 @@ class _BookingGuestHouseAdvanceRequestScreenState
                     controller: _bankNameCtrl,
                     isRequired: true,
                     readOnly: true,
+                    enabled: editable,
                     onTap: _pickBank,
                     validator: (v) => v == null || v.trim().isEmpty
                         ? 'Vui lòng chọn ngân hàng'
@@ -673,7 +913,7 @@ class _BookingGuestHouseAdvanceRequestScreenState
                   ),
                   const SizedBox(height: 12),
 
-                  //---(Số tiền tạm ứng — isRequired, format "x.xxx.xxx VNĐ")---//
+                  //---(Số tiền tạm ứng)---//
                   FormInputField(
                     nameForm: 'advance_amount',
                     nameTextField: 'advance_amount_text',
@@ -681,7 +921,12 @@ class _BookingGuestHouseAdvanceRequestScreenState
                     icon: Icons.payments_outlined,
                     controller: _amountCtrl,
                     isRequired: true,
-                    keyboardType: TextInputType.number,
+                    enabled: editable,
+                    keyboardType: const TextInputType.numberWithOptions(
+                      decimal: false,
+                      signed: false,
+                    ),
+                    inputFormatters: [ThousandsInputFormatter()],
                     suffixIcon: const Padding(
                       padding: EdgeInsets.only(right: 12),
                       child: Center(
@@ -705,30 +950,17 @@ class _BookingGuestHouseAdvanceRequestScreenState
                       }
                       return null;
                     },
-                    // Hiển thị text có format "x.xxx.xxx VNĐ" ngay khi user gõ.
-                    onChanged: (value) {
-                      if (value == null) return;
-                      final digits = _parseVndToDigits(value);
-                      final formatted = _formatVnd(digits);
-                      if (formatted != value) {
-                        _amountCtrl.value = TextEditingValue(
-                          text: formatted,
-                          selection: TextSelection.collapsed(
-                            offset: formatted.length,
-                          ),
-                        );
-                      }
-                    },
                   ),
                   const SizedBox(height: 12),
 
-                  //---(Ghi chú — optional, multiline)---//
+                  //---(Ghi chú)---//
                   FormInputField(
                     nameForm: 'advance_note',
                     nameTextField: 'advance_note_text',
                     label: 'Ghi chú',
                     icon: Icons.note_outlined,
                     controller: _noteCtrl,
+                    enabled: editable,
                     keyboardType: TextInputType.multiline,
                     textInputAction: TextInputAction.newline,
                     autoExpand: true,
@@ -742,11 +974,15 @@ class _BookingGuestHouseAdvanceRequestScreenState
     );
   }
 
-  Widget _buildBottomBar() {
+  Widget _buildBottomBar({required bool isViewOnly}) {
+    // Khi view-only (đã có ĐNTT tạm ứng) → không hiển thị nút Lưu.
+    if (isViewOnly) return const SizedBox.shrink();
+
     return BlocBuilder<BookingGuestHouseBloc, BookingGuestHouseState>(
-      buildWhen: (prev, curr) => prev.isSubmitting != curr.isSubmitting,
+      buildWhen: (prev, curr) =>
+          prev.isSubmittingAdvance != curr.isSubmittingAdvance,
       builder: (context, state) {
-        final isSubmitting = state.isSubmitting;
+        final isSubmitting = state.isSubmittingAdvance;
         return Container(
           padding: EdgeInsets.fromLTRB(
             16,

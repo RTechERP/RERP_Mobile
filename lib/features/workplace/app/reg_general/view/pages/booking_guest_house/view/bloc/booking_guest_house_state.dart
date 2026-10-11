@@ -63,6 +63,19 @@ class BookingGuestHouseState extends BaseBlocState {
   /// Lỗi khi tải chi tiết phiếu (null = OK).
   final String? detailMessage;
 
+  /// Loading khi gửi đề nghị tạm ứng (ĐNTU).
+  final bool isSubmittingAdvance;
+
+  /// Cờ submit advance thành công — UI dùng để hiện toast + pop.
+  final bool advanceSuccess;
+
+  /// Response cuối cùng từ API create-advance (mã ĐNTU + IsRecreated).
+  /// Dùng để UI hiển thị message phù hợp ("Tạo mới" / "Tạo lại").
+  final BookingGuestHouseAdvanceResponse? lastAdvanceResponse;
+
+  /// Thông báo từ lần submit advance gần nhất (success message từ BE).
+  final String? advanceMessage;
+
   const BookingGuestHouseState({
     required super.status,
     super.message,
@@ -86,6 +99,10 @@ class BookingGuestHouseState extends BaseBlocState {
     this.isDetailLoading = false,
     this.detailData,
     this.detailMessage,
+    this.isSubmittingAdvance = false,
+    this.advanceSuccess = false,
+    this.lastAdvanceResponse,
+    this.advanceMessage,
   });
 
   factory BookingGuestHouseState.init() => BookingGuestHouseState(
@@ -110,6 +127,10 @@ class BookingGuestHouseState extends BaseBlocState {
     isDetailLoading: false,
     detailData: null,
     detailMessage: null,
+    isSubmittingAdvance: false,
+    advanceSuccess: false,
+    lastAdvanceResponse: null,
+    advanceMessage: null,
   );
 
   @override
@@ -136,5 +157,9 @@ class BookingGuestHouseState extends BaseBlocState {
     isDetailLoading,
     detailData,
     detailMessage,
+    isSubmittingAdvance,
+    advanceSuccess,
+    lastAdvanceResponse,
+    advanceMessage,
   ];
 }

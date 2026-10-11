@@ -211,4 +211,28 @@ class BookingGuestHouseRepoImpl implements BookingGuestHouseRepo {
       return left(BaseError.httpInternalServerError(e.toString()));
     }
   }
+
+  @override
+  Future<Either<BaseError, BookingGuestHouseAdvanceResponse>>
+      createBookingGuestHouseAdvance({
+    required Map<String, dynamic> payload,
+  }) async {
+    try {
+      final res = await _service.createBookingGuestHouseAdvance(
+        payload: payload,
+      );
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? res.msg ?? 'Tạo đề nghị tạm ứng thất bại',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
 }

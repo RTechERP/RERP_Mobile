@@ -62,6 +62,27 @@ _$BookingGuestHouseItemImpl _$$BookingGuestHouseItemImplFromJson(
       paymentInvoiceFileCount:
           (json['PaymentInvoiceFileCount'] as num?)?.toInt(),
       paymentBillCkFileCount: (json['PaymentBillCKFileCount'] as num?)?.toInt(),
+      advancePaymentOrderId: (json['AdvancePaymentOrderID'] as num?)?.toInt(),
+      advancePaymentOrderCode: json['AdvancePaymentOrderCode'] as String?,
+      advanceDetailStatus: (json['AdvanceDetailStatus'] as num?)?.toInt(),
+      advanceTotalAmount: json['AdvanceTotalAmount'] as num?,
+      advanceApprovedTbpId: (json['AdvanceApprovedTBPID'] as num?)?.toInt(),
+      advanceBankName: json['AdvanceBankName'] as String?,
+      advanceBankAccount: json['AdvanceBankAccount'] as String?,
+      advanceReason: json['AdvanceReason'] as String?,
+      advanceStepCode: json['AdvanceStepCode'] as String?,
+      advanceStepName: json['AdvanceStepName'] as String?,
+      advanceStepIsApproved: (json['AdvanceStepIsApproved'] as num?)?.toInt(),
+      advanceIsReceived: json['AdvanceIsReceived'] as bool?,
+      advanceIsPaid: json['AdvanceIsPaid'] as bool?,
+      advanceCompanyId: (json['AdvanceCompanyID'] as num?)?.toInt(),
+      advanceCompanyName: json['AdvanceCompanyName'] as String?,
+      advanceDepartmentName: json['AdvanceDepartmentName'] as String?,
+      advanceProjectId: (json['AdvanceProjectID'] as num?)?.toInt(),
+      advanceTransferType: (json['AdvanceTransferType'] as num?)?.toInt(),
+      advanceBankListId: (json['AdvanceBankListID'] as num?)?.toInt(),
+      advanceRecipientName: json['AdvanceRecipientName'] as String?,
+      advanceNote: json['AdvanceNote'] as String?,
     );
 
 Map<String, dynamic> _$$BookingGuestHouseItemImplToJson(
@@ -108,6 +129,27 @@ Map<String, dynamic> _$$BookingGuestHouseItemImplToJson(
       'PaymentNote': instance.paymentNote,
       'PaymentInvoiceFileCount': instance.paymentInvoiceFileCount,
       'PaymentBillCKFileCount': instance.paymentBillCkFileCount,
+      'AdvancePaymentOrderID': instance.advancePaymentOrderId,
+      'AdvancePaymentOrderCode': instance.advancePaymentOrderCode,
+      'AdvanceDetailStatus': instance.advanceDetailStatus,
+      'AdvanceTotalAmount': instance.advanceTotalAmount,
+      'AdvanceApprovedTBPID': instance.advanceApprovedTbpId,
+      'AdvanceBankName': instance.advanceBankName,
+      'AdvanceBankAccount': instance.advanceBankAccount,
+      'AdvanceReason': instance.advanceReason,
+      'AdvanceStepCode': instance.advanceStepCode,
+      'AdvanceStepName': instance.advanceStepName,
+      'AdvanceStepIsApproved': instance.advanceStepIsApproved,
+      'AdvanceIsReceived': instance.advanceIsReceived,
+      'AdvanceIsPaid': instance.advanceIsPaid,
+      'AdvanceCompanyID': instance.advanceCompanyId,
+      'AdvanceCompanyName': instance.advanceCompanyName,
+      'AdvanceDepartmentName': instance.advanceDepartmentName,
+      'AdvanceProjectID': instance.advanceProjectId,
+      'AdvanceTransferType': instance.advanceTransferType,
+      'AdvanceBankListID': instance.advanceBankListId,
+      'AdvanceRecipientName': instance.advanceRecipientName,
+      'AdvanceNote': instance.advanceNote,
     };
 
 _$ProjectFilterItemImpl _$$ProjectFilterItemImplFromJson(
@@ -394,4 +436,23 @@ Map<String, dynamic> _$$BookingGuestHouseSaveResponseImplToJson(
         _$BookingGuestHouseSaveResponseImpl instance) =>
     <String, dynamic>{
       'ID': instance.id,
+    };
+
+_$BookingGuestHouseAdvanceResponseImpl
+    _$$BookingGuestHouseAdvanceResponseImplFromJson(
+            Map<String, dynamic> json) =>
+        _$BookingGuestHouseAdvanceResponseImpl(
+          id: (json['ID'] as num?)?.toInt(),
+          code: json['Code'] as String?,
+          detailId: (json['DetailID'] as num?)?.toInt(),
+          isRecreated: json['IsRecreated'] as bool?,
+        );
+
+Map<String, dynamic> _$$BookingGuestHouseAdvanceResponseImplToJson(
+        _$BookingGuestHouseAdvanceResponseImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'Code': instance.code,
+      'DetailID': instance.detailId,
+      'IsRecreated': instance.isRecreated,
     };

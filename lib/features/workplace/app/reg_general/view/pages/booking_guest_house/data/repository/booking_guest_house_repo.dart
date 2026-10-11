@@ -65,4 +65,18 @@ abstract class BookingGuestHouseRepo {
       getBookingGuestHouseById({
     required int id,
   });
+
+  /// Tạo / tạo lại đề nghị tạm ứng (ĐNTU) cho 1 phiếu đặt phòng nhà nghỉ.
+  /// [payload] - body gửi lên BE theo `AccommodationBookingAdvanceRequest`
+  /// (xem mục 4.6 spec — gồm AccommodationBookingID, ApprovedTBPID,
+  /// Reason, ProjectID, TransferType, BankAccount, BankListID, BankName,
+  /// TotalAmount, Note, CompanyID, CompanyName, DepartmentName,
+  /// RecipientName).
+  /// API: POST `/AccommodationBookingPaymentOrder/create-advance`.
+  /// Response có `data.IsRecreated = true` khi BE tạo lại trên master cũ
+  /// (sau khi phiếu bị hủy duyệt ở bước hiện tại).
+  Future<Either<BaseError, BookingGuestHouseAdvanceResponse>>
+      createBookingGuestHouseAdvance({
+    required Map<String, dynamic> payload,
+  });
 }

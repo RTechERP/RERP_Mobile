@@ -518,6 +518,12 @@ class ApiEndPoint {
   /// API: GET /banklist
   static const String getBankList = '/banklist';
 
+  /// Đặt phòng nhà nghỉ — tạo / tạo lại đề nghị tạm ứng (ĐNTU).
+  /// API: POST /AccommodationBookingPaymentOrder/create-advance
+  /// Body: AccommodationBookingAdvanceRequest — xem mục 4.6 spec.
+  static const String createBookingGuestHouseAdvance =
+      '/AccommodationBookingPaymentOrder/create-advance';
+
   /// Check xung đột trước khi lưu phiếu đăng ký bàn test.
   /// API: POST /ESLRegistration/check-conflict (form-data).
   static const String checkConflictRegistration =

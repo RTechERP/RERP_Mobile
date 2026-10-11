@@ -69,6 +69,30 @@ class BookingGuestHouseItem with _$BookingGuestHouseItem {
     @JsonKey(name: 'PaymentNote') String? paymentNote,
     @JsonKey(name: 'PaymentInvoiceFileCount') int? paymentInvoiceFileCount,
     @JsonKey(name: 'PaymentBillCKFileCount') int? paymentBillCkFileCount,
+
+    // Đề nghị tạm ứng (ĐNTU) — dùng khi list hiển thị icon "đã tạo tạm ứng"
+    // và để mở form advance ở chế độ view-only khi `advanceDetailStatus == 4`.
+    @JsonKey(name: 'AdvancePaymentOrderID') int? advancePaymentOrderId,
+    @JsonKey(name: 'AdvancePaymentOrderCode') String? advancePaymentOrderCode,
+    @JsonKey(name: 'AdvanceDetailStatus') int? advanceDetailStatus,
+    @JsonKey(name: 'AdvanceTotalAmount') num? advanceTotalAmount,
+    @JsonKey(name: 'AdvanceApprovedTBPID') int? advanceApprovedTbpId,
+    @JsonKey(name: 'AdvanceBankName') String? advanceBankName,
+    @JsonKey(name: 'AdvanceBankAccount') String? advanceBankAccount,
+    @JsonKey(name: 'AdvanceReason') String? advanceReason,
+    @JsonKey(name: 'AdvanceStepCode') String? advanceStepCode,
+    @JsonKey(name: 'AdvanceStepName') String? advanceStepName,
+    @JsonKey(name: 'AdvanceStepIsApproved') int? advanceStepIsApproved,
+    @JsonKey(name: 'AdvanceIsReceived') bool? advanceIsReceived,
+    @JsonKey(name: 'AdvanceIsPaid') bool? advanceIsPaid,
+    @JsonKey(name: 'AdvanceCompanyID') int? advanceCompanyId,
+    @JsonKey(name: 'AdvanceCompanyName') String? advanceCompanyName,
+    @JsonKey(name: 'AdvanceDepartmentName') String? advanceDepartmentName,
+    @JsonKey(name: 'AdvanceProjectID') int? advanceProjectId,
+    @JsonKey(name: 'AdvanceTransferType') int? advanceTransferType,
+    @JsonKey(name: 'AdvanceBankListID') int? advanceBankListId,
+    @JsonKey(name: 'AdvanceRecipientName') String? advanceRecipientName,
+    @JsonKey(name: 'AdvanceNote') String? advanceNote,
   }) = _BookingGuestHouseItem;
 
   factory BookingGuestHouseItem.fromJson(Map<String, dynamic> json) =>
@@ -280,4 +304,29 @@ class BookingGuestHouseSaveResponse with _$BookingGuestHouseSaveResponse {
 
   factory BookingGuestHouseSaveResponse.fromJson(Map<String, dynamic> json) =>
       _$BookingGuestHouseSaveResponseFromJson(json);
+}
+
+/// Response từ API `POST /AccommodationBookingPaymentOrder/create-advance`.
+///
+/// Server trả `{ ID, Code, DetailID, IsRecreated? }` trong `data` — chỉ cần
+/// các field tối thiểu cho UI:
+/// - [id]       : PaymentOrderID master
+/// - [code]     : Mã ĐNTU (vd `ĐNTU261011160909`)
+/// - [detailId] : ID của detail (để BE truy vết bước duyệt)
+/// - [isRecreated] : true khi user tạo lại trên phiếu cũ (sau khi bị hủy
+///   duyệt bước hiện tại). Kèm message "Đã tạo lại đề nghị tạm ứng".
+@freezed
+class BookingGuestHouseAdvanceResponse
+    with _$BookingGuestHouseAdvanceResponse {
+  const factory BookingGuestHouseAdvanceResponse({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'DetailID') int? detailId,
+    @JsonKey(name: 'IsRecreated') bool? isRecreated,
+  }) = _BookingGuestHouseAdvanceResponse;
+
+  factory BookingGuestHouseAdvanceResponse.fromJson(
+    Map<String, dynamic> json,
+  ) =>
+      _$BookingGuestHouseAdvanceResponseFromJson(json);
 }

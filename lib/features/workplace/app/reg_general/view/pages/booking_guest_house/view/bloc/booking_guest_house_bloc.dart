@@ -49,6 +49,39 @@ class BookingGuestHouseBloc
         submit: (payload) => _onSubmit(emit, payload: payload),
         deleteBooking: (id) => _onDeleteBooking(emit, id: id),
         loadDetail: (id) => _onLoadDetail(emit, id: id),
+        submitAdvance: (payload) => _onSubmitAdvance(emit, payload: payload),
+        submitAdvanceForm: (
+          accommodationBookingId,
+          approvedTbpId,
+          projectId,
+          companyId,
+          companyName,
+          departmentName,
+          reason,
+          transferType,
+          bankAccount,
+          bankListId,
+          bankName,
+          totalAmount,
+          note,
+        ) =>
+            _onSubmitAdvanceForm(
+          emit,
+          accommodationBookingId: accommodationBookingId,
+          approvedTbpId: approvedTbpId,
+          projectId: projectId,
+          companyId: companyId,
+          companyName: companyName,
+          departmentName: departmentName,
+          reason: reason,
+          transferType: transferType,
+          bankAccount: bankAccount,
+          bankListId: bankListId,
+          bankName: bankName,
+          totalAmount: totalAmount,
+          note: note,
+        ),
+        clearAdvanceSubmitState: () async => _onClearAdvanceSubmitState(emit),
       );
     });
   }
@@ -514,5 +547,262 @@ class BookingGuestHouseBloc
         ));
       },
     );
+  }
+
+  //---(Submit Advance — Đề nghị tạm ứng)---//
+
+  /// Gửi đề nghị tạm ứng (ĐNTU) cho 1 phiếu.
+  /// API: POST `/AccommodationBookingPaymentOrder/create-advance`.
+  /// Payload do UI build sẵn (đã chuẩn hoá theo
+  /// `AccommodationBookingAdvanceRequest` mục 4.6 spec).
+  ///
+  /// Khi BE trả `data.IsRecreated = true` → giữ nguyên master cũ (cùng mã
+  /// ĐNTU) và reset luồng duyệt về bước TBP. UI sẽ dựa vào cờ này để
+  /// hiển thị message "Đã tạo lại đề nghị tạm ứng".
+  Future<void> _onSubmitAdvance(
+    Emitter<BookingGuestHouseState> emit, {
+    required Map<String, dynamic> payload,
+  }) async {
+    emit(
+      state.copyWith(
+        isSubmittingAdvance: true,
+        advanceSuccess: false,
+        lastAdvanceResponse: null,
+        advanceMessage: null,
+        message: null,
+      ),
+    );
+
+    _log.logI('📋 createBookingGuestHouseAdvance payload: $payload');
+
+    final res = await _repo.createBookingGuestHouseAdvance(payload: payload);
+
+    await res.fold(
+      (err) async {
+        _log.logE('❌ createBookingGuestHouseAdvance failed: $err');
+        emit(
+          state.copyWith(
+            isSubmittingAdvance: false,
+            advanceSuccess: false,
+            message: err.getErrorMessage,
+          ),
+        );
+      },
+      (created) async {
+        _log.logI(
+          '✅ createBookingGuestHouseAdvance OK id=${created.id} '
+          'code=${created.code} recreated=${created.isRecreated}',
+        );
+        emit(
+          state.copyWith(
+            isSubmittingAdvance: false,
+            advanceSuccess: true,
+            lastAdvanceResponse: created,
+            message: null,
+          ),
+        );
+      },
+    );
+  }
+
+  //---(Submit Advance Form)---//
+
+  /// Build payload `Map<String, dynamic>` từ 13 trường form rồi submit.
+  /// Bloc tự resolve:
+  /// - `currentUser` (qua `AuthRepository.getCurrentUser` — không cache).
+  /// - `detailData` (state.detailData — UI load khi mở màn).
+  /// - `BankName` (lookup trong `state.banks` theo `bankListId`).
+  /// - Fallback ID (TBP, dự án, công ty) từ detail/currentUser.
+  ///
+  /// Validate toàn bộ ở bloc (nếu fail → emit `message` lỗi, KHÔNG
+  /// gọi repo). Lỗi validate trả về qua `state.message` để UI hiển
+  /// thị snackbar.
+  Future<void> _onSubmitAdvanceForm(
+    Emitter<BookingGuestHouseState> emit, {
+    required int accommodationBookingId,
+    int? approvedTbpId,
+    int? projectId,
+    int? companyId,
+    required String companyName,
+    required String departmentName,
+    required String reason,
+    required int transferType,
+    required String bankAccount,
+    required int bankListId,
+    required String bankName,
+    required int totalAmount,
+    String? note,
+  }) async {
+    //---(Validate cơ bản)---//
+    final missing = _validateAdvanceRequest(
+      accommodationBookingId: accommodationBookingId,
+      reason: reason,
+      bankAccount: bankAccount,
+      bankListId: bankListId,
+      totalAmount: totalAmount,
+      transferType: transferType,
+      companyName: companyName,
+      departmentName: departmentName,
+    );
+    if (missing != null) {
+      emit(
+        state.copyWith(
+          isSubmittingAdvance: false,
+          advanceSuccess: false,
+          message: missing,
+        ),
+      );
+      return;
+    }
+
+    //---(Resolve currentUser)---//
+    final user = await AuthRepository.getCurrentUser(log: _log);
+    if (user == null) {
+      emit(
+        state.copyWith(
+          isSubmittingAdvance: false,
+          advanceSuccess: false,
+          message: 'Chưa xác định được người dùng, vui lòng thử lại',
+        ),
+      );
+      return;
+    }
+
+    //---(Resolve detailData)---//
+    final detail = state.detailData;
+    if (detail == null) {
+      emit(
+        state.copyWith(
+          isSubmittingAdvance: false,
+          advanceSuccess: false,
+          message: 'Chưa tải được thông tin phiếu, vui lòng thử lại',
+        ),
+      );
+      return;
+    }
+
+    //---(Build payload theo schema mục 4.6)---//
+    final effectiveTbpId = approvedTbpId ?? detail.info.approvedTBP ?? 0;
+    final effectiveProjectId = projectId ?? detail.info.projectId ?? 0;
+    final effectiveCompanyId = companyId ?? user.taxCompanyId;
+
+    // BankName — ưu tiên lookup trong state.banks (chuẩn hoá), fallback
+    // tên user thấy trên UI.
+    final bank =
+        state.banks.firstWhereOrNull((b) => b.id == bankListId);
+    final effectiveBankName = (bank?.bankName ?? '').trim().isNotEmpty
+        ? bank!.bankName!.trim()
+        : bankName.trim();
+
+    final payload = <String, dynamic>{
+      'AccommodationBookingID': accommodationBookingId,
+      'ApprovedTBPID': effectiveTbpId,
+      'Reason': reason,
+      'ProjectID': effectiveProjectId,
+      'TransferType': transferType,
+      'BankAccount': bankAccount,
+      'BankListID': bankListId,
+      'BankName': effectiveBankName,
+      'TotalAmount': totalAmount,
+      'Note': (note == null || note.trim().isEmpty) ? null : note.trim(),
+      'CompanyID': effectiveCompanyId,
+      'CompanyName': companyName,
+      'DepartmentName': departmentName,
+      // Người nhận = currentUser.FullName theo spec mục 4.6
+      // (NV đăng ký chính là người nhận tạm ứng).
+      'RecipientName': user.fullName.trim(),
+    };
+
+    //---(Gọi repo qua helper chung)---//
+    await _submitAdvancePayload(emit, payload);
+  }
+
+  /// Validate 13 trường form — trả `null` nếu OK, ngược lại trả message
+  /// lỗi tiếng Việt để UI hiển thị snackbar.
+  String? _validateAdvanceRequest({
+    required int accommodationBookingId,
+    required String reason,
+    required String bankAccount,
+    required int bankListId,
+    required int totalAmount,
+    required int transferType,
+    required String companyName,
+    required String departmentName,
+  }) {
+    if (accommodationBookingId <= 0) return 'Thiếu ID phiếu đặt phòng';
+    if (reason.trim().isEmpty) return 'Vui lòng nhập lý do';
+    if (bankAccount.trim().isEmpty) return 'Vui lòng nhập số tài khoản';
+    if (!RegExp(r'^[0-9]+$').hasMatch(bankAccount.trim())) {
+      return 'Số tài khoản chỉ chứa chữ số';
+    }
+    if (bankListId <= 0) return 'Vui lòng chọn ngân hàng';
+    if (totalAmount <= 0) return 'Số tiền tạm ứng không hợp lệ';
+    if (transferType < 1 || transferType > 6) {
+      return 'Loại chuyển khoản không hợp lệ';
+    }
+    if (companyName.trim().isEmpty) return 'Thiếu tên công ty';
+    if (departmentName.trim().isEmpty) return 'Thiếu tên bộ phận';
+    return null;
+  }
+
+  /// Phần chung — emit state + gọi repo (tách ra để
+  /// `_onSubmitAdvance` (raw Map) và `_onSubmitAdvanceForm` (DTO) đều dùng
+  /// được). Trả về `BookingGuestHouseAdvanceResponse?` qua emit; UI đọc
+  /// qua `state.lastAdvanceResponse` + `state.advanceSuccess`.
+  Future<void> _submitAdvancePayload(
+    Emitter<BookingGuestHouseState> emit,
+    Map<String, dynamic> payload,
+  ) async {
+    emit(
+      state.copyWith(
+        isSubmittingAdvance: true,
+        advanceSuccess: false,
+        lastAdvanceResponse: null,
+        advanceMessage: null,
+        message: null,
+      ),
+    );
+
+    _log.logI('📋 createBookingGuestHouseAdvance payload: $payload');
+
+    final res = await _repo.createBookingGuestHouseAdvance(payload: payload);
+
+    await res.fold(
+      (err) async {
+        _log.logE('❌ createBookingGuestHouseAdvance failed: $err');
+        emit(
+          state.copyWith(
+            isSubmittingAdvance: false,
+            advanceSuccess: false,
+            message: err.getErrorMessage,
+          ),
+        );
+      },
+      (created) async {
+        _log.logI(
+          '✅ createBookingGuestHouseAdvance OK id=${created.id} '
+          'code=${created.code} recreated=${created.isRecreated}',
+        );
+        emit(
+          state.copyWith(
+            isSubmittingAdvance: false,
+            advanceSuccess: true,
+            lastAdvanceResponse: created,
+            message: null,
+          ),
+        );
+      },
+    );
+  }
+
+  //---(Clear Advance Submit State)---//
+
+  /// Reset cờ `advanceSuccess` + `message` sau khi UI đã xử lý xong
+  /// success (hiển thị toast + pop), để lần sau mở lại màn thấy form
+  /// sạch sẽ. Pattern giống `_onClearSubmitState` của màn `lunch`.
+  void _onClearAdvanceSubmitState(Emitter<BookingGuestHouseState> emit) {
+    if (state.advanceSuccess || (state.message ?? '').isNotEmpty) {
+      emit(state.copyWith(advanceSuccess: false, message: null));
+    }
   }
 }

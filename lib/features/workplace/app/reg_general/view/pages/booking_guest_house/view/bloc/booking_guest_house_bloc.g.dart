@@ -51,6 +51,15 @@ abstract class _$BookingGuestHouseStateCWProxy {
 
   BookingGuestHouseState detailMessage(String? detailMessage);
 
+  BookingGuestHouseState isSubmittingAdvance(bool isSubmittingAdvance);
+
+  BookingGuestHouseState advanceSuccess(bool advanceSuccess);
+
+  BookingGuestHouseState lastAdvanceResponse(
+      BookingGuestHouseAdvanceResponse? lastAdvanceResponse);
+
+  BookingGuestHouseState advanceMessage(String? advanceMessage);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BookingGuestHouseState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -80,6 +89,10 @@ abstract class _$BookingGuestHouseStateCWProxy {
     bool? isDetailLoading,
     BookingGuestHouseDetailData? detailData,
     String? detailMessage,
+    bool? isSubmittingAdvance,
+    bool? advanceSuccess,
+    BookingGuestHouseAdvanceResponse? lastAdvanceResponse,
+    String? advanceMessage,
   });
 }
 
@@ -176,6 +189,23 @@ class _$BookingGuestHouseStateCWProxyImpl
       this(detailMessage: detailMessage);
 
   @override
+  BookingGuestHouseState isSubmittingAdvance(bool isSubmittingAdvance) =>
+      this(isSubmittingAdvance: isSubmittingAdvance);
+
+  @override
+  BookingGuestHouseState advanceSuccess(bool advanceSuccess) =>
+      this(advanceSuccess: advanceSuccess);
+
+  @override
+  BookingGuestHouseState lastAdvanceResponse(
+          BookingGuestHouseAdvanceResponse? lastAdvanceResponse) =>
+      this(lastAdvanceResponse: lastAdvanceResponse);
+
+  @override
+  BookingGuestHouseState advanceMessage(String? advanceMessage) =>
+      this(advanceMessage: advanceMessage);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BookingGuestHouseState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -206,6 +236,10 @@ class _$BookingGuestHouseStateCWProxyImpl
     Object? isDetailLoading = const $CopyWithPlaceholder(),
     Object? detailData = const $CopyWithPlaceholder(),
     Object? detailMessage = const $CopyWithPlaceholder(),
+    Object? isSubmittingAdvance = const $CopyWithPlaceholder(),
+    Object? advanceSuccess = const $CopyWithPlaceholder(),
+    Object? lastAdvanceResponse = const $CopyWithPlaceholder(),
+    Object? advanceMessage = const $CopyWithPlaceholder(),
   }) {
     return BookingGuestHouseState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -304,6 +338,25 @@ class _$BookingGuestHouseStateCWProxyImpl
           ? _value.detailMessage
           // ignore: cast_nullable_to_non_nullable
           : detailMessage as String?,
+      isSubmittingAdvance:
+          isSubmittingAdvance == const $CopyWithPlaceholder() ||
+                  isSubmittingAdvance == null
+              ? _value.isSubmittingAdvance
+              // ignore: cast_nullable_to_non_nullable
+              : isSubmittingAdvance as bool,
+      advanceSuccess: advanceSuccess == const $CopyWithPlaceholder() ||
+              advanceSuccess == null
+          ? _value.advanceSuccess
+          // ignore: cast_nullable_to_non_nullable
+          : advanceSuccess as bool,
+      lastAdvanceResponse: lastAdvanceResponse == const $CopyWithPlaceholder()
+          ? _value.lastAdvanceResponse
+          // ignore: cast_nullable_to_non_nullable
+          : lastAdvanceResponse as BookingGuestHouseAdvanceResponse?,
+      advanceMessage: advanceMessage == const $CopyWithPlaceholder()
+          ? _value.advanceMessage
+          // ignore: cast_nullable_to_non_nullable
+          : advanceMessage as String?,
     );
   }
 }

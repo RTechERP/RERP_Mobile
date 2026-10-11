@@ -104,7 +104,51 @@ mixin _$BookingGuestHouseItem {
   @JsonKey(name: 'PaymentInvoiceFileCount')
   int? get paymentInvoiceFileCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'PaymentBillCKFileCount')
-  int? get paymentBillCkFileCount => throw _privateConstructorUsedError;
+  int? get paymentBillCkFileCount =>
+      throw _privateConstructorUsedError; // Đề nghị tạm ứng (ĐNTU) — dùng khi list hiển thị icon "đã tạo tạm ứng"
+// và để mở form advance ở chế độ view-only khi `advanceDetailStatus == 4`.
+  @JsonKey(name: 'AdvancePaymentOrderID')
+  int? get advancePaymentOrderId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvancePaymentOrderCode')
+  String? get advancePaymentOrderCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceDetailStatus')
+  int? get advanceDetailStatus => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceTotalAmount')
+  num? get advanceTotalAmount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceApprovedTBPID')
+  int? get advanceApprovedTbpId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceBankName')
+  String? get advanceBankName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceBankAccount')
+  String? get advanceBankAccount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceReason')
+  String? get advanceReason => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceStepCode')
+  String? get advanceStepCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceStepName')
+  String? get advanceStepName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceStepIsApproved')
+  int? get advanceStepIsApproved => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceIsReceived')
+  bool? get advanceIsReceived => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceIsPaid')
+  bool? get advanceIsPaid => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceCompanyID')
+  int? get advanceCompanyId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceCompanyName')
+  String? get advanceCompanyName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceDepartmentName')
+  String? get advanceDepartmentName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceProjectID')
+  int? get advanceProjectId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceTransferType')
+  int? get advanceTransferType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceBankListID')
+  int? get advanceBankListId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceRecipientName')
+  String? get advanceRecipientName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceNote')
+  String? get advanceNote => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -160,7 +204,28 @@ abstract class $BookingGuestHouseItemCopyWith<$Res> {
       @JsonKey(name: 'PaymentReason') String? paymentReason,
       @JsonKey(name: 'PaymentNote') String? paymentNote,
       @JsonKey(name: 'PaymentInvoiceFileCount') int? paymentInvoiceFileCount,
-      @JsonKey(name: 'PaymentBillCKFileCount') int? paymentBillCkFileCount});
+      @JsonKey(name: 'PaymentBillCKFileCount') int? paymentBillCkFileCount,
+      @JsonKey(name: 'AdvancePaymentOrderID') int? advancePaymentOrderId,
+      @JsonKey(name: 'AdvancePaymentOrderCode') String? advancePaymentOrderCode,
+      @JsonKey(name: 'AdvanceDetailStatus') int? advanceDetailStatus,
+      @JsonKey(name: 'AdvanceTotalAmount') num? advanceTotalAmount,
+      @JsonKey(name: 'AdvanceApprovedTBPID') int? advanceApprovedTbpId,
+      @JsonKey(name: 'AdvanceBankName') String? advanceBankName,
+      @JsonKey(name: 'AdvanceBankAccount') String? advanceBankAccount,
+      @JsonKey(name: 'AdvanceReason') String? advanceReason,
+      @JsonKey(name: 'AdvanceStepCode') String? advanceStepCode,
+      @JsonKey(name: 'AdvanceStepName') String? advanceStepName,
+      @JsonKey(name: 'AdvanceStepIsApproved') int? advanceStepIsApproved,
+      @JsonKey(name: 'AdvanceIsReceived') bool? advanceIsReceived,
+      @JsonKey(name: 'AdvanceIsPaid') bool? advanceIsPaid,
+      @JsonKey(name: 'AdvanceCompanyID') int? advanceCompanyId,
+      @JsonKey(name: 'AdvanceCompanyName') String? advanceCompanyName,
+      @JsonKey(name: 'AdvanceDepartmentName') String? advanceDepartmentName,
+      @JsonKey(name: 'AdvanceProjectID') int? advanceProjectId,
+      @JsonKey(name: 'AdvanceTransferType') int? advanceTransferType,
+      @JsonKey(name: 'AdvanceBankListID') int? advanceBankListId,
+      @JsonKey(name: 'AdvanceRecipientName') String? advanceRecipientName,
+      @JsonKey(name: 'AdvanceNote') String? advanceNote});
 }
 
 /// @nodoc
@@ -218,6 +283,27 @@ class _$BookingGuestHouseItemCopyWithImpl<$Res,
     Object? paymentNote = freezed,
     Object? paymentInvoiceFileCount = freezed,
     Object? paymentBillCkFileCount = freezed,
+    Object? advancePaymentOrderId = freezed,
+    Object? advancePaymentOrderCode = freezed,
+    Object? advanceDetailStatus = freezed,
+    Object? advanceTotalAmount = freezed,
+    Object? advanceApprovedTbpId = freezed,
+    Object? advanceBankName = freezed,
+    Object? advanceBankAccount = freezed,
+    Object? advanceReason = freezed,
+    Object? advanceStepCode = freezed,
+    Object? advanceStepName = freezed,
+    Object? advanceStepIsApproved = freezed,
+    Object? advanceIsReceived = freezed,
+    Object? advanceIsPaid = freezed,
+    Object? advanceCompanyId = freezed,
+    Object? advanceCompanyName = freezed,
+    Object? advanceDepartmentName = freezed,
+    Object? advanceProjectId = freezed,
+    Object? advanceTransferType = freezed,
+    Object? advanceBankListId = freezed,
+    Object? advanceRecipientName = freezed,
+    Object? advanceNote = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -384,6 +470,90 @@ class _$BookingGuestHouseItemCopyWithImpl<$Res,
           ? _value.paymentBillCkFileCount
           : paymentBillCkFileCount // ignore: cast_nullable_to_non_nullable
               as int?,
+      advancePaymentOrderId: freezed == advancePaymentOrderId
+          ? _value.advancePaymentOrderId
+          : advancePaymentOrderId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advancePaymentOrderCode: freezed == advancePaymentOrderCode
+          ? _value.advancePaymentOrderCode
+          : advancePaymentOrderCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceDetailStatus: freezed == advanceDetailStatus
+          ? _value.advanceDetailStatus
+          : advanceDetailStatus // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advanceTotalAmount: freezed == advanceTotalAmount
+          ? _value.advanceTotalAmount
+          : advanceTotalAmount // ignore: cast_nullable_to_non_nullable
+              as num?,
+      advanceApprovedTbpId: freezed == advanceApprovedTbpId
+          ? _value.advanceApprovedTbpId
+          : advanceApprovedTbpId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advanceBankName: freezed == advanceBankName
+          ? _value.advanceBankName
+          : advanceBankName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceBankAccount: freezed == advanceBankAccount
+          ? _value.advanceBankAccount
+          : advanceBankAccount // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceReason: freezed == advanceReason
+          ? _value.advanceReason
+          : advanceReason // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceStepCode: freezed == advanceStepCode
+          ? _value.advanceStepCode
+          : advanceStepCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceStepName: freezed == advanceStepName
+          ? _value.advanceStepName
+          : advanceStepName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceStepIsApproved: freezed == advanceStepIsApproved
+          ? _value.advanceStepIsApproved
+          : advanceStepIsApproved // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advanceIsReceived: freezed == advanceIsReceived
+          ? _value.advanceIsReceived
+          : advanceIsReceived // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      advanceIsPaid: freezed == advanceIsPaid
+          ? _value.advanceIsPaid
+          : advanceIsPaid // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      advanceCompanyId: freezed == advanceCompanyId
+          ? _value.advanceCompanyId
+          : advanceCompanyId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advanceCompanyName: freezed == advanceCompanyName
+          ? _value.advanceCompanyName
+          : advanceCompanyName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceDepartmentName: freezed == advanceDepartmentName
+          ? _value.advanceDepartmentName
+          : advanceDepartmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceProjectId: freezed == advanceProjectId
+          ? _value.advanceProjectId
+          : advanceProjectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advanceTransferType: freezed == advanceTransferType
+          ? _value.advanceTransferType
+          : advanceTransferType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advanceBankListId: freezed == advanceBankListId
+          ? _value.advanceBankListId
+          : advanceBankListId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advanceRecipientName: freezed == advanceRecipientName
+          ? _value.advanceRecipientName
+          : advanceRecipientName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceNote: freezed == advanceNote
+          ? _value.advanceNote
+          : advanceNote // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -439,7 +609,28 @@ abstract class _$$BookingGuestHouseItemImplCopyWith<$Res>
       @JsonKey(name: 'PaymentReason') String? paymentReason,
       @JsonKey(name: 'PaymentNote') String? paymentNote,
       @JsonKey(name: 'PaymentInvoiceFileCount') int? paymentInvoiceFileCount,
-      @JsonKey(name: 'PaymentBillCKFileCount') int? paymentBillCkFileCount});
+      @JsonKey(name: 'PaymentBillCKFileCount') int? paymentBillCkFileCount,
+      @JsonKey(name: 'AdvancePaymentOrderID') int? advancePaymentOrderId,
+      @JsonKey(name: 'AdvancePaymentOrderCode') String? advancePaymentOrderCode,
+      @JsonKey(name: 'AdvanceDetailStatus') int? advanceDetailStatus,
+      @JsonKey(name: 'AdvanceTotalAmount') num? advanceTotalAmount,
+      @JsonKey(name: 'AdvanceApprovedTBPID') int? advanceApprovedTbpId,
+      @JsonKey(name: 'AdvanceBankName') String? advanceBankName,
+      @JsonKey(name: 'AdvanceBankAccount') String? advanceBankAccount,
+      @JsonKey(name: 'AdvanceReason') String? advanceReason,
+      @JsonKey(name: 'AdvanceStepCode') String? advanceStepCode,
+      @JsonKey(name: 'AdvanceStepName') String? advanceStepName,
+      @JsonKey(name: 'AdvanceStepIsApproved') int? advanceStepIsApproved,
+      @JsonKey(name: 'AdvanceIsReceived') bool? advanceIsReceived,
+      @JsonKey(name: 'AdvanceIsPaid') bool? advanceIsPaid,
+      @JsonKey(name: 'AdvanceCompanyID') int? advanceCompanyId,
+      @JsonKey(name: 'AdvanceCompanyName') String? advanceCompanyName,
+      @JsonKey(name: 'AdvanceDepartmentName') String? advanceDepartmentName,
+      @JsonKey(name: 'AdvanceProjectID') int? advanceProjectId,
+      @JsonKey(name: 'AdvanceTransferType') int? advanceTransferType,
+      @JsonKey(name: 'AdvanceBankListID') int? advanceBankListId,
+      @JsonKey(name: 'AdvanceRecipientName') String? advanceRecipientName,
+      @JsonKey(name: 'AdvanceNote') String? advanceNote});
 }
 
 /// @nodoc
@@ -495,6 +686,27 @@ class __$$BookingGuestHouseItemImplCopyWithImpl<$Res>
     Object? paymentNote = freezed,
     Object? paymentInvoiceFileCount = freezed,
     Object? paymentBillCkFileCount = freezed,
+    Object? advancePaymentOrderId = freezed,
+    Object? advancePaymentOrderCode = freezed,
+    Object? advanceDetailStatus = freezed,
+    Object? advanceTotalAmount = freezed,
+    Object? advanceApprovedTbpId = freezed,
+    Object? advanceBankName = freezed,
+    Object? advanceBankAccount = freezed,
+    Object? advanceReason = freezed,
+    Object? advanceStepCode = freezed,
+    Object? advanceStepName = freezed,
+    Object? advanceStepIsApproved = freezed,
+    Object? advanceIsReceived = freezed,
+    Object? advanceIsPaid = freezed,
+    Object? advanceCompanyId = freezed,
+    Object? advanceCompanyName = freezed,
+    Object? advanceDepartmentName = freezed,
+    Object? advanceProjectId = freezed,
+    Object? advanceTransferType = freezed,
+    Object? advanceBankListId = freezed,
+    Object? advanceRecipientName = freezed,
+    Object? advanceNote = freezed,
   }) {
     return _then(_$BookingGuestHouseItemImpl(
       id: null == id
@@ -661,6 +873,90 @@ class __$$BookingGuestHouseItemImplCopyWithImpl<$Res>
           ? _value.paymentBillCkFileCount
           : paymentBillCkFileCount // ignore: cast_nullable_to_non_nullable
               as int?,
+      advancePaymentOrderId: freezed == advancePaymentOrderId
+          ? _value.advancePaymentOrderId
+          : advancePaymentOrderId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advancePaymentOrderCode: freezed == advancePaymentOrderCode
+          ? _value.advancePaymentOrderCode
+          : advancePaymentOrderCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceDetailStatus: freezed == advanceDetailStatus
+          ? _value.advanceDetailStatus
+          : advanceDetailStatus // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advanceTotalAmount: freezed == advanceTotalAmount
+          ? _value.advanceTotalAmount
+          : advanceTotalAmount // ignore: cast_nullable_to_non_nullable
+              as num?,
+      advanceApprovedTbpId: freezed == advanceApprovedTbpId
+          ? _value.advanceApprovedTbpId
+          : advanceApprovedTbpId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advanceBankName: freezed == advanceBankName
+          ? _value.advanceBankName
+          : advanceBankName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceBankAccount: freezed == advanceBankAccount
+          ? _value.advanceBankAccount
+          : advanceBankAccount // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceReason: freezed == advanceReason
+          ? _value.advanceReason
+          : advanceReason // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceStepCode: freezed == advanceStepCode
+          ? _value.advanceStepCode
+          : advanceStepCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceStepName: freezed == advanceStepName
+          ? _value.advanceStepName
+          : advanceStepName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceStepIsApproved: freezed == advanceStepIsApproved
+          ? _value.advanceStepIsApproved
+          : advanceStepIsApproved // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advanceIsReceived: freezed == advanceIsReceived
+          ? _value.advanceIsReceived
+          : advanceIsReceived // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      advanceIsPaid: freezed == advanceIsPaid
+          ? _value.advanceIsPaid
+          : advanceIsPaid // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      advanceCompanyId: freezed == advanceCompanyId
+          ? _value.advanceCompanyId
+          : advanceCompanyId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advanceCompanyName: freezed == advanceCompanyName
+          ? _value.advanceCompanyName
+          : advanceCompanyName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceDepartmentName: freezed == advanceDepartmentName
+          ? _value.advanceDepartmentName
+          : advanceDepartmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceProjectId: freezed == advanceProjectId
+          ? _value.advanceProjectId
+          : advanceProjectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advanceTransferType: freezed == advanceTransferType
+          ? _value.advanceTransferType
+          : advanceTransferType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advanceBankListId: freezed == advanceBankListId
+          ? _value.advanceBankListId
+          : advanceBankListId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advanceRecipientName: freezed == advanceRecipientName
+          ? _value.advanceRecipientName
+          : advanceRecipientName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceNote: freezed == advanceNote
+          ? _value.advanceNote
+          : advanceNote // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -710,7 +1006,28 @@ class _$BookingGuestHouseItemImpl implements _BookingGuestHouseItem {
       @JsonKey(name: 'PaymentReason') this.paymentReason,
       @JsonKey(name: 'PaymentNote') this.paymentNote,
       @JsonKey(name: 'PaymentInvoiceFileCount') this.paymentInvoiceFileCount,
-      @JsonKey(name: 'PaymentBillCKFileCount') this.paymentBillCkFileCount});
+      @JsonKey(name: 'PaymentBillCKFileCount') this.paymentBillCkFileCount,
+      @JsonKey(name: 'AdvancePaymentOrderID') this.advancePaymentOrderId,
+      @JsonKey(name: 'AdvancePaymentOrderCode') this.advancePaymentOrderCode,
+      @JsonKey(name: 'AdvanceDetailStatus') this.advanceDetailStatus,
+      @JsonKey(name: 'AdvanceTotalAmount') this.advanceTotalAmount,
+      @JsonKey(name: 'AdvanceApprovedTBPID') this.advanceApprovedTbpId,
+      @JsonKey(name: 'AdvanceBankName') this.advanceBankName,
+      @JsonKey(name: 'AdvanceBankAccount') this.advanceBankAccount,
+      @JsonKey(name: 'AdvanceReason') this.advanceReason,
+      @JsonKey(name: 'AdvanceStepCode') this.advanceStepCode,
+      @JsonKey(name: 'AdvanceStepName') this.advanceStepName,
+      @JsonKey(name: 'AdvanceStepIsApproved') this.advanceStepIsApproved,
+      @JsonKey(name: 'AdvanceIsReceived') this.advanceIsReceived,
+      @JsonKey(name: 'AdvanceIsPaid') this.advanceIsPaid,
+      @JsonKey(name: 'AdvanceCompanyID') this.advanceCompanyId,
+      @JsonKey(name: 'AdvanceCompanyName') this.advanceCompanyName,
+      @JsonKey(name: 'AdvanceDepartmentName') this.advanceDepartmentName,
+      @JsonKey(name: 'AdvanceProjectID') this.advanceProjectId,
+      @JsonKey(name: 'AdvanceTransferType') this.advanceTransferType,
+      @JsonKey(name: 'AdvanceBankListID') this.advanceBankListId,
+      @JsonKey(name: 'AdvanceRecipientName') this.advanceRecipientName,
+      @JsonKey(name: 'AdvanceNote') this.advanceNote});
 
   factory _$BookingGuestHouseItemImpl.fromJson(Map<String, dynamic> json) =>
       _$$BookingGuestHouseItemImplFromJson(json);
@@ -847,10 +1164,75 @@ class _$BookingGuestHouseItemImpl implements _BookingGuestHouseItem {
   @override
   @JsonKey(name: 'PaymentBillCKFileCount')
   final int? paymentBillCkFileCount;
+// Đề nghị tạm ứng (ĐNTU) — dùng khi list hiển thị icon "đã tạo tạm ứng"
+// và để mở form advance ở chế độ view-only khi `advanceDetailStatus == 4`.
+  @override
+  @JsonKey(name: 'AdvancePaymentOrderID')
+  final int? advancePaymentOrderId;
+  @override
+  @JsonKey(name: 'AdvancePaymentOrderCode')
+  final String? advancePaymentOrderCode;
+  @override
+  @JsonKey(name: 'AdvanceDetailStatus')
+  final int? advanceDetailStatus;
+  @override
+  @JsonKey(name: 'AdvanceTotalAmount')
+  final num? advanceTotalAmount;
+  @override
+  @JsonKey(name: 'AdvanceApprovedTBPID')
+  final int? advanceApprovedTbpId;
+  @override
+  @JsonKey(name: 'AdvanceBankName')
+  final String? advanceBankName;
+  @override
+  @JsonKey(name: 'AdvanceBankAccount')
+  final String? advanceBankAccount;
+  @override
+  @JsonKey(name: 'AdvanceReason')
+  final String? advanceReason;
+  @override
+  @JsonKey(name: 'AdvanceStepCode')
+  final String? advanceStepCode;
+  @override
+  @JsonKey(name: 'AdvanceStepName')
+  final String? advanceStepName;
+  @override
+  @JsonKey(name: 'AdvanceStepIsApproved')
+  final int? advanceStepIsApproved;
+  @override
+  @JsonKey(name: 'AdvanceIsReceived')
+  final bool? advanceIsReceived;
+  @override
+  @JsonKey(name: 'AdvanceIsPaid')
+  final bool? advanceIsPaid;
+  @override
+  @JsonKey(name: 'AdvanceCompanyID')
+  final int? advanceCompanyId;
+  @override
+  @JsonKey(name: 'AdvanceCompanyName')
+  final String? advanceCompanyName;
+  @override
+  @JsonKey(name: 'AdvanceDepartmentName')
+  final String? advanceDepartmentName;
+  @override
+  @JsonKey(name: 'AdvanceProjectID')
+  final int? advanceProjectId;
+  @override
+  @JsonKey(name: 'AdvanceTransferType')
+  final int? advanceTransferType;
+  @override
+  @JsonKey(name: 'AdvanceBankListID')
+  final int? advanceBankListId;
+  @override
+  @JsonKey(name: 'AdvanceRecipientName')
+  final String? advanceRecipientName;
+  @override
+  @JsonKey(name: 'AdvanceNote')
+  final String? advanceNote;
 
   @override
   String toString() {
-    return 'BookingGuestHouseItem(id: $id, registerId: $registerId, projectId: $projectId, fullName: $fullName, departmentId: $departmentId, departmentName: $departmentName, sdtCaNhan: $sdtCaNhan, projectCode: $projectCode, projectName: $projectName, provinceId: $provinceId, provinceName: $provinceName, address: $address, startDate: $startDate, endDate: $endDate, note: $note, roommates: $roommates, createdBy: $createdBy, createdDate: $createdDate, updatedBy: $updatedBy, updatedDate: $updatedDate, isDeleted: $isDeleted, isApprovedTBP: $isApprovedTBP, approvedTBP: $approvedTBP, approvedTBPDate: $approvedTBPDate, fullNameTBP: $fullNameTBP, paymentApprovedTBPId: $paymentApprovedTBPId, paymentFullNameTBP: $paymentFullNameTBP, paymentDetailStatus: $paymentDetailStatus, paymentRecipientName: $paymentRecipientName, paymentBankName: $paymentBankName, paymentBankAccount: $paymentBankAccount, paymentHotelName: $paymentHotelName, paymentCompanyId: $paymentCompanyId, paymentCompanyName: $paymentCompanyName, paymentTotalAmount: $paymentTotalAmount, paymentTotalAmountWithInvoice: $paymentTotalAmountWithInvoice, paymentInvoiceNumber: $paymentInvoiceNumber, paymentReason: $paymentReason, paymentNote: $paymentNote, paymentInvoiceFileCount: $paymentInvoiceFileCount, paymentBillCkFileCount: $paymentBillCkFileCount)';
+    return 'BookingGuestHouseItem(id: $id, registerId: $registerId, projectId: $projectId, fullName: $fullName, departmentId: $departmentId, departmentName: $departmentName, sdtCaNhan: $sdtCaNhan, projectCode: $projectCode, projectName: $projectName, provinceId: $provinceId, provinceName: $provinceName, address: $address, startDate: $startDate, endDate: $endDate, note: $note, roommates: $roommates, createdBy: $createdBy, createdDate: $createdDate, updatedBy: $updatedBy, updatedDate: $updatedDate, isDeleted: $isDeleted, isApprovedTBP: $isApprovedTBP, approvedTBP: $approvedTBP, approvedTBPDate: $approvedTBPDate, fullNameTBP: $fullNameTBP, paymentApprovedTBPId: $paymentApprovedTBPId, paymentFullNameTBP: $paymentFullNameTBP, paymentDetailStatus: $paymentDetailStatus, paymentRecipientName: $paymentRecipientName, paymentBankName: $paymentBankName, paymentBankAccount: $paymentBankAccount, paymentHotelName: $paymentHotelName, paymentCompanyId: $paymentCompanyId, paymentCompanyName: $paymentCompanyName, paymentTotalAmount: $paymentTotalAmount, paymentTotalAmountWithInvoice: $paymentTotalAmountWithInvoice, paymentInvoiceNumber: $paymentInvoiceNumber, paymentReason: $paymentReason, paymentNote: $paymentNote, paymentInvoiceFileCount: $paymentInvoiceFileCount, paymentBillCkFileCount: $paymentBillCkFileCount, advancePaymentOrderId: $advancePaymentOrderId, advancePaymentOrderCode: $advancePaymentOrderCode, advanceDetailStatus: $advanceDetailStatus, advanceTotalAmount: $advanceTotalAmount, advanceApprovedTbpId: $advanceApprovedTbpId, advanceBankName: $advanceBankName, advanceBankAccount: $advanceBankAccount, advanceReason: $advanceReason, advanceStepCode: $advanceStepCode, advanceStepName: $advanceStepName, advanceStepIsApproved: $advanceStepIsApproved, advanceIsReceived: $advanceIsReceived, advanceIsPaid: $advanceIsPaid, advanceCompanyId: $advanceCompanyId, advanceCompanyName: $advanceCompanyName, advanceDepartmentName: $advanceDepartmentName, advanceProjectId: $advanceProjectId, advanceTransferType: $advanceTransferType, advanceBankListId: $advanceBankListId, advanceRecipientName: $advanceRecipientName, advanceNote: $advanceNote)';
   }
 
   @override
@@ -924,8 +1306,7 @@ class _$BookingGuestHouseItemImpl implements _BookingGuestHouseItem {
                 other.paymentCompanyName == paymentCompanyName) &&
             (identical(other.paymentTotalAmount, paymentTotalAmount) ||
                 other.paymentTotalAmount == paymentTotalAmount) &&
-            (identical(other.paymentTotalAmountWithInvoice,
-                    paymentTotalAmountWithInvoice) ||
+            (identical(other.paymentTotalAmountWithInvoice, paymentTotalAmountWithInvoice) ||
                 other.paymentTotalAmountWithInvoice ==
                     paymentTotalAmountWithInvoice) &&
             (identical(other.paymentInvoiceNumber, paymentInvoiceNumber) ||
@@ -934,11 +1315,35 @@ class _$BookingGuestHouseItemImpl implements _BookingGuestHouseItem {
                 other.paymentReason == paymentReason) &&
             (identical(other.paymentNote, paymentNote) ||
                 other.paymentNote == paymentNote) &&
-            (identical(
-                    other.paymentInvoiceFileCount, paymentInvoiceFileCount) ||
+            (identical(other.paymentInvoiceFileCount, paymentInvoiceFileCount) ||
                 other.paymentInvoiceFileCount == paymentInvoiceFileCount) &&
             (identical(other.paymentBillCkFileCount, paymentBillCkFileCount) ||
-                other.paymentBillCkFileCount == paymentBillCkFileCount));
+                other.paymentBillCkFileCount == paymentBillCkFileCount) &&
+            (identical(other.advancePaymentOrderId, advancePaymentOrderId) ||
+                other.advancePaymentOrderId == advancePaymentOrderId) &&
+            (identical(other.advancePaymentOrderCode, advancePaymentOrderCode) ||
+                other.advancePaymentOrderCode == advancePaymentOrderCode) &&
+            (identical(other.advanceDetailStatus, advanceDetailStatus) ||
+                other.advanceDetailStatus == advanceDetailStatus) &&
+            (identical(other.advanceTotalAmount, advanceTotalAmount) ||
+                other.advanceTotalAmount == advanceTotalAmount) &&
+            (identical(other.advanceApprovedTbpId, advanceApprovedTbpId) || other.advanceApprovedTbpId == advanceApprovedTbpId) &&
+            (identical(other.advanceBankName, advanceBankName) || other.advanceBankName == advanceBankName) &&
+            (identical(other.advanceBankAccount, advanceBankAccount) || other.advanceBankAccount == advanceBankAccount) &&
+            (identical(other.advanceReason, advanceReason) || other.advanceReason == advanceReason) &&
+            (identical(other.advanceStepCode, advanceStepCode) || other.advanceStepCode == advanceStepCode) &&
+            (identical(other.advanceStepName, advanceStepName) || other.advanceStepName == advanceStepName) &&
+            (identical(other.advanceStepIsApproved, advanceStepIsApproved) || other.advanceStepIsApproved == advanceStepIsApproved) &&
+            (identical(other.advanceIsReceived, advanceIsReceived) || other.advanceIsReceived == advanceIsReceived) &&
+            (identical(other.advanceIsPaid, advanceIsPaid) || other.advanceIsPaid == advanceIsPaid) &&
+            (identical(other.advanceCompanyId, advanceCompanyId) || other.advanceCompanyId == advanceCompanyId) &&
+            (identical(other.advanceCompanyName, advanceCompanyName) || other.advanceCompanyName == advanceCompanyName) &&
+            (identical(other.advanceDepartmentName, advanceDepartmentName) || other.advanceDepartmentName == advanceDepartmentName) &&
+            (identical(other.advanceProjectId, advanceProjectId) || other.advanceProjectId == advanceProjectId) &&
+            (identical(other.advanceTransferType, advanceTransferType) || other.advanceTransferType == advanceTransferType) &&
+            (identical(other.advanceBankListId, advanceBankListId) || other.advanceBankListId == advanceBankListId) &&
+            (identical(other.advanceRecipientName, advanceRecipientName) || other.advanceRecipientName == advanceRecipientName) &&
+            (identical(other.advanceNote, advanceNote) || other.advanceNote == advanceNote));
   }
 
   @JsonKey(ignore: true)
@@ -985,7 +1390,28 @@ class _$BookingGuestHouseItemImpl implements _BookingGuestHouseItem {
         paymentReason,
         paymentNote,
         paymentInvoiceFileCount,
-        paymentBillCkFileCount
+        paymentBillCkFileCount,
+        advancePaymentOrderId,
+        advancePaymentOrderCode,
+        advanceDetailStatus,
+        advanceTotalAmount,
+        advanceApprovedTbpId,
+        advanceBankName,
+        advanceBankAccount,
+        advanceReason,
+        advanceStepCode,
+        advanceStepName,
+        advanceStepIsApproved,
+        advanceIsReceived,
+        advanceIsPaid,
+        advanceCompanyId,
+        advanceCompanyName,
+        advanceDepartmentName,
+        advanceProjectId,
+        advanceTransferType,
+        advanceBankListId,
+        advanceRecipientName,
+        advanceNote
       ]);
 
   @JsonKey(ignore: true)
@@ -1048,7 +1474,31 @@ abstract class _BookingGuestHouseItem implements BookingGuestHouseItem {
       @JsonKey(name: 'PaymentInvoiceFileCount')
       final int? paymentInvoiceFileCount,
       @JsonKey(name: 'PaymentBillCKFileCount')
-      final int? paymentBillCkFileCount}) = _$BookingGuestHouseItemImpl;
+      final int? paymentBillCkFileCount,
+      @JsonKey(name: 'AdvancePaymentOrderID') final int? advancePaymentOrderId,
+      @JsonKey(name: 'AdvancePaymentOrderCode')
+      final String? advancePaymentOrderCode,
+      @JsonKey(name: 'AdvanceDetailStatus') final int? advanceDetailStatus,
+      @JsonKey(name: 'AdvanceTotalAmount') final num? advanceTotalAmount,
+      @JsonKey(name: 'AdvanceApprovedTBPID') final int? advanceApprovedTbpId,
+      @JsonKey(name: 'AdvanceBankName') final String? advanceBankName,
+      @JsonKey(name: 'AdvanceBankAccount') final String? advanceBankAccount,
+      @JsonKey(name: 'AdvanceReason') final String? advanceReason,
+      @JsonKey(name: 'AdvanceStepCode') final String? advanceStepCode,
+      @JsonKey(name: 'AdvanceStepName') final String? advanceStepName,
+      @JsonKey(name: 'AdvanceStepIsApproved') final int? advanceStepIsApproved,
+      @JsonKey(name: 'AdvanceIsReceived') final bool? advanceIsReceived,
+      @JsonKey(name: 'AdvanceIsPaid') final bool? advanceIsPaid,
+      @JsonKey(name: 'AdvanceCompanyID') final int? advanceCompanyId,
+      @JsonKey(name: 'AdvanceCompanyName') final String? advanceCompanyName,
+      @JsonKey(name: 'AdvanceDepartmentName')
+      final String? advanceDepartmentName,
+      @JsonKey(name: 'AdvanceProjectID') final int? advanceProjectId,
+      @JsonKey(name: 'AdvanceTransferType') final int? advanceTransferType,
+      @JsonKey(name: 'AdvanceBankListID') final int? advanceBankListId,
+      @JsonKey(name: 'AdvanceRecipientName') final String? advanceRecipientName,
+      @JsonKey(name: 'AdvanceNote')
+      final String? advanceNote}) = _$BookingGuestHouseItemImpl;
 
   factory _BookingGuestHouseItem.fromJson(Map<String, dynamic> json) =
       _$BookingGuestHouseItemImpl.fromJson;
@@ -1176,6 +1626,70 @@ abstract class _BookingGuestHouseItem implements BookingGuestHouseItem {
   @override
   @JsonKey(name: 'PaymentBillCKFileCount')
   int? get paymentBillCkFileCount;
+  @override // Đề nghị tạm ứng (ĐNTU) — dùng khi list hiển thị icon "đã tạo tạm ứng"
+// và để mở form advance ở chế độ view-only khi `advanceDetailStatus == 4`.
+  @JsonKey(name: 'AdvancePaymentOrderID')
+  int? get advancePaymentOrderId;
+  @override
+  @JsonKey(name: 'AdvancePaymentOrderCode')
+  String? get advancePaymentOrderCode;
+  @override
+  @JsonKey(name: 'AdvanceDetailStatus')
+  int? get advanceDetailStatus;
+  @override
+  @JsonKey(name: 'AdvanceTotalAmount')
+  num? get advanceTotalAmount;
+  @override
+  @JsonKey(name: 'AdvanceApprovedTBPID')
+  int? get advanceApprovedTbpId;
+  @override
+  @JsonKey(name: 'AdvanceBankName')
+  String? get advanceBankName;
+  @override
+  @JsonKey(name: 'AdvanceBankAccount')
+  String? get advanceBankAccount;
+  @override
+  @JsonKey(name: 'AdvanceReason')
+  String? get advanceReason;
+  @override
+  @JsonKey(name: 'AdvanceStepCode')
+  String? get advanceStepCode;
+  @override
+  @JsonKey(name: 'AdvanceStepName')
+  String? get advanceStepName;
+  @override
+  @JsonKey(name: 'AdvanceStepIsApproved')
+  int? get advanceStepIsApproved;
+  @override
+  @JsonKey(name: 'AdvanceIsReceived')
+  bool? get advanceIsReceived;
+  @override
+  @JsonKey(name: 'AdvanceIsPaid')
+  bool? get advanceIsPaid;
+  @override
+  @JsonKey(name: 'AdvanceCompanyID')
+  int? get advanceCompanyId;
+  @override
+  @JsonKey(name: 'AdvanceCompanyName')
+  String? get advanceCompanyName;
+  @override
+  @JsonKey(name: 'AdvanceDepartmentName')
+  String? get advanceDepartmentName;
+  @override
+  @JsonKey(name: 'AdvanceProjectID')
+  int? get advanceProjectId;
+  @override
+  @JsonKey(name: 'AdvanceTransferType')
+  int? get advanceTransferType;
+  @override
+  @JsonKey(name: 'AdvanceBankListID')
+  int? get advanceBankListId;
+  @override
+  @JsonKey(name: 'AdvanceRecipientName')
+  String? get advanceRecipientName;
+  @override
+  @JsonKey(name: 'AdvanceNote')
+  String? get advanceNote;
   @override
   @JsonKey(ignore: true)
   _$$BookingGuestHouseItemImplCopyWith<_$BookingGuestHouseItemImpl>
@@ -4548,5 +5062,234 @@ abstract class _BookingGuestHouseSaveResponse
   @JsonKey(ignore: true)
   _$$BookingGuestHouseSaveResponseImplCopyWith<
           _$BookingGuestHouseSaveResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+BookingGuestHouseAdvanceResponse _$BookingGuestHouseAdvanceResponseFromJson(
+    Map<String, dynamic> json) {
+  return _BookingGuestHouseAdvanceResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BookingGuestHouseAdvanceResponse {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Code')
+  String? get code => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DetailID')
+  int? get detailId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsRecreated')
+  bool? get isRecreated => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BookingGuestHouseAdvanceResponseCopyWith<BookingGuestHouseAdvanceResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BookingGuestHouseAdvanceResponseCopyWith<$Res> {
+  factory $BookingGuestHouseAdvanceResponseCopyWith(
+          BookingGuestHouseAdvanceResponse value,
+          $Res Function(BookingGuestHouseAdvanceResponse) then) =
+      _$BookingGuestHouseAdvanceResponseCopyWithImpl<$Res,
+          BookingGuestHouseAdvanceResponse>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'DetailID') int? detailId,
+      @JsonKey(name: 'IsRecreated') bool? isRecreated});
+}
+
+/// @nodoc
+class _$BookingGuestHouseAdvanceResponseCopyWithImpl<$Res,
+        $Val extends BookingGuestHouseAdvanceResponse>
+    implements $BookingGuestHouseAdvanceResponseCopyWith<$Res> {
+  _$BookingGuestHouseAdvanceResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? code = freezed,
+    Object? detailId = freezed,
+    Object? isRecreated = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      detailId: freezed == detailId
+          ? _value.detailId
+          : detailId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isRecreated: freezed == isRecreated
+          ? _value.isRecreated
+          : isRecreated // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$BookingGuestHouseAdvanceResponseImplCopyWith<$Res>
+    implements $BookingGuestHouseAdvanceResponseCopyWith<$Res> {
+  factory _$$BookingGuestHouseAdvanceResponseImplCopyWith(
+          _$BookingGuestHouseAdvanceResponseImpl value,
+          $Res Function(_$BookingGuestHouseAdvanceResponseImpl) then) =
+      __$$BookingGuestHouseAdvanceResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'DetailID') int? detailId,
+      @JsonKey(name: 'IsRecreated') bool? isRecreated});
+}
+
+/// @nodoc
+class __$$BookingGuestHouseAdvanceResponseImplCopyWithImpl<$Res>
+    extends _$BookingGuestHouseAdvanceResponseCopyWithImpl<$Res,
+        _$BookingGuestHouseAdvanceResponseImpl>
+    implements _$$BookingGuestHouseAdvanceResponseImplCopyWith<$Res> {
+  __$$BookingGuestHouseAdvanceResponseImplCopyWithImpl(
+      _$BookingGuestHouseAdvanceResponseImpl _value,
+      $Res Function(_$BookingGuestHouseAdvanceResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? code = freezed,
+    Object? detailId = freezed,
+    Object? isRecreated = freezed,
+  }) {
+    return _then(_$BookingGuestHouseAdvanceResponseImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      detailId: freezed == detailId
+          ? _value.detailId
+          : detailId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isRecreated: freezed == isRecreated
+          ? _value.isRecreated
+          : isRecreated // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$BookingGuestHouseAdvanceResponseImpl
+    implements _BookingGuestHouseAdvanceResponse {
+  const _$BookingGuestHouseAdvanceResponseImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'Code') this.code,
+      @JsonKey(name: 'DetailID') this.detailId,
+      @JsonKey(name: 'IsRecreated') this.isRecreated});
+
+  factory _$BookingGuestHouseAdvanceResponseImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$BookingGuestHouseAdvanceResponseImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'Code')
+  final String? code;
+  @override
+  @JsonKey(name: 'DetailID')
+  final int? detailId;
+  @override
+  @JsonKey(name: 'IsRecreated')
+  final bool? isRecreated;
+
+  @override
+  String toString() {
+    return 'BookingGuestHouseAdvanceResponse(id: $id, code: $code, detailId: $detailId, isRecreated: $isRecreated)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BookingGuestHouseAdvanceResponseImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.detailId, detailId) ||
+                other.detailId == detailId) &&
+            (identical(other.isRecreated, isRecreated) ||
+                other.isRecreated == isRecreated));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, code, detailId, isRecreated);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BookingGuestHouseAdvanceResponseImplCopyWith<
+          _$BookingGuestHouseAdvanceResponseImpl>
+      get copyWith => __$$BookingGuestHouseAdvanceResponseImplCopyWithImpl<
+          _$BookingGuestHouseAdvanceResponseImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BookingGuestHouseAdvanceResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BookingGuestHouseAdvanceResponse
+    implements BookingGuestHouseAdvanceResponse {
+  const factory _BookingGuestHouseAdvanceResponse(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'Code') final String? code,
+          @JsonKey(name: 'DetailID') final int? detailId,
+          @JsonKey(name: 'IsRecreated') final bool? isRecreated}) =
+      _$BookingGuestHouseAdvanceResponseImpl;
+
+  factory _BookingGuestHouseAdvanceResponse.fromJson(
+          Map<String, dynamic> json) =
+      _$BookingGuestHouseAdvanceResponseImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'Code')
+  String? get code;
+  @override
+  @JsonKey(name: 'DetailID')
+  int? get detailId;
+  @override
+  @JsonKey(name: 'IsRecreated')
+  bool? get isRecreated;
+  @override
+  @JsonKey(ignore: true)
+  _$$BookingGuestHouseAdvanceResponseImplCopyWith<
+          _$BookingGuestHouseAdvanceResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
