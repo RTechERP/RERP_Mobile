@@ -237,6 +237,12 @@ class RouteNames {
 
   // Personal Approve
   static const personalApprove = '/personal_approve';
+
+  /// Menu "Duyệt công" - grid 9 loại phiếu (Đăng ký nghỉ, Làm thêm, ...).
+  /// Là lớp menu thứ 2 trong flow Phê duyệt: từ `personalApprove` (menu nhóm)
+  /// bấm "Duyệt công" → màn này → bấm 1 loại phiếu → màn TBP duyệt.
+  static const personalApproveTimesheetMenu =
+      '/personal_approve/approve_timesheet/menu';
   static const personalApproveTimesheet =
       '/personal_approve/approve_timesheet/timesheet';
   static const personalApproveTimesheetDetail =

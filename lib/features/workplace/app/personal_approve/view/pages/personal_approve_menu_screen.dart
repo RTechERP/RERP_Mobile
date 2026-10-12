@@ -11,10 +11,14 @@ import '../../../../../../routes/route_names.dart';
 
 import '../bloc/personal_approve_menu_bloc.dart';
 
-/// Menu Phê duyệt - hiển thị cho user không phải Senior.
+/// Menu Phê duyệt - menu trung gian liệt kê các nhóm duyệt (Duyệt công, ...).
 ///
-/// Lưu ý: user là Senior đã được workspace_bloc resolve và navigate thẳng
-/// sang `personalApproveSeniorTimesheet`, không qua menu này.
+/// Đây là lớp menu thứ 1 trong flow Phê duyệt:
+///   workspace → "Phê duyệt" (màn này) → "Duyệt công" → màn TBP/Senior.
+///
+/// Bấm "Duyệt công" sẽ resolve theo permission hiện tại:
+/// - Có `personal_approve:senior` → màn Senior duyệt (thẳng).
+/// - Ngược lại → menu loại phiếu (grid 9 mục) → từng màn TBP duyệt.
 class PersonalApproveMenuScreen extends StatefulWidget {
   const PersonalApproveMenuScreen({super.key});
 
@@ -67,39 +71,11 @@ class _PersonalApproveMenuScreenState extends BaseState<
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Duyệt công',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-                ),
-                const SizedBox(height: 8),
-                Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: Colors.grey.shade300),
+                for (final group in _kPersonalApproveGroups)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 16),
+                    child: _ApproveGroupSection(group: group),
                   ),
-                  child: GridView.count(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 13,
-                    mainAxisSpacing: 13,
-                    childAspectRatio: 1,
-                    children: [
-                      for (final menu in _kPersonalApproveSubMenus)
-                        _MenuTile(
-                          icon: menu.icon,
-                          title: menu.title,
-                          onTap: () => context.push(
-                            RouteNames.personalApproveTimesheetByType(
-                              menu.tType,
-                            ),
-                          ),
-                        ),
-                    ],
-                  ),
-                ),
               ],
             ),
           ),
@@ -109,97 +85,114 @@ class _PersonalApproveMenuScreenState extends BaseState<
   }
 }
 
-/// Danh sách các mục con của menu Phê duyệt.
-///
-/// Mỗi mục map sang 1 `tType` của API `getApproveTimesheet` (1..9).
-/// Khi user bấm, route được mở với query `?tType=<value>` → màn TBP
-/// filter API theo `TType` trong payload.
-///
-/// Thứ tự hiển thị lấy theo yêu cầu nghiệp vụ (không trùng với thứ tự
-/// số `tType`).
-const _kPersonalApproveSubMenus = <_PersonalApproveSubMenu>[
-  _PersonalApproveSubMenu(
-    tType: 1,
-    icon: Icons.event_busy_outlined,
-    title: 'Đăng ký nghỉ',
-  ),
-  _PersonalApproveSubMenu(
-    tType: 2,
-    icon: Icons.access_time_outlined,
-    title: 'Đ.muộn - v.sớm',
-  ),
-  _PersonalApproveSubMenu(
-    tType: 3,
-    icon: Icons.more_time_outlined,
-    title: 'Làm thêm',
-  ),
-  _PersonalApproveSubMenu(
-    tType: 8,
-    icon: Icons.nightlight_outlined,
-    title: 'Làm đêm',
-  ),
-  _PersonalApproveSubMenu(
-    tType: 4,
-    icon: Icons.airport_shuttle_outlined,
-    title: 'Công tác',
-  ),
-  _PersonalApproveSubMenu(
-    tType: 9,
-    icon: Icons.directions_car_outlined,
-    title: 'Đặt xe',
-  ),
-  _PersonalApproveSubMenu(
-    tType: 5,
-    icon: Icons.home_work_outlined,
-    title: 'WFH',
-  ),
-  _PersonalApproveSubMenu(
-    tType: 6,
-    icon: Icons.fingerprint_outlined,
-    title: 'Quên chấm công',
-  ),
-  _PersonalApproveSubMenu(
-    tType: 7,
-    icon: Icons.payments_outlined,
-    title: 'Tạm ứng lương',
-  ),
-];
+/// Nhóm duyệt trong menu Phê duyệt.
+class _ApproveGroup {
+  const _ApproveGroup({required this.title, required this.items});
 
-/// Mô tả 1 mục con của menu Phê duyệt.
-class _PersonalApproveSubMenu {
-  const _PersonalApproveSubMenu({
-    required this.tType,
-    required this.icon,
+  /// Tiêu đề nhóm (vd: "Duyệt công").
+  final String title;
+
+  /// Danh sách mục con trong nhóm.
+  final List<_ApproveGroupItem> items;
+}
+
+/// 1 mục con trong nhóm duyệt.
+class _ApproveGroupItem {
+  const _ApproveGroupItem({
     required this.title,
+    required this.icon,
+    required this.route,
   });
 
-  /// `TType` của API `getApproveTimesheet` tương ứng với loại phiếu.
-  final int tType;
-
-  /// Icon hiển thị.
-  final IconData icon;
-
-  /// Tiêu đề hiển thị.
   final String title;
+  final IconData icon;
+  final String route;
 }
+
+/// Hiển thị 1 nhóm duyệt: tiêu đề + grid các mục con.
+class _ApproveGroupSection extends StatelessWidget {
+  const _ApproveGroupSection({required this.group});
+
+  final _ApproveGroup group;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          group.title,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+        ),
+        const SizedBox(height: 8),
+        Container(
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(color: Colors.grey.shade300),
+          ),
+          child: GridView.count(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            crossAxisCount: 3,
+            crossAxisSpacing: 13,
+            mainAxisSpacing: 13,
+            childAspectRatio: 1,
+            children: [
+              for (final item in group.items)
+                _MenuTile(
+                  icon: item.icon,
+                  title: item.title,
+                  route: item.route,
+                ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+/// Danh sách nhóm duyệt hiển thị trong menu Phê duyệt.
+///
+/// Hiện tại có 1 nhóm: "Duyệt công". Mỗi nhóm có 1 mục duy nhất — tên nhóm
+/// được lặp lại làm tên mục để giữ bố cục grid 1 ô. Bấm vào sẽ vào menu
+/// "Duyệt công" (grid 9 loại phiếu), từ đó mới resolve Senior / TBP theo
+/// permission của user.
+///
+/// Khi thêm nhóm duyệt mới (vd: "Duyệt đề xuất"), chỉ cần thêm 1 nhóm
+/// vào list này.
+final _kPersonalApproveGroups = <_ApproveGroup>[
+  _ApproveGroup(
+    title: 'Duyệt công',
+    items: [
+      _ApproveGroupItem(
+        title: 'Duyệt công',
+        icon: Icons.access_time_filled_outlined,
+        route: RouteNames.personalApproveTimesheetMenu,
+      ),
+    ],
+  ),
+];
 
 /// Widget menu tile cho Personal Approve grid.
 class _MenuTile extends StatelessWidget {
   const _MenuTile({
     required this.icon,
     required this.title,
-    required this.onTap,
+    required this.route,
   });
 
   final IconData icon;
   final String title;
-  final VoidCallback onTap;
+  final String route;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(12),
-      onTap: onTap,
+      onTap: () => context.push(route),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

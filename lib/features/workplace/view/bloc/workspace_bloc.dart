@@ -114,38 +114,42 @@ class WorkspaceBloc extends BaseBloc<WorkspaceEvent, WorkspaceState> {
     );
   }
 
-  /// Resolve route "Phê duyệt" dựa trên permission đã resolve sẵn qua
-/// `PermissionService.init()` ở trên.
-///
-/// Thứ tự ưu tiên (cao → thấp):
-/// 1. Có quyền `personal_approve:menu` (HeadOfDept / BOD / Admin) → Menu screen.
-/// 2. Có quyền `personal_approve:senior` → Senior screen (thẳng).
-/// 3. Ngược lại → Menu screen.
-///
-/// Trả về null nếu lỗi / không resolve được (để caller xử lý).
-Future<String?> _resolvePersonalApproveRoute(User user) async {
-  try {
-    // Có quyền vào Menu duyệt (HeadOfDept / BOD / Admin) → Menu screen.
-    final hasMenuAccess = PermissionService.hasAccess(
-      'personal_approve:menu',
-    );
-    if (hasMenuAccess) {
-      return RouteNames.personalApprove;
+  /// Resolve route "Phê duyệt" dựa trên permission của user.
+  ///
+  /// Thứ tự ưu tiên:
+  /// 1. Có quyền TBP (`N1`/`N32`) → menu trung gian `personalApprove`
+  ///    (liệt kê các nhóm duyệt: Duyệt công, ...). Áp dụng cho cả
+  ///    `isAdmin = true` mà có TBP.
+  /// 2. Có quyền Senior (`N85`) → màn Senior duyệt (thẳng, bỏ qua menu).
+  /// 3. `isAdmin = true` mặc định (không có TBP / Senior) → màn Senior
+  ///    duyệt (admin fallback).
+  ///
+  /// Trả về null nếu lỗi / không resolve được (để caller xử lý).
+  Future<String?> _resolvePersonalApproveRoute(User user) async {
+    try {
+      final codes = user.permissions
+          .split(',')
+          .map((e) => e.trim())
+          .toSet();
+      final isAdmin = user.isAdmin;
+      final hasTbp = codes.any(_tbpPermissionCodes.contains);
+      final hasSenior = codes.contains('N85') ||
+          PermissionService.hasAccess('personal_approve:senior');
+
+      _log.logI(
+        'PersonalApprove.resolveRoute: isAdmin=$isAdmin, hasTbp=$hasTbp, hasSenior=$hasSenior',
+      );
+
+      if (hasTbp) {
+        return RouteNames.personalApprove;
+      }
+      return RouteNames.personalApproveSeniorTimesheet;
+    } catch (e) {
+      _log.logE('Resolve personalApprove route failed: $e');
+      return RouteNames.personalApproveSeniorTimesheet;
     }
-
-    final isSenior = PermissionService.hasAccess(
-      'personal_approve:senior',
-    );
-    _log.logI(
-      'PersonalApprove.resolveRoute: employeeId=${user.employeeId}, isSenior=$isSenior',
-    );
-
-    return isSenior
-        ? RouteNames.personalApproveSeniorTimesheet
-        : RouteNames.personalApprove;
-  } catch (e) {
-    _log.logE('Resolve personalApprove route failed: $e');
-    return RouteNames.personalApprove;
   }
-}
+
+  /// Mã permission cho phép user duyệt ở màn TBP.
+  static const _tbpPermissionCodes = {'N1', 'N32'};
 }

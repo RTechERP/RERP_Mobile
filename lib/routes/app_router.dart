@@ -54,6 +54,7 @@ import '../features/workplace/app/personal_approve/app/approve_timesheet/view/pa
 import '../features/workplace/app/personal_approve/app/approve_timesheet/data/datasource/models/approve_timesheet_model.dart';
 import '../features/workplace/app/personal_approve/view/bloc/personal_approve_menu_bloc.dart';
 import '../features/workplace/app/personal_approve/view/pages/personal_approve_menu_screen.dart';
+import '../features/workplace/app/personal_approve/view/pages/personal_approve_timesheet_menu_screen.dart';
 import '../features/more/view/pages/avatar_viewer_screen.dart';
 import '../features/workplace/app/general_form/view/bloc/general_form_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_add_screen.dart';
@@ -1503,6 +1504,11 @@ class AppRouter {
           GoRoute(
             path: RouteNames.personalApprove,
             builder: (context, state) => const PersonalApproveMenuScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.personalApproveTimesheetMenu,
+            builder: (context, state) =>
+                const PersonalApproveTimesheetMenuScreen(),
           ),
           ShellRoute(
             builder: (context, state, child) {

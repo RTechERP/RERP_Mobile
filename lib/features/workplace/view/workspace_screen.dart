@@ -199,13 +199,18 @@ class _WorkPlaceScreenState
                         return;
                       }
 
-                      // Personal Approve: route đã được WorkspaceBloc resolve sẵn
-                      // lúc load workspace (theo permission Senior N85).
-                      // Bấm là vào thẳng, không gọi API, không show processing.
+                      // Personal Approve: dùng `personalApproveRoute` đã được
+                      // resolve sẵn bởi `workspace_bloc` (dựa trên permission).
+                      // - Có `personal_approve:senior` (Senior / Admin) → màn
+                      //   Senior duyệt (thẳng, bỏ qua menu trung gian).
+                      // - Ngược lại → menu trung gian `personalApprove` (liệt
+                      //   kê các nhóm duyệt: Duyệt công, ...).
                       if (item.id == 'personal_approve') {
                         final route = state.personalApproveRoute;
                         if (route != null && route.isNotEmpty) {
                           context.push(route);
+                        } else {
+                          DialogService.showProcessing(context: context);
                         }
                         return;
                       }
@@ -258,6 +263,18 @@ class _WorkPlaceScreenState
 
                   WpActionCard(
                     onItemTap: (item) {
+
+                      // Personal Approve: route đã được WorkspaceBloc resolve sẵn
+                      // lúc load workspace (theo permission Senior N85).
+                      // Bấm là vào thẳng, không gọi API, không show processing.
+                      if (item.id == 'personal_approve') {
+                        final route = state.personalApproveRoute;
+                        if (route != null && route.isNotEmpty) {
+                          context.push(route);
+                        }
+                        return;
+                      }
+
                       final route = item.route;
                       if (route == null || route.isEmpty) {
                         DialogService.showProcessing(context: context);
