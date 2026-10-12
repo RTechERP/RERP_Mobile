@@ -9,8 +9,10 @@ import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../../../../../../../base/network/errors/extension.dart';
+import '../../../../../../../../../common/app/app_config.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/utils/formatter/thousands_input_formatter.dart';
 import '../../../../../../../../../common/utils/snack_bar_helper.dart';
@@ -487,6 +489,117 @@ class _BookingGuestHouseSettlementScreenState
     );
   }
 
+  //---(Xem / xoá file trước khi lưu)---//
+
+  /// Xem file mới (chưa upload) tại [index] trong `_invoiceFiles` /
+  /// `_billCkFiles`. Mở dialog preview với local path.
+  void _viewNewInvoiceFile(int index) =>
+      _viewNewPlatformFile(_invoiceFiles, index);
+  void _viewNewBillCkFile(int index) =>
+      _viewNewPlatformFile(_billCkFiles, index);
+
+  void _viewNewPlatformFile(
+    List<PlatformFile> source,
+    int index,
+  ) {
+    if (index < 0 || index >= source.length) return;
+    final path = source[index].path;
+    if (path == null || path.trim().isEmpty) {
+      context.showMessage(
+        'File không có đường dẫn local để xem',
+        type: SnackBarType.error,
+      );
+      return;
+    }
+    _openFilePreview(
+      title: source[index].name,
+      preview: _FilePreviewSource.local(path),
+    );
+  }
+
+  /// Xem file đã upload từ `state.paymentDetail.files`. Resolve URL
+  /// remote từ `Url` / `FilePath` rồi mở WebView.
+  void _viewExistingFile(BookingGuestHouseFileItem item) {
+    final url = _resolveRemoteFileUrl(item);
+    if (url == null || url.isEmpty) {
+      context.showMessage(
+        'Không tìm thấy đường dẫn file đã upload',
+        type: SnackBarType.error,
+      );
+      return;
+    }
+    _openFilePreview(
+      title: (item.fileName?.trim().isNotEmpty == true)
+          ? item.fileName!.trim()
+          : 'Xem file',
+      preview: _FilePreviewSource.remote(url),
+    );
+  }
+
+  /// Mở dialog preview full-screen.
+  Future<void> _openFilePreview({
+    required String title,
+    required _FilePreviewSource preview,
+  }) async {
+    await showDialog<void>(
+      context: context,
+      useSafeArea: false,
+      builder: (_) => _FilePreviewDialog(
+        title: title,
+        source: preview,
+      ),
+    );
+  }
+
+  /// Quyết định file đã upload có được phép xoá hay không — chỉ
+  /// file do `currentUser` tạo (`CreatedBy` == `currentUser.code`).
+  /// Trả `false` nếu chưa load được `currentUser`.
+  bool _canDeleteExistingFile(BookingGuestHouseFileItem item) {
+    final userCode = _currentUser?.code.trim();
+    if (userCode == null || userCode.isEmpty) return false;
+    final createdBy = (item.createdBy ?? '').trim();
+    if (createdBy.isEmpty) return false;
+    return createdBy == userCode;
+  }
+
+  /// Handler khi user nhấn nút xoá trên file đã upload. UI đã đảm
+  /// bảo chỉ gọi cho file của `currentUser` (ẩn nút 🗑️ cho file
+  /// của người khác) — nhưng vẫn check lại 1 lần ở đây (defense in
+  /// depth) trước khi dispatch event.
+  void _onRemoveExistingFile(BookingGuestHouseFileItem item) {
+    if (item.id == null || item.id! <= 0) return;
+    if (!_canDeleteExistingFile(item)) {
+      context.showMessage(
+        'Bạn chỉ được xoá file do chính bạn upload',
+        type: SnackBarType.error,
+      );
+      return;
+    }
+    context.read<BookingGuestHouseBloc>().add(
+          BookingGuestHouseEvent.removeFile(
+            fileId: item.id!,
+            accommodationBookingId: widget.id,
+          ),
+        );
+  }
+
+  /// Xoá file mới (chưa upload) khỏi danh sách — không cần xác nhận
+  /// vì chỉ là thao tác trên state local (chưa gửi BE).
+  void _removeInvoiceAt(int index) =>
+      _removeAt(_invoiceFiles, index, onUpdate: (v) => _invoiceFiles = v);
+  void _removeBillCkAt(int index) =>
+      _removeAt(_billCkFiles, index, onUpdate: (v) => _billCkFiles = v);
+
+  void _removeAt(
+    List<PlatformFile> source,
+    int index, {
+    required void Function(List<PlatformFile>) onUpdate,
+  }) {
+    if (index < 0 || index >= source.length) return;
+    final next = [...source]..removeAt(index);
+    setState(() => onUpdate(next));
+  }
+
   void _onSave() {
     final formState = _formKey.currentState;
     if (formState == null) return;
@@ -617,8 +730,11 @@ class _BookingGuestHouseSettlementScreenState
     if (tbpId != null && tbpId > 0 && state.employees.isNotEmpty) {
       final t = state.employees.firstWhereOrNull((e) => e.id == tbpId);
       if (t != null) {
-        _tbpSelected = t;
-        _tbpCtrl.text = t.fullName ?? '';
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (!mounted) return;
+          _tbpSelected = t;
+          _tbpCtrl.text = t.fullName ?? '';
+        });
       }
     }
 
@@ -629,15 +745,24 @@ class _BookingGuestHouseSettlementScreenState
         (e) => e.id == companyId,
       );
       if (c != null) {
-        _companySelected = c;
-        _companyCtrl.text = (c.name ?? '').trim().isNotEmpty
-            ? c.name!.trim()
-            : (detail.companyName ?? '').trim();
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (!mounted) return;
+          _companySelected = c;
+          _companyCtrl.text = (c.name ?? '').trim().isNotEmpty
+              ? c.name!.trim()
+              : (detail.companyName ?? '').trim();
+        });
       } else {
-        _companyCtrl.text = (detail.companyName ?? '').trim();
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (!mounted) return;
+          _companyCtrl.text = (detail.companyName ?? '').trim();
+        });
       }
     } else if ((detail.companyName ?? '').trim().isNotEmpty) {
-      _companyCtrl.text = detail.companyName!.trim();
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        _companyCtrl.text = detail.companyName!.trim();
+      });
     }
 
     //---(Ngân hàng + số TK)---//
@@ -646,10 +771,16 @@ class _BookingGuestHouseSettlementScreenState
     if (bankListId != null && bankListId > 0 && state.banks.isNotEmpty) {
       final b = state.banks.firstWhereOrNull((e) => e.id == bankListId);
       if (b != null) {
-        _bankSelected = b;
-        _bankNameCtrl.text = (b.bankName ?? '').trim();
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (!mounted) return;
+          _bankSelected = b;
+          _bankNameCtrl.text = (b.bankName ?? '').trim();
+        });
       } else if (bankName.isNotEmpty) {
-        _bankNameCtrl.text = bankName;
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (!mounted) return;
+          _bankNameCtrl.text = bankName;
+        });
       }
     } else if (bankName.isNotEmpty && state.banks.isNotEmpty) {
       // Fallback: match theo tên (không phân biệt hoa thường) khi không
@@ -660,43 +791,91 @@ class _BookingGuestHouseSettlementScreenState
             bankName.toLowerCase(),
       );
       if (b != null) {
-        _bankSelected = b;
-        _bankNameCtrl.text = (b.bankName ?? '').trim();
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (!mounted) return;
+          _bankSelected = b;
+          _bankNameCtrl.text = (b.bankName ?? '').trim();
+        });
       } else {
-        _bankNameCtrl.text = bankName;
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (!mounted) return;
+          _bankNameCtrl.text = bankName;
+        });
       }
     } else if (bankName.isNotEmpty) {
-      _bankNameCtrl.text = bankName;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        _bankNameCtrl.text = bankName;
+      });
     }
     final bankAcc = (detail.bankAccount ?? '').trim();
-    if (bankAcc.isNotEmpty) _bankAccountCtrl.text = bankAcc;
+    if (bankAcc.isNotEmpty) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        _bankAccountCtrl.text = bankAcc;
+      });
+    }
 
     //---(Số hóa đơn)---//
     final inv = (detail.invoiceNumber ?? '').trim();
-    if (inv.isNotEmpty) _invoiceCtrl.text = inv;
+    if (inv.isNotEmpty) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        _invoiceCtrl.text = inv;
+      });
+    }
 
     //---(2 ô tiền)---//
     final totalStr = _formatThousands(detail.totalAmount);
-    if (totalStr.isNotEmpty) _totalAmountCtrl.text = totalStr;
-    final withInvStr =
-        _formatThousands(detail.totalAmountWithInvoice);
-    if (withInvStr.isNotEmpty) _totalWithInvoiceCtrl.text = withInvStr;
+    if (totalStr.isNotEmpty) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        _totalAmountCtrl.text = totalStr;
+      });
+    }
+    final withInvStr = _formatThousands(detail.totalAmountWithInvoice);
+    if (withInvStr.isNotEmpty) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        _totalWithInvoiceCtrl.text = withInvStr;
+      });
+    }
 
     //---(Lý do quyết toán)---//
     final reason = (detail.reason ?? '').trim();
-    if (reason.isNotEmpty) _reasonCtrl.text = reason;
+    if (reason.isNotEmpty) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        _reasonCtrl.text = reason;
+      });
+    }
 
     //---(Ghi chú)---//
     final note = (detail.note ?? '').trim();
-    if (note.isNotEmpty) _noteCtrl.text = note;
+    if (note.isNotEmpty) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        _noteCtrl.text = note;
+      });
+    }
 
     //---(Tên khách sạn)---//
     final hotel = (detail.hotelName ?? '').trim();
-    if (hotel.isNotEmpty) _hotelCtrl.text = hotel;
+    if (hotel.isNotEmpty) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        _hotelCtrl.text = hotel;
+      });
+    }
 
     //---(MST khách sạn)---//
     final hotelMst = (detail.hotelTaxCode ?? '').trim();
-    if (hotelMst.isNotEmpty) _hotelMstCtrl.text = hotelMst;
+    if (hotelMst.isNotEmpty) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        _hotelMstCtrl.text = hotelMst;
+      });
+    }
   }
 
   @override
@@ -713,6 +892,10 @@ class _BookingGuestHouseSettlementScreenState
               curr.paymentDetailMessage != null) ||
           //---(Success → show toast + clear + pop)---//
           (!prev.settlementSuccess && curr.settlementSuccess) ||
+          //---(Remove file success / fail)---//
+          (!prev.removeFileSuccess && curr.removeFileSuccess) ||
+          (prev.removeFileMessage != curr.removeFileMessage &&
+              curr.removeFileMessage != null) ||
           //---(Submit fail)---//
           (prev.isSubmittingSettlement &&
               !curr.isSubmittingSettlement &&
@@ -725,7 +908,10 @@ class _BookingGuestHouseSettlementScreenState
         // Fill lý do mặc định ngay khi detail vừa load xong (chỉ fill khi
         // controller rỗng — tránh đè value user đang gõ).
         if (state.detailData != null && _reasonCtrl.text.isEmpty) {
-          _reasonCtrl.text = _defaultReasonText(state.detailData!.info);
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (!mounted) return;
+            _reasonCtrl.text = _defaultReasonText(state.detailData!.info);
+          });
         }
 
         //---(Pre-fill form từ `state.paymentDetail` (API
@@ -790,6 +976,28 @@ class _BookingGuestHouseSettlementScreenState
             type: SnackBarType.error,
           );
         }
+
+        //---(Remove file success)---//
+        if (state.removeFileSuccess) {
+          context.showMessage(
+            'Đã xoá file đính kèm',
+            type: SnackBarType.success,
+          );
+          context
+              .read<BookingGuestHouseBloc>()
+              .add(const BookingGuestHouseEvent.clearRemoveFileState());
+        }
+
+        //---(Remove file fail)---//
+        if (state.removeFileMessage != null &&
+            state.removeFileMessage!.isNotEmpty &&
+            !state.removeFileSuccess &&
+            !state.isRemovingFile) {
+          context.showMessage(
+            state.removeFileMessage!,
+            type: SnackBarType.error,
+          );
+        }
       },
       //---(Build UI từ state)---//
       buildWhen: (prev, curr) =>
@@ -831,22 +1039,48 @@ class _BookingGuestHouseSettlementScreenState
     );
   }
 
-  /// Đếm số file đính kèm cũ theo loại trong `paymentDetail.files`.
-  /// Trả `0` nếu `paymentDetail` null hoặc `Files` rỗng.
-  /// Match không phân biệt hoa thường để chịu được "INVOICE" / "Invoice" /
-  /// "invoice".
-  int _countFilesOfType(String type) {
-    final files = stateOrPaymentDetailFiles();
-    if (files == null || files.isEmpty) return 0;
+  /// Lấy danh sách file đính kèm cũ theo loại trong
+  /// `paymentDetail.files`. Dùng cho cả đếm (`oldCount`) lẫn hiển thị
+  /// danh sách "đã upload" với nút xem.
+  List<BookingGuestHouseFileItem> _existingFilesOfType(String type) {
+    final files = _paymentDetailFiles();
+    if (files == null || files.isEmpty) return const [];
     final t = type.toLowerCase();
-    return files.where((f) => (f.fileType ?? '').toLowerCase() == t).length;
+    return files
+        .where((f) => (f.fileType ?? '').toLowerCase() == t)
+        .toList(growable: false);
   }
 
   /// Lấy danh sách file đính kèm từ `state.paymentDetail` (current
   /// snapshot trong builder). Trả null nếu chưa load.
-  List<BookingGuestHouseFileItem>? stateOrPaymentDetailFiles() {
-    final pd = context.read<BookingGuestHouseBloc>().state.paymentDetail;
-    return pd?.files;
+  List<BookingGuestHouseFileItem>? _paymentDetailFiles() {
+    return context.read<BookingGuestHouseBloc>().state.paymentDetail?.files;
+  }
+
+  /// Build URL tuyệt đối từ `rawPath` trong `BookingGuestHouseFileItem`.
+  /// - Nếu đã là `http(s)://` → trả nguyên.
+  /// - Nếu là relative path → nối với `AppConfig.baseUrl`.
+  /// - Nếu rỗng / null → trả null.
+  ///
+  /// Hỗ trợ cả 2 dạng path mà BE có thể trả về:
+  /// - `Url` (URL đầy đủ) — ưu tiên 1.
+  /// - `FilePath` (relative path lưu trên server).
+  String? _resolveRemoteFileUrl(BookingGuestHouseFileItem f) {
+    final raw = (f.url?.trim().isNotEmpty == true)
+        ? f.url!.trim()
+        : (f.filePath?.trim() ?? '');
+    if (raw.isEmpty) return null;
+    if (raw.startsWith('http://') || raw.startsWith('https://')) return raw;
+
+    var base = AppConfig.baseUrl.trim();
+    if (base.endsWith('/')) {
+      base = base.substring(0, base.length - 1);
+    }
+    final normalized = raw.replaceAll('\\', '/');
+    if (normalized.startsWith('/')) {
+      return '$base$normalized';
+    }
+    return '$base/$normalized';
   }
 
   Widget _buildBody({
@@ -927,11 +1161,16 @@ class _BookingGuestHouseSettlementScreenState
                           state.projects.isNotEmpty) {
                         for (final p in state.projects) {
                           if (p.id == detail.info.projectId) {
-                            _projectSelected = p;
-                            _projectCtrl.text = (p.projectCode ?? '')
-                                    .isNotEmpty
-                                ? '${p.projectCode} - ${p.projectName ?? ''}'
-                                : (p.projectName ?? '');
+                            // Defer gán controller ra sau build phase để
+                            // tránh `setState during build`.
+                            WidgetsBinding.instance.addPostFrameCallback((_) {
+                              if (!mounted) return;
+                              _projectSelected = p;
+                              _projectCtrl.text = (p.projectCode ?? '')
+                                      .isNotEmpty
+                                  ? '${p.projectCode} - ${p.projectName ?? ''}'
+                                  : (p.projectName ?? '');
+                            });
                             break;
                           }
                         }
@@ -1269,25 +1508,49 @@ class _BookingGuestHouseSettlementScreenState
           // File hoá đơn + File bill CK.
           FormCard(
             title: 'Tài liệu đính kèm',
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _FilePickerTile(
-                  icon: Icons.description_outlined,
-                  label: 'File hoá đơn',
-                  files: _invoiceFiles,
-                  onPick: _pickInvoiceFiles,
-                  oldCount: _countFilesOfType('INVOICE'),
-                ),
-                const SizedBox(height: 12),
-                _FilePickerTile(
-                  icon: Icons.receipt_outlined,
-                  label: 'File bill CK',
-                  files: _billCkFiles,
-                  onPick: _pickBillCkFiles,
-                  oldCount: _countFilesOfType('BILL_CK'),
-                ),
-              ],
+            child: BlocBuilder<BookingGuestHouseBloc, BookingGuestHouseState>(
+              buildWhen: (prev, curr) =>
+                  prev.isRemovingFile != curr.isRemovingFile ||
+                  prev.removingFileId != curr.removingFileId ||
+                  prev.paymentDetail != curr.paymentDetail,
+              builder: (context, state) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _FilePickerTile(
+                      icon: Icons.description_outlined,
+                      label: 'File hoá đơn',
+                      files: _invoiceFiles,
+                      onPick: _pickInvoiceFiles,
+                      existingFiles: _existingFilesOfType('INVOICE'),
+                      onViewNew: _viewNewInvoiceFile,
+                      onRemoveNew: _removeInvoiceAt,
+                      onViewExisting: _viewExistingFile,
+                      canDeleteExistingFile: _canDeleteExistingFile,
+                      onRemoveExisting: _onRemoveExistingFile,
+                      isRemovingId: state.isRemovingFile
+                          ? state.removingFileId
+                          : null,
+                    ),
+                    const SizedBox(height: 12),
+                    _FilePickerTile(
+                      icon: Icons.receipt_outlined,
+                      label: 'File bill chuyển khoản',
+                      files: _billCkFiles,
+                      onPick: _pickBillCkFiles,
+                      existingFiles: _existingFilesOfType('BILL_CK'),
+                      onViewNew: _viewNewBillCkFile,
+                      onRemoveNew: _removeBillCkAt,
+                      onViewExisting: _viewExistingFile,
+                      canDeleteExistingFile: _canDeleteExistingFile,
+                      onRemoveExisting: _onRemoveExistingFile,
+                      isRemovingId: state.isRemovingFile
+                          ? state.removingFileId
+                          : null,
+                    ),
+                  ],
+                );
+              },
             ),
           ),
         ],
@@ -1463,6 +1726,189 @@ class _FileSourceBottomSheet extends StatelessWidget {
   }
 }
 
+//---(File preview dialog)---//
+
+/// Nguồn preview file:
+/// - [localPath]: file mới user vừa chọn (chưa upload) — mở bằng
+///   `Image.file` nếu là ảnh, hoặc `WebView` nếu là PDF.
+/// - [remoteUrl]: file đã upload (lưu trên server) — luôn dùng
+///   `WebView` (ảnh load thẳng trong WebView, PDF dùng Google Docs
+///   viewer hoặc native PDF viewer của WebView).
+class _FilePreviewSource {
+  const _FilePreviewSource.local(this.localPath) : remoteUrl = null;
+  const _FilePreviewSource.remote(this.remoteUrl) : localPath = null;
+
+  final String? localPath;
+  final String? remoteUrl;
+
+  bool get isLocal => localPath != null;
+  bool get isRemote => remoteUrl != null;
+}
+
+/// Dialog xem trước file: ảnh dùng `Image.file` (chất lượng gốc,
+/// zoom/pan native), PDF/file dùng `WebView` (load URL).
+class _FilePreviewDialog extends StatefulWidget {
+  const _FilePreviewDialog({
+    required this.title,
+    required this.source,
+  });
+
+  final String title;
+  final _FilePreviewSource source;
+
+  @override
+  State<_FilePreviewDialog> createState() => _FilePreviewDialogState();
+}
+
+class _FilePreviewDialogState extends State<_FilePreviewDialog> {
+  late final WebViewController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setBackgroundColor(Colors.black);
+    if (widget.source.isRemote) {
+      _controller.loadRequest(Uri.parse(widget.source.remoteUrl!));
+    }
+  }
+
+  /// Đoán định dạng theo extension — ảnh thì trả true để dùng
+  /// `Image.file`, ngược lại dùng `WebView` (PDF / unknown).
+  bool _isImagePath(String path) {
+    final p = path.toLowerCase();
+    return p.endsWith('.png') ||
+        p.endsWith('.jpg') ||
+        p.endsWith('.jpeg') ||
+        p.endsWith('.webp') ||
+        p.endsWith('.heic') ||
+        p.endsWith('.bmp') ||
+        p.endsWith('.gif');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final src = widget.source;
+    Widget body;
+    if (src.isLocal) {
+      final path = src.localPath!;
+      if (_isImagePath(path)) {
+        body = InteractiveViewer(
+          minScale: 1,
+          maxScale: 5,
+          child: Center(
+            child: Image.file(
+              File(path),
+              fit: BoxFit.contain,
+              errorBuilder: (_, _, _) => const _PreviewError(
+                message: 'Không đọc được ảnh',
+              ),
+            ),
+          ),
+        );
+      } else {
+        // PDF / file khác — WebView hỗ trợ mở local file qua
+        // `file://` URL.
+        _controller.loadRequest(Uri.parse('file://$path'));
+        body = const WebViewWidgetPlaceholder();
+      }
+    } else {
+      body = WebViewWidget(controller: _controller);
+    }
+
+    return Dialog.fullscreen(
+      backgroundColor: Colors.black,
+      child: Stack(
+        children: [
+          Positioned.fill(child: ColoredBox(color: Colors.black, child: body)),
+          SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 14,
+                        vertical: 10,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.black54,
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: Text(
+                        widget.title,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  InkWell(
+                    onTap: () => Navigator.of(context).pop(),
+                    borderRadius: BorderRadius.circular(999),
+                    child: Container(
+                      width: 42,
+                      height: 42,
+                      decoration: const BoxDecoration(
+                        color: Colors.black54,
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Icon(Icons.close, color: Colors.white),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Placeholder khi WebView chưa sẵn sàng (initState load sau frame
+/// đầu) — tránh crash nếu build sớm.
+class WebViewWidgetPlaceholder extends StatelessWidget {
+  const WebViewWidgetPlaceholder({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: CircularProgressIndicator(color: Colors.white),
+    );
+  }
+}
+
+class _PreviewError extends StatelessWidget {
+  const _PreviewError({required this.message});
+
+  final String message;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const Icon(Icons.error_outline, color: Colors.white, size: 48),
+          const SizedBox(height: 8),
+          Text(
+            message,
+            style: const TextStyle(color: Colors.white, fontSize: 14),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 //---(File picker tile)---//
 
 class _FilePickerTile extends StatelessWidget {
@@ -1471,7 +1917,13 @@ class _FilePickerTile extends StatelessWidget {
     required this.label,
     required this.files,
     required this.onPick,
-    this.oldCount = 0,
+    this.existingFiles = const <BookingGuestHouseFileItem>[],
+    this.onViewNew,
+    this.onRemoveNew,
+    this.onViewExisting,
+    this.canDeleteExistingFile,
+    this.onRemoveExisting,
+    this.isRemovingId,
   });
 
   final IconData icon;
@@ -1479,24 +1931,38 @@ class _FilePickerTile extends StatelessWidget {
   final List<PlatformFile> files;
   final VoidCallback onPick;
 
-  /// Số file đã có từ lần lưu TTQT trước
-  /// (`PaymentInvoiceFileCount` / `PaymentBillCKFileCount`).
-  /// > 0 → hiển thị "(đã có N file)" ở summary cho user biết.
-  final int oldCount;
+  /// Danh sách file đính kèm cũ đã upload từ lần lưu TTQT trước
+  /// (filter theo `FileType` ở caller). Hiển thị riêng ở section
+  /// "Đã upload" với nút xem.
+  final List<BookingGuestHouseFileItem> existingFiles;
+
+  /// Xem file mới tại index — mở `_FilePreviewDialog` (local path).
+  final void Function(int index)? onViewNew;
+
+  /// Xoá file mới tại index — gọi từ UI trước khi lưu.
+  final void Function(int index)? onRemoveNew;
+
+  /// Xem file đã upload (URL remote).
+  final void Function(BookingGuestHouseFileItem item)? onViewExisting;
+
+  /// Quyết định file cũ nào được phép xoá (vd chỉ file do
+  /// `currentUser` tạo). Nếu `true` → hiện nút xoá; nếu `false`
+  /// hoặc `null` → chỉ hiện nút xem. Gắn với [onRemoveExisting].
+  final bool Function(BookingGuestHouseFileItem item)? canDeleteExistingFile;
+
+  /// Xoá file đã upload — caller quyết định rule (vd chỉ file của
+  /// `currentUser`). Handler gọi API xoá rồi cập nhật lại danh sách
+  /// trong `state.paymentDetail.files`.
+  final void Function(BookingGuestHouseFileItem item)? onRemoveExisting;
+
+  /// ID file đang được xoá (đang chờ API) — nếu trùng với `f.id`
+  /// trong list, hiển thị spinner thay icon xoá.
+  final int? isRemovingId;
 
   @override
   Widget build(BuildContext context) {
     final hasNewFiles = files.isNotEmpty;
-    final newCount = files.length;
-    final summary = <String>[];
-    if (hasNewFiles) {
-      summary.add('$newCount file mới');
-    } else {
-      summary.add('Chưa có file mới');
-    }
-    if (oldCount > 0) {
-      summary.add('đã có $oldCount file');
-    }
+    final hasExistingFiles = existingFiles.isNotEmpty;
 
     return InkWell(
       onTap: onPick,
@@ -1508,58 +1974,247 @@ class _FilePickerTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           border: Border.all(color: const Color(0xFFE5EAF3)),
         ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              children: [
+                Container(
+                  width: 44,
+                  height: 44,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryERP.withValues(alpha: 0.12),
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                  child: Icon(icon, color: AppColors.primaryERP),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        label,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.heading,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        _buildSummary(),
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: AppColors.gray,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 8,
+                  ),
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryERP.withValues(alpha: 0.10),
+                    borderRadius: BorderRadius.circular(999),
+                  ),
+                  child: const Icon(
+                    Icons.upload_file_outlined,
+                    size: 16,
+                    color: AppColors.primaryERP,
+                  ),
+                ),
+              ],
+            ),
+            if (hasNewFiles) ...[
+              const SizedBox(height: 12),
+              _SectionLabel(
+                text: 'File mới (${files.length})',
+                color: AppColors.primaryERP,
+              ),
+              const SizedBox(height: 6),
+              ...List.generate(files.length, (i) {
+                final f = files[i];
+                return _FileChip(
+                  name: f.name,
+                  sizeBytes: f.size,
+                  onView: onViewNew == null ? null : () => onViewNew!(i),
+                  onRemove: onRemoveNew == null
+                      ? null
+                      : () => onRemoveNew!(i),
+                );
+              }),
+            ],
+            if (hasExistingFiles) ...[
+              const SizedBox(height: 6),
+              ...existingFiles.map((f) {
+                final canDelete = canDeleteExistingFile?.call(f) ?? false;
+                final removing = isRemovingId != null && f.id == isRemovingId;
+                return _FileChip(
+                  name: f.fileName ?? 'File không tên',
+                  sizeBytes: f.fileSize,
+                  onView: onViewExisting == null
+                      ? null
+                      : () => onViewExisting!(f),
+                  onRemove: (canDelete && onRemoveExisting != null)
+                      ? () => onRemoveExisting!(f)
+                      : null,
+                  isRemoving: removing,
+                );
+              }),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+
+  String _buildSummary() {
+    final parts = <String>[];
+    if (files.isNotEmpty) {
+      parts.add('${files.length} file mới');
+    } else {
+      parts.add('Chưa có file mới');
+    }
+    if (existingFiles.isNotEmpty) {
+      parts.add('đã có ${existingFiles.length} file');
+    }
+    return parts.join(' • ');
+  }
+}
+
+/// Label nhỏ phân section trong `_FilePickerTile`.
+class _SectionLabel extends StatelessWidget {
+  const _SectionLabel({required this.text, required this.color});
+
+  final String text;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: TextStyle(
+        fontSize: 12,
+        fontWeight: FontWeight.w600,
+        color: color,
+      ),
+    );
+  }
+}
+
+/// 1 dòng hiển thị file trong `_FilePickerTile` — có tên + size +
+/// nút xem / xoá. Tự disable nút tương ứng nếu callback null hoặc
+/// đang loading.
+class _FileChip extends StatelessWidget {
+  const _FileChip({
+    required this.name,
+    required this.onView,
+    required this.onRemove,
+    this.sizeBytes,
+    this.isRemoving = false,
+  });
+
+  final String name;
+  final int? sizeBytes;
+  final VoidCallback? onView;
+  final VoidCallback? onRemove;
+
+  /// `true` khi file đang trong quá trình xoá (API call) — disable
+  /// nút xoá, hiển thị spinner nhỏ thay icon thùng rác.
+  final bool isRemoving;
+
+  String _formatSize(int? bytes) {
+    if (bytes == null || bytes <= 0) return '';
+    if (bytes < 1024) return '$bytes B';
+    if (bytes < 1024 * 1024) {
+      return '${(bytes / 1024).toStringAsFixed(1)} KB';
+    }
+    return '${(bytes / 1024 / 1024).toStringAsFixed(1)} MB';
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 6),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: const Color(0xFFE5EAF3)),
+        ),
         child: Row(
           children: [
-            Container(
-              width: 44,
-              height: 44,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: AppColors.primaryERP.withValues(alpha: 0.12),
-                borderRadius: BorderRadius.circular(14),
-              ),
-              child: Icon(icon, color: AppColors.primaryERP),
+            const Icon(
+              Icons.insert_drive_file_outlined,
+              size: 18,
+              color: AppColors.gray,
             ),
-            const SizedBox(width: 12),
+            const SizedBox(width: 8),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    label,
+                    name,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w500,
                       color: AppColors.heading,
                     ),
                   ),
-                  const SizedBox(height: 4),
-                  Text(
-                    summary.join(' • '),
-                    style: const TextStyle(
-                      fontSize: 12,
-                      color: AppColors.gray,
+                  if (sizeBytes != null && sizeBytes! > 0)
+                    Text(
+                      _formatSize(sizeBytes),
+                      style: const TextStyle(
+                        fontSize: 11,
+                        color: AppColors.gray,
+                      ),
                     ),
-                  ),
                 ],
               ),
             ),
-            Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 12,
-                vertical: 8,
-              ),
-              decoration: BoxDecoration(
-                color: AppColors.primaryERP.withValues(alpha: 0.10),
-                borderRadius: BorderRadius.circular(999),
-              ),
-              child: const Icon(
-                Icons.upload_file_outlined,
-                size: 16,
+            if (onView != null)
+              IconButton(
+                onPressed: onView,
+                icon: const Icon(Icons.visibility_outlined, size: 20),
                 color: AppColors.primaryERP,
+                tooltip: 'Xem file',
+                visualDensity: VisualDensity.compact,
               ),
-            ),
+            if (onRemove != null)
+              SizedBox(
+                width: 40,
+                height: 40,
+                child: isRemoving
+                    ? const Center(
+                        child: SizedBox(
+                          width: 18,
+                          height: 18,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            color: Colors.red,
+                          ),
+                        ),
+                      )
+                    : IconButton(
+                        onPressed: onRemove,
+                        icon: const Icon(Icons.delete_outline, size: 20),
+                        color: Colors.red.shade600,
+                        tooltip: 'Xoá file',
+                        visualDensity: VisualDensity.compact,
+                      ),
+              ),
           ],
         ),
       ),

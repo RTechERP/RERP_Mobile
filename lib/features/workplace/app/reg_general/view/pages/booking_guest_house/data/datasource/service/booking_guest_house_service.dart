@@ -285,6 +285,49 @@ class BookingGuestHouseService extends DioBaseApiService {
     return res;
   }
 
+  /// Xoá 1 file đính kèm của 1 detail TTQT.
+  /// API: POST `/AccommodationBookingPaymentOrder/remove-file`
+  /// Body: int (ID của `BookingGuestHouseFileItem`).
+  /// Quyền: chỉ `currentUser` (so khớp `CreatedBy`) mới được xoá —
+  /// UI enforce bằng cách ẩn nút 🗑️, BE cũng validate ở server.
+  /// Response: `BaseData` chuẩn (data có thể null / {} tuỳ BE).
+  Future<BaseData<void>> removeBookingGuestHouseFile({
+    required int fileId,
+  }) async {
+    return post<BaseData<void>>(
+      ApiEndPoint.removeBookingGuestHouseFile,
+      body: fileId,
+      parser: (json) => _parseRemoveFileResponse(json),
+    );
+  }
+
+  /// Parser defensive cho response `remove-file` — chấp nhận nhiều
+  /// dạng JSON server có thể trả:
+  /// 1. Envelope chuẩn `BaseData<void>`.
+  /// 2. Raw primitive / string bọc JSON / null.
+  /// 3. Object rỗng `{}` (BE có thể trả data rỗng).
+  BaseData<void> _parseRemoveFileResponse(dynamic json) {
+    if (json == null) {
+      return BaseData<void>(status: 1);
+    }
+    if (json is String) {
+      final raw = json.trim();
+      if (raw.isEmpty) return BaseData<void>(status: 1);
+      try {
+        return _parseRemoveFileResponse(jsonDecode(raw));
+      } catch (_) {
+        return BaseData<void>(status: 1);
+      }
+    }
+    if (json is num || json is bool) {
+      return BaseData<void>(status: 1);
+    }
+    if (json is Map<String, dynamic>) {
+      return BaseData<void>.fromJson(json, (_) {});
+    }
+    return BaseData<void>(status: 1);
+  }
+
   /// Parser defensive cho response upload-file — chấp nhận nhiều dạng
   /// JSON server có thể trả:
   /// 1. Envelope `BaseData<BookingGuestHouseFileItem>` chuẩn.

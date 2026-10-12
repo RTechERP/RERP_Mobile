@@ -71,6 +71,9 @@ mixin _$BookingGuestHouseEvent {
             List<PlatformFile> billCkFiles)
         submitSettlementForm,
     required TResult Function() clearSettlementSubmitState,
+    required TResult Function(int fileId, int accommodationBookingId)
+        removeFile,
+    required TResult Function() clearRemoveFileState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -126,6 +129,8 @@ mixin _$BookingGuestHouseEvent {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult? Function()? clearSettlementSubmitState,
+    TResult? Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult? Function()? clearRemoveFileState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -181,6 +186,8 @@ mixin _$BookingGuestHouseEvent {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult Function()? clearSettlementSubmitState,
+    TResult Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult Function()? clearRemoveFileState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -205,6 +212,8 @@ mixin _$BookingGuestHouseEvent {
     required TResult Function(_SubmitSettlementForm value) submitSettlementForm,
     required TResult Function(_ClearSettlementSubmitState value)
         clearSettlementSubmitState,
+    required TResult Function(_RemoveFile value) removeFile,
+    required TResult Function(_ClearRemoveFileState value) clearRemoveFileState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -227,6 +236,8 @@ mixin _$BookingGuestHouseEvent {
     TResult? Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult? Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult? Function(_RemoveFile value)? removeFile,
+    TResult? Function(_ClearRemoveFileState value)? clearRemoveFileState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -249,6 +260,8 @@ mixin _$BookingGuestHouseEvent {
     TResult Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult Function(_RemoveFile value)? removeFile,
+    TResult Function(_ClearRemoveFileState value)? clearRemoveFileState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -398,6 +411,9 @@ class _$InitImpl implements _Init {
             List<PlatformFile> billCkFiles)
         submitSettlementForm,
     required TResult Function() clearSettlementSubmitState,
+    required TResult Function(int fileId, int accommodationBookingId)
+        removeFile,
+    required TResult Function() clearRemoveFileState,
   }) {
     return init(dateStart, dateEnd);
   }
@@ -456,6 +472,8 @@ class _$InitImpl implements _Init {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult? Function()? clearSettlementSubmitState,
+    TResult? Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult? Function()? clearRemoveFileState,
   }) {
     return init?.call(dateStart, dateEnd);
   }
@@ -514,6 +532,8 @@ class _$InitImpl implements _Init {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult Function()? clearSettlementSubmitState,
+    TResult Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult Function()? clearRemoveFileState,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -544,6 +564,8 @@ class _$InitImpl implements _Init {
     required TResult Function(_SubmitSettlementForm value) submitSettlementForm,
     required TResult Function(_ClearSettlementSubmitState value)
         clearSettlementSubmitState,
+    required TResult Function(_RemoveFile value) removeFile,
+    required TResult Function(_ClearRemoveFileState value) clearRemoveFileState,
   }) {
     return init(this);
   }
@@ -569,6 +591,8 @@ class _$InitImpl implements _Init {
     TResult? Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult? Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult? Function(_RemoveFile value)? removeFile,
+    TResult? Function(_ClearRemoveFileState value)? clearRemoveFileState,
   }) {
     return init?.call(this);
   }
@@ -594,6 +618,8 @@ class _$InitImpl implements _Init {
     TResult Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult Function(_RemoveFile value)? removeFile,
+    TResult Function(_ClearRemoveFileState value)? clearRemoveFileState,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -741,6 +767,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             List<PlatformFile> billCkFiles)
         submitSettlementForm,
     required TResult Function() clearSettlementSubmitState,
+    required TResult Function(int fileId, int accommodationBookingId)
+        removeFile,
+    required TResult Function() clearRemoveFileState,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -799,6 +828,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult? Function()? clearSettlementSubmitState,
+    TResult? Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult? Function()? clearRemoveFileState,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -857,6 +888,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult Function()? clearSettlementSubmitState,
+    TResult Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult Function()? clearRemoveFileState,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -887,6 +920,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_SubmitSettlementForm value) submitSettlementForm,
     required TResult Function(_ClearSettlementSubmitState value)
         clearSettlementSubmitState,
+    required TResult Function(_RemoveFile value) removeFile,
+    required TResult Function(_ClearRemoveFileState value) clearRemoveFileState,
   }) {
     return changeDateRange(this);
   }
@@ -912,6 +947,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult? Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult? Function(_RemoveFile value)? removeFile,
+    TResult? Function(_ClearRemoveFileState value)? clearRemoveFileState,
   }) {
     return changeDateRange?.call(this);
   }
@@ -937,6 +974,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult Function(_RemoveFile value)? removeFile,
+    TResult Function(_ClearRemoveFileState value)? clearRemoveFileState,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -1077,6 +1116,9 @@ class _$ChangeFilterTextImpl implements _ChangeFilterText {
             List<PlatformFile> billCkFiles)
         submitSettlementForm,
     required TResult Function() clearSettlementSubmitState,
+    required TResult Function(int fileId, int accommodationBookingId)
+        removeFile,
+    required TResult Function() clearRemoveFileState,
   }) {
     return changeFilterText(filterText);
   }
@@ -1135,6 +1177,8 @@ class _$ChangeFilterTextImpl implements _ChangeFilterText {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult? Function()? clearSettlementSubmitState,
+    TResult? Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult? Function()? clearRemoveFileState,
   }) {
     return changeFilterText?.call(filterText);
   }
@@ -1193,6 +1237,8 @@ class _$ChangeFilterTextImpl implements _ChangeFilterText {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult Function()? clearSettlementSubmitState,
+    TResult Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult Function()? clearRemoveFileState,
     required TResult orElse(),
   }) {
     if (changeFilterText != null) {
@@ -1223,6 +1269,8 @@ class _$ChangeFilterTextImpl implements _ChangeFilterText {
     required TResult Function(_SubmitSettlementForm value) submitSettlementForm,
     required TResult Function(_ClearSettlementSubmitState value)
         clearSettlementSubmitState,
+    required TResult Function(_RemoveFile value) removeFile,
+    required TResult Function(_ClearRemoveFileState value) clearRemoveFileState,
   }) {
     return changeFilterText(this);
   }
@@ -1248,6 +1296,8 @@ class _$ChangeFilterTextImpl implements _ChangeFilterText {
     TResult? Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult? Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult? Function(_RemoveFile value)? removeFile,
+    TResult? Function(_ClearRemoveFileState value)? clearRemoveFileState,
   }) {
     return changeFilterText?.call(this);
   }
@@ -1273,6 +1323,8 @@ class _$ChangeFilterTextImpl implements _ChangeFilterText {
     TResult Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult Function(_RemoveFile value)? removeFile,
+    TResult Function(_ClearRemoveFileState value)? clearRemoveFileState,
     required TResult orElse(),
   }) {
     if (changeFilterText != null) {
@@ -1383,6 +1435,9 @@ class _$RefreshImpl implements _Refresh {
             List<PlatformFile> billCkFiles)
         submitSettlementForm,
     required TResult Function() clearSettlementSubmitState,
+    required TResult Function(int fileId, int accommodationBookingId)
+        removeFile,
+    required TResult Function() clearRemoveFileState,
   }) {
     return refresh();
   }
@@ -1441,6 +1496,8 @@ class _$RefreshImpl implements _Refresh {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult? Function()? clearSettlementSubmitState,
+    TResult? Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult? Function()? clearRemoveFileState,
   }) {
     return refresh?.call();
   }
@@ -1499,6 +1556,8 @@ class _$RefreshImpl implements _Refresh {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult Function()? clearSettlementSubmitState,
+    TResult Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult Function()? clearRemoveFileState,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -1529,6 +1588,8 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_SubmitSettlementForm value) submitSettlementForm,
     required TResult Function(_ClearSettlementSubmitState value)
         clearSettlementSubmitState,
+    required TResult Function(_RemoveFile value) removeFile,
+    required TResult Function(_ClearRemoveFileState value) clearRemoveFileState,
   }) {
     return refresh(this);
   }
@@ -1554,6 +1615,8 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult? Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult? Function(_RemoveFile value)? removeFile,
+    TResult? Function(_ClearRemoveFileState value)? clearRemoveFileState,
   }) {
     return refresh?.call(this);
   }
@@ -1579,6 +1642,8 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult Function(_RemoveFile value)? removeFile,
+    TResult Function(_ClearRemoveFileState value)? clearRemoveFileState,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -1683,6 +1748,9 @@ class _$LoadFiltersImpl implements _LoadFilters {
             List<PlatformFile> billCkFiles)
         submitSettlementForm,
     required TResult Function() clearSettlementSubmitState,
+    required TResult Function(int fileId, int accommodationBookingId)
+        removeFile,
+    required TResult Function() clearRemoveFileState,
   }) {
     return loadFilters();
   }
@@ -1741,6 +1809,8 @@ class _$LoadFiltersImpl implements _LoadFilters {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult? Function()? clearSettlementSubmitState,
+    TResult? Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult? Function()? clearRemoveFileState,
   }) {
     return loadFilters?.call();
   }
@@ -1799,6 +1869,8 @@ class _$LoadFiltersImpl implements _LoadFilters {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult Function()? clearSettlementSubmitState,
+    TResult Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult Function()? clearRemoveFileState,
     required TResult orElse(),
   }) {
     if (loadFilters != null) {
@@ -1829,6 +1901,8 @@ class _$LoadFiltersImpl implements _LoadFilters {
     required TResult Function(_SubmitSettlementForm value) submitSettlementForm,
     required TResult Function(_ClearSettlementSubmitState value)
         clearSettlementSubmitState,
+    required TResult Function(_RemoveFile value) removeFile,
+    required TResult Function(_ClearRemoveFileState value) clearRemoveFileState,
   }) {
     return loadFilters(this);
   }
@@ -1854,6 +1928,8 @@ class _$LoadFiltersImpl implements _LoadFilters {
     TResult? Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult? Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult? Function(_RemoveFile value)? removeFile,
+    TResult? Function(_ClearRemoveFileState value)? clearRemoveFileState,
   }) {
     return loadFilters?.call(this);
   }
@@ -1879,6 +1955,8 @@ class _$LoadFiltersImpl implements _LoadFilters {
     TResult Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult Function(_RemoveFile value)? removeFile,
+    TResult Function(_ClearRemoveFileState value)? clearRemoveFileState,
     required TResult orElse(),
   }) {
     if (loadFilters != null) {
@@ -2025,6 +2103,9 @@ class _$ChangeProjectFilterImpl implements _ChangeProjectFilter {
             List<PlatformFile> billCkFiles)
         submitSettlementForm,
     required TResult Function() clearSettlementSubmitState,
+    required TResult Function(int fileId, int accommodationBookingId)
+        removeFile,
+    required TResult Function() clearRemoveFileState,
   }) {
     return changeProjectFilter(project);
   }
@@ -2083,6 +2164,8 @@ class _$ChangeProjectFilterImpl implements _ChangeProjectFilter {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult? Function()? clearSettlementSubmitState,
+    TResult? Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult? Function()? clearRemoveFileState,
   }) {
     return changeProjectFilter?.call(project);
   }
@@ -2141,6 +2224,8 @@ class _$ChangeProjectFilterImpl implements _ChangeProjectFilter {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult Function()? clearSettlementSubmitState,
+    TResult Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult Function()? clearRemoveFileState,
     required TResult orElse(),
   }) {
     if (changeProjectFilter != null) {
@@ -2171,6 +2256,8 @@ class _$ChangeProjectFilterImpl implements _ChangeProjectFilter {
     required TResult Function(_SubmitSettlementForm value) submitSettlementForm,
     required TResult Function(_ClearSettlementSubmitState value)
         clearSettlementSubmitState,
+    required TResult Function(_RemoveFile value) removeFile,
+    required TResult Function(_ClearRemoveFileState value) clearRemoveFileState,
   }) {
     return changeProjectFilter(this);
   }
@@ -2196,6 +2283,8 @@ class _$ChangeProjectFilterImpl implements _ChangeProjectFilter {
     TResult? Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult? Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult? Function(_RemoveFile value)? removeFile,
+    TResult? Function(_ClearRemoveFileState value)? clearRemoveFileState,
   }) {
     return changeProjectFilter?.call(this);
   }
@@ -2221,6 +2310,8 @@ class _$ChangeProjectFilterImpl implements _ChangeProjectFilter {
     TResult Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult Function(_RemoveFile value)? removeFile,
+    TResult Function(_ClearRemoveFileState value)? clearRemoveFileState,
     required TResult orElse(),
   }) {
     if (changeProjectFilter != null) {
@@ -2375,6 +2466,9 @@ class _$ChangeEmployeeFilterImpl implements _ChangeEmployeeFilter {
             List<PlatformFile> billCkFiles)
         submitSettlementForm,
     required TResult Function() clearSettlementSubmitState,
+    required TResult Function(int fileId, int accommodationBookingId)
+        removeFile,
+    required TResult Function() clearRemoveFileState,
   }) {
     return changeEmployeeFilter(employee);
   }
@@ -2433,6 +2527,8 @@ class _$ChangeEmployeeFilterImpl implements _ChangeEmployeeFilter {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult? Function()? clearSettlementSubmitState,
+    TResult? Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult? Function()? clearRemoveFileState,
   }) {
     return changeEmployeeFilter?.call(employee);
   }
@@ -2491,6 +2587,8 @@ class _$ChangeEmployeeFilterImpl implements _ChangeEmployeeFilter {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult Function()? clearSettlementSubmitState,
+    TResult Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult Function()? clearRemoveFileState,
     required TResult orElse(),
   }) {
     if (changeEmployeeFilter != null) {
@@ -2521,6 +2619,8 @@ class _$ChangeEmployeeFilterImpl implements _ChangeEmployeeFilter {
     required TResult Function(_SubmitSettlementForm value) submitSettlementForm,
     required TResult Function(_ClearSettlementSubmitState value)
         clearSettlementSubmitState,
+    required TResult Function(_RemoveFile value) removeFile,
+    required TResult Function(_ClearRemoveFileState value) clearRemoveFileState,
   }) {
     return changeEmployeeFilter(this);
   }
@@ -2546,6 +2646,8 @@ class _$ChangeEmployeeFilterImpl implements _ChangeEmployeeFilter {
     TResult? Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult? Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult? Function(_RemoveFile value)? removeFile,
+    TResult? Function(_ClearRemoveFileState value)? clearRemoveFileState,
   }) {
     return changeEmployeeFilter?.call(this);
   }
@@ -2571,6 +2673,8 @@ class _$ChangeEmployeeFilterImpl implements _ChangeEmployeeFilter {
     TResult Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult Function(_RemoveFile value)? removeFile,
+    TResult Function(_ClearRemoveFileState value)? clearRemoveFileState,
     required TResult orElse(),
   }) {
     if (changeEmployeeFilter != null) {
@@ -2715,6 +2819,9 @@ class _$SubmitImpl implements _Submit {
             List<PlatformFile> billCkFiles)
         submitSettlementForm,
     required TResult Function() clearSettlementSubmitState,
+    required TResult Function(int fileId, int accommodationBookingId)
+        removeFile,
+    required TResult Function() clearRemoveFileState,
   }) {
     return submit(payload);
   }
@@ -2773,6 +2880,8 @@ class _$SubmitImpl implements _Submit {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult? Function()? clearSettlementSubmitState,
+    TResult? Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult? Function()? clearRemoveFileState,
   }) {
     return submit?.call(payload);
   }
@@ -2831,6 +2940,8 @@ class _$SubmitImpl implements _Submit {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult Function()? clearSettlementSubmitState,
+    TResult Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult Function()? clearRemoveFileState,
     required TResult orElse(),
   }) {
     if (submit != null) {
@@ -2861,6 +2972,8 @@ class _$SubmitImpl implements _Submit {
     required TResult Function(_SubmitSettlementForm value) submitSettlementForm,
     required TResult Function(_ClearSettlementSubmitState value)
         clearSettlementSubmitState,
+    required TResult Function(_RemoveFile value) removeFile,
+    required TResult Function(_ClearRemoveFileState value) clearRemoveFileState,
   }) {
     return submit(this);
   }
@@ -2886,6 +2999,8 @@ class _$SubmitImpl implements _Submit {
     TResult? Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult? Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult? Function(_RemoveFile value)? removeFile,
+    TResult? Function(_ClearRemoveFileState value)? clearRemoveFileState,
   }) {
     return submit?.call(this);
   }
@@ -2911,6 +3026,8 @@ class _$SubmitImpl implements _Submit {
     TResult Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult Function(_RemoveFile value)? removeFile,
+    TResult Function(_ClearRemoveFileState value)? clearRemoveFileState,
     required TResult orElse(),
   }) {
     if (submit != null) {
@@ -3047,6 +3164,9 @@ class _$DeleteBookingImpl implements _DeleteBooking {
             List<PlatformFile> billCkFiles)
         submitSettlementForm,
     required TResult Function() clearSettlementSubmitState,
+    required TResult Function(int fileId, int accommodationBookingId)
+        removeFile,
+    required TResult Function() clearRemoveFileState,
   }) {
     return deleteBooking(id);
   }
@@ -3105,6 +3225,8 @@ class _$DeleteBookingImpl implements _DeleteBooking {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult? Function()? clearSettlementSubmitState,
+    TResult? Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult? Function()? clearRemoveFileState,
   }) {
     return deleteBooking?.call(id);
   }
@@ -3163,6 +3285,8 @@ class _$DeleteBookingImpl implements _DeleteBooking {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult Function()? clearSettlementSubmitState,
+    TResult Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult Function()? clearRemoveFileState,
     required TResult orElse(),
   }) {
     if (deleteBooking != null) {
@@ -3193,6 +3317,8 @@ class _$DeleteBookingImpl implements _DeleteBooking {
     required TResult Function(_SubmitSettlementForm value) submitSettlementForm,
     required TResult Function(_ClearSettlementSubmitState value)
         clearSettlementSubmitState,
+    required TResult Function(_RemoveFile value) removeFile,
+    required TResult Function(_ClearRemoveFileState value) clearRemoveFileState,
   }) {
     return deleteBooking(this);
   }
@@ -3218,6 +3344,8 @@ class _$DeleteBookingImpl implements _DeleteBooking {
     TResult? Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult? Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult? Function(_RemoveFile value)? removeFile,
+    TResult? Function(_ClearRemoveFileState value)? clearRemoveFileState,
   }) {
     return deleteBooking?.call(this);
   }
@@ -3243,6 +3371,8 @@ class _$DeleteBookingImpl implements _DeleteBooking {
     TResult Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult Function(_RemoveFile value)? removeFile,
+    TResult Function(_ClearRemoveFileState value)? clearRemoveFileState,
     required TResult orElse(),
   }) {
     if (deleteBooking != null) {
@@ -3378,6 +3508,9 @@ class _$LoadDetailImpl implements _LoadDetail {
             List<PlatformFile> billCkFiles)
         submitSettlementForm,
     required TResult Function() clearSettlementSubmitState,
+    required TResult Function(int fileId, int accommodationBookingId)
+        removeFile,
+    required TResult Function() clearRemoveFileState,
   }) {
     return loadDetail(id);
   }
@@ -3436,6 +3569,8 @@ class _$LoadDetailImpl implements _LoadDetail {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult? Function()? clearSettlementSubmitState,
+    TResult? Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult? Function()? clearRemoveFileState,
   }) {
     return loadDetail?.call(id);
   }
@@ -3494,6 +3629,8 @@ class _$LoadDetailImpl implements _LoadDetail {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult Function()? clearSettlementSubmitState,
+    TResult Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult Function()? clearRemoveFileState,
     required TResult orElse(),
   }) {
     if (loadDetail != null) {
@@ -3524,6 +3661,8 @@ class _$LoadDetailImpl implements _LoadDetail {
     required TResult Function(_SubmitSettlementForm value) submitSettlementForm,
     required TResult Function(_ClearSettlementSubmitState value)
         clearSettlementSubmitState,
+    required TResult Function(_RemoveFile value) removeFile,
+    required TResult Function(_ClearRemoveFileState value) clearRemoveFileState,
   }) {
     return loadDetail(this);
   }
@@ -3549,6 +3688,8 @@ class _$LoadDetailImpl implements _LoadDetail {
     TResult? Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult? Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult? Function(_RemoveFile value)? removeFile,
+    TResult? Function(_ClearRemoveFileState value)? clearRemoveFileState,
   }) {
     return loadDetail?.call(this);
   }
@@ -3574,6 +3715,8 @@ class _$LoadDetailImpl implements _LoadDetail {
     TResult Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult Function(_RemoveFile value)? removeFile,
+    TResult Function(_ClearRemoveFileState value)? clearRemoveFileState,
     required TResult orElse(),
   }) {
     if (loadDetail != null) {
@@ -3710,6 +3853,9 @@ class _$LoadPaymentDetailImpl implements _LoadPaymentDetail {
             List<PlatformFile> billCkFiles)
         submitSettlementForm,
     required TResult Function() clearSettlementSubmitState,
+    required TResult Function(int fileId, int accommodationBookingId)
+        removeFile,
+    required TResult Function() clearRemoveFileState,
   }) {
     return loadPaymentDetail(id);
   }
@@ -3768,6 +3914,8 @@ class _$LoadPaymentDetailImpl implements _LoadPaymentDetail {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult? Function()? clearSettlementSubmitState,
+    TResult? Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult? Function()? clearRemoveFileState,
   }) {
     return loadPaymentDetail?.call(id);
   }
@@ -3826,6 +3974,8 @@ class _$LoadPaymentDetailImpl implements _LoadPaymentDetail {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult Function()? clearSettlementSubmitState,
+    TResult Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult Function()? clearRemoveFileState,
     required TResult orElse(),
   }) {
     if (loadPaymentDetail != null) {
@@ -3856,6 +4006,8 @@ class _$LoadPaymentDetailImpl implements _LoadPaymentDetail {
     required TResult Function(_SubmitSettlementForm value) submitSettlementForm,
     required TResult Function(_ClearSettlementSubmitState value)
         clearSettlementSubmitState,
+    required TResult Function(_RemoveFile value) removeFile,
+    required TResult Function(_ClearRemoveFileState value) clearRemoveFileState,
   }) {
     return loadPaymentDetail(this);
   }
@@ -3881,6 +4033,8 @@ class _$LoadPaymentDetailImpl implements _LoadPaymentDetail {
     TResult? Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult? Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult? Function(_RemoveFile value)? removeFile,
+    TResult? Function(_ClearRemoveFileState value)? clearRemoveFileState,
   }) {
     return loadPaymentDetail?.call(this);
   }
@@ -3906,6 +4060,8 @@ class _$LoadPaymentDetailImpl implements _LoadPaymentDetail {
     TResult Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult Function(_RemoveFile value)? removeFile,
+    TResult Function(_ClearRemoveFileState value)? clearRemoveFileState,
     required TResult orElse(),
   }) {
     if (loadPaymentDetail != null) {
@@ -4016,6 +4172,9 @@ class _$ClearPaymentDetailImpl implements _ClearPaymentDetail {
             List<PlatformFile> billCkFiles)
         submitSettlementForm,
     required TResult Function() clearSettlementSubmitState,
+    required TResult Function(int fileId, int accommodationBookingId)
+        removeFile,
+    required TResult Function() clearRemoveFileState,
   }) {
     return clearPaymentDetail();
   }
@@ -4074,6 +4233,8 @@ class _$ClearPaymentDetailImpl implements _ClearPaymentDetail {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult? Function()? clearSettlementSubmitState,
+    TResult? Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult? Function()? clearRemoveFileState,
   }) {
     return clearPaymentDetail?.call();
   }
@@ -4132,6 +4293,8 @@ class _$ClearPaymentDetailImpl implements _ClearPaymentDetail {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult Function()? clearSettlementSubmitState,
+    TResult Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult Function()? clearRemoveFileState,
     required TResult orElse(),
   }) {
     if (clearPaymentDetail != null) {
@@ -4162,6 +4325,8 @@ class _$ClearPaymentDetailImpl implements _ClearPaymentDetail {
     required TResult Function(_SubmitSettlementForm value) submitSettlementForm,
     required TResult Function(_ClearSettlementSubmitState value)
         clearSettlementSubmitState,
+    required TResult Function(_RemoveFile value) removeFile,
+    required TResult Function(_ClearRemoveFileState value) clearRemoveFileState,
   }) {
     return clearPaymentDetail(this);
   }
@@ -4187,6 +4352,8 @@ class _$ClearPaymentDetailImpl implements _ClearPaymentDetail {
     TResult? Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult? Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult? Function(_RemoveFile value)? removeFile,
+    TResult? Function(_ClearRemoveFileState value)? clearRemoveFileState,
   }) {
     return clearPaymentDetail?.call(this);
   }
@@ -4212,6 +4379,8 @@ class _$ClearPaymentDetailImpl implements _ClearPaymentDetail {
     TResult Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult Function(_RemoveFile value)? removeFile,
+    TResult Function(_ClearRemoveFileState value)? clearRemoveFileState,
     required TResult orElse(),
   }) {
     if (clearPaymentDetail != null) {
@@ -4349,6 +4518,9 @@ class _$SubmitAdvanceImpl implements _SubmitAdvance {
             List<PlatformFile> billCkFiles)
         submitSettlementForm,
     required TResult Function() clearSettlementSubmitState,
+    required TResult Function(int fileId, int accommodationBookingId)
+        removeFile,
+    required TResult Function() clearRemoveFileState,
   }) {
     return submitAdvance(payload);
   }
@@ -4407,6 +4579,8 @@ class _$SubmitAdvanceImpl implements _SubmitAdvance {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult? Function()? clearSettlementSubmitState,
+    TResult? Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult? Function()? clearRemoveFileState,
   }) {
     return submitAdvance?.call(payload);
   }
@@ -4465,6 +4639,8 @@ class _$SubmitAdvanceImpl implements _SubmitAdvance {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult Function()? clearSettlementSubmitState,
+    TResult Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult Function()? clearRemoveFileState,
     required TResult orElse(),
   }) {
     if (submitAdvance != null) {
@@ -4495,6 +4671,8 @@ class _$SubmitAdvanceImpl implements _SubmitAdvance {
     required TResult Function(_SubmitSettlementForm value) submitSettlementForm,
     required TResult Function(_ClearSettlementSubmitState value)
         clearSettlementSubmitState,
+    required TResult Function(_RemoveFile value) removeFile,
+    required TResult Function(_ClearRemoveFileState value) clearRemoveFileState,
   }) {
     return submitAdvance(this);
   }
@@ -4520,6 +4698,8 @@ class _$SubmitAdvanceImpl implements _SubmitAdvance {
     TResult? Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult? Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult? Function(_RemoveFile value)? removeFile,
+    TResult? Function(_ClearRemoveFileState value)? clearRemoveFileState,
   }) {
     return submitAdvance?.call(this);
   }
@@ -4545,6 +4725,8 @@ class _$SubmitAdvanceImpl implements _SubmitAdvance {
     TResult Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult Function(_RemoveFile value)? removeFile,
+    TResult Function(_ClearRemoveFileState value)? clearRemoveFileState,
     required TResult orElse(),
   }) {
     if (submitAdvance != null) {
@@ -4854,6 +5036,9 @@ class _$SubmitAdvanceFormImpl implements _SubmitAdvanceForm {
             List<PlatformFile> billCkFiles)
         submitSettlementForm,
     required TResult Function() clearSettlementSubmitState,
+    required TResult Function(int fileId, int accommodationBookingId)
+        removeFile,
+    required TResult Function() clearRemoveFileState,
   }) {
     return submitAdvanceForm(
         accommodationBookingId,
@@ -4925,6 +5110,8 @@ class _$SubmitAdvanceFormImpl implements _SubmitAdvanceForm {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult? Function()? clearSettlementSubmitState,
+    TResult? Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult? Function()? clearRemoveFileState,
   }) {
     return submitAdvanceForm?.call(
         accommodationBookingId,
@@ -4996,6 +5183,8 @@ class _$SubmitAdvanceFormImpl implements _SubmitAdvanceForm {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult Function()? clearSettlementSubmitState,
+    TResult Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult Function()? clearRemoveFileState,
     required TResult orElse(),
   }) {
     if (submitAdvanceForm != null) {
@@ -5039,6 +5228,8 @@ class _$SubmitAdvanceFormImpl implements _SubmitAdvanceForm {
     required TResult Function(_SubmitSettlementForm value) submitSettlementForm,
     required TResult Function(_ClearSettlementSubmitState value)
         clearSettlementSubmitState,
+    required TResult Function(_RemoveFile value) removeFile,
+    required TResult Function(_ClearRemoveFileState value) clearRemoveFileState,
   }) {
     return submitAdvanceForm(this);
   }
@@ -5064,6 +5255,8 @@ class _$SubmitAdvanceFormImpl implements _SubmitAdvanceForm {
     TResult? Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult? Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult? Function(_RemoveFile value)? removeFile,
+    TResult? Function(_ClearRemoveFileState value)? clearRemoveFileState,
   }) {
     return submitAdvanceForm?.call(this);
   }
@@ -5089,6 +5282,8 @@ class _$SubmitAdvanceFormImpl implements _SubmitAdvanceForm {
     TResult Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult Function(_RemoveFile value)? removeFile,
+    TResult Function(_ClearRemoveFileState value)? clearRemoveFileState,
     required TResult orElse(),
   }) {
     if (submitAdvanceForm != null) {
@@ -5252,6 +5447,9 @@ class _$ClearAdvanceSubmitStateImpl implements _ClearAdvanceSubmitState {
             List<PlatformFile> billCkFiles)
         submitSettlementForm,
     required TResult Function() clearSettlementSubmitState,
+    required TResult Function(int fileId, int accommodationBookingId)
+        removeFile,
+    required TResult Function() clearRemoveFileState,
   }) {
     return clearAdvanceSubmitState();
   }
@@ -5310,6 +5508,8 @@ class _$ClearAdvanceSubmitStateImpl implements _ClearAdvanceSubmitState {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult? Function()? clearSettlementSubmitState,
+    TResult? Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult? Function()? clearRemoveFileState,
   }) {
     return clearAdvanceSubmitState?.call();
   }
@@ -5368,6 +5568,8 @@ class _$ClearAdvanceSubmitStateImpl implements _ClearAdvanceSubmitState {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult Function()? clearSettlementSubmitState,
+    TResult Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult Function()? clearRemoveFileState,
     required TResult orElse(),
   }) {
     if (clearAdvanceSubmitState != null) {
@@ -5398,6 +5600,8 @@ class _$ClearAdvanceSubmitStateImpl implements _ClearAdvanceSubmitState {
     required TResult Function(_SubmitSettlementForm value) submitSettlementForm,
     required TResult Function(_ClearSettlementSubmitState value)
         clearSettlementSubmitState,
+    required TResult Function(_RemoveFile value) removeFile,
+    required TResult Function(_ClearRemoveFileState value) clearRemoveFileState,
   }) {
     return clearAdvanceSubmitState(this);
   }
@@ -5423,6 +5627,8 @@ class _$ClearAdvanceSubmitStateImpl implements _ClearAdvanceSubmitState {
     TResult? Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult? Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult? Function(_RemoveFile value)? removeFile,
+    TResult? Function(_ClearRemoveFileState value)? clearRemoveFileState,
   }) {
     return clearAdvanceSubmitState?.call(this);
   }
@@ -5448,6 +5654,8 @@ class _$ClearAdvanceSubmitStateImpl implements _ClearAdvanceSubmitState {
     TResult Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult Function(_RemoveFile value)? removeFile,
+    TResult Function(_ClearRemoveFileState value)? clearRemoveFileState,
     required TResult orElse(),
   }) {
     if (clearAdvanceSubmitState != null) {
@@ -5864,6 +6072,9 @@ class _$SubmitSettlementFormImpl implements _SubmitSettlementForm {
             List<PlatformFile> billCkFiles)
         submitSettlementForm,
     required TResult Function() clearSettlementSubmitState,
+    required TResult Function(int fileId, int accommodationBookingId)
+        removeFile,
+    required TResult Function() clearRemoveFileState,
   }) {
     return submitSettlementForm(
         accommodationBookingId,
@@ -5941,6 +6152,8 @@ class _$SubmitSettlementFormImpl implements _SubmitSettlementForm {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult? Function()? clearSettlementSubmitState,
+    TResult? Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult? Function()? clearRemoveFileState,
   }) {
     return submitSettlementForm?.call(
         accommodationBookingId,
@@ -6018,6 +6231,8 @@ class _$SubmitSettlementFormImpl implements _SubmitSettlementForm {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult Function()? clearSettlementSubmitState,
+    TResult Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult Function()? clearRemoveFileState,
     required TResult orElse(),
   }) {
     if (submitSettlementForm != null) {
@@ -6067,6 +6282,8 @@ class _$SubmitSettlementFormImpl implements _SubmitSettlementForm {
     required TResult Function(_SubmitSettlementForm value) submitSettlementForm,
     required TResult Function(_ClearSettlementSubmitState value)
         clearSettlementSubmitState,
+    required TResult Function(_RemoveFile value) removeFile,
+    required TResult Function(_ClearRemoveFileState value) clearRemoveFileState,
   }) {
     return submitSettlementForm(this);
   }
@@ -6092,6 +6309,8 @@ class _$SubmitSettlementFormImpl implements _SubmitSettlementForm {
     TResult? Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult? Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult? Function(_RemoveFile value)? removeFile,
+    TResult? Function(_ClearRemoveFileState value)? clearRemoveFileState,
   }) {
     return submitSettlementForm?.call(this);
   }
@@ -6117,6 +6336,8 @@ class _$SubmitSettlementFormImpl implements _SubmitSettlementForm {
     TResult Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult Function(_RemoveFile value)? removeFile,
+    TResult Function(_ClearRemoveFileState value)? clearRemoveFileState,
     required TResult orElse(),
   }) {
     if (submitSettlementForm != null) {
@@ -6308,6 +6529,9 @@ class _$ClearSettlementSubmitStateImpl implements _ClearSettlementSubmitState {
             List<PlatformFile> billCkFiles)
         submitSettlementForm,
     required TResult Function() clearSettlementSubmitState,
+    required TResult Function(int fileId, int accommodationBookingId)
+        removeFile,
+    required TResult Function() clearRemoveFileState,
   }) {
     return clearSettlementSubmitState();
   }
@@ -6366,6 +6590,8 @@ class _$ClearSettlementSubmitStateImpl implements _ClearSettlementSubmitState {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult? Function()? clearSettlementSubmitState,
+    TResult? Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult? Function()? clearRemoveFileState,
   }) {
     return clearSettlementSubmitState?.call();
   }
@@ -6424,6 +6650,8 @@ class _$ClearSettlementSubmitStateImpl implements _ClearSettlementSubmitState {
             List<PlatformFile> billCkFiles)?
         submitSettlementForm,
     TResult Function()? clearSettlementSubmitState,
+    TResult Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult Function()? clearRemoveFileState,
     required TResult orElse(),
   }) {
     if (clearSettlementSubmitState != null) {
@@ -6454,6 +6682,8 @@ class _$ClearSettlementSubmitStateImpl implements _ClearSettlementSubmitState {
     required TResult Function(_SubmitSettlementForm value) submitSettlementForm,
     required TResult Function(_ClearSettlementSubmitState value)
         clearSettlementSubmitState,
+    required TResult Function(_RemoveFile value) removeFile,
+    required TResult Function(_ClearRemoveFileState value) clearRemoveFileState,
   }) {
     return clearSettlementSubmitState(this);
   }
@@ -6479,6 +6709,8 @@ class _$ClearSettlementSubmitStateImpl implements _ClearSettlementSubmitState {
     TResult? Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult? Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult? Function(_RemoveFile value)? removeFile,
+    TResult? Function(_ClearRemoveFileState value)? clearRemoveFileState,
   }) {
     return clearSettlementSubmitState?.call(this);
   }
@@ -6504,6 +6736,8 @@ class _$ClearSettlementSubmitStateImpl implements _ClearSettlementSubmitState {
     TResult Function(_SubmitSettlementForm value)? submitSettlementForm,
     TResult Function(_ClearSettlementSubmitState value)?
         clearSettlementSubmitState,
+    TResult Function(_RemoveFile value)? removeFile,
+    TResult Function(_ClearRemoveFileState value)? clearRemoveFileState,
     required TResult orElse(),
   }) {
     if (clearSettlementSubmitState != null) {
@@ -6516,4 +6750,686 @@ class _$ClearSettlementSubmitStateImpl implements _ClearSettlementSubmitState {
 abstract class _ClearSettlementSubmitState implements BookingGuestHouseEvent {
   const factory _ClearSettlementSubmitState() =
       _$ClearSettlementSubmitStateImpl;
+}
+
+/// @nodoc
+abstract class _$$RemoveFileImplCopyWith<$Res> {
+  factory _$$RemoveFileImplCopyWith(
+          _$RemoveFileImpl value, $Res Function(_$RemoveFileImpl) then) =
+      __$$RemoveFileImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int fileId, int accommodationBookingId});
+}
+
+/// @nodoc
+class __$$RemoveFileImplCopyWithImpl<$Res>
+    extends _$BookingGuestHouseEventCopyWithImpl<$Res, _$RemoveFileImpl>
+    implements _$$RemoveFileImplCopyWith<$Res> {
+  __$$RemoveFileImplCopyWithImpl(
+      _$RemoveFileImpl _value, $Res Function(_$RemoveFileImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? fileId = null,
+    Object? accommodationBookingId = null,
+  }) {
+    return _then(_$RemoveFileImpl(
+      fileId: null == fileId
+          ? _value.fileId
+          : fileId // ignore: cast_nullable_to_non_nullable
+              as int,
+      accommodationBookingId: null == accommodationBookingId
+          ? _value.accommodationBookingId
+          : accommodationBookingId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RemoveFileImpl implements _RemoveFile {
+  const _$RemoveFileImpl(
+      {required this.fileId, required this.accommodationBookingId});
+
+  /// ID file cần xoá (lấy từ `BookingGuestHouseFileItem.id`).
+  @override
+  final int fileId;
+
+  /// ID phiếu đặt phòng — dùng để gọi lại `loadPaymentDetail`
+  /// sau khi xoá để đảm bảo state đồng bộ với server (BE có thể
+  /// trả thêm field audit hoặc thay đổi status).
+  @override
+  final int accommodationBookingId;
+
+  @override
+  String toString() {
+    return 'BookingGuestHouseEvent.removeFile(fileId: $fileId, accommodationBookingId: $accommodationBookingId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RemoveFileImpl &&
+            (identical(other.fileId, fileId) || other.fileId == fileId) &&
+            (identical(other.accommodationBookingId, accommodationBookingId) ||
+                other.accommodationBookingId == accommodationBookingId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, fileId, accommodationBookingId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RemoveFileImplCopyWith<_$RemoveFileImpl> get copyWith =>
+      __$$RemoveFileImplCopyWithImpl<_$RemoveFileImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd) init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String filterText) changeFilterText,
+    required TResult Function() refresh,
+    required TResult Function() loadFilters,
+    required TResult Function(ProjectFilterItem? project) changeProjectFilter,
+    required TResult Function(EmployeeFilterItem? employee)
+        changeEmployeeFilter,
+    required TResult Function(Map<String, dynamic> payload) submit,
+    required TResult Function(int id) deleteBooking,
+    required TResult Function(int id) loadDetail,
+    required TResult Function(int id) loadPaymentDetail,
+    required TResult Function() clearPaymentDetail,
+    required TResult Function(Map<String, dynamic> payload) submitAdvance,
+    required TResult Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)
+        submitAdvanceForm,
+    required TResult Function() clearAdvanceSubmitState,
+    required TResult Function(
+            int accommodationBookingId,
+            int totalAmount,
+            int totalAmountWithInvoice,
+            String invoiceNumber,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int transferType,
+            int? approvedTbpId,
+            String reason,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String? note,
+            String hotelName,
+            String hotelTaxCode,
+            List<PlatformFile> invoiceFiles,
+            List<PlatformFile> billCkFiles)
+        submitSettlementForm,
+    required TResult Function() clearSettlementSubmitState,
+    required TResult Function(int fileId, int accommodationBookingId)
+        removeFile,
+    required TResult Function() clearRemoveFileState,
+  }) {
+    return removeFile(fileId, accommodationBookingId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String filterText)? changeFilterText,
+    TResult? Function()? refresh,
+    TResult? Function()? loadFilters,
+    TResult? Function(ProjectFilterItem? project)? changeProjectFilter,
+    TResult? Function(EmployeeFilterItem? employee)? changeEmployeeFilter,
+    TResult? Function(Map<String, dynamic> payload)? submit,
+    TResult? Function(int id)? deleteBooking,
+    TResult? Function(int id)? loadDetail,
+    TResult? Function(int id)? loadPaymentDetail,
+    TResult? Function()? clearPaymentDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitAdvance,
+    TResult? Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)?
+        submitAdvanceForm,
+    TResult? Function()? clearAdvanceSubmitState,
+    TResult? Function(
+            int accommodationBookingId,
+            int totalAmount,
+            int totalAmountWithInvoice,
+            String invoiceNumber,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int transferType,
+            int? approvedTbpId,
+            String reason,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String? note,
+            String hotelName,
+            String hotelTaxCode,
+            List<PlatformFile> invoiceFiles,
+            List<PlatformFile> billCkFiles)?
+        submitSettlementForm,
+    TResult? Function()? clearSettlementSubmitState,
+    TResult? Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult? Function()? clearRemoveFileState,
+  }) {
+    return removeFile?.call(fileId, accommodationBookingId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String filterText)? changeFilterText,
+    TResult Function()? refresh,
+    TResult Function()? loadFilters,
+    TResult Function(ProjectFilterItem? project)? changeProjectFilter,
+    TResult Function(EmployeeFilterItem? employee)? changeEmployeeFilter,
+    TResult Function(Map<String, dynamic> payload)? submit,
+    TResult Function(int id)? deleteBooking,
+    TResult Function(int id)? loadDetail,
+    TResult Function(int id)? loadPaymentDetail,
+    TResult Function()? clearPaymentDetail,
+    TResult Function(Map<String, dynamic> payload)? submitAdvance,
+    TResult Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)?
+        submitAdvanceForm,
+    TResult Function()? clearAdvanceSubmitState,
+    TResult Function(
+            int accommodationBookingId,
+            int totalAmount,
+            int totalAmountWithInvoice,
+            String invoiceNumber,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int transferType,
+            int? approvedTbpId,
+            String reason,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String? note,
+            String hotelName,
+            String hotelTaxCode,
+            List<PlatformFile> invoiceFiles,
+            List<PlatformFile> billCkFiles)?
+        submitSettlementForm,
+    TResult Function()? clearSettlementSubmitState,
+    TResult Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult Function()? clearRemoveFileState,
+    required TResult orElse(),
+  }) {
+    if (removeFile != null) {
+      return removeFile(fileId, accommodationBookingId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeFilterText value) changeFilterText,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_LoadFilters value) loadFilters,
+    required TResult Function(_ChangeProjectFilter value) changeProjectFilter,
+    required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
+    required TResult Function(_Submit value) submit,
+    required TResult Function(_DeleteBooking value) deleteBooking,
+    required TResult Function(_LoadDetail value) loadDetail,
+    required TResult Function(_LoadPaymentDetail value) loadPaymentDetail,
+    required TResult Function(_ClearPaymentDetail value) clearPaymentDetail,
+    required TResult Function(_SubmitAdvance value) submitAdvance,
+    required TResult Function(_SubmitAdvanceForm value) submitAdvanceForm,
+    required TResult Function(_ClearAdvanceSubmitState value)
+        clearAdvanceSubmitState,
+    required TResult Function(_SubmitSettlementForm value) submitSettlementForm,
+    required TResult Function(_ClearSettlementSubmitState value)
+        clearSettlementSubmitState,
+    required TResult Function(_RemoveFile value) removeFile,
+    required TResult Function(_ClearRemoveFileState value) clearRemoveFileState,
+  }) {
+    return removeFile(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeFilterText value)? changeFilterText,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_LoadFilters value)? loadFilters,
+    TResult? Function(_ChangeProjectFilter value)? changeProjectFilter,
+    TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult? Function(_Submit value)? submit,
+    TResult? Function(_DeleteBooking value)? deleteBooking,
+    TResult? Function(_LoadDetail value)? loadDetail,
+    TResult? Function(_LoadPaymentDetail value)? loadPaymentDetail,
+    TResult? Function(_ClearPaymentDetail value)? clearPaymentDetail,
+    TResult? Function(_SubmitAdvance value)? submitAdvance,
+    TResult? Function(_SubmitAdvanceForm value)? submitAdvanceForm,
+    TResult? Function(_ClearAdvanceSubmitState value)? clearAdvanceSubmitState,
+    TResult? Function(_SubmitSettlementForm value)? submitSettlementForm,
+    TResult? Function(_ClearSettlementSubmitState value)?
+        clearSettlementSubmitState,
+    TResult? Function(_RemoveFile value)? removeFile,
+    TResult? Function(_ClearRemoveFileState value)? clearRemoveFileState,
+  }) {
+    return removeFile?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeFilterText value)? changeFilterText,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_LoadFilters value)? loadFilters,
+    TResult Function(_ChangeProjectFilter value)? changeProjectFilter,
+    TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult Function(_Submit value)? submit,
+    TResult Function(_DeleteBooking value)? deleteBooking,
+    TResult Function(_LoadDetail value)? loadDetail,
+    TResult Function(_LoadPaymentDetail value)? loadPaymentDetail,
+    TResult Function(_ClearPaymentDetail value)? clearPaymentDetail,
+    TResult Function(_SubmitAdvance value)? submitAdvance,
+    TResult Function(_SubmitAdvanceForm value)? submitAdvanceForm,
+    TResult Function(_ClearAdvanceSubmitState value)? clearAdvanceSubmitState,
+    TResult Function(_SubmitSettlementForm value)? submitSettlementForm,
+    TResult Function(_ClearSettlementSubmitState value)?
+        clearSettlementSubmitState,
+    TResult Function(_RemoveFile value)? removeFile,
+    TResult Function(_ClearRemoveFileState value)? clearRemoveFileState,
+    required TResult orElse(),
+  }) {
+    if (removeFile != null) {
+      return removeFile(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RemoveFile implements BookingGuestHouseEvent {
+  const factory _RemoveFile(
+      {required final int fileId,
+      required final int accommodationBookingId}) = _$RemoveFileImpl;
+
+  /// ID file cần xoá (lấy từ `BookingGuestHouseFileItem.id`).
+  int get fileId;
+
+  /// ID phiếu đặt phòng — dùng để gọi lại `loadPaymentDetail`
+  /// sau khi xoá để đảm bảo state đồng bộ với server (BE có thể
+  /// trả thêm field audit hoặc thay đổi status).
+  int get accommodationBookingId;
+  @JsonKey(ignore: true)
+  _$$RemoveFileImplCopyWith<_$RemoveFileImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ClearRemoveFileStateImplCopyWith<$Res> {
+  factory _$$ClearRemoveFileStateImplCopyWith(_$ClearRemoveFileStateImpl value,
+          $Res Function(_$ClearRemoveFileStateImpl) then) =
+      __$$ClearRemoveFileStateImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearRemoveFileStateImplCopyWithImpl<$Res>
+    extends _$BookingGuestHouseEventCopyWithImpl<$Res,
+        _$ClearRemoveFileStateImpl>
+    implements _$$ClearRemoveFileStateImplCopyWith<$Res> {
+  __$$ClearRemoveFileStateImplCopyWithImpl(_$ClearRemoveFileStateImpl _value,
+      $Res Function(_$ClearRemoveFileStateImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ClearRemoveFileStateImpl implements _ClearRemoveFileState {
+  const _$ClearRemoveFileStateImpl();
+
+  @override
+  String toString() {
+    return 'BookingGuestHouseEvent.clearRemoveFileState()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ClearRemoveFileStateImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd) init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String filterText) changeFilterText,
+    required TResult Function() refresh,
+    required TResult Function() loadFilters,
+    required TResult Function(ProjectFilterItem? project) changeProjectFilter,
+    required TResult Function(EmployeeFilterItem? employee)
+        changeEmployeeFilter,
+    required TResult Function(Map<String, dynamic> payload) submit,
+    required TResult Function(int id) deleteBooking,
+    required TResult Function(int id) loadDetail,
+    required TResult Function(int id) loadPaymentDetail,
+    required TResult Function() clearPaymentDetail,
+    required TResult Function(Map<String, dynamic> payload) submitAdvance,
+    required TResult Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)
+        submitAdvanceForm,
+    required TResult Function() clearAdvanceSubmitState,
+    required TResult Function(
+            int accommodationBookingId,
+            int totalAmount,
+            int totalAmountWithInvoice,
+            String invoiceNumber,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int transferType,
+            int? approvedTbpId,
+            String reason,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String? note,
+            String hotelName,
+            String hotelTaxCode,
+            List<PlatformFile> invoiceFiles,
+            List<PlatformFile> billCkFiles)
+        submitSettlementForm,
+    required TResult Function() clearSettlementSubmitState,
+    required TResult Function(int fileId, int accommodationBookingId)
+        removeFile,
+    required TResult Function() clearRemoveFileState,
+  }) {
+    return clearRemoveFileState();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String filterText)? changeFilterText,
+    TResult? Function()? refresh,
+    TResult? Function()? loadFilters,
+    TResult? Function(ProjectFilterItem? project)? changeProjectFilter,
+    TResult? Function(EmployeeFilterItem? employee)? changeEmployeeFilter,
+    TResult? Function(Map<String, dynamic> payload)? submit,
+    TResult? Function(int id)? deleteBooking,
+    TResult? Function(int id)? loadDetail,
+    TResult? Function(int id)? loadPaymentDetail,
+    TResult? Function()? clearPaymentDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitAdvance,
+    TResult? Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)?
+        submitAdvanceForm,
+    TResult? Function()? clearAdvanceSubmitState,
+    TResult? Function(
+            int accommodationBookingId,
+            int totalAmount,
+            int totalAmountWithInvoice,
+            String invoiceNumber,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int transferType,
+            int? approvedTbpId,
+            String reason,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String? note,
+            String hotelName,
+            String hotelTaxCode,
+            List<PlatformFile> invoiceFiles,
+            List<PlatformFile> billCkFiles)?
+        submitSettlementForm,
+    TResult? Function()? clearSettlementSubmitState,
+    TResult? Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult? Function()? clearRemoveFileState,
+  }) {
+    return clearRemoveFileState?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String filterText)? changeFilterText,
+    TResult Function()? refresh,
+    TResult Function()? loadFilters,
+    TResult Function(ProjectFilterItem? project)? changeProjectFilter,
+    TResult Function(EmployeeFilterItem? employee)? changeEmployeeFilter,
+    TResult Function(Map<String, dynamic> payload)? submit,
+    TResult Function(int id)? deleteBooking,
+    TResult Function(int id)? loadDetail,
+    TResult Function(int id)? loadPaymentDetail,
+    TResult Function()? clearPaymentDetail,
+    TResult Function(Map<String, dynamic> payload)? submitAdvance,
+    TResult Function(
+            int accommodationBookingId,
+            int? approvedTbpId,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String reason,
+            int transferType,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int totalAmount,
+            String? note)?
+        submitAdvanceForm,
+    TResult Function()? clearAdvanceSubmitState,
+    TResult Function(
+            int accommodationBookingId,
+            int totalAmount,
+            int totalAmountWithInvoice,
+            String invoiceNumber,
+            String bankAccount,
+            int bankListId,
+            String bankName,
+            int transferType,
+            int? approvedTbpId,
+            String reason,
+            int? projectId,
+            int? companyId,
+            String companyName,
+            String departmentName,
+            String? note,
+            String hotelName,
+            String hotelTaxCode,
+            List<PlatformFile> invoiceFiles,
+            List<PlatformFile> billCkFiles)?
+        submitSettlementForm,
+    TResult Function()? clearSettlementSubmitState,
+    TResult Function(int fileId, int accommodationBookingId)? removeFile,
+    TResult Function()? clearRemoveFileState,
+    required TResult orElse(),
+  }) {
+    if (clearRemoveFileState != null) {
+      return clearRemoveFileState();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeFilterText value) changeFilterText,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_LoadFilters value) loadFilters,
+    required TResult Function(_ChangeProjectFilter value) changeProjectFilter,
+    required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
+    required TResult Function(_Submit value) submit,
+    required TResult Function(_DeleteBooking value) deleteBooking,
+    required TResult Function(_LoadDetail value) loadDetail,
+    required TResult Function(_LoadPaymentDetail value) loadPaymentDetail,
+    required TResult Function(_ClearPaymentDetail value) clearPaymentDetail,
+    required TResult Function(_SubmitAdvance value) submitAdvance,
+    required TResult Function(_SubmitAdvanceForm value) submitAdvanceForm,
+    required TResult Function(_ClearAdvanceSubmitState value)
+        clearAdvanceSubmitState,
+    required TResult Function(_SubmitSettlementForm value) submitSettlementForm,
+    required TResult Function(_ClearSettlementSubmitState value)
+        clearSettlementSubmitState,
+    required TResult Function(_RemoveFile value) removeFile,
+    required TResult Function(_ClearRemoveFileState value) clearRemoveFileState,
+  }) {
+    return clearRemoveFileState(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeFilterText value)? changeFilterText,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_LoadFilters value)? loadFilters,
+    TResult? Function(_ChangeProjectFilter value)? changeProjectFilter,
+    TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult? Function(_Submit value)? submit,
+    TResult? Function(_DeleteBooking value)? deleteBooking,
+    TResult? Function(_LoadDetail value)? loadDetail,
+    TResult? Function(_LoadPaymentDetail value)? loadPaymentDetail,
+    TResult? Function(_ClearPaymentDetail value)? clearPaymentDetail,
+    TResult? Function(_SubmitAdvance value)? submitAdvance,
+    TResult? Function(_SubmitAdvanceForm value)? submitAdvanceForm,
+    TResult? Function(_ClearAdvanceSubmitState value)? clearAdvanceSubmitState,
+    TResult? Function(_SubmitSettlementForm value)? submitSettlementForm,
+    TResult? Function(_ClearSettlementSubmitState value)?
+        clearSettlementSubmitState,
+    TResult? Function(_RemoveFile value)? removeFile,
+    TResult? Function(_ClearRemoveFileState value)? clearRemoveFileState,
+  }) {
+    return clearRemoveFileState?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeFilterText value)? changeFilterText,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_LoadFilters value)? loadFilters,
+    TResult Function(_ChangeProjectFilter value)? changeProjectFilter,
+    TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult Function(_Submit value)? submit,
+    TResult Function(_DeleteBooking value)? deleteBooking,
+    TResult Function(_LoadDetail value)? loadDetail,
+    TResult Function(_LoadPaymentDetail value)? loadPaymentDetail,
+    TResult Function(_ClearPaymentDetail value)? clearPaymentDetail,
+    TResult Function(_SubmitAdvance value)? submitAdvance,
+    TResult Function(_SubmitAdvanceForm value)? submitAdvanceForm,
+    TResult Function(_ClearAdvanceSubmitState value)? clearAdvanceSubmitState,
+    TResult Function(_SubmitSettlementForm value)? submitSettlementForm,
+    TResult Function(_ClearSettlementSubmitState value)?
+        clearSettlementSubmitState,
+    TResult Function(_RemoveFile value)? removeFile,
+    TResult Function(_ClearRemoveFileState value)? clearRemoveFileState,
+    required TResult orElse(),
+  }) {
+    if (clearRemoveFileState != null) {
+      return clearRemoveFileState(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearRemoveFileState implements BookingGuestHouseEvent {
+  const factory _ClearRemoveFileState() = _$ClearRemoveFileStateImpl;
 }

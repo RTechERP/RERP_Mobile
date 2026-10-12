@@ -76,6 +76,16 @@ abstract class _$BookingGuestHouseStateCWProxy {
 
   BookingGuestHouseState settlementMessage(String? settlementMessage);
 
+  BookingGuestHouseState isRemovingFile(bool isRemovingFile);
+
+  BookingGuestHouseState removingFileId(int? removingFileId);
+
+  BookingGuestHouseState removeFileSuccess(bool removeFileSuccess);
+
+  BookingGuestHouseState lastRemovedFileId(int? lastRemovedFileId);
+
+  BookingGuestHouseState removeFileMessage(String? removeFileMessage);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BookingGuestHouseState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -116,6 +126,11 @@ abstract class _$BookingGuestHouseStateCWProxy {
     bool? settlementSuccess,
     BookingGuestHouseSaveDetailResponse? lastSettlementResponse,
     String? settlementMessage,
+    bool? isRemovingFile,
+    int? removingFileId,
+    bool? removeFileSuccess,
+    int? lastRemovedFileId,
+    String? removeFileMessage,
   });
 }
 
@@ -259,6 +274,26 @@ class _$BookingGuestHouseStateCWProxyImpl
       this(settlementMessage: settlementMessage);
 
   @override
+  BookingGuestHouseState isRemovingFile(bool isRemovingFile) =>
+      this(isRemovingFile: isRemovingFile);
+
+  @override
+  BookingGuestHouseState removingFileId(int? removingFileId) =>
+      this(removingFileId: removingFileId);
+
+  @override
+  BookingGuestHouseState removeFileSuccess(bool removeFileSuccess) =>
+      this(removeFileSuccess: removeFileSuccess);
+
+  @override
+  BookingGuestHouseState lastRemovedFileId(int? lastRemovedFileId) =>
+      this(lastRemovedFileId: lastRemovedFileId);
+
+  @override
+  BookingGuestHouseState removeFileMessage(String? removeFileMessage) =>
+      this(removeFileMessage: removeFileMessage);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BookingGuestHouseState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -300,6 +335,11 @@ class _$BookingGuestHouseStateCWProxyImpl
     Object? settlementSuccess = const $CopyWithPlaceholder(),
     Object? lastSettlementResponse = const $CopyWithPlaceholder(),
     Object? settlementMessage = const $CopyWithPlaceholder(),
+    Object? isRemovingFile = const $CopyWithPlaceholder(),
+    Object? removingFileId = const $CopyWithPlaceholder(),
+    Object? removeFileSuccess = const $CopyWithPlaceholder(),
+    Object? lastRemovedFileId = const $CopyWithPlaceholder(),
+    Object? removeFileMessage = const $CopyWithPlaceholder(),
   }) {
     return BookingGuestHouseState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -451,6 +491,28 @@ class _$BookingGuestHouseStateCWProxyImpl
           ? _value.settlementMessage
           // ignore: cast_nullable_to_non_nullable
           : settlementMessage as String?,
+      isRemovingFile: isRemovingFile == const $CopyWithPlaceholder() ||
+              isRemovingFile == null
+          ? _value.isRemovingFile
+          // ignore: cast_nullable_to_non_nullable
+          : isRemovingFile as bool,
+      removingFileId: removingFileId == const $CopyWithPlaceholder()
+          ? _value.removingFileId
+          // ignore: cast_nullable_to_non_nullable
+          : removingFileId as int?,
+      removeFileSuccess: removeFileSuccess == const $CopyWithPlaceholder() ||
+              removeFileSuccess == null
+          ? _value.removeFileSuccess
+          // ignore: cast_nullable_to_non_nullable
+          : removeFileSuccess as bool,
+      lastRemovedFileId: lastRemovedFileId == const $CopyWithPlaceholder()
+          ? _value.lastRemovedFileId
+          // ignore: cast_nullable_to_non_nullable
+          : lastRemovedFileId as int?,
+      removeFileMessage: removeFileMessage == const $CopyWithPlaceholder()
+          ? _value.removeFileMessage
+          // ignore: cast_nullable_to_non_nullable
+          : removeFileMessage as String?,
     );
   }
 }

@@ -559,6 +559,14 @@ class ApiEndPoint {
   static const String uploadBookingGuestHouseFile =
       '/AccommodationBookingPaymentOrder/upload-file';
 
+  /// Đặt phòng nhà nghỉ — xoá 1 file đính kèm của detail TTQT.
+  /// API: POST `/AccommodationBookingPaymentOrder/remove-file`
+  /// Body: int (ID của `BookingGuestHouseFileItem`).
+  /// Response: `BaseData` chuẩn.
+  /// Permission: chỉ `currentUser` (so khớp `CreatedBy`) mới được xoá.
+  static const String removeBookingGuestHouseFile =
+      '/AccommodationBookingPaymentOrder/remove-file';
+
   /// Check xung đột trước khi lưu phiếu đăng ký bàn test.
   /// API: POST /ESLRegistration/check-conflict (form-data).
   static const String checkConflictRegistration =

@@ -217,4 +217,24 @@ class BookingGuestHouseEvent with _$BookingGuestHouseEvent {
   /// success (hiện toast + pop).
   const factory BookingGuestHouseEvent.clearSettlementSubmitState() =
       _ClearSettlementSubmitState;
+
+  /// Xoá 1 file đính kèm đã upload (TTQT). Permission: chỉ user
+  /// khớp `CreatedBy` của file mới được xoá — UI ẩn nút 🗑️, BE
+  /// cũng validate server-side. Sau khi xoá OK, bloc tự lọc
+  /// `state.paymentDetail.files` để bỏ entry tương ứng (UI rebuild
+  /// thấy danh sách mới ngay).
+  const factory BookingGuestHouseEvent.removeFile({
+    /// ID file cần xoá (lấy từ `BookingGuestHouseFileItem.id`).
+    required int fileId,
+
+    /// ID phiếu đặt phòng — dùng để gọi lại `loadPaymentDetail`
+    /// sau khi xoá để đảm bảo state đồng bộ với server (BE có thể
+    /// trả thêm field audit hoặc thay đổi status).
+    required int accommodationBookingId,
+  }) = _RemoveFile;
+
+  /// Reset cờ `removeFileSuccess` + `removeFileMessage` sau khi UI
+  /// đã xử lý xong (xoá entry khỏi list, hiện toast).
+  const factory BookingGuestHouseEvent.clearRemoveFileState() =
+      _ClearRemoveFileState;
 }

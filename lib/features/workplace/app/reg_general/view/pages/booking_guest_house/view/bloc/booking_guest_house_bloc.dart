@@ -130,6 +130,12 @@ class BookingGuestHouseBloc
         ),
         clearSettlementSubmitState: () async =>
             _onClearSettlementSubmitState(emit),
+        removeFile: (fileId, accommodationBookingId) => _onRemoveFile(
+          emit,
+          fileId: fileId,
+          accommodationBookingId: accommodationBookingId,
+        ),
+        clearRemoveFileState: () async => _onClearRemoveFileState(emit),
       );
     });
   }
@@ -1214,6 +1220,107 @@ class BookingGuestHouseBloc
   void _onClearSettlementSubmitState(Emitter<BookingGuestHouseState> emit) {
     if (state.settlementSuccess || (state.message ?? '').isNotEmpty) {
       emit(state.copyWith(settlementSuccess: false, message: null));
+    }
+  }
+
+  //---(Remove File)---//
+
+  /// Xoá 1 file đính kèm đã upload (TTQT) theo [fileId].
+  /// API: `POST /AccommodationBookingPaymentOrder/remove-file` (body: int).
+  ///
+  /// Flow:
+  /// 1. Validate fileId > 0 và có trong `state.paymentDetail.files`.
+  /// 2. Set `isRemovingFile = true` + `removingFileId = fileId` để
+  ///    UI disable nút 🗑️ trên đúng dòng đó.
+  /// 3. Gọi repo.
+  /// 4. Success → emit `removeFileSuccess = true` + `lastRemovedFileId`
+  ///    + filter `state.paymentDetail.files` để bỏ entry tương ứng
+  ///    (UI rebuild thấy danh sách mới ngay, không cần gọi lại
+  ///    `loadPaymentDetail`).
+  /// 5. Failure → emit `removeFileMessage` để UI hiện snackbar error.
+  ///
+  /// Lưu ý: caller (UI) chỉ dispatch event này cho file có
+  /// `CreatedBy == currentUser.code` (đã ẩn nút 🗑️ cho file của
+  /// người khác). BE cũng validate quyền ở server-side.
+  Future<void> _onRemoveFile(
+    Emitter<BookingGuestHouseState> emit, {
+    required int fileId,
+    required int accommodationBookingId,
+  }) async {
+    if (fileId <= 0) {
+      emit(state.copyWith(
+        removeFileSuccess: false,
+        removeFileMessage: 'ID file không hợp lệ',
+      ));
+      return;
+    }
+
+    //---(Chặn xoá trùng khi đang loading)---//
+    if (state.isRemovingFile) {
+      _log.logW('⚠️ Đang xoá file khác, bỏ qua request mới');
+      return;
+    }
+
+    emit(state.copyWith(
+      isRemovingFile: true,
+      removingFileId: fileId,
+      removeFileSuccess: false,
+      lastRemovedFileId: null,
+      removeFileMessage: null,
+      message: null,
+    ));
+
+    _log.logI('🗑️ removeBookingGuestHouseFile id=$fileId');
+
+    final res = await _repo.removeBookingGuestHouseFile(fileId: fileId);
+
+    await res.fold(
+      (err) async {
+        _log.logE('❌ removeBookingGuestHouseFile failed: $err');
+        emit(state.copyWith(
+          isRemovingFile: false,
+          removingFileId: null,
+          removeFileSuccess: false,
+          removeFileMessage: err.getErrorMessage,
+        ));
+      },
+      (_) async {
+        _log.logI('✅ removeBookingGuestHouseFile OK id=$fileId');
+
+        // Lọc bỏ entry tương ứng khỏi `state.paymentDetail.files`
+        // (nếu còn). `paymentDetail` có thể null nếu state chưa
+        // load xong.
+        final current = state.paymentDetail;
+        final nextFiles = current?.files
+            ?.where((f) => f.id != fileId)
+            .toList(growable: false);
+        final nextPaymentDetail = (current == null || nextFiles == null)
+            ? current
+            : current.copyWith(files: nextFiles.isEmpty ? null : nextFiles);
+
+        emit(state.copyWith(
+          isRemovingFile: false,
+          removingFileId: null,
+          removeFileSuccess: true,
+          lastRemovedFileId: fileId,
+          removeFileMessage: null,
+          paymentDetail: nextPaymentDetail,
+        ));
+      },
+    );
+  }
+
+  //---(Clear Remove File State)---//
+
+  /// Reset cờ `removeFileSuccess` + `removeFileMessage` sau khi UI
+  /// đã xử lý xong (xoá entry khỏi list + hiện toast success), để
+  /// lần sau không lặp lại side effect.
+  void _onClearRemoveFileState(Emitter<BookingGuestHouseState> emit) {
+    if (state.removeFileSuccess || (state.removeFileMessage ?? '').isNotEmpty) {
+      emit(state.copyWith(
+        removeFileSuccess: false,
+        removeFileMessage: null,
+      ));
     }
   }
 }

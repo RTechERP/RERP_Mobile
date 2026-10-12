@@ -117,4 +117,13 @@ abstract class BookingGuestHouseRepo {
     required String fileType,
     required PlatformFile file,
   });
+
+  /// Xoá 1 file đính kèm của 1 detail TTQT.
+  /// [fileId] - ID của `BookingGuestHouseFileItem` cần xoá.
+  /// API: POST `/AccommodationBookingPaymentOrder/remove-file`.
+  /// Quyền: chỉ user khớp `CreatedBy` của file mới được xoá — UI
+  /// ẩn nút 🗑️, BE cũng validate server-side.
+  Future<Either<BaseError, void>> removeBookingGuestHouseFile({
+    required int fileId,
+  });
 }

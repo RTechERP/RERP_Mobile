@@ -94,6 +94,23 @@ class BookingGuestHouseState extends BaseBlocState {
   /// Cờ lưu TTQT thành công — UI dùng để hiện toast + pop.
   final bool settlementSuccess;
 
+  /// Loading khi xoá 1 file đính kèm đã upload (TTQT).
+  final bool isRemovingFile;
+
+  /// ID file đang được xoá (null = không có). UI dùng để disable
+  /// nút xoá trên đúng dòng đó trong khi chờ response.
+  final int? removingFileId;
+
+  /// Cờ xoá file thành công — UI dùng để hiện toast và reload lại
+  /// `state.paymentDetail.files` (xoá entry tương ứng khỏi list).
+  final bool removeFileSuccess;
+
+  /// ID file vừa xoá thành công (kèm theo [removeFileSuccess]).
+  final int? lastRemovedFileId;
+
+  /// Thông báo lỗi khi xoá file (null = OK).
+  final String? removeFileMessage;
+
   /// Response cuối từ API save-standalone-detail (ID + DetailStatus).
   final BookingGuestHouseSaveDetailResponse? lastSettlementResponse;
 
@@ -134,6 +151,11 @@ class BookingGuestHouseState extends BaseBlocState {
     this.settlementSuccess = false,
     this.lastSettlementResponse,
     this.settlementMessage,
+    this.isRemovingFile = false,
+    this.removingFileId,
+    this.removeFileSuccess = false,
+    this.lastRemovedFileId,
+    this.removeFileMessage,
   });
 
   factory BookingGuestHouseState.init() => BookingGuestHouseState(
@@ -169,6 +191,11 @@ class BookingGuestHouseState extends BaseBlocState {
     settlementSuccess: false,
     lastSettlementResponse: null,
     settlementMessage: null,
+    isRemovingFile: false,
+    removingFileId: null,
+    removeFileSuccess: false,
+    lastRemovedFileId: null,
+    removeFileMessage: null,
   );
 
   @override
@@ -206,5 +233,10 @@ class BookingGuestHouseState extends BaseBlocState {
     settlementSuccess,
     lastSettlementResponse,
     settlementMessage,
+    isRemovingFile,
+    removingFileId,
+    removeFileSuccess,
+    lastRemovedFileId,
+    removeFileMessage,
   ];
 }
