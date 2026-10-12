@@ -943,10 +943,20 @@ class AppRouter {
             path: RouteNames.bookingGuestHouseSettlement,
             builder: (context, state) {
               final extra = state.extra;
-              if (extra is int) {
-                return BookingGuestHouseSettlementScreen(id: extra);
+              if (extra is SettlementExtra) {
+                return BookingGuestHouseSettlementScreen(extra: extra);
               }
-              return const BookingGuestHousePage();
+              // Fallback: nếu extra là int (backward compat) — coi là
+              // `isOwnBooking = true` (phiếu của chính user, cho sửa).
+              if (extra is int) {
+                return BookingGuestHouseSettlementScreen(
+                  extra: SettlementExtra(
+                    bookingId: extra,
+                    isOwnBooking: true,
+                  ),
+                );
+              }
+              return const SizedBox.shrink();
             },
           ),
           GoRoute(

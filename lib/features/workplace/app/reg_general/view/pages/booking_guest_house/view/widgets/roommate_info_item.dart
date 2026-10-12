@@ -185,12 +185,13 @@ class _RoommateInfoItemState extends State<RoommateInfoItem> {
     super.didUpdateWidget(oldWidget);
     if (widget.prefillEmployee != oldWidget.prefillEmployee) {
       _selectedEmployee = widget.prefillEmployee;
-      // Sync controller + FormBuilder value xuống field. Cách này đảm bảo
-      // ngay cả field "Tên người ở cùng" (cùng hiển thị fullName từ Employee)
-      // cũng được fill khi parent resolve currentUser cho slip 0.
-      _applyEmployeeToControllers(_selectedEmployee);
+      // Defer cả phần gán controller + sync field xuống post frame.
+      // Gán trực tiếp trong update phase sẽ trigger
+      // `FormState._fieldDidChange` → setState trong build → exception
+      // (xem `FormState._forceRebuild`).
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (!mounted) return;
+        _applyEmployeeToControllers(_selectedEmployee);
         _syncFieldsToEmployee(_selectedEmployee);
       });
     }

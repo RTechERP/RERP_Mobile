@@ -423,11 +423,15 @@ class _BookingGuestHouseAddScreenState
             // ngoài → builder skip → `enabled` giữ giá trị cũ.
             child: BlocBuilder<BookingGuestHouseBloc, BookingGuestHouseState>(
               builder: (context, state) {
-              // Edit mode: fill form 1 lần khi detail vừa có data + lookup đã
-              // load xong (tránh gọi trong build → setState trong build).
-              if (widget.id != null &&
-                  state.detailData != null &&
-                  !_populated) {
+            // Edit mode: fill form 1 lần khi detail vừa có data + lookup đã
+            // load xong (tránh gọi trong build → setState trong build).
+            // Check `info.id == widget.id` để tránh populate nhầm data
+            // cũ (từ phiếu khác mà bloc state còn giữ) khi user
+            // back từ settlement/list rồi mở phiếu khác.
+            if (widget.id != null &&
+                state.detailData != null &&
+                state.detailData!.info.id == widget.id &&
+                !_populated) {
                 _populated = true;
                 WidgetsBinding.instance.addPostFrameCallback((_) {
                   if (!mounted) return;

@@ -19,7 +19,10 @@ import '../../../../../../../../../common/helpers/index.dart';
 import '../../data/datasource/models/booking_guest_house_model.dart';
 import '../bloc/booking_guest_house_bloc.dart';
 import '../../../../../../../../../routes/route_names.dart';
+import '../../../../../../../../../features/auth/data/repository/auth_repo.dart';
+import '../../../../../../../../../features/auth/data/datasource/models/user_model.dart';
 import '../widgets/booking_guest_house_card.dart';
+import 'booking_guest_house_settlement_screen.dart';
 
 class BookingGuestHousePage extends StatefulWidget {
   const BookingGuestHousePage({super.key});
@@ -32,6 +35,10 @@ class _BookingGuestHousePageState extends State<BookingGuestHousePage> {
   final TextEditingController _searchController = TextEditingController();
   bool _isSearching = false;
 
+  /// User đang đăng nhập — dùng để so sánh `createdBy` khi check
+  /// quyền sửa / xem phiếu của người khác.
+  User? _currentUser;
+
   //---(Shorthand — bloc được wrap ở ShellRoute (singleton) và inject qua
   //   BlocProvider.value ở route add/edit; truy cập qua context.read).---//
   BookingGuestHouseBloc get _bloc => context.read<BookingGuestHouseBloc>();
@@ -42,6 +49,19 @@ class _BookingGuestHousePageState extends State<BookingGuestHousePage> {
     super.initState();
     _bloc.add(const BookingGuestHouseEvent.init());
     _bloc.add(const BookingGuestHouseEvent.loadFilters());
+    _loadCurrentUser();
+  }
+
+  /// Lấy thông tin user đang đăng nhập — dùng để so sánh
+  /// `createdBy` với phiếu trong menu actions.
+  Future<void> _loadCurrentUser() async {
+    final res = await GetIt.I<AuthRepo>().getCurrentUser();
+    if (!mounted) return;
+    final user = res.getOrElse(() => null);
+    if (user == null) return;
+    setState(() {
+      _currentUser = user;
+    });
   }
 
   @override
@@ -387,13 +407,26 @@ class _BookingGuestHousePageState extends State<BookingGuestHousePage> {
     BuildContext context,
     BookingGuestHouseItem item,
   ) {
+    final isOwn = _isOwnBooking(item);
     BookingActionsSheet.show(
       context,
       item: item,
+      isOwnBooking: isOwn,
       onEdit: () => _openEdit(context, item),
-      onSettlement: () => _openSettlement(context, item),
+      onSettlement: () => _openSettlement(context, item, isOwn),
       onAdvance: () => _openAdvance(context, item),
     );
+  }
+
+  /// Kiểm tra phiếu có phải do `currentUser` tạo hay không.
+  /// Nếu `currentUser` chưa load xong → mặc định coi là "của người
+  /// khác" (an toàn: không cho sửa / tạm ứng).
+  bool _isOwnBooking(BookingGuestHouseItem item) {
+    final userCode = _currentUser?.code.trim();
+    if (userCode == null || userCode.isEmpty) return false;
+    final createdBy = (item.createdBy ?? '').trim();
+    if (createdBy.isEmpty) return false;
+    return createdBy == userCode;
   }
 
   /// Mở màn chỉnh sửa. Đợi screen pop về → init lại list (giống FAB
@@ -413,13 +446,16 @@ class _BookingGuestHousePageState extends State<BookingGuestHousePage> {
   /// Mở màn cập nhật quyết toán. Truyền `id` (int) — screen tự gọi
   /// API `get-detail-by-booking-id` để pre-fill form (status 0/null =
   /// chưa có TTQT → giữ form rỗng).
+  /// [isOwn] — `false` khi phiếu do người khác tạo → settlement
+  /// screen hiển thị toàn bộ field `enabled=false` và chỉ xem file.
   Future<void> _openSettlement(
     BuildContext context,
     BookingGuestHouseItem item,
+    bool isOwn,
   ) async {
     await context.push(
       RouteNames.bookingGuestHouseSettlement,
-      extra: item.id,
+      extra: SettlementExtra(bookingId: item.id, isOwnBooking: isOwn),
     );
     if (!mounted) return;
     _bloc.add(const BookingGuestHouseEvent.init());
@@ -451,12 +487,14 @@ class BookingActionsSheet extends StatelessWidget {
   const BookingActionsSheet({
     super.key,
     required this.item,
+    required this.isOwnBooking,
     required this.onEdit,
     required this.onSettlement,
     required this.onAdvance,
   });
 
   final BookingGuestHouseItem item;
+  final bool isOwnBooking;
   final VoidCallback onEdit;
   final VoidCallback onSettlement;
   final VoidCallback onAdvance;
@@ -464,6 +502,7 @@ class BookingActionsSheet extends StatelessWidget {
   static Future<void> show(
     BuildContext context, {
     required BookingGuestHouseItem item,
+    required bool isOwnBooking,
     required VoidCallback onEdit,
     required VoidCallback onSettlement,
     required VoidCallback onAdvance,
@@ -474,6 +513,7 @@ class BookingActionsSheet extends StatelessWidget {
       backgroundColor: Colors.transparent,
       builder: (_) => BookingActionsSheet(
         item: item,
+        isOwnBooking: isOwnBooking,
         onEdit: onEdit,
         onSettlement: onSettlement,
         onAdvance: onAdvance,
@@ -605,6 +645,15 @@ class BookingActionsSheet extends StatelessWidget {
                     // `_openEdit`). Tránh xử lý `context` của sheet
                     // (đã unmounted sau khi pop) ở đây.
                     onTap: () {
+                      // Chặn nếu phiếu do người khác tạo.
+                      if (!isOwnBooking) {
+                        Navigator.pop(context);
+                        context.showMessage(
+                          'Bạn không thể chỉnh sửa phiếu của người khác',
+                          type: SnackBarType.error,
+                        );
+                        return;
+                      }
                       Navigator.pop(context);
                       onEdit();
                     },
@@ -638,6 +687,16 @@ class BookingActionsSheet extends StatelessWidget {
                   icon: Icons.receipt_long_outlined,
                   color: tileColor,
                   onTap: () {
+                    // Chặn nếu phiếu do người khác tạo.
+                    if (!isOwnBooking) {
+                      Navigator.pop(context);
+                      context.showMessage(
+                        'Bạn không thể tạo đề nghị tạm ứng phiếu '
+                        'của người khác',
+                        type: SnackBarType.error,
+                      );
+                      return;
+                    }
                     // Chặn nếu chưa được TBP duyệt (status != approved).
                     // Theo mục 3.3 (Đề nghị tạm ứng) — chỉ được tạo ĐNTU
                     // sau khi đơn đăng ký được TBP duyệt.

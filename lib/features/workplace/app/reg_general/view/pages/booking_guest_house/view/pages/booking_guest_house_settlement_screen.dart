@@ -42,23 +42,39 @@ enum TransferType {
 class BookingGuestHouseSettlementScreen extends StatefulWidget {
   const BookingGuestHouseSettlementScreen({
     super.key,
-    required this.id,
+    required this.extra,
   });
 
-  /// ID phiếu cần mở form TT Quyết toán. Dùng để gọi API
-  /// `GET /AccommodationBookingPaymentOrder/get-detail-by-booking-id?accommodationBookingId=<id>`
-  /// pre-fill form (nếu BE đã có TTQT trước đó với status 2/3/4/5).
-  /// Status 0/null = chưa có TTQT → giữ form rỗng.
-  final int id;
+  /// Extra data truyền từ `BookingGuestHousePage` khi nhấn "Cập nhật
+  /// quyết toán".
+  final SettlementExtra extra;
 
   @override
   State<BookingGuestHouseSettlementScreen> createState() =>
       _BookingGuestHouseSettlementScreenState();
 }
 
+/// Extra data truyền qua route settlement screen.
+/// [bookingId] — ID phiếu đặt phòng.
+/// [isOwnBooking] — `true` = phiếu do currentUser tạo → cho sửa;
+///   `false` = phiếu người khác → toàn bộ field `enabled=false`.
+class SettlementExtra {
+  const SettlementExtra({
+    required this.bookingId,
+    required this.isOwnBooking,
+  });
+
+  final int bookingId;
+  final bool isOwnBooking;
+}
+
 class _BookingGuestHouseSettlementScreenState
     extends State<BookingGuestHouseSettlementScreen> {
   final _formKey = GlobalKey<FormBuilderState>();
+
+  /// `true` = phiếu do currentUser tạo → cho sửa / xoá file.
+  /// `false` = phiếu người khác → toàn bộ field `enabled=false`.
+  bool get _isOwnBooking => widget.extra.isOwnBooking;
 
   static final DateFormat _dateFmt = DateFormat('dd/MM/yyyy');
 
@@ -155,11 +171,11 @@ class _BookingGuestHouseSettlementScreenState
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       final bloc = context.read<BookingGuestHouseBloc>();
-      bloc.add(BookingGuestHouseEvent.loadDetail(id: widget.id));
+      bloc.add(BookingGuestHouseEvent.loadDetail(id: widget.extra.bookingId));
       // Tải chi tiết TTQT theo `accommodationBookingId` để pre-fill
       // form (thay thế cho việc truyền `BookingGuestHouseItem` qua
       // widget). `data == null` = chưa có TTQT → giữ form rỗng.
-      bloc.add(BookingGuestHouseEvent.loadPaymentDetail(id: widget.id));
+      bloc.add(BookingGuestHouseEvent.loadPaymentDetail(id: widget.extra.bookingId));
       _loadCurrentUser();
     });
   }
@@ -578,7 +594,7 @@ class _BookingGuestHouseSettlementScreenState
     context.read<BookingGuestHouseBloc>().add(
           BookingGuestHouseEvent.removeFile(
             fileId: item.id!,
-            accommodationBookingId: widget.id,
+            accommodationBookingId: widget.extra.bookingId,
           ),
         );
   }
@@ -646,7 +662,7 @@ class _BookingGuestHouseSettlementScreenState
     //    resolve currentUser.)---//
     context.read<BookingGuestHouseBloc>().add(
       BookingGuestHouseEvent.submitSettlementForm(
-        accommodationBookingId: widget.id,
+        accommodationBookingId: widget.extra.bookingId,
         totalAmount: totalAmount,
         totalAmountWithInvoice: totalWithInvoice,
         invoiceNumber: _invoiceCtrl.text.trim(),
@@ -1143,6 +1159,7 @@ class _BookingGuestHouseSettlementScreenState
                     controller: _reasonCtrl,
                     isRequired: true,
                     autoExpand: true,
+                    enabled: _isOwnBooking,
                     validator: (v) => v == null || v.trim().isEmpty
                         ? 'Vui lòng nhập lý do'
                         : null,
@@ -1183,6 +1200,7 @@ class _BookingGuestHouseSettlementScreenState
                         controller: _projectCtrl,
                         isRequired: true,
                         readOnly: true,
+                        enabled: _isOwnBooking,
                         onTap: _pickProject,
                         validator: (v) => v == null || v.trim().isEmpty
                             ? 'Vui lòng chọn dự án'
@@ -1231,6 +1249,7 @@ class _BookingGuestHouseSettlementScreenState
                         icon: Icons.verified_user_outlined,
                         controller: _tbpCtrl,
                         isRequired: true,
+                        enabled: _isOwnBooking,
                         onTap: _pickTbp,
                         validator: (v) => v == null || v.trim().isEmpty
                             ? 'Vui lòng chọn TBP duyệt'
@@ -1295,6 +1314,7 @@ class _BookingGuestHouseSettlementScreenState
                     icon: Icons.groups_outlined,
                     controller: _departmentCtrl,
                     isRequired: true,
+                    enabled: _isOwnBooking,
                     validator: (v) => v == null || v.trim().isEmpty
                         ? 'Vui lòng nhập bộ phận'
                         : null,
@@ -1319,6 +1339,7 @@ class _BookingGuestHouseSettlementScreenState
                       signed: false,
                     ),
                     inputFormatters: [ThousandsInputFormatter()],
+                    enabled: _isOwnBooking,
                     suffixIcon: const Padding(
                       padding: EdgeInsets.only(right: 12),
                       child: Center(
@@ -1359,6 +1380,7 @@ class _BookingGuestHouseSettlementScreenState
                       signed: false,
                     ),
                     inputFormatters: [ThousandsInputFormatter()],
+                    enabled: _isOwnBooking,
                     suffixIcon: const Padding(
                       padding: EdgeInsets.only(right: 12),
                       child: Center(
@@ -1393,6 +1415,7 @@ class _BookingGuestHouseSettlementScreenState
                     icon: Icons.receipt_long_outlined,
                     controller: _invoiceCtrl,
                     isRequired: true,
+                    enabled: _isOwnBooking,
                     validator: (v) => v == null || v.trim().isEmpty
                         ? 'Vui lòng nhập số hoá đơn'
                         : null,
@@ -1410,6 +1433,7 @@ class _BookingGuestHouseSettlementScreenState
                     controller: _transferTypeCtrl,
                     isRequired: true,
                     readOnly: true,
+                    enabled: _isOwnBooking,
                     onTap: _pickTransferType,
                     validator: (v) => v == null || v.trim().isEmpty
                         ? 'Vui lòng chọn hình thức CK'
@@ -1425,6 +1449,7 @@ class _BookingGuestHouseSettlementScreenState
                     icon: Icons.hotel_outlined,
                     controller: _hotelCtrl,
                     isRequired: true,
+                    enabled: _isOwnBooking,
                     validator: (v) => v == null || v.trim().isEmpty
                         ? 'Vui lòng nhập tên khách sạn'
                         : null,
@@ -1440,6 +1465,7 @@ class _BookingGuestHouseSettlementScreenState
                     controller: _hotelMstCtrl,
                     isRequired: true,
                     keyboardType: TextInputType.number,
+                    enabled: _isOwnBooking,
                     validator: (v) {
                       if (v == null || v.trim().isEmpty) {
                         return 'Vui lòng nhập MST khách sạn';
@@ -1461,6 +1487,7 @@ class _BookingGuestHouseSettlementScreenState
                     icon: Icons.account_balance_outlined,
                     controller: _bankAccountCtrl,
                     isRequired: true,
+                    enabled: _isOwnBooking,
                     keyboardType: TextInputType.text,
                     validator: (v) {
                       if (v == null || v.trim().isEmpty) {
@@ -1480,6 +1507,7 @@ class _BookingGuestHouseSettlementScreenState
                     controller: _bankNameCtrl,
                     isRequired: true,
                     readOnly: true,
+                    enabled: _isOwnBooking,
                     onTap: _pickBank,
                     validator: (v) => v == null || v.trim().isEmpty
                         ? 'Vui lòng chọn ngân hàng'
@@ -1497,6 +1525,7 @@ class _BookingGuestHouseSettlementScreenState
                     keyboardType: TextInputType.multiline,
                     textInputAction: TextInputAction.newline,
                     autoExpand: true,
+                    enabled: _isOwnBooking,
                   ),
                 ],
               ),
@@ -1514,6 +1543,11 @@ class _BookingGuestHouseSettlementScreenState
                   prev.removingFileId != curr.removingFileId ||
                   prev.paymentDetail != curr.paymentDetail,
               builder: (context, state) {
+                // Phiếu của người khác → chỉ xem (không pick file mới,
+                // không xoá file cũ) — bằng cách truyền `null` cho
+                // `onPick` / `onRemoveNew` / `canDeleteExistingFile` =
+                // `() => false` (luôn không cho xoá).
+                final canEditFiles = _isOwnBooking;
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -1521,12 +1555,14 @@ class _BookingGuestHouseSettlementScreenState
                       icon: Icons.description_outlined,
                       label: 'File hoá đơn',
                       files: _invoiceFiles,
-                      onPick: _pickInvoiceFiles,
+                      onPick: canEditFiles ? _pickInvoiceFiles : () {},
                       existingFiles: _existingFilesOfType('INVOICE'),
                       onViewNew: _viewNewInvoiceFile,
-                      onRemoveNew: _removeInvoiceAt,
+                      onRemoveNew: canEditFiles ? _removeInvoiceAt : null,
                       onViewExisting: _viewExistingFile,
-                      canDeleteExistingFile: _canDeleteExistingFile,
+                      canDeleteExistingFile: canEditFiles
+                          ? _canDeleteExistingFile
+                          : (_) => false,
                       onRemoveExisting: _onRemoveExistingFile,
                       isRemovingId: state.isRemovingFile
                           ? state.removingFileId
@@ -1537,12 +1573,14 @@ class _BookingGuestHouseSettlementScreenState
                       icon: Icons.receipt_outlined,
                       label: 'File bill chuyển khoản',
                       files: _billCkFiles,
-                      onPick: _pickBillCkFiles,
+                      onPick: canEditFiles ? _pickBillCkFiles : () {},
                       existingFiles: _existingFilesOfType('BILL_CK'),
                       onViewNew: _viewNewBillCkFile,
-                      onRemoveNew: _removeBillCkAt,
+                      onRemoveNew: canEditFiles ? _removeBillCkAt : null,
                       onViewExisting: _viewExistingFile,
-                      canDeleteExistingFile: _canDeleteExistingFile,
+                      canDeleteExistingFile: canEditFiles
+                          ? _canDeleteExistingFile
+                          : (_) => false,
                       onRemoveExisting: _onRemoveExistingFile,
                       isRemovingId: state.isRemovingFile
                           ? state.removingFileId
@@ -1563,6 +1601,11 @@ class _BookingGuestHouseSettlementScreenState
       buildWhen: (prev, curr) =>
           prev.isSubmittingSettlement != curr.isSubmittingSettlement,
       builder: (context, state) {
+        // Phiếu của người khác → ẩn luôn bottom bar (kể cả khi đang
+        // submit) — chỉ xem, không có action Lưu.
+        if (!_isOwnBooking) {
+          return const SizedBox.shrink();
+        }
         final isSubmitting = state.isSubmittingSettlement;
         return Container(
           padding: EdgeInsets.fromLTRB(
