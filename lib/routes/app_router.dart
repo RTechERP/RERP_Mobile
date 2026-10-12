@@ -933,14 +933,20 @@ class AppRouter {
             },
           ),
           GoRoute(
-            // Cập nhật TTQT: form cũ (đầy đủ field + file bill/hoá đơn).
+            // Cập nhật TTQT: form đầy đủ field + file bill/hoá đơn.
+            // `extra` là `int` (id phiếu đặt phòng) — screen tự gọi
+            // 2 API song song khi mở:
+            // 1. `getBookingGuestHouseById` → load thông tin phiếu
+            // 2. `getPaymentOrderDetailByBookingId` → pre-fill form
+            //    TTQT nếu BE đã có detail trước đó (status 2/3/4/5).
+            //    Status 0/null = chưa có TTQT → giữ form rỗng.
             path: RouteNames.bookingGuestHouseSettlement,
             builder: (context, state) {
               final extra = state.extra;
-              if (extra is! int) {
-                return const BookingGuestHousePage();
+              if (extra is int) {
+                return BookingGuestHouseSettlementScreen(id: extra);
               }
-              return BookingGuestHouseSettlementScreen(id: extra);
+              return const BookingGuestHousePage();
             },
           ),
           GoRoute(

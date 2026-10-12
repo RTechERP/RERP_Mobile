@@ -410,7 +410,9 @@ class _BookingGuestHousePageState extends State<BookingGuestHousePage> {
     _bloc.add(const BookingGuestHouseEvent.loadFilters());
   }
 
-  /// Mở màn cập nhật quyết toán.
+  /// Mở màn cập nhật quyết toán. Truyền `id` (int) — screen tự gọi
+  /// API `get-detail-by-booking-id` để pre-fill form (status 0/null =
+  /// chưa có TTQT → giữ form rỗng).
   Future<void> _openSettlement(
     BuildContext context,
     BookingGuestHouseItem item,

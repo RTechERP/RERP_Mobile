@@ -518,11 +518,46 @@ class ApiEndPoint {
   /// API: GET /banklist
   static const String getBankList = '/banklist';
 
+  /// Đặt phòng nhà nghỉ — lấy chi tiết TT Quyết toán (TTQT) theo
+  /// `accommodationBookingId`. Dùng để pre-fill form Cập nhật TTQT
+  /// với dữ liệu BE trả về (TTQT có thể đã được tạo trước đó với
+  /// status 2/3/4/5 — status 0/null tức chưa có TTQT → giữ form
+  /// rỗng). API:
+  /// `GET /AccommodationBookingPaymentOrder/get-detail-by-booking-id?accommodationBookingId=<id>`
+  /// Response: 1 object detail hoặc mảng (BE có thể trả cả 2 dạng).
+  /// Field chính: `ID`, `AccommodationBookingID`, `DetailStatus`,
+  /// `Reason`, `ProjectID`, `RecipientName`, `HotelName`, `HotelTaxCode`,
+  /// `BankAccount`, `BankName`, `BankListID`, `TransferType`,
+  /// `ApprovedTBPID`, `TotalAmount`, `TotalAmountWithInvoice`,
+  /// `InvoiceNumber`, `CompanyID`, `CompanyName`, `DepartmentName`,
+  /// `Note`, `Files`, ...
+  static const String getPaymentOrderDetailByBookingId =
+      '/AccommodationBookingPaymentOrder/get-detail-by-booking-id';
+
   /// Đặt phòng nhà nghỉ — tạo / tạo lại đề nghị tạm ứng (ĐNTU).
   /// API: POST /AccommodationBookingPaymentOrder/create-advance
   /// Body: AccommodationBookingAdvanceRequest — xem mục 4.6 spec.
   static const String createBookingGuestHouseAdvance =
       '/AccommodationBookingPaymentOrder/create-advance';
+
+  /// Đặt phòng nhà nghỉ — lưu cập nhật TT Quyết toán (TTQT) standalone.
+  /// API: POST /AccommodationBookingPaymentOrder/save-standalone-detail
+  /// Body (mục 4.7 spec): { ID, TotalAmount, TotalAmountWithInvoice,
+  /// InvoiceNumber, BankAccount, BankListID, BankName, TransferType,
+  /// ApprovedTBPID, Reason, ProjectID, CompanyID, CompanyName,
+  /// DepartmentName, Note, AccommodationBookingID, DetailStatus=2,
+  /// HotelName, HotelTaxCode }.
+  /// Response: `{ status, message, data: { ID, DetailStatus } }`.
+  static const String saveBookingGuestHouseStandaloneDetail =
+      '/AccommodationBookingPaymentOrder/save-standalone-detail';
+
+  /// Đặt phòng nhà nghỉ — upload file đính kèm cho 1 detail TTQT.
+  /// API: POST /AccommodationBookingPaymentOrder/upload-file
+  /// Query: `detailId`, `fileType` (INVOICE | BILL_CK).
+  /// Body: multipart form-data `{ key, subPath, files }`.
+  /// Response `data` có thể là 1 object hoặc mảng các object file đã upload.
+  static const String uploadBookingGuestHouseFile =
+      '/AccommodationBookingPaymentOrder/upload-file';
 
   /// Check xung đột trước khi lưu phiếu đăng ký bàn test.
   /// API: POST /ESLRegistration/check-conflict (form-data).

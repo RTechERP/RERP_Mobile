@@ -1,49 +1,52 @@
-// Màn "Cập nhật TTQT" cho phiếu Đặt phòng nhà nghỉ.
-//
-// Mở từ bottomSheet menu khi chạm 1 phiếu trong danh sách. UI là form
-// đầy đủ các field TT Quyết toán (giống tab "TT Quyết toán" của detail
-// screen, nhưng là 1 trang riêng — không có tab Phiếu đăng ký).
-//
-// Màn này nhận `id` (int) của phiếu, tự gọi bloc load detail. Trong khi
-// load → spinner; load lỗi → snackbar + pop.
-//
-// Field set (UI cập nhật TTQT):
-//   1. Lý do (isRequired)
-//   2. Dự án (isRequired, picker từ state.projects)
-//   3. TBP duyệt (isRequired, auto-fill từ state.employees theo
-//      info.approvedTBP, readOnly)
-//   4. Công ty (isRequired, picker từ state.taxCompanies)
-//   5. Tổng tiền (isRequired, format "x.xxx.xxx VNĐ")
-//   6. Tổng tiền có HĐ (isRequired, format "x.xxx.xxx VNĐ")
-//   7. Số hoá đơn (isRequired)
-//   8. Hình thức CK (isRequired, text rỗng — picker sẽ bổ sung sau)
-//   9. Tên khách sạn (isRequired, text rỗng)
-//  10. MST khách sạn (isRequired, số + dấu "-")
-//  11. Bộ phận (isRequired, text rỗng)
-//  12. Số tài khoản (isRequired, chỉ chữ số)
-//  13. Ngân hàng (isRequired, picker từ state.banks)
-//  14. Ghi chú (optional, multiline)
-//   * Tài liệu đính kèm (File hoá đơn + File bill CK)
+import 'dart:io';
 
+import 'package:collection/collection.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
+import '../../../../../../../../../common/utils/formatter/thousands_input_formatter.dart';
 import '../../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../../common/widgets/form/index.dart';
 import '../../../../../../../../../common/helpers/index.dart';
+import '../../../../../../../../../features/auth/data/datasource/models/user_model.dart';
+import '../../../../../../../../../features/auth/data/repository/auth_repo.dart';
 import '../../data/datasource/models/booking_guest_house_model.dart';
 import '../bloc/booking_guest_house_bloc.dart';
 
-class BookingGuestHouseSettlementScreen extends StatefulWidget {
-  const BookingGuestHouseSettlementScreen({super.key, required this.id});
+/// Loại hình chuyển khoản cho TT Quyết toán (màn Cập nhật quyết toán).
+/// Hiện chỉ hỗ trợ "Chuyển khoản cá nhân" (value = 1) — các loại khác
+/// chưa có dữ liệu API nên không pick. Field "Hình thức CK" trên UI chỉ
+/// hiển thị read-only, không mở picker.
+enum TransferType {
+  personal(1, 'Chuyển khoản cá nhân');
 
-  /// ID phiếu cần mở form TT Quyết toán.
+  const TransferType(this.value, this.label);
+
+  /// Giá trị `TransferType` gửi BE.
+  final int value;
+
+  /// Label tiến Việt hiển thị trên UI.
+  final String label;
+}
+
+class BookingGuestHouseSettlementScreen extends StatefulWidget {
+  const BookingGuestHouseSettlementScreen({
+    super.key,
+    required this.id,
+  });
+
+  /// ID phiếu cần mở form TT Quyết toán. Dùng để gọi API
+  /// `GET /AccommodationBookingPaymentOrder/get-detail-by-booking-id?accommodationBookingId=<id>`
+  /// pre-fill form (nếu BE đã có TTQT trước đó với status 2/3/4/5).
+  /// Status 0/null = chưa có TTQT → giữ form rỗng.
   final int id;
 
   @override
@@ -56,6 +59,20 @@ class _BookingGuestHouseSettlementScreenState
   final _formKey = GlobalKey<FormBuilderState>();
 
   static final DateFormat _dateFmt = DateFormat('dd/MM/yyyy');
+
+  //---(Định dạng file cho phép)---//
+  /// File hóa đơn: PDF / ảnh / excel.
+  static const List<String> _invoiceAllowedExtensions = <String>[
+    'pdf',
+    'png', 'jpg', 'jpeg', 'webp', 'heic', 'bmp',
+    'xls', 'xlsx',
+  ];
+
+  /// File bill CK: PDF / ảnh (không cho excel).
+  static const List<String> _billCkAllowedExtensions = <String>[
+    'pdf',
+    'png', 'jpg', 'jpeg', 'webp', 'heic', 'bmp',
+  ];
 
   //---(Controllers cho field text)---//
   late final TextEditingController _reasonCtrl;
@@ -76,7 +93,10 @@ class _BookingGuestHouseSettlementScreenState
   late final TextEditingController _totalWithInvoiceCtrl;
   late final TextEditingController _invoiceCtrl;
 
-  /// Hình thức CK — TextField rỗng (placeholder, sẽ mô tả sau).
+  /// Hình thức CK — chọn từ `TransferType` qua `openSelectBottomSheet`.
+  /// Controller lưu label để FormBuilder/UI đọc; enum lưu value (gửi BE).
+  /// Mặc định `TransferType.personal` (value = 1).
+  TransferType _transferType = TransferType.personal;
   late final TextEditingController _transferTypeCtrl;
 
   late final TextEditingController _hotelCtrl;
@@ -93,6 +113,16 @@ class _BookingGuestHouseSettlementScreenState
 
   late final TextEditingController _noteCtrl;
 
+  /// Guard: chỉ pre-fill từ `Payment*` MỘT LẦN (khi detail load xong
+  /// lần đầu + `PaymentDetailStatus == 2`). Không fill lại khi state
+  /// phụ trợ thay đổi (TBP, banks...) — tránh đè value user đang gõ.
+  bool _prefilledPayment = false;
+
+  /// Current user — load song song với loadDetail để auto-fill Công ty
+  /// (TaxCompanyID) + Bộ phận (DepartmentName). User không sửa được 2
+  /// field này (`enabled: false`) vì lấy cứng từ tài khoản đang đăng nhập.
+  User? _currentUser;
+
   //---(File hoá đơn + Bill CK)---//
   List<PlatformFile> _invoiceFiles = const [];
   List<PlatformFile> _billCkFiles = const [];
@@ -107,7 +137,7 @@ class _BookingGuestHouseSettlementScreenState
     _totalAmountCtrl = TextEditingController();
     _totalWithInvoiceCtrl = TextEditingController();
     _invoiceCtrl = TextEditingController();
-    _transferTypeCtrl = TextEditingController();
+    _transferTypeCtrl = TextEditingController(text: _transferType.label);
     _hotelCtrl = TextEditingController();
     _hotelMstCtrl = TextEditingController();
     _departmentCtrl = TextEditingController();
@@ -119,10 +149,34 @@ class _BookingGuestHouseSettlementScreenState
     // provinces) KHÔNG gọi ở đây — đã được list screen load sẵn qua
     // loadFilters khi mở tính năng. Nếu mở thẳng settlement (deep link) mà
     // chưa qua list, dữ liệu lookup sẽ rỗng và UI sẽ fallback text theo id.
+    // Đồng thời load currentUser để auto-fill Công ty + Bộ phận (readonly).
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       final bloc = context.read<BookingGuestHouseBloc>();
       bloc.add(BookingGuestHouseEvent.loadDetail(id: widget.id));
+      // Tải chi tiết TTQT theo `accommodationBookingId` để pre-fill
+      // form (thay thế cho việc truyền `BookingGuestHouseItem` qua
+      // widget). `data == null` = chưa có TTQT → giữ form rỗng.
+      bloc.add(BookingGuestHouseEvent.loadPaymentDetail(id: widget.id));
+      _loadCurrentUser();
+    });
+  }
+
+  /// Lấy thông tin user đang đăng nhập (TaxCompanyID + DepartmentName) để
+  /// auto-fill vào form TT Quyết toán. 2 field này KHÔNG cho user sửa —
+  /// gắn cứng theo tài khoản.
+  Future<void> _loadCurrentUser() async {
+    final res = await GetIt.I<AuthRepo>().getCurrentUser();
+    if (!mounted) return;
+    final user = res.getOrElse(() => null);
+    if (user == null) return;
+    setState(() {
+      _currentUser = user;
+      // Auto-fill Bộ phận ngay khi có user (không phụ thuộc lookup).
+      if (_departmentCtrl.text.isEmpty) {
+        _departmentCtrl.text = user.departmentName.trim();
+      }
+      // Công ty chỉ fill khi state.taxCompanies có data (xem listener).
     });
   }
 
@@ -246,54 +300,6 @@ class _BookingGuestHouseSettlementScreenState
     );
   }
 
-  /// Mở bottom sheet chọn công ty từ `state.taxCompanies`.
-  /// Hiển thị label ưu tiên `FullName` (tên đầy đủ), fallback `Name` +
-  /// `TaxCode` (MST) phụ.
-  Future<void> _pickTaxCompany() async {
-    final state = context.read<BookingGuestHouseBloc>().state;
-    if (state.taxCompanies.isEmpty) {
-      context.read<BookingGuestHouseBloc>().add(
-        const BookingGuestHouseEvent.loadFilters(),
-      );
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text(
-            'Chưa có dữ liệu công ty. Vui lòng quay lại danh sách.',
-          ),
-          behavior: SnackBarBehavior.floating,
-        ),
-      );
-      return;
-    }
-    await openSelectBottomSheet<TaxCompanyItem>(
-      context: context,
-      title: 'Chọn công ty',
-      hintText: 'Tìm theo tên / mã số thuế',
-      items: state.taxCompanies,
-      initialSelectedItem: _companySelected,
-      displayText: (c) {
-        // Ưu tiên FullName (tên đầy đủ), nếu rỗng thì ghép Name + TaxCode.
-        final name = (c.fullName ?? '').trim();
-        if (name.isNotEmpty) return name;
-        final short = (c.name ?? '').trim();
-        final tax = (c.taxCode ?? '').trim();
-        if (short.isEmpty && tax.isEmpty) return 'N/A';
-        if (tax.isEmpty) return short;
-        if (short.isEmpty) return 'MST: $tax';
-        return '$short - MST: $tax';
-      },
-      onSelected: (company) {
-        setState(() {
-          _companySelected = company;
-          final name = (company.fullName ?? '').trim();
-          _companyCtrl.text = name.isNotEmpty
-              ? name
-              : (company.name ?? '').trim();
-        });
-      },
-    );
-  }
-
   /// Mở bottom sheet chọn ngân hàng từ `state.banks`.
   Future<void> _pickBank() async {
     final state = context.read<BookingGuestHouseBloc>().state;
@@ -329,37 +335,156 @@ class _BookingGuestHouseSettlementScreenState
     );
   }
 
-  /// Format số tiền: chèn `.` mỗi 3 chữ số từ phải sang trái, thêm ` VNĐ`.
-  /// Ví dụ: `1500000` → `1.500.000 VNĐ`.
-  String _formatVnd(String rawDigits) {
-    final digits = rawDigits.replaceAll(RegExp(r'[^0-9]'), '');
-    if (digits.isEmpty) return '';
-    final n = int.tryParse(digits) ?? 0;
-    final formatted = n.toString().replaceAllMapped(
-      RegExp(r'(\d)(?=(\d{3})+(?!\d))'),
-      (m) => '${m[1]}.',
+  /// Mở bottom sheet chọn hình thức chuyển khoản (`TransferType`). Hiện
+  /// chỉ có 1 giá trị "Chuyển khoản cá nhân" (value = 1) nhưng vẫn
+  /// dùng `openSelectBottomSheet` cho đồng bộ UX với các picker khác
+  /// (TBP, Project, Bank…). Khi BE bổ sung loại mới → mở rộng enum.
+  Future<void> _pickTransferType() async {
+    await openSelectBottomSheet<TransferType>(
+      context: context,
+      title: 'Chọn hình thức chuyển khoản',
+      hintText: 'Tìm theo tên loại chuyển khoản',
+      items: TransferType.values,
+      initialSelectedItem: _transferType,
+      displayText: (t) => t.label,
+      onSelected: (type) {
+        setState(() {
+          _transferType = type;
+          _transferTypeCtrl.text = type.label;
+        });
+      },
     );
-    return '$formatted VNĐ';
   }
 
-  /// Parse ngược từ text hiển thị (có `.` và ` VNĐ`) → chỉ chữ số.
+  /// Parse ngược từ text hiển thị (có `.`) → chỉ chữ số.
+  /// Format thực hiện trong `ThousandsInputFormatter` lúc gõ — chỉ còn
+  /// helper này cho validator/submit.
   String _parseVndToDigits(String text) =>
       text.replaceAll(RegExp(r'[^0-9]'), '');
 
   //---(File pickers)---//
 
-  Future<void> _pickInvoiceFiles() async {
-    final result = await FilePicker.platform.pickFiles(allowMultiple: true);
-    if (result != null && result.files.isNotEmpty && mounted) {
-      setState(() => _invoiceFiles = result.files);
+  /// Mở bottom sheet cho user chọn nguồn (camera / gallery / file đa
+  /// năng) rồi dispatch sang helper tương ứng. [allowedExtensions]
+  /// dùng cho nhánh FilePicker (PDF / ảnh / excel tuỳ loại).
+  /// [applyResult] được gọi với danh sách `PlatformFile` mới (không
+  /// rỗng) — UI tự setState cập nhật `_invoiceFiles` / `_billCkFiles`.
+  Future<void> _showFileSourceAndPick({
+    required List<String> allowedExtensions,
+    required void Function(List<PlatformFile> files) applyResult,
+  }) async {
+    final source = await showModalBottomSheet<_FileSource>(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: false,
+      builder: (_) => const _FileSourceBottomSheet(),
+    );
+    if (source == null || !mounted) return;
+
+    switch (source) {
+      case _FileSource.camera:
+        await _pickFromCamera(applyResult);
+        break;
+      case _FileSource.gallery:
+        await _pickFromGallery(applyResult);
+        break;
+      case _FileSource.files:
+        await _pickFromFilePicker(
+          allowedExtensions: allowedExtensions,
+          applyResult: applyResult,
+        );
+        break;
     }
   }
 
-  Future<void> _pickBillCkFiles() async {
-    final result = await FilePicker.platform.pickFiles(allowMultiple: true);
-    if (result != null && result.files.isNotEmpty && mounted) {
-      setState(() => _billCkFiles = result.files);
+  /// Chụp 1 ảnh từ camera, wrap thành `PlatformFile` rồi gọi
+  /// [applyResult]. User hủy (không chụp) → bỏ qua.
+  Future<void> _pickFromCamera(
+    void Function(List<PlatformFile> files) applyResult,
+  ) async {
+    final picker = ImagePicker();
+    final XFile? shot = await picker.pickImage(
+      source: ImageSource.camera,
+      imageQuality: 90,
+    );
+    if (shot == null || !mounted) return;
+    final file = _xfileToPlatformFile(shot);
+    if (file == null) return;
+    applyResult([file]);
+  }
+
+  /// Chọn nhiều ảnh từ thư viện, wrap thành `List<PlatformFile>` rồi
+  /// gọi [applyResult]. User không chọn gì → bỏ qua.
+  Future<void> _pickFromGallery(
+    void Function(List<PlatformFile> files) applyResult,
+  ) async {
+    final picker = ImagePicker();
+    final List<XFile> images = await picker.pickMultiImage(
+      imageQuality: 90,
+    );
+    if (images.isEmpty || !mounted) return;
+    final files = <PlatformFile>[];
+    for (final x in images) {
+      final f = _xfileToPlatformFile(x);
+      if (f != null) files.add(f);
     }
+    if (files.isEmpty) return;
+    applyResult(files);
+  }
+
+  /// Mở FilePicker đa năng (PDF / ảnh / excel) theo
+  /// [allowedExtensions] (whitelist của loại file tương ứng).
+  Future<void> _pickFromFilePicker({
+    required List<String> allowedExtensions,
+    required void Function(List<PlatformFile> files) applyResult,
+  }) async {
+    final result = await FilePicker.platform.pickFiles(
+      allowMultiple: true,
+      type: FileType.custom,
+      allowedExtensions: allowedExtensions,
+    );
+    if (result == null || result.files.isEmpty || !mounted) return;
+    applyResult(result.files);
+  }
+
+  /// Convert `XFile` (image_picker) → `PlatformFile` (file_picker) để
+  /// tận dụng lại luồng upload hiện tại (chỉ cần `path` + `name`).
+  /// Trả `null` nếu `XFile` không có path trên local filesystem
+  /// (vd từ URL bên ngoài) — trường hợp này hiếm gặp với camera /
+  /// gallery, nhưng defensive để tránh exception.
+  PlatformFile? _xfileToPlatformFile(XFile xfile) {
+    final path = xfile.path;
+    if (path.trim().isEmpty) return null;
+    final file = File(path);
+    if (!file.existsSync()) return null;
+    return PlatformFile(
+      path: path,
+      name: xfile.name,
+      size: file.lengthSync(),
+    );
+  }
+
+  Future<void> _pickInvoiceFiles() async {
+    // File hóa đơn — cho phép PDF / ảnh / excel. Bottom sheet cho
+    // user chọn nguồn (camera / gallery / file đa năng).
+    await _showFileSourceAndPick(
+      allowedExtensions: _invoiceAllowedExtensions,
+      applyResult: (files) {
+        if (!mounted) return;
+        setState(() => _invoiceFiles = files);
+      },
+    );
+  }
+
+  Future<void> _pickBillCkFiles() async {
+    // Bill CK — chỉ cho phép PDF / ảnh (không cho excel).
+    await _showFileSourceAndPick(
+      allowedExtensions: _billCkAllowedExtensions,
+      applyResult: (files) {
+        if (!mounted) return;
+        setState(() => _billCkFiles = files);
+      },
+    );
   }
 
   void _onSave() {
@@ -373,24 +498,226 @@ class _BookingGuestHouseSettlementScreenState
       return;
     }
 
-    // TODO: wire submit khi có API lưu TT Quyết toán. Tạm thời báo
-    // thành công để confirm form đã validate OK + pop về list.
-    context.showMessage(
-      'Lưu cập nhật TTQT thành công',
-      type: SnackBarType.success,
-    );
-    if (mounted && context.canPop()) {
-      context.pop();
+    final totalAmount = _amountValue(_totalAmountCtrl.text);
+    if (totalAmount == null || totalAmount <= 0) {
+      context.showMessage(
+        'Số tiền tổng không hợp lệ',
+        type: SnackBarType.error,
+      );
+      return;
     }
+
+    final totalWithInvoice = _amountValue(_totalWithInvoiceCtrl.text);
+    if (totalWithInvoice == null || totalWithInvoice <= 0) {
+      context.showMessage(
+        'Số tiền có hóa đơn không hợp lệ',
+        type: SnackBarType.error,
+      );
+      return;
+    }
+
+    final bank = _bankSelected;
+    if (bank == null) {
+      context.showMessage(
+        'Vui lòng chọn ngân hàng',
+        type: SnackBarType.error,
+      );
+      return;
+    }
+
+    // Công ty — lấy từ controller (đã auto-fill). Nếu user không có
+    // taxCompanyId → fallback 0 cho companyId (bloc sẽ dùng giá trị này).
+    final companyId = _companySelected?.id ?? _currentUser?.taxCompanyId;
+
+    //---(Dispatch event thuần — bloc tự build payload + validate +
+    //    resolve currentUser.)---//
+    context.read<BookingGuestHouseBloc>().add(
+      BookingGuestHouseEvent.submitSettlementForm(
+        accommodationBookingId: widget.id,
+        totalAmount: totalAmount,
+        totalAmountWithInvoice: totalWithInvoice,
+        invoiceNumber: _invoiceCtrl.text.trim(),
+        bankAccount: _bankAccountCtrl.text.trim(),
+        bankListId: bank.id ?? 0,
+        bankName: _bankNameCtrl.text.trim(),
+        transferType: _transferType.value,
+        approvedTbpId: _tbpSelected?.id,
+        reason: _reasonCtrl.text.trim(),
+        projectId: _projectSelected?.id,
+        companyId: companyId,
+        companyName: _companyCtrl.text.trim(),
+        departmentName: _departmentCtrl.text.trim(),
+        note: _noteCtrl.text.trim().isEmpty ? null : _noteCtrl.text.trim(),
+        hotelName: _hotelCtrl.text.trim(),
+        hotelTaxCode: _hotelMstCtrl.text.trim(),
+        invoiceFiles: _invoiceFiles,
+        billCkFiles: _billCkFiles,
+      ),
+    );
+  }
+
+  /// Parse text "x.xxx.xxx" → int. Trả `null` nếu không parse được.
+  int? _amountValue(String text) {
+    final digits = _parseVndToDigits(text);
+    if (digits.isEmpty) return null;
+    return int.tryParse(digits);
+  }
+
+  /// Format `num` (vd `1111111.00`) → chuỗi "x.xxx.xxx" để hiển thị
+  /// trong TextField (match `ThousandsInputFormatter`). Nếu [value] =
+  /// null/0/âm → trả chuỗi rỗng.
+  String _formatThousands(num? value) {
+    if (value == null) return '';
+    final n = value.toInt();
+    if (n <= 0) return '';
+    final s = n.toString();
+    final buf = StringBuffer();
+    final len = s.length;
+    for (var i = 0; i < len; i++) {
+      if (i > 0 && (len - i) % 3 == 0) buf.write('.');
+      buf.write(s[i]);
+    }
+    return buf.toString();
+  }
+
+  /// Pre-fill form từ chi tiết TTQT trả về từ API
+  /// `GET /AccommodationBookingPaymentOrder/get-detail-by-booking-id?accommodationBookingId=<id>`.
+  /// Chỉ chạy 1 lần (được guard bằng `_prefilledPayment`).
+  ///
+  /// Điều kiện: `detailStatus` khác 0/null — tức là BE đã có dữ liệu
+  /// TTQT từ trước (2 = chờ duyệt file, 3 = file đã duyệt, 4 = đã tạo
+  /// ĐNTT, 5 = yêu cầu bổ sung...). Trường hợp 0/null (= chưa có
+  /// TTQT) → KHÔNG fill, để form rỗng cho user tự nhập mới.
+  ///
+  /// Mapping các field của `BookingGuestHousePaymentDetailItem`:
+  /// - totalAmount / totalAmountWithInvoice → 2 ô tiền
+  /// - invoiceNumber → "Số hóa đơn"
+  /// - reason → "Lý do quyết toán"
+  /// - note → "Ghi chú"
+  /// - approvedTbpId → TBP (match trong state.employees → set
+  ///   `_tbpSelected`; fallback lookup bằng id, nếu không có thì để
+  ///   user tự chọn)
+  /// - bankName / bankListId / bankAccount → ngân hàng + số TK
+  ///   (match trong state.banks → set `_bankSelected`)
+  /// - hotelName / companyName / companyId → "Khách sạn" / "Công ty"
+  ///   (match state.taxCompanies → set `_companySelected`)
+  /// - files → đếm theo `FileType` (INVOICE / BILL_CK) để hiển thị
+  ///   hint "(đã có N file)" — không tự load nội dung file cũ về.
+  void _prefillFromPayment(
+    BookingGuestHousePaymentDetailItem detail,
+    BookingGuestHouseState state,
+  ) {
+    if (_prefilledPayment) return;
+    final s = detail.detailStatus;
+    if (s == null || s == 0) return;
+    _prefilledPayment = true;
+
+    //---(TBP)---//
+    final tbpId = detail.approvedTbpId;
+    if (tbpId != null && tbpId > 0 && state.employees.isNotEmpty) {
+      final t = state.employees.firstWhereOrNull((e) => e.id == tbpId);
+      if (t != null) {
+        _tbpSelected = t;
+        _tbpCtrl.text = t.fullName ?? '';
+      }
+    }
+
+    //---(Công ty)---//
+    final companyId = detail.companyId;
+    if (companyId != null && companyId > 0 && state.taxCompanies.isNotEmpty) {
+      final c = state.taxCompanies.firstWhereOrNull(
+        (e) => e.id == companyId,
+      );
+      if (c != null) {
+        _companySelected = c;
+        _companyCtrl.text = (c.name ?? '').trim().isNotEmpty
+            ? c.name!.trim()
+            : (detail.companyName ?? '').trim();
+      } else {
+        _companyCtrl.text = (detail.companyName ?? '').trim();
+      }
+    } else if ((detail.companyName ?? '').trim().isNotEmpty) {
+      _companyCtrl.text = detail.companyName!.trim();
+    }
+
+    //---(Ngân hàng + số TK)---//
+    final bankName = (detail.bankName ?? '').trim();
+    final bankListId = detail.bankListId;
+    if (bankListId != null && bankListId > 0 && state.banks.isNotEmpty) {
+      final b = state.banks.firstWhereOrNull((e) => e.id == bankListId);
+      if (b != null) {
+        _bankSelected = b;
+        _bankNameCtrl.text = (b.bankName ?? '').trim();
+      } else if (bankName.isNotEmpty) {
+        _bankNameCtrl.text = bankName;
+      }
+    } else if (bankName.isNotEmpty && state.banks.isNotEmpty) {
+      // Fallback: match theo tên (không phân biệt hoa thường) khi không
+      // có bankListId hợp lệ.
+      final b = state.banks.firstWhereOrNull(
+        (e) =>
+            (e.bankName ?? '').trim().toLowerCase() ==
+            bankName.toLowerCase(),
+      );
+      if (b != null) {
+        _bankSelected = b;
+        _bankNameCtrl.text = (b.bankName ?? '').trim();
+      } else {
+        _bankNameCtrl.text = bankName;
+      }
+    } else if (bankName.isNotEmpty) {
+      _bankNameCtrl.text = bankName;
+    }
+    final bankAcc = (detail.bankAccount ?? '').trim();
+    if (bankAcc.isNotEmpty) _bankAccountCtrl.text = bankAcc;
+
+    //---(Số hóa đơn)---//
+    final inv = (detail.invoiceNumber ?? '').trim();
+    if (inv.isNotEmpty) _invoiceCtrl.text = inv;
+
+    //---(2 ô tiền)---//
+    final totalStr = _formatThousands(detail.totalAmount);
+    if (totalStr.isNotEmpty) _totalAmountCtrl.text = totalStr;
+    final withInvStr =
+        _formatThousands(detail.totalAmountWithInvoice);
+    if (withInvStr.isNotEmpty) _totalWithInvoiceCtrl.text = withInvStr;
+
+    //---(Lý do quyết toán)---//
+    final reason = (detail.reason ?? '').trim();
+    if (reason.isNotEmpty) _reasonCtrl.text = reason;
+
+    //---(Ghi chú)---//
+    final note = (detail.note ?? '').trim();
+    if (note.isNotEmpty) _noteCtrl.text = note;
+
+    //---(Tên khách sạn)---//
+    final hotel = (detail.hotelName ?? '').trim();
+    if (hotel.isNotEmpty) _hotelCtrl.text = hotel;
+
+    //---(MST khách sạn)---//
+    final hotelMst = (detail.hotelTaxCode ?? '').trim();
+    if (hotelMst.isNotEmpty) _hotelMstCtrl.text = hotelMst;
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<BookingGuestHouseBloc, BookingGuestHouseState>(
+      //---(Listen khi state thay đổi: show lỗi / snackbar success / reset.)---//
       listenWhen: (prev, curr) =>
           (prev.detailData != curr.detailData && curr.detailData != null) ||
           (prev.detailMessage != curr.detailMessage &&
-              curr.detailMessage != null),
+              curr.detailMessage != null) ||
+          //---(Pre-fill khi `paymentDetail` mới load xong)---//
+          (prev.paymentDetail != curr.paymentDetail) ||
+          (prev.paymentDetailMessage != curr.paymentDetailMessage &&
+              curr.paymentDetailMessage != null) ||
+          //---(Success → show toast + clear + pop)---//
+          (!prev.settlementSuccess && curr.settlementSuccess) ||
+          //---(Submit fail)---//
+          (prev.isSubmittingSettlement &&
+              !curr.isSubmittingSettlement &&
+              !curr.settlementSuccess &&
+              (curr.message ?? '').isNotEmpty),
       listener: (context, state) {
         if (state.detailMessage != null && state.detailMessage!.isNotEmpty) {
           context.showMessage(state.detailMessage!, type: SnackBarType.error);
@@ -400,13 +727,85 @@ class _BookingGuestHouseSettlementScreenState
         if (state.detailData != null && _reasonCtrl.text.isEmpty) {
           _reasonCtrl.text = _defaultReasonText(state.detailData!.info);
         }
+
+        //---(Pre-fill form từ `state.paymentDetail` (API
+        //    `get-detail-by-booking-id` trả về) khi
+        //    `paymentDetail.detailStatus` khác 0/null — tức BE đã có
+        //    dữ liệu TTQT (status 2/3/4/5). Chỉ fill 1 lần
+        //    (guard bằng `_prefilledPayment`) tránh đè value user;
+        //    status 0/null = chưa có TTQT → giữ form rỗng cho user
+        //    tự nhập mới.)---//
+        if (state.paymentDetail != null && !_prefilledPayment) {
+          _prefillFromPayment(state.paymentDetail!, state);
+        }
+
+        //---(Show lỗi load payment detail nếu có)---//
+        if (state.paymentDetailMessage != null &&
+            state.paymentDetailMessage!.isNotEmpty) {
+          context.showMessage(
+            state.paymentDetailMessage!,
+            type: SnackBarType.error,
+          );
+        }
+
+        //---(Submit success → show toast + clear state + pop.)---//
+        // Có 2 trường hợp:
+        // 1. Cả save-detail + upload file OK → success đơn thuần.
+        // 2. Save-detail OK nhưng có file upload fail → success + warning
+        //    (`state.settlementMessage` không rỗng). UI hiển thị cả
+        //    2 snackbar (success trước, warning sau).
+        if (state.settlementSuccess) {
+          final res = state.lastSettlementResponse;
+          final id = res?.id;
+          final successMsg = (state.message ?? '').trim().isNotEmpty
+              ? state.message!.trim()
+              : (id != null
+                  ? 'Lưu cập nhật TTQT thành công (#$id) — chờ duyệt'
+                  : 'Lưu cập nhật TTQT thành công — chờ duyệt');
+          context.showMessage(successMsg, type: SnackBarType.success);
+
+          final warn = (state.settlementMessage ?? '').trim();
+          if (warn.isNotEmpty) {
+            // delay nhỏ để 2 snackbar không đè lên nhau.
+            Future<void>.delayed(const Duration(milliseconds: 350), () {
+              if (!context.mounted) return;
+              context.showMessage(warn, type: SnackBarType.info);
+            });
+          }
+
+          // Clear cờ để lần sau mở lại màn thấy form sạch.
+          context
+              .read<BookingGuestHouseBloc>()
+              .add(const BookingGuestHouseEvent.clearSettlementSubmitState());
+          if (context.canPop()) context.pop();
+        }
+
+        //---(Submit fail)---//
+        if (state.message != null &&
+            state.message!.isNotEmpty &&
+            !state.settlementSuccess &&
+            !state.isSubmittingSettlement) {
+          context.showMessage(
+            state.message!,
+            type: SnackBarType.error,
+          );
+        }
       },
+      //---(Build UI từ state)---//
+      buildWhen: (prev, curr) =>
+          prev.isDetailLoading != curr.isDetailLoading ||
+          prev.detailData != curr.detailData ||
+          prev.detailMessage != curr.detailMessage ||
+          prev.paymentDetail != curr.paymentDetail ||
+          prev.isLoadingPaymentDetail != curr.isLoadingPaymentDetail ||
+          prev.isSubmittingSettlement != curr.isSubmittingSettlement,
       builder: (context, state) {
         final detail = state.detailData;
         final isLoading = state.isDetailLoading && detail == null;
         final errorMsg = (detail == null && !isLoading)
             ? state.detailMessage
             : null;
+        final paymentDetail = state.paymentDetail;
 
         return Scaffold(
           backgroundColor: const Color(0xFFF0F2F5),
@@ -414,10 +813,17 @@ class _BookingGuestHouseSettlementScreenState
             title: const Text('Cập nhật quyết toán'),
             onBackTap: () => context.pop(),
           ),
-          body: _buildBody(
-            isLoading: isLoading,
-            errorMsg: errorMsg,
-            detail: detail,
+          // Dismiss keyboard khi user tap ra ngoài field text/number —
+          // giống `advance_request_screen` để UX đồng bộ giữa 2 màn.
+          body: GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () => FocusScope.of(context).unfocus(),
+            child: _buildBody(
+              isLoading: isLoading,
+              errorMsg: errorMsg,
+              detail: detail,
+              paymentDetail: paymentDetail,
+            ),
           ),
           bottomNavigationBar: _buildBottomBar(),
         );
@@ -425,10 +831,29 @@ class _BookingGuestHouseSettlementScreenState
     );
   }
 
+  /// Đếm số file đính kèm cũ theo loại trong `paymentDetail.files`.
+  /// Trả `0` nếu `paymentDetail` null hoặc `Files` rỗng.
+  /// Match không phân biệt hoa thường để chịu được "INVOICE" / "Invoice" /
+  /// "invoice".
+  int _countFilesOfType(String type) {
+    final files = stateOrPaymentDetailFiles();
+    if (files == null || files.isEmpty) return 0;
+    final t = type.toLowerCase();
+    return files.where((f) => (f.fileType ?? '').toLowerCase() == t).length;
+  }
+
+  /// Lấy danh sách file đính kèm từ `state.paymentDetail` (current
+  /// snapshot trong builder). Trả null nếu chưa load.
+  List<BookingGuestHouseFileItem>? stateOrPaymentDetailFiles() {
+    final pd = context.read<BookingGuestHouseBloc>().state.paymentDetail;
+    return pd?.files;
+  }
+
   Widget _buildBody({
     required bool isLoading,
     required String? errorMsg,
     required BookingGuestHouseDetailData? detail,
+    required BookingGuestHousePaymentDetailItem? paymentDetail,
   }) {
     if (isLoading) {
       return const Center(
@@ -535,6 +960,11 @@ class _BookingGuestHouseSettlementScreenState
                     buildWhen: (prev, curr) =>
                         prev.employees != curr.employees,
                     builder: (context, state) {
+                      // Defer gán controller ra sau build phase — gán
+                      // trực tiếp trong builder sẽ trigger
+                      // `FormState._fieldDidChange` → setState trong
+                      // build → exception (xem
+                      // `FormState._forceRebuild`).
                       if (detail.info.approvedTBP != null &&
                           _tbpCtrl.text.isEmpty) {
                         final name = _resolveTbpName(
@@ -542,13 +972,17 @@ class _BookingGuestHouseSettlementScreenState
                           state.employees,
                         );
                         if (name != null) {
-                          _tbpCtrl.text = name;
-                          // Lưu lại employee đã chọn để initialSelectedItem
-                          // đúng khi mở bottom sheet.
-                          _tbpSelected ??= state.employees.firstWhere(
+                          final emp = state.employees.firstWhereOrNull(
                             (e) => e.id == detail.info.approvedTBP,
-                            orElse: () => state.employees.first,
                           );
+                          WidgetsBinding.instance.addPostFrameCallback((_) {
+                            if (!mounted) return;
+                            _tbpCtrl.text = name;
+                            // Lưu lại employee đã chọn để
+                            // initialSelectedItem đúng khi mở bottom
+                            // sheet.
+                            _tbpSelected ??= emp;
+                          });
                         }
                       }
                       return FormInputField(
@@ -567,23 +1001,73 @@ class _BookingGuestHouseSettlementScreenState
                   ),
                   const SizedBox(height: 12),
 
-                  //---(4. Công ty — isRequired, picker từ state.taxCompanies)---//
+                  //---(4. Công ty — auto-fill từ currentUser.TaxCompanyID lookup
+                  //    state.taxCompanies. ReadOnly + không cho mở picker
+                  //    (lấy cứng từ tài khoản đang đăng nhập).)---//
+                  BlocBuilder<BookingGuestHouseBloc, BookingGuestHouseState>(
+                    buildWhen: (prev, curr) =>
+                        prev.taxCompanies != curr.taxCompanies,
+                    builder: (context, state) {
+                      // Defer gán controller ra sau build phase — gán
+                      // trực tiếp trong builder sẽ trigger
+                      // `FormState._fieldDidChange` → setState trong
+                      // build → exception.
+                      if (_companySelected == null &&
+                          _currentUser != null &&
+                          state.taxCompanies.isNotEmpty) {
+                        final matched = state.taxCompanies.firstWhereOrNull(
+                          (c) => c.id == _currentUser!.taxCompanyId,
+                        );
+                        if (matched != null) {
+                          // Chỉ map `name` (tên viết tắt), bỏ qua `fullName`.
+                          final name = (matched.name ?? '').trim();
+                          WidgetsBinding.instance.addPostFrameCallback((_) {
+                            if (!mounted) return;
+                            _companySelected = matched;
+                            _companyCtrl.text = name;
+                          });
+                        }
+                      }
+                      return FormInputField(
+                        nameForm: 'payment_company',
+                        nameTextField: 'payment_company_text',
+                        label: 'Công ty',
+                        icon: Icons.business_outlined,
+                        controller: _companyCtrl,
+                        isRequired: true,
+                        // Lấy cứng từ tài khoản → không cho user sửa hay mở
+                        // picker chọn lại.
+                        enabled: false,
+                        readOnly: true,
+                        validator: (v) => v == null || v.trim().isEmpty
+                            ? 'Vui lòng chọn công ty'
+                            : null,
+                      );
+                    },
+                  ),
+
+                  const SizedBox(height: 12),
+                  //---(11. Bộ phận — auto-fill từ currentUser.DepartmentName,
+                  //    vẫn cho sửa nếu cần override.)---//
                   FormInputField(
-                    nameForm: 'payment_company',
-                    nameTextField: 'payment_company_text',
-                    label: 'Công ty',
-                    icon: Icons.business_outlined,
-                    controller: _companyCtrl,
+                    nameForm: 'payment_department',
+                    nameTextField: 'payment_department_text',
+                    label: 'Bộ phận',
+                    icon: Icons.groups_outlined,
+                    controller: _departmentCtrl,
                     isRequired: true,
-                    readOnly: true,
-                    onTap: _pickTaxCompany,
                     validator: (v) => v == null || v.trim().isEmpty
-                        ? 'Vui lòng chọn công ty'
+                        ? 'Vui lòng nhập bộ phận'
                         : null,
                   ),
                   const SizedBox(height: 12),
 
-                  //---(5. Tổng tiền — isRequired, format "x.xxx.xxx VNĐ")---//
+
+                  //---(5. Tổng tiền — isRequired, format "x.xxx.xxx" do
+                  //    ThousandsInputFormatter áp dụng ngay khi user gõ.
+                  //    Đơn vị "VNĐ" hiển thị ở suffixIcon, không chèn vào
+                  //    text. Tránh set controller trong onChanged gây
+                  //    StackOverflow với FormBuilder.)---//
                   FormInputField(
                     nameForm: 'payment_total',
                     nameTextField: 'payment_total_text',
@@ -591,7 +1075,11 @@ class _BookingGuestHouseSettlementScreenState
                     icon: Icons.payments_outlined,
                     controller: _totalAmountCtrl,
                     isRequired: true,
-                    keyboardType: TextInputType.number,
+                    keyboardType: const TextInputType.numberWithOptions(
+                      decimal: false,
+                      signed: false,
+                    ),
+                    inputFormatters: [ThousandsInputFormatter()],
                     suffixIcon: const Padding(
                       padding: EdgeInsets.only(right: 12),
                       child: Center(
@@ -615,23 +1103,11 @@ class _BookingGuestHouseSettlementScreenState
                       }
                       return null;
                     },
-                    onChanged: (value) {
-                      if (value == null) return;
-                      final digits = _parseVndToDigits(value);
-                      final formatted = _formatVnd(digits);
-                      if (formatted != value) {
-                        _totalAmountCtrl.value = TextEditingValue(
-                          text: formatted,
-                          selection: TextSelection.collapsed(
-                            offset: formatted.length,
-                          ),
-                        );
-                      }
-                    },
                   ),
                   const SizedBox(height: 12),
 
-                  //---(6. Tổng tiền có HĐ — isRequired, format "x.xxx.xxx VNĐ")---//
+                  //---(6. Tổng tiền có HĐ — isRequired, format tương tự
+                  //    field (5).)---//
                   FormInputField(
                     nameForm: 'payment_total_with_invoice',
                     nameTextField: 'payment_total_with_invoice_text',
@@ -639,7 +1115,11 @@ class _BookingGuestHouseSettlementScreenState
                     icon: Icons.receipt_outlined,
                     controller: _totalWithInvoiceCtrl,
                     isRequired: true,
-                    keyboardType: TextInputType.number,
+                    keyboardType: const TextInputType.numberWithOptions(
+                      decimal: false,
+                      signed: false,
+                    ),
+                    inputFormatters: [ThousandsInputFormatter()],
                     suffixIcon: const Padding(
                       padding: EdgeInsets.only(right: 12),
                       child: Center(
@@ -663,19 +1143,6 @@ class _BookingGuestHouseSettlementScreenState
                       }
                       return null;
                     },
-                    onChanged: (value) {
-                      if (value == null) return;
-                      final digits = _parseVndToDigits(value);
-                      final formatted = _formatVnd(digits);
-                      if (formatted != value) {
-                        _totalWithInvoiceCtrl.value = TextEditingValue(
-                          text: formatted,
-                          selection: TextSelection.collapsed(
-                            offset: formatted.length,
-                          ),
-                        );
-                      }
-                    },
                   ),
                   const SizedBox(height: 12),
 
@@ -693,8 +1160,9 @@ class _BookingGuestHouseSettlementScreenState
                   ),
                   const SizedBox(height: 12),
 
-                  //---(8. Hình thức CK — isRequired, TextField rỗng —
-                  //    enum/picker sẽ bổ sung sau)---//
+                  //---(8. Hình thức CK — chỉ hỗ trợ "Chuyển khoản cá nhân"
+                  //    (value = 1). Vẫn dùng `openSelectBottomSheet` cho
+                  //    đồng bộ UX, dù danh sách chỉ có 1 phần tử.)---//
                   FormInputField(
                     nameForm: 'payment_transfer_type',
                     nameTextField: 'payment_transfer_type_text',
@@ -702,8 +1170,10 @@ class _BookingGuestHouseSettlementScreenState
                     icon: Icons.swap_horiz,
                     controller: _transferTypeCtrl,
                     isRequired: true,
+                    readOnly: true,
+                    onTap: _pickTransferType,
                     validator: (v) => v == null || v.trim().isEmpty
-                        ? 'Vui lòng nhập hình thức CK'
+                        ? 'Vui lòng chọn hình thức CK'
                         : null,
                   ),
                   const SizedBox(height: 12),
@@ -741,20 +1211,7 @@ class _BookingGuestHouseSettlementScreenState
                       return null;
                     },
                   ),
-                  const SizedBox(height: 12),
 
-                  //---(11. Bộ phận — isRequired, text rỗng)---//
-                  FormInputField(
-                    nameForm: 'payment_department',
-                    nameTextField: 'payment_department_text',
-                    label: 'Bộ phận',
-                    icon: Icons.groups_outlined,
-                    controller: _departmentCtrl,
-                    isRequired: true,
-                    validator: (v) => v == null || v.trim().isEmpty
-                        ? 'Vui lòng nhập bộ phận'
-                        : null,
-                  ),
                   const SizedBox(height: 12),
 
                   //---(12. Số tài khoản — isRequired)---//
@@ -765,13 +1222,10 @@ class _BookingGuestHouseSettlementScreenState
                     icon: Icons.account_balance_outlined,
                     controller: _bankAccountCtrl,
                     isRequired: true,
-                    keyboardType: TextInputType.number,
+                    keyboardType: TextInputType.text,
                     validator: (v) {
                       if (v == null || v.trim().isEmpty) {
                         return 'Vui lòng nhập số tài khoản';
-                      }
-                      if (!RegExp(r'^[0-9]+$').hasMatch(v.trim())) {
-                        return 'Số tài khoản chỉ chứa chữ số';
                       }
                       return null;
                     },
@@ -823,6 +1277,7 @@ class _BookingGuestHouseSettlementScreenState
                   label: 'File hoá đơn',
                   files: _invoiceFiles,
                   onPick: _pickInvoiceFiles,
+                  oldCount: _countFilesOfType('INVOICE'),
                 ),
                 const SizedBox(height: 12),
                 _FilePickerTile(
@@ -830,6 +1285,7 @@ class _BookingGuestHouseSettlementScreenState
                   label: 'File bill CK',
                   files: _billCkFiles,
                   onPick: _pickBillCkFiles,
+                  oldCount: _countFilesOfType('BILL_CK'),
                 ),
               ],
             ),
@@ -841,9 +1297,10 @@ class _BookingGuestHouseSettlementScreenState
 
   Widget _buildBottomBar() {
     return BlocBuilder<BookingGuestHouseBloc, BookingGuestHouseState>(
-      buildWhen: (prev, curr) => prev.isSubmitting != curr.isSubmitting,
+      buildWhen: (prev, curr) =>
+          prev.isSubmittingSettlement != curr.isSubmittingSettlement,
       builder: (context, state) {
-        final isSubmitting = state.isSubmitting;
+        final isSubmitting = state.isSubmittingSettlement;
         return Container(
           padding: EdgeInsets.fromLTRB(
             16,
@@ -897,6 +1354,115 @@ class _BookingGuestHouseSettlementScreenState
   }
 }
 
+//---(Chọn nguồn file: ảnh từ camera/gallery hay FilePicker đa năng)---//
+
+/// Nguồn file user chọn ở bottom sheet.
+enum _FileSource {
+  /// Mở camera chụp ảnh (1 ảnh).
+  camera,
+
+  /// Mở thư viện chọn nhiều ảnh.
+  gallery,
+
+  /// Mở FilePicker đa năng (PDF / ảnh / excel theo extension rule).
+  files,
+}
+
+/// Bottom sheet cho phép user chọn giữa 3 nguồn: camera, thư viện
+/// ảnh, hoặc FilePicker đa năng. Trả về `_FileSource` qua
+/// `Navigator.pop`. Trả `null` nếu user dismiss.
+class _FileSourceBottomSheet extends StatelessWidget {
+  const _FileSourceBottomSheet();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      child: SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 40,
+              height: 4,
+              margin: const EdgeInsets.only(top: 12),
+              decoration: BoxDecoration(
+                color: Colors.grey[300],
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.all(16),
+              child: Text(
+                'Chọn file',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: AppColors.primaryERP.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: const Icon(
+                  Icons.camera_alt_outlined,
+                  color: AppColors.primaryERP,
+                ),
+              ),
+              title: const Text('Chụp ảnh'),
+              subtitle: const Text('Mở camera để chụp ảnh'),
+              onTap: () =>
+                  Navigator.of(context).pop(_FileSource.camera),
+            ),
+            ListTile(
+              leading: Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Colors.orange.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: const Icon(
+                  Icons.photo_library_outlined,
+                  color: Colors.orange,
+                ),
+              ),
+              title: const Text('Chọn ảnh từ thư viện'),
+              subtitle: const Text('Chọn ảnh có sẵn trên thiết bị'),
+              onTap: () =>
+                  Navigator.of(context).pop(_FileSource.gallery),
+            ),
+            ListTile(
+              leading: Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Colors.blue.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: const Icon(
+                  Icons.description_outlined,
+                  color: Colors.blue,
+                ),
+              ),
+              title: const Text('Chọn file (PDF / excel)'),
+              subtitle: const Text('Chọn nhiều định dạng'),
+              onTap: () =>
+                  Navigator.of(context).pop(_FileSource.files),
+            ),
+            const SizedBox(height: 16),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 //---(File picker tile)---//
 
 class _FilePickerTile extends StatelessWidget {
@@ -905,6 +1471,7 @@ class _FilePickerTile extends StatelessWidget {
     required this.label,
     required this.files,
     required this.onPick,
+    this.oldCount = 0,
   });
 
   final IconData icon;
@@ -912,10 +1479,24 @@ class _FilePickerTile extends StatelessWidget {
   final List<PlatformFile> files;
   final VoidCallback onPick;
 
+  /// Số file đã có từ lần lưu TTQT trước
+  /// (`PaymentInvoiceFileCount` / `PaymentBillCKFileCount`).
+  /// > 0 → hiển thị "(đã có N file)" ở summary cho user biết.
+  final int oldCount;
+
   @override
   Widget build(BuildContext context) {
     final hasNewFiles = files.isNotEmpty;
-    final summary = hasNewFiles ? '${files.length} file mới' : 'Chưa có file';
+    final newCount = files.length;
+    final summary = <String>[];
+    if (hasNewFiles) {
+      summary.add('$newCount file mới');
+    } else {
+      summary.add('Chưa có file mới');
+    }
+    if (oldCount > 0) {
+      summary.add('đã có $oldCount file');
+    }
 
     return InkWell(
       onTap: onPick,
@@ -955,7 +1536,7 @@ class _FilePickerTile extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    summary,
+                    summary.join(' • '),
                     style: const TextStyle(
                       fontSize: 12,
                       color: AppColors.gray,

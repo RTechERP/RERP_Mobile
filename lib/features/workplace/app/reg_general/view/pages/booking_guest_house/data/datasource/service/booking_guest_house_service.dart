@@ -3,6 +3,8 @@
 
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../../../../../../base/network/dio/dio_base_api_service.dart';
@@ -168,6 +170,26 @@ class BookingGuestHouseService extends DioBaseApiService {
     );
   }
 
+  /// Lấy chi tiết TT Quyết toán (TTQT) theo `accommodationBookingId`.
+  /// API: `GET /AccommodationBookingPaymentOrder/get-detail-by-booking-id?accommodationBookingId=<id>`
+  /// Dùng để pre-fill form Cập nhật TTQT. Có thể trả:
+  /// 1. Envelope `BaseData<BookingGuestHousePaymentDetailItem>` chuẩn.
+  /// 2. Trực tiếp 1 object `{ ID, AccommodationBookingID, ... }`.
+  /// 3. Mảng `[{...}, {...}]` — lấy phần tử đầu tiên.
+  /// 4. Chuỗi JSON bọc — parse lại.
+  ///
+  /// Khi không có TTQT (DetailStatus = 0 / null / không tồn tại) → trả
+  /// `BaseData` với `data == null` (UI sẽ hiểu là "chưa có TTQT, giữ
+  /// form rỗng").
+  Future<BaseData<BookingGuestHousePaymentDetailItem?>>
+      getPaymentOrderDetailByBookingId({required int id}) async {
+    return get<BaseData<BookingGuestHousePaymentDetailItem?>>(
+      ApiEndPoint.getPaymentOrderDetailByBookingId,
+      query: <String, dynamic>{'accommodationBookingId': id},
+      parser: (json) => _parsePaymentDetailByBookingId(json),
+    );
+  }
+
   /// Tạo / tạo lại đề nghị tạm ứng (ĐNTU) cho 1 phiếu đặt phòng nhà nghỉ.
   /// API: POST `/AccommodationBookingPaymentOrder/create-advance`
   /// Body: AccommodationBookingAdvanceRequest (xem mục 4.6 spec):
@@ -189,6 +211,202 @@ class BookingGuestHouseService extends DioBaseApiService {
       ApiEndPoint.createBookingGuestHouseAdvance,
       body: payload,
       parser: (json) => _parseAdvanceResponse(json),
+    );
+  }
+
+  /// Lưu cập nhật TT Quyết toán (TTQT) standalone cho 1 phiếu đặt phòng nhà
+  /// nghỉ. API: POST `/AccommodationBookingPaymentOrder/save-standalone-detail`
+  /// Body: AccommodationBookingPaymentOrderRequest (mục 4.7 spec) — 19 field:
+  /// ```
+  /// {
+  ///   ID, TotalAmount, TotalAmountWithInvoice, InvoiceNumber, BankAccount,
+  ///   BankListID, BankName, TransferType, ApprovedTBPID, Reason, ProjectID,
+  ///   CompanyID, CompanyName, DepartmentName, Note, AccommodationBookingID,
+  ///   DetailStatus (2 = chờ duyệt), HotelName, HotelTaxCode
+  /// }
+  /// ```
+  /// Response: `{ status, message, data: { ID, DetailStatus } }`.
+  Future<BaseData<BookingGuestHouseSaveDetailResponse>>
+      saveBookingGuestHouseStandaloneDetail({
+    required Map<String, dynamic> payload,
+  }) async {
+    return post<BaseData<BookingGuestHouseSaveDetailResponse>>(
+      ApiEndPoint.saveBookingGuestHouseStandaloneDetail,
+      body: payload,
+      parser: (json) => _parseSaveDetailResponse(json),
+    );
+  }
+
+  /// Upload file đính kèm cho 1 detail TTQT (sau khi đã save-detail).
+  /// API: POST `/AccommodationBookingPaymentOrder/upload-file`
+  /// Query: `detailId` (ID từ save-standalone-detail), `fileType`
+  /// (`INVOICE` | `BILL_CK`).
+  /// Body: multipart form-data với key `key`, `subPath`, `files`.
+  /// [files] - 1 hoặc nhiều file cần upload; mỗi file upload 1 request
+  /// riêng (BE nhận mảng nhưng gọi nhiều lần cho chắc — pattern giống
+  /// `uploadBookingVehicleFile`).
+  /// Response `data` là 1 object (hoặc mảng) `BookingGuestHouseFileItem`.
+  Future<BaseData<BookingGuestHouseFileItem>> uploadBookingGuestHouseFile({
+    required int detailId,
+    required String fileType,
+    required PlatformFile file,
+  }) async {
+    late final MultipartFile part;
+    final path = file.path;
+    if (path != null && path.trim().isNotEmpty) {
+      part = await MultipartFile.fromFile(path, filename: file.name);
+    } else if (file.bytes != null) {
+      part = MultipartFile.fromBytes(file.bytes!, filename: file.name);
+    } else {
+      throw ArgumentError('PlatformFile has no path or bytes');
+    }
+
+    // subPath trỏ tới thư mục con tương ứng với fileType — trùng với
+    // quy ước BE (vd "NN-24\\INVOICE"). Để an toàn: lấy từ BE ở bước
+    // tiếp theo nếu BE trả về path; hiện tại tự set theo fileType.
+    final subPath = fileType;
+
+    final formData = FormData.fromMap(<String, dynamic>{
+      'key': 'AccommodationBookingPaymentOrderFile',
+      'subPath': subPath,
+      'files': part,
+    });
+
+    final res = await post<BaseData<BookingGuestHouseFileItem>>(
+      ApiEndPoint.uploadBookingGuestHouseFile,
+      query: <String, dynamic>{
+        'detailId': detailId,
+        'fileType': fileType,
+      },
+      body: formData,
+      parser: (json) => _parseUploadFileResponse(json),
+    );
+
+    return res;
+  }
+
+  /// Parser defensive cho response upload-file — chấp nhận nhiều dạng
+  /// JSON server có thể trả:
+  /// 1. Envelope `BaseData<BookingGuestHouseFileItem>` chuẩn.
+  /// 2. Trực tiếp 1 object `{ ID, FileName, ... }` (không envelope).
+  /// 3. Mảng `[{...}, {...}]` (khi upload nhiều file).
+  BaseData<BookingGuestHouseFileItem> _parseUploadFileResponse(dynamic json) {
+    if (json is String) {
+      final raw = json.trim();
+      if (raw.isEmpty) {
+        return BaseData<BookingGuestHouseFileItem>(
+          status: 1,
+          data: const BookingGuestHouseFileItem(),
+        );
+      }
+      try {
+        return _parseUploadFileResponse(jsonDecode(raw));
+      } catch (_) {
+        return BaseData<BookingGuestHouseFileItem>(
+          status: 1,
+          data: const BookingGuestHouseFileItem(),
+        );
+      }
+    }
+
+    // Mảng trực tiếp — lấy phần tử đầu tiên (mỗi request upload 1 file).
+    if (json is List) {
+      if (json.isEmpty) {
+        return BaseData<BookingGuestHouseFileItem>(
+          status: 1,
+          data: const BookingGuestHouseFileItem(),
+        );
+      }
+      final first = json.first;
+      if (first is Map<String, dynamic>) {
+        return BaseData<BookingGuestHouseFileItem>(
+          status: 1,
+          data: BookingGuestHouseFileItem.fromJson(first),
+        );
+      }
+    }
+
+    if (json is Map<String, dynamic>) {
+      // BE trả thẳng object file (không envelope) — detect bằng presence
+      // của `FileName` (key đặc trưng của file, không có ở envelope
+      // `BaseData` chuẩn).
+      if (json.containsKey('FileName') || json.containsKey('FileType')) {
+        return BaseData<BookingGuestHouseFileItem>(
+          status: 1,
+          data: BookingGuestHouseFileItem.fromJson(json),
+        );
+      }
+      // Còn lại: parse theo envelope chuẩn.
+      return BaseData<BookingGuestHouseFileItem>.fromJson(
+        json,
+        (data) => BookingGuestHouseFileItem.fromJson(
+          data is Map<String, dynamic>
+              ? data
+              : <String, dynamic>{},
+        ),
+      );
+    }
+
+    return BaseData<BookingGuestHouseFileItem>(
+      status: 1,
+      data: const BookingGuestHouseFileItem(),
+    );
+  }
+
+  /// Parser defensive cho response `save-standalone-detail` — chấp nhận
+  /// nhiều dạng JSON server có thể trả:
+  /// 1. Envelope chuẩn `BaseData` chứa `data: { ID, DetailStatus }`.
+  /// 2. Trực tiếp `{ ID, DetailStatus }` (không envelope).
+  /// 3. Raw primitive / string bọc JSON.
+  BaseData<BookingGuestHouseSaveDetailResponse> _parseSaveDetailResponse(
+    dynamic json,
+  ) {
+    if (json is String) {
+      final raw = json.trim();
+      if (raw.isEmpty) {
+        return BaseData<BookingGuestHouseSaveDetailResponse>(
+          status: 1,
+          data: const BookingGuestHouseSaveDetailResponse(),
+        );
+      }
+      try {
+        return _parseSaveDetailResponse(jsonDecode(raw));
+      } catch (_) {
+        return BaseData<BookingGuestHouseSaveDetailResponse>(
+          status: 1,
+          data: const BookingGuestHouseSaveDetailResponse(),
+        );
+      }
+    }
+
+    if (json is Map<String, dynamic>) {
+      // BE trả thẳng `{ ID, DetailStatus }` (không envelope) — detect bằng
+      // presence của `DetailStatus` (key này chỉ có ở detail, không có ở
+      // envelope `BaseData` chuẩn).
+      if (json.containsKey('DetailStatus') || json.containsKey('data')) {
+        final inner = json.containsKey('DetailStatus')
+            ? json
+            : (json['data'] is Map<String, dynamic>
+                ? json['data'] as Map<String, dynamic>
+                : <String, dynamic>{});
+        return BaseData<BookingGuestHouseSaveDetailResponse>(
+          status: 1,
+          data: BookingGuestHouseSaveDetailResponse.fromJson(inner),
+        );
+      }
+      return BaseData<BookingGuestHouseSaveDetailResponse>.fromJson(
+        json,
+        (data) => BookingGuestHouseSaveDetailResponse.fromJson(
+          data is Map<String, dynamic>
+              ? data
+              : <String, dynamic>{},
+        ),
+      );
+    }
+
+    return BaseData<BookingGuestHouseSaveDetailResponse>(
+      status: 1,
+      data: const BookingGuestHouseSaveDetailResponse(),
     );
   }
 
@@ -238,6 +456,116 @@ class BookingGuestHouseService extends DioBaseApiService {
     return BaseData<BookingGuestHouseAdvanceResponse>(
       status: 1,
       data: const BookingGuestHouseAdvanceResponse(),
+    );
+  }
+
+  /// Parser defensive cho response `get-detail-by-booking-id` — chấp nhận
+  /// nhiều dạng JSON server có thể trả:
+  /// 1. Envelope chuẩn `BaseData` chứa `data: { ID, ... }`.
+  /// 2. Trực tiếp 1 object `{ ID, AccommodationBookingID, ... }`
+  ///    (không envelope) — detect bằng presence của `ID` hoặc
+  ///    `AccommodationBookingID` (key đặc trưng của detail).
+  /// 3. Mảng `[{...}]` (BE có thể bọc vào mảng 1 phần tử) — lấy phần
+  ///    tử đầu tiên.
+  /// 4. Chuỗi JSON bọc — parse lại.
+  /// 5. Rỗng / null / không nhận dạng được → success với `data == null`
+  ///    (UI xử lý như "chưa có TTQT").
+  BaseData<BookingGuestHousePaymentDetailItem?>
+      _parsePaymentDetailByBookingId(dynamic json) {
+    // 1. Chuỗi JSON — parse lại.
+    if (json is String) {
+      final raw = json.trim();
+      if (raw.isEmpty) {
+        return BaseData<BookingGuestHousePaymentDetailItem?>(
+          status: 1,
+          data: null,
+        );
+      }
+      try {
+        return _parsePaymentDetailByBookingId(jsonDecode(raw));
+      } catch (_) {
+        return BaseData<BookingGuestHousePaymentDetailItem?>(
+          status: 1,
+          data: null,
+        );
+      }
+    }
+
+    // 2. Null hoặc primitive → coi như "chưa có TTQT".
+    if (json == null) {
+      return BaseData<BookingGuestHousePaymentDetailItem?>(
+        status: 1,
+        data: null,
+      );
+    }
+
+    // 3. Mảng — lấy phần tử đầu tiên (BE có thể trả `[{...}]`).
+    if (json is List) {
+      if (json.isEmpty) {
+        return BaseData<BookingGuestHousePaymentDetailItem?>(
+          status: 1,
+          data: null,
+        );
+      }
+      final first = json.first;
+      if (first is Map<String, dynamic>) {
+        return BaseData<BookingGuestHousePaymentDetailItem?>(
+          status: 1,
+          data: BookingGuestHousePaymentDetailItem.fromJson(first),
+        );
+      }
+      return BaseData<BookingGuestHousePaymentDetailItem?>(
+        status: 1,
+        data: null,
+      );
+    }
+
+    // 4. Map — detect trực tiếp vs envelope.
+    if (json is Map<String, dynamic>) {
+      // BE trả thẳng object detail (không envelope) — detect bằng
+      // presence của key `ID` hoặc `AccommodationBookingID`. Vẫn phải
+      // lọc thêm: nếu có cả `data` và `ID` thì ưu tiên xem là
+      // envelope.
+      final hasDetailKeys = (json.containsKey('AccommodationBookingID') ||
+              json.containsKey('DetailStatus')) &&
+          !json.containsKey('data');
+      if (hasDetailKeys) {
+        try {
+          return BaseData<BookingGuestHousePaymentDetailItem?>(
+            status: 1,
+            data: BookingGuestHousePaymentDetailItem.fromJson(json),
+          );
+        } catch (_) {
+          return BaseData<BookingGuestHousePaymentDetailItem?>(
+            status: 1,
+            data: null,
+          );
+        }
+      }
+
+      // Còn lại: parse theo envelope chuẩn.
+      try {
+        return BaseData<BookingGuestHousePaymentDetailItem?>.fromJson(
+          json,
+          (data) {
+            if (data == null) return null;
+            if (data is Map<String, dynamic>) {
+              return BookingGuestHousePaymentDetailItem.fromJson(data);
+            }
+            return null;
+          },
+        );
+      } catch (_) {
+        return BaseData<BookingGuestHousePaymentDetailItem?>(
+          status: 1,
+          data: null,
+        );
+      }
+    }
+
+    return BaseData<BookingGuestHousePaymentDetailItem?>(
+      status: 1,
+      data: null,
     );
   }
 

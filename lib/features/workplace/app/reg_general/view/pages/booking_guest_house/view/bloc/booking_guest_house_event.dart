@@ -56,6 +56,22 @@ class BookingGuestHouseEvent with _$BookingGuestHouseEvent {
   const factory BookingGuestHouseEvent.loadDetail({required int id}) =
       _LoadDetail;
 
+  /// Tải chi tiết TT Quyết toán (TTQT) theo `accommodationBookingId`.
+  /// Gọi API
+  /// `GET /AccommodationBookingPaymentOrder/get-detail-by-booking-id?accommodationBookingId=<id>`.
+  /// Kết quả lưu vào `state.paymentDetail` (null = chưa có TTQT).
+  /// Dùng để pre-fill form Cập nhật TTQT — thay thế cho việc
+  /// truyền `BookingGuestHouseItem` qua widget.
+  const factory BookingGuestHouseEvent.loadPaymentDetail({
+    required int id,
+  }) = _LoadPaymentDetail;
+
+  /// Reset chi tiết TTQT (paymentDetail, paymentDetailMessage,
+  /// isLoadingPaymentDetail). UI gọi trước khi load lại hoặc khi
+  /// đóng màn settlement để tránh hiển thị data cũ.
+  const factory BookingGuestHouseEvent.clearPaymentDetail() =
+      _ClearPaymentDetail;
+
   /// Gửi đề nghị tạm ứng (ĐNTU) cho 1 phiếu.
   /// [payload] là Map theo schema `AccommodationBookingAdvanceRequest`
   /// (mục 4.6) — UI build sẵn rồi dispatch.
@@ -120,4 +136,85 @@ class BookingGuestHouseEvent with _$BookingGuestHouseEvent {
   /// thấy form sạch sẽ.
   const factory BookingGuestHouseEvent.clearAdvanceSubmitState() =
       _ClearAdvanceSubmitState;
+
+  /// Gửi form lưu cập nhật TT Quyết toán (TTQT) standalone cho 1 phiếu
+  /// đặt phòng nhà nghỉ — UI truyền 19 trường thuần từ form. Bloc tự
+  /// resolve `currentUser` + `detailData` + build payload
+  /// `Map<String, dynamic>` theo `AccommodationBookingPaymentOrderRequest`
+  /// (mục 4.7 spec) + validate.
+  ///
+  /// Tại sao dùng event thuần (không DTO):
+  /// - Event chỉ chứa data form, bloc mới là nơi xử lý business logic
+  ///   (resolve user, build payload, validate). Theo pattern của màn
+  ///   `submitAdvanceForm` cùng module.
+  /// - ID luôn = 0 (chưa có lần lưu nào trước đó trong flow này).
+  const factory BookingGuestHouseEvent.submitSettlementForm({
+    /// ID phiếu đặt phòng — UI lấy từ `widget.id`.
+    required int accommodationBookingId,
+
+    /// Tổng tiền (VNĐ) — đã parse từ "x.xxx.xxx" → int.
+    required int totalAmount,
+
+    /// Tổng tiền có hóa đơn (VNĐ) — đã parse từ "x.xxx.xxx" → int.
+    required int totalAmountWithInvoice,
+
+    /// Số hóa đơn (text rỗng → BE lưu null/rỗng tuỳ ý).
+    required String invoiceNumber,
+
+    /// Số tài khoản ngân hàng (chỉ chữ số).
+    required String bankAccount,
+
+    /// ID ngân hàng; bloc lookup `BankName` chuẩn hoá từ `state.banks`.
+    required int bankListId,
+
+    /// Tên ngân hàng (text hiển thị — fallback khi không lookup được).
+    required String bankName,
+
+    /// Loại chuyển khoản (1..6 theo enum `TransferType`).
+    required int transferType,
+
+    /// ID TBP duyệt (ưu tiên). Null → bloc fallback `detail.info.approvedTBP`.
+    int? approvedTbpId,
+
+    /// Lý do quyết toán.
+    required String reason,
+
+    /// ID dự án (ưu tiên). Null → bloc fallback `detail.info.projectId`.
+    int? projectId,
+
+    /// ID công ty. Null → bloc fallback `currentUser.taxCompanyId`.
+    int? companyId,
+
+    /// Tên công ty (auto-fill từ currentUser + lookup state.taxCompanies).
+    required String companyName,
+
+    /// Tên bộ phận (auto-fill từ currentUser).
+    required String departmentName,
+
+    /// Ghi chú (optional).
+    String? note,
+
+    /// Tên khách sạn.
+    required String hotelName,
+
+    /// Mã số thuế khách sạn.
+    required String hotelTaxCode,
+
+    /// File hóa đơn đính kèm (optional, mặc định rỗng = không upload).
+    /// Sau khi save-detail OK, bloc sẽ lặp từng file upload
+    /// `?fileType=INVOICE`. Format cho phép: PDF / ảnh / excel.
+    @Default(<PlatformFile>[]) List<PlatformFile> invoiceFiles,
+
+    /// File bill CK đính kèm (optional, mặc định rỗng = không upload).
+    /// Sau khi save-detail OK, bloc sẽ lặp từng file upload
+    /// `?fileType=BILL_CK`. Format cho phép: PDF / ảnh.
+    @Default(<PlatformFile>[]) List<PlatformFile> billCkFiles,
+  }) = _SubmitSettlementForm;
+
+  /// Reset các cờ + state liên quan đến flow "Cập nhật TTQT":
+  /// `settlementSuccess = false`, `lastSettlementResponse = null`,
+  /// `settlementMessage = null`. UI gọi sau khi đã xử lý xong
+  /// success (hiện toast + pop).
+  const factory BookingGuestHouseEvent.clearSettlementSubmitState() =
+      _ClearSettlementSubmitState;
 }

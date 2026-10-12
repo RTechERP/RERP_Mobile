@@ -51,6 +51,13 @@ abstract class _$BookingGuestHouseStateCWProxy {
 
   BookingGuestHouseState detailMessage(String? detailMessage);
 
+  BookingGuestHouseState isLoadingPaymentDetail(bool isLoadingPaymentDetail);
+
+  BookingGuestHouseState paymentDetail(
+      BookingGuestHousePaymentDetailItem? paymentDetail);
+
+  BookingGuestHouseState paymentDetailMessage(String? paymentDetailMessage);
+
   BookingGuestHouseState isSubmittingAdvance(bool isSubmittingAdvance);
 
   BookingGuestHouseState advanceSuccess(bool advanceSuccess);
@@ -59,6 +66,15 @@ abstract class _$BookingGuestHouseStateCWProxy {
       BookingGuestHouseAdvanceResponse? lastAdvanceResponse);
 
   BookingGuestHouseState advanceMessage(String? advanceMessage);
+
+  BookingGuestHouseState isSubmittingSettlement(bool isSubmittingSettlement);
+
+  BookingGuestHouseState settlementSuccess(bool settlementSuccess);
+
+  BookingGuestHouseState lastSettlementResponse(
+      BookingGuestHouseSaveDetailResponse? lastSettlementResponse);
+
+  BookingGuestHouseState settlementMessage(String? settlementMessage);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `BookingGuestHouseState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -89,10 +105,17 @@ abstract class _$BookingGuestHouseStateCWProxy {
     bool? isDetailLoading,
     BookingGuestHouseDetailData? detailData,
     String? detailMessage,
+    bool? isLoadingPaymentDetail,
+    BookingGuestHousePaymentDetailItem? paymentDetail,
+    String? paymentDetailMessage,
     bool? isSubmittingAdvance,
     bool? advanceSuccess,
     BookingGuestHouseAdvanceResponse? lastAdvanceResponse,
     String? advanceMessage,
+    bool? isSubmittingSettlement,
+    bool? settlementSuccess,
+    BookingGuestHouseSaveDetailResponse? lastSettlementResponse,
+    String? settlementMessage,
   });
 }
 
@@ -189,6 +212,19 @@ class _$BookingGuestHouseStateCWProxyImpl
       this(detailMessage: detailMessage);
 
   @override
+  BookingGuestHouseState isLoadingPaymentDetail(bool isLoadingPaymentDetail) =>
+      this(isLoadingPaymentDetail: isLoadingPaymentDetail);
+
+  @override
+  BookingGuestHouseState paymentDetail(
+          BookingGuestHousePaymentDetailItem? paymentDetail) =>
+      this(paymentDetail: paymentDetail);
+
+  @override
+  BookingGuestHouseState paymentDetailMessage(String? paymentDetailMessage) =>
+      this(paymentDetailMessage: paymentDetailMessage);
+
+  @override
   BookingGuestHouseState isSubmittingAdvance(bool isSubmittingAdvance) =>
       this(isSubmittingAdvance: isSubmittingAdvance);
 
@@ -204,6 +240,23 @@ class _$BookingGuestHouseStateCWProxyImpl
   @override
   BookingGuestHouseState advanceMessage(String? advanceMessage) =>
       this(advanceMessage: advanceMessage);
+
+  @override
+  BookingGuestHouseState isSubmittingSettlement(bool isSubmittingSettlement) =>
+      this(isSubmittingSettlement: isSubmittingSettlement);
+
+  @override
+  BookingGuestHouseState settlementSuccess(bool settlementSuccess) =>
+      this(settlementSuccess: settlementSuccess);
+
+  @override
+  BookingGuestHouseState lastSettlementResponse(
+          BookingGuestHouseSaveDetailResponse? lastSettlementResponse) =>
+      this(lastSettlementResponse: lastSettlementResponse);
+
+  @override
+  BookingGuestHouseState settlementMessage(String? settlementMessage) =>
+      this(settlementMessage: settlementMessage);
 
   @override
 
@@ -236,10 +289,17 @@ class _$BookingGuestHouseStateCWProxyImpl
     Object? isDetailLoading = const $CopyWithPlaceholder(),
     Object? detailData = const $CopyWithPlaceholder(),
     Object? detailMessage = const $CopyWithPlaceholder(),
+    Object? isLoadingPaymentDetail = const $CopyWithPlaceholder(),
+    Object? paymentDetail = const $CopyWithPlaceholder(),
+    Object? paymentDetailMessage = const $CopyWithPlaceholder(),
     Object? isSubmittingAdvance = const $CopyWithPlaceholder(),
     Object? advanceSuccess = const $CopyWithPlaceholder(),
     Object? lastAdvanceResponse = const $CopyWithPlaceholder(),
     Object? advanceMessage = const $CopyWithPlaceholder(),
+    Object? isSubmittingSettlement = const $CopyWithPlaceholder(),
+    Object? settlementSuccess = const $CopyWithPlaceholder(),
+    Object? lastSettlementResponse = const $CopyWithPlaceholder(),
+    Object? settlementMessage = const $CopyWithPlaceholder(),
   }) {
     return BookingGuestHouseState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -338,6 +398,20 @@ class _$BookingGuestHouseStateCWProxyImpl
           ? _value.detailMessage
           // ignore: cast_nullable_to_non_nullable
           : detailMessage as String?,
+      isLoadingPaymentDetail:
+          isLoadingPaymentDetail == const $CopyWithPlaceholder() ||
+                  isLoadingPaymentDetail == null
+              ? _value.isLoadingPaymentDetail
+              // ignore: cast_nullable_to_non_nullable
+              : isLoadingPaymentDetail as bool,
+      paymentDetail: paymentDetail == const $CopyWithPlaceholder()
+          ? _value.paymentDetail
+          // ignore: cast_nullable_to_non_nullable
+          : paymentDetail as BookingGuestHousePaymentDetailItem?,
+      paymentDetailMessage: paymentDetailMessage == const $CopyWithPlaceholder()
+          ? _value.paymentDetailMessage
+          // ignore: cast_nullable_to_non_nullable
+          : paymentDetailMessage as String?,
       isSubmittingAdvance:
           isSubmittingAdvance == const $CopyWithPlaceholder() ||
                   isSubmittingAdvance == null
@@ -357,6 +431,26 @@ class _$BookingGuestHouseStateCWProxyImpl
           ? _value.advanceMessage
           // ignore: cast_nullable_to_non_nullable
           : advanceMessage as String?,
+      isSubmittingSettlement:
+          isSubmittingSettlement == const $CopyWithPlaceholder() ||
+                  isSubmittingSettlement == null
+              ? _value.isSubmittingSettlement
+              // ignore: cast_nullable_to_non_nullable
+              : isSubmittingSettlement as bool,
+      settlementSuccess: settlementSuccess == const $CopyWithPlaceholder() ||
+              settlementSuccess == null
+          ? _value.settlementSuccess
+          // ignore: cast_nullable_to_non_nullable
+          : settlementSuccess as bool,
+      lastSettlementResponse:
+          lastSettlementResponse == const $CopyWithPlaceholder()
+              ? _value.lastSettlementResponse
+              // ignore: cast_nullable_to_non_nullable
+              : lastSettlementResponse as BookingGuestHouseSaveDetailResponse?,
+      settlementMessage: settlementMessage == const $CopyWithPlaceholder()
+          ? _value.settlementMessage
+          // ignore: cast_nullable_to_non_nullable
+          : settlementMessage as String?,
     );
   }
 }

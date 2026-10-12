@@ -456,3 +456,153 @@ Map<String, dynamic> _$$BookingGuestHouseAdvanceResponseImplToJson(
       'DetailID': instance.detailId,
       'IsRecreated': instance.isRecreated,
     };
+
+_$BookingGuestHouseSaveDetailResponseImpl
+    _$$BookingGuestHouseSaveDetailResponseImplFromJson(
+            Map<String, dynamic> json) =>
+        _$BookingGuestHouseSaveDetailResponseImpl(
+          id: (json['ID'] as num?)?.toInt(),
+          detailStatus: (json['DetailStatus'] as num?)?.toInt(),
+        );
+
+Map<String, dynamic> _$$BookingGuestHouseSaveDetailResponseImplToJson(
+        _$BookingGuestHouseSaveDetailResponseImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'DetailStatus': instance.detailStatus,
+    };
+
+_$BookingGuestHouseFileItemImpl _$$BookingGuestHouseFileItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$BookingGuestHouseFileItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      accommodationBookingPaymentOrderDetailId:
+          (json['AccommodationBookingPaymentOrderDetailID'] as num?)?.toInt(),
+      fileType: json['FileType'] as String?,
+      fileName: json['FileName'] as String?,
+      filePath: json['FilePath'] as String?,
+      url: json['Url'] as String?,
+      fileSize: (json['FileSize'] as num?)?.toInt(),
+      isDeleted: json['IsDeleted'] as bool?,
+      createdBy: json['CreatedBy'] as String?,
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+      updatedBy: json['UpdatedBy'] as String?,
+      updatedDate: json['UpdatedDate'] == null
+          ? null
+          : DateTime.parse(json['UpdatedDate'] as String),
+    );
+
+Map<String, dynamic> _$$BookingGuestHouseFileItemImplToJson(
+        _$BookingGuestHouseFileItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'AccommodationBookingPaymentOrderDetailID':
+          instance.accommodationBookingPaymentOrderDetailId,
+      'FileType': instance.fileType,
+      'FileName': instance.fileName,
+      'FilePath': instance.filePath,
+      'Url': instance.url,
+      'FileSize': instance.fileSize,
+      'IsDeleted': instance.isDeleted,
+      'CreatedBy': instance.createdBy,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'UpdatedBy': instance.updatedBy,
+      'UpdatedDate': instance.updatedDate?.toIso8601String(),
+    };
+
+_$BookingGuestHousePaymentDetailItemImpl
+    _$$BookingGuestHousePaymentDetailItemImplFromJson(
+            Map<String, dynamic> json) =>
+        _$BookingGuestHousePaymentDetailItemImpl(
+          id: (json['ID'] as num?)?.toInt(),
+          accommodationBookingPaymentOrderId:
+              (json['AccommodationBookingPaymentOrderID'] as num?)?.toInt(),
+          accommodationBookingId:
+              (json['AccommodationBookingID'] as num?)?.toInt(),
+          isAdvance: json['IsAdvance'] as bool?,
+          detailStatus: (json['DetailStatus'] as num?)?.toInt(),
+          reason: json['Reason'] as String?,
+          projectId: (json['ProjectID'] as num?)?.toInt(),
+          recipientName: json['RecipientName'] as String?,
+          hotelName: json['HotelName'] as String?,
+          hotelTaxCode: json['HotelTaxCode'] as String?,
+          bankAccount: json['BankAccount'] as String?,
+          bankName: json['BankName'] as String?,
+          bankListId: (json['BankListID'] as num?)?.toInt(),
+          transferType: (json['TransferType'] as num?)?.toInt(),
+          approvedTbpId: (json['ApprovedTBPID'] as num?)?.toInt(),
+          totalAmount: json['TotalAmount'] as num?,
+          totalAmountWithInvoice: json['TotalAmountWithInvoice'] as num?,
+          invoiceNumber: json['InvoiceNumber'] as String?,
+          companyId: (json['CompanyID'] as num?)?.toInt(),
+          companyName: json['CompanyName'] as String?,
+          departmentName: json['DepartmentName'] as String?,
+          note: json['Note'] as String?,
+          checkInDate: json['CheckInDate'],
+          checkOutDate: json['CheckOutDate'],
+          advancePaymentOrderId:
+              (json['AdvancePaymentOrderID'] as num?)?.toInt(),
+          advancePaymentOrderCode: json['AdvancePaymentOrderCode'] as String?,
+          advanceTotalAmount: json['AdvanceTotalAmount'] as num?,
+          advanceStepIsApproved:
+              (json['AdvanceStepIsApproved'] as num?)?.toInt(),
+          isAdvanceRejected: json['IsAdvanceRejected'] as bool?,
+          isAdvanceCreated: json['IsAdvanceCreated'] as bool?,
+          createdBy: json['CreatedBy'] as String?,
+          createdDate: json['CreatedDate'] == null
+              ? null
+              : DateTime.parse(json['CreatedDate'] as String),
+          updatedBy: json['UpdatedBy'] as String?,
+          updatedDate: json['UpdatedDate'] == null
+              ? null
+              : DateTime.parse(json['UpdatedDate'] as String),
+          isDeleted: json['IsDeleted'] as bool?,
+          files: (json['Files'] as List<dynamic>?)
+              ?.map((e) =>
+                  BookingGuestHouseFileItem.fromJson(e as Map<String, dynamic>))
+              .toList(),
+        );
+
+Map<String, dynamic> _$$BookingGuestHousePaymentDetailItemImplToJson(
+        _$BookingGuestHousePaymentDetailItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'AccommodationBookingPaymentOrderID':
+          instance.accommodationBookingPaymentOrderId,
+      'AccommodationBookingID': instance.accommodationBookingId,
+      'IsAdvance': instance.isAdvance,
+      'DetailStatus': instance.detailStatus,
+      'Reason': instance.reason,
+      'ProjectID': instance.projectId,
+      'RecipientName': instance.recipientName,
+      'HotelName': instance.hotelName,
+      'HotelTaxCode': instance.hotelTaxCode,
+      'BankAccount': instance.bankAccount,
+      'BankName': instance.bankName,
+      'BankListID': instance.bankListId,
+      'TransferType': instance.transferType,
+      'ApprovedTBPID': instance.approvedTbpId,
+      'TotalAmount': instance.totalAmount,
+      'TotalAmountWithInvoice': instance.totalAmountWithInvoice,
+      'InvoiceNumber': instance.invoiceNumber,
+      'CompanyID': instance.companyId,
+      'CompanyName': instance.companyName,
+      'DepartmentName': instance.departmentName,
+      'Note': instance.note,
+      'CheckInDate': instance.checkInDate,
+      'CheckOutDate': instance.checkOutDate,
+      'AdvancePaymentOrderID': instance.advancePaymentOrderId,
+      'AdvancePaymentOrderCode': instance.advancePaymentOrderCode,
+      'AdvanceTotalAmount': instance.advanceTotalAmount,
+      'AdvanceStepIsApproved': instance.advanceStepIsApproved,
+      'IsAdvanceRejected': instance.isAdvanceRejected,
+      'IsAdvanceCreated': instance.isAdvanceCreated,
+      'CreatedBy': instance.createdBy,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'UpdatedBy': instance.updatedBy,
+      'UpdatedDate': instance.updatedDate?.toIso8601String(),
+      'IsDeleted': instance.isDeleted,
+      'Files': instance.files,
+    };

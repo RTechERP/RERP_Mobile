@@ -28,8 +28,7 @@ class BookingGuestHouseCard extends StatelessWidget {
     final project = _displayProject();
     final dateRange = _formatDateRange();
 
-    final arrangementBadge = _arrangementBadgeLabel();
-    final arrangementColor = _arrangementBadgeColor(arrangementBadge);
+    final (arrangementBadge, arrangementColor) = _paymentStatusBadge();
 
     return GestureDetector(
       onTap: onTap,
@@ -141,19 +140,24 @@ class BookingGuestHouseCard extends StatelessWidget {
 
   //---(Badge)---//
 
-  String _arrangementBadgeLabel() {
-    final hotel = (item.paymentHotelName ?? '').trim();
-    final amount = item.paymentTotalAmountWithInvoice;
-    if (hotel.isNotEmpty || (amount != null && amount > 0)) {
-      return 'Đã thanh toán';
-    }
-    return 'Chưa thanh toán';
-  }
-
-  Color _arrangementBadgeColor(String label) {
-    return label == 'Đã thanh toán'
-        ? AppColors.success
-        : AppColors.warning;
+  /// Nhãn + màu cho badge trạng thái thanh toán dựa trên
+  /// `paymentDetailStatus` của phiếu. Quy ước 5 giá trị BE trả về:
+  /// - 0: Chưa có           → xám (chưa tạo TTQT)
+  /// - 2: Chờ duyệt file    → vàng (đã submit, chờ Kế toán duyệt)
+  /// - 3: File đã duyệt     → xanh lá (Kế toán đã duyệt file)
+  /// - 4: Đã tạo ĐNTT       → xanh dương (đã tạo đề nghị thanh toán)
+  /// - 5: Yêu cầu bổ sung   → cam (Kế toán yêu cầu bổ sung file)
+  ///
+  /// Mọi giá trị khác (1, 6, 7...) hoặc `null` → fallback "Chưa có" (xám).
+  (String, Color) _paymentStatusBadge() {
+    final s = item.paymentDetailStatus;
+    return switch (s) {
+      2 => ('Chờ duyệt file', AppColors.warning),
+      3 => ('File đã duyệt', AppColors.success),
+      4 => ('Đã tạo ĐNTT', AppColors.secondaryERP),
+      5 => ('Yêu cầu bổ sung', AppColors.warning),
+      _ => ('Chưa có', AppColors.gray),
+    };
   }
 }
 

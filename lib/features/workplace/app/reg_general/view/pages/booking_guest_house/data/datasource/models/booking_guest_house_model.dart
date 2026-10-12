@@ -330,3 +330,183 @@ class BookingGuestHouseAdvanceResponse
   ) =>
       _$BookingGuestHouseAdvanceResponseFromJson(json);
 }
+
+/// Response từ API `POST /AccommodationBookingPaymentOrder/save-standalone-detail`.
+///
+/// Server trả `{ ID, DetailStatus }` trong `data` — dùng cho UI:
+/// - [id]           : ID của detail mới lưu
+/// - [detailStatus] : trạng thái duyệt (2 = chờ duyệt, 3 = đã duyệt...)
+@freezed
+class BookingGuestHouseSaveDetailResponse
+    with _$BookingGuestHouseSaveDetailResponse {
+  const factory BookingGuestHouseSaveDetailResponse({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'DetailStatus') int? detailStatus,
+  }) = _BookingGuestHouseSaveDetailResponse;
+
+  factory BookingGuestHouseSaveDetailResponse.fromJson(
+    Map<String, dynamic> json,
+  ) =>
+      _$BookingGuestHouseSaveDetailResponseFromJson(json);
+}
+
+/// 1 dòng file đính kèm trong response upload (`POST /.../upload-file`).
+///
+/// Server trả `data` có thể là 1 object đơn hoặc mảng các object, mỗi
+/// object đại diện 1 file đã upload lên server:
+/// - [id]                              : ID file
+/// - [accommodationBookingPaymentOrderDetailId] : FK detail TTQT
+/// - [fileType]                        : "INVOICE" | "BILL_CK"
+/// - [fileName], [filePath], [url]     : thông tin file
+/// - [fileSize]                        : kích thước (bytes)
+/// - [isDeleted], [createdBy], [createdDate], [updatedBy], [updatedDate]
+@freezed
+class BookingGuestHouseFileItem with _$BookingGuestHouseFileItem {
+  const factory BookingGuestHouseFileItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'AccommodationBookingPaymentOrderDetailID')
+    int? accommodationBookingPaymentOrderDetailId,
+    @JsonKey(name: 'FileType') String? fileType,
+    @JsonKey(name: 'FileName') String? fileName,
+    @JsonKey(name: 'FilePath') String? filePath,
+    @JsonKey(name: 'Url') String? url,
+    @JsonKey(name: 'FileSize') int? fileSize,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+  }) = _BookingGuestHouseFileItem;
+
+  factory BookingGuestHouseFileItem.fromJson(Map<String, dynamic> json) =>
+      _$BookingGuestHouseFileItemFromJson(json);
+}
+
+/// Chi tiết 1 TT Quyết toán (TTQT) của 1 phiếu đặt phòng nhà nghỉ.
+/// Response từ API:
+/// `GET /AccommodationBookingPaymentOrder/get-detail-by-booking-id?accommodationBookingId=<id>`
+///
+/// Dùng để pre-fill form "Cập nhật TTQT" khi mở — thay vì lấy từ
+/// field `Payment*` trên `BookingGuestHouseItem` (dữ liệu rút gọn
+/// trên list). Field `DetailStatus` là trạng thái duyệt:
+/// - 0 / null: chưa có TTQT → giữ form rỗng.
+/// - 2: chờ duyệt file, 3: file đã duyệt, 4: đã tạo ĐNTT,
+///   5: yêu cầu bổ sung file (và các giá trị khác BE có thể mở rộng).
+///
+/// BE có thể trả thẳng 1 object `{ ID, AccommodationBookingID, ... }`
+/// hoặc bọc trong mảng `[{...}]` (vd khi chưa có detail). Service
+/// parse defensive xem `_parsePaymentDetailByBookingId`.
+@freezed
+class BookingGuestHousePaymentDetailItem
+    with _$BookingGuestHousePaymentDetailItem {
+  const factory BookingGuestHousePaymentDetailItem({
+    /// ID detail TTQT (trong ví dụ = 27). Master = 0 khi chưa được
+    /// gắn vào đề nghị tạm ứng; > 0 khi đã liên kết master.
+    @JsonKey(name: 'ID') int? id,
+
+    /// ID master PaymentOrder (0 nếu chưa liên kết master).
+    @JsonKey(name: 'AccommodationBookingPaymentOrderID')
+    int? accommodationBookingPaymentOrderId,
+
+    /// FK phiếu đặt phòng nhà nghỉ.
+    @JsonKey(name: 'AccommodationBookingID') int? accommodationBookingId,
+
+    /// Loại: true = tạm ứng, false = quyết toán, null = BE không set.
+    @JsonKey(name: 'IsAdvance') bool? isAdvance,
+
+    /// Trạng thái duyệt (0/null = chưa có; 2/3/4/5 xem comment trên).
+    @JsonKey(name: 'DetailStatus') int? detailStatus,
+
+    /// Lý do quyết toán.
+    @JsonKey(name: 'Reason') String? reason,
+
+    /// ID dự án.
+    @JsonKey(name: 'ProjectID') int? projectId,
+
+    /// Người nhận tiền.
+    @JsonKey(name: 'RecipientName') String? recipientName,
+
+    /// Tên khách sạn.
+    @JsonKey(name: 'HotelName') String? hotelName,
+
+    /// Mã số thuế khách sạn.
+    @JsonKey(name: 'HotelTaxCode') String? hotelTaxCode,
+
+    /// Số tài khoản ngân hàng nhận tiền.
+    @JsonKey(name: 'BankAccount') String? bankAccount,
+
+    /// Tên ngân hàng (text hiển thị trên UI).
+    @JsonKey(name: 'BankName') String? bankName,
+
+    /// ID ngân hàng (lookup `state.banks` để map chuẩn).
+    @JsonKey(name: 'BankListID') int? bankListId,
+
+    /// Loại chuyển khoản (1 = chuyển khoản cá nhân).
+    @JsonKey(name: 'TransferType') int? transferType,
+
+    /// ID TBP duyệt.
+    @JsonKey(name: 'ApprovedTBPID') int? approvedTbpId,
+
+    /// Tổng tiền (VNĐ).
+    @JsonKey(name: 'TotalAmount') num? totalAmount,
+
+    /// Tổng tiền có hóa đơn (VNĐ).
+    @JsonKey(name: 'TotalAmountWithInvoice') num? totalAmountWithInvoice,
+
+    /// Số hóa đơn.
+    @JsonKey(name: 'InvoiceNumber') String? invoiceNumber,
+
+    /// ID công ty phát hành hóa đơn.
+    @JsonKey(name: 'CompanyID') int? companyId,
+
+    /// Tên công ty phát hành hóa đơn.
+    @JsonKey(name: 'CompanyName') String? companyName,
+
+    /// Tên bộ phận.
+    @JsonKey(name: 'DepartmentName') String? departmentName,
+
+    /// Ghi chú.
+    @JsonKey(name: 'Note') String? note,
+
+    /// Check-in date (cho đề nghị tạm ứng).
+    @JsonKey(name: 'CheckInDate') dynamic checkInDate,
+
+    /// Check-out date.
+    @JsonKey(name: 'CheckOutDate') dynamic checkOutDate,
+
+    /// ID master ĐNTT tạm ứng (null nếu không phải advance).
+    @JsonKey(name: 'AdvancePaymentOrderID') int? advancePaymentOrderId,
+
+    /// Mã ĐNTT tạm ứng (vd `ĐNTTxxx`).
+    @JsonKey(name: 'AdvancePaymentOrderCode') String?
+        advancePaymentOrderCode,
+
+    /// Tổng tiền tạm ứng.
+    @JsonKey(name: 'AdvanceTotalAmount') num? advanceTotalAmount,
+
+    /// Bước duyệt ĐNTU hiện tại đã duyệt chưa (0/1).
+    @JsonKey(name: 'AdvanceStepIsApproved') int? advanceStepIsApproved,
+
+    /// ĐNTU bị từ chối duyệt.
+    @JsonKey(name: 'IsAdvanceRejected') bool? isAdvanceRejected,
+
+    /// Đã tạo ĐNTT tạm ứng.
+    @JsonKey(name: 'IsAdvanceCreated') bool? isAdvanceCreated,
+
+    /// Audit.
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+
+    /// Danh sách file đính kèm (INVOICE / BILL_CK) — chỉ đếm để hiển thị
+    /// hint, không tự load lại nội dung file.
+    @JsonKey(name: 'Files') List<BookingGuestHouseFileItem>? files,
+  }) = _BookingGuestHousePaymentDetailItem;
+
+  factory BookingGuestHousePaymentDetailItem.fromJson(
+    Map<String, dynamic> json,
+  ) =>
+      _$BookingGuestHousePaymentDetailItemFromJson(json);
+}

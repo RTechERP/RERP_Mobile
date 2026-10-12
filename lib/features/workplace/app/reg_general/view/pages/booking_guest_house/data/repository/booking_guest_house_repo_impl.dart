@@ -2,6 +2,7 @@
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rtc_erp/base/network/errors/error.dart';
 
@@ -213,6 +214,31 @@ class BookingGuestHouseRepoImpl implements BookingGuestHouseRepo {
   }
 
   @override
+  Future<Either<BaseError, BookingGuestHousePaymentDetailItem?>>
+      getPaymentOrderDetailByBookingId({
+    required int id,
+  }) async {
+    try {
+      final res = await _service.getPaymentOrderDetailByBookingId(id: id);
+      // status == 1 mà data == null → "chưa có TTQT" — KHÔNG phải lỗi.
+      // Trả về right(null) để UI xử lý graceful (giữ form rỗng).
+      if (res.status == 1) {
+        return right(res.data);
+      }
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? res.msg ??
+              'Không tải được chi tiết TT Quyết toán',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
+
+  @override
   Future<Either<BaseError, BookingGuestHouseAdvanceResponse>>
       createBookingGuestHouseAdvance({
     required Map<String, dynamic> payload,
@@ -227,6 +253,58 @@ class BookingGuestHouseRepoImpl implements BookingGuestHouseRepo {
       return left(
         BaseError.httpInternalServerError(
           res.message ?? res.msg ?? 'Tạo đề nghị tạm ứng thất bại',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<BaseError, BookingGuestHouseSaveDetailResponse>>
+      saveBookingGuestHouseStandaloneDetail({
+    required Map<String, dynamic> payload,
+  }) async {
+    try {
+      final res = await _service.saveBookingGuestHouseStandaloneDetail(
+        payload: payload,
+      );
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? res.msg ?? 'Lưu cập nhật TTQT thất bại',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<BaseError, BookingGuestHouseFileItem>>
+      uploadBookingGuestHouseFile({
+    required int detailId,
+    required String fileType,
+    required PlatformFile file,
+  }) async {
+    try {
+      final res = await _service.uploadBookingGuestHouseFile(
+        detailId: detailId,
+        fileType: fileType,
+        file: file,
+      );
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? res.msg ?? 'Upload file thất bại',
         ),
       );
     } on DioException catch (e) {

@@ -63,6 +63,18 @@ class BookingGuestHouseState extends BaseBlocState {
   /// Lỗi khi tải chi tiết phiếu (null = OK).
   final String? detailMessage;
 
+  /// Loading khi tải chi tiết TTQT theo `accommodationBookingId`.
+  final bool isLoadingPaymentDetail;
+
+  /// Chi tiết TTQT (null = chưa tải, chưa có, hoặc lỗi).
+  /// `null` cũng bao gồm trường hợp "chưa có TTQT" (DetailStatus = 0
+  /// hoặc response rỗng) — UI hiểu là giữ form rỗng.
+  final BookingGuestHousePaymentDetailItem? paymentDetail;
+
+  /// Lỗi khi tải chi tiết TTQT (null = OK hoặc "chưa có TTQT").
+  /// Chỉ set khi service thật sự fail (status != 1).
+  final String? paymentDetailMessage;
+
   /// Loading khi gửi đề nghị tạm ứng (ĐNTU).
   final bool isSubmittingAdvance;
 
@@ -75,6 +87,18 @@ class BookingGuestHouseState extends BaseBlocState {
 
   /// Thông báo từ lần submit advance gần nhất (success message từ BE).
   final String? advanceMessage;
+
+  /// Loading khi lưu cập nhật TT Quyết toán (TTQT) standalone.
+  final bool isSubmittingSettlement;
+
+  /// Cờ lưu TTQT thành công — UI dùng để hiện toast + pop.
+  final bool settlementSuccess;
+
+  /// Response cuối từ API save-standalone-detail (ID + DetailStatus).
+  final BookingGuestHouseSaveDetailResponse? lastSettlementResponse;
+
+  /// Thông báo từ lần lưu TTQT gần nhất (success message từ BE).
+  final String? settlementMessage;
 
   const BookingGuestHouseState({
     required super.status,
@@ -99,10 +123,17 @@ class BookingGuestHouseState extends BaseBlocState {
     this.isDetailLoading = false,
     this.detailData,
     this.detailMessage,
+    this.isLoadingPaymentDetail = false,
+    this.paymentDetail,
+    this.paymentDetailMessage,
     this.isSubmittingAdvance = false,
     this.advanceSuccess = false,
     this.lastAdvanceResponse,
     this.advanceMessage,
+    this.isSubmittingSettlement = false,
+    this.settlementSuccess = false,
+    this.lastSettlementResponse,
+    this.settlementMessage,
   });
 
   factory BookingGuestHouseState.init() => BookingGuestHouseState(
@@ -127,10 +158,17 @@ class BookingGuestHouseState extends BaseBlocState {
     isDetailLoading: false,
     detailData: null,
     detailMessage: null,
+    isLoadingPaymentDetail: false,
+    paymentDetail: null,
+    paymentDetailMessage: null,
     isSubmittingAdvance: false,
     advanceSuccess: false,
     lastAdvanceResponse: null,
     advanceMessage: null,
+    isSubmittingSettlement: false,
+    settlementSuccess: false,
+    lastSettlementResponse: null,
+    settlementMessage: null,
   );
 
   @override
@@ -157,9 +195,16 @@ class BookingGuestHouseState extends BaseBlocState {
     isDetailLoading,
     detailData,
     detailMessage,
+    isLoadingPaymentDetail,
+    paymentDetail,
+    paymentDetailMessage,
     isSubmittingAdvance,
     advanceSuccess,
     lastAdvanceResponse,
     advanceMessage,
+    isSubmittingSettlement,
+    settlementSuccess,
+    lastSettlementResponse,
+    settlementMessage,
   ];
 }

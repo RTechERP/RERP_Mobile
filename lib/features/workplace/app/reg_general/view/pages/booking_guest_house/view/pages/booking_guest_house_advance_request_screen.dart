@@ -21,18 +21,18 @@ import '../bloc/booking_guest_house_bloc.dart';
 /// Loại chuyển khoản cho đề nghị tạm ứng (theo mục 2.5 spec).
 ///
 /// Mapping `value` (gửi BE) ↔ label (hiển thị trên UI):
-/// - 1 → "Chuyển khoản RTC"
-/// - 2 → "Chuyển khoản MVI"
-/// - 3 → "Chuyển khoản APR"
-/// - 4 → "Chuyển khoản Yonko"
-/// - 5 → "Chuyển khoản cá nhân" (mặc định)
+/// - 1 → "Chuyển khoản cá nhân" (mặc định)
+/// - 2 → "Chuyển khoản RTC"
+/// - 3 → "Chuyển khoản MVI"
+/// - 4 → "Chuyển khoản APR"
+/// - 5 → "Chuyển khoản Yonko"
 /// - 6 → "Chuyển khoản R-Tech"
 enum TransferType {
-  personal(5, 'Chuyển khoản cá nhân'),
-  rtc(1, 'Chuyển khoản RTC'),
-  mvi(2, 'Chuyển khoản MVI'),
-  apr(3, 'Chuyển khoản APR'),
-  yonko(4, 'Chuyển khoản Yonko'),
+  personal(1, 'Chuyển khoản cá nhân'),
+  rtc(2, 'Chuyển khoản RTC'),
+  mvi(3, 'Chuyển khoản MVI'),
+  apr(4, 'Chuyển khoản APR'),
+  yonko(5, 'Chuyển khoản Yonko'),
   rTech(6, 'Chuyển khoản R-Tech');
 
   const TransferType(this.value, this.label);
@@ -887,9 +887,6 @@ class _BookingGuestHouseAdvanceRequestScreenState
                     validator: (v) {
                       if (v == null || v.trim().isEmpty) {
                         return 'Vui lòng nhập số tài khoản';
-                      }
-                      if (!RegExp(r'^[0-9]+$').hasMatch(v.trim())) {
-                        return 'Số tài khoản chỉ chứa chữ số';
                       }
                       return null;
                     },
