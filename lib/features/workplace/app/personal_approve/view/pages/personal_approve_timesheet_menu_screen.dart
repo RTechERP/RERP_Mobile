@@ -181,6 +181,11 @@ const _kPersonalApproveSubMenus = <_PersonalApproveSubMenu>[
     icon: Icons.payments_outlined,
     title: 'Tạm ứng lương',
   ),
+  _PersonalApproveSubMenu(
+    tType: 11,
+    icon: Icons.payments_outlined,
+    title: 'Đăng ký nhà nghỉ',
+  ),
 ];
 
 /// Mô tả 1 mục con của menu Duyệt công.
