@@ -1,6 +1,8 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
+import 'package:image/image.dart' as img;
 import 'package:injectable/injectable.dart';
 
 import '../../../../../../base/network/dio/dio_base_api_service.dart';
@@ -75,12 +77,17 @@ class BusinessCardService extends DioBaseApiService {
     if (!file.existsSync()) {
       throw Exception('File ảnh không tồn tại');
     }
-    final bytes = await file.readAsBytes();
+    final originalBytes = await file.readAsBytes();
+
+    // Resize ảnh trước khi upload — Qwen2.5-VL với n_ctx=4096 chỉ chứa
+    // được ~650 image tokens (cạnh dài ~1024 px). Ảnh gốc từ camera
+    // 4000×3000 px vượt context, gây lỗi "exceed_context_size_error".
+    final resizedBytes = _resizeForAiOcr(originalBytes);
 
     // Create multipart file
     final fileName = cleanPath.split('/').last;
     final multipartFile = MultipartFile.fromBytes(
-      bytes,
+      resizedBytes,
       filename: fileName.isEmpty ? 'image.jpg' : fileName,
     );
 
@@ -100,6 +107,39 @@ class BusinessCardService extends DioBaseApiService {
         (data) => ScanBusinessCardResponse.fromJson(data as Map<String, dynamic>),
       ),
     );
+  }
+
+  /// Resize ảnh về cạnh dài tối đa [_maxEdgePx] để vừa context của Qwen2.5-VL.
+  ///
+  /// - Cạnh dài 1024 px → ~650 image tokens (cộng prompt ~3000 tokens = 3650,
+  ///   nằm trong n_ctx=4096).
+  /// - Giữ aspect ratio, encode JPEG quality 85 (giảm ~80% size, mắt thường
+  ///   không phân biệt được).
+  /// - Nếu ảnh đầu vào nhỏ hơn ngưỡng → trả về bytes gốc để tránh upscale
+  ///   làm giảm chất lượng.
+  static const int _maxEdgePx = 1024;
+  static const int _jpegQuality = 85;
+
+  Uint8List _resizeForAiOcr(Uint8List bytes) {
+    try {
+      final decoded = img.decodeImage(bytes);
+      if (decoded == null) return bytes;
+
+      final longestEdge =
+          decoded.width > decoded.height ? decoded.width : decoded.height;
+      if (longestEdge <= _maxEdgePx) return bytes;
+
+      final resized = img.copyResize(
+        decoded,
+        width: decoded.width >= decoded.height ? _maxEdgePx : null,
+        height: decoded.height > decoded.width ? _maxEdgePx : null,
+        interpolation: img.Interpolation.cubic,
+      );
+      return Uint8List.fromList(img.encodeJpg(resized, quality: _jpegQuality));
+    } catch (_) {
+      // Decode/encode lỗi → fallback gửi ảnh gốc, để backend xử lý.
+      return bytes;
+    }
   }
 
   // -------------------------------------------------------------------------
