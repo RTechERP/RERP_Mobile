@@ -1,5 +1,5 @@
-// Service cho màn Duyệt phiếu Đặt phòng nhà nghỉ.
-// API: GET /AccommodationBooking/data-accommodation-booking
+// Service cho màn Duyệt phiếu thanh toán Đặt phòng nhà nghỉ.
+// API: GET /AccommodationBookingPaymentOrder/get-pending-for-tbp
 
 import 'package:injectable/injectable.dart';
 
@@ -12,30 +12,12 @@ import '../models/approve_booking_guest_house_model.dart';
 class ApproveBookingGuestHouseService extends DioBaseApiService {
   ApproveBookingGuestHouseService(super.dio);
 
-  /// Lấy danh sách đặt phòng nhà nghỉ trong khoảng thời gian (màn duyệt).
-  /// Hiện dùng chung API `getBookingGuestHouse` của màn đăng ký — chỉ
-  /// khác model parse (màn duyệt dùng `ApproveBookingGuestHouseItem`).
-  ///
-  /// - [dateStart], [dateEnd]: ISO string (vd `2026-09-30T17:00:00.000Z`).
-  /// - [projectId], [employeeId]: bộ lọc (mặc định `0` = tất cả).
-  /// - [filterText]: chuỗi tìm kiếm (mặc định rỗng).
+  /// Lấy danh sách phiếu thanh toán đặt phòng nhà nghỉ chờ duyệt TBP.
+  /// API: GET /AccommodationBookingPaymentOrder/get-pending-for-tbp
   Future<BaseData<List<ApproveBookingGuestHouseItem>>>
-      getApproveBookingGuestHouse({
-    required String dateStart,
-    required String dateEnd,
-    int projectId = 0,
-    int employeeId = 0,
-    String filterText = '',
-  }) async {
+      getPendingForTbp() async {
     return get<BaseData<List<ApproveBookingGuestHouseItem>>>(
-      ApiEndPoint.getBookingGuestHouse,
-      query: {
-        'dateStart': dateStart,
-        'dateEnd': dateEnd,
-        'projectId': projectId,
-        'employeeId': employeeId,
-        'filterText': filterText,
-      },
+      ApiEndPoint.accommodationBookingPaymentOrderGetPendingForTbp,
       parser: (json) => _parseList(json),
     );
   }
@@ -115,7 +97,6 @@ class ApproveBookingGuestHouseService extends DioBaseApiService {
   }
 
   /// Generic parse cho các list đơn giản.
-  /// Response có thể là mảng trực tiếp `[ {...} ]` hoặc envelope chuẩn.
   BaseData<List<T>> _parseListGeneric<T>(
     dynamic json,
     T Function(dynamic e) mapper,

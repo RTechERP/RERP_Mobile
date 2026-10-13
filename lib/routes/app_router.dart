@@ -57,7 +57,7 @@ import '../features/workplace/app/personal_approve/app/approve_booking_guest_hou
 import '../features/workplace/app/personal_approve/app/approve_timesheet/view/pages/approve_timesheet_tbp_screen.dart';
 import '../features/workplace/app/personal_approve/app/approve_timesheet/data/datasource/models/approve_timesheet_model.dart';
 import '../features/workplace/app/personal_approve/view/bloc/personal_approve_menu_bloc.dart';
-import '../features/workplace/app/personal_approve/view/pages/personal_approve_booking_gn_menu_screen.dart';
+import '../features/workplace/app/personal_approve/view/pages/personal_approve_booking_menu_screen.dart';
 import '../features/workplace/app/personal_approve/view/pages/personal_approve_menu_screen.dart';
 import '../features/workplace/app/personal_approve/view/pages/personal_approve_timesheet_menu_screen.dart';
 import '../features/more/view/pages/avatar_viewer_screen.dart';

@@ -88,16 +88,6 @@ const _kBookingGnSubMenus = <_PersonalApproveBookingGnSubMenu>[
     icon: Icons.folder_open_outlined,
     title: 'Duyệt file',
   ),
-  _PersonalApproveBookingGnSubMenu(
-    queryType: 'dntt',
-    icon: Icons.receipt_long_outlined,
-    title: 'Duyệt ĐNTT',
-  ),
-  _PersonalApproveBookingGnSubMenu(
-    queryType: 'tam-ung',
-    icon: Icons.payments_outlined,
-    title: 'Duyệt tạm ứng',
-  ),
 ];
 
 /// Mô tả 1 mục con của menu Duyệt ĐX/NN.

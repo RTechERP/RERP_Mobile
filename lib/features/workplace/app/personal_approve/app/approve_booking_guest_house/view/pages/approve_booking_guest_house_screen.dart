@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
@@ -8,9 +7,9 @@ import '../../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/constants/index.dart';
-import '../../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../../common/widgets/date_range_picker.dart';
+import '../../../../../../../../base/network/errors/extension.dart';
 import '../../data/datasource/models/approve_booking_guest_house_model.dart';
 import '../bloc/approve_booking_guest_house_bloc.dart';
 
@@ -30,9 +29,6 @@ class _ApproveBookingGuestHousePageState extends BaseShareState<
     ApproveBookingGuestHouseEvent,
     ApproveBookingGuestHouseState,
     ApproveBookingGuestHouseBloc> {
-  final TextEditingController _searchController = TextEditingController();
-  bool _isSearching = false;
-
   /// Shorthand cho `bloc.state` — `BaseShareState` không expose getter
   /// `state` nên dùng shorthand này để truy cập gọn.
   ApproveBookingGuestHouseState get state => bloc.state;
@@ -41,13 +37,6 @@ class _ApproveBookingGuestHousePageState extends BaseShareState<
   void initState() {
     super.initState();
     bloc.add(const ApproveBookingGuestHouseEvent.init());
-    bloc.add(const ApproveBookingGuestHouseEvent.loadFilters());
-  }
-
-  @override
-  void dispose() {
-    _searchController.dispose();
-    super.dispose();
   }
 
   @override
@@ -58,24 +47,65 @@ class _ApproveBookingGuestHousePageState extends BaseShareState<
     }
   }
 
-  void _onSearchChanged(String value) {
+  /// Mở bottom sheet chọn trạng thái duyệt: Tất cả / Chưa duyệt / Đã duyệt.
+  /// Trả về `null` khi user dismiss; trả về `_StatusPick(value)` khi user
+  /// chọn option (kể cả "Tất cả" — phân biệt nhờ wrapper non-null).
+  Future<void> _openStatusFilter() async {
+    final current = state.statusFilter;
+    final picked = await showModalBottomSheet<_StatusPick>(
+      context: context,
+      showDragHandle: true,
+      builder: (sheetContext) {
+        Widget tile({required int? value, required String label}) {
+          final isActive = value == current;
+          return ListTile(
+            leading: Icon(
+              isActive
+                  ? Icons.radio_button_checked
+                  : Icons.radio_button_off,
+              color: isActive ? AppColors.primaryERP : AppColors.gray,
+            ),
+            title: Text(label),
+            onTap: () => Navigator.of(sheetContext).pop(
+              _StatusPick(value),
+            ),
+          );
+        }
+
+        return SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Padding(
+                padding: EdgeInsets.fromLTRB(16, 0, 16, 8),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Lọc theo trạng thái',
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ),
+              for (final option in _kStatusOptions)
+                tile(value: option.$1, label: option.$2),
+              const SizedBox(height: 8),
+            ],
+          ),
+        );
+      },
+    );
+
+    if (!mounted) return;
+    if (picked == null) return;
+    if (picked.value == current) return;
     bloc.add(
-      ApproveBookingGuestHouseEvent.changeFilterText(
-        filterText: value.trim(),
+      ApproveBookingGuestHouseEvent.changeStatusFilter(
+        status: picked.value,
       ),
     );
-  }
-
-  void _openSearch() {
-    setState(() => _isSearching = true);
-  }
-
-  void _closeSearch() {
-    _searchController.clear();
-    bloc.add(
-      const ApproveBookingGuestHouseEvent.changeFilterText(filterText: ''),
-    );
-    setState(() => _isSearching = false);
   }
 
   Future<void> _openDatePicker() async {
@@ -101,123 +131,31 @@ class _ApproveBookingGuestHousePageState extends BaseShareState<
     );
   }
 
-  Future<void> _openProjectFilter() async {
-    if (state.projects.isEmpty) {
-      bloc.add(const ApproveBookingGuestHouseEvent.loadFilters());
-    }
-    await openSelectBottomSheet<ApproveProjectFilterItem>(
-      context: context,
-      title: 'Chọn dự án',
-      hintText: 'Tìm theo mã / tên dự án',
-      items: state.projects,
-      initialSelectedItem: state.selectedProject,
-      displayText: (p) {
-        if (p.projectCode != null && p.projectCode!.isNotEmpty) {
-          return '${p.projectCode} - ${p.projectName ?? ''}';
-        }
-        return p.projectName ?? 'N/A';
-      },
-      onSelected: (project) {
-        bloc.add(
-          ApproveBookingGuestHouseEvent.changeProjectFilter(
-            project: project,
-          ),
-        );
-      },
-    );
-  }
-
-  Future<void> _openEmployeeFilter() async {
-    if (state.employees.isEmpty) {
-      bloc.add(const ApproveBookingGuestHouseEvent.loadFilters());
-    }
-    await openSelectBottomSheet<ApproveEmployeeFilterItem>(
-      context: context,
-      title: 'Chọn người đăng ký',
-      hintText: 'Tìm theo tên nhân viên',
-      items: state.employees,
-      initialSelectedItem: state.selectedEmployee,
-      displayText: (e) => e.fullName ?? 'N/A',
-      onSelected: (employee) {
-        bloc.add(
-          ApproveBookingGuestHouseEvent.changeEmployeeFilter(
-            employee: employee,
-          ),
-        );
-      },
-    );
-  }
-
   @override
   Widget renderUI(BuildContext context) {
     return BaseScaffold(
       appBar: AppBarCommon(
-        title: _isSearching
-            ? TextField(
-                controller: _searchController,
-                autofocus: true,
-                textInputAction: TextInputAction.search,
-                decoration: InputDecoration(
-                  hintText: 'Tìm kiếm',
-                  hintStyle: TextStyle(
-                    color: Colors.grey.shade500,
-                    fontSize: 14,
-                  ),
-                  border: InputBorder.none,
-                ),
-                onChanged: _onSearchChanged,
-              )
-            : Text(
-                'Duyệt Đặt phòng nhà nghỉ',
-                style: AppStyles.headingTitle2,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
+        title: Text(
+          'Duyệt ĐX/NN',
+          style: AppStyles.headingTitle2,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
         onBackTap: () => context.pop(),
         actions: [
-          if (!_isSearching)
-            IconButton(
-              icon: const Icon(Icons.calendar_month),
-              tooltip: 'Lọc ngày',
-              onPressed: _openDatePicker,
-            ),
-          if (!_isSearching)
-            blocBuilder(
-              (context, state) {
-                return Badge(
-                  isLabelVisible: state.selectedProject != null,
-                  child: IconButton(
-                    icon: const Icon(Icons.account_tree_outlined, size: 22),
-                    tooltip: 'Lọc theo dự án',
-                    onPressed: _openProjectFilter,
-                  ),
-                );
-              },
-              buildWhen: (prev, curr) =>
-                  prev.selectedProject != curr.selectedProject,
-            ),
-          if (!_isSearching)
-            blocBuilder(
-              (context, state) {
-                return Badge(
-                  isLabelVisible: state.selectedEmployee != null,
-                  child: IconButton(
-                    icon: const Icon(Icons.person_search_outlined, size: 22),
-                    tooltip: 'Lọc theo người đăng ký',
-                    onPressed: _openEmployeeFilter,
-                  ),
-                );
-              },
-              buildWhen: (prev, curr) =>
-                  prev.selectedEmployee != curr.selectedEmployee,
-            ),
+          IconButton(
+            icon: const Icon(Icons.calendar_month),
+            tooltip: 'Lọc ngày',
+            onPressed: _openDatePicker,
+          ),
           IconButton(
             icon: Icon(
-              _isSearching ? Icons.close_rounded : Icons.search_rounded,
-              size: 22,
+              state.statusFilter == null
+                  ? Icons.filter_alt_outlined
+                  : Icons.filter_alt_rounded,
             ),
-            tooltip: _isSearching ? 'Đóng tìm kiếm' : 'Tìm kiếm',
-            onPressed: _isSearching ? _closeSearch : _openSearch,
+            tooltip: 'Lọc trạng thái',
+            onPressed: _openStatusFilter,
           ),
           const SizedBox(width: 4),
         ],
@@ -255,11 +193,8 @@ class _ApproveBookingGuestHousePageState extends BaseShareState<
                 padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
                 child: _ListHeader(
                   total: state.bookings.length,
-                  dateStart: state.dateStart,
-                  dateEnd: state.dateEnd,
                   isSearching: state.filterText.isNotEmpty,
-                  selectedProject: state.selectedProject,
-                  selectedEmployee: state.selectedEmployee,
+                  statusFilter: state.statusFilter,
                 ),
               ),
               Expanded(
@@ -307,43 +242,10 @@ class _ApproveBookingGuestHousePageState extends BaseShareState<
       separatorBuilder: (_, _) => const SizedBox(height: 10),
       itemBuilder: (context, index) {
         final item = state.bookings[index];
-        final id = item.id;
 
-        return Slidable(
-          key: ValueKey('approve_booking_guest_house_$id'),
-          groupTag: 'approve_booking_guest_house_slidable',
-          endActionPane: ActionPane(
-            motion: const DrawerMotion(),
-            extentRatio: 0.28,
-            children: [
-              SlidableAction(
-                onPressed: (actionContext) async {
-                  Slidable.of(actionContext)?.close();
-                  showMessage(
-                    context,
-                    'Chức năng xoá phiếu không khả dụng ở màn duyệt',
-                    type: SnackBarType.error,
-                  );
-                },
-                backgroundColor: AppColors.alert,
-                foregroundColor: Colors.white,
-                icon: Icons.delete_outline,
-                label: 'Xoá',
-              ),
-            ],
-          ),
-          child: Builder(
-            builder: (slidableCtx) => ApproveBookingGuestHouseCard(
-              item: item,
-              onTap: () {
-                Slidable.of(slidableCtx)?.close();
-                showMessage(
-                  context,
-                  'Đã chọn phiếu #${item.id}',
-                  type: SnackBarType.info,
-                );
-              },
-            ),
+        return Builder(
+          builder: (context) => ApproveBookingGuestHouseCard(
+            item: item,
           ),
         );
       },
@@ -353,8 +255,9 @@ class _ApproveBookingGuestHousePageState extends BaseShareState<
 
 //---(Card)---//
 
-/// Card hiển thị một phiếu Đặt phòng nhà nghỉ trong màn duyệt.
-/// Style glassmorphism đồng bộ với `BookingGuestHouseCard`.
+/// Card hiển thị một phiếu thanh toán đặt phòng nhà nghỉ trong màn duyệt TBP.
+/// Card gồm: Người đăng ký - Từ ngày - Đến ngày - Khách sạn -
+/// Tổng tiền - Tiền có HĐ - STK/Ngân hàng - StatusChip - File HĐ - File CK.
 class ApproveBookingGuestHouseCard extends StatelessWidget {
   const ApproveBookingGuestHouseCard({
     super.key,
@@ -366,14 +269,10 @@ class ApproveBookingGuestHouseCard extends StatelessWidget {
   final VoidCallback? onTap;
 
   static final DateFormat _dateFmt = DateFormat('dd/MM/yyyy');
+  static final NumberFormat _moneyFmt = NumberFormat('#,###');
 
   @override
   Widget build(BuildContext context) {
-    final employee = _displayEmployee();
-    final project = _displayProject();
-    final dateRange = _formatDateRange();
-    final (tbpBadge, tbpColor) = _tbpApprovalBadge();
-
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -400,30 +299,123 @@ class ApproveBookingGuestHouseCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _TinyBadge(text: tbpBadge, color: tbpColor),
+                // Header: status chip + hotel
+                Row(
+                  children: [
+                    _StatusChip(status: item.detailStatus),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Row(
+                        children: [
+                          const Icon(
+                            Icons.hotel_outlined,
+                            size: 14,
+                            color: AppColors.gray,
+                          ),
+                          const SizedBox(width: 4),
+                          Expanded(
+                            child: Text(
+                              item.hotelName ?? '-',
+                              style: const TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.enableText,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
                 const SizedBox(height: 12),
+
+                // Người đăng ký
                 _InfoRow(
                   icon: Icons.person_outline,
-                  label: 'Nhân viên',
-                  value: employee,
+                  label: 'Người đăng ký',
+                  value: item.registerFullName ?? '-',
                 ),
-                const SizedBox(height: 8),
-                if (project.isNotEmpty) ...[
+                const SizedBox(height: 6),
+
+                // Từ ngày - Đến ngày
+                _InfoRow(
+                  icon: Icons.calendar_month_outlined,
+                  label: 'Thời gian',
+                  value:
+                      '${_formatDate(item.checkInDate)} → ${_formatDate(item.checkOutDate)}',
+                  valueColor: AppColors.primaryERP,
+                ),
+                const SizedBox(height: 6),
+
+                // Tổng tiền
+                _InfoRow(
+                  icon: Icons.payments_outlined,
+                  label: 'Tổng tiền',
+                  value: _formatMoney(item.totalAmount),
+                  valueColor: AppColors.alert,
+                  isBold: true,
+                ),
+                const SizedBox(height: 6),
+
+                // Tiền có HĐ
+                _InfoRow(
+                  icon: Icons.receipt_long_outlined,
+                  label: 'Tiền có HĐ',
+                  value: _formatMoney(item.totalAmountWithInvoice),
+                  valueColor: AppColors.success,
+                  isBold: true,
+                ),
+                const SizedBox(height: 6),
+
+                // STK / Ngân hàng
+                _InfoRow(
+                  icon: Icons.account_balance_outlined,
+                  label: 'STK / Ngân hàng',
+                  value: _formatBank(),
+                ),
+                if (item.reason != null && item.reason!.trim().isNotEmpty) ...[
+                  const SizedBox(height: 6),
                   _InfoRow(
-                    icon: Icons.folder_outlined,
-                    label: 'Dự án',
-                    value: project,
-                  ),
-                  const SizedBox(height: 8),
-                ],
-                if (dateRange.isNotEmpty) ...[
-                  _InfoRow(
-                    icon: Icons.calendar_month_outlined,
-                    label: 'Thời gian',
-                    value: dateRange,
-                    valueColor: AppColors.primaryERP,
+                    icon: Icons.notes_outlined,
+                    label: 'Lý do',
+                    value: item.reason!,
                   ),
                 ],
+                const SizedBox(height: 10),
+
+                // File HĐ + File CK
+                Row(
+                  children: [
+                    if (_invoiceFile != null)
+                      _FileButton(
+                        label: 'File HĐ',
+                        icon: Icons.receipt_outlined,
+                        color: AppColors.success,
+                        onTap: () => _openFile(context, _invoiceFile!.url),
+                      ),
+                    if (_invoiceFile != null && _bankCkFile != null)
+                      const SizedBox(width: 8),
+                    if (_bankCkFile != null)
+                      _FileButton(
+                        label: 'File CK',
+                        icon: Icons.payment_outlined,
+                        color: AppColors.primaryERP,
+                        onTap: () => _openFile(context, _bankCkFile!.url),
+                      ),
+                    if (_invoiceFile == null && _bankCkFile == null)
+                      Text(
+                        'Không có file đính kèm',
+                        style: TextStyle(
+                          fontSize: 11,
+                          color: AppColors.gray,
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
+                  ],
+                ),
               ],
             ),
           ),
@@ -432,40 +424,96 @@ class ApproveBookingGuestHouseCard extends StatelessWidget {
     );
   }
 
-  //---(Display helpers)---//
-
-  String _displayEmployee() {
-    final name = (item.fullName ?? '').trim();
-    if (name.isEmpty) return 'Nhân viên';
-    return name;
-  }
-
-  String _displayProject() {
-    final code = (item.projectCode ?? '').trim();
-    final name = (item.projectName ?? '').trim();
-    if (code.isEmpty && name.isEmpty) return '';
-    if (code.isEmpty) return name;
-    if (name.isEmpty) return code;
-    return '$code - $name';
-  }
-
-  String _formatDateRange() {
-    final s = item.startDate;
-    final e = item.endDate;
-    if (s == null && e == null) return '';
-    if (s != null && e != null) {
-      return '${_dateFmt.format(s)} → ${_dateFmt.format(e)}';
+  ApproveBookingFile? get _invoiceFile {
+    try {
+      return item.files?.firstWhere(
+        (f) => f.fileType == 'INVOICE',
+      );
+    } catch (_) {
+      return null;
     }
-    return _dateFmt.format(s ?? e!);
   }
 
-  //---(Badge)---//
+  ApproveBookingFile? get _bankCkFile {
+    try {
+      return item.files?.firstWhere(
+        (f) => f.fileType == 'BILL_CK',
+      );
+    } catch (_) {
+      return null;
+    }
+  }
 
-  (String, Color) _tbpApprovalBadge() {
-    final approved = item.isApprovedTBP == true;
-    return approved
-        ? ('TBP đã duyệt', AppColors.success)
-        : ('Chờ duyệt TBP', AppColors.warning);
+  String _formatDate(DateTime? d) {
+    if (d == null) return '-';
+    return _dateFmt.format(d);
+  }
+
+  String _formatMoney(double? amount) {
+    if (amount == null) return '-';
+    return '${_moneyFmt.format(amount)} VNĐ';
+  }
+
+  String _formatBank() {
+    final acc = (item.bankAccount ?? '').trim();
+    final name = (item.bankName ?? '').trim();
+    if (acc.isEmpty && name.isEmpty) return '-';
+    if (acc.isEmpty) return name;
+    if (name.isEmpty) return acc;
+    return '$acc - $name';
+  }
+
+  void _openFile(BuildContext context, String? url) {
+    if (url == null || url.isEmpty) {
+      context.showMessage("Không có link file", type: SnackBarType.error);
+      return;
+    }
+    context.showMessage('Mở file: $url', type: SnackBarType.error);
+  }
+}
+
+//---(Status Chip)---//
+
+/// Chip trạng thái dựa trên `DetailStatus`:
+/// 1 = Chờ duyệt, 2 = Đã duyệt, 3 = Từ chối.
+class _StatusChip extends StatelessWidget {
+  const _StatusChip({required this.status});
+
+  final int? status;
+
+  @override
+  Widget build(BuildContext context) {
+    final (label, bgColor, textColor) = _resolve();
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: bgColor.withValues(alpha: 0.15),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: bgColor.withValues(alpha: 0.5)),
+      ),
+      child: Text(
+        label,
+        style: TextStyle(
+          fontSize: 11,
+          fontWeight: FontWeight.w600,
+          color: textColor,
+        ),
+      ),
+    );
+  }
+
+  (String, Color, Color) _resolve() {
+    switch (status) {
+      case 1:
+        return ('Chờ duyệt', AppColors.warning, AppColors.warning);
+      case 2:
+        return ('Đã duyệt', AppColors.success, AppColors.success);
+      case 3:
+        return ('Từ chối', AppColors.alert, AppColors.alert);
+      default:
+        return ('Không rõ', AppColors.gray, AppColors.gray);
+    }
   }
 }
 
@@ -477,12 +525,14 @@ class _InfoRow extends StatelessWidget {
     required this.label,
     required this.value,
     this.valueColor,
+    this.isBold = false,
   });
 
   final IconData icon;
   final String label;
   final String value;
   final Color? valueColor;
+  final bool isBold;
 
   @override
   Widget build(BuildContext context) {
@@ -504,7 +554,7 @@ class _InfoRow extends StatelessWidget {
             value,
             style: TextStyle(
               fontSize: 12,
-              fontWeight: FontWeight.w500,
+              fontWeight: isBold ? FontWeight.w700 : FontWeight.w500,
               color: valueColor ?? AppColors.enableText,
               height: 1.2,
             ),
@@ -517,38 +567,47 @@ class _InfoRow extends StatelessWidget {
   }
 }
 
-//---(Tiny Badge)---//
+//---(File Button)---//
 
-class _TinyBadge extends StatelessWidget {
-  const _TinyBadge({required this.text, required this.color});
+class _FileButton extends StatelessWidget {
+  const _FileButton({
+    required this.label,
+    required this.icon,
+    required this.color,
+    required this.onTap,
+  });
 
-  final String text;
+  final String label;
+  final IconData icon;
   final Color color;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    final safeText = text.trim().isEmpty ? '-' : text.trim();
-    final bg = color.withValues(alpha: 0.12);
-    final border = color.withValues(alpha: 0.4);
-
-    return Container(
-      constraints: const BoxConstraints(maxWidth: 140),
-      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
-      decoration: BoxDecoration(
-        color: bg,
-        borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: border),
-      ),
-      child: Text(
-        safeText,
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          fontSize: 9,
-          fontWeight: FontWeight.w700,
-          color: color,
-          letterSpacing: 0.2,
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(8),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        decoration: BoxDecoration(
+          color: color.withValues(alpha: 0.1),
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: color.withValues(alpha: 0.3)),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon, size: 14, color: color),
+            const SizedBox(width: 4),
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.w600,
+                color: color,
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -560,31 +619,16 @@ class _TinyBadge extends StatelessWidget {
 class _ListHeader extends StatelessWidget {
   const _ListHeader({
     required this.total,
-    required this.dateStart,
-    required this.dateEnd,
     required this.isSearching,
-    required this.selectedProject,
-    required this.selectedEmployee,
+    required this.statusFilter,
   });
 
   final int total;
-  final DateTime? dateStart;
-  final DateTime? dateEnd;
   final bool isSearching;
-  final ApproveProjectFilterItem? selectedProject;
-  final ApproveEmployeeFilterItem? selectedEmployee;
+  final int? statusFilter;
 
   @override
   Widget build(BuildContext context) {
-    final df = DateFormat('dd/MM/yyyy');
-    final hasRange = dateStart != null && dateEnd != null;
-    final isSameDay = hasRange && _isSameDay(dateStart!, dateEnd!);
-    final rangeText = hasRange
-        ? (isSameDay
-            ? df.format(dateStart!)
-            : '${df.format(dateStart!)} - ${df.format(dateEnd!)}')
-        : null;
-
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
       decoration: BoxDecoration(
@@ -598,145 +642,83 @@ class _ListHeader extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Row(
         children: [
-          Row(
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.baseline,
+                  textBaseline: TextBaseline.alphabetic,
                   children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.baseline,
-                      textBaseline: TextBaseline.alphabetic,
-                      children: [
-                        Flexible(
-                          child: Text(
-                            '$total',
-                            style: const TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.white,
-                              height: 1.1,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                          ),
+                    Flexible(
+                      child: Text(
+                        '$total',
+                        style: const TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                          height: 1.1,
                         ),
-                        const SizedBox(width: 4),
-                        const Text(
-                          'phiếu',
-                          style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Text(
-                      isSearching ? 'Đang tìm kiếm' : 'Tổng số phiếu cần duyệt',
-                      style: TextStyle(
-                        fontSize: 11,
-                        color: Colors.white.withValues(alpha: 0.85),
+                        overflow: TextOverflow.ellipsis,
                       ),
-                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(width: 4),
+                    const Text(
+                      'phiếu',
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
+                      ),
                     ),
                   ],
                 ),
-              ),
-              if (rangeText != null) ...[
-                const SizedBox(width: 8),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 6,
+                Text(
+                  isSearching
+                      ? 'Đang tìm kiếm'
+                      : _headerSubtitle(statusFilter),
+                  style: TextStyle(
+                    fontSize: 11,
+                    color: Colors.white.withValues(alpha: 0.85),
                   ),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        Icons.event_outlined,
-                        size: 14,
-                        color: AppColors.primaryERP,
-                      ),
-                      const SizedBox(width: 6),
-                      Flexible(
-                        child: Text(
-                          rangeText,
-                          style: const TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.primaryERP,
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ],
-                  ),
+                  overflow: TextOverflow.ellipsis,
                 ),
               ],
-            ],
-          ),
-          if (selectedProject != null || selectedEmployee != null) ...[
-            const SizedBox(height: 8),
-            Wrap(
-              spacing: 6,
-              runSpacing: 4,
-              children: [
-                if (selectedProject != null)
-                  _FilterChip(
-                    label:
-                        'Dự án: ${selectedProject!.projectCode ?? selectedProject!.projectName ?? 'N/A'}',
-                  ),
-                if (selectedEmployee != null)
-                  _FilterChip(
-                    label:
-                        'Người đăng ký: ${selectedEmployee!.fullName ?? 'N/A'}',
-                  ),
-              ],
             ),
-          ],
+          ),
         ],
       ),
     );
   }
+}
 
-  bool _isSameDay(DateTime a, DateTime b) {
-    return a.year == b.year && a.month == b.month && a.day == b.day;
+String _headerSubtitle(int? statusFilter) {
+  switch (statusFilter) {
+    case 2:
+      return 'Tổng số phiếu chưa duyệt';
+    case 3:
+      return 'Tổng số phiếu đã duyệt';
+    default:
+      return 'Tổng số phiếu cần duyệt';
   }
 }
 
-//---(Filter Chip)---//
+//---(Status Filter Sheet)---//
 
-class _FilterChip extends StatelessWidget {
-  const _FilterChip({required this.label});
+/// Sheet helper: các lựa chọn trạng thái duyệt.
+/// `null` = Tất cả, `2` = Chưa duyệt, `3` = Đã duyệt.
+const _kStatusOptions = <(int?, String)>[
+  (null, 'Tất cả'),
+  (2, 'Chưa duyệt'),
+  (3, 'Đã duyệt'),
+];
 
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-      decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.25),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.5)),
-      ),
-      child: Text(
-        label,
-        style: const TextStyle(
-          fontSize: 11,
-          fontWeight: FontWeight.w500,
-          color: Colors.white,
-        ),
-        overflow: TextOverflow.ellipsis,
-      ),
-    );
-  }
+/// Wrapper phân biệt "user đã chọn" (non-null) với "dismiss sheet" (null)
+/// khi giá trị nội bộ là `int?` (Tất cả = null).
+class _StatusPick {
+  const _StatusPick(this.value);
+  final int? value;
 }

@@ -23,56 +23,51 @@ ApproveBookingGuestHouseItem _$ApproveBookingGuestHouseItemFromJson(
 mixin _$ApproveBookingGuestHouseItem {
   @JsonKey(name: 'ID')
   int get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'RegisterID')
-  int? get registerId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'ProjectID')
-  int? get projectId =>
-      throw _privateConstructorUsedError; // Thông tin nhân viên đặt
-  @JsonKey(name: 'FullName')
-  String? get fullName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'DepartmentID')
-  int? get departmentId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AccommodationBookingPaymentOrderID')
+  int? get accommodationBookingPaymentOrderId =>
+      throw _privateConstructorUsedError;
+  @JsonKey(name: 'AccommodationBookingID')
+  int? get accommodationBookingId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DetailStatus')
+  int? get detailStatus => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Reason')
+  String? get reason => throw _privateConstructorUsedError; // Người đăng ký
+  @JsonKey(name: 'RecipientName')
+  String? get recipientName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'RegisterFullName')
+  String? get registerFullName =>
+      throw _privateConstructorUsedError; // Ngân hàng
+  @JsonKey(name: 'BankAccount')
+  String? get bankAccount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'BankName')
+  String? get bankName =>
+      throw _privateConstructorUsedError; // Khách sạn / công ty / phòng ban
+  @JsonKey(name: 'HotelName')
+  String? get hotelName => throw _privateConstructorUsedError;
   @JsonKey(name: 'DepartmentName')
   String? get departmentName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'SDTCaNhan')
-  String? get sdtCaNhan =>
-      throw _privateConstructorUsedError; // Thông tin dự án
-  @JsonKey(name: 'ProjectCode')
-  String? get projectCode => throw _privateConstructorUsedError;
-  @JsonKey(name: 'ProjectName')
-  String? get projectName => throw _privateConstructorUsedError; // Địa điểm
-  @JsonKey(name: 'ProvinceID')
-  int? get provinceId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'ProvinceName')
-  String? get provinceName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'Address')
-  String? get address => throw _privateConstructorUsedError; // Thời gian
-  @JsonKey(name: 'StartDate')
-  DateTime? get startDate => throw _privateConstructorUsedError;
-  @JsonKey(name: 'EndDate')
-  DateTime? get endDate => throw _privateConstructorUsedError; // Ghi chú
-  @JsonKey(name: 'Note')
-  String? get note => throw _privateConstructorUsedError; // Người cùng phòng
-  @JsonKey(name: 'Roommates')
-  String? get roommates => throw _privateConstructorUsedError; // Audit
+  @JsonKey(name: 'CompanyName')
+  String? get companyName => throw _privateConstructorUsedError; // Tiền
+  @JsonKey(name: 'TotalAmount')
+  double? get totalAmount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TotalAmountWithInvoice')
+  double? get totalAmountWithInvoice => throw _privateConstructorUsedError;
+  @JsonKey(name: 'InvoiceNumber')
+  String? get invoiceNumber => throw _privateConstructorUsedError; // Audit
   @JsonKey(name: 'CreatedBy')
   String? get createdBy => throw _privateConstructorUsedError;
   @JsonKey(name: 'CreatedDate')
   DateTime? get createdDate => throw _privateConstructorUsedError;
-  @JsonKey(name: 'UpdatedBy')
-  String? get updatedBy => throw _privateConstructorUsedError;
-  @JsonKey(name: 'UpdatedDate')
-  DateTime? get updatedDate => throw _privateConstructorUsedError;
-  @JsonKey(name: 'IsDeleted')
-  bool? get isDeleted => throw _privateConstructorUsedError; // Duyệt TBP
-  @JsonKey(name: 'IsApprovedTBP')
-  bool? get isApprovedTBP => throw _privateConstructorUsedError;
-  @JsonKey(name: 'ApprovedTBP')
-  dynamic get approvedTBP => throw _privateConstructorUsedError;
-  @JsonKey(name: 'ApprovedTBPDate')
-  DateTime? get approvedTBPDate => throw _privateConstructorUsedError;
-  @JsonKey(name: 'FullNameTBP')
-  String? get fullNameTBP => throw _privateConstructorUsedError;
+  @JsonKey(name: 'SubmitDate')
+  DateTime? get submitDate => throw _privateConstructorUsedError; // Thời gian ở
+  @JsonKey(name: 'CheckInDate')
+  DateTime? get checkInDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CheckOutDate')
+  DateTime? get checkOutDate => throw _privateConstructorUsedError; // Loại
+  @JsonKey(name: 'Type')
+  String? get type => throw _privateConstructorUsedError; // Files đính kèm
+  @JsonKey(name: 'Files')
+  List<ApproveBookingFile>? get files => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -90,30 +85,28 @@ abstract class $ApproveBookingGuestHouseItemCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'ID') int id,
-      @JsonKey(name: 'RegisterID') int? registerId,
-      @JsonKey(name: 'ProjectID') int? projectId,
-      @JsonKey(name: 'FullName') String? fullName,
-      @JsonKey(name: 'DepartmentID') int? departmentId,
+      @JsonKey(name: 'AccommodationBookingPaymentOrderID')
+      int? accommodationBookingPaymentOrderId,
+      @JsonKey(name: 'AccommodationBookingID') int? accommodationBookingId,
+      @JsonKey(name: 'DetailStatus') int? detailStatus,
+      @JsonKey(name: 'Reason') String? reason,
+      @JsonKey(name: 'RecipientName') String? recipientName,
+      @JsonKey(name: 'RegisterFullName') String? registerFullName,
+      @JsonKey(name: 'BankAccount') String? bankAccount,
+      @JsonKey(name: 'BankName') String? bankName,
+      @JsonKey(name: 'HotelName') String? hotelName,
       @JsonKey(name: 'DepartmentName') String? departmentName,
-      @JsonKey(name: 'SDTCaNhan') String? sdtCaNhan,
-      @JsonKey(name: 'ProjectCode') String? projectCode,
-      @JsonKey(name: 'ProjectName') String? projectName,
-      @JsonKey(name: 'ProvinceID') int? provinceId,
-      @JsonKey(name: 'ProvinceName') String? provinceName,
-      @JsonKey(name: 'Address') String? address,
-      @JsonKey(name: 'StartDate') DateTime? startDate,
-      @JsonKey(name: 'EndDate') DateTime? endDate,
-      @JsonKey(name: 'Note') String? note,
-      @JsonKey(name: 'Roommates') String? roommates,
+      @JsonKey(name: 'CompanyName') String? companyName,
+      @JsonKey(name: 'TotalAmount') double? totalAmount,
+      @JsonKey(name: 'TotalAmountWithInvoice') double? totalAmountWithInvoice,
+      @JsonKey(name: 'InvoiceNumber') String? invoiceNumber,
       @JsonKey(name: 'CreatedBy') String? createdBy,
       @JsonKey(name: 'CreatedDate') DateTime? createdDate,
-      @JsonKey(name: 'UpdatedBy') String? updatedBy,
-      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
-      @JsonKey(name: 'IsDeleted') bool? isDeleted,
-      @JsonKey(name: 'IsApprovedTBP') bool? isApprovedTBP,
-      @JsonKey(name: 'ApprovedTBP') dynamic approvedTBP,
-      @JsonKey(name: 'ApprovedTBPDate') DateTime? approvedTBPDate,
-      @JsonKey(name: 'FullNameTBP') String? fullNameTBP});
+      @JsonKey(name: 'SubmitDate') DateTime? submitDate,
+      @JsonKey(name: 'CheckInDate') DateTime? checkInDate,
+      @JsonKey(name: 'CheckOutDate') DateTime? checkOutDate,
+      @JsonKey(name: 'Type') String? type,
+      @JsonKey(name: 'Files') List<ApproveBookingFile>? files});
 }
 
 /// @nodoc
@@ -131,95 +124,89 @@ class _$ApproveBookingGuestHouseItemCopyWithImpl<$Res,
   @override
   $Res call({
     Object? id = null,
-    Object? registerId = freezed,
-    Object? projectId = freezed,
-    Object? fullName = freezed,
-    Object? departmentId = freezed,
+    Object? accommodationBookingPaymentOrderId = freezed,
+    Object? accommodationBookingId = freezed,
+    Object? detailStatus = freezed,
+    Object? reason = freezed,
+    Object? recipientName = freezed,
+    Object? registerFullName = freezed,
+    Object? bankAccount = freezed,
+    Object? bankName = freezed,
+    Object? hotelName = freezed,
     Object? departmentName = freezed,
-    Object? sdtCaNhan = freezed,
-    Object? projectCode = freezed,
-    Object? projectName = freezed,
-    Object? provinceId = freezed,
-    Object? provinceName = freezed,
-    Object? address = freezed,
-    Object? startDate = freezed,
-    Object? endDate = freezed,
-    Object? note = freezed,
-    Object? roommates = freezed,
+    Object? companyName = freezed,
+    Object? totalAmount = freezed,
+    Object? totalAmountWithInvoice = freezed,
+    Object? invoiceNumber = freezed,
     Object? createdBy = freezed,
     Object? createdDate = freezed,
-    Object? updatedBy = freezed,
-    Object? updatedDate = freezed,
-    Object? isDeleted = freezed,
-    Object? isApprovedTBP = freezed,
-    Object? approvedTBP = freezed,
-    Object? approvedTBPDate = freezed,
-    Object? fullNameTBP = freezed,
+    Object? submitDate = freezed,
+    Object? checkInDate = freezed,
+    Object? checkOutDate = freezed,
+    Object? type = freezed,
+    Object? files = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      registerId: freezed == registerId
-          ? _value.registerId
-          : registerId // ignore: cast_nullable_to_non_nullable
+      accommodationBookingPaymentOrderId: freezed ==
+              accommodationBookingPaymentOrderId
+          ? _value.accommodationBookingPaymentOrderId
+          : accommodationBookingPaymentOrderId // ignore: cast_nullable_to_non_nullable
               as int?,
-      projectId: freezed == projectId
-          ? _value.projectId
-          : projectId // ignore: cast_nullable_to_non_nullable
+      accommodationBookingId: freezed == accommodationBookingId
+          ? _value.accommodationBookingId
+          : accommodationBookingId // ignore: cast_nullable_to_non_nullable
               as int?,
-      fullName: freezed == fullName
-          ? _value.fullName
-          : fullName // ignore: cast_nullable_to_non_nullable
+      detailStatus: freezed == detailStatus
+          ? _value.detailStatus
+          : detailStatus // ignore: cast_nullable_to_non_nullable
+              as int?,
+      reason: freezed == reason
+          ? _value.reason
+          : reason // ignore: cast_nullable_to_non_nullable
               as String?,
-      departmentId: freezed == departmentId
-          ? _value.departmentId
-          : departmentId // ignore: cast_nullable_to_non_nullable
-              as int?,
+      recipientName: freezed == recipientName
+          ? _value.recipientName
+          : recipientName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      registerFullName: freezed == registerFullName
+          ? _value.registerFullName
+          : registerFullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bankAccount: freezed == bankAccount
+          ? _value.bankAccount
+          : bankAccount // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bankName: freezed == bankName
+          ? _value.bankName
+          : bankName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      hotelName: freezed == hotelName
+          ? _value.hotelName
+          : hotelName // ignore: cast_nullable_to_non_nullable
+              as String?,
       departmentName: freezed == departmentName
           ? _value.departmentName
           : departmentName // ignore: cast_nullable_to_non_nullable
               as String?,
-      sdtCaNhan: freezed == sdtCaNhan
-          ? _value.sdtCaNhan
-          : sdtCaNhan // ignore: cast_nullable_to_non_nullable
+      companyName: freezed == companyName
+          ? _value.companyName
+          : companyName // ignore: cast_nullable_to_non_nullable
               as String?,
-      projectCode: freezed == projectCode
-          ? _value.projectCode
-          : projectCode // ignore: cast_nullable_to_non_nullable
-              as String?,
-      projectName: freezed == projectName
-          ? _value.projectName
-          : projectName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      provinceId: freezed == provinceId
-          ? _value.provinceId
-          : provinceId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      provinceName: freezed == provinceName
-          ? _value.provinceName
-          : provinceName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      address: freezed == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String?,
-      startDate: freezed == startDate
-          ? _value.startDate
-          : startDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      endDate: freezed == endDate
-          ? _value.endDate
-          : endDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      note: freezed == note
-          ? _value.note
-          : note // ignore: cast_nullable_to_non_nullable
-              as String?,
-      roommates: freezed == roommates
-          ? _value.roommates
-          : roommates // ignore: cast_nullable_to_non_nullable
+      totalAmount: freezed == totalAmount
+          ? _value.totalAmount
+          : totalAmount // ignore: cast_nullable_to_non_nullable
+              as double?,
+      totalAmountWithInvoice: freezed == totalAmountWithInvoice
+          ? _value.totalAmountWithInvoice
+          : totalAmountWithInvoice // ignore: cast_nullable_to_non_nullable
+              as double?,
+      invoiceNumber: freezed == invoiceNumber
+          ? _value.invoiceNumber
+          : invoiceNumber // ignore: cast_nullable_to_non_nullable
               as String?,
       createdBy: freezed == createdBy
           ? _value.createdBy
@@ -229,34 +216,26 @@ class _$ApproveBookingGuestHouseItemCopyWithImpl<$Res,
           ? _value.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      updatedBy: freezed == updatedBy
-          ? _value.updatedBy
-          : updatedBy // ignore: cast_nullable_to_non_nullable
-              as String?,
-      updatedDate: freezed == updatedDate
-          ? _value.updatedDate
-          : updatedDate // ignore: cast_nullable_to_non_nullable
+      submitDate: freezed == submitDate
+          ? _value.submitDate
+          : submitDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      isDeleted: freezed == isDeleted
-          ? _value.isDeleted
-          : isDeleted // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isApprovedTBP: freezed == isApprovedTBP
-          ? _value.isApprovedTBP
-          : isApprovedTBP // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      approvedTBP: freezed == approvedTBP
-          ? _value.approvedTBP
-          : approvedTBP // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      approvedTBPDate: freezed == approvedTBPDate
-          ? _value.approvedTBPDate
-          : approvedTBPDate // ignore: cast_nullable_to_non_nullable
+      checkInDate: freezed == checkInDate
+          ? _value.checkInDate
+          : checkInDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      fullNameTBP: freezed == fullNameTBP
-          ? _value.fullNameTBP
-          : fullNameTBP // ignore: cast_nullable_to_non_nullable
+      checkOutDate: freezed == checkOutDate
+          ? _value.checkOutDate
+          : checkOutDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
               as String?,
+      files: freezed == files
+          ? _value.files
+          : files // ignore: cast_nullable_to_non_nullable
+              as List<ApproveBookingFile>?,
     ) as $Val);
   }
 }
@@ -272,30 +251,28 @@ abstract class _$$ApproveBookingGuestHouseItemImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'ID') int id,
-      @JsonKey(name: 'RegisterID') int? registerId,
-      @JsonKey(name: 'ProjectID') int? projectId,
-      @JsonKey(name: 'FullName') String? fullName,
-      @JsonKey(name: 'DepartmentID') int? departmentId,
+      @JsonKey(name: 'AccommodationBookingPaymentOrderID')
+      int? accommodationBookingPaymentOrderId,
+      @JsonKey(name: 'AccommodationBookingID') int? accommodationBookingId,
+      @JsonKey(name: 'DetailStatus') int? detailStatus,
+      @JsonKey(name: 'Reason') String? reason,
+      @JsonKey(name: 'RecipientName') String? recipientName,
+      @JsonKey(name: 'RegisterFullName') String? registerFullName,
+      @JsonKey(name: 'BankAccount') String? bankAccount,
+      @JsonKey(name: 'BankName') String? bankName,
+      @JsonKey(name: 'HotelName') String? hotelName,
       @JsonKey(name: 'DepartmentName') String? departmentName,
-      @JsonKey(name: 'SDTCaNhan') String? sdtCaNhan,
-      @JsonKey(name: 'ProjectCode') String? projectCode,
-      @JsonKey(name: 'ProjectName') String? projectName,
-      @JsonKey(name: 'ProvinceID') int? provinceId,
-      @JsonKey(name: 'ProvinceName') String? provinceName,
-      @JsonKey(name: 'Address') String? address,
-      @JsonKey(name: 'StartDate') DateTime? startDate,
-      @JsonKey(name: 'EndDate') DateTime? endDate,
-      @JsonKey(name: 'Note') String? note,
-      @JsonKey(name: 'Roommates') String? roommates,
+      @JsonKey(name: 'CompanyName') String? companyName,
+      @JsonKey(name: 'TotalAmount') double? totalAmount,
+      @JsonKey(name: 'TotalAmountWithInvoice') double? totalAmountWithInvoice,
+      @JsonKey(name: 'InvoiceNumber') String? invoiceNumber,
       @JsonKey(name: 'CreatedBy') String? createdBy,
       @JsonKey(name: 'CreatedDate') DateTime? createdDate,
-      @JsonKey(name: 'UpdatedBy') String? updatedBy,
-      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
-      @JsonKey(name: 'IsDeleted') bool? isDeleted,
-      @JsonKey(name: 'IsApprovedTBP') bool? isApprovedTBP,
-      @JsonKey(name: 'ApprovedTBP') dynamic approvedTBP,
-      @JsonKey(name: 'ApprovedTBPDate') DateTime? approvedTBPDate,
-      @JsonKey(name: 'FullNameTBP') String? fullNameTBP});
+      @JsonKey(name: 'SubmitDate') DateTime? submitDate,
+      @JsonKey(name: 'CheckInDate') DateTime? checkInDate,
+      @JsonKey(name: 'CheckOutDate') DateTime? checkOutDate,
+      @JsonKey(name: 'Type') String? type,
+      @JsonKey(name: 'Files') List<ApproveBookingFile>? files});
 }
 
 /// @nodoc
@@ -312,95 +289,89 @@ class __$$ApproveBookingGuestHouseItemImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? registerId = freezed,
-    Object? projectId = freezed,
-    Object? fullName = freezed,
-    Object? departmentId = freezed,
+    Object? accommodationBookingPaymentOrderId = freezed,
+    Object? accommodationBookingId = freezed,
+    Object? detailStatus = freezed,
+    Object? reason = freezed,
+    Object? recipientName = freezed,
+    Object? registerFullName = freezed,
+    Object? bankAccount = freezed,
+    Object? bankName = freezed,
+    Object? hotelName = freezed,
     Object? departmentName = freezed,
-    Object? sdtCaNhan = freezed,
-    Object? projectCode = freezed,
-    Object? projectName = freezed,
-    Object? provinceId = freezed,
-    Object? provinceName = freezed,
-    Object? address = freezed,
-    Object? startDate = freezed,
-    Object? endDate = freezed,
-    Object? note = freezed,
-    Object? roommates = freezed,
+    Object? companyName = freezed,
+    Object? totalAmount = freezed,
+    Object? totalAmountWithInvoice = freezed,
+    Object? invoiceNumber = freezed,
     Object? createdBy = freezed,
     Object? createdDate = freezed,
-    Object? updatedBy = freezed,
-    Object? updatedDate = freezed,
-    Object? isDeleted = freezed,
-    Object? isApprovedTBP = freezed,
-    Object? approvedTBP = freezed,
-    Object? approvedTBPDate = freezed,
-    Object? fullNameTBP = freezed,
+    Object? submitDate = freezed,
+    Object? checkInDate = freezed,
+    Object? checkOutDate = freezed,
+    Object? type = freezed,
+    Object? files = freezed,
   }) {
     return _then(_$ApproveBookingGuestHouseItemImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      registerId: freezed == registerId
-          ? _value.registerId
-          : registerId // ignore: cast_nullable_to_non_nullable
+      accommodationBookingPaymentOrderId: freezed ==
+              accommodationBookingPaymentOrderId
+          ? _value.accommodationBookingPaymentOrderId
+          : accommodationBookingPaymentOrderId // ignore: cast_nullable_to_non_nullable
               as int?,
-      projectId: freezed == projectId
-          ? _value.projectId
-          : projectId // ignore: cast_nullable_to_non_nullable
+      accommodationBookingId: freezed == accommodationBookingId
+          ? _value.accommodationBookingId
+          : accommodationBookingId // ignore: cast_nullable_to_non_nullable
               as int?,
-      fullName: freezed == fullName
-          ? _value.fullName
-          : fullName // ignore: cast_nullable_to_non_nullable
+      detailStatus: freezed == detailStatus
+          ? _value.detailStatus
+          : detailStatus // ignore: cast_nullable_to_non_nullable
+              as int?,
+      reason: freezed == reason
+          ? _value.reason
+          : reason // ignore: cast_nullable_to_non_nullable
               as String?,
-      departmentId: freezed == departmentId
-          ? _value.departmentId
-          : departmentId // ignore: cast_nullable_to_non_nullable
-              as int?,
+      recipientName: freezed == recipientName
+          ? _value.recipientName
+          : recipientName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      registerFullName: freezed == registerFullName
+          ? _value.registerFullName
+          : registerFullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bankAccount: freezed == bankAccount
+          ? _value.bankAccount
+          : bankAccount // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bankName: freezed == bankName
+          ? _value.bankName
+          : bankName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      hotelName: freezed == hotelName
+          ? _value.hotelName
+          : hotelName // ignore: cast_nullable_to_non_nullable
+              as String?,
       departmentName: freezed == departmentName
           ? _value.departmentName
           : departmentName // ignore: cast_nullable_to_non_nullable
               as String?,
-      sdtCaNhan: freezed == sdtCaNhan
-          ? _value.sdtCaNhan
-          : sdtCaNhan // ignore: cast_nullable_to_non_nullable
+      companyName: freezed == companyName
+          ? _value.companyName
+          : companyName // ignore: cast_nullable_to_non_nullable
               as String?,
-      projectCode: freezed == projectCode
-          ? _value.projectCode
-          : projectCode // ignore: cast_nullable_to_non_nullable
-              as String?,
-      projectName: freezed == projectName
-          ? _value.projectName
-          : projectName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      provinceId: freezed == provinceId
-          ? _value.provinceId
-          : provinceId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      provinceName: freezed == provinceName
-          ? _value.provinceName
-          : provinceName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      address: freezed == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String?,
-      startDate: freezed == startDate
-          ? _value.startDate
-          : startDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      endDate: freezed == endDate
-          ? _value.endDate
-          : endDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      note: freezed == note
-          ? _value.note
-          : note // ignore: cast_nullable_to_non_nullable
-              as String?,
-      roommates: freezed == roommates
-          ? _value.roommates
-          : roommates // ignore: cast_nullable_to_non_nullable
+      totalAmount: freezed == totalAmount
+          ? _value.totalAmount
+          : totalAmount // ignore: cast_nullable_to_non_nullable
+              as double?,
+      totalAmountWithInvoice: freezed == totalAmountWithInvoice
+          ? _value.totalAmountWithInvoice
+          : totalAmountWithInvoice // ignore: cast_nullable_to_non_nullable
+              as double?,
+      invoiceNumber: freezed == invoiceNumber
+          ? _value.invoiceNumber
+          : invoiceNumber // ignore: cast_nullable_to_non_nullable
               as String?,
       createdBy: freezed == createdBy
           ? _value.createdBy
@@ -410,34 +381,26 @@ class __$$ApproveBookingGuestHouseItemImplCopyWithImpl<$Res>
           ? _value.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      updatedBy: freezed == updatedBy
-          ? _value.updatedBy
-          : updatedBy // ignore: cast_nullable_to_non_nullable
-              as String?,
-      updatedDate: freezed == updatedDate
-          ? _value.updatedDate
-          : updatedDate // ignore: cast_nullable_to_non_nullable
+      submitDate: freezed == submitDate
+          ? _value.submitDate
+          : submitDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      isDeleted: freezed == isDeleted
-          ? _value.isDeleted
-          : isDeleted // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isApprovedTBP: freezed == isApprovedTBP
-          ? _value.isApprovedTBP
-          : isApprovedTBP // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      approvedTBP: freezed == approvedTBP
-          ? _value.approvedTBP
-          : approvedTBP // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      approvedTBPDate: freezed == approvedTBPDate
-          ? _value.approvedTBPDate
-          : approvedTBPDate // ignore: cast_nullable_to_non_nullable
+      checkInDate: freezed == checkInDate
+          ? _value.checkInDate
+          : checkInDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      fullNameTBP: freezed == fullNameTBP
-          ? _value.fullNameTBP
-          : fullNameTBP // ignore: cast_nullable_to_non_nullable
+      checkOutDate: freezed == checkOutDate
+          ? _value.checkOutDate
+          : checkOutDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
               as String?,
+      files: freezed == files
+          ? _value._files
+          : files // ignore: cast_nullable_to_non_nullable
+              as List<ApproveBookingFile>?,
     ));
   }
 }
@@ -448,30 +411,29 @@ class _$ApproveBookingGuestHouseItemImpl
     implements _ApproveBookingGuestHouseItem {
   const _$ApproveBookingGuestHouseItemImpl(
       {@JsonKey(name: 'ID') required this.id,
-      @JsonKey(name: 'RegisterID') this.registerId,
-      @JsonKey(name: 'ProjectID') this.projectId,
-      @JsonKey(name: 'FullName') this.fullName,
-      @JsonKey(name: 'DepartmentID') this.departmentId,
+      @JsonKey(name: 'AccommodationBookingPaymentOrderID')
+      this.accommodationBookingPaymentOrderId,
+      @JsonKey(name: 'AccommodationBookingID') this.accommodationBookingId,
+      @JsonKey(name: 'DetailStatus') this.detailStatus,
+      @JsonKey(name: 'Reason') this.reason,
+      @JsonKey(name: 'RecipientName') this.recipientName,
+      @JsonKey(name: 'RegisterFullName') this.registerFullName,
+      @JsonKey(name: 'BankAccount') this.bankAccount,
+      @JsonKey(name: 'BankName') this.bankName,
+      @JsonKey(name: 'HotelName') this.hotelName,
       @JsonKey(name: 'DepartmentName') this.departmentName,
-      @JsonKey(name: 'SDTCaNhan') this.sdtCaNhan,
-      @JsonKey(name: 'ProjectCode') this.projectCode,
-      @JsonKey(name: 'ProjectName') this.projectName,
-      @JsonKey(name: 'ProvinceID') this.provinceId,
-      @JsonKey(name: 'ProvinceName') this.provinceName,
-      @JsonKey(name: 'Address') this.address,
-      @JsonKey(name: 'StartDate') this.startDate,
-      @JsonKey(name: 'EndDate') this.endDate,
-      @JsonKey(name: 'Note') this.note,
-      @JsonKey(name: 'Roommates') this.roommates,
+      @JsonKey(name: 'CompanyName') this.companyName,
+      @JsonKey(name: 'TotalAmount') this.totalAmount,
+      @JsonKey(name: 'TotalAmountWithInvoice') this.totalAmountWithInvoice,
+      @JsonKey(name: 'InvoiceNumber') this.invoiceNumber,
       @JsonKey(name: 'CreatedBy') this.createdBy,
       @JsonKey(name: 'CreatedDate') this.createdDate,
-      @JsonKey(name: 'UpdatedBy') this.updatedBy,
-      @JsonKey(name: 'UpdatedDate') this.updatedDate,
-      @JsonKey(name: 'IsDeleted') this.isDeleted,
-      @JsonKey(name: 'IsApprovedTBP') this.isApprovedTBP,
-      @JsonKey(name: 'ApprovedTBP') this.approvedTBP,
-      @JsonKey(name: 'ApprovedTBPDate') this.approvedTBPDate,
-      @JsonKey(name: 'FullNameTBP') this.fullNameTBP});
+      @JsonKey(name: 'SubmitDate') this.submitDate,
+      @JsonKey(name: 'CheckInDate') this.checkInDate,
+      @JsonKey(name: 'CheckOutDate') this.checkOutDate,
+      @JsonKey(name: 'Type') this.type,
+      @JsonKey(name: 'Files') final List<ApproveBookingFile>? files})
+      : _files = files;
 
   factory _$ApproveBookingGuestHouseItemImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -481,56 +443,51 @@ class _$ApproveBookingGuestHouseItemImpl
   @JsonKey(name: 'ID')
   final int id;
   @override
-  @JsonKey(name: 'RegisterID')
-  final int? registerId;
+  @JsonKey(name: 'AccommodationBookingPaymentOrderID')
+  final int? accommodationBookingPaymentOrderId;
   @override
-  @JsonKey(name: 'ProjectID')
-  final int? projectId;
-// Thông tin nhân viên đặt
+  @JsonKey(name: 'AccommodationBookingID')
+  final int? accommodationBookingId;
   @override
-  @JsonKey(name: 'FullName')
-  final String? fullName;
+  @JsonKey(name: 'DetailStatus')
+  final int? detailStatus;
   @override
-  @JsonKey(name: 'DepartmentID')
-  final int? departmentId;
+  @JsonKey(name: 'Reason')
+  final String? reason;
+// Người đăng ký
+  @override
+  @JsonKey(name: 'RecipientName')
+  final String? recipientName;
+  @override
+  @JsonKey(name: 'RegisterFullName')
+  final String? registerFullName;
+// Ngân hàng
+  @override
+  @JsonKey(name: 'BankAccount')
+  final String? bankAccount;
+  @override
+  @JsonKey(name: 'BankName')
+  final String? bankName;
+// Khách sạn / công ty / phòng ban
+  @override
+  @JsonKey(name: 'HotelName')
+  final String? hotelName;
   @override
   @JsonKey(name: 'DepartmentName')
   final String? departmentName;
   @override
-  @JsonKey(name: 'SDTCaNhan')
-  final String? sdtCaNhan;
-// Thông tin dự án
+  @JsonKey(name: 'CompanyName')
+  final String? companyName;
+// Tiền
   @override
-  @JsonKey(name: 'ProjectCode')
-  final String? projectCode;
+  @JsonKey(name: 'TotalAmount')
+  final double? totalAmount;
   @override
-  @JsonKey(name: 'ProjectName')
-  final String? projectName;
-// Địa điểm
+  @JsonKey(name: 'TotalAmountWithInvoice')
+  final double? totalAmountWithInvoice;
   @override
-  @JsonKey(name: 'ProvinceID')
-  final int? provinceId;
-  @override
-  @JsonKey(name: 'ProvinceName')
-  final String? provinceName;
-  @override
-  @JsonKey(name: 'Address')
-  final String? address;
-// Thời gian
-  @override
-  @JsonKey(name: 'StartDate')
-  final DateTime? startDate;
-  @override
-  @JsonKey(name: 'EndDate')
-  final DateTime? endDate;
-// Ghi chú
-  @override
-  @JsonKey(name: 'Note')
-  final String? note;
-// Người cùng phòng
-  @override
-  @JsonKey(name: 'Roommates')
-  final String? roommates;
+  @JsonKey(name: 'InvoiceNumber')
+  final String? invoiceNumber;
 // Audit
   @override
   @JsonKey(name: 'CreatedBy')
@@ -539,31 +496,35 @@ class _$ApproveBookingGuestHouseItemImpl
   @JsonKey(name: 'CreatedDate')
   final DateTime? createdDate;
   @override
-  @JsonKey(name: 'UpdatedBy')
-  final String? updatedBy;
+  @JsonKey(name: 'SubmitDate')
+  final DateTime? submitDate;
+// Thời gian ở
   @override
-  @JsonKey(name: 'UpdatedDate')
-  final DateTime? updatedDate;
+  @JsonKey(name: 'CheckInDate')
+  final DateTime? checkInDate;
   @override
-  @JsonKey(name: 'IsDeleted')
-  final bool? isDeleted;
-// Duyệt TBP
+  @JsonKey(name: 'CheckOutDate')
+  final DateTime? checkOutDate;
+// Loại
   @override
-  @JsonKey(name: 'IsApprovedTBP')
-  final bool? isApprovedTBP;
+  @JsonKey(name: 'Type')
+  final String? type;
+// Files đính kèm
+  final List<ApproveBookingFile>? _files;
+// Files đính kèm
   @override
-  @JsonKey(name: 'ApprovedTBP')
-  final dynamic approvedTBP;
-  @override
-  @JsonKey(name: 'ApprovedTBPDate')
-  final DateTime? approvedTBPDate;
-  @override
-  @JsonKey(name: 'FullNameTBP')
-  final String? fullNameTBP;
+  @JsonKey(name: 'Files')
+  List<ApproveBookingFile>? get files {
+    final value = _files;
+    if (value == null) return null;
+    if (_files is EqualUnmodifiableListView) return _files;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'ApproveBookingGuestHouseItem(id: $id, registerId: $registerId, projectId: $projectId, fullName: $fullName, departmentId: $departmentId, departmentName: $departmentName, sdtCaNhan: $sdtCaNhan, projectCode: $projectCode, projectName: $projectName, provinceId: $provinceId, provinceName: $provinceName, address: $address, startDate: $startDate, endDate: $endDate, note: $note, roommates: $roommates, createdBy: $createdBy, createdDate: $createdDate, updatedBy: $updatedBy, updatedDate: $updatedDate, isDeleted: $isDeleted, isApprovedTBP: $isApprovedTBP, approvedTBP: $approvedTBP, approvedTBPDate: $approvedTBPDate, fullNameTBP: $fullNameTBP)';
+    return 'ApproveBookingGuestHouseItem(id: $id, accommodationBookingPaymentOrderId: $accommodationBookingPaymentOrderId, accommodationBookingId: $accommodationBookingId, detailStatus: $detailStatus, reason: $reason, recipientName: $recipientName, registerFullName: $registerFullName, bankAccount: $bankAccount, bankName: $bankName, hotelName: $hotelName, departmentName: $departmentName, companyName: $companyName, totalAmount: $totalAmount, totalAmountWithInvoice: $totalAmountWithInvoice, invoiceNumber: $invoiceNumber, createdBy: $createdBy, createdDate: $createdDate, submitDate: $submitDate, checkInDate: $checkInDate, checkOutDate: $checkOutDate, type: $type, files: $files)';
   }
 
   @override
@@ -572,51 +533,47 @@ class _$ApproveBookingGuestHouseItemImpl
         (other.runtimeType == runtimeType &&
             other is _$ApproveBookingGuestHouseItemImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.registerId, registerId) ||
-                other.registerId == registerId) &&
-            (identical(other.projectId, projectId) ||
-                other.projectId == projectId) &&
-            (identical(other.fullName, fullName) ||
-                other.fullName == fullName) &&
-            (identical(other.departmentId, departmentId) ||
-                other.departmentId == departmentId) &&
+            (identical(other.accommodationBookingPaymentOrderId,
+                    accommodationBookingPaymentOrderId) ||
+                other.accommodationBookingPaymentOrderId ==
+                    accommodationBookingPaymentOrderId) &&
+            (identical(other.accommodationBookingId, accommodationBookingId) ||
+                other.accommodationBookingId == accommodationBookingId) &&
+            (identical(other.detailStatus, detailStatus) ||
+                other.detailStatus == detailStatus) &&
+            (identical(other.reason, reason) || other.reason == reason) &&
+            (identical(other.recipientName, recipientName) ||
+                other.recipientName == recipientName) &&
+            (identical(other.registerFullName, registerFullName) ||
+                other.registerFullName == registerFullName) &&
+            (identical(other.bankAccount, bankAccount) ||
+                other.bankAccount == bankAccount) &&
+            (identical(other.bankName, bankName) ||
+                other.bankName == bankName) &&
+            (identical(other.hotelName, hotelName) ||
+                other.hotelName == hotelName) &&
             (identical(other.departmentName, departmentName) ||
                 other.departmentName == departmentName) &&
-            (identical(other.sdtCaNhan, sdtCaNhan) ||
-                other.sdtCaNhan == sdtCaNhan) &&
-            (identical(other.projectCode, projectCode) ||
-                other.projectCode == projectCode) &&
-            (identical(other.projectName, projectName) ||
-                other.projectName == projectName) &&
-            (identical(other.provinceId, provinceId) ||
-                other.provinceId == provinceId) &&
-            (identical(other.provinceName, provinceName) ||
-                other.provinceName == provinceName) &&
-            (identical(other.address, address) || other.address == address) &&
-            (identical(other.startDate, startDate) ||
-                other.startDate == startDate) &&
-            (identical(other.endDate, endDate) || other.endDate == endDate) &&
-            (identical(other.note, note) || other.note == note) &&
-            (identical(other.roommates, roommates) ||
-                other.roommates == roommates) &&
+            (identical(other.companyName, companyName) ||
+                other.companyName == companyName) &&
+            (identical(other.totalAmount, totalAmount) ||
+                other.totalAmount == totalAmount) &&
+            (identical(other.totalAmountWithInvoice, totalAmountWithInvoice) ||
+                other.totalAmountWithInvoice == totalAmountWithInvoice) &&
+            (identical(other.invoiceNumber, invoiceNumber) ||
+                other.invoiceNumber == invoiceNumber) &&
             (identical(other.createdBy, createdBy) ||
                 other.createdBy == createdBy) &&
             (identical(other.createdDate, createdDate) ||
                 other.createdDate == createdDate) &&
-            (identical(other.updatedBy, updatedBy) ||
-                other.updatedBy == updatedBy) &&
-            (identical(other.updatedDate, updatedDate) ||
-                other.updatedDate == updatedDate) &&
-            (identical(other.isDeleted, isDeleted) ||
-                other.isDeleted == isDeleted) &&
-            (identical(other.isApprovedTBP, isApprovedTBP) ||
-                other.isApprovedTBP == isApprovedTBP) &&
-            const DeepCollectionEquality()
-                .equals(other.approvedTBP, approvedTBP) &&
-            (identical(other.approvedTBPDate, approvedTBPDate) ||
-                other.approvedTBPDate == approvedTBPDate) &&
-            (identical(other.fullNameTBP, fullNameTBP) ||
-                other.fullNameTBP == fullNameTBP));
+            (identical(other.submitDate, submitDate) ||
+                other.submitDate == submitDate) &&
+            (identical(other.checkInDate, checkInDate) ||
+                other.checkInDate == checkInDate) &&
+            (identical(other.checkOutDate, checkOutDate) ||
+                other.checkOutDate == checkOutDate) &&
+            (identical(other.type, type) || other.type == type) &&
+            const DeepCollectionEquality().equals(other._files, _files));
   }
 
   @JsonKey(ignore: true)
@@ -624,30 +581,27 @@ class _$ApproveBookingGuestHouseItemImpl
   int get hashCode => Object.hashAll([
         runtimeType,
         id,
-        registerId,
-        projectId,
-        fullName,
-        departmentId,
+        accommodationBookingPaymentOrderId,
+        accommodationBookingId,
+        detailStatus,
+        reason,
+        recipientName,
+        registerFullName,
+        bankAccount,
+        bankName,
+        hotelName,
         departmentName,
-        sdtCaNhan,
-        projectCode,
-        projectName,
-        provinceId,
-        provinceName,
-        address,
-        startDate,
-        endDate,
-        note,
-        roommates,
+        companyName,
+        totalAmount,
+        totalAmountWithInvoice,
+        invoiceNumber,
         createdBy,
         createdDate,
-        updatedBy,
-        updatedDate,
-        isDeleted,
-        isApprovedTBP,
-        const DeepCollectionEquality().hash(approvedTBP),
-        approvedTBPDate,
-        fullNameTBP
+        submitDate,
+        checkInDate,
+        checkOutDate,
+        type,
+        const DeepCollectionEquality().hash(_files)
       ]);
 
   @JsonKey(ignore: true)
@@ -670,30 +624,30 @@ abstract class _ApproveBookingGuestHouseItem
     implements ApproveBookingGuestHouseItem {
   const factory _ApproveBookingGuestHouseItem(
           {@JsonKey(name: 'ID') required final int id,
-          @JsonKey(name: 'RegisterID') final int? registerId,
-          @JsonKey(name: 'ProjectID') final int? projectId,
-          @JsonKey(name: 'FullName') final String? fullName,
-          @JsonKey(name: 'DepartmentID') final int? departmentId,
+          @JsonKey(name: 'AccommodationBookingPaymentOrderID')
+          final int? accommodationBookingPaymentOrderId,
+          @JsonKey(name: 'AccommodationBookingID')
+          final int? accommodationBookingId,
+          @JsonKey(name: 'DetailStatus') final int? detailStatus,
+          @JsonKey(name: 'Reason') final String? reason,
+          @JsonKey(name: 'RecipientName') final String? recipientName,
+          @JsonKey(name: 'RegisterFullName') final String? registerFullName,
+          @JsonKey(name: 'BankAccount') final String? bankAccount,
+          @JsonKey(name: 'BankName') final String? bankName,
+          @JsonKey(name: 'HotelName') final String? hotelName,
           @JsonKey(name: 'DepartmentName') final String? departmentName,
-          @JsonKey(name: 'SDTCaNhan') final String? sdtCaNhan,
-          @JsonKey(name: 'ProjectCode') final String? projectCode,
-          @JsonKey(name: 'ProjectName') final String? projectName,
-          @JsonKey(name: 'ProvinceID') final int? provinceId,
-          @JsonKey(name: 'ProvinceName') final String? provinceName,
-          @JsonKey(name: 'Address') final String? address,
-          @JsonKey(name: 'StartDate') final DateTime? startDate,
-          @JsonKey(name: 'EndDate') final DateTime? endDate,
-          @JsonKey(name: 'Note') final String? note,
-          @JsonKey(name: 'Roommates') final String? roommates,
+          @JsonKey(name: 'CompanyName') final String? companyName,
+          @JsonKey(name: 'TotalAmount') final double? totalAmount,
+          @JsonKey(name: 'TotalAmountWithInvoice')
+          final double? totalAmountWithInvoice,
+          @JsonKey(name: 'InvoiceNumber') final String? invoiceNumber,
           @JsonKey(name: 'CreatedBy') final String? createdBy,
           @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
-          @JsonKey(name: 'UpdatedBy') final String? updatedBy,
-          @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
-          @JsonKey(name: 'IsDeleted') final bool? isDeleted,
-          @JsonKey(name: 'IsApprovedTBP') final bool? isApprovedTBP,
-          @JsonKey(name: 'ApprovedTBP') final dynamic approvedTBP,
-          @JsonKey(name: 'ApprovedTBPDate') final DateTime? approvedTBPDate,
-          @JsonKey(name: 'FullNameTBP') final String? fullNameTBP}) =
+          @JsonKey(name: 'SubmitDate') final DateTime? submitDate,
+          @JsonKey(name: 'CheckInDate') final DateTime? checkInDate,
+          @JsonKey(name: 'CheckOutDate') final DateTime? checkOutDate,
+          @JsonKey(name: 'Type') final String? type,
+          @JsonKey(name: 'Files') final List<ApproveBookingFile>? files}) =
       _$ApproveBookingGuestHouseItemImpl;
 
   factory _ApproveBookingGuestHouseItem.fromJson(Map<String, dynamic> json) =
@@ -703,50 +657,47 @@ abstract class _ApproveBookingGuestHouseItem
   @JsonKey(name: 'ID')
   int get id;
   @override
-  @JsonKey(name: 'RegisterID')
-  int? get registerId;
+  @JsonKey(name: 'AccommodationBookingPaymentOrderID')
+  int? get accommodationBookingPaymentOrderId;
   @override
-  @JsonKey(name: 'ProjectID')
-  int? get projectId;
-  @override // Thông tin nhân viên đặt
-  @JsonKey(name: 'FullName')
-  String? get fullName;
+  @JsonKey(name: 'AccommodationBookingID')
+  int? get accommodationBookingId;
   @override
-  @JsonKey(name: 'DepartmentID')
-  int? get departmentId;
+  @JsonKey(name: 'DetailStatus')
+  int? get detailStatus;
+  @override
+  @JsonKey(name: 'Reason')
+  String? get reason;
+  @override // Người đăng ký
+  @JsonKey(name: 'RecipientName')
+  String? get recipientName;
+  @override
+  @JsonKey(name: 'RegisterFullName')
+  String? get registerFullName;
+  @override // Ngân hàng
+  @JsonKey(name: 'BankAccount')
+  String? get bankAccount;
+  @override
+  @JsonKey(name: 'BankName')
+  String? get bankName;
+  @override // Khách sạn / công ty / phòng ban
+  @JsonKey(name: 'HotelName')
+  String? get hotelName;
   @override
   @JsonKey(name: 'DepartmentName')
   String? get departmentName;
   @override
-  @JsonKey(name: 'SDTCaNhan')
-  String? get sdtCaNhan;
-  @override // Thông tin dự án
-  @JsonKey(name: 'ProjectCode')
-  String? get projectCode;
+  @JsonKey(name: 'CompanyName')
+  String? get companyName;
+  @override // Tiền
+  @JsonKey(name: 'TotalAmount')
+  double? get totalAmount;
   @override
-  @JsonKey(name: 'ProjectName')
-  String? get projectName;
-  @override // Địa điểm
-  @JsonKey(name: 'ProvinceID')
-  int? get provinceId;
+  @JsonKey(name: 'TotalAmountWithInvoice')
+  double? get totalAmountWithInvoice;
   @override
-  @JsonKey(name: 'ProvinceName')
-  String? get provinceName;
-  @override
-  @JsonKey(name: 'Address')
-  String? get address;
-  @override // Thời gian
-  @JsonKey(name: 'StartDate')
-  DateTime? get startDate;
-  @override
-  @JsonKey(name: 'EndDate')
-  DateTime? get endDate;
-  @override // Ghi chú
-  @JsonKey(name: 'Note')
-  String? get note;
-  @override // Người cùng phòng
-  @JsonKey(name: 'Roommates')
-  String? get roommates;
+  @JsonKey(name: 'InvoiceNumber')
+  String? get invoiceNumber;
   @override // Audit
   @JsonKey(name: 'CreatedBy')
   String? get createdBy;
@@ -754,31 +705,240 @@ abstract class _ApproveBookingGuestHouseItem
   @JsonKey(name: 'CreatedDate')
   DateTime? get createdDate;
   @override
-  @JsonKey(name: 'UpdatedBy')
-  String? get updatedBy;
+  @JsonKey(name: 'SubmitDate')
+  DateTime? get submitDate;
+  @override // Thời gian ở
+  @JsonKey(name: 'CheckInDate')
+  DateTime? get checkInDate;
   @override
-  @JsonKey(name: 'UpdatedDate')
-  DateTime? get updatedDate;
-  @override
-  @JsonKey(name: 'IsDeleted')
-  bool? get isDeleted;
-  @override // Duyệt TBP
-  @JsonKey(name: 'IsApprovedTBP')
-  bool? get isApprovedTBP;
-  @override
-  @JsonKey(name: 'ApprovedTBP')
-  dynamic get approvedTBP;
-  @override
-  @JsonKey(name: 'ApprovedTBPDate')
-  DateTime? get approvedTBPDate;
-  @override
-  @JsonKey(name: 'FullNameTBP')
-  String? get fullNameTBP;
+  @JsonKey(name: 'CheckOutDate')
+  DateTime? get checkOutDate;
+  @override // Loại
+  @JsonKey(name: 'Type')
+  String? get type;
+  @override // Files đính kèm
+  @JsonKey(name: 'Files')
+  List<ApproveBookingFile>? get files;
   @override
   @JsonKey(ignore: true)
   _$$ApproveBookingGuestHouseItemImplCopyWith<
           _$ApproveBookingGuestHouseItemImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+ApproveBookingFile _$ApproveBookingFileFromJson(Map<String, dynamic> json) {
+  return _ApproveBookingFile.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ApproveBookingFile {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FileName')
+  String? get fileName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FileType')
+  String? get fileType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Url')
+  String? get url => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ApproveBookingFileCopyWith<ApproveBookingFile> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ApproveBookingFileCopyWith<$Res> {
+  factory $ApproveBookingFileCopyWith(
+          ApproveBookingFile value, $Res Function(ApproveBookingFile) then) =
+      _$ApproveBookingFileCopyWithImpl<$Res, ApproveBookingFile>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'FileName') String? fileName,
+      @JsonKey(name: 'FileType') String? fileType,
+      @JsonKey(name: 'Url') String? url});
+}
+
+/// @nodoc
+class _$ApproveBookingFileCopyWithImpl<$Res, $Val extends ApproveBookingFile>
+    implements $ApproveBookingFileCopyWith<$Res> {
+  _$ApproveBookingFileCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? fileName = freezed,
+    Object? fileType = freezed,
+    Object? url = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fileName: freezed == fileName
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fileType: freezed == fileType
+          ? _value.fileType
+          : fileType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      url: freezed == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ApproveBookingFileImplCopyWith<$Res>
+    implements $ApproveBookingFileCopyWith<$Res> {
+  factory _$$ApproveBookingFileImplCopyWith(_$ApproveBookingFileImpl value,
+          $Res Function(_$ApproveBookingFileImpl) then) =
+      __$$ApproveBookingFileImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'FileName') String? fileName,
+      @JsonKey(name: 'FileType') String? fileType,
+      @JsonKey(name: 'Url') String? url});
+}
+
+/// @nodoc
+class __$$ApproveBookingFileImplCopyWithImpl<$Res>
+    extends _$ApproveBookingFileCopyWithImpl<$Res, _$ApproveBookingFileImpl>
+    implements _$$ApproveBookingFileImplCopyWith<$Res> {
+  __$$ApproveBookingFileImplCopyWithImpl(_$ApproveBookingFileImpl _value,
+      $Res Function(_$ApproveBookingFileImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? fileName = freezed,
+    Object? fileType = freezed,
+    Object? url = freezed,
+  }) {
+    return _then(_$ApproveBookingFileImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fileName: freezed == fileName
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fileType: freezed == fileType
+          ? _value.fileType
+          : fileType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      url: freezed == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ApproveBookingFileImpl implements _ApproveBookingFile {
+  const _$ApproveBookingFileImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'FileName') this.fileName,
+      @JsonKey(name: 'FileType') this.fileType,
+      @JsonKey(name: 'Url') this.url});
+
+  factory _$ApproveBookingFileImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ApproveBookingFileImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'FileName')
+  final String? fileName;
+  @override
+  @JsonKey(name: 'FileType')
+  final String? fileType;
+  @override
+  @JsonKey(name: 'Url')
+  final String? url;
+
+  @override
+  String toString() {
+    return 'ApproveBookingFile(id: $id, fileName: $fileName, fileType: $fileType, url: $url)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ApproveBookingFileImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.fileName, fileName) ||
+                other.fileName == fileName) &&
+            (identical(other.fileType, fileType) ||
+                other.fileType == fileType) &&
+            (identical(other.url, url) || other.url == url));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, fileName, fileType, url);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ApproveBookingFileImplCopyWith<_$ApproveBookingFileImpl> get copyWith =>
+      __$$ApproveBookingFileImplCopyWithImpl<_$ApproveBookingFileImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ApproveBookingFileImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ApproveBookingFile implements ApproveBookingFile {
+  const factory _ApproveBookingFile(
+      {@JsonKey(name: 'ID') final int? id,
+      @JsonKey(name: 'FileName') final String? fileName,
+      @JsonKey(name: 'FileType') final String? fileType,
+      @JsonKey(name: 'Url') final String? url}) = _$ApproveBookingFileImpl;
+
+  factory _ApproveBookingFile.fromJson(Map<String, dynamic> json) =
+      _$ApproveBookingFileImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'FileName')
+  String? get fileName;
+  @override
+  @JsonKey(name: 'FileType')
+  String? get fileType;
+  @override
+  @JsonKey(name: 'Url')
+  String? get url;
+  @override
+  @JsonKey(ignore: true)
+  _$$ApproveBookingFileImplCopyWith<_$ApproveBookingFileImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 ApproveProjectFilterItem _$ApproveProjectFilterItemFromJson(

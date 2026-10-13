@@ -28,6 +28,7 @@ mixin _$ApproveBookingGuestHouseEvent {
         changeProjectFilter,
     required TResult Function(ApproveEmployeeFilterItem? employee)
         changeEmployeeFilter,
+    required TResult Function(int? status) changeStatusFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -40,6 +41,7 @@ mixin _$ApproveBookingGuestHouseEvent {
     TResult? Function(ApproveProjectFilterItem? project)? changeProjectFilter,
     TResult? Function(ApproveEmployeeFilterItem? employee)?
         changeEmployeeFilter,
+    TResult? Function(int? status)? changeStatusFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -51,6 +53,7 @@ mixin _$ApproveBookingGuestHouseEvent {
     TResult Function()? loadFilters,
     TResult Function(ApproveProjectFilterItem? project)? changeProjectFilter,
     TResult Function(ApproveEmployeeFilterItem? employee)? changeEmployeeFilter,
+    TResult Function(int? status)? changeStatusFilter,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -63,6 +66,7 @@ mixin _$ApproveBookingGuestHouseEvent {
     required TResult Function(_LoadFilters value) loadFilters,
     required TResult Function(_ChangeProjectFilter value) changeProjectFilter,
     required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
+    required TResult Function(_ChangeStatusFilter value) changeStatusFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -74,6 +78,7 @@ mixin _$ApproveBookingGuestHouseEvent {
     TResult? Function(_LoadFilters value)? loadFilters,
     TResult? Function(_ChangeProjectFilter value)? changeProjectFilter,
     TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult? Function(_ChangeStatusFilter value)? changeStatusFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -85,6 +90,7 @@ mixin _$ApproveBookingGuestHouseEvent {
     TResult Function(_LoadFilters value)? loadFilters,
     TResult Function(_ChangeProjectFilter value)? changeProjectFilter,
     TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult Function(_ChangeStatusFilter value)? changeStatusFilter,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -193,6 +199,7 @@ class _$InitImpl implements _Init {
         changeProjectFilter,
     required TResult Function(ApproveEmployeeFilterItem? employee)
         changeEmployeeFilter,
+    required TResult Function(int? status) changeStatusFilter,
   }) {
     return init(dateStart, dateEnd);
   }
@@ -208,6 +215,7 @@ class _$InitImpl implements _Init {
     TResult? Function(ApproveProjectFilterItem? project)? changeProjectFilter,
     TResult? Function(ApproveEmployeeFilterItem? employee)?
         changeEmployeeFilter,
+    TResult? Function(int? status)? changeStatusFilter,
   }) {
     return init?.call(dateStart, dateEnd);
   }
@@ -222,6 +230,7 @@ class _$InitImpl implements _Init {
     TResult Function()? loadFilters,
     TResult Function(ApproveProjectFilterItem? project)? changeProjectFilter,
     TResult Function(ApproveEmployeeFilterItem? employee)? changeEmployeeFilter,
+    TResult Function(int? status)? changeStatusFilter,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -240,6 +249,7 @@ class _$InitImpl implements _Init {
     required TResult Function(_LoadFilters value) loadFilters,
     required TResult Function(_ChangeProjectFilter value) changeProjectFilter,
     required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
+    required TResult Function(_ChangeStatusFilter value) changeStatusFilter,
   }) {
     return init(this);
   }
@@ -254,6 +264,7 @@ class _$InitImpl implements _Init {
     TResult? Function(_LoadFilters value)? loadFilters,
     TResult? Function(_ChangeProjectFilter value)? changeProjectFilter,
     TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult? Function(_ChangeStatusFilter value)? changeStatusFilter,
   }) {
     return init?.call(this);
   }
@@ -268,6 +279,7 @@ class _$InitImpl implements _Init {
     TResult Function(_LoadFilters value)? loadFilters,
     TResult Function(_ChangeProjectFilter value)? changeProjectFilter,
     TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult Function(_ChangeStatusFilter value)? changeStatusFilter,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -372,6 +384,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
         changeProjectFilter,
     required TResult Function(ApproveEmployeeFilterItem? employee)
         changeEmployeeFilter,
+    required TResult Function(int? status) changeStatusFilter,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -387,6 +400,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(ApproveProjectFilterItem? project)? changeProjectFilter,
     TResult? Function(ApproveEmployeeFilterItem? employee)?
         changeEmployeeFilter,
+    TResult? Function(int? status)? changeStatusFilter,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -401,6 +415,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function()? loadFilters,
     TResult Function(ApproveProjectFilterItem? project)? changeProjectFilter,
     TResult Function(ApproveEmployeeFilterItem? employee)? changeEmployeeFilter,
+    TResult Function(int? status)? changeStatusFilter,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -419,6 +434,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_LoadFilters value) loadFilters,
     required TResult Function(_ChangeProjectFilter value) changeProjectFilter,
     required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
+    required TResult Function(_ChangeStatusFilter value) changeStatusFilter,
   }) {
     return changeDateRange(this);
   }
@@ -433,6 +449,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_LoadFilters value)? loadFilters,
     TResult? Function(_ChangeProjectFilter value)? changeProjectFilter,
     TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult? Function(_ChangeStatusFilter value)? changeStatusFilter,
   }) {
     return changeDateRange?.call(this);
   }
@@ -447,6 +464,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_LoadFilters value)? loadFilters,
     TResult Function(_ChangeProjectFilter value)? changeProjectFilter,
     TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult Function(_ChangeStatusFilter value)? changeStatusFilter,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -545,6 +563,7 @@ class _$ChangeFilterTextImpl implements _ChangeFilterText {
         changeProjectFilter,
     required TResult Function(ApproveEmployeeFilterItem? employee)
         changeEmployeeFilter,
+    required TResult Function(int? status) changeStatusFilter,
   }) {
     return changeFilterText(filterText);
   }
@@ -560,6 +579,7 @@ class _$ChangeFilterTextImpl implements _ChangeFilterText {
     TResult? Function(ApproveProjectFilterItem? project)? changeProjectFilter,
     TResult? Function(ApproveEmployeeFilterItem? employee)?
         changeEmployeeFilter,
+    TResult? Function(int? status)? changeStatusFilter,
   }) {
     return changeFilterText?.call(filterText);
   }
@@ -574,6 +594,7 @@ class _$ChangeFilterTextImpl implements _ChangeFilterText {
     TResult Function()? loadFilters,
     TResult Function(ApproveProjectFilterItem? project)? changeProjectFilter,
     TResult Function(ApproveEmployeeFilterItem? employee)? changeEmployeeFilter,
+    TResult Function(int? status)? changeStatusFilter,
     required TResult orElse(),
   }) {
     if (changeFilterText != null) {
@@ -592,6 +613,7 @@ class _$ChangeFilterTextImpl implements _ChangeFilterText {
     required TResult Function(_LoadFilters value) loadFilters,
     required TResult Function(_ChangeProjectFilter value) changeProjectFilter,
     required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
+    required TResult Function(_ChangeStatusFilter value) changeStatusFilter,
   }) {
     return changeFilterText(this);
   }
@@ -606,6 +628,7 @@ class _$ChangeFilterTextImpl implements _ChangeFilterText {
     TResult? Function(_LoadFilters value)? loadFilters,
     TResult? Function(_ChangeProjectFilter value)? changeProjectFilter,
     TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult? Function(_ChangeStatusFilter value)? changeStatusFilter,
   }) {
     return changeFilterText?.call(this);
   }
@@ -620,6 +643,7 @@ class _$ChangeFilterTextImpl implements _ChangeFilterText {
     TResult Function(_LoadFilters value)? loadFilters,
     TResult Function(_ChangeProjectFilter value)? changeProjectFilter,
     TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult Function(_ChangeStatusFilter value)? changeStatusFilter,
     required TResult orElse(),
   }) {
     if (changeFilterText != null) {
@@ -687,6 +711,7 @@ class _$RefreshImpl implements _Refresh {
         changeProjectFilter,
     required TResult Function(ApproveEmployeeFilterItem? employee)
         changeEmployeeFilter,
+    required TResult Function(int? status) changeStatusFilter,
   }) {
     return refresh();
   }
@@ -702,6 +727,7 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(ApproveProjectFilterItem? project)? changeProjectFilter,
     TResult? Function(ApproveEmployeeFilterItem? employee)?
         changeEmployeeFilter,
+    TResult? Function(int? status)? changeStatusFilter,
   }) {
     return refresh?.call();
   }
@@ -716,6 +742,7 @@ class _$RefreshImpl implements _Refresh {
     TResult Function()? loadFilters,
     TResult Function(ApproveProjectFilterItem? project)? changeProjectFilter,
     TResult Function(ApproveEmployeeFilterItem? employee)? changeEmployeeFilter,
+    TResult Function(int? status)? changeStatusFilter,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -734,6 +761,7 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_LoadFilters value) loadFilters,
     required TResult Function(_ChangeProjectFilter value) changeProjectFilter,
     required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
+    required TResult Function(_ChangeStatusFilter value) changeStatusFilter,
   }) {
     return refresh(this);
   }
@@ -748,6 +776,7 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_LoadFilters value)? loadFilters,
     TResult? Function(_ChangeProjectFilter value)? changeProjectFilter,
     TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult? Function(_ChangeStatusFilter value)? changeStatusFilter,
   }) {
     return refresh?.call(this);
   }
@@ -762,6 +791,7 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_LoadFilters value)? loadFilters,
     TResult Function(_ChangeProjectFilter value)? changeProjectFilter,
     TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult Function(_ChangeStatusFilter value)? changeStatusFilter,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -823,6 +853,7 @@ class _$LoadFiltersImpl implements _LoadFilters {
         changeProjectFilter,
     required TResult Function(ApproveEmployeeFilterItem? employee)
         changeEmployeeFilter,
+    required TResult Function(int? status) changeStatusFilter,
   }) {
     return loadFilters();
   }
@@ -838,6 +869,7 @@ class _$LoadFiltersImpl implements _LoadFilters {
     TResult? Function(ApproveProjectFilterItem? project)? changeProjectFilter,
     TResult? Function(ApproveEmployeeFilterItem? employee)?
         changeEmployeeFilter,
+    TResult? Function(int? status)? changeStatusFilter,
   }) {
     return loadFilters?.call();
   }
@@ -852,6 +884,7 @@ class _$LoadFiltersImpl implements _LoadFilters {
     TResult Function()? loadFilters,
     TResult Function(ApproveProjectFilterItem? project)? changeProjectFilter,
     TResult Function(ApproveEmployeeFilterItem? employee)? changeEmployeeFilter,
+    TResult Function(int? status)? changeStatusFilter,
     required TResult orElse(),
   }) {
     if (loadFilters != null) {
@@ -870,6 +903,7 @@ class _$LoadFiltersImpl implements _LoadFilters {
     required TResult Function(_LoadFilters value) loadFilters,
     required TResult Function(_ChangeProjectFilter value) changeProjectFilter,
     required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
+    required TResult Function(_ChangeStatusFilter value) changeStatusFilter,
   }) {
     return loadFilters(this);
   }
@@ -884,6 +918,7 @@ class _$LoadFiltersImpl implements _LoadFilters {
     TResult? Function(_LoadFilters value)? loadFilters,
     TResult? Function(_ChangeProjectFilter value)? changeProjectFilter,
     TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult? Function(_ChangeStatusFilter value)? changeStatusFilter,
   }) {
     return loadFilters?.call(this);
   }
@@ -898,6 +933,7 @@ class _$LoadFiltersImpl implements _LoadFilters {
     TResult Function(_LoadFilters value)? loadFilters,
     TResult Function(_ChangeProjectFilter value)? changeProjectFilter,
     TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult Function(_ChangeStatusFilter value)? changeStatusFilter,
     required TResult orElse(),
   }) {
     if (loadFilters != null) {
@@ -1001,6 +1037,7 @@ class _$ChangeProjectFilterImpl implements _ChangeProjectFilter {
         changeProjectFilter,
     required TResult Function(ApproveEmployeeFilterItem? employee)
         changeEmployeeFilter,
+    required TResult Function(int? status) changeStatusFilter,
   }) {
     return changeProjectFilter(project);
   }
@@ -1016,6 +1053,7 @@ class _$ChangeProjectFilterImpl implements _ChangeProjectFilter {
     TResult? Function(ApproveProjectFilterItem? project)? changeProjectFilter,
     TResult? Function(ApproveEmployeeFilterItem? employee)?
         changeEmployeeFilter,
+    TResult? Function(int? status)? changeStatusFilter,
   }) {
     return changeProjectFilter?.call(project);
   }
@@ -1030,6 +1068,7 @@ class _$ChangeProjectFilterImpl implements _ChangeProjectFilter {
     TResult Function()? loadFilters,
     TResult Function(ApproveProjectFilterItem? project)? changeProjectFilter,
     TResult Function(ApproveEmployeeFilterItem? employee)? changeEmployeeFilter,
+    TResult Function(int? status)? changeStatusFilter,
     required TResult orElse(),
   }) {
     if (changeProjectFilter != null) {
@@ -1048,6 +1087,7 @@ class _$ChangeProjectFilterImpl implements _ChangeProjectFilter {
     required TResult Function(_LoadFilters value) loadFilters,
     required TResult Function(_ChangeProjectFilter value) changeProjectFilter,
     required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
+    required TResult Function(_ChangeStatusFilter value) changeStatusFilter,
   }) {
     return changeProjectFilter(this);
   }
@@ -1062,6 +1102,7 @@ class _$ChangeProjectFilterImpl implements _ChangeProjectFilter {
     TResult? Function(_LoadFilters value)? loadFilters,
     TResult? Function(_ChangeProjectFilter value)? changeProjectFilter,
     TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult? Function(_ChangeStatusFilter value)? changeStatusFilter,
   }) {
     return changeProjectFilter?.call(this);
   }
@@ -1076,6 +1117,7 @@ class _$ChangeProjectFilterImpl implements _ChangeProjectFilter {
     TResult Function(_LoadFilters value)? loadFilters,
     TResult Function(_ChangeProjectFilter value)? changeProjectFilter,
     TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult Function(_ChangeStatusFilter value)? changeStatusFilter,
     required TResult orElse(),
   }) {
     if (changeProjectFilter != null) {
@@ -1188,6 +1230,7 @@ class _$ChangeEmployeeFilterImpl implements _ChangeEmployeeFilter {
         changeProjectFilter,
     required TResult Function(ApproveEmployeeFilterItem? employee)
         changeEmployeeFilter,
+    required TResult Function(int? status) changeStatusFilter,
   }) {
     return changeEmployeeFilter(employee);
   }
@@ -1203,6 +1246,7 @@ class _$ChangeEmployeeFilterImpl implements _ChangeEmployeeFilter {
     TResult? Function(ApproveProjectFilterItem? project)? changeProjectFilter,
     TResult? Function(ApproveEmployeeFilterItem? employee)?
         changeEmployeeFilter,
+    TResult? Function(int? status)? changeStatusFilter,
   }) {
     return changeEmployeeFilter?.call(employee);
   }
@@ -1217,6 +1261,7 @@ class _$ChangeEmployeeFilterImpl implements _ChangeEmployeeFilter {
     TResult Function()? loadFilters,
     TResult Function(ApproveProjectFilterItem? project)? changeProjectFilter,
     TResult Function(ApproveEmployeeFilterItem? employee)? changeEmployeeFilter,
+    TResult Function(int? status)? changeStatusFilter,
     required TResult orElse(),
   }) {
     if (changeEmployeeFilter != null) {
@@ -1235,6 +1280,7 @@ class _$ChangeEmployeeFilterImpl implements _ChangeEmployeeFilter {
     required TResult Function(_LoadFilters value) loadFilters,
     required TResult Function(_ChangeProjectFilter value) changeProjectFilter,
     required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
+    required TResult Function(_ChangeStatusFilter value) changeStatusFilter,
   }) {
     return changeEmployeeFilter(this);
   }
@@ -1249,6 +1295,7 @@ class _$ChangeEmployeeFilterImpl implements _ChangeEmployeeFilter {
     TResult? Function(_LoadFilters value)? loadFilters,
     TResult? Function(_ChangeProjectFilter value)? changeProjectFilter,
     TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult? Function(_ChangeStatusFilter value)? changeStatusFilter,
   }) {
     return changeEmployeeFilter?.call(this);
   }
@@ -1263,6 +1310,7 @@ class _$ChangeEmployeeFilterImpl implements _ChangeEmployeeFilter {
     TResult Function(_LoadFilters value)? loadFilters,
     TResult Function(_ChangeProjectFilter value)? changeProjectFilter,
     TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult Function(_ChangeStatusFilter value)? changeStatusFilter,
     required TResult orElse(),
   }) {
     if (changeEmployeeFilter != null) {
@@ -1281,4 +1329,180 @@ abstract class _ChangeEmployeeFilter implements ApproveBookingGuestHouseEvent {
   @JsonKey(ignore: true)
   _$$ChangeEmployeeFilterImplCopyWith<_$ChangeEmployeeFilterImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ChangeStatusFilterImplCopyWith<$Res> {
+  factory _$$ChangeStatusFilterImplCopyWith(_$ChangeStatusFilterImpl value,
+          $Res Function(_$ChangeStatusFilterImpl) then) =
+      __$$ChangeStatusFilterImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int? status});
+}
+
+/// @nodoc
+class __$$ChangeStatusFilterImplCopyWithImpl<$Res>
+    extends _$ApproveBookingGuestHouseEventCopyWithImpl<$Res,
+        _$ChangeStatusFilterImpl>
+    implements _$$ChangeStatusFilterImplCopyWith<$Res> {
+  __$$ChangeStatusFilterImplCopyWithImpl(_$ChangeStatusFilterImpl _value,
+      $Res Function(_$ChangeStatusFilterImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? status = freezed,
+  }) {
+    return _then(_$ChangeStatusFilterImpl(
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChangeStatusFilterImpl implements _ChangeStatusFilter {
+  const _$ChangeStatusFilterImpl({required this.status});
+
+  @override
+  final int? status;
+
+  @override
+  String toString() {
+    return 'ApproveBookingGuestHouseEvent.changeStatusFilter(status: $status)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangeStatusFilterImpl &&
+            (identical(other.status, status) || other.status == status));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, status);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangeStatusFilterImplCopyWith<_$ChangeStatusFilterImpl> get copyWith =>
+      __$$ChangeStatusFilterImplCopyWithImpl<_$ChangeStatusFilterImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd) init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String filterText) changeFilterText,
+    required TResult Function() refresh,
+    required TResult Function() loadFilters,
+    required TResult Function(ApproveProjectFilterItem? project)
+        changeProjectFilter,
+    required TResult Function(ApproveEmployeeFilterItem? employee)
+        changeEmployeeFilter,
+    required TResult Function(int? status) changeStatusFilter,
+  }) {
+    return changeStatusFilter(status);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String filterText)? changeFilterText,
+    TResult? Function()? refresh,
+    TResult? Function()? loadFilters,
+    TResult? Function(ApproveProjectFilterItem? project)? changeProjectFilter,
+    TResult? Function(ApproveEmployeeFilterItem? employee)?
+        changeEmployeeFilter,
+    TResult? Function(int? status)? changeStatusFilter,
+  }) {
+    return changeStatusFilter?.call(status);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String filterText)? changeFilterText,
+    TResult Function()? refresh,
+    TResult Function()? loadFilters,
+    TResult Function(ApproveProjectFilterItem? project)? changeProjectFilter,
+    TResult Function(ApproveEmployeeFilterItem? employee)? changeEmployeeFilter,
+    TResult Function(int? status)? changeStatusFilter,
+    required TResult orElse(),
+  }) {
+    if (changeStatusFilter != null) {
+      return changeStatusFilter(status);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeFilterText value) changeFilterText,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_LoadFilters value) loadFilters,
+    required TResult Function(_ChangeProjectFilter value) changeProjectFilter,
+    required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
+    required TResult Function(_ChangeStatusFilter value) changeStatusFilter,
+  }) {
+    return changeStatusFilter(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeFilterText value)? changeFilterText,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_LoadFilters value)? loadFilters,
+    TResult? Function(_ChangeProjectFilter value)? changeProjectFilter,
+    TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult? Function(_ChangeStatusFilter value)? changeStatusFilter,
+  }) {
+    return changeStatusFilter?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeFilterText value)? changeFilterText,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_LoadFilters value)? loadFilters,
+    TResult Function(_ChangeProjectFilter value)? changeProjectFilter,
+    TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult Function(_ChangeStatusFilter value)? changeStatusFilter,
+    required TResult orElse(),
+  }) {
+    if (changeStatusFilter != null) {
+      return changeStatusFilter(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangeStatusFilter implements ApproveBookingGuestHouseEvent {
+  const factory _ChangeStatusFilter({required final int? status}) =
+      _$ChangeStatusFilterImpl;
+
+  int? get status;
+  @JsonKey(ignore: true)
+  _$$ChangeStatusFilterImplCopyWith<_$ChangeStatusFilterImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

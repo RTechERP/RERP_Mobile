@@ -1,64 +1,72 @@
-// Model cho màn Duyệt phiếu Đặt phòng nhà nghỉ.
-// Tương ứng API: GET /AccommodationBooking/data-accommodation-booking
+// Model cho màn Duyệt phiếu thanh toán Đặt phòng nhà nghỉ.
+// Tương ứng API: GET /AccommodationBookingPaymentOrder/get-pending-for-tbp
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'approve_booking_guest_house_model.freezed.dart';
 part 'approve_booking_guest_house_model.g.dart';
 
-/// Một bản ghi đặt phòng nhà nghỉ trả về từ API (màn duyệt).
-/// Hiện dùng chung model `BookingGuestHouseItem` của màn đăng ký — model
-/// này được giữ riêng để mở rộng các field đặc thù cho luồng duyệt
-/// (vd: trạng thái duyệt TBP, người duyệt, ngày duyệt...) mà không
-/// ảnh hưởng tới màn đăng ký.
+/// Một bản ghi thanh toán đặt phòng nhà nghỉ trả về từ API (màn duyệt TBP).
 @freezed
 class ApproveBookingGuestHouseItem with _$ApproveBookingGuestHouseItem {
   const factory ApproveBookingGuestHouseItem({
     @JsonKey(name: 'ID') required int id,
-    @JsonKey(name: 'RegisterID') int? registerId,
-    @JsonKey(name: 'ProjectID') int? projectId,
+    @JsonKey(name: 'AccommodationBookingPaymentOrderID') int?
+        accommodationBookingPaymentOrderId,
+    @JsonKey(name: 'AccommodationBookingID') int? accommodationBookingId,
+    @JsonKey(name: 'DetailStatus') int? detailStatus,
+    @JsonKey(name: 'Reason') String? reason,
 
-    // Thông tin nhân viên đặt
-    @JsonKey(name: 'FullName') String? fullName,
-    @JsonKey(name: 'DepartmentID') int? departmentId,
+    // Người đăng ký
+    @JsonKey(name: 'RecipientName') String? recipientName,
+    @JsonKey(name: 'RegisterFullName') String? registerFullName,
+
+    // Ngân hàng
+    @JsonKey(name: 'BankAccount') String? bankAccount,
+    @JsonKey(name: 'BankName') String? bankName,
+
+    // Khách sạn / công ty / phòng ban
+    @JsonKey(name: 'HotelName') String? hotelName,
     @JsonKey(name: 'DepartmentName') String? departmentName,
-    @JsonKey(name: 'SDTCaNhan') String? sdtCaNhan,
+    @JsonKey(name: 'CompanyName') String? companyName,
 
-    // Thông tin dự án
-    @JsonKey(name: 'ProjectCode') String? projectCode,
-    @JsonKey(name: 'ProjectName') String? projectName,
-
-    // Địa điểm
-    @JsonKey(name: 'ProvinceID') int? provinceId,
-    @JsonKey(name: 'ProvinceName') String? provinceName,
-    @JsonKey(name: 'Address') String? address,
-
-    // Thời gian
-    @JsonKey(name: 'StartDate') DateTime? startDate,
-    @JsonKey(name: 'EndDate') DateTime? endDate,
-
-    // Ghi chú
-    @JsonKey(name: 'Note') String? note,
-
-    // Người cùng phòng
-    @JsonKey(name: 'Roommates') String? roommates,
+    // Tiền
+    @JsonKey(name: 'TotalAmount') double? totalAmount,
+    @JsonKey(name: 'TotalAmountWithInvoice') double? totalAmountWithInvoice,
+    @JsonKey(name: 'InvoiceNumber') String? invoiceNumber,
 
     // Audit
     @JsonKey(name: 'CreatedBy') String? createdBy,
     @JsonKey(name: 'CreatedDate') DateTime? createdDate,
-    @JsonKey(name: 'UpdatedBy') String? updatedBy,
-    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
-    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+    @JsonKey(name: 'SubmitDate') DateTime? submitDate,
 
-    // Duyệt TBP
-    @JsonKey(name: 'IsApprovedTBP') bool? isApprovedTBP,
-    @JsonKey(name: 'ApprovedTBP') dynamic approvedTBP,
-    @JsonKey(name: 'ApprovedTBPDate') DateTime? approvedTBPDate,
-    @JsonKey(name: 'FullNameTBP') String? fullNameTBP,
+    // Thời gian ở
+    @JsonKey(name: 'CheckInDate') DateTime? checkInDate,
+    @JsonKey(name: 'CheckOutDate') DateTime? checkOutDate,
+
+    // Loại
+    @JsonKey(name: 'Type') String? type,
+
+    // Files đính kèm
+    @JsonKey(name: 'Files') List<ApproveBookingFile>? files,
   }) = _ApproveBookingGuestHouseItem;
 
   factory ApproveBookingGuestHouseItem.fromJson(Map<String, dynamic> json) =>
       _$ApproveBookingGuestHouseItemFromJson(json);
+}
+
+/// File đính kèm của phiếu thanh toán.
+@freezed
+class ApproveBookingFile with _$ApproveBookingFile {
+  const factory ApproveBookingFile({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'FileName') String? fileName,
+    @JsonKey(name: 'FileType') String? fileType,
+    @JsonKey(name: 'Url') String? url,
+  }) = _ApproveBookingFile;
+
+  factory ApproveBookingFile.fromJson(Map<String, dynamic> json) =>
+      _$ApproveBookingFileFromJson(json);
 }
 
 /// Model dự án cho bộ lọc (màn duyệt) — dùng chung contract với màn đăng ký.

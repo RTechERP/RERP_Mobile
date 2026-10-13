@@ -1,9 +1,5 @@
-// Bloc cho màn Duyệt phiếu Đặt phòng nhà nghỉ.
-// Quản lý danh sách phiếu (theo khoảng ngày, lọc project/employee).
-//
-// Tại thời điểm này bloc chỉ phục vụ phần hiển thị danh sách + bộ lọc
-// (search / date range / project / employee). Các thao tác duyệt
-// (approve / reject) sẽ được bổ sung ở bước tiếp theo.
+// Bloc cho màn Duyệt phiếu thanh toán Đặt phòng nhà nghỉ.
+// Quản lý danh sách phiếu chờ duyệt TBP + bộ lọc (search / project / employee).
 
 import 'dart:ui';
 
@@ -33,16 +29,8 @@ class ApproveBookingGuestHouseBloc extends BaseBloc<
       : super(ApproveBookingGuestHouseState.init()) {
     on<ApproveBookingGuestHouseEvent>((event, emit) async {
       await event.when(
-        init: (dateStart, dateEnd) => _onInit(
-          emit,
-          dateStart: dateStart,
-          dateEnd: dateEnd,
-        ),
-        changeDateRange: (dateStart, dateEnd) => _onChangeDateRange(
-          emit,
-          dateStart: dateStart,
-          dateEnd: dateEnd,
-        ),
+        init: (dateStart, dateEnd) => _onInit(emit),
+        changeDateRange: (dateStart, dateEnd) => _onChangeDateRange(emit),
         changeFilterText: (filterText) =>
             _onChangeFilterText(emit, filterText: filterText),
         refresh: () => _onRefresh(emit),
@@ -51,6 +39,8 @@ class ApproveBookingGuestHouseBloc extends BaseBloc<
             _onChangeProjectFilter(emit, project: project),
         changeEmployeeFilter: (employee) =>
             _onChangeEmployeeFilter(emit, employee: employee),
+        changeStatusFilter: (status) =>
+            _onChangeStatusFilter(emit, status: status),
       );
     });
   }
@@ -58,48 +48,27 @@ class ApproveBookingGuestHouseBloc extends BaseBloc<
   //---(Init)---//
 
   Future<void> _onInit(
+    Emitter<ApproveBookingGuestHouseState> emit,
+  ) async {
+    emit(state.copyWith(status: BaseStateStatus.loading, message: null));
+    await _fetch(emit);
+  }
+
+  //---(Change Date Range)---//
+  // API mới không dùng date range — giữ method để UI không bị lỗi.
+
+  Future<void> _onChangeDateRange(
     Emitter<ApproveBookingGuestHouseState> emit, {
     DateTime? dateStart,
     DateTime? dateEnd,
   }) async {
-    emit(state.copyWith(status: BaseStateStatus.loading, message: null));
-
-    final start = dateStart ?? _defaultDateStart();
-    final end = dateEnd ?? _defaultDateEnd();
-
-    await _fetch(
-      emit,
-      dateStart: start,
-      dateEnd: end,
-      filterText: state.filterText,
-    );
-  }
-
-  //---(Change Date Range)---//
-
-  Future<void> _onChangeDateRange(
-    Emitter<ApproveBookingGuestHouseState> emit, {
-    required DateTime dateStart,
-    required DateTime dateEnd,
-  }) async {
-    final normalizedStart = _dateOnly(dateStart);
-    final normalizedEnd = _endOfDay(dateEnd);
-
-    emit(
-      state.copyWith(
-        status: BaseStateStatus.loading,
-        dateStart: normalizedStart,
-        dateEnd: normalizedEnd,
-        message: null,
-      ),
-    );
-
-    await _fetch(
-      emit,
-      dateStart: normalizedStart,
-      dateEnd: normalizedEnd,
-      filterText: state.filterText,
-    );
+    emit(state.copyWith(
+      status: BaseStateStatus.loading,
+      dateStart: dateStart,
+      dateEnd: dateEnd,
+      message: null,
+    ));
+    await _fetch(emit);
   }
 
   //---(Change Filter Text)---//
@@ -110,39 +79,23 @@ class ApproveBookingGuestHouseBloc extends BaseBloc<
   }) async {
     if (filterText == state.filterText) return;
 
-    emit(
-      state.copyWith(
-        status: BaseStateStatus.loading,
-        filterText: filterText,
-        message: null,
-      ),
-    );
-
-    final start = state.dateStart ?? _defaultDateStart();
-    final end = state.dateEnd ?? _defaultDateEnd();
-
-    await _fetch(
-      emit,
-      dateStart: start,
-      dateEnd: end,
+    emit(state.copyWith(
+      status: BaseStateStatus.loading,
       filterText: filterText,
-    );
+      message: null,
+    ));
+
+    await _fetch(emit);
   }
 
   //---(Refresh)---//
 
   Future<void> _onRefresh(
       Emitter<ApproveBookingGuestHouseState> emit) async {
-    final start = state.dateStart ?? _defaultDateStart();
-    final end = state.dateEnd ?? _defaultDateEnd();
-
     emit(state.copyWith(isRefreshing: true, message: null));
 
     await _fetch(
       emit,
-      dateStart: start,
-      dateEnd: end,
-      filterText: state.filterText,
       onSuccessExtra: (bookings) => emit(
         state.copyWith(bookings: bookings, isRefreshing: false),
       ),
@@ -156,7 +109,6 @@ class ApproveBookingGuestHouseBloc extends BaseBloc<
       Emitter<ApproveBookingGuestHouseState> emit) async {
     emit(state.copyWith(isLoadingFilters: true));
 
-    // Gọi song song 2 API: dự án + nhân viên.
     final projectRes = await _repo.getApproveBookingGuestHouseProjects();
     final employeeRes = await _repo.getApproveBookingGuestHouseEmployees();
 
@@ -190,20 +142,12 @@ class ApproveBookingGuestHouseBloc extends BaseBloc<
       state.copyWith(
         status: BaseStateStatus.loading,
         selectedProject: project,
-        selectedEmployee: null, // reset employee when project changes
+        selectedEmployee: null,
         message: null,
       ),
     );
 
-    final start = state.dateStart ?? _defaultDateStart();
-    final end = state.dateEnd ?? _defaultDateEnd();
-
-    await _fetch(
-      emit,
-      dateStart: start,
-      dateEnd: end,
-      filterText: state.filterText,
-    );
+    await _fetch(emit);
   }
 
   //---(Change Employee Filter)---//
@@ -216,57 +160,46 @@ class ApproveBookingGuestHouseBloc extends BaseBloc<
       state.copyWith(
         status: BaseStateStatus.loading,
         selectedEmployee: employee,
-        selectedProject: null, // reset project when employee changes
+        selectedProject: null,
         message: null,
       ),
     );
 
-    final start = state.dateStart ?? _defaultDateStart();
-    final end = state.dateEnd ?? _defaultDateEnd();
+    await _fetch(emit);
+  }
 
-    await _fetch(
-      emit,
-      dateStart: start,
-      dateEnd: end,
-      filterText: state.filterText,
-    );
+  //---(Change Status Filter)---//
+
+  Future<void> _onChangeStatusFilter(
+    Emitter<ApproveBookingGuestHouseState> emit, {
+    required int? status,
+  }) async {
+    if (status == state.statusFilter) return;
+
+    emit(state.copyWith(
+      status: BaseStateStatus.loading,
+      statusFilter: status,
+      message: null,
+    ));
+
+    await _fetch(emit);
   }
 
   //---(Fetch)---//
 
-  /// Gọi repo và emit kết quả về state.
-  /// [onSuccessExtra]/[onFailureExtra] dùng để update thêm các cờ
-  /// (vd: tắt `isRefreshing` khi pull-to-refresh) sau khi đã set status.
   Future<void> _fetch(
     Emitter<ApproveBookingGuestHouseState> emit, {
-    required DateTime dateStart,
-    required DateTime dateEnd,
-    required String filterText,
     void Function(List<ApproveBookingGuestHouseItem> bookings)?
         onSuccessExtra,
     VoidCallback? onFailureExtra,
   }) async {
-    final startStr = _iso(dateStart);
-    final endStr = _iso(dateEnd);
-
-    // projectId: dùng ID của dự án đang chọn, hoặc 0 nếu không chọn.
-    final projectId = state.selectedProject?.id ?? 0;
-    // employeeId: dùng UserID của nhân viên đang chọn, hoặc 0 nếu không chọn.
-    final employeeId = state.selectedEmployee?.userId ?? 0;
-
     _log.logI(
-      '📋 fetch approveBookingGuestHouse dateStart=$startStr '
-      'dateEnd=$endStr filterText="$filterText" '
-      'projectId=$projectId employeeId=$employeeId',
+      '📋 fetch approveBookingGuestHouse filterText="${state.filterText}" '
+      'projectId=${state.selectedProject?.id ?? 0} '
+      'employeeId=${state.selectedEmployee?.userId ?? 0}',
     );
 
-    final res = await _repo.getApproveBookingGuestHouse(
-      dateStart: startStr,
-      dateEnd: endStr,
-      projectId: projectId,
-      employeeId: employeeId,
-      filterText: filterText,
-    );
+    final res = await _repo.getPendingForTbp();
 
     res.fold(
       (err) {
@@ -276,21 +209,17 @@ class ApproveBookingGuestHouseBloc extends BaseBloc<
           state.copyWith(
             status: BaseStateStatus.failed,
             message: err.getErrorMessage,
-            dateStart: dateStart,
-            dateEnd: dateEnd,
           ),
         );
       },
       (bookings) {
         _log.logI('✅ API success - total: ${bookings.length}');
-        onSuccessExtra?.call(bookings);
+        final filtered = _applyStatusFilter(bookings, state.statusFilter);
+        onSuccessExtra?.call(filtered);
         emit(
           state.copyWith(
             status: BaseStateStatus.success,
-            bookings: bookings,
-            dateStart: dateStart,
-            dateEnd: dateEnd,
-            filterText: filterText,
+            bookings: filtered,
             message: null,
           ),
         );
@@ -298,35 +227,14 @@ class ApproveBookingGuestHouseBloc extends BaseBloc<
     );
   }
 
-  //---(Helpers)---//
-
-  DateTime _defaultDateStart() {
-    final now = DateTime.now();
-    return DateTime(now.year, now.month, 1);
-  }
-
-  DateTime _defaultDateEnd() {
-    final start = _defaultDateStart();
-    final nextMonth = (start.month == 12)
-        ? DateTime(start.year + 1, 1, 1)
-        : DateTime(start.year, start.month + 1, 1);
-    return nextMonth.subtract(const Duration(days: 1));
-  }
-
-  DateTime _dateOnly(DateTime d) => DateTime(d.year, d.month, d.day);
-
-  DateTime _endOfDay(DateTime d) =>
-      DateTime(d.year, d.month, d.day, 23, 59, 59);
-
-  /// Format ISO giống payload mẫu: `2026-09-30T17:00:00.000Z`.
-  String _iso(DateTime d) {
-    final utc = d.toUtc();
-    final y = utc.year.toString().padLeft(4, '0');
-    final m = utc.month.toString().padLeft(2, '0');
-    final day = utc.day.toString().padLeft(2, '0');
-    final h = utc.hour.toString().padLeft(2, '0');
-    final mi = utc.minute.toString().padLeft(2, '0');
-    final s = utc.second.toString().padLeft(2, '0');
-    return '$y-$m-${day}T$h:$mi:$s.000Z';
+  /// Lọc theo `statusFilter` (chưa duyệt / đã duyệt / tất cả).
+  List<ApproveBookingGuestHouseItem> _applyStatusFilter(
+    List<ApproveBookingGuestHouseItem> source,
+    int? statusFilter,
+  ) {
+    if (statusFilter == null) return source;
+    return source
+        .where((b) => b.detailStatus == statusFilter)
+        .toList(growable: false);
   }
 }

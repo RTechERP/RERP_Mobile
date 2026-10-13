@@ -573,6 +573,11 @@ class ApiEndPoint {
   static const String removeBookingGuestHouseFile =
       '/AccommodationBookingPaymentOrder/remove-file';
 
+  /// API: GET /AccommodationBookingPaymentOrder/get-pending-for-tbp
+  /// Lấy danh sách phiếu thanh toán đặt phòng nhà nghỉ chờ duyệt TBP.
+  static const String accommodationBookingPaymentOrderGetPendingForTbp =
+      '/AccommodationBookingPaymentOrder/get-pending-for-tbp';
+
   /// Check xung đột trước khi lưu phiếu đăng ký bàn test.
   /// API: POST /ESLRegistration/check-conflict (form-data).
   static const String checkConflictRegistration =

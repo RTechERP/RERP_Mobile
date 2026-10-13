@@ -40,4 +40,11 @@ class ApproveBookingGuestHouseEvent
   const factory ApproveBookingGuestHouseEvent.changeEmployeeFilter({
     required ApproveEmployeeFilterItem? employee,
   }) = _ChangeEmployeeFilter;
+
+  /// Lọc theo trạng thái duyệt.
+  /// `null` = tất cả (cả chưa duyệt & đã duyệt);
+  /// `2` = chưa duyệt; `3` = đã duyệt.
+  const factory ApproveBookingGuestHouseEvent.changeStatusFilter({
+    required int? status,
+  }) = _ChangeStatusFilter;
 }

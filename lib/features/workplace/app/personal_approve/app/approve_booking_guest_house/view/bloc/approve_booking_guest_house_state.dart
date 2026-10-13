@@ -31,6 +31,10 @@ class ApproveBookingGuestHouseState extends BaseBlocState {
   /// Loading khi tải danh sách lọc dự án / nhân viên.
   final bool isLoadingFilters;
 
+  /// Trạng thái duyệt filter.
+  /// `null` = tất cả (cả 2 & 3); `2` = chưa duyệt; `3` = đã duyệt.
+  final int? statusFilter;
+
   const ApproveBookingGuestHouseState({
     required super.status,
     super.message,
@@ -44,6 +48,7 @@ class ApproveBookingGuestHouseState extends BaseBlocState {
     this.selectedProject,
     this.selectedEmployee,
     this.isLoadingFilters = false,
+    this.statusFilter,
   });
 
   factory ApproveBookingGuestHouseState.init() =>
@@ -59,21 +64,23 @@ class ApproveBookingGuestHouseState extends BaseBlocState {
         selectedProject: null,
         selectedEmployee: null,
         isLoadingFilters: false,
+        statusFilter: null,
       );
 
   @override
   List get props => [
-    status,
-    message,
-    bookings,
-    dateStart,
-    dateEnd,
-    filterText,
-    isRefreshing,
-    projects,
-    employees,
-    selectedProject,
-    selectedEmployee,
-    isLoadingFilters,
-  ];
+        status,
+        message,
+        bookings,
+        dateStart,
+        dateEnd,
+        filterText,
+        isRefreshing,
+        projects,
+        employees,
+        selectedProject,
+        selectedEmployee,
+        isLoadingFilters,
+        statusFilter,
+      ];
 }

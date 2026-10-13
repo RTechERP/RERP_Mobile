@@ -36,6 +36,8 @@ abstract class _$ApproveBookingGuestHouseStateCWProxy {
 
   ApproveBookingGuestHouseState isLoadingFilters(bool isLoadingFilters);
 
+  ApproveBookingGuestHouseState statusFilter(int? statusFilter);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ApproveBookingGuestHouseState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -55,6 +57,7 @@ abstract class _$ApproveBookingGuestHouseStateCWProxy {
     ApproveProjectFilterItem? selectedProject,
     ApproveEmployeeFilterItem? selectedEmployee,
     bool? isLoadingFilters,
+    int? statusFilter,
   });
 }
 
@@ -119,6 +122,10 @@ class _$ApproveBookingGuestHouseStateCWProxyImpl
       this(isLoadingFilters: isLoadingFilters);
 
   @override
+  ApproveBookingGuestHouseState statusFilter(int? statusFilter) =>
+      this(statusFilter: statusFilter);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ApproveBookingGuestHouseState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -139,6 +146,7 @@ class _$ApproveBookingGuestHouseStateCWProxyImpl
     Object? selectedProject = const $CopyWithPlaceholder(),
     Object? selectedEmployee = const $CopyWithPlaceholder(),
     Object? isLoadingFilters = const $CopyWithPlaceholder(),
+    Object? statusFilter = const $CopyWithPlaceholder(),
   }) {
     return ApproveBookingGuestHouseState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -192,6 +200,10 @@ class _$ApproveBookingGuestHouseStateCWProxyImpl
           ? _value.isLoadingFilters
           // ignore: cast_nullable_to_non_nullable
           : isLoadingFilters as bool,
+      statusFilter: statusFilter == const $CopyWithPlaceholder()
+          ? _value.statusFilter
+          // ignore: cast_nullable_to_non_nullable
+          : statusFilter as int?,
     );
   }
 }

@@ -1,4 +1,4 @@
-// Implementation repository cho màn Duyệt phiếu Đặt phòng nhà nghỉ.
+// Implementation repository cho màn Duyệt phiếu thanh toán Đặt phòng nhà nghỉ.
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
@@ -19,28 +19,17 @@ class ApproveBookingGuestHouseRepoImpl
 
   @override
   Future<Either<BaseError, List<ApproveBookingGuestHouseItem>>>
-      getApproveBookingGuestHouse({
-    required String dateStart,
-    required String dateEnd,
-    int projectId = 0,
-    int employeeId = 0,
-    String filterText = '',
-  }) async {
+      getPendingForTbp() async {
     try {
-      final res = await _service.getApproveBookingGuestHouse(
-        dateStart: dateStart,
-        dateEnd: dateEnd,
-        projectId: projectId,
-        employeeId: employeeId,
-        filterText: filterText,
-      );
+      final res = await _service.getPendingForTbp();
 
       if (res.status == 1 && res.data != null) {
         return right(res.data!);
       }
       return left(
         BaseError.httpInternalServerError(
-          res.message ?? res.msg ?? 'Không thể tải danh sách đặt phòng nhà nghỉ',
+          res.message ?? res.msg ??
+              'Không thể tải danh sách phiếu thanh toán',
         ),
       );
     } on DioException catch (e) {
@@ -72,9 +61,7 @@ class ApproveBookingGuestHouseRepoImpl
 
   @override
   Future<Either<BaseError, List<ApproveEmployeeFilterItem>>>
-      getApproveBookingGuestHouseEmployees({
-    String keyword = '',
-  }) async {
+      getApproveBookingGuestHouseEmployees({String keyword = ''}) async {
     try {
       final res = await _service.getApproveBookingGuestHouseEmployees(
         keyword: keyword,
