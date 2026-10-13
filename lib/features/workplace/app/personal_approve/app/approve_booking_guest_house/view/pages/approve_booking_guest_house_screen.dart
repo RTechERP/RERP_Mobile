@@ -475,34 +475,34 @@ class ApproveBookingGuestHouseCard extends StatelessWidget {
                 const SizedBox(height: 10),
 
                 // File HĐ + File CK
-                Row(
-                  children: [
-                    if (_invoiceFile != null)
-                      _FileButton(
-                        label: 'File HĐ',
-                        icon: Icons.receipt_outlined,
-                        color: AppColors.success,
-                        onTap: () => _openFile(context, _invoiceFile!.url),
-                      ),
-                    if (_invoiceFile != null && _bankCkFile != null)
-                      const SizedBox(width: 8),
-                    if (_bankCkFile != null)
-                      _FileButton(
-                        label: 'File CK',
-                        icon: Icons.payment_outlined,
-                        color: AppColors.primaryERP,
-                        onTap: () => _openFile(context, _bankCkFile!.url),
-                      ),
-                    if (_invoiceFile == null && _bankCkFile == null)
-                      Text(
-                        'Không có file đính kèm',
-                        style: TextStyle(
-                          fontSize: 11,
-                          color: AppColors.gray,
-                          fontStyle: FontStyle.italic,
-                        ),
-                      ),
-                  ],
+                Builder(
+                  builder: (ctx) {
+                    final allFiles = item.files ?? const <ApproveBookingFile>[];
+                    final hasInvoice = allFiles.any((f) => f.fileType == 'INVOICE');
+                    final hasBillCk = allFiles.any((f) => f.fileType == 'BILL_CK');
+                    if (!hasInvoice && !hasBillCk) {
+                      return const SizedBox.shrink();
+                    }
+                    return Row(
+                      children: [
+                        if (hasInvoice)
+                          _FileButton(
+                            label: 'File HĐ',
+                            icon: Icons.receipt_outlined,
+                            color: AppColors.success,
+                            onTap: () => _showAttachmentsByType(ctx, 'INVOICE'),
+                          ),
+                        if (hasInvoice && hasBillCk) const SizedBox(width: 8),
+                        if (hasBillCk)
+                          _FileButton(
+                            label: 'File CK',
+                            icon: Icons.payment_outlined,
+                            color: AppColors.primaryERP,
+                            onTap: () => _showAttachmentsByType(ctx, 'BILL_CK'),
+                          ),
+                      ],
+                    );
+                  },
                 ),
               ],
             ),
@@ -510,26 +510,6 @@ class ApproveBookingGuestHouseCard extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  ApproveBookingFile? get _invoiceFile {
-    try {
-      return item.files?.firstWhere(
-        (f) => f.fileType == 'INVOICE',
-      );
-    } catch (_) {
-      return null;
-    }
-  }
-
-  ApproveBookingFile? get _bankCkFile {
-    try {
-      return item.files?.firstWhere(
-        (f) => f.fileType == 'BILL_CK',
-      );
-    } catch (_) {
-      return null;
-    }
   }
 
   String _formatDate(DateTime? d) {
@@ -551,12 +531,29 @@ class ApproveBookingGuestHouseCard extends StatelessWidget {
     return '$acc - $name';
   }
 
-  void _openFile(BuildContext context, String? url) {
-    if (url == null || url.isEmpty) {
-      context.showMessage("Không có link file", type: SnackBarType.error);
+  void _showAttachmentsByType(BuildContext context, String fileType) {
+    final files = (item.files ?? const <ApproveBookingFile>[])
+        .where((f) => f.fileType == fileType)
+        .toList();
+    if (files.isEmpty) {
+      final label = fileType == 'INVOICE' ? 'Hóa đơn' : 'Bill CK';
+      context.showMessage(
+        'Phiếu không có file $label',
+        type: SnackBarType.error,
+      );
       return;
     }
-    context.showMessage('Mở file: $url', type: SnackBarType.error);
+    showModalBottomSheet<void>(
+      context: context,
+      backgroundColor: Colors.white,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (_) => _AttachmentListSheet(
+        files: files,
+        title: fileType == 'INVOICE' ? 'Danh sách File HĐ' : 'Danh sách File CK',
+      ),
+    );
   }
 }
 
@@ -893,3 +890,262 @@ class _SelectionCheckbox extends StatelessWidget {
 
 //---(Approve Actions)---//
 // (Đã thay bằng ApproveBookingGuestHouseSelectionBar ở dưới body.)
+
+//---(Attachment List Sheet)---//
+
+/// Bottom sheet hiển thị danh sách file đính kèm.
+/// Mỗi dòng gồm icon loại file + tên file + icon mắt để xem.
+class _AttachmentListSheet extends StatelessWidget {
+  const _AttachmentListSheet({required this.files, this.title});
+
+  final List<ApproveBookingFile> files;
+  final String? title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      constraints: BoxConstraints(
+        maxHeight: MediaQuery.of(context).size.height * 0.7,
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // Handle bar
+          Center(
+            child: Container(
+              margin: const EdgeInsets.only(top: 12),
+              width: 40,
+              height: 4,
+              decoration: BoxDecoration(
+                color: AppColors.gray.withValues(alpha: 0.3),
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+          ),
+          // Title
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Row(
+              children: [
+                const Icon(
+                  Icons.attach_file,
+                  size: 20,
+                  color: AppColors.primaryERP,
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  title ?? 'Danh sách file (${files.length})',
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.enableText,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const Divider(height: 1),
+          // File list
+          Flexible(
+            child: ListView.separated(
+              shrinkWrap: true,
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              itemCount: files.length,
+              separatorBuilder: (_, __) =>
+                  const Divider(height: 1, indent: 56),
+              itemBuilder: (context, index) {
+                final file = files[index];
+                return _FileListTile(file: file);
+              },
+            ),
+          ),
+          const SizedBox(height: 16),
+        ],
+      ),
+    );
+  }
+}
+
+/// Một dòng file trong danh sách: icon loại file + tên + icon mắt để xem.
+class _FileListTile extends StatelessWidget {
+  const _FileListTile({required this.file});
+
+  final ApproveBookingFile file;
+
+  IconData get _icon {
+    final ext = (file.fileName ?? '').split('.').last.toLowerCase();
+    switch (ext) {
+      case 'jpg':
+      case 'jpeg':
+      case 'png':
+      case 'gif':
+      case 'webp':
+      case 'heic':
+        return Icons.image_outlined;
+      case 'pdf':
+        return Icons.picture_as_pdf_outlined;
+      case 'doc':
+      case 'docx':
+        return Icons.description_outlined;
+      case 'xls':
+      case 'xlsx':
+        return Icons.table_chart_outlined;
+      default:
+        return Icons.insert_drive_file_outlined;
+    }
+  }
+
+  Color get _iconColor {
+    final ext = (file.fileName ?? '').split('.').last.toLowerCase();
+    switch (ext) {
+      case 'jpg':
+      case 'jpeg':
+      case 'png':
+      case 'gif':
+      case 'webp':
+      case 'heic':
+        return AppColors.success;
+      case 'pdf':
+        return Colors.red;
+      case 'doc':
+      case 'docx':
+        return Colors.blue;
+      case 'xls':
+      case 'xlsx':
+        return Colors.green;
+      default:
+        return AppColors.gray;
+    }
+  }
+
+  void _viewFile(BuildContext context) {
+    final url = file.url;
+    if (url == null || url.isEmpty) {
+      context.showMessage('Không có link file', type: SnackBarType.error);
+      return;
+    }
+
+    // Kiểm tra xem có phải ảnh không
+    final ext = (file.fileName ?? '').split('.').last.toLowerCase();
+    final imageExts = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'heic'];
+    final isImage = imageExts.contains(ext);
+
+    if (isImage) {
+      Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (_) => _ImageViewer(url: url, fileName: file.fileName ?? 'Ảnh'),
+        ),
+      );
+    } else {
+      context.showMessage('Mở file: $url', type: SnackBarType.error);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final url = file.url;
+    final hasUrl = url != null && url.isNotEmpty;
+
+    return ListTile(
+      dense: true,
+      leading: Container(
+        width: 40,
+        height: 40,
+        decoration: BoxDecoration(
+          color: _iconColor.withValues(alpha: 0.1),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Icon(_icon, color: _iconColor, size: 22),
+      ),
+      title: Text(
+        file.fileName ?? 'Không có tên',
+        style: const TextStyle(fontSize: 13),
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+      ),
+      subtitle: Text(
+        _typeLabel,
+        style: TextStyle(fontSize: 11, color: AppColors.gray),
+      ),
+      trailing: IconButton(
+        icon: const Icon(Icons.visibility_outlined, size: 20),
+        color: AppColors.primaryERP,
+        onPressed: hasUrl ? () => _viewFile(context) : null,
+      ),
+      onTap: hasUrl ? () => _viewFile(context) : null,
+    );
+  }
+
+  String get _typeLabel {
+    final type = file.fileType ?? '';
+    switch (type) {
+      case 'INVOICE':
+        return 'Hóa đơn';
+      case 'BILL_CK':
+        return 'Bill chuyển khoản';
+      default:
+        return type.isEmpty ? 'Không rõ loại' : type;
+    }
+  }
+}
+
+/// Màn hình xem ảnh full-screen.
+class _ImageViewer extends StatelessWidget {
+  const _ImageViewer({required this.url, this.fileName});
+
+  final String url;
+  final String? fileName;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        foregroundColor: Colors.white,
+        title: Text(
+          fileName ?? 'Xem ảnh',
+          style: const TextStyle(fontSize: 14, color: Colors.white),
+        ),
+        leading: IconButton(
+          icon: const Icon(Icons.close),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+      ),
+      body: Center(
+        child: InteractiveViewer(
+          minScale: 0.5,
+          maxScale: 4.0,
+          child: Image.network(
+            url,
+            fit: BoxFit.contain,
+            loadingBuilder: (_, child, progress) {
+              if (progress == null) return child;
+              return Center(
+                child: CircularProgressIndicator(
+                  value: progress.expectedTotalBytes != null
+                      ? progress.cumulativeBytesLoaded /
+                          progress.expectedTotalBytes!
+                      : null,
+                  color: Colors.white,
+                ),
+              );
+            },
+            errorBuilder: (_, __, ___) => const Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.broken_image_outlined,
+                    size: 64, color: Colors.white54),
+                SizedBox(height: 12),
+                Text(
+                  'Không thể tải ảnh',
+                  style: TextStyle(color: Colors.white54),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
