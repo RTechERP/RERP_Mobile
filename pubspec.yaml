@@ -224,6 +224,7 @@ flutter:
     - assets/images/celebrations/birthday.mp3
     - assets/images/celebrations/seniority.png
     - assets/images/celebrations/seniority.mp3
+    - assets/images/icons/apps/92.png
 
     # Trans
     - assets/trans/vi-VN.json
