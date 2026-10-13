@@ -31,6 +31,10 @@ import '../features/workplace/app/personal_approve/app/approve_timesheet/data/da
 import '../features/workplace/app/personal_approve/app/approve_timesheet/data/repository/approve_timesheet_repo.dart';
 import '../features/workplace/app/personal_approve/app/approve_timesheet/data/repository/approve_timesheet_repo_impl.dart';
 import '../features/workplace/app/personal_approve/app/approve_timesheet/view/bloc/approve_timesheet_bloc.dart';
+import '../features/workplace/app/personal_approve/app/approve_booking_guest_house/data/datasource/service/approve_booking_guest_house_service.dart';
+import '../features/workplace/app/personal_approve/app/approve_booking_guest_house/data/repository/approve_booking_guest_house_repo.dart';
+import '../features/workplace/app/personal_approve/app/approve_booking_guest_house/data/repository/approve_booking_guest_house_repo_impl.dart';
+import '../features/workplace/app/personal_approve/app/approve_booking_guest_house/view/bloc/approve_booking_guest_house_bloc.dart';
 import '../features/workplace/app/personal_approve/view/bloc/personal_approve_menu_bloc.dart';
 import '../features/version/data/datasource/service/app_version_service.dart';
 import '../features/version/data/repository/app_version_repo.dart';
@@ -254,6 +258,10 @@ void configureDependencies() {
     () => BookingGuestHouseService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<ApproveBookingGuestHouseService>(
+    () => ApproveBookingGuestHouseService(getIt<Dio>()),
+  );
+
   getIt.registerLazySingleton<LunchService>(() => LunchService(getIt<Dio>()));
 
   getIt.registerLazySingleton<ProjectListService>(
@@ -408,6 +416,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<BookingGuestHouseRepo>(
     () => BookingGuestHouseRepoImpl(getIt<BookingGuestHouseService>()),
+  );
+
+  getIt.registerLazySingleton<ApproveBookingGuestHouseRepo>(
+    () => ApproveBookingGuestHouseRepoImpl(getIt<ApproveBookingGuestHouseService>()),
   );
 
   getIt.registerLazySingleton<LunchRepo>(
@@ -609,6 +621,13 @@ void configureDependencies() {
 getIt.registerLazySingleton<BookingGuestHouseBloc>(
   () => BookingGuestHouseBloc(
     getIt<BookingGuestHouseRepo>(),
+    getIt<LogUtils>(),
+  ),
+);
+
+getIt.registerLazySingleton<ApproveBookingGuestHouseBloc>(
+  () => ApproveBookingGuestHouseBloc(
+    getIt<ApproveBookingGuestHouseRepo>(),
     getIt<LogUtils>(),
   ),
 );

@@ -279,6 +279,16 @@ class RouteNames {
   static String personalApproveTimesheetByType(int tType) =>
       '$personalApproveTimesheet?tType=$tType';
 
+  /// Màn Duyệt phiếu Đặt phòng nhà nghỉ (TBP).
+  /// Hiện tại chỉ hiển thị danh sách + bộ lọc; chưa có action duyệt.
+  static const personalApproveBookingGuestHouse =
+      '/personal_approve/approve_booking_guest_house';
+
+  /// Menu "Duyệt ĐX/NN" (Đặt xe / Nhà nghỉ) - grid 3 mục: Duyệt file,
+  /// Duyệt ĐNTT, Duyệt tạm ứng.
+  static const personalApproveBookingGnMenu =
+      '/personal_approve/approve_booking_gn/menu';
+
   // Warehouse
   static const warehouseArea = '/warehouse_area';
   static const warehouseSaleArea = '/warehouse_sale_area';

@@ -52,9 +52,12 @@ import '../features/more/view/settings/notification/page/notification_settings_s
 import '../features/workplace/app/personal_approve/app/approve_timesheet/view/bloc/approve_timesheet_bloc.dart';
 import '../features/workplace/app/personal_approve/app/approve_timesheet/view/pages/approve_timesheet_detail_screen.dart';
 import '../features/workplace/app/personal_approve/app/approve_timesheet/view/pages/approve_timesheet_senior_screen.dart';
+import '../features/workplace/app/personal_approve/app/approve_booking_guest_house/view/bloc/approve_booking_guest_house_bloc.dart';
+import '../features/workplace/app/personal_approve/app/approve_booking_guest_house/view/pages/approve_booking_guest_house_screen.dart';
 import '../features/workplace/app/personal_approve/app/approve_timesheet/view/pages/approve_timesheet_tbp_screen.dart';
 import '../features/workplace/app/personal_approve/app/approve_timesheet/data/datasource/models/approve_timesheet_model.dart';
 import '../features/workplace/app/personal_approve/view/bloc/personal_approve_menu_bloc.dart';
+import '../features/workplace/app/personal_approve/view/pages/personal_approve_booking_gn_menu_screen.dart';
 import '../features/workplace/app/personal_approve/view/pages/personal_approve_menu_screen.dart';
 import '../features/workplace/app/personal_approve/view/pages/personal_approve_timesheet_menu_screen.dart';
 import '../features/more/view/pages/avatar_viewer_screen.dart';
@@ -1650,6 +1653,11 @@ class AppRouter {
             builder: (context, state) =>
                 const PersonalApproveTimesheetMenuScreen(),
           ),
+          GoRoute(
+            path: RouteNames.personalApproveBookingGnMenu,
+            builder: (context, state) =>
+                const PersonalApproveBookingGnMenuScreen(),
+          ),
           ShellRoute(
             builder: (context, state, child) {
               return BlocProvider.value(
@@ -1715,6 +1723,24 @@ class AppRouter {
                     ),
                   );
                 },
+              ),
+            ],
+          ),
+          //---(ApproveBookingGuestHouse)---//
+          // Màn Duyệt phiếu Đặt phòng nhà nghỉ — singleton bloc wrap ở
+          // ShellRoute để share state khi điều hướng giữa list / detail.
+          ShellRoute(
+            builder: (context, state, child) {
+              return BlocProvider.value(
+                value: getIt<ApproveBookingGuestHouseBloc>(),
+                child: child,
+              );
+            },
+            routes: [
+              GoRoute(
+                path: RouteNames.personalApproveBookingGuestHouse,
+                builder: (context, state) =>
+                    const ApproveBookingGuestHousePage(),
               ),
             ],
           ),

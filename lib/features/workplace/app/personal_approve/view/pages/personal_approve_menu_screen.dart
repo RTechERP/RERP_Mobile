@@ -156,21 +156,25 @@ class _ApproveGroupSection extends StatelessWidget {
 
 /// Danh sách nhóm duyệt hiển thị trong menu Phê duyệt.
 ///
-/// Hiện tại có 1 nhóm: "Duyệt công". Mỗi nhóm có 1 mục duy nhất — tên nhóm
-/// được lặp lại làm tên mục để giữ bố cục grid 1 ô. Bấm vào sẽ vào menu
-/// "Duyệt công" (grid 9 loại phiếu), từ đó mới resolve Senior / TBP theo
-/// permission của user.
+/// Hiện tại có 2 nhóm:
+/// - "Duyệt công" — duyệt các phiếu timesheet (9 loại).
+/// - "Duyệt ĐX/NN" — duyệt phiếu Đặt xe + Nhà nghỉ. Bấm vào mở menu
+///   con gồm 3 mục: Duyệt file, Duyệt ĐNTT, Duyệt tạm ứng.
 ///
-/// Khi thêm nhóm duyệt mới (vd: "Duyệt đề xuất"), chỉ cần thêm 1 nhóm
-/// vào list này.
+/// Khi thêm nhóm duyệt mới, chỉ cần thêm 1 nhóm vào list này.
 final _kPersonalApproveGroups = <_ApproveGroup>[
   _ApproveGroup(
-    title: 'Duyệt công',
+    title: 'Menu phê duyệt',
     items: [
       _ApproveGroupItem(
         title: 'Duyệt công',
         icon: Icons.access_time_filled_outlined,
         route: RouteNames.personalApproveTimesheetMenu,
+      ),
+      _ApproveGroupItem(
+        title: 'Duyệt ĐX/NN',
+        icon: Icons.hotel_outlined,
+        route: RouteNames.personalApproveBookingGnMenu,
       ),
     ],
   ),
