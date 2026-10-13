@@ -424,10 +424,20 @@ class _Pipeline extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final stages = ApproveTimesheetStages.fromItem(item);
-    final stageConfigs = [
-      _StageConfig(label: 'Senior', state: stages.senior, statusText: item.isSeniorApprovedText),
-      _StageConfig(label: 'HR', state: stages.hr, statusText: item.statusHRText),
+
+    // Thứ tự sắp xếp stage khác nhau giữa 2 màn duyệt:
+    // - Senior duyệt: Senior - TBP - HR - BGĐ (xem full pipeline).
+    // - TBP duyệt:    TBP - HR - BGĐ (bỏ Senior — TBP chỉ quan tâm stage
+    //   còn lại trong quy trình duyệt của mình).
+    final stageConfigs = <_StageConfig>[
+      if (showSeniorStage)
+        _StageConfig(
+          label: 'Senior',
+          state: stages.senior,
+          statusText: item.isSeniorApprovedText,
+        ),
       _StageConfig(label: 'TBP', state: stages.tbp, statusText: item.statusText),
+      _StageConfig(label: 'HR', state: stages.hr, statusText: item.statusHRText),
       _StageConfig(label: 'BGĐ', state: stages.bgd, statusText: item.statusBGDText),
     ];
     return Wrap(
