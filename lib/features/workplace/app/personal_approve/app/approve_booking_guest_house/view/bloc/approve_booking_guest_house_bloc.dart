@@ -41,6 +41,11 @@ class ApproveBookingGuestHouseBloc extends BaseBloc<
             _onChangeEmployeeFilter(emit, employee: employee),
         changeStatusFilter: (status) =>
             _onChangeStatusFilter(emit, status: status),
+        toggleSelection: (id) => _onToggleSelection(emit, id: id),
+        clearSelection: () => _onClearSelection(emit),
+        selectAll: () => _onSelectAll(emit),
+        approveSelected: () => _onApproveSelected(emit),
+        rejectSelected: () => _onRejectSelected(emit),
       );
     });
   }
@@ -189,7 +194,7 @@ class ApproveBookingGuestHouseBloc extends BaseBloc<
 
   Future<void> _fetch(
     Emitter<ApproveBookingGuestHouseState> emit, {
-    void Function(List<ApproveBookingGuestHouseItem> bookings)?
+    Function(List<ApproveBookingGuestHouseItem> bookings)?
         onSuccessExtra,
     VoidCallback? onFailureExtra,
   }) async {
@@ -236,5 +241,87 @@ class ApproveBookingGuestHouseBloc extends BaseBloc<
     return source
         .where((b) => b.detailStatus == statusFilter)
         .toList(growable: false);
+  }
+
+  //---(Selection)---//
+
+  _onToggleSelection(
+    Emitter<ApproveBookingGuestHouseState> emit, {
+    required int id,
+  }) {
+    final next = Set<int>.from(state.selectedIds);
+    if (next.contains(id)) {
+      next.remove(id);
+    } else {
+      next.add(id);
+    }
+    emit(state.copyWith(selectedIds: next));
+  }
+
+  _onClearSelection(
+    Emitter<ApproveBookingGuestHouseState> emit,
+  ) {
+    emit(state.copyWith(selectedIds: {}));
+  }
+
+  _onSelectAll(
+    Emitter<ApproveBookingGuestHouseState> emit,
+  ) {
+    final all = state.bookings.map((b) => b.id).toSet();
+    emit(state.copyWith(selectedIds: all));
+  }
+
+  //---(Approve / Reject)---//
+
+  Future<void> _onApproveSelected(
+    Emitter<ApproveBookingGuestHouseState> emit,
+  ) async {
+    final ids = state.selectedIds.toList();
+    if (ids.isEmpty) return;
+
+    emit(state.copyWith(isApproving: true));
+
+    var success = true;
+    for (final id in ids) {
+      final res = await _repo.updateDetailStatus(detailId: id, status: 3);
+      res.fold(
+        (err) {
+          _log.logE('❌ Approve failed id=$id: $err');
+          success = false;
+        },
+        (_) => _log.logI('✅ Approved id=$id'),
+      );
+    }
+
+    emit(state.copyWith(selectedIds: {}, isApproving: false));
+    if (success) {
+      await _fetch(emit);
+    }
+  }
+
+  Future<void> _onRejectSelected(
+    Emitter<ApproveBookingGuestHouseState> emit,
+  ) async {
+    final ids = state.selectedIds.toList();
+    if (ids.isEmpty) return;
+
+    emit(state.copyWith(isApproving: true));
+
+    var success = true;
+    for (final id in ids) {
+      final res = await _repo.updateDetailStatus(detailId: id, status: 2);
+      res.fold(
+        (err) {
+          _log.logE('❌ Reject failed id=$id: $err');
+          success = false;
+        },
+        (_) => _log.logI('✅ Rejected id=$id'),
+      );
+    }
+
+    emit(state.copyWith(selectedIds: {}, isApproving: false));
+    if (success) {
+      await _fetch(emit);
+    }
   }
 }

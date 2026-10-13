@@ -47,4 +47,24 @@ class ApproveBookingGuestHouseEvent
   const factory ApproveBookingGuestHouseEvent.changeStatusFilter({
     required int? status,
   }) = _ChangeStatusFilter;
+
+  /// Bật/tắt chọn 1 phiếu để duyệt / huỷ duyệt.
+  const factory ApproveBookingGuestHouseEvent.toggleSelection({
+    required int id,
+  }) = _ToggleSelection;
+
+  /// Bỏ chọn tất cả.
+  const factory ApproveBookingGuestHouseEvent.clearSelection() =
+      _ClearSelection;
+
+  /// Chọn tất cả phiếu trong trang hiện tại.
+  const factory ApproveBookingGuestHouseEvent.selectAll() = _SelectAll;
+
+  /// Duyệt tất cả phiếu đang được chọn (detailStatus = 3).
+  const factory ApproveBookingGuestHouseEvent.approveSelected() =
+      _ApproveSelected;
+
+  /// Huỷ duyệt tất cả phiếu đang được chọn (detailStatus = 2).
+  const factory ApproveBookingGuestHouseEvent.rejectSelected() =
+      _RejectSelected;
 }

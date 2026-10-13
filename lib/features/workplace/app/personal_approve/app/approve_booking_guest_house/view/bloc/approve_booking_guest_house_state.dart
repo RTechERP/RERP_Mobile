@@ -35,6 +35,12 @@ class ApproveBookingGuestHouseState extends BaseBlocState {
   /// `null` = tất cả (cả 2 & 3); `2` = chưa duyệt; `3` = đã duyệt.
   final int? statusFilter;
 
+  /// Tập ID các phiếu đang được chọn để duyệt / huỷ duyệt.
+  final Set<int> selectedIds;
+
+  /// Loading khi đang gọi API duyệt / huỷ duyệt.
+  final bool isApproving;
+
   const ApproveBookingGuestHouseState({
     required super.status,
     super.message,
@@ -49,6 +55,8 @@ class ApproveBookingGuestHouseState extends BaseBlocState {
     this.selectedEmployee,
     this.isLoadingFilters = false,
     this.statusFilter,
+    this.selectedIds = const {},
+    this.isApproving = false,
   });
 
   factory ApproveBookingGuestHouseState.init() =>
@@ -65,6 +73,8 @@ class ApproveBookingGuestHouseState extends BaseBlocState {
         selectedEmployee: null,
         isLoadingFilters: false,
         statusFilter: null,
+        selectedIds: const {},
+        isApproving: false,
       );
 
   @override
@@ -82,5 +92,7 @@ class ApproveBookingGuestHouseState extends BaseBlocState {
         selectedEmployee,
         isLoadingFilters,
         statusFilter,
+        selectedIds,
+        isApproving,
       ];
 }

@@ -18,4 +18,11 @@ abstract class ApproveBookingGuestHouseRepo {
   /// Lấy danh sách nhân viên cho bộ lọc người đăng ký.
   Future<Either<BaseError, List<ApproveEmployeeFilterItem>>>
       getApproveBookingGuestHouseEmployees({String keyword});
+
+  /// Cập nhật trạng thái duyệt của 1 phiếu.
+  /// [detailId] — ID bản ghi. [status] — `3` = đã duyệt, `2` = chưa duyệt.
+  Future<Either<BaseError, bool>> updateDetailStatus({
+    required int detailId,
+    required int status,
+  });
 }

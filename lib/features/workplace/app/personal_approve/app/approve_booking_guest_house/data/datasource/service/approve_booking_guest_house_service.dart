@@ -96,6 +96,30 @@ class ApproveBookingGuestHouseService extends DioBaseApiService {
     );
   }
 
+  /// Cập nhật trạng thái duyệt của 1 phiếu (DetailID).
+  /// API: POST /AccommodationBookingPaymentOrder/update-detail-status
+  /// [detailId] — ID bản ghi cần duyệt / huỷ duyệt.
+  /// [status] — `3` = đã duyệt, `2` = chưa duyệt (huỷ duyệt).
+  Future<bool> updateDetailStatus({
+    required int detailId,
+    required int status,
+  }) {
+    return post<bool>(
+      ApiEndPoint.accommodationBookingPaymentOrderUpdateDetailStatus,
+      body: {
+        'DetailID': detailId,
+        'Status': status,
+      },
+      parser: (json) {
+        // API trả về { status, message } hoặc tương tự.
+        if (json is Map) {
+          return (json['status'] == 1 || json['status'] == true);
+        }
+        return false;
+      },
+    );
+  }
+
   /// Generic parse cho các list đơn giản.
   BaseData<List<T>> _parseListGeneric<T>(
     dynamic json,

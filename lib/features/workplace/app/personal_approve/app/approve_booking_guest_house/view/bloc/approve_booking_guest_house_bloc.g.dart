@@ -38,6 +38,10 @@ abstract class _$ApproveBookingGuestHouseStateCWProxy {
 
   ApproveBookingGuestHouseState statusFilter(int? statusFilter);
 
+  ApproveBookingGuestHouseState selectedIds(Set<int> selectedIds);
+
+  ApproveBookingGuestHouseState isApproving(bool isApproving);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ApproveBookingGuestHouseState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -58,6 +62,8 @@ abstract class _$ApproveBookingGuestHouseStateCWProxy {
     ApproveEmployeeFilterItem? selectedEmployee,
     bool? isLoadingFilters,
     int? statusFilter,
+    Set<int>? selectedIds,
+    bool? isApproving,
   });
 }
 
@@ -126,6 +132,14 @@ class _$ApproveBookingGuestHouseStateCWProxyImpl
       this(statusFilter: statusFilter);
 
   @override
+  ApproveBookingGuestHouseState selectedIds(Set<int> selectedIds) =>
+      this(selectedIds: selectedIds);
+
+  @override
+  ApproveBookingGuestHouseState isApproving(bool isApproving) =>
+      this(isApproving: isApproving);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ApproveBookingGuestHouseState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -147,6 +161,8 @@ class _$ApproveBookingGuestHouseStateCWProxyImpl
     Object? selectedEmployee = const $CopyWithPlaceholder(),
     Object? isLoadingFilters = const $CopyWithPlaceholder(),
     Object? statusFilter = const $CopyWithPlaceholder(),
+    Object? selectedIds = const $CopyWithPlaceholder(),
+    Object? isApproving = const $CopyWithPlaceholder(),
   }) {
     return ApproveBookingGuestHouseState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -204,6 +220,16 @@ class _$ApproveBookingGuestHouseStateCWProxyImpl
           ? _value.statusFilter
           // ignore: cast_nullable_to_non_nullable
           : statusFilter as int?,
+      selectedIds:
+          selectedIds == const $CopyWithPlaceholder() || selectedIds == null
+              ? _value.selectedIds
+              // ignore: cast_nullable_to_non_nullable
+              : selectedIds as Set<int>,
+      isApproving:
+          isApproving == const $CopyWithPlaceholder() || isApproving == null
+              ? _value.isApproving
+              // ignore: cast_nullable_to_non_nullable
+              : isApproving as bool,
     );
   }
 }

@@ -578,6 +578,11 @@ class ApiEndPoint {
   static const String accommodationBookingPaymentOrderGetPendingForTbp =
       '/AccommodationBookingPaymentOrder/get-pending-for-tbp';
 
+  /// API: POST /AccommodationBookingPaymentOrder/update-detail-status
+  /// Cập nhật trạng thái duyệt của phiếu (DetailID).
+  static const String accommodationBookingPaymentOrderUpdateDetailStatus =
+      '/AccommodationBookingPaymentOrder/update-detail-status';
+
   /// Check xung đột trước khi lưu phiếu đăng ký bàn test.
   /// API: POST /ESLRegistration/check-conflict (form-data).
   static const String checkConflictRegistration =

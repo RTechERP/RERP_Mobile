@@ -7,11 +7,13 @@ import '../../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/constants/index.dart';
+import '../../../../../../../../../common/utils/dialog/dialog_service.dart';
 import '../../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../../common/widgets/date_range_picker.dart';
 import '../../../../../../../../base/network/errors/extension.dart';
 import '../../data/datasource/models/approve_booking_guest_house_model.dart';
 import '../bloc/approve_booking_guest_house_bloc.dart';
+import '../widgets/approve_booking_guest_house_selection_bar.dart';
 
 class ApproveBookingGuestHousePage extends StatefulWidget {
   const ApproveBookingGuestHousePage({super.key});
@@ -108,6 +110,45 @@ class _ApproveBookingGuestHousePageState extends BaseShareState<
     );
   }
 
+  /// Xử lý duyệt nhiều phiếu đã chọn.
+  Future<void> _onApprove() async {
+    final count = state.selectedIds.length;
+    final confirmed = await DialogService.showConfirmDialog(
+      context: context,
+      title: 'Duyệt phiếu',
+      message: 'Bạn có muốn duyệt $count phiếu này không?',
+    );
+    if (!confirmed) return;
+    bloc.add(const ApproveBookingGuestHouseEvent.approveSelected());
+    // Chờ bloc kết thúc vòng duyệt (isApproving về false) để hiện thông báo.
+    await bloc.stream.firstWhere((s) => !s.isApproving);
+    if (!mounted) return;
+    showMessage(
+      context,
+      'Đã duyệt $count phiếu thành công',
+      type: SnackBarType.success,
+    );
+  }
+
+  /// Xử lý huỷ duyệt nhiều phiếu đã chọn.
+  Future<void> _onReject() async {
+    final count = state.selectedIds.length;
+    final confirmed = await DialogService.showConfirmDialog(
+      context: context,
+      title: 'Huỷ duyệt',
+      message: 'Bạn có muốn huỷ duyệt $count phiếu này không?',
+    );
+    if (!confirmed) return;
+    bloc.add(const ApproveBookingGuestHouseEvent.rejectSelected());
+    await bloc.stream.firstWhere((s) => !s.isApproving);
+    if (!mounted) return;
+    showMessage(
+      context,
+      'Đã huỷ duyệt $count phiếu thành công',
+      type: SnackBarType.success,
+    );
+  }
+
   Future<void> _openDatePicker() async {
     final now = DateTime.now();
     final todayStart = DateTime(now.year, now.month, now.day);
@@ -193,8 +234,13 @@ class _ApproveBookingGuestHousePageState extends BaseShareState<
                 padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
                 child: _ListHeader(
                   total: state.bookings.length,
+                  pendingCount: state.bookings
+                      .where((b) => b.detailStatus == 2)
+                      .length,
+                  approvedCount: state.bookings
+                      .where((b) => b.detailStatus == 3)
+                      .length,
                   isSearching: state.filterText.isNotEmpty,
-                  statusFilter: state.statusFilter,
                 ),
               ),
               Expanded(
@@ -208,6 +254,23 @@ class _ApproveBookingGuestHousePageState extends BaseShareState<
                   child: _buildList(state),
                 ),
               ),
+              if (state.selectedIds.isNotEmpty)
+                ApproveBookingGuestHouseSelectionBar(
+                  selectedCount: state.selectedIds.length,
+                  totalCount: state.bookings.length,
+                  isAllSelected:
+                      state.bookings.isNotEmpty &&
+                      state.selectedIds.length == state.bookings.length,
+                  onSelectAll: () => bloc.add(
+                    const ApproveBookingGuestHouseEvent.selectAll(),
+                  ),
+                  onClearSelection: () => bloc.add(
+                    const ApproveBookingGuestHouseEvent.clearSelection(),
+                  ),
+                  onApprove: _onApprove,
+                  onReject: _onReject,
+                  isApproving: state.isApproving,
+                ),
             ],
           );
         },
@@ -242,10 +305,18 @@ class _ApproveBookingGuestHousePageState extends BaseShareState<
       separatorBuilder: (_, _) => const SizedBox(height: 10),
       itemBuilder: (context, index) {
         final item = state.bookings[index];
+        final selected = state.selectedIds.contains(item.id);
 
         return Builder(
           builder: (context) => ApproveBookingGuestHouseCard(
             item: item,
+            selectionEnabled: true,
+            selected: selected,
+            onToggleSelection: (_) {
+              bloc.add(
+                ApproveBookingGuestHouseEvent.toggleSelection(id: item.id),
+              );
+            },
           ),
         );
       },
@@ -263,10 +334,16 @@ class ApproveBookingGuestHouseCard extends StatelessWidget {
     super.key,
     required this.item,
     this.onTap,
+    this.selected = false,
+    this.selectionEnabled = false,
+    this.onToggleSelection,
   });
 
   final ApproveBookingGuestHouseItem item;
   final VoidCallback? onTap;
+  final bool selected;
+  final bool selectionEnabled;
+  final ValueChanged<bool>? onToggleSelection;
 
   static final DateFormat _dateFmt = DateFormat('dd/MM/yyyy');
   static final NumberFormat _moneyFmt = NumberFormat('#,###');
@@ -279,6 +356,9 @@ class ApproveBookingGuestHouseCard extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           color: Colors.white,
+          border: selected
+              ? Border.all(color: AppColors.primaryERP, width: 2)
+              : null,
           boxShadow: [
             BoxShadow(
               color: AppColors.primaryERP.withValues(alpha: 0.08),
@@ -299,9 +379,17 @@ class ApproveBookingGuestHouseCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Header: status chip + hotel
+                // Header: status chip + hotel (+ selection checkbox)
                 Row(
                   children: [
+                    if (selectionEnabled) ...[
+                      _SelectionCheckbox(
+                        value: selected,
+                        onChanged: (v) =>
+                            onToggleSelection?.call(v ?? false),
+                      ),
+                      const SizedBox(width: 8),
+                    ],
                     _StatusChip(status: item.detailStatus),
                     const SizedBox(width: 8),
                     Expanded(
@@ -475,7 +563,7 @@ class ApproveBookingGuestHouseCard extends StatelessWidget {
 //---(Status Chip)---//
 
 /// Chip trạng thái dựa trên `DetailStatus`:
-/// 1 = Chờ duyệt, 2 = Đã duyệt, 3 = Từ chối.
+/// 2 = Chưa duyệt, 3 = Đã duyệt (theo API trả về).
 class _StatusChip extends StatelessWidget {
   const _StatusChip({required this.status});
 
@@ -505,12 +593,10 @@ class _StatusChip extends StatelessWidget {
 
   (String, Color, Color) _resolve() {
     switch (status) {
-      case 1:
-        return ('Chờ duyệt', AppColors.warning, AppColors.warning);
       case 2:
-        return ('Đã duyệt', AppColors.success, AppColors.success);
+        return ('Chưa duyệt', AppColors.warning, AppColors.warning);
       case 3:
-        return ('Từ chối', AppColors.alert, AppColors.alert);
+        return ('Đã duyệt', AppColors.success, AppColors.success);
       default:
         return ('Không rõ', AppColors.gray, AppColors.gray);
     }
@@ -619,13 +705,15 @@ class _FileButton extends StatelessWidget {
 class _ListHeader extends StatelessWidget {
   const _ListHeader({
     required this.total,
+    required this.pendingCount,
+    required this.approvedCount,
     required this.isSearching,
-    required this.statusFilter,
   });
 
   final int total;
+  final int pendingCount;
+  final int approvedCount;
   final bool isSearching;
-  final int? statusFilter;
 
   @override
   Widget build(BuildContext context) {
@@ -676,16 +764,33 @@ class _ListHeader extends StatelessWidget {
                     ),
                   ],
                 ),
-                Text(
-                  isSearching
-                      ? 'Đang tìm kiếm'
-                      : _headerSubtitle(statusFilter),
-                  style: TextStyle(
-                    fontSize: 11,
-                    color: Colors.white.withValues(alpha: 0.85),
-                  ),
-                  overflow: TextOverflow.ellipsis,
+                const SizedBox(height: 6),
+                Row(
+                  children: [
+                    _MiniCount(
+                      icon: Icons.pending_outlined,
+                      label: 'Chưa duyệt',
+                      count: pendingCount,
+                    ),
+                    const SizedBox(width: 10),
+                    _MiniCount(
+                      icon: Icons.check_circle_outline,
+                      label: 'Đã duyệt',
+                      count: approvedCount,
+                    ),
+                  ],
                 ),
+                if (isSearching)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 2),
+                    child: Text(
+                      'Đang tìm kiếm',
+                      style: TextStyle(
+                        fontSize: 11,
+                        color: Colors.white.withValues(alpha: 0.85),
+                      ),
+                    ),
+                  ),
               ],
             ),
           ),
@@ -695,14 +800,42 @@ class _ListHeader extends StatelessWidget {
   }
 }
 
-String _headerSubtitle(int? statusFilter) {
-  switch (statusFilter) {
-    case 2:
-      return 'Tổng số phiếu chưa duyệt';
-    case 3:
-      return 'Tổng số phiếu đã duyệt';
-    default:
-      return 'Tổng số phiếu cần duyệt';
+/// Nhãn nhỏ hiển thị số lượng theo trạng thái (Chưa duyệt / Đã duyệt) trong header.
+class _MiniCount extends StatelessWidget {
+  const _MiniCount({
+    required this.icon,
+    required this.label,
+    required this.count,
+  });
+
+  final IconData icon;
+  final String label;
+  final int count;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha: 0.18),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 14, color: Colors.white),
+          const SizedBox(width: 4),
+          Text(
+            '$label: $count',
+            style: const TextStyle(
+              fontSize: 11,
+              fontWeight: FontWeight.w600,
+              color: Colors.white,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -722,3 +855,41 @@ class _StatusPick {
   const _StatusPick(this.value);
   final int? value;
 }
+
+//---(Selection Checkbox)---//
+
+/// Checkbox bo tròn hiển thị ở leading của mỗi card khi selection bật.
+class _SelectionCheckbox extends StatelessWidget {
+  const _SelectionCheckbox({required this.value, required this.onChanged});
+
+  final bool value;
+  final ValueChanged<bool?> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () => onChanged(!value),
+      borderRadius: BorderRadius.circular(20),
+      child: Container(
+        width: 24,
+        height: 24,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: value ? AppColors.primaryERP : Colors.transparent,
+          border: Border.all(
+            color: value
+                ? AppColors.primaryERP
+                : Colors.grey.shade400,
+            width: 2,
+          ),
+        ),
+        child: value
+            ? const Icon(Icons.check, size: 16, color: Colors.white)
+            : null,
+      ),
+    );
+  }
+}
+
+//---(Approve Actions)---//
+// (Đã thay bằng ApproveBookingGuestHouseSelectionBar ở dưới body.)

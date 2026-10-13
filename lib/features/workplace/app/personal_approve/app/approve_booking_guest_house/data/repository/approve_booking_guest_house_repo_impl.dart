@@ -80,4 +80,27 @@ class ApproveBookingGuestHouseRepoImpl
       return left(BaseError.httpInternalServerError(e.toString()));
     }
   }
+
+  @override
+  Future<Either<BaseError, bool>> updateDetailStatus({
+    required int detailId,
+    required int status,
+  }) async {
+    try {
+      final ok = await _service.updateDetailStatus(
+        detailId: detailId,
+        status: status,
+      );
+      if (ok) return right(true);
+      return left(
+        const BaseError.httpInternalServerError(
+          'Cập nhật trạng thái thất bại',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
 }

@@ -29,6 +29,11 @@ mixin _$ApproveBookingGuestHouseEvent {
     required TResult Function(ApproveEmployeeFilterItem? employee)
         changeEmployeeFilter,
     required TResult Function(int? status) changeStatusFilter,
+    required TResult Function(int id) toggleSelection,
+    required TResult Function() clearSelection,
+    required TResult Function() selectAll,
+    required TResult Function() approveSelected,
+    required TResult Function() rejectSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -42,6 +47,11 @@ mixin _$ApproveBookingGuestHouseEvent {
     TResult? Function(ApproveEmployeeFilterItem? employee)?
         changeEmployeeFilter,
     TResult? Function(int? status)? changeStatusFilter,
+    TResult? Function(int id)? toggleSelection,
+    TResult? Function()? clearSelection,
+    TResult? Function()? selectAll,
+    TResult? Function()? approveSelected,
+    TResult? Function()? rejectSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -54,6 +64,11 @@ mixin _$ApproveBookingGuestHouseEvent {
     TResult Function(ApproveProjectFilterItem? project)? changeProjectFilter,
     TResult Function(ApproveEmployeeFilterItem? employee)? changeEmployeeFilter,
     TResult Function(int? status)? changeStatusFilter,
+    TResult Function(int id)? toggleSelection,
+    TResult Function()? clearSelection,
+    TResult Function()? selectAll,
+    TResult Function()? approveSelected,
+    TResult Function()? rejectSelected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -67,6 +82,11 @@ mixin _$ApproveBookingGuestHouseEvent {
     required TResult Function(_ChangeProjectFilter value) changeProjectFilter,
     required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
     required TResult Function(_ChangeStatusFilter value) changeStatusFilter,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_SelectAll value) selectAll,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_RejectSelected value) rejectSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -79,6 +99,11 @@ mixin _$ApproveBookingGuestHouseEvent {
     TResult? Function(_ChangeProjectFilter value)? changeProjectFilter,
     TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult? Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_SelectAll value)? selectAll,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_RejectSelected value)? rejectSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -91,6 +116,11 @@ mixin _$ApproveBookingGuestHouseEvent {
     TResult Function(_ChangeProjectFilter value)? changeProjectFilter,
     TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_SelectAll value)? selectAll,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_RejectSelected value)? rejectSelected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -200,6 +230,11 @@ class _$InitImpl implements _Init {
     required TResult Function(ApproveEmployeeFilterItem? employee)
         changeEmployeeFilter,
     required TResult Function(int? status) changeStatusFilter,
+    required TResult Function(int id) toggleSelection,
+    required TResult Function() clearSelection,
+    required TResult Function() selectAll,
+    required TResult Function() approveSelected,
+    required TResult Function() rejectSelected,
   }) {
     return init(dateStart, dateEnd);
   }
@@ -216,6 +251,11 @@ class _$InitImpl implements _Init {
     TResult? Function(ApproveEmployeeFilterItem? employee)?
         changeEmployeeFilter,
     TResult? Function(int? status)? changeStatusFilter,
+    TResult? Function(int id)? toggleSelection,
+    TResult? Function()? clearSelection,
+    TResult? Function()? selectAll,
+    TResult? Function()? approveSelected,
+    TResult? Function()? rejectSelected,
   }) {
     return init?.call(dateStart, dateEnd);
   }
@@ -231,6 +271,11 @@ class _$InitImpl implements _Init {
     TResult Function(ApproveProjectFilterItem? project)? changeProjectFilter,
     TResult Function(ApproveEmployeeFilterItem? employee)? changeEmployeeFilter,
     TResult Function(int? status)? changeStatusFilter,
+    TResult Function(int id)? toggleSelection,
+    TResult Function()? clearSelection,
+    TResult Function()? selectAll,
+    TResult Function()? approveSelected,
+    TResult Function()? rejectSelected,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -250,6 +295,11 @@ class _$InitImpl implements _Init {
     required TResult Function(_ChangeProjectFilter value) changeProjectFilter,
     required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
     required TResult Function(_ChangeStatusFilter value) changeStatusFilter,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_SelectAll value) selectAll,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_RejectSelected value) rejectSelected,
   }) {
     return init(this);
   }
@@ -265,6 +315,11 @@ class _$InitImpl implements _Init {
     TResult? Function(_ChangeProjectFilter value)? changeProjectFilter,
     TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult? Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_SelectAll value)? selectAll,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_RejectSelected value)? rejectSelected,
   }) {
     return init?.call(this);
   }
@@ -280,6 +335,11 @@ class _$InitImpl implements _Init {
     TResult Function(_ChangeProjectFilter value)? changeProjectFilter,
     TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_SelectAll value)? selectAll,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_RejectSelected value)? rejectSelected,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -385,6 +445,11 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(ApproveEmployeeFilterItem? employee)
         changeEmployeeFilter,
     required TResult Function(int? status) changeStatusFilter,
+    required TResult Function(int id) toggleSelection,
+    required TResult Function() clearSelection,
+    required TResult Function() selectAll,
+    required TResult Function() approveSelected,
+    required TResult Function() rejectSelected,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -401,6 +466,11 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(ApproveEmployeeFilterItem? employee)?
         changeEmployeeFilter,
     TResult? Function(int? status)? changeStatusFilter,
+    TResult? Function(int id)? toggleSelection,
+    TResult? Function()? clearSelection,
+    TResult? Function()? selectAll,
+    TResult? Function()? approveSelected,
+    TResult? Function()? rejectSelected,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -416,6 +486,11 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(ApproveProjectFilterItem? project)? changeProjectFilter,
     TResult Function(ApproveEmployeeFilterItem? employee)? changeEmployeeFilter,
     TResult Function(int? status)? changeStatusFilter,
+    TResult Function(int id)? toggleSelection,
+    TResult Function()? clearSelection,
+    TResult Function()? selectAll,
+    TResult Function()? approveSelected,
+    TResult Function()? rejectSelected,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -435,6 +510,11 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_ChangeProjectFilter value) changeProjectFilter,
     required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
     required TResult Function(_ChangeStatusFilter value) changeStatusFilter,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_SelectAll value) selectAll,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_RejectSelected value) rejectSelected,
   }) {
     return changeDateRange(this);
   }
@@ -450,6 +530,11 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_ChangeProjectFilter value)? changeProjectFilter,
     TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult? Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_SelectAll value)? selectAll,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_RejectSelected value)? rejectSelected,
   }) {
     return changeDateRange?.call(this);
   }
@@ -465,6 +550,11 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_ChangeProjectFilter value)? changeProjectFilter,
     TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_SelectAll value)? selectAll,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_RejectSelected value)? rejectSelected,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -564,6 +654,11 @@ class _$ChangeFilterTextImpl implements _ChangeFilterText {
     required TResult Function(ApproveEmployeeFilterItem? employee)
         changeEmployeeFilter,
     required TResult Function(int? status) changeStatusFilter,
+    required TResult Function(int id) toggleSelection,
+    required TResult Function() clearSelection,
+    required TResult Function() selectAll,
+    required TResult Function() approveSelected,
+    required TResult Function() rejectSelected,
   }) {
     return changeFilterText(filterText);
   }
@@ -580,6 +675,11 @@ class _$ChangeFilterTextImpl implements _ChangeFilterText {
     TResult? Function(ApproveEmployeeFilterItem? employee)?
         changeEmployeeFilter,
     TResult? Function(int? status)? changeStatusFilter,
+    TResult? Function(int id)? toggleSelection,
+    TResult? Function()? clearSelection,
+    TResult? Function()? selectAll,
+    TResult? Function()? approveSelected,
+    TResult? Function()? rejectSelected,
   }) {
     return changeFilterText?.call(filterText);
   }
@@ -595,6 +695,11 @@ class _$ChangeFilterTextImpl implements _ChangeFilterText {
     TResult Function(ApproveProjectFilterItem? project)? changeProjectFilter,
     TResult Function(ApproveEmployeeFilterItem? employee)? changeEmployeeFilter,
     TResult Function(int? status)? changeStatusFilter,
+    TResult Function(int id)? toggleSelection,
+    TResult Function()? clearSelection,
+    TResult Function()? selectAll,
+    TResult Function()? approveSelected,
+    TResult Function()? rejectSelected,
     required TResult orElse(),
   }) {
     if (changeFilterText != null) {
@@ -614,6 +719,11 @@ class _$ChangeFilterTextImpl implements _ChangeFilterText {
     required TResult Function(_ChangeProjectFilter value) changeProjectFilter,
     required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
     required TResult Function(_ChangeStatusFilter value) changeStatusFilter,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_SelectAll value) selectAll,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_RejectSelected value) rejectSelected,
   }) {
     return changeFilterText(this);
   }
@@ -629,6 +739,11 @@ class _$ChangeFilterTextImpl implements _ChangeFilterText {
     TResult? Function(_ChangeProjectFilter value)? changeProjectFilter,
     TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult? Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_SelectAll value)? selectAll,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_RejectSelected value)? rejectSelected,
   }) {
     return changeFilterText?.call(this);
   }
@@ -644,6 +759,11 @@ class _$ChangeFilterTextImpl implements _ChangeFilterText {
     TResult Function(_ChangeProjectFilter value)? changeProjectFilter,
     TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_SelectAll value)? selectAll,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_RejectSelected value)? rejectSelected,
     required TResult orElse(),
   }) {
     if (changeFilterText != null) {
@@ -712,6 +832,11 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(ApproveEmployeeFilterItem? employee)
         changeEmployeeFilter,
     required TResult Function(int? status) changeStatusFilter,
+    required TResult Function(int id) toggleSelection,
+    required TResult Function() clearSelection,
+    required TResult Function() selectAll,
+    required TResult Function() approveSelected,
+    required TResult Function() rejectSelected,
   }) {
     return refresh();
   }
@@ -728,6 +853,11 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(ApproveEmployeeFilterItem? employee)?
         changeEmployeeFilter,
     TResult? Function(int? status)? changeStatusFilter,
+    TResult? Function(int id)? toggleSelection,
+    TResult? Function()? clearSelection,
+    TResult? Function()? selectAll,
+    TResult? Function()? approveSelected,
+    TResult? Function()? rejectSelected,
   }) {
     return refresh?.call();
   }
@@ -743,6 +873,11 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(ApproveProjectFilterItem? project)? changeProjectFilter,
     TResult Function(ApproveEmployeeFilterItem? employee)? changeEmployeeFilter,
     TResult Function(int? status)? changeStatusFilter,
+    TResult Function(int id)? toggleSelection,
+    TResult Function()? clearSelection,
+    TResult Function()? selectAll,
+    TResult Function()? approveSelected,
+    TResult Function()? rejectSelected,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -762,6 +897,11 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_ChangeProjectFilter value) changeProjectFilter,
     required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
     required TResult Function(_ChangeStatusFilter value) changeStatusFilter,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_SelectAll value) selectAll,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_RejectSelected value) rejectSelected,
   }) {
     return refresh(this);
   }
@@ -777,6 +917,11 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_ChangeProjectFilter value)? changeProjectFilter,
     TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult? Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_SelectAll value)? selectAll,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_RejectSelected value)? rejectSelected,
   }) {
     return refresh?.call(this);
   }
@@ -792,6 +937,11 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_ChangeProjectFilter value)? changeProjectFilter,
     TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_SelectAll value)? selectAll,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_RejectSelected value)? rejectSelected,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -854,6 +1004,11 @@ class _$LoadFiltersImpl implements _LoadFilters {
     required TResult Function(ApproveEmployeeFilterItem? employee)
         changeEmployeeFilter,
     required TResult Function(int? status) changeStatusFilter,
+    required TResult Function(int id) toggleSelection,
+    required TResult Function() clearSelection,
+    required TResult Function() selectAll,
+    required TResult Function() approveSelected,
+    required TResult Function() rejectSelected,
   }) {
     return loadFilters();
   }
@@ -870,6 +1025,11 @@ class _$LoadFiltersImpl implements _LoadFilters {
     TResult? Function(ApproveEmployeeFilterItem? employee)?
         changeEmployeeFilter,
     TResult? Function(int? status)? changeStatusFilter,
+    TResult? Function(int id)? toggleSelection,
+    TResult? Function()? clearSelection,
+    TResult? Function()? selectAll,
+    TResult? Function()? approveSelected,
+    TResult? Function()? rejectSelected,
   }) {
     return loadFilters?.call();
   }
@@ -885,6 +1045,11 @@ class _$LoadFiltersImpl implements _LoadFilters {
     TResult Function(ApproveProjectFilterItem? project)? changeProjectFilter,
     TResult Function(ApproveEmployeeFilterItem? employee)? changeEmployeeFilter,
     TResult Function(int? status)? changeStatusFilter,
+    TResult Function(int id)? toggleSelection,
+    TResult Function()? clearSelection,
+    TResult Function()? selectAll,
+    TResult Function()? approveSelected,
+    TResult Function()? rejectSelected,
     required TResult orElse(),
   }) {
     if (loadFilters != null) {
@@ -904,6 +1069,11 @@ class _$LoadFiltersImpl implements _LoadFilters {
     required TResult Function(_ChangeProjectFilter value) changeProjectFilter,
     required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
     required TResult Function(_ChangeStatusFilter value) changeStatusFilter,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_SelectAll value) selectAll,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_RejectSelected value) rejectSelected,
   }) {
     return loadFilters(this);
   }
@@ -919,6 +1089,11 @@ class _$LoadFiltersImpl implements _LoadFilters {
     TResult? Function(_ChangeProjectFilter value)? changeProjectFilter,
     TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult? Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_SelectAll value)? selectAll,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_RejectSelected value)? rejectSelected,
   }) {
     return loadFilters?.call(this);
   }
@@ -934,6 +1109,11 @@ class _$LoadFiltersImpl implements _LoadFilters {
     TResult Function(_ChangeProjectFilter value)? changeProjectFilter,
     TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_SelectAll value)? selectAll,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_RejectSelected value)? rejectSelected,
     required TResult orElse(),
   }) {
     if (loadFilters != null) {
@@ -1038,6 +1218,11 @@ class _$ChangeProjectFilterImpl implements _ChangeProjectFilter {
     required TResult Function(ApproveEmployeeFilterItem? employee)
         changeEmployeeFilter,
     required TResult Function(int? status) changeStatusFilter,
+    required TResult Function(int id) toggleSelection,
+    required TResult Function() clearSelection,
+    required TResult Function() selectAll,
+    required TResult Function() approveSelected,
+    required TResult Function() rejectSelected,
   }) {
     return changeProjectFilter(project);
   }
@@ -1054,6 +1239,11 @@ class _$ChangeProjectFilterImpl implements _ChangeProjectFilter {
     TResult? Function(ApproveEmployeeFilterItem? employee)?
         changeEmployeeFilter,
     TResult? Function(int? status)? changeStatusFilter,
+    TResult? Function(int id)? toggleSelection,
+    TResult? Function()? clearSelection,
+    TResult? Function()? selectAll,
+    TResult? Function()? approveSelected,
+    TResult? Function()? rejectSelected,
   }) {
     return changeProjectFilter?.call(project);
   }
@@ -1069,6 +1259,11 @@ class _$ChangeProjectFilterImpl implements _ChangeProjectFilter {
     TResult Function(ApproveProjectFilterItem? project)? changeProjectFilter,
     TResult Function(ApproveEmployeeFilterItem? employee)? changeEmployeeFilter,
     TResult Function(int? status)? changeStatusFilter,
+    TResult Function(int id)? toggleSelection,
+    TResult Function()? clearSelection,
+    TResult Function()? selectAll,
+    TResult Function()? approveSelected,
+    TResult Function()? rejectSelected,
     required TResult orElse(),
   }) {
     if (changeProjectFilter != null) {
@@ -1088,6 +1283,11 @@ class _$ChangeProjectFilterImpl implements _ChangeProjectFilter {
     required TResult Function(_ChangeProjectFilter value) changeProjectFilter,
     required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
     required TResult Function(_ChangeStatusFilter value) changeStatusFilter,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_SelectAll value) selectAll,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_RejectSelected value) rejectSelected,
   }) {
     return changeProjectFilter(this);
   }
@@ -1103,6 +1303,11 @@ class _$ChangeProjectFilterImpl implements _ChangeProjectFilter {
     TResult? Function(_ChangeProjectFilter value)? changeProjectFilter,
     TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult? Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_SelectAll value)? selectAll,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_RejectSelected value)? rejectSelected,
   }) {
     return changeProjectFilter?.call(this);
   }
@@ -1118,6 +1323,11 @@ class _$ChangeProjectFilterImpl implements _ChangeProjectFilter {
     TResult Function(_ChangeProjectFilter value)? changeProjectFilter,
     TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_SelectAll value)? selectAll,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_RejectSelected value)? rejectSelected,
     required TResult orElse(),
   }) {
     if (changeProjectFilter != null) {
@@ -1231,6 +1441,11 @@ class _$ChangeEmployeeFilterImpl implements _ChangeEmployeeFilter {
     required TResult Function(ApproveEmployeeFilterItem? employee)
         changeEmployeeFilter,
     required TResult Function(int? status) changeStatusFilter,
+    required TResult Function(int id) toggleSelection,
+    required TResult Function() clearSelection,
+    required TResult Function() selectAll,
+    required TResult Function() approveSelected,
+    required TResult Function() rejectSelected,
   }) {
     return changeEmployeeFilter(employee);
   }
@@ -1247,6 +1462,11 @@ class _$ChangeEmployeeFilterImpl implements _ChangeEmployeeFilter {
     TResult? Function(ApproveEmployeeFilterItem? employee)?
         changeEmployeeFilter,
     TResult? Function(int? status)? changeStatusFilter,
+    TResult? Function(int id)? toggleSelection,
+    TResult? Function()? clearSelection,
+    TResult? Function()? selectAll,
+    TResult? Function()? approveSelected,
+    TResult? Function()? rejectSelected,
   }) {
     return changeEmployeeFilter?.call(employee);
   }
@@ -1262,6 +1482,11 @@ class _$ChangeEmployeeFilterImpl implements _ChangeEmployeeFilter {
     TResult Function(ApproveProjectFilterItem? project)? changeProjectFilter,
     TResult Function(ApproveEmployeeFilterItem? employee)? changeEmployeeFilter,
     TResult Function(int? status)? changeStatusFilter,
+    TResult Function(int id)? toggleSelection,
+    TResult Function()? clearSelection,
+    TResult Function()? selectAll,
+    TResult Function()? approveSelected,
+    TResult Function()? rejectSelected,
     required TResult orElse(),
   }) {
     if (changeEmployeeFilter != null) {
@@ -1281,6 +1506,11 @@ class _$ChangeEmployeeFilterImpl implements _ChangeEmployeeFilter {
     required TResult Function(_ChangeProjectFilter value) changeProjectFilter,
     required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
     required TResult Function(_ChangeStatusFilter value) changeStatusFilter,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_SelectAll value) selectAll,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_RejectSelected value) rejectSelected,
   }) {
     return changeEmployeeFilter(this);
   }
@@ -1296,6 +1526,11 @@ class _$ChangeEmployeeFilterImpl implements _ChangeEmployeeFilter {
     TResult? Function(_ChangeProjectFilter value)? changeProjectFilter,
     TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult? Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_SelectAll value)? selectAll,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_RejectSelected value)? rejectSelected,
   }) {
     return changeEmployeeFilter?.call(this);
   }
@@ -1311,6 +1546,11 @@ class _$ChangeEmployeeFilterImpl implements _ChangeEmployeeFilter {
     TResult Function(_ChangeProjectFilter value)? changeProjectFilter,
     TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_SelectAll value)? selectAll,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_RejectSelected value)? rejectSelected,
     required TResult orElse(),
   }) {
     if (changeEmployeeFilter != null) {
@@ -1408,6 +1648,11 @@ class _$ChangeStatusFilterImpl implements _ChangeStatusFilter {
     required TResult Function(ApproveEmployeeFilterItem? employee)
         changeEmployeeFilter,
     required TResult Function(int? status) changeStatusFilter,
+    required TResult Function(int id) toggleSelection,
+    required TResult Function() clearSelection,
+    required TResult Function() selectAll,
+    required TResult Function() approveSelected,
+    required TResult Function() rejectSelected,
   }) {
     return changeStatusFilter(status);
   }
@@ -1424,6 +1669,11 @@ class _$ChangeStatusFilterImpl implements _ChangeStatusFilter {
     TResult? Function(ApproveEmployeeFilterItem? employee)?
         changeEmployeeFilter,
     TResult? Function(int? status)? changeStatusFilter,
+    TResult? Function(int id)? toggleSelection,
+    TResult? Function()? clearSelection,
+    TResult? Function()? selectAll,
+    TResult? Function()? approveSelected,
+    TResult? Function()? rejectSelected,
   }) {
     return changeStatusFilter?.call(status);
   }
@@ -1439,6 +1689,11 @@ class _$ChangeStatusFilterImpl implements _ChangeStatusFilter {
     TResult Function(ApproveProjectFilterItem? project)? changeProjectFilter,
     TResult Function(ApproveEmployeeFilterItem? employee)? changeEmployeeFilter,
     TResult Function(int? status)? changeStatusFilter,
+    TResult Function(int id)? toggleSelection,
+    TResult Function()? clearSelection,
+    TResult Function()? selectAll,
+    TResult Function()? approveSelected,
+    TResult Function()? rejectSelected,
     required TResult orElse(),
   }) {
     if (changeStatusFilter != null) {
@@ -1458,6 +1713,11 @@ class _$ChangeStatusFilterImpl implements _ChangeStatusFilter {
     required TResult Function(_ChangeProjectFilter value) changeProjectFilter,
     required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
     required TResult Function(_ChangeStatusFilter value) changeStatusFilter,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_SelectAll value) selectAll,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_RejectSelected value) rejectSelected,
   }) {
     return changeStatusFilter(this);
   }
@@ -1473,6 +1733,11 @@ class _$ChangeStatusFilterImpl implements _ChangeStatusFilter {
     TResult? Function(_ChangeProjectFilter value)? changeProjectFilter,
     TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult? Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_SelectAll value)? selectAll,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_RejectSelected value)? rejectSelected,
   }) {
     return changeStatusFilter?.call(this);
   }
@@ -1488,6 +1753,11 @@ class _$ChangeStatusFilterImpl implements _ChangeStatusFilter {
     TResult Function(_ChangeProjectFilter value)? changeProjectFilter,
     TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
     TResult Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_SelectAll value)? selectAll,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_RejectSelected value)? rejectSelected,
     required TResult orElse(),
   }) {
     if (changeStatusFilter != null) {
@@ -1505,4 +1775,897 @@ abstract class _ChangeStatusFilter implements ApproveBookingGuestHouseEvent {
   @JsonKey(ignore: true)
   _$$ChangeStatusFilterImplCopyWith<_$ChangeStatusFilterImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ToggleSelectionImplCopyWith<$Res> {
+  factory _$$ToggleSelectionImplCopyWith(_$ToggleSelectionImpl value,
+          $Res Function(_$ToggleSelectionImpl) then) =
+      __$$ToggleSelectionImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id});
+}
+
+/// @nodoc
+class __$$ToggleSelectionImplCopyWithImpl<$Res>
+    extends _$ApproveBookingGuestHouseEventCopyWithImpl<$Res,
+        _$ToggleSelectionImpl> implements _$$ToggleSelectionImplCopyWith<$Res> {
+  __$$ToggleSelectionImplCopyWithImpl(
+      _$ToggleSelectionImpl _value, $Res Function(_$ToggleSelectionImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$ToggleSelectionImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ToggleSelectionImpl implements _ToggleSelection {
+  const _$ToggleSelectionImpl({required this.id});
+
+  @override
+  final int id;
+
+  @override
+  String toString() {
+    return 'ApproveBookingGuestHouseEvent.toggleSelection(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ToggleSelectionImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ToggleSelectionImplCopyWith<_$ToggleSelectionImpl> get copyWith =>
+      __$$ToggleSelectionImplCopyWithImpl<_$ToggleSelectionImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd) init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String filterText) changeFilterText,
+    required TResult Function() refresh,
+    required TResult Function() loadFilters,
+    required TResult Function(ApproveProjectFilterItem? project)
+        changeProjectFilter,
+    required TResult Function(ApproveEmployeeFilterItem? employee)
+        changeEmployeeFilter,
+    required TResult Function(int? status) changeStatusFilter,
+    required TResult Function(int id) toggleSelection,
+    required TResult Function() clearSelection,
+    required TResult Function() selectAll,
+    required TResult Function() approveSelected,
+    required TResult Function() rejectSelected,
+  }) {
+    return toggleSelection(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String filterText)? changeFilterText,
+    TResult? Function()? refresh,
+    TResult? Function()? loadFilters,
+    TResult? Function(ApproveProjectFilterItem? project)? changeProjectFilter,
+    TResult? Function(ApproveEmployeeFilterItem? employee)?
+        changeEmployeeFilter,
+    TResult? Function(int? status)? changeStatusFilter,
+    TResult? Function(int id)? toggleSelection,
+    TResult? Function()? clearSelection,
+    TResult? Function()? selectAll,
+    TResult? Function()? approveSelected,
+    TResult? Function()? rejectSelected,
+  }) {
+    return toggleSelection?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String filterText)? changeFilterText,
+    TResult Function()? refresh,
+    TResult Function()? loadFilters,
+    TResult Function(ApproveProjectFilterItem? project)? changeProjectFilter,
+    TResult Function(ApproveEmployeeFilterItem? employee)? changeEmployeeFilter,
+    TResult Function(int? status)? changeStatusFilter,
+    TResult Function(int id)? toggleSelection,
+    TResult Function()? clearSelection,
+    TResult Function()? selectAll,
+    TResult Function()? approveSelected,
+    TResult Function()? rejectSelected,
+    required TResult orElse(),
+  }) {
+    if (toggleSelection != null) {
+      return toggleSelection(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeFilterText value) changeFilterText,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_LoadFilters value) loadFilters,
+    required TResult Function(_ChangeProjectFilter value) changeProjectFilter,
+    required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
+    required TResult Function(_ChangeStatusFilter value) changeStatusFilter,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_SelectAll value) selectAll,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_RejectSelected value) rejectSelected,
+  }) {
+    return toggleSelection(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeFilterText value)? changeFilterText,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_LoadFilters value)? loadFilters,
+    TResult? Function(_ChangeProjectFilter value)? changeProjectFilter,
+    TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult? Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_SelectAll value)? selectAll,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_RejectSelected value)? rejectSelected,
+  }) {
+    return toggleSelection?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeFilterText value)? changeFilterText,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_LoadFilters value)? loadFilters,
+    TResult Function(_ChangeProjectFilter value)? changeProjectFilter,
+    TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_SelectAll value)? selectAll,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_RejectSelected value)? rejectSelected,
+    required TResult orElse(),
+  }) {
+    if (toggleSelection != null) {
+      return toggleSelection(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ToggleSelection implements ApproveBookingGuestHouseEvent {
+  const factory _ToggleSelection({required final int id}) =
+      _$ToggleSelectionImpl;
+
+  int get id;
+  @JsonKey(ignore: true)
+  _$$ToggleSelectionImplCopyWith<_$ToggleSelectionImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ClearSelectionImplCopyWith<$Res> {
+  factory _$$ClearSelectionImplCopyWith(_$ClearSelectionImpl value,
+          $Res Function(_$ClearSelectionImpl) then) =
+      __$$ClearSelectionImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearSelectionImplCopyWithImpl<$Res>
+    extends _$ApproveBookingGuestHouseEventCopyWithImpl<$Res,
+        _$ClearSelectionImpl> implements _$$ClearSelectionImplCopyWith<$Res> {
+  __$$ClearSelectionImplCopyWithImpl(
+      _$ClearSelectionImpl _value, $Res Function(_$ClearSelectionImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ClearSelectionImpl implements _ClearSelection {
+  const _$ClearSelectionImpl();
+
+  @override
+  String toString() {
+    return 'ApproveBookingGuestHouseEvent.clearSelection()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ClearSelectionImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd) init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String filterText) changeFilterText,
+    required TResult Function() refresh,
+    required TResult Function() loadFilters,
+    required TResult Function(ApproveProjectFilterItem? project)
+        changeProjectFilter,
+    required TResult Function(ApproveEmployeeFilterItem? employee)
+        changeEmployeeFilter,
+    required TResult Function(int? status) changeStatusFilter,
+    required TResult Function(int id) toggleSelection,
+    required TResult Function() clearSelection,
+    required TResult Function() selectAll,
+    required TResult Function() approveSelected,
+    required TResult Function() rejectSelected,
+  }) {
+    return clearSelection();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String filterText)? changeFilterText,
+    TResult? Function()? refresh,
+    TResult? Function()? loadFilters,
+    TResult? Function(ApproveProjectFilterItem? project)? changeProjectFilter,
+    TResult? Function(ApproveEmployeeFilterItem? employee)?
+        changeEmployeeFilter,
+    TResult? Function(int? status)? changeStatusFilter,
+    TResult? Function(int id)? toggleSelection,
+    TResult? Function()? clearSelection,
+    TResult? Function()? selectAll,
+    TResult? Function()? approveSelected,
+    TResult? Function()? rejectSelected,
+  }) {
+    return clearSelection?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String filterText)? changeFilterText,
+    TResult Function()? refresh,
+    TResult Function()? loadFilters,
+    TResult Function(ApproveProjectFilterItem? project)? changeProjectFilter,
+    TResult Function(ApproveEmployeeFilterItem? employee)? changeEmployeeFilter,
+    TResult Function(int? status)? changeStatusFilter,
+    TResult Function(int id)? toggleSelection,
+    TResult Function()? clearSelection,
+    TResult Function()? selectAll,
+    TResult Function()? approveSelected,
+    TResult Function()? rejectSelected,
+    required TResult orElse(),
+  }) {
+    if (clearSelection != null) {
+      return clearSelection();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeFilterText value) changeFilterText,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_LoadFilters value) loadFilters,
+    required TResult Function(_ChangeProjectFilter value) changeProjectFilter,
+    required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
+    required TResult Function(_ChangeStatusFilter value) changeStatusFilter,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_SelectAll value) selectAll,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_RejectSelected value) rejectSelected,
+  }) {
+    return clearSelection(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeFilterText value)? changeFilterText,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_LoadFilters value)? loadFilters,
+    TResult? Function(_ChangeProjectFilter value)? changeProjectFilter,
+    TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult? Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_SelectAll value)? selectAll,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_RejectSelected value)? rejectSelected,
+  }) {
+    return clearSelection?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeFilterText value)? changeFilterText,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_LoadFilters value)? loadFilters,
+    TResult Function(_ChangeProjectFilter value)? changeProjectFilter,
+    TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_SelectAll value)? selectAll,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_RejectSelected value)? rejectSelected,
+    required TResult orElse(),
+  }) {
+    if (clearSelection != null) {
+      return clearSelection(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearSelection implements ApproveBookingGuestHouseEvent {
+  const factory _ClearSelection() = _$ClearSelectionImpl;
+}
+
+/// @nodoc
+abstract class _$$SelectAllImplCopyWith<$Res> {
+  factory _$$SelectAllImplCopyWith(
+          _$SelectAllImpl value, $Res Function(_$SelectAllImpl) then) =
+      __$$SelectAllImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SelectAllImplCopyWithImpl<$Res>
+    extends _$ApproveBookingGuestHouseEventCopyWithImpl<$Res, _$SelectAllImpl>
+    implements _$$SelectAllImplCopyWith<$Res> {
+  __$$SelectAllImplCopyWithImpl(
+      _$SelectAllImpl _value, $Res Function(_$SelectAllImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$SelectAllImpl implements _SelectAll {
+  const _$SelectAllImpl();
+
+  @override
+  String toString() {
+    return 'ApproveBookingGuestHouseEvent.selectAll()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$SelectAllImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd) init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String filterText) changeFilterText,
+    required TResult Function() refresh,
+    required TResult Function() loadFilters,
+    required TResult Function(ApproveProjectFilterItem? project)
+        changeProjectFilter,
+    required TResult Function(ApproveEmployeeFilterItem? employee)
+        changeEmployeeFilter,
+    required TResult Function(int? status) changeStatusFilter,
+    required TResult Function(int id) toggleSelection,
+    required TResult Function() clearSelection,
+    required TResult Function() selectAll,
+    required TResult Function() approveSelected,
+    required TResult Function() rejectSelected,
+  }) {
+    return selectAll();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String filterText)? changeFilterText,
+    TResult? Function()? refresh,
+    TResult? Function()? loadFilters,
+    TResult? Function(ApproveProjectFilterItem? project)? changeProjectFilter,
+    TResult? Function(ApproveEmployeeFilterItem? employee)?
+        changeEmployeeFilter,
+    TResult? Function(int? status)? changeStatusFilter,
+    TResult? Function(int id)? toggleSelection,
+    TResult? Function()? clearSelection,
+    TResult? Function()? selectAll,
+    TResult? Function()? approveSelected,
+    TResult? Function()? rejectSelected,
+  }) {
+    return selectAll?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String filterText)? changeFilterText,
+    TResult Function()? refresh,
+    TResult Function()? loadFilters,
+    TResult Function(ApproveProjectFilterItem? project)? changeProjectFilter,
+    TResult Function(ApproveEmployeeFilterItem? employee)? changeEmployeeFilter,
+    TResult Function(int? status)? changeStatusFilter,
+    TResult Function(int id)? toggleSelection,
+    TResult Function()? clearSelection,
+    TResult Function()? selectAll,
+    TResult Function()? approveSelected,
+    TResult Function()? rejectSelected,
+    required TResult orElse(),
+  }) {
+    if (selectAll != null) {
+      return selectAll();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeFilterText value) changeFilterText,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_LoadFilters value) loadFilters,
+    required TResult Function(_ChangeProjectFilter value) changeProjectFilter,
+    required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
+    required TResult Function(_ChangeStatusFilter value) changeStatusFilter,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_SelectAll value) selectAll,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_RejectSelected value) rejectSelected,
+  }) {
+    return selectAll(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeFilterText value)? changeFilterText,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_LoadFilters value)? loadFilters,
+    TResult? Function(_ChangeProjectFilter value)? changeProjectFilter,
+    TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult? Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_SelectAll value)? selectAll,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_RejectSelected value)? rejectSelected,
+  }) {
+    return selectAll?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeFilterText value)? changeFilterText,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_LoadFilters value)? loadFilters,
+    TResult Function(_ChangeProjectFilter value)? changeProjectFilter,
+    TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_SelectAll value)? selectAll,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_RejectSelected value)? rejectSelected,
+    required TResult orElse(),
+  }) {
+    if (selectAll != null) {
+      return selectAll(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SelectAll implements ApproveBookingGuestHouseEvent {
+  const factory _SelectAll() = _$SelectAllImpl;
+}
+
+/// @nodoc
+abstract class _$$ApproveSelectedImplCopyWith<$Res> {
+  factory _$$ApproveSelectedImplCopyWith(_$ApproveSelectedImpl value,
+          $Res Function(_$ApproveSelectedImpl) then) =
+      __$$ApproveSelectedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ApproveSelectedImplCopyWithImpl<$Res>
+    extends _$ApproveBookingGuestHouseEventCopyWithImpl<$Res,
+        _$ApproveSelectedImpl> implements _$$ApproveSelectedImplCopyWith<$Res> {
+  __$$ApproveSelectedImplCopyWithImpl(
+      _$ApproveSelectedImpl _value, $Res Function(_$ApproveSelectedImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ApproveSelectedImpl implements _ApproveSelected {
+  const _$ApproveSelectedImpl();
+
+  @override
+  String toString() {
+    return 'ApproveBookingGuestHouseEvent.approveSelected()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ApproveSelectedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd) init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String filterText) changeFilterText,
+    required TResult Function() refresh,
+    required TResult Function() loadFilters,
+    required TResult Function(ApproveProjectFilterItem? project)
+        changeProjectFilter,
+    required TResult Function(ApproveEmployeeFilterItem? employee)
+        changeEmployeeFilter,
+    required TResult Function(int? status) changeStatusFilter,
+    required TResult Function(int id) toggleSelection,
+    required TResult Function() clearSelection,
+    required TResult Function() selectAll,
+    required TResult Function() approveSelected,
+    required TResult Function() rejectSelected,
+  }) {
+    return approveSelected();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String filterText)? changeFilterText,
+    TResult? Function()? refresh,
+    TResult? Function()? loadFilters,
+    TResult? Function(ApproveProjectFilterItem? project)? changeProjectFilter,
+    TResult? Function(ApproveEmployeeFilterItem? employee)?
+        changeEmployeeFilter,
+    TResult? Function(int? status)? changeStatusFilter,
+    TResult? Function(int id)? toggleSelection,
+    TResult? Function()? clearSelection,
+    TResult? Function()? selectAll,
+    TResult? Function()? approveSelected,
+    TResult? Function()? rejectSelected,
+  }) {
+    return approveSelected?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String filterText)? changeFilterText,
+    TResult Function()? refresh,
+    TResult Function()? loadFilters,
+    TResult Function(ApproveProjectFilterItem? project)? changeProjectFilter,
+    TResult Function(ApproveEmployeeFilterItem? employee)? changeEmployeeFilter,
+    TResult Function(int? status)? changeStatusFilter,
+    TResult Function(int id)? toggleSelection,
+    TResult Function()? clearSelection,
+    TResult Function()? selectAll,
+    TResult Function()? approveSelected,
+    TResult Function()? rejectSelected,
+    required TResult orElse(),
+  }) {
+    if (approveSelected != null) {
+      return approveSelected();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeFilterText value) changeFilterText,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_LoadFilters value) loadFilters,
+    required TResult Function(_ChangeProjectFilter value) changeProjectFilter,
+    required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
+    required TResult Function(_ChangeStatusFilter value) changeStatusFilter,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_SelectAll value) selectAll,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_RejectSelected value) rejectSelected,
+  }) {
+    return approveSelected(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeFilterText value)? changeFilterText,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_LoadFilters value)? loadFilters,
+    TResult? Function(_ChangeProjectFilter value)? changeProjectFilter,
+    TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult? Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_SelectAll value)? selectAll,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_RejectSelected value)? rejectSelected,
+  }) {
+    return approveSelected?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeFilterText value)? changeFilterText,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_LoadFilters value)? loadFilters,
+    TResult Function(_ChangeProjectFilter value)? changeProjectFilter,
+    TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_SelectAll value)? selectAll,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_RejectSelected value)? rejectSelected,
+    required TResult orElse(),
+  }) {
+    if (approveSelected != null) {
+      return approveSelected(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ApproveSelected implements ApproveBookingGuestHouseEvent {
+  const factory _ApproveSelected() = _$ApproveSelectedImpl;
+}
+
+/// @nodoc
+abstract class _$$RejectSelectedImplCopyWith<$Res> {
+  factory _$$RejectSelectedImplCopyWith(_$RejectSelectedImpl value,
+          $Res Function(_$RejectSelectedImpl) then) =
+      __$$RejectSelectedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$RejectSelectedImplCopyWithImpl<$Res>
+    extends _$ApproveBookingGuestHouseEventCopyWithImpl<$Res,
+        _$RejectSelectedImpl> implements _$$RejectSelectedImplCopyWith<$Res> {
+  __$$RejectSelectedImplCopyWithImpl(
+      _$RejectSelectedImpl _value, $Res Function(_$RejectSelectedImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$RejectSelectedImpl implements _RejectSelected {
+  const _$RejectSelectedImpl();
+
+  @override
+  String toString() {
+    return 'ApproveBookingGuestHouseEvent.rejectSelected()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$RejectSelectedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd) init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String filterText) changeFilterText,
+    required TResult Function() refresh,
+    required TResult Function() loadFilters,
+    required TResult Function(ApproveProjectFilterItem? project)
+        changeProjectFilter,
+    required TResult Function(ApproveEmployeeFilterItem? employee)
+        changeEmployeeFilter,
+    required TResult Function(int? status) changeStatusFilter,
+    required TResult Function(int id) toggleSelection,
+    required TResult Function() clearSelection,
+    required TResult Function() selectAll,
+    required TResult Function() approveSelected,
+    required TResult Function() rejectSelected,
+  }) {
+    return rejectSelected();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String filterText)? changeFilterText,
+    TResult? Function()? refresh,
+    TResult? Function()? loadFilters,
+    TResult? Function(ApproveProjectFilterItem? project)? changeProjectFilter,
+    TResult? Function(ApproveEmployeeFilterItem? employee)?
+        changeEmployeeFilter,
+    TResult? Function(int? status)? changeStatusFilter,
+    TResult? Function(int id)? toggleSelection,
+    TResult? Function()? clearSelection,
+    TResult? Function()? selectAll,
+    TResult? Function()? approveSelected,
+    TResult? Function()? rejectSelected,
+  }) {
+    return rejectSelected?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String filterText)? changeFilterText,
+    TResult Function()? refresh,
+    TResult Function()? loadFilters,
+    TResult Function(ApproveProjectFilterItem? project)? changeProjectFilter,
+    TResult Function(ApproveEmployeeFilterItem? employee)? changeEmployeeFilter,
+    TResult Function(int? status)? changeStatusFilter,
+    TResult Function(int id)? toggleSelection,
+    TResult Function()? clearSelection,
+    TResult Function()? selectAll,
+    TResult Function()? approveSelected,
+    TResult Function()? rejectSelected,
+    required TResult orElse(),
+  }) {
+    if (rejectSelected != null) {
+      return rejectSelected();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeFilterText value) changeFilterText,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_LoadFilters value) loadFilters,
+    required TResult Function(_ChangeProjectFilter value) changeProjectFilter,
+    required TResult Function(_ChangeEmployeeFilter value) changeEmployeeFilter,
+    required TResult Function(_ChangeStatusFilter value) changeStatusFilter,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_SelectAll value) selectAll,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_RejectSelected value) rejectSelected,
+  }) {
+    return rejectSelected(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeFilterText value)? changeFilterText,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_LoadFilters value)? loadFilters,
+    TResult? Function(_ChangeProjectFilter value)? changeProjectFilter,
+    TResult? Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult? Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_SelectAll value)? selectAll,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_RejectSelected value)? rejectSelected,
+  }) {
+    return rejectSelected?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeFilterText value)? changeFilterText,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_LoadFilters value)? loadFilters,
+    TResult Function(_ChangeProjectFilter value)? changeProjectFilter,
+    TResult Function(_ChangeEmployeeFilter value)? changeEmployeeFilter,
+    TResult Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_SelectAll value)? selectAll,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_RejectSelected value)? rejectSelected,
+    required TResult orElse(),
+  }) {
+    if (rejectSelected != null) {
+      return rejectSelected(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RejectSelected implements ApproveBookingGuestHouseEvent {
+  const factory _RejectSelected() = _$RejectSelectedImpl;
 }
