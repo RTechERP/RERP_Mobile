@@ -15,6 +15,12 @@ abstract class BusinessCardRepo {
     String imagePath,
   );
 
+  /// Đọc danh sách danh thiếp đã lưu từ danh bạ máy.
+  ///
+  /// Trả về danh sách rỗng nếu user từ chối cấp quyền hoặc lỗi.
+  Future<Either<BaseError, List<BusinessCardModel>>>
+      getBusinessCardsFromDevice();
+
   /// Kiểm tra service có sẵn sàng không (luôn true với backend API).
   Future<bool> isOllamaAvailable();
 }

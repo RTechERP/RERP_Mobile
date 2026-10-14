@@ -11,4 +11,8 @@ class ContactEvent with _$ContactEvent {
     @Default(0) int departmentID,
     String? keyword,
   }) = _Refresh;
+
+  /// Chỉ reload danh sách danh thiếp từ danh bạ máy.
+  const factory ContactEvent.loadSavedBusinessCards() =
+      _LoadSavedBusinessCards;
 }

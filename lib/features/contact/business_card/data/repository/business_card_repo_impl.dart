@@ -4,13 +4,15 @@ import 'package:injectable/injectable.dart';
 import '../../../../../base/network/errors/error.dart';
 import '../datasource/models/business_card_model.dart';
 import '../datasource/services/business_card_service.dart';
+import '../datasource/services/contact_save_service.dart';
 import 'business_card_repo.dart';
 
 @LazySingleton(as: BusinessCardRepo)
 class BusinessCardRepoImpl implements BusinessCardRepo {
-  BusinessCardRepoImpl(this._service);
+  BusinessCardRepoImpl(this._service, this._contactSaveService);
 
   final BusinessCardService _service;
+  final ContactSaveService _contactSaveService;
 
   @override
   Future<Either<BaseError, List<BusinessCardModel>>> getBusinessCards({
@@ -24,6 +26,17 @@ class BusinessCardRepoImpl implements BusinessCardRepo {
         keyword: keyword,
         isFavorite: isFavorite,
       );
+      return right(cards);
+    } catch (e) {
+      return left(BaseError.httpUnknownError(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<BusinessCardModel>>>
+      getBusinessCardsFromDevice() async {
+    try {
+      final cards = await _contactSaveService.getSavedBusinessCards();
       return right(cards);
     } catch (e) {
       return left(BaseError.httpUnknownError(e.toString()));

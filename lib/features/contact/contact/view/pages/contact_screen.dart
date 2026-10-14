@@ -19,7 +19,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../../base/bloc/index.dart';
+import '../../../../../../base/network/errors/extension.dart';
 import '../../../../../../common/app_theme/index.dart';
+import '../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../di/injection.dart';
 import '../../../business_card/view/bloc/business_card_bloc.dart';
 import '../../../business_card/view/pages/add_business_card_screen.dart';
@@ -27,6 +29,7 @@ import '../../../business_card/view/pages/business_card_detail_screen.dart';
 import '../../../business_card/view/pages/confirm_business_card_screen.dart';
 import '../bloc/contact_bloc.dart';
 import '../../../business_card/data/datasource/models/business_card_model.dart';
+import '../../../business_card/data/datasource/services/contact_save_service.dart';
 import '../../data/datasource/models/contact_model.dart';
 import 'contact_detail_screen.dart';
 
@@ -133,6 +136,12 @@ class _ContactViewState extends State<_ContactView>
   void _onTabChanged() {
     if (!_tabController.indexIsChanging) {
       _sectionKeys.clear();
+      // Tab "Danh thiếp" (index 2) — load lại từ danh bạ máy mỗi lần chuyển tới.
+      if (_tabController.index == 2 && mounted) {
+        context.read<ContactBloc>().add(
+              const ContactEvent.loadSavedBusinessCards(),
+            );
+      }
     }
   }
 
@@ -285,6 +294,7 @@ class _ContactViewState extends State<_ContactView>
                   child: const Icon(Icons.add, color: Colors.white),
                 )
               : null,
+          floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
         );
       },
     );
@@ -696,41 +706,30 @@ class _ContactViewState extends State<_ContactView>
 
     if (scannedData == null || !context.mounted) return;
 
-    if (scannedData.isEmpty) {
-      // User chose manual entry
-      final result = await Navigator.push<BusinessCardModel>(
-        context,
-        MaterialPageRoute(
-          builder: (_) => ConfirmBusinessCardScreen(scannedData: scannedData),
-        ),
-      );
-      if (result != null && context.mounted) {
-        _showSavedMessage(context);
-      }
-    } else {
-      // Show confirm screen with scanned data
-      final result = await Navigator.push<BusinessCardModel>(
-        context,
-        MaterialPageRoute(
-          builder: (_) => ConfirmBusinessCardScreen(scannedData: scannedData),
-        ),
-      );
-      if (result != null && context.mounted) {
-        _showSavedMessage(context);
-      }
-    }
-  }
-
-  void _showSavedMessage(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: const Text('Đã lưu danh thiếp'),
-        backgroundColor: AppColors.success,
-        behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        margin: const EdgeInsets.all(16),
+    final result = await Navigator.push<BusinessCardModel>(
+      context,
+      MaterialPageRoute(
+        builder: (_) => ConfirmBusinessCardScreen(scannedData: scannedData),
       ),
     );
+    if (result == null || !context.mounted) return;
+
+    // Ghi thẳng vào danh bạ của máy.
+    final saved =
+        await getIt<ContactSaveService>().saveBusinessCardToDevice(result);
+    if (!context.mounted) return;
+    if (saved) {
+      context.showMessage('Đã lưu danh thiếp vào danh bạ');
+      // Reload danh sách danh thiếp từ danh bạ máy để hiển thị ngay.
+      context.read<ContactBloc>().add(
+            const ContactEvent.loadSavedBusinessCards(),
+          );
+    } else {
+      context.showMessage(
+        'Không thể lưu vào danh bạ. Vui lòng kiểm tra quyền truy cập.',
+        type: SnackBarType.error,
+      );
+    }
   }
 }
 

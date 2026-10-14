@@ -15,6 +15,7 @@ import '../features/celebration/data/datasource/service/celebration_service.dart
 import '../features/celebration/data/repository/celebration_repo.dart';
 import '../features/celebration/data/repository/celebration_repo_impl.dart';
 import '../features/celebration/view/bloc/celebration_bloc.dart';
+import '../features/contact/business_card/data/datasource/services/contact_save_service.dart';
 import '../features/contact/contact/data/datasource/services/contact_service.dart';
 import '../features/contact/contact/data/repository/contact_repo.dart';
 import '../features/contact/contact/data/repository/contact_repo_impl.dart';
@@ -311,6 +312,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<BusinessCardService>(
     () => BusinessCardService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<ContactSaveService>(
+      () => ContactSaveService(),
   );
 
   getIt.registerLazySingleton<SaleGdnService>(
@@ -666,6 +671,7 @@ void configureDependencies() {
   getIt.registerLazySingleton<SalaryPinService>(
     () => SalaryPinService(getIt<Dio>()),
   );
+
   getIt.registerLazySingleton<SalaryPinRepo>(
     () => SalaryPinRepoImpl(getIt<SalaryPinService>()),
   );
@@ -704,7 +710,10 @@ void configureDependencies() {
   );
 
   getIt.registerLazySingleton<BusinessCardRepo>(
-    () => BusinessCardRepoImpl(getIt<BusinessCardService>()),
+    () => BusinessCardRepoImpl(
+      getIt<BusinessCardService>(),
+      getIt<ContactSaveService>(),
+    ),
   );
 
   getIt.registerFactory<ContactBloc>(

@@ -447,7 +447,27 @@ class _AddBusinessCardScreenState extends State<AddBusinessCardScreen>
                 description: 'Vui lòng cấp quyền trong cài đặt để tiếp tục',
               );
             }
-            return _buildCamera();
+            return BlocBuilder<BusinessCardBloc, BusinessCardState>(
+              buildWhen: (prev, curr) => prev.status != curr.status,
+              builder: (context, state) {
+                if (state.status == BaseStateStatus.loading) {
+                  return Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      _buildCamera(),
+                      Container(
+                        color: Colors.black.withValues(alpha: 0.5),
+                        child: const _LoadingView(
+                          message: 'Đang xử lý danh thiếp...',
+                          description: 'Vui lòng chờ trong giây lát',
+                        ),
+                      ),
+                    ],
+                  );
+                }
+                return _buildCamera();
+              },
+            );
           },
         ),
       ),

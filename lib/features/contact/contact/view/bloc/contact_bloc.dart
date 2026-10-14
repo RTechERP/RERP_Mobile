@@ -27,8 +27,17 @@ class ContactBloc extends BaseBloc<ContactEvent, ContactState> {
             _onLoad(emit, departmentID: departmentID, keyword: keyword),
         refresh: (departmentID, keyword) =>
             _onLoad(emit, departmentID: departmentID, keyword: keyword),
+        loadSavedBusinessCards: () => _onLoadSavedBusinessCards(emit),
       );
     });
+  }
+
+  /// Chỉ reload danh sách danh thiếp từ danh bạ máy, không đụng contacts.
+  Future<void> _onLoadSavedBusinessCards(Emitter<ContactState> emit) async {
+    final result = await _businessCardRepo.getBusinessCardsFromDevice();
+    List<BusinessCardModel> businessCards = [];
+    result.fold((_) {}, (cards) => businessCards = cards);
+    emit(state.copyWith(businessCards: businessCards));
   }
 
   Future<void> _onLoad(
