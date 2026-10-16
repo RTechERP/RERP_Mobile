@@ -85,3 +85,65 @@ Map<String, dynamic> _$$RentalVehicleItemImplToJson(
       'IsApproved': instance.isApproved,
       'ApprovedID': instance.approvedId,
     };
+
+_$RentalVehicleEmployeeImpl _$$RentalVehicleEmployeeImplFromJson(
+        Map<String, dynamic> json) =>
+    _$RentalVehicleEmployeeImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      userId: (json['UserID'] as num?)?.toInt(),
+      departmentId: (json['DepartmentID'] as num?)?.toInt(),
+      code: json['Code'] as String?,
+      fullName: json['FullName'] as String?,
+      avatar: json['AnhCBNV'] as String?,
+      chucVuHd: json['ChucVuHD'] as String?,
+      chucVu: json['ChucVu'] as String?,
+      departmentName: json['DepartmentName'] as String?,
+      diaDiemLamViec: json['DiaDiemLamViec'] as String?,
+      emailCongTy: json['EmailCongTy'] as String?,
+      sdtCaNhan: json['SDTCaNhan'] as String?,
+    );
+
+Map<String, dynamic> _$$RentalVehicleEmployeeImplToJson(
+        _$RentalVehicleEmployeeImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'UserID': instance.userId,
+      'DepartmentID': instance.departmentId,
+      'Code': instance.code,
+      'FullName': instance.fullName,
+      'AnhCBNV': instance.avatar,
+      'ChucVuHD': instance.chucVuHd,
+      'ChucVu': instance.chucVu,
+      'DepartmentName': instance.departmentName,
+      'DiaDiemLamViec': instance.diaDiemLamViec,
+      'EmailCongTy': instance.emailCongTy,
+      'SDTCaNhan': instance.sdtCaNhan,
+    };
+
+_$RentalVehicleDepartmentImpl _$$RentalVehicleDepartmentImplFromJson(
+        Map<String, dynamic> json) =>
+    _$RentalVehicleDepartmentImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      code: json['Code'] as String?,
+      name: json['Name'] as String?,
+      parentId: json['ParentID'],
+      pId: json['PId'] as String?,
+      stt: (json['STT'] as num?)?.toInt(),
+      email: json['Email'] as String?,
+      status: (json['Status'] as num?)?.toInt(),
+      isShowHotline: json['IsShowHotline'] as bool?,
+    );
+
+Map<String, dynamic> _$$RentalVehicleDepartmentImplToJson(
+        _$RentalVehicleDepartmentImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'Code': instance.code,
+      'Name': instance.name,
+      'ParentID': instance.parentId,
+      'PId': instance.pId,
+      'STT': instance.stt,
+      'Email': instance.email,
+      'Status': instance.status,
+      'IsShowHotline': instance.isShowHotline,
+    };

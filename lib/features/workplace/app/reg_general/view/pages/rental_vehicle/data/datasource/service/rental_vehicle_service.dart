@@ -60,4 +60,37 @@ class RentalVehicleService extends DioBaseApiService {
       },
     );
   }
+
+  /// Lấy danh sách nhân viên (dùng dropdown ở add/detail screen).
+  /// API: `GET /Employee?status=&departmentid=&keyword=`
+  Future<BaseData<List<RentalVehicleEmployee>>> getEmployees({
+    int status = 0,
+    int departmentId = 0,
+    String keyword = '',
+  }) async {
+    return get<BaseData<List<RentalVehicleEmployee>>>(
+      ApiEndPoint.getEmployee,
+      query: {
+        'status': status,
+        'departmentid': departmentId,
+        'keyword': keyword,
+      },
+      parser: (json) => _parseList<RentalVehicleEmployee>(
+        json,
+        RentalVehicleEmployee.fromJson,
+      ),
+    );
+  }
+
+  /// Lấy danh sách phòng ban (dùng dropdown ở add/detail screen).
+  /// API: `GET /Department/get-all`
+  Future<BaseData<List<RentalVehicleDepartment>>> getDepartments() async {
+    return get<BaseData<List<RentalVehicleDepartment>>>(
+      ApiEndPoint.getDepart,
+      parser: (json) => _parseList<RentalVehicleDepartment>(
+        json,
+        RentalVehicleDepartment.fromJson,
+      ),
+    );
+  }
 }

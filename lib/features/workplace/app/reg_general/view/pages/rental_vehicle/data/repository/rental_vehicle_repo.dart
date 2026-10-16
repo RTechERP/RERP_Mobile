@@ -13,4 +13,17 @@ abstract class RentalVehicleRepo {
   Future<Either<BaseError, List<RentalVehicleItem>>> searchRentalVehicle({
     required Map<String, dynamic> payload,
   });
+
+  /// Lấy danh sách nhân viên (dùng dropdown ở add/detail screen).
+  /// - [status]: 0 = tất cả, 1 = đang làm việc...
+  /// - [departmentId]: 0 = tất cả phòng ban
+  /// - [keyword]: từ khoá tìm kiếm (mã / tên)
+  Future<Either<BaseError, List<RentalVehicleEmployee>>> getEmployees({
+    required int status,
+    required int departmentId,
+    required String keyword,
+  });
+
+  /// Lấy toàn bộ danh sách phòng ban (dùng dropdown ở add/detail screen).
+  Future<Either<BaseError, List<RentalVehicleDepartment>>> getDepartments();
 }

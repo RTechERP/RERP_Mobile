@@ -38,4 +38,46 @@ class RentalVehicleRepoImpl implements RentalVehicleRepo {
       return left(BaseError.httpInternalServerError(e.toString()));
     }
   }
+
+  @override
+  Future<Either<BaseError, List<RentalVehicleEmployee>>> getEmployees({
+    required int status,
+    required int departmentId,
+    required String keyword,
+  }) async {
+    try {
+      final res = await _service.getEmployees(
+        status: status,
+        departmentId: departmentId,
+        keyword: keyword,
+      );
+      if (res.status == 1 && res.data != null) return right(res.data!);
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? res.msg ?? 'Không tải được danh sách nhân viên',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<RentalVehicleDepartment>>> getDepartments() async {
+    try {
+      final res = await _service.getDepartments();
+      if (res.status == 1 && res.data != null) return right(res.data!);
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? res.msg ?? 'Không tải được danh sách phòng ban',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
 }

@@ -3,7 +3,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 
 import '../../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../../base/widgets/base_scaffold.dart';
@@ -13,6 +12,8 @@ import '../../../../../../../../../common/constants/index.dart';
 import '../../../../../../../../../common/utils/navigation/navigation_utils.dart';
 import '../../../../../../../../../common/widgets/date_range_picker.dart';
 import '../bloc/rental_vehicle_bloc.dart';
+import '../widgets/filter_sheet.dart';
+import '../widgets/list_header.dart';
 import '../widgets/rental_vehicle_card.dart';
 
 class RentalVehicleScreen extends StatefulWidget {
@@ -61,6 +62,23 @@ class _RentalVehicleScreenState
     );
   }
 
+  /// Mở bottom-sheet chứa bộ lọc (text search + 3 dropdown).
+  void _openFilterSheet() {
+    bloc.add(const RentalVehicleEvent.loadAll());
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.white,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (_) => BlocProvider.value(
+        value: bloc,
+        child: const FilterSheet(),
+      ),
+    );
+  }
+
   @override
   Widget renderUI(BuildContext context) {
     return BaseScaffold(
@@ -73,6 +91,11 @@ class _RentalVehicleScreenState
             tooltip: 'Lọc ngày',
             onPressed: _openDateRangePicker,
           ),
+          IconButton(
+            icon: const Icon(Icons.filter_alt_outlined),
+            tooltip: 'Bộ lọc',
+            onPressed: _openFilterSheet,
+          ),
         ],
       ),
       body: BlocBuilder<RentalVehicleBloc, RentalVehicleState>(
@@ -81,12 +104,15 @@ class _RentalVehicleScreenState
             prev.rentalVehicles.length != curr.rentalVehicles.length ||
             prev.dateStart != curr.dateStart ||
             prev.dateEnd != curr.dateEnd ||
-            prev.keyword != curr.keyword,
+            prev.keyword != curr.keyword ||
+            prev.selectedDepartmentId != curr.selectedDepartmentId ||
+            prev.selectedRequesterId != curr.selectedRequesterId ||
+            prev.selectedBookerId != curr.selectedBookerId,
         builder: (context, state) {
           return Column(
             children: [
               if (state.dateStart != null && state.dateEnd != null)
-                _ListHeader(
+                ListHeader(
                   total: state.rentalVehicles.length,
                   dateStart: state.dateStart,
                   dateEnd: state.dateEnd,
@@ -125,13 +151,15 @@ class _RentalVehicleScreenState
 
     if (state.rentalVehicles.isEmpty) {
       return Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Image.asset(AppImages.missing, width: 320),
-            const SizedBox(height: 12),
-            const Text('Không có yêu cầu thuê xe tải'),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Image.asset(AppImages.missing, width: 320),
+              const SizedBox(height: 12),
+              const Text('Không có yêu cầu thuê xe tải'),
+            ],
+          ),
         ),
       );
     }
@@ -145,136 +173,5 @@ class _RentalVehicleScreenState
         return RentalVehicleCard(item: item);
       },
     );
-  }
-}
-
-class _ListHeader extends StatelessWidget {
-  const _ListHeader({
-    required this.total,
-    required this.dateStart,
-    required this.dateEnd,
-    required this.isSearching,
-  });
-
-  final int total;
-  final DateTime? dateStart;
-  final DateTime? dateEnd;
-  final bool isSearching;
-
-  @override
-  Widget build(BuildContext context) {
-    final df = DateFormat('dd/MM/yyyy');
-    final hasRange = dateStart != null && dateEnd != null;
-    final isSameDay = hasRange && _isSameDay(dateStart!, dateEnd!);
-    final rangeText = hasRange
-        ? (isSameDay
-            ? df.format(dateStart!)
-            : '${df.format(dateStart!)} - ${df.format(dateEnd!)}')
-        : null;
-
-    return Container(
-      margin: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-      decoration: BoxDecoration(
-        color: AppColors.primaryERP,
-        borderRadius: BorderRadius.circular(14),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.primaryERP.withValues(alpha: 0.25),
-            blurRadius: 12,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          Expanded(
-            child: Row(
-              children: [
-                Flexible(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.baseline,
-                        textBaseline: TextBaseline.alphabetic,
-                        children: [
-                          Flexible(
-                            child: Text(
-                              '$total',
-                              style: const TextStyle(
-                                fontSize: 22,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white,
-                                height: 1.1,
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                          const SizedBox(width: 4),
-                          const Text(
-                            'phiếu',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Text(
-                        isSearching ? 'Đang tìm kiếm' : 'Tổng số phiếu',
-                        style: TextStyle(
-                          fontSize: 11,
-                          color: Colors.white.withValues(alpha: 0.85),
-                        ),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          if (rangeText != null) ...[
-            const SizedBox(width: 8),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(
-                    Icons.event_outlined,
-                    size: 14,
-                    color: AppColors.primaryERP,
-                  ),
-                  const SizedBox(width: 6),
-                  Flexible(
-                    child: Text(
-                      rangeText,
-                      style: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: AppColors.primaryERP,
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ],
-      ),
-    );
-  }
-
-  bool _isSameDay(DateTime a, DateTime b) {
-    return a.year == b.year && a.month == b.month && a.day == b.day;
   }
 }

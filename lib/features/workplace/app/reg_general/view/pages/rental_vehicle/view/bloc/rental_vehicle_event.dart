@@ -18,4 +18,29 @@ class RentalVehicleEvent with _$RentalVehicleEvent {
   const factory RentalVehicleEvent.search({
     required String keyword,
   }) = _Search;
+
+  /// Tải đồng thời Employee + Department (gọi khi mở add/detail screen).
+  const factory RentalVehicleEvent.loadAll() = _LoadAll;
+
+  /// Chỉ tải Employee theo filter.
+  const factory RentalVehicleEvent.loadEmployees({
+    required int status,
+    required int departmentId,
+    required String keyword,
+  }) = _LoadEmployees;
+
+  /// Chỉ tải Department.
+  const factory RentalVehicleEvent.loadDepartments() = _LoadDepartments;
+
+  /// Chọn phòng ban để lọc (0 = tất cả).
+  const factory RentalVehicleEvent.selectDepartment(int departmentId) =
+      _SelectDepartment;
+
+  /// Chọn người yêu cầu để lọc (0 = tất cả).
+  const factory RentalVehicleEvent.selectRequester(int employeeId) =
+      _SelectRequester;
+
+  /// Chọn người đặt để lọc (0 = tất cả).
+  const factory RentalVehicleEvent.selectBooker(int employeeId) =
+      _SelectBooker;
 }

@@ -48,3 +48,46 @@ class RentalVehicleItem with _$RentalVehicleItem {
   factory RentalVehicleItem.fromJson(Map<String, dynamic> json) =>
       _$RentalVehicleItemFromJson(json);
 }
+
+/// Nhân viên dùng cho dropdown "Người yêu cầu" ở add/detail screen.
+// API: GET /Employee?status=&departmentid=&keyword=
+@freezed
+class RentalVehicleEmployee with _$RentalVehicleEmployee {
+  const factory RentalVehicleEmployee({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'UserID') int? userId,
+    @JsonKey(name: 'DepartmentID') int? departmentId,
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'FullName') String? fullName,
+    @JsonKey(name: 'AnhCBNV') String? avatar,
+    @JsonKey(name: 'ChucVuHD') String? chucVuHd,
+    @JsonKey(name: 'ChucVu') String? chucVu,
+    @JsonKey(name: 'DepartmentName') String? departmentName,
+    @JsonKey(name: 'DiaDiemLamViec') String? diaDiemLamViec,
+    @JsonKey(name: 'EmailCongTy') String? emailCongTy,
+    @JsonKey(name: 'SDTCaNhan') String? sdtCaNhan,
+  }) = _RentalVehicleEmployee;
+
+  factory RentalVehicleEmployee.fromJson(Map<String, dynamic> json) =>
+      _$RentalVehicleEmployeeFromJson(json);
+}
+
+/// Phòng ban dùng cho dropdown "Bộ phận" ở add/detail screen.
+// API: GET /Department/get-all
+@freezed
+class RentalVehicleDepartment with _$RentalVehicleDepartment {
+  const factory RentalVehicleDepartment({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'Name') String? name,
+    @JsonKey(name: 'ParentID') dynamic parentId,
+    @JsonKey(name: 'PId') String? pId,
+    @JsonKey(name: 'STT') int? stt,
+    @JsonKey(name: 'Email') String? email,
+    @JsonKey(name: 'Status') int? status,
+    @JsonKey(name: 'IsShowHotline') bool? isShowHotline,
+  }) = _RentalVehicleDepartment;
+
+  factory RentalVehicleDepartment.fromJson(Map<String, dynamic> json) =>
+      _$RentalVehicleDepartmentFromJson(json);
+}

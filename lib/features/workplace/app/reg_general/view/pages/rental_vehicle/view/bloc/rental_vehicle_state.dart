@@ -17,6 +17,21 @@ class RentalVehicleState extends BaseBlocState {
   /// Từ khoá tìm kiếm hiện tại.
   final String keyword;
 
+  /// Danh sách nhân viên dùng dropdown ở add/detail screen.
+  final List<RentalVehicleEmployee> employees;
+
+  /// Danh sách phòng ban dùng dropdown ở add/detail screen.
+  final List<RentalVehicleDepartment> departments;
+
+  /// Phòng ban đang được chọn để lọc (0 = tất cả).
+  final int selectedDepartmentId;
+
+  /// Người yêu cầu đang được chọn để lọc (0 = tất cả).
+  final int selectedRequesterId;
+
+  /// Người đặt đang được chọn để lọc (0 = tất cả).
+  final int selectedBookerId;
+
   const RentalVehicleState({
     required super.status,
     super.message,
@@ -24,6 +39,11 @@ class RentalVehicleState extends BaseBlocState {
     this.dateStart,
     this.dateEnd,
     this.keyword = '',
+    this.employees = const [],
+    this.departments = const [],
+    this.selectedDepartmentId = 0,
+    this.selectedRequesterId = 0,
+    this.selectedBookerId = 0,
   });
 
   factory RentalVehicleState.init() => const RentalVehicleState(
@@ -32,6 +52,11 @@ class RentalVehicleState extends BaseBlocState {
         dateStart: null,
         dateEnd: null,
         keyword: '',
+        employees: [],
+        departments: [],
+        selectedDepartmentId: 0,
+        selectedRequesterId: 0,
+        selectedBookerId: 0,
       );
 
   @override
@@ -42,5 +67,10 @@ class RentalVehicleState extends BaseBlocState {
         dateStart,
         dateEnd,
         keyword,
+        employees,
+        departments,
+        selectedDepartmentId,
+        selectedRequesterId,
+        selectedBookerId,
       ];
 }

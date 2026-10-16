@@ -19,6 +19,16 @@ abstract class _$RentalVehicleStateCWProxy {
 
   RentalVehicleState keyword(String keyword);
 
+  RentalVehicleState employees(List<RentalVehicleEmployee> employees);
+
+  RentalVehicleState departments(List<RentalVehicleDepartment> departments);
+
+  RentalVehicleState selectedDepartmentId(int selectedDepartmentId);
+
+  RentalVehicleState selectedRequesterId(int selectedRequesterId);
+
+  RentalVehicleState selectedBookerId(int selectedBookerId);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `RentalVehicleState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -32,6 +42,11 @@ abstract class _$RentalVehicleStateCWProxy {
     DateTime? dateStart,
     DateTime? dateEnd,
     String? keyword,
+    List<RentalVehicleEmployee>? employees,
+    List<RentalVehicleDepartment>? departments,
+    int? selectedDepartmentId,
+    int? selectedRequesterId,
+    int? selectedBookerId,
   });
 }
 
@@ -62,6 +77,26 @@ class _$RentalVehicleStateCWProxyImpl implements _$RentalVehicleStateCWProxy {
   RentalVehicleState keyword(String keyword) => this(keyword: keyword);
 
   @override
+  RentalVehicleState employees(List<RentalVehicleEmployee> employees) =>
+      this(employees: employees);
+
+  @override
+  RentalVehicleState departments(List<RentalVehicleDepartment> departments) =>
+      this(departments: departments);
+
+  @override
+  RentalVehicleState selectedDepartmentId(int selectedDepartmentId) =>
+      this(selectedDepartmentId: selectedDepartmentId);
+
+  @override
+  RentalVehicleState selectedRequesterId(int selectedRequesterId) =>
+      this(selectedRequesterId: selectedRequesterId);
+
+  @override
+  RentalVehicleState selectedBookerId(int selectedBookerId) =>
+      this(selectedBookerId: selectedBookerId);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `RentalVehicleState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -76,6 +111,11 @@ class _$RentalVehicleStateCWProxyImpl implements _$RentalVehicleStateCWProxy {
     Object? dateStart = const $CopyWithPlaceholder(),
     Object? dateEnd = const $CopyWithPlaceholder(),
     Object? keyword = const $CopyWithPlaceholder(),
+    Object? employees = const $CopyWithPlaceholder(),
+    Object? departments = const $CopyWithPlaceholder(),
+    Object? selectedDepartmentId = const $CopyWithPlaceholder(),
+    Object? selectedRequesterId = const $CopyWithPlaceholder(),
+    Object? selectedBookerId = const $CopyWithPlaceholder(),
   }) {
     return RentalVehicleState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -103,6 +143,32 @@ class _$RentalVehicleStateCWProxyImpl implements _$RentalVehicleStateCWProxy {
           ? _value.keyword
           // ignore: cast_nullable_to_non_nullable
           : keyword as String,
+      employees: employees == const $CopyWithPlaceholder() || employees == null
+          ? _value.employees
+          // ignore: cast_nullable_to_non_nullable
+          : employees as List<RentalVehicleEmployee>,
+      departments:
+          departments == const $CopyWithPlaceholder() || departments == null
+              ? _value.departments
+              // ignore: cast_nullable_to_non_nullable
+              : departments as List<RentalVehicleDepartment>,
+      selectedDepartmentId:
+          selectedDepartmentId == const $CopyWithPlaceholder() ||
+                  selectedDepartmentId == null
+              ? _value.selectedDepartmentId
+              // ignore: cast_nullable_to_non_nullable
+              : selectedDepartmentId as int,
+      selectedRequesterId:
+          selectedRequesterId == const $CopyWithPlaceholder() ||
+                  selectedRequesterId == null
+              ? _value.selectedRequesterId
+              // ignore: cast_nullable_to_non_nullable
+              : selectedRequesterId as int,
+      selectedBookerId: selectedBookerId == const $CopyWithPlaceholder() ||
+              selectedBookerId == null
+          ? _value.selectedBookerId
+          // ignore: cast_nullable_to_non_nullable
+          : selectedBookerId as int,
     );
   }
 }
