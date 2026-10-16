@@ -45,6 +45,12 @@ abstract class _$RentalVehicleStateCWProxy {
 
   RentalVehicleState deleteSuccess(bool deleteSuccess);
 
+  RentalVehicleState isUpdating(bool isUpdating);
+
+  RentalVehicleState updateSuccess(bool updateSuccess);
+
+  RentalVehicleState currentEmployeeId(int currentEmployeeId);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `RentalVehicleState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -71,6 +77,9 @@ abstract class _$RentalVehicleStateCWProxy {
     bool? submitSuccess,
     int? deletingId,
     bool? deleteSuccess,
+    bool? isUpdating,
+    bool? updateSuccess,
+    int? currentEmployeeId,
   });
 }
 
@@ -152,6 +161,18 @@ class _$RentalVehicleStateCWProxyImpl implements _$RentalVehicleStateCWProxy {
       this(deleteSuccess: deleteSuccess);
 
   @override
+  RentalVehicleState isUpdating(bool isUpdating) =>
+      this(isUpdating: isUpdating);
+
+  @override
+  RentalVehicleState updateSuccess(bool updateSuccess) =>
+      this(updateSuccess: updateSuccess);
+
+  @override
+  RentalVehicleState currentEmployeeId(int currentEmployeeId) =>
+      this(currentEmployeeId: currentEmployeeId);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `RentalVehicleState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -179,6 +200,9 @@ class _$RentalVehicleStateCWProxyImpl implements _$RentalVehicleStateCWProxy {
     Object? submitSuccess = const $CopyWithPlaceholder(),
     Object? deletingId = const $CopyWithPlaceholder(),
     Object? deleteSuccess = const $CopyWithPlaceholder(),
+    Object? isUpdating = const $CopyWithPlaceholder(),
+    Object? updateSuccess = const $CopyWithPlaceholder(),
+    Object? currentEmployeeId = const $CopyWithPlaceholder(),
   }) {
     return RentalVehicleState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -269,6 +293,21 @@ class _$RentalVehicleStateCWProxyImpl implements _$RentalVehicleStateCWProxy {
               ? _value.deleteSuccess
               // ignore: cast_nullable_to_non_nullable
               : deleteSuccess as bool,
+      isUpdating:
+          isUpdating == const $CopyWithPlaceholder() || isUpdating == null
+              ? _value.isUpdating
+              // ignore: cast_nullable_to_non_nullable
+              : isUpdating as bool,
+      updateSuccess:
+          updateSuccess == const $CopyWithPlaceholder() || updateSuccess == null
+              ? _value.updateSuccess
+              // ignore: cast_nullable_to_non_nullable
+              : updateSuccess as bool,
+      currentEmployeeId: currentEmployeeId == const $CopyWithPlaceholder() ||
+              currentEmployeeId == null
+          ? _value.currentEmployeeId
+          // ignore: cast_nullable_to_non_nullable
+          : currentEmployeeId as int,
     );
   }
 }

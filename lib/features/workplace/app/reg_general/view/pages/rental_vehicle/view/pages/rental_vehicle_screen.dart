@@ -16,11 +16,13 @@ import '../../../../../../../../../common/utils/navigation/navigation_utils.dart
 import '../../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../../common/widgets/date_range_picker.dart';
 import '../../../../../../../../../routes/route_names.dart';
+import '../../data/datasource/models/rental_vehicle_model.dart';
 import '../bloc/rental_vehicle_bloc.dart';
 import '../widgets/filter_sheet.dart';
 import '../widgets/list_header.dart';
 import '../widgets/rental_vehicle_card.dart';
 import 'rental_vehicle_add_screen.dart';
+import 'rental_vehicle_update_screen.dart';
 
 class RentalVehicleScreen extends StatefulWidget {
   const RentalVehicleScreen({super.key});
@@ -91,6 +93,22 @@ class _RentalVehicleScreenState
     final confirmed = await DialogService.showConfirmDelete(context: context);
     if (!confirmed) return;
     bloc.add(RentalVehicleEvent.delete(id: id));
+  }
+
+  /// Mở màn update với item được chọn.
+  Future<void> _openUpdate(RentalVehicleItem item) async {
+    final reload = await context.push<bool?>(
+      RouteNames.rentalVehicleUpdate,
+      extra: RentalVehicleUpdateScreen(
+        item: item,
+        employees: bloc.state.employees,
+        projects: bloc.state.projects,
+      ),
+    );
+    if (!mounted) return;
+    if (reload == true) {
+      bloc.add(const RentalVehicleEvent.init());
+    }
   }
 
   @override
@@ -264,6 +282,7 @@ class _RentalVehicleScreenState
             ),
             child: RentalVehicleCard(
               item: item,
+              onTap: id == 0 ? null : () => _openUpdate(item),
               onDelete: id == 0 ? null : () => _confirmDelete(id),
             ),
           );

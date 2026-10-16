@@ -58,6 +58,15 @@ class RentalVehicleState extends BaseBlocState {
   /// Xoá thành công.
   final bool deleteSuccess;
 
+  /// Đang cập nhật 1 phiếu.
+  final bool isUpdating;
+
+  /// Cập nhật thành công.
+  final bool updateSuccess;
+
+  /// ID nhân viên của user đang đăng nhập (dùng để check quyền xoá).
+  final int currentEmployeeId;
+
   const RentalVehicleState({
     required super.status,
     super.message,
@@ -78,6 +87,9 @@ class RentalVehicleState extends BaseBlocState {
     this.submitSuccess = false,
     this.deletingId,
     this.deleteSuccess = false,
+    this.isUpdating = false,
+    this.updateSuccess = false,
+    this.currentEmployeeId = 0,
   });
 
   factory RentalVehicleState.init() => const RentalVehicleState(
@@ -99,6 +111,9 @@ class RentalVehicleState extends BaseBlocState {
         submitSuccess: false,
         deletingId: null,
         deleteSuccess: false,
+        isUpdating: false,
+        updateSuccess: false,
+        currentEmployeeId: 0,
       );
 
   @override
@@ -122,5 +137,8 @@ class RentalVehicleState extends BaseBlocState {
         submitSuccess,
         deletingId,
         deleteSuccess,
+        isUpdating,
+        updateSuccess,
+        currentEmployeeId,
       ];
 }

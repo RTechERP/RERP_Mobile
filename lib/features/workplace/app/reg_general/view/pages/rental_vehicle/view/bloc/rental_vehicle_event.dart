@@ -65,4 +65,10 @@ class RentalVehicleEvent with _$RentalVehicleEvent {
   const factory RentalVehicleEvent.delete({
     required int id,
   }) = _Delete;
+
+  /// Submit form update (cập nhật 1 phiếu đã có).
+  const factory RentalVehicleEvent.submitUpdate({
+    required int id,
+    required Map<String, dynamic> formValues,
+  }) = _SubmitUpdate;
 }

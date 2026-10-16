@@ -46,6 +46,8 @@ class RentalVehicleBloc
         submitAdd: (formValues) => _onSubmitAdd(formValues, emit),
         clearSubmitResult: () => _onClearSubmitResult(emit),
         delete: (id) => _onDelete(id, emit),
+        submitUpdate: (id, formValues) =>
+            _onSubmitUpdate(id, formValues, emit),
       );
     });
   }
@@ -60,6 +62,19 @@ class RentalVehicleBloc
   Future<void> _onInit(Emitter<RentalVehicleState> emit) async {
     final now = DateTime.now();
     final (start, end) = _monthBounds(now);
+
+    // Load current user để lưu currentEmployeeId (dùng cho check quyền xoá).
+    final userRes = await _authRepo.getCurrentUser();
+    var currentEmployeeId = 0;
+    await userRes.fold(
+      (err) async {
+        _log.logE('❌ Get current user failed: $err');
+      },
+      (user) async {
+        currentEmployeeId = user?.employeeId ?? 0;
+      },
+    );
+    emit(state.copyWith(currentEmployeeId: currentEmployeeId));
 
     await _doSearch(
       emit,
@@ -378,46 +393,12 @@ class RentalVehicleBloc
   ) async {
     emit(state.copyWith(isSubmitting: true, submitSuccess: false));
 
-    // Build payload.
-    final dateRequest = formValues['dateRequest'] as DateTime?;
-    final employeeId = formValues['employeeRequestId'] as int?;
-    final departmentId = formValues['departmentId'] as int?;
-    final vehicleType = formValues['vehicleType'] as int?;
-    final stt = formValues['stt'] as int?;
-    final packageName = formValues['packageName'] as String? ?? '';
-    final projectId = formValues['projectId'] as int?;
-    final packageQty = formValues['packageQuantity'] as int?;
-    final lengthCm = formValues['packageLengthCm'] as num?;
-    final widthCm = formValues['packageWidthCm'] as num?;
-    final heightCm = formValues['packageHeightCm'] as num?;
-    final weightKg = formValues['packageWeightKg'] as num?;
-    final departure = formValues['departureLocation'] as String? ?? '';
-    final arrival = formValues['addressLocation'] as String? ?? '';
-    final distanceKm = formValues['distanceKm'] as num?;
-    final note = formValues['note'] as String? ?? '';
-
     final payload = [
-      {
-        'ID': 0,
-        'DateRequest': (dateRequest ?? DateTime.now()).toUtc().toIso8601String(),
-        'STT': stt ?? state.nextStt,
-        'EmployeeRequestID': employeeId ?? 0,
-        'DepartmentID': departmentId ?? 0,
-        'VehicleType': vehicleType ?? 0,
-        'PackageName': packageName,
-        'ProjectID': projectId ?? 0,
-        'PackageQuantity': packageQty ?? 0,
-        'PackageLengthCm': lengthCm ?? 0,
-        'PackageWidthCm': widthCm ?? 0,
-        'PackageHeightCm': heightCm ?? 0,
-        'PackageWeightKg': weightKg ?? 0,
-        'DepartureLocation': departure,
-        'AddressLocation': arrival,
-        'DistanceKm': distanceKm ?? 0,
-        'NameNCC': '',
-        'Cost': null,
-        'Note': note,
-      },
+      _buildSavePayload(
+        id: 0,
+        stt: formValues['stt'] as int? ?? state.nextStt,
+        formValues: formValues,
+      ),
     ];
 
     _log.logI('📋 submitAdd payload: $payload');
@@ -443,6 +424,90 @@ class RentalVehicleBloc
     );
   }
 
+  Future<void> _onSubmitUpdate(
+    int id,
+    Map<String, dynamic> formValues,
+    Emitter<RentalVehicleState> emit,
+  ) async {
+    emit(state.copyWith(isUpdating: true, updateSuccess: false));
+
+    final payload = [
+      _buildSavePayload(
+        id: id,
+        stt: formValues['stt'] as int? ?? 0,
+        formValues: formValues,
+      ),
+    ];
+
+    _log.logI('📋 submitUpdate payload: $payload');
+
+    final res = await _rentalVehicleRepo.saveData(payload: payload);
+
+    await res.fold(
+      (err) async {
+        _log.logE('❌ submitUpdate failed: $err');
+        emit(state.copyWith(
+          isUpdating: false,
+          updateSuccess: false,
+          message: 'Cập nhật thất bại',
+        ));
+      },
+      (_) async {
+        _log.logI('✅ submitUpdate success: id=$id');
+        emit(state.copyWith(
+          isUpdating: false,
+          updateSuccess: true,
+        ));
+      },
+    );
+  }
+
+  /// Build 1 record payload theo schema API /VehicleRentalRequest/save-data.
+  /// [id] = 0 → tạo mới, [id] > 0 → cập nhật.
+  Map<String, dynamic> _buildSavePayload({
+    required int id,
+    required int stt,
+    required Map<String, dynamic> formValues,
+  }) {
+    final dateRequest = formValues['dateRequest'] as DateTime?;
+    final employeeId = formValues['employeeRequestId'] as int?;
+    final departmentId = formValues['departmentId'] as int?;
+    final vehicleType = formValues['vehicleType'] as int?;
+    final packageName = formValues['packageName'] as String? ?? '';
+    final projectId = formValues['projectId'] as int?;
+    final packageQty = formValues['packageQuantity'] as int?;
+    final lengthCm = formValues['packageLengthCm'] as num?;
+    final widthCm = formValues['packageWidthCm'] as num?;
+    final heightCm = formValues['packageHeightCm'] as num?;
+    final weightKg = formValues['packageWeightKg'] as num?;
+    final departure = formValues['departureLocation'] as String? ?? '';
+    final arrival = formValues['addressLocation'] as String? ?? '';
+    final distanceKm = formValues['distanceKm'] as num?;
+    final note = formValues['note'] as String? ?? '';
+
+    return {
+      'ID': id,
+      'DateRequest': (dateRequest ?? DateTime.now()).toUtc().toIso8601String(),
+      'STT': stt,
+      'EmployeeRequestID': employeeId ?? 0,
+      'DepartmentID': departmentId ?? 0,
+      'VehicleType': vehicleType ?? 0,
+      'PackageName': packageName,
+      'ProjectID': projectId ?? 0,
+      'PackageQuantity': packageQty ?? 0,
+      'PackageLengthCm': lengthCm ?? 0,
+      'PackageWidthCm': widthCm ?? 0,
+      'PackageHeightCm': heightCm ?? 0,
+      'PackageWeightKg': weightKg ?? 0,
+      'DepartureLocation': departure,
+      'AddressLocation': arrival,
+      'DistanceKm': distanceKm ?? 0,
+      'NameNCC': '',
+      'Cost': null,
+      'Note': note,
+    };
+  }
+
   Future<void> _onClearSubmitResult(
     Emitter<RentalVehicleState> emit,
   ) async {
@@ -459,6 +524,28 @@ class RentalVehicleBloc
     int id,
     Emitter<RentalVehicleState> emit,
   ) async {
+    // Check quyền: chỉ người tạo phiếu (EmployeeID) mới được xoá.
+    RentalVehicleItem? item;
+    for (final e in state.rentalVehicles) {
+      if (e.id == id) {
+        item = e;
+        break;
+      }
+    }
+    if (item != null &&
+        state.currentEmployeeId > 0 &&
+        item.employeeId != null &&
+        item.employeeId != state.currentEmployeeId) {
+      _log.logW('⚠️ current user ${state.currentEmployeeId} '
+          'cannot delete item created by ${item.employeeId}');
+      emit(state.copyWith(
+        deletingId: null,
+        deleteSuccess: false,
+        message: 'Bạn không có quyền xoá phiếu của người khác',
+      ));
+      return;
+    }
+
     emit(state.copyWith(
       deletingId: id,
       deleteSuccess: false,

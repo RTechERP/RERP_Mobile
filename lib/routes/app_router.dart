@@ -67,7 +67,9 @@ import '../features/workplace/app/reg_general/view/pages/poll/data/datasource/mo
 import '../features/workplace/app/reg_general/view/pages/poll/view/bloc/poll_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/poll/view/pages/poll_detail_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/poll/view/pages/poll_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/rental_vehicle/data/datasource/models/rental_vehicle_model.dart';
 import '../features/workplace/app/reg_general/view/pages/rental_vehicle/view/pages/rental_vehicle_add_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/rental_vehicle/view/pages/rental_vehicle_update_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/stationery/data/datasource/models/stationery_model.dart';
 import '../features/workplace/app/reg_general/view/pages/stationery/stationery_edit_route_args.dart';
 import '../features/workplace/app/reg_general/view/pages/stationery/view/bloc/stationery_bloc.dart';
@@ -909,6 +911,18 @@ class AppRouter {
                 return extra;
               }
               return const RentalVehicleAddScreen();
+            },
+          ),
+          GoRoute(
+            path: RouteNames.rentalVehicleUpdate,
+            builder: (context, state) {
+              final extra = state.extra;
+              if (extra is RentalVehicleUpdateScreen) {
+                return extra;
+              }
+              return const RentalVehicleUpdateScreen(
+                item: RentalVehicleItem(),
+              );
             },
           ),
         ],

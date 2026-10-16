@@ -165,6 +165,7 @@ class RouteNames {
   // Rental Vehicle
   static const rentalVehicle = '/reg_general/rental_vehicle';
   static const rentalVehicleAdd = '/reg_general/rental_vehicle/add';
+  static const rentalVehicleUpdate = '/reg_general/rental_vehicle/update';
 
   static const workCategory = '/reg_general/work_category';
 
