@@ -40,6 +40,11 @@ class RentalVehicleBloc
         selectRequester: (employeeId) =>
             _onSelectRequester(employeeId, emit),
         selectBooker: (employeeId) => _onSelectBooker(employeeId, emit),
+        initAdd: () => _onInitAdd(emit),
+        selectRequesterOnAdd: (employeeId) =>
+            _onSelectRequesterOnAdd(employeeId, emit),
+        submitAdd: (formValues) => _onSubmitAdd(formValues, emit),
+        clearSubmitResult: () => _onClearSubmitResult(emit),
       );
     });
   }
@@ -228,7 +233,8 @@ class RentalVehicleBloc
     };
   }
 
-  /// Tải đồng thời Employee + Department (gọi khi mở add/detail screen).
+  /// Tải đồng thời Employee + Department + Project
+  /// (gọi khi mở filter sheet hoặc cần data cho add screen).
   Future<void> _onLoadAll(Emitter<RentalVehicleState> emit) async {
     emit(state.copyWith(status: BaseStateStatus.loading));
 
@@ -241,9 +247,12 @@ class RentalVehicleBloc
         isPartOfLoadAll: true,
       ),
       _fetchDepartments(emit: emit, isPartOfLoadAll: true),
+      _fetchProjects(emit: emit),
     ]);
 
-    final hasAny = state.employees.isNotEmpty || state.departments.isNotEmpty;
+    final hasAny = state.employees.isNotEmpty ||
+        state.departments.isNotEmpty ||
+        state.projects.isNotEmpty;
     emit(
       state.copyWith(
         status: hasAny ? BaseStateStatus.success : BaseStateStatus.failed,
@@ -318,5 +327,128 @@ class RentalVehicleBloc
         emit(state.copyWith(departments: r));
       },
     );
+  }
+
+  // ===== Add screen handlers =====
+
+  /// Init add screen: tính next STT từ state.rentalVehicles (load ở màn list).
+  /// Không gọi lại API — dùng data đã có trong state.
+  Future<void> _onInitAdd(Emitter<RentalVehicleState> emit) async {
+    emit(state.copyWith(
+      isSubmitting: false,
+      submitSuccess: false,
+    ));
+
+    // Tính STT kế tiếp từ state.rentalVehicles (đã load ở màn list).
+    int nextStt = 1;
+    for (final item in state.rentalVehicles) {
+      final stt = item.stt ?? 0;
+      if (stt >= nextStt) nextStt = stt + 1;
+    }
+
+    emit(state.copyWith(nextStt: nextStt));
+  }
+
+  Future<void> _fetchProjects({
+    required Emitter<RentalVehicleState> emit,
+  }) async {
+    final res = await _rentalVehicleRepo.getProjects();
+    await res.fold(
+      (err) async => _log.logE('❌ getProjects failed: $err'),
+      (r) async {
+        _log.logI('✅ getProjects success: ${r.length} items');
+        emit(state.copyWith(projects: r));
+      },
+    );
+  }
+
+  Future<void> _onSelectRequesterOnAdd(
+    int employeeId,
+    Emitter<RentalVehicleState> emit,
+  ) async {
+    emit(state.copyWith(
+      selectedRequesterIdOnAdd: employeeId,
+    ));
+  }
+
+  Future<void> _onSubmitAdd(
+    Map<String, dynamic> formValues,
+    Emitter<RentalVehicleState> emit,
+  ) async {
+    emit(state.copyWith(isSubmitting: true, submitSuccess: false));
+
+    // Build payload.
+    final dateRequest = formValues['dateRequest'] as DateTime?;
+    final employeeId = formValues['employeeRequestId'] as int?;
+    final departmentId = formValues['departmentId'] as int?;
+    final vehicleType = formValues['vehicleType'] as int?;
+    final stt = formValues['stt'] as int?;
+    final packageName = formValues['packageName'] as String? ?? '';
+    final projectId = formValues['projectId'] as int?;
+    final packageQty = formValues['packageQuantity'] as int?;
+    final lengthCm = formValues['packageLengthCm'] as num?;
+    final widthCm = formValues['packageWidthCm'] as num?;
+    final heightCm = formValues['packageHeightCm'] as num?;
+    final weightKg = formValues['packageWeightKg'] as num?;
+    final departure = formValues['departureLocation'] as String? ?? '';
+    final arrival = formValues['addressLocation'] as String? ?? '';
+    final distanceKm = formValues['distanceKm'] as num?;
+    final note = formValues['note'] as String? ?? '';
+
+    final payload = [
+      {
+        'ID': 0,
+        'DateRequest': (dateRequest ?? DateTime.now()).toUtc().toIso8601String(),
+        'STT': stt ?? state.nextStt,
+        'EmployeeRequestID': employeeId ?? 0,
+        'DepartmentID': departmentId ?? 0,
+        'VehicleType': vehicleType ?? 0,
+        'PackageName': packageName,
+        'ProjectID': projectId ?? 0,
+        'PackageQuantity': packageQty ?? 0,
+        'PackageLengthCm': lengthCm ?? 0,
+        'PackageWidthCm': widthCm ?? 0,
+        'PackageHeightCm': heightCm ?? 0,
+        'PackageWeightKg': weightKg ?? 0,
+        'DepartureLocation': departure,
+        'AddressLocation': arrival,
+        'DistanceKm': distanceKm ?? 0,
+        'NameNCC': '',
+        'Cost': null,
+        'Note': note,
+      },
+    ];
+
+    _log.logI('📋 submitAdd payload: $payload');
+
+    final res = await _rentalVehicleRepo.saveData(payload: payload);
+
+    await res.fold(
+      (err) async {
+        _log.logE('❌ submitAdd failed: $err');
+        emit(state.copyWith(
+          isSubmitting: false,
+          submitSuccess: false,
+          message: 'Lưu thất bại',
+        ));
+      },
+      (_) async {
+        _log.logI('✅ submitAdd success');
+        emit(state.copyWith(
+          isSubmitting: false,
+          submitSuccess: true,
+        ));
+      },
+    );
+  }
+
+  Future<void> _onClearSubmitResult(
+    Emitter<RentalVehicleState> emit,
+  ) async {
+    emit(state.copyWith(
+      isSubmitting: false,
+      submitSuccess: false,
+      message: null,
+    ));
   }
 }

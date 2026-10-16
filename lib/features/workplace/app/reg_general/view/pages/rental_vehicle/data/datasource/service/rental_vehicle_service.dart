@@ -93,4 +93,33 @@ class RentalVehicleService extends DioBaseApiService {
       ),
     );
   }
+
+  /// Lấy danh sách dự án (dùng dropdown ở add screen).
+  /// API: `GET /vehiclebookingmanagement/get-projects`
+  Future<BaseData<List<RentalVehicleProject>>> getProjects() async {
+    return get<BaseData<List<RentalVehicleProject>>>(
+      ApiEndPoint.getBookingVehicleProject,
+      parser: (json) => BaseData<List<RentalVehicleProject>>.fromJson(
+        json,
+        (data) => (data as List)
+            .map((e) => RentalVehicleProject.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      ),
+    );
+  }
+
+  /// Lưu yêu cầu thuê xe tải (tạo mới / cập nhật).
+  /// API: `POST /VehicleRentalRequest/save-data`
+  Future<BaseData<bool>> saveData({
+    required List<Map<String, dynamic>> payload,
+  }) async {
+    return post<BaseData<bool>>(
+      ApiEndPoint.saveVehicleRental,
+      body: payload,
+      parser: (json) => BaseData<bool>.fromJson(
+        json,
+        (data) => data == true || data == 1,
+      ),
+    );
+  }
 }

@@ -67,6 +67,7 @@ import '../features/workplace/app/reg_general/view/pages/poll/data/datasource/mo
 import '../features/workplace/app/reg_general/view/pages/poll/view/bloc/poll_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/poll/view/pages/poll_detail_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/poll/view/pages/poll_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/rental_vehicle/view/pages/rental_vehicle_add_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/stationery/data/datasource/models/stationery_model.dart';
 import '../features/workplace/app/reg_general/view/pages/stationery/stationery_edit_route_args.dart';
 import '../features/workplace/app/reg_general/view/pages/stationery/view/bloc/stationery_bloc.dart';
@@ -898,6 +899,17 @@ class AppRouter {
           GoRoute(
             path: RouteNames.rentalVehicle,
             builder: (context, state) => const RentalVehicleScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.rentalVehicleAdd,
+            builder: (context, state) {
+              // Lấy widget AddScreen truyền từ list (chứa employees, projects, nextStt).
+              final extra = state.extra;
+              if (extra is RentalVehicleAddScreen) {
+                return extra;
+              }
+              return const RentalVehicleAddScreen();
+            },
           ),
         ],
       ),

@@ -29,6 +29,18 @@ abstract class _$RentalVehicleStateCWProxy {
 
   RentalVehicleState selectedBookerId(int selectedBookerId);
 
+  RentalVehicleState projects(List<RentalVehicleProject> projects);
+
+  RentalVehicleState selectedVehicleTypeId(int? selectedVehicleTypeId);
+
+  RentalVehicleState selectedRequesterIdOnAdd(int? selectedRequesterIdOnAdd);
+
+  RentalVehicleState nextStt(int nextStt);
+
+  RentalVehicleState isSubmitting(bool isSubmitting);
+
+  RentalVehicleState submitSuccess(bool submitSuccess);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `RentalVehicleState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -47,6 +59,12 @@ abstract class _$RentalVehicleStateCWProxy {
     int? selectedDepartmentId,
     int? selectedRequesterId,
     int? selectedBookerId,
+    List<RentalVehicleProject>? projects,
+    int? selectedVehicleTypeId,
+    int? selectedRequesterIdOnAdd,
+    int? nextStt,
+    bool? isSubmitting,
+    bool? submitSuccess,
   });
 }
 
@@ -97,6 +115,29 @@ class _$RentalVehicleStateCWProxyImpl implements _$RentalVehicleStateCWProxy {
       this(selectedBookerId: selectedBookerId);
 
   @override
+  RentalVehicleState projects(List<RentalVehicleProject> projects) =>
+      this(projects: projects);
+
+  @override
+  RentalVehicleState selectedVehicleTypeId(int? selectedVehicleTypeId) =>
+      this(selectedVehicleTypeId: selectedVehicleTypeId);
+
+  @override
+  RentalVehicleState selectedRequesterIdOnAdd(int? selectedRequesterIdOnAdd) =>
+      this(selectedRequesterIdOnAdd: selectedRequesterIdOnAdd);
+
+  @override
+  RentalVehicleState nextStt(int nextStt) => this(nextStt: nextStt);
+
+  @override
+  RentalVehicleState isSubmitting(bool isSubmitting) =>
+      this(isSubmitting: isSubmitting);
+
+  @override
+  RentalVehicleState submitSuccess(bool submitSuccess) =>
+      this(submitSuccess: submitSuccess);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `RentalVehicleState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -116,6 +157,12 @@ class _$RentalVehicleStateCWProxyImpl implements _$RentalVehicleStateCWProxy {
     Object? selectedDepartmentId = const $CopyWithPlaceholder(),
     Object? selectedRequesterId = const $CopyWithPlaceholder(),
     Object? selectedBookerId = const $CopyWithPlaceholder(),
+    Object? projects = const $CopyWithPlaceholder(),
+    Object? selectedVehicleTypeId = const $CopyWithPlaceholder(),
+    Object? selectedRequesterIdOnAdd = const $CopyWithPlaceholder(),
+    Object? nextStt = const $CopyWithPlaceholder(),
+    Object? isSubmitting = const $CopyWithPlaceholder(),
+    Object? submitSuccess = const $CopyWithPlaceholder(),
   }) {
     return RentalVehicleState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -169,6 +216,34 @@ class _$RentalVehicleStateCWProxyImpl implements _$RentalVehicleStateCWProxy {
           ? _value.selectedBookerId
           // ignore: cast_nullable_to_non_nullable
           : selectedBookerId as int,
+      projects: projects == const $CopyWithPlaceholder() || projects == null
+          ? _value.projects
+          // ignore: cast_nullable_to_non_nullable
+          : projects as List<RentalVehicleProject>,
+      selectedVehicleTypeId:
+          selectedVehicleTypeId == const $CopyWithPlaceholder()
+              ? _value.selectedVehicleTypeId
+              // ignore: cast_nullable_to_non_nullable
+              : selectedVehicleTypeId as int?,
+      selectedRequesterIdOnAdd:
+          selectedRequesterIdOnAdd == const $CopyWithPlaceholder()
+              ? _value.selectedRequesterIdOnAdd
+              // ignore: cast_nullable_to_non_nullable
+              : selectedRequesterIdOnAdd as int?,
+      nextStt: nextStt == const $CopyWithPlaceholder() || nextStt == null
+          ? _value.nextStt
+          // ignore: cast_nullable_to_non_nullable
+          : nextStt as int,
+      isSubmitting:
+          isSubmitting == const $CopyWithPlaceholder() || isSubmitting == null
+              ? _value.isSubmitting
+              // ignore: cast_nullable_to_non_nullable
+              : isSubmitting as bool,
+      submitSuccess:
+          submitSuccess == const $CopyWithPlaceholder() || submitSuccess == null
+              ? _value.submitSuccess
+              // ignore: cast_nullable_to_non_nullable
+              : submitSuccess as bool,
     );
   }
 }

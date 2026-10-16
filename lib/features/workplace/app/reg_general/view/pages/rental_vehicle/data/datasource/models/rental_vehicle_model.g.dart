@@ -147,3 +147,39 @@ Map<String, dynamic> _$$RentalVehicleDepartmentImplToJson(
       'Status': instance.status,
       'IsShowHotline': instance.isShowHotline,
     };
+
+_$RentalVehicleProjectImpl _$$RentalVehicleProjectImplFromJson(
+        Map<String, dynamic> json) =>
+    _$RentalVehicleProjectImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      projectCode: json['ProjectCode'] as String?,
+      projectName: json['ProjectName'] as String?,
+      projectShortName: json['ProjectShortName'] as String?,
+      customerId: (json['CustomerID'] as num?)?.toInt(),
+      projectStatus: (json['ProjectStatus'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$RentalVehicleProjectImplToJson(
+        _$RentalVehicleProjectImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'ProjectCode': instance.projectCode,
+      'ProjectName': instance.projectName,
+      'ProjectShortName': instance.projectShortName,
+      'CustomerID': instance.customerId,
+      'ProjectStatus': instance.projectStatus,
+    };
+
+_$RentalVehicleVehicleTypeImpl _$$RentalVehicleVehicleTypeImplFromJson(
+        Map<String, dynamic> json) =>
+    _$RentalVehicleVehicleTypeImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      name: json['Name'] as String?,
+    );
+
+Map<String, dynamic> _$$RentalVehicleVehicleTypeImplToJson(
+        _$RentalVehicleVehicleTypeImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'Name': instance.name,
+    };

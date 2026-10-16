@@ -3,6 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../../base/widgets/base_scaffold.dart';
@@ -11,10 +12,12 @@ import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/constants/index.dart';
 import '../../../../../../../../../common/utils/navigation/navigation_utils.dart';
 import '../../../../../../../../../common/widgets/date_range_picker.dart';
+import '../../../../../../../../../routes/route_names.dart';
 import '../bloc/rental_vehicle_bloc.dart';
 import '../widgets/filter_sheet.dart';
 import '../widgets/list_header.dart';
 import '../widgets/rental_vehicle_card.dart';
+import 'rental_vehicle_add_screen.dart';
 
 class RentalVehicleScreen extends StatefulWidget {
   const RentalVehicleScreen({super.key});
@@ -35,6 +38,8 @@ class _RentalVehicleScreenState
   void initState() {
     super.initState();
     bloc.add(const RentalVehicleEvent.init());
+    // Load employees, departments, projects để sẵn sàng khi mở add screen.
+    bloc.add(const RentalVehicleEvent.loadAll());
   }
 
   void _openDateRangePicker() {
@@ -64,7 +69,6 @@ class _RentalVehicleScreenState
 
   /// Mở bottom-sheet chứa bộ lọc (text search + 3 dropdown).
   void _openFilterSheet() {
-    bloc.add(const RentalVehicleEvent.loadAll());
     showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
@@ -97,6 +101,32 @@ class _RentalVehicleScreenState
             onPressed: _openFilterSheet,
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: AppColors.primaryERP,
+        foregroundColor: Colors.white,
+        onPressed: () async {
+          // Tính nextStt từ state hiện tại (max(stt) + 1).
+          int nextStt = 1;
+          for (final item in bloc.state.rentalVehicles) {
+            final stt = item.stt ?? 0;
+            if (stt >= nextStt) nextStt = stt + 1;
+          }
+
+          final reload = await context.push<bool?>(
+            RouteNames.rentalVehicleAdd,
+            extra: RentalVehicleAddScreen(
+              employees: bloc.state.employees,
+              projects: bloc.state.projects,
+              initialNextStt: nextStt,
+            ),
+          );
+          if (!mounted) return;
+          if (reload == true) {
+            bloc.add(const RentalVehicleEvent.init());
+          }
+        },
+        child: const Icon(Icons.add, color: Colors.white),
       ),
       body: BlocBuilder<RentalVehicleBloc, RentalVehicleState>(
         buildWhen: (prev, curr) =>

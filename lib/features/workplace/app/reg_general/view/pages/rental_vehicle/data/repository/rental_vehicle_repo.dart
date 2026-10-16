@@ -1,6 +1,3 @@
-// Date: 16/10/2026
-// Nội dung/Chức năng: Repository interface cho chức năng thuê xe tải.
-
 import 'package:dartz/dartz.dart';
 import 'package:rtc_erp/base/network/errors/error.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/rental_vehicle/data/datasource/models/rental_vehicle_model.dart';
@@ -26,4 +23,12 @@ abstract class RentalVehicleRepo {
 
   /// Lấy toàn bộ danh sách phòng ban (dùng dropdown ở add/detail screen).
   Future<Either<BaseError, List<RentalVehicleDepartment>>> getDepartments();
+
+  /// Lấy danh sách dự án (dùng dropdown ở add screen).
+  Future<Either<BaseError, List<RentalVehicleProject>>> getProjects();
+
+  /// Lưu yêu cầu thuê xe tải (tạo mới / cập nhật).
+  Future<Either<BaseError, bool>> saveData({
+    required List<Map<String, dynamic>> payload,
+  });
 }

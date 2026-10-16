@@ -80,4 +80,40 @@ class RentalVehicleRepoImpl implements RentalVehicleRepo {
       return left(BaseError.httpInternalServerError(e.toString()));
     }
   }
+
+  @override
+  Future<Either<BaseError, List<RentalVehicleProject>>> getProjects() async {
+    try {
+      final res = await _service.getProjects();
+      if (res.status == 1 && res.data != null) return right(res.data!);
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? res.msg ?? 'Không tải được danh sách dự án',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<BaseError, bool>> saveData({
+    required List<Map<String, dynamic>> payload,
+  }) async {
+    try {
+      final res = await _service.saveData(payload: payload);
+      if (res.status == 1) return right(true);
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? res.msg ?? 'Có lỗi xảy ra',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
 }

@@ -228,11 +228,9 @@ class RentalVehicleCard extends StatelessWidget {
   }
 
   String _vehicleType(int? t) => switch (t) {
-        1 => 'Xe tải nhỏ',
-        2 => 'Xe tải trung',
-        3 => 'Xe tải lớn',
-        4 => 'Xe ben',
-        5 => 'Xe đầu kéo',
+        1 => 'Xe tải',
+        2 => 'Xe tải có cẩu',
+        3 => 'Xe nâng',
         _ => 'Xe tải',
       };
 

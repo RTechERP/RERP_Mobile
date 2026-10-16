@@ -177,6 +177,8 @@ class ApiEndPoint {
   /// Tìm kiếm yêu cầu thuê xe tải.
   /// API: POST /VehicleRentalRequest/search
   static const String searchVehicleRental = '/VehicleRentalRequest/search';
+  /// API: POST /VehicleRentalRequest/save-data
+  static const String saveVehicleRental = '/VehicleRentalRequest/save-data';
 
   static const String getLunch = '/EmployeeFoodOrder/get-foodorder-personal';
   static const String saveLunch = '/EmployeeFoodOrder/save-data';

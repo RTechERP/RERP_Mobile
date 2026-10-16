@@ -91,3 +91,32 @@ class RentalVehicleDepartment with _$RentalVehicleDepartment {
   factory RentalVehicleDepartment.fromJson(Map<String, dynamic> json) =>
       _$RentalVehicleDepartmentFromJson(json);
 }
+
+/// Dự án dùng cho dropdown "Dự án" ở add screen.
+// API: GET /vehiclebookingmanagement/get-projects
+@freezed
+class RentalVehicleProject with _$RentalVehicleProject {
+  const factory RentalVehicleProject({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'ProjectCode') String? projectCode,
+    @JsonKey(name: 'ProjectName') String? projectName,
+    @JsonKey(name: 'ProjectShortName') String? projectShortName,
+    @JsonKey(name: 'CustomerID') int? customerId,
+    @JsonKey(name: 'ProjectStatus') int? projectStatus,
+  }) = _RentalVehicleProject;
+
+  factory RentalVehicleProject.fromJson(Map<String, dynamic> json) =>
+      _$RentalVehicleProjectFromJson(json);
+}
+
+/// Loại xe cho dropdown "Loại xe" ở add screen.
+@freezed
+class RentalVehicleVehicleType with _$RentalVehicleVehicleType {
+  const factory RentalVehicleVehicleType({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'Name') String? name,
+  }) = _RentalVehicleVehicleType;
+
+  factory RentalVehicleVehicleType.fromJson(Map<String, dynamic> json) =>
+      _$RentalVehicleVehicleTypeFromJson(json);
+}

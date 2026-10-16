@@ -43,4 +43,21 @@ class RentalVehicleEvent with _$RentalVehicleEvent {
   /// Chọn người đặt để lọc (0 = tất cả).
   const factory RentalVehicleEvent.selectBooker(int employeeId) =
       _SelectBooker;
+
+  // ===== Add screen events =====
+
+  /// Init add screen: tải employee + project + vehicle types + tính STT kế tiếp.
+  const factory RentalVehicleEvent.initAdd() = _InitAdd;
+
+  /// Chọn người yêu cầu trên màn add (để hiện departmentName).
+  const factory RentalVehicleEvent.selectRequesterOnAdd(int employeeId) =
+      _SelectRequesterOnAdd;
+
+  /// Submit form add.
+  const factory RentalVehicleEvent.submitAdd({
+    required Map<String, dynamic> formValues,
+  }) = _SubmitAdd;
+
+  /// Reset trạng thái submit.
+  const factory RentalVehicleEvent.clearSubmitResult() = _ClearSubmitResult;
 }
