@@ -7,123 +7,24 @@ import 'package:intl/intl.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../data/datasource/models/rental_vehicle_model.dart';
 
-/// Badge trạng thái duyệt.
-class _StatusBadge extends StatelessWidget {
-  const _StatusBadge({required this.label, required this.color});
-
-  final String label;
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.12),
-        borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: color.withValues(alpha: 0.4)),
-      ),
-      child: Text(
-        label,
-        style: TextStyle(
-          color: color,
-          fontSize: 10,
-          fontWeight: FontWeight.w700,
-        ),
-      ),
-    );
-  }
-}
-
-/// Một dòng thông tin: prefix mờ + value đậm.
-class _InfoLine extends StatelessWidget {
-  const _InfoLine({
-    required this.prefix,
-    required this.text,
-    this.isEmphasis = false,
-  });
-
-  final String prefix;
-  final String text;
-  final bool isEmphasis;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          prefix,
-          style: const TextStyle(
-            fontSize: 12,
-            color: AppColors.gray,
-            fontWeight: FontWeight.w400,
-          ),
-        ),
-        const SizedBox(width: 4),
-        Expanded(
-          child: Text(
-            text,
-            style: TextStyle(
-              fontSize: 12,
-              color: Colors.black87,
-              fontWeight: isEmphasis ? FontWeight.w700 : FontWeight.w500,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-/// Label trạng thái duyệt: "Đã duyệt" / "Chưa duyệt".
-String _approvalLabel(RentalVehicleItem item) {
-  if (item.isApproved == true) return 'Đã duyệt';
-  return 'Chưa duyệt';
-}
-
-Color _approvalColor(RentalVehicleItem item) {
-  return item.isApproved == true ? AppColors.success : AppColors.warning;
-}
-
-/// Card một dòng yêu cầu thuê xe tải.
+/// Card một dòng yêu cầu thuê xe tải — flat, label:value dọc, 2 cột ngang.
 class RentalVehicleCard extends StatelessWidget {
   const RentalVehicleCard({super.key, required this.item, this.onTap});
 
   final RentalVehicleItem item;
   final VoidCallback? onTap;
 
-  static final DateFormat _dateTimeFormat = DateFormat('HH:mm - dd/MM/yyyy');
+  static final DateFormat _dateFormat = DateFormat('dd/MM/yyyy');
+  static final NumberFormat _moneyFormat = NumberFormat('#,###');
 
   @override
   Widget build(BuildContext context) {
-    final approvalLabel = _approvalLabel(item);
-    final approvalColor = _approvalColor(item);
+    final v = item;
+    final approved = v.isApproved == true;
+    final accent = approved ? AppColors.success : AppColors.warning;
 
-    final requester =
-        (item.employeeRequestName ?? '').trim().isNotEmpty
-            ? item.employeeRequestName!.trim()
-            : '-';
-    final department =
-        (item.departmentName ?? '').trim().isNotEmpty
-            ? item.departmentName!.trim()
-            : '-';
-    final project =
-        (item.projectName ?? '').trim().isNotEmpty
-            ? item.projectName!.trim()
-            : '-';
-    final package =
-        (item.packageName ?? '').trim().isNotEmpty
-            ? item.packageName!.trim()
-            : '-';
-    final packageInfo = _formatPackageInfo();
     final fromTo = _formatFromTo();
-    final ncc =
-        (item.nameNcc ?? '').trim().isNotEmpty ? item.nameNcc!.trim() : '-';
-    final costText = _formatCost();
-    final dateRequestText = item.dateRequest != null
-        ? _dateTimeFormat.format(item.dateRequest!)
-        : '-';
+    final cost = _formatCost();
 
     return Material(
       color: Colors.white,
@@ -136,18 +37,22 @@ class RentalVehicleCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
             border: Border.all(color: AppColors.borderColor),
           ),
-          padding: const EdgeInsets.all(14),
+          padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Header: badge trạng thái duyệt + STT
+              // Sub-header: badge trạng thái + STT
               Row(
                 children: [
-                  _StatusBadge(label: approvalLabel, color: approvalColor),
+                  _StatusBadge(
+                    label: _approvalLabel(v),
+                    color: accent,
+                    approved: approved,
+                  ),
                   const Spacer(),
-                  if (item.stt != null)
+                  if (v.stt != null)
                     Text(
-                      'STT: ${item.stt}',
+                      '#${v.stt}',
                       style: const TextStyle(
                         fontSize: 11,
                         color: AppColors.gray,
@@ -157,45 +62,129 @@ class RentalVehicleCard extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 10),
-              // Người yêu cầu
-              _InfoLine(prefix: 'Người yêu cầu: ', text: requester, isEmphasis: true),
-              const SizedBox(height: 4),
-              // Bộ phận
-              _InfoLine(prefix: 'Bộ phận: ', text: department),
-              const SizedBox(height: 4),
-              // Dự án
-              _InfoLine(prefix: 'Dự án: ', text: project),
-              const SizedBox(height: 4),
-              // Hàng hoá
-              _InfoLine(prefix: 'Hàng hoá: ', text: package),
-              if (packageInfo.isNotEmpty) ...[
-                const SizedBox(height: 4),
-                _InfoLine(prefix: 'SL/Kích thước: ', text: packageInfo),
-              ],
+
+              // ===== HEADER — Tên nổi bật + ngày phải =====
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.alphabetic,
+                children: [
+                  Expanded(
+                    child: Text(
+                      _val(v.employeeRequestName),
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.enableText,
+                        height: 1.1,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    v.dateRequest != null
+                        ? _dateFormat.format(v.dateRequest!)
+                        : '—',
+                    style: const TextStyle(
+                      fontSize: 11.5,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.gray,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 6),
+
+              // ===== HÀNH TRÌNH — nổi bật (block riêng) =====
               if (fromTo.isNotEmpty) ...[
-                const SizedBox(height: 4),
-                _InfoLine(prefix: 'Tuyến: ', text: fromTo),
-              ],
-              const SizedBox(height: 4),
-              // Nhà cung cấp
-              _InfoLine(prefix: 'Nhà cung cấp: ', text: ncc),
-              // Chi phí
-              if (costText.isNotEmpty) ...[
-                const SizedBox(height: 4),
-                _InfoLine(
-                  prefix: 'Chi phí: ',
-                  text: costText,
-                  isEmphasis: true,
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 10, vertical: 8),
+                  decoration: BoxDecoration(
+                    color: accent.withValues(alpha: 0.06),
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(
+                      color: accent.withValues(alpha: 0.2),
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(Icons.alt_route_rounded, size: 14, color: accent),
+                      const SizedBox(width: 6),
+                      Expanded(
+                        child: Text(
+                          fromTo,
+                          style: const TextStyle(
+                            fontSize: 12.5,
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.enableText,
+                            height: 1.2,
+                          ),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
+                const SizedBox(height: 10),
               ],
-              const SizedBox(height: 4),
-              // Ngày đăng ký
-              _InfoLine(prefix: 'Ngày đăng ký: ', text: dateRequestText),
-              if ((item.note ?? '').trim().isNotEmpty) ...[
-                const SizedBox(height: 4),
-                _InfoLine(
-                  prefix: 'Ghi chú: ',
-                  text: item.note!.trim(),
+
+              // ===== 2 CỘT NGANG — Hàng hoá / Dự án =====
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: _Field(
+                      icon: Icons.inventory_2_outlined,
+                      label: 'Hàng hoá',
+                      value: _val(v.packageName),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: _Field(
+                      icon: Icons.folder_outlined,
+                      label: 'Dự án',
+                      value: _val(v.projectName),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 6),
+
+              // ===== 2 CỘT NGANG — Loại xe / NCC =====
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: _Field(
+                      icon: Icons.local_shipping_outlined,
+                      label: 'Loại xe',
+                      value: _vehicleType(v.vehicleType),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: _Field(
+                      icon: Icons.business_outlined,
+                      label: 'Đơn vị vận chuyển',
+                      value: _val(v.nameNcc),
+                    ),
+                  ),
+                ],
+              ),
+
+              if (cost.isNotEmpty) ...[
+                const SizedBox(height: 6),
+                _Field(
+                  icon: Icons.payments_outlined,
+                  label: 'Chi phí',
+                  value: cost,
+                  valueColor: AppColors.success,
+                  bold: true,
                 ),
               ],
             ],
@@ -205,30 +194,7 @@ class RentalVehicleCard extends StatelessWidget {
     );
   }
 
-  String _formatPackageInfo() {
-    final parts = <String>[];
-    final qty = item.packageQuantity;
-    if (qty != null && qty > 0) parts.add('SL: $qty');
-
-    final l = item.packageLengthCm;
-    final w = item.packageWidthCm;
-    final h = item.packageHeightCm;
-    final hasSize = (l != null && l > 0) ||
-        (w != null && w > 0) ||
-        (h != null && h > 0);
-    if (hasSize) {
-      parts.add(
-        '${_fmt(l)} x ${_fmt(w)} x ${_fmt(h)} cm',
-      );
-    }
-
-    final weight = item.packageWeightKg;
-    if (weight != null && weight > 0) {
-      parts.add('$weight kg');
-    }
-
-    return parts.join(' · ');
-  }
+  // ===== Helpers =====
 
   String _formatFromTo() {
     final from = (item.departureLocation ?? '').trim();
@@ -236,10 +202,10 @@ class RentalVehicleCard extends StatelessWidget {
     if (from.isEmpty && to.isEmpty) return '';
     final distance = item.distanceKm;
     final distStr = (distance != null && distance > 0)
-        ? ' (${_fmt(distance)} km)'
+        ? ' · ${_fmt(distance)} km'
         : '';
     if (from.isNotEmpty && to.isNotEmpty) {
-      return '$from → $to$distStr';
+      return '$from  →  $to$distStr';
     }
     return '${from.isNotEmpty ? from : to}$distStr';
   }
@@ -247,13 +213,127 @@ class RentalVehicleCard extends StatelessWidget {
   String _formatCost() {
     final cost = item.cost;
     if (cost == null || cost == 0) return '';
-    final formatted = NumberFormat('#,###').format(cost);
-    return '$formatted đ';
+    return '${_moneyFormat.format(cost)} đ';
   }
 
-  String _fmt(num? v) {
-    if (v == null) return '0';
-    if (v == v.roundToDouble()) return v.toInt().toString();
-    return v.toString();
+  String _val(String? s) {
+    final t = (s ?? '').trim();
+    return t.isEmpty ? '—' : t;
+  }
+
+  String _fmt(num? n) {
+    if (n == null) return '0';
+    if (n == n.roundToDouble()) return n.toInt().toString();
+    return n.toString();
+  }
+
+  String _vehicleType(int? t) => switch (t) {
+        1 => 'Xe tải nhỏ',
+        2 => 'Xe tải trung',
+        3 => 'Xe tải lớn',
+        4 => 'Xe ben',
+        5 => 'Xe đầu kéo',
+        _ => 'Xe tải',
+      };
+
+  String _approvalLabel(RentalVehicleItem i) =>
+      i.isApproved == true ? 'Đã duyệt' : 'Chưa duyệt';
+}
+
+// ===== Sub-widgets =====
+
+class _StatusBadge extends StatelessWidget {
+  const _StatusBadge({
+    required this.label,
+    required this.color,
+    required this.approved,
+  });
+
+  final String label;
+  final Color color;
+  final bool approved;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.12),
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(color: color.withValues(alpha: 0.35)),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            approved ? Icons.verified_rounded : Icons.pending_outlined,
+            size: 10,
+            color: color,
+          ),
+          const SizedBox(width: 3),
+          Text(
+            label,
+            style: TextStyle(
+              color: color,
+              fontSize: 10,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Một field: icon + label nhỏ phía trên, value đậm phía dưới.
+class _Field extends StatelessWidget {
+  const _Field({
+    required this.icon,
+    required this.label,
+    required this.value,
+    this.valueColor,
+    this.bold = false,
+  });
+
+  final IconData icon;
+  final String label;
+  final String value;
+  final Color? valueColor;
+  final bool bold;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Icon(icon, size: 11, color: AppColors.gray.withValues(alpha: 0.7)),
+            const SizedBox(width: 3),
+            Text(
+              label,
+              style: const TextStyle(
+                fontSize: 10,
+                color: AppColors.gray,
+                fontWeight: FontWeight.w500,
+                height: 1.1,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 2),
+        Text(
+          value,
+          style: TextStyle(
+            fontSize: 12,
+            fontWeight: bold ? FontWeight.w700 : FontWeight.w500,
+            color: valueColor ?? AppColors.enableText,
+            height: 1.2,
+          ),
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+        ),
+      ],
+    );
   }
 }
