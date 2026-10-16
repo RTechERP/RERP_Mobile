@@ -3,6 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../../../../../base/bloc/index.dart';
@@ -10,7 +11,9 @@ import '../../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../../common/constants/index.dart';
+import '../../../../../../../../../common/utils/dialog/dialog_service.dart';
 import '../../../../../../../../../common/utils/navigation/navigation_utils.dart';
+import '../../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../../common/widgets/date_range_picker.dart';
 import '../../../../../../../../../routes/route_names.dart';
 import '../bloc/rental_vehicle_bloc.dart';
@@ -83,6 +86,13 @@ class _RentalVehicleScreenState
     );
   }
 
+  /// Hiện dialog xác nhận xoá. Nếu user xác nhận → dispatch event delete.
+  Future<void> _confirmDelete(int id) async {
+    final confirmed = await DialogService.showConfirmDelete(context: context);
+    if (!confirmed) return;
+    bloc.add(RentalVehicleEvent.delete(id: id));
+  }
+
   @override
   Widget renderUI(BuildContext context) {
     return BaseScaffold(
@@ -128,30 +138,61 @@ class _RentalVehicleScreenState
         },
         child: const Icon(Icons.add, color: Colors.white),
       ),
-      body: BlocBuilder<RentalVehicleBloc, RentalVehicleState>(
-        buildWhen: (prev, curr) =>
-            prev.status != curr.status ||
-            prev.rentalVehicles.length != curr.rentalVehicles.length ||
-            prev.dateStart != curr.dateStart ||
-            prev.dateEnd != curr.dateEnd ||
-            prev.keyword != curr.keyword ||
-            prev.selectedDepartmentId != curr.selectedDepartmentId ||
-            prev.selectedRequesterId != curr.selectedRequesterId ||
-            prev.selectedBookerId != curr.selectedBookerId,
-        builder: (context, state) {
-          return Column(
-            children: [
-              if (state.dateStart != null && state.dateEnd != null)
-                ListHeader(
-                  total: state.rentalVehicles.length,
-                  dateStart: state.dateStart,
-                  dateEnd: state.dateEnd,
-                  isSearching: state.keyword.trim().isNotEmpty,
-                ),
-              Expanded(child: _buildBody(state)),
-            ],
-          );
-        },
+
+      body: MultiBlocListener(
+        listeners: [
+          BlocListener<RentalVehicleBloc, RentalVehicleState>(
+            listenWhen: (prev, curr) =>
+                prev.deleteSuccess != curr.deleteSuccess &&
+                curr.deleteSuccess,
+            listener: (context, state) {
+              if (!mounted) return;
+              showMessage(
+                context,
+                'Xoá yêu cầu thuê xe tải thành công',
+                type: SnackBarType.success,
+              );
+            },
+          ),
+          BlocListener<RentalVehicleBloc, RentalVehicleState>(
+            listenWhen: (prev, curr) =>
+                prev.message != curr.message &&
+                curr.message != null &&
+                curr.message!.isNotEmpty &&
+                !curr.deleteSuccess,
+            listener: (context, state) {
+              if (!mounted) return;
+              if (state.deletingId == null) {
+                showMessage(context, state.message!, type: SnackBarType.error);
+              }
+            },
+          ),
+        ],
+        child: BlocBuilder<RentalVehicleBloc, RentalVehicleState>(
+          buildWhen: (prev, curr) =>
+              prev.status != curr.status ||
+              prev.rentalVehicles.length != curr.rentalVehicles.length ||
+              prev.dateStart != curr.dateStart ||
+              prev.dateEnd != curr.dateEnd ||
+              prev.keyword != curr.keyword ||
+              prev.selectedDepartmentId != curr.selectedDepartmentId ||
+              prev.selectedRequesterId != curr.selectedRequesterId ||
+              prev.selectedBookerId != curr.selectedBookerId,
+          builder: (context, state) {
+            return Column(
+              children: [
+                if (state.dateStart != null && state.dateEnd != null)
+                  ListHeader(
+                    total: state.rentalVehicles.length,
+                    dateStart: state.dateStart,
+                    dateEnd: state.dateEnd,
+                    isSearching: state.keyword.trim().isNotEmpty,
+                  ),
+                Expanded(child: _buildBody(state)),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
@@ -194,14 +235,40 @@ class _RentalVehicleScreenState
       );
     }
 
-    return ListView.separated(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      itemCount: state.rentalVehicles.length,
-      separatorBuilder: (_, _) => const SizedBox(height: 10),
-      itemBuilder: (context, index) {
-        final item = state.rentalVehicles[index];
-        return RentalVehicleCard(item: item);
+    return RefreshIndicator(
+      onRefresh: () async {
+        bloc.add(const RentalVehicleEvent.init());
       },
+      child: ListView.separated(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        itemCount: state.rentalVehicles.length,
+        separatorBuilder: (_, _) => const SizedBox(height: 10),
+        itemBuilder: (context, index) {
+          final item = state.rentalVehicles[index];
+          final id = item.id ?? 0;
+          return Slidable(
+            key: ValueKey('rental_vehicle_$id'),
+            endActionPane: ActionPane(
+              motion: const DrawerMotion(),
+              extentRatio: 0.22,
+              children: [
+                SlidableAction(
+                  onPressed: (_) => _confirmDelete(id),
+                  backgroundColor: Colors.red,
+                  foregroundColor: Colors.white,
+                  icon: Icons.delete_outline,
+                  label: 'Xoá',
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ],
+            ),
+            child: RentalVehicleCard(
+              item: item,
+              onDelete: id == 0 ? null : () => _confirmDelete(id),
+            ),
+          );
+        },
+      ),
     );
   }
 }

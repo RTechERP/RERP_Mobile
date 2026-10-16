@@ -122,4 +122,20 @@ class RentalVehicleService extends DioBaseApiService {
       ),
     );
   }
+
+  /// Xoá yêu cầu thuê xe tải theo danh sách id.
+  /// API: `POST /VehicleRentalRequest/delete`
+  /// Body: `[id1, id2, ...]`
+  Future<BaseData<bool>> deleteData({
+    required List<int> ids,
+  }) async {
+    return post<BaseData<bool>>(
+      ApiEndPoint.deleteVehicleRental,
+      body: ids,
+      parser: (json) => BaseData<bool>.fromJson(
+        json,
+        (data) => data == true || data == 1,
+      ),
+    );
+  }
 }

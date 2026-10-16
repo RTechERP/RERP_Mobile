@@ -116,4 +116,23 @@ class RentalVehicleRepoImpl implements RentalVehicleRepo {
       return left(BaseError.httpInternalServerError(e.toString()));
     }
   }
+
+  @override
+  Future<Either<BaseError, bool>> deleteData({
+    required List<int> ids,
+  }) async {
+    try {
+      final res = await _service.deleteData(ids: ids);
+      if (res.status == 1) return right(true);
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? res.msg ?? 'Xoá thất bại',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
 }

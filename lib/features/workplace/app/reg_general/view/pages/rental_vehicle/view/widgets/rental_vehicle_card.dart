@@ -9,10 +9,18 @@ import '../../data/datasource/models/rental_vehicle_model.dart';
 
 /// Card một dòng yêu cầu thuê xe tải — flat, label:value dọc, 2 cột ngang.
 class RentalVehicleCard extends StatelessWidget {
-  const RentalVehicleCard({super.key, required this.item, this.onTap});
+  const RentalVehicleCard({
+    super.key,
+    required this.item,
+    this.onTap,
+    this.onDelete,
+  });
 
   final RentalVehicleItem item;
   final VoidCallback? onTap;
+
+  /// Callback khi user vuốt card sang trái và chạm nút Xoá.
+  final VoidCallback? onDelete;
 
   static final DateFormat _dateFormat = DateFormat('dd/MM/yyyy');
   static final NumberFormat _moneyFormat = NumberFormat('#,###');

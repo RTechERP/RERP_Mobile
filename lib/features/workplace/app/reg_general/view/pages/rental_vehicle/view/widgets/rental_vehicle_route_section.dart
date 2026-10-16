@@ -53,7 +53,9 @@ class RentalVehicleRouteSection extends StatelessWidget {
             nameTextField: 'distanceKm_text',
             label: 'Khoảng cách (km)',
             icon: Icons.route,
-            keyboardType: TextInputType.number,
+            keyboardType: TextInputType.multiline,
+            textInputAction: TextInputAction
+                .newline, // ⬅ Enter xuống dòng
           ),
           const SizedBox(height: 12),
 
@@ -64,6 +66,9 @@ class RentalVehicleRouteSection extends StatelessWidget {
             label: 'Ghi chú',
             icon: Icons.note_outlined,
             autoExpand: true,
+            keyboardType: TextInputType.multiline,
+            textInputAction: TextInputAction
+                .newline, // ⬅ Enter xuống dòng
           ),
         ],
       ),

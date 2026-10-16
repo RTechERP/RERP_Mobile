@@ -60,4 +60,9 @@ class RentalVehicleEvent with _$RentalVehicleEvent {
 
   /// Reset trạng thái submit.
   const factory RentalVehicleEvent.clearSubmitResult() = _ClearSubmitResult;
+
+  /// Xoá yêu cầu thuê xe tải theo id.
+  const factory RentalVehicleEvent.delete({
+    required int id,
+  }) = _Delete;
 }

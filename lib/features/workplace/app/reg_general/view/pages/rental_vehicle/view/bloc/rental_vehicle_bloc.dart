@@ -45,6 +45,7 @@ class RentalVehicleBloc
             _onSelectRequesterOnAdd(employeeId, emit),
         submitAdd: (formValues) => _onSubmitAdd(formValues, emit),
         clearSubmitResult: () => _onClearSubmitResult(emit),
+        delete: (id) => _onDelete(id, emit),
       );
     });
   }
@@ -450,5 +451,42 @@ class RentalVehicleBloc
       submitSuccess: false,
       message: null,
     ));
+  }
+
+  /// Xoá 1 yêu cầu thuê xe tải theo id. Sau khi xoá thành công,
+  /// remove khỏi `state.rentalVehicles` để UI cập nhật ngay.
+  Future<void> _onDelete(
+    int id,
+    Emitter<RentalVehicleState> emit,
+  ) async {
+    emit(state.copyWith(
+      deletingId: id,
+      deleteSuccess: false,
+      message: null,
+    ));
+
+    final res = await _rentalVehicleRepo.deleteData(ids: [id]);
+
+    await res.fold(
+      (err) async {
+        _log.logE('❌ deleteData failed: $err');
+        emit(state.copyWith(
+          deletingId: null,
+          deleteSuccess: false,
+          message: 'Xoá thất bại',
+        ));
+      },
+      (_) async {
+        _log.logI('✅ deleteData success: id=$id');
+        final updated = state.rentalVehicles
+            .where((item) => item.id != id)
+            .toList();
+        emit(state.copyWith(
+          deletingId: null,
+          deleteSuccess: true,
+          rentalVehicles: updated,
+        ));
+      },
+    );
   }
 }

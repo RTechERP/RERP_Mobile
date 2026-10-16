@@ -33,6 +33,7 @@ mixin _$RentalVehicleEvent {
     required TResult Function(int employeeId) selectRequesterOnAdd,
     required TResult Function(Map<String, dynamic> formValues) submitAdd,
     required TResult Function() clearSubmitResult,
+    required TResult Function(int id) delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -51,6 +52,7 @@ mixin _$RentalVehicleEvent {
     TResult? Function(int employeeId)? selectRequesterOnAdd,
     TResult? Function(Map<String, dynamic> formValues)? submitAdd,
     TResult? Function()? clearSubmitResult,
+    TResult? Function(int id)? delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +71,7 @@ mixin _$RentalVehicleEvent {
     TResult Function(int employeeId)? selectRequesterOnAdd,
     TResult Function(Map<String, dynamic> formValues)? submitAdd,
     TResult Function()? clearSubmitResult,
+    TResult Function(int id)? delete,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -87,6 +90,7 @@ mixin _$RentalVehicleEvent {
     required TResult Function(_SelectRequesterOnAdd value) selectRequesterOnAdd,
     required TResult Function(_SubmitAdd value) submitAdd,
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
+    required TResult Function(_Delete value) delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -104,6 +108,7 @@ mixin _$RentalVehicleEvent {
     TResult? Function(_SelectRequesterOnAdd value)? selectRequesterOnAdd,
     TResult? Function(_SubmitAdd value)? submitAdd,
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult? Function(_Delete value)? delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -121,6 +126,7 @@ mixin _$RentalVehicleEvent {
     TResult Function(_SelectRequesterOnAdd value)? selectRequesterOnAdd,
     TResult Function(_SubmitAdd value)? submitAdd,
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult Function(_Delete value)? delete,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -196,6 +202,7 @@ class _$InitImpl implements _Init {
     required TResult Function(int employeeId) selectRequesterOnAdd,
     required TResult Function(Map<String, dynamic> formValues) submitAdd,
     required TResult Function() clearSubmitResult,
+    required TResult Function(int id) delete,
   }) {
     return init();
   }
@@ -217,6 +224,7 @@ class _$InitImpl implements _Init {
     TResult? Function(int employeeId)? selectRequesterOnAdd,
     TResult? Function(Map<String, dynamic> formValues)? submitAdd,
     TResult? Function()? clearSubmitResult,
+    TResult? Function(int id)? delete,
   }) {
     return init?.call();
   }
@@ -238,6 +246,7 @@ class _$InitImpl implements _Init {
     TResult Function(int employeeId)? selectRequesterOnAdd,
     TResult Function(Map<String, dynamic> formValues)? submitAdd,
     TResult Function()? clearSubmitResult,
+    TResult Function(int id)? delete,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -262,6 +271,7 @@ class _$InitImpl implements _Init {
     required TResult Function(_SelectRequesterOnAdd value) selectRequesterOnAdd,
     required TResult Function(_SubmitAdd value) submitAdd,
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
+    required TResult Function(_Delete value) delete,
   }) {
     return init(this);
   }
@@ -282,6 +292,7 @@ class _$InitImpl implements _Init {
     TResult? Function(_SelectRequesterOnAdd value)? selectRequesterOnAdd,
     TResult? Function(_SubmitAdd value)? submitAdd,
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult? Function(_Delete value)? delete,
   }) {
     return init?.call(this);
   }
@@ -302,6 +313,7 @@ class _$InitImpl implements _Init {
     TResult Function(_SelectRequesterOnAdd value)? selectRequesterOnAdd,
     TResult Function(_SubmitAdd value)? submitAdd,
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult Function(_Delete value)? delete,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -404,6 +416,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(int employeeId) selectRequesterOnAdd,
     required TResult Function(Map<String, dynamic> formValues) submitAdd,
     required TResult Function() clearSubmitResult,
+    required TResult Function(int id) delete,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -425,6 +438,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(int employeeId)? selectRequesterOnAdd,
     TResult? Function(Map<String, dynamic> formValues)? submitAdd,
     TResult? Function()? clearSubmitResult,
+    TResult? Function(int id)? delete,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -446,6 +460,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(int employeeId)? selectRequesterOnAdd,
     TResult Function(Map<String, dynamic> formValues)? submitAdd,
     TResult Function()? clearSubmitResult,
+    TResult Function(int id)? delete,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -470,6 +485,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_SelectRequesterOnAdd value) selectRequesterOnAdd,
     required TResult Function(_SubmitAdd value) submitAdd,
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
+    required TResult Function(_Delete value) delete,
   }) {
     return changeDateRange(this);
   }
@@ -490,6 +506,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_SelectRequesterOnAdd value)? selectRequesterOnAdd,
     TResult? Function(_SubmitAdd value)? submitAdd,
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult? Function(_Delete value)? delete,
   }) {
     return changeDateRange?.call(this);
   }
@@ -510,6 +527,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_SelectRequesterOnAdd value)? selectRequesterOnAdd,
     TResult Function(_SubmitAdd value)? submitAdd,
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult Function(_Delete value)? delete,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -610,6 +628,7 @@ class _$SearchImpl implements _Search {
     required TResult Function(int employeeId) selectRequesterOnAdd,
     required TResult Function(Map<String, dynamic> formValues) submitAdd,
     required TResult Function() clearSubmitResult,
+    required TResult Function(int id) delete,
   }) {
     return search(keyword);
   }
@@ -631,6 +650,7 @@ class _$SearchImpl implements _Search {
     TResult? Function(int employeeId)? selectRequesterOnAdd,
     TResult? Function(Map<String, dynamic> formValues)? submitAdd,
     TResult? Function()? clearSubmitResult,
+    TResult? Function(int id)? delete,
   }) {
     return search?.call(keyword);
   }
@@ -652,6 +672,7 @@ class _$SearchImpl implements _Search {
     TResult Function(int employeeId)? selectRequesterOnAdd,
     TResult Function(Map<String, dynamic> formValues)? submitAdd,
     TResult Function()? clearSubmitResult,
+    TResult Function(int id)? delete,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -676,6 +697,7 @@ class _$SearchImpl implements _Search {
     required TResult Function(_SelectRequesterOnAdd value) selectRequesterOnAdd,
     required TResult Function(_SubmitAdd value) submitAdd,
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
+    required TResult Function(_Delete value) delete,
   }) {
     return search(this);
   }
@@ -696,6 +718,7 @@ class _$SearchImpl implements _Search {
     TResult? Function(_SelectRequesterOnAdd value)? selectRequesterOnAdd,
     TResult? Function(_SubmitAdd value)? submitAdd,
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult? Function(_Delete value)? delete,
   }) {
     return search?.call(this);
   }
@@ -716,6 +739,7 @@ class _$SearchImpl implements _Search {
     TResult Function(_SelectRequesterOnAdd value)? selectRequesterOnAdd,
     TResult Function(_SubmitAdd value)? submitAdd,
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult Function(_Delete value)? delete,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -787,6 +811,7 @@ class _$LoadAllImpl implements _LoadAll {
     required TResult Function(int employeeId) selectRequesterOnAdd,
     required TResult Function(Map<String, dynamic> formValues) submitAdd,
     required TResult Function() clearSubmitResult,
+    required TResult Function(int id) delete,
   }) {
     return loadAll();
   }
@@ -808,6 +833,7 @@ class _$LoadAllImpl implements _LoadAll {
     TResult? Function(int employeeId)? selectRequesterOnAdd,
     TResult? Function(Map<String, dynamic> formValues)? submitAdd,
     TResult? Function()? clearSubmitResult,
+    TResult? Function(int id)? delete,
   }) {
     return loadAll?.call();
   }
@@ -829,6 +855,7 @@ class _$LoadAllImpl implements _LoadAll {
     TResult Function(int employeeId)? selectRequesterOnAdd,
     TResult Function(Map<String, dynamic> formValues)? submitAdd,
     TResult Function()? clearSubmitResult,
+    TResult Function(int id)? delete,
     required TResult orElse(),
   }) {
     if (loadAll != null) {
@@ -853,6 +880,7 @@ class _$LoadAllImpl implements _LoadAll {
     required TResult Function(_SelectRequesterOnAdd value) selectRequesterOnAdd,
     required TResult Function(_SubmitAdd value) submitAdd,
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
+    required TResult Function(_Delete value) delete,
   }) {
     return loadAll(this);
   }
@@ -873,6 +901,7 @@ class _$LoadAllImpl implements _LoadAll {
     TResult? Function(_SelectRequesterOnAdd value)? selectRequesterOnAdd,
     TResult? Function(_SubmitAdd value)? submitAdd,
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult? Function(_Delete value)? delete,
   }) {
     return loadAll?.call(this);
   }
@@ -893,6 +922,7 @@ class _$LoadAllImpl implements _LoadAll {
     TResult Function(_SelectRequesterOnAdd value)? selectRequesterOnAdd,
     TResult Function(_SubmitAdd value)? submitAdd,
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult Function(_Delete value)? delete,
     required TResult orElse(),
   }) {
     if (loadAll != null) {
@@ -1005,6 +1035,7 @@ class _$LoadEmployeesImpl implements _LoadEmployees {
     required TResult Function(int employeeId) selectRequesterOnAdd,
     required TResult Function(Map<String, dynamic> formValues) submitAdd,
     required TResult Function() clearSubmitResult,
+    required TResult Function(int id) delete,
   }) {
     return loadEmployees(status, departmentId, keyword);
   }
@@ -1026,6 +1057,7 @@ class _$LoadEmployeesImpl implements _LoadEmployees {
     TResult? Function(int employeeId)? selectRequesterOnAdd,
     TResult? Function(Map<String, dynamic> formValues)? submitAdd,
     TResult? Function()? clearSubmitResult,
+    TResult? Function(int id)? delete,
   }) {
     return loadEmployees?.call(status, departmentId, keyword);
   }
@@ -1047,6 +1079,7 @@ class _$LoadEmployeesImpl implements _LoadEmployees {
     TResult Function(int employeeId)? selectRequesterOnAdd,
     TResult Function(Map<String, dynamic> formValues)? submitAdd,
     TResult Function()? clearSubmitResult,
+    TResult Function(int id)? delete,
     required TResult orElse(),
   }) {
     if (loadEmployees != null) {
@@ -1071,6 +1104,7 @@ class _$LoadEmployeesImpl implements _LoadEmployees {
     required TResult Function(_SelectRequesterOnAdd value) selectRequesterOnAdd,
     required TResult Function(_SubmitAdd value) submitAdd,
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
+    required TResult Function(_Delete value) delete,
   }) {
     return loadEmployees(this);
   }
@@ -1091,6 +1125,7 @@ class _$LoadEmployeesImpl implements _LoadEmployees {
     TResult? Function(_SelectRequesterOnAdd value)? selectRequesterOnAdd,
     TResult? Function(_SubmitAdd value)? submitAdd,
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult? Function(_Delete value)? delete,
   }) {
     return loadEmployees?.call(this);
   }
@@ -1111,6 +1146,7 @@ class _$LoadEmployeesImpl implements _LoadEmployees {
     TResult Function(_SelectRequesterOnAdd value)? selectRequesterOnAdd,
     TResult Function(_SubmitAdd value)? submitAdd,
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult Function(_Delete value)? delete,
     required TResult orElse(),
   }) {
     if (loadEmployees != null) {
@@ -1187,6 +1223,7 @@ class _$LoadDepartmentsImpl implements _LoadDepartments {
     required TResult Function(int employeeId) selectRequesterOnAdd,
     required TResult Function(Map<String, dynamic> formValues) submitAdd,
     required TResult Function() clearSubmitResult,
+    required TResult Function(int id) delete,
   }) {
     return loadDepartments();
   }
@@ -1208,6 +1245,7 @@ class _$LoadDepartmentsImpl implements _LoadDepartments {
     TResult? Function(int employeeId)? selectRequesterOnAdd,
     TResult? Function(Map<String, dynamic> formValues)? submitAdd,
     TResult? Function()? clearSubmitResult,
+    TResult? Function(int id)? delete,
   }) {
     return loadDepartments?.call();
   }
@@ -1229,6 +1267,7 @@ class _$LoadDepartmentsImpl implements _LoadDepartments {
     TResult Function(int employeeId)? selectRequesterOnAdd,
     TResult Function(Map<String, dynamic> formValues)? submitAdd,
     TResult Function()? clearSubmitResult,
+    TResult Function(int id)? delete,
     required TResult orElse(),
   }) {
     if (loadDepartments != null) {
@@ -1253,6 +1292,7 @@ class _$LoadDepartmentsImpl implements _LoadDepartments {
     required TResult Function(_SelectRequesterOnAdd value) selectRequesterOnAdd,
     required TResult Function(_SubmitAdd value) submitAdd,
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
+    required TResult Function(_Delete value) delete,
   }) {
     return loadDepartments(this);
   }
@@ -1273,6 +1313,7 @@ class _$LoadDepartmentsImpl implements _LoadDepartments {
     TResult? Function(_SelectRequesterOnAdd value)? selectRequesterOnAdd,
     TResult? Function(_SubmitAdd value)? submitAdd,
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult? Function(_Delete value)? delete,
   }) {
     return loadDepartments?.call(this);
   }
@@ -1293,6 +1334,7 @@ class _$LoadDepartmentsImpl implements _LoadDepartments {
     TResult Function(_SelectRequesterOnAdd value)? selectRequesterOnAdd,
     TResult Function(_SubmitAdd value)? submitAdd,
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult Function(_Delete value)? delete,
     required TResult orElse(),
   }) {
     if (loadDepartments != null) {
@@ -1387,6 +1429,7 @@ class _$SelectDepartmentImpl implements _SelectDepartment {
     required TResult Function(int employeeId) selectRequesterOnAdd,
     required TResult Function(Map<String, dynamic> formValues) submitAdd,
     required TResult Function() clearSubmitResult,
+    required TResult Function(int id) delete,
   }) {
     return selectDepartment(departmentId);
   }
@@ -1408,6 +1451,7 @@ class _$SelectDepartmentImpl implements _SelectDepartment {
     TResult? Function(int employeeId)? selectRequesterOnAdd,
     TResult? Function(Map<String, dynamic> formValues)? submitAdd,
     TResult? Function()? clearSubmitResult,
+    TResult? Function(int id)? delete,
   }) {
     return selectDepartment?.call(departmentId);
   }
@@ -1429,6 +1473,7 @@ class _$SelectDepartmentImpl implements _SelectDepartment {
     TResult Function(int employeeId)? selectRequesterOnAdd,
     TResult Function(Map<String, dynamic> formValues)? submitAdd,
     TResult Function()? clearSubmitResult,
+    TResult Function(int id)? delete,
     required TResult orElse(),
   }) {
     if (selectDepartment != null) {
@@ -1453,6 +1498,7 @@ class _$SelectDepartmentImpl implements _SelectDepartment {
     required TResult Function(_SelectRequesterOnAdd value) selectRequesterOnAdd,
     required TResult Function(_SubmitAdd value) submitAdd,
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
+    required TResult Function(_Delete value) delete,
   }) {
     return selectDepartment(this);
   }
@@ -1473,6 +1519,7 @@ class _$SelectDepartmentImpl implements _SelectDepartment {
     TResult? Function(_SelectRequesterOnAdd value)? selectRequesterOnAdd,
     TResult? Function(_SubmitAdd value)? submitAdd,
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult? Function(_Delete value)? delete,
   }) {
     return selectDepartment?.call(this);
   }
@@ -1493,6 +1540,7 @@ class _$SelectDepartmentImpl implements _SelectDepartment {
     TResult Function(_SelectRequesterOnAdd value)? selectRequesterOnAdd,
     TResult Function(_SubmitAdd value)? submitAdd,
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult Function(_Delete value)? delete,
     required TResult orElse(),
   }) {
     if (selectDepartment != null) {
@@ -1593,6 +1641,7 @@ class _$SelectRequesterImpl implements _SelectRequester {
     required TResult Function(int employeeId) selectRequesterOnAdd,
     required TResult Function(Map<String, dynamic> formValues) submitAdd,
     required TResult Function() clearSubmitResult,
+    required TResult Function(int id) delete,
   }) {
     return selectRequester(employeeId);
   }
@@ -1614,6 +1663,7 @@ class _$SelectRequesterImpl implements _SelectRequester {
     TResult? Function(int employeeId)? selectRequesterOnAdd,
     TResult? Function(Map<String, dynamic> formValues)? submitAdd,
     TResult? Function()? clearSubmitResult,
+    TResult? Function(int id)? delete,
   }) {
     return selectRequester?.call(employeeId);
   }
@@ -1635,6 +1685,7 @@ class _$SelectRequesterImpl implements _SelectRequester {
     TResult Function(int employeeId)? selectRequesterOnAdd,
     TResult Function(Map<String, dynamic> formValues)? submitAdd,
     TResult Function()? clearSubmitResult,
+    TResult Function(int id)? delete,
     required TResult orElse(),
   }) {
     if (selectRequester != null) {
@@ -1659,6 +1710,7 @@ class _$SelectRequesterImpl implements _SelectRequester {
     required TResult Function(_SelectRequesterOnAdd value) selectRequesterOnAdd,
     required TResult Function(_SubmitAdd value) submitAdd,
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
+    required TResult Function(_Delete value) delete,
   }) {
     return selectRequester(this);
   }
@@ -1679,6 +1731,7 @@ class _$SelectRequesterImpl implements _SelectRequester {
     TResult? Function(_SelectRequesterOnAdd value)? selectRequesterOnAdd,
     TResult? Function(_SubmitAdd value)? submitAdd,
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult? Function(_Delete value)? delete,
   }) {
     return selectRequester?.call(this);
   }
@@ -1699,6 +1752,7 @@ class _$SelectRequesterImpl implements _SelectRequester {
     TResult Function(_SelectRequesterOnAdd value)? selectRequesterOnAdd,
     TResult Function(_SubmitAdd value)? submitAdd,
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult Function(_Delete value)? delete,
     required TResult orElse(),
   }) {
     if (selectRequester != null) {
@@ -1797,6 +1851,7 @@ class _$SelectBookerImpl implements _SelectBooker {
     required TResult Function(int employeeId) selectRequesterOnAdd,
     required TResult Function(Map<String, dynamic> formValues) submitAdd,
     required TResult Function() clearSubmitResult,
+    required TResult Function(int id) delete,
   }) {
     return selectBooker(employeeId);
   }
@@ -1818,6 +1873,7 @@ class _$SelectBookerImpl implements _SelectBooker {
     TResult? Function(int employeeId)? selectRequesterOnAdd,
     TResult? Function(Map<String, dynamic> formValues)? submitAdd,
     TResult? Function()? clearSubmitResult,
+    TResult? Function(int id)? delete,
   }) {
     return selectBooker?.call(employeeId);
   }
@@ -1839,6 +1895,7 @@ class _$SelectBookerImpl implements _SelectBooker {
     TResult Function(int employeeId)? selectRequesterOnAdd,
     TResult Function(Map<String, dynamic> formValues)? submitAdd,
     TResult Function()? clearSubmitResult,
+    TResult Function(int id)? delete,
     required TResult orElse(),
   }) {
     if (selectBooker != null) {
@@ -1863,6 +1920,7 @@ class _$SelectBookerImpl implements _SelectBooker {
     required TResult Function(_SelectRequesterOnAdd value) selectRequesterOnAdd,
     required TResult Function(_SubmitAdd value) submitAdd,
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
+    required TResult Function(_Delete value) delete,
   }) {
     return selectBooker(this);
   }
@@ -1883,6 +1941,7 @@ class _$SelectBookerImpl implements _SelectBooker {
     TResult? Function(_SelectRequesterOnAdd value)? selectRequesterOnAdd,
     TResult? Function(_SubmitAdd value)? submitAdd,
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult? Function(_Delete value)? delete,
   }) {
     return selectBooker?.call(this);
   }
@@ -1903,6 +1962,7 @@ class _$SelectBookerImpl implements _SelectBooker {
     TResult Function(_SelectRequesterOnAdd value)? selectRequesterOnAdd,
     TResult Function(_SubmitAdd value)? submitAdd,
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult Function(_Delete value)? delete,
     required TResult orElse(),
   }) {
     if (selectBooker != null) {
@@ -1974,6 +2034,7 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function(int employeeId) selectRequesterOnAdd,
     required TResult Function(Map<String, dynamic> formValues) submitAdd,
     required TResult Function() clearSubmitResult,
+    required TResult Function(int id) delete,
   }) {
     return initAdd();
   }
@@ -1995,6 +2056,7 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(int employeeId)? selectRequesterOnAdd,
     TResult? Function(Map<String, dynamic> formValues)? submitAdd,
     TResult? Function()? clearSubmitResult,
+    TResult? Function(int id)? delete,
   }) {
     return initAdd?.call();
   }
@@ -2016,6 +2078,7 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(int employeeId)? selectRequesterOnAdd,
     TResult Function(Map<String, dynamic> formValues)? submitAdd,
     TResult Function()? clearSubmitResult,
+    TResult Function(int id)? delete,
     required TResult orElse(),
   }) {
     if (initAdd != null) {
@@ -2040,6 +2103,7 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function(_SelectRequesterOnAdd value) selectRequesterOnAdd,
     required TResult Function(_SubmitAdd value) submitAdd,
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
+    required TResult Function(_Delete value) delete,
   }) {
     return initAdd(this);
   }
@@ -2060,6 +2124,7 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(_SelectRequesterOnAdd value)? selectRequesterOnAdd,
     TResult? Function(_SubmitAdd value)? submitAdd,
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult? Function(_Delete value)? delete,
   }) {
     return initAdd?.call(this);
   }
@@ -2080,6 +2145,7 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(_SelectRequesterOnAdd value)? selectRequesterOnAdd,
     TResult Function(_SubmitAdd value)? submitAdd,
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult Function(_Delete value)? delete,
     required TResult orElse(),
   }) {
     if (initAdd != null) {
@@ -2175,6 +2241,7 @@ class _$SelectRequesterOnAddImpl implements _SelectRequesterOnAdd {
     required TResult Function(int employeeId) selectRequesterOnAdd,
     required TResult Function(Map<String, dynamic> formValues) submitAdd,
     required TResult Function() clearSubmitResult,
+    required TResult Function(int id) delete,
   }) {
     return selectRequesterOnAdd(employeeId);
   }
@@ -2196,6 +2263,7 @@ class _$SelectRequesterOnAddImpl implements _SelectRequesterOnAdd {
     TResult? Function(int employeeId)? selectRequesterOnAdd,
     TResult? Function(Map<String, dynamic> formValues)? submitAdd,
     TResult? Function()? clearSubmitResult,
+    TResult? Function(int id)? delete,
   }) {
     return selectRequesterOnAdd?.call(employeeId);
   }
@@ -2217,6 +2285,7 @@ class _$SelectRequesterOnAddImpl implements _SelectRequesterOnAdd {
     TResult Function(int employeeId)? selectRequesterOnAdd,
     TResult Function(Map<String, dynamic> formValues)? submitAdd,
     TResult Function()? clearSubmitResult,
+    TResult Function(int id)? delete,
     required TResult orElse(),
   }) {
     if (selectRequesterOnAdd != null) {
@@ -2241,6 +2310,7 @@ class _$SelectRequesterOnAddImpl implements _SelectRequesterOnAdd {
     required TResult Function(_SelectRequesterOnAdd value) selectRequesterOnAdd,
     required TResult Function(_SubmitAdd value) submitAdd,
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
+    required TResult Function(_Delete value) delete,
   }) {
     return selectRequesterOnAdd(this);
   }
@@ -2261,6 +2331,7 @@ class _$SelectRequesterOnAddImpl implements _SelectRequesterOnAdd {
     TResult? Function(_SelectRequesterOnAdd value)? selectRequesterOnAdd,
     TResult? Function(_SubmitAdd value)? submitAdd,
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult? Function(_Delete value)? delete,
   }) {
     return selectRequesterOnAdd?.call(this);
   }
@@ -2281,6 +2352,7 @@ class _$SelectRequesterOnAddImpl implements _SelectRequesterOnAdd {
     TResult Function(_SelectRequesterOnAdd value)? selectRequesterOnAdd,
     TResult Function(_SubmitAdd value)? submitAdd,
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult Function(_Delete value)? delete,
     required TResult orElse(),
   }) {
     if (selectRequesterOnAdd != null) {
@@ -2387,6 +2459,7 @@ class _$SubmitAddImpl implements _SubmitAdd {
     required TResult Function(int employeeId) selectRequesterOnAdd,
     required TResult Function(Map<String, dynamic> formValues) submitAdd,
     required TResult Function() clearSubmitResult,
+    required TResult Function(int id) delete,
   }) {
     return submitAdd(formValues);
   }
@@ -2408,6 +2481,7 @@ class _$SubmitAddImpl implements _SubmitAdd {
     TResult? Function(int employeeId)? selectRequesterOnAdd,
     TResult? Function(Map<String, dynamic> formValues)? submitAdd,
     TResult? Function()? clearSubmitResult,
+    TResult? Function(int id)? delete,
   }) {
     return submitAdd?.call(formValues);
   }
@@ -2429,6 +2503,7 @@ class _$SubmitAddImpl implements _SubmitAdd {
     TResult Function(int employeeId)? selectRequesterOnAdd,
     TResult Function(Map<String, dynamic> formValues)? submitAdd,
     TResult Function()? clearSubmitResult,
+    TResult Function(int id)? delete,
     required TResult orElse(),
   }) {
     if (submitAdd != null) {
@@ -2453,6 +2528,7 @@ class _$SubmitAddImpl implements _SubmitAdd {
     required TResult Function(_SelectRequesterOnAdd value) selectRequesterOnAdd,
     required TResult Function(_SubmitAdd value) submitAdd,
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
+    required TResult Function(_Delete value) delete,
   }) {
     return submitAdd(this);
   }
@@ -2473,6 +2549,7 @@ class _$SubmitAddImpl implements _SubmitAdd {
     TResult? Function(_SelectRequesterOnAdd value)? selectRequesterOnAdd,
     TResult? Function(_SubmitAdd value)? submitAdd,
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult? Function(_Delete value)? delete,
   }) {
     return submitAdd?.call(this);
   }
@@ -2493,6 +2570,7 @@ class _$SubmitAddImpl implements _SubmitAdd {
     TResult Function(_SelectRequesterOnAdd value)? selectRequesterOnAdd,
     TResult Function(_SubmitAdd value)? submitAdd,
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult Function(_Delete value)? delete,
     required TResult orElse(),
   }) {
     if (submitAdd != null) {
@@ -2565,6 +2643,7 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
     required TResult Function(int employeeId) selectRequesterOnAdd,
     required TResult Function(Map<String, dynamic> formValues) submitAdd,
     required TResult Function() clearSubmitResult,
+    required TResult Function(int id) delete,
   }) {
     return clearSubmitResult();
   }
@@ -2586,6 +2665,7 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
     TResult? Function(int employeeId)? selectRequesterOnAdd,
     TResult? Function(Map<String, dynamic> formValues)? submitAdd,
     TResult? Function()? clearSubmitResult,
+    TResult? Function(int id)? delete,
   }) {
     return clearSubmitResult?.call();
   }
@@ -2607,6 +2687,7 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
     TResult Function(int employeeId)? selectRequesterOnAdd,
     TResult Function(Map<String, dynamic> formValues)? submitAdd,
     TResult Function()? clearSubmitResult,
+    TResult Function(int id)? delete,
     required TResult orElse(),
   }) {
     if (clearSubmitResult != null) {
@@ -2631,6 +2712,7 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
     required TResult Function(_SelectRequesterOnAdd value) selectRequesterOnAdd,
     required TResult Function(_SubmitAdd value) submitAdd,
     required TResult Function(_ClearSubmitResult value) clearSubmitResult,
+    required TResult Function(_Delete value) delete,
   }) {
     return clearSubmitResult(this);
   }
@@ -2651,6 +2733,7 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
     TResult? Function(_SelectRequesterOnAdd value)? selectRequesterOnAdd,
     TResult? Function(_SubmitAdd value)? submitAdd,
     TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult? Function(_Delete value)? delete,
   }) {
     return clearSubmitResult?.call(this);
   }
@@ -2671,6 +2754,7 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
     TResult Function(_SelectRequesterOnAdd value)? selectRequesterOnAdd,
     TResult Function(_SubmitAdd value)? submitAdd,
     TResult Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult Function(_Delete value)? delete,
     required TResult orElse(),
   }) {
     if (clearSubmitResult != null) {
@@ -2682,4 +2766,213 @@ class _$ClearSubmitResultImpl implements _ClearSubmitResult {
 
 abstract class _ClearSubmitResult implements RentalVehicleEvent {
   const factory _ClearSubmitResult() = _$ClearSubmitResultImpl;
+}
+
+/// @nodoc
+abstract class _$$DeleteImplCopyWith<$Res> {
+  factory _$$DeleteImplCopyWith(
+          _$DeleteImpl value, $Res Function(_$DeleteImpl) then) =
+      __$$DeleteImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id});
+}
+
+/// @nodoc
+class __$$DeleteImplCopyWithImpl<$Res>
+    extends _$RentalVehicleEventCopyWithImpl<$Res, _$DeleteImpl>
+    implements _$$DeleteImplCopyWith<$Res> {
+  __$$DeleteImplCopyWithImpl(
+      _$DeleteImpl _value, $Res Function(_$DeleteImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$DeleteImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeleteImpl implements _Delete {
+  const _$DeleteImpl({required this.id});
+
+  @override
+  final int id;
+
+  @override
+  String toString() {
+    return 'RentalVehicleEvent.delete(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteImplCopyWith<_$DeleteImpl> get copyWith =>
+      __$$DeleteImplCopyWithImpl<_$DeleteImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String keyword) search,
+    required TResult Function() loadAll,
+    required TResult Function(int status, int departmentId, String keyword)
+        loadEmployees,
+    required TResult Function() loadDepartments,
+    required TResult Function(int departmentId) selectDepartment,
+    required TResult Function(int employeeId) selectRequester,
+    required TResult Function(int employeeId) selectBooker,
+    required TResult Function() initAdd,
+    required TResult Function(int employeeId) selectRequesterOnAdd,
+    required TResult Function(Map<String, dynamic> formValues) submitAdd,
+    required TResult Function() clearSubmitResult,
+    required TResult Function(int id) delete,
+  }) {
+    return delete(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String keyword)? search,
+    TResult? Function()? loadAll,
+    TResult? Function(int status, int departmentId, String keyword)?
+        loadEmployees,
+    TResult? Function()? loadDepartments,
+    TResult? Function(int departmentId)? selectDepartment,
+    TResult? Function(int employeeId)? selectRequester,
+    TResult? Function(int employeeId)? selectBooker,
+    TResult? Function()? initAdd,
+    TResult? Function(int employeeId)? selectRequesterOnAdd,
+    TResult? Function(Map<String, dynamic> formValues)? submitAdd,
+    TResult? Function()? clearSubmitResult,
+    TResult? Function(int id)? delete,
+  }) {
+    return delete?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String keyword)? search,
+    TResult Function()? loadAll,
+    TResult Function(int status, int departmentId, String keyword)?
+        loadEmployees,
+    TResult Function()? loadDepartments,
+    TResult Function(int departmentId)? selectDepartment,
+    TResult Function(int employeeId)? selectRequester,
+    TResult Function(int employeeId)? selectBooker,
+    TResult Function()? initAdd,
+    TResult Function(int employeeId)? selectRequesterOnAdd,
+    TResult Function(Map<String, dynamic> formValues)? submitAdd,
+    TResult Function()? clearSubmitResult,
+    TResult Function(int id)? delete,
+    required TResult orElse(),
+  }) {
+    if (delete != null) {
+      return delete(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_Search value) search,
+    required TResult Function(_LoadAll value) loadAll,
+    required TResult Function(_LoadEmployees value) loadEmployees,
+    required TResult Function(_LoadDepartments value) loadDepartments,
+    required TResult Function(_SelectDepartment value) selectDepartment,
+    required TResult Function(_SelectRequester value) selectRequester,
+    required TResult Function(_SelectBooker value) selectBooker,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_SelectRequesterOnAdd value) selectRequesterOnAdd,
+    required TResult Function(_SubmitAdd value) submitAdd,
+    required TResult Function(_ClearSubmitResult value) clearSubmitResult,
+    required TResult Function(_Delete value) delete,
+  }) {
+    return delete(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_LoadAll value)? loadAll,
+    TResult? Function(_LoadEmployees value)? loadEmployees,
+    TResult? Function(_LoadDepartments value)? loadDepartments,
+    TResult? Function(_SelectDepartment value)? selectDepartment,
+    TResult? Function(_SelectRequester value)? selectRequester,
+    TResult? Function(_SelectBooker value)? selectBooker,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_SelectRequesterOnAdd value)? selectRequesterOnAdd,
+    TResult? Function(_SubmitAdd value)? submitAdd,
+    TResult? Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult? Function(_Delete value)? delete,
+  }) {
+    return delete?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_Search value)? search,
+    TResult Function(_LoadAll value)? loadAll,
+    TResult Function(_LoadEmployees value)? loadEmployees,
+    TResult Function(_LoadDepartments value)? loadDepartments,
+    TResult Function(_SelectDepartment value)? selectDepartment,
+    TResult Function(_SelectRequester value)? selectRequester,
+    TResult Function(_SelectBooker value)? selectBooker,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_SelectRequesterOnAdd value)? selectRequesterOnAdd,
+    TResult Function(_SubmitAdd value)? submitAdd,
+    TResult Function(_ClearSubmitResult value)? clearSubmitResult,
+    TResult Function(_Delete value)? delete,
+    required TResult orElse(),
+  }) {
+    if (delete != null) {
+      return delete(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Delete implements RentalVehicleEvent {
+  const factory _Delete({required final int id}) = _$DeleteImpl;
+
+  int get id;
+  @JsonKey(ignore: true)
+  _$$DeleteImplCopyWith<_$DeleteImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

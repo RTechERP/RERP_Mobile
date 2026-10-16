@@ -31,4 +31,9 @@ abstract class RentalVehicleRepo {
   Future<Either<BaseError, bool>> saveData({
     required List<Map<String, dynamic>> payload,
   });
+
+  /// Xoá yêu cầu thuê xe tải theo danh sách id.
+  Future<Either<BaseError, bool>> deleteData({
+    required List<int> ids,
+  });
 }

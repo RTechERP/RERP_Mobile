@@ -41,6 +41,10 @@ abstract class _$RentalVehicleStateCWProxy {
 
   RentalVehicleState submitSuccess(bool submitSuccess);
 
+  RentalVehicleState deletingId(int? deletingId);
+
+  RentalVehicleState deleteSuccess(bool deleteSuccess);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `RentalVehicleState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -65,6 +69,8 @@ abstract class _$RentalVehicleStateCWProxy {
     int? nextStt,
     bool? isSubmitting,
     bool? submitSuccess,
+    int? deletingId,
+    bool? deleteSuccess,
   });
 }
 
@@ -138,6 +144,14 @@ class _$RentalVehicleStateCWProxyImpl implements _$RentalVehicleStateCWProxy {
       this(submitSuccess: submitSuccess);
 
   @override
+  RentalVehicleState deletingId(int? deletingId) =>
+      this(deletingId: deletingId);
+
+  @override
+  RentalVehicleState deleteSuccess(bool deleteSuccess) =>
+      this(deleteSuccess: deleteSuccess);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `RentalVehicleState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -163,6 +177,8 @@ class _$RentalVehicleStateCWProxyImpl implements _$RentalVehicleStateCWProxy {
     Object? nextStt = const $CopyWithPlaceholder(),
     Object? isSubmitting = const $CopyWithPlaceholder(),
     Object? submitSuccess = const $CopyWithPlaceholder(),
+    Object? deletingId = const $CopyWithPlaceholder(),
+    Object? deleteSuccess = const $CopyWithPlaceholder(),
   }) {
     return RentalVehicleState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -244,6 +260,15 @@ class _$RentalVehicleStateCWProxyImpl implements _$RentalVehicleStateCWProxy {
               ? _value.submitSuccess
               // ignore: cast_nullable_to_non_nullable
               : submitSuccess as bool,
+      deletingId: deletingId == const $CopyWithPlaceholder()
+          ? _value.deletingId
+          // ignore: cast_nullable_to_non_nullable
+          : deletingId as int?,
+      deleteSuccess:
+          deleteSuccess == const $CopyWithPlaceholder() || deleteSuccess == null
+              ? _value.deleteSuccess
+              // ignore: cast_nullable_to_non_nullable
+              : deleteSuccess as bool,
     );
   }
 }
