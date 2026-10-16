@@ -35,6 +35,10 @@ import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/da
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repo_impl.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/bloc/booking_vehicle_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/rental_vehicle/data/datasource/service/rental_vehicle_service.dart';
+import '../features/workplace/app/reg_general/view/pages/rental_vehicle/data/repository/rental_vehicle_repo.dart';
+import '../features/workplace/app/reg_general/view/pages/rental_vehicle/data/repository/rental_vehicle_repo_impl.dart';
+import '../features/workplace/app/reg_general/view/pages/rental_vehicle/view/bloc/rental_vehicle_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/contract_registration/data/datasource/service/contract_registration_service.dart';
 import '../features/workplace/app/reg_general/view/pages/contract_registration/data/repository/contract_registration_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/contract_registration/data/repository/contract_registration_repo_impl.dart';
@@ -227,6 +231,10 @@ void configureDependencies() {
     () => BookingVehicleService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<RentalVehicleService>(
+    () => RentalVehicleService(getIt<Dio>()),
+  );
+
   getIt.registerLazySingleton<LunchService>(() => LunchService(getIt<Dio>()));
 
   getIt.registerLazySingleton<InOutService>(() => InOutService(getIt<Dio>()));
@@ -365,6 +373,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<BookingVehicleRepo>(
     () => BookingVehicleRepoImpl(getIt<BookingVehicleService>()),
+  );
+
+  getIt.registerLazySingleton<RentalVehicleRepo>(
+    () => RentalVehicleRepoImpl(getIt<RentalVehicleService>()),
   );
 
   getIt.registerLazySingleton<LunchRepo>(
@@ -533,6 +545,14 @@ void configureDependencies() {
   getIt.registerFactory<BookingVehicleBloc>(
     () => BookingVehicleBloc(
       getIt<BookingVehicleRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<RentalVehicleBloc>(
+    () => RentalVehicleBloc(
+      getIt<RentalVehicleRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
     ),

@@ -131,6 +131,16 @@ class AppItemRegistry {
       imageUrl: AppImages.reg_regneral_booking,
     ),
 
+    AppItemModel(
+      id: 'reg_general:rental_vehicle',
+      name: 'reg_general.rental_vehicle'.tr(),
+      iconCodePoint: Icons.local_shipping_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'reg_general',
+      route: RouteNames.rentalVehicle,
+      imageUrl: AppImages.reg_regneral_booking,
+    ),
+
     // AppItemModel(
     //   id: 'reg_general:purchase',
     //   name: 'reg_general.purchase'.tr(),
