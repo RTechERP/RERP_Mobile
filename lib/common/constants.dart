@@ -246,6 +246,12 @@ class ApiEndPoint {
   static const String getVehicleBookingsForBussiness =
       '/EmployeeBussiness/get-vehicle-bookings-for-bussiness';
 
+  /// Tổng hợp phiếu cá nhân (dashboard trang chủ):
+  /// dataOnLeave | dataEarlyLate | dataOverTime | dataBussiness |
+  /// dataWFH | dataENF | dataNightShift.
+  static const String getSummaryEmployeePerson =
+      '/home/get-summary-employee-person';
+
   static const String getOvernight = '/EmployeeNightShift/person';
 
   static const String saveOvernight = '/EmployeeNightShift/save-data';

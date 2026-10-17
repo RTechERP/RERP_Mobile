@@ -89,15 +89,15 @@ class AppItemRegistry {
       imageUrl: AppImages.app_missed,
     ),
 
-    // AppItemModel(
-    //   id: 'reg_work:sum_personal',
-    //   name: 'reg_work.sum_personal'.tr(),
-    //   iconCodePoint: Icons.person_outline.codePoint,
-    //   iconFontFamily: 'MaterialIcons',
-    //   tab: 'reg_work',
-    //   route: '/regwork/sum-personal',
-    //   imageUrl: AppImages.app_sum_personal,
-    // ),
+    AppItemModel(
+      id: 'reg_work:sum_personal',
+      name: 'reg_work.sum_personal'.tr(),
+      iconCodePoint: Icons.person_outline.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'reg_work',
+      route: RouteNames.regworkPersonalSummary,
+      imageUrl: AppImages.app_sum_personal,
+    ),
     AppItemModel(
       id: 'reg_work:sum_salary',
       name: 'reg_work.sum_salary'.tr(),

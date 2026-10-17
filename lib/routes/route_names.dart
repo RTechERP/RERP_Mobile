@@ -72,6 +72,9 @@ class RouteNames {
 
   static const regworkOvernightAdd = '/regwork/overnight/add';
 
+  // Reg Work - Personal Summary
+  static const regworkPersonalSummary = '/regwork/sum-personal';
+
   // Reports
 
   ///*** Techinical Department ***///
