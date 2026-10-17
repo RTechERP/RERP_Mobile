@@ -39,6 +39,14 @@ abstract class _$PersonalSummaryStateCWProxy {
 
   PersonalSummaryState keyword(String keyword);
 
+  PersonalSummaryState employees(List<PersonalAttendanceEmployee> employees);
+
+  PersonalSummaryState selectedEmployeeId(int? selectedEmployeeId);
+
+  PersonalSummaryState employeesLoadedForDept(int? employeesLoadedForDept);
+
+  PersonalSummaryState employeesLoading(bool employeesLoading);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PersonalSummaryState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -62,6 +70,10 @@ abstract class _$PersonalSummaryStateCWProxy {
     int? departmentId,
     int? statusFilter,
     String? keyword,
+    List<PersonalAttendanceEmployee>? employees,
+    int? selectedEmployeeId,
+    int? employeesLoadedForDept,
+    bool? employeesLoading,
   });
 }
 
@@ -131,6 +143,22 @@ class _$PersonalSummaryStateCWProxyImpl
   PersonalSummaryState keyword(String keyword) => this(keyword: keyword);
 
   @override
+  PersonalSummaryState employees(List<PersonalAttendanceEmployee> employees) =>
+      this(employees: employees);
+
+  @override
+  PersonalSummaryState selectedEmployeeId(int? selectedEmployeeId) =>
+      this(selectedEmployeeId: selectedEmployeeId);
+
+  @override
+  PersonalSummaryState employeesLoadedForDept(int? employeesLoadedForDept) =>
+      this(employeesLoadedForDept: employeesLoadedForDept);
+
+  @override
+  PersonalSummaryState employeesLoading(bool employeesLoading) =>
+      this(employeesLoading: employeesLoading);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `PersonalSummaryState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -155,6 +183,10 @@ class _$PersonalSummaryStateCWProxyImpl
     Object? departmentId = const $CopyWithPlaceholder(),
     Object? statusFilter = const $CopyWithPlaceholder(),
     Object? keyword = const $CopyWithPlaceholder(),
+    Object? employees = const $CopyWithPlaceholder(),
+    Object? selectedEmployeeId = const $CopyWithPlaceholder(),
+    Object? employeesLoadedForDept = const $CopyWithPlaceholder(),
+    Object? employeesLoading = const $CopyWithPlaceholder(),
   }) {
     return PersonalSummaryState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -225,6 +257,24 @@ class _$PersonalSummaryStateCWProxyImpl
           ? _value.keyword
           // ignore: cast_nullable_to_non_nullable
           : keyword as String,
+      employees: employees == const $CopyWithPlaceholder() || employees == null
+          ? _value.employees
+          // ignore: cast_nullable_to_non_nullable
+          : employees as List<PersonalAttendanceEmployee>,
+      selectedEmployeeId: selectedEmployeeId == const $CopyWithPlaceholder()
+          ? _value.selectedEmployeeId
+          // ignore: cast_nullable_to_non_nullable
+          : selectedEmployeeId as int?,
+      employeesLoadedForDept:
+          employeesLoadedForDept == const $CopyWithPlaceholder()
+              ? _value.employeesLoadedForDept
+              // ignore: cast_nullable_to_non_nullable
+              : employeesLoadedForDept as int?,
+      employeesLoading: employeesLoading == const $CopyWithPlaceholder() ||
+              employeesLoading == null
+          ? _value.employeesLoading
+          // ignore: cast_nullable_to_non_nullable
+          : employeesLoading as bool,
     );
   }
 }

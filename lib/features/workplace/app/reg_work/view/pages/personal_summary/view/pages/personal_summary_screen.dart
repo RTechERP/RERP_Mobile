@@ -15,6 +15,7 @@ import '../../../../../../../../../base/widgets/base_widget.dart';
 import '../../data/datasource/models/personal_summary_model.dart';
 import '../bloc/personal_summary_bloc.dart';
 import '../widgets/personal_summary_cards.dart';
+import '../widgets/personal_summary_employee_drawer.dart';
 import '../widgets/personal_summary_filter_sheet.dart';
 import '../widgets/personal_summary_list_header.dart';
 
@@ -50,10 +51,18 @@ class _PersonalSummaryScreenState
   void initState() {
     super.initState();
     _tabController = TabController(length: _tabDefs.length, vsync: this);
+    _tabController.addListener(_onTabChanged);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       bloc.add(const PersonalSummaryEvent.init());
     });
+  }
+
+  void _onTabChanged() {
+    // TabController gọi listener cả khi animation chạy; chỉ rebuild khi
+    // index đã settle.
+    if (_tabController.indexIsChanging) return;
+    setState(() {});
   }
 
   @override
@@ -154,7 +163,20 @@ class _PersonalSummaryScreenState
   Widget renderUI(BuildContext context) {
     return BlocBuilder<PersonalSummaryBloc, PersonalSummaryState>(
       builder: (context, state) {
+        final isAttendanceTab = _isAttendanceTab();
         return BaseScaffold(
+          endDrawer: isAttendanceTab
+              ? PersonalSummaryEmployeeDrawer(
+                  employees: state.employees,
+                  selectedEmployeeId: state.selectedEmployeeId,
+                  isLoading: state.employeesLoading,
+                  onSelect: (id) {
+                    bloc.add(
+                      PersonalSummaryEvent.selectEmployee(employeeId: id),
+                    );
+                  },
+                )
+              : null,
           appBar: AppBarCommon(
             onBackTap: () => context.pop(),
             centerTitle: false,
@@ -167,6 +189,17 @@ class _PersonalSummaryScreenState
               child: _buildTabBar(),
             ),
             actions: [
+              if (isAttendanceTab)
+                Builder(
+                  builder: (innerCtx) => IconButton(
+                    icon: Badge(
+                      isLabelVisible: state.selectedEmployeeId != null,
+                      child: const Icon(Icons.person_search_outlined),
+                    ),
+                    tooltip: 'Chọn nhân sự',
+                    onPressed: () => _openEmployeeDrawer(innerCtx, state),
+                  ),
+                ),
               IconButton(
                 icon: const Icon(Icons.calendar_month_outlined),
                 tooltip: 'Lọc theo ngày',
@@ -204,6 +237,37 @@ class _PersonalSummaryScreenState
         );
       },
     );
+  }
+
+  /// Tab Vân tay là index cuối (thứ 8).
+  bool _isAttendanceTab() {
+    return _tabController.index == _tabDefs.length - 1;
+  }
+
+  /// Mở drawer chọn nhân sự. Nếu chưa có cache cho phòng ban hiện tại
+  /// thì đợi bloc load xong mới mở, đảm bảo drawer có dữ liệu ngay
+  /// lần hiển thị đầu tiên.
+  Future<void> _openEmployeeDrawer(
+    BuildContext context,
+    PersonalSummaryState state,
+  ) async {
+    final currentDept = state.departmentId;
+    final alreadyCached = state.employeesLoadedForDept != null &&
+        state.employeesLoadedForDept == currentDept &&
+        state.employees.isNotEmpty;
+
+    if (!alreadyCached) {
+      bloc.add(const PersonalSummaryEvent.loadEmployees());
+      // Đợi bloc load xong (employeesLoading chuyển từ true → false).
+      // Lưu ý: lúc này bloc đã emit employeesLoading=true, nên stream
+      // sẽ emit ít nhất 1 lần nữa với giá trị false.
+      await bloc.stream.firstWhere(
+        (s) => !s.employeesLoading,
+      );
+    }
+
+    if (!context.mounted) return;
+    Scaffold.of(context).openEndDrawer();
   }
 
   // ── Tab Bar ───────────────────────────────────────────────────────────────

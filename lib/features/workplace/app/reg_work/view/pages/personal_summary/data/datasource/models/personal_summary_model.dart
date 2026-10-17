@@ -357,3 +357,24 @@ class PersonalSummaryData with _$PersonalSummaryData {
   factory PersonalSummaryData.fromJson(Map<String, dynamic> json) =>
       _$PersonalSummaryDataFromJson(json);
 }
+
+/// Nhân viên trong phòng ban (response của
+/// GET /SummaryAttendance/get-employees?departmentID=...).
+/// Dùng cho drawer chọn nhân sự ở tab Vân tay.
+@freezed
+class PersonalAttendanceEmployee with _$PersonalAttendanceEmployee {
+  const factory PersonalAttendanceEmployee({
+    @JsonKey(name: 'ID') required int id,
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'FullName') String? fullName,
+    @JsonKey(name: 'DepartmentID') int? departmentId,
+    @JsonKey(name: 'DepartmentName') String? departmentName,
+    @JsonKey(name: 'IDChamCongMoi') String? idChamCongMoi,
+    @JsonKey(name: 'Position') String? position,
+    @JsonKey(name: 'Email') String? email,
+    @JsonKey(name: 'TeamName') String? teamName,
+  }) = _PersonalAttendanceEmployee;
+
+  factory PersonalAttendanceEmployee.fromJson(Map<String, dynamic> json) =>
+      _$PersonalAttendanceEmployeeFromJson(json);
+}

@@ -30,4 +30,15 @@ class PersonalSummaryEvent with _$PersonalSummaryEvent {
 
   /// Tải lại dữ liệu giữ nguyên bộ lọc (pull-to-refresh).
   const factory PersonalSummaryEvent.refresh() = _Refresh;
+
+  /// Mở drawer chọn nhân sự ở tab Vân tay.
+  /// Bloc sẽ gọi API lấy danh sách nhân viên theo phòng ban hiện tại
+  /// nếu chưa cache.
+  const factory PersonalSummaryEvent.loadEmployees() = _LoadEmployees;
+
+  /// Chọn 1 nhân viên trong drawer (hoặc bỏ chọn bằng employeeId = null).
+  /// Bloc sẽ gọi lại API vân tay theo nhân viên đó.
+  const factory PersonalSummaryEvent.selectEmployee({
+    int? employeeId,
+  }) = _SelectEmployee;
 }

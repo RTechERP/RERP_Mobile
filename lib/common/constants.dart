@@ -257,6 +257,11 @@ class ApiEndPoint {
   static const String getEmployeeAttendance =
       '/SummaryAttendance/get-employee-attendance';
 
+  /// Lấy danh sách nhân viên theo phòng ban (dùng cho drawer chọn nhân sự
+  /// ở tab Vân tay). GET /SummaryAttendance/get-employees?departmentID=...
+  static const String getAttendanceEmployees =
+      '/SummaryAttendance/get-employees';
+
   static const String getOvernight = '/EmployeeNightShift/person';
 
   static const String saveOvernight = '/EmployeeNightShift/save-data';

@@ -23,4 +23,10 @@ abstract class PersonalSummaryRepo {
 
   /// Lấy danh sách phòng ban (phục vụ bottom sheet lọc).
   Future<Either<BaseError, List<SummaryDepartment>>> getDepartments();
+
+  /// Lấy danh sách nhân viên theo phòng ban (dùng cho drawer chọn nhân sự
+  /// ở tab Vân tay).
+  Future<Either<BaseError, List<PersonalAttendanceEmployee>>> getEmployees({
+    required int departmentId,
+  });
 }

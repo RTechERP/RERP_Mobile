@@ -106,4 +106,55 @@ class PersonalSummaryService extends DioBaseApiService {
       ),
     );
   }
+
+  /// GET /SummaryAttendance/get-employees?departmentID=...
+  /// Response được bọc: `{status, message, data: [...]}`. Trong đó
+  /// `data` là mảng các nhân viên của phòng ban.
+  Future<BaseData<List<PersonalAttendanceEmployee>>> getEmployees({
+    required int departmentId,
+  }) async {
+    return get<BaseData<List<PersonalAttendanceEmployee>>>(
+      ApiEndPoint.getAttendanceEmployees,
+      query: {'departmentID': departmentId},
+      parser: (json) {
+        if (json is Map) {
+          final map = json.cast<String, dynamic>();
+          final raw = map['data'];
+          final items = raw is List
+              ? raw
+                  .whereType<Map>()
+                  .map(
+                    (e) => PersonalAttendanceEmployee.fromJson(
+                      (e).cast<String, dynamic>(),
+                    ),
+                  )
+                  .toList()
+              : const <PersonalAttendanceEmployee>[];
+          return BaseData<List<PersonalAttendanceEmployee>>(
+            data: items,
+            status: (map['status'] as num?)?.toInt() ?? 0,
+          );
+        }
+        if (json is List) {
+          // Fallback: nếu BE trả mảng trần.
+          final items = json
+              .whereType<Map>()
+              .map(
+                (e) => PersonalAttendanceEmployee.fromJson(
+                  (e).cast<String, dynamic>(),
+                ),
+              )
+              .toList();
+          return BaseData<List<PersonalAttendanceEmployee>>(
+            data: items,
+            status: 1,
+          );
+        }
+        return BaseData<List<PersonalAttendanceEmployee>>(
+          data: const <PersonalAttendanceEmployee>[],
+          status: 0,
+        );
+      },
+    );
+  }
 }

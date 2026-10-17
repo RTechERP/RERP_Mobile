@@ -1,6 +1,7 @@
 // Bloc xử lý logic màn Personal Summary (8 tab phiếu cá nhân).
 // Quản lý: khoảng ngày, filter phòng ban + trạng thái duyệt, từ khoá tìm
-// kiếm và dữ liệu nhận về.
+// kiếm, dữ liệu nhận về, danh sách nhân sự cho drawer (tab Vân tay) và
+// nhân sự đang được chọn.
 import 'package:bloc/bloc.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -42,6 +43,11 @@ class PersonalSummaryBloc
           status: status,
         ),
         refresh: () async => _onRefresh(emit),
+        loadEmployees: () async => _onLoadEmployees(emit),
+        selectEmployee: (employeeId) async => _onSelectEmployee(
+          emit,
+          employeeId: employeeId,
+        ),
       );
     });
   }
@@ -104,6 +110,7 @@ class PersonalSummaryBloc
       dateStart: dateStart,
       dateEnd: dateEnd,
       keyword: state.keyword,
+      employeeId: state.selectedEmployeeId,
     );
     final attendanceRes = await _repo.getEmployeeAttendance(
       query: attendanceQuery,
@@ -155,6 +162,7 @@ class PersonalSummaryBloc
     required DateTime dateStart,
     required DateTime dateEnd,
     required String keyword,
+    int? employeeId,
   }) {
     String two(int v) => v.toString().padLeft(2, '0');
     final startStr =
@@ -163,7 +171,7 @@ class PersonalSummaryBloc
         '${dateEnd.year}-${two(dateEnd.month)}-${two(dateEnd.day)}';
     return <String, dynamic>{
       'departmentID': departmentId ?? 0,
-      'employeeID': 0,
+      'employeeID': employeeId ?? 0,
       'keyword': keyword,
       'dateStart': startStr,
       'dateEnd': endStr,
@@ -239,15 +247,22 @@ class PersonalSummaryBloc
   }
 
   /// Đổi bộ lọc (phòng ban + trạng thái) → gọi lại API.
+  /// Khi đổi phòng ban, danh sách nhân sự cache sẽ bị invalidate.
   Future<void> _onChangeFilters(
     Emitter<PersonalSummaryState> emit, {
     int? departmentId,
     int? status,
   }) async {
+    final deptChanged = departmentId != state.departmentId;
     emit(state.copyWith(
       status: BaseStateStatus.loading,
       departmentId: departmentId,
       statusFilter: status ?? state.statusFilter,
+      // Reset cache employees khi đổi phòng ban.
+      employees: deptChanged ? const [] : state.employees,
+      employeesLoadedForDept:
+          deptChanged ? null : state.employeesLoadedForDept,
+      selectedEmployeeId: deptChanged ? null : state.selectedEmployeeId,
     ));
     final start = state.dateStart ?? DateTime.now();
     final end = state.dateEnd ?? DateTime.now();
@@ -261,6 +276,64 @@ class PersonalSummaryBloc
     required String keyword,
   }) {
     emit(state.copyWith(keyword: keyword));
+  }
+
+  /// Load danh sách nhân viên cho drawer (chỉ gọi nếu chưa cache cho
+  /// phòng ban hiện tại).
+  Future<void> _onLoadEmployees(Emitter<PersonalSummaryState> emit) async {
+    final userRes = await _authRepo.getCurrentUser();
+    final employee = userRes.fold((_) => null, (u) => u);
+    final effectiveDeptId = state.departmentId ?? employee?.departmentId;
+    if (effectiveDeptId == null || effectiveDeptId == 0) {
+      _log.logE('loadEmployees: missing departmentId');
+      emit(state.copyWith(
+        employees: const [],
+        employeesLoadedForDept: null,
+      ));
+      return;
+    }
+    if (state.employeesLoadedForDept == effectiveDeptId &&
+        state.employees.isNotEmpty) {
+      _log.logI('loadEmployees: cache hit for dept=$effectiveDeptId');
+      return;
+    }
+    emit(state.copyWith(employeesLoading: true));
+    final res = await _repo.getEmployees(departmentId: effectiveDeptId);
+    res.fold(
+      (l) {
+        _log.logE('loadEmployees failed: $l');
+        emit(state.copyWith(
+          employeesLoading: false,
+          employees: const [],
+          employeesLoadedForDept: null,
+        ));
+      },
+      (list) {
+        _log.logI('loadEmployees ok - count: ${list.length}');
+        emit(state.copyWith(
+          employeesLoading: false,
+          employees: list,
+          employeesLoadedForDept: effectiveDeptId,
+        ));
+      },
+    );
+  }
+
+  /// Chọn nhân viên ở tab Vân tay → gọi lại API vân tay theo nhân viên đó.
+  /// Truyền `employeeId = null` để bỏ chọn → lấy lại toàn bộ vân tay của
+  /// phòng ban.
+  Future<void> _onSelectEmployee(
+    Emitter<PersonalSummaryState> emit, {
+    int? employeeId,
+  }) async {
+    if (employeeId == state.selectedEmployeeId) return;
+    emit(state.copyWith(
+      status: BaseStateStatus.loading,
+      selectedEmployeeId: employeeId,
+    ));
+    final start = state.dateStart ?? DateTime.now();
+    final end = state.dateEnd ?? DateTime.now();
+    await _fetch(emit, dateStart: start, dateEnd: end);
   }
 }
 

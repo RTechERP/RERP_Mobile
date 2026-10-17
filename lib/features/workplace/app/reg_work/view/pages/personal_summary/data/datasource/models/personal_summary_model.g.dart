@@ -671,3 +671,31 @@ Map<String, dynamic> _$$PersonalSummaryDataImplToJson(
       'dataENF': instance.dataEnf,
       'dataNightShift': instance.dataNightShift,
     };
+
+_$PersonalAttendanceEmployeeImpl _$$PersonalAttendanceEmployeeImplFromJson(
+        Map<String, dynamic> json) =>
+    _$PersonalAttendanceEmployeeImpl(
+      id: (json['ID'] as num).toInt(),
+      code: json['Code'] as String?,
+      fullName: json['FullName'] as String?,
+      departmentId: (json['DepartmentID'] as num?)?.toInt(),
+      departmentName: json['DepartmentName'] as String?,
+      idChamCongMoi: json['IDChamCongMoi'] as String?,
+      position: json['Position'] as String?,
+      email: json['Email'] as String?,
+      teamName: json['TeamName'] as String?,
+    );
+
+Map<String, dynamic> _$$PersonalAttendanceEmployeeImplToJson(
+        _$PersonalAttendanceEmployeeImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'Code': instance.code,
+      'FullName': instance.fullName,
+      'DepartmentID': instance.departmentId,
+      'DepartmentName': instance.departmentName,
+      'IDChamCongMoi': instance.idChamCongMoi,
+      'Position': instance.position,
+      'Email': instance.email,
+      'TeamName': instance.teamName,
+    };

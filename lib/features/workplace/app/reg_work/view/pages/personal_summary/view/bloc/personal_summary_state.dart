@@ -26,6 +26,18 @@ class PersonalSummaryState extends BaseBlocState {
   /// Từ khoá tìm kiếm (apply client-side trên từng tab).
   final String keyword;
 
+  /// Danh sách nhân viên của phòng ban hiện tại (cache cho drawer).
+  final List<PersonalAttendanceEmployee> employees;
+
+  /// Nhân viên đang chọn trong drawer (null = chưa chọn).
+  final int? selectedEmployeeId;
+
+  /// Phòng ban đã load danh sách nhân viên thành công.
+  final int? employeesLoadedForDept;
+
+  /// Đang gọi API load employees.
+  final bool employeesLoading;
+
   const PersonalSummaryState({
     required super.status,
     super.message,
@@ -43,6 +55,10 @@ class PersonalSummaryState extends BaseBlocState {
     this.departmentId,
     this.statusFilter = -1,
     this.keyword = '',
+    this.employees = const [],
+    this.selectedEmployeeId,
+    this.employeesLoadedForDept,
+    this.employeesLoading = false,
   });
 
   factory PersonalSummaryState.init() => const PersonalSummaryState(
@@ -61,6 +77,10 @@ class PersonalSummaryState extends BaseBlocState {
         departmentId: null,
         statusFilter: -1,
         keyword: '',
+        employees: [],
+        selectedEmployeeId: null,
+        employeesLoadedForDept: null,
+        employeesLoading: false,
       );
 
   @override
@@ -81,5 +101,9 @@ class PersonalSummaryState extends BaseBlocState {
         departmentId,
         statusFilter,
         keyword,
+        employees,
+        selectedEmployeeId,
+        employeesLoadedForDept,
+        employeesLoading,
       ];
 }

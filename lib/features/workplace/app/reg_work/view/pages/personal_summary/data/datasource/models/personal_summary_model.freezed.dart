@@ -7371,3 +7371,347 @@ abstract class _PersonalSummaryData implements PersonalSummaryData {
   _$$PersonalSummaryDataImplCopyWith<_$PersonalSummaryDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+PersonalAttendanceEmployee _$PersonalAttendanceEmployeeFromJson(
+    Map<String, dynamic> json) {
+  return _PersonalAttendanceEmployee.fromJson(json);
+}
+
+/// @nodoc
+mixin _$PersonalAttendanceEmployee {
+  @JsonKey(name: 'ID')
+  int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Code')
+  String? get code => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FullName')
+  String? get fullName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DepartmentID')
+  int? get departmentId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DepartmentName')
+  String? get departmentName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IDChamCongMoi')
+  String? get idChamCongMoi => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Position')
+  String? get position => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Email')
+  String? get email => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TeamName')
+  String? get teamName => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $PersonalAttendanceEmployeeCopyWith<PersonalAttendanceEmployee>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PersonalAttendanceEmployeeCopyWith<$Res> {
+  factory $PersonalAttendanceEmployeeCopyWith(PersonalAttendanceEmployee value,
+          $Res Function(PersonalAttendanceEmployee) then) =
+      _$PersonalAttendanceEmployeeCopyWithImpl<$Res,
+          PersonalAttendanceEmployee>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int id,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'DepartmentID') int? departmentId,
+      @JsonKey(name: 'DepartmentName') String? departmentName,
+      @JsonKey(name: 'IDChamCongMoi') String? idChamCongMoi,
+      @JsonKey(name: 'Position') String? position,
+      @JsonKey(name: 'Email') String? email,
+      @JsonKey(name: 'TeamName') String? teamName});
+}
+
+/// @nodoc
+class _$PersonalAttendanceEmployeeCopyWithImpl<$Res,
+        $Val extends PersonalAttendanceEmployee>
+    implements $PersonalAttendanceEmployeeCopyWith<$Res> {
+  _$PersonalAttendanceEmployeeCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? code = freezed,
+    Object? fullName = freezed,
+    Object? departmentId = freezed,
+    Object? departmentName = freezed,
+    Object? idChamCongMoi = freezed,
+    Object? position = freezed,
+    Object? email = freezed,
+    Object? teamName = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departmentId: freezed == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentName: freezed == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      idChamCongMoi: freezed == idChamCongMoi
+          ? _value.idChamCongMoi
+          : idChamCongMoi // ignore: cast_nullable_to_non_nullable
+              as String?,
+      position: freezed == position
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      teamName: freezed == teamName
+          ? _value.teamName
+          : teamName // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$PersonalAttendanceEmployeeImplCopyWith<$Res>
+    implements $PersonalAttendanceEmployeeCopyWith<$Res> {
+  factory _$$PersonalAttendanceEmployeeImplCopyWith(
+          _$PersonalAttendanceEmployeeImpl value,
+          $Res Function(_$PersonalAttendanceEmployeeImpl) then) =
+      __$$PersonalAttendanceEmployeeImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int id,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'DepartmentID') int? departmentId,
+      @JsonKey(name: 'DepartmentName') String? departmentName,
+      @JsonKey(name: 'IDChamCongMoi') String? idChamCongMoi,
+      @JsonKey(name: 'Position') String? position,
+      @JsonKey(name: 'Email') String? email,
+      @JsonKey(name: 'TeamName') String? teamName});
+}
+
+/// @nodoc
+class __$$PersonalAttendanceEmployeeImplCopyWithImpl<$Res>
+    extends _$PersonalAttendanceEmployeeCopyWithImpl<$Res,
+        _$PersonalAttendanceEmployeeImpl>
+    implements _$$PersonalAttendanceEmployeeImplCopyWith<$Res> {
+  __$$PersonalAttendanceEmployeeImplCopyWithImpl(
+      _$PersonalAttendanceEmployeeImpl _value,
+      $Res Function(_$PersonalAttendanceEmployeeImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? code = freezed,
+    Object? fullName = freezed,
+    Object? departmentId = freezed,
+    Object? departmentName = freezed,
+    Object? idChamCongMoi = freezed,
+    Object? position = freezed,
+    Object? email = freezed,
+    Object? teamName = freezed,
+  }) {
+    return _then(_$PersonalAttendanceEmployeeImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departmentId: freezed == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentName: freezed == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      idChamCongMoi: freezed == idChamCongMoi
+          ? _value.idChamCongMoi
+          : idChamCongMoi // ignore: cast_nullable_to_non_nullable
+              as String?,
+      position: freezed == position
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      teamName: freezed == teamName
+          ? _value.teamName
+          : teamName // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$PersonalAttendanceEmployeeImpl implements _PersonalAttendanceEmployee {
+  const _$PersonalAttendanceEmployeeImpl(
+      {@JsonKey(name: 'ID') required this.id,
+      @JsonKey(name: 'Code') this.code,
+      @JsonKey(name: 'FullName') this.fullName,
+      @JsonKey(name: 'DepartmentID') this.departmentId,
+      @JsonKey(name: 'DepartmentName') this.departmentName,
+      @JsonKey(name: 'IDChamCongMoi') this.idChamCongMoi,
+      @JsonKey(name: 'Position') this.position,
+      @JsonKey(name: 'Email') this.email,
+      @JsonKey(name: 'TeamName') this.teamName});
+
+  factory _$PersonalAttendanceEmployeeImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$PersonalAttendanceEmployeeImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int id;
+  @override
+  @JsonKey(name: 'Code')
+  final String? code;
+  @override
+  @JsonKey(name: 'FullName')
+  final String? fullName;
+  @override
+  @JsonKey(name: 'DepartmentID')
+  final int? departmentId;
+  @override
+  @JsonKey(name: 'DepartmentName')
+  final String? departmentName;
+  @override
+  @JsonKey(name: 'IDChamCongMoi')
+  final String? idChamCongMoi;
+  @override
+  @JsonKey(name: 'Position')
+  final String? position;
+  @override
+  @JsonKey(name: 'Email')
+  final String? email;
+  @override
+  @JsonKey(name: 'TeamName')
+  final String? teamName;
+
+  @override
+  String toString() {
+    return 'PersonalAttendanceEmployee(id: $id, code: $code, fullName: $fullName, departmentId: $departmentId, departmentName: $departmentName, idChamCongMoi: $idChamCongMoi, position: $position, email: $email, teamName: $teamName)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PersonalAttendanceEmployeeImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName) &&
+            (identical(other.departmentId, departmentId) ||
+                other.departmentId == departmentId) &&
+            (identical(other.departmentName, departmentName) ||
+                other.departmentName == departmentName) &&
+            (identical(other.idChamCongMoi, idChamCongMoi) ||
+                other.idChamCongMoi == idChamCongMoi) &&
+            (identical(other.position, position) ||
+                other.position == position) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.teamName, teamName) ||
+                other.teamName == teamName));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, code, fullName, departmentId,
+      departmentName, idChamCongMoi, position, email, teamName);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PersonalAttendanceEmployeeImplCopyWith<_$PersonalAttendanceEmployeeImpl>
+      get copyWith => __$$PersonalAttendanceEmployeeImplCopyWithImpl<
+          _$PersonalAttendanceEmployeeImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$PersonalAttendanceEmployeeImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _PersonalAttendanceEmployee
+    implements PersonalAttendanceEmployee {
+  const factory _PersonalAttendanceEmployee(
+          {@JsonKey(name: 'ID') required final int id,
+          @JsonKey(name: 'Code') final String? code,
+          @JsonKey(name: 'FullName') final String? fullName,
+          @JsonKey(name: 'DepartmentID') final int? departmentId,
+          @JsonKey(name: 'DepartmentName') final String? departmentName,
+          @JsonKey(name: 'IDChamCongMoi') final String? idChamCongMoi,
+          @JsonKey(name: 'Position') final String? position,
+          @JsonKey(name: 'Email') final String? email,
+          @JsonKey(name: 'TeamName') final String? teamName}) =
+      _$PersonalAttendanceEmployeeImpl;
+
+  factory _PersonalAttendanceEmployee.fromJson(Map<String, dynamic> json) =
+      _$PersonalAttendanceEmployeeImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int get id;
+  @override
+  @JsonKey(name: 'Code')
+  String? get code;
+  @override
+  @JsonKey(name: 'FullName')
+  String? get fullName;
+  @override
+  @JsonKey(name: 'DepartmentID')
+  int? get departmentId;
+  @override
+  @JsonKey(name: 'DepartmentName')
+  String? get departmentName;
+  @override
+  @JsonKey(name: 'IDChamCongMoi')
+  String? get idChamCongMoi;
+  @override
+  @JsonKey(name: 'Position')
+  String? get position;
+  @override
+  @JsonKey(name: 'Email')
+  String? get email;
+  @override
+  @JsonKey(name: 'TeamName')
+  String? get teamName;
+  @override
+  @JsonKey(ignore: true)
+  _$$PersonalAttendanceEmployeeImplCopyWith<_$PersonalAttendanceEmployeeImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}

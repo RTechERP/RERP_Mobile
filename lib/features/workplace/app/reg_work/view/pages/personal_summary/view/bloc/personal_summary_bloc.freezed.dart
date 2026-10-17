@@ -24,6 +24,8 @@ mixin _$PersonalSummaryEvent {
     required TResult Function(int? departmentId, int? status) changeFilters,
     required TResult Function(String keyword) changeKeyword,
     required TResult Function() refresh,
+    required TResult Function() loadEmployees,
+    required TResult Function(int? employeeId) selectEmployee,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -33,6 +35,8 @@ mixin _$PersonalSummaryEvent {
     TResult? Function(int? departmentId, int? status)? changeFilters,
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function()? refresh,
+    TResult? Function()? loadEmployees,
+    TResult? Function(int? employeeId)? selectEmployee,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -42,6 +46,8 @@ mixin _$PersonalSummaryEvent {
     TResult Function(int? departmentId, int? status)? changeFilters,
     TResult Function(String keyword)? changeKeyword,
     TResult Function()? refresh,
+    TResult Function()? loadEmployees,
+    TResult Function(int? employeeId)? selectEmployee,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -52,6 +58,8 @@ mixin _$PersonalSummaryEvent {
     required TResult Function(_ChangeFilters value) changeFilters,
     required TResult Function(_ChangeKeyword value) changeKeyword,
     required TResult Function(_Refresh value) refresh,
+    required TResult Function(_LoadEmployees value) loadEmployees,
+    required TResult Function(_SelectEmployee value) selectEmployee,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -61,6 +69,8 @@ mixin _$PersonalSummaryEvent {
     TResult? Function(_ChangeFilters value)? changeFilters,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
     TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_LoadEmployees value)? loadEmployees,
+    TResult? Function(_SelectEmployee value)? selectEmployee,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -70,6 +80,8 @@ mixin _$PersonalSummaryEvent {
     TResult Function(_ChangeFilters value)? changeFilters,
     TResult Function(_ChangeKeyword value)? changeKeyword,
     TResult Function(_Refresh value)? refresh,
+    TResult Function(_LoadEmployees value)? loadEmployees,
+    TResult Function(_SelectEmployee value)? selectEmployee,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -137,6 +149,8 @@ class _$InitImpl implements _Init {
     required TResult Function(int? departmentId, int? status) changeFilters,
     required TResult Function(String keyword) changeKeyword,
     required TResult Function() refresh,
+    required TResult Function() loadEmployees,
+    required TResult Function(int? employeeId) selectEmployee,
   }) {
     return init();
   }
@@ -149,6 +163,8 @@ class _$InitImpl implements _Init {
     TResult? Function(int? departmentId, int? status)? changeFilters,
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function()? refresh,
+    TResult? Function()? loadEmployees,
+    TResult? Function(int? employeeId)? selectEmployee,
   }) {
     return init?.call();
   }
@@ -161,6 +177,8 @@ class _$InitImpl implements _Init {
     TResult Function(int? departmentId, int? status)? changeFilters,
     TResult Function(String keyword)? changeKeyword,
     TResult Function()? refresh,
+    TResult Function()? loadEmployees,
+    TResult Function(int? employeeId)? selectEmployee,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -177,6 +195,8 @@ class _$InitImpl implements _Init {
     required TResult Function(_ChangeFilters value) changeFilters,
     required TResult Function(_ChangeKeyword value) changeKeyword,
     required TResult Function(_Refresh value) refresh,
+    required TResult Function(_LoadEmployees value) loadEmployees,
+    required TResult Function(_SelectEmployee value) selectEmployee,
   }) {
     return init(this);
   }
@@ -189,6 +209,8 @@ class _$InitImpl implements _Init {
     TResult? Function(_ChangeFilters value)? changeFilters,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
     TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_LoadEmployees value)? loadEmployees,
+    TResult? Function(_SelectEmployee value)? selectEmployee,
   }) {
     return init?.call(this);
   }
@@ -201,6 +223,8 @@ class _$InitImpl implements _Init {
     TResult Function(_ChangeFilters value)? changeFilters,
     TResult Function(_ChangeKeyword value)? changeKeyword,
     TResult Function(_Refresh value)? refresh,
+    TResult Function(_LoadEmployees value)? loadEmployees,
+    TResult Function(_SelectEmployee value)? selectEmployee,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -294,6 +318,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(int? departmentId, int? status) changeFilters,
     required TResult Function(String keyword) changeKeyword,
     required TResult Function() refresh,
+    required TResult Function() loadEmployees,
+    required TResult Function(int? employeeId) selectEmployee,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -306,6 +332,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(int? departmentId, int? status)? changeFilters,
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function()? refresh,
+    TResult? Function()? loadEmployees,
+    TResult? Function(int? employeeId)? selectEmployee,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -318,6 +346,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(int? departmentId, int? status)? changeFilters,
     TResult Function(String keyword)? changeKeyword,
     TResult Function()? refresh,
+    TResult Function()? loadEmployees,
+    TResult Function(int? employeeId)? selectEmployee,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -334,6 +364,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_ChangeFilters value) changeFilters,
     required TResult Function(_ChangeKeyword value) changeKeyword,
     required TResult Function(_Refresh value) refresh,
+    required TResult Function(_LoadEmployees value) loadEmployees,
+    required TResult Function(_SelectEmployee value) selectEmployee,
   }) {
     return changeDateRange(this);
   }
@@ -346,6 +378,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_ChangeFilters value)? changeFilters,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
     TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_LoadEmployees value)? loadEmployees,
+    TResult? Function(_SelectEmployee value)? selectEmployee,
   }) {
     return changeDateRange?.call(this);
   }
@@ -358,6 +392,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_ChangeFilters value)? changeFilters,
     TResult Function(_ChangeKeyword value)? changeKeyword,
     TResult Function(_Refresh value)? refresh,
+    TResult Function(_LoadEmployees value)? loadEmployees,
+    TResult Function(_SelectEmployee value)? selectEmployee,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -458,6 +494,8 @@ class _$ChangeFiltersImpl implements _ChangeFilters {
     required TResult Function(int? departmentId, int? status) changeFilters,
     required TResult Function(String keyword) changeKeyword,
     required TResult Function() refresh,
+    required TResult Function() loadEmployees,
+    required TResult Function(int? employeeId) selectEmployee,
   }) {
     return changeFilters(departmentId, status);
   }
@@ -470,6 +508,8 @@ class _$ChangeFiltersImpl implements _ChangeFilters {
     TResult? Function(int? departmentId, int? status)? changeFilters,
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function()? refresh,
+    TResult? Function()? loadEmployees,
+    TResult? Function(int? employeeId)? selectEmployee,
   }) {
     return changeFilters?.call(departmentId, status);
   }
@@ -482,6 +522,8 @@ class _$ChangeFiltersImpl implements _ChangeFilters {
     TResult Function(int? departmentId, int? status)? changeFilters,
     TResult Function(String keyword)? changeKeyword,
     TResult Function()? refresh,
+    TResult Function()? loadEmployees,
+    TResult Function(int? employeeId)? selectEmployee,
     required TResult orElse(),
   }) {
     if (changeFilters != null) {
@@ -498,6 +540,8 @@ class _$ChangeFiltersImpl implements _ChangeFilters {
     required TResult Function(_ChangeFilters value) changeFilters,
     required TResult Function(_ChangeKeyword value) changeKeyword,
     required TResult Function(_Refresh value) refresh,
+    required TResult Function(_LoadEmployees value) loadEmployees,
+    required TResult Function(_SelectEmployee value) selectEmployee,
   }) {
     return changeFilters(this);
   }
@@ -510,6 +554,8 @@ class _$ChangeFiltersImpl implements _ChangeFilters {
     TResult? Function(_ChangeFilters value)? changeFilters,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
     TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_LoadEmployees value)? loadEmployees,
+    TResult? Function(_SelectEmployee value)? selectEmployee,
   }) {
     return changeFilters?.call(this);
   }
@@ -522,6 +568,8 @@ class _$ChangeFiltersImpl implements _ChangeFilters {
     TResult Function(_ChangeFilters value)? changeFilters,
     TResult Function(_ChangeKeyword value)? changeKeyword,
     TResult Function(_Refresh value)? refresh,
+    TResult Function(_LoadEmployees value)? loadEmployees,
+    TResult Function(_SelectEmployee value)? selectEmployee,
     required TResult orElse(),
   }) {
     if (changeFilters != null) {
@@ -612,6 +660,8 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     required TResult Function(int? departmentId, int? status) changeFilters,
     required TResult Function(String keyword) changeKeyword,
     required TResult Function() refresh,
+    required TResult Function() loadEmployees,
+    required TResult Function(int? employeeId) selectEmployee,
   }) {
     return changeKeyword(keyword);
   }
@@ -624,6 +674,8 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult? Function(int? departmentId, int? status)? changeFilters,
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function()? refresh,
+    TResult? Function()? loadEmployees,
+    TResult? Function(int? employeeId)? selectEmployee,
   }) {
     return changeKeyword?.call(keyword);
   }
@@ -636,6 +688,8 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult Function(int? departmentId, int? status)? changeFilters,
     TResult Function(String keyword)? changeKeyword,
     TResult Function()? refresh,
+    TResult Function()? loadEmployees,
+    TResult Function(int? employeeId)? selectEmployee,
     required TResult orElse(),
   }) {
     if (changeKeyword != null) {
@@ -652,6 +706,8 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     required TResult Function(_ChangeFilters value) changeFilters,
     required TResult Function(_ChangeKeyword value) changeKeyword,
     required TResult Function(_Refresh value) refresh,
+    required TResult Function(_LoadEmployees value) loadEmployees,
+    required TResult Function(_SelectEmployee value) selectEmployee,
   }) {
     return changeKeyword(this);
   }
@@ -664,6 +720,8 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult? Function(_ChangeFilters value)? changeFilters,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
     TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_LoadEmployees value)? loadEmployees,
+    TResult? Function(_SelectEmployee value)? selectEmployee,
   }) {
     return changeKeyword?.call(this);
   }
@@ -676,6 +734,8 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult Function(_ChangeFilters value)? changeFilters,
     TResult Function(_ChangeKeyword value)? changeKeyword,
     TResult Function(_Refresh value)? refresh,
+    TResult Function(_LoadEmployees value)? loadEmployees,
+    TResult Function(_SelectEmployee value)? selectEmployee,
     required TResult orElse(),
   }) {
     if (changeKeyword != null) {
@@ -739,6 +799,8 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(int? departmentId, int? status) changeFilters,
     required TResult Function(String keyword) changeKeyword,
     required TResult Function() refresh,
+    required TResult Function() loadEmployees,
+    required TResult Function(int? employeeId) selectEmployee,
   }) {
     return refresh();
   }
@@ -751,6 +813,8 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(int? departmentId, int? status)? changeFilters,
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function()? refresh,
+    TResult? Function()? loadEmployees,
+    TResult? Function(int? employeeId)? selectEmployee,
   }) {
     return refresh?.call();
   }
@@ -763,6 +827,8 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(int? departmentId, int? status)? changeFilters,
     TResult Function(String keyword)? changeKeyword,
     TResult Function()? refresh,
+    TResult Function()? loadEmployees,
+    TResult Function(int? employeeId)? selectEmployee,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -779,6 +845,8 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_ChangeFilters value) changeFilters,
     required TResult Function(_ChangeKeyword value) changeKeyword,
     required TResult Function(_Refresh value) refresh,
+    required TResult Function(_LoadEmployees value) loadEmployees,
+    required TResult Function(_SelectEmployee value) selectEmployee,
   }) {
     return refresh(this);
   }
@@ -791,6 +859,8 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_ChangeFilters value)? changeFilters,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
     TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_LoadEmployees value)? loadEmployees,
+    TResult? Function(_SelectEmployee value)? selectEmployee,
   }) {
     return refresh?.call(this);
   }
@@ -803,6 +873,8 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_ChangeFilters value)? changeFilters,
     TResult Function(_ChangeKeyword value)? changeKeyword,
     TResult Function(_Refresh value)? refresh,
+    TResult Function(_LoadEmployees value)? loadEmployees,
+    TResult Function(_SelectEmployee value)? selectEmployee,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -814,4 +886,303 @@ class _$RefreshImpl implements _Refresh {
 
 abstract class _Refresh implements PersonalSummaryEvent {
   const factory _Refresh() = _$RefreshImpl;
+}
+
+/// @nodoc
+abstract class _$$LoadEmployeesImplCopyWith<$Res> {
+  factory _$$LoadEmployeesImplCopyWith(
+          _$LoadEmployeesImpl value, $Res Function(_$LoadEmployeesImpl) then) =
+      __$$LoadEmployeesImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LoadEmployeesImplCopyWithImpl<$Res>
+    extends _$PersonalSummaryEventCopyWithImpl<$Res, _$LoadEmployeesImpl>
+    implements _$$LoadEmployeesImplCopyWith<$Res> {
+  __$$LoadEmployeesImplCopyWithImpl(
+      _$LoadEmployeesImpl _value, $Res Function(_$LoadEmployeesImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$LoadEmployeesImpl implements _LoadEmployees {
+  const _$LoadEmployeesImpl();
+
+  @override
+  String toString() {
+    return 'PersonalSummaryEvent.loadEmployees()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LoadEmployeesImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int? departmentId, int? status) changeFilters,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function() refresh,
+    required TResult Function() loadEmployees,
+    required TResult Function(int? employeeId) selectEmployee,
+  }) {
+    return loadEmployees();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int? departmentId, int? status)? changeFilters,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function()? refresh,
+    TResult? Function()? loadEmployees,
+    TResult? Function(int? employeeId)? selectEmployee,
+  }) {
+    return loadEmployees?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int? departmentId, int? status)? changeFilters,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function()? refresh,
+    TResult Function()? loadEmployees,
+    TResult Function(int? employeeId)? selectEmployee,
+    required TResult orElse(),
+  }) {
+    if (loadEmployees != null) {
+      return loadEmployees();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeFilters value) changeFilters,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_LoadEmployees value) loadEmployees,
+    required TResult Function(_SelectEmployee value) selectEmployee,
+  }) {
+    return loadEmployees(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeFilters value)? changeFilters,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_LoadEmployees value)? loadEmployees,
+    TResult? Function(_SelectEmployee value)? selectEmployee,
+  }) {
+    return loadEmployees?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeFilters value)? changeFilters,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_LoadEmployees value)? loadEmployees,
+    TResult Function(_SelectEmployee value)? selectEmployee,
+    required TResult orElse(),
+  }) {
+    if (loadEmployees != null) {
+      return loadEmployees(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadEmployees implements PersonalSummaryEvent {
+  const factory _LoadEmployees() = _$LoadEmployeesImpl;
+}
+
+/// @nodoc
+abstract class _$$SelectEmployeeImplCopyWith<$Res> {
+  factory _$$SelectEmployeeImplCopyWith(_$SelectEmployeeImpl value,
+          $Res Function(_$SelectEmployeeImpl) then) =
+      __$$SelectEmployeeImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int? employeeId});
+}
+
+/// @nodoc
+class __$$SelectEmployeeImplCopyWithImpl<$Res>
+    extends _$PersonalSummaryEventCopyWithImpl<$Res, _$SelectEmployeeImpl>
+    implements _$$SelectEmployeeImplCopyWith<$Res> {
+  __$$SelectEmployeeImplCopyWithImpl(
+      _$SelectEmployeeImpl _value, $Res Function(_$SelectEmployeeImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? employeeId = freezed,
+  }) {
+    return _then(_$SelectEmployeeImpl(
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SelectEmployeeImpl implements _SelectEmployee {
+  const _$SelectEmployeeImpl({this.employeeId});
+
+  @override
+  final int? employeeId;
+
+  @override
+  String toString() {
+    return 'PersonalSummaryEvent.selectEmployee(employeeId: $employeeId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectEmployeeImpl &&
+            (identical(other.employeeId, employeeId) ||
+                other.employeeId == employeeId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, employeeId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SelectEmployeeImplCopyWith<_$SelectEmployeeImpl> get copyWith =>
+      __$$SelectEmployeeImplCopyWithImpl<_$SelectEmployeeImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int? departmentId, int? status) changeFilters,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function() refresh,
+    required TResult Function() loadEmployees,
+    required TResult Function(int? employeeId) selectEmployee,
+  }) {
+    return selectEmployee(employeeId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int? departmentId, int? status)? changeFilters,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function()? refresh,
+    TResult? Function()? loadEmployees,
+    TResult? Function(int? employeeId)? selectEmployee,
+  }) {
+    return selectEmployee?.call(employeeId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int? departmentId, int? status)? changeFilters,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function()? refresh,
+    TResult Function()? loadEmployees,
+    TResult Function(int? employeeId)? selectEmployee,
+    required TResult orElse(),
+  }) {
+    if (selectEmployee != null) {
+      return selectEmployee(employeeId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeFilters value) changeFilters,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_LoadEmployees value) loadEmployees,
+    required TResult Function(_SelectEmployee value) selectEmployee,
+  }) {
+    return selectEmployee(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeFilters value)? changeFilters,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_LoadEmployees value)? loadEmployees,
+    TResult? Function(_SelectEmployee value)? selectEmployee,
+  }) {
+    return selectEmployee?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeFilters value)? changeFilters,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_LoadEmployees value)? loadEmployees,
+    TResult Function(_SelectEmployee value)? selectEmployee,
+    required TResult orElse(),
+  }) {
+    if (selectEmployee != null) {
+      return selectEmployee(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SelectEmployee implements PersonalSummaryEvent {
+  const factory _SelectEmployee({final int? employeeId}) = _$SelectEmployeeImpl;
+
+  int? get employeeId;
+  @JsonKey(ignore: true)
+  _$$SelectEmployeeImplCopyWith<_$SelectEmployeeImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
