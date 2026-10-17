@@ -5734,6 +5734,1273 @@ abstract class _PersonalNightShiftItem implements PersonalNightShiftItem {
       get copyWith => throw _privateConstructorUsedError;
 }
 
+PersonalAttendanceItem _$PersonalAttendanceItemFromJson(
+    Map<String, dynamic> json) {
+  return _PersonalAttendanceItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$PersonalAttendanceItem {
+  @JsonKey(name: 'ID')
+  int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IDChamCongMoi')
+  String? get idChamCongMoi => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CheckIn')
+  String? get checkIn => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CheckOut')
+  String? get checkOut => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsLate')
+  bool? get isLate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TimeLate')
+  double? get timeLate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsEarly')
+  bool? get isEarly => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TimeEarly')
+  double? get timeEarly => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AttendanceDate')
+  DateTime? get attendanceDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DayWeek')
+  String? get dayWeek => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Interval')
+  String? get interval => throw _privateConstructorUsedError;
+  @JsonKey(name: 'STT')
+  int? get stt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FullName')
+  String? get fullName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ToChuc')
+  String? get toChuc => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ChucVu')
+  String? get chucVu => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsLunch')
+  bool? get isLunch => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Overtime')
+  bool? get overtime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Bussiness')
+  bool? get bussiness => throw _privateConstructorUsedError;
+  @JsonKey(name: 'NoFingerprint')
+  bool? get noFingerprint => throw _privateConstructorUsedError;
+  @JsonKey(name: 'OnLeave')
+  bool? get onLeave => throw _privateConstructorUsedError;
+  @JsonKey(name: 'WFH')
+  bool? get wfh => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DepartmentName')
+  String? get departmentName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsLateRegister')
+  bool? get isLateRegister => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsEarlyRegister')
+  bool? get isEarlyRegister => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TotalDay')
+  double? get totalDay => throw _privateConstructorUsedError;
+  @JsonKey(name: 'HolidayDay')
+  int? get holidayDay => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DepartmentID')
+  int? get departmentId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DepartmentSTT')
+  int? get departmentStt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'OvertimeLate')
+  int? get overtimeLate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'OvertimeEarly')
+  int? get overtimeEarly => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsOverEarly')
+  bool? get isOverEarly => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsOverLate')
+  bool? get isOverLate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CheckInDate')
+  DateTime? get checkInDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CheckOutDate')
+  DateTime? get checkOutDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TypeLate')
+  int? get typeLate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TypeEarly')
+  int? get typeEarly => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Code')
+  String? get code => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsLateActual')
+  int? get isLateActual => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsEarlyActual')
+  int? get isEarlyActual => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TotalProblem')
+  int? get totalProblem => throw _privateConstructorUsedError;
+  @JsonKey(name: 'MaxIsLate')
+  int? get maxIsLate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'MaxIsEarly')
+  int? get maxIsEarly => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsNoFinger')
+  int? get isNoFinger => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsNoCheckIn')
+  int? get isNoCheckIn => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsNoCheckOut')
+  int? get isNoCheckOut => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $PersonalAttendanceItemCopyWith<PersonalAttendanceItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PersonalAttendanceItemCopyWith<$Res> {
+  factory $PersonalAttendanceItemCopyWith(PersonalAttendanceItem value,
+          $Res Function(PersonalAttendanceItem) then) =
+      _$PersonalAttendanceItemCopyWithImpl<$Res, PersonalAttendanceItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int id,
+      @JsonKey(name: 'IDChamCongMoi') String? idChamCongMoi,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'CheckIn') String? checkIn,
+      @JsonKey(name: 'CheckOut') String? checkOut,
+      @JsonKey(name: 'IsLate') bool? isLate,
+      @JsonKey(name: 'TimeLate') double? timeLate,
+      @JsonKey(name: 'IsEarly') bool? isEarly,
+      @JsonKey(name: 'TimeEarly') double? timeEarly,
+      @JsonKey(name: 'AttendanceDate') DateTime? attendanceDate,
+      @JsonKey(name: 'DayWeek') String? dayWeek,
+      @JsonKey(name: 'Interval') String? interval,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'ToChuc') String? toChuc,
+      @JsonKey(name: 'ChucVu') String? chucVu,
+      @JsonKey(name: 'IsLunch') bool? isLunch,
+      @JsonKey(name: 'Overtime') bool? overtime,
+      @JsonKey(name: 'Bussiness') bool? bussiness,
+      @JsonKey(name: 'NoFingerprint') bool? noFingerprint,
+      @JsonKey(name: 'OnLeave') bool? onLeave,
+      @JsonKey(name: 'WFH') bool? wfh,
+      @JsonKey(name: 'DepartmentName') String? departmentName,
+      @JsonKey(name: 'IsLateRegister') bool? isLateRegister,
+      @JsonKey(name: 'IsEarlyRegister') bool? isEarlyRegister,
+      @JsonKey(name: 'TotalDay') double? totalDay,
+      @JsonKey(name: 'HolidayDay') int? holidayDay,
+      @JsonKey(name: 'DepartmentID') int? departmentId,
+      @JsonKey(name: 'DepartmentSTT') int? departmentStt,
+      @JsonKey(name: 'OvertimeLate') int? overtimeLate,
+      @JsonKey(name: 'OvertimeEarly') int? overtimeEarly,
+      @JsonKey(name: 'IsOverEarly') bool? isOverEarly,
+      @JsonKey(name: 'IsOverLate') bool? isOverLate,
+      @JsonKey(name: 'CheckInDate') DateTime? checkInDate,
+      @JsonKey(name: 'CheckOutDate') DateTime? checkOutDate,
+      @JsonKey(name: 'TypeLate') int? typeLate,
+      @JsonKey(name: 'TypeEarly') int? typeEarly,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'IsLateActual') int? isLateActual,
+      @JsonKey(name: 'IsEarlyActual') int? isEarlyActual,
+      @JsonKey(name: 'TotalProblem') int? totalProblem,
+      @JsonKey(name: 'MaxIsLate') int? maxIsLate,
+      @JsonKey(name: 'MaxIsEarly') int? maxIsEarly,
+      @JsonKey(name: 'IsNoFinger') int? isNoFinger,
+      @JsonKey(name: 'IsNoCheckIn') int? isNoCheckIn,
+      @JsonKey(name: 'IsNoCheckOut') int? isNoCheckOut});
+}
+
+/// @nodoc
+class _$PersonalAttendanceItemCopyWithImpl<$Res,
+        $Val extends PersonalAttendanceItem>
+    implements $PersonalAttendanceItemCopyWith<$Res> {
+  _$PersonalAttendanceItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? idChamCongMoi = freezed,
+    Object? employeeId = freezed,
+    Object? checkIn = freezed,
+    Object? checkOut = freezed,
+    Object? isLate = freezed,
+    Object? timeLate = freezed,
+    Object? isEarly = freezed,
+    Object? timeEarly = freezed,
+    Object? attendanceDate = freezed,
+    Object? dayWeek = freezed,
+    Object? interval = freezed,
+    Object? stt = freezed,
+    Object? fullName = freezed,
+    Object? toChuc = freezed,
+    Object? chucVu = freezed,
+    Object? isLunch = freezed,
+    Object? overtime = freezed,
+    Object? bussiness = freezed,
+    Object? noFingerprint = freezed,
+    Object? onLeave = freezed,
+    Object? wfh = freezed,
+    Object? departmentName = freezed,
+    Object? isLateRegister = freezed,
+    Object? isEarlyRegister = freezed,
+    Object? totalDay = freezed,
+    Object? holidayDay = freezed,
+    Object? departmentId = freezed,
+    Object? departmentStt = freezed,
+    Object? overtimeLate = freezed,
+    Object? overtimeEarly = freezed,
+    Object? isOverEarly = freezed,
+    Object? isOverLate = freezed,
+    Object? checkInDate = freezed,
+    Object? checkOutDate = freezed,
+    Object? typeLate = freezed,
+    Object? typeEarly = freezed,
+    Object? code = freezed,
+    Object? isLateActual = freezed,
+    Object? isEarlyActual = freezed,
+    Object? totalProblem = freezed,
+    Object? maxIsLate = freezed,
+    Object? maxIsEarly = freezed,
+    Object? isNoFinger = freezed,
+    Object? isNoCheckIn = freezed,
+    Object? isNoCheckOut = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      idChamCongMoi: freezed == idChamCongMoi
+          ? _value.idChamCongMoi
+          : idChamCongMoi // ignore: cast_nullable_to_non_nullable
+              as String?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      checkIn: freezed == checkIn
+          ? _value.checkIn
+          : checkIn // ignore: cast_nullable_to_non_nullable
+              as String?,
+      checkOut: freezed == checkOut
+          ? _value.checkOut
+          : checkOut // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isLate: freezed == isLate
+          ? _value.isLate
+          : isLate // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      timeLate: freezed == timeLate
+          ? _value.timeLate
+          : timeLate // ignore: cast_nullable_to_non_nullable
+              as double?,
+      isEarly: freezed == isEarly
+          ? _value.isEarly
+          : isEarly // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      timeEarly: freezed == timeEarly
+          ? _value.timeEarly
+          : timeEarly // ignore: cast_nullable_to_non_nullable
+              as double?,
+      attendanceDate: freezed == attendanceDate
+          ? _value.attendanceDate
+          : attendanceDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      dayWeek: freezed == dayWeek
+          ? _value.dayWeek
+          : dayWeek // ignore: cast_nullable_to_non_nullable
+              as String?,
+      interval: freezed == interval
+          ? _value.interval
+          : interval // ignore: cast_nullable_to_non_nullable
+              as String?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      toChuc: freezed == toChuc
+          ? _value.toChuc
+          : toChuc // ignore: cast_nullable_to_non_nullable
+              as String?,
+      chucVu: freezed == chucVu
+          ? _value.chucVu
+          : chucVu // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isLunch: freezed == isLunch
+          ? _value.isLunch
+          : isLunch // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      overtime: freezed == overtime
+          ? _value.overtime
+          : overtime // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      bussiness: freezed == bussiness
+          ? _value.bussiness
+          : bussiness // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      noFingerprint: freezed == noFingerprint
+          ? _value.noFingerprint
+          : noFingerprint // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      onLeave: freezed == onLeave
+          ? _value.onLeave
+          : onLeave // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      wfh: freezed == wfh
+          ? _value.wfh
+          : wfh // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      departmentName: freezed == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isLateRegister: freezed == isLateRegister
+          ? _value.isLateRegister
+          : isLateRegister // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isEarlyRegister: freezed == isEarlyRegister
+          ? _value.isEarlyRegister
+          : isEarlyRegister // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      totalDay: freezed == totalDay
+          ? _value.totalDay
+          : totalDay // ignore: cast_nullable_to_non_nullable
+              as double?,
+      holidayDay: freezed == holidayDay
+          ? _value.holidayDay
+          : holidayDay // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentId: freezed == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentStt: freezed == departmentStt
+          ? _value.departmentStt
+          : departmentStt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      overtimeLate: freezed == overtimeLate
+          ? _value.overtimeLate
+          : overtimeLate // ignore: cast_nullable_to_non_nullable
+              as int?,
+      overtimeEarly: freezed == overtimeEarly
+          ? _value.overtimeEarly
+          : overtimeEarly // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isOverEarly: freezed == isOverEarly
+          ? _value.isOverEarly
+          : isOverEarly // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isOverLate: freezed == isOverLate
+          ? _value.isOverLate
+          : isOverLate // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      checkInDate: freezed == checkInDate
+          ? _value.checkInDate
+          : checkInDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      checkOutDate: freezed == checkOutDate
+          ? _value.checkOutDate
+          : checkOutDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      typeLate: freezed == typeLate
+          ? _value.typeLate
+          : typeLate // ignore: cast_nullable_to_non_nullable
+              as int?,
+      typeEarly: freezed == typeEarly
+          ? _value.typeEarly
+          : typeEarly // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isLateActual: freezed == isLateActual
+          ? _value.isLateActual
+          : isLateActual // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isEarlyActual: freezed == isEarlyActual
+          ? _value.isEarlyActual
+          : isEarlyActual // ignore: cast_nullable_to_non_nullable
+              as int?,
+      totalProblem: freezed == totalProblem
+          ? _value.totalProblem
+          : totalProblem // ignore: cast_nullable_to_non_nullable
+              as int?,
+      maxIsLate: freezed == maxIsLate
+          ? _value.maxIsLate
+          : maxIsLate // ignore: cast_nullable_to_non_nullable
+              as int?,
+      maxIsEarly: freezed == maxIsEarly
+          ? _value.maxIsEarly
+          : maxIsEarly // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isNoFinger: freezed == isNoFinger
+          ? _value.isNoFinger
+          : isNoFinger // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isNoCheckIn: freezed == isNoCheckIn
+          ? _value.isNoCheckIn
+          : isNoCheckIn // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isNoCheckOut: freezed == isNoCheckOut
+          ? _value.isNoCheckOut
+          : isNoCheckOut // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$PersonalAttendanceItemImplCopyWith<$Res>
+    implements $PersonalAttendanceItemCopyWith<$Res> {
+  factory _$$PersonalAttendanceItemImplCopyWith(
+          _$PersonalAttendanceItemImpl value,
+          $Res Function(_$PersonalAttendanceItemImpl) then) =
+      __$$PersonalAttendanceItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int id,
+      @JsonKey(name: 'IDChamCongMoi') String? idChamCongMoi,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'CheckIn') String? checkIn,
+      @JsonKey(name: 'CheckOut') String? checkOut,
+      @JsonKey(name: 'IsLate') bool? isLate,
+      @JsonKey(name: 'TimeLate') double? timeLate,
+      @JsonKey(name: 'IsEarly') bool? isEarly,
+      @JsonKey(name: 'TimeEarly') double? timeEarly,
+      @JsonKey(name: 'AttendanceDate') DateTime? attendanceDate,
+      @JsonKey(name: 'DayWeek') String? dayWeek,
+      @JsonKey(name: 'Interval') String? interval,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'ToChuc') String? toChuc,
+      @JsonKey(name: 'ChucVu') String? chucVu,
+      @JsonKey(name: 'IsLunch') bool? isLunch,
+      @JsonKey(name: 'Overtime') bool? overtime,
+      @JsonKey(name: 'Bussiness') bool? bussiness,
+      @JsonKey(name: 'NoFingerprint') bool? noFingerprint,
+      @JsonKey(name: 'OnLeave') bool? onLeave,
+      @JsonKey(name: 'WFH') bool? wfh,
+      @JsonKey(name: 'DepartmentName') String? departmentName,
+      @JsonKey(name: 'IsLateRegister') bool? isLateRegister,
+      @JsonKey(name: 'IsEarlyRegister') bool? isEarlyRegister,
+      @JsonKey(name: 'TotalDay') double? totalDay,
+      @JsonKey(name: 'HolidayDay') int? holidayDay,
+      @JsonKey(name: 'DepartmentID') int? departmentId,
+      @JsonKey(name: 'DepartmentSTT') int? departmentStt,
+      @JsonKey(name: 'OvertimeLate') int? overtimeLate,
+      @JsonKey(name: 'OvertimeEarly') int? overtimeEarly,
+      @JsonKey(name: 'IsOverEarly') bool? isOverEarly,
+      @JsonKey(name: 'IsOverLate') bool? isOverLate,
+      @JsonKey(name: 'CheckInDate') DateTime? checkInDate,
+      @JsonKey(name: 'CheckOutDate') DateTime? checkOutDate,
+      @JsonKey(name: 'TypeLate') int? typeLate,
+      @JsonKey(name: 'TypeEarly') int? typeEarly,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'IsLateActual') int? isLateActual,
+      @JsonKey(name: 'IsEarlyActual') int? isEarlyActual,
+      @JsonKey(name: 'TotalProblem') int? totalProblem,
+      @JsonKey(name: 'MaxIsLate') int? maxIsLate,
+      @JsonKey(name: 'MaxIsEarly') int? maxIsEarly,
+      @JsonKey(name: 'IsNoFinger') int? isNoFinger,
+      @JsonKey(name: 'IsNoCheckIn') int? isNoCheckIn,
+      @JsonKey(name: 'IsNoCheckOut') int? isNoCheckOut});
+}
+
+/// @nodoc
+class __$$PersonalAttendanceItemImplCopyWithImpl<$Res>
+    extends _$PersonalAttendanceItemCopyWithImpl<$Res,
+        _$PersonalAttendanceItemImpl>
+    implements _$$PersonalAttendanceItemImplCopyWith<$Res> {
+  __$$PersonalAttendanceItemImplCopyWithImpl(
+      _$PersonalAttendanceItemImpl _value,
+      $Res Function(_$PersonalAttendanceItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? idChamCongMoi = freezed,
+    Object? employeeId = freezed,
+    Object? checkIn = freezed,
+    Object? checkOut = freezed,
+    Object? isLate = freezed,
+    Object? timeLate = freezed,
+    Object? isEarly = freezed,
+    Object? timeEarly = freezed,
+    Object? attendanceDate = freezed,
+    Object? dayWeek = freezed,
+    Object? interval = freezed,
+    Object? stt = freezed,
+    Object? fullName = freezed,
+    Object? toChuc = freezed,
+    Object? chucVu = freezed,
+    Object? isLunch = freezed,
+    Object? overtime = freezed,
+    Object? bussiness = freezed,
+    Object? noFingerprint = freezed,
+    Object? onLeave = freezed,
+    Object? wfh = freezed,
+    Object? departmentName = freezed,
+    Object? isLateRegister = freezed,
+    Object? isEarlyRegister = freezed,
+    Object? totalDay = freezed,
+    Object? holidayDay = freezed,
+    Object? departmentId = freezed,
+    Object? departmentStt = freezed,
+    Object? overtimeLate = freezed,
+    Object? overtimeEarly = freezed,
+    Object? isOverEarly = freezed,
+    Object? isOverLate = freezed,
+    Object? checkInDate = freezed,
+    Object? checkOutDate = freezed,
+    Object? typeLate = freezed,
+    Object? typeEarly = freezed,
+    Object? code = freezed,
+    Object? isLateActual = freezed,
+    Object? isEarlyActual = freezed,
+    Object? totalProblem = freezed,
+    Object? maxIsLate = freezed,
+    Object? maxIsEarly = freezed,
+    Object? isNoFinger = freezed,
+    Object? isNoCheckIn = freezed,
+    Object? isNoCheckOut = freezed,
+  }) {
+    return _then(_$PersonalAttendanceItemImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      idChamCongMoi: freezed == idChamCongMoi
+          ? _value.idChamCongMoi
+          : idChamCongMoi // ignore: cast_nullable_to_non_nullable
+              as String?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      checkIn: freezed == checkIn
+          ? _value.checkIn
+          : checkIn // ignore: cast_nullable_to_non_nullable
+              as String?,
+      checkOut: freezed == checkOut
+          ? _value.checkOut
+          : checkOut // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isLate: freezed == isLate
+          ? _value.isLate
+          : isLate // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      timeLate: freezed == timeLate
+          ? _value.timeLate
+          : timeLate // ignore: cast_nullable_to_non_nullable
+              as double?,
+      isEarly: freezed == isEarly
+          ? _value.isEarly
+          : isEarly // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      timeEarly: freezed == timeEarly
+          ? _value.timeEarly
+          : timeEarly // ignore: cast_nullable_to_non_nullable
+              as double?,
+      attendanceDate: freezed == attendanceDate
+          ? _value.attendanceDate
+          : attendanceDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      dayWeek: freezed == dayWeek
+          ? _value.dayWeek
+          : dayWeek // ignore: cast_nullable_to_non_nullable
+              as String?,
+      interval: freezed == interval
+          ? _value.interval
+          : interval // ignore: cast_nullable_to_non_nullable
+              as String?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      toChuc: freezed == toChuc
+          ? _value.toChuc
+          : toChuc // ignore: cast_nullable_to_non_nullable
+              as String?,
+      chucVu: freezed == chucVu
+          ? _value.chucVu
+          : chucVu // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isLunch: freezed == isLunch
+          ? _value.isLunch
+          : isLunch // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      overtime: freezed == overtime
+          ? _value.overtime
+          : overtime // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      bussiness: freezed == bussiness
+          ? _value.bussiness
+          : bussiness // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      noFingerprint: freezed == noFingerprint
+          ? _value.noFingerprint
+          : noFingerprint // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      onLeave: freezed == onLeave
+          ? _value.onLeave
+          : onLeave // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      wfh: freezed == wfh
+          ? _value.wfh
+          : wfh // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      departmentName: freezed == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isLateRegister: freezed == isLateRegister
+          ? _value.isLateRegister
+          : isLateRegister // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isEarlyRegister: freezed == isEarlyRegister
+          ? _value.isEarlyRegister
+          : isEarlyRegister // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      totalDay: freezed == totalDay
+          ? _value.totalDay
+          : totalDay // ignore: cast_nullable_to_non_nullable
+              as double?,
+      holidayDay: freezed == holidayDay
+          ? _value.holidayDay
+          : holidayDay // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentId: freezed == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentStt: freezed == departmentStt
+          ? _value.departmentStt
+          : departmentStt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      overtimeLate: freezed == overtimeLate
+          ? _value.overtimeLate
+          : overtimeLate // ignore: cast_nullable_to_non_nullable
+              as int?,
+      overtimeEarly: freezed == overtimeEarly
+          ? _value.overtimeEarly
+          : overtimeEarly // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isOverEarly: freezed == isOverEarly
+          ? _value.isOverEarly
+          : isOverEarly // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isOverLate: freezed == isOverLate
+          ? _value.isOverLate
+          : isOverLate // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      checkInDate: freezed == checkInDate
+          ? _value.checkInDate
+          : checkInDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      checkOutDate: freezed == checkOutDate
+          ? _value.checkOutDate
+          : checkOutDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      typeLate: freezed == typeLate
+          ? _value.typeLate
+          : typeLate // ignore: cast_nullable_to_non_nullable
+              as int?,
+      typeEarly: freezed == typeEarly
+          ? _value.typeEarly
+          : typeEarly // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isLateActual: freezed == isLateActual
+          ? _value.isLateActual
+          : isLateActual // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isEarlyActual: freezed == isEarlyActual
+          ? _value.isEarlyActual
+          : isEarlyActual // ignore: cast_nullable_to_non_nullable
+              as int?,
+      totalProblem: freezed == totalProblem
+          ? _value.totalProblem
+          : totalProblem // ignore: cast_nullable_to_non_nullable
+              as int?,
+      maxIsLate: freezed == maxIsLate
+          ? _value.maxIsLate
+          : maxIsLate // ignore: cast_nullable_to_non_nullable
+              as int?,
+      maxIsEarly: freezed == maxIsEarly
+          ? _value.maxIsEarly
+          : maxIsEarly // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isNoFinger: freezed == isNoFinger
+          ? _value.isNoFinger
+          : isNoFinger // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isNoCheckIn: freezed == isNoCheckIn
+          ? _value.isNoCheckIn
+          : isNoCheckIn // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isNoCheckOut: freezed == isNoCheckOut
+          ? _value.isNoCheckOut
+          : isNoCheckOut // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$PersonalAttendanceItemImpl implements _PersonalAttendanceItem {
+  const _$PersonalAttendanceItemImpl(
+      {@JsonKey(name: 'ID') required this.id,
+      @JsonKey(name: 'IDChamCongMoi') this.idChamCongMoi,
+      @JsonKey(name: 'EmployeeID') this.employeeId,
+      @JsonKey(name: 'CheckIn') this.checkIn,
+      @JsonKey(name: 'CheckOut') this.checkOut,
+      @JsonKey(name: 'IsLate') this.isLate,
+      @JsonKey(name: 'TimeLate') this.timeLate,
+      @JsonKey(name: 'IsEarly') this.isEarly,
+      @JsonKey(name: 'TimeEarly') this.timeEarly,
+      @JsonKey(name: 'AttendanceDate') this.attendanceDate,
+      @JsonKey(name: 'DayWeek') this.dayWeek,
+      @JsonKey(name: 'Interval') this.interval,
+      @JsonKey(name: 'STT') this.stt,
+      @JsonKey(name: 'FullName') this.fullName,
+      @JsonKey(name: 'ToChuc') this.toChuc,
+      @JsonKey(name: 'ChucVu') this.chucVu,
+      @JsonKey(name: 'IsLunch') this.isLunch,
+      @JsonKey(name: 'Overtime') this.overtime,
+      @JsonKey(name: 'Bussiness') this.bussiness,
+      @JsonKey(name: 'NoFingerprint') this.noFingerprint,
+      @JsonKey(name: 'OnLeave') this.onLeave,
+      @JsonKey(name: 'WFH') this.wfh,
+      @JsonKey(name: 'DepartmentName') this.departmentName,
+      @JsonKey(name: 'IsLateRegister') this.isLateRegister,
+      @JsonKey(name: 'IsEarlyRegister') this.isEarlyRegister,
+      @JsonKey(name: 'TotalDay') this.totalDay,
+      @JsonKey(name: 'HolidayDay') this.holidayDay,
+      @JsonKey(name: 'DepartmentID') this.departmentId,
+      @JsonKey(name: 'DepartmentSTT') this.departmentStt,
+      @JsonKey(name: 'OvertimeLate') this.overtimeLate,
+      @JsonKey(name: 'OvertimeEarly') this.overtimeEarly,
+      @JsonKey(name: 'IsOverEarly') this.isOverEarly,
+      @JsonKey(name: 'IsOverLate') this.isOverLate,
+      @JsonKey(name: 'CheckInDate') this.checkInDate,
+      @JsonKey(name: 'CheckOutDate') this.checkOutDate,
+      @JsonKey(name: 'TypeLate') this.typeLate,
+      @JsonKey(name: 'TypeEarly') this.typeEarly,
+      @JsonKey(name: 'Code') this.code,
+      @JsonKey(name: 'IsLateActual') this.isLateActual,
+      @JsonKey(name: 'IsEarlyActual') this.isEarlyActual,
+      @JsonKey(name: 'TotalProblem') this.totalProblem,
+      @JsonKey(name: 'MaxIsLate') this.maxIsLate,
+      @JsonKey(name: 'MaxIsEarly') this.maxIsEarly,
+      @JsonKey(name: 'IsNoFinger') this.isNoFinger,
+      @JsonKey(name: 'IsNoCheckIn') this.isNoCheckIn,
+      @JsonKey(name: 'IsNoCheckOut') this.isNoCheckOut});
+
+  factory _$PersonalAttendanceItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PersonalAttendanceItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int id;
+  @override
+  @JsonKey(name: 'IDChamCongMoi')
+  final String? idChamCongMoi;
+  @override
+  @JsonKey(name: 'EmployeeID')
+  final int? employeeId;
+  @override
+  @JsonKey(name: 'CheckIn')
+  final String? checkIn;
+  @override
+  @JsonKey(name: 'CheckOut')
+  final String? checkOut;
+  @override
+  @JsonKey(name: 'IsLate')
+  final bool? isLate;
+  @override
+  @JsonKey(name: 'TimeLate')
+  final double? timeLate;
+  @override
+  @JsonKey(name: 'IsEarly')
+  final bool? isEarly;
+  @override
+  @JsonKey(name: 'TimeEarly')
+  final double? timeEarly;
+  @override
+  @JsonKey(name: 'AttendanceDate')
+  final DateTime? attendanceDate;
+  @override
+  @JsonKey(name: 'DayWeek')
+  final String? dayWeek;
+  @override
+  @JsonKey(name: 'Interval')
+  final String? interval;
+  @override
+  @JsonKey(name: 'STT')
+  final int? stt;
+  @override
+  @JsonKey(name: 'FullName')
+  final String? fullName;
+  @override
+  @JsonKey(name: 'ToChuc')
+  final String? toChuc;
+  @override
+  @JsonKey(name: 'ChucVu')
+  final String? chucVu;
+  @override
+  @JsonKey(name: 'IsLunch')
+  final bool? isLunch;
+  @override
+  @JsonKey(name: 'Overtime')
+  final bool? overtime;
+  @override
+  @JsonKey(name: 'Bussiness')
+  final bool? bussiness;
+  @override
+  @JsonKey(name: 'NoFingerprint')
+  final bool? noFingerprint;
+  @override
+  @JsonKey(name: 'OnLeave')
+  final bool? onLeave;
+  @override
+  @JsonKey(name: 'WFH')
+  final bool? wfh;
+  @override
+  @JsonKey(name: 'DepartmentName')
+  final String? departmentName;
+  @override
+  @JsonKey(name: 'IsLateRegister')
+  final bool? isLateRegister;
+  @override
+  @JsonKey(name: 'IsEarlyRegister')
+  final bool? isEarlyRegister;
+  @override
+  @JsonKey(name: 'TotalDay')
+  final double? totalDay;
+  @override
+  @JsonKey(name: 'HolidayDay')
+  final int? holidayDay;
+  @override
+  @JsonKey(name: 'DepartmentID')
+  final int? departmentId;
+  @override
+  @JsonKey(name: 'DepartmentSTT')
+  final int? departmentStt;
+  @override
+  @JsonKey(name: 'OvertimeLate')
+  final int? overtimeLate;
+  @override
+  @JsonKey(name: 'OvertimeEarly')
+  final int? overtimeEarly;
+  @override
+  @JsonKey(name: 'IsOverEarly')
+  final bool? isOverEarly;
+  @override
+  @JsonKey(name: 'IsOverLate')
+  final bool? isOverLate;
+  @override
+  @JsonKey(name: 'CheckInDate')
+  final DateTime? checkInDate;
+  @override
+  @JsonKey(name: 'CheckOutDate')
+  final DateTime? checkOutDate;
+  @override
+  @JsonKey(name: 'TypeLate')
+  final int? typeLate;
+  @override
+  @JsonKey(name: 'TypeEarly')
+  final int? typeEarly;
+  @override
+  @JsonKey(name: 'Code')
+  final String? code;
+  @override
+  @JsonKey(name: 'IsLateActual')
+  final int? isLateActual;
+  @override
+  @JsonKey(name: 'IsEarlyActual')
+  final int? isEarlyActual;
+  @override
+  @JsonKey(name: 'TotalProblem')
+  final int? totalProblem;
+  @override
+  @JsonKey(name: 'MaxIsLate')
+  final int? maxIsLate;
+  @override
+  @JsonKey(name: 'MaxIsEarly')
+  final int? maxIsEarly;
+  @override
+  @JsonKey(name: 'IsNoFinger')
+  final int? isNoFinger;
+  @override
+  @JsonKey(name: 'IsNoCheckIn')
+  final int? isNoCheckIn;
+  @override
+  @JsonKey(name: 'IsNoCheckOut')
+  final int? isNoCheckOut;
+
+  @override
+  String toString() {
+    return 'PersonalAttendanceItem(id: $id, idChamCongMoi: $idChamCongMoi, employeeId: $employeeId, checkIn: $checkIn, checkOut: $checkOut, isLate: $isLate, timeLate: $timeLate, isEarly: $isEarly, timeEarly: $timeEarly, attendanceDate: $attendanceDate, dayWeek: $dayWeek, interval: $interval, stt: $stt, fullName: $fullName, toChuc: $toChuc, chucVu: $chucVu, isLunch: $isLunch, overtime: $overtime, bussiness: $bussiness, noFingerprint: $noFingerprint, onLeave: $onLeave, wfh: $wfh, departmentName: $departmentName, isLateRegister: $isLateRegister, isEarlyRegister: $isEarlyRegister, totalDay: $totalDay, holidayDay: $holidayDay, departmentId: $departmentId, departmentStt: $departmentStt, overtimeLate: $overtimeLate, overtimeEarly: $overtimeEarly, isOverEarly: $isOverEarly, isOverLate: $isOverLate, checkInDate: $checkInDate, checkOutDate: $checkOutDate, typeLate: $typeLate, typeEarly: $typeEarly, code: $code, isLateActual: $isLateActual, isEarlyActual: $isEarlyActual, totalProblem: $totalProblem, maxIsLate: $maxIsLate, maxIsEarly: $maxIsEarly, isNoFinger: $isNoFinger, isNoCheckIn: $isNoCheckIn, isNoCheckOut: $isNoCheckOut)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PersonalAttendanceItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.idChamCongMoi, idChamCongMoi) ||
+                other.idChamCongMoi == idChamCongMoi) &&
+            (identical(other.employeeId, employeeId) ||
+                other.employeeId == employeeId) &&
+            (identical(other.checkIn, checkIn) || other.checkIn == checkIn) &&
+            (identical(other.checkOut, checkOut) ||
+                other.checkOut == checkOut) &&
+            (identical(other.isLate, isLate) || other.isLate == isLate) &&
+            (identical(other.timeLate, timeLate) ||
+                other.timeLate == timeLate) &&
+            (identical(other.isEarly, isEarly) || other.isEarly == isEarly) &&
+            (identical(other.timeEarly, timeEarly) ||
+                other.timeEarly == timeEarly) &&
+            (identical(other.attendanceDate, attendanceDate) ||
+                other.attendanceDate == attendanceDate) &&
+            (identical(other.dayWeek, dayWeek) || other.dayWeek == dayWeek) &&
+            (identical(other.interval, interval) ||
+                other.interval == interval) &&
+            (identical(other.stt, stt) || other.stt == stt) &&
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName) &&
+            (identical(other.toChuc, toChuc) || other.toChuc == toChuc) &&
+            (identical(other.chucVu, chucVu) || other.chucVu == chucVu) &&
+            (identical(other.isLunch, isLunch) || other.isLunch == isLunch) &&
+            (identical(other.overtime, overtime) ||
+                other.overtime == overtime) &&
+            (identical(other.bussiness, bussiness) ||
+                other.bussiness == bussiness) &&
+            (identical(other.noFingerprint, noFingerprint) ||
+                other.noFingerprint == noFingerprint) &&
+            (identical(other.onLeave, onLeave) || other.onLeave == onLeave) &&
+            (identical(other.wfh, wfh) || other.wfh == wfh) &&
+            (identical(other.departmentName, departmentName) ||
+                other.departmentName == departmentName) &&
+            (identical(other.isLateRegister, isLateRegister) ||
+                other.isLateRegister == isLateRegister) &&
+            (identical(other.isEarlyRegister, isEarlyRegister) ||
+                other.isEarlyRegister == isEarlyRegister) &&
+            (identical(other.totalDay, totalDay) ||
+                other.totalDay == totalDay) &&
+            (identical(other.holidayDay, holidayDay) ||
+                other.holidayDay == holidayDay) &&
+            (identical(other.departmentId, departmentId) ||
+                other.departmentId == departmentId) &&
+            (identical(other.departmentStt, departmentStt) ||
+                other.departmentStt == departmentStt) &&
+            (identical(other.overtimeLate, overtimeLate) ||
+                other.overtimeLate == overtimeLate) &&
+            (identical(other.overtimeEarly, overtimeEarly) ||
+                other.overtimeEarly == overtimeEarly) &&
+            (identical(other.isOverEarly, isOverEarly) ||
+                other.isOverEarly == isOverEarly) &&
+            (identical(other.isOverLate, isOverLate) ||
+                other.isOverLate == isOverLate) &&
+            (identical(other.checkInDate, checkInDate) ||
+                other.checkInDate == checkInDate) &&
+            (identical(other.checkOutDate, checkOutDate) ||
+                other.checkOutDate == checkOutDate) &&
+            (identical(other.typeLate, typeLate) ||
+                other.typeLate == typeLate) &&
+            (identical(other.typeEarly, typeEarly) ||
+                other.typeEarly == typeEarly) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.isLateActual, isLateActual) ||
+                other.isLateActual == isLateActual) &&
+            (identical(other.isEarlyActual, isEarlyActual) ||
+                other.isEarlyActual == isEarlyActual) &&
+            (identical(other.totalProblem, totalProblem) ||
+                other.totalProblem == totalProblem) &&
+            (identical(other.maxIsLate, maxIsLate) ||
+                other.maxIsLate == maxIsLate) &&
+            (identical(other.maxIsEarly, maxIsEarly) ||
+                other.maxIsEarly == maxIsEarly) &&
+            (identical(other.isNoFinger, isNoFinger) ||
+                other.isNoFinger == isNoFinger) &&
+            (identical(other.isNoCheckIn, isNoCheckIn) ||
+                other.isNoCheckIn == isNoCheckIn) &&
+            (identical(other.isNoCheckOut, isNoCheckOut) ||
+                other.isNoCheckOut == isNoCheckOut));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        idChamCongMoi,
+        employeeId,
+        checkIn,
+        checkOut,
+        isLate,
+        timeLate,
+        isEarly,
+        timeEarly,
+        attendanceDate,
+        dayWeek,
+        interval,
+        stt,
+        fullName,
+        toChuc,
+        chucVu,
+        isLunch,
+        overtime,
+        bussiness,
+        noFingerprint,
+        onLeave,
+        wfh,
+        departmentName,
+        isLateRegister,
+        isEarlyRegister,
+        totalDay,
+        holidayDay,
+        departmentId,
+        departmentStt,
+        overtimeLate,
+        overtimeEarly,
+        isOverEarly,
+        isOverLate,
+        checkInDate,
+        checkOutDate,
+        typeLate,
+        typeEarly,
+        code,
+        isLateActual,
+        isEarlyActual,
+        totalProblem,
+        maxIsLate,
+        maxIsEarly,
+        isNoFinger,
+        isNoCheckIn,
+        isNoCheckOut
+      ]);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PersonalAttendanceItemImplCopyWith<_$PersonalAttendanceItemImpl>
+      get copyWith => __$$PersonalAttendanceItemImplCopyWithImpl<
+          _$PersonalAttendanceItemImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$PersonalAttendanceItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _PersonalAttendanceItem implements PersonalAttendanceItem {
+  const factory _PersonalAttendanceItem(
+          {@JsonKey(name: 'ID') required final int id,
+          @JsonKey(name: 'IDChamCongMoi') final String? idChamCongMoi,
+          @JsonKey(name: 'EmployeeID') final int? employeeId,
+          @JsonKey(name: 'CheckIn') final String? checkIn,
+          @JsonKey(name: 'CheckOut') final String? checkOut,
+          @JsonKey(name: 'IsLate') final bool? isLate,
+          @JsonKey(name: 'TimeLate') final double? timeLate,
+          @JsonKey(name: 'IsEarly') final bool? isEarly,
+          @JsonKey(name: 'TimeEarly') final double? timeEarly,
+          @JsonKey(name: 'AttendanceDate') final DateTime? attendanceDate,
+          @JsonKey(name: 'DayWeek') final String? dayWeek,
+          @JsonKey(name: 'Interval') final String? interval,
+          @JsonKey(name: 'STT') final int? stt,
+          @JsonKey(name: 'FullName') final String? fullName,
+          @JsonKey(name: 'ToChuc') final String? toChuc,
+          @JsonKey(name: 'ChucVu') final String? chucVu,
+          @JsonKey(name: 'IsLunch') final bool? isLunch,
+          @JsonKey(name: 'Overtime') final bool? overtime,
+          @JsonKey(name: 'Bussiness') final bool? bussiness,
+          @JsonKey(name: 'NoFingerprint') final bool? noFingerprint,
+          @JsonKey(name: 'OnLeave') final bool? onLeave,
+          @JsonKey(name: 'WFH') final bool? wfh,
+          @JsonKey(name: 'DepartmentName') final String? departmentName,
+          @JsonKey(name: 'IsLateRegister') final bool? isLateRegister,
+          @JsonKey(name: 'IsEarlyRegister') final bool? isEarlyRegister,
+          @JsonKey(name: 'TotalDay') final double? totalDay,
+          @JsonKey(name: 'HolidayDay') final int? holidayDay,
+          @JsonKey(name: 'DepartmentID') final int? departmentId,
+          @JsonKey(name: 'DepartmentSTT') final int? departmentStt,
+          @JsonKey(name: 'OvertimeLate') final int? overtimeLate,
+          @JsonKey(name: 'OvertimeEarly') final int? overtimeEarly,
+          @JsonKey(name: 'IsOverEarly') final bool? isOverEarly,
+          @JsonKey(name: 'IsOverLate') final bool? isOverLate,
+          @JsonKey(name: 'CheckInDate') final DateTime? checkInDate,
+          @JsonKey(name: 'CheckOutDate') final DateTime? checkOutDate,
+          @JsonKey(name: 'TypeLate') final int? typeLate,
+          @JsonKey(name: 'TypeEarly') final int? typeEarly,
+          @JsonKey(name: 'Code') final String? code,
+          @JsonKey(name: 'IsLateActual') final int? isLateActual,
+          @JsonKey(name: 'IsEarlyActual') final int? isEarlyActual,
+          @JsonKey(name: 'TotalProblem') final int? totalProblem,
+          @JsonKey(name: 'MaxIsLate') final int? maxIsLate,
+          @JsonKey(name: 'MaxIsEarly') final int? maxIsEarly,
+          @JsonKey(name: 'IsNoFinger') final int? isNoFinger,
+          @JsonKey(name: 'IsNoCheckIn') final int? isNoCheckIn,
+          @JsonKey(name: 'IsNoCheckOut') final int? isNoCheckOut}) =
+      _$PersonalAttendanceItemImpl;
+
+  factory _PersonalAttendanceItem.fromJson(Map<String, dynamic> json) =
+      _$PersonalAttendanceItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int get id;
+  @override
+  @JsonKey(name: 'IDChamCongMoi')
+  String? get idChamCongMoi;
+  @override
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId;
+  @override
+  @JsonKey(name: 'CheckIn')
+  String? get checkIn;
+  @override
+  @JsonKey(name: 'CheckOut')
+  String? get checkOut;
+  @override
+  @JsonKey(name: 'IsLate')
+  bool? get isLate;
+  @override
+  @JsonKey(name: 'TimeLate')
+  double? get timeLate;
+  @override
+  @JsonKey(name: 'IsEarly')
+  bool? get isEarly;
+  @override
+  @JsonKey(name: 'TimeEarly')
+  double? get timeEarly;
+  @override
+  @JsonKey(name: 'AttendanceDate')
+  DateTime? get attendanceDate;
+  @override
+  @JsonKey(name: 'DayWeek')
+  String? get dayWeek;
+  @override
+  @JsonKey(name: 'Interval')
+  String? get interval;
+  @override
+  @JsonKey(name: 'STT')
+  int? get stt;
+  @override
+  @JsonKey(name: 'FullName')
+  String? get fullName;
+  @override
+  @JsonKey(name: 'ToChuc')
+  String? get toChuc;
+  @override
+  @JsonKey(name: 'ChucVu')
+  String? get chucVu;
+  @override
+  @JsonKey(name: 'IsLunch')
+  bool? get isLunch;
+  @override
+  @JsonKey(name: 'Overtime')
+  bool? get overtime;
+  @override
+  @JsonKey(name: 'Bussiness')
+  bool? get bussiness;
+  @override
+  @JsonKey(name: 'NoFingerprint')
+  bool? get noFingerprint;
+  @override
+  @JsonKey(name: 'OnLeave')
+  bool? get onLeave;
+  @override
+  @JsonKey(name: 'WFH')
+  bool? get wfh;
+  @override
+  @JsonKey(name: 'DepartmentName')
+  String? get departmentName;
+  @override
+  @JsonKey(name: 'IsLateRegister')
+  bool? get isLateRegister;
+  @override
+  @JsonKey(name: 'IsEarlyRegister')
+  bool? get isEarlyRegister;
+  @override
+  @JsonKey(name: 'TotalDay')
+  double? get totalDay;
+  @override
+  @JsonKey(name: 'HolidayDay')
+  int? get holidayDay;
+  @override
+  @JsonKey(name: 'DepartmentID')
+  int? get departmentId;
+  @override
+  @JsonKey(name: 'DepartmentSTT')
+  int? get departmentStt;
+  @override
+  @JsonKey(name: 'OvertimeLate')
+  int? get overtimeLate;
+  @override
+  @JsonKey(name: 'OvertimeEarly')
+  int? get overtimeEarly;
+  @override
+  @JsonKey(name: 'IsOverEarly')
+  bool? get isOverEarly;
+  @override
+  @JsonKey(name: 'IsOverLate')
+  bool? get isOverLate;
+  @override
+  @JsonKey(name: 'CheckInDate')
+  DateTime? get checkInDate;
+  @override
+  @JsonKey(name: 'CheckOutDate')
+  DateTime? get checkOutDate;
+  @override
+  @JsonKey(name: 'TypeLate')
+  int? get typeLate;
+  @override
+  @JsonKey(name: 'TypeEarly')
+  int? get typeEarly;
+  @override
+  @JsonKey(name: 'Code')
+  String? get code;
+  @override
+  @JsonKey(name: 'IsLateActual')
+  int? get isLateActual;
+  @override
+  @JsonKey(name: 'IsEarlyActual')
+  int? get isEarlyActual;
+  @override
+  @JsonKey(name: 'TotalProblem')
+  int? get totalProblem;
+  @override
+  @JsonKey(name: 'MaxIsLate')
+  int? get maxIsLate;
+  @override
+  @JsonKey(name: 'MaxIsEarly')
+  int? get maxIsEarly;
+  @override
+  @JsonKey(name: 'IsNoFinger')
+  int? get isNoFinger;
+  @override
+  @JsonKey(name: 'IsNoCheckIn')
+  int? get isNoCheckIn;
+  @override
+  @JsonKey(name: 'IsNoCheckOut')
+  int? get isNoCheckOut;
+  @override
+  @JsonKey(ignore: true)
+  _$$PersonalAttendanceItemImplCopyWith<_$PersonalAttendanceItemImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
 PersonalSummaryData _$PersonalSummaryDataFromJson(Map<String, dynamic> json) {
   return _PersonalSummaryData.fromJson(json);
 }

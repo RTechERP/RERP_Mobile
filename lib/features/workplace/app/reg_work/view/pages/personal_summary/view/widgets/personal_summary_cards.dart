@@ -301,7 +301,6 @@ class PersonalOverTimeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final hasDinner = item.overnight == true;
     final hrName = _nonEmpty(item.approvedHr);
     return GlassCardShell(
       badges: [
@@ -399,10 +398,6 @@ class PersonalOverTimeCard extends StatelessWidget {
             valueColor: AppColors.redA500,
             indentTop: true,
           ),
-        ],
-        if (hasDinner) ...[
-          const SizedBox(height: 8),
-          _DinnerBadge(),
         ],
       ],
     );
@@ -911,6 +906,210 @@ class _DinnerBadge extends StatelessWidget {
       isBold: true,
       valueColor: AppColors.greenA500,
       indentTop: true,
+    );
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// 8. Vân tay (Attendance)
+// ════════════════════════════════════════════════════════════════════════════
+
+/// Card cho tab "Vân tay".
+/// Hiển thị: chip Giờ vào - chip Giờ ra -
+/// ID (IDChamCongMoi) - Mã NV - Tên NV - Tổ chức - Thứ/Ngày -
+/// Khoảng thời gian -
+/// Hàng cờ 1: Muộn (ĐK) - Sớm (ĐK) - Làm thêm - Công tác - Quên VT (ĐK).
+/// Hàng cờ 2: Nghỉ - WFH - Quên VT thực tế.
+class PersonalAttendanceCard extends StatelessWidget {
+  const PersonalAttendanceCard({super.key, required this.item});
+  final PersonalAttendanceItem item;
+
+  String _dateText(DateTime? d) {
+    if (d == null) return '--/--/----';
+    return _dateFmt.format(d.toLocal());
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GlassCardShell(
+      badges: const [],
+      chips: [
+        SummaryTypeChip(
+          label: 'Giờ vào',
+          value: _nonEmpty(item.checkIn) ?? '--:--',
+          color: AppColors.greenA500,
+          icon: Icons.login_outlined,
+        ),
+        SummaryTypeChip(
+          label: 'Giờ ra',
+          value: _nonEmpty(item.checkOut) ?? '--:--',
+          color: AppColors.redA500,
+          icon: Icons.logout_outlined,
+        ),
+      ],
+      children: [
+        // ID - Mã NV
+        InfoRowRange(
+          icon: Icons.tag_outlined,
+          startLabel: 'ID',
+          startValue: _nonEmpty(item.idChamCongMoi) ?? '—',
+          endLabel: 'Mã NV',
+          endValue: _nonEmpty(item.code) ?? '—',
+          indentTop: true,
+        ),
+        const SizedBox(height: 8),
+        // Tên nhân viên
+        InfoRow(
+          icon: Icons.person_outline,
+          label: 'Tên nhân viên',
+          value: _nonEmpty(item.fullName) ?? '—',
+          indentTop: true,
+        ),
+        if (_nonEmpty(item.toChuc) != null) ...[
+          const SizedBox(height: 8),
+          InfoRow(
+            icon: Icons.apartment_outlined,
+            label: 'Tổ chức',
+            value: item.toChuc!,
+            indentTop: true,
+          ),
+        ],
+        const SizedBox(height: 8),
+        // Thứ - Ngày
+        InfoRowRange(
+          icon: Icons.calendar_today_outlined,
+          startLabel: 'Thứ',
+          startValue: _nonEmpty(item.dayWeek) ?? '—',
+          endLabel: 'Ngày',
+          endValue: _dateText(item.attendanceDate),
+          indentTop: true,
+        ),
+        const SizedBox(height: 8),
+        // Khoảng thời gian
+        InfoRow(
+          icon: Icons.schedule_outlined,
+          label: 'Khoảng thời gian',
+          value: _nonEmpty(item.interval) ?? '—',
+          indentTop: true,
+        ),
+        const SizedBox(height: 10),
+        // Hàng 1: Muộn (ĐK) - Sớm (ĐK) - Làm thêm - Công tác - Quên VT (ĐK)
+        _FlagChipGroup(
+          flags: [
+            _FlagData(
+              label: 'Muộn (ĐK)',
+              checked: item.isLateRegister ?? false,
+            ),
+            _FlagData(
+              label: 'Sớm (ĐK)',
+              checked: item.isEarlyRegister ?? false,
+            ),
+            _FlagData(
+              label: 'Làm thêm',
+              checked: item.overtime ?? false,
+            ),
+            _FlagData(
+              label: 'Công tác',
+              checked: item.bussiness ?? false,
+            ),
+            _FlagData(
+              label: 'Quên VT (ĐK)',
+              checked: item.noFingerprint ?? false,
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        // Hàng 2: Nghỉ - WFH - Quên VT thực tế
+        _FlagChipGroup(
+          flags: [
+            _FlagData(
+              label: 'Nghỉ',
+              checked: item.onLeave ?? false,
+            ),
+            _FlagData(
+              label: 'WFH',
+              checked: item.wfh ?? false,
+            ),
+            _FlagData(
+              label: 'Quên VT thực tế',
+              checked: (item.isNoFinger ?? 0) > 0,
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+/// Dữ liệu 1 cờ trạng thái (label + checked).
+class _FlagData {
+  const _FlagData({required this.label, required this.checked});
+  final String label;
+  final bool checked;
+}
+
+/// Nhóm chip cờ trạng thái xếp wrap.
+/// Cờ `checked = true` → nền xanh + tick.
+/// Cờ `checked = false` → nền xám + dấu gạch.
+class _FlagChipGroup extends StatelessWidget {
+  const _FlagChipGroup({required this.flags});
+  final List<_FlagData> flags;
+
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(
+      spacing: 6,
+      runSpacing: 6,
+      children: [for (final f in flags) _FlagChip(data: f)],
+    );
+  }
+}
+
+/// 1 chip cờ trạng thái nhỏ gọn (icon + label + trạng thái).
+class _FlagChip extends StatelessWidget {
+  const _FlagChip({required this.data});
+  final _FlagData data;
+
+  @override
+  Widget build(BuildContext context) {
+    // Cờ `checked = true` là trạng thái bất thường → tô đỏ + icon X.
+    // Cờ `checked = false` là bình thường → tô xám + icon gạch ngang.
+    final on = data.checked;
+    final bg = on
+        ? AppColors.redA500.withValues(alpha: 0.12)
+        : AppColors.gray.withValues(alpha: 0.10);
+    final border = on
+        ? AppColors.redA500.withValues(alpha: 0.45)
+        : AppColors.gray.withValues(alpha: 0.30);
+    final fg = on ? AppColors.redA500 : AppColors.enableText;
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+      decoration: BoxDecoration(
+        color: bg,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: border, width: 0.8),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            on ? Icons.cancel : Icons.remove_circle_outline,
+            size: 12,
+            color: fg,
+          ),
+          const SizedBox(width: 4),
+          Text(
+            data.label,
+            style: TextStyle(
+              fontSize: 11,
+              fontWeight: FontWeight.w600,
+              color: fg,
+              height: 1.1,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

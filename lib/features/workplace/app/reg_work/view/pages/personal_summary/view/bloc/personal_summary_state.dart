@@ -9,6 +9,7 @@ class PersonalSummaryState extends BaseBlocState {
   final List<PersonalWfhItem> wfh;
   final List<PersonalEnfItem> enf;
   final List<PersonalNightShiftItem> nightShift;
+  final List<PersonalAttendanceItem> attendance;
   final DateTime? dateStart;
   final DateTime? dateEnd;
 
@@ -28,6 +29,7 @@ class PersonalSummaryState extends BaseBlocState {
     this.wfh = const [],
     this.enf = const [],
     this.nightShift = const [],
+    this.attendance = const [],
     this.dateStart,
     this.dateEnd,
     this.statusFilter = -1,
@@ -43,6 +45,7 @@ class PersonalSummaryState extends BaseBlocState {
         wfh: [],
         enf: [],
         nightShift: [],
+        attendance: [],
         dateStart: null,
         dateEnd: null,
         statusFilter: -1,
@@ -60,6 +63,7 @@ class PersonalSummaryState extends BaseBlocState {
         wfh,
         enf,
         nightShift,
+        attendance,
         dateStart,
         dateEnd,
         statusFilter,

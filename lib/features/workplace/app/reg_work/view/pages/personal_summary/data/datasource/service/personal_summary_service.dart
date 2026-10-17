@@ -42,4 +42,52 @@ class PersonalSummaryService extends DioBaseApiService {
       },
     );
   }
+
+  /// GET /SummaryAttendance/get-employee-attendance.
+  /// `query` chứa departmentID, employeeID, keyword, dateStart (yyyy-MM-dd),
+  /// dateEnd (yyyy-MM-dd). Response có thể là mảng trần hoặc bọc trong
+  /// `data`/`result` của `BaseData`.
+  Future<BaseData<List<PersonalAttendanceItem>>> getEmployeeAttendance({
+    required Map<String, dynamic> query,
+  }) async {
+    return get<BaseData<List<PersonalAttendanceItem>>>(
+      ApiEndPoint.getEmployeeAttendance,
+      query: query,
+      parser: (json) {
+        // Trường hợp 1: response là mảng trần.
+        if (json is List) {
+          final items = json
+              .whereType<Map>()
+              .map(
+                (e) => PersonalAttendanceItem.fromJson(
+                  e.cast<String, dynamic>(),
+                ),
+              )
+              .toList();
+          return BaseData<List<PersonalAttendanceItem>>(
+            data: items,
+            status: 1,
+          );
+        }
+        // Trường hợp 2: response bọc trong `BaseData` chuẩn.
+        final root = (json is Map) ? json : <String, dynamic>{};
+        return BaseData<List<PersonalAttendanceItem>>.fromJson(
+          root.cast<String, dynamic>(),
+          (data) {
+            if (data is List) {
+              return data
+                  .whereType<Map>()
+                  .map(
+                    (e) => PersonalAttendanceItem.fromJson(
+                      e.cast<String, dynamic>(),
+                    ),
+                  )
+                  .toList();
+            }
+            return <PersonalAttendanceItem>[];
+          },
+        );
+      },
+    );
+  }
 }

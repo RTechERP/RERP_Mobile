@@ -276,6 +276,62 @@ class PersonalNightShiftItem with _$PersonalNightShiftItem {
       _$PersonalNightShiftItemFromJson(json);
 }
 
+/// Vân tay (chấm công) - 1 dòng = 1 nhân viên / 1 ngày.
+@freezed
+class PersonalAttendanceItem with _$PersonalAttendanceItem {
+  const factory PersonalAttendanceItem({
+    @JsonKey(name: 'ID') required int id,
+    @JsonKey(name: 'IDChamCongMoi') String? idChamCongMoi,
+    @JsonKey(name: 'EmployeeID') int? employeeId,
+    @JsonKey(name: 'CheckIn') String? checkIn,
+    @JsonKey(name: 'CheckOut') String? checkOut,
+    @JsonKey(name: 'IsLate') bool? isLate,
+    @JsonKey(name: 'TimeLate') double? timeLate,
+    @JsonKey(name: 'IsEarly') bool? isEarly,
+    @JsonKey(name: 'TimeEarly') double? timeEarly,
+    @JsonKey(name: 'AttendanceDate') DateTime? attendanceDate,
+    @JsonKey(name: 'DayWeek') String? dayWeek,
+    @JsonKey(name: 'Interval') String? interval,
+    @JsonKey(name: 'STT') int? stt,
+    @JsonKey(name: 'FullName') String? fullName,
+    @JsonKey(name: 'ToChuc') String? toChuc,
+    @JsonKey(name: 'ChucVu') String? chucVu,
+    @JsonKey(name: 'IsLunch') bool? isLunch,
+    @JsonKey(name: 'Overtime') bool? overtime,
+    @JsonKey(name: 'Bussiness') bool? bussiness,
+    @JsonKey(name: 'NoFingerprint') bool? noFingerprint,
+    @JsonKey(name: 'OnLeave') bool? onLeave,
+    @JsonKey(name: 'WFH') bool? wfh,
+    @JsonKey(name: 'DepartmentName') String? departmentName,
+    @JsonKey(name: 'IsLateRegister') bool? isLateRegister,
+    @JsonKey(name: 'IsEarlyRegister') bool? isEarlyRegister,
+    @JsonKey(name: 'TotalDay') double? totalDay,
+    @JsonKey(name: 'HolidayDay') int? holidayDay,
+    @JsonKey(name: 'DepartmentID') int? departmentId,
+    @JsonKey(name: 'DepartmentSTT') int? departmentStt,
+    @JsonKey(name: 'OvertimeLate') int? overtimeLate,
+    @JsonKey(name: 'OvertimeEarly') int? overtimeEarly,
+    @JsonKey(name: 'IsOverEarly') bool? isOverEarly,
+    @JsonKey(name: 'IsOverLate') bool? isOverLate,
+    @JsonKey(name: 'CheckInDate') DateTime? checkInDate,
+    @JsonKey(name: 'CheckOutDate') DateTime? checkOutDate,
+    @JsonKey(name: 'TypeLate') int? typeLate,
+    @JsonKey(name: 'TypeEarly') int? typeEarly,
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'IsLateActual') int? isLateActual,
+    @JsonKey(name: 'IsEarlyActual') int? isEarlyActual,
+    @JsonKey(name: 'TotalProblem') int? totalProblem,
+    @JsonKey(name: 'MaxIsLate') int? maxIsLate,
+    @JsonKey(name: 'MaxIsEarly') int? maxIsEarly,
+    @JsonKey(name: 'IsNoFinger') int? isNoFinger,
+    @JsonKey(name: 'IsNoCheckIn') int? isNoCheckIn,
+    @JsonKey(name: 'IsNoCheckOut') int? isNoCheckOut,
+  }) = _PersonalAttendanceItem;
+
+  factory PersonalAttendanceItem.fromJson(Map<String, dynamic> json) =>
+      _$PersonalAttendanceItemFromJson(json);
+}
+
 /// Response wrapper — BE trả về trực tiếp 7 nhóm này trong `data`.
 /// Một số nhóm (EarlyLate, OverTime, Bussiness, WFH, ENF) là `List<List<T>>`
 /// (BE gom theo từng nhóm phòng ban). Bloc sẽ flatten trước khi đẩy vào state.

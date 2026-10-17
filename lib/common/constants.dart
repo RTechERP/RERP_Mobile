@@ -252,6 +252,11 @@ class ApiEndPoint {
   static const String getSummaryEmployeePerson =
       '/home/get-summary-employee-person';
 
+  /// Lấy dữ liệu chấm công vân tay theo khoảng ngày (query string).
+  /// Params: departmentID, employeeID, keyword, dateStart, dateEnd.
+  static const String getEmployeeAttendance =
+      '/SummaryAttendance/get-employee-attendance';
+
   static const String getOvernight = '/EmployeeNightShift/person';
 
   static const String saveOvernight = '/EmployeeNightShift/save-data';

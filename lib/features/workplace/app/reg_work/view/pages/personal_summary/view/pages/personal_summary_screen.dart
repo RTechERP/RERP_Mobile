@@ -1,6 +1,7 @@
 // Màn hình Tổng hợp phiếu cá nhân.
-// Có 7 tab (Đăng ký nghỉ, Đi muộn về sớm, Làm thêm, Công tác,
-// Làm việc ở nhà, Quên chấm công, Làm đêm) + tìm kiếm + lọc trạng thái + lọc ngày.
+// Có 8 tab (Đăng ký nghỉ, Đi muộn về sớm, Làm thêm, Công tác,
+// Làm việc ở nhà, Quên chấm công, Làm đêm, Vân tay) +
+// tìm kiếm + lọc trạng thái + lọc ngày.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -42,6 +43,7 @@ class _PersonalSummaryScreenState
     _TabDef('Làm việc ở nhà', _TabSource.wfh),
     _TabDef('Quên chấm công', _TabSource.enf),
     _TabDef('Làm đêm', _TabSource.nightShift),
+    _TabDef('Vân tay', _TabSource.attendance),
   ];
 
   @override
@@ -94,7 +96,8 @@ class _PersonalSummaryScreenState
 
   void _showDateRangePicker(BuildContext context, PersonalSummaryState state) {
     final now = DateTime.now();
-    final defaultStart = now.subtract(const Duration(days: 6));
+    // Mặc định picker: hôm qua → hôm nay (đồng bộ với default của bloc).
+    final defaultStart = now.subtract(const Duration(days: 1));
     final defaultEnd = DateTime(now.year, now.month, now.day);
     showModalBottomSheet<void>(
       context: context,
@@ -450,7 +453,16 @@ class _PersonalSummaryScreenState
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 
-enum _TabSource { onLeave, earlyLate, overTime, bussiness, wfh, enf, nightShift }
+enum _TabSource {
+  onLeave,
+  earlyLate,
+  overTime,
+  bussiness,
+  wfh,
+  enf,
+  nightShift,
+  attendance,
+}
 
 class _TabDef {
   const _TabDef(this.label, this.source);
@@ -475,6 +487,8 @@ int _count(PersonalSummaryState s, _TabSource source) {
       return s.enf.length;
     case _TabSource.nightShift:
       return s.nightShift.length;
+    case _TabSource.attendance:
+      return s.attendance.length;
   }
 }
 
@@ -495,6 +509,8 @@ List<dynamic> _items(PersonalSummaryState s, _TabSource source) {
       return s.enf;
     case _TabSource.nightShift:
       return s.nightShift;
+    case _TabSource.attendance:
+      return s.attendance;
   }
 }
 
@@ -590,6 +606,16 @@ String _haystackFor(dynamic item) {
     add(item.note);
     add(item.reasonDeciline);
     add(item.departmentName);
+  } else if (item is PersonalAttendanceItem) {
+    add(item.fullName);
+    add(item.code);
+    add(item.departmentName);
+    add(item.chucVu);
+    add(item.toChuc);
+    add(item.dayWeek);
+    add(item.interval);
+    add(item.checkIn);
+    add(item.checkOut);
   }
   return buf.toString();
 }
@@ -611,5 +637,7 @@ Widget _buildItemFor(_TabSource source, dynamic item) {
       return PersonalEnfCard(item: item as PersonalEnfItem);
     case _TabSource.nightShift:
       return PersonalNightShiftCard(item: item as PersonalNightShiftItem);
+    case _TabSource.attendance:
+      return PersonalAttendanceCard(item: item as PersonalAttendanceItem);
   }
 }

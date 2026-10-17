@@ -33,4 +33,16 @@ class PersonalSummaryRepoImpl implements PersonalSummaryRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, List<PersonalAttendanceItem>>> getEmployeeAttendance({
+    required Map<String, dynamic> query,
+  }) async {
+    try {
+      final res = await _service.getEmployeeAttendance(query: query);
+      return right(res.data ?? const <PersonalAttendanceItem>[]);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

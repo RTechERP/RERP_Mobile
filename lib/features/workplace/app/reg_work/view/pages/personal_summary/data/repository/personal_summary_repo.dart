@@ -10,4 +10,12 @@ abstract class PersonalSummaryRepo {
   Future<Either<BaseError, PersonalSummaryData>> getPersonalSummary({
     required Map<String, dynamic> payload,
   });
+
+  /// Lấy dữ liệu vân tay (chấm công) theo khoảng ngày + từ khoá.
+  /// `query` chứa departmentID, employeeID, keyword, dateStart (yyyy-MM-dd),
+  /// dateEnd (yyyy-MM-dd).
+  Future<Either<BaseError, List<PersonalAttendanceItem>>>
+      getEmployeeAttendance({
+    required Map<String, dynamic> query,
+  });
 }

@@ -25,6 +25,8 @@ abstract class _$PersonalSummaryStateCWProxy {
 
   PersonalSummaryState nightShift(List<PersonalNightShiftItem> nightShift);
 
+  PersonalSummaryState attendance(List<PersonalAttendanceItem> attendance);
+
   PersonalSummaryState dateStart(DateTime? dateStart);
 
   PersonalSummaryState dateEnd(DateTime? dateEnd);
@@ -49,6 +51,7 @@ abstract class _$PersonalSummaryStateCWProxy {
     List<PersonalWfhItem>? wfh,
     List<PersonalEnfItem>? enf,
     List<PersonalNightShiftItem>? nightShift,
+    List<PersonalAttendanceItem>? attendance,
     DateTime? dateStart,
     DateTime? dateEnd,
     int? statusFilter,
@@ -96,6 +99,10 @@ class _$PersonalSummaryStateCWProxyImpl
       this(nightShift: nightShift);
 
   @override
+  PersonalSummaryState attendance(List<PersonalAttendanceItem> attendance) =>
+      this(attendance: attendance);
+
+  @override
   PersonalSummaryState dateStart(DateTime? dateStart) =>
       this(dateStart: dateStart);
 
@@ -127,6 +134,7 @@ class _$PersonalSummaryStateCWProxyImpl
     Object? wfh = const $CopyWithPlaceholder(),
     Object? enf = const $CopyWithPlaceholder(),
     Object? nightShift = const $CopyWithPlaceholder(),
+    Object? attendance = const $CopyWithPlaceholder(),
     Object? dateStart = const $CopyWithPlaceholder(),
     Object? dateEnd = const $CopyWithPlaceholder(),
     Object? statusFilter = const $CopyWithPlaceholder(),
@@ -170,6 +178,11 @@ class _$PersonalSummaryStateCWProxyImpl
               ? _value.nightShift
               // ignore: cast_nullable_to_non_nullable
               : nightShift as List<PersonalNightShiftItem>,
+      attendance:
+          attendance == const $CopyWithPlaceholder() || attendance == null
+              ? _value.attendance
+              // ignore: cast_nullable_to_non_nullable
+              : attendance as List<PersonalAttendanceItem>,
       dateStart: dateStart == const $CopyWithPlaceholder()
           ? _value.dateStart
           // ignore: cast_nullable_to_non_nullable

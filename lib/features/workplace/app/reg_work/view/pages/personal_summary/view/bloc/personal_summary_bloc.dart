@@ -1,4 +1,4 @@
-// Bloc xử lý logic màn Personal Summary (7 tab phiếu cá nhân).
+// Bloc xử lý logic màn Personal Summary (8 tab phiếu cá nhân).
 // Quản lý: khoảng ngày, filter trạng thái duyệt, từ khoá tìm kiếm và dữ liệu nhận về.
 import 'package:bloc/bloc.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
@@ -87,6 +87,19 @@ class PersonalSummaryBloc
     _log.logI('PersonalSummary payload: $payload');
 
     final res = await _repo.getPersonalSummary(payload: payload);
+
+    // Sau khi load summary, gọi thêm API vân tay (GET, song song độc lập).
+    // Nếu lỗi thì vẫn hiển thị được dữ liệu summary.
+    final attendanceQuery = _attendanceQuery(
+      departmentId: employee?.departmentId,
+      dateStart: dateStart,
+      dateEnd: dateEnd,
+      keyword: state.keyword,
+    );
+    final attendanceRes = await _repo.getEmployeeAttendance(
+      query: attendanceQuery,
+    );
+
     await res.fold(
       (l) async {
         _log.logE('❌ PersonalSummary load failed: $l');
@@ -105,6 +118,10 @@ class PersonalSummaryBloc
           'enf: ${flatten(data.dataEnf).length}, '
           'nightShift: ${data.dataNightShift.length}',
         );
+        final attendance = attendanceRes.fold(
+          (_) => const <PersonalAttendanceItem>[],
+          (list) => list,
+        );
         emit(state.copyWith(
           status: BaseStateStatus.success,
           onLeave: data.dataOnLeave,
@@ -114,11 +131,33 @@ class PersonalSummaryBloc
           wfh: flatten(data.dataWfh),
           enf: flatten(data.dataEnf),
           nightShift: data.dataNightShift,
+          attendance: attendance,
           dateStart: dateStart,
           dateEnd: dateEnd,
         ));
       },
     );
+  }
+
+  /// Build query cho API vân tay.
+  Map<String, dynamic> _attendanceQuery({
+    required int? departmentId,
+    required DateTime dateStart,
+    required DateTime dateEnd,
+    required String keyword,
+  }) {
+    String two(int v) => v.toString().padLeft(2, '0');
+    final startStr =
+        '${dateStart.year}-${two(dateStart.month)}-${two(dateStart.day)}';
+    final endStr =
+        '${dateEnd.year}-${two(dateEnd.month)}-${two(dateEnd.day)}';
+    return <String, dynamic>{
+      'departmentID': departmentId ?? 0,
+      'employeeID': 0,
+      'keyword': keyword,
+      'dateStart': startStr,
+      'dateEnd': endStr,
+    };
   }
 
   Future<void> _onInit(Emitter<PersonalSummaryState> emit) async {
@@ -128,10 +167,10 @@ class PersonalSummaryBloc
       emit(state.copyWith(status: BaseStateStatus.loading));
 
       final now = DateTime.now();
-      // Mặc định: 7 ngày gần nhất bao gồm hôm nay.
+      // Mặc định: 2 ngày gần nhất (hôm qua → hôm nay).
       final defaultEnd = DateTime(now.year, now.month, now.day);
       final defaultStart =
-          defaultEnd.subtract(const Duration(days: 6));
+          defaultEnd.subtract(const Duration(days: 1));
 
       await _fetch(
         emit,
