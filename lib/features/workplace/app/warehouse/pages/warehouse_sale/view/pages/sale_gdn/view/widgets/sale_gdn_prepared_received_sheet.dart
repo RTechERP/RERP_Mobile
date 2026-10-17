@@ -77,12 +77,16 @@ class BillAction {
 /// Bottom sheet hành động cho 1 phiếu xuất kho.
 ///
 /// Quy tắc hiển thị actions (theo user hiện tại):
-/// - Nếu `currentEmployeeId` trùng `bill.senderId` (người giao) → hiển thị
-///   nhóm "Chuẩn bị hàng": Đã chuẩn bị hàng / Huỷ chuẩn bị hàng.
-/// - Nếu `currentEmployeeId` trùng `bill.receiverId` (người nhận) → hiển
-///   thị nhóm "Nhận hàng": Đã nhận hàng / Huỷ nhận hàng.
-/// - Nếu `currentEmployeeId == 1110` (user đặc biệt) hoặc `isCurrentUserAdmin`
-///   → hiển thị cả 4.
+/// - Nhóm "Chuẩn bị hàng" (Đã chuẩn bị / Huỷ chuẩn bị): hiển thị nếu user
+///   là admin, là người giao/nhận của phiếu, hoặc nằm trong danh sách ID
+///   được phép xác nhận đặt hàng (xem [_preparedConfirmAllowedIds]).
+/// - Nhóm "Nhận hàng" (Đã nhận / Huỷ nhận): hiển thị nếu user là admin, là
+///   người giao/nhận của phiếu, **trừ** các user thuộc
+///   [_receivedBlockedIds] (1110, 24, 1763, 1785) — nhóm này bị chặn hoàn
+///   toàn dù có trùng sender/receiver.
+///
+/// Lưu ý: cả 4 tile luôn được render. Action user không có quyền sẽ bị
+/// làm mờ + disable để tránh bấm nhầm, kèm dòng cảnh báo "không có quyền".
 class PreparedReceivedActionSheet extends StatelessWidget {
   const PreparedReceivedActionSheet({
     super.key,
@@ -99,29 +103,50 @@ class PreparedReceivedActionSheet extends StatelessWidget {
   /// `employeeId` của user đang đăng nhập.
   final int currentEmployeeId;
 
-  /// `true` nếu user hiện tại là admin — được thao tác mọi phiếu giống
-  /// user đặc biệt (id 1110).
+  /// `true` nếu user hiện tại là admin — được thao tác mọi phiếu.
   final bool isCurrentUserAdmin;
 
   /// `true` khi đang gọi API update status — disable tất cả tile để tránh
   /// user bấm đúp.
   final bool isSubmitting;
 
-  /// User đặc biệt — luôn thấy cả 4 action bất kể là người giao hay
-  /// người nhận. Đặt `id` (UserID) = 1110.
-  static const int _specialEmployeeId = 1110;
+  /// Nhóm UserID bị chặn thao tác nhóm "Nhận hàng" (kể cả khi trùng sender/
+  /// receiver của phiếu). Nhóm này chỉ được quyền thao tác "Chuẩn bị hàng".
+  ///
+  /// Gồm: 1110, 24, 1763, 1785.
+  static const Set<int> _receivedBlockedIds = {1110, 24, 1763, 1785};
+
+  /// Danh sách UserID được phép xác nhận / huỷ "Chuẩn bị hàng" bất kể có
+  /// phải người giao/nhận của phiếu hay không. Cùng với admin + người giao/
+  /// nhận của phiếu → đủ điều kiện thao tác nhóm chuẩn bị.
+  static const Set<int> _preparedConfirmAllowedIds =
+      {743, 726, 30, 55, 24, 1763, 1785};
+
+  bool get _canDoPreparedActions {
+    if (isCurrentUserAdmin) return true;
+    if (bill.senderId != null && bill.senderId == currentEmployeeId) {
+      return true;
+    }
+    if (bill.receiverId != null && bill.receiverId == currentEmployeeId) {
+      return true;
+    }
+    return _preparedConfirmAllowedIds.contains(currentEmployeeId);
+  }
+
+  bool get _canDoReceivedActions {
+    // Bỏ validate quyền "nhận hàng" — ai cũng có thể thao tác,
+    // TRỪ 4 UserID đặc biệt trong `_receivedBlockedIds`.
+    if (_receivedBlockedIds.contains(currentEmployeeId)) return false;
+    return true;
+  }
 
   @override
   Widget build(BuildContext context) {
-    // Luôn hiển thị đủ 4 thao tác cho mọi account.
-    // Nếu user không phải người giao/nhận của phiếu (và không phải admin
-    // hoặc user đặc biệt) → hiển thị thông báo "không có quyền" thay cho 4
-    // action tile.
-    final hasFullPermission = isCurrentUserAdmin ||
-        _specialEmployeeId == currentEmployeeId;
-    final isBillActor = hasFullPermission ||
-        (bill.senderId != null && bill.senderId == currentEmployeeId) ||
-        (bill.receiverId != null && bill.receiverId == currentEmployeeId);
+    // Luôn hiển thị đủ 4 action. Action nào user không có quyền → làm mờ
+    // + disable để tránh bấm nhầm. Nếu user không có quyền bất kỳ action
+    // nào thì thêm dòng cảnh báo nhỏ phía trên cho rõ ràng.
+    final canPrepared = _canDoPreparedActions;
+    final canReceived = _canDoReceivedActions;
 
     return SafeArea(
       child: Container(
@@ -143,17 +168,17 @@ class PreparedReceivedActionSheet extends StatelessWidget {
             _buildHandle(),
             _buildHeader(),
             const SizedBox(height: 8),
-            if (!isBillActor)
+            if (!canPrepared && !canReceived)
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 20,
-                  vertical: 24,
+                  vertical: 12,
                 ),
                 child: Row(
                   children: [
                     Icon(
                       Icons.lock_outline,
-                      size: 20,
+                      size: 18,
                       color: AppColors.gray,
                     ),
                     const SizedBox(width: 10),
@@ -161,7 +186,7 @@ class PreparedReceivedActionSheet extends StatelessWidget {
                       child: Text(
                         'Bạn không có quyền thao tác đối với phiếu này',
                         style: const TextStyle(
-                          fontSize: 14,
+                          fontSize: 13,
                           color: AppColors.gray,
                           height: 1.4,
                         ),
@@ -169,52 +194,51 @@ class PreparedReceivedActionSheet extends StatelessWidget {
                     ),
                   ],
                 ),
-              )
-            else ...[
-              // Nhóm chuẩn bị hàng
-              _ActionTile(
-                icon: Icons.inventory_2_outlined,
-                color: AppColors.stateSuccessColor,
-                title: 'Đã chuẩn bị hàng',
-                enabled: !isSubmitting,
-                onTap: () => Navigator.pop(
-                  context,
-                  const BillAction(BillActionType.markPrepared),
-                ),
               ),
-              _ActionTile(
-                icon: Icons.inventory_outlined,
-                color: AppColors.stateErrorColor,
-                title: 'Huỷ chuẩn bị hàng',
-                enabled: !isSubmitting,
-                onTap: () => Navigator.pop(
-                  context,
-                  const BillAction(BillActionType.cancelPrepared),
-                ),
+            // Nhóm chuẩn bị hàng — luôn hiển thị, làm mờ nếu không có quyền.
+            _ActionTile(
+              icon: Icons.inventory_2_outlined,
+              color: AppColors.stateSuccessColor,
+              title: 'Đã chuẩn bị hàng',
+              enabled: canPrepared && !isSubmitting,
+              onTap: () => Navigator.pop(
+                context,
+                const BillAction(BillActionType.markPrepared),
               ),
+            ),
+            _ActionTile(
+              icon: Icons.inventory_outlined,
+              color: AppColors.stateErrorColor,
+              title: 'Huỷ chuẩn bị hàng',
+              enabled: canPrepared && !isSubmitting,
+              onTap: () => Navigator.pop(
+                context,
+                const BillAction(BillActionType.cancelPrepared),
+              ),
+            ),
+            if (canPrepared || canReceived)
               const Divider(height: 1, indent: 16, endIndent: 16),
-              // Nhóm nhận hàng
-              _ActionTile(
-                icon: Icons.check_circle_outline,
-                color: AppColors.stateSuccessColor,
-                title: 'Đã nhận hàng',
-                enabled: !isSubmitting,
-                onTap: () => Navigator.pop(
-                  context,
-                  const BillAction(BillActionType.markReceived),
-                ),
+            // Nhóm nhận hàng — luôn hiển thị, làm mờ nếu không có quyền.
+            _ActionTile(
+              icon: Icons.check_circle_outline,
+              color: AppColors.stateSuccessColor,
+              title: 'Đã nhận hàng',
+              enabled: canReceived && !isSubmitting,
+              onTap: () => Navigator.pop(
+                context,
+                const BillAction(BillActionType.markReceived),
               ),
-              _ActionTile(
-                icon: Icons.cancel_outlined,
-                color: AppColors.stateErrorColor,
-                title: 'Huỷ nhận hàng',
-                enabled: !isSubmitting,
-                onTap: () => Navigator.pop(
-                  context,
-                  const BillAction(BillActionType.cancelReceived),
-                ),
+            ),
+            _ActionTile(
+              icon: Icons.cancel_outlined,
+              color: AppColors.stateErrorColor,
+              title: 'Huỷ nhận hàng',
+              enabled: canReceived && !isSubmitting,
+              onTap: () => Navigator.pop(
+                context,
+                const BillAction(BillActionType.cancelReceived),
               ),
-            ],
+            ),
             const SizedBox(height: 8),
           ],
         ),
