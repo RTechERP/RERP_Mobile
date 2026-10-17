@@ -5,6 +5,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../../../../../../base/network/errors/error.dart';
 import '../../../../../../../../../base/network/errors/extension.dart';
+import '../../../../../../summary_work/leave/data/datasource/models/summary_leave_model.dart';
 import '../datasource/models/personal_summary_model.dart';
 import '../datasource/service/personal_summary_service.dart';
 import 'personal_summary_repo.dart';
@@ -41,6 +42,16 @@ class PersonalSummaryRepoImpl implements PersonalSummaryRepo {
     try {
       final res = await _service.getEmployeeAttendance(query: query);
       return right(res.data ?? const <PersonalAttendanceItem>[]);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<SummaryDepartment>>> getDepartments() async {
+    try {
+      final res = await _service.getDepartments();
+      return right(res.data ?? const <SummaryDepartment>[]);
     } on DioException catch (e) {
       return left(e.baseError);
     }

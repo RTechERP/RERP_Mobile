@@ -1,10 +1,10 @@
-// Service gọi API `/home/get-summary-employee-person`.
-// Trả về `PersonalSummaryData` (đã parse sẵn các nhóm phiếu cá nhân).
+// Service gọi API Personal Summary + Department (dùng cho filter).
 import 'package:injectable/injectable.dart';
 import 'package:rtc_erp/base/network/dio/dio_base_api_service.dart';
 
 import '../../../../../../../../../../base/network/models/base_data.dart';
 import '../../../../../../../../../../common/constants.dart';
+import '../../../../../../../summary_work/leave/data/datasource/models/summary_leave_model.dart';
 import '../models/personal_summary_model.dart';
 
 @injectable
@@ -88,6 +88,22 @@ class PersonalSummaryService extends DioBaseApiService {
           },
         );
       },
+    );
+  }
+
+  /// GET /Department/get-all.
+  /// Trả về danh sách phòng ban dùng cho bottom sheet lọc.
+  Future<BaseData<List<SummaryDepartment>>> getDepartments() async {
+    return get<BaseData<List<SummaryDepartment>>>(
+      ApiEndPoint.getDepart,
+      parser: (json) => BaseData<List<SummaryDepartment>>.fromJson(
+        (json as Map).cast<String, dynamic>(),
+        (data) => (data as List)
+            .map((e) => SummaryDepartment.fromJson(
+                  (e as Map).cast<String, dynamic>(),
+                ))
+            .toList(),
+      ),
     );
   }
 }

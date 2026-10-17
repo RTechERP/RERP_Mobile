@@ -21,7 +21,7 @@ mixin _$PersonalSummaryEvent {
     required TResult Function() init,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
-    required TResult Function(int status) changeStatusFilter,
+    required TResult Function(int? departmentId, int? status) changeFilters,
     required TResult Function(String keyword) changeKeyword,
     required TResult Function() refresh,
   }) =>
@@ -30,7 +30,7 @@ mixin _$PersonalSummaryEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
-    TResult? Function(int status)? changeStatusFilter,
+    TResult? Function(int? departmentId, int? status)? changeFilters,
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function()? refresh,
   }) =>
@@ -39,7 +39,7 @@ mixin _$PersonalSummaryEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
-    TResult Function(int status)? changeStatusFilter,
+    TResult Function(int? departmentId, int? status)? changeFilters,
     TResult Function(String keyword)? changeKeyword,
     TResult Function()? refresh,
     required TResult orElse(),
@@ -49,7 +49,7 @@ mixin _$PersonalSummaryEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_ChangeDateRange value) changeDateRange,
-    required TResult Function(_ChangeStatusFilter value) changeStatusFilter,
+    required TResult Function(_ChangeFilters value) changeFilters,
     required TResult Function(_ChangeKeyword value) changeKeyword,
     required TResult Function(_Refresh value) refresh,
   }) =>
@@ -58,7 +58,7 @@ mixin _$PersonalSummaryEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
-    TResult? Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult? Function(_ChangeFilters value)? changeFilters,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
     TResult? Function(_Refresh value)? refresh,
   }) =>
@@ -67,7 +67,7 @@ mixin _$PersonalSummaryEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_ChangeDateRange value)? changeDateRange,
-    TResult Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult Function(_ChangeFilters value)? changeFilters,
     TResult Function(_ChangeKeyword value)? changeKeyword,
     TResult Function(_Refresh value)? refresh,
     required TResult orElse(),
@@ -134,7 +134,7 @@ class _$InitImpl implements _Init {
     required TResult Function() init,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
-    required TResult Function(int status) changeStatusFilter,
+    required TResult Function(int? departmentId, int? status) changeFilters,
     required TResult Function(String keyword) changeKeyword,
     required TResult Function() refresh,
   }) {
@@ -146,7 +146,7 @@ class _$InitImpl implements _Init {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
-    TResult? Function(int status)? changeStatusFilter,
+    TResult? Function(int? departmentId, int? status)? changeFilters,
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function()? refresh,
   }) {
@@ -158,7 +158,7 @@ class _$InitImpl implements _Init {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
-    TResult Function(int status)? changeStatusFilter,
+    TResult Function(int? departmentId, int? status)? changeFilters,
     TResult Function(String keyword)? changeKeyword,
     TResult Function()? refresh,
     required TResult orElse(),
@@ -174,7 +174,7 @@ class _$InitImpl implements _Init {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_ChangeDateRange value) changeDateRange,
-    required TResult Function(_ChangeStatusFilter value) changeStatusFilter,
+    required TResult Function(_ChangeFilters value) changeFilters,
     required TResult Function(_ChangeKeyword value) changeKeyword,
     required TResult Function(_Refresh value) refresh,
   }) {
@@ -186,7 +186,7 @@ class _$InitImpl implements _Init {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
-    TResult? Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult? Function(_ChangeFilters value)? changeFilters,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
     TResult? Function(_Refresh value)? refresh,
   }) {
@@ -198,7 +198,7 @@ class _$InitImpl implements _Init {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_ChangeDateRange value)? changeDateRange,
-    TResult Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult Function(_ChangeFilters value)? changeFilters,
     TResult Function(_ChangeKeyword value)? changeKeyword,
     TResult Function(_Refresh value)? refresh,
     required TResult orElse(),
@@ -291,7 +291,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function() init,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
-    required TResult Function(int status) changeStatusFilter,
+    required TResult Function(int? departmentId, int? status) changeFilters,
     required TResult Function(String keyword) changeKeyword,
     required TResult Function() refresh,
   }) {
@@ -303,7 +303,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
-    TResult? Function(int status)? changeStatusFilter,
+    TResult? Function(int? departmentId, int? status)? changeFilters,
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function()? refresh,
   }) {
@@ -315,7 +315,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
-    TResult Function(int status)? changeStatusFilter,
+    TResult Function(int? departmentId, int? status)? changeFilters,
     TResult Function(String keyword)? changeKeyword,
     TResult Function()? refresh,
     required TResult orElse(),
@@ -331,7 +331,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_ChangeDateRange value) changeDateRange,
-    required TResult Function(_ChangeStatusFilter value) changeStatusFilter,
+    required TResult Function(_ChangeFilters value) changeFilters,
     required TResult Function(_ChangeKeyword value) changeKeyword,
     required TResult Function(_Refresh value) refresh,
   }) {
@@ -343,7 +343,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
-    TResult? Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult? Function(_ChangeFilters value)? changeFilters,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
     TResult? Function(_Refresh value)? refresh,
   }) {
@@ -355,7 +355,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_ChangeDateRange value)? changeDateRange,
-    TResult Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult Function(_ChangeFilters value)? changeFilters,
     TResult Function(_ChangeKeyword value)? changeKeyword,
     TResult Function(_Refresh value)? refresh,
     required TResult orElse(),
@@ -380,66 +380,74 @@ abstract class _ChangeDateRange implements PersonalSummaryEvent {
 }
 
 /// @nodoc
-abstract class _$$ChangeStatusFilterImplCopyWith<$Res> {
-  factory _$$ChangeStatusFilterImplCopyWith(_$ChangeStatusFilterImpl value,
-          $Res Function(_$ChangeStatusFilterImpl) then) =
-      __$$ChangeStatusFilterImplCopyWithImpl<$Res>;
+abstract class _$$ChangeFiltersImplCopyWith<$Res> {
+  factory _$$ChangeFiltersImplCopyWith(
+          _$ChangeFiltersImpl value, $Res Function(_$ChangeFiltersImpl) then) =
+      __$$ChangeFiltersImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int status});
+  $Res call({int? departmentId, int? status});
 }
 
 /// @nodoc
-class __$$ChangeStatusFilterImplCopyWithImpl<$Res>
-    extends _$PersonalSummaryEventCopyWithImpl<$Res, _$ChangeStatusFilterImpl>
-    implements _$$ChangeStatusFilterImplCopyWith<$Res> {
-  __$$ChangeStatusFilterImplCopyWithImpl(_$ChangeStatusFilterImpl _value,
-      $Res Function(_$ChangeStatusFilterImpl) _then)
+class __$$ChangeFiltersImplCopyWithImpl<$Res>
+    extends _$PersonalSummaryEventCopyWithImpl<$Res, _$ChangeFiltersImpl>
+    implements _$$ChangeFiltersImplCopyWith<$Res> {
+  __$$ChangeFiltersImplCopyWithImpl(
+      _$ChangeFiltersImpl _value, $Res Function(_$ChangeFiltersImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
+    Object? departmentId = freezed,
+    Object? status = freezed,
   }) {
-    return _then(_$ChangeStatusFilterImpl(
-      status: null == status
+    return _then(_$ChangeFiltersImpl(
+      departmentId: freezed == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$ChangeStatusFilterImpl implements _ChangeStatusFilter {
-  const _$ChangeStatusFilterImpl({required this.status});
+class _$ChangeFiltersImpl implements _ChangeFilters {
+  const _$ChangeFiltersImpl({this.departmentId, this.status});
 
   @override
-  final int status;
+  final int? departmentId;
+  @override
+  final int? status;
 
   @override
   String toString() {
-    return 'PersonalSummaryEvent.changeStatusFilter(status: $status)';
+    return 'PersonalSummaryEvent.changeFilters(departmentId: $departmentId, status: $status)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ChangeStatusFilterImpl &&
+            other is _$ChangeFiltersImpl &&
+            (identical(other.departmentId, departmentId) ||
+                other.departmentId == departmentId) &&
             (identical(other.status, status) || other.status == status));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status);
+  int get hashCode => Object.hash(runtimeType, departmentId, status);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ChangeStatusFilterImplCopyWith<_$ChangeStatusFilterImpl> get copyWith =>
-      __$$ChangeStatusFilterImplCopyWithImpl<_$ChangeStatusFilterImpl>(
-          this, _$identity);
+  _$$ChangeFiltersImplCopyWith<_$ChangeFiltersImpl> get copyWith =>
+      __$$ChangeFiltersImplCopyWithImpl<_$ChangeFiltersImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -447,11 +455,11 @@ class _$ChangeStatusFilterImpl implements _ChangeStatusFilter {
     required TResult Function() init,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
-    required TResult Function(int status) changeStatusFilter,
+    required TResult Function(int? departmentId, int? status) changeFilters,
     required TResult Function(String keyword) changeKeyword,
     required TResult Function() refresh,
   }) {
-    return changeStatusFilter(status);
+    return changeFilters(departmentId, status);
   }
 
   @override
@@ -459,11 +467,11 @@ class _$ChangeStatusFilterImpl implements _ChangeStatusFilter {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
-    TResult? Function(int status)? changeStatusFilter,
+    TResult? Function(int? departmentId, int? status)? changeFilters,
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function()? refresh,
   }) {
-    return changeStatusFilter?.call(status);
+    return changeFilters?.call(departmentId, status);
   }
 
   @override
@@ -471,13 +479,13 @@ class _$ChangeStatusFilterImpl implements _ChangeStatusFilter {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
-    TResult Function(int status)? changeStatusFilter,
+    TResult Function(int? departmentId, int? status)? changeFilters,
     TResult Function(String keyword)? changeKeyword,
     TResult Function()? refresh,
     required TResult orElse(),
   }) {
-    if (changeStatusFilter != null) {
-      return changeStatusFilter(status);
+    if (changeFilters != null) {
+      return changeFilters(departmentId, status);
     }
     return orElse();
   }
@@ -487,11 +495,11 @@ class _$ChangeStatusFilterImpl implements _ChangeStatusFilter {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_ChangeDateRange value) changeDateRange,
-    required TResult Function(_ChangeStatusFilter value) changeStatusFilter,
+    required TResult Function(_ChangeFilters value) changeFilters,
     required TResult Function(_ChangeKeyword value) changeKeyword,
     required TResult Function(_Refresh value) refresh,
   }) {
-    return changeStatusFilter(this);
+    return changeFilters(this);
   }
 
   @override
@@ -499,11 +507,11 @@ class _$ChangeStatusFilterImpl implements _ChangeStatusFilter {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
-    TResult? Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult? Function(_ChangeFilters value)? changeFilters,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
     TResult? Function(_Refresh value)? refresh,
   }) {
-    return changeStatusFilter?.call(this);
+    return changeFilters?.call(this);
   }
 
   @override
@@ -511,25 +519,26 @@ class _$ChangeStatusFilterImpl implements _ChangeStatusFilter {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_ChangeDateRange value)? changeDateRange,
-    TResult Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult Function(_ChangeFilters value)? changeFilters,
     TResult Function(_ChangeKeyword value)? changeKeyword,
     TResult Function(_Refresh value)? refresh,
     required TResult orElse(),
   }) {
-    if (changeStatusFilter != null) {
-      return changeStatusFilter(this);
+    if (changeFilters != null) {
+      return changeFilters(this);
     }
     return orElse();
   }
 }
 
-abstract class _ChangeStatusFilter implements PersonalSummaryEvent {
-  const factory _ChangeStatusFilter({required final int status}) =
-      _$ChangeStatusFilterImpl;
+abstract class _ChangeFilters implements PersonalSummaryEvent {
+  const factory _ChangeFilters({final int? departmentId, final int? status}) =
+      _$ChangeFiltersImpl;
 
-  int get status;
+  int? get departmentId;
+  int? get status;
   @JsonKey(ignore: true)
-  _$$ChangeStatusFilterImplCopyWith<_$ChangeStatusFilterImpl> get copyWith =>
+  _$$ChangeFiltersImplCopyWith<_$ChangeFiltersImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -600,7 +609,7 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     required TResult Function() init,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
-    required TResult Function(int status) changeStatusFilter,
+    required TResult Function(int? departmentId, int? status) changeFilters,
     required TResult Function(String keyword) changeKeyword,
     required TResult Function() refresh,
   }) {
@@ -612,7 +621,7 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
-    TResult? Function(int status)? changeStatusFilter,
+    TResult? Function(int? departmentId, int? status)? changeFilters,
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function()? refresh,
   }) {
@@ -624,7 +633,7 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
-    TResult Function(int status)? changeStatusFilter,
+    TResult Function(int? departmentId, int? status)? changeFilters,
     TResult Function(String keyword)? changeKeyword,
     TResult Function()? refresh,
     required TResult orElse(),
@@ -640,7 +649,7 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_ChangeDateRange value) changeDateRange,
-    required TResult Function(_ChangeStatusFilter value) changeStatusFilter,
+    required TResult Function(_ChangeFilters value) changeFilters,
     required TResult Function(_ChangeKeyword value) changeKeyword,
     required TResult Function(_Refresh value) refresh,
   }) {
@@ -652,7 +661,7 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
-    TResult? Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult? Function(_ChangeFilters value)? changeFilters,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
     TResult? Function(_Refresh value)? refresh,
   }) {
@@ -664,7 +673,7 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_ChangeDateRange value)? changeDateRange,
-    TResult Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult Function(_ChangeFilters value)? changeFilters,
     TResult Function(_ChangeKeyword value)? changeKeyword,
     TResult Function(_Refresh value)? refresh,
     required TResult orElse(),
@@ -727,7 +736,7 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function() init,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
         changeDateRange,
-    required TResult Function(int status) changeStatusFilter,
+    required TResult Function(int? departmentId, int? status) changeFilters,
     required TResult Function(String keyword) changeKeyword,
     required TResult Function() refresh,
   }) {
@@ -739,7 +748,7 @@ class _$RefreshImpl implements _Refresh {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
-    TResult? Function(int status)? changeStatusFilter,
+    TResult? Function(int? departmentId, int? status)? changeFilters,
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function()? refresh,
   }) {
@@ -751,7 +760,7 @@ class _$RefreshImpl implements _Refresh {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
-    TResult Function(int status)? changeStatusFilter,
+    TResult Function(int? departmentId, int? status)? changeFilters,
     TResult Function(String keyword)? changeKeyword,
     TResult Function()? refresh,
     required TResult orElse(),
@@ -767,7 +776,7 @@ class _$RefreshImpl implements _Refresh {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_ChangeDateRange value) changeDateRange,
-    required TResult Function(_ChangeStatusFilter value) changeStatusFilter,
+    required TResult Function(_ChangeFilters value) changeFilters,
     required TResult Function(_ChangeKeyword value) changeKeyword,
     required TResult Function(_Refresh value) refresh,
   }) {
@@ -779,7 +788,7 @@ class _$RefreshImpl implements _Refresh {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
-    TResult? Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult? Function(_ChangeFilters value)? changeFilters,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
     TResult? Function(_Refresh value)? refresh,
   }) {
@@ -791,7 +800,7 @@ class _$RefreshImpl implements _Refresh {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_ChangeDateRange value)? changeDateRange,
-    TResult Function(_ChangeStatusFilter value)? changeStatusFilter,
+    TResult Function(_ChangeFilters value)? changeFilters,
     TResult Function(_ChangeKeyword value)? changeKeyword,
     TResult Function(_Refresh value)? refresh,
     required TResult orElse(),

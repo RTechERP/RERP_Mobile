@@ -13,7 +13,14 @@ class PersonalSummaryState extends BaseBlocState {
   final DateTime? dateStart;
   final DateTime? dateEnd;
 
-  /// -1: tất cả, 0: chưa duyệt, 1: đã duyệt, 2: huỷ.
+  /// Danh sách phòng ban để chọn trong bottom sheet lọc.
+  final List<SummaryDepartment> departments;
+
+  /// Phòng ban đang được chọn để lọc (null = theo user hiện tại).
+  final int? departmentId;
+
+  /// Trạng thái duyệt bổ sung:
+  /// -1: tất cả, 0: chờ duyệt, 1: đã duyệt, 2: từ chối.
   final int statusFilter;
 
   /// Từ khoá tìm kiếm (apply client-side trên từng tab).
@@ -32,6 +39,8 @@ class PersonalSummaryState extends BaseBlocState {
     this.attendance = const [],
     this.dateStart,
     this.dateEnd,
+    this.departments = const [],
+    this.departmentId,
     this.statusFilter = -1,
     this.keyword = '',
   });
@@ -48,6 +57,8 @@ class PersonalSummaryState extends BaseBlocState {
         attendance: [],
         dateStart: null,
         dateEnd: null,
+        departments: [],
+        departmentId: null,
         statusFilter: -1,
         keyword: '',
       );
@@ -66,6 +77,8 @@ class PersonalSummaryState extends BaseBlocState {
         attendance,
         dateStart,
         dateEnd,
+        departments,
+        departmentId,
         statusFilter,
         keyword,
       ];

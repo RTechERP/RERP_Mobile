@@ -1,5 +1,6 @@
 // Bloc xử lý logic màn Personal Summary (8 tab phiếu cá nhân).
-// Quản lý: khoảng ngày, filter trạng thái duyệt, từ khoá tìm kiếm và dữ liệu nhận về.
+// Quản lý: khoảng ngày, filter phòng ban + trạng thái duyệt, từ khoá tìm
+// kiếm và dữ liệu nhận về.
 import 'package:bloc/bloc.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -9,6 +10,7 @@ import '../../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../../common/logger/index.dart';
 import '../../../../../../../../auth/data/repository/auth_repo.dart';
+import '../../../../../../summary_work/leave/data/datasource/models/summary_leave_model.dart';
 import '../../data/datasource/models/personal_summary_model.dart';
 import '../../data/repository/personal_summary_repo.dart';
 
@@ -32,10 +34,13 @@ class PersonalSummaryBloc
         init: () async => _onInit(emit),
         changeDateRange: (dateStart, dateEnd) =>
             _onChangeDateRange(emit, dateStart: dateStart, dateEnd: dateEnd),
-        changeStatusFilter: (status) async =>
-            _onChangeStatusFilter(emit, status: status),
         changeKeyword: (keyword) async =>
             _onChangeKeyword(emit, keyword: keyword),
+        changeFilters: (departmentId, status) async => _onChangeFilters(
+          emit,
+          departmentId: departmentId,
+          status: status,
+        ),
         refresh: () async => _onRefresh(emit),
       );
     });
@@ -43,7 +48,7 @@ class PersonalSummaryBloc
 
   /// Xây payload từ state hiện tại + employeeId.
   Map<String, dynamic> _payload({
-    required int? employeeId,
+    required int? departmentId,
     required DateTime dateStart,
     required DateTime dateEnd,
     required int status,
@@ -61,7 +66,7 @@ class PersonalSummaryBloc
     return <String, dynamic>{
       'DateStart': lo.toIso8601String(),
       'DateEnd': hi.toIso8601String(),
-      'DepartmentID': employeeId ?? 0,
+      'DepartmentID': departmentId ?? 0,
       'EmployeeID': 0,
       'IsApproved': status,
       'Keyword': keyword,
@@ -76,8 +81,12 @@ class PersonalSummaryBloc
     final userRes = await _authRepo.getCurrentUser();
     final employee = userRes.fold((_) => null, (u) => u);
 
+    // Nếu chưa chọn phòng ban, mặc định theo user hiện tại.
+    final effectiveDepartmentId =
+        state.departmentId ?? employee?.departmentId;
+
     final payload = _payload(
-      employeeId: employee?.departmentId,
+      departmentId: effectiveDepartmentId,
       dateStart: dateStart,
       dateEnd: dateEnd,
       status: state.statusFilter,
@@ -91,7 +100,7 @@ class PersonalSummaryBloc
     // Sau khi load summary, gọi thêm API vân tay (GET, song song độc lập).
     // Nếu lỗi thì vẫn hiển thị được dữ liệu summary.
     final attendanceQuery = _attendanceQuery(
-      departmentId: employee?.departmentId,
+      departmentId: effectiveDepartmentId,
       dateStart: dateStart,
       dateEnd: dateEnd,
       keyword: state.keyword,
@@ -134,6 +143,7 @@ class PersonalSummaryBloc
           attendance: attendance,
           dateStart: dateStart,
           dateEnd: dateEnd,
+          departmentId: effectiveDepartmentId,
         ));
       },
     );
@@ -166,11 +176,21 @@ class PersonalSummaryBloc
     try {
       emit(state.copyWith(status: BaseStateStatus.loading));
 
+      // Load departments trước để dùng cho bottom sheet lọc.
+      final deptRes = await _repo.getDepartments();
+      List<SummaryDepartment> departments = const [];
+      deptRes.fold(
+        (l) => _log.logE('Get departments failed: $l'),
+        (r) => departments = r,
+      );
+
       final now = DateTime.now();
       // Mặc định: 2 ngày gần nhất (hôm qua → hôm nay).
       final defaultEnd = DateTime(now.year, now.month, now.day);
       final defaultStart =
           defaultEnd.subtract(const Duration(days: 1));
+
+      emit(state.copyWith(departments: departments));
 
       await _fetch(
         emit,
@@ -218,14 +238,16 @@ class PersonalSummaryBloc
     await _fetch(emit, dateStart: lo, dateEnd: hi);
   }
 
-  Future<void> _onChangeStatusFilter(
+  /// Đổi bộ lọc (phòng ban + trạng thái) → gọi lại API.
+  Future<void> _onChangeFilters(
     Emitter<PersonalSummaryState> emit, {
-    required int status,
+    int? departmentId,
+    int? status,
   }) async {
-    if (status == state.statusFilter) return;
     emit(state.copyWith(
       status: BaseStateStatus.loading,
-      statusFilter: status,
+      departmentId: departmentId,
+      statusFilter: status ?? state.statusFilter,
     ));
     final start = state.dateStart ?? DateTime.now();
     final end = state.dateEnd ?? DateTime.now();

@@ -31,6 +31,10 @@ abstract class _$PersonalSummaryStateCWProxy {
 
   PersonalSummaryState dateEnd(DateTime? dateEnd);
 
+  PersonalSummaryState departments(List<SummaryDepartment> departments);
+
+  PersonalSummaryState departmentId(int? departmentId);
+
   PersonalSummaryState statusFilter(int statusFilter);
 
   PersonalSummaryState keyword(String keyword);
@@ -54,6 +58,8 @@ abstract class _$PersonalSummaryStateCWProxy {
     List<PersonalAttendanceItem>? attendance,
     DateTime? dateStart,
     DateTime? dateEnd,
+    List<SummaryDepartment>? departments,
+    int? departmentId,
     int? statusFilter,
     String? keyword,
   });
@@ -110,6 +116,14 @@ class _$PersonalSummaryStateCWProxyImpl
   PersonalSummaryState dateEnd(DateTime? dateEnd) => this(dateEnd: dateEnd);
 
   @override
+  PersonalSummaryState departments(List<SummaryDepartment> departments) =>
+      this(departments: departments);
+
+  @override
+  PersonalSummaryState departmentId(int? departmentId) =>
+      this(departmentId: departmentId);
+
+  @override
   PersonalSummaryState statusFilter(int statusFilter) =>
       this(statusFilter: statusFilter);
 
@@ -137,6 +151,8 @@ class _$PersonalSummaryStateCWProxyImpl
     Object? attendance = const $CopyWithPlaceholder(),
     Object? dateStart = const $CopyWithPlaceholder(),
     Object? dateEnd = const $CopyWithPlaceholder(),
+    Object? departments = const $CopyWithPlaceholder(),
+    Object? departmentId = const $CopyWithPlaceholder(),
     Object? statusFilter = const $CopyWithPlaceholder(),
     Object? keyword = const $CopyWithPlaceholder(),
   }) {
@@ -191,6 +207,15 @@ class _$PersonalSummaryStateCWProxyImpl
           ? _value.dateEnd
           // ignore: cast_nullable_to_non_nullable
           : dateEnd as DateTime?,
+      departments:
+          departments == const $CopyWithPlaceholder() || departments == null
+              ? _value.departments
+              // ignore: cast_nullable_to_non_nullable
+              : departments as List<SummaryDepartment>,
+      departmentId: departmentId == const $CopyWithPlaceholder()
+          ? _value.departmentId
+          // ignore: cast_nullable_to_non_nullable
+          : departmentId as int?,
       statusFilter:
           statusFilter == const $CopyWithPlaceholder() || statusFilter == null
               ? _value.statusFilter

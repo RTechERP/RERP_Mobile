@@ -1,8 +1,10 @@
-// Repository contract cho Personal Summary — chỉ phơi ra hàm getPersonalSummary,
-// các nhóm phiếu sẽ được bloc xử lý (flatten + tab/filter).
+// Repository contract cho Personal Summary — phơi ra getPersonalSummary,
+// getEmployeeAttendance (tab Vân tay) và getDepartments (phục vụ lọc phòng
+// ban trong bottom sheet).
 import 'package:dartz/dartz.dart';
 
 import '../../../../../../../../../base/network/errors/error.dart';
+import '../../../../../../summary_work/leave/data/datasource/models/summary_leave_model.dart';
 import '../datasource/models/personal_summary_model.dart';
 
 abstract class PersonalSummaryRepo {
@@ -18,4 +20,7 @@ abstract class PersonalSummaryRepo {
       getEmployeeAttendance({
     required Map<String, dynamic> query,
   });
+
+  /// Lấy danh sách phòng ban (phục vụ bottom sheet lọc).
+  Future<Either<BaseError, List<SummaryDepartment>>> getDepartments();
 }

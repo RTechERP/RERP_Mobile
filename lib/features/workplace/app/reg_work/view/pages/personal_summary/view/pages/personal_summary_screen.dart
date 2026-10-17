@@ -125,15 +125,23 @@ class _PersonalSummaryScreenState
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
       builder: (_) => PersonalSummaryFilterSheet(
+        departments: state.departments,
+        currentDepartmentId: state.departmentId,
         currentStatus: state.statusFilter,
-        onApply: (status) {
+        onApply: (departmentId, status) {
           bloc.add(
-            PersonalSummaryEvent.changeStatusFilter(status: status),
+            PersonalSummaryEvent.changeFilters(
+              departmentId: departmentId,
+              status: status,
+            ),
           );
         },
         onClear: () {
           bloc.add(
-            const PersonalSummaryEvent.changeStatusFilter(status: -1),
+            const PersonalSummaryEvent.changeFilters(
+              departmentId: null,
+              status: -1,
+            ),
           );
         },
       ),
@@ -151,7 +159,7 @@ class _PersonalSummaryScreenState
             onBackTap: () => context.pop(),
             centerTitle: false,
             title: Text(
-              'Tổng hợp phiếu cá nhân',
+              'Tổng hợp cá nhân',
               style: AppStyles.headingTitle2,
             ),
             bottom: PreferredSize(
