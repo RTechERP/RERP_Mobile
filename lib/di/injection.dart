@@ -109,6 +109,10 @@ import '../features/workplace/app/reg_work/view/pages/overtime/data/datasource/s
 import '../features/workplace/app/reg_work/view/pages/overtime/data/repository/overtime_repo.dart';
 import '../features/workplace/app/reg_work/view/pages/overtime/data/repository/overtime_repo_impl.dart';
 import '../features/workplace/app/reg_work/view/pages/overtime/view/bloc/overtime_bloc.dart';
+import '../features/workplace/app/reg_work/view/pages/personal_summary/data/datasource/service/personal_summary_service.dart';
+import '../features/workplace/app/reg_work/view/pages/personal_summary/data/repository/personal_summary_repo.dart';
+import '../features/workplace/app/reg_work/view/pages/personal_summary/data/repository/personal_summary_repo_impl.dart';
+import '../features/workplace/app/reg_work/view/pages/personal_summary/view/bloc/personal_summary_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/lunch/data/datasource/service/lunch_service.dart';
 import '../features/workplace/app/reg_work/view/pages/lunch/data/repository/lunch_repo.dart';
 import '../features/workplace/app/reg_work/view/pages/lunch/data/repository/lunch_repo_impl.dart';
@@ -274,6 +278,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<OvertimeService>(
     () => OvertimeService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<PersonalSummaryService>(
+    () => PersonalSummaryService(getIt<Dio>()),
   );
 
   getIt.registerLazySingleton<WorkTripService>(
@@ -450,6 +458,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<OvertimeRepo>(
     () => OvertimeRepoImpl(getIt<OvertimeService>()),
+  );
+
+  getIt.registerLazySingleton<PersonalSummaryRepo>(
+    () => PersonalSummaryRepoImpl(getIt<PersonalSummaryService>()),
   );
 
   getIt.registerLazySingleton<WorkTripRepo>(
@@ -647,6 +659,14 @@ getIt.registerLazySingleton<BookingGuestHouseBloc>(
   getIt.registerFactory<OvertimeBloc>(
     () => OvertimeBloc(
       getIt<OvertimeRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<PersonalSummaryBloc>(
+    () => PersonalSummaryBloc(
+      getIt<PersonalSummaryRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
     ),

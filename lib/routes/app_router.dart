@@ -117,6 +117,8 @@ import '../features/workplace/app/reg_work/view/pages/overtime/view/pages/overti
 import '../features/workplace/app/reg_work/view/pages/overtime/view/pages/overtime_detail_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/overtime/view/pages/overtime_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/overtime/data/datasource/models/overtime_model.dart';
+import '../features/workplace/app/reg_work/view/pages/personal_summary/view/bloc/personal_summary_bloc.dart';
+import '../features/workplace/app/reg_work/view/pages/personal_summary/view/pages/personal_summary_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/salary/view/pages/finger_print_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/salary/view/pages/overview_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/wfh/view/bloc/wfh_bloc.dart';
@@ -542,6 +544,22 @@ class AppRouter {
               }
               return SalaryCardDetailScreen(cardType: cardType, month: month);
             },
+          ),
+        ],
+      ),
+
+      //---(Personal Summary)---//
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(
+            value: getIt<PersonalSummaryBloc>(),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.regworkPersonalSummary,
+            builder: (context, state) => const PersonalSummaryScreen(),
           ),
         ],
       ),

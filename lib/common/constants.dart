@@ -268,6 +268,22 @@ class ApiEndPoint {
   static const String getVehicleBookingsForBussiness =
       '/EmployeeBussiness/get-vehicle-bookings-for-bussiness';
 
+  /// Tổng hợp phiếu cá nhân (dashboard trang chủ):
+  /// dataOnLeave | dataEarlyLate | dataOverTime | dataBussiness |
+  /// dataWFH | dataENF | dataNightShift.
+  static const String getSummaryEmployeePerson =
+      '/home/get-summary-employee-person';
+
+  /// Lấy dữ liệu chấm công vân tay theo khoảng ngày (query string).
+  /// Params: departmentID, employeeID, keyword, dateStart, dateEnd.
+  static const String getEmployeeAttendance =
+      '/SummaryAttendance/get-employee-attendance';
+
+  /// Lấy danh sách nhân viên theo phòng ban (dùng cho drawer chọn nhân sự
+  /// ở tab Vân tay). GET /SummaryAttendance/get-employees?departmentID=...
+  static const String getAttendanceEmployees =
+      '/SummaryAttendance/get-employees';
+
   static const String getOvernight = '/EmployeeNightShift/person';
 
   static const String saveOvernight = '/EmployeeNightShift/save-data';
