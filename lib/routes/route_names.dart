@@ -184,6 +184,11 @@ class RouteNames {
   static const bookingGuestHouseAdvance =
       '/reg_general/booking_guest_house/advance';
 
+  // Rental Vehicle
+  static const rentalVehicle = '/reg_general/rental_vehicle';
+  static const rentalVehicleAdd = '/reg_general/rental_vehicle/add';
+  static const rentalVehicleUpdate = '/reg_general/rental_vehicle/update';
+
   static const workCategory = '/reg_general/work_category';
 
   static const workCategoryAdd = '/reg_general/work_category/add';

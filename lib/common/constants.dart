@@ -173,6 +173,17 @@ class ApiEndPoint {
   static const String uploadBookingVehicleFile =
       '/vehiclebookingmanagement/upload-file';
 
+  // Rental Vehicle
+  /// Tìm kiếm yêu cầu thuê xe tải.
+  /// API: POST /VehicleRentalRequest/search
+  static const String searchVehicleRental = '/VehicleRentalRequest/search';
+  /// API: POST /VehicleRentalRequest/save-data
+  static const String saveVehicleRental = '/VehicleRentalRequest/save-data';
+
+  /// Xoá yêu cầu thuê xe tải theo danh sách id.
+  /// API: POST /VehicleRentalRequest/delete
+  static const String deleteVehicleRental = '/VehicleRentalRequest/delete';
+
   static const String getLunch = '/EmployeeFoodOrder/get-foodorder-personal';
   static const String saveLunch = '/EmployeeFoodOrder/save-data';
 
