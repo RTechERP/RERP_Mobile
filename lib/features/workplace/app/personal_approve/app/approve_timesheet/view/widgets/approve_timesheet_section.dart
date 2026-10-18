@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../../../../../common/app_theme/app_colors.dart';
 import '../../data/datasource/models/approve_timesheet_model.dart';
@@ -342,8 +343,48 @@ class _CardHeader extends StatelessWidget {
     return '—';
   }
 
+  /// Tóm tắt thời gian để TBP nhìn nhanh: ngày đăng ký + giờ vào/ra
+  /// (nếu là loại phiếu có CheckIn/CheckOut) + ngày Senior duyệt.
+  ///
+  /// Trả về `null` khi phiếu không có bất kỳ mốc thời gian nào → header
+  /// sẽ không vẽ dòng này (giữ card gọn).
+  List<({IconData icon, String text})> get _timeMetas {
+    final metas = <({IconData icon, String text})>[];
+
+    final ngayDangKy = item.ngayDangKy;
+    if (ngayDangKy != null) {
+      metas.add((
+        icon: Icons.event_outlined,
+        text: 'Ngày: ${DateFormat('dd/MM/yyyy').format(ngayDangKy)}',
+      ));
+    }
+
+    final checkIn = (item.checkIn ?? '').trim();
+    final checkOut = (item.checkOut ?? '').trim();
+    if (checkIn.isNotEmpty || checkOut.isNotEmpty) {
+      metas.add((
+        icon: Icons.schedule,
+        text: 'Giờ: ${checkIn.isEmpty ? '—' : checkIn}'
+            ' → ${checkOut.isEmpty ? '—' : checkOut}',
+      ));
+    }
+
+    if (showSeniorStage &&
+        (item.isSeniorApproved ?? 0) == 1 &&
+        item.dateApprovedSenitor != null) {
+      metas.add((
+        icon: Icons.verified_outlined,
+        text:
+            'Senior duyệt: ${DateFormat('dd/MM/yyyy').format(item.dateApprovedSenitor!)}',
+      ));
+    }
+
+    return metas;
+  }
+
   @override
   Widget build(BuildContext context) {
+    final timeMetas = _timeMetas;
     return Padding(
       padding: const EdgeInsets.fromLTRB(10, 10, 12, 10),
       child: Row(
@@ -366,6 +407,10 @@ class _CardHeader extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
+                if (timeMetas.isNotEmpty) ...[
+                  const SizedBox(height: 5),
+                  _TimeMetaRow(metas: timeMetas),
+                ],
                 const SizedBox(height: 6),
                 _Pipeline(item: item, showSeniorStage: showSeniorStage),
               ],
@@ -629,6 +674,41 @@ class _SectionLabel extends StatelessWidget {
             color: AppColors.primaryERP,
           ),
         ),
+      ],
+    );
+  }
+}
+
+// ===== Time meta row (ngày đăng ký, giờ vào/ra, ngày Senior duyệt) =====
+
+class _TimeMetaRow extends StatelessWidget {
+  const _TimeMetaRow({required this.metas});
+
+  final List<({IconData icon, String text})> metas;
+
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(
+      spacing: 10,
+      runSpacing: 3,
+      crossAxisAlignment: WrapCrossAlignment.center,
+      children: [
+        for (final m in metas)
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(m.icon, size: 12, color: AppColors.textTertiaryColor),
+              const SizedBox(width: 4),
+              Text(
+                m.text,
+                style: const TextStyle(
+                  fontSize: 11.5,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.textTertiaryColor,
+                ),
+              ),
+            ],
+          ),
       ],
     );
   }
