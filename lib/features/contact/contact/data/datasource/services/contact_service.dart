@@ -2,7 +2,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../../../base/network/dio/dio_base_api_service.dart';
 import '../../../../../../base/network/models/base_data.dart';
-import '../../../../../common/constants.dart';
+import '../../../../../../common/constants.dart';
 import '../models/contact_model.dart';
 
 @injectable

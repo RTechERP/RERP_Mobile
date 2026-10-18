@@ -16,24 +16,25 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ContactEvent {
-  int get departmentID => throw _privateConstructorUsedError;
-  String? get keyword => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int departmentID, String? keyword) init,
     required TResult Function(int departmentID, String? keyword) refresh,
+    required TResult Function() loadSavedBusinessCards,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int departmentID, String? keyword)? init,
     TResult? Function(int departmentID, String? keyword)? refresh,
+    TResult? Function()? loadSavedBusinessCards,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int departmentID, String? keyword)? init,
     TResult Function(int departmentID, String? keyword)? refresh,
+    TResult Function()? loadSavedBusinessCards,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -41,24 +42,24 @@ mixin _$ContactEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_Refresh value) refresh,
+    required TResult Function(_LoadSavedBusinessCards value)
+        loadSavedBusinessCards,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_LoadSavedBusinessCards value)? loadSavedBusinessCards,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_Refresh value)? refresh,
+    TResult Function(_LoadSavedBusinessCards value)? loadSavedBusinessCards,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $ContactEventCopyWith<ContactEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -67,8 +68,6 @@ abstract class $ContactEventCopyWith<$Res> {
   factory $ContactEventCopyWith(
           ContactEvent value, $Res Function(ContactEvent) then) =
       _$ContactEventCopyWithImpl<$Res, ContactEvent>;
-  @useResult
-  $Res call({int departmentID, String? keyword});
 }
 
 /// @nodoc
@@ -80,33 +79,13 @@ class _$ContactEventCopyWithImpl<$Res, $Val extends ContactEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? departmentID = null,
-    Object? keyword = freezed,
-  }) {
-    return _then(_value.copyWith(
-      departmentID: null == departmentID
-          ? _value.departmentID
-          : departmentID // ignore: cast_nullable_to_non_nullable
-              as int,
-      keyword: freezed == keyword
-          ? _value.keyword
-          : keyword // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$InitImplCopyWith<$Res>
-    implements $ContactEventCopyWith<$Res> {
+abstract class _$$InitImplCopyWith<$Res> {
   factory _$$InitImplCopyWith(
           _$InitImpl value, $Res Function(_$InitImpl) then) =
       __$$InitImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({int departmentID, String? keyword});
 }
@@ -177,6 +156,7 @@ class _$InitImpl implements _Init {
   TResult when<TResult extends Object?>({
     required TResult Function(int departmentID, String? keyword) init,
     required TResult Function(int departmentID, String? keyword) refresh,
+    required TResult Function() loadSavedBusinessCards,
   }) {
     return init(departmentID, keyword);
   }
@@ -186,6 +166,7 @@ class _$InitImpl implements _Init {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int departmentID, String? keyword)? init,
     TResult? Function(int departmentID, String? keyword)? refresh,
+    TResult? Function()? loadSavedBusinessCards,
   }) {
     return init?.call(departmentID, keyword);
   }
@@ -195,6 +176,7 @@ class _$InitImpl implements _Init {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int departmentID, String? keyword)? init,
     TResult Function(int departmentID, String? keyword)? refresh,
+    TResult Function()? loadSavedBusinessCards,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -208,6 +190,8 @@ class _$InitImpl implements _Init {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_Refresh value) refresh,
+    required TResult Function(_LoadSavedBusinessCards value)
+        loadSavedBusinessCards,
   }) {
     return init(this);
   }
@@ -217,6 +201,7 @@ class _$InitImpl implements _Init {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_LoadSavedBusinessCards value)? loadSavedBusinessCards,
   }) {
     return init?.call(this);
   }
@@ -226,6 +211,7 @@ class _$InitImpl implements _Init {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_Refresh value)? refresh,
+    TResult Function(_LoadSavedBusinessCards value)? loadSavedBusinessCards,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -239,23 +225,18 @@ abstract class _Init implements ContactEvent {
   const factory _Init({final int departmentID, final String? keyword}) =
       _$InitImpl;
 
-  @override
   int get departmentID;
-  @override
   String? get keyword;
-  @override
   @JsonKey(ignore: true)
   _$$InitImplCopyWith<_$InitImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$RefreshImplCopyWith<$Res>
-    implements $ContactEventCopyWith<$Res> {
+abstract class _$$RefreshImplCopyWith<$Res> {
   factory _$$RefreshImplCopyWith(
           _$RefreshImpl value, $Res Function(_$RefreshImpl) then) =
       __$$RefreshImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({int departmentID, String? keyword});
 }
@@ -327,6 +308,7 @@ class _$RefreshImpl implements _Refresh {
   TResult when<TResult extends Object?>({
     required TResult Function(int departmentID, String? keyword) init,
     required TResult Function(int departmentID, String? keyword) refresh,
+    required TResult Function() loadSavedBusinessCards,
   }) {
     return refresh(departmentID, keyword);
   }
@@ -336,6 +318,7 @@ class _$RefreshImpl implements _Refresh {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int departmentID, String? keyword)? init,
     TResult? Function(int departmentID, String? keyword)? refresh,
+    TResult? Function()? loadSavedBusinessCards,
   }) {
     return refresh?.call(departmentID, keyword);
   }
@@ -345,6 +328,7 @@ class _$RefreshImpl implements _Refresh {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int departmentID, String? keyword)? init,
     TResult Function(int departmentID, String? keyword)? refresh,
+    TResult Function()? loadSavedBusinessCards,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -358,6 +342,8 @@ class _$RefreshImpl implements _Refresh {
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
     required TResult Function(_Refresh value) refresh,
+    required TResult Function(_LoadSavedBusinessCards value)
+        loadSavedBusinessCards,
   }) {
     return refresh(this);
   }
@@ -367,6 +353,7 @@ class _$RefreshImpl implements _Refresh {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
     TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_LoadSavedBusinessCards value)? loadSavedBusinessCards,
   }) {
     return refresh?.call(this);
   }
@@ -376,6 +363,7 @@ class _$RefreshImpl implements _Refresh {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
     TResult Function(_Refresh value)? refresh,
+    TResult Function(_LoadSavedBusinessCards value)? loadSavedBusinessCards,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -389,12 +377,121 @@ abstract class _Refresh implements ContactEvent {
   const factory _Refresh({final int departmentID, final String? keyword}) =
       _$RefreshImpl;
 
-  @override
   int get departmentID;
-  @override
   String? get keyword;
-  @override
   @JsonKey(ignore: true)
   _$$RefreshImplCopyWith<_$RefreshImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LoadSavedBusinessCardsImplCopyWith<$Res> {
+  factory _$$LoadSavedBusinessCardsImplCopyWith(
+          _$LoadSavedBusinessCardsImpl value,
+          $Res Function(_$LoadSavedBusinessCardsImpl) then) =
+      __$$LoadSavedBusinessCardsImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LoadSavedBusinessCardsImplCopyWithImpl<$Res>
+    extends _$ContactEventCopyWithImpl<$Res, _$LoadSavedBusinessCardsImpl>
+    implements _$$LoadSavedBusinessCardsImplCopyWith<$Res> {
+  __$$LoadSavedBusinessCardsImplCopyWithImpl(
+      _$LoadSavedBusinessCardsImpl _value,
+      $Res Function(_$LoadSavedBusinessCardsImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$LoadSavedBusinessCardsImpl implements _LoadSavedBusinessCards {
+  const _$LoadSavedBusinessCardsImpl();
+
+  @override
+  String toString() {
+    return 'ContactEvent.loadSavedBusinessCards()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadSavedBusinessCardsImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int departmentID, String? keyword) init,
+    required TResult Function(int departmentID, String? keyword) refresh,
+    required TResult Function() loadSavedBusinessCards,
+  }) {
+    return loadSavedBusinessCards();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int departmentID, String? keyword)? init,
+    TResult? Function(int departmentID, String? keyword)? refresh,
+    TResult? Function()? loadSavedBusinessCards,
+  }) {
+    return loadSavedBusinessCards?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int departmentID, String? keyword)? init,
+    TResult Function(int departmentID, String? keyword)? refresh,
+    TResult Function()? loadSavedBusinessCards,
+    required TResult orElse(),
+  }) {
+    if (loadSavedBusinessCards != null) {
+      return loadSavedBusinessCards();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_LoadSavedBusinessCards value)
+        loadSavedBusinessCards,
+  }) {
+    return loadSavedBusinessCards(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_LoadSavedBusinessCards value)? loadSavedBusinessCards,
+  }) {
+    return loadSavedBusinessCards?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_LoadSavedBusinessCards value)? loadSavedBusinessCards,
+    required TResult orElse(),
+  }) {
+    if (loadSavedBusinessCards != null) {
+      return loadSavedBusinessCards(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadSavedBusinessCards implements ContactEvent {
+  const factory _LoadSavedBusinessCards() = _$LoadSavedBusinessCardsImpl;
 }

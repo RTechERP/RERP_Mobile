@@ -6,6 +6,7 @@ class ContactState extends BaseBlocState {
   final ContactPersonalItem? selectedContact;
   final int departmentID;
   final String? keyword;
+  final List<BusinessCardModel> businessCards;
 
   const ContactState({
     required super.status,
@@ -14,6 +15,7 @@ class ContactState extends BaseBlocState {
     this.selectedContact,
     this.departmentID = 0,
     this.keyword,
+    this.businessCards = const [],
   });
 
   factory ContactState.init() =>

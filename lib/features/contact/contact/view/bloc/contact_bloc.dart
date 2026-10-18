@@ -2,9 +2,12 @@ import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:rtc_erp/features/contact/data/datasource/models/contact_model.dart';
+
 
 import '../../../../../base/bloc/index.dart';
+import '../../../../../features/contact/business_card/data/datasource/models/business_card_model.dart';
+import '../../../../../features/contact/business_card/data/repository/business_card_repo.dart';
+import '../../data/datasource/models/contact_model.dart';
 import '../../data/repository/contact_repo.dart';
 
 part 'contact_event.dart';
@@ -15,16 +18,26 @@ part 'contact_bloc.freezed.dart';
 @injectable
 class ContactBloc extends BaseBloc<ContactEvent, ContactState> {
   final ContactRepo _repo;
+  final BusinessCardRepo _businessCardRepo;
 
-  ContactBloc(this._repo) : super(ContactState.init()) {
+  ContactBloc(this._repo, this._businessCardRepo) : super(ContactState.init()) {
     on<ContactEvent>((event, emit) async {
       await event.when(
         init: (departmentID, keyword) =>
             _onLoad(emit, departmentID: departmentID, keyword: keyword),
         refresh: (departmentID, keyword) =>
             _onLoad(emit, departmentID: departmentID, keyword: keyword),
+        loadSavedBusinessCards: () => _onLoadSavedBusinessCards(emit),
       );
     });
+  }
+
+  /// Chỉ reload danh sách danh thiếp từ danh bạ máy, không đụng contacts.
+  Future<void> _onLoadSavedBusinessCards(Emitter<ContactState> emit) async {
+    final result = await _businessCardRepo.getBusinessCardsFromDevice();
+    List<BusinessCardModel> businessCards = [];
+    result.fold((_) {}, (cards) => businessCards = cards);
+    emit(state.copyWith(businessCards: businessCards));
   }
 
   Future<void> _onLoad(
@@ -39,6 +52,10 @@ class ContactBloc extends BaseBloc<ContactEvent, ContactState> {
     ));
 
     final result = await _repo.getContact(departmentID: departmentID, keyword: keyword);
+    final cardsResult = await _businessCardRepo.getBusinessCards();
+
+    List<BusinessCardModel> businessCards = [];
+    cardsResult.fold((_) {}, (cards) => businessCards = cards);
 
     result.fold(
       (error) {
@@ -56,6 +73,7 @@ class ContactBloc extends BaseBloc<ContactEvent, ContactState> {
         emit(state.copyWith(
           status: BaseStateStatus.success,
           contacts: contacts,
+          businessCards: businessCards,
         ));
       },
     );

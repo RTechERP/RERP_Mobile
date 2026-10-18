@@ -15,6 +15,14 @@ if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 }
 
+// Loại bỏ firebase-iid:20.x (chỉ aar này, giữ firebase-iid-interop để có
+// FirebaseInstanceIdInternal cần cho FirebaseMessagingRegistrar).
+// firebase-messaging:25.0.1 aar đã embed sẵn FirebaseInstanceIdReceiver
+// gây trùng class với firebase-iid:20.1.5 ở checkDuplicateClasses.
+configurations.all {
+    exclude(group = "com.google.firebase", module = "firebase-iid")
+}
+
 android {
     namespace = "vn.rtc.erp"
 
@@ -87,6 +95,11 @@ android {
 
         getByName("release") {
             isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
             signingConfig = signingConfigs.getByName("release")
         }
     }

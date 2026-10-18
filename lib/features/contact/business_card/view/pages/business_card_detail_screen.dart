@@ -1,36 +1,27 @@
-// Date: 11/04/2026 - Dev: NQHung
-// Nội dung/Chức năng: Màn hình chi tiết một liên hệ - hiển thị thông tin đầy đủ và các hành động (gọi, nhắn tin, email)
-//
-// Giao diện:
-//   - AppBar với nút back
-//   - Avatar lớn ở giữa với trạng thái online
-//   - Thông tin: họ tên, chức vụ, phòng ban
-//   - Card thông tin liên lạc: số điện thoại, email
-//   - Card thông tin công ty: mã nhân viên, ngày vào làm
-//   - Các nút hành động: Gọi điện, Nhắn tin, Gửi Email
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../../../../common/app_theme/index.dart';
-import '../../../../base/network/errors/extension.dart';
-import '../../../../common/utils/snack_bar_helper.dart';
-import '../../data/datasource/models/contact_model.dart';
+import '../../../../../common/app_theme/index.dart';
+import '../../../../../base/network/errors/extension.dart';
+import '../../../../../common/utils/snack_bar_helper.dart';
+import '../../data/datasource/models/business_card_model.dart';
 
-/// Màn hình chi tiết liên hệ.
-///
-/// Hiển thị thông tin đầy đủ của một liên hệ từ API: avatar, chức vụ, phòng ban,
-/// thông tin liên lạc (điện thoại, email), thông tin công ty (mã NV, ngày vào làm).
-/// Có các nút hành động: gọi điện, nhắn tin, gửi email.
-class ContactDetailScreen extends StatelessWidget {
-  final ContactPersonalItem contact;
+/// Màn hình chi tiết danh thiếp.
+class BusinessCardDetailScreen extends StatelessWidget {
+  final BusinessCardModel card;
 
-  const ContactDetailScreen({super.key, required this.contact});
+  const BusinessCardDetailScreen({super.key, required this.card});
 
-  String get _displayEmail => contact.emailCongTy?.trim() ?? '--';
-  String get _displayPhone => contact.sdtCaNhan?.trim() ?? '--';
-  String get _displayCode => contact.code?.trim() ?? '--';
+  String? get _email {
+    if (card.emailCongTy != null && card.emailCongTy!.trim().isNotEmpty) {
+      return card.emailCongTy!.trim();
+    }
+    if (card.emailCaNhan != null && card.emailCaNhan!.trim().isNotEmpty) {
+      return card.emailCaNhan!.trim();
+    }
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +36,7 @@ class ContactDetailScreen extends StatelessWidget {
           onPressed: () => Navigator.pop(context),
         ),
         title: const Text(
-          'Chi tiết liên hệ',
+          'Chi tiết danh thiếp',
           style: TextStyle(
             color: AppColors.heading,
             fontSize: 18,
@@ -57,66 +48,142 @@ class ContactDetailScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            _ProfileHeader(contact: contact),
-
+            _ProfileHeader(card: card),
             const SizedBox(height: 20),
-
-            _ActionButtons(contact: contact),
-
+            _ActionButtons(card: card),
             const SizedBox(height: 20),
-
-            // Thông tin liên lạc
-            _InfoCard(
-              title: 'Thông tin liên lạc',
-              icon: Icons.contact_phone_outlined,
-              children: [
-                _InfoRow(
-                  icon: Icons.phone_outlined,
-                  label: 'Điện thoại',
-                  value: _displayPhone,
-                  showCopy: _displayPhone != '--',
-                ),
-
-                _InfoRow(
-                  icon: Icons.email_outlined,
-                  label: 'Email',
-                  value: _displayEmail,
-                  showCopy: _displayEmail != '--',
-                  onTap: _displayEmail != '--'
-                      ? () async {}
-                      : null,
-                ),
-              ],
-            ),
-
+            _buildContactInfo(),
             const SizedBox(height: 14),
-
-            // Thông tin nhân viên
-            _InfoCard(
-              title: 'Thông tin nhân viên',
-              icon: Icons.business_outlined,
-              children: [
-                _InfoRow(
-                  icon: Icons.badge_outlined,
-                  label: 'Mã nhân viên',
-                  value: _displayCode,
-                ),
-                if ((contact.departmentName?.trim() ?? '').isNotEmpty)
-                  _InfoRow(
-                    icon: Icons.location_city_outlined,
-                    label: 'Phòng ban',
-                    value: contact.departmentName!.trim(),
-                  ),
-                if ((contact.chucVu?.trim() ?? '').isNotEmpty)
-                  _InfoRow(
-                    icon: Icons.work_outline,
-                    label: 'Chức vụ',
-                    value: contact.chucVu!.trim(),
-                  ),
-              ],
-            ),
+            _buildCompanyInfo(),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildContactInfo() {
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.white,
+        borderRadius: BorderRadius.circular(14),
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0xFF1A1A1A).withValues(alpha: 0.05),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: const EdgeInsets.fromLTRB(16, 14, 16, 10),
+            decoration: const BoxDecoration(
+              border: Border(
+                bottom: BorderSide(color: Color(0xFFE8EAF0), width: 0.5),
+              ),
+            ),
+            child: const Row(
+              children: [
+                Icon(Icons.contact_phone_outlined, size: 18, color: AppColors.secondaryERP),
+                SizedBox(width: 8),
+                Text(
+                  'Thông tin liên hệ',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.heading,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          _InfoRow(
+            icon: Icons.phone_outlined,
+            label: 'Điện thoại',
+            value: card.sdtCaNhan ?? '--',
+            showCopy: card.sdtCaNhan != null && card.sdtCaNhan!.trim().isNotEmpty,
+          ),
+          if (_email != null)
+            _InfoRow(
+              icon: Icons.email_outlined,
+              label: 'Email',
+              value: _email!,
+              showCopy: true,
+            ),
+          if (card.address != null && card.address!.trim().isNotEmpty)
+            _InfoRow(
+              icon: Icons.location_on_outlined,
+              label: 'Địa chỉ',
+              value: card.address!.trim(),
+              showCopy: false,
+            ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCompanyInfo() {
+    final hasCompanyInfo = (card.companyName != null && card.companyName!.trim().isNotEmpty) ||
+        (card.companyAddress != null && card.companyAddress!.trim().isNotEmpty);
+
+    if (!hasCompanyInfo) {
+      return const SizedBox.shrink();
+    }
+
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.white,
+        borderRadius: BorderRadius.circular(14),
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0xFF1A1A1A).withValues(alpha: 0.05),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: const EdgeInsets.fromLTRB(16, 14, 16, 10),
+            decoration: const BoxDecoration(
+              border: Border(
+                bottom: BorderSide(color: Color(0xFFE8EAF0), width: 0.5),
+              ),
+            ),
+            child: const Row(
+              children: [
+                Icon(Icons.business_outlined, size: 18, color: AppColors.secondaryERP),
+                SizedBox(width: 8),
+                Text(
+                  'Thông tin công ty',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.heading,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          if (card.companyName != null && card.companyName!.trim().isNotEmpty)
+            _InfoRow(
+              icon: Icons.business_outlined,
+              label: 'Công ty',
+              value: card.companyName!.trim(),
+              showCopy: false,
+            ),
+          if (card.companyAddress != null && card.companyAddress!.trim().isNotEmpty)
+            _InfoRow(
+              icon: Icons.location_city_outlined,
+              label: 'Địa chỉ công ty',
+              value: card.companyAddress!.trim(),
+              showCopy: false,
+            ),
+        ],
       ),
     );
   }
@@ -124,14 +191,14 @@ class ContactDetailScreen extends StatelessWidget {
 
 /// Header hiển thị avatar và tên.
 class _ProfileHeader extends StatelessWidget {
-  final ContactPersonalItem contact;
+  final BusinessCardModel card;
 
-  const _ProfileHeader({required this.contact});
+  const _ProfileHeader({required this.card});
 
   @override
   Widget build(BuildContext context) {
-    final avatarText = contact.fullName?.trim().isNotEmpty == true
-        ? contact.fullName!.trim()[0].toUpperCase()
+    final avatarText = (card.fullName?.trim().isNotEmpty ?? false)
+        ? card.fullName!.trim()[0].toUpperCase()
         : '?';
 
     final avatarColor = _resolveColor(avatarText);
@@ -175,31 +242,25 @@ class _ProfileHeader extends StatelessWidget {
               ),
             ),
           ),
-
           const SizedBox(height: 14),
-
           Text(
-            contact.fullName?.trim() ?? '--',
+            card.fullName ?? '--',
             style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w700,
               color: AppColors.heading,
             ),
           ),
-
-          const SizedBox(height: 4),
-
-          if (contact.chucVu != null && contact.chucVu!.isNotEmpty)
+          if (card.chucVu != null && card.chucVu!.isNotEmpty) ...[
+            const SizedBox(height: 4),
             Text(
-              [
-                contact.code?.trim(),
-                contact.chucVu?.trim(),
-              ].where((e) => e != null && e.isNotEmpty).join(' - '),
+              card.chucVu!.trim(),
               style: const TextStyle(
                 fontSize: 14,
                 color: AppColors.gray,
               ),
             ),
+          ],
         ],
       ),
     );
@@ -237,11 +298,11 @@ class _ProfileHeader extends StatelessWidget {
   }
 }
 
-/// Các nút hành động: gọi, nhắn tin, email.
+/// Các nút hành động: gọi, email.
 class _ActionButtons extends StatelessWidget {
-  final ContactPersonalItem contact;
+  final BusinessCardModel card;
 
-  const _ActionButtons({required this.contact});
+  const _ActionButtons({required this.card});
 
   Future<void> _makePhoneCall(String phoneNumber) async {
     final uri = Uri(scheme: 'tel', path: phoneNumber);
@@ -252,31 +313,23 @@ class _ActionButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final phone = contact.sdtCaNhan?.trim() ?? '';
+    final phone = card.sdtCaNhan?.trim() ?? '';
 
     return Row(
       children: [
-        Expanded(
-          child: _ActionButton(
-            icon: Icons.phone_outlined,
-            label: 'Gọi điện',
-            color: AppColors.primaryERP,
-            onTap: () {
-              if (phone.isNotEmpty) {
-                _makePhoneCall(phone);
-              }
-            },
+        if (phone.isNotEmpty)
+          Expanded(
+            child: _ActionButton(
+              icon: Icons.phone_outlined,
+              label: 'Gọi điện',
+              color: AppColors.primaryERP,
+              onTap: () {
+                if (phone.isNotEmpty) {
+                  _makePhoneCall(phone);
+                }
+              },
+            ),
           ),
-        ),
-        // const SizedBox(width: 12),
-        // Expanded(
-        //   child: _ActionButton(
-        //     icon: Icons.chat_outlined,
-        //     label: 'Nhắn tin',
-        //     color: AppColors.primaryERP,
-        //     onTap: () {},
-        //   ),
-        // ),
       ],
     );
   }
@@ -341,77 +394,17 @@ class _ActionButton extends StatelessWidget {
   }
 }
 
-/// Card chứa thông tin.
-class _InfoCard extends StatelessWidget {
-  final String title;
-  final IconData icon;
-  final List<Widget> children;
-
-  const _InfoCard({
-    required this.title,
-    required this.icon,
-    required this.children,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        borderRadius: BorderRadius.circular(14),
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0xFF1A1A1A).withValues(alpha: 0.05),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            padding: const EdgeInsets.fromLTRB(16, 14, 16, 10),
-            decoration: const BoxDecoration(
-              border: Border(
-                bottom: BorderSide(color: Color(0xFFE8EAF0), width: 0.5),
-              ),
-            ),
-            child: Row(
-              children: [
-                Icon(icon, size: 18, color: AppColors.secondaryERP),
-                const SizedBox(width: 8),
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.heading,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          ...children,
-        ],
-      ),
-    );
-  }
-}
-
-/// Một dòng thông tin trong _InfoCard.
+/// Một dòng thông tin trong card.
 class _InfoRow extends StatelessWidget {
   final IconData icon;
   final String label;
   final String value;
-  final VoidCallback? onTap;
   final bool showCopy;
 
   const _InfoRow({
     required this.icon,
     required this.label,
     required this.value,
-    this.onTap,
     this.showCopy = false,
   });
 
@@ -423,7 +416,6 @@ class _InfoRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         child: Row(

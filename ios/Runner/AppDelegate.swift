@@ -1,5 +1,6 @@
 import Flutter
 import UIKit
+import AVFoundation
 import UserNotifications
 import FirebaseMessaging
 
@@ -19,7 +20,52 @@ import FirebaseMessaging
     application.registerForRemoteNotifications()
 
     GeneratedPluginRegistrant.register(with: self)
+
+    // App dùng scene-based lifecycle (UIApplicationSceneManifest trong Info.plist),
+    // nên `self.window` của AppDelegate là nil. Lấy FlutterViewController từ
+    // scene đang active để đăng ký MethodChannel mà không cần force-unwrap.
+    DispatchQueue.main.async { [weak self] in
+      self?.registerCameraMuteChannel()
+    }
+
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+  }
+
+  private func registerCameraMuteChannel() {
+    guard let controller = activeFlutterViewController() else { return }
+    let channel = FlutterMethodChannel(
+      name: "com.rerp/camera_mute",
+      binaryMessenger: controller.binaryMessenger
+    )
+    channel.setMethodCallHandler { [weak self] call, result in
+      if call.method == "muteShutter" {
+        self?.muteShutterSound()
+        result(nil)
+      } else {
+        result(FlutterMethodNotImplemented)
+      }
+    }
+  }
+
+  private func activeFlutterViewController() -> FlutterViewController? {
+    let scenes = UIApplication.shared.connectedScenes
+      .compactMap { $0 as? UIWindowScene }
+    for scene in scenes {
+      if let controller = scene.windows.first?.rootViewController as? FlutterViewController {
+        return controller
+      }
+    }
+    return nil
+  }
+
+  private func muteShutterSound() {
+    // iOS: Override system sound with silence
+    // On Japanese iPhones shutter sound cannot be muted, but we try to suppress it
+    let audioSession = AVAudioSession.sharedInstance()
+    do {
+      try audioSession.setCategory(.playback, options: .mixWithOthers)
+      try audioSession.setActive(true)
+    } catch {}
   }
 
   // Khi FirebaseAppDelegateProxyEnabled = false, phải tự truyền APNS token sang Firebase

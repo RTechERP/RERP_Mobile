@@ -19,6 +19,8 @@ abstract class _$ContactStateCWProxy {
 
   ContactState keyword(String? keyword);
 
+  ContactState businessCards(List<BusinessCardModel> businessCards);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ContactState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -32,6 +34,7 @@ abstract class _$ContactStateCWProxy {
     ContactPersonalItem? selectedContact,
     int? departmentID,
     String? keyword,
+    List<BusinessCardModel>? businessCards,
   });
 }
 
@@ -63,6 +66,10 @@ class _$ContactStateCWProxyImpl implements _$ContactStateCWProxy {
   ContactState keyword(String? keyword) => this(keyword: keyword);
 
   @override
+  ContactState businessCards(List<BusinessCardModel> businessCards) =>
+      this(businessCards: businessCards);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ContactState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -77,6 +84,7 @@ class _$ContactStateCWProxyImpl implements _$ContactStateCWProxy {
     Object? selectedContact = const $CopyWithPlaceholder(),
     Object? departmentID = const $CopyWithPlaceholder(),
     Object? keyword = const $CopyWithPlaceholder(),
+    Object? businessCards = const $CopyWithPlaceholder(),
   }) {
     return ContactState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -104,6 +112,11 @@ class _$ContactStateCWProxyImpl implements _$ContactStateCWProxy {
           ? _value.keyword
           // ignore: cast_nullable_to_non_nullable
           : keyword as String?,
+      businessCards:
+          businessCards == const $CopyWithPlaceholder() || businessCards == null
+              ? _value.businessCards
+              // ignore: cast_nullable_to_non_nullable
+              : businessCards as List<BusinessCardModel>,
     );
   }
 }
