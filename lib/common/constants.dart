@@ -54,7 +54,7 @@ class ApiEndPoint {
   static const String getTeam = '/Team/department/2';
 
   static const String getProject = '/project/get-project-modal';
-
+  static const String getProjects = '/project/get-projects';
   static const String getProjectItemByUser =
       '/DailyReportTech/get-project-item-by-user';
 
@@ -241,6 +241,28 @@ class ApiEndPoint {
   static const String saveWorkTrip = '/EmployeeBussiness/save-data-employee';
 
   static const String getWorkTripById = '/EmployeeBussiness/get-by-id';
+
+  /// Đặt phòng nhà nghỉ — danh sách phiếu đặt.
+  /// API: GET /AccommodationBooking/data-accommodation-booking
+  /// Query: dateStart, dateEnd, projectId, employeeId, filterText.
+  static const String getBookingGuestHouse =
+      '/AccommodationBooking/data-accommodation-booking';
+
+  /// Đặt phòng nhà nghỉ — lưu phiếu (thêm mới).
+  /// API: POST /AccommodationBooking/save-data
+  /// Body: `{ "accommodationBooking": {...}, "accommodationBookingDetails": [...], "idDeleteds": [] }`.
+  static const String saveBookingGuestHouse = '/AccommodationBooking/save-data';
+
+  /// Đặt phòng nhà nghỉ — xoá phiếu.
+  /// API: POST /AccommodationBooking/delete
+  /// Body: `[19]` — mảng ID cần xoá.
+  static const String deleteBookingGuestHouse = '/AccommodationBooking/delete';
+
+  /// Đặt phòng nhà nghỉ — lấy chi tiết 1 phiếu (kèm danh sách người ở).
+  /// API: GET /AccommodationBooking/accommodation-booking-by-id?id=23
+  /// Query: `id=23`.
+  static const String getBookingGuestHouseById =
+      '/AccommodationBooking/accommodation-booking-by-id';
 
   /// Lấy phiếu đặt xe theo ngày cho work_trip.
   static const String getVehicleBookingsForBussiness =
@@ -456,6 +478,9 @@ class ApiEndPoint {
   /// Body: `[{ "ID": <billId>, "IsOrderReceived": true|false }, ...]`
   static const String updateStatusReceive = '/billexport/status-receive';
 
+  // Material Category
+  static const String getMaterialCategories = '/MaterialCategory/get-material-categories';
+
   /// Lấy chi tiết phiếu card theo registrationId.
   /// API: GET /ESLRegistration/get-details?registrationId=X.
   static const String getTestCardDetails = '/ESLRegistration/get-details';
@@ -477,6 +502,65 @@ class ApiEndPoint {
 
   /// Dự án: GET /ProjectTask/get-all-project.
   static const String getAllProject = '/ProjectTask/get-all-project';
+
+  /// Danh sách công ty phát hành hóa đơn — cho picker "Công ty" trong
+  /// form Cập nhật TTQT + Đề nghị tạm ứng.
+  /// API: GET /TaxCompany/get-tax-companies
+  static const String getTaxCompanies = '/TaxCompany/get-tax-companies';
+
+  /// Danh sách ngân hàng — cho picker "Ngân hàng" trong
+  /// form Cập nhật TTQT + Đề nghị tạm ứng.
+  /// API: GET /banklist
+  static const String getBankList = '/banklist';
+
+  /// Đặt phòng nhà nghỉ — lấy chi tiết TT Quyết toán (TTQT) theo
+  /// `accommodationBookingId`. Dùng để pre-fill form Cập nhật TTQT
+  /// với dữ liệu BE trả về (TTQT có thể đã được tạo trước đó với
+  /// status 2/3/4/5 — status 0/null tức chưa có TTQT → giữ form
+  /// rỗng). API:
+  /// `GET /AccommodationBookingPaymentOrder/get-detail-by-booking-id?accommodationBookingId=<id>`
+  /// Response: 1 object detail hoặc mảng (BE có thể trả cả 2 dạng).
+  /// Field chính: `ID`, `AccommodationBookingID`, `DetailStatus`,
+  /// `Reason`, `ProjectID`, `RecipientName`, `HotelName`, `HotelTaxCode`,
+  /// `BankAccount`, `BankName`, `BankListID`, `TransferType`,
+  /// `ApprovedTBPID`, `TotalAmount`, `TotalAmountWithInvoice`,
+  /// `InvoiceNumber`, `CompanyID`, `CompanyName`, `DepartmentName`,
+  /// `Note`, `Files`, ...
+  static const String getPaymentOrderDetailByBookingId =
+      '/AccommodationBookingPaymentOrder/get-detail-by-booking-id';
+
+  /// Đặt phòng nhà nghỉ — tạo / tạo lại đề nghị tạm ứng (ĐNTU).
+  /// API: POST /AccommodationBookingPaymentOrder/create-advance
+  /// Body: AccommodationBookingAdvanceRequest — xem mục 4.6 spec.
+  static const String createBookingGuestHouseAdvance =
+      '/AccommodationBookingPaymentOrder/create-advance';
+
+  /// Đặt phòng nhà nghỉ — lưu cập nhật TT Quyết toán (TTQT) standalone.
+  /// API: POST /AccommodationBookingPaymentOrder/save-standalone-detail
+  /// Body (mục 4.7 spec): { ID, TotalAmount, TotalAmountWithInvoice,
+  /// InvoiceNumber, BankAccount, BankListID, BankName, TransferType,
+  /// ApprovedTBPID, Reason, ProjectID, CompanyID, CompanyName,
+  /// DepartmentName, Note, AccommodationBookingID, DetailStatus=2,
+  /// HotelName, HotelTaxCode }.
+  /// Response: `{ status, message, data: { ID, DetailStatus } }`.
+  static const String saveBookingGuestHouseStandaloneDetail =
+      '/AccommodationBookingPaymentOrder/save-standalone-detail';
+
+  /// Đặt phòng nhà nghỉ — upload file đính kèm cho 1 detail TTQT.
+  /// API: POST /AccommodationBookingPaymentOrder/upload-file
+  /// Query: `detailId`, `fileType` (INVOICE | BILL_CK).
+  /// Body: multipart form-data `{ key, subPath, files }`.
+  /// Response `data` có thể là 1 object hoặc mảng các object file đã upload.
+  static const String uploadBookingGuestHouseFile =
+      '/AccommodationBookingPaymentOrder/upload-file';
+
+  /// Đặt phòng nhà nghỉ — xoá 1 file đính kèm của detail TTQT.
+  /// API: POST `/AccommodationBookingPaymentOrder/remove-file`
+  /// Body: int (ID của `BookingGuestHouseFileItem`).
+  /// Response: `BaseData` chuẩn.
+  /// Permission: chỉ `currentUser` (so khớp `CreatedBy`) mới được xoá.
+  static const String removeBookingGuestHouseFile =
+      '/AccommodationBookingPaymentOrder/remove-file';
 
   /// Check xung đột trước khi lưu phiếu đăng ký bàn test.
   /// API: POST /ESLRegistration/check-conflict (form-data).
@@ -517,4 +601,37 @@ class ApiEndPoint {
 
   // Celebration (Birthday/Seniority)
   static const String checkBirthdaySeniority = '/home/check-birthday-seniority';
+
+  // Project Worker - Solution
+  static const String getSolution = '/projectworker/get-solution';
+
+  /// Phiên bản danh mục vật tư.
+  /// GET /ProjectPartListVersion/get-all?projectSolutionId={id}&isPO={bool}.
+  static const String getVersions = '/ProjectPartListVersion/get-all';
+
+  /// Danh sách vật tư theo phiên bản.
+  /// POST /ProjectPartList/get-all.
+  static const String getPartList = '/ProjectPartList/get-all';
+
+  /// Duyệt mới / huỷ duyệt mới cho 1 vật tư trong danh sách vật tư.
+  /// POST /ProjectPartList/approved-newcode?isApprovedNew={bool}.
+  /// Body: `PartListModel` của vật tư cần cập nhật.
+  static const String approvedNewCode = '/ProjectPartList/approved-newcode';
+
+  /// Check trước khi duyệt mới — backend validate điều kiện nghiệp vụ và
+  /// trả `{ status, message }`. Nếu `message == "Đã xử lý thành công!"`
+  /// thì mới được phép gọi tiếp [approvedNewCode].
+  /// POST /ProjectPartList/check-approve-newcode.
+  static const String checkApproveNewCode =
+      '/ProjectPartList/check-approve-newcode';
+
+  /// Duyệt tích xanh / huỷ duyệt tích xanh cho 1 vật tư.
+  /// POST /ProjectPartList/approved-fix?isFix={bool}.
+  /// Body: danh sách rút gọn các field của vật tư cần cập nhật.
+  static const String approvedFix = '/ProjectPartList/approved-fix';
+
+  /// Yêu cầu chuyển kho cho vật tư.
+  /// POST /ProjectPartList/request-export.
+  /// Body: `{ "WarehouseCode": "HN|HCM|BN|HP|DP", "ListItem": [ ... ] }`.
+  static const String requestExport = '/ProjectPartList/request-export';
 }

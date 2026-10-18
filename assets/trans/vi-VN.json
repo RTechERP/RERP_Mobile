@@ -96,6 +96,7 @@
   "reg_general": {
     "meeting_room": "Phòng họp",
     "booking_car":"Đặt xe",
+    "booking_guest_house": "Đ.ký nhà nghỉ",
     "purchase": "Đề nghị thanh toán",
     "special_purchase": "Đề nghị thanh toán ĐB",
     "work_request": "Y.c công việc",
@@ -162,6 +163,11 @@
   "warehouse_sale": {
     "grn": "Phiếu nhập",
     "gdn": "Phiếu xuất"
+  },
+  "project": {
+    "menu": "Menu dự án",
+    "project_list": "DS dự án",
+    "list": "Danh sách dự án"
   },
   "dio": {
     "cancel_request": "Request was cancelled",

@@ -31,10 +31,15 @@ import '../features/version/data/datasource/service/app_version_service.dart';
 import '../features/version/data/repository/app_version_repo.dart';
 import '../features/version/data/repository/app_version_repo_impl.dart';
 import '../features/version/view/bloc/app_version_bloc.dart';
+import '../features/workplace/app/project/project_list/app/material_category/data/repository/material_category_repo_impl.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/datasource/service/booking_vehicle_service.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repo_impl.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/bloc/booking_vehicle_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/booking_guest_house/data/datasource/service/booking_guest_house_service.dart';
+import '../features/workplace/app/reg_general/view/pages/booking_guest_house/data/repository/booking_guest_house_repo.dart';
+import '../features/workplace/app/reg_general/view/pages/booking_guest_house/data/repository/booking_guest_house_repo_impl.dart';
+import '../features/workplace/app/reg_general/view/pages/booking_guest_house/view/bloc/booking_guest_house_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/contract_registration/data/datasource/service/contract_registration_service.dart';
 import '../features/workplace/app/reg_general/view/pages/contract_registration/data/repository/contract_registration_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/contract_registration/data/repository/contract_registration_repo_impl.dart';
@@ -103,6 +108,19 @@ import '../features/workplace/app/reg_work/view/pages/lunch/data/datasource/serv
 import '../features/workplace/app/reg_work/view/pages/lunch/data/repository/lunch_repo.dart';
 import '../features/workplace/app/reg_work/view/pages/lunch/data/repository/lunch_repo_impl.dart';
 import '../features/workplace/app/reg_work/view/pages/lunch/view/bloc/lunch_bloc.dart';
+import '../features/workplace/app/project/project_list/app/material_category/data/datasource/service/material_category_service.dart';
+import '../features/workplace/app/project/project_list/app/material_category/data/repository/material_category_repo.dart';
+import '../features/workplace/app/project/project_list/app/material_category/data/repository/solution_repo.dart';
+import '../features/workplace/app/project/project_list/app/material_category/data/repository/solution_repo_impl.dart';
+import '../features/workplace/app/project/project_list/app/material_category/data/repository/version_repo.dart';
+import '../features/workplace/app/project/project_list/app/material_category/data/repository/version_repo_impl.dart';
+import '../features/workplace/app/project/project_list/app/material_category/view/bloc/material_category_bloc.dart';
+import '../features/workplace/app/project/project_list/app/material_category/view/bloc/solution_bloc.dart';
+import '../features/workplace/app/project/project_list/app/material_category/view/bloc/version_bloc.dart';
+import '../features/workplace/app/project/project_list/data/datasource/service/project_list_service.dart';
+import '../features/workplace/app/project/project_list/data/repository/project_list_repo.dart';
+import '../features/workplace/app/project/project_list/data/repository/project_list_repo_impl.dart';
+import '../features/workplace/app/project/project_list/view/bloc/project_list_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/data/datasource/service/in_out_service.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/data/repository/in_out_repo.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/data/repository/in_out_repo_impl.dart';
@@ -227,7 +245,19 @@ void configureDependencies() {
     () => BookingVehicleService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<BookingGuestHouseService>(
+    () => BookingGuestHouseService(getIt<Dio>()),
+  );
+
   getIt.registerLazySingleton<LunchService>(() => LunchService(getIt<Dio>()));
+
+  getIt.registerLazySingleton<ProjectListService>(
+    () => ProjectListService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<MaterialCategoryService>(
+    () => MaterialCategoryService(getIt<Dio>()),
+  );
 
   getIt.registerLazySingleton<InOutService>(() => InOutService(getIt<Dio>()));
 
@@ -367,8 +397,28 @@ void configureDependencies() {
     () => BookingVehicleRepoImpl(getIt<BookingVehicleService>()),
   );
 
+  getIt.registerLazySingleton<BookingGuestHouseRepo>(
+    () => BookingGuestHouseRepoImpl(getIt<BookingGuestHouseService>()),
+  );
+
   getIt.registerLazySingleton<LunchRepo>(
     () => LunchRepoImpl(getIt<LunchService>()),
+  );
+
+  getIt.registerLazySingleton<ProjectListRepo>(
+    () => ProjectListRepoImpl(getIt<ProjectListService>()),
+  );
+
+  getIt.registerLazySingleton<MaterialCategoryRepo>(
+    () => MaterialCategoryRepoImpl(getIt<MaterialCategoryService>()),
+  );
+
+  getIt.registerLazySingleton<SolutionRepo>(
+    () => SolutionRepoImpl(getIt<MaterialCategoryService>()),
+  );
+
+  getIt.registerLazySingleton<VersionRepo>(
+    () => VersionRepoImpl(getIt<MaterialCategoryService>()),
   );
 
   getIt.registerLazySingleton<InOutRepo>(
@@ -538,8 +588,31 @@ void configureDependencies() {
     ),
   );
 
+getIt.registerLazySingleton<BookingGuestHouseBloc>(
+  () => BookingGuestHouseBloc(
+    getIt<BookingGuestHouseRepo>(),
+    getIt<LogUtils>(),
+  ),
+);
+
   getIt.registerFactory<LunchBloc>(
     () => LunchBloc(getIt<LunchRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
+  );
+
+  getIt.registerFactory<ProjectListBloc>(
+    () => ProjectListBloc(getIt<ProjectListRepo>(), getIt<LogUtils>()),
+  );
+
+  getIt.registerFactory<MaterialCategoryBloc>(
+    () => MaterialCategoryBloc(getIt<MaterialCategoryRepo>()),
+  );
+
+  getIt.registerFactory<SolutionBloc>(
+    () => SolutionBloc(getIt<SolutionRepo>(), getIt<LogUtils>()),
+  );
+
+  getIt.registerFactory<VersionBloc>(
+    () => VersionBloc(getIt<VersionRepo>(), getIt<LogUtils>()),
   );
 
   getIt.registerFactory<InOutBloc>(

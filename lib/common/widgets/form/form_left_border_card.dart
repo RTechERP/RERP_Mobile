@@ -52,18 +52,24 @@ class FormLeftBorderCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // BorderSide có width <= 0 hoặc màu trong suốt sẽ bị Flutter coi là
+    // "hairline" và assert khi borderRadius khác 0 → phải trả về Border.none.
+    final hasBorder = borderWidth > 0 && borderColor.a > 0;
+
     return Container(
       width: expand ? double.infinity : null,
       padding: padding,
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: borderRadius,
-        border: Border(
-          left: BorderSide(
-            color: borderColor,
-            width: borderWidth,
-          ),
-        ),
+        border: hasBorder
+            ? Border(
+                left: BorderSide(
+                  color: borderColor,
+                  width: borderWidth,
+                ),
+              )
+            : const Border.fromBorderSide(BorderSide.none),
       ),
       child: Row(
         crossAxisAlignment: crossAxisAlignment,

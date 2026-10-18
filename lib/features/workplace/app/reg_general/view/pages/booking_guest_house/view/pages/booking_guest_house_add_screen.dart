@@ -1,0 +1,1103 @@
+import 'package:collection/collection.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
+
+import '../../../../../../../../../base/widgets/base_scaffold.dart';
+import '../../../../../../../../../common/app_theme/index.dart';
+import '../../../../../../../../../common/helpers/index.dart';
+import '../../../../../../../../../common/utils/snack_bar_helper.dart';
+import '../../../../../../../../../common/widgets/form/index.dart';
+import '../../../../../../../../../features/auth/data/repository/auth_repo.dart';
+import '../../../../../../../../../features/workplace/app/reg_general/view/pages/booking_guest_house/data/datasource/models/booking_guest_house_form_shift.dart';
+import '../../../../../../../../../features/workplace/app/reg_general/view/pages/booking_guest_house/data/datasource/models/booking_guest_house_model.dart';
+import '../../../../../../../../../features/workplace/app/reg_general/view/pages/booking_guest_house/data/repository/booking_guest_house_repo.dart';
+import 'package:get_it/get_it.dart';
+
+import '../bloc/booking_guest_house_bloc.dart';
+import '../widgets/roommate_info_item.dart';
+
+class BookingGuestHouseAddScreen extends StatefulWidget {
+  const BookingGuestHouseAddScreen({super.key, this.id});
+
+  /// ID phiếu cần chỉnh sửa. Khi null → thêm mới; khi có → load detail
+  /// để fill form và submit sẽ update (giữ nguyên ID trong payload).
+  final int? id;
+
+  @override
+  State<BookingGuestHouseAddScreen> createState() =>
+      _BookingGuestHouseAddScreenState();
+}
+
+class _BookingGuestHouseAddScreenState
+    extends State<BookingGuestHouseAddScreen> {
+  final _formKey = GlobalKey<FormBuilderState>();
+
+  //---(Controllers cho các field read-only do chọn từ picker/sheet)---//
+  // Hiển thị trong FormInputField + dùng để FormBuilder validator đọc value.
+  final _startDateCtrl = TextEditingController();
+  final _endDateCtrl = TextEditingController();
+  final _projectCtrl = TextEditingController();
+  final _tbpCtrl = TextEditingController();
+  final _provinceCtrl = TextEditingController();
+
+  //---(Current user dùng để auto-fill người ở 1 + RegisterID payload)---//
+  /// EmployeeID của user đang đăng nhập — dùng làm `RegisterID` trong payload.
+  int? _currentEmployeeId;
+
+  /// Cờ phiếu đã được TBP duyệt — fill từ detail khi edit mode để các
+  /// field trong form (TBP Duyệt, ...) biết `enabled`. Mặc định false
+  /// (create mode / chưa load detail).
+  bool _isApprovedTBP = false;
+
+  //---(Form state — Card 1)---//
+  // DateTime/Object state vẫn giữ để build payload; FormInputField chỉ là
+  // UI cho value text.
+  ProjectFilterItem? _selectedProject;
+  EmployeeFilterItem? _selectedTbp; // TBP duyệt
+  ProvinceFilterItem? _selectedProvince;
+  DateTime? _startDate;
+  DateTime? _endDate;
+
+  //---(Form state — Card 2: list người ở)---//
+  // Pattern theo booking_vehicle: source-of-truth là FormBuilder values
+  // (infoFieldValues) + EmployeeFilterItem? cho mỗi dòng (đã chọn nhân viên hay
+  // chưa). Không còn _RoommateDraft riêng.
+  int _roommateLineCount = 1;
+
+  /// Map lưu EmployeeFilterItem đã chọn cho từng dòng (null = chưa chọn/nhập tay).
+  final Map<int, EmployeeFilterItem?> _selectedRoommateEmployees = {0: null};
+
+  /// Map các giá trị hiện tại của form để RoommateInfoItem hydrate khi rebuild.
+  /// Key: 'roommate_*_$i' / 'roommate_*_text_$i'.
+  Map<String, dynamic> _infoFieldValues = {};
+
+  /// Tăng mỗi lần add/delete để force rebuild tất cả RoommateInfoItem.
+  int _roommateFormGeneration = 0;
+
+  /// Generation mà mỗi slip RoommateInfoItem đã gọi `onReady` lần cuối.
+  /// Khi gen++ (qua _populateFromDetail), các value cũ bị "stale" và slip
+  /// phải gọi lại onReady với gen mới → parent patchValue chắc chắn
+  /// sau khi TẤT CẢ slip đã sẵn sàng cho gen hiện tại.
+  /// Lưu map theo index slip → gen (int).
+  final Map<int, int> _readySlipsForGen = <int, int>{};
+
+  /// Cờ đánh dấu đã fill form từ detail (edit mode) chưa — tránh gọi
+  /// _populateFromDetail nhiều lần khi BlocBuilder rebuild.
+  bool _populated = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // Add mode: auto-fill currentUser vào slip 0.
+      // 3 API lookup (projects/employees/provinces) đã được list screen
+      // load sẵn qua loadFilters, share qua ShellRoute provider — chỉ cần
+      // đọc `state.projects/employees/provinces` ở bloc khi mở bottom sheet,
+      // KHÔNG gọi API ở đây.
+      if (widget.id == null) {
+        _loadCurrentUser();
+      } else {
+        // Edit mode: load detail để fill form. Lookup data dùng từ bloc state.
+        // Nếu mở thẳng edit mà chưa qua list (deep link), lookup sẽ rỗng
+        // → _populateFromDetail fallback text theo id.
+        final bloc = context.read<BookingGuestHouseBloc>();
+        bloc.add(BookingGuestHouseEvent.loadDetail(id: widget.id!));
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _startDateCtrl.dispose();
+    _endDateCtrl.dispose();
+    _projectCtrl.dispose();
+    _tbpCtrl.dispose();
+    _provinceCtrl.dispose();
+    super.dispose();
+  }
+
+  //---(Snack helper — thay cho BaseState.showMessage đã mất khi refactor)---//
+  void _showSnack(
+    String message, {
+    SnackBarType type = SnackBarType.success,
+  }) {
+    final helper = GetIt.I<SnackBarHelper>();
+    switch (type) {
+      case SnackBarType.error:
+        helper.showError(context, message);
+      case SnackBarType.info:
+        helper.showInfo(context, message);
+      default:
+        helper.showSuccess(context, message);
+    }
+  }
+
+  //---(Loaders)---//
+
+  /// Fill form từ detail khi edit mode (widget.id != null).
+  /// Resolve project/tỉnh theo id từ state.projects/provinces; resolve
+  /// roommate Employee theo id từ state.employees. TBP Duyệt lấy thẳng
+  /// info.approvedTBP (employeeId) → lookup tên trong employees.
+  ///
+  /// Dữ liệu lookup (projects/employees/provinces) đã được list screen load
+  /// sẵn qua loadFilters khi mở tính năng. Nếu mở thẳng edit mà chưa qua
+  /// list (deep link), state có thể rỗng → fallback text theo id.
+  void _populateFromDetail(BookingGuestHouseDetailData data) {
+    if (!mounted) return;
+    final bloc = context.read<BookingGuestHouseBloc>();
+    final state = bloc.state;
+    final info = data.info;
+
+    // 1) Project / Province — match theo id.
+    _selectedProject = _findProject(info.projectId, state.projects);
+    _selectedProvince = _findProvince(info.provinceId, state.provinces);
+    _selectedTbp = _findEmployee(info.approvedTBP, state.employees);
+
+    // RegisterID trong phiếu gốc = employeeId của người đăng ký — dùng
+    // làm RegisterID khi submit update, tránh phụ thuộc vào API currentUser
+    // (edit mode không gọi _loadCurrentUser).
+    if (info.registerId != null && info.registerId! > 0) {
+      _currentEmployeeId = info.registerId;
+    }
+
+    // Lưu cờ TBP duyệt để các FormInputField trong _buildRegistrationCard
+    // biết `enabled` — khi phiếu đã duyệt, TBP Duyệt disable (chỉ xem).
+    _isApprovedTBP = info.isApprovedTBP == true;
+
+    // 2) Date.
+    _startDate = info.startDate;
+    _endDate = info.endDate;
+
+    // 3) Controllers text.
+    _startDateCtrl.text =
+        info.startDate == null ? '' : DateFormat('dd/MM/yyyy').format(info.startDate!);
+    _endDateCtrl.text =
+        info.endDate == null ? '' : DateFormat('dd/MM/yyyy').format(info.endDate!);
+    _projectCtrl.text = _selectedProject == null
+        ? (info.projectId == null || info.projectId == 0
+            ? ''
+            : 'Dự án #${info.projectId}')
+        : _projectText(_selectedProject!);
+    _tbpCtrl.text = _selectedTbp?.fullName ??
+        (info.approvedTBP == null || info.approvedTBP == 0
+            ? ''
+            : 'NV #${info.approvedTBP}');
+    _provinceCtrl.text = _selectedProvince?.provinceName ??
+        (info.provinceId == null || info.provinceId == 0
+            ? ''
+            : 'Tỉnh #${info.provinceId}');
+
+    // 4) FormBuilder value (chỉ các field ngoài RoommateInfoItem).
+    _addressValue = info.address ?? '';
+    _noteValue = info.note ?? '';
+    final patch = _buildRegistrationPatch();
+    _formKey.currentState?.patchValue(patch);
+
+    // 5) Roommate list — từ data.persons.
+    final persons = data.persons;
+    _roommateLineCount = persons.isEmpty ? 1 : persons.length;
+    _selectedRoommateEmployees.clear();
+    _infoFieldValues = {};
+
+    for (var i = 0; i < _roommateLineCount; i++) {
+      // Nếu vượt quá số người trong response → tạo dòng trống.
+      final p = i < persons.length ? persons[i] : null;
+      final emp = p == null
+          ? null
+          : _findEmployee(p.employeeId, state.employees);
+      _selectedRoommateEmployees[i] = emp;
+
+      final fullName = (p?.fullName ?? '').trim();
+      final code = (p?.employeeCode ?? '').trim();
+      final phone = _phoneToString(p?.phoneNumber);
+      final dept = (p?.departmentName ?? '').trim();
+      final note = (p?.note ?? '').trim();
+
+      _infoFieldValues = {
+        ..._infoFieldValues,
+        'roommate_full_name_$i': fullName,
+        'roommate_full_name_text_$i': fullName,
+        'roommate_roommate_name_$i': fullName,
+        'roommate_roommate_name_text_$i': fullName,
+        'roommate_code_$i': code,
+        'roommate_code_text_$i': code,
+        'roommate_phone_$i': phone,
+        'roommate_phone_text_$i': phone,
+        'roommate_department_$i': dept,
+        'roommate_department_text_$i': dept,
+        'roommate_note_$i': note,
+        'roommate_note_text_$i': note,
+        if (p?.id != null) 'roommate_detail_id_$i': p!.id,
+        if (emp?.id != null) 'roommate_employee_id_$i': emp!.id,
+      };
+    }
+    _roommateFormGeneration++;
+    // Reset ready map cho gen mới.
+    _readySlipsForGen.clear();
+  }
+
+  /// Build patch cho FormBuilder các field ngoài RoommateInfoItem (date,
+  /// project, tbp, province, address, note). Tách ra để delay-patchValue
+  /// (50ms sau setState) dùng lại được.
+  Map<String, dynamic> _buildRegistrationPatch() {
+    return <String, dynamic>{
+      'start_date': _startDateCtrl.text,
+      'start_date_text': _startDateCtrl.text,
+      'end_date': _endDateCtrl.text,
+      'end_date_text': _endDateCtrl.text,
+      'project': _projectCtrl.text,
+      'project_text': _projectCtrl.text,
+      'tbp': _tbpCtrl.text,
+      'tbp_text': _tbpCtrl.text,
+      'province': _provinceCtrl.text,
+      'province_text': _provinceCtrl.text,
+      'address': _addressValue,
+      'address_text': _addressValue,
+      'note': _noteValue,
+      'note_text': _noteValue,
+    };
+  }
+
+  /// Value từ `info` (cached) cho field Address / Note — không qua
+  /// TextEditingController vì FormInputField cho 2 field này dùng
+  /// controller nội bộ (không có external controller).
+  String _addressValue = '';
+  String _noteValue = '';
+
+  ProjectFilterItem? _findProject(int? id, List<ProjectFilterItem> items) {
+    if (id == null) return null;
+    for (final p in items) {
+      if (p.id == id) return p;
+    }
+    return null;
+  }
+
+  ProvinceFilterItem? _findProvince(int? id, List<ProvinceFilterItem> items) {
+    if (id == null) return null;
+    for (final p in items) {
+      if (p.id == id) return p;
+    }
+    return null;
+  }
+
+  EmployeeFilterItem? _findEmployee(int? id, List<EmployeeFilterItem> items) {
+    if (id == null) return null;
+    for (final e in items) {
+      if (e.id == id) return e;
+    }
+    return null;
+  }
+
+  /// Convert dynamic phone về String. SĐT thiếu số 0 đầu → prepend '0'
+  /// (giống helper trong registration_tab).
+  String _phoneToString(dynamic v) {
+    if (v == null) return '';
+    String s;
+    if (v is String) {
+      s = v.trim();
+    } else {
+      s = v.toString();
+    }
+    if (s.length == 9 && !s.startsWith('0')) {
+      return '0$s';
+    }
+    return s;
+  }
+
+  Future<void> _loadCurrentUser() async {
+    final authRepo = GetIt.I<AuthRepo>();
+    final res = await authRepo.getCurrentUser();
+    if (!mounted) return;
+    final user = res.getOrElse(() => null);
+    if (user == null) return;
+
+    // Lưu EmployeeID làm RegisterID cho payload.
+    _currentEmployeeId = user.employeeId;
+
+    // Gọi Employee API để lấy SĐT + phòng ban (User model không có).
+    final repo = GetIt.I<BookingGuestHouseRepo>();
+    final empRes = await repo.getEmployees(keyword: user.code);
+    if (!mounted) return;
+    final employees = empRes.fold((_) => <EmployeeFilterItem>[], (d) => d);
+
+    // Ưu tiên match theo employeeId, fallback theo mã, sau đó theo tên.
+    EmployeeFilterItem? matched = employees.firstWhereOrNull(
+      (e) => e.id == user.employeeId,
+    );
+    matched ??= employees.firstWhereOrNull((e) => e.code == user.code);
+    matched ??= employees.firstWhereOrNull((e) => e.fullName == user.fullName);
+
+    if (_roommateLineCount < 1) return;
+
+    // PatchValue cho dòng 0 (currentUser) trong cùng setState.
+    // `roommate_roommate_name_0` phải có ở đây vì field "Tên người ở cùng" dùng
+    // key riêng, không tự suy ra từ `roommate_full_name_0`.
+    setState(() {
+      _selectedRoommateEmployees[0] = matched;
+      _infoFieldValues = {
+        ..._infoFieldValues,
+        'roommate_full_name_0': user.fullName,
+        'roommate_full_name_text_0': user.fullName,
+        'roommate_roommate_name_0': user.fullName,
+        'roommate_roommate_name_text_0': user.fullName,
+        'roommate_code_0': user.code,
+        'roommate_code_text_0': user.code,
+        'roommate_phone_0': matched?.sdtCaNhan ?? '',
+        'roommate_phone_text_0': matched?.sdtCaNhan ?? '',
+        'roommate_department_0': matched?.departmentName ?? '',
+        'roommate_department_text_0': matched?.departmentName ?? '',
+      };
+    });
+
+    _formKey.currentState?.patchValue({
+      'roommate_full_name_0': user.fullName,
+      'roommate_full_name_text_0': user.fullName,
+      'roommate_roommate_name_0': user.fullName,
+      'roommate_roommate_name_text_0': user.fullName,
+      'roommate_code_0': user.code,
+      'roommate_code_text_0': user.code,
+      'roommate_phone_0': matched?.sdtCaNhan ?? '',
+      'roommate_phone_text_0': matched?.sdtCaNhan ?? '',
+      'roommate_department_0': matched?.departmentName ?? '',
+      'roommate_department_text_0': matched?.departmentName ?? '',
+    });
+  }
+
+  //---(UI)---//
+
+  @override
+  Widget build(BuildContext context) => renderUI(context);
+
+  Widget renderUI(BuildContext context) {
+    return BaseScaffold(
+      appBar: AppBarCommon(
+        title: Text(widget.id == null ? 'Đặt phòng nhà nghỉ' : 'Chỉnh sửa đặt phòng'),
+        onBackTap: () => context.pop(),
+      ),
+      body: MultiBlocListener(
+        listeners: [
+          BlocListener<BookingGuestHouseBloc, BookingGuestHouseState>(
+            listenWhen: (prev, curr) =>
+                prev.submitSuccess != curr.submitSuccess && curr.submitSuccess,
+            listener: (context, state) {
+              // Submit thành công → pop về màn list, list sẽ tự reload qua
+              // BookingGuestHousePage.initState (đã chạy init() ngay khi vào).
+              _showSnack(
+                state.lastSubmittedId != null
+                    ? (widget.id == null
+                          ? 'Lưu phiếu thành công (#${state.lastSubmittedId})'
+                          : 'Chỉnh sửa phiếu thành công (#${state.lastSubmittedId})')
+                    : 'Lưu phiếu thành công',
+                type: SnackBarType.success,
+              );
+              if (context.canPop()) {
+                context.pop();
+              }
+            },
+          ),
+          BlocListener<BookingGuestHouseBloc, BookingGuestHouseState>(
+            listenWhen: (prev, curr) =>
+                prev.isSubmitting != curr.isSubmitting &&
+                curr.isSubmitting == false &&
+                !curr.submitSuccess &&
+                (curr.message ?? '').isNotEmpty,
+            listener: (context, state) {
+              _showSnack(
+                state.message ?? 'Lưu phiếu thất bại',
+                type: SnackBarType.error,
+              );
+            },
+          ),
+        ],
+          child: FormBuilder(
+            key: _formKey,
+            // Không dùng buildWhen — phải rebuild mỗi khi AddScreen
+            // setState (vd: _populateFromDetail vừa set _isApprovedTBP =
+            // true → cần re-render FormInputField TBP Duyệt với
+            // `enabled: false`). Nếu dùng buildWhen, BlocBuilder chỉ
+            // chạy khi state thay đổi; state không đổi sau setState bên
+            // ngoài → builder skip → `enabled` giữ giá trị cũ.
+            child: BlocBuilder<BookingGuestHouseBloc, BookingGuestHouseState>(
+              builder: (context, state) {
+            // Edit mode: fill form 1 lần khi detail vừa có data + lookup đã
+            // load xong (tránh gọi trong build → setState trong build).
+            // Check `info.id == widget.id` để tránh populate nhầm data
+            // cũ (từ phiếu khác mà bloc state còn giữ) khi user
+            // back từ settlement/list rồi mở phiếu khác.
+            if (widget.id != null &&
+                state.detailData != null &&
+                state.detailData!.info.id == widget.id &&
+                !_populated) {
+                _populated = true;
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  if (!mounted) return;
+                  _populateFromDetail(state.detailData!);
+                  // Trigger rebuild để field TBP Duyệt nhận
+                  // `enabled: !_isApprovedTBP` mới set trong _populateFromDetail
+                  // + ValueKey RoommateInfoItem đổi (gen++) → RoommateInfoItem
+                  // mới mount + FormField mới register với FormBuilder.
+                  if (mounted) setState(() {});
+                  // PatchValue cho field NGOÀI RoommateInfoItem (date, project,
+                  // tbp, province, address, note). Cần delay vì field này
+                  // cũng bị rebuild sau setState → có thể chưa mount kịp
+                  // ở postFrame. 50ms đủ cho form đơn giản (ít field).
+                  Future.delayed(const Duration(milliseconds: 50), () {
+                    if (!mounted) return;
+                    _formKey.currentState?.patchValue(_buildRegistrationPatch());
+                  });
+                  // PatchValue cho field ROOMMATE chạy qua callback onReady
+                  // của RoommateInfoItem — chỉ chạy khi TẤT CẢ slip đã
+                  // FormFieldState bound + value sync vào FormBuilder map
+                  // (qua didChange). Đây là fix bug "validate fail ở edit
+                  // mode dù UI đã hiển thị data": trước đây patchValue
+                  // chạy ở postFrame / Future.delayed, có thể vẫn sớm
+                  // hơn FormField mount → patchValue miss âm thức →
+                  // formState.value rỗng → saveAndValidate fail.
+                });
+              }
+              // Edit mode: hiển thị spinner khi đang load detail lần đầu
+              // (tránh form rỗng flash ra trước khi patchValue xong).
+              if (widget.id != null &&
+                  state.isDetailLoading &&
+                  state.detailData == null) {
+                return const Center(
+                  child: Padding(
+                    padding: EdgeInsets.all(32),
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+              }
+              return Column(
+                children: [
+                  Expanded(
+                    child: ListView(
+                      padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
+                      children: [
+                        _buildRegistrationCard(),
+                        const SizedBox(height: 12),
+                        _buildRoommateCard(),
+                      ],
+                    ),
+                  ),
+                  _buildBottomBar(),
+                ],
+              );
+            },
+          ),
+        ),
+      ),
+    );
+  }
+
+  //---(Card 1)---//
+
+  Widget _buildRegistrationCard() {
+    return FormCard(
+      title: 'Thông tin đăng ký',
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Column(
+            children: [
+              FormInputField(
+                nameForm: 'start_date',
+                nameTextField: 'start_date_text',
+                label: 'Ở từ ngày',
+                icon: Icons.calendar_today_outlined,
+                controller: _startDateCtrl,
+                readOnly: true,
+                isRequired: true,
+                onTap: _pickStartDate,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (v) => v == null || v.isEmpty
+                    ? 'Chọn ngày ở'
+                    : null,
+              ),
+              const SizedBox(height: 12),
+              FormInputField(
+                nameForm: 'end_date',
+                nameTextField: 'end_date_text',
+                label: 'Đến ngày',
+                icon: Icons.calendar_today_outlined,
+                controller: _endDateCtrl,
+                readOnly: true,
+                isRequired: true,
+                onTap: _pickEndDate,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (v) => v == null || v.isEmpty
+                    ? 'Chọn ngày về'
+                    : null,
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+
+          FormInputField(
+            nameForm: 'project',
+            nameTextField: 'project_text',
+            label: 'Dự án',
+            icon: Icons.account_tree_outlined,
+            controller: _projectCtrl,
+            readOnly: true,
+            isRequired: true,
+            onTap: _openProjectSheet,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            validator: (v) => v == null || v.isEmpty
+                ? 'Vui lòng chọn dự án'
+                : null,
+          ),
+          const SizedBox(height: 12),
+
+          FormInputField(
+            nameForm: 'tbp',
+            nameTextField: 'tbp_text',
+            label: 'TBP Duyệt',
+            icon: Icons.verified_user_outlined,
+            controller: _tbpCtrl,
+            // enabled=false để Material style màu xám + không cho phép
+            // tương tác kể cả tap (readOnly chỉ chặn bàn phím). Phiếu đã
+            // được TBP duyệt (_isApprovedTBP) thì giữ nguyên; user chỉ
+            // mở được _openTbpSheet khi chưa duyệt.
+            enabled: !_isApprovedTBP,
+            readOnly: true,
+            isRequired: true,
+            onTap: _openTbpSheet,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            validator: (v) => v == null || v.isEmpty
+                ? 'Vui lòng chọn TBP duyệt'
+                : null,
+          ),
+          const SizedBox(height: 12),
+
+          FormInputField(
+            nameForm: 'province',
+            nameTextField: 'province_text',
+            label: 'Tỉnh lưu trú',
+            icon: Icons.location_city_outlined,
+            controller: _provinceCtrl,
+            readOnly: true,
+            isRequired: true,
+            onTap: _openProvinceSheet,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            validator: (v) => v == null || v.isEmpty
+                ? 'Vui lòng chọn tỉnh lưu trú'
+                : null,
+          ),
+          const SizedBox(height: 12),
+
+          FormInputField(
+            nameForm: 'address',
+            nameTextField: 'address_text',
+            label: 'Địa chỉ cụ thể',
+            icon: Icons.place_outlined,
+            keyboardType: TextInputType.multiline,
+            textInputAction: TextInputAction.newline,
+            isRequired: true,
+            autoExpand: true,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            validator: (v) =>
+                v?.isNotEmpty == true ? null : 'Vui lòng nhập địa chỉ cụ thể',
+          ),
+          const SizedBox(height: 12),
+
+          FormInputField(
+            nameForm: 'note',
+            nameTextField: 'note_text',
+            label: 'Ghi chú',
+            icon: Icons.note_outlined,
+            keyboardType: TextInputType.multiline,
+            textInputAction: TextInputAction.newline,
+            autoExpand: true,
+          ),
+        ],
+      ),
+    );
+  }
+
+  //---(Card 2)---//
+
+  Widget _buildRoommateCard() {
+    return FormCard(
+      title: 'Thông tin người ở',
+      actions: [
+        TextButton.icon(
+          onPressed: _addRoommate,
+          icon: const Icon(Icons.add_circle_outline, size: 20),
+          label: const Text('Thêm người ở'),
+          style: TextButton.styleFrom(
+            foregroundColor: AppColors.primaryERP,
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+          ),
+        ),
+      ],
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          for (int i = 0; i < _roommateLineCount; i++) ...[
+            _buildRoommateItem(index: i),
+            if (i != _roommateLineCount - 1) const SizedBox(height: 16),
+          ],
+        ],
+      ),
+    );
+  }
+
+  Widget _buildRoommateItem({required int index}) {
+    return RoommateInfoItem(
+      key: ValueKey('roommate_${index}_$_roommateFormGeneration'),
+      index: index,
+      employeeOptions:
+          context.read<BookingGuestHouseBloc>().state.employees,
+      infoFieldValues: _infoFieldValues,
+      prefillEmployee: index == 0 ? _selectedRoommateEmployees[0] : null,
+      onChanged: (patch) {
+        if (!mounted) return;
+        // Resolve EmployeeFilterItem từ employeeId vừa pick để dùng khi submit
+        // (cần fullName / code / phone / department từ server).
+        final pickedId = patch['roommate_employee_id_$index'] as int?;
+        EmployeeFilterItem? resolvedEmployee;
+        if (pickedId != null && pickedId > 0) {
+          resolvedEmployee = context
+              .read<BookingGuestHouseBloc>()
+              .state
+              .employees
+              .firstWhereOrNull((e) => e.id == pickedId);
+        }
+        setState(() {
+          _infoFieldValues = {..._infoFieldValues, ...patch};
+          _selectedRoommateEmployees[index] = resolvedEmployee;
+        });
+      },
+      // Chỉ cho phép xoá slip 1 trở đi — slip 0 luôn là currentUser.
+      onRemove: index >= 1 ? () => _removeRoommate(index) : null,
+      // RoommateInfoItem gọi onReady SAU khi FormFieldState đã được tạo +
+      // value đã được đẩy vào FormBuilder internal map (qua didChange
+      // trong _hydrateFromState / _syncFieldsToEmployee). Đây là tín hiệu
+      // CHẮC CHẮN rằng field đã register trong formState.fields → patchValue
+      // sẽ tìm thấy field + set value. Nếu patchValue chạy ở postFrame /
+      // Future.delayed, có thể vẫn sớm hơn FormField mount → miss âm thức
+      // (đó là bug "validate fail ở edit mode dù UI đã hiển thị").
+      // Mỗi slip onReady 1 lần khi mount xong — patchValue chỉ chạy khi
+      // TẤT CẢ slip đã sẵn sàng cho gen hiện tại.
+      onReady: widget.id != null
+          ? () {
+              if (!mounted) return;
+              _readySlipsForGen[index] = _roommateFormGeneration;
+              if (_isAllReadyForCurrentGen()) {
+                _formKey.currentState?.patchValue(_infoFieldValues);
+              }
+            }
+          : null,
+    );
+  }
+
+  bool _isAllReadyForCurrentGen() {
+    for (var i = 0; i < _roommateLineCount; i++) {
+      if (_readySlipsForGen[i] != _roommateFormGeneration) return false;
+    }
+    return true;
+  }
+
+  //---(Bottom bar)---//
+
+  void _onSave() {
+    final formState = _formKey.currentState;
+    if (formState == null) return;
+
+    // FormBuilder tự kích hoạt validate xuyên suốt form khi saveAndValidate()
+    // → render error inline cho mọi field chưa pass validator.
+    if (!formState.saveAndValidate()) {
+      _showSnack(
+        'Vui lòng điền đầy đủ các trường bắt buộc',
+        type: SnackBarType.error,
+      );
+      return;
+    }
+
+    if (_currentEmployeeId == null || _currentEmployeeId == 0) {
+      _showSnack(
+        'Không xác định được nhân viên đăng ký. Vui lòng thử lại.',
+        type: SnackBarType.error,
+      );
+      return;
+    }
+
+    // Build payload và dispatch submit event — UI chờ BlocListener phản hồi.
+    final payload = _buildSubmitPayload();
+    context.read<BookingGuestHouseBloc>().add(
+          BookingGuestHouseEvent.submit(payload: payload),
+        );
+  }
+
+  /// Build 1 dòng `accommodationBookingDetails` từ dữ liệu form của dòng người ở i.
+  ///
+  /// Ưu tiên resolve EmployeeID / PhoneNumber / DepartmentName / EmployeeCode
+  /// từ EmployeeFilterItem (nếu đã chọn nhân viên), fallback về value nhập tay
+  /// từ FormBuilder (đã được sync vào [_infoFieldValues]).
+  Map<String, dynamic> _buildRoommateDetail({
+    required int index,
+    required int accommodationBookingId,
+  }) {
+    // Resolve Employee cho MỌI slip — slip 0 = currentUser (auto-fill lúc init),
+    // slip n >= 1 = user chọn từ picker (patch cập nhật map ngay khi chọn).
+    final emp = _selectedRoommateEmployees[index];
+
+    final fullName =
+        (emp?.fullName ?? _infoFieldValues['roommate_full_name_$index'] ?? '')
+            .toString()
+            .trim();
+    final code = (emp?.code ?? _infoFieldValues['roommate_code_$index'] ?? '')
+        .toString()
+        .trim();
+    final phone =
+        (emp?.sdtCaNhan ?? _infoFieldValues['roommate_phone_$index'] ?? '')
+            .toString()
+            .trim();
+    final department =
+        (emp?.departmentName ??
+                _infoFieldValues['roommate_department_$index'] ??
+                '')
+            .toString()
+            .trim();
+    final note = (_infoFieldValues['roommate_note_$index'] ?? '')
+        .toString()
+        .trim();
+
+    // Lấy ID của dòng roommate từ response (khi edit) nếu có. Server cần ID
+    // để update đúng dòng thay vì tạo mới.
+    final existingDetailId = _infoFieldValues['roommate_detail_id_$index'] ?? 0;
+
+    return <String, dynamic>{
+      'ID': existingDetailId,
+      'AccommodationBookingID': accommodationBookingId,
+      // Ưu tiên EmployeeID từ EmployeeFilterItem đã chọn (resolve thật từ
+      // server), fallback về ID trong infoFieldValues nếu user nhập tay.
+      'EmployeeID':
+          emp?.id ?? _infoFieldValues['roommate_employee_id_$index'] ?? 0,
+      'PhoneNumber': phone,
+      'FullName': fullName,
+      'DepartmentName': department,
+      'Note': note.isEmpty ? null : note,
+      'EmployeeCode': code,
+    };
+  }
+
+  /// Build payload cuối cùng theo schema `/AccommodationBooking/save-data`.
+  /// Khi edit (widget.id != null) → truyền `ID` của phiếu trong
+  /// `accommodationBooking` để server xử lý update thay vì tạo mới.
+  /// Nếu có thông tin từ detail (info.id) thì ưu tiên dùng id đó.
+  ///
+  /// QUAN TRỌNG: bloc là singleton (share qua ShellRoute provider) nên
+  /// `state.detailData` có thể còn rác từ lần mở edit trước. Khi tạo
+  /// mới (widget.id == null) phải ép `bookingId = 0` thay vì fallback
+  /// `detail?.info.id` — nếu không sẽ gửi nhầm `ID` phiếu của người
+  /// khác lên server, BE sẽ 400 vì "trùng đăng ký" hoặc overwrite phiếu
+  /// người khác.
+  Map<String, dynamic> _buildSubmitPayload() {
+    final detail = context.read<BookingGuestHouseBloc>().state.detailData;
+    final bookingId = widget.id != null
+        ? (widget.id ?? detail?.info.id ?? 0)
+        : 0;
+
+    final accommodationBooking = <String, dynamic>{
+      'ID': bookingId,
+      'RegisterID': _currentEmployeeId,
+      'ProjectID': _selectedProject?.id ?? 0,
+      'ProvinceID': _selectedProvince?.id ?? 0,
+      'StartDate': _toApiIso(_startDate),
+      'EndDate': _toApiIso(_endDate),
+      'Note': _readFormText('note'),
+      'ApprovedTBP': _selectedTbp?.id ?? 0,
+      'SpecificDestinationAddress': _readFormText('address'),
+      'Address': _readFormText('address'),
+    };
+
+    final details = <Map<String, dynamic>>[];
+    for (var i = 0; i < _roommateLineCount; i++) {
+      final name = (_infoFieldValues['roommate_full_name_$i'] ?? '')
+          .toString()
+          .trim();
+      final phone = (_infoFieldValues['roommate_phone_$i'] ?? '')
+          .toString()
+          .trim();
+      // Bỏ qua dòng rỗng hoàn toàn (sau shift / trước khi nhập) để không tạo
+      // detail rỗng gửi lên server.
+      if (name.isEmpty && phone.isEmpty) continue;
+      details.add(_buildRoommateDetail(index: i, accommodationBookingId: bookingId));
+    }
+
+    return <String, dynamic>{
+      'accommodationBooking': accommodationBooking,
+      'accommodationBookingDetails': details,
+      'idDeleteds': <int>[],
+    };
+  }
+
+  String _readFormText(String name) {
+    final v = _formKey.currentState?.value[name];
+    if (v == null) return '';
+    return v.toString().trim();
+  }
+
+  /// Convert DateTime → chuỗi `yyyy-MM-ddTHH:mm:ss.000Z` (UTC) khớp payload mẫu.
+  String _toApiIso(DateTime? d) {
+    if (d == null) return '';
+    final utc = d.toUtc();
+    final y = utc.year.toString().padLeft(4, '0');
+    final m = utc.month.toString().padLeft(2, '0');
+    final day = utc.day.toString().padLeft(2, '0');
+    final h = utc.hour.toString().padLeft(2, '0');
+    final mi = utc.minute.toString().padLeft(2, '0');
+    final s = utc.second.toString().padLeft(2, '0');
+    return '$y-$m-${day}T$h:$mi:$s.000Z';
+  }
+
+  Widget _buildBottomBar() {
+    return BlocBuilder<BookingGuestHouseBloc, BookingGuestHouseState>(
+      buildWhen: (prev, curr) =>
+          prev.isSubmitting != curr.isSubmitting ||
+          prev.submitSuccess != curr.submitSuccess,
+      builder: (context, state) {
+        final isSubmitting = state.isSubmitting;
+        return Container(
+          padding: EdgeInsets.fromLTRB(
+            16,
+            12,
+            16,
+            12 + MediaQuery.of(context).padding.bottom,
+          ),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.05),
+                blurRadius: 8,
+                offset: const Offset(0, -2),
+              ),
+            ],
+          ),
+          child: SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: isSubmitting ? null : _onSave,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.primaryERP,
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(vertical: 14),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              child: isSubmitting
+                  ? const SizedBox(
+                      height: 20,
+                      width: 20,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          Colors.white,
+                        ),
+                      ),
+                    )
+                  : const Text(
+                      'Lưu',
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  //---(Actions)---//
+
+  void _addRoommate() {
+    final oldCount = _roommateLineCount;
+    final newCount = oldCount + 1;
+    setState(() {
+      _roommateLineCount = newCount;
+      _selectedRoommateEmployees[oldCount] = null;
+      _roommateFormGeneration++;
+      _readySlipsForGen.clear();
+    });
+  }
+
+  void _removeRoommate(int index) {
+    // Luôn giữ ít nhất 1 slip (slip(0) = currentUser).
+    if (_roommateLineCount <= 1) return;
+    final formState = _formKey.currentState;
+    if (formState == null) return;
+
+    final oldCount = _roommateLineCount;
+    final shifted = BookingGuestHouseRoommateFormShift.computeShiftedFields(
+      form: formState,
+      deletedIndex: index,
+      oldLineCount: oldCount,
+    );
+    formState.patchValue(shifted);
+
+    // Đồng bộ state local.
+    setState(() {
+      _roommateLineCount = oldCount - 1;
+      _selectedRoommateEmployees.remove(index);
+      // Re-index map liên tục.
+      final remapped = <int, EmployeeFilterItem?>{};
+      _selectedRoommateEmployees.forEach((key, value) {
+        if (key > index) {
+          remapped[key - 1] = value;
+        } else {
+          remapped[key] = value;
+        }
+      });
+      _selectedRoommateEmployees
+        ..clear()
+        ..addAll(remapped);
+
+      // Đồng bộ infoFieldValues theo shifted.
+      _infoFieldValues = {..._infoFieldValues, ...shifted};
+      _roommateFormGeneration++;
+      _readySlipsForGen.clear();
+    });
+  }
+
+  Future<void> _pickStartDate() async {
+    final picked = await _showDatePicker(_startDate);
+    if (picked == null || !mounted) return;
+    setState(() {
+      _startDate = picked;
+      _startDateCtrl.text = DateFormat('dd/MM/yyyy').format(picked);
+      // Đảm bảo đến ngày không trước từ ngày.
+      if (_endDate != null && picked.isAfter(_endDate!)) {
+        _endDate = picked;
+        _endDateCtrl.text = DateFormat('dd/MM/yyyy').format(picked);
+      }
+      _formKey.currentState?.patchValue({
+        'start_date': _startDateCtrl.text,
+        'start_date_text': _startDateCtrl.text,
+      });
+    });
+  }
+
+  Future<void> _pickEndDate() async {
+    final picked = await _showDatePicker(_endDate, firstDate: _startDate);
+    if (picked == null || !mounted) return;
+    setState(() {
+      _endDate = picked;
+      _endDateCtrl.text = DateFormat('dd/MM/yyyy').format(picked);
+      _formKey.currentState?.patchValue({
+        'end_date': _endDateCtrl.text,
+        'end_date_text': _endDateCtrl.text,
+      });
+    });
+  }
+
+  Future<DateTime?> _showDatePicker(
+    DateTime? value, {
+    DateTime? firstDate,
+  }) async {
+    final now = DateTime.now();
+    final resolvedFirst = firstDate ?? DateTime(now.year - 1);
+    // initialDate phải nằm trong [firstDate, lastDate]; clamp nếu value
+    // (lần pick trước) bị trước firstDate hiện tại (vd. user đổi startDate
+    // sau khi đã pick endDate).
+    DateTime initial = value ?? now;
+    if (initial.isBefore(resolvedFirst)) {
+      initial = resolvedFirst;
+    }
+    return showDatePicker(
+      context: context,
+      initialDate: initial,
+      firstDate: resolvedFirst,
+      lastDate: DateTime(now.year + 2),
+    );
+  }
+
+  Future<void> _openProjectSheet() async {
+    if (!mounted) return;
+    final projects = context.read<BookingGuestHouseBloc>().state.projects;
+    await openSelectBottomSheet<ProjectFilterItem>(
+      context: context,
+      title: 'Chọn dự án',
+      hintText: 'Tìm theo mã / tên dự án',
+      items: projects,
+      initialSelectedItem: _selectedProject,
+      displayText: (p) => _projectText(p),
+      onSelected: (p) {
+        if (!mounted) return;
+        setState(() {
+          _selectedProject = p;
+          _projectCtrl.text = _projectText(p);
+          _formKey.currentState?.patchValue({
+            'project': _projectCtrl.text,
+            'project_text': _projectCtrl.text,
+          });
+        });
+      },
+    );
+  }
+
+  Future<void> _openTbpSheet() async {
+    if (!mounted) return;
+    final employees = context.read<BookingGuestHouseBloc>().state.employees;
+    await openSelectBottomSheet<EmployeeFilterItem>(
+      context: context,
+      title: 'Chọn TBP duyệt',
+      hintText: 'Tìm theo tên nhân viên',
+      items: employees,
+      initialSelectedItem: _selectedTbp,
+      displayText: (e) => e.fullName ?? 'N/A',
+      onSelected: (e) {
+        if (!mounted) return;
+        setState(() {
+          _selectedTbp = e;
+          _tbpCtrl.text = e.fullName ?? '';
+          _formKey.currentState?.patchValue({
+            'tbp': _tbpCtrl.text,
+            'tbp_text': _tbpCtrl.text,
+          });
+        });
+      },
+    );
+  }
+
+  Future<void> _openProvinceSheet() async {
+    if (!mounted) return;
+    final provinces = context.read<BookingGuestHouseBloc>().state.provinces;
+    await openSelectBottomSheet<ProvinceFilterItem>(
+      context: context,
+      title: 'Chọn tỉnh lưu trú',
+      hintText: 'Tìm theo tên tỉnh',
+      items: provinces,
+      initialSelectedItem: _selectedProvince,
+      displayText: (p) => p.provinceName ?? 'N/A',
+      onSelected: (p) {
+        if (!mounted) return;
+        setState(() {
+          _selectedProvince = p;
+          _provinceCtrl.text = p.provinceName ?? '';
+          _formKey.currentState?.patchValue({
+            'province': _provinceCtrl.text,
+            'province_text': _provinceCtrl.text,
+          });
+        });
+      },
+    );
+  }
+
+  //---(Helpers)---//
+
+  String _projectText(ProjectFilterItem p) {
+    if (p.projectCode != null && p.projectCode!.isNotEmpty) {
+      return '${p.projectCode} - ${p.projectName ?? ''}';
+    }
+    return p.projectName ?? 'N/A';
+  }
+}

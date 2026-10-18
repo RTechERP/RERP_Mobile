@@ -1,0 +1,7167 @@
+// coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
+
+part of 'booking_guest_house_model.dart';
+
+// **************************************************************************
+// FreezedGenerator
+// **************************************************************************
+
+T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+
+BookingGuestHouseItem _$BookingGuestHouseItemFromJson(
+    Map<String, dynamic> json) {
+  return _BookingGuestHouseItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BookingGuestHouseItem {
+  @JsonKey(name: 'ID')
+  int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'RegisterID')
+  int? get registerId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectID')
+  int? get projectId =>
+      throw _privateConstructorUsedError; // Thông tin nhân viên đặt
+  @JsonKey(name: 'FullName')
+  String? get fullName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DepartmentID')
+  int? get departmentId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DepartmentName')
+  String? get departmentName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'SDTCaNhan')
+  String? get sdtCaNhan =>
+      throw _privateConstructorUsedError; // Thông tin dự án
+  @JsonKey(name: 'ProjectCode')
+  String? get projectCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectName')
+  String? get projectName => throw _privateConstructorUsedError; // Địa điểm
+  @JsonKey(name: 'ProvinceID')
+  int? get provinceId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProvinceName')
+  String? get provinceName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Address')
+  String? get address => throw _privateConstructorUsedError; // Thời gian
+  @JsonKey(name: 'StartDate')
+  DateTime? get startDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EndDate')
+  DateTime? get endDate => throw _privateConstructorUsedError; // Ghi chú
+  @JsonKey(name: 'Note')
+  String? get note => throw _privateConstructorUsedError; // Người cùng phòng
+  @JsonKey(name: 'Roommates')
+  String? get roommates => throw _privateConstructorUsedError; // Audit
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted => throw _privateConstructorUsedError; // Duyệt TBP
+  @JsonKey(name: 'IsApprovedTBP')
+  bool? get isApprovedTBP => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ApprovedTBP')
+  dynamic get approvedTBP => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ApprovedTBPDate')
+  DateTime? get approvedTBPDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FullNameTBP')
+  String? get fullNameTBP => throw _privateConstructorUsedError; // Thanh toán
+  @JsonKey(name: 'PaymentApprovedTBPID')
+  int? get paymentApprovedTBPId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PaymentFullNameTBP')
+  String? get paymentFullNameTBP => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PaymentDetailStatus')
+  int? get paymentDetailStatus => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PaymentRecipientName')
+  String? get paymentRecipientName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PaymentBankName')
+  String? get paymentBankName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PaymentBankAccount')
+  String? get paymentBankAccount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PaymentHotelName')
+  String? get paymentHotelName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PaymentCompanyID')
+  int? get paymentCompanyId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PaymentCompanyName')
+  String? get paymentCompanyName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PaymentTotalAmount')
+  num? get paymentTotalAmount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PaymentTotalAmountWithInvoice')
+  num? get paymentTotalAmountWithInvoice => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PaymentInvoiceNumber')
+  String? get paymentInvoiceNumber => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PaymentReason')
+  String? get paymentReason => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PaymentNote')
+  String? get paymentNote => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PaymentInvoiceFileCount')
+  int? get paymentInvoiceFileCount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PaymentBillCKFileCount')
+  int? get paymentBillCkFileCount =>
+      throw _privateConstructorUsedError; // Đề nghị tạm ứng (ĐNTU) — dùng khi list hiển thị icon "đã tạo tạm ứng"
+// và để mở form advance ở chế độ view-only khi `advanceDetailStatus == 4`.
+  @JsonKey(name: 'AdvancePaymentOrderID')
+  int? get advancePaymentOrderId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvancePaymentOrderCode')
+  String? get advancePaymentOrderCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceDetailStatus')
+  int? get advanceDetailStatus => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceTotalAmount')
+  num? get advanceTotalAmount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceApprovedTBPID')
+  int? get advanceApprovedTbpId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceBankName')
+  String? get advanceBankName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceBankAccount')
+  String? get advanceBankAccount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceReason')
+  String? get advanceReason => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceStepCode')
+  String? get advanceStepCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceStepName')
+  String? get advanceStepName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceStepIsApproved')
+  int? get advanceStepIsApproved => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceIsReceived')
+  bool? get advanceIsReceived => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceIsPaid')
+  bool? get advanceIsPaid => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceCompanyID')
+  int? get advanceCompanyId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceCompanyName')
+  String? get advanceCompanyName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceDepartmentName')
+  String? get advanceDepartmentName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceProjectID')
+  int? get advanceProjectId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceTransferType')
+  int? get advanceTransferType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceBankListID')
+  int? get advanceBankListId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceRecipientName')
+  String? get advanceRecipientName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AdvanceNote')
+  String? get advanceNote => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BookingGuestHouseItemCopyWith<BookingGuestHouseItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BookingGuestHouseItemCopyWith<$Res> {
+  factory $BookingGuestHouseItemCopyWith(BookingGuestHouseItem value,
+          $Res Function(BookingGuestHouseItem) then) =
+      _$BookingGuestHouseItemCopyWithImpl<$Res, BookingGuestHouseItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int id,
+      @JsonKey(name: 'RegisterID') int? registerId,
+      @JsonKey(name: 'ProjectID') int? projectId,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'DepartmentID') int? departmentId,
+      @JsonKey(name: 'DepartmentName') String? departmentName,
+      @JsonKey(name: 'SDTCaNhan') String? sdtCaNhan,
+      @JsonKey(name: 'ProjectCode') String? projectCode,
+      @JsonKey(name: 'ProjectName') String? projectName,
+      @JsonKey(name: 'ProvinceID') int? provinceId,
+      @JsonKey(name: 'ProvinceName') String? provinceName,
+      @JsonKey(name: 'Address') String? address,
+      @JsonKey(name: 'StartDate') DateTime? startDate,
+      @JsonKey(name: 'EndDate') DateTime? endDate,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'Roommates') String? roommates,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'IsApprovedTBP') bool? isApprovedTBP,
+      @JsonKey(name: 'ApprovedTBP') dynamic approvedTBP,
+      @JsonKey(name: 'ApprovedTBPDate') DateTime? approvedTBPDate,
+      @JsonKey(name: 'FullNameTBP') String? fullNameTBP,
+      @JsonKey(name: 'PaymentApprovedTBPID') int? paymentApprovedTBPId,
+      @JsonKey(name: 'PaymentFullNameTBP') String? paymentFullNameTBP,
+      @JsonKey(name: 'PaymentDetailStatus') int? paymentDetailStatus,
+      @JsonKey(name: 'PaymentRecipientName') String? paymentRecipientName,
+      @JsonKey(name: 'PaymentBankName') String? paymentBankName,
+      @JsonKey(name: 'PaymentBankAccount') String? paymentBankAccount,
+      @JsonKey(name: 'PaymentHotelName') String? paymentHotelName,
+      @JsonKey(name: 'PaymentCompanyID') int? paymentCompanyId,
+      @JsonKey(name: 'PaymentCompanyName') String? paymentCompanyName,
+      @JsonKey(name: 'PaymentTotalAmount') num? paymentTotalAmount,
+      @JsonKey(name: 'PaymentTotalAmountWithInvoice')
+      num? paymentTotalAmountWithInvoice,
+      @JsonKey(name: 'PaymentInvoiceNumber') String? paymentInvoiceNumber,
+      @JsonKey(name: 'PaymentReason') String? paymentReason,
+      @JsonKey(name: 'PaymentNote') String? paymentNote,
+      @JsonKey(name: 'PaymentInvoiceFileCount') int? paymentInvoiceFileCount,
+      @JsonKey(name: 'PaymentBillCKFileCount') int? paymentBillCkFileCount,
+      @JsonKey(name: 'AdvancePaymentOrderID') int? advancePaymentOrderId,
+      @JsonKey(name: 'AdvancePaymentOrderCode') String? advancePaymentOrderCode,
+      @JsonKey(name: 'AdvanceDetailStatus') int? advanceDetailStatus,
+      @JsonKey(name: 'AdvanceTotalAmount') num? advanceTotalAmount,
+      @JsonKey(name: 'AdvanceApprovedTBPID') int? advanceApprovedTbpId,
+      @JsonKey(name: 'AdvanceBankName') String? advanceBankName,
+      @JsonKey(name: 'AdvanceBankAccount') String? advanceBankAccount,
+      @JsonKey(name: 'AdvanceReason') String? advanceReason,
+      @JsonKey(name: 'AdvanceStepCode') String? advanceStepCode,
+      @JsonKey(name: 'AdvanceStepName') String? advanceStepName,
+      @JsonKey(name: 'AdvanceStepIsApproved') int? advanceStepIsApproved,
+      @JsonKey(name: 'AdvanceIsReceived') bool? advanceIsReceived,
+      @JsonKey(name: 'AdvanceIsPaid') bool? advanceIsPaid,
+      @JsonKey(name: 'AdvanceCompanyID') int? advanceCompanyId,
+      @JsonKey(name: 'AdvanceCompanyName') String? advanceCompanyName,
+      @JsonKey(name: 'AdvanceDepartmentName') String? advanceDepartmentName,
+      @JsonKey(name: 'AdvanceProjectID') int? advanceProjectId,
+      @JsonKey(name: 'AdvanceTransferType') int? advanceTransferType,
+      @JsonKey(name: 'AdvanceBankListID') int? advanceBankListId,
+      @JsonKey(name: 'AdvanceRecipientName') String? advanceRecipientName,
+      @JsonKey(name: 'AdvanceNote') String? advanceNote});
+}
+
+/// @nodoc
+class _$BookingGuestHouseItemCopyWithImpl<$Res,
+        $Val extends BookingGuestHouseItem>
+    implements $BookingGuestHouseItemCopyWith<$Res> {
+  _$BookingGuestHouseItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? registerId = freezed,
+    Object? projectId = freezed,
+    Object? fullName = freezed,
+    Object? departmentId = freezed,
+    Object? departmentName = freezed,
+    Object? sdtCaNhan = freezed,
+    Object? projectCode = freezed,
+    Object? projectName = freezed,
+    Object? provinceId = freezed,
+    Object? provinceName = freezed,
+    Object? address = freezed,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
+    Object? note = freezed,
+    Object? roommates = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+    Object? isDeleted = freezed,
+    Object? isApprovedTBP = freezed,
+    Object? approvedTBP = freezed,
+    Object? approvedTBPDate = freezed,
+    Object? fullNameTBP = freezed,
+    Object? paymentApprovedTBPId = freezed,
+    Object? paymentFullNameTBP = freezed,
+    Object? paymentDetailStatus = freezed,
+    Object? paymentRecipientName = freezed,
+    Object? paymentBankName = freezed,
+    Object? paymentBankAccount = freezed,
+    Object? paymentHotelName = freezed,
+    Object? paymentCompanyId = freezed,
+    Object? paymentCompanyName = freezed,
+    Object? paymentTotalAmount = freezed,
+    Object? paymentTotalAmountWithInvoice = freezed,
+    Object? paymentInvoiceNumber = freezed,
+    Object? paymentReason = freezed,
+    Object? paymentNote = freezed,
+    Object? paymentInvoiceFileCount = freezed,
+    Object? paymentBillCkFileCount = freezed,
+    Object? advancePaymentOrderId = freezed,
+    Object? advancePaymentOrderCode = freezed,
+    Object? advanceDetailStatus = freezed,
+    Object? advanceTotalAmount = freezed,
+    Object? advanceApprovedTbpId = freezed,
+    Object? advanceBankName = freezed,
+    Object? advanceBankAccount = freezed,
+    Object? advanceReason = freezed,
+    Object? advanceStepCode = freezed,
+    Object? advanceStepName = freezed,
+    Object? advanceStepIsApproved = freezed,
+    Object? advanceIsReceived = freezed,
+    Object? advanceIsPaid = freezed,
+    Object? advanceCompanyId = freezed,
+    Object? advanceCompanyName = freezed,
+    Object? advanceDepartmentName = freezed,
+    Object? advanceProjectId = freezed,
+    Object? advanceTransferType = freezed,
+    Object? advanceBankListId = freezed,
+    Object? advanceRecipientName = freezed,
+    Object? advanceNote = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      registerId: freezed == registerId
+          ? _value.registerId
+          : registerId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departmentId: freezed == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentName: freezed == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sdtCaNhan: freezed == sdtCaNhan
+          ? _value.sdtCaNhan
+          : sdtCaNhan // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectCode: freezed == projectCode
+          ? _value.projectCode
+          : projectCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectName: freezed == projectName
+          ? _value.projectName
+          : projectName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      provinceId: freezed == provinceId
+          ? _value.provinceId
+          : provinceId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      provinceName: freezed == provinceName
+          ? _value.provinceName
+          : provinceName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      roommates: freezed == roommates
+          ? _value.roommates
+          : roommates // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isApprovedTBP: freezed == isApprovedTBP
+          ? _value.isApprovedTBP
+          : isApprovedTBP // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      approvedTBP: freezed == approvedTBP
+          ? _value.approvedTBP
+          : approvedTBP // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      approvedTBPDate: freezed == approvedTBPDate
+          ? _value.approvedTBPDate
+          : approvedTBPDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      fullNameTBP: freezed == fullNameTBP
+          ? _value.fullNameTBP
+          : fullNameTBP // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentApprovedTBPId: freezed == paymentApprovedTBPId
+          ? _value.paymentApprovedTBPId
+          : paymentApprovedTBPId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      paymentFullNameTBP: freezed == paymentFullNameTBP
+          ? _value.paymentFullNameTBP
+          : paymentFullNameTBP // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentDetailStatus: freezed == paymentDetailStatus
+          ? _value.paymentDetailStatus
+          : paymentDetailStatus // ignore: cast_nullable_to_non_nullable
+              as int?,
+      paymentRecipientName: freezed == paymentRecipientName
+          ? _value.paymentRecipientName
+          : paymentRecipientName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentBankName: freezed == paymentBankName
+          ? _value.paymentBankName
+          : paymentBankName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentBankAccount: freezed == paymentBankAccount
+          ? _value.paymentBankAccount
+          : paymentBankAccount // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentHotelName: freezed == paymentHotelName
+          ? _value.paymentHotelName
+          : paymentHotelName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentCompanyId: freezed == paymentCompanyId
+          ? _value.paymentCompanyId
+          : paymentCompanyId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      paymentCompanyName: freezed == paymentCompanyName
+          ? _value.paymentCompanyName
+          : paymentCompanyName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentTotalAmount: freezed == paymentTotalAmount
+          ? _value.paymentTotalAmount
+          : paymentTotalAmount // ignore: cast_nullable_to_non_nullable
+              as num?,
+      paymentTotalAmountWithInvoice: freezed == paymentTotalAmountWithInvoice
+          ? _value.paymentTotalAmountWithInvoice
+          : paymentTotalAmountWithInvoice // ignore: cast_nullable_to_non_nullable
+              as num?,
+      paymentInvoiceNumber: freezed == paymentInvoiceNumber
+          ? _value.paymentInvoiceNumber
+          : paymentInvoiceNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentReason: freezed == paymentReason
+          ? _value.paymentReason
+          : paymentReason // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentNote: freezed == paymentNote
+          ? _value.paymentNote
+          : paymentNote // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentInvoiceFileCount: freezed == paymentInvoiceFileCount
+          ? _value.paymentInvoiceFileCount
+          : paymentInvoiceFileCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      paymentBillCkFileCount: freezed == paymentBillCkFileCount
+          ? _value.paymentBillCkFileCount
+          : paymentBillCkFileCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advancePaymentOrderId: freezed == advancePaymentOrderId
+          ? _value.advancePaymentOrderId
+          : advancePaymentOrderId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advancePaymentOrderCode: freezed == advancePaymentOrderCode
+          ? _value.advancePaymentOrderCode
+          : advancePaymentOrderCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceDetailStatus: freezed == advanceDetailStatus
+          ? _value.advanceDetailStatus
+          : advanceDetailStatus // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advanceTotalAmount: freezed == advanceTotalAmount
+          ? _value.advanceTotalAmount
+          : advanceTotalAmount // ignore: cast_nullable_to_non_nullable
+              as num?,
+      advanceApprovedTbpId: freezed == advanceApprovedTbpId
+          ? _value.advanceApprovedTbpId
+          : advanceApprovedTbpId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advanceBankName: freezed == advanceBankName
+          ? _value.advanceBankName
+          : advanceBankName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceBankAccount: freezed == advanceBankAccount
+          ? _value.advanceBankAccount
+          : advanceBankAccount // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceReason: freezed == advanceReason
+          ? _value.advanceReason
+          : advanceReason // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceStepCode: freezed == advanceStepCode
+          ? _value.advanceStepCode
+          : advanceStepCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceStepName: freezed == advanceStepName
+          ? _value.advanceStepName
+          : advanceStepName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceStepIsApproved: freezed == advanceStepIsApproved
+          ? _value.advanceStepIsApproved
+          : advanceStepIsApproved // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advanceIsReceived: freezed == advanceIsReceived
+          ? _value.advanceIsReceived
+          : advanceIsReceived // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      advanceIsPaid: freezed == advanceIsPaid
+          ? _value.advanceIsPaid
+          : advanceIsPaid // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      advanceCompanyId: freezed == advanceCompanyId
+          ? _value.advanceCompanyId
+          : advanceCompanyId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advanceCompanyName: freezed == advanceCompanyName
+          ? _value.advanceCompanyName
+          : advanceCompanyName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceDepartmentName: freezed == advanceDepartmentName
+          ? _value.advanceDepartmentName
+          : advanceDepartmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceProjectId: freezed == advanceProjectId
+          ? _value.advanceProjectId
+          : advanceProjectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advanceTransferType: freezed == advanceTransferType
+          ? _value.advanceTransferType
+          : advanceTransferType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advanceBankListId: freezed == advanceBankListId
+          ? _value.advanceBankListId
+          : advanceBankListId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advanceRecipientName: freezed == advanceRecipientName
+          ? _value.advanceRecipientName
+          : advanceRecipientName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceNote: freezed == advanceNote
+          ? _value.advanceNote
+          : advanceNote // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$BookingGuestHouseItemImplCopyWith<$Res>
+    implements $BookingGuestHouseItemCopyWith<$Res> {
+  factory _$$BookingGuestHouseItemImplCopyWith(
+          _$BookingGuestHouseItemImpl value,
+          $Res Function(_$BookingGuestHouseItemImpl) then) =
+      __$$BookingGuestHouseItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int id,
+      @JsonKey(name: 'RegisterID') int? registerId,
+      @JsonKey(name: 'ProjectID') int? projectId,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'DepartmentID') int? departmentId,
+      @JsonKey(name: 'DepartmentName') String? departmentName,
+      @JsonKey(name: 'SDTCaNhan') String? sdtCaNhan,
+      @JsonKey(name: 'ProjectCode') String? projectCode,
+      @JsonKey(name: 'ProjectName') String? projectName,
+      @JsonKey(name: 'ProvinceID') int? provinceId,
+      @JsonKey(name: 'ProvinceName') String? provinceName,
+      @JsonKey(name: 'Address') String? address,
+      @JsonKey(name: 'StartDate') DateTime? startDate,
+      @JsonKey(name: 'EndDate') DateTime? endDate,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'Roommates') String? roommates,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'IsApprovedTBP') bool? isApprovedTBP,
+      @JsonKey(name: 'ApprovedTBP') dynamic approvedTBP,
+      @JsonKey(name: 'ApprovedTBPDate') DateTime? approvedTBPDate,
+      @JsonKey(name: 'FullNameTBP') String? fullNameTBP,
+      @JsonKey(name: 'PaymentApprovedTBPID') int? paymentApprovedTBPId,
+      @JsonKey(name: 'PaymentFullNameTBP') String? paymentFullNameTBP,
+      @JsonKey(name: 'PaymentDetailStatus') int? paymentDetailStatus,
+      @JsonKey(name: 'PaymentRecipientName') String? paymentRecipientName,
+      @JsonKey(name: 'PaymentBankName') String? paymentBankName,
+      @JsonKey(name: 'PaymentBankAccount') String? paymentBankAccount,
+      @JsonKey(name: 'PaymentHotelName') String? paymentHotelName,
+      @JsonKey(name: 'PaymentCompanyID') int? paymentCompanyId,
+      @JsonKey(name: 'PaymentCompanyName') String? paymentCompanyName,
+      @JsonKey(name: 'PaymentTotalAmount') num? paymentTotalAmount,
+      @JsonKey(name: 'PaymentTotalAmountWithInvoice')
+      num? paymentTotalAmountWithInvoice,
+      @JsonKey(name: 'PaymentInvoiceNumber') String? paymentInvoiceNumber,
+      @JsonKey(name: 'PaymentReason') String? paymentReason,
+      @JsonKey(name: 'PaymentNote') String? paymentNote,
+      @JsonKey(name: 'PaymentInvoiceFileCount') int? paymentInvoiceFileCount,
+      @JsonKey(name: 'PaymentBillCKFileCount') int? paymentBillCkFileCount,
+      @JsonKey(name: 'AdvancePaymentOrderID') int? advancePaymentOrderId,
+      @JsonKey(name: 'AdvancePaymentOrderCode') String? advancePaymentOrderCode,
+      @JsonKey(name: 'AdvanceDetailStatus') int? advanceDetailStatus,
+      @JsonKey(name: 'AdvanceTotalAmount') num? advanceTotalAmount,
+      @JsonKey(name: 'AdvanceApprovedTBPID') int? advanceApprovedTbpId,
+      @JsonKey(name: 'AdvanceBankName') String? advanceBankName,
+      @JsonKey(name: 'AdvanceBankAccount') String? advanceBankAccount,
+      @JsonKey(name: 'AdvanceReason') String? advanceReason,
+      @JsonKey(name: 'AdvanceStepCode') String? advanceStepCode,
+      @JsonKey(name: 'AdvanceStepName') String? advanceStepName,
+      @JsonKey(name: 'AdvanceStepIsApproved') int? advanceStepIsApproved,
+      @JsonKey(name: 'AdvanceIsReceived') bool? advanceIsReceived,
+      @JsonKey(name: 'AdvanceIsPaid') bool? advanceIsPaid,
+      @JsonKey(name: 'AdvanceCompanyID') int? advanceCompanyId,
+      @JsonKey(name: 'AdvanceCompanyName') String? advanceCompanyName,
+      @JsonKey(name: 'AdvanceDepartmentName') String? advanceDepartmentName,
+      @JsonKey(name: 'AdvanceProjectID') int? advanceProjectId,
+      @JsonKey(name: 'AdvanceTransferType') int? advanceTransferType,
+      @JsonKey(name: 'AdvanceBankListID') int? advanceBankListId,
+      @JsonKey(name: 'AdvanceRecipientName') String? advanceRecipientName,
+      @JsonKey(name: 'AdvanceNote') String? advanceNote});
+}
+
+/// @nodoc
+class __$$BookingGuestHouseItemImplCopyWithImpl<$Res>
+    extends _$BookingGuestHouseItemCopyWithImpl<$Res,
+        _$BookingGuestHouseItemImpl>
+    implements _$$BookingGuestHouseItemImplCopyWith<$Res> {
+  __$$BookingGuestHouseItemImplCopyWithImpl(_$BookingGuestHouseItemImpl _value,
+      $Res Function(_$BookingGuestHouseItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? registerId = freezed,
+    Object? projectId = freezed,
+    Object? fullName = freezed,
+    Object? departmentId = freezed,
+    Object? departmentName = freezed,
+    Object? sdtCaNhan = freezed,
+    Object? projectCode = freezed,
+    Object? projectName = freezed,
+    Object? provinceId = freezed,
+    Object? provinceName = freezed,
+    Object? address = freezed,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
+    Object? note = freezed,
+    Object? roommates = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+    Object? isDeleted = freezed,
+    Object? isApprovedTBP = freezed,
+    Object? approvedTBP = freezed,
+    Object? approvedTBPDate = freezed,
+    Object? fullNameTBP = freezed,
+    Object? paymentApprovedTBPId = freezed,
+    Object? paymentFullNameTBP = freezed,
+    Object? paymentDetailStatus = freezed,
+    Object? paymentRecipientName = freezed,
+    Object? paymentBankName = freezed,
+    Object? paymentBankAccount = freezed,
+    Object? paymentHotelName = freezed,
+    Object? paymentCompanyId = freezed,
+    Object? paymentCompanyName = freezed,
+    Object? paymentTotalAmount = freezed,
+    Object? paymentTotalAmountWithInvoice = freezed,
+    Object? paymentInvoiceNumber = freezed,
+    Object? paymentReason = freezed,
+    Object? paymentNote = freezed,
+    Object? paymentInvoiceFileCount = freezed,
+    Object? paymentBillCkFileCount = freezed,
+    Object? advancePaymentOrderId = freezed,
+    Object? advancePaymentOrderCode = freezed,
+    Object? advanceDetailStatus = freezed,
+    Object? advanceTotalAmount = freezed,
+    Object? advanceApprovedTbpId = freezed,
+    Object? advanceBankName = freezed,
+    Object? advanceBankAccount = freezed,
+    Object? advanceReason = freezed,
+    Object? advanceStepCode = freezed,
+    Object? advanceStepName = freezed,
+    Object? advanceStepIsApproved = freezed,
+    Object? advanceIsReceived = freezed,
+    Object? advanceIsPaid = freezed,
+    Object? advanceCompanyId = freezed,
+    Object? advanceCompanyName = freezed,
+    Object? advanceDepartmentName = freezed,
+    Object? advanceProjectId = freezed,
+    Object? advanceTransferType = freezed,
+    Object? advanceBankListId = freezed,
+    Object? advanceRecipientName = freezed,
+    Object? advanceNote = freezed,
+  }) {
+    return _then(_$BookingGuestHouseItemImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      registerId: freezed == registerId
+          ? _value.registerId
+          : registerId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departmentId: freezed == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentName: freezed == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sdtCaNhan: freezed == sdtCaNhan
+          ? _value.sdtCaNhan
+          : sdtCaNhan // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectCode: freezed == projectCode
+          ? _value.projectCode
+          : projectCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectName: freezed == projectName
+          ? _value.projectName
+          : projectName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      provinceId: freezed == provinceId
+          ? _value.provinceId
+          : provinceId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      provinceName: freezed == provinceName
+          ? _value.provinceName
+          : provinceName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      roommates: freezed == roommates
+          ? _value.roommates
+          : roommates // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isApprovedTBP: freezed == isApprovedTBP
+          ? _value.isApprovedTBP
+          : isApprovedTBP // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      approvedTBP: freezed == approvedTBP
+          ? _value.approvedTBP
+          : approvedTBP // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      approvedTBPDate: freezed == approvedTBPDate
+          ? _value.approvedTBPDate
+          : approvedTBPDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      fullNameTBP: freezed == fullNameTBP
+          ? _value.fullNameTBP
+          : fullNameTBP // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentApprovedTBPId: freezed == paymentApprovedTBPId
+          ? _value.paymentApprovedTBPId
+          : paymentApprovedTBPId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      paymentFullNameTBP: freezed == paymentFullNameTBP
+          ? _value.paymentFullNameTBP
+          : paymentFullNameTBP // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentDetailStatus: freezed == paymentDetailStatus
+          ? _value.paymentDetailStatus
+          : paymentDetailStatus // ignore: cast_nullable_to_non_nullable
+              as int?,
+      paymentRecipientName: freezed == paymentRecipientName
+          ? _value.paymentRecipientName
+          : paymentRecipientName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentBankName: freezed == paymentBankName
+          ? _value.paymentBankName
+          : paymentBankName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentBankAccount: freezed == paymentBankAccount
+          ? _value.paymentBankAccount
+          : paymentBankAccount // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentHotelName: freezed == paymentHotelName
+          ? _value.paymentHotelName
+          : paymentHotelName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentCompanyId: freezed == paymentCompanyId
+          ? _value.paymentCompanyId
+          : paymentCompanyId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      paymentCompanyName: freezed == paymentCompanyName
+          ? _value.paymentCompanyName
+          : paymentCompanyName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentTotalAmount: freezed == paymentTotalAmount
+          ? _value.paymentTotalAmount
+          : paymentTotalAmount // ignore: cast_nullable_to_non_nullable
+              as num?,
+      paymentTotalAmountWithInvoice: freezed == paymentTotalAmountWithInvoice
+          ? _value.paymentTotalAmountWithInvoice
+          : paymentTotalAmountWithInvoice // ignore: cast_nullable_to_non_nullable
+              as num?,
+      paymentInvoiceNumber: freezed == paymentInvoiceNumber
+          ? _value.paymentInvoiceNumber
+          : paymentInvoiceNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentReason: freezed == paymentReason
+          ? _value.paymentReason
+          : paymentReason // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentNote: freezed == paymentNote
+          ? _value.paymentNote
+          : paymentNote // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentInvoiceFileCount: freezed == paymentInvoiceFileCount
+          ? _value.paymentInvoiceFileCount
+          : paymentInvoiceFileCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      paymentBillCkFileCount: freezed == paymentBillCkFileCount
+          ? _value.paymentBillCkFileCount
+          : paymentBillCkFileCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advancePaymentOrderId: freezed == advancePaymentOrderId
+          ? _value.advancePaymentOrderId
+          : advancePaymentOrderId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advancePaymentOrderCode: freezed == advancePaymentOrderCode
+          ? _value.advancePaymentOrderCode
+          : advancePaymentOrderCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceDetailStatus: freezed == advanceDetailStatus
+          ? _value.advanceDetailStatus
+          : advanceDetailStatus // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advanceTotalAmount: freezed == advanceTotalAmount
+          ? _value.advanceTotalAmount
+          : advanceTotalAmount // ignore: cast_nullable_to_non_nullable
+              as num?,
+      advanceApprovedTbpId: freezed == advanceApprovedTbpId
+          ? _value.advanceApprovedTbpId
+          : advanceApprovedTbpId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advanceBankName: freezed == advanceBankName
+          ? _value.advanceBankName
+          : advanceBankName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceBankAccount: freezed == advanceBankAccount
+          ? _value.advanceBankAccount
+          : advanceBankAccount // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceReason: freezed == advanceReason
+          ? _value.advanceReason
+          : advanceReason // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceStepCode: freezed == advanceStepCode
+          ? _value.advanceStepCode
+          : advanceStepCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceStepName: freezed == advanceStepName
+          ? _value.advanceStepName
+          : advanceStepName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceStepIsApproved: freezed == advanceStepIsApproved
+          ? _value.advanceStepIsApproved
+          : advanceStepIsApproved // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advanceIsReceived: freezed == advanceIsReceived
+          ? _value.advanceIsReceived
+          : advanceIsReceived // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      advanceIsPaid: freezed == advanceIsPaid
+          ? _value.advanceIsPaid
+          : advanceIsPaid // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      advanceCompanyId: freezed == advanceCompanyId
+          ? _value.advanceCompanyId
+          : advanceCompanyId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advanceCompanyName: freezed == advanceCompanyName
+          ? _value.advanceCompanyName
+          : advanceCompanyName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceDepartmentName: freezed == advanceDepartmentName
+          ? _value.advanceDepartmentName
+          : advanceDepartmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceProjectId: freezed == advanceProjectId
+          ? _value.advanceProjectId
+          : advanceProjectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advanceTransferType: freezed == advanceTransferType
+          ? _value.advanceTransferType
+          : advanceTransferType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advanceBankListId: freezed == advanceBankListId
+          ? _value.advanceBankListId
+          : advanceBankListId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advanceRecipientName: freezed == advanceRecipientName
+          ? _value.advanceRecipientName
+          : advanceRecipientName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceNote: freezed == advanceNote
+          ? _value.advanceNote
+          : advanceNote // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$BookingGuestHouseItemImpl implements _BookingGuestHouseItem {
+  const _$BookingGuestHouseItemImpl(
+      {@JsonKey(name: 'ID') required this.id,
+      @JsonKey(name: 'RegisterID') this.registerId,
+      @JsonKey(name: 'ProjectID') this.projectId,
+      @JsonKey(name: 'FullName') this.fullName,
+      @JsonKey(name: 'DepartmentID') this.departmentId,
+      @JsonKey(name: 'DepartmentName') this.departmentName,
+      @JsonKey(name: 'SDTCaNhan') this.sdtCaNhan,
+      @JsonKey(name: 'ProjectCode') this.projectCode,
+      @JsonKey(name: 'ProjectName') this.projectName,
+      @JsonKey(name: 'ProvinceID') this.provinceId,
+      @JsonKey(name: 'ProvinceName') this.provinceName,
+      @JsonKey(name: 'Address') this.address,
+      @JsonKey(name: 'StartDate') this.startDate,
+      @JsonKey(name: 'EndDate') this.endDate,
+      @JsonKey(name: 'Note') this.note,
+      @JsonKey(name: 'Roommates') this.roommates,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'UpdatedBy') this.updatedBy,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate,
+      @JsonKey(name: 'IsDeleted') this.isDeleted,
+      @JsonKey(name: 'IsApprovedTBP') this.isApprovedTBP,
+      @JsonKey(name: 'ApprovedTBP') this.approvedTBP,
+      @JsonKey(name: 'ApprovedTBPDate') this.approvedTBPDate,
+      @JsonKey(name: 'FullNameTBP') this.fullNameTBP,
+      @JsonKey(name: 'PaymentApprovedTBPID') this.paymentApprovedTBPId,
+      @JsonKey(name: 'PaymentFullNameTBP') this.paymentFullNameTBP,
+      @JsonKey(name: 'PaymentDetailStatus') this.paymentDetailStatus,
+      @JsonKey(name: 'PaymentRecipientName') this.paymentRecipientName,
+      @JsonKey(name: 'PaymentBankName') this.paymentBankName,
+      @JsonKey(name: 'PaymentBankAccount') this.paymentBankAccount,
+      @JsonKey(name: 'PaymentHotelName') this.paymentHotelName,
+      @JsonKey(name: 'PaymentCompanyID') this.paymentCompanyId,
+      @JsonKey(name: 'PaymentCompanyName') this.paymentCompanyName,
+      @JsonKey(name: 'PaymentTotalAmount') this.paymentTotalAmount,
+      @JsonKey(name: 'PaymentTotalAmountWithInvoice')
+      this.paymentTotalAmountWithInvoice,
+      @JsonKey(name: 'PaymentInvoiceNumber') this.paymentInvoiceNumber,
+      @JsonKey(name: 'PaymentReason') this.paymentReason,
+      @JsonKey(name: 'PaymentNote') this.paymentNote,
+      @JsonKey(name: 'PaymentInvoiceFileCount') this.paymentInvoiceFileCount,
+      @JsonKey(name: 'PaymentBillCKFileCount') this.paymentBillCkFileCount,
+      @JsonKey(name: 'AdvancePaymentOrderID') this.advancePaymentOrderId,
+      @JsonKey(name: 'AdvancePaymentOrderCode') this.advancePaymentOrderCode,
+      @JsonKey(name: 'AdvanceDetailStatus') this.advanceDetailStatus,
+      @JsonKey(name: 'AdvanceTotalAmount') this.advanceTotalAmount,
+      @JsonKey(name: 'AdvanceApprovedTBPID') this.advanceApprovedTbpId,
+      @JsonKey(name: 'AdvanceBankName') this.advanceBankName,
+      @JsonKey(name: 'AdvanceBankAccount') this.advanceBankAccount,
+      @JsonKey(name: 'AdvanceReason') this.advanceReason,
+      @JsonKey(name: 'AdvanceStepCode') this.advanceStepCode,
+      @JsonKey(name: 'AdvanceStepName') this.advanceStepName,
+      @JsonKey(name: 'AdvanceStepIsApproved') this.advanceStepIsApproved,
+      @JsonKey(name: 'AdvanceIsReceived') this.advanceIsReceived,
+      @JsonKey(name: 'AdvanceIsPaid') this.advanceIsPaid,
+      @JsonKey(name: 'AdvanceCompanyID') this.advanceCompanyId,
+      @JsonKey(name: 'AdvanceCompanyName') this.advanceCompanyName,
+      @JsonKey(name: 'AdvanceDepartmentName') this.advanceDepartmentName,
+      @JsonKey(name: 'AdvanceProjectID') this.advanceProjectId,
+      @JsonKey(name: 'AdvanceTransferType') this.advanceTransferType,
+      @JsonKey(name: 'AdvanceBankListID') this.advanceBankListId,
+      @JsonKey(name: 'AdvanceRecipientName') this.advanceRecipientName,
+      @JsonKey(name: 'AdvanceNote') this.advanceNote});
+
+  factory _$BookingGuestHouseItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BookingGuestHouseItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int id;
+  @override
+  @JsonKey(name: 'RegisterID')
+  final int? registerId;
+  @override
+  @JsonKey(name: 'ProjectID')
+  final int? projectId;
+// Thông tin nhân viên đặt
+  @override
+  @JsonKey(name: 'FullName')
+  final String? fullName;
+  @override
+  @JsonKey(name: 'DepartmentID')
+  final int? departmentId;
+  @override
+  @JsonKey(name: 'DepartmentName')
+  final String? departmentName;
+  @override
+  @JsonKey(name: 'SDTCaNhan')
+  final String? sdtCaNhan;
+// Thông tin dự án
+  @override
+  @JsonKey(name: 'ProjectCode')
+  final String? projectCode;
+  @override
+  @JsonKey(name: 'ProjectName')
+  final String? projectName;
+// Địa điểm
+  @override
+  @JsonKey(name: 'ProvinceID')
+  final int? provinceId;
+  @override
+  @JsonKey(name: 'ProvinceName')
+  final String? provinceName;
+  @override
+  @JsonKey(name: 'Address')
+  final String? address;
+// Thời gian
+  @override
+  @JsonKey(name: 'StartDate')
+  final DateTime? startDate;
+  @override
+  @JsonKey(name: 'EndDate')
+  final DateTime? endDate;
+// Ghi chú
+  @override
+  @JsonKey(name: 'Note')
+  final String? note;
+// Người cùng phòng
+  @override
+  @JsonKey(name: 'Roommates')
+  final String? roommates;
+// Audit
+  @override
+  @JsonKey(name: 'CreatedBy')
+  final String? createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  final String? updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final DateTime? updatedDate;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  final bool? isDeleted;
+// Duyệt TBP
+  @override
+  @JsonKey(name: 'IsApprovedTBP')
+  final bool? isApprovedTBP;
+  @override
+  @JsonKey(name: 'ApprovedTBP')
+  final dynamic approvedTBP;
+  @override
+  @JsonKey(name: 'ApprovedTBPDate')
+  final DateTime? approvedTBPDate;
+  @override
+  @JsonKey(name: 'FullNameTBP')
+  final String? fullNameTBP;
+// Thanh toán
+  @override
+  @JsonKey(name: 'PaymentApprovedTBPID')
+  final int? paymentApprovedTBPId;
+  @override
+  @JsonKey(name: 'PaymentFullNameTBP')
+  final String? paymentFullNameTBP;
+  @override
+  @JsonKey(name: 'PaymentDetailStatus')
+  final int? paymentDetailStatus;
+  @override
+  @JsonKey(name: 'PaymentRecipientName')
+  final String? paymentRecipientName;
+  @override
+  @JsonKey(name: 'PaymentBankName')
+  final String? paymentBankName;
+  @override
+  @JsonKey(name: 'PaymentBankAccount')
+  final String? paymentBankAccount;
+  @override
+  @JsonKey(name: 'PaymentHotelName')
+  final String? paymentHotelName;
+  @override
+  @JsonKey(name: 'PaymentCompanyID')
+  final int? paymentCompanyId;
+  @override
+  @JsonKey(name: 'PaymentCompanyName')
+  final String? paymentCompanyName;
+  @override
+  @JsonKey(name: 'PaymentTotalAmount')
+  final num? paymentTotalAmount;
+  @override
+  @JsonKey(name: 'PaymentTotalAmountWithInvoice')
+  final num? paymentTotalAmountWithInvoice;
+  @override
+  @JsonKey(name: 'PaymentInvoiceNumber')
+  final String? paymentInvoiceNumber;
+  @override
+  @JsonKey(name: 'PaymentReason')
+  final String? paymentReason;
+  @override
+  @JsonKey(name: 'PaymentNote')
+  final String? paymentNote;
+  @override
+  @JsonKey(name: 'PaymentInvoiceFileCount')
+  final int? paymentInvoiceFileCount;
+  @override
+  @JsonKey(name: 'PaymentBillCKFileCount')
+  final int? paymentBillCkFileCount;
+// Đề nghị tạm ứng (ĐNTU) — dùng khi list hiển thị icon "đã tạo tạm ứng"
+// và để mở form advance ở chế độ view-only khi `advanceDetailStatus == 4`.
+  @override
+  @JsonKey(name: 'AdvancePaymentOrderID')
+  final int? advancePaymentOrderId;
+  @override
+  @JsonKey(name: 'AdvancePaymentOrderCode')
+  final String? advancePaymentOrderCode;
+  @override
+  @JsonKey(name: 'AdvanceDetailStatus')
+  final int? advanceDetailStatus;
+  @override
+  @JsonKey(name: 'AdvanceTotalAmount')
+  final num? advanceTotalAmount;
+  @override
+  @JsonKey(name: 'AdvanceApprovedTBPID')
+  final int? advanceApprovedTbpId;
+  @override
+  @JsonKey(name: 'AdvanceBankName')
+  final String? advanceBankName;
+  @override
+  @JsonKey(name: 'AdvanceBankAccount')
+  final String? advanceBankAccount;
+  @override
+  @JsonKey(name: 'AdvanceReason')
+  final String? advanceReason;
+  @override
+  @JsonKey(name: 'AdvanceStepCode')
+  final String? advanceStepCode;
+  @override
+  @JsonKey(name: 'AdvanceStepName')
+  final String? advanceStepName;
+  @override
+  @JsonKey(name: 'AdvanceStepIsApproved')
+  final int? advanceStepIsApproved;
+  @override
+  @JsonKey(name: 'AdvanceIsReceived')
+  final bool? advanceIsReceived;
+  @override
+  @JsonKey(name: 'AdvanceIsPaid')
+  final bool? advanceIsPaid;
+  @override
+  @JsonKey(name: 'AdvanceCompanyID')
+  final int? advanceCompanyId;
+  @override
+  @JsonKey(name: 'AdvanceCompanyName')
+  final String? advanceCompanyName;
+  @override
+  @JsonKey(name: 'AdvanceDepartmentName')
+  final String? advanceDepartmentName;
+  @override
+  @JsonKey(name: 'AdvanceProjectID')
+  final int? advanceProjectId;
+  @override
+  @JsonKey(name: 'AdvanceTransferType')
+  final int? advanceTransferType;
+  @override
+  @JsonKey(name: 'AdvanceBankListID')
+  final int? advanceBankListId;
+  @override
+  @JsonKey(name: 'AdvanceRecipientName')
+  final String? advanceRecipientName;
+  @override
+  @JsonKey(name: 'AdvanceNote')
+  final String? advanceNote;
+
+  @override
+  String toString() {
+    return 'BookingGuestHouseItem(id: $id, registerId: $registerId, projectId: $projectId, fullName: $fullName, departmentId: $departmentId, departmentName: $departmentName, sdtCaNhan: $sdtCaNhan, projectCode: $projectCode, projectName: $projectName, provinceId: $provinceId, provinceName: $provinceName, address: $address, startDate: $startDate, endDate: $endDate, note: $note, roommates: $roommates, createdBy: $createdBy, createdDate: $createdDate, updatedBy: $updatedBy, updatedDate: $updatedDate, isDeleted: $isDeleted, isApprovedTBP: $isApprovedTBP, approvedTBP: $approvedTBP, approvedTBPDate: $approvedTBPDate, fullNameTBP: $fullNameTBP, paymentApprovedTBPId: $paymentApprovedTBPId, paymentFullNameTBP: $paymentFullNameTBP, paymentDetailStatus: $paymentDetailStatus, paymentRecipientName: $paymentRecipientName, paymentBankName: $paymentBankName, paymentBankAccount: $paymentBankAccount, paymentHotelName: $paymentHotelName, paymentCompanyId: $paymentCompanyId, paymentCompanyName: $paymentCompanyName, paymentTotalAmount: $paymentTotalAmount, paymentTotalAmountWithInvoice: $paymentTotalAmountWithInvoice, paymentInvoiceNumber: $paymentInvoiceNumber, paymentReason: $paymentReason, paymentNote: $paymentNote, paymentInvoiceFileCount: $paymentInvoiceFileCount, paymentBillCkFileCount: $paymentBillCkFileCount, advancePaymentOrderId: $advancePaymentOrderId, advancePaymentOrderCode: $advancePaymentOrderCode, advanceDetailStatus: $advanceDetailStatus, advanceTotalAmount: $advanceTotalAmount, advanceApprovedTbpId: $advanceApprovedTbpId, advanceBankName: $advanceBankName, advanceBankAccount: $advanceBankAccount, advanceReason: $advanceReason, advanceStepCode: $advanceStepCode, advanceStepName: $advanceStepName, advanceStepIsApproved: $advanceStepIsApproved, advanceIsReceived: $advanceIsReceived, advanceIsPaid: $advanceIsPaid, advanceCompanyId: $advanceCompanyId, advanceCompanyName: $advanceCompanyName, advanceDepartmentName: $advanceDepartmentName, advanceProjectId: $advanceProjectId, advanceTransferType: $advanceTransferType, advanceBankListId: $advanceBankListId, advanceRecipientName: $advanceRecipientName, advanceNote: $advanceNote)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BookingGuestHouseItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.registerId, registerId) ||
+                other.registerId == registerId) &&
+            (identical(other.projectId, projectId) ||
+                other.projectId == projectId) &&
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName) &&
+            (identical(other.departmentId, departmentId) ||
+                other.departmentId == departmentId) &&
+            (identical(other.departmentName, departmentName) ||
+                other.departmentName == departmentName) &&
+            (identical(other.sdtCaNhan, sdtCaNhan) ||
+                other.sdtCaNhan == sdtCaNhan) &&
+            (identical(other.projectCode, projectCode) ||
+                other.projectCode == projectCode) &&
+            (identical(other.projectName, projectName) ||
+                other.projectName == projectName) &&
+            (identical(other.provinceId, provinceId) ||
+                other.provinceId == provinceId) &&
+            (identical(other.provinceName, provinceName) ||
+                other.provinceName == provinceName) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate) &&
+            (identical(other.endDate, endDate) || other.endDate == endDate) &&
+            (identical(other.note, note) || other.note == note) &&
+            (identical(other.roommates, roommates) ||
+                other.roommates == roommates) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.isApprovedTBP, isApprovedTBP) ||
+                other.isApprovedTBP == isApprovedTBP) &&
+            const DeepCollectionEquality()
+                .equals(other.approvedTBP, approvedTBP) &&
+            (identical(other.approvedTBPDate, approvedTBPDate) ||
+                other.approvedTBPDate == approvedTBPDate) &&
+            (identical(other.fullNameTBP, fullNameTBP) ||
+                other.fullNameTBP == fullNameTBP) &&
+            (identical(other.paymentApprovedTBPId, paymentApprovedTBPId) ||
+                other.paymentApprovedTBPId == paymentApprovedTBPId) &&
+            (identical(other.paymentFullNameTBP, paymentFullNameTBP) ||
+                other.paymentFullNameTBP == paymentFullNameTBP) &&
+            (identical(other.paymentDetailStatus, paymentDetailStatus) ||
+                other.paymentDetailStatus == paymentDetailStatus) &&
+            (identical(other.paymentRecipientName, paymentRecipientName) ||
+                other.paymentRecipientName == paymentRecipientName) &&
+            (identical(other.paymentBankName, paymentBankName) ||
+                other.paymentBankName == paymentBankName) &&
+            (identical(other.paymentBankAccount, paymentBankAccount) ||
+                other.paymentBankAccount == paymentBankAccount) &&
+            (identical(other.paymentHotelName, paymentHotelName) ||
+                other.paymentHotelName == paymentHotelName) &&
+            (identical(other.paymentCompanyId, paymentCompanyId) ||
+                other.paymentCompanyId == paymentCompanyId) &&
+            (identical(other.paymentCompanyName, paymentCompanyName) ||
+                other.paymentCompanyName == paymentCompanyName) &&
+            (identical(other.paymentTotalAmount, paymentTotalAmount) ||
+                other.paymentTotalAmount == paymentTotalAmount) &&
+            (identical(other.paymentTotalAmountWithInvoice, paymentTotalAmountWithInvoice) ||
+                other.paymentTotalAmountWithInvoice ==
+                    paymentTotalAmountWithInvoice) &&
+            (identical(other.paymentInvoiceNumber, paymentInvoiceNumber) ||
+                other.paymentInvoiceNumber == paymentInvoiceNumber) &&
+            (identical(other.paymentReason, paymentReason) ||
+                other.paymentReason == paymentReason) &&
+            (identical(other.paymentNote, paymentNote) ||
+                other.paymentNote == paymentNote) &&
+            (identical(other.paymentInvoiceFileCount, paymentInvoiceFileCount) ||
+                other.paymentInvoiceFileCount == paymentInvoiceFileCount) &&
+            (identical(other.paymentBillCkFileCount, paymentBillCkFileCount) ||
+                other.paymentBillCkFileCount == paymentBillCkFileCount) &&
+            (identical(other.advancePaymentOrderId, advancePaymentOrderId) ||
+                other.advancePaymentOrderId == advancePaymentOrderId) &&
+            (identical(other.advancePaymentOrderCode, advancePaymentOrderCode) ||
+                other.advancePaymentOrderCode == advancePaymentOrderCode) &&
+            (identical(other.advanceDetailStatus, advanceDetailStatus) ||
+                other.advanceDetailStatus == advanceDetailStatus) &&
+            (identical(other.advanceTotalAmount, advanceTotalAmount) ||
+                other.advanceTotalAmount == advanceTotalAmount) &&
+            (identical(other.advanceApprovedTbpId, advanceApprovedTbpId) || other.advanceApprovedTbpId == advanceApprovedTbpId) &&
+            (identical(other.advanceBankName, advanceBankName) || other.advanceBankName == advanceBankName) &&
+            (identical(other.advanceBankAccount, advanceBankAccount) || other.advanceBankAccount == advanceBankAccount) &&
+            (identical(other.advanceReason, advanceReason) || other.advanceReason == advanceReason) &&
+            (identical(other.advanceStepCode, advanceStepCode) || other.advanceStepCode == advanceStepCode) &&
+            (identical(other.advanceStepName, advanceStepName) || other.advanceStepName == advanceStepName) &&
+            (identical(other.advanceStepIsApproved, advanceStepIsApproved) || other.advanceStepIsApproved == advanceStepIsApproved) &&
+            (identical(other.advanceIsReceived, advanceIsReceived) || other.advanceIsReceived == advanceIsReceived) &&
+            (identical(other.advanceIsPaid, advanceIsPaid) || other.advanceIsPaid == advanceIsPaid) &&
+            (identical(other.advanceCompanyId, advanceCompanyId) || other.advanceCompanyId == advanceCompanyId) &&
+            (identical(other.advanceCompanyName, advanceCompanyName) || other.advanceCompanyName == advanceCompanyName) &&
+            (identical(other.advanceDepartmentName, advanceDepartmentName) || other.advanceDepartmentName == advanceDepartmentName) &&
+            (identical(other.advanceProjectId, advanceProjectId) || other.advanceProjectId == advanceProjectId) &&
+            (identical(other.advanceTransferType, advanceTransferType) || other.advanceTransferType == advanceTransferType) &&
+            (identical(other.advanceBankListId, advanceBankListId) || other.advanceBankListId == advanceBankListId) &&
+            (identical(other.advanceRecipientName, advanceRecipientName) || other.advanceRecipientName == advanceRecipientName) &&
+            (identical(other.advanceNote, advanceNote) || other.advanceNote == advanceNote));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        registerId,
+        projectId,
+        fullName,
+        departmentId,
+        departmentName,
+        sdtCaNhan,
+        projectCode,
+        projectName,
+        provinceId,
+        provinceName,
+        address,
+        startDate,
+        endDate,
+        note,
+        roommates,
+        createdBy,
+        createdDate,
+        updatedBy,
+        updatedDate,
+        isDeleted,
+        isApprovedTBP,
+        const DeepCollectionEquality().hash(approvedTBP),
+        approvedTBPDate,
+        fullNameTBP,
+        paymentApprovedTBPId,
+        paymentFullNameTBP,
+        paymentDetailStatus,
+        paymentRecipientName,
+        paymentBankName,
+        paymentBankAccount,
+        paymentHotelName,
+        paymentCompanyId,
+        paymentCompanyName,
+        paymentTotalAmount,
+        paymentTotalAmountWithInvoice,
+        paymentInvoiceNumber,
+        paymentReason,
+        paymentNote,
+        paymentInvoiceFileCount,
+        paymentBillCkFileCount,
+        advancePaymentOrderId,
+        advancePaymentOrderCode,
+        advanceDetailStatus,
+        advanceTotalAmount,
+        advanceApprovedTbpId,
+        advanceBankName,
+        advanceBankAccount,
+        advanceReason,
+        advanceStepCode,
+        advanceStepName,
+        advanceStepIsApproved,
+        advanceIsReceived,
+        advanceIsPaid,
+        advanceCompanyId,
+        advanceCompanyName,
+        advanceDepartmentName,
+        advanceProjectId,
+        advanceTransferType,
+        advanceBankListId,
+        advanceRecipientName,
+        advanceNote
+      ]);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BookingGuestHouseItemImplCopyWith<_$BookingGuestHouseItemImpl>
+      get copyWith => __$$BookingGuestHouseItemImplCopyWithImpl<
+          _$BookingGuestHouseItemImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BookingGuestHouseItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BookingGuestHouseItem implements BookingGuestHouseItem {
+  const factory _BookingGuestHouseItem(
+      {@JsonKey(name: 'ID') required final int id,
+      @JsonKey(name: 'RegisterID') final int? registerId,
+      @JsonKey(name: 'ProjectID') final int? projectId,
+      @JsonKey(name: 'FullName') final String? fullName,
+      @JsonKey(name: 'DepartmentID') final int? departmentId,
+      @JsonKey(name: 'DepartmentName') final String? departmentName,
+      @JsonKey(name: 'SDTCaNhan') final String? sdtCaNhan,
+      @JsonKey(name: 'ProjectCode') final String? projectCode,
+      @JsonKey(name: 'ProjectName') final String? projectName,
+      @JsonKey(name: 'ProvinceID') final int? provinceId,
+      @JsonKey(name: 'ProvinceName') final String? provinceName,
+      @JsonKey(name: 'Address') final String? address,
+      @JsonKey(name: 'StartDate') final DateTime? startDate,
+      @JsonKey(name: 'EndDate') final DateTime? endDate,
+      @JsonKey(name: 'Note') final String? note,
+      @JsonKey(name: 'Roommates') final String? roommates,
+      @JsonKey(name: 'CreatedBy') final String? createdBy,
+      @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') final String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
+      @JsonKey(name: 'IsDeleted') final bool? isDeleted,
+      @JsonKey(name: 'IsApprovedTBP') final bool? isApprovedTBP,
+      @JsonKey(name: 'ApprovedTBP') final dynamic approvedTBP,
+      @JsonKey(name: 'ApprovedTBPDate') final DateTime? approvedTBPDate,
+      @JsonKey(name: 'FullNameTBP') final String? fullNameTBP,
+      @JsonKey(name: 'PaymentApprovedTBPID') final int? paymentApprovedTBPId,
+      @JsonKey(name: 'PaymentFullNameTBP') final String? paymentFullNameTBP,
+      @JsonKey(name: 'PaymentDetailStatus') final int? paymentDetailStatus,
+      @JsonKey(name: 'PaymentRecipientName') final String? paymentRecipientName,
+      @JsonKey(name: 'PaymentBankName') final String? paymentBankName,
+      @JsonKey(name: 'PaymentBankAccount') final String? paymentBankAccount,
+      @JsonKey(name: 'PaymentHotelName') final String? paymentHotelName,
+      @JsonKey(name: 'PaymentCompanyID') final int? paymentCompanyId,
+      @JsonKey(name: 'PaymentCompanyName') final String? paymentCompanyName,
+      @JsonKey(name: 'PaymentTotalAmount') final num? paymentTotalAmount,
+      @JsonKey(name: 'PaymentTotalAmountWithInvoice')
+      final num? paymentTotalAmountWithInvoice,
+      @JsonKey(name: 'PaymentInvoiceNumber') final String? paymentInvoiceNumber,
+      @JsonKey(name: 'PaymentReason') final String? paymentReason,
+      @JsonKey(name: 'PaymentNote') final String? paymentNote,
+      @JsonKey(name: 'PaymentInvoiceFileCount')
+      final int? paymentInvoiceFileCount,
+      @JsonKey(name: 'PaymentBillCKFileCount')
+      final int? paymentBillCkFileCount,
+      @JsonKey(name: 'AdvancePaymentOrderID') final int? advancePaymentOrderId,
+      @JsonKey(name: 'AdvancePaymentOrderCode')
+      final String? advancePaymentOrderCode,
+      @JsonKey(name: 'AdvanceDetailStatus') final int? advanceDetailStatus,
+      @JsonKey(name: 'AdvanceTotalAmount') final num? advanceTotalAmount,
+      @JsonKey(name: 'AdvanceApprovedTBPID') final int? advanceApprovedTbpId,
+      @JsonKey(name: 'AdvanceBankName') final String? advanceBankName,
+      @JsonKey(name: 'AdvanceBankAccount') final String? advanceBankAccount,
+      @JsonKey(name: 'AdvanceReason') final String? advanceReason,
+      @JsonKey(name: 'AdvanceStepCode') final String? advanceStepCode,
+      @JsonKey(name: 'AdvanceStepName') final String? advanceStepName,
+      @JsonKey(name: 'AdvanceStepIsApproved') final int? advanceStepIsApproved,
+      @JsonKey(name: 'AdvanceIsReceived') final bool? advanceIsReceived,
+      @JsonKey(name: 'AdvanceIsPaid') final bool? advanceIsPaid,
+      @JsonKey(name: 'AdvanceCompanyID') final int? advanceCompanyId,
+      @JsonKey(name: 'AdvanceCompanyName') final String? advanceCompanyName,
+      @JsonKey(name: 'AdvanceDepartmentName')
+      final String? advanceDepartmentName,
+      @JsonKey(name: 'AdvanceProjectID') final int? advanceProjectId,
+      @JsonKey(name: 'AdvanceTransferType') final int? advanceTransferType,
+      @JsonKey(name: 'AdvanceBankListID') final int? advanceBankListId,
+      @JsonKey(name: 'AdvanceRecipientName') final String? advanceRecipientName,
+      @JsonKey(name: 'AdvanceNote')
+      final String? advanceNote}) = _$BookingGuestHouseItemImpl;
+
+  factory _BookingGuestHouseItem.fromJson(Map<String, dynamic> json) =
+      _$BookingGuestHouseItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int get id;
+  @override
+  @JsonKey(name: 'RegisterID')
+  int? get registerId;
+  @override
+  @JsonKey(name: 'ProjectID')
+  int? get projectId;
+  @override // Thông tin nhân viên đặt
+  @JsonKey(name: 'FullName')
+  String? get fullName;
+  @override
+  @JsonKey(name: 'DepartmentID')
+  int? get departmentId;
+  @override
+  @JsonKey(name: 'DepartmentName')
+  String? get departmentName;
+  @override
+  @JsonKey(name: 'SDTCaNhan')
+  String? get sdtCaNhan;
+  @override // Thông tin dự án
+  @JsonKey(name: 'ProjectCode')
+  String? get projectCode;
+  @override
+  @JsonKey(name: 'ProjectName')
+  String? get projectName;
+  @override // Địa điểm
+  @JsonKey(name: 'ProvinceID')
+  int? get provinceId;
+  @override
+  @JsonKey(name: 'ProvinceName')
+  String? get provinceName;
+  @override
+  @JsonKey(name: 'Address')
+  String? get address;
+  @override // Thời gian
+  @JsonKey(name: 'StartDate')
+  DateTime? get startDate;
+  @override
+  @JsonKey(name: 'EndDate')
+  DateTime? get endDate;
+  @override // Ghi chú
+  @JsonKey(name: 'Note')
+  String? get note;
+  @override // Người cùng phòng
+  @JsonKey(name: 'Roommates')
+  String? get roommates;
+  @override // Audit
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted;
+  @override // Duyệt TBP
+  @JsonKey(name: 'IsApprovedTBP')
+  bool? get isApprovedTBP;
+  @override
+  @JsonKey(name: 'ApprovedTBP')
+  dynamic get approvedTBP;
+  @override
+  @JsonKey(name: 'ApprovedTBPDate')
+  DateTime? get approvedTBPDate;
+  @override
+  @JsonKey(name: 'FullNameTBP')
+  String? get fullNameTBP;
+  @override // Thanh toán
+  @JsonKey(name: 'PaymentApprovedTBPID')
+  int? get paymentApprovedTBPId;
+  @override
+  @JsonKey(name: 'PaymentFullNameTBP')
+  String? get paymentFullNameTBP;
+  @override
+  @JsonKey(name: 'PaymentDetailStatus')
+  int? get paymentDetailStatus;
+  @override
+  @JsonKey(name: 'PaymentRecipientName')
+  String? get paymentRecipientName;
+  @override
+  @JsonKey(name: 'PaymentBankName')
+  String? get paymentBankName;
+  @override
+  @JsonKey(name: 'PaymentBankAccount')
+  String? get paymentBankAccount;
+  @override
+  @JsonKey(name: 'PaymentHotelName')
+  String? get paymentHotelName;
+  @override
+  @JsonKey(name: 'PaymentCompanyID')
+  int? get paymentCompanyId;
+  @override
+  @JsonKey(name: 'PaymentCompanyName')
+  String? get paymentCompanyName;
+  @override
+  @JsonKey(name: 'PaymentTotalAmount')
+  num? get paymentTotalAmount;
+  @override
+  @JsonKey(name: 'PaymentTotalAmountWithInvoice')
+  num? get paymentTotalAmountWithInvoice;
+  @override
+  @JsonKey(name: 'PaymentInvoiceNumber')
+  String? get paymentInvoiceNumber;
+  @override
+  @JsonKey(name: 'PaymentReason')
+  String? get paymentReason;
+  @override
+  @JsonKey(name: 'PaymentNote')
+  String? get paymentNote;
+  @override
+  @JsonKey(name: 'PaymentInvoiceFileCount')
+  int? get paymentInvoiceFileCount;
+  @override
+  @JsonKey(name: 'PaymentBillCKFileCount')
+  int? get paymentBillCkFileCount;
+  @override // Đề nghị tạm ứng (ĐNTU) — dùng khi list hiển thị icon "đã tạo tạm ứng"
+// và để mở form advance ở chế độ view-only khi `advanceDetailStatus == 4`.
+  @JsonKey(name: 'AdvancePaymentOrderID')
+  int? get advancePaymentOrderId;
+  @override
+  @JsonKey(name: 'AdvancePaymentOrderCode')
+  String? get advancePaymentOrderCode;
+  @override
+  @JsonKey(name: 'AdvanceDetailStatus')
+  int? get advanceDetailStatus;
+  @override
+  @JsonKey(name: 'AdvanceTotalAmount')
+  num? get advanceTotalAmount;
+  @override
+  @JsonKey(name: 'AdvanceApprovedTBPID')
+  int? get advanceApprovedTbpId;
+  @override
+  @JsonKey(name: 'AdvanceBankName')
+  String? get advanceBankName;
+  @override
+  @JsonKey(name: 'AdvanceBankAccount')
+  String? get advanceBankAccount;
+  @override
+  @JsonKey(name: 'AdvanceReason')
+  String? get advanceReason;
+  @override
+  @JsonKey(name: 'AdvanceStepCode')
+  String? get advanceStepCode;
+  @override
+  @JsonKey(name: 'AdvanceStepName')
+  String? get advanceStepName;
+  @override
+  @JsonKey(name: 'AdvanceStepIsApproved')
+  int? get advanceStepIsApproved;
+  @override
+  @JsonKey(name: 'AdvanceIsReceived')
+  bool? get advanceIsReceived;
+  @override
+  @JsonKey(name: 'AdvanceIsPaid')
+  bool? get advanceIsPaid;
+  @override
+  @JsonKey(name: 'AdvanceCompanyID')
+  int? get advanceCompanyId;
+  @override
+  @JsonKey(name: 'AdvanceCompanyName')
+  String? get advanceCompanyName;
+  @override
+  @JsonKey(name: 'AdvanceDepartmentName')
+  String? get advanceDepartmentName;
+  @override
+  @JsonKey(name: 'AdvanceProjectID')
+  int? get advanceProjectId;
+  @override
+  @JsonKey(name: 'AdvanceTransferType')
+  int? get advanceTransferType;
+  @override
+  @JsonKey(name: 'AdvanceBankListID')
+  int? get advanceBankListId;
+  @override
+  @JsonKey(name: 'AdvanceRecipientName')
+  String? get advanceRecipientName;
+  @override
+  @JsonKey(name: 'AdvanceNote')
+  String? get advanceNote;
+  @override
+  @JsonKey(ignore: true)
+  _$$BookingGuestHouseItemImplCopyWith<_$BookingGuestHouseItemImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+ProjectFilterItem _$ProjectFilterItemFromJson(Map<String, dynamic> json) {
+  return _ProjectFilterItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ProjectFilterItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectCode')
+  String? get projectCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectName')
+  String? get projectName => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ProjectFilterItemCopyWith<ProjectFilterItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProjectFilterItemCopyWith<$Res> {
+  factory $ProjectFilterItemCopyWith(
+          ProjectFilterItem value, $Res Function(ProjectFilterItem) then) =
+      _$ProjectFilterItemCopyWithImpl<$Res, ProjectFilterItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'ProjectCode') String? projectCode,
+      @JsonKey(name: 'ProjectName') String? projectName});
+}
+
+/// @nodoc
+class _$ProjectFilterItemCopyWithImpl<$Res, $Val extends ProjectFilterItem>
+    implements $ProjectFilterItemCopyWith<$Res> {
+  _$ProjectFilterItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? projectCode = freezed,
+    Object? projectName = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectCode: freezed == projectCode
+          ? _value.projectCode
+          : projectCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectName: freezed == projectName
+          ? _value.projectName
+          : projectName // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ProjectFilterItemImplCopyWith<$Res>
+    implements $ProjectFilterItemCopyWith<$Res> {
+  factory _$$ProjectFilterItemImplCopyWith(_$ProjectFilterItemImpl value,
+          $Res Function(_$ProjectFilterItemImpl) then) =
+      __$$ProjectFilterItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'ProjectCode') String? projectCode,
+      @JsonKey(name: 'ProjectName') String? projectName});
+}
+
+/// @nodoc
+class __$$ProjectFilterItemImplCopyWithImpl<$Res>
+    extends _$ProjectFilterItemCopyWithImpl<$Res, _$ProjectFilterItemImpl>
+    implements _$$ProjectFilterItemImplCopyWith<$Res> {
+  __$$ProjectFilterItemImplCopyWithImpl(_$ProjectFilterItemImpl _value,
+      $Res Function(_$ProjectFilterItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? projectCode = freezed,
+    Object? projectName = freezed,
+  }) {
+    return _then(_$ProjectFilterItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectCode: freezed == projectCode
+          ? _value.projectCode
+          : projectCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectName: freezed == projectName
+          ? _value.projectName
+          : projectName // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ProjectFilterItemImpl implements _ProjectFilterItem {
+  const _$ProjectFilterItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'ProjectCode') this.projectCode,
+      @JsonKey(name: 'ProjectName') this.projectName});
+
+  factory _$ProjectFilterItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProjectFilterItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'ProjectCode')
+  final String? projectCode;
+  @override
+  @JsonKey(name: 'ProjectName')
+  final String? projectName;
+
+  @override
+  String toString() {
+    return 'ProjectFilterItem(id: $id, projectCode: $projectCode, projectName: $projectName)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProjectFilterItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.projectCode, projectCode) ||
+                other.projectCode == projectCode) &&
+            (identical(other.projectName, projectName) ||
+                other.projectName == projectName));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, projectCode, projectName);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProjectFilterItemImplCopyWith<_$ProjectFilterItemImpl> get copyWith =>
+      __$$ProjectFilterItemImplCopyWithImpl<_$ProjectFilterItemImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ProjectFilterItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ProjectFilterItem implements ProjectFilterItem {
+  const factory _ProjectFilterItem(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'ProjectCode') final String? projectCode,
+          @JsonKey(name: 'ProjectName') final String? projectName}) =
+      _$ProjectFilterItemImpl;
+
+  factory _ProjectFilterItem.fromJson(Map<String, dynamic> json) =
+      _$ProjectFilterItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'ProjectCode')
+  String? get projectCode;
+  @override
+  @JsonKey(name: 'ProjectName')
+  String? get projectName;
+  @override
+  @JsonKey(ignore: true)
+  _$$ProjectFilterItemImplCopyWith<_$ProjectFilterItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+EmployeeFilterItem _$EmployeeFilterItemFromJson(Map<String, dynamic> json) {
+  return _EmployeeFilterItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$EmployeeFilterItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UserID')
+  int? get userId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Code')
+  String? get code => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FullName')
+  String? get fullName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DepartmentID')
+  int? get departmentId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DepartmentName')
+  String? get departmentName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'SDTCaNhan')
+  String? get sdtCaNhan => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $EmployeeFilterItemCopyWith<EmployeeFilterItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $EmployeeFilterItemCopyWith<$Res> {
+  factory $EmployeeFilterItemCopyWith(
+          EmployeeFilterItem value, $Res Function(EmployeeFilterItem) then) =
+      _$EmployeeFilterItemCopyWithImpl<$Res, EmployeeFilterItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'UserID') int? userId,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'DepartmentID') int? departmentId,
+      @JsonKey(name: 'DepartmentName') String? departmentName,
+      @JsonKey(name: 'SDTCaNhan') String? sdtCaNhan});
+}
+
+/// @nodoc
+class _$EmployeeFilterItemCopyWithImpl<$Res, $Val extends EmployeeFilterItem>
+    implements $EmployeeFilterItemCopyWith<$Res> {
+  _$EmployeeFilterItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? userId = freezed,
+    Object? code = freezed,
+    Object? fullName = freezed,
+    Object? departmentId = freezed,
+    Object? departmentName = freezed,
+    Object? sdtCaNhan = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departmentId: freezed == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentName: freezed == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sdtCaNhan: freezed == sdtCaNhan
+          ? _value.sdtCaNhan
+          : sdtCaNhan // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$EmployeeFilterItemImplCopyWith<$Res>
+    implements $EmployeeFilterItemCopyWith<$Res> {
+  factory _$$EmployeeFilterItemImplCopyWith(_$EmployeeFilterItemImpl value,
+          $Res Function(_$EmployeeFilterItemImpl) then) =
+      __$$EmployeeFilterItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'UserID') int? userId,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'DepartmentID') int? departmentId,
+      @JsonKey(name: 'DepartmentName') String? departmentName,
+      @JsonKey(name: 'SDTCaNhan') String? sdtCaNhan});
+}
+
+/// @nodoc
+class __$$EmployeeFilterItemImplCopyWithImpl<$Res>
+    extends _$EmployeeFilterItemCopyWithImpl<$Res, _$EmployeeFilterItemImpl>
+    implements _$$EmployeeFilterItemImplCopyWith<$Res> {
+  __$$EmployeeFilterItemImplCopyWithImpl(_$EmployeeFilterItemImpl _value,
+      $Res Function(_$EmployeeFilterItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? userId = freezed,
+    Object? code = freezed,
+    Object? fullName = freezed,
+    Object? departmentId = freezed,
+    Object? departmentName = freezed,
+    Object? sdtCaNhan = freezed,
+  }) {
+    return _then(_$EmployeeFilterItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departmentId: freezed == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentName: freezed == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sdtCaNhan: freezed == sdtCaNhan
+          ? _value.sdtCaNhan
+          : sdtCaNhan // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$EmployeeFilterItemImpl implements _EmployeeFilterItem {
+  const _$EmployeeFilterItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'UserID') this.userId,
+      @JsonKey(name: 'Code') this.code,
+      @JsonKey(name: 'FullName') this.fullName,
+      @JsonKey(name: 'DepartmentID') this.departmentId,
+      @JsonKey(name: 'DepartmentName') this.departmentName,
+      @JsonKey(name: 'SDTCaNhan') this.sdtCaNhan});
+
+  factory _$EmployeeFilterItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$EmployeeFilterItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'UserID')
+  final int? userId;
+  @override
+  @JsonKey(name: 'Code')
+  final String? code;
+  @override
+  @JsonKey(name: 'FullName')
+  final String? fullName;
+  @override
+  @JsonKey(name: 'DepartmentID')
+  final int? departmentId;
+  @override
+  @JsonKey(name: 'DepartmentName')
+  final String? departmentName;
+  @override
+  @JsonKey(name: 'SDTCaNhan')
+  final String? sdtCaNhan;
+
+  @override
+  String toString() {
+    return 'EmployeeFilterItem(id: $id, userId: $userId, code: $code, fullName: $fullName, departmentId: $departmentId, departmentName: $departmentName, sdtCaNhan: $sdtCaNhan)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EmployeeFilterItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName) &&
+            (identical(other.departmentId, departmentId) ||
+                other.departmentId == departmentId) &&
+            (identical(other.departmentName, departmentName) ||
+                other.departmentName == departmentName) &&
+            (identical(other.sdtCaNhan, sdtCaNhan) ||
+                other.sdtCaNhan == sdtCaNhan));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, userId, code, fullName,
+      departmentId, departmentName, sdtCaNhan);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EmployeeFilterItemImplCopyWith<_$EmployeeFilterItemImpl> get copyWith =>
+      __$$EmployeeFilterItemImplCopyWithImpl<_$EmployeeFilterItemImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$EmployeeFilterItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _EmployeeFilterItem implements EmployeeFilterItem {
+  const factory _EmployeeFilterItem(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'UserID') final int? userId,
+          @JsonKey(name: 'Code') final String? code,
+          @JsonKey(name: 'FullName') final String? fullName,
+          @JsonKey(name: 'DepartmentID') final int? departmentId,
+          @JsonKey(name: 'DepartmentName') final String? departmentName,
+          @JsonKey(name: 'SDTCaNhan') final String? sdtCaNhan}) =
+      _$EmployeeFilterItemImpl;
+
+  factory _EmployeeFilterItem.fromJson(Map<String, dynamic> json) =
+      _$EmployeeFilterItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'UserID')
+  int? get userId;
+  @override
+  @JsonKey(name: 'Code')
+  String? get code;
+  @override
+  @JsonKey(name: 'FullName')
+  String? get fullName;
+  @override
+  @JsonKey(name: 'DepartmentID')
+  int? get departmentId;
+  @override
+  @JsonKey(name: 'DepartmentName')
+  String? get departmentName;
+  @override
+  @JsonKey(name: 'SDTCaNhan')
+  String? get sdtCaNhan;
+  @override
+  @JsonKey(ignore: true)
+  _$$EmployeeFilterItemImplCopyWith<_$EmployeeFilterItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ProvinceFilterItem _$ProvinceFilterItemFromJson(Map<String, dynamic> json) {
+  return _ProvinceFilterItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ProvinceFilterItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProvinceName')
+  String? get provinceName => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ProvinceFilterItemCopyWith<ProvinceFilterItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProvinceFilterItemCopyWith<$Res> {
+  factory $ProvinceFilterItemCopyWith(
+          ProvinceFilterItem value, $Res Function(ProvinceFilterItem) then) =
+      _$ProvinceFilterItemCopyWithImpl<$Res, ProvinceFilterItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'ProvinceName') String? provinceName});
+}
+
+/// @nodoc
+class _$ProvinceFilterItemCopyWithImpl<$Res, $Val extends ProvinceFilterItem>
+    implements $ProvinceFilterItemCopyWith<$Res> {
+  _$ProvinceFilterItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? provinceName = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      provinceName: freezed == provinceName
+          ? _value.provinceName
+          : provinceName // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ProvinceFilterItemImplCopyWith<$Res>
+    implements $ProvinceFilterItemCopyWith<$Res> {
+  factory _$$ProvinceFilterItemImplCopyWith(_$ProvinceFilterItemImpl value,
+          $Res Function(_$ProvinceFilterItemImpl) then) =
+      __$$ProvinceFilterItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'ProvinceName') String? provinceName});
+}
+
+/// @nodoc
+class __$$ProvinceFilterItemImplCopyWithImpl<$Res>
+    extends _$ProvinceFilterItemCopyWithImpl<$Res, _$ProvinceFilterItemImpl>
+    implements _$$ProvinceFilterItemImplCopyWith<$Res> {
+  __$$ProvinceFilterItemImplCopyWithImpl(_$ProvinceFilterItemImpl _value,
+      $Res Function(_$ProvinceFilterItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? provinceName = freezed,
+  }) {
+    return _then(_$ProvinceFilterItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      provinceName: freezed == provinceName
+          ? _value.provinceName
+          : provinceName // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ProvinceFilterItemImpl implements _ProvinceFilterItem {
+  const _$ProvinceFilterItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'ProvinceName') this.provinceName});
+
+  factory _$ProvinceFilterItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProvinceFilterItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'ProvinceName')
+  final String? provinceName;
+
+  @override
+  String toString() {
+    return 'ProvinceFilterItem(id: $id, provinceName: $provinceName)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProvinceFilterItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.provinceName, provinceName) ||
+                other.provinceName == provinceName));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, provinceName);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProvinceFilterItemImplCopyWith<_$ProvinceFilterItemImpl> get copyWith =>
+      __$$ProvinceFilterItemImplCopyWithImpl<_$ProvinceFilterItemImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ProvinceFilterItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ProvinceFilterItem implements ProvinceFilterItem {
+  const factory _ProvinceFilterItem(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'ProvinceName') final String? provinceName}) =
+      _$ProvinceFilterItemImpl;
+
+  factory _ProvinceFilterItem.fromJson(Map<String, dynamic> json) =
+      _$ProvinceFilterItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'ProvinceName')
+  String? get provinceName;
+  @override
+  @JsonKey(ignore: true)
+  _$$ProvinceFilterItemImplCopyWith<_$ProvinceFilterItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+TaxCompanyItem _$TaxCompanyItemFromJson(Map<String, dynamic> json) {
+  return _TaxCompanyItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$TaxCompanyItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Code')
+  String? get code => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Name')
+  String? get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TaxCode')
+  String? get taxCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Address')
+  String? get address => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PhoneNumber')
+  String? get phoneNumber => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Director')
+  String? get director => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Position')
+  String? get position => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FullName')
+  String? get fullName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'BuyerEnglish')
+  String? get buyerEnglish => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AddressBuyerEnglish')
+  String? get addressBuyerEnglish => throw _privateConstructorUsedError;
+  @JsonKey(name: 'LegalRepresentativeEnglish')
+  String? get legalRepresentativeEnglish => throw _privateConstructorUsedError;
+  @JsonKey(name: 'BuyerVietnamese')
+  String? get buyerVietnamese => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AddressBuyerVienamese')
+  String? get addressBuyerVienamese => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TaxVietnamese')
+  String? get taxVietnamese => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $TaxCompanyItemCopyWith<TaxCompanyItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TaxCompanyItemCopyWith<$Res> {
+  factory $TaxCompanyItemCopyWith(
+          TaxCompanyItem value, $Res Function(TaxCompanyItem) then) =
+      _$TaxCompanyItemCopyWithImpl<$Res, TaxCompanyItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'Name') String? name,
+      @JsonKey(name: 'TaxCode') String? taxCode,
+      @JsonKey(name: 'Address') String? address,
+      @JsonKey(name: 'PhoneNumber') String? phoneNumber,
+      @JsonKey(name: 'Director') String? director,
+      @JsonKey(name: 'Position') String? position,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'BuyerEnglish') String? buyerEnglish,
+      @JsonKey(name: 'AddressBuyerEnglish') String? addressBuyerEnglish,
+      @JsonKey(name: 'LegalRepresentativeEnglish')
+      String? legalRepresentativeEnglish,
+      @JsonKey(name: 'BuyerVietnamese') String? buyerVietnamese,
+      @JsonKey(name: 'AddressBuyerVienamese') String? addressBuyerVienamese,
+      @JsonKey(name: 'TaxVietnamese') String? taxVietnamese});
+}
+
+/// @nodoc
+class _$TaxCompanyItemCopyWithImpl<$Res, $Val extends TaxCompanyItem>
+    implements $TaxCompanyItemCopyWith<$Res> {
+  _$TaxCompanyItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? code = freezed,
+    Object? name = freezed,
+    Object? taxCode = freezed,
+    Object? address = freezed,
+    Object? phoneNumber = freezed,
+    Object? director = freezed,
+    Object? position = freezed,
+    Object? fullName = freezed,
+    Object? buyerEnglish = freezed,
+    Object? addressBuyerEnglish = freezed,
+    Object? legalRepresentativeEnglish = freezed,
+    Object? buyerVietnamese = freezed,
+    Object? addressBuyerVienamese = freezed,
+    Object? taxVietnamese = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      taxCode: freezed == taxCode
+          ? _value.taxCode
+          : taxCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      director: freezed == director
+          ? _value.director
+          : director // ignore: cast_nullable_to_non_nullable
+              as String?,
+      position: freezed == position
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      buyerEnglish: freezed == buyerEnglish
+          ? _value.buyerEnglish
+          : buyerEnglish // ignore: cast_nullable_to_non_nullable
+              as String?,
+      addressBuyerEnglish: freezed == addressBuyerEnglish
+          ? _value.addressBuyerEnglish
+          : addressBuyerEnglish // ignore: cast_nullable_to_non_nullable
+              as String?,
+      legalRepresentativeEnglish: freezed == legalRepresentativeEnglish
+          ? _value.legalRepresentativeEnglish
+          : legalRepresentativeEnglish // ignore: cast_nullable_to_non_nullable
+              as String?,
+      buyerVietnamese: freezed == buyerVietnamese
+          ? _value.buyerVietnamese
+          : buyerVietnamese // ignore: cast_nullable_to_non_nullable
+              as String?,
+      addressBuyerVienamese: freezed == addressBuyerVienamese
+          ? _value.addressBuyerVienamese
+          : addressBuyerVienamese // ignore: cast_nullable_to_non_nullable
+              as String?,
+      taxVietnamese: freezed == taxVietnamese
+          ? _value.taxVietnamese
+          : taxVietnamese // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$TaxCompanyItemImplCopyWith<$Res>
+    implements $TaxCompanyItemCopyWith<$Res> {
+  factory _$$TaxCompanyItemImplCopyWith(_$TaxCompanyItemImpl value,
+          $Res Function(_$TaxCompanyItemImpl) then) =
+      __$$TaxCompanyItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'Name') String? name,
+      @JsonKey(name: 'TaxCode') String? taxCode,
+      @JsonKey(name: 'Address') String? address,
+      @JsonKey(name: 'PhoneNumber') String? phoneNumber,
+      @JsonKey(name: 'Director') String? director,
+      @JsonKey(name: 'Position') String? position,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'BuyerEnglish') String? buyerEnglish,
+      @JsonKey(name: 'AddressBuyerEnglish') String? addressBuyerEnglish,
+      @JsonKey(name: 'LegalRepresentativeEnglish')
+      String? legalRepresentativeEnglish,
+      @JsonKey(name: 'BuyerVietnamese') String? buyerVietnamese,
+      @JsonKey(name: 'AddressBuyerVienamese') String? addressBuyerVienamese,
+      @JsonKey(name: 'TaxVietnamese') String? taxVietnamese});
+}
+
+/// @nodoc
+class __$$TaxCompanyItemImplCopyWithImpl<$Res>
+    extends _$TaxCompanyItemCopyWithImpl<$Res, _$TaxCompanyItemImpl>
+    implements _$$TaxCompanyItemImplCopyWith<$Res> {
+  __$$TaxCompanyItemImplCopyWithImpl(
+      _$TaxCompanyItemImpl _value, $Res Function(_$TaxCompanyItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? code = freezed,
+    Object? name = freezed,
+    Object? taxCode = freezed,
+    Object? address = freezed,
+    Object? phoneNumber = freezed,
+    Object? director = freezed,
+    Object? position = freezed,
+    Object? fullName = freezed,
+    Object? buyerEnglish = freezed,
+    Object? addressBuyerEnglish = freezed,
+    Object? legalRepresentativeEnglish = freezed,
+    Object? buyerVietnamese = freezed,
+    Object? addressBuyerVienamese = freezed,
+    Object? taxVietnamese = freezed,
+  }) {
+    return _then(_$TaxCompanyItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      taxCode: freezed == taxCode
+          ? _value.taxCode
+          : taxCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      director: freezed == director
+          ? _value.director
+          : director // ignore: cast_nullable_to_non_nullable
+              as String?,
+      position: freezed == position
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      buyerEnglish: freezed == buyerEnglish
+          ? _value.buyerEnglish
+          : buyerEnglish // ignore: cast_nullable_to_non_nullable
+              as String?,
+      addressBuyerEnglish: freezed == addressBuyerEnglish
+          ? _value.addressBuyerEnglish
+          : addressBuyerEnglish // ignore: cast_nullable_to_non_nullable
+              as String?,
+      legalRepresentativeEnglish: freezed == legalRepresentativeEnglish
+          ? _value.legalRepresentativeEnglish
+          : legalRepresentativeEnglish // ignore: cast_nullable_to_non_nullable
+              as String?,
+      buyerVietnamese: freezed == buyerVietnamese
+          ? _value.buyerVietnamese
+          : buyerVietnamese // ignore: cast_nullable_to_non_nullable
+              as String?,
+      addressBuyerVienamese: freezed == addressBuyerVienamese
+          ? _value.addressBuyerVienamese
+          : addressBuyerVienamese // ignore: cast_nullable_to_non_nullable
+              as String?,
+      taxVietnamese: freezed == taxVietnamese
+          ? _value.taxVietnamese
+          : taxVietnamese // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$TaxCompanyItemImpl implements _TaxCompanyItem {
+  const _$TaxCompanyItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'Code') this.code,
+      @JsonKey(name: 'Name') this.name,
+      @JsonKey(name: 'TaxCode') this.taxCode,
+      @JsonKey(name: 'Address') this.address,
+      @JsonKey(name: 'PhoneNumber') this.phoneNumber,
+      @JsonKey(name: 'Director') this.director,
+      @JsonKey(name: 'Position') this.position,
+      @JsonKey(name: 'FullName') this.fullName,
+      @JsonKey(name: 'BuyerEnglish') this.buyerEnglish,
+      @JsonKey(name: 'AddressBuyerEnglish') this.addressBuyerEnglish,
+      @JsonKey(name: 'LegalRepresentativeEnglish')
+      this.legalRepresentativeEnglish,
+      @JsonKey(name: 'BuyerVietnamese') this.buyerVietnamese,
+      @JsonKey(name: 'AddressBuyerVienamese') this.addressBuyerVienamese,
+      @JsonKey(name: 'TaxVietnamese') this.taxVietnamese});
+
+  factory _$TaxCompanyItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TaxCompanyItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'Code')
+  final String? code;
+  @override
+  @JsonKey(name: 'Name')
+  final String? name;
+  @override
+  @JsonKey(name: 'TaxCode')
+  final String? taxCode;
+  @override
+  @JsonKey(name: 'Address')
+  final String? address;
+  @override
+  @JsonKey(name: 'PhoneNumber')
+  final String? phoneNumber;
+  @override
+  @JsonKey(name: 'Director')
+  final String? director;
+  @override
+  @JsonKey(name: 'Position')
+  final String? position;
+  @override
+  @JsonKey(name: 'FullName')
+  final String? fullName;
+  @override
+  @JsonKey(name: 'BuyerEnglish')
+  final String? buyerEnglish;
+  @override
+  @JsonKey(name: 'AddressBuyerEnglish')
+  final String? addressBuyerEnglish;
+  @override
+  @JsonKey(name: 'LegalRepresentativeEnglish')
+  final String? legalRepresentativeEnglish;
+  @override
+  @JsonKey(name: 'BuyerVietnamese')
+  final String? buyerVietnamese;
+  @override
+  @JsonKey(name: 'AddressBuyerVienamese')
+  final String? addressBuyerVienamese;
+  @override
+  @JsonKey(name: 'TaxVietnamese')
+  final String? taxVietnamese;
+
+  @override
+  String toString() {
+    return 'TaxCompanyItem(id: $id, code: $code, name: $name, taxCode: $taxCode, address: $address, phoneNumber: $phoneNumber, director: $director, position: $position, fullName: $fullName, buyerEnglish: $buyerEnglish, addressBuyerEnglish: $addressBuyerEnglish, legalRepresentativeEnglish: $legalRepresentativeEnglish, buyerVietnamese: $buyerVietnamese, addressBuyerVienamese: $addressBuyerVienamese, taxVietnamese: $taxVietnamese)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TaxCompanyItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.taxCode, taxCode) || other.taxCode == taxCode) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber) &&
+            (identical(other.director, director) ||
+                other.director == director) &&
+            (identical(other.position, position) ||
+                other.position == position) &&
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName) &&
+            (identical(other.buyerEnglish, buyerEnglish) ||
+                other.buyerEnglish == buyerEnglish) &&
+            (identical(other.addressBuyerEnglish, addressBuyerEnglish) ||
+                other.addressBuyerEnglish == addressBuyerEnglish) &&
+            (identical(other.legalRepresentativeEnglish,
+                    legalRepresentativeEnglish) ||
+                other.legalRepresentativeEnglish ==
+                    legalRepresentativeEnglish) &&
+            (identical(other.buyerVietnamese, buyerVietnamese) ||
+                other.buyerVietnamese == buyerVietnamese) &&
+            (identical(other.addressBuyerVienamese, addressBuyerVienamese) ||
+                other.addressBuyerVienamese == addressBuyerVienamese) &&
+            (identical(other.taxVietnamese, taxVietnamese) ||
+                other.taxVietnamese == taxVietnamese));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      code,
+      name,
+      taxCode,
+      address,
+      phoneNumber,
+      director,
+      position,
+      fullName,
+      buyerEnglish,
+      addressBuyerEnglish,
+      legalRepresentativeEnglish,
+      buyerVietnamese,
+      addressBuyerVienamese,
+      taxVietnamese);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TaxCompanyItemImplCopyWith<_$TaxCompanyItemImpl> get copyWith =>
+      __$$TaxCompanyItemImplCopyWithImpl<_$TaxCompanyItemImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$TaxCompanyItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _TaxCompanyItem implements TaxCompanyItem {
+  const factory _TaxCompanyItem(
+      {@JsonKey(name: 'ID') final int? id,
+      @JsonKey(name: 'Code') final String? code,
+      @JsonKey(name: 'Name') final String? name,
+      @JsonKey(name: 'TaxCode') final String? taxCode,
+      @JsonKey(name: 'Address') final String? address,
+      @JsonKey(name: 'PhoneNumber') final String? phoneNumber,
+      @JsonKey(name: 'Director') final String? director,
+      @JsonKey(name: 'Position') final String? position,
+      @JsonKey(name: 'FullName') final String? fullName,
+      @JsonKey(name: 'BuyerEnglish') final String? buyerEnglish,
+      @JsonKey(name: 'AddressBuyerEnglish') final String? addressBuyerEnglish,
+      @JsonKey(name: 'LegalRepresentativeEnglish')
+      final String? legalRepresentativeEnglish,
+      @JsonKey(name: 'BuyerVietnamese') final String? buyerVietnamese,
+      @JsonKey(name: 'AddressBuyerVienamese')
+      final String? addressBuyerVienamese,
+      @JsonKey(name: 'TaxVietnamese')
+      final String? taxVietnamese}) = _$TaxCompanyItemImpl;
+
+  factory _TaxCompanyItem.fromJson(Map<String, dynamic> json) =
+      _$TaxCompanyItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'Code')
+  String? get code;
+  @override
+  @JsonKey(name: 'Name')
+  String? get name;
+  @override
+  @JsonKey(name: 'TaxCode')
+  String? get taxCode;
+  @override
+  @JsonKey(name: 'Address')
+  String? get address;
+  @override
+  @JsonKey(name: 'PhoneNumber')
+  String? get phoneNumber;
+  @override
+  @JsonKey(name: 'Director')
+  String? get director;
+  @override
+  @JsonKey(name: 'Position')
+  String? get position;
+  @override
+  @JsonKey(name: 'FullName')
+  String? get fullName;
+  @override
+  @JsonKey(name: 'BuyerEnglish')
+  String? get buyerEnglish;
+  @override
+  @JsonKey(name: 'AddressBuyerEnglish')
+  String? get addressBuyerEnglish;
+  @override
+  @JsonKey(name: 'LegalRepresentativeEnglish')
+  String? get legalRepresentativeEnglish;
+  @override
+  @JsonKey(name: 'BuyerVietnamese')
+  String? get buyerVietnamese;
+  @override
+  @JsonKey(name: 'AddressBuyerVienamese')
+  String? get addressBuyerVienamese;
+  @override
+  @JsonKey(name: 'TaxVietnamese')
+  String? get taxVietnamese;
+  @override
+  @JsonKey(ignore: true)
+  _$$TaxCompanyItemImplCopyWith<_$TaxCompanyItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+BankItem _$BankItemFromJson(Map<String, dynamic> json) {
+  return _BankItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BankItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'STT')
+  int? get stt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'BankName')
+  String? get bankName => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BankItemCopyWith<BankItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BankItemCopyWith<$Res> {
+  factory $BankItemCopyWith(BankItem value, $Res Function(BankItem) then) =
+      _$BankItemCopyWithImpl<$Res, BankItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'BankName') String? bankName});
+}
+
+/// @nodoc
+class _$BankItemCopyWithImpl<$Res, $Val extends BankItem>
+    implements $BankItemCopyWith<$Res> {
+  _$BankItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? stt = freezed,
+    Object? bankName = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      bankName: freezed == bankName
+          ? _value.bankName
+          : bankName // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$BankItemImplCopyWith<$Res>
+    implements $BankItemCopyWith<$Res> {
+  factory _$$BankItemImplCopyWith(
+          _$BankItemImpl value, $Res Function(_$BankItemImpl) then) =
+      __$$BankItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'BankName') String? bankName});
+}
+
+/// @nodoc
+class __$$BankItemImplCopyWithImpl<$Res>
+    extends _$BankItemCopyWithImpl<$Res, _$BankItemImpl>
+    implements _$$BankItemImplCopyWith<$Res> {
+  __$$BankItemImplCopyWithImpl(
+      _$BankItemImpl _value, $Res Function(_$BankItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? stt = freezed,
+    Object? bankName = freezed,
+  }) {
+    return _then(_$BankItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      bankName: freezed == bankName
+          ? _value.bankName
+          : bankName // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$BankItemImpl implements _BankItem {
+  const _$BankItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'STT') this.stt,
+      @JsonKey(name: 'BankName') this.bankName});
+
+  factory _$BankItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BankItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'STT')
+  final int? stt;
+  @override
+  @JsonKey(name: 'BankName')
+  final String? bankName;
+
+  @override
+  String toString() {
+    return 'BankItem(id: $id, stt: $stt, bankName: $bankName)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BankItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.stt, stt) || other.stt == stt) &&
+            (identical(other.bankName, bankName) ||
+                other.bankName == bankName));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, stt, bankName);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BankItemImplCopyWith<_$BankItemImpl> get copyWith =>
+      __$$BankItemImplCopyWithImpl<_$BankItemImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BankItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BankItem implements BankItem {
+  const factory _BankItem(
+      {@JsonKey(name: 'ID') final int? id,
+      @JsonKey(name: 'STT') final int? stt,
+      @JsonKey(name: 'BankName') final String? bankName}) = _$BankItemImpl;
+
+  factory _BankItem.fromJson(Map<String, dynamic> json) =
+      _$BankItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'STT')
+  int? get stt;
+  @override
+  @JsonKey(name: 'BankName')
+  String? get bankName;
+  @override
+  @JsonKey(ignore: true)
+  _$$BankItemImplCopyWith<_$BankItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+BookingGuestHouseDetailItem _$BookingGuestHouseDetailItemFromJson(
+    Map<String, dynamic> json) {
+  return _BookingGuestHouseDetailItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BookingGuestHouseDetailItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AccommodationBookingID')
+  int? get accommodationBookingId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PhoneNumber')
+  String? get phoneNumber => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FullName')
+  String? get fullName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DepartmentName')
+  String? get departmentName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Note')
+  String? get note => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeCode')
+  String? get employeeCode => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BookingGuestHouseDetailItemCopyWith<BookingGuestHouseDetailItem>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BookingGuestHouseDetailItemCopyWith<$Res> {
+  factory $BookingGuestHouseDetailItemCopyWith(
+          BookingGuestHouseDetailItem value,
+          $Res Function(BookingGuestHouseDetailItem) then) =
+      _$BookingGuestHouseDetailItemCopyWithImpl<$Res,
+          BookingGuestHouseDetailItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'AccommodationBookingID') int? accommodationBookingId,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'PhoneNumber') String? phoneNumber,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'DepartmentName') String? departmentName,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'EmployeeCode') String? employeeCode});
+}
+
+/// @nodoc
+class _$BookingGuestHouseDetailItemCopyWithImpl<$Res,
+        $Val extends BookingGuestHouseDetailItem>
+    implements $BookingGuestHouseDetailItemCopyWith<$Res> {
+  _$BookingGuestHouseDetailItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? accommodationBookingId = freezed,
+    Object? employeeId = freezed,
+    Object? phoneNumber = freezed,
+    Object? fullName = freezed,
+    Object? departmentName = freezed,
+    Object? note = freezed,
+    Object? employeeCode = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      accommodationBookingId: freezed == accommodationBookingId
+          ? _value.accommodationBookingId
+          : accommodationBookingId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departmentName: freezed == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      employeeCode: freezed == employeeCode
+          ? _value.employeeCode
+          : employeeCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$BookingGuestHouseDetailItemImplCopyWith<$Res>
+    implements $BookingGuestHouseDetailItemCopyWith<$Res> {
+  factory _$$BookingGuestHouseDetailItemImplCopyWith(
+          _$BookingGuestHouseDetailItemImpl value,
+          $Res Function(_$BookingGuestHouseDetailItemImpl) then) =
+      __$$BookingGuestHouseDetailItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'AccommodationBookingID') int? accommodationBookingId,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'PhoneNumber') String? phoneNumber,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'DepartmentName') String? departmentName,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'EmployeeCode') String? employeeCode});
+}
+
+/// @nodoc
+class __$$BookingGuestHouseDetailItemImplCopyWithImpl<$Res>
+    extends _$BookingGuestHouseDetailItemCopyWithImpl<$Res,
+        _$BookingGuestHouseDetailItemImpl>
+    implements _$$BookingGuestHouseDetailItemImplCopyWith<$Res> {
+  __$$BookingGuestHouseDetailItemImplCopyWithImpl(
+      _$BookingGuestHouseDetailItemImpl _value,
+      $Res Function(_$BookingGuestHouseDetailItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? accommodationBookingId = freezed,
+    Object? employeeId = freezed,
+    Object? phoneNumber = freezed,
+    Object? fullName = freezed,
+    Object? departmentName = freezed,
+    Object? note = freezed,
+    Object? employeeCode = freezed,
+  }) {
+    return _then(_$BookingGuestHouseDetailItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      accommodationBookingId: freezed == accommodationBookingId
+          ? _value.accommodationBookingId
+          : accommodationBookingId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departmentName: freezed == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      employeeCode: freezed == employeeCode
+          ? _value.employeeCode
+          : employeeCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$BookingGuestHouseDetailItemImpl
+    implements _BookingGuestHouseDetailItem {
+  const _$BookingGuestHouseDetailItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'AccommodationBookingID') this.accommodationBookingId,
+      @JsonKey(name: 'EmployeeID') this.employeeId,
+      @JsonKey(name: 'PhoneNumber') this.phoneNumber,
+      @JsonKey(name: 'FullName') this.fullName,
+      @JsonKey(name: 'DepartmentName') this.departmentName,
+      @JsonKey(name: 'Note') this.note,
+      @JsonKey(name: 'EmployeeCode') this.employeeCode});
+
+  factory _$BookingGuestHouseDetailItemImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$BookingGuestHouseDetailItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'AccommodationBookingID')
+  final int? accommodationBookingId;
+  @override
+  @JsonKey(name: 'EmployeeID')
+  final int? employeeId;
+  @override
+  @JsonKey(name: 'PhoneNumber')
+  final String? phoneNumber;
+  @override
+  @JsonKey(name: 'FullName')
+  final String? fullName;
+  @override
+  @JsonKey(name: 'DepartmentName')
+  final String? departmentName;
+  @override
+  @JsonKey(name: 'Note')
+  final String? note;
+  @override
+  @JsonKey(name: 'EmployeeCode')
+  final String? employeeCode;
+
+  @override
+  String toString() {
+    return 'BookingGuestHouseDetailItem(id: $id, accommodationBookingId: $accommodationBookingId, employeeId: $employeeId, phoneNumber: $phoneNumber, fullName: $fullName, departmentName: $departmentName, note: $note, employeeCode: $employeeCode)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BookingGuestHouseDetailItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.accommodationBookingId, accommodationBookingId) ||
+                other.accommodationBookingId == accommodationBookingId) &&
+            (identical(other.employeeId, employeeId) ||
+                other.employeeId == employeeId) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber) &&
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName) &&
+            (identical(other.departmentName, departmentName) ||
+                other.departmentName == departmentName) &&
+            (identical(other.note, note) || other.note == note) &&
+            (identical(other.employeeCode, employeeCode) ||
+                other.employeeCode == employeeCode));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, accommodationBookingId,
+      employeeId, phoneNumber, fullName, departmentName, note, employeeCode);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BookingGuestHouseDetailItemImplCopyWith<_$BookingGuestHouseDetailItemImpl>
+      get copyWith => __$$BookingGuestHouseDetailItemImplCopyWithImpl<
+          _$BookingGuestHouseDetailItemImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BookingGuestHouseDetailItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BookingGuestHouseDetailItem
+    implements BookingGuestHouseDetailItem {
+  const factory _BookingGuestHouseDetailItem(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'AccommodationBookingID')
+          final int? accommodationBookingId,
+          @JsonKey(name: 'EmployeeID') final int? employeeId,
+          @JsonKey(name: 'PhoneNumber') final String? phoneNumber,
+          @JsonKey(name: 'FullName') final String? fullName,
+          @JsonKey(name: 'DepartmentName') final String? departmentName,
+          @JsonKey(name: 'Note') final String? note,
+          @JsonKey(name: 'EmployeeCode') final String? employeeCode}) =
+      _$BookingGuestHouseDetailItemImpl;
+
+  factory _BookingGuestHouseDetailItem.fromJson(Map<String, dynamic> json) =
+      _$BookingGuestHouseDetailItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'AccommodationBookingID')
+  int? get accommodationBookingId;
+  @override
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId;
+  @override
+  @JsonKey(name: 'PhoneNumber')
+  String? get phoneNumber;
+  @override
+  @JsonKey(name: 'FullName')
+  String? get fullName;
+  @override
+  @JsonKey(name: 'DepartmentName')
+  String? get departmentName;
+  @override
+  @JsonKey(name: 'Note')
+  String? get note;
+  @override
+  @JsonKey(name: 'EmployeeCode')
+  String? get employeeCode;
+  @override
+  @JsonKey(ignore: true)
+  _$$BookingGuestHouseDetailItemImplCopyWith<_$BookingGuestHouseDetailItemImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+AccommodationBookingPayload _$AccommodationBookingPayloadFromJson(
+    Map<String, dynamic> json) {
+  return _AccommodationBookingPayload.fromJson(json);
+}
+
+/// @nodoc
+mixin _$AccommodationBookingPayload {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'RegisterID')
+  int? get registerId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectID')
+  int? get projectId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProvinceID')
+  int? get provinceId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'StartDate')
+  DateTime? get startDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EndDate')
+  DateTime? get endDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Note')
+  String? get note => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ApprovedTBP')
+  int? get approvedTBP => throw _privateConstructorUsedError;
+  @JsonKey(name: 'SpecificDestinationAddress')
+  String? get specificDestinationAddress => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Address')
+  String? get address => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $AccommodationBookingPayloadCopyWith<AccommodationBookingPayload>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AccommodationBookingPayloadCopyWith<$Res> {
+  factory $AccommodationBookingPayloadCopyWith(
+          AccommodationBookingPayload value,
+          $Res Function(AccommodationBookingPayload) then) =
+      _$AccommodationBookingPayloadCopyWithImpl<$Res,
+          AccommodationBookingPayload>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'RegisterID') int? registerId,
+      @JsonKey(name: 'ProjectID') int? projectId,
+      @JsonKey(name: 'ProvinceID') int? provinceId,
+      @JsonKey(name: 'StartDate') DateTime? startDate,
+      @JsonKey(name: 'EndDate') DateTime? endDate,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'ApprovedTBP') int? approvedTBP,
+      @JsonKey(name: 'SpecificDestinationAddress')
+      String? specificDestinationAddress,
+      @JsonKey(name: 'Address') String? address});
+}
+
+/// @nodoc
+class _$AccommodationBookingPayloadCopyWithImpl<$Res,
+        $Val extends AccommodationBookingPayload>
+    implements $AccommodationBookingPayloadCopyWith<$Res> {
+  _$AccommodationBookingPayloadCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? registerId = freezed,
+    Object? projectId = freezed,
+    Object? provinceId = freezed,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
+    Object? note = freezed,
+    Object? approvedTBP = freezed,
+    Object? specificDestinationAddress = freezed,
+    Object? address = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      registerId: freezed == registerId
+          ? _value.registerId
+          : registerId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      provinceId: freezed == provinceId
+          ? _value.provinceId
+          : provinceId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      approvedTBP: freezed == approvedTBP
+          ? _value.approvedTBP
+          : approvedTBP // ignore: cast_nullable_to_non_nullable
+              as int?,
+      specificDestinationAddress: freezed == specificDestinationAddress
+          ? _value.specificDestinationAddress
+          : specificDestinationAddress // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$AccommodationBookingPayloadImplCopyWith<$Res>
+    implements $AccommodationBookingPayloadCopyWith<$Res> {
+  factory _$$AccommodationBookingPayloadImplCopyWith(
+          _$AccommodationBookingPayloadImpl value,
+          $Res Function(_$AccommodationBookingPayloadImpl) then) =
+      __$$AccommodationBookingPayloadImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'RegisterID') int? registerId,
+      @JsonKey(name: 'ProjectID') int? projectId,
+      @JsonKey(name: 'ProvinceID') int? provinceId,
+      @JsonKey(name: 'StartDate') DateTime? startDate,
+      @JsonKey(name: 'EndDate') DateTime? endDate,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'ApprovedTBP') int? approvedTBP,
+      @JsonKey(name: 'SpecificDestinationAddress')
+      String? specificDestinationAddress,
+      @JsonKey(name: 'Address') String? address});
+}
+
+/// @nodoc
+class __$$AccommodationBookingPayloadImplCopyWithImpl<$Res>
+    extends _$AccommodationBookingPayloadCopyWithImpl<$Res,
+        _$AccommodationBookingPayloadImpl>
+    implements _$$AccommodationBookingPayloadImplCopyWith<$Res> {
+  __$$AccommodationBookingPayloadImplCopyWithImpl(
+      _$AccommodationBookingPayloadImpl _value,
+      $Res Function(_$AccommodationBookingPayloadImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? registerId = freezed,
+    Object? projectId = freezed,
+    Object? provinceId = freezed,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
+    Object? note = freezed,
+    Object? approvedTBP = freezed,
+    Object? specificDestinationAddress = freezed,
+    Object? address = freezed,
+  }) {
+    return _then(_$AccommodationBookingPayloadImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      registerId: freezed == registerId
+          ? _value.registerId
+          : registerId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      provinceId: freezed == provinceId
+          ? _value.provinceId
+          : provinceId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      approvedTBP: freezed == approvedTBP
+          ? _value.approvedTBP
+          : approvedTBP // ignore: cast_nullable_to_non_nullable
+              as int?,
+      specificDestinationAddress: freezed == specificDestinationAddress
+          ? _value.specificDestinationAddress
+          : specificDestinationAddress // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$AccommodationBookingPayloadImpl
+    implements _AccommodationBookingPayload {
+  const _$AccommodationBookingPayloadImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'RegisterID') this.registerId,
+      @JsonKey(name: 'ProjectID') this.projectId,
+      @JsonKey(name: 'ProvinceID') this.provinceId,
+      @JsonKey(name: 'StartDate') this.startDate,
+      @JsonKey(name: 'EndDate') this.endDate,
+      @JsonKey(name: 'Note') this.note,
+      @JsonKey(name: 'ApprovedTBP') this.approvedTBP,
+      @JsonKey(name: 'SpecificDestinationAddress')
+      this.specificDestinationAddress,
+      @JsonKey(name: 'Address') this.address});
+
+  factory _$AccommodationBookingPayloadImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$AccommodationBookingPayloadImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'RegisterID')
+  final int? registerId;
+  @override
+  @JsonKey(name: 'ProjectID')
+  final int? projectId;
+  @override
+  @JsonKey(name: 'ProvinceID')
+  final int? provinceId;
+  @override
+  @JsonKey(name: 'StartDate')
+  final DateTime? startDate;
+  @override
+  @JsonKey(name: 'EndDate')
+  final DateTime? endDate;
+  @override
+  @JsonKey(name: 'Note')
+  final String? note;
+  @override
+  @JsonKey(name: 'ApprovedTBP')
+  final int? approvedTBP;
+  @override
+  @JsonKey(name: 'SpecificDestinationAddress')
+  final String? specificDestinationAddress;
+  @override
+  @JsonKey(name: 'Address')
+  final String? address;
+
+  @override
+  String toString() {
+    return 'AccommodationBookingPayload(id: $id, registerId: $registerId, projectId: $projectId, provinceId: $provinceId, startDate: $startDate, endDate: $endDate, note: $note, approvedTBP: $approvedTBP, specificDestinationAddress: $specificDestinationAddress, address: $address)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AccommodationBookingPayloadImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.registerId, registerId) ||
+                other.registerId == registerId) &&
+            (identical(other.projectId, projectId) ||
+                other.projectId == projectId) &&
+            (identical(other.provinceId, provinceId) ||
+                other.provinceId == provinceId) &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate) &&
+            (identical(other.endDate, endDate) || other.endDate == endDate) &&
+            (identical(other.note, note) || other.note == note) &&
+            (identical(other.approvedTBP, approvedTBP) ||
+                other.approvedTBP == approvedTBP) &&
+            (identical(other.specificDestinationAddress,
+                    specificDestinationAddress) ||
+                other.specificDestinationAddress ==
+                    specificDestinationAddress) &&
+            (identical(other.address, address) || other.address == address));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      registerId,
+      projectId,
+      provinceId,
+      startDate,
+      endDate,
+      note,
+      approvedTBP,
+      specificDestinationAddress,
+      address);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AccommodationBookingPayloadImplCopyWith<_$AccommodationBookingPayloadImpl>
+      get copyWith => __$$AccommodationBookingPayloadImplCopyWithImpl<
+          _$AccommodationBookingPayloadImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$AccommodationBookingPayloadImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _AccommodationBookingPayload
+    implements AccommodationBookingPayload {
+  const factory _AccommodationBookingPayload(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'RegisterID') final int? registerId,
+          @JsonKey(name: 'ProjectID') final int? projectId,
+          @JsonKey(name: 'ProvinceID') final int? provinceId,
+          @JsonKey(name: 'StartDate') final DateTime? startDate,
+          @JsonKey(name: 'EndDate') final DateTime? endDate,
+          @JsonKey(name: 'Note') final String? note,
+          @JsonKey(name: 'ApprovedTBP') final int? approvedTBP,
+          @JsonKey(name: 'SpecificDestinationAddress')
+          final String? specificDestinationAddress,
+          @JsonKey(name: 'Address') final String? address}) =
+      _$AccommodationBookingPayloadImpl;
+
+  factory _AccommodationBookingPayload.fromJson(Map<String, dynamic> json) =
+      _$AccommodationBookingPayloadImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'RegisterID')
+  int? get registerId;
+  @override
+  @JsonKey(name: 'ProjectID')
+  int? get projectId;
+  @override
+  @JsonKey(name: 'ProvinceID')
+  int? get provinceId;
+  @override
+  @JsonKey(name: 'StartDate')
+  DateTime? get startDate;
+  @override
+  @JsonKey(name: 'EndDate')
+  DateTime? get endDate;
+  @override
+  @JsonKey(name: 'Note')
+  String? get note;
+  @override
+  @JsonKey(name: 'ApprovedTBP')
+  int? get approvedTBP;
+  @override
+  @JsonKey(name: 'SpecificDestinationAddress')
+  String? get specificDestinationAddress;
+  @override
+  @JsonKey(name: 'Address')
+  String? get address;
+  @override
+  @JsonKey(ignore: true)
+  _$$AccommodationBookingPayloadImplCopyWith<_$AccommodationBookingPayloadImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+BookingGuestHouseDetailData _$BookingGuestHouseDetailDataFromJson(
+    Map<String, dynamic> json) {
+  return _BookingGuestHouseDetailData.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BookingGuestHouseDetailData {
+  @JsonKey(name: 'accommodationBooking')
+  BookingDetail get info => throw _privateConstructorUsedError;
+  @JsonKey(name: 'accommodationBookingDetail')
+  List<BookingDetailPerson> get persons => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BookingGuestHouseDetailDataCopyWith<BookingGuestHouseDetailData>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BookingGuestHouseDetailDataCopyWith<$Res> {
+  factory $BookingGuestHouseDetailDataCopyWith(
+          BookingGuestHouseDetailData value,
+          $Res Function(BookingGuestHouseDetailData) then) =
+      _$BookingGuestHouseDetailDataCopyWithImpl<$Res,
+          BookingGuestHouseDetailData>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'accommodationBooking') BookingDetail info,
+      @JsonKey(name: 'accommodationBookingDetail')
+      List<BookingDetailPerson> persons});
+
+  $BookingDetailCopyWith<$Res> get info;
+}
+
+/// @nodoc
+class _$BookingGuestHouseDetailDataCopyWithImpl<$Res,
+        $Val extends BookingGuestHouseDetailData>
+    implements $BookingGuestHouseDetailDataCopyWith<$Res> {
+  _$BookingGuestHouseDetailDataCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? info = null,
+    Object? persons = null,
+  }) {
+    return _then(_value.copyWith(
+      info: null == info
+          ? _value.info
+          : info // ignore: cast_nullable_to_non_nullable
+              as BookingDetail,
+      persons: null == persons
+          ? _value.persons
+          : persons // ignore: cast_nullable_to_non_nullable
+              as List<BookingDetailPerson>,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BookingDetailCopyWith<$Res> get info {
+    return $BookingDetailCopyWith<$Res>(_value.info, (value) {
+      return _then(_value.copyWith(info: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$BookingGuestHouseDetailDataImplCopyWith<$Res>
+    implements $BookingGuestHouseDetailDataCopyWith<$Res> {
+  factory _$$BookingGuestHouseDetailDataImplCopyWith(
+          _$BookingGuestHouseDetailDataImpl value,
+          $Res Function(_$BookingGuestHouseDetailDataImpl) then) =
+      __$$BookingGuestHouseDetailDataImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'accommodationBooking') BookingDetail info,
+      @JsonKey(name: 'accommodationBookingDetail')
+      List<BookingDetailPerson> persons});
+
+  @override
+  $BookingDetailCopyWith<$Res> get info;
+}
+
+/// @nodoc
+class __$$BookingGuestHouseDetailDataImplCopyWithImpl<$Res>
+    extends _$BookingGuestHouseDetailDataCopyWithImpl<$Res,
+        _$BookingGuestHouseDetailDataImpl>
+    implements _$$BookingGuestHouseDetailDataImplCopyWith<$Res> {
+  __$$BookingGuestHouseDetailDataImplCopyWithImpl(
+      _$BookingGuestHouseDetailDataImpl _value,
+      $Res Function(_$BookingGuestHouseDetailDataImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? info = null,
+    Object? persons = null,
+  }) {
+    return _then(_$BookingGuestHouseDetailDataImpl(
+      info: null == info
+          ? _value.info
+          : info // ignore: cast_nullable_to_non_nullable
+              as BookingDetail,
+      persons: null == persons
+          ? _value._persons
+          : persons // ignore: cast_nullable_to_non_nullable
+              as List<BookingDetailPerson>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$BookingGuestHouseDetailDataImpl
+    implements _BookingGuestHouseDetailData {
+  const _$BookingGuestHouseDetailDataImpl(
+      {@JsonKey(name: 'accommodationBooking') required this.info,
+      @JsonKey(name: 'accommodationBookingDetail')
+      required final List<BookingDetailPerson> persons})
+      : _persons = persons;
+
+  factory _$BookingGuestHouseDetailDataImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$BookingGuestHouseDetailDataImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'accommodationBooking')
+  final BookingDetail info;
+  final List<BookingDetailPerson> _persons;
+  @override
+  @JsonKey(name: 'accommodationBookingDetail')
+  List<BookingDetailPerson> get persons {
+    if (_persons is EqualUnmodifiableListView) return _persons;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_persons);
+  }
+
+  @override
+  String toString() {
+    return 'BookingGuestHouseDetailData(info: $info, persons: $persons)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BookingGuestHouseDetailDataImpl &&
+            (identical(other.info, info) || other.info == info) &&
+            const DeepCollectionEquality().equals(other._persons, _persons));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, info, const DeepCollectionEquality().hash(_persons));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BookingGuestHouseDetailDataImplCopyWith<_$BookingGuestHouseDetailDataImpl>
+      get copyWith => __$$BookingGuestHouseDetailDataImplCopyWithImpl<
+          _$BookingGuestHouseDetailDataImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BookingGuestHouseDetailDataImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BookingGuestHouseDetailData
+    implements BookingGuestHouseDetailData {
+  const factory _BookingGuestHouseDetailData(
+      {@JsonKey(name: 'accommodationBooking') required final BookingDetail info,
+      @JsonKey(name: 'accommodationBookingDetail')
+      required final List<BookingDetailPerson>
+          persons}) = _$BookingGuestHouseDetailDataImpl;
+
+  factory _BookingGuestHouseDetailData.fromJson(Map<String, dynamic> json) =
+      _$BookingGuestHouseDetailDataImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'accommodationBooking')
+  BookingDetail get info;
+  @override
+  @JsonKey(name: 'accommodationBookingDetail')
+  List<BookingDetailPerson> get persons;
+  @override
+  @JsonKey(ignore: true)
+  _$$BookingGuestHouseDetailDataImplCopyWith<_$BookingGuestHouseDetailDataImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+BookingDetail _$BookingDetailFromJson(Map<String, dynamic> json) {
+  return _BookingDetail.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BookingDetail {
+  @JsonKey(name: 'ID')
+  int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'RegisterID')
+  int? get registerId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectID')
+  int? get projectId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProvinceID')
+  int? get provinceId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'StartDate')
+  DateTime? get startDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EndDate')
+  DateTime? get endDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Note')
+  String? get note => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Address')
+  String? get address => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsApprovedTBP')
+  bool? get isApprovedTBP => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ApprovedTBP')
+  int? get approvedTBP => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ApprovedTBPDate')
+  DateTime? get approvedTBPDate => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BookingDetailCopyWith<BookingDetail> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BookingDetailCopyWith<$Res> {
+  factory $BookingDetailCopyWith(
+          BookingDetail value, $Res Function(BookingDetail) then) =
+      _$BookingDetailCopyWithImpl<$Res, BookingDetail>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int id,
+      @JsonKey(name: 'RegisterID') int? registerId,
+      @JsonKey(name: 'ProjectID') int? projectId,
+      @JsonKey(name: 'ProvinceID') int? provinceId,
+      @JsonKey(name: 'StartDate') DateTime? startDate,
+      @JsonKey(name: 'EndDate') DateTime? endDate,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'Address') String? address,
+      @JsonKey(name: 'IsApprovedTBP') bool? isApprovedTBP,
+      @JsonKey(name: 'ApprovedTBP') int? approvedTBP,
+      @JsonKey(name: 'ApprovedTBPDate') DateTime? approvedTBPDate});
+}
+
+/// @nodoc
+class _$BookingDetailCopyWithImpl<$Res, $Val extends BookingDetail>
+    implements $BookingDetailCopyWith<$Res> {
+  _$BookingDetailCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? registerId = freezed,
+    Object? projectId = freezed,
+    Object? provinceId = freezed,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+    Object? isDeleted = freezed,
+    Object? note = freezed,
+    Object? address = freezed,
+    Object? isApprovedTBP = freezed,
+    Object? approvedTBP = freezed,
+    Object? approvedTBPDate = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      registerId: freezed == registerId
+          ? _value.registerId
+          : registerId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      provinceId: freezed == provinceId
+          ? _value.provinceId
+          : provinceId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isApprovedTBP: freezed == isApprovedTBP
+          ? _value.isApprovedTBP
+          : isApprovedTBP // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      approvedTBP: freezed == approvedTBP
+          ? _value.approvedTBP
+          : approvedTBP // ignore: cast_nullable_to_non_nullable
+              as int?,
+      approvedTBPDate: freezed == approvedTBPDate
+          ? _value.approvedTBPDate
+          : approvedTBPDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$BookingDetailImplCopyWith<$Res>
+    implements $BookingDetailCopyWith<$Res> {
+  factory _$$BookingDetailImplCopyWith(
+          _$BookingDetailImpl value, $Res Function(_$BookingDetailImpl) then) =
+      __$$BookingDetailImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int id,
+      @JsonKey(name: 'RegisterID') int? registerId,
+      @JsonKey(name: 'ProjectID') int? projectId,
+      @JsonKey(name: 'ProvinceID') int? provinceId,
+      @JsonKey(name: 'StartDate') DateTime? startDate,
+      @JsonKey(name: 'EndDate') DateTime? endDate,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'Address') String? address,
+      @JsonKey(name: 'IsApprovedTBP') bool? isApprovedTBP,
+      @JsonKey(name: 'ApprovedTBP') int? approvedTBP,
+      @JsonKey(name: 'ApprovedTBPDate') DateTime? approvedTBPDate});
+}
+
+/// @nodoc
+class __$$BookingDetailImplCopyWithImpl<$Res>
+    extends _$BookingDetailCopyWithImpl<$Res, _$BookingDetailImpl>
+    implements _$$BookingDetailImplCopyWith<$Res> {
+  __$$BookingDetailImplCopyWithImpl(
+      _$BookingDetailImpl _value, $Res Function(_$BookingDetailImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? registerId = freezed,
+    Object? projectId = freezed,
+    Object? provinceId = freezed,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+    Object? isDeleted = freezed,
+    Object? note = freezed,
+    Object? address = freezed,
+    Object? isApprovedTBP = freezed,
+    Object? approvedTBP = freezed,
+    Object? approvedTBPDate = freezed,
+  }) {
+    return _then(_$BookingDetailImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      registerId: freezed == registerId
+          ? _value.registerId
+          : registerId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      provinceId: freezed == provinceId
+          ? _value.provinceId
+          : provinceId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isApprovedTBP: freezed == isApprovedTBP
+          ? _value.isApprovedTBP
+          : isApprovedTBP // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      approvedTBP: freezed == approvedTBP
+          ? _value.approvedTBP
+          : approvedTBP // ignore: cast_nullable_to_non_nullable
+              as int?,
+      approvedTBPDate: freezed == approvedTBPDate
+          ? _value.approvedTBPDate
+          : approvedTBPDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$BookingDetailImpl implements _BookingDetail {
+  const _$BookingDetailImpl(
+      {@JsonKey(name: 'ID') required this.id,
+      @JsonKey(name: 'RegisterID') this.registerId,
+      @JsonKey(name: 'ProjectID') this.projectId,
+      @JsonKey(name: 'ProvinceID') this.provinceId,
+      @JsonKey(name: 'StartDate') this.startDate,
+      @JsonKey(name: 'EndDate') this.endDate,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'UpdatedBy') this.updatedBy,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate,
+      @JsonKey(name: 'IsDeleted') this.isDeleted,
+      @JsonKey(name: 'Note') this.note,
+      @JsonKey(name: 'Address') this.address,
+      @JsonKey(name: 'IsApprovedTBP') this.isApprovedTBP,
+      @JsonKey(name: 'ApprovedTBP') this.approvedTBP,
+      @JsonKey(name: 'ApprovedTBPDate') this.approvedTBPDate});
+
+  factory _$BookingDetailImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BookingDetailImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int id;
+  @override
+  @JsonKey(name: 'RegisterID')
+  final int? registerId;
+  @override
+  @JsonKey(name: 'ProjectID')
+  final int? projectId;
+  @override
+  @JsonKey(name: 'ProvinceID')
+  final int? provinceId;
+  @override
+  @JsonKey(name: 'StartDate')
+  final DateTime? startDate;
+  @override
+  @JsonKey(name: 'EndDate')
+  final DateTime? endDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  final String? createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  final String? updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final DateTime? updatedDate;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  final bool? isDeleted;
+  @override
+  @JsonKey(name: 'Note')
+  final String? note;
+  @override
+  @JsonKey(name: 'Address')
+  final String? address;
+  @override
+  @JsonKey(name: 'IsApprovedTBP')
+  final bool? isApprovedTBP;
+  @override
+  @JsonKey(name: 'ApprovedTBP')
+  final int? approvedTBP;
+  @override
+  @JsonKey(name: 'ApprovedTBPDate')
+  final DateTime? approvedTBPDate;
+
+  @override
+  String toString() {
+    return 'BookingDetail(id: $id, registerId: $registerId, projectId: $projectId, provinceId: $provinceId, startDate: $startDate, endDate: $endDate, createdBy: $createdBy, createdDate: $createdDate, updatedBy: $updatedBy, updatedDate: $updatedDate, isDeleted: $isDeleted, note: $note, address: $address, isApprovedTBP: $isApprovedTBP, approvedTBP: $approvedTBP, approvedTBPDate: $approvedTBPDate)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BookingDetailImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.registerId, registerId) ||
+                other.registerId == registerId) &&
+            (identical(other.projectId, projectId) ||
+                other.projectId == projectId) &&
+            (identical(other.provinceId, provinceId) ||
+                other.provinceId == provinceId) &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate) &&
+            (identical(other.endDate, endDate) || other.endDate == endDate) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.note, note) || other.note == note) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.isApprovedTBP, isApprovedTBP) ||
+                other.isApprovedTBP == isApprovedTBP) &&
+            (identical(other.approvedTBP, approvedTBP) ||
+                other.approvedTBP == approvedTBP) &&
+            (identical(other.approvedTBPDate, approvedTBPDate) ||
+                other.approvedTBPDate == approvedTBPDate));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      registerId,
+      projectId,
+      provinceId,
+      startDate,
+      endDate,
+      createdBy,
+      createdDate,
+      updatedBy,
+      updatedDate,
+      isDeleted,
+      note,
+      address,
+      isApprovedTBP,
+      approvedTBP,
+      approvedTBPDate);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BookingDetailImplCopyWith<_$BookingDetailImpl> get copyWith =>
+      __$$BookingDetailImplCopyWithImpl<_$BookingDetailImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BookingDetailImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BookingDetail implements BookingDetail {
+  const factory _BookingDetail(
+          {@JsonKey(name: 'ID') required final int id,
+          @JsonKey(name: 'RegisterID') final int? registerId,
+          @JsonKey(name: 'ProjectID') final int? projectId,
+          @JsonKey(name: 'ProvinceID') final int? provinceId,
+          @JsonKey(name: 'StartDate') final DateTime? startDate,
+          @JsonKey(name: 'EndDate') final DateTime? endDate,
+          @JsonKey(name: 'CreatedBy') final String? createdBy,
+          @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+          @JsonKey(name: 'UpdatedBy') final String? updatedBy,
+          @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
+          @JsonKey(name: 'IsDeleted') final bool? isDeleted,
+          @JsonKey(name: 'Note') final String? note,
+          @JsonKey(name: 'Address') final String? address,
+          @JsonKey(name: 'IsApprovedTBP') final bool? isApprovedTBP,
+          @JsonKey(name: 'ApprovedTBP') final int? approvedTBP,
+          @JsonKey(name: 'ApprovedTBPDate') final DateTime? approvedTBPDate}) =
+      _$BookingDetailImpl;
+
+  factory _BookingDetail.fromJson(Map<String, dynamic> json) =
+      _$BookingDetailImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int get id;
+  @override
+  @JsonKey(name: 'RegisterID')
+  int? get registerId;
+  @override
+  @JsonKey(name: 'ProjectID')
+  int? get projectId;
+  @override
+  @JsonKey(name: 'ProvinceID')
+  int? get provinceId;
+  @override
+  @JsonKey(name: 'StartDate')
+  DateTime? get startDate;
+  @override
+  @JsonKey(name: 'EndDate')
+  DateTime? get endDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted;
+  @override
+  @JsonKey(name: 'Note')
+  String? get note;
+  @override
+  @JsonKey(name: 'Address')
+  String? get address;
+  @override
+  @JsonKey(name: 'IsApprovedTBP')
+  bool? get isApprovedTBP;
+  @override
+  @JsonKey(name: 'ApprovedTBP')
+  int? get approvedTBP;
+  @override
+  @JsonKey(name: 'ApprovedTBPDate')
+  DateTime? get approvedTBPDate;
+  @override
+  @JsonKey(ignore: true)
+  _$$BookingDetailImplCopyWith<_$BookingDetailImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+BookingDetailPerson _$BookingDetailPersonFromJson(Map<String, dynamic> json) {
+  return _BookingDetailPerson.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BookingDetailPerson {
+  @JsonKey(name: 'ID')
+  int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AccommodationBookingID')
+  int? get accommodationBookingId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PhoneNumber')
+  dynamic get phoneNumber => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FullName')
+  String? get fullName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DepartmentName')
+  String? get departmentName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Note')
+  String? get note => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeCode')
+  String? get employeeCode => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BookingDetailPersonCopyWith<BookingDetailPerson> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BookingDetailPersonCopyWith<$Res> {
+  factory $BookingDetailPersonCopyWith(
+          BookingDetailPerson value, $Res Function(BookingDetailPerson) then) =
+      _$BookingDetailPersonCopyWithImpl<$Res, BookingDetailPerson>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int id,
+      @JsonKey(name: 'AccommodationBookingID') int? accommodationBookingId,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'PhoneNumber') dynamic phoneNumber,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'DepartmentName') String? departmentName,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'EmployeeCode') String? employeeCode});
+}
+
+/// @nodoc
+class _$BookingDetailPersonCopyWithImpl<$Res, $Val extends BookingDetailPerson>
+    implements $BookingDetailPersonCopyWith<$Res> {
+  _$BookingDetailPersonCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? accommodationBookingId = freezed,
+    Object? employeeId = freezed,
+    Object? phoneNumber = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+    Object? isDeleted = freezed,
+    Object? fullName = freezed,
+    Object? departmentName = freezed,
+    Object? note = freezed,
+    Object? employeeCode = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      accommodationBookingId: freezed == accommodationBookingId
+          ? _value.accommodationBookingId
+          : accommodationBookingId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departmentName: freezed == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      employeeCode: freezed == employeeCode
+          ? _value.employeeCode
+          : employeeCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$BookingDetailPersonImplCopyWith<$Res>
+    implements $BookingDetailPersonCopyWith<$Res> {
+  factory _$$BookingDetailPersonImplCopyWith(_$BookingDetailPersonImpl value,
+          $Res Function(_$BookingDetailPersonImpl) then) =
+      __$$BookingDetailPersonImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int id,
+      @JsonKey(name: 'AccommodationBookingID') int? accommodationBookingId,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'PhoneNumber') dynamic phoneNumber,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'DepartmentName') String? departmentName,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'EmployeeCode') String? employeeCode});
+}
+
+/// @nodoc
+class __$$BookingDetailPersonImplCopyWithImpl<$Res>
+    extends _$BookingDetailPersonCopyWithImpl<$Res, _$BookingDetailPersonImpl>
+    implements _$$BookingDetailPersonImplCopyWith<$Res> {
+  __$$BookingDetailPersonImplCopyWithImpl(_$BookingDetailPersonImpl _value,
+      $Res Function(_$BookingDetailPersonImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? accommodationBookingId = freezed,
+    Object? employeeId = freezed,
+    Object? phoneNumber = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+    Object? isDeleted = freezed,
+    Object? fullName = freezed,
+    Object? departmentName = freezed,
+    Object? note = freezed,
+    Object? employeeCode = freezed,
+  }) {
+    return _then(_$BookingDetailPersonImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      accommodationBookingId: freezed == accommodationBookingId
+          ? _value.accommodationBookingId
+          : accommodationBookingId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departmentName: freezed == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      employeeCode: freezed == employeeCode
+          ? _value.employeeCode
+          : employeeCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$BookingDetailPersonImpl implements _BookingDetailPerson {
+  const _$BookingDetailPersonImpl(
+      {@JsonKey(name: 'ID') required this.id,
+      @JsonKey(name: 'AccommodationBookingID') this.accommodationBookingId,
+      @JsonKey(name: 'EmployeeID') this.employeeId,
+      @JsonKey(name: 'PhoneNumber') this.phoneNumber,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'UpdatedBy') this.updatedBy,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate,
+      @JsonKey(name: 'IsDeleted') this.isDeleted,
+      @JsonKey(name: 'FullName') this.fullName,
+      @JsonKey(name: 'DepartmentName') this.departmentName,
+      @JsonKey(name: 'Note') this.note,
+      @JsonKey(name: 'EmployeeCode') this.employeeCode});
+
+  factory _$BookingDetailPersonImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BookingDetailPersonImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int id;
+  @override
+  @JsonKey(name: 'AccommodationBookingID')
+  final int? accommodationBookingId;
+  @override
+  @JsonKey(name: 'EmployeeID')
+  final int? employeeId;
+  @override
+  @JsonKey(name: 'PhoneNumber')
+  final dynamic phoneNumber;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  final String? createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  final String? updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final DateTime? updatedDate;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  final bool? isDeleted;
+  @override
+  @JsonKey(name: 'FullName')
+  final String? fullName;
+  @override
+  @JsonKey(name: 'DepartmentName')
+  final String? departmentName;
+  @override
+  @JsonKey(name: 'Note')
+  final String? note;
+  @override
+  @JsonKey(name: 'EmployeeCode')
+  final String? employeeCode;
+
+  @override
+  String toString() {
+    return 'BookingDetailPerson(id: $id, accommodationBookingId: $accommodationBookingId, employeeId: $employeeId, phoneNumber: $phoneNumber, createdBy: $createdBy, createdDate: $createdDate, updatedBy: $updatedBy, updatedDate: $updatedDate, isDeleted: $isDeleted, fullName: $fullName, departmentName: $departmentName, note: $note, employeeCode: $employeeCode)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BookingDetailPersonImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.accommodationBookingId, accommodationBookingId) ||
+                other.accommodationBookingId == accommodationBookingId) &&
+            (identical(other.employeeId, employeeId) ||
+                other.employeeId == employeeId) &&
+            const DeepCollectionEquality()
+                .equals(other.phoneNumber, phoneNumber) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName) &&
+            (identical(other.departmentName, departmentName) ||
+                other.departmentName == departmentName) &&
+            (identical(other.note, note) || other.note == note) &&
+            (identical(other.employeeCode, employeeCode) ||
+                other.employeeCode == employeeCode));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      accommodationBookingId,
+      employeeId,
+      const DeepCollectionEquality().hash(phoneNumber),
+      createdBy,
+      createdDate,
+      updatedBy,
+      updatedDate,
+      isDeleted,
+      fullName,
+      departmentName,
+      note,
+      employeeCode);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BookingDetailPersonImplCopyWith<_$BookingDetailPersonImpl> get copyWith =>
+      __$$BookingDetailPersonImplCopyWithImpl<_$BookingDetailPersonImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BookingDetailPersonImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BookingDetailPerson implements BookingDetailPerson {
+  const factory _BookingDetailPerson(
+          {@JsonKey(name: 'ID') required final int id,
+          @JsonKey(name: 'AccommodationBookingID')
+          final int? accommodationBookingId,
+          @JsonKey(name: 'EmployeeID') final int? employeeId,
+          @JsonKey(name: 'PhoneNumber') final dynamic phoneNumber,
+          @JsonKey(name: 'CreatedBy') final String? createdBy,
+          @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+          @JsonKey(name: 'UpdatedBy') final String? updatedBy,
+          @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
+          @JsonKey(name: 'IsDeleted') final bool? isDeleted,
+          @JsonKey(name: 'FullName') final String? fullName,
+          @JsonKey(name: 'DepartmentName') final String? departmentName,
+          @JsonKey(name: 'Note') final String? note,
+          @JsonKey(name: 'EmployeeCode') final String? employeeCode}) =
+      _$BookingDetailPersonImpl;
+
+  factory _BookingDetailPerson.fromJson(Map<String, dynamic> json) =
+      _$BookingDetailPersonImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int get id;
+  @override
+  @JsonKey(name: 'AccommodationBookingID')
+  int? get accommodationBookingId;
+  @override
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId;
+  @override
+  @JsonKey(name: 'PhoneNumber')
+  dynamic get phoneNumber;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted;
+  @override
+  @JsonKey(name: 'FullName')
+  String? get fullName;
+  @override
+  @JsonKey(name: 'DepartmentName')
+  String? get departmentName;
+  @override
+  @JsonKey(name: 'Note')
+  String? get note;
+  @override
+  @JsonKey(name: 'EmployeeCode')
+  String? get employeeCode;
+  @override
+  @JsonKey(ignore: true)
+  _$$BookingDetailPersonImplCopyWith<_$BookingDetailPersonImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+BookingGuestHouseSaveResponse _$BookingGuestHouseSaveResponseFromJson(
+    Map<String, dynamic> json) {
+  return _BookingGuestHouseSaveResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BookingGuestHouseSaveResponse {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BookingGuestHouseSaveResponseCopyWith<BookingGuestHouseSaveResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BookingGuestHouseSaveResponseCopyWith<$Res> {
+  factory $BookingGuestHouseSaveResponseCopyWith(
+          BookingGuestHouseSaveResponse value,
+          $Res Function(BookingGuestHouseSaveResponse) then) =
+      _$BookingGuestHouseSaveResponseCopyWithImpl<$Res,
+          BookingGuestHouseSaveResponse>;
+  @useResult
+  $Res call({@JsonKey(name: 'ID') int? id});
+}
+
+/// @nodoc
+class _$BookingGuestHouseSaveResponseCopyWithImpl<$Res,
+        $Val extends BookingGuestHouseSaveResponse>
+    implements $BookingGuestHouseSaveResponseCopyWith<$Res> {
+  _$BookingGuestHouseSaveResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$BookingGuestHouseSaveResponseImplCopyWith<$Res>
+    implements $BookingGuestHouseSaveResponseCopyWith<$Res> {
+  factory _$$BookingGuestHouseSaveResponseImplCopyWith(
+          _$BookingGuestHouseSaveResponseImpl value,
+          $Res Function(_$BookingGuestHouseSaveResponseImpl) then) =
+      __$$BookingGuestHouseSaveResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({@JsonKey(name: 'ID') int? id});
+}
+
+/// @nodoc
+class __$$BookingGuestHouseSaveResponseImplCopyWithImpl<$Res>
+    extends _$BookingGuestHouseSaveResponseCopyWithImpl<$Res,
+        _$BookingGuestHouseSaveResponseImpl>
+    implements _$$BookingGuestHouseSaveResponseImplCopyWith<$Res> {
+  __$$BookingGuestHouseSaveResponseImplCopyWithImpl(
+      _$BookingGuestHouseSaveResponseImpl _value,
+      $Res Function(_$BookingGuestHouseSaveResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+  }) {
+    return _then(_$BookingGuestHouseSaveResponseImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$BookingGuestHouseSaveResponseImpl
+    implements _BookingGuestHouseSaveResponse {
+  const _$BookingGuestHouseSaveResponseImpl({@JsonKey(name: 'ID') this.id});
+
+  factory _$BookingGuestHouseSaveResponseImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$BookingGuestHouseSaveResponseImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+
+  @override
+  String toString() {
+    return 'BookingGuestHouseSaveResponse(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BookingGuestHouseSaveResponseImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BookingGuestHouseSaveResponseImplCopyWith<
+          _$BookingGuestHouseSaveResponseImpl>
+      get copyWith => __$$BookingGuestHouseSaveResponseImplCopyWithImpl<
+          _$BookingGuestHouseSaveResponseImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BookingGuestHouseSaveResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BookingGuestHouseSaveResponse
+    implements BookingGuestHouseSaveResponse {
+  const factory _BookingGuestHouseSaveResponse(
+          {@JsonKey(name: 'ID') final int? id}) =
+      _$BookingGuestHouseSaveResponseImpl;
+
+  factory _BookingGuestHouseSaveResponse.fromJson(Map<String, dynamic> json) =
+      _$BookingGuestHouseSaveResponseImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(ignore: true)
+  _$$BookingGuestHouseSaveResponseImplCopyWith<
+          _$BookingGuestHouseSaveResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+BookingGuestHouseAdvanceResponse _$BookingGuestHouseAdvanceResponseFromJson(
+    Map<String, dynamic> json) {
+  return _BookingGuestHouseAdvanceResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BookingGuestHouseAdvanceResponse {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Code')
+  String? get code => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DetailID')
+  int? get detailId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsRecreated')
+  bool? get isRecreated => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BookingGuestHouseAdvanceResponseCopyWith<BookingGuestHouseAdvanceResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BookingGuestHouseAdvanceResponseCopyWith<$Res> {
+  factory $BookingGuestHouseAdvanceResponseCopyWith(
+          BookingGuestHouseAdvanceResponse value,
+          $Res Function(BookingGuestHouseAdvanceResponse) then) =
+      _$BookingGuestHouseAdvanceResponseCopyWithImpl<$Res,
+          BookingGuestHouseAdvanceResponse>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'DetailID') int? detailId,
+      @JsonKey(name: 'IsRecreated') bool? isRecreated});
+}
+
+/// @nodoc
+class _$BookingGuestHouseAdvanceResponseCopyWithImpl<$Res,
+        $Val extends BookingGuestHouseAdvanceResponse>
+    implements $BookingGuestHouseAdvanceResponseCopyWith<$Res> {
+  _$BookingGuestHouseAdvanceResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? code = freezed,
+    Object? detailId = freezed,
+    Object? isRecreated = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      detailId: freezed == detailId
+          ? _value.detailId
+          : detailId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isRecreated: freezed == isRecreated
+          ? _value.isRecreated
+          : isRecreated // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$BookingGuestHouseAdvanceResponseImplCopyWith<$Res>
+    implements $BookingGuestHouseAdvanceResponseCopyWith<$Res> {
+  factory _$$BookingGuestHouseAdvanceResponseImplCopyWith(
+          _$BookingGuestHouseAdvanceResponseImpl value,
+          $Res Function(_$BookingGuestHouseAdvanceResponseImpl) then) =
+      __$$BookingGuestHouseAdvanceResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'DetailID') int? detailId,
+      @JsonKey(name: 'IsRecreated') bool? isRecreated});
+}
+
+/// @nodoc
+class __$$BookingGuestHouseAdvanceResponseImplCopyWithImpl<$Res>
+    extends _$BookingGuestHouseAdvanceResponseCopyWithImpl<$Res,
+        _$BookingGuestHouseAdvanceResponseImpl>
+    implements _$$BookingGuestHouseAdvanceResponseImplCopyWith<$Res> {
+  __$$BookingGuestHouseAdvanceResponseImplCopyWithImpl(
+      _$BookingGuestHouseAdvanceResponseImpl _value,
+      $Res Function(_$BookingGuestHouseAdvanceResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? code = freezed,
+    Object? detailId = freezed,
+    Object? isRecreated = freezed,
+  }) {
+    return _then(_$BookingGuestHouseAdvanceResponseImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      detailId: freezed == detailId
+          ? _value.detailId
+          : detailId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isRecreated: freezed == isRecreated
+          ? _value.isRecreated
+          : isRecreated // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$BookingGuestHouseAdvanceResponseImpl
+    implements _BookingGuestHouseAdvanceResponse {
+  const _$BookingGuestHouseAdvanceResponseImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'Code') this.code,
+      @JsonKey(name: 'DetailID') this.detailId,
+      @JsonKey(name: 'IsRecreated') this.isRecreated});
+
+  factory _$BookingGuestHouseAdvanceResponseImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$BookingGuestHouseAdvanceResponseImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'Code')
+  final String? code;
+  @override
+  @JsonKey(name: 'DetailID')
+  final int? detailId;
+  @override
+  @JsonKey(name: 'IsRecreated')
+  final bool? isRecreated;
+
+  @override
+  String toString() {
+    return 'BookingGuestHouseAdvanceResponse(id: $id, code: $code, detailId: $detailId, isRecreated: $isRecreated)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BookingGuestHouseAdvanceResponseImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.detailId, detailId) ||
+                other.detailId == detailId) &&
+            (identical(other.isRecreated, isRecreated) ||
+                other.isRecreated == isRecreated));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, code, detailId, isRecreated);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BookingGuestHouseAdvanceResponseImplCopyWith<
+          _$BookingGuestHouseAdvanceResponseImpl>
+      get copyWith => __$$BookingGuestHouseAdvanceResponseImplCopyWithImpl<
+          _$BookingGuestHouseAdvanceResponseImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BookingGuestHouseAdvanceResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BookingGuestHouseAdvanceResponse
+    implements BookingGuestHouseAdvanceResponse {
+  const factory _BookingGuestHouseAdvanceResponse(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'Code') final String? code,
+          @JsonKey(name: 'DetailID') final int? detailId,
+          @JsonKey(name: 'IsRecreated') final bool? isRecreated}) =
+      _$BookingGuestHouseAdvanceResponseImpl;
+
+  factory _BookingGuestHouseAdvanceResponse.fromJson(
+          Map<String, dynamic> json) =
+      _$BookingGuestHouseAdvanceResponseImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'Code')
+  String? get code;
+  @override
+  @JsonKey(name: 'DetailID')
+  int? get detailId;
+  @override
+  @JsonKey(name: 'IsRecreated')
+  bool? get isRecreated;
+  @override
+  @JsonKey(ignore: true)
+  _$$BookingGuestHouseAdvanceResponseImplCopyWith<
+          _$BookingGuestHouseAdvanceResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+BookingGuestHouseSaveDetailResponse
+    _$BookingGuestHouseSaveDetailResponseFromJson(Map<String, dynamic> json) {
+  return _BookingGuestHouseSaveDetailResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BookingGuestHouseSaveDetailResponse {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DetailStatus')
+  int? get detailStatus => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BookingGuestHouseSaveDetailResponseCopyWith<
+          BookingGuestHouseSaveDetailResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BookingGuestHouseSaveDetailResponseCopyWith<$Res> {
+  factory $BookingGuestHouseSaveDetailResponseCopyWith(
+          BookingGuestHouseSaveDetailResponse value,
+          $Res Function(BookingGuestHouseSaveDetailResponse) then) =
+      _$BookingGuestHouseSaveDetailResponseCopyWithImpl<$Res,
+          BookingGuestHouseSaveDetailResponse>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'DetailStatus') int? detailStatus});
+}
+
+/// @nodoc
+class _$BookingGuestHouseSaveDetailResponseCopyWithImpl<$Res,
+        $Val extends BookingGuestHouseSaveDetailResponse>
+    implements $BookingGuestHouseSaveDetailResponseCopyWith<$Res> {
+  _$BookingGuestHouseSaveDetailResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? detailStatus = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      detailStatus: freezed == detailStatus
+          ? _value.detailStatus
+          : detailStatus // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$BookingGuestHouseSaveDetailResponseImplCopyWith<$Res>
+    implements $BookingGuestHouseSaveDetailResponseCopyWith<$Res> {
+  factory _$$BookingGuestHouseSaveDetailResponseImplCopyWith(
+          _$BookingGuestHouseSaveDetailResponseImpl value,
+          $Res Function(_$BookingGuestHouseSaveDetailResponseImpl) then) =
+      __$$BookingGuestHouseSaveDetailResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'DetailStatus') int? detailStatus});
+}
+
+/// @nodoc
+class __$$BookingGuestHouseSaveDetailResponseImplCopyWithImpl<$Res>
+    extends _$BookingGuestHouseSaveDetailResponseCopyWithImpl<$Res,
+        _$BookingGuestHouseSaveDetailResponseImpl>
+    implements _$$BookingGuestHouseSaveDetailResponseImplCopyWith<$Res> {
+  __$$BookingGuestHouseSaveDetailResponseImplCopyWithImpl(
+      _$BookingGuestHouseSaveDetailResponseImpl _value,
+      $Res Function(_$BookingGuestHouseSaveDetailResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? detailStatus = freezed,
+  }) {
+    return _then(_$BookingGuestHouseSaveDetailResponseImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      detailStatus: freezed == detailStatus
+          ? _value.detailStatus
+          : detailStatus // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$BookingGuestHouseSaveDetailResponseImpl
+    implements _BookingGuestHouseSaveDetailResponse {
+  const _$BookingGuestHouseSaveDetailResponseImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'DetailStatus') this.detailStatus});
+
+  factory _$BookingGuestHouseSaveDetailResponseImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$BookingGuestHouseSaveDetailResponseImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'DetailStatus')
+  final int? detailStatus;
+
+  @override
+  String toString() {
+    return 'BookingGuestHouseSaveDetailResponse(id: $id, detailStatus: $detailStatus)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BookingGuestHouseSaveDetailResponseImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.detailStatus, detailStatus) ||
+                other.detailStatus == detailStatus));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, detailStatus);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BookingGuestHouseSaveDetailResponseImplCopyWith<
+          _$BookingGuestHouseSaveDetailResponseImpl>
+      get copyWith => __$$BookingGuestHouseSaveDetailResponseImplCopyWithImpl<
+          _$BookingGuestHouseSaveDetailResponseImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BookingGuestHouseSaveDetailResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BookingGuestHouseSaveDetailResponse
+    implements BookingGuestHouseSaveDetailResponse {
+  const factory _BookingGuestHouseSaveDetailResponse(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'DetailStatus') final int? detailStatus}) =
+      _$BookingGuestHouseSaveDetailResponseImpl;
+
+  factory _BookingGuestHouseSaveDetailResponse.fromJson(
+          Map<String, dynamic> json) =
+      _$BookingGuestHouseSaveDetailResponseImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'DetailStatus')
+  int? get detailStatus;
+  @override
+  @JsonKey(ignore: true)
+  _$$BookingGuestHouseSaveDetailResponseImplCopyWith<
+          _$BookingGuestHouseSaveDetailResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+BookingGuestHouseFileItem _$BookingGuestHouseFileItemFromJson(
+    Map<String, dynamic> json) {
+  return _BookingGuestHouseFileItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BookingGuestHouseFileItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'AccommodationBookingPaymentOrderDetailID')
+  int? get accommodationBookingPaymentOrderDetailId =>
+      throw _privateConstructorUsedError;
+  @JsonKey(name: 'FileType')
+  String? get fileType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FileName')
+  String? get fileName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FilePath')
+  String? get filePath => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Url')
+  String? get url => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FileSize')
+  int? get fileSize => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BookingGuestHouseFileItemCopyWith<BookingGuestHouseFileItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BookingGuestHouseFileItemCopyWith<$Res> {
+  factory $BookingGuestHouseFileItemCopyWith(BookingGuestHouseFileItem value,
+          $Res Function(BookingGuestHouseFileItem) then) =
+      _$BookingGuestHouseFileItemCopyWithImpl<$Res, BookingGuestHouseFileItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'AccommodationBookingPaymentOrderDetailID')
+      int? accommodationBookingPaymentOrderDetailId,
+      @JsonKey(name: 'FileType') String? fileType,
+      @JsonKey(name: 'FileName') String? fileName,
+      @JsonKey(name: 'FilePath') String? filePath,
+      @JsonKey(name: 'Url') String? url,
+      @JsonKey(name: 'FileSize') int? fileSize,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate});
+}
+
+/// @nodoc
+class _$BookingGuestHouseFileItemCopyWithImpl<$Res,
+        $Val extends BookingGuestHouseFileItem>
+    implements $BookingGuestHouseFileItemCopyWith<$Res> {
+  _$BookingGuestHouseFileItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? accommodationBookingPaymentOrderDetailId = freezed,
+    Object? fileType = freezed,
+    Object? fileName = freezed,
+    Object? filePath = freezed,
+    Object? url = freezed,
+    Object? fileSize = freezed,
+    Object? isDeleted = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      accommodationBookingPaymentOrderDetailId: freezed ==
+              accommodationBookingPaymentOrderDetailId
+          ? _value.accommodationBookingPaymentOrderDetailId
+          : accommodationBookingPaymentOrderDetailId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fileType: freezed == fileType
+          ? _value.fileType
+          : fileType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fileName: freezed == fileName
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      filePath: freezed == filePath
+          ? _value.filePath
+          : filePath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      url: freezed == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fileSize: freezed == fileSize
+          ? _value.fileSize
+          : fileSize // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$BookingGuestHouseFileItemImplCopyWith<$Res>
+    implements $BookingGuestHouseFileItemCopyWith<$Res> {
+  factory _$$BookingGuestHouseFileItemImplCopyWith(
+          _$BookingGuestHouseFileItemImpl value,
+          $Res Function(_$BookingGuestHouseFileItemImpl) then) =
+      __$$BookingGuestHouseFileItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'AccommodationBookingPaymentOrderDetailID')
+      int? accommodationBookingPaymentOrderDetailId,
+      @JsonKey(name: 'FileType') String? fileType,
+      @JsonKey(name: 'FileName') String? fileName,
+      @JsonKey(name: 'FilePath') String? filePath,
+      @JsonKey(name: 'Url') String? url,
+      @JsonKey(name: 'FileSize') int? fileSize,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate});
+}
+
+/// @nodoc
+class __$$BookingGuestHouseFileItemImplCopyWithImpl<$Res>
+    extends _$BookingGuestHouseFileItemCopyWithImpl<$Res,
+        _$BookingGuestHouseFileItemImpl>
+    implements _$$BookingGuestHouseFileItemImplCopyWith<$Res> {
+  __$$BookingGuestHouseFileItemImplCopyWithImpl(
+      _$BookingGuestHouseFileItemImpl _value,
+      $Res Function(_$BookingGuestHouseFileItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? accommodationBookingPaymentOrderDetailId = freezed,
+    Object? fileType = freezed,
+    Object? fileName = freezed,
+    Object? filePath = freezed,
+    Object? url = freezed,
+    Object? fileSize = freezed,
+    Object? isDeleted = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+  }) {
+    return _then(_$BookingGuestHouseFileItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      accommodationBookingPaymentOrderDetailId: freezed ==
+              accommodationBookingPaymentOrderDetailId
+          ? _value.accommodationBookingPaymentOrderDetailId
+          : accommodationBookingPaymentOrderDetailId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fileType: freezed == fileType
+          ? _value.fileType
+          : fileType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fileName: freezed == fileName
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      filePath: freezed == filePath
+          ? _value.filePath
+          : filePath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      url: freezed == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fileSize: freezed == fileSize
+          ? _value.fileSize
+          : fileSize // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$BookingGuestHouseFileItemImpl implements _BookingGuestHouseFileItem {
+  const _$BookingGuestHouseFileItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'AccommodationBookingPaymentOrderDetailID')
+      this.accommodationBookingPaymentOrderDetailId,
+      @JsonKey(name: 'FileType') this.fileType,
+      @JsonKey(name: 'FileName') this.fileName,
+      @JsonKey(name: 'FilePath') this.filePath,
+      @JsonKey(name: 'Url') this.url,
+      @JsonKey(name: 'FileSize') this.fileSize,
+      @JsonKey(name: 'IsDeleted') this.isDeleted,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'UpdatedBy') this.updatedBy,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate});
+
+  factory _$BookingGuestHouseFileItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BookingGuestHouseFileItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'AccommodationBookingPaymentOrderDetailID')
+  final int? accommodationBookingPaymentOrderDetailId;
+  @override
+  @JsonKey(name: 'FileType')
+  final String? fileType;
+  @override
+  @JsonKey(name: 'FileName')
+  final String? fileName;
+  @override
+  @JsonKey(name: 'FilePath')
+  final String? filePath;
+  @override
+  @JsonKey(name: 'Url')
+  final String? url;
+  @override
+  @JsonKey(name: 'FileSize')
+  final int? fileSize;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  final bool? isDeleted;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  final String? createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  final String? updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final DateTime? updatedDate;
+
+  @override
+  String toString() {
+    return 'BookingGuestHouseFileItem(id: $id, accommodationBookingPaymentOrderDetailId: $accommodationBookingPaymentOrderDetailId, fileType: $fileType, fileName: $fileName, filePath: $filePath, url: $url, fileSize: $fileSize, isDeleted: $isDeleted, createdBy: $createdBy, createdDate: $createdDate, updatedBy: $updatedBy, updatedDate: $updatedDate)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BookingGuestHouseFileItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.accommodationBookingPaymentOrderDetailId,
+                    accommodationBookingPaymentOrderDetailId) ||
+                other.accommodationBookingPaymentOrderDetailId ==
+                    accommodationBookingPaymentOrderDetailId) &&
+            (identical(other.fileType, fileType) ||
+                other.fileType == fileType) &&
+            (identical(other.fileName, fileName) ||
+                other.fileName == fileName) &&
+            (identical(other.filePath, filePath) ||
+                other.filePath == filePath) &&
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.fileSize, fileSize) ||
+                other.fileSize == fileSize) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      accommodationBookingPaymentOrderDetailId,
+      fileType,
+      fileName,
+      filePath,
+      url,
+      fileSize,
+      isDeleted,
+      createdBy,
+      createdDate,
+      updatedBy,
+      updatedDate);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BookingGuestHouseFileItemImplCopyWith<_$BookingGuestHouseFileItemImpl>
+      get copyWith => __$$BookingGuestHouseFileItemImplCopyWithImpl<
+          _$BookingGuestHouseFileItemImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BookingGuestHouseFileItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BookingGuestHouseFileItem implements BookingGuestHouseFileItem {
+  const factory _BookingGuestHouseFileItem(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'AccommodationBookingPaymentOrderDetailID')
+          final int? accommodationBookingPaymentOrderDetailId,
+          @JsonKey(name: 'FileType') final String? fileType,
+          @JsonKey(name: 'FileName') final String? fileName,
+          @JsonKey(name: 'FilePath') final String? filePath,
+          @JsonKey(name: 'Url') final String? url,
+          @JsonKey(name: 'FileSize') final int? fileSize,
+          @JsonKey(name: 'IsDeleted') final bool? isDeleted,
+          @JsonKey(name: 'CreatedBy') final String? createdBy,
+          @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+          @JsonKey(name: 'UpdatedBy') final String? updatedBy,
+          @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate}) =
+      _$BookingGuestHouseFileItemImpl;
+
+  factory _BookingGuestHouseFileItem.fromJson(Map<String, dynamic> json) =
+      _$BookingGuestHouseFileItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'AccommodationBookingPaymentOrderDetailID')
+  int? get accommodationBookingPaymentOrderDetailId;
+  @override
+  @JsonKey(name: 'FileType')
+  String? get fileType;
+  @override
+  @JsonKey(name: 'FileName')
+  String? get fileName;
+  @override
+  @JsonKey(name: 'FilePath')
+  String? get filePath;
+  @override
+  @JsonKey(name: 'Url')
+  String? get url;
+  @override
+  @JsonKey(name: 'FileSize')
+  int? get fileSize;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate;
+  @override
+  @JsonKey(ignore: true)
+  _$$BookingGuestHouseFileItemImplCopyWith<_$BookingGuestHouseFileItemImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+BookingGuestHousePaymentDetailItem _$BookingGuestHousePaymentDetailItemFromJson(
+    Map<String, dynamic> json) {
+  return _BookingGuestHousePaymentDetailItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BookingGuestHousePaymentDetailItem {
+  /// ID detail TTQT (trong ví dụ = 27). Master = 0 khi chưa được
+  /// gắn vào đề nghị tạm ứng; > 0 khi đã liên kết master.
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+
+  /// ID master PaymentOrder (0 nếu chưa liên kết master).
+  @JsonKey(name: 'AccommodationBookingPaymentOrderID')
+  int? get accommodationBookingPaymentOrderId =>
+      throw _privateConstructorUsedError;
+
+  /// FK phiếu đặt phòng nhà nghỉ.
+  @JsonKey(name: 'AccommodationBookingID')
+  int? get accommodationBookingId => throw _privateConstructorUsedError;
+
+  /// Loại: true = tạm ứng, false = quyết toán, null = BE không set.
+  @JsonKey(name: 'IsAdvance')
+  bool? get isAdvance => throw _privateConstructorUsedError;
+
+  /// Trạng thái duyệt (0/null = chưa có; 2/3/4/5 xem comment trên).
+  @JsonKey(name: 'DetailStatus')
+  int? get detailStatus => throw _privateConstructorUsedError;
+
+  /// Lý do quyết toán.
+  @JsonKey(name: 'Reason')
+  String? get reason => throw _privateConstructorUsedError;
+
+  /// ID dự án.
+  @JsonKey(name: 'ProjectID')
+  int? get projectId => throw _privateConstructorUsedError;
+
+  /// Người nhận tiền.
+  @JsonKey(name: 'RecipientName')
+  String? get recipientName => throw _privateConstructorUsedError;
+
+  /// Tên khách sạn.
+  @JsonKey(name: 'HotelName')
+  String? get hotelName => throw _privateConstructorUsedError;
+
+  /// Mã số thuế khách sạn.
+  @JsonKey(name: 'HotelTaxCode')
+  String? get hotelTaxCode => throw _privateConstructorUsedError;
+
+  /// Số tài khoản ngân hàng nhận tiền.
+  @JsonKey(name: 'BankAccount')
+  String? get bankAccount => throw _privateConstructorUsedError;
+
+  /// Tên ngân hàng (text hiển thị trên UI).
+  @JsonKey(name: 'BankName')
+  String? get bankName => throw _privateConstructorUsedError;
+
+  /// ID ngân hàng (lookup `state.banks` để map chuẩn).
+  @JsonKey(name: 'BankListID')
+  int? get bankListId => throw _privateConstructorUsedError;
+
+  /// Loại chuyển khoản (1 = chuyển khoản cá nhân).
+  @JsonKey(name: 'TransferType')
+  int? get transferType => throw _privateConstructorUsedError;
+
+  /// ID TBP duyệt.
+  @JsonKey(name: 'ApprovedTBPID')
+  int? get approvedTbpId => throw _privateConstructorUsedError;
+
+  /// Tổng tiền (VNĐ).
+  @JsonKey(name: 'TotalAmount')
+  num? get totalAmount => throw _privateConstructorUsedError;
+
+  /// Tổng tiền có hóa đơn (VNĐ).
+  @JsonKey(name: 'TotalAmountWithInvoice')
+  num? get totalAmountWithInvoice => throw _privateConstructorUsedError;
+
+  /// Số hóa đơn.
+  @JsonKey(name: 'InvoiceNumber')
+  String? get invoiceNumber => throw _privateConstructorUsedError;
+
+  /// ID công ty phát hành hóa đơn.
+  @JsonKey(name: 'CompanyID')
+  int? get companyId => throw _privateConstructorUsedError;
+
+  /// Tên công ty phát hành hóa đơn.
+  @JsonKey(name: 'CompanyName')
+  String? get companyName => throw _privateConstructorUsedError;
+
+  /// Tên bộ phận.
+  @JsonKey(name: 'DepartmentName')
+  String? get departmentName => throw _privateConstructorUsedError;
+
+  /// Ghi chú.
+  @JsonKey(name: 'Note')
+  String? get note => throw _privateConstructorUsedError;
+
+  /// Check-in date (cho đề nghị tạm ứng).
+  @JsonKey(name: 'CheckInDate')
+  dynamic get checkInDate => throw _privateConstructorUsedError;
+
+  /// Check-out date.
+  @JsonKey(name: 'CheckOutDate')
+  dynamic get checkOutDate => throw _privateConstructorUsedError;
+
+  /// ID master ĐNTT tạm ứng (null nếu không phải advance).
+  @JsonKey(name: 'AdvancePaymentOrderID')
+  int? get advancePaymentOrderId => throw _privateConstructorUsedError;
+
+  /// Mã ĐNTT tạm ứng (vd `ĐNTTxxx`).
+  @JsonKey(name: 'AdvancePaymentOrderCode')
+  String? get advancePaymentOrderCode => throw _privateConstructorUsedError;
+
+  /// Tổng tiền tạm ứng.
+  @JsonKey(name: 'AdvanceTotalAmount')
+  num? get advanceTotalAmount => throw _privateConstructorUsedError;
+
+  /// Bước duyệt ĐNTU hiện tại đã duyệt chưa (0/1).
+  @JsonKey(name: 'AdvanceStepIsApproved')
+  int? get advanceStepIsApproved => throw _privateConstructorUsedError;
+
+  /// ĐNTU bị từ chối duyệt.
+  @JsonKey(name: 'IsAdvanceRejected')
+  bool? get isAdvanceRejected => throw _privateConstructorUsedError;
+
+  /// Đã tạo ĐNTT tạm ứng.
+  @JsonKey(name: 'IsAdvanceCreated')
+  bool? get isAdvanceCreated => throw _privateConstructorUsedError;
+
+  /// Audit.
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted => throw _privateConstructorUsedError;
+
+  /// Danh sách file đính kèm (INVOICE / BILL_CK) — chỉ đếm để hiển thị
+  /// hint, không tự load lại nội dung file.
+  @JsonKey(name: 'Files')
+  List<BookingGuestHouseFileItem>? get files =>
+      throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BookingGuestHousePaymentDetailItemCopyWith<
+          BookingGuestHousePaymentDetailItem>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BookingGuestHousePaymentDetailItemCopyWith<$Res> {
+  factory $BookingGuestHousePaymentDetailItemCopyWith(
+          BookingGuestHousePaymentDetailItem value,
+          $Res Function(BookingGuestHousePaymentDetailItem) then) =
+      _$BookingGuestHousePaymentDetailItemCopyWithImpl<$Res,
+          BookingGuestHousePaymentDetailItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'AccommodationBookingPaymentOrderID')
+      int? accommodationBookingPaymentOrderId,
+      @JsonKey(name: 'AccommodationBookingID') int? accommodationBookingId,
+      @JsonKey(name: 'IsAdvance') bool? isAdvance,
+      @JsonKey(name: 'DetailStatus') int? detailStatus,
+      @JsonKey(name: 'Reason') String? reason,
+      @JsonKey(name: 'ProjectID') int? projectId,
+      @JsonKey(name: 'RecipientName') String? recipientName,
+      @JsonKey(name: 'HotelName') String? hotelName,
+      @JsonKey(name: 'HotelTaxCode') String? hotelTaxCode,
+      @JsonKey(name: 'BankAccount') String? bankAccount,
+      @JsonKey(name: 'BankName') String? bankName,
+      @JsonKey(name: 'BankListID') int? bankListId,
+      @JsonKey(name: 'TransferType') int? transferType,
+      @JsonKey(name: 'ApprovedTBPID') int? approvedTbpId,
+      @JsonKey(name: 'TotalAmount') num? totalAmount,
+      @JsonKey(name: 'TotalAmountWithInvoice') num? totalAmountWithInvoice,
+      @JsonKey(name: 'InvoiceNumber') String? invoiceNumber,
+      @JsonKey(name: 'CompanyID') int? companyId,
+      @JsonKey(name: 'CompanyName') String? companyName,
+      @JsonKey(name: 'DepartmentName') String? departmentName,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'CheckInDate') dynamic checkInDate,
+      @JsonKey(name: 'CheckOutDate') dynamic checkOutDate,
+      @JsonKey(name: 'AdvancePaymentOrderID') int? advancePaymentOrderId,
+      @JsonKey(name: 'AdvancePaymentOrderCode') String? advancePaymentOrderCode,
+      @JsonKey(name: 'AdvanceTotalAmount') num? advanceTotalAmount,
+      @JsonKey(name: 'AdvanceStepIsApproved') int? advanceStepIsApproved,
+      @JsonKey(name: 'IsAdvanceRejected') bool? isAdvanceRejected,
+      @JsonKey(name: 'IsAdvanceCreated') bool? isAdvanceCreated,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'Files') List<BookingGuestHouseFileItem>? files});
+}
+
+/// @nodoc
+class _$BookingGuestHousePaymentDetailItemCopyWithImpl<$Res,
+        $Val extends BookingGuestHousePaymentDetailItem>
+    implements $BookingGuestHousePaymentDetailItemCopyWith<$Res> {
+  _$BookingGuestHousePaymentDetailItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? accommodationBookingPaymentOrderId = freezed,
+    Object? accommodationBookingId = freezed,
+    Object? isAdvance = freezed,
+    Object? detailStatus = freezed,
+    Object? reason = freezed,
+    Object? projectId = freezed,
+    Object? recipientName = freezed,
+    Object? hotelName = freezed,
+    Object? hotelTaxCode = freezed,
+    Object? bankAccount = freezed,
+    Object? bankName = freezed,
+    Object? bankListId = freezed,
+    Object? transferType = freezed,
+    Object? approvedTbpId = freezed,
+    Object? totalAmount = freezed,
+    Object? totalAmountWithInvoice = freezed,
+    Object? invoiceNumber = freezed,
+    Object? companyId = freezed,
+    Object? companyName = freezed,
+    Object? departmentName = freezed,
+    Object? note = freezed,
+    Object? checkInDate = freezed,
+    Object? checkOutDate = freezed,
+    Object? advancePaymentOrderId = freezed,
+    Object? advancePaymentOrderCode = freezed,
+    Object? advanceTotalAmount = freezed,
+    Object? advanceStepIsApproved = freezed,
+    Object? isAdvanceRejected = freezed,
+    Object? isAdvanceCreated = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+    Object? isDeleted = freezed,
+    Object? files = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      accommodationBookingPaymentOrderId: freezed ==
+              accommodationBookingPaymentOrderId
+          ? _value.accommodationBookingPaymentOrderId
+          : accommodationBookingPaymentOrderId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      accommodationBookingId: freezed == accommodationBookingId
+          ? _value.accommodationBookingId
+          : accommodationBookingId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isAdvance: freezed == isAdvance
+          ? _value.isAdvance
+          : isAdvance // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      detailStatus: freezed == detailStatus
+          ? _value.detailStatus
+          : detailStatus // ignore: cast_nullable_to_non_nullable
+              as int?,
+      reason: freezed == reason
+          ? _value.reason
+          : reason // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      recipientName: freezed == recipientName
+          ? _value.recipientName
+          : recipientName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      hotelName: freezed == hotelName
+          ? _value.hotelName
+          : hotelName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      hotelTaxCode: freezed == hotelTaxCode
+          ? _value.hotelTaxCode
+          : hotelTaxCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bankAccount: freezed == bankAccount
+          ? _value.bankAccount
+          : bankAccount // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bankName: freezed == bankName
+          ? _value.bankName
+          : bankName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bankListId: freezed == bankListId
+          ? _value.bankListId
+          : bankListId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      transferType: freezed == transferType
+          ? _value.transferType
+          : transferType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      approvedTbpId: freezed == approvedTbpId
+          ? _value.approvedTbpId
+          : approvedTbpId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      totalAmount: freezed == totalAmount
+          ? _value.totalAmount
+          : totalAmount // ignore: cast_nullable_to_non_nullable
+              as num?,
+      totalAmountWithInvoice: freezed == totalAmountWithInvoice
+          ? _value.totalAmountWithInvoice
+          : totalAmountWithInvoice // ignore: cast_nullable_to_non_nullable
+              as num?,
+      invoiceNumber: freezed == invoiceNumber
+          ? _value.invoiceNumber
+          : invoiceNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      companyId: freezed == companyId
+          ? _value.companyId
+          : companyId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      companyName: freezed == companyName
+          ? _value.companyName
+          : companyName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departmentName: freezed == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      checkInDate: freezed == checkInDate
+          ? _value.checkInDate
+          : checkInDate // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      checkOutDate: freezed == checkOutDate
+          ? _value.checkOutDate
+          : checkOutDate // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      advancePaymentOrderId: freezed == advancePaymentOrderId
+          ? _value.advancePaymentOrderId
+          : advancePaymentOrderId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advancePaymentOrderCode: freezed == advancePaymentOrderCode
+          ? _value.advancePaymentOrderCode
+          : advancePaymentOrderCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceTotalAmount: freezed == advanceTotalAmount
+          ? _value.advanceTotalAmount
+          : advanceTotalAmount // ignore: cast_nullable_to_non_nullable
+              as num?,
+      advanceStepIsApproved: freezed == advanceStepIsApproved
+          ? _value.advanceStepIsApproved
+          : advanceStepIsApproved // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isAdvanceRejected: freezed == isAdvanceRejected
+          ? _value.isAdvanceRejected
+          : isAdvanceRejected // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isAdvanceCreated: freezed == isAdvanceCreated
+          ? _value.isAdvanceCreated
+          : isAdvanceCreated // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      files: freezed == files
+          ? _value.files
+          : files // ignore: cast_nullable_to_non_nullable
+              as List<BookingGuestHouseFileItem>?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$BookingGuestHousePaymentDetailItemImplCopyWith<$Res>
+    implements $BookingGuestHousePaymentDetailItemCopyWith<$Res> {
+  factory _$$BookingGuestHousePaymentDetailItemImplCopyWith(
+          _$BookingGuestHousePaymentDetailItemImpl value,
+          $Res Function(_$BookingGuestHousePaymentDetailItemImpl) then) =
+      __$$BookingGuestHousePaymentDetailItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'AccommodationBookingPaymentOrderID')
+      int? accommodationBookingPaymentOrderId,
+      @JsonKey(name: 'AccommodationBookingID') int? accommodationBookingId,
+      @JsonKey(name: 'IsAdvance') bool? isAdvance,
+      @JsonKey(name: 'DetailStatus') int? detailStatus,
+      @JsonKey(name: 'Reason') String? reason,
+      @JsonKey(name: 'ProjectID') int? projectId,
+      @JsonKey(name: 'RecipientName') String? recipientName,
+      @JsonKey(name: 'HotelName') String? hotelName,
+      @JsonKey(name: 'HotelTaxCode') String? hotelTaxCode,
+      @JsonKey(name: 'BankAccount') String? bankAccount,
+      @JsonKey(name: 'BankName') String? bankName,
+      @JsonKey(name: 'BankListID') int? bankListId,
+      @JsonKey(name: 'TransferType') int? transferType,
+      @JsonKey(name: 'ApprovedTBPID') int? approvedTbpId,
+      @JsonKey(name: 'TotalAmount') num? totalAmount,
+      @JsonKey(name: 'TotalAmountWithInvoice') num? totalAmountWithInvoice,
+      @JsonKey(name: 'InvoiceNumber') String? invoiceNumber,
+      @JsonKey(name: 'CompanyID') int? companyId,
+      @JsonKey(name: 'CompanyName') String? companyName,
+      @JsonKey(name: 'DepartmentName') String? departmentName,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'CheckInDate') dynamic checkInDate,
+      @JsonKey(name: 'CheckOutDate') dynamic checkOutDate,
+      @JsonKey(name: 'AdvancePaymentOrderID') int? advancePaymentOrderId,
+      @JsonKey(name: 'AdvancePaymentOrderCode') String? advancePaymentOrderCode,
+      @JsonKey(name: 'AdvanceTotalAmount') num? advanceTotalAmount,
+      @JsonKey(name: 'AdvanceStepIsApproved') int? advanceStepIsApproved,
+      @JsonKey(name: 'IsAdvanceRejected') bool? isAdvanceRejected,
+      @JsonKey(name: 'IsAdvanceCreated') bool? isAdvanceCreated,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'Files') List<BookingGuestHouseFileItem>? files});
+}
+
+/// @nodoc
+class __$$BookingGuestHousePaymentDetailItemImplCopyWithImpl<$Res>
+    extends _$BookingGuestHousePaymentDetailItemCopyWithImpl<$Res,
+        _$BookingGuestHousePaymentDetailItemImpl>
+    implements _$$BookingGuestHousePaymentDetailItemImplCopyWith<$Res> {
+  __$$BookingGuestHousePaymentDetailItemImplCopyWithImpl(
+      _$BookingGuestHousePaymentDetailItemImpl _value,
+      $Res Function(_$BookingGuestHousePaymentDetailItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? accommodationBookingPaymentOrderId = freezed,
+    Object? accommodationBookingId = freezed,
+    Object? isAdvance = freezed,
+    Object? detailStatus = freezed,
+    Object? reason = freezed,
+    Object? projectId = freezed,
+    Object? recipientName = freezed,
+    Object? hotelName = freezed,
+    Object? hotelTaxCode = freezed,
+    Object? bankAccount = freezed,
+    Object? bankName = freezed,
+    Object? bankListId = freezed,
+    Object? transferType = freezed,
+    Object? approvedTbpId = freezed,
+    Object? totalAmount = freezed,
+    Object? totalAmountWithInvoice = freezed,
+    Object? invoiceNumber = freezed,
+    Object? companyId = freezed,
+    Object? companyName = freezed,
+    Object? departmentName = freezed,
+    Object? note = freezed,
+    Object? checkInDate = freezed,
+    Object? checkOutDate = freezed,
+    Object? advancePaymentOrderId = freezed,
+    Object? advancePaymentOrderCode = freezed,
+    Object? advanceTotalAmount = freezed,
+    Object? advanceStepIsApproved = freezed,
+    Object? isAdvanceRejected = freezed,
+    Object? isAdvanceCreated = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+    Object? isDeleted = freezed,
+    Object? files = freezed,
+  }) {
+    return _then(_$BookingGuestHousePaymentDetailItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      accommodationBookingPaymentOrderId: freezed ==
+              accommodationBookingPaymentOrderId
+          ? _value.accommodationBookingPaymentOrderId
+          : accommodationBookingPaymentOrderId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      accommodationBookingId: freezed == accommodationBookingId
+          ? _value.accommodationBookingId
+          : accommodationBookingId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isAdvance: freezed == isAdvance
+          ? _value.isAdvance
+          : isAdvance // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      detailStatus: freezed == detailStatus
+          ? _value.detailStatus
+          : detailStatus // ignore: cast_nullable_to_non_nullable
+              as int?,
+      reason: freezed == reason
+          ? _value.reason
+          : reason // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      recipientName: freezed == recipientName
+          ? _value.recipientName
+          : recipientName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      hotelName: freezed == hotelName
+          ? _value.hotelName
+          : hotelName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      hotelTaxCode: freezed == hotelTaxCode
+          ? _value.hotelTaxCode
+          : hotelTaxCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bankAccount: freezed == bankAccount
+          ? _value.bankAccount
+          : bankAccount // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bankName: freezed == bankName
+          ? _value.bankName
+          : bankName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bankListId: freezed == bankListId
+          ? _value.bankListId
+          : bankListId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      transferType: freezed == transferType
+          ? _value.transferType
+          : transferType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      approvedTbpId: freezed == approvedTbpId
+          ? _value.approvedTbpId
+          : approvedTbpId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      totalAmount: freezed == totalAmount
+          ? _value.totalAmount
+          : totalAmount // ignore: cast_nullable_to_non_nullable
+              as num?,
+      totalAmountWithInvoice: freezed == totalAmountWithInvoice
+          ? _value.totalAmountWithInvoice
+          : totalAmountWithInvoice // ignore: cast_nullable_to_non_nullable
+              as num?,
+      invoiceNumber: freezed == invoiceNumber
+          ? _value.invoiceNumber
+          : invoiceNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      companyId: freezed == companyId
+          ? _value.companyId
+          : companyId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      companyName: freezed == companyName
+          ? _value.companyName
+          : companyName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departmentName: freezed == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      checkInDate: freezed == checkInDate
+          ? _value.checkInDate
+          : checkInDate // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      checkOutDate: freezed == checkOutDate
+          ? _value.checkOutDate
+          : checkOutDate // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      advancePaymentOrderId: freezed == advancePaymentOrderId
+          ? _value.advancePaymentOrderId
+          : advancePaymentOrderId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      advancePaymentOrderCode: freezed == advancePaymentOrderCode
+          ? _value.advancePaymentOrderCode
+          : advancePaymentOrderCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      advanceTotalAmount: freezed == advanceTotalAmount
+          ? _value.advanceTotalAmount
+          : advanceTotalAmount // ignore: cast_nullable_to_non_nullable
+              as num?,
+      advanceStepIsApproved: freezed == advanceStepIsApproved
+          ? _value.advanceStepIsApproved
+          : advanceStepIsApproved // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isAdvanceRejected: freezed == isAdvanceRejected
+          ? _value.isAdvanceRejected
+          : isAdvanceRejected // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isAdvanceCreated: freezed == isAdvanceCreated
+          ? _value.isAdvanceCreated
+          : isAdvanceCreated // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      files: freezed == files
+          ? _value._files
+          : files // ignore: cast_nullable_to_non_nullable
+              as List<BookingGuestHouseFileItem>?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$BookingGuestHousePaymentDetailItemImpl
+    implements _BookingGuestHousePaymentDetailItem {
+  const _$BookingGuestHousePaymentDetailItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'AccommodationBookingPaymentOrderID')
+      this.accommodationBookingPaymentOrderId,
+      @JsonKey(name: 'AccommodationBookingID') this.accommodationBookingId,
+      @JsonKey(name: 'IsAdvance') this.isAdvance,
+      @JsonKey(name: 'DetailStatus') this.detailStatus,
+      @JsonKey(name: 'Reason') this.reason,
+      @JsonKey(name: 'ProjectID') this.projectId,
+      @JsonKey(name: 'RecipientName') this.recipientName,
+      @JsonKey(name: 'HotelName') this.hotelName,
+      @JsonKey(name: 'HotelTaxCode') this.hotelTaxCode,
+      @JsonKey(name: 'BankAccount') this.bankAccount,
+      @JsonKey(name: 'BankName') this.bankName,
+      @JsonKey(name: 'BankListID') this.bankListId,
+      @JsonKey(name: 'TransferType') this.transferType,
+      @JsonKey(name: 'ApprovedTBPID') this.approvedTbpId,
+      @JsonKey(name: 'TotalAmount') this.totalAmount,
+      @JsonKey(name: 'TotalAmountWithInvoice') this.totalAmountWithInvoice,
+      @JsonKey(name: 'InvoiceNumber') this.invoiceNumber,
+      @JsonKey(name: 'CompanyID') this.companyId,
+      @JsonKey(name: 'CompanyName') this.companyName,
+      @JsonKey(name: 'DepartmentName') this.departmentName,
+      @JsonKey(name: 'Note') this.note,
+      @JsonKey(name: 'CheckInDate') this.checkInDate,
+      @JsonKey(name: 'CheckOutDate') this.checkOutDate,
+      @JsonKey(name: 'AdvancePaymentOrderID') this.advancePaymentOrderId,
+      @JsonKey(name: 'AdvancePaymentOrderCode') this.advancePaymentOrderCode,
+      @JsonKey(name: 'AdvanceTotalAmount') this.advanceTotalAmount,
+      @JsonKey(name: 'AdvanceStepIsApproved') this.advanceStepIsApproved,
+      @JsonKey(name: 'IsAdvanceRejected') this.isAdvanceRejected,
+      @JsonKey(name: 'IsAdvanceCreated') this.isAdvanceCreated,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'UpdatedBy') this.updatedBy,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate,
+      @JsonKey(name: 'IsDeleted') this.isDeleted,
+      @JsonKey(name: 'Files') final List<BookingGuestHouseFileItem>? files})
+      : _files = files;
+
+  factory _$BookingGuestHousePaymentDetailItemImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$BookingGuestHousePaymentDetailItemImplFromJson(json);
+
+  /// ID detail TTQT (trong ví dụ = 27). Master = 0 khi chưa được
+  /// gắn vào đề nghị tạm ứng; > 0 khi đã liên kết master.
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+
+  /// ID master PaymentOrder (0 nếu chưa liên kết master).
+  @override
+  @JsonKey(name: 'AccommodationBookingPaymentOrderID')
+  final int? accommodationBookingPaymentOrderId;
+
+  /// FK phiếu đặt phòng nhà nghỉ.
+  @override
+  @JsonKey(name: 'AccommodationBookingID')
+  final int? accommodationBookingId;
+
+  /// Loại: true = tạm ứng, false = quyết toán, null = BE không set.
+  @override
+  @JsonKey(name: 'IsAdvance')
+  final bool? isAdvance;
+
+  /// Trạng thái duyệt (0/null = chưa có; 2/3/4/5 xem comment trên).
+  @override
+  @JsonKey(name: 'DetailStatus')
+  final int? detailStatus;
+
+  /// Lý do quyết toán.
+  @override
+  @JsonKey(name: 'Reason')
+  final String? reason;
+
+  /// ID dự án.
+  @override
+  @JsonKey(name: 'ProjectID')
+  final int? projectId;
+
+  /// Người nhận tiền.
+  @override
+  @JsonKey(name: 'RecipientName')
+  final String? recipientName;
+
+  /// Tên khách sạn.
+  @override
+  @JsonKey(name: 'HotelName')
+  final String? hotelName;
+
+  /// Mã số thuế khách sạn.
+  @override
+  @JsonKey(name: 'HotelTaxCode')
+  final String? hotelTaxCode;
+
+  /// Số tài khoản ngân hàng nhận tiền.
+  @override
+  @JsonKey(name: 'BankAccount')
+  final String? bankAccount;
+
+  /// Tên ngân hàng (text hiển thị trên UI).
+  @override
+  @JsonKey(name: 'BankName')
+  final String? bankName;
+
+  /// ID ngân hàng (lookup `state.banks` để map chuẩn).
+  @override
+  @JsonKey(name: 'BankListID')
+  final int? bankListId;
+
+  /// Loại chuyển khoản (1 = chuyển khoản cá nhân).
+  @override
+  @JsonKey(name: 'TransferType')
+  final int? transferType;
+
+  /// ID TBP duyệt.
+  @override
+  @JsonKey(name: 'ApprovedTBPID')
+  final int? approvedTbpId;
+
+  /// Tổng tiền (VNĐ).
+  @override
+  @JsonKey(name: 'TotalAmount')
+  final num? totalAmount;
+
+  /// Tổng tiền có hóa đơn (VNĐ).
+  @override
+  @JsonKey(name: 'TotalAmountWithInvoice')
+  final num? totalAmountWithInvoice;
+
+  /// Số hóa đơn.
+  @override
+  @JsonKey(name: 'InvoiceNumber')
+  final String? invoiceNumber;
+
+  /// ID công ty phát hành hóa đơn.
+  @override
+  @JsonKey(name: 'CompanyID')
+  final int? companyId;
+
+  /// Tên công ty phát hành hóa đơn.
+  @override
+  @JsonKey(name: 'CompanyName')
+  final String? companyName;
+
+  /// Tên bộ phận.
+  @override
+  @JsonKey(name: 'DepartmentName')
+  final String? departmentName;
+
+  /// Ghi chú.
+  @override
+  @JsonKey(name: 'Note')
+  final String? note;
+
+  /// Check-in date (cho đề nghị tạm ứng).
+  @override
+  @JsonKey(name: 'CheckInDate')
+  final dynamic checkInDate;
+
+  /// Check-out date.
+  @override
+  @JsonKey(name: 'CheckOutDate')
+  final dynamic checkOutDate;
+
+  /// ID master ĐNTT tạm ứng (null nếu không phải advance).
+  @override
+  @JsonKey(name: 'AdvancePaymentOrderID')
+  final int? advancePaymentOrderId;
+
+  /// Mã ĐNTT tạm ứng (vd `ĐNTTxxx`).
+  @override
+  @JsonKey(name: 'AdvancePaymentOrderCode')
+  final String? advancePaymentOrderCode;
+
+  /// Tổng tiền tạm ứng.
+  @override
+  @JsonKey(name: 'AdvanceTotalAmount')
+  final num? advanceTotalAmount;
+
+  /// Bước duyệt ĐNTU hiện tại đã duyệt chưa (0/1).
+  @override
+  @JsonKey(name: 'AdvanceStepIsApproved')
+  final int? advanceStepIsApproved;
+
+  /// ĐNTU bị từ chối duyệt.
+  @override
+  @JsonKey(name: 'IsAdvanceRejected')
+  final bool? isAdvanceRejected;
+
+  /// Đã tạo ĐNTT tạm ứng.
+  @override
+  @JsonKey(name: 'IsAdvanceCreated')
+  final bool? isAdvanceCreated;
+
+  /// Audit.
+  @override
+  @JsonKey(name: 'CreatedBy')
+  final String? createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  final String? updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final DateTime? updatedDate;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  final bool? isDeleted;
+
+  /// Danh sách file đính kèm (INVOICE / BILL_CK) — chỉ đếm để hiển thị
+  /// hint, không tự load lại nội dung file.
+  final List<BookingGuestHouseFileItem>? _files;
+
+  /// Danh sách file đính kèm (INVOICE / BILL_CK) — chỉ đếm để hiển thị
+  /// hint, không tự load lại nội dung file.
+  @override
+  @JsonKey(name: 'Files')
+  List<BookingGuestHouseFileItem>? get files {
+    final value = _files;
+    if (value == null) return null;
+    if (_files is EqualUnmodifiableListView) return _files;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  String toString() {
+    return 'BookingGuestHousePaymentDetailItem(id: $id, accommodationBookingPaymentOrderId: $accommodationBookingPaymentOrderId, accommodationBookingId: $accommodationBookingId, isAdvance: $isAdvance, detailStatus: $detailStatus, reason: $reason, projectId: $projectId, recipientName: $recipientName, hotelName: $hotelName, hotelTaxCode: $hotelTaxCode, bankAccount: $bankAccount, bankName: $bankName, bankListId: $bankListId, transferType: $transferType, approvedTbpId: $approvedTbpId, totalAmount: $totalAmount, totalAmountWithInvoice: $totalAmountWithInvoice, invoiceNumber: $invoiceNumber, companyId: $companyId, companyName: $companyName, departmentName: $departmentName, note: $note, checkInDate: $checkInDate, checkOutDate: $checkOutDate, advancePaymentOrderId: $advancePaymentOrderId, advancePaymentOrderCode: $advancePaymentOrderCode, advanceTotalAmount: $advanceTotalAmount, advanceStepIsApproved: $advanceStepIsApproved, isAdvanceRejected: $isAdvanceRejected, isAdvanceCreated: $isAdvanceCreated, createdBy: $createdBy, createdDate: $createdDate, updatedBy: $updatedBy, updatedDate: $updatedDate, isDeleted: $isDeleted, files: $files)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BookingGuestHousePaymentDetailItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.accommodationBookingPaymentOrderId, accommodationBookingPaymentOrderId) ||
+                other.accommodationBookingPaymentOrderId ==
+                    accommodationBookingPaymentOrderId) &&
+            (identical(other.accommodationBookingId, accommodationBookingId) ||
+                other.accommodationBookingId == accommodationBookingId) &&
+            (identical(other.isAdvance, isAdvance) ||
+                other.isAdvance == isAdvance) &&
+            (identical(other.detailStatus, detailStatus) ||
+                other.detailStatus == detailStatus) &&
+            (identical(other.reason, reason) || other.reason == reason) &&
+            (identical(other.projectId, projectId) ||
+                other.projectId == projectId) &&
+            (identical(other.recipientName, recipientName) ||
+                other.recipientName == recipientName) &&
+            (identical(other.hotelName, hotelName) ||
+                other.hotelName == hotelName) &&
+            (identical(other.hotelTaxCode, hotelTaxCode) ||
+                other.hotelTaxCode == hotelTaxCode) &&
+            (identical(other.bankAccount, bankAccount) ||
+                other.bankAccount == bankAccount) &&
+            (identical(other.bankName, bankName) ||
+                other.bankName == bankName) &&
+            (identical(other.bankListId, bankListId) ||
+                other.bankListId == bankListId) &&
+            (identical(other.transferType, transferType) ||
+                other.transferType == transferType) &&
+            (identical(other.approvedTbpId, approvedTbpId) ||
+                other.approvedTbpId == approvedTbpId) &&
+            (identical(other.totalAmount, totalAmount) ||
+                other.totalAmount == totalAmount) &&
+            (identical(other.totalAmountWithInvoice, totalAmountWithInvoice) ||
+                other.totalAmountWithInvoice == totalAmountWithInvoice) &&
+            (identical(other.invoiceNumber, invoiceNumber) ||
+                other.invoiceNumber == invoiceNumber) &&
+            (identical(other.companyId, companyId) ||
+                other.companyId == companyId) &&
+            (identical(other.companyName, companyName) ||
+                other.companyName == companyName) &&
+            (identical(other.departmentName, departmentName) ||
+                other.departmentName == departmentName) &&
+            (identical(other.note, note) || other.note == note) &&
+            const DeepCollectionEquality()
+                .equals(other.checkInDate, checkInDate) &&
+            const DeepCollectionEquality()
+                .equals(other.checkOutDate, checkOutDate) &&
+            (identical(other.advancePaymentOrderId, advancePaymentOrderId) ||
+                other.advancePaymentOrderId == advancePaymentOrderId) &&
+            (identical(other.advancePaymentOrderCode, advancePaymentOrderCode) ||
+                other.advancePaymentOrderCode == advancePaymentOrderCode) &&
+            (identical(other.advanceTotalAmount, advanceTotalAmount) ||
+                other.advanceTotalAmount == advanceTotalAmount) &&
+            (identical(other.advanceStepIsApproved, advanceStepIsApproved) ||
+                other.advanceStepIsApproved == advanceStepIsApproved) &&
+            (identical(other.isAdvanceRejected, isAdvanceRejected) ||
+                other.isAdvanceRejected == isAdvanceRejected) &&
+            (identical(other.isAdvanceCreated, isAdvanceCreated) ||
+                other.isAdvanceCreated == isAdvanceCreated) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            const DeepCollectionEquality().equals(other._files, _files));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        accommodationBookingPaymentOrderId,
+        accommodationBookingId,
+        isAdvance,
+        detailStatus,
+        reason,
+        projectId,
+        recipientName,
+        hotelName,
+        hotelTaxCode,
+        bankAccount,
+        bankName,
+        bankListId,
+        transferType,
+        approvedTbpId,
+        totalAmount,
+        totalAmountWithInvoice,
+        invoiceNumber,
+        companyId,
+        companyName,
+        departmentName,
+        note,
+        const DeepCollectionEquality().hash(checkInDate),
+        const DeepCollectionEquality().hash(checkOutDate),
+        advancePaymentOrderId,
+        advancePaymentOrderCode,
+        advanceTotalAmount,
+        advanceStepIsApproved,
+        isAdvanceRejected,
+        isAdvanceCreated,
+        createdBy,
+        createdDate,
+        updatedBy,
+        updatedDate,
+        isDeleted,
+        const DeepCollectionEquality().hash(_files)
+      ]);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BookingGuestHousePaymentDetailItemImplCopyWith<
+          _$BookingGuestHousePaymentDetailItemImpl>
+      get copyWith => __$$BookingGuestHousePaymentDetailItemImplCopyWithImpl<
+          _$BookingGuestHousePaymentDetailItemImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BookingGuestHousePaymentDetailItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BookingGuestHousePaymentDetailItem
+    implements BookingGuestHousePaymentDetailItem {
+  const factory _BookingGuestHousePaymentDetailItem(
+      {@JsonKey(name: 'ID') final int? id,
+      @JsonKey(name: 'AccommodationBookingPaymentOrderID')
+      final int? accommodationBookingPaymentOrderId,
+      @JsonKey(name: 'AccommodationBookingID')
+      final int? accommodationBookingId,
+      @JsonKey(name: 'IsAdvance') final bool? isAdvance,
+      @JsonKey(name: 'DetailStatus') final int? detailStatus,
+      @JsonKey(name: 'Reason') final String? reason,
+      @JsonKey(name: 'ProjectID') final int? projectId,
+      @JsonKey(name: 'RecipientName') final String? recipientName,
+      @JsonKey(name: 'HotelName') final String? hotelName,
+      @JsonKey(name: 'HotelTaxCode') final String? hotelTaxCode,
+      @JsonKey(name: 'BankAccount') final String? bankAccount,
+      @JsonKey(name: 'BankName') final String? bankName,
+      @JsonKey(name: 'BankListID') final int? bankListId,
+      @JsonKey(name: 'TransferType') final int? transferType,
+      @JsonKey(name: 'ApprovedTBPID') final int? approvedTbpId,
+      @JsonKey(name: 'TotalAmount') final num? totalAmount,
+      @JsonKey(name: 'TotalAmountWithInvoice')
+      final num? totalAmountWithInvoice,
+      @JsonKey(name: 'InvoiceNumber') final String? invoiceNumber,
+      @JsonKey(name: 'CompanyID') final int? companyId,
+      @JsonKey(name: 'CompanyName') final String? companyName,
+      @JsonKey(name: 'DepartmentName') final String? departmentName,
+      @JsonKey(name: 'Note') final String? note,
+      @JsonKey(name: 'CheckInDate') final dynamic checkInDate,
+      @JsonKey(name: 'CheckOutDate') final dynamic checkOutDate,
+      @JsonKey(name: 'AdvancePaymentOrderID') final int? advancePaymentOrderId,
+      @JsonKey(name: 'AdvancePaymentOrderCode')
+      final String? advancePaymentOrderCode,
+      @JsonKey(name: 'AdvanceTotalAmount') final num? advanceTotalAmount,
+      @JsonKey(name: 'AdvanceStepIsApproved') final int? advanceStepIsApproved,
+      @JsonKey(name: 'IsAdvanceRejected') final bool? isAdvanceRejected,
+      @JsonKey(name: 'IsAdvanceCreated') final bool? isAdvanceCreated,
+      @JsonKey(name: 'CreatedBy') final String? createdBy,
+      @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') final String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
+      @JsonKey(name: 'IsDeleted') final bool? isDeleted,
+      @JsonKey(name: 'Files')
+      final List<BookingGuestHouseFileItem>?
+          files}) = _$BookingGuestHousePaymentDetailItemImpl;
+
+  factory _BookingGuestHousePaymentDetailItem.fromJson(
+          Map<String, dynamic> json) =
+      _$BookingGuestHousePaymentDetailItemImpl.fromJson;
+
+  @override
+
+  /// ID detail TTQT (trong ví dụ = 27). Master = 0 khi chưa được
+  /// gắn vào đề nghị tạm ứng; > 0 khi đã liên kết master.
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+
+  /// ID master PaymentOrder (0 nếu chưa liên kết master).
+  @JsonKey(name: 'AccommodationBookingPaymentOrderID')
+  int? get accommodationBookingPaymentOrderId;
+  @override
+
+  /// FK phiếu đặt phòng nhà nghỉ.
+  @JsonKey(name: 'AccommodationBookingID')
+  int? get accommodationBookingId;
+  @override
+
+  /// Loại: true = tạm ứng, false = quyết toán, null = BE không set.
+  @JsonKey(name: 'IsAdvance')
+  bool? get isAdvance;
+  @override
+
+  /// Trạng thái duyệt (0/null = chưa có; 2/3/4/5 xem comment trên).
+  @JsonKey(name: 'DetailStatus')
+  int? get detailStatus;
+  @override
+
+  /// Lý do quyết toán.
+  @JsonKey(name: 'Reason')
+  String? get reason;
+  @override
+
+  /// ID dự án.
+  @JsonKey(name: 'ProjectID')
+  int? get projectId;
+  @override
+
+  /// Người nhận tiền.
+  @JsonKey(name: 'RecipientName')
+  String? get recipientName;
+  @override
+
+  /// Tên khách sạn.
+  @JsonKey(name: 'HotelName')
+  String? get hotelName;
+  @override
+
+  /// Mã số thuế khách sạn.
+  @JsonKey(name: 'HotelTaxCode')
+  String? get hotelTaxCode;
+  @override
+
+  /// Số tài khoản ngân hàng nhận tiền.
+  @JsonKey(name: 'BankAccount')
+  String? get bankAccount;
+  @override
+
+  /// Tên ngân hàng (text hiển thị trên UI).
+  @JsonKey(name: 'BankName')
+  String? get bankName;
+  @override
+
+  /// ID ngân hàng (lookup `state.banks` để map chuẩn).
+  @JsonKey(name: 'BankListID')
+  int? get bankListId;
+  @override
+
+  /// Loại chuyển khoản (1 = chuyển khoản cá nhân).
+  @JsonKey(name: 'TransferType')
+  int? get transferType;
+  @override
+
+  /// ID TBP duyệt.
+  @JsonKey(name: 'ApprovedTBPID')
+  int? get approvedTbpId;
+  @override
+
+  /// Tổng tiền (VNĐ).
+  @JsonKey(name: 'TotalAmount')
+  num? get totalAmount;
+  @override
+
+  /// Tổng tiền có hóa đơn (VNĐ).
+  @JsonKey(name: 'TotalAmountWithInvoice')
+  num? get totalAmountWithInvoice;
+  @override
+
+  /// Số hóa đơn.
+  @JsonKey(name: 'InvoiceNumber')
+  String? get invoiceNumber;
+  @override
+
+  /// ID công ty phát hành hóa đơn.
+  @JsonKey(name: 'CompanyID')
+  int? get companyId;
+  @override
+
+  /// Tên công ty phát hành hóa đơn.
+  @JsonKey(name: 'CompanyName')
+  String? get companyName;
+  @override
+
+  /// Tên bộ phận.
+  @JsonKey(name: 'DepartmentName')
+  String? get departmentName;
+  @override
+
+  /// Ghi chú.
+  @JsonKey(name: 'Note')
+  String? get note;
+  @override
+
+  /// Check-in date (cho đề nghị tạm ứng).
+  @JsonKey(name: 'CheckInDate')
+  dynamic get checkInDate;
+  @override
+
+  /// Check-out date.
+  @JsonKey(name: 'CheckOutDate')
+  dynamic get checkOutDate;
+  @override
+
+  /// ID master ĐNTT tạm ứng (null nếu không phải advance).
+  @JsonKey(name: 'AdvancePaymentOrderID')
+  int? get advancePaymentOrderId;
+  @override
+
+  /// Mã ĐNTT tạm ứng (vd `ĐNTTxxx`).
+  @JsonKey(name: 'AdvancePaymentOrderCode')
+  String? get advancePaymentOrderCode;
+  @override
+
+  /// Tổng tiền tạm ứng.
+  @JsonKey(name: 'AdvanceTotalAmount')
+  num? get advanceTotalAmount;
+  @override
+
+  /// Bước duyệt ĐNTU hiện tại đã duyệt chưa (0/1).
+  @JsonKey(name: 'AdvanceStepIsApproved')
+  int? get advanceStepIsApproved;
+  @override
+
+  /// ĐNTU bị từ chối duyệt.
+  @JsonKey(name: 'IsAdvanceRejected')
+  bool? get isAdvanceRejected;
+  @override
+
+  /// Đã tạo ĐNTT tạm ứng.
+  @JsonKey(name: 'IsAdvanceCreated')
+  bool? get isAdvanceCreated;
+  @override
+
+  /// Audit.
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted;
+  @override
+
+  /// Danh sách file đính kèm (INVOICE / BILL_CK) — chỉ đếm để hiển thị
+  /// hint, không tự load lại nội dung file.
+  @JsonKey(name: 'Files')
+  List<BookingGuestHouseFileItem>? get files;
+  @override
+  @JsonKey(ignore: true)
+  _$$BookingGuestHousePaymentDetailItemImplCopyWith<
+          _$BookingGuestHousePaymentDetailItemImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}

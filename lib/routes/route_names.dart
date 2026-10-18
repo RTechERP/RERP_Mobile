@@ -162,6 +162,25 @@ class RouteNames {
 
   static const bookingVehicleEdit = '/reg_general/booking_vehicle/Edit';
 
+  /// Đặt phòng nhà nghỉ — danh sách phiếu đặt.
+  static const bookingGuestHouse = '/reg_general/booking_guest_house';
+
+  /// Đặt phòng nhà nghỉ — thêm mới phiếu đặt.
+  static const bookingGuestHouseAdd =
+      '/reg_general/booking_guest_house/add';
+
+  /// Đặt phòng nhà nghỉ — chỉnh sửa phiếu đặt.
+  static const bookingGuestHouseEdit =
+      '/reg_general/booking_guest_house/edit';
+
+  /// Đặt phòng nhà nghỉ — cập nhật TTQT (UI cũ, có file bill/hoá đơn).
+  static const bookingGuestHouseSettlement =
+      '/reg_general/booking_guest_house/settlement';
+
+  /// Đặt phòng nhà nghỉ — đề nghị tạm ứng (UI mới, 10 field theo yêu cầu).
+  static const bookingGuestHouseAdvance =
+      '/reg_general/booking_guest_house/advance';
+
   static const workCategory = '/reg_general/work_category';
 
   static const workCategoryAdd = '/reg_general/work_category/add';
@@ -261,4 +280,9 @@ class RouteNames {
 
   // Celebration (Birthday / Seniority popup)
   static const celebration = '/celebration';
+
+  // Project
+  static const projectMenu = '/project/menu';
+  static const projectList = 'list';
+  static const materialCategory = 'material-category';
 }
