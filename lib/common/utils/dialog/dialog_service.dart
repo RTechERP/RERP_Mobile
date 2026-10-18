@@ -770,6 +770,259 @@ class DialogService {
     return confirmed;
   }
 
+  /// Hiển thị dialog xác nhận trước khi duyệt / từ chối nhiều phiếu timesheet (Senior).
+  /// Trả về `true` nếu người dùng đồng ý, `false` (hoặc dismiss) nếu huỷ.
+  static Future<bool> showConfirmSeniorApprove({
+    required BuildContext context,
+    required int count,
+    required bool isApproved,
+  }) async {
+    bool confirmed = false;
+
+    await BaseDialog.twoOptionVerticalDialog(
+      context: context,
+      image: Icon(
+        isApproved ? Icons.check_circle_outline : Icons.cancel_outlined,
+        size: 56,
+        color: isApproved
+            ? AppColors.stateSuccessColor
+            : AppColors.stateErrorColor,
+      ),
+      title: isApproved ? 'Xác nhận duyệt' : 'Xác nhận từ chối',
+      description:
+          'Bạn có chắc chắn muốn ${isApproved ? 'phê duyệt' : 'từ chối'} $count phiếu không?',
+      contentTopButton: 'Đồng ý',
+      topButtonFunc: () {
+        confirmed = true;
+        onBack(context);
+      },
+      contentBottomButton: 'Huỷ',
+      bottomButtonFunc: () {
+        confirmed = false;
+        onBack(context);
+      },
+    );
+
+    return confirmed;
+  }
+
+  /// Dialog nhập lý do từ chối (Senior) trước khi gọi API.
+  /// Trả về chuỗi lý do nếu user bấm Lưu, `null` nếu huỷ.
+  static Future<String?> showSeniorDeclineReason({
+    required BuildContext context,
+    required int count,
+  }) async {
+    final formKey = GlobalKey<FormBuilderState>();
+
+    return await BaseDialog.twoOptionVerticalDialog(
+      context: context,
+      image: const Icon(
+        Icons.cancel_outlined,
+        size: 56,
+        color: AppColors.stateErrorColor,
+      ),
+      title: 'Lý do từ chối',
+      descriptionWidget: FormBuilder(
+        key: formKey,
+        child: FormInputField(
+          nameForm: 'decline_reason_form',
+          nameTextField: 'decline_reason_field',
+          label: 'Nhập lý do từ chối',
+          icon: Icons.edit_note,
+          isRequired: true,
+          maxLines: 4,
+          autoExpand: true,
+          textInputAction: TextInputAction.newline,
+          maxLength: 500,
+          validator: FormBuilderValidators.compose([
+            FormBuilderValidators.required(
+              errorText: 'Vui lòng nhập lý do từ chối',
+            ),
+            FormBuilderValidators.minLength(
+              3,
+              errorText: 'Lý do phải có ít nhất 3 ký tự',
+            ),
+          ]),
+        ),
+      ),
+      description:
+          'Bạn sắp từ chối $count phiếu. Vui lòng nhập lý do để gửi kèm phiếu.',
+      contentTopButton: 'Lưu',
+      topButtonFunc: () {
+        final state = formKey.currentState;
+        if (state?.saveAndValidate() ?? false) {
+          final value = state!.value['decline_reason_field'] as String;
+          context.pop(value);
+        }
+      },
+      contentBottomButton: 'Huỷ',
+      bottomButtonFunc: () {
+        context.pop();
+      },
+    );
+  }
+
+  /// Dialog xác nhận TBP duyệt / huỷ duyệt hàng loạt.
+  /// Hiển thị số phiếu Senior đã duyệt / chưa duyệt trong lựa chọn.
+  /// Trả về `true` nếu user bấm Đồng ý, `false` nếu bấm Huỷ.
+  static Future<bool> showConfirmTBPApprove({
+    required BuildContext context,
+    required int count,
+    required bool isApproved,
+    int seniorApprovedCount = 0,
+    int notSeniorApprovedCount = 0,
+  }) async {
+    bool confirmed = false;
+
+    Widget? descriptionWidget;
+    String? description;
+    if (notSeniorApprovedCount > 0) {
+      // Có phiếu chưa Senior duyệt → hiện dòng cảnh báo
+      descriptionWidget = Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '$notSeniorApprovedCount bản ghi chưa được Senior duyệt',
+            style: const TextStyle(
+              fontSize: 14,
+              color: AppColors.stateErrorColor,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ],
+      );
+    } else {
+      // Toàn Senior đã duyệt → message đơn giản
+      description = 'Bạn có muốn duyệt $count bản ghi đã chọn không?';
+    }
+
+    await BaseDialog.twoOptionVerticalDialog(
+      context: context,
+      image: Icon(
+        isApproved ? Icons.info_outline : Icons.cancel_outlined,
+        size: 56,
+        color: isApproved
+            ? AppColors.stateInfoColor
+            : AppColors.stateErrorColor,
+      ),
+      title: isApproved ? 'Xác nhận duyệt' : 'Xác nhận huỷ duyệt',
+      description: description,
+      descriptionWidget: descriptionWidget,
+      contentTopButton: 'Đồng ý',
+      topButtonFunc: () {
+        confirmed = true;
+        onBack(context);
+      },
+      contentBottomButton: 'Huỷ',
+      bottomButtonFunc: () {
+        confirmed = false;
+        onBack(context);
+      },
+    );
+
+    return confirmed;
+  }
+
+  /// Hiển thị thông báo khi không có bản ghi hợp lệ để huỷ duyệt.
+  static void showMessage({
+    required BuildContext context,
+    required String message,
+  }) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        behavior: SnackBarBehavior.floating,
+        duration: const Duration(seconds: 2),
+      ),
+    );
+  }
+
+  /// Dialog xác nhận huỷ duyệt TBP.
+  /// Trả về `true` nếu user bấm Đồng ý, `false` nếu bấm Huỷ.
+  static Future<bool> showConfirmDialog({
+    required BuildContext context,
+    required String title,
+    required String message,
+  }) async {
+    bool confirmed = false;
+
+    await BaseDialog.twoOptionVerticalDialog(
+      context: context,
+      image: const Icon(Icons.warning_amber_rounded, size: 56, color: Colors.orange),
+      title: title,
+      description: message,
+      contentTopButton: 'Đồng ý',
+      topButtonFunc: () {
+        confirmed = true;
+        onBack(context);
+      },
+      contentBottomButton: 'Huỷ',
+      bottomButtonFunc: () {
+        confirmed = false;
+        onBack(context);
+      },
+    );
+
+    return confirmed;
+  }
+
+  /// Dialog nhập lý do từ chối (TBP) trước khi gọi API.
+  /// Trả về chuỗi lý do nếu user bấm Lưu, `null` nếu huỷ.
+  static Future<String?> showTBPDeclineReason({
+    required BuildContext context,
+    required int count,
+  }) async {
+    final formKey = GlobalKey<FormBuilderState>();
+
+    return await BaseDialog.twoOptionVerticalDialog(
+      context: context,
+      image: const Icon(
+        Icons.cancel_outlined,
+        size: 56,
+        color: AppColors.stateErrorColor,
+      ),
+      title: 'Lý do từ chối',
+      descriptionWidget: FormBuilder(
+        key: formKey,
+        child: FormInputField(
+          nameForm: 'decline_reason_form',
+          nameTextField: 'decline_reason_field',
+          label: 'Nhập lý do từ chối',
+          icon: Icons.edit_note,
+          isRequired: true,
+          maxLines: 4,
+          autoExpand: true,
+          textInputAction: TextInputAction.newline,
+          maxLength: 500,
+          validator: FormBuilderValidators.compose([
+            FormBuilderValidators.required(
+              errorText: 'Vui lòng nhập lý do từ chối',
+            ),
+            FormBuilderValidators.minLength(
+              3,
+              errorText: 'Lý do phải có ít nhất 3 ký tự',
+            ),
+          ]),
+        ),
+      ),
+      description:
+          'Bạn sắp từ chối $count phiếu. Vui lòng nhập lý do để gửi kèm phiếu.',
+      contentTopButton: 'Lưu',
+      topButtonFunc: () {
+        final state = formKey.currentState;
+        if (state?.saveAndValidate() ?? false) {
+          final value = state!.value['decline_reason_field'] as String;
+          context.pop(value);
+        }
+      },
+      contentBottomButton: 'Huỷ',
+      bottomButtonFunc: () {
+        context.pop();
+      },
+    );
+  }
+
   /// Dialog xác nhận trả bàn test (chỉ áp dụng với phiếu đã duyệt).
   static Future<bool> showConfirmReturn({required BuildContext context}) async {
     bool confirmed = false;

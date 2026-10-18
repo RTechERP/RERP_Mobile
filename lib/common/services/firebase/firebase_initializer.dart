@@ -48,11 +48,19 @@ class FirebaseInitializer {
     // Xin quyền notification (iOS / Android 13+)
     await _requestPermission();
 
-    // Lắng nghe foreground messages
+    // Lắng nghe foreground messages.
+    // Trên Android 8.0+ bắt buộc phải có Notification Channel.
+    // showNotification() sẽ tự tạo / dùng lại channel id
+    // `rtc_erp_high_importance_channel` đã khai báo ở NotificationService.
     FirebaseMessaging.onMessage.listen((message) async {
       if (kDebugMode) {
-        // print('[FCM] Foreground message: ${message.messageId}');
+        print('[FCM] Foreground message: ${message.messageId}');
+        print('[FCM] has notification payload: '
+            '${message.notification != null}');
       }
+      // Nếu message CÓ notification payload và app đang foreground,
+      // một số ROM (Xiaomi/MIUI) vẫn không tự hiển thị notification.
+      // → Luôn gọi showNotification để chắc chắn hiển thị.
       await NotificationService.instance.showNotification(message);
     });
 
@@ -97,7 +105,7 @@ class FirebaseInitializer {
         }
 
         // Check permission status
-        final settings = await FirebaseMessaging.instance.getNotificationSettings();
+        await FirebaseMessaging.instance.getNotificationSettings();
         if (kDebugMode) {
           // print('[FCM] Notification settings: ${settings.authorizationStatus}');
         }
@@ -138,13 +146,21 @@ class FirebaseInitializer {
         provisional: false,
       );
     } else {
-      // Android 13+ – flutter_local_notifications xử lý quyền
+      // Android 13+ – request POST_NOTIFICATIONS qua cả
+      // flutter_local_notifications và FirebaseMessaging để chắc chắn.
       final localNotifs = FlutterLocalNotificationsPlugin();
       final androidImpl =
           localNotifs.resolvePlatformSpecificImplementation<
             AndroidFlutterLocalNotificationsPlugin
           >();
       await androidImpl?.requestNotificationsPermission();
+
+      // Firebase Messaging cũng request riêng cho FCM token.
+      await FirebaseMessaging.instance.requestPermission(
+        alert: true,
+        badge: true,
+        sound: true,
+      );
     }
   }
 }

@@ -51,6 +51,17 @@ import '../features/auth/view/pages/login_screen.dart';
 import '../features/dashboard/view/dashboard_screen.dart';
 import '../features/more/view/settings/notification/bloc/notification_bloc.dart';
 import '../features/more/view/settings/notification/page/notification_settings_screen.dart';
+import '../features/workplace/app/personal_approve/app/approve_timesheet/view/bloc/approve_timesheet_bloc.dart';
+import '../features/workplace/app/personal_approve/app/approve_timesheet/view/pages/approve_timesheet_detail_screen.dart';
+import '../features/workplace/app/personal_approve/app/approve_timesheet/view/pages/approve_timesheet_senior_screen.dart';
+import '../features/workplace/app/personal_approve/app/approve_booking_guest_house/view/bloc/approve_booking_guest_house_bloc.dart';
+import '../features/workplace/app/personal_approve/app/approve_booking_guest_house/view/pages/approve_booking_guest_house_screen.dart';
+import '../features/workplace/app/personal_approve/app/approve_timesheet/view/pages/approve_timesheet_tbp_screen.dart';
+import '../features/workplace/app/personal_approve/app/approve_timesheet/data/datasource/models/approve_timesheet_model.dart';
+import '../features/workplace/app/personal_approve/view/bloc/personal_approve_menu_bloc.dart';
+import '../features/workplace/app/personal_approve/view/pages/personal_approve_booking_menu_screen.dart';
+import '../features/workplace/app/personal_approve/view/pages/personal_approve_menu_screen.dart';
+import '../features/workplace/app/personal_approve/view/pages/personal_approve_timesheet_menu_screen.dart';
 import '../features/more/view/pages/avatar_viewer_screen.dart';
 import '../features/workplace/app/general_form/view/bloc/general_form_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_guest_house/view/pages/booking_guest_house_add_screen.dart';
@@ -1682,6 +1693,124 @@ class AppRouter {
               final id = state.extra as int? ?? 0;
               return AccountantEditScreen(reportId: id);
             },
+          ),
+        ],
+      ),
+
+      // Personal Approve
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider(
+            create: (_) => getIt<PersonalApproveMenuBloc>(),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.personalApprove,
+            builder: (context, state) => const PersonalApproveMenuScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.personalApproveTimesheetMenu,
+            builder: (context, state) =>
+                const PersonalApproveTimesheetMenuScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.personalApproveBookingGnMenu,
+            builder: (context, state) =>
+                const PersonalApproveBookingGnMenuScreen(),
+          ),
+          ShellRoute(
+            builder: (context, state, child) {
+              return BlocProvider.value(
+                value: getIt<ApproveTimesheetBloc>(),
+                child: child,
+              );
+            },
+            routes: [
+              GoRoute(
+                path: RouteNames.personalApproveTimesheet,
+                builder: (context, state) {
+                  // Mở từ menu Phê duyệt → query `?tType=1..9` để
+                  // bloc filter API theo 1 loại phiếu cụ thể.
+                  // Mở trực tiếp (không qua menu) → không có tType,
+                  // hiển thị tất cả.
+                  final tTypeStr = state.uri.queryParameters['tType'];
+                  final tType = int.tryParse(tTypeStr ?? '');
+                  return ApproveTimesheetTbpScreen(initialTType: tType);
+                },
+              ),
+              GoRoute(
+                path: RouteNames.personalApproveSeniorTimesheet,
+                builder: (context, state) => const ApproveTimesheetSeniorScreen(),
+              ),
+              GoRoute(
+                path: RouteNames.personalApproveSeniorTimesheetDetail,
+                builder: (context, state) {
+                  final extra = state.extra;
+                  if (extra is (ApproveTimesheetItem, ApproveTimesheetRole)) {
+                    return ApproveTimesheetDetailScreen(
+                      item: extra.$1,
+                      // role: extra.$2,
+                    );
+                  }
+                  return Scaffold(
+                    appBar: AppBar(title: const Text('Chi tiết phiếu')),
+                    body: const Center(
+                      child: Padding(
+                        padding: EdgeInsets.all(24),
+                        child: Text(
+                          'Không có dữ liệu phiếu. Vui lòng mở từ danh sách.',
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+              GoRoute(
+                path: RouteNames.personalApproveTimesheetDetail,
+                builder: (context, state) {
+                  final extra = state.extra;
+                  if (extra is (ApproveTimesheetItem, ApproveTimesheetRole)) {
+                    return ApproveTimesheetDetailScreen(
+                      item: extra.$1,
+                      // role: extra.$2,
+                    );
+                  }
+                  return Scaffold(
+                    appBar: AppBar(title: const Text('Chi tiết phiếu')),
+                    body: const Center(
+                      child: Padding(
+                        padding: EdgeInsets.all(24),
+                        child: Text(
+                          'Không có dữ liệu phiếu. Vui lòng mở từ danh sách.',
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
+          //---(ApproveBookingGuestHouse)---//
+          // Màn Duyệt phiếu Đặt phòng nhà nghỉ — singleton bloc wrap ở
+          // ShellRoute để share state khi điều hướng giữa list / detail.
+          ShellRoute(
+            builder: (context, state, child) {
+              return BlocProvider.value(
+                value: getIt<ApproveBookingGuestHouseBloc>(),
+                child: child,
+              );
+            },
+            routes: [
+              GoRoute(
+                path: RouteNames.personalApproveBookingGuestHouse,
+                builder: (context, state) =>
+                    const ApproveBookingGuestHousePage(),
+              ),
+            ],
           ),
         ],
       ),

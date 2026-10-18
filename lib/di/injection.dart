@@ -32,6 +32,15 @@ import '../features/dashboard/view/newsfeed/data/datasource/service/newsfeed_ser
 import '../features/dashboard/view/newsfeed/data/repository/newsfeed_repo.dart';
 import '../features/dashboard/view/newsfeed/data/repository/newsfeed_repository.dart';
 import '../features/dashboard/view/newsfeed/view/bloc/newsfeed_bloc.dart';
+import '../features/workplace/app/personal_approve/app/approve_timesheet/data/datasource/service/approve_timesheet_service.dart';
+import '../features/workplace/app/personal_approve/app/approve_timesheet/data/repository/approve_timesheet_repo.dart';
+import '../features/workplace/app/personal_approve/app/approve_timesheet/data/repository/approve_timesheet_repo_impl.dart';
+import '../features/workplace/app/personal_approve/app/approve_timesheet/view/bloc/approve_timesheet_bloc.dart';
+import '../features/workplace/app/personal_approve/app/approve_booking_guest_house/data/datasource/service/approve_booking_guest_house_service.dart';
+import '../features/workplace/app/personal_approve/app/approve_booking_guest_house/data/repository/approve_booking_guest_house_repo.dart';
+import '../features/workplace/app/personal_approve/app/approve_booking_guest_house/data/repository/approve_booking_guest_house_repo_impl.dart';
+import '../features/workplace/app/personal_approve/app/approve_booking_guest_house/view/bloc/approve_booking_guest_house_bloc.dart';
+import '../features/workplace/app/personal_approve/view/bloc/personal_approve_menu_bloc.dart';
 import '../features/version/data/datasource/service/app_version_service.dart';
 import '../features/version/data/repository/app_version_repo.dart';
 import '../features/version/data/repository/app_version_repo_impl.dart';
@@ -266,6 +275,10 @@ void configureDependencies() {
     () => RentalVehicleService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<ApproveBookingGuestHouseService>(
+    () => ApproveBookingGuestHouseService(getIt<Dio>()),
+  );
+
   getIt.registerLazySingleton<LunchService>(() => LunchService(getIt<Dio>()));
 
   getIt.registerLazySingleton<ProjectListService>(
@@ -346,6 +359,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<AppVersionService>(
     () => AppVersionService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<ApproveTimeSheetService>(
+    () => ApproveTimeSheetService(getIt<Dio>()),
   );
 
   getIt.registerLazySingleton<ContactService>(
@@ -432,6 +449,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<RentalVehicleRepo>(
     () => RentalVehicleRepoImpl(getIt<RentalVehicleService>()),
+  );
+
+  getIt.registerLazySingleton<ApproveBookingGuestHouseRepo>(
+    () => ApproveBookingGuestHouseRepoImpl(getIt<ApproveBookingGuestHouseService>()),
   );
 
   getIt.registerLazySingleton<LunchRepo>(
@@ -580,6 +601,10 @@ void configureDependencies() {
     () => RioChatRepoImpl(getIt<RioChatService>()),
   );
 
+  getIt.registerLazySingleton<ApproveTimesheetRepo>(
+    () => ApproveTimesheetRepoImpl(getIt<ApproveTimeSheetService>()),
+  );
+
   /// ===== BLOCS =====
   getIt.registerFactory<AuthBloc>(
     () => AuthBloc(getIt<AuthRepo>(), getIt<LogUtils>()),
@@ -587,7 +612,12 @@ void configureDependencies() {
   getIt.registerFactory<TechBloc>(
     () => TechBloc(getIt<ReportRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
   );
-  getIt.registerFactory<WorkspaceBloc>(() => WorkspaceBloc(getIt<LogUtils>()));
+  getIt.registerFactory<WorkspaceBloc>(
+    () => WorkspaceBloc(
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
   getIt.registerFactory<HrBloc>(
     () => HrBloc(getIt<ReportRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
   );
@@ -639,6 +669,13 @@ getIt.registerLazySingleton<BookingGuestHouseBloc>(
       getIt<LogUtils>(),
     ),
   );
+
+getIt.registerLazySingleton<ApproveBookingGuestHouseBloc>(
+  () => ApproveBookingGuestHouseBloc(
+    getIt<ApproveBookingGuestHouseRepo>(),
+    getIt<LogUtils>(),
+  ),
+);
 
   getIt.registerFactory<LunchBloc>(
     () => LunchBloc(getIt<LunchRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
@@ -850,6 +887,17 @@ getIt.registerLazySingleton<BookingGuestHouseBloc>(
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
     ),
+  );
+
+  getIt.registerFactory<ApproveTimesheetBloc>(
+    () => ApproveTimesheetBloc(
+      getIt<ApproveTimesheetRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<PersonalApproveMenuBloc>(
+    () => PersonalApproveMenuBloc(getIt<AuthRepo>(), getIt<LogUtils>()),
   );
 
   getIt.registerFactory<GeneralFormBloc>(

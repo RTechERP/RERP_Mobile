@@ -1,0 +1,1151 @@
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
+
+import '../../../../../../../../../base/bloc/index.dart';
+import '../../../../../../../../../base/widgets/base_scaffold.dart';
+import '../../../../../../../../../base/widgets/base_widget.dart';
+import '../../../../../../../../../common/app_theme/index.dart';
+import '../../../../../../../../../common/constants/index.dart';
+import '../../../../../../../../../common/utils/dialog/dialog_service.dart';
+import '../../../../../../../../../common/utils/snack_bar_helper.dart';
+import '../../../../../../../../../common/widgets/date_range_picker.dart';
+import '../../../../../../../../base/network/errors/extension.dart';
+import '../../data/datasource/models/approve_booking_guest_house_model.dart';
+import '../bloc/approve_booking_guest_house_bloc.dart';
+import '../widgets/approve_booking_guest_house_selection_bar.dart';
+
+class ApproveBookingGuestHousePage extends StatefulWidget {
+  const ApproveBookingGuestHousePage({super.key});
+
+  @override
+  State<ApproveBookingGuestHousePage> createState() =>
+      _ApproveBookingGuestHousePageState();
+}
+
+/// Dùng `BaseShareState` thay cho `BaseState` vì bloc là singleton
+/// được wrap ở ShellRoute (`BlocProvider.value`); `BaseState.dispose()`
+/// sẽ tự `bloc.close()` → giết bloc share với route con.
+class _ApproveBookingGuestHousePageState extends BaseShareState<
+    ApproveBookingGuestHousePage,
+    ApproveBookingGuestHouseEvent,
+    ApproveBookingGuestHouseState,
+    ApproveBookingGuestHouseBloc> {
+  /// Shorthand cho `bloc.state` — `BaseShareState` không expose getter
+  /// `state` nên dùng shorthand này để truy cập gọn.
+  ApproveBookingGuestHouseState get state => bloc.state;
+
+  @override
+  void initState() {
+    super.initState();
+    bloc.add(const ApproveBookingGuestHouseEvent.init());
+  }
+
+  @override
+  void listener(BuildContext context, ApproveBookingGuestHouseState state) {
+    final message = (state.message ?? '').trim();
+    if (message.isNotEmpty) {
+      showMessage(context, message, type: SnackBarType.error);
+    }
+  }
+
+  /// Mở bottom sheet chọn trạng thái duyệt: Tất cả / Chưa duyệt / Đã duyệt.
+  /// Trả về `null` khi user dismiss; trả về `_StatusPick(value)` khi user
+  /// chọn option (kể cả "Tất cả" — phân biệt nhờ wrapper non-null).
+  Future<void> _openStatusFilter() async {
+    final current = state.statusFilter;
+    final picked = await showModalBottomSheet<_StatusPick>(
+      context: context,
+      showDragHandle: true,
+      builder: (sheetContext) {
+        Widget tile({required int? value, required String label}) {
+          final isActive = value == current;
+          return ListTile(
+            leading: Icon(
+              isActive
+                  ? Icons.radio_button_checked
+                  : Icons.radio_button_off,
+              color: isActive ? AppColors.primaryERP : AppColors.gray,
+            ),
+            title: Text(label),
+            onTap: () => Navigator.of(sheetContext).pop(
+              _StatusPick(value),
+            ),
+          );
+        }
+
+        return SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Padding(
+                padding: EdgeInsets.fromLTRB(16, 0, 16, 8),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Lọc theo trạng thái',
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ),
+              for (final option in _kStatusOptions)
+                tile(value: option.$1, label: option.$2),
+              const SizedBox(height: 8),
+            ],
+          ),
+        );
+      },
+    );
+
+    if (!mounted) return;
+    if (picked == null) return;
+    if (picked.value == current) return;
+    bloc.add(
+      ApproveBookingGuestHouseEvent.changeStatusFilter(
+        status: picked.value,
+      ),
+    );
+  }
+
+  /// Xử lý duyệt nhiều phiếu đã chọn.
+  Future<void> _onApprove() async {
+    final count = state.selectedIds.length;
+    final confirmed = await DialogService.showConfirmDialog(
+      context: context,
+      title: 'Duyệt phiếu',
+      message: 'Bạn có muốn duyệt $count phiếu này không?',
+    );
+    if (!confirmed) return;
+    bloc.add(const ApproveBookingGuestHouseEvent.approveSelected());
+    // Chờ bloc kết thúc vòng duyệt (isApproving về false) để hiện thông báo.
+    await bloc.stream.firstWhere((s) => !s.isApproving);
+    if (!mounted) return;
+    showMessage(
+      context,
+      'Đã duyệt $count phiếu thành công',
+      type: SnackBarType.success,
+    );
+  }
+
+  /// Xử lý huỷ duyệt nhiều phiếu đã chọn.
+  Future<void> _onReject() async {
+    final count = state.selectedIds.length;
+    final confirmed = await DialogService.showConfirmDialog(
+      context: context,
+      title: 'Huỷ duyệt',
+      message: 'Bạn có muốn huỷ duyệt $count phiếu này không?',
+    );
+    if (!confirmed) return;
+    bloc.add(const ApproveBookingGuestHouseEvent.rejectSelected());
+    await bloc.stream.firstWhere((s) => !s.isApproving);
+    if (!mounted) return;
+    showMessage(
+      context,
+      'Đã huỷ duyệt $count phiếu thành công',
+      type: SnackBarType.success,
+    );
+  }
+
+  Future<void> _openDatePicker() async {
+    final now = DateTime.now();
+    final todayStart = DateTime(now.year, now.month, now.day);
+    final tomorrow = todayStart.add(const Duration(days: 1));
+
+    await showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (_) => DateRangePicker(
+        initialStart: state.dateStart ?? todayStart,
+        initialEnd: state.dateEnd ?? tomorrow,
+        onApply: (start, end) {
+          bloc.add(
+            ApproveBookingGuestHouseEvent.changeDateRange(
+              dateStart: start,
+              dateEnd: end,
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  @override
+  Widget renderUI(BuildContext context) {
+    return BaseScaffold(
+      appBar: AppBarCommon(
+        title: Text(
+          'Duyệt ĐX/NN',
+          style: AppStyles.headingTitle2,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
+        onBackTap: () => context.pop(),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.calendar_month),
+            tooltip: 'Lọc ngày',
+            onPressed: _openDatePicker,
+          ),
+          IconButton(
+            icon: Icon(
+              state.statusFilter == null
+                  ? Icons.filter_alt_outlined
+                  : Icons.filter_alt_rounded,
+            ),
+            tooltip: 'Lọc trạng thái',
+            onPressed: _openStatusFilter,
+          ),
+          const SizedBox(width: 4),
+        ],
+      ),
+      body: blocBuilder(
+        (context, state) {
+          if (state.status == BaseStateStatus.loading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          if (state.status == BaseStateStatus.failed) {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Image.asset(AppImages.error, width: 320),
+                    const SizedBox(height: 12),
+                    Text(
+                      (state.message ?? '').trim().isNotEmpty
+                          ? state.message!.trim()
+                          : 'Load dữ liệu thất bại',
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }
+
+          return Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
+                child: _ListHeader(
+                  total: state.bookings.length,
+                  pendingCount: state.bookings
+                      .where((b) => b.detailStatus == 2)
+                      .length,
+                  approvedCount: state.bookings
+                      .where((b) => b.detailStatus == 3)
+                      .length,
+                  isSearching: state.filterText.isNotEmpty,
+                ),
+              ),
+              Expanded(
+                child: RefreshIndicator(
+                  onRefresh: () async {
+                    bloc.add(const ApproveBookingGuestHouseEvent.refresh());
+                    await bloc.stream.firstWhere(
+                      (s) => s.status != BaseStateStatus.loading,
+                    );
+                  },
+                  child: _buildList(state),
+                ),
+              ),
+              if (state.selectedIds.isNotEmpty)
+                ApproveBookingGuestHouseSelectionBar(
+                  selectedCount: state.selectedIds.length,
+                  totalCount: state.bookings.length,
+                  isAllSelected:
+                      state.bookings.isNotEmpty &&
+                      state.selectedIds.length == state.bookings.length,
+                  onSelectAll: () => bloc.add(
+                    const ApproveBookingGuestHouseEvent.selectAll(),
+                  ),
+                  onClearSelection: () => bloc.add(
+                    const ApproveBookingGuestHouseEvent.clearSelection(),
+                  ),
+                  onApprove: _onApprove,
+                  onReject: _onReject,
+                  isApproving: state.isApproving,
+                ),
+            ],
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildList(ApproveBookingGuestHouseState state) {
+    if (state.bookings.isEmpty) {
+      return ListView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        padding: const EdgeInsets.symmetric(vertical: 80),
+        children: [
+          Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Image.asset(AppImages.missing, width: 320),
+                const SizedBox(height: 12),
+                const Text('Không có dữ liệu'),
+              ],
+            ),
+          ),
+        ],
+      );
+    }
+
+    return ListView.separated(
+      padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
+      physics: const AlwaysScrollableScrollPhysics(),
+      itemCount: state.bookings.length,
+      separatorBuilder: (_, _) => const SizedBox(height: 10),
+      itemBuilder: (context, index) {
+        final item = state.bookings[index];
+        final selected = state.selectedIds.contains(item.id);
+
+        return Builder(
+          builder: (context) => ApproveBookingGuestHouseCard(
+            item: item,
+            selectionEnabled: true,
+            selected: selected,
+            onToggleSelection: (_) {
+              bloc.add(
+                ApproveBookingGuestHouseEvent.toggleSelection(id: item.id),
+              );
+            },
+          ),
+        );
+      },
+    );
+  }
+}
+
+//---(Card)---//
+
+/// Card hiển thị một phiếu thanh toán đặt phòng nhà nghỉ trong màn duyệt TBP.
+/// Card gồm: Người đăng ký - Từ ngày - Đến ngày - Khách sạn -
+/// Tổng tiền - Tiền có HĐ - STK/Ngân hàng - StatusChip - File HĐ - File CK.
+class ApproveBookingGuestHouseCard extends StatelessWidget {
+  const ApproveBookingGuestHouseCard({
+    super.key,
+    required this.item,
+    this.onTap,
+    this.selected = false,
+    this.selectionEnabled = false,
+    this.onToggleSelection,
+  });
+
+  final ApproveBookingGuestHouseItem item;
+  final VoidCallback? onTap;
+  final bool selected;
+  final bool selectionEnabled;
+  final ValueChanged<bool>? onToggleSelection;
+
+  static final DateFormat _dateFmt = DateFormat('dd/MM/yyyy');
+  static final NumberFormat _moneyFmt = NumberFormat('#,###');
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          color: Colors.white,
+          border: selected
+              ? Border.all(color: AppColors.primaryERP, width: 2)
+              : null,
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.primaryERP.withValues(alpha: 0.08),
+              blurRadius: 24,
+              offset: const Offset(0, 8),
+            ),
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.04),
+              blurRadius: 8,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(16),
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Header: status chip + hotel (+ selection checkbox)
+                Row(
+                  children: [
+                    if (selectionEnabled) ...[
+                      _SelectionCheckbox(
+                        value: selected,
+                        onChanged: (v) =>
+                            onToggleSelection?.call(v ?? false),
+                      ),
+                      const SizedBox(width: 8),
+                    ],
+                    _StatusChip(status: item.detailStatus),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Row(
+                        children: [
+                          const Icon(
+                            Icons.hotel_outlined,
+                            size: 14,
+                            color: AppColors.gray,
+                          ),
+                          const SizedBox(width: 4),
+                          Expanded(
+                            child: Text(
+                              item.hotelName ?? '-',
+                              style: const TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.enableText,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+
+                // Người đăng ký
+                _InfoRow(
+                  icon: Icons.person_outline,
+                  label: 'Người đăng ký',
+                  value: item.registerFullName ?? '-',
+                ),
+                const SizedBox(height: 6),
+
+                // Từ ngày - Đến ngày
+                _InfoRow(
+                  icon: Icons.calendar_month_outlined,
+                  label: 'Thời gian',
+                  value:
+                      '${_formatDate(item.checkInDate)} → ${_formatDate(item.checkOutDate)}',
+                  valueColor: AppColors.primaryERP,
+                ),
+                const SizedBox(height: 6),
+
+                // Tổng tiền
+                _InfoRow(
+                  icon: Icons.payments_outlined,
+                  label: 'Tổng tiền',
+                  value: _formatMoney(item.totalAmount),
+                  valueColor: AppColors.alert,
+                  isBold: true,
+                ),
+                const SizedBox(height: 6),
+
+                // Tiền có HĐ
+                _InfoRow(
+                  icon: Icons.receipt_long_outlined,
+                  label: 'Tiền có HĐ',
+                  value: _formatMoney(item.totalAmountWithInvoice),
+                  valueColor: AppColors.success,
+                  isBold: true,
+                ),
+                const SizedBox(height: 6),
+
+                // STK / Ngân hàng
+                _InfoRow(
+                  icon: Icons.account_balance_outlined,
+                  label: 'STK / Ngân hàng',
+                  value: _formatBank(),
+                ),
+                if (item.reason != null && item.reason!.trim().isNotEmpty) ...[
+                  const SizedBox(height: 6),
+                  _InfoRow(
+                    icon: Icons.notes_outlined,
+                    label: 'Lý do',
+                    value: item.reason!,
+                  ),
+                ],
+                const SizedBox(height: 10),
+
+                // File HĐ + File CK
+                Builder(
+                  builder: (ctx) {
+                    final allFiles = item.files ?? const <ApproveBookingFile>[];
+                    final hasInvoice = allFiles.any((f) => f.fileType == 'INVOICE');
+                    final hasBillCk = allFiles.any((f) => f.fileType == 'BILL_CK');
+                    if (!hasInvoice && !hasBillCk) {
+                      return const SizedBox.shrink();
+                    }
+                    return Row(
+                      children: [
+                        if (hasInvoice)
+                          _FileButton(
+                            label: 'File HĐ',
+                            icon: Icons.receipt_outlined,
+                            color: AppColors.success,
+                            onTap: () => _showAttachmentsByType(ctx, 'INVOICE'),
+                          ),
+                        if (hasInvoice && hasBillCk) const SizedBox(width: 8),
+                        if (hasBillCk)
+                          _FileButton(
+                            label: 'File CK',
+                            icon: Icons.payment_outlined,
+                            color: AppColors.primaryERP,
+                            onTap: () => _showAttachmentsByType(ctx, 'BILL_CK'),
+                          ),
+                      ],
+                    );
+                  },
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  String _formatDate(DateTime? d) {
+    if (d == null) return '-';
+    return _dateFmt.format(d);
+  }
+
+  String _formatMoney(double? amount) {
+    if (amount == null) return '-';
+    return '${_moneyFmt.format(amount)} VNĐ';
+  }
+
+  String _formatBank() {
+    final acc = (item.bankAccount ?? '').trim();
+    final name = (item.bankName ?? '').trim();
+    if (acc.isEmpty && name.isEmpty) return '-';
+    if (acc.isEmpty) return name;
+    if (name.isEmpty) return acc;
+    return '$acc - $name';
+  }
+
+  void _showAttachmentsByType(BuildContext context, String fileType) {
+    final files = (item.files ?? const <ApproveBookingFile>[])
+        .where((f) => f.fileType == fileType)
+        .toList();
+    if (files.isEmpty) {
+      final label = fileType == 'INVOICE' ? 'Hóa đơn' : 'Bill CK';
+      context.showMessage(
+        'Phiếu không có file $label',
+        type: SnackBarType.error,
+      );
+      return;
+    }
+    showModalBottomSheet<void>(
+      context: context,
+      backgroundColor: Colors.white,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (_) => _AttachmentListSheet(
+        files: files,
+        title: fileType == 'INVOICE' ? 'Danh sách File HĐ' : 'Danh sách File CK',
+      ),
+    );
+  }
+}
+
+//---(Status Chip)---//
+
+/// Chip trạng thái dựa trên `DetailStatus`:
+/// 2 = Chưa duyệt, 3 = Đã duyệt (theo API trả về).
+class _StatusChip extends StatelessWidget {
+  const _StatusChip({required this.status});
+
+  final int? status;
+
+  @override
+  Widget build(BuildContext context) {
+    final (label, bgColor, textColor) = _resolve();
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: bgColor.withValues(alpha: 0.15),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: bgColor.withValues(alpha: 0.5)),
+      ),
+      child: Text(
+        label,
+        style: TextStyle(
+          fontSize: 11,
+          fontWeight: FontWeight.w600,
+          color: textColor,
+        ),
+      ),
+    );
+  }
+
+  (String, Color, Color) _resolve() {
+    switch (status) {
+      case 2:
+        return ('Chưa duyệt', AppColors.warning, AppColors.warning);
+      case 3:
+        return ('Đã duyệt', AppColors.success, AppColors.success);
+      default:
+        return ('Không rõ', AppColors.gray, AppColors.gray);
+    }
+  }
+}
+
+//---(Info Row)---//
+
+class _InfoRow extends StatelessWidget {
+  const _InfoRow({
+    required this.icon,
+    required this.label,
+    required this.value,
+    this.valueColor,
+    this.isBold = false,
+  });
+
+  final IconData icon;
+  final String label;
+  final String value;
+  final Color? valueColor;
+  final bool isBold;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Icon(icon, size: 14, color: AppColors.gray),
+        const SizedBox(width: 6),
+        Text(
+          '$label: ',
+          style: const TextStyle(
+            fontSize: 12,
+            color: AppColors.gray,
+            height: 1.2,
+          ),
+        ),
+        Expanded(
+          child: Text(
+            value,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: isBold ? FontWeight.w700 : FontWeight.w500,
+              color: valueColor ?? AppColors.enableText,
+              height: 1.2,
+            ),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+//---(File Button)---//
+
+class _FileButton extends StatelessWidget {
+  const _FileButton({
+    required this.label,
+    required this.icon,
+    required this.color,
+    required this.onTap,
+  });
+
+  final String label;
+  final IconData icon;
+  final Color color;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(8),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        decoration: BoxDecoration(
+          color: color.withValues(alpha: 0.1),
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: color.withValues(alpha: 0.3)),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon, size: 14, color: color),
+            const SizedBox(width: 4),
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.w600,
+                color: color,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+//---(List Header)---//
+
+class _ListHeader extends StatelessWidget {
+  const _ListHeader({
+    required this.total,
+    required this.pendingCount,
+    required this.approvedCount,
+    required this.isSearching,
+  });
+
+  final int total;
+  final int pendingCount;
+  final int approvedCount;
+  final bool isSearching;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+      decoration: BoxDecoration(
+        color: AppColors.primaryERP,
+        borderRadius: BorderRadius.circular(14),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.primaryERP.withValues(alpha: 0.25),
+            blurRadius: 12,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.baseline,
+                  textBaseline: TextBaseline.alphabetic,
+                  children: [
+                    Flexible(
+                      child: Text(
+                        '$total',
+                        style: const TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                          height: 1.1,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    const SizedBox(width: 4),
+                    const Text(
+                      'phiếu',
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 6),
+                Row(
+                  children: [
+                    _MiniCount(
+                      icon: Icons.pending_outlined,
+                      label: 'Chưa duyệt',
+                      count: pendingCount,
+                    ),
+                    const SizedBox(width: 10),
+                    _MiniCount(
+                      icon: Icons.check_circle_outline,
+                      label: 'Đã duyệt',
+                      count: approvedCount,
+                    ),
+                  ],
+                ),
+                if (isSearching)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 2),
+                    child: Text(
+                      'Đang tìm kiếm',
+                      style: TextStyle(
+                        fontSize: 11,
+                        color: Colors.white.withValues(alpha: 0.85),
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Nhãn nhỏ hiển thị số lượng theo trạng thái (Chưa duyệt / Đã duyệt) trong header.
+class _MiniCount extends StatelessWidget {
+  const _MiniCount({
+    required this.icon,
+    required this.label,
+    required this.count,
+  });
+
+  final IconData icon;
+  final String label;
+  final int count;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha: 0.18),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 14, color: Colors.white),
+          const SizedBox(width: 4),
+          Text(
+            '$label: $count',
+            style: const TextStyle(
+              fontSize: 11,
+              fontWeight: FontWeight.w600,
+              color: Colors.white,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+//---(Status Filter Sheet)---//
+
+/// Sheet helper: các lựa chọn trạng thái duyệt.
+/// `null` = Tất cả, `2` = Chưa duyệt, `3` = Đã duyệt.
+const _kStatusOptions = <(int?, String)>[
+  (null, 'Tất cả'),
+  (2, 'Chưa duyệt'),
+  (3, 'Đã duyệt'),
+];
+
+/// Wrapper phân biệt "user đã chọn" (non-null) với "dismiss sheet" (null)
+/// khi giá trị nội bộ là `int?` (Tất cả = null).
+class _StatusPick {
+  const _StatusPick(this.value);
+  final int? value;
+}
+
+//---(Selection Checkbox)---//
+
+/// Checkbox bo tròn hiển thị ở leading của mỗi card khi selection bật.
+class _SelectionCheckbox extends StatelessWidget {
+  const _SelectionCheckbox({required this.value, required this.onChanged});
+
+  final bool value;
+  final ValueChanged<bool?> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () => onChanged(!value),
+      borderRadius: BorderRadius.circular(20),
+      child: Container(
+        width: 24,
+        height: 24,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: value ? AppColors.primaryERP : Colors.transparent,
+          border: Border.all(
+            color: value
+                ? AppColors.primaryERP
+                : Colors.grey.shade400,
+            width: 2,
+          ),
+        ),
+        child: value
+            ? const Icon(Icons.check, size: 16, color: Colors.white)
+            : null,
+      ),
+    );
+  }
+}
+
+//---(Approve Actions)---//
+// (Đã thay bằng ApproveBookingGuestHouseSelectionBar ở dưới body.)
+
+//---(Attachment List Sheet)---//
+
+/// Bottom sheet hiển thị danh sách file đính kèm.
+/// Mỗi dòng gồm icon loại file + tên file + icon mắt để xem.
+class _AttachmentListSheet extends StatelessWidget {
+  const _AttachmentListSheet({required this.files, this.title});
+
+  final List<ApproveBookingFile> files;
+  final String? title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      constraints: BoxConstraints(
+        maxHeight: MediaQuery.of(context).size.height * 0.7,
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // Handle bar
+          Center(
+            child: Container(
+              margin: const EdgeInsets.only(top: 12),
+              width: 40,
+              height: 4,
+              decoration: BoxDecoration(
+                color: AppColors.gray.withValues(alpha: 0.3),
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+          ),
+          // Title
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Row(
+              children: [
+                const Icon(
+                  Icons.attach_file,
+                  size: 20,
+                  color: AppColors.primaryERP,
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  title ?? 'Danh sách file (${files.length})',
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.enableText,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const Divider(height: 1),
+          // File list
+          Flexible(
+            child: ListView.separated(
+              shrinkWrap: true,
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              itemCount: files.length,
+              separatorBuilder: (_, __) =>
+                  const Divider(height: 1, indent: 56),
+              itemBuilder: (context, index) {
+                final file = files[index];
+                return _FileListTile(file: file);
+              },
+            ),
+          ),
+          const SizedBox(height: 16),
+        ],
+      ),
+    );
+  }
+}
+
+/// Một dòng file trong danh sách: icon loại file + tên + icon mắt để xem.
+class _FileListTile extends StatelessWidget {
+  const _FileListTile({required this.file});
+
+  final ApproveBookingFile file;
+
+  IconData get _icon {
+    final ext = (file.fileName ?? '').split('.').last.toLowerCase();
+    switch (ext) {
+      case 'jpg':
+      case 'jpeg':
+      case 'png':
+      case 'gif':
+      case 'webp':
+      case 'heic':
+        return Icons.image_outlined;
+      case 'pdf':
+        return Icons.picture_as_pdf_outlined;
+      case 'doc':
+      case 'docx':
+        return Icons.description_outlined;
+      case 'xls':
+      case 'xlsx':
+        return Icons.table_chart_outlined;
+      default:
+        return Icons.insert_drive_file_outlined;
+    }
+  }
+
+  Color get _iconColor {
+    final ext = (file.fileName ?? '').split('.').last.toLowerCase();
+    switch (ext) {
+      case 'jpg':
+      case 'jpeg':
+      case 'png':
+      case 'gif':
+      case 'webp':
+      case 'heic':
+        return AppColors.success;
+      case 'pdf':
+        return Colors.red;
+      case 'doc':
+      case 'docx':
+        return Colors.blue;
+      case 'xls':
+      case 'xlsx':
+        return Colors.green;
+      default:
+        return AppColors.gray;
+    }
+  }
+
+  void _viewFile(BuildContext context) {
+    final url = file.url;
+    if (url == null || url.isEmpty) {
+      context.showMessage('Không có link file', type: SnackBarType.error);
+      return;
+    }
+
+    // Kiểm tra xem có phải ảnh không
+    final ext = (file.fileName ?? '').split('.').last.toLowerCase();
+    final imageExts = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'heic'];
+    final isImage = imageExts.contains(ext);
+
+    if (isImage) {
+      Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (_) => _ImageViewer(url: url, fileName: file.fileName ?? 'Ảnh'),
+        ),
+      );
+    } else {
+      context.showMessage('Mở file: $url', type: SnackBarType.error);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final url = file.url;
+    final hasUrl = url != null && url.isNotEmpty;
+
+    return ListTile(
+      dense: true,
+      leading: Container(
+        width: 40,
+        height: 40,
+        decoration: BoxDecoration(
+          color: _iconColor.withValues(alpha: 0.1),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Icon(_icon, color: _iconColor, size: 22),
+      ),
+      title: Text(
+        file.fileName ?? 'Không có tên',
+        style: const TextStyle(fontSize: 13),
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+      ),
+      subtitle: Text(
+        _typeLabel,
+        style: TextStyle(fontSize: 11, color: AppColors.gray),
+      ),
+      trailing: IconButton(
+        icon: const Icon(Icons.visibility_outlined, size: 20),
+        color: AppColors.primaryERP,
+        onPressed: hasUrl ? () => _viewFile(context) : null,
+      ),
+      onTap: hasUrl ? () => _viewFile(context) : null,
+    );
+  }
+
+  String get _typeLabel {
+    final type = file.fileType ?? '';
+    switch (type) {
+      case 'INVOICE':
+        return 'Hóa đơn';
+      case 'BILL_CK':
+        return 'Bill chuyển khoản';
+      default:
+        return type.isEmpty ? 'Không rõ loại' : type;
+    }
+  }
+}
+
+/// Màn hình xem ảnh full-screen.
+class _ImageViewer extends StatelessWidget {
+  const _ImageViewer({required this.url, this.fileName});
+
+  final String url;
+  final String? fileName;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        foregroundColor: Colors.white,
+        title: Text(
+          fileName ?? 'Xem ảnh',
+          style: const TextStyle(fontSize: 14, color: Colors.white),
+        ),
+        leading: IconButton(
+          icon: const Icon(Icons.close),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+      ),
+      body: Center(
+        child: InteractiveViewer(
+          minScale: 0.5,
+          maxScale: 4.0,
+          child: Image.network(
+            url,
+            fit: BoxFit.contain,
+            loadingBuilder: (_, child, progress) {
+              if (progress == null) return child;
+              return Center(
+                child: CircularProgressIndicator(
+                  value: progress.expectedTotalBytes != null
+                      ? progress.cumulativeBytesLoaded /
+                          progress.expectedTotalBytes!
+                      : null,
+                  color: Colors.white,
+                ),
+              );
+            },
+            errorBuilder: (_, __, ___) => const Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.broken_image_outlined,
+                    size: 64, color: Colors.white54),
+                SizedBox(height: 12),
+                Text(
+                  'Không thể tải ảnh',
+                  style: TextStyle(color: Colors.white54),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

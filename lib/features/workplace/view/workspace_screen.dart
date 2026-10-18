@@ -183,7 +183,7 @@ class _WorkPlaceScreenState
                   const SizedBox(height: 16),
 
                   WpActionCard(
-                    onItemTap: (item) {
+                    onItemTap: (item) async {
                       final user = state.user;
                       if (user == null) return;
 
@@ -196,6 +196,22 @@ class _WorkPlaceScreenState
                         }
 
                         DialogService.showProcessing(context: context);
+                        return;
+                      }
+
+                      // Personal Approve: dùng `personalApproveRoute` đã được
+                      // resolve sẵn bởi `workspace_bloc` (dựa trên permission).
+                      // - Có `personal_approve:senior` (Senior / Admin) → màn
+                      //   Senior duyệt (thẳng, bỏ qua menu trung gian).
+                      // - Ngược lại → menu trung gian `personalApprove` (liệt
+                      //   kê các nhóm duyệt: Duyệt công, ...).
+                      if (item.id == 'personal_approve') {
+                        final route = state.personalApproveRoute;
+                        if (route != null && route.isNotEmpty) {
+                          context.push(route);
+                        } else {
+                          DialogService.showProcessing(context: context);
+                        }
                         return;
                       }
 
@@ -247,6 +263,18 @@ class _WorkPlaceScreenState
 
                   WpActionCard(
                     onItemTap: (item) {
+
+                      // Personal Approve: route đã được WorkspaceBloc resolve sẵn
+                      // lúc load workspace (theo permission Senior N85).
+                      // Bấm là vào thẳng, không gọi API, không show processing.
+                      if (item.id == 'personal_approve') {
+                        final route = state.personalApproveRoute;
+                        if (route != null && route.isNotEmpty) {
+                          context.push(route);
+                        }
+                        return;
+                      }
+
                       final route = item.route;
                       if (route == null || route.isEmpty) {
                         DialogService.showProcessing(context: context);
@@ -273,6 +301,21 @@ class _WorkPlaceScreenState
                         route: RouteNames.weekplan,
                         imageUrl: AppImages.app_menu_week_plan,
                       ),
+                      // AppItemModel(
+                      //   id: 'week_plan',
+                      //   iconCodePoint: Icons.newspaper_outlined.codePoint,
+                      //   name: 'applications.week_plan'.tr(),
+                      //   route: '/week_plan',
+                      //   imageUrl: AppImages.app_menu_week_plan,
+                      // ),
+                      if (_hasApprovePermission(state.user))
+                        AppItemModel(
+                          id: 'personal_approve',
+                          iconCodePoint: Icons.approval_outlined.codePoint,
+                          name: 'applications.personal_approve'.tr(),
+                          // route trống - sẽ resolve ngay khi tap
+                          // imageUrl: AppImages.app_menu_week_plan,
+                        ),
                       // AppItemModel(
                       //   id: 'stock',
                       //   iconCodePoint: Icons.shopping_cart_outlined.codePoint,
@@ -308,6 +351,12 @@ class _WorkPlaceScreenState
                         route: RouteNames.signature,
                         imageUrl: AppImages.signature,
                       ),
+                      // AppItemModel(
+                      //   id: 'warehouse',
+                      //   iconCodePoint: Icons.warehouse_outlined.codePoint,
+                      //   name: 'applications.warehouse'.tr(),
+                      //   route: RouteNames.warehouse,
+                      // ),
                     ],
                   ),
 
@@ -341,6 +390,19 @@ class _WorkPlaceScreenState
       }, buildWhen: (p, n) => p.status != n.status || p.user != n.user),
     );
   }
+
+  /// Kiểm tra user có được phép hiển thị chức năng "Phê duyệt" hay không.
+  ///
+  /// Dựa trên field `permissions` (chuỗi phân tách bởi dấu phẩy) của user.
+  /// Chỉ những user có chứa một trong các mã N1, N32, N85 mới được thấy item.
+  bool _hasApprovePermission(User? user) {
+    if (user == null) return false;
+    final codes = user.permissions.split(',').map((e) => e.trim()).toSet();
+    return codes.any(_approvePermissionCodes.contains);
+  }
+
+  /// Danh sách các mã permission cho phép hiển thị chức năng Phê duyệt.
+  static const _approvePermissionCodes = {'N1', 'N32', 'N85'};
 
   /// Resolve full URL cho avatar qua endpoint /api/home/avatar.
   ///

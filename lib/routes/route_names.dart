@@ -208,8 +208,10 @@ class RouteNames {
 
   // Contract Registration
   static const contractRegistration = '/reg_general/contract_registration';
-  static const contractRegistrationAdd = '/reg_general/contract_registration/add';
-  static const contractRegistrationDetail = '/reg_general/contract_registration/detail';
+  static const contractRegistrationAdd =
+      '/reg_general/contract_registration/add';
+  static const contractRegistrationDetail =
+      '/reg_general/contract_registration/detail';
 
   // Work Requirement
   static const workRequirement = '/reg_general/work_requirement';
@@ -260,6 +262,41 @@ class RouteNames {
   static const generalForms = '/general_forms';
   static const generalFormDetail = '/general_forms/detail';
 
+  // Personal Approve
+  static const personalApprove = '/personal_approve';
+
+  /// Menu "Duyệt công" - grid 9 loại phiếu (Đăng ký nghỉ, Làm thêm, ...).
+  /// Là lớp menu thứ 2 trong flow Phê duyệt: từ `personalApprove` (menu nhóm)
+  /// bấm "Duyệt công" → màn này → bấm 1 loại phiếu → màn TBP duyệt.
+  static const personalApproveTimesheetMenu =
+      '/personal_approve/approve_timesheet/menu';
+  static const personalApproveTimesheet =
+      '/personal_approve/approve_timesheet/timesheet';
+  static const personalApproveTimesheetDetail =
+      '/personal_approve/approve_timesheet/timesheet/detail';
+  static const personalApproveSeniorTimesheet =
+      '/personal_approve/approve_timesheet/senior_timesheet';
+  static const personalApproveSeniorTimesheetDetail =
+      '/personal_approve/approve_timesheet/senior_timesheet/detail';
+
+  /// Helper: route duyệt công theo một `tType` cụ thể.
+  ///
+  /// Dùng cho menu Phê duyệt — mỗi mục con (Đăng ký nghỉ, Làm thêm, ...)
+  /// gọi route này với `tType` tương ứng để API `getApproveTimesheet` filter
+  /// theo `TType` trong payload.
+  static String personalApproveTimesheetByType(int tType) =>
+      '$personalApproveTimesheet?tType=$tType';
+
+  /// Màn Duyệt phiếu Đặt phòng nhà nghỉ (TBP).
+  /// Hiện tại chỉ hiển thị danh sách + bộ lọc; chưa có action duyệt.
+  static const personalApproveBookingGuestHouse =
+      '/personal_approve/approve_booking_guest_house';
+
+  /// Menu "Duyệt ĐX/NN" (Đặt xe / Nhà nghỉ) - grid 3 mục: Duyệt file,
+  /// Duyệt ĐNTT, Duyệt tạm ứng.
+  static const personalApproveBookingGnMenu =
+      '/personal_approve/approve_booking_gn/menu';
+
   // Warehouse
   static const warehouseArea = '/warehouse_area';
   static const warehouseSaleArea = '/warehouse_sale_area';
@@ -293,4 +330,7 @@ class RouteNames {
   static const projectMenu = '/project/menu';
   static const projectList = 'list';
   static const materialCategory = 'material-category';
+
+  // Celebration (Birthday / Seniority popup)
+  static const celebration = '/celebration';
 }

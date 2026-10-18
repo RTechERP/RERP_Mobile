@@ -458,6 +458,17 @@ class ApiEndPoint {
   // Avatar
   static const String uploadAvatar = '/home/upload-avatar';
 
+  // Personal Approve
+  // Approve Timesheet
+  static const String getApproveTimesheet = '/home/get-approve-by-approve-tp';
+  static const String getApproveUserTeam = '/home/get-user-team';
+  static const String getApproveSeniorInfo =
+      '/home/get-user-team-link-by-leader-id';
+  // Senior approve/reject
+  static const String approveSeniorNew = '/Approve/approve-senior-new';
+  // TBP approve/reject
+  static const String approveTBPNew = '/Approve/approve-tbp-new';
+
   // General Form
   static const String departForm = '/document/get-departments';
   static const String getGeneralForm = '/document/get-document-admin-sale';
@@ -592,6 +603,16 @@ class ApiEndPoint {
   /// Permission: chỉ `currentUser` (so khớp `CreatedBy`) mới được xoá.
   static const String removeBookingGuestHouseFile =
       '/AccommodationBookingPaymentOrder/remove-file';
+
+  /// API: GET /AccommodationBookingPaymentOrder/get-pending-for-tbp
+  /// Lấy danh sách phiếu thanh toán đặt phòng nhà nghỉ chờ duyệt TBP.
+  static const String accommodationBookingPaymentOrderGetPendingForTbp =
+      '/AccommodationBookingPaymentOrder/get-pending-for-tbp';
+
+  /// API: POST /AccommodationBookingPaymentOrder/update-detail-status
+  /// Cập nhật trạng thái duyệt của phiếu (DetailID).
+  static const String accommodationBookingPaymentOrderUpdateDetailStatus =
+      '/AccommodationBookingPaymentOrder/update-detail-status';
 
   /// Check xung đột trước khi lưu phiếu đăng ký bàn test.
   /// API: POST /ESLRegistration/check-conflict (form-data).
