@@ -681,7 +681,7 @@ class _SaleGdnScreenState
       // - Admin luôn có quyền.
       // - Người giao hoặc người nhận của phiếu.
       // - UserID thuộc danh sách được phép xác nhận đặt hàng.
-      const preparedConfirmAllowedIds = {743, 726, 30, 55, 24, 1763, 1785};
+      const preparedConfirmAllowedIds = {1110, 24, 1763, 1785};
       final isPreparedActor = isCurrentUserAdmin ||
           preparedConfirmAllowedIds.contains(currentEmployeeId) ||
           (item.senderId != null && item.senderId == currentEmployeeId) ||

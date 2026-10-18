@@ -212,6 +212,15 @@ class SaleGdnBloc extends BaseBloc<SaleGdnEvent, SaleGdnState> {
       (_) => state.currentEmployeeId,
       (u) => u?.id ?? state.currentEmployeeId,
     );
+    // DEBUG: in cả id (UserID) + employeeId (EmployeeID) để xác nhận R0037
+    // đang dùng giá trị nào. Xoá sau khi debug xong.
+    userRes.fold((_) => null, (u) {
+      if (u != null) {
+        _log.logI('🔎 [DEBUG] currentUser.id=${u.id}, '
+            'currentUser.employeeId=${u.employeeId}, '
+            'state.currentEmployeeId=$employeeId');
+      }
+    });
     final fullName = userRes.fold(
       (_) => state.currentFullName,
       (u) => u?.fullName ?? state.currentFullName,
@@ -1791,13 +1800,20 @@ BillExporResponse? _findGdnInList(String code) {
       },
     );
 
-    // Reload list để phản ánh trạng thái mới từ server.
-    await _fetchGdns(emit);
-
-    // Clear selection và emit message.
+    // Optimistic update: patch `gdns` bằng giá trị submit (không gọi
+    // `_fetchGdns` để giữ nguyên vị trí phiếu, tránh re-init màn hình).
+    // Sau đó clear selection (bỏ tick) + emit message.
+    final patched = state.gdns.map((b) {
+      if (!ids.contains(b.id)) return b;
+      return b.copyWith(
+        isOrderPrepared: isPrepared,
+        isPrepared: isPrepared,
+      );
+    }).toList(growable: false);
     emit(state.copyWith(
       isUpdatingStatus: false,
       selectedBillIds: const <int>{},
+      gdns: patched,
       billStatusMessage: message,
     ));
   }
@@ -1839,13 +1855,20 @@ BillExporResponse? _findGdnInList(String code) {
       },
     );
 
-    // Reload list để phản ánh trạng thái mới từ server.
-    await _fetchGdns(emit);
-
-    // Clear selection và emit message.
+    // Optimistic update: patch `gdns` bằng giá trị submit (không gọi
+    // `_fetchGdns` để giữ nguyên vị trí phiếu, tránh re-init màn hình).
+    // Sau đó clear selection (bỏ tick) + emit message.
+    final patched = state.gdns.map((b) {
+      if (!ids.contains(b.id)) return b;
+      return b.copyWith(
+        isOrderReceived: isReceived,
+        isReceived: isReceived,
+      );
+    }).toList(growable: false);
     emit(state.copyWith(
       isUpdatingStatus: false,
       selectedBillIds: const <int>{},
+      gdns: patched,
       billStatusMessage: message,
     ));
   }

@@ -58,7 +58,7 @@ class BulkBillActionSheet extends StatefulWidget {
   /// Danh sách UserID được phép xác nhận / huỷ "Chuẩn bị hàng" bất kể có
   /// phải người giao/nhận của phiếu hay không.
   static const Set<int> _preparedConfirmAllowedIds =
-      {743, 726, 30, 55, 24, 1763, 1785};
+      {1110, 24, 1763, 1785};
 
   /// Nhóm UserID bị chặn thao tác nhóm "Nhận hàng" (kể cả khi trùng sender/
   /// receiver của phiếu). Nhóm này chỉ được quyền thao tác "Chuẩn bị hàng".

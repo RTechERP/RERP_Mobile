@@ -120,7 +120,7 @@ class PreparedReceivedActionSheet extends StatelessWidget {
   /// phải người giao/nhận của phiếu hay không. Cùng với admin + người giao/
   /// nhận của phiếu → đủ điều kiện thao tác nhóm chuẩn bị.
   static const Set<int> _preparedConfirmAllowedIds =
-      {743, 726, 30, 55, 24, 1763, 1785};
+      {1110, 24, 1763, 1785};
 
   bool get _canDoPreparedActions {
     if (isCurrentUserAdmin) return true;
