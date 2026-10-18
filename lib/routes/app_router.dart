@@ -1686,8 +1686,11 @@ class AppRouter {
                 path: RouteNames.personalApproveSeniorTimesheetDetail,
                 builder: (context, state) {
                   final extra = state.extra;
-                  if (extra is ApproveTimesheetItem) {
-                    return ApproveTimesheetDetailScreen(item: extra);
+                  if (extra is (ApproveTimesheetItem, ApproveTimesheetRole)) {
+                    return ApproveTimesheetDetailScreen(
+                      item: extra.$1,
+                      // role: extra.$2,
+                    );
                   }
                   return Scaffold(
                     appBar: AppBar(title: const Text('Chi tiết phiếu')),
@@ -1707,8 +1710,11 @@ class AppRouter {
                 path: RouteNames.personalApproveTimesheetDetail,
                 builder: (context, state) {
                   final extra = state.extra;
-                  if (extra is ApproveTimesheetItem) {
-                    return ApproveTimesheetDetailScreen(item: extra);
+                  if (extra is (ApproveTimesheetItem, ApproveTimesheetRole)) {
+                    return ApproveTimesheetDetailScreen(
+                      item: extra.$1,
+                      // role: extra.$2,
+                    );
                   }
                   return Scaffold(
                     appBar: AppBar(title: const Text('Chi tiết phiếu')),

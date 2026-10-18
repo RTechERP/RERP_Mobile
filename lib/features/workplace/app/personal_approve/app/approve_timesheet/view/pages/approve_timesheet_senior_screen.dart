@@ -246,11 +246,19 @@ class _ApproveTimesheetSeniorScreenState
     }
   }
 
-  void _openDetail(ApproveTimesheetItem item) {
-    context.push(
+  /// Mở màn detail cho phiếu Senior.
+  /// Truyền role qua extra để detail screen quyết định event Senior/TBP,
+  /// không phụ thuộc state.role của bloc.
+  /// Mở màn chi tiết. Đợi kết quả trả về: `true` → reload danh sách
+  /// (detail đã duyệt / huỷ / từ chối thành công).
+  Future<void> _openDetail(ApproveTimesheetItem item) async {
+    final changed = await context.push<bool>(
       RouteNames.personalApproveSeniorTimesheetDetail,
-      extra: item,
+      extra: (item, ApproveTimesheetRole.senior),
     );
+    if (changed == true) {
+      bloc.add(const ApproveTimesheetEvent.init());
+    }
   }
 
   /// Hiển thị DialogService xác nhận trước khi gọi API duyệt / huỷ duyệt.

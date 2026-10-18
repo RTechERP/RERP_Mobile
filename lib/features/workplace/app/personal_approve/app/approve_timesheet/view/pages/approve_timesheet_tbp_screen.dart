@@ -7,6 +7,7 @@ import '../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../common/utils/dialog/dialog_service.dart';
 import '../../../../../../../../common/utils/navigation/navigation_utils.dart';
+import '../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../common/widgets/date_range_picker.dart';
 import '../../../../../../../../routes/route_names.dart';
 import '../../../../../../../auth/data/repository/auth_repository.dart';
@@ -44,10 +45,59 @@ class _ApproveTimesheetTbpScreenState
         > {
   int? _approverEmployeeId;
 
+  /// Action hàng loạt mà user vừa dispatch — dùng để chọn câu thông báo
+  /// trong `listener` khi bloc chuyển `isTbpApproving: true → false`.
+  _TbpBulkAction? _lastTbpAction;
+
+  /// Snapshot cờ `isTbpApproving` của lần `listener` trước — để nhận
+  /// diện transition `true → false` (kết thúc một lần duyệt TBP).
+  bool _wasTbpApproving = false;
+
   @override
   void initState() {
     super.initState();
     _bootstrap();
+  }
+
+  /// Bắt kết quả các thao tác hàng loạt của TBP (duyệt / huỷ / từ chối / bypass).
+  ///
+  /// Bloc không lưu "action" cuối cùng, nên màn hình tự track bằng
+  /// `_lastTbpAction` và nhận diện qua transition `isTbpApproving:
+  /// true → false` (kèm `status`).
+  @override
+  void listener(BuildContext context, ApproveTimesheetState state) {
+    final isApproving = state.isTbpApproving;
+    final lastAction = _lastTbpAction;
+    final wasApproving = _wasTbpApproving;
+    _wasTbpApproving = isApproving;
+
+    // Chỉ xử lý khi vừa kết thúc một lần duyệt TBP
+    // (transition `isTbpApproving: true → false`).
+    if (!wasApproving || isApproving || lastAction == null) return;
+    _lastTbpAction = null;
+
+    final isSuccess = state.status == BaseStateStatus.success;
+    final isFailed = state.status == BaseStateStatus.failed;
+    if (!isSuccess && !isFailed) return;
+
+    final type = isSuccess ? SnackBarType.success : SnackBarType.error;
+    final message =
+        isSuccess ? _successMessage(lastAction) : (state.message ?? '');
+    if (message.isEmpty) return;
+    showMessage(context, message, type: type);
+  }
+
+  String _successMessage(_TbpBulkAction action) {
+    switch (action) {
+      case _TbpBulkAction.approve:
+        return 'Duyệt thành công';
+      case _TbpBulkAction.unapprove:
+        return 'Huỷ duyệt thành công';
+      case _TbpBulkAction.decline:
+        return 'Từ chối thành công';
+      case _TbpBulkAction.bypass:
+        return 'Duyệt hộ Senior thành công';
+    }
   }
 
   Future<void> _bootstrap() async {
@@ -251,7 +301,7 @@ class _ApproveTimesheetTbpScreenState
           onToggleGroup: () => bloc.add(
             ApproveTimesheetEvent.toggleSelectGroup(g.tType),
           ),
-          onItemTap: (item) => _openDetail(item),
+          onItemTap: (item) {},
           onItemCheckboxTap: (item) => _toggleSelection(item),
         );
       },
@@ -265,11 +315,24 @@ class _ApproveTimesheetTbpScreenState
     }
   }
 
-  void _openDetail(ApproveTimesheetItem item) {
-    context.push(
+  /// Mở màn detail cho phiếu TBP.
+  /// Truyền role qua extra để detail screen quyết định event Senior/TBP,
+  /// không phụ thuộc state.role của bloc (tránh race khi user bấm nút
+  /// trước khi bloc init xong).
+  /// Mở màn chi tiết. Đợi kết quả trả về: `true` → reload danh sách
+  /// (detail đã duyệt / huỷ / từ chối thành công).
+  Future<void> _openDetail(ApproveTimesheetItem item) async {
+    final changed = await context.push<bool>(
       RouteNames.personalApproveTimesheetDetail,
-      extra: item,
+      extra: (item, ApproveTimesheetRole.tbp),
     );
+    if (changed == true) {
+      bloc.add(ApproveTimesheetEvent.init(
+        role: ApproveTimesheetRole.tbp,
+        employeeId: _approverEmployeeId,
+        status: bloc.state.filteredStatus,
+      ));
+    }
   }
 
   /// Xác nhận TBP duyệt / huỷ duyệt:
@@ -308,6 +371,7 @@ class _ApproveTimesheetTbpScreenState
       );
       if (!confirmed) return;
 
+      _lastTbpAction = _TbpBulkAction.unapprove;
       bloc.add(const ApproveTimesheetEvent.tbpUnapprove());
       return;
     }
@@ -315,6 +379,13 @@ class _ApproveTimesheetTbpScreenState
     // Duyệt → dialog thông báo Senior
     final seniorApproved = selected.where((e) => (e.isSeniorApproved ?? 0) == 1).toList();
     final notSeniorApproved = selected.where((e) => (e.isSeniorApproved ?? 0) != 1).toList();
+
+    // Chỉ có phiếu Senior chưa duyệt → bỏ qua confirm dialog,
+    // mở thẳng bottom sheet tick chọn để duyệt hộ.
+    if (seniorApproved.isEmpty) {
+      await _openBypassSheet(context, notSeniorApproved);
+      return;
+    }
 
     final confirmed = await DialogService.showConfirmTBPApprove(
       context: context,
@@ -325,16 +396,16 @@ class _ApproveTimesheetTbpScreenState
     );
     if (!confirmed) return;
 
-    // Senior đã duyệt → submit TBP ngay
-    if (seniorApproved.isNotEmpty) {
-      bloc.add(const ApproveTimesheetEvent.clearSelection());
-      for (final id in seniorApproved.where((e) => e.id != null).map((e) => e.id!)) {
-        bloc.add(ApproveTimesheetEvent.toggleSelection(id));
-      }
-      bloc.add(const ApproveTimesheetEvent.tbpApprove());
+    // Senior đã duyệt → submit TBP ngay với selection = đúng nhóm đó
+    // (tránh _onBatchResult filter nhầm sang nhóm chưa Senior duyệt).
+    _lastTbpAction = _TbpBulkAction.approve;
+    bloc.add(const ApproveTimesheetEvent.clearSelection());
+    for (final id in seniorApproved.where((e) => e.id != null).map((e) => e.id!)) {
+      bloc.add(ApproveTimesheetEvent.toggleSelection(id));
     }
+    bloc.add(const ApproveTimesheetEvent.tbpApprove());
 
-    // Senior chưa duyệt → mở sheet tick chọn để duyệt hộ
+    // Senior chưa duyệt → mở sheet tick chọn để duyệt hộ.
     if (notSeniorApproved.isNotEmpty) {
       await _openBypassSheet(context, notSeniorApproved);
     }
@@ -356,6 +427,16 @@ class _ApproveTimesheetTbpScreenState
 
     if (result == null || result.selected.isEmpty) return;
 
+    // Set selection đúng về các ids vừa tick trong sheet, để bloc
+    // `_onBatchResult` filter `state.items` đúng sau khi TBP success
+    // (tránh xoá nhầm những phiếu đã duyệt ở flow trước đó).
+    _lastTbpAction = _TbpBulkAction.bypass;
+    final selected = result.selectAll ? items : result.selected;
+    bloc.add(const ApproveTimesheetEvent.clearSelection());
+    for (final id in selected.where((e) => e.id != null).map((e) => e.id!)) {
+      bloc.add(ApproveTimesheetEvent.toggleSelection(id));
+    }
+
     if (result.selectAll) {
       bloc.add(ApproveTimesheetEvent.tbpSeniorBypassApprove(items, true));
     } else {
@@ -372,6 +453,7 @@ class _ApproveTimesheetTbpScreenState
       count: count,
     );
     if (reason == null || reason.trim().isEmpty) return;
+    _lastTbpAction = _TbpBulkAction.decline;
     bloc.add(ApproveTimesheetEvent.tbpDecline(reason.trim()));
   }
 
@@ -446,6 +528,10 @@ class _ApproveTimesheetTbpScreenState
 }
 
 enum TbpAction { approve, unapprove }
+
+/// Action hàng loạt TBP — dùng nội bộ để nhớ thao tác user vừa gửi và
+/// hiển thị thông báo phù hợp khi bloc trả về `success` / `failed`.
+enum _TbpBulkAction { approve, unapprove, decline, bypass }
 
 // ===== Filter sheet (status + type) =====
 

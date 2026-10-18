@@ -310,32 +310,53 @@ class ApproveTimesheetBloc
     List<ApproveTimesheetItem> items,
     bool isApproved,
   ) async {
-    if (state.seniorId == null || items.isEmpty) return;
+    if (items.isEmpty) {
+      emit(state.copyWith(
+        status: BaseStateStatus.failed,
+        message: 'Không có bản ghi nào để duyệt hộ Senior',
+      ));
+      return;
+    }
+    // TBP user có thể không có Senior trực tiếp → fallback về 0 để vẫn
+    // gửi được request bypass (server cho phép `ApprovedSeniorID = 0`).
+    final seniorId = state.seniorId ?? 0;
     emit(state.copyWith(isTbpApproving: true));
-    final result = await _approveTimesheetRepo.approveSenior(
+    final seniorResult = await _approveTimesheetRepo.approveSenior(
       items: items,
       isApproved: true,
-      seniorId: state.seniorId!,
+      seniorId: seniorId,
     );
-    result.fold(
-      (error) => emit(state.copyWith(
-        isTbpApproving: false,
-        status: BaseStateStatus.failed,
-        message: error.getErrorMessage,
-      )),
-      (_) async {
-        // Sau khi bypass thành công, submit TBP approve/unapprove
-        final tbpResult = await _approveTimesheetRepo.approveTBP(
-          items: items,
-          isApproved: isApproved,
-          approverEmployeeId: state.tbpApproverEmployeeId,
-        );
-        _onBatchResult(emit, tbpResult, isSeniorFlow: false);
+
+    // Phải xử lý 2 nhánh ĐỒNG BỘ trong handler async để bloc không
+    // bị `_isCompleted` khi closure gọi `emit` (qua `_onBatchResult`)
+    // sau khi handler đã kết thúc.
+    var seniorSucceeded = true;
+    seniorResult.fold(
+      (error) {
+        seniorSucceeded = false;
+        if (emit.isDone) return;
+        emit(state.copyWith(
+          isTbpApproving: false,
+          status: BaseStateStatus.failed,
+          message: error.getErrorMessage,
+        ));
       },
+      (_) {},
     );
+    if (!seniorSucceeded) return;
+    if (emit.isDone) return;
+
+    // Sau khi bypass thành công, submit TBP approve/unapprove
+    final tbpResult = await _approveTimesheetRepo.approveTBP(
+      items: items,
+      isApproved: isApproved,
+      approverEmployeeId: state.tbpApproverEmployeeId,
+    );
+    if (emit.isDone) return;
+    _onBatchResult(emit, tbpResult, isSeniorFlow: false);
   }
 
-  void _onBatchResult(
+  _onBatchResult(
     Emitter<ApproveTimesheetState> emit,
     Either<BaseError, bool> result, {
     required bool isSeniorFlow,
