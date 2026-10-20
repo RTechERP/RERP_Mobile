@@ -176,6 +176,11 @@ final _kPersonalApproveGroups = <_ApproveGroup>[
         icon: Icons.hotel_outlined,
         route: RouteNames.personalApproveBookingGnMenu,
       ),
+      _ApproveGroupItem(
+        title: 'Duyệt phiếu mua',
+        icon: Icons.shopping_cart_outlined,
+        route: RouteNames.personalApprovePurchasing,
+      ),
     ],
   ),
 ];

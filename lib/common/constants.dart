@@ -469,6 +469,36 @@ class ApiEndPoint {
   // TBP approve/reject
   static const String approveTBPNew = '/Approve/approve-tbp-new';
 
+  // Approve Purchasing (ProjectPartlistPurchaseRequest)
+  /// Lấy danh sách phiếu yêu cầu mua hàng theo bộ lọc (date, status,
+  /// project, keyword, employee, page/size...).
+  /// API: POST /ProjectPartlistPurchaseRequest/get-all
+  static const String getApprovePurchasing =
+      '/ProjectPartlistPurchaseRequest/get-all';
+
+  /// Lấy danh sách loại phiếu mua (dùng để tạo tab UI; ID 1/7/8 là 3 tab).
+  /// API: GET /ProjectPartlistPurchaseRequest/request-types
+  static const String getApprovePurchasingRequestTypes =
+      '/ProjectPartlistPurchaseRequest/request-types';
+
+  /// Lấy danh sách loại tiền tệ (dùng cho dropdown đơn vị tiền trong
+  /// phiếu mua). API: GET /currency/get-all
+  static const String getCurrencyAll = '/currency/get-all';
+
+  /// Lấy danh sách nhóm sản phẩm (dùng cho dropdown nhóm SP khi lọc/tạo
+  /// phiếu mua). API: GET /ProductGroup/get-productgroup-purchase
+  static const String getProductGroupPurchase =
+      '/ProductGroup/get-productgroup-purchase';
+
+  /// Lấy danh sách nhà cung cấp (dùng cho dropdown NCC khi lọc/tạo
+  /// phiếu mua). API: GET /suppliersale/list-supplier-sale
+  static const String getSupplierSaleList = '/suppliersale/list-supplier-sale';
+
+  /// Lấy danh sách dự án (dùng cho dropdown dự án khi lọc/tạo
+  /// phiếu mua). API: GET /ProjectPartlistPurchaseRequest/get-all-project
+  static const String getApprovePurchasingAllProject =
+      '/ProjectPartlistPurchaseRequest/get-all-project';
+
   // General Form
   static const String departForm = '/document/get-departments';
   static const String getGeneralForm = '/document/get-document-admin-sale';

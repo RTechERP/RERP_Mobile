@@ -56,6 +56,8 @@ import '../features/workplace/app/personal_approve/app/approve_timesheet/view/pa
 import '../features/workplace/app/personal_approve/app/approve_timesheet/view/pages/approve_timesheet_senior_screen.dart';
 import '../features/workplace/app/personal_approve/app/approve_booking_guest_house/view/bloc/approve_booking_guest_house_bloc.dart';
 import '../features/workplace/app/personal_approve/app/approve_booking_guest_house/view/pages/approve_booking_guest_house_screen.dart';
+import '../features/workplace/app/personal_approve/app/approve_purchasing/view/bloc/approve_purchasing_bloc.dart';
+import '../features/workplace/app/personal_approve/app/approve_purchasing/view/pages/approve_purchasing_screen.dart';
 import '../features/workplace/app/personal_approve/app/approve_timesheet/view/pages/approve_timesheet_tbp_screen.dart';
 import '../features/workplace/app/personal_approve/app/approve_timesheet/data/datasource/models/approve_timesheet_model.dart';
 import '../features/workplace/app/personal_approve/view/bloc/personal_approve_menu_bloc.dart';
@@ -1809,6 +1811,23 @@ class AppRouter {
                 path: RouteNames.personalApproveBookingGuestHouse,
                 builder: (context, state) =>
                     const ApproveBookingGuestHousePage(),
+              ),
+            ],
+          ),
+          //---(ApprovePurchasing)---//
+          // Màn Duyệt phiếu yêu cầu mua hàng — singleton bloc wrap ở
+          // ShellRoute để giữ state khi navigate ra/vào trang.
+          ShellRoute(
+            builder: (context, state, child) {
+              return BlocProvider.value(
+                value: getIt<ApprovePurchasingBloc>(),
+                child: child,
+              );
+            },
+            routes: [
+              GoRoute(
+                path: RouteNames.personalApprovePurchasing,
+                builder: (context, state) => const ApprovePurchasingScreen(),
               ),
             ],
           ),

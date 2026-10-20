@@ -292,6 +292,11 @@ class RouteNames {
   static const personalApproveBookingGuestHouse =
       '/personal_approve/approve_booking_guest_house';
 
+  /// Màn Duyệt phiếu yêu cầu mua hàng (ProjectPartlistPurchaseRequest).
+  /// Hiển thị 3 tab tương ứng với ID loại phiếu mua 1 / 7 / 8.
+  static const personalApprovePurchasing =
+      '/personal_approve/approve_purchasing';
+
   /// Menu "Duyệt ĐX/NN" (Đặt xe / Nhà nghỉ) - grid 3 mục: Duyệt file,
   /// Duyệt ĐNTT, Duyệt tạm ứng.
   static const personalApproveBookingGnMenu =
