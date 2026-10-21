@@ -42,6 +42,12 @@ class _ApprovePurchasingScreenState
     with TickerProviderStateMixin {
   late final TabController _tabController;
 
+  /// Key để điều khiển `RefreshIndicator` — auto-show spinner kiểu
+  /// pull-to-refresh khi bloc phát `isRefreshing = true` (đổi khoảng
+  /// ngày…). Trigger qua `BlocListener` ở `renderUI`.
+  final GlobalKey<RefreshIndicatorState> _refreshKey =
+      GlobalKey<RefreshIndicatorState>();
+
   /// Định nghĩa tĩnh 3 tab của màn hình (label + requestTypeId).
   /// `TabController` được tạo 1 lần dựa trên độ dài list này, không phụ
   /// thuộc vào kết quả API `/request-types` — bloc vẫn dùng các ID này
@@ -83,6 +89,23 @@ class _ApprovePurchasingScreenState
   void dispose() {
     _tabController.dispose();
     super.dispose();
+  }
+
+  /// Chỉ trigger khi `isRefreshing` chuyển từ `false → true` để hiện
+  /// spinner pull-to-refresh phía trên list.
+  @override
+  bool listenWhen(ApprovePurchasingState previous, ApprovePurchasingState current) {
+    return !previous.isRefreshing && current.isRefreshing;
+  }
+
+  /// Khi bloc vừa bật `isRefreshing` → auto-show spinner pull-to-
+  /// refresh (không phủ overlay đen, giữ nguyên list cũ cho đến khi
+  /// load xong).
+  @override
+  void listener(BuildContext context, ApprovePurchasingState state) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _refreshKey.currentState?.show();
+    });
   }
 
   /// Lấy label từ API `/request-types` nếu có, fallback về label tĩnh.
@@ -256,6 +279,7 @@ class _ApprovePurchasingScreenState
     }
 
     return RefreshIndicator(
+      key: _refreshKey,
       onRefresh: () async {
         bloc.add(const ApprovePurchasingEvent.refresh());
         await bloc.stream.firstWhere(

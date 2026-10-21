@@ -24,18 +24,33 @@ class ApprovePurchasingEvent with _$ApprovePurchasingEvent {
   /// Pull-to-refresh / reload toàn bộ danh sách phiếu.
   const factory ApprovePurchasingEvent.refresh() = _Refresh;
 
-  /// Áp dụng bộ lọc (project + supplier) — chỉ chạy client-side trên
-  /// cache `itemsByType`, không gọi lại API.
-  const factory ApprovePurchasingEvent.applyFilter({
-    int? projectId,
-    int? supplierId,
-  }) = _ApplyFilter;
+  /// Chọn dự án để lọc — chỉ chạy client-side trên cache `itemsByType`,
+  /// không gọi lại API. Truyền `null` để bỏ lọc theo dự án.
+  const factory ApprovePurchasingEvent.selectProject({
+    required int? projectId,
+  }) = _SelectProject;
+
+  /// Chọn nhà cung cấp để lọc — chỉ chạy client-side trên cache
+  /// `itemsByType`. Truyền `null` để bỏ lọc theo nhà cung cấp.
+  const factory ApprovePurchasingEvent.selectSupplier({
+    required int? supplierId,
+  }) = _SelectSupplier;
 
   /// Reset bộ lọc về mặc định (không lọc gì cả).
   const factory ApprovePurchasingEvent.resetFilter() = _ResetFilter;
 
-  /// Cập nhật từ khóa tìm kiếm (mã SP / tên SP / note).
+  /// Cập nhật từ khóa tìm kiếm.
   const factory ApprovePurchasingEvent.changeSearchKeyword({
     required String keyword,
   }) = _ChangeSearchKeyword;
+
+  /// Chọn sản phẩm để lọc (lưu `code - name`, giá trị rỗng = bỏ lọc).
+  const factory ApprovePurchasingEvent.selectProduct({
+    required String product,
+  }) = _SelectProduct;
+
+  /// Chọn trạng thái duyệt BGĐ (`all` / `pending` / `approved`).
+  const factory ApprovePurchasingEvent.selectApprovalFilter({
+    required PurchasingApprovalFilter filter,
+  }) = _SelectApprovalFilter;
 }

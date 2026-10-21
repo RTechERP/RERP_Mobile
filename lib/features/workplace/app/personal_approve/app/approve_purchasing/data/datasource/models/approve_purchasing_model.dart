@@ -286,31 +286,46 @@ class ProjectFilterItem with _$ProjectFilterItem {
 // ═══════════════════════════════════════════════════════════════
 
 /// Bộ lọc client-side áp dụng lên cache `itemsByType`.
-/// 3 tiêu chí (single-select cho project/supplier):
-///   - searchKeyword: tìm theo mã SP / tên SP / note (case-insensitive).
+/// Tiêu chí:
+///   - selectedProduct: sản phẩm đã chọn từ picker gộp, lưu khoá
+///                      nội bộ `code|name` (bỏ phần rỗng). Khi lọc,
+///                      tách theo `|` và giữ lại item nếu BẤT KỲ khoá
+///                      nào `contains` trong `productCode` hoặc
+///                      `productName` (case-insensitive).
+///   - approvalFilter: trạng thái duyệt BGĐ. Mặc định `all`.
 ///   - selectedProjectId: `null` = không lọc; khác `null` = lọc theo
 ///                         ProjectID tương ứng.
 ///   - selectedSupplierId: `null` = không lọc; khác `null` = lọc theo
 ///                          SupplierSaleID tương ứng.
+enum PurchasingApprovalFilter { all, pending, approved }
+
 class PurchasingFilter {
   final String searchKeyword;
+  final String selectedProduct;
+  final PurchasingApprovalFilter approvalFilter;
   final int? selectedProjectId;
   final int? selectedSupplierId;
 
   const PurchasingFilter({
     this.searchKeyword = '',
+    this.selectedProduct = '',
+    this.approvalFilter = PurchasingApprovalFilter.all,
     this.selectedProjectId,
     this.selectedSupplierId,
   });
 
   /// `true` khi không có tiêu chí nào được áp dụng.
   bool get isEmpty =>
-      searchKeyword.isEmpty &&
+      searchKeyword.trim().isEmpty &&
+      selectedProduct.trim().isEmpty &&
+      approvalFilter == PurchasingApprovalFilter.all &&
       selectedProjectId == null &&
       selectedSupplierId == null;
 
   PurchasingFilter copyWith({
     String? searchKeyword,
+    String? selectedProduct,
+    PurchasingApprovalFilter? approvalFilter,
     int? selectedProjectId,
     int? selectedSupplierId,
     bool clearProject = false,
@@ -318,6 +333,8 @@ class PurchasingFilter {
   }) {
     return PurchasingFilter(
       searchKeyword: searchKeyword ?? this.searchKeyword,
+      selectedProduct: selectedProduct ?? this.selectedProduct,
+      approvalFilter: approvalFilter ?? this.approvalFilter,
       selectedProjectId:
           clearProject ? null : (selectedProjectId ?? this.selectedProjectId),
       selectedSupplierId: clearSupplier

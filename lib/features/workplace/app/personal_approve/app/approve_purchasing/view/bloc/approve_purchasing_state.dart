@@ -89,19 +89,20 @@ class ApprovePurchasingState extends BaseBlocState {
   /// được render trên thanh tab.
   static const kAllowedRequestTypeIds = <int>{1, 7, 8};
 
-  /// Ngày bắt đầu mặc định = ngày 1 của tháng hiện tại.
+  /// Ngày bắt đầu mặc định = ngày 1 của tháng trước.
   static DateTime defaultDateStart() {
     final now = DateTime.now();
-    return DateTime(now.year, now.month, 1);
+    return DateTime(now.year, now.month - 1, 1);
   }
 
-  /// Ngày kết thúc mặc định = ngày cuối của tháng hiện tại (cuối ngày).
+  /// Ngày kết thúc mặc định = ngày cuối của tháng sau (cuối ngày).
   static DateTime defaultDateEnd() {
     final now = DateTime.now();
-    return DateTime(now.year, now.month + 1, 0, 23, 59, 59);
+    return DateTime(now.year, now.month + 2, 0, 23, 59, 59);
   }
 
-  /// `true` khi user đã chọn khoảng ngày khác với tháng hiện tại.
+  /// `true` khi user đã chọn khoảng ngày khác với khoảng mặc định
+  /// (từ đầu tháng trước đến cuối tháng sau).
   /// UI dùng để highlight icon lịch trên app bar.
   bool get isDateFiltered {
     if (dateStart == null || dateEnd == null) return false;

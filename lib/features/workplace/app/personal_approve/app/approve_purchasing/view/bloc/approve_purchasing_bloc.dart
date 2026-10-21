@@ -1,19 +1,3 @@
-// Bloc cho màn Duyệt phiếu yêu cầu mua hàng (ProjectPartlistPurchaseRequest).
-// Quản lý:
-//  - Danh sách loại phiếu mua (3 tab: ID 1, 7, 8).
-//  - Toàn bộ phiếu yêu cầu mua hàng trong khoảng ngày hiện tại,
-//    nhóm theo `projectPartlistPurchaseRequestTypeId` vào `itemsByType`.
-//  - Khoảng ngày lọc (DateStart / DateEnd).
-//  - 4 bộ danh sách lookup: tiền tệ, nhóm SP, nhà cung cấp, dự án
-//    (load song song khi init, dùng làm dropdown filter cho UI).
-//
-// Lưu ý quan trọng:
-//  - API `get-all` trả về toàn bộ phiếu trong 1 lần gọi với `Size` lớn.
-//    Đổi tab chỉ việc tra cache `itemsByType` — KHÔNG gọi lại API.
-//  - Chỉ `init` / `changeDateRange` / `refresh` mới gọi API.
-//
-// Bloc không xử lý action duyệt / từ chối — chỉ hiển thị danh sách.
-
 import 'dart:ui';
 
 import 'package:bloc/bloc.dart';
@@ -50,11 +34,17 @@ class ApprovePurchasingBloc
         selectTab: (requestTypeId) =>
             _onSelectTab(emit, requestTypeId: requestTypeId),
         refresh: () => _onRefresh(emit),
-        applyFilter: (projectId, supplierId) =>
-            _onApplyFilter(emit, projectId, supplierId),
+        selectProject: (projectId) =>
+            _onSelectProject(emit, projectId),
+        selectSupplier: (supplierId) =>
+            _onSelectSupplier(emit, supplierId),
         resetFilter: () => _onResetFilter(emit),
         changeSearchKeyword: (keyword) =>
             _onChangeSearchKeyword(emit, keyword),
+        selectProduct: (product) =>
+            _onSelectProduct(emit, product),
+        selectApprovalFilter: (filter) =>
+            _onSelectApprovalFilter(emit, filter),
       );
     });
   }
@@ -170,18 +160,37 @@ class ApprovePurchasingBloc
   //---(Change Date Range)---//
 
   /// Đổi khoảng ngày → reload toàn bộ items, regroup theo loại.
+  /// Dùng cờ `isRefreshing` thay vì `status = loading` để UI chỉ hiện
+  /// spinner pull-to-refresh phía trên, không phủ overlay đen cả list.
   Future<void> _onChangeDateRange(
     Emitter<ApprovePurchasingState> emit, {
     required DateTime dateStart,
     required DateTime dateEnd,
   }) async {
     emit(state.copyWith(
-      status: BaseStateStatus.loading,
+      isRefreshing: true,
       dateStart: dateStart,
       dateEnd: dateEnd,
       message: null,
     ));
-    await _reloadAll(emit);
+    await _reloadAll(
+      emit,
+      onSuccess: (grouped) {
+        final slice = _sliceFor(grouped, state.selectedRequestTypeId);
+        emit(state.copyWith(
+          status: BaseStateStatus.success,
+          itemsByType: grouped,
+          items: slice,
+          filteredItems: _applyFilterTo(slice, state.filter),
+          isRefreshing: false,
+        ));
+      },
+      onFailure: () => emit(state.copyWith(
+        status: BaseStateStatus.failed,
+        message: 'Lỗi tải dữ liệu',
+        isRefreshing: false,
+      )),
+    );
   }
 
   //---(Select Tab)---//
@@ -205,16 +214,30 @@ class ApprovePurchasingBloc
 
   //---(Filter)---//
 
-  /// Áp dụng bộ lọc (projectIds + supplierIds) — chỉ lọc client-side
-  /// trên items của tab hiện tại. Search keyword cũng được áp dụng.
-  Future<void> _onApplyFilter(
+  /// Chọn dự án để lọc. `null` = bỏ lọc theo dự án.
+  Future<void> _onSelectProject(
     Emitter<ApprovePurchasingState> emit,
     int? projectId,
-    int? supplierId,
   ) async {
     final newFilter = state.filter.copyWith(
       selectedProjectId: projectId,
+      clearProject: projectId == null,
+    );
+    final filtered = _applyFilterTo(state.items, newFilter);
+    emit(state.copyWith(
+      filter: newFilter,
+      filteredItems: filtered,
+    ));
+  }
+
+  /// Chọn nhà cung cấp để lọc. `null` = bỏ lọc theo nhà cung cấp.
+  Future<void> _onSelectSupplier(
+    Emitter<ApprovePurchasingState> emit,
+    int? supplierId,
+  ) async {
+    final newFilter = state.filter.copyWith(
       selectedSupplierId: supplierId,
+      clearSupplier: supplierId == null,
     );
     final filtered = _applyFilterTo(state.items, newFilter);
     emit(state.copyWith(
@@ -235,12 +258,39 @@ class ApprovePurchasingBloc
     ));
   }
 
-  /// Cập nhật từ khóa tìm kiếm (mã SP / tên SP / note).
+  /// Cập nhật từ khóa tìm kiếm chung.
   Future<void> _onChangeSearchKeyword(
     Emitter<ApprovePurchasingState> emit,
     String keyword,
   ) async {
     final newFilter = state.filter.copyWith(searchKeyword: keyword);
+    final filtered = _applyFilterTo(state.items, newFilter);
+    emit(state.copyWith(
+      filter: newFilter,
+      filteredItems: filtered,
+    ));
+  }
+
+  /// Chọn sản phẩm để lọc (giá trị rỗng = bỏ lọc). Logic so khớp nằm
+  /// trong `_applyFilterTo`.
+  Future<void> _onSelectProduct(
+    Emitter<ApprovePurchasingState> emit,
+    String product,
+  ) async {
+    final newFilter = state.filter.copyWith(selectedProduct: product);
+    final filtered = _applyFilterTo(state.items, newFilter);
+    emit(state.copyWith(
+      filter: newFilter,
+      filteredItems: filtered,
+    ));
+  }
+
+  /// Chọn trạng thái duyệt BGĐ.
+  Future<void> _onSelectApprovalFilter(
+    Emitter<ApprovePurchasingState> emit,
+    PurchasingApprovalFilter filter,
+  ) async {
+    final newFilter = state.filter.copyWith(approvalFilter: filter);
     final filtered = _applyFilterTo(state.items, newFilter);
     emit(state.copyWith(
       filter: newFilter,
@@ -281,7 +331,14 @@ class ApprovePurchasingBloc
     }
 
     final payload = <String, dynamic>{
-      'DateStart': dateStart.toUtc().toIso8601String(),
+      // Không `.toUtc()` để khớp format mẫu của web
+      // (`2026-09-01T00:00:00` không có `Z`). Nếu BE parse local time,
+      // vẫn ra đúng ngày user chọn; ngược lại cần xác nhận với BE.
+      'DateStart': DateTime(
+        dateStart.year,
+        dateStart.month,
+        dateStart.day,
+      ).toIso8601String(),
       'DateEnd': DateTime(
         dateEnd.year,
         dateEnd.month,
@@ -289,7 +346,7 @@ class ApprovePurchasingBloc
         23,
         59,
         59,
-      ).toUtc().toIso8601String(),
+      ).toIso8601String(),
       'StatusRequest': 1,
       'ProjectID': 0,
       'Keyword': '',
@@ -391,8 +448,9 @@ class ApprovePurchasingBloc
     return grouped[requestTypeId] ?? const [];
   }
 
-  /// Áp dụng filter (search + project + supplier) lên 1 list items.
-/// Trả về list mới đã filter — không mutate input.
+/// Áp dụng filter (search + sản phẩm + trạng thái duyệt + project +
+  /// supplier) lên 1 list items. Trả về list mới đã filter — không
+  /// mutate input.
   List<ApprovePurchasingItem> _applyFilterTo(
     List<ApprovePurchasingItem> source,
     PurchasingFilter filter,
@@ -400,9 +458,20 @@ class ApprovePurchasingBloc
     if (filter.isEmpty) return source;
 
     final kw = filter.searchKeyword.trim().toLowerCase();
+    // `selectedProduct` lưu 1 hoặc 2 giá trị ghép bằng `|` tuỳ theo
+    // item được chọn từ picker (có thể chỉ code, chỉ name, hoặc cả 2).
+    // Logic match: với mỗi item, so `contains` từng khoá trên code
+    // hoặc name của item; chỉ cần khớp 1 khoá là giữ lại (OR) — tránh
+    // khớp quá chặt khiến item tương đương bị loại.
+    final productKeys = filter.selectedProduct
+        .trim()
+        .toLowerCase()
+        .split('|')
+        .where((s) => s.isNotEmpty)
+        .toList();
 
     return source.where((item) {
-      // Search: mã SP / tên SP / note.
+      // Search chung: mã SP / tên SP / note.
       if (kw.isNotEmpty) {
         final fields = [
           item.productCode ?? '',
@@ -410,10 +479,34 @@ class ApprovePurchasingBloc
           item.note ?? '',
           item.notePartlist ?? '',
         ];
-        final matched = fields.any(
-          (f) => f.toLowerCase().contains(kw),
-        );
-        if (!matched) return false;
+        if (!fields.any((f) => f.toLowerCase().contains(kw))) {
+          return false;
+        }
+      }
+
+      // Lọc theo sản phẩm đã chọn (khoá ghép bằng `|`).
+      if (productKeys.isNotEmpty) {
+        final code = (item.productCode ?? '').toLowerCase();
+        final name = (item.productName ?? '').toLowerCase();
+        // Khớp nếu BẤT KỲ khoá nào chứa code HOẶC name.
+        if (!productKeys.any(
+          (k) => code.contains(k) || name.contains(k),
+        )) {
+          return false;
+        }
+      }
+
+      // Lọc theo trạng thái duyệt BGĐ.
+      final approved = item.isApprovedBgd ?? false;
+      switch (filter.approvalFilter) {
+        case PurchasingApprovalFilter.all:
+          break;
+        case PurchasingApprovalFilter.pending:
+          if (approved) return false;
+          break;
+        case PurchasingApprovalFilter.approved:
+          if (!approved) return false;
+          break;
       }
 
       // Project filter.

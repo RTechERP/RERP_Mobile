@@ -23,9 +23,13 @@ mixin _$ApprovePurchasingEvent {
         changeDateRange,
     required TResult Function(int requestTypeId) selectTab,
     required TResult Function() refresh,
-    required TResult Function(int? projectId, int? supplierId) applyFilter,
+    required TResult Function(int? projectId) selectProject,
+    required TResult Function(int? supplierId) selectSupplier,
     required TResult Function() resetFilter,
     required TResult Function(String keyword) changeSearchKeyword,
+    required TResult Function(String product) selectProduct,
+    required TResult Function(PurchasingApprovalFilter filter)
+        selectApprovalFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -34,9 +38,12 @@ mixin _$ApprovePurchasingEvent {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int requestTypeId)? selectTab,
     TResult? Function()? refresh,
-    TResult? Function(int? projectId, int? supplierId)? applyFilter,
+    TResult? Function(int? projectId)? selectProject,
+    TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function()? resetFilter,
     TResult? Function(String keyword)? changeSearchKeyword,
+    TResult? Function(String product)? selectProduct,
+    TResult? Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -45,9 +52,12 @@ mixin _$ApprovePurchasingEvent {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int requestTypeId)? selectTab,
     TResult Function()? refresh,
-    TResult Function(int? projectId, int? supplierId)? applyFilter,
+    TResult Function(int? projectId)? selectProject,
+    TResult Function(int? supplierId)? selectSupplier,
     TResult Function()? resetFilter,
     TResult Function(String keyword)? changeSearchKeyword,
+    TResult Function(String product)? selectProduct,
+    TResult Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -57,9 +67,12 @@ mixin _$ApprovePurchasingEvent {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectTab value) selectTab,
     required TResult Function(_Refresh value) refresh,
-    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_SelectProject value) selectProject,
+    required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_ResetFilter value) resetFilter,
     required TResult Function(_ChangeSearchKeyword value) changeSearchKeyword,
+    required TResult Function(_SelectProduct value) selectProduct,
+    required TResult Function(_SelectApprovalFilter value) selectApprovalFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -68,9 +81,12 @@ mixin _$ApprovePurchasingEvent {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectTab value)? selectTab,
     TResult? Function(_Refresh value)? refresh,
-    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_SelectProject value)? selectProject,
+    TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_ResetFilter value)? resetFilter,
     TResult? Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult? Function(_SelectProduct value)? selectProduct,
+    TResult? Function(_SelectApprovalFilter value)? selectApprovalFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -79,9 +95,12 @@ mixin _$ApprovePurchasingEvent {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectTab value)? selectTab,
     TResult Function(_Refresh value)? refresh,
-    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_SelectProject value)? selectProject,
+    TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_ResetFilter value)? resetFilter,
     TResult Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult Function(_SelectProduct value)? selectProduct,
+    TResult Function(_SelectApprovalFilter value)? selectApprovalFilter,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -148,9 +167,13 @@ class _$InitImpl implements _Init {
         changeDateRange,
     required TResult Function(int requestTypeId) selectTab,
     required TResult Function() refresh,
-    required TResult Function(int? projectId, int? supplierId) applyFilter,
+    required TResult Function(int? projectId) selectProject,
+    required TResult Function(int? supplierId) selectSupplier,
     required TResult Function() resetFilter,
     required TResult Function(String keyword) changeSearchKeyword,
+    required TResult Function(String product) selectProduct,
+    required TResult Function(PurchasingApprovalFilter filter)
+        selectApprovalFilter,
   }) {
     return init();
   }
@@ -162,9 +185,12 @@ class _$InitImpl implements _Init {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int requestTypeId)? selectTab,
     TResult? Function()? refresh,
-    TResult? Function(int? projectId, int? supplierId)? applyFilter,
+    TResult? Function(int? projectId)? selectProject,
+    TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function()? resetFilter,
     TResult? Function(String keyword)? changeSearchKeyword,
+    TResult? Function(String product)? selectProduct,
+    TResult? Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
   }) {
     return init?.call();
   }
@@ -176,9 +202,12 @@ class _$InitImpl implements _Init {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int requestTypeId)? selectTab,
     TResult Function()? refresh,
-    TResult Function(int? projectId, int? supplierId)? applyFilter,
+    TResult Function(int? projectId)? selectProject,
+    TResult Function(int? supplierId)? selectSupplier,
     TResult Function()? resetFilter,
     TResult Function(String keyword)? changeSearchKeyword,
+    TResult Function(String product)? selectProduct,
+    TResult Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -194,9 +223,12 @@ class _$InitImpl implements _Init {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectTab value) selectTab,
     required TResult Function(_Refresh value) refresh,
-    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_SelectProject value) selectProject,
+    required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_ResetFilter value) resetFilter,
     required TResult Function(_ChangeSearchKeyword value) changeSearchKeyword,
+    required TResult Function(_SelectProduct value) selectProduct,
+    required TResult Function(_SelectApprovalFilter value) selectApprovalFilter,
   }) {
     return init(this);
   }
@@ -208,9 +240,12 @@ class _$InitImpl implements _Init {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectTab value)? selectTab,
     TResult? Function(_Refresh value)? refresh,
-    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_SelectProject value)? selectProject,
+    TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_ResetFilter value)? resetFilter,
     TResult? Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult? Function(_SelectProduct value)? selectProduct,
+    TResult? Function(_SelectApprovalFilter value)? selectApprovalFilter,
   }) {
     return init?.call(this);
   }
@@ -222,9 +257,12 @@ class _$InitImpl implements _Init {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectTab value)? selectTab,
     TResult Function(_Refresh value)? refresh,
-    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_SelectProject value)? selectProject,
+    TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_ResetFilter value)? resetFilter,
     TResult Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult Function(_SelectProduct value)? selectProduct,
+    TResult Function(_SelectApprovalFilter value)? selectApprovalFilter,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -317,9 +355,13 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
         changeDateRange,
     required TResult Function(int requestTypeId) selectTab,
     required TResult Function() refresh,
-    required TResult Function(int? projectId, int? supplierId) applyFilter,
+    required TResult Function(int? projectId) selectProject,
+    required TResult Function(int? supplierId) selectSupplier,
     required TResult Function() resetFilter,
     required TResult Function(String keyword) changeSearchKeyword,
+    required TResult Function(String product) selectProduct,
+    required TResult Function(PurchasingApprovalFilter filter)
+        selectApprovalFilter,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -331,9 +373,12 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int requestTypeId)? selectTab,
     TResult? Function()? refresh,
-    TResult? Function(int? projectId, int? supplierId)? applyFilter,
+    TResult? Function(int? projectId)? selectProject,
+    TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function()? resetFilter,
     TResult? Function(String keyword)? changeSearchKeyword,
+    TResult? Function(String product)? selectProduct,
+    TResult? Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -345,9 +390,12 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int requestTypeId)? selectTab,
     TResult Function()? refresh,
-    TResult Function(int? projectId, int? supplierId)? applyFilter,
+    TResult Function(int? projectId)? selectProject,
+    TResult Function(int? supplierId)? selectSupplier,
     TResult Function()? resetFilter,
     TResult Function(String keyword)? changeSearchKeyword,
+    TResult Function(String product)? selectProduct,
+    TResult Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -363,9 +411,12 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectTab value) selectTab,
     required TResult Function(_Refresh value) refresh,
-    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_SelectProject value) selectProject,
+    required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_ResetFilter value) resetFilter,
     required TResult Function(_ChangeSearchKeyword value) changeSearchKeyword,
+    required TResult Function(_SelectProduct value) selectProduct,
+    required TResult Function(_SelectApprovalFilter value) selectApprovalFilter,
   }) {
     return changeDateRange(this);
   }
@@ -377,9 +428,12 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectTab value)? selectTab,
     TResult? Function(_Refresh value)? refresh,
-    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_SelectProject value)? selectProject,
+    TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_ResetFilter value)? resetFilter,
     TResult? Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult? Function(_SelectProduct value)? selectProduct,
+    TResult? Function(_SelectApprovalFilter value)? selectApprovalFilter,
   }) {
     return changeDateRange?.call(this);
   }
@@ -391,9 +445,12 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectTab value)? selectTab,
     TResult Function(_Refresh value)? refresh,
-    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_SelectProject value)? selectProject,
+    TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_ResetFilter value)? resetFilter,
     TResult Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult Function(_SelectProduct value)? selectProduct,
+    TResult Function(_SelectApprovalFilter value)? selectApprovalFilter,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -485,9 +542,13 @@ class _$SelectTabImpl implements _SelectTab {
         changeDateRange,
     required TResult Function(int requestTypeId) selectTab,
     required TResult Function() refresh,
-    required TResult Function(int? projectId, int? supplierId) applyFilter,
+    required TResult Function(int? projectId) selectProject,
+    required TResult Function(int? supplierId) selectSupplier,
     required TResult Function() resetFilter,
     required TResult Function(String keyword) changeSearchKeyword,
+    required TResult Function(String product) selectProduct,
+    required TResult Function(PurchasingApprovalFilter filter)
+        selectApprovalFilter,
   }) {
     return selectTab(requestTypeId);
   }
@@ -499,9 +560,12 @@ class _$SelectTabImpl implements _SelectTab {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int requestTypeId)? selectTab,
     TResult? Function()? refresh,
-    TResult? Function(int? projectId, int? supplierId)? applyFilter,
+    TResult? Function(int? projectId)? selectProject,
+    TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function()? resetFilter,
     TResult? Function(String keyword)? changeSearchKeyword,
+    TResult? Function(String product)? selectProduct,
+    TResult? Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
   }) {
     return selectTab?.call(requestTypeId);
   }
@@ -513,9 +577,12 @@ class _$SelectTabImpl implements _SelectTab {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int requestTypeId)? selectTab,
     TResult Function()? refresh,
-    TResult Function(int? projectId, int? supplierId)? applyFilter,
+    TResult Function(int? projectId)? selectProject,
+    TResult Function(int? supplierId)? selectSupplier,
     TResult Function()? resetFilter,
     TResult Function(String keyword)? changeSearchKeyword,
+    TResult Function(String product)? selectProduct,
+    TResult Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
     required TResult orElse(),
   }) {
     if (selectTab != null) {
@@ -531,9 +598,12 @@ class _$SelectTabImpl implements _SelectTab {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectTab value) selectTab,
     required TResult Function(_Refresh value) refresh,
-    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_SelectProject value) selectProject,
+    required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_ResetFilter value) resetFilter,
     required TResult Function(_ChangeSearchKeyword value) changeSearchKeyword,
+    required TResult Function(_SelectProduct value) selectProduct,
+    required TResult Function(_SelectApprovalFilter value) selectApprovalFilter,
   }) {
     return selectTab(this);
   }
@@ -545,9 +615,12 @@ class _$SelectTabImpl implements _SelectTab {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectTab value)? selectTab,
     TResult? Function(_Refresh value)? refresh,
-    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_SelectProject value)? selectProject,
+    TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_ResetFilter value)? resetFilter,
     TResult? Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult? Function(_SelectProduct value)? selectProduct,
+    TResult? Function(_SelectApprovalFilter value)? selectApprovalFilter,
   }) {
     return selectTab?.call(this);
   }
@@ -559,9 +632,12 @@ class _$SelectTabImpl implements _SelectTab {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectTab value)? selectTab,
     TResult Function(_Refresh value)? refresh,
-    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_SelectProject value)? selectProject,
+    TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_ResetFilter value)? resetFilter,
     TResult Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult Function(_SelectProduct value)? selectProduct,
+    TResult Function(_SelectApprovalFilter value)? selectApprovalFilter,
     required TResult orElse(),
   }) {
     if (selectTab != null) {
@@ -624,9 +700,13 @@ class _$RefreshImpl implements _Refresh {
         changeDateRange,
     required TResult Function(int requestTypeId) selectTab,
     required TResult Function() refresh,
-    required TResult Function(int? projectId, int? supplierId) applyFilter,
+    required TResult Function(int? projectId) selectProject,
+    required TResult Function(int? supplierId) selectSupplier,
     required TResult Function() resetFilter,
     required TResult Function(String keyword) changeSearchKeyword,
+    required TResult Function(String product) selectProduct,
+    required TResult Function(PurchasingApprovalFilter filter)
+        selectApprovalFilter,
   }) {
     return refresh();
   }
@@ -638,9 +718,12 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int requestTypeId)? selectTab,
     TResult? Function()? refresh,
-    TResult? Function(int? projectId, int? supplierId)? applyFilter,
+    TResult? Function(int? projectId)? selectProject,
+    TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function()? resetFilter,
     TResult? Function(String keyword)? changeSearchKeyword,
+    TResult? Function(String product)? selectProduct,
+    TResult? Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
   }) {
     return refresh?.call();
   }
@@ -652,9 +735,12 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int requestTypeId)? selectTab,
     TResult Function()? refresh,
-    TResult Function(int? projectId, int? supplierId)? applyFilter,
+    TResult Function(int? projectId)? selectProject,
+    TResult Function(int? supplierId)? selectSupplier,
     TResult Function()? resetFilter,
     TResult Function(String keyword)? changeSearchKeyword,
+    TResult Function(String product)? selectProduct,
+    TResult Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -670,9 +756,12 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectTab value) selectTab,
     required TResult Function(_Refresh value) refresh,
-    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_SelectProject value) selectProject,
+    required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_ResetFilter value) resetFilter,
     required TResult Function(_ChangeSearchKeyword value) changeSearchKeyword,
+    required TResult Function(_SelectProduct value) selectProduct,
+    required TResult Function(_SelectApprovalFilter value) selectApprovalFilter,
   }) {
     return refresh(this);
   }
@@ -684,9 +773,12 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectTab value)? selectTab,
     TResult? Function(_Refresh value)? refresh,
-    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_SelectProject value)? selectProject,
+    TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_ResetFilter value)? resetFilter,
     TResult? Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult? Function(_SelectProduct value)? selectProduct,
+    TResult? Function(_SelectApprovalFilter value)? selectApprovalFilter,
   }) {
     return refresh?.call(this);
   }
@@ -698,9 +790,12 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectTab value)? selectTab,
     TResult Function(_Refresh value)? refresh,
-    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_SelectProject value)? selectProject,
+    TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_ResetFilter value)? resetFilter,
     TResult Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult Function(_SelectProduct value)? selectProduct,
+    TResult Function(_SelectApprovalFilter value)? selectApprovalFilter,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -715,36 +810,31 @@ abstract class _Refresh implements ApprovePurchasingEvent {
 }
 
 /// @nodoc
-abstract class _$$ApplyFilterImplCopyWith<$Res> {
-  factory _$$ApplyFilterImplCopyWith(
-          _$ApplyFilterImpl value, $Res Function(_$ApplyFilterImpl) then) =
-      __$$ApplyFilterImplCopyWithImpl<$Res>;
+abstract class _$$SelectProjectImplCopyWith<$Res> {
+  factory _$$SelectProjectImplCopyWith(
+          _$SelectProjectImpl value, $Res Function(_$SelectProjectImpl) then) =
+      __$$SelectProjectImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int? projectId, int? supplierId});
+  $Res call({int? projectId});
 }
 
 /// @nodoc
-class __$$ApplyFilterImplCopyWithImpl<$Res>
-    extends _$ApprovePurchasingEventCopyWithImpl<$Res, _$ApplyFilterImpl>
-    implements _$$ApplyFilterImplCopyWith<$Res> {
-  __$$ApplyFilterImplCopyWithImpl(
-      _$ApplyFilterImpl _value, $Res Function(_$ApplyFilterImpl) _then)
+class __$$SelectProjectImplCopyWithImpl<$Res>
+    extends _$ApprovePurchasingEventCopyWithImpl<$Res, _$SelectProjectImpl>
+    implements _$$SelectProjectImplCopyWith<$Res> {
+  __$$SelectProjectImplCopyWithImpl(
+      _$SelectProjectImpl _value, $Res Function(_$SelectProjectImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? projectId = freezed,
-    Object? supplierId = freezed,
   }) {
-    return _then(_$ApplyFilterImpl(
+    return _then(_$SelectProjectImpl(
       projectId: freezed == projectId
           ? _value.projectId
           : projectId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      supplierId: freezed == supplierId
-          ? _value.supplierId
-          : supplierId // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }
@@ -752,38 +842,34 @@ class __$$ApplyFilterImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ApplyFilterImpl implements _ApplyFilter {
-  const _$ApplyFilterImpl({this.projectId, this.supplierId});
+class _$SelectProjectImpl implements _SelectProject {
+  const _$SelectProjectImpl({required this.projectId});
 
   @override
   final int? projectId;
-  @override
-  final int? supplierId;
 
   @override
   String toString() {
-    return 'ApprovePurchasingEvent.applyFilter(projectId: $projectId, supplierId: $supplierId)';
+    return 'ApprovePurchasingEvent.selectProject(projectId: $projectId)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ApplyFilterImpl &&
+            other is _$SelectProjectImpl &&
             (identical(other.projectId, projectId) ||
-                other.projectId == projectId) &&
-            (identical(other.supplierId, supplierId) ||
-                other.supplierId == supplierId));
+                other.projectId == projectId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, projectId, supplierId);
+  int get hashCode => Object.hash(runtimeType, projectId);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ApplyFilterImplCopyWith<_$ApplyFilterImpl> get copyWith =>
-      __$$ApplyFilterImplCopyWithImpl<_$ApplyFilterImpl>(this, _$identity);
+  _$$SelectProjectImplCopyWith<_$SelectProjectImpl> get copyWith =>
+      __$$SelectProjectImplCopyWithImpl<_$SelectProjectImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -793,11 +879,15 @@ class _$ApplyFilterImpl implements _ApplyFilter {
         changeDateRange,
     required TResult Function(int requestTypeId) selectTab,
     required TResult Function() refresh,
-    required TResult Function(int? projectId, int? supplierId) applyFilter,
+    required TResult Function(int? projectId) selectProject,
+    required TResult Function(int? supplierId) selectSupplier,
     required TResult Function() resetFilter,
     required TResult Function(String keyword) changeSearchKeyword,
+    required TResult Function(String product) selectProduct,
+    required TResult Function(PurchasingApprovalFilter filter)
+        selectApprovalFilter,
   }) {
-    return applyFilter(projectId, supplierId);
+    return selectProject(projectId);
   }
 
   @override
@@ -807,11 +897,14 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int requestTypeId)? selectTab,
     TResult? Function()? refresh,
-    TResult? Function(int? projectId, int? supplierId)? applyFilter,
+    TResult? Function(int? projectId)? selectProject,
+    TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function()? resetFilter,
     TResult? Function(String keyword)? changeSearchKeyword,
+    TResult? Function(String product)? selectProduct,
+    TResult? Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
   }) {
-    return applyFilter?.call(projectId, supplierId);
+    return selectProject?.call(projectId);
   }
 
   @override
@@ -821,13 +914,16 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int requestTypeId)? selectTab,
     TResult Function()? refresh,
-    TResult Function(int? projectId, int? supplierId)? applyFilter,
+    TResult Function(int? projectId)? selectProject,
+    TResult Function(int? supplierId)? selectSupplier,
     TResult Function()? resetFilter,
     TResult Function(String keyword)? changeSearchKeyword,
+    TResult Function(String product)? selectProduct,
+    TResult Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
     required TResult orElse(),
   }) {
-    if (applyFilter != null) {
-      return applyFilter(projectId, supplierId);
+    if (selectProject != null) {
+      return selectProject(projectId);
     }
     return orElse();
   }
@@ -839,11 +935,14 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectTab value) selectTab,
     required TResult Function(_Refresh value) refresh,
-    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_SelectProject value) selectProject,
+    required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_ResetFilter value) resetFilter,
     required TResult Function(_ChangeSearchKeyword value) changeSearchKeyword,
+    required TResult Function(_SelectProduct value) selectProduct,
+    required TResult Function(_SelectApprovalFilter value) selectApprovalFilter,
   }) {
-    return applyFilter(this);
+    return selectProject(this);
   }
 
   @override
@@ -853,11 +952,14 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectTab value)? selectTab,
     TResult? Function(_Refresh value)? refresh,
-    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_SelectProject value)? selectProject,
+    TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_ResetFilter value)? resetFilter,
     TResult? Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult? Function(_SelectProduct value)? selectProduct,
+    TResult? Function(_SelectApprovalFilter value)? selectApprovalFilter,
   }) {
-    return applyFilter?.call(this);
+    return selectProject?.call(this);
   }
 
   @override
@@ -867,26 +969,214 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectTab value)? selectTab,
     TResult Function(_Refresh value)? refresh,
-    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_SelectProject value)? selectProject,
+    TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_ResetFilter value)? resetFilter,
     TResult Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult Function(_SelectProduct value)? selectProduct,
+    TResult Function(_SelectApprovalFilter value)? selectApprovalFilter,
     required TResult orElse(),
   }) {
-    if (applyFilter != null) {
-      return applyFilter(this);
+    if (selectProject != null) {
+      return selectProject(this);
     }
     return orElse();
   }
 }
 
-abstract class _ApplyFilter implements ApprovePurchasingEvent {
-  const factory _ApplyFilter({final int? projectId, final int? supplierId}) =
-      _$ApplyFilterImpl;
+abstract class _SelectProject implements ApprovePurchasingEvent {
+  const factory _SelectProject({required final int? projectId}) =
+      _$SelectProjectImpl;
 
   int? get projectId;
+  @JsonKey(ignore: true)
+  _$$SelectProjectImplCopyWith<_$SelectProjectImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SelectSupplierImplCopyWith<$Res> {
+  factory _$$SelectSupplierImplCopyWith(_$SelectSupplierImpl value,
+          $Res Function(_$SelectSupplierImpl) then) =
+      __$$SelectSupplierImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int? supplierId});
+}
+
+/// @nodoc
+class __$$SelectSupplierImplCopyWithImpl<$Res>
+    extends _$ApprovePurchasingEventCopyWithImpl<$Res, _$SelectSupplierImpl>
+    implements _$$SelectSupplierImplCopyWith<$Res> {
+  __$$SelectSupplierImplCopyWithImpl(
+      _$SelectSupplierImpl _value, $Res Function(_$SelectSupplierImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? supplierId = freezed,
+  }) {
+    return _then(_$SelectSupplierImpl(
+      supplierId: freezed == supplierId
+          ? _value.supplierId
+          : supplierId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SelectSupplierImpl implements _SelectSupplier {
+  const _$SelectSupplierImpl({required this.supplierId});
+
+  @override
+  final int? supplierId;
+
+  @override
+  String toString() {
+    return 'ApprovePurchasingEvent.selectSupplier(supplierId: $supplierId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectSupplierImpl &&
+            (identical(other.supplierId, supplierId) ||
+                other.supplierId == supplierId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, supplierId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SelectSupplierImplCopyWith<_$SelectSupplierImpl> get copyWith =>
+      __$$SelectSupplierImplCopyWithImpl<_$SelectSupplierImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int requestTypeId) selectTab,
+    required TResult Function() refresh,
+    required TResult Function(int? projectId) selectProject,
+    required TResult Function(int? supplierId) selectSupplier,
+    required TResult Function() resetFilter,
+    required TResult Function(String keyword) changeSearchKeyword,
+    required TResult Function(String product) selectProduct,
+    required TResult Function(PurchasingApprovalFilter filter)
+        selectApprovalFilter,
+  }) {
+    return selectSupplier(supplierId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int requestTypeId)? selectTab,
+    TResult? Function()? refresh,
+    TResult? Function(int? projectId)? selectProject,
+    TResult? Function(int? supplierId)? selectSupplier,
+    TResult? Function()? resetFilter,
+    TResult? Function(String keyword)? changeSearchKeyword,
+    TResult? Function(String product)? selectProduct,
+    TResult? Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+  }) {
+    return selectSupplier?.call(supplierId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int requestTypeId)? selectTab,
+    TResult Function()? refresh,
+    TResult Function(int? projectId)? selectProject,
+    TResult Function(int? supplierId)? selectSupplier,
+    TResult Function()? resetFilter,
+    TResult Function(String keyword)? changeSearchKeyword,
+    TResult Function(String product)? selectProduct,
+    TResult Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    required TResult orElse(),
+  }) {
+    if (selectSupplier != null) {
+      return selectSupplier(supplierId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_SelectTab value) selectTab,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_SelectProject value) selectProject,
+    required TResult Function(_SelectSupplier value) selectSupplier,
+    required TResult Function(_ResetFilter value) resetFilter,
+    required TResult Function(_ChangeSearchKeyword value) changeSearchKeyword,
+    required TResult Function(_SelectProduct value) selectProduct,
+    required TResult Function(_SelectApprovalFilter value) selectApprovalFilter,
+  }) {
+    return selectSupplier(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_SelectTab value)? selectTab,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_SelectProject value)? selectProject,
+    TResult? Function(_SelectSupplier value)? selectSupplier,
+    TResult? Function(_ResetFilter value)? resetFilter,
+    TResult? Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult? Function(_SelectProduct value)? selectProduct,
+    TResult? Function(_SelectApprovalFilter value)? selectApprovalFilter,
+  }) {
+    return selectSupplier?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_SelectTab value)? selectTab,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_SelectProject value)? selectProject,
+    TResult Function(_SelectSupplier value)? selectSupplier,
+    TResult Function(_ResetFilter value)? resetFilter,
+    TResult Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult Function(_SelectProduct value)? selectProduct,
+    TResult Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    required TResult orElse(),
+  }) {
+    if (selectSupplier != null) {
+      return selectSupplier(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SelectSupplier implements ApprovePurchasingEvent {
+  const factory _SelectSupplier({required final int? supplierId}) =
+      _$SelectSupplierImpl;
+
   int? get supplierId;
   @JsonKey(ignore: true)
-  _$$ApplyFilterImplCopyWith<_$ApplyFilterImpl> get copyWith =>
+  _$$SelectSupplierImplCopyWith<_$SelectSupplierImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -933,9 +1223,13 @@ class _$ResetFilterImpl implements _ResetFilter {
         changeDateRange,
     required TResult Function(int requestTypeId) selectTab,
     required TResult Function() refresh,
-    required TResult Function(int? projectId, int? supplierId) applyFilter,
+    required TResult Function(int? projectId) selectProject,
+    required TResult Function(int? supplierId) selectSupplier,
     required TResult Function() resetFilter,
     required TResult Function(String keyword) changeSearchKeyword,
+    required TResult Function(String product) selectProduct,
+    required TResult Function(PurchasingApprovalFilter filter)
+        selectApprovalFilter,
   }) {
     return resetFilter();
   }
@@ -947,9 +1241,12 @@ class _$ResetFilterImpl implements _ResetFilter {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int requestTypeId)? selectTab,
     TResult? Function()? refresh,
-    TResult? Function(int? projectId, int? supplierId)? applyFilter,
+    TResult? Function(int? projectId)? selectProject,
+    TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function()? resetFilter,
     TResult? Function(String keyword)? changeSearchKeyword,
+    TResult? Function(String product)? selectProduct,
+    TResult? Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
   }) {
     return resetFilter?.call();
   }
@@ -961,9 +1258,12 @@ class _$ResetFilterImpl implements _ResetFilter {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int requestTypeId)? selectTab,
     TResult Function()? refresh,
-    TResult Function(int? projectId, int? supplierId)? applyFilter,
+    TResult Function(int? projectId)? selectProject,
+    TResult Function(int? supplierId)? selectSupplier,
     TResult Function()? resetFilter,
     TResult Function(String keyword)? changeSearchKeyword,
+    TResult Function(String product)? selectProduct,
+    TResult Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
     required TResult orElse(),
   }) {
     if (resetFilter != null) {
@@ -979,9 +1279,12 @@ class _$ResetFilterImpl implements _ResetFilter {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectTab value) selectTab,
     required TResult Function(_Refresh value) refresh,
-    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_SelectProject value) selectProject,
+    required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_ResetFilter value) resetFilter,
     required TResult Function(_ChangeSearchKeyword value) changeSearchKeyword,
+    required TResult Function(_SelectProduct value) selectProduct,
+    required TResult Function(_SelectApprovalFilter value) selectApprovalFilter,
   }) {
     return resetFilter(this);
   }
@@ -993,9 +1296,12 @@ class _$ResetFilterImpl implements _ResetFilter {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectTab value)? selectTab,
     TResult? Function(_Refresh value)? refresh,
-    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_SelectProject value)? selectProject,
+    TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_ResetFilter value)? resetFilter,
     TResult? Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult? Function(_SelectProduct value)? selectProduct,
+    TResult? Function(_SelectApprovalFilter value)? selectApprovalFilter,
   }) {
     return resetFilter?.call(this);
   }
@@ -1007,9 +1313,12 @@ class _$ResetFilterImpl implements _ResetFilter {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectTab value)? selectTab,
     TResult Function(_Refresh value)? refresh,
-    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_SelectProject value)? selectProject,
+    TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_ResetFilter value)? resetFilter,
     TResult Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult Function(_SelectProduct value)? selectProduct,
+    TResult Function(_SelectApprovalFilter value)? selectApprovalFilter,
     required TResult orElse(),
   }) {
     if (resetFilter != null) {
@@ -1094,9 +1403,13 @@ class _$ChangeSearchKeywordImpl implements _ChangeSearchKeyword {
         changeDateRange,
     required TResult Function(int requestTypeId) selectTab,
     required TResult Function() refresh,
-    required TResult Function(int? projectId, int? supplierId) applyFilter,
+    required TResult Function(int? projectId) selectProject,
+    required TResult Function(int? supplierId) selectSupplier,
     required TResult Function() resetFilter,
     required TResult Function(String keyword) changeSearchKeyword,
+    required TResult Function(String product) selectProduct,
+    required TResult Function(PurchasingApprovalFilter filter)
+        selectApprovalFilter,
   }) {
     return changeSearchKeyword(keyword);
   }
@@ -1108,9 +1421,12 @@ class _$ChangeSearchKeywordImpl implements _ChangeSearchKeyword {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int requestTypeId)? selectTab,
     TResult? Function()? refresh,
-    TResult? Function(int? projectId, int? supplierId)? applyFilter,
+    TResult? Function(int? projectId)? selectProject,
+    TResult? Function(int? supplierId)? selectSupplier,
     TResult? Function()? resetFilter,
     TResult? Function(String keyword)? changeSearchKeyword,
+    TResult? Function(String product)? selectProduct,
+    TResult? Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
   }) {
     return changeSearchKeyword?.call(keyword);
   }
@@ -1122,9 +1438,12 @@ class _$ChangeSearchKeywordImpl implements _ChangeSearchKeyword {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int requestTypeId)? selectTab,
     TResult Function()? refresh,
-    TResult Function(int? projectId, int? supplierId)? applyFilter,
+    TResult Function(int? projectId)? selectProject,
+    TResult Function(int? supplierId)? selectSupplier,
     TResult Function()? resetFilter,
     TResult Function(String keyword)? changeSearchKeyword,
+    TResult Function(String product)? selectProduct,
+    TResult Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
     required TResult orElse(),
   }) {
     if (changeSearchKeyword != null) {
@@ -1140,9 +1459,12 @@ class _$ChangeSearchKeywordImpl implements _ChangeSearchKeyword {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_SelectTab value) selectTab,
     required TResult Function(_Refresh value) refresh,
-    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_SelectProject value) selectProject,
+    required TResult Function(_SelectSupplier value) selectSupplier,
     required TResult Function(_ResetFilter value) resetFilter,
     required TResult Function(_ChangeSearchKeyword value) changeSearchKeyword,
+    required TResult Function(_SelectProduct value) selectProduct,
+    required TResult Function(_SelectApprovalFilter value) selectApprovalFilter,
   }) {
     return changeSearchKeyword(this);
   }
@@ -1154,9 +1476,12 @@ class _$ChangeSearchKeywordImpl implements _ChangeSearchKeyword {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_SelectTab value)? selectTab,
     TResult? Function(_Refresh value)? refresh,
-    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_SelectProject value)? selectProject,
+    TResult? Function(_SelectSupplier value)? selectSupplier,
     TResult? Function(_ResetFilter value)? resetFilter,
     TResult? Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult? Function(_SelectProduct value)? selectProduct,
+    TResult? Function(_SelectApprovalFilter value)? selectApprovalFilter,
   }) {
     return changeSearchKeyword?.call(this);
   }
@@ -1168,9 +1493,12 @@ class _$ChangeSearchKeywordImpl implements _ChangeSearchKeyword {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_SelectTab value)? selectTab,
     TResult Function(_Refresh value)? refresh,
-    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_SelectProject value)? selectProject,
+    TResult Function(_SelectSupplier value)? selectSupplier,
     TResult Function(_ResetFilter value)? resetFilter,
     TResult Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult Function(_SelectProduct value)? selectProduct,
+    TResult Function(_SelectApprovalFilter value)? selectApprovalFilter,
     required TResult orElse(),
   }) {
     if (changeSearchKeyword != null) {
@@ -1188,4 +1516,376 @@ abstract class _ChangeSearchKeyword implements ApprovePurchasingEvent {
   @JsonKey(ignore: true)
   _$$ChangeSearchKeywordImplCopyWith<_$ChangeSearchKeywordImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SelectProductImplCopyWith<$Res> {
+  factory _$$SelectProductImplCopyWith(
+          _$SelectProductImpl value, $Res Function(_$SelectProductImpl) then) =
+      __$$SelectProductImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String product});
+}
+
+/// @nodoc
+class __$$SelectProductImplCopyWithImpl<$Res>
+    extends _$ApprovePurchasingEventCopyWithImpl<$Res, _$SelectProductImpl>
+    implements _$$SelectProductImplCopyWith<$Res> {
+  __$$SelectProductImplCopyWithImpl(
+      _$SelectProductImpl _value, $Res Function(_$SelectProductImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? product = null,
+  }) {
+    return _then(_$SelectProductImpl(
+      product: null == product
+          ? _value.product
+          : product // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SelectProductImpl implements _SelectProduct {
+  const _$SelectProductImpl({required this.product});
+
+  @override
+  final String product;
+
+  @override
+  String toString() {
+    return 'ApprovePurchasingEvent.selectProduct(product: $product)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectProductImpl &&
+            (identical(other.product, product) || other.product == product));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, product);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SelectProductImplCopyWith<_$SelectProductImpl> get copyWith =>
+      __$$SelectProductImplCopyWithImpl<_$SelectProductImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int requestTypeId) selectTab,
+    required TResult Function() refresh,
+    required TResult Function(int? projectId) selectProject,
+    required TResult Function(int? supplierId) selectSupplier,
+    required TResult Function() resetFilter,
+    required TResult Function(String keyword) changeSearchKeyword,
+    required TResult Function(String product) selectProduct,
+    required TResult Function(PurchasingApprovalFilter filter)
+        selectApprovalFilter,
+  }) {
+    return selectProduct(product);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int requestTypeId)? selectTab,
+    TResult? Function()? refresh,
+    TResult? Function(int? projectId)? selectProject,
+    TResult? Function(int? supplierId)? selectSupplier,
+    TResult? Function()? resetFilter,
+    TResult? Function(String keyword)? changeSearchKeyword,
+    TResult? Function(String product)? selectProduct,
+    TResult? Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+  }) {
+    return selectProduct?.call(product);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int requestTypeId)? selectTab,
+    TResult Function()? refresh,
+    TResult Function(int? projectId)? selectProject,
+    TResult Function(int? supplierId)? selectSupplier,
+    TResult Function()? resetFilter,
+    TResult Function(String keyword)? changeSearchKeyword,
+    TResult Function(String product)? selectProduct,
+    TResult Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    required TResult orElse(),
+  }) {
+    if (selectProduct != null) {
+      return selectProduct(product);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_SelectTab value) selectTab,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_SelectProject value) selectProject,
+    required TResult Function(_SelectSupplier value) selectSupplier,
+    required TResult Function(_ResetFilter value) resetFilter,
+    required TResult Function(_ChangeSearchKeyword value) changeSearchKeyword,
+    required TResult Function(_SelectProduct value) selectProduct,
+    required TResult Function(_SelectApprovalFilter value) selectApprovalFilter,
+  }) {
+    return selectProduct(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_SelectTab value)? selectTab,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_SelectProject value)? selectProject,
+    TResult? Function(_SelectSupplier value)? selectSupplier,
+    TResult? Function(_ResetFilter value)? resetFilter,
+    TResult? Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult? Function(_SelectProduct value)? selectProduct,
+    TResult? Function(_SelectApprovalFilter value)? selectApprovalFilter,
+  }) {
+    return selectProduct?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_SelectTab value)? selectTab,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_SelectProject value)? selectProject,
+    TResult Function(_SelectSupplier value)? selectSupplier,
+    TResult Function(_ResetFilter value)? resetFilter,
+    TResult Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult Function(_SelectProduct value)? selectProduct,
+    TResult Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    required TResult orElse(),
+  }) {
+    if (selectProduct != null) {
+      return selectProduct(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SelectProduct implements ApprovePurchasingEvent {
+  const factory _SelectProduct({required final String product}) =
+      _$SelectProductImpl;
+
+  String get product;
+  @JsonKey(ignore: true)
+  _$$SelectProductImplCopyWith<_$SelectProductImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SelectApprovalFilterImplCopyWith<$Res> {
+  factory _$$SelectApprovalFilterImplCopyWith(_$SelectApprovalFilterImpl value,
+          $Res Function(_$SelectApprovalFilterImpl) then) =
+      __$$SelectApprovalFilterImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({PurchasingApprovalFilter filter});
+}
+
+/// @nodoc
+class __$$SelectApprovalFilterImplCopyWithImpl<$Res>
+    extends _$ApprovePurchasingEventCopyWithImpl<$Res,
+        _$SelectApprovalFilterImpl>
+    implements _$$SelectApprovalFilterImplCopyWith<$Res> {
+  __$$SelectApprovalFilterImplCopyWithImpl(_$SelectApprovalFilterImpl _value,
+      $Res Function(_$SelectApprovalFilterImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filter = null,
+  }) {
+    return _then(_$SelectApprovalFilterImpl(
+      filter: null == filter
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as PurchasingApprovalFilter,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SelectApprovalFilterImpl implements _SelectApprovalFilter {
+  const _$SelectApprovalFilterImpl({required this.filter});
+
+  @override
+  final PurchasingApprovalFilter filter;
+
+  @override
+  String toString() {
+    return 'ApprovePurchasingEvent.selectApprovalFilter(filter: $filter)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectApprovalFilterImpl &&
+            (identical(other.filter, filter) || other.filter == filter));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, filter);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SelectApprovalFilterImplCopyWith<_$SelectApprovalFilterImpl>
+      get copyWith =>
+          __$$SelectApprovalFilterImplCopyWithImpl<_$SelectApprovalFilterImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int requestTypeId) selectTab,
+    required TResult Function() refresh,
+    required TResult Function(int? projectId) selectProject,
+    required TResult Function(int? supplierId) selectSupplier,
+    required TResult Function() resetFilter,
+    required TResult Function(String keyword) changeSearchKeyword,
+    required TResult Function(String product) selectProduct,
+    required TResult Function(PurchasingApprovalFilter filter)
+        selectApprovalFilter,
+  }) {
+    return selectApprovalFilter(filter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int requestTypeId)? selectTab,
+    TResult? Function()? refresh,
+    TResult? Function(int? projectId)? selectProject,
+    TResult? Function(int? supplierId)? selectSupplier,
+    TResult? Function()? resetFilter,
+    TResult? Function(String keyword)? changeSearchKeyword,
+    TResult? Function(String product)? selectProduct,
+    TResult? Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+  }) {
+    return selectApprovalFilter?.call(filter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int requestTypeId)? selectTab,
+    TResult Function()? refresh,
+    TResult Function(int? projectId)? selectProject,
+    TResult Function(int? supplierId)? selectSupplier,
+    TResult Function()? resetFilter,
+    TResult Function(String keyword)? changeSearchKeyword,
+    TResult Function(String product)? selectProduct,
+    TResult Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    required TResult orElse(),
+  }) {
+    if (selectApprovalFilter != null) {
+      return selectApprovalFilter(filter);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_SelectTab value) selectTab,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_SelectProject value) selectProject,
+    required TResult Function(_SelectSupplier value) selectSupplier,
+    required TResult Function(_ResetFilter value) resetFilter,
+    required TResult Function(_ChangeSearchKeyword value) changeSearchKeyword,
+    required TResult Function(_SelectProduct value) selectProduct,
+    required TResult Function(_SelectApprovalFilter value) selectApprovalFilter,
+  }) {
+    return selectApprovalFilter(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_SelectTab value)? selectTab,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_SelectProject value)? selectProject,
+    TResult? Function(_SelectSupplier value)? selectSupplier,
+    TResult? Function(_ResetFilter value)? resetFilter,
+    TResult? Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult? Function(_SelectProduct value)? selectProduct,
+    TResult? Function(_SelectApprovalFilter value)? selectApprovalFilter,
+  }) {
+    return selectApprovalFilter?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_SelectTab value)? selectTab,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_SelectProject value)? selectProject,
+    TResult Function(_SelectSupplier value)? selectSupplier,
+    TResult Function(_ResetFilter value)? resetFilter,
+    TResult Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult Function(_SelectProduct value)? selectProduct,
+    TResult Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    required TResult orElse(),
+  }) {
+    if (selectApprovalFilter != null) {
+      return selectApprovalFilter(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SelectApprovalFilter implements ApprovePurchasingEvent {
+  const factory _SelectApprovalFilter(
+          {required final PurchasingApprovalFilter filter}) =
+      _$SelectApprovalFilterImpl;
+
+  PurchasingApprovalFilter get filter;
+  @JsonKey(ignore: true)
+  _$$SelectApprovalFilterImplCopyWith<_$SelectApprovalFilterImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
