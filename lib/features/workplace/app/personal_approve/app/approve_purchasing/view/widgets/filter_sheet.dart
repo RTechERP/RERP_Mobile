@@ -52,12 +52,14 @@ class _FilterSheetState extends State<FilterSheet> {
       builder: (context, state) {
         final f = state.filter;
 
-        // Chỉ gợi ý dự án / NCC thực sự xuất hiện trong `items` của tab
-        // đang chọn (items đã được giới hạn theo khoảng ngày đang lọc).
-        // Dựng map id → object để tra nhanh label của giá trị đang chọn
-        // (giá trị có thể đã bị loại khỏi danh sách gợi ý sau khi
-        // đổi khoảng ngày).
-        final items = state.items;
+        // Chỉ gợi ý dự án / NCC thực sự xuất hiện trong data của tab
+        // đang chọn (đã giới hạn theo khoảng ngày đang lọc). Dựng map
+        // id → object để tra nhanh label của giá trị đang chọn (giá trị có
+        // thể đã bị loại khỏi danh sách gợi ý sau khi đổi khoảng ngày).
+        final selectedTypeId = state.selectedRequestTypeId;
+        final items = selectedTypeId == null
+            ? const <ApprovePurchasingItem>[]
+            : state.itemsFor(selectedTypeId);
         final projectById = <int, ProjectFilterItem>{};
         for (final it in items) {
           final pid = it.projectId;

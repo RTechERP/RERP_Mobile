@@ -53,4 +53,31 @@ class ApprovePurchasingEvent with _$ApprovePurchasingEvent {
   const factory ApprovePurchasingEvent.selectApprovalFilter({
     required PurchasingApprovalFilter filter,
   }) = _SelectApprovalFilter;
+
+  /// Thoát chế độ chọn và xoá hết lựa chọn hiện tại.
+  const factory ApprovePurchasingEvent.exitSelectionMode() =
+      _ExitSelectionMode;
+
+  /// Toggle chọn / bỏ chọn 1 card. Khi bỏ chọn hết tự thoát mode.
+  const factory ApprovePurchasingEvent.toggleSelection({
+    required int itemId,
+  }) = _ToggleSelection;
+
+  /// Chọn tất cả card con đang hiển thị (sau filter hiện tại).
+  const factory ApprovePurchasingEvent.selectAllVisible() = _SelectAllVisible;
+
+  /// Bỏ chọn tất cả (giữ nguyên chế độ chọn).
+  const factory ApprovePurchasingEvent.clearSelection() = _ClearSelection;
+
+  /// Duyệt / huỷ duyệt các phiếu đang được chọn.
+  /// [isApproved] = `true` → duyệt, `false` → huỷ duyệt. Server dùng
+  /// giá trị này để set trạng thái `IsApprovedBGD`.
+  const factory ApprovePurchasingEvent.approveSelected({
+    required bool isApproved,
+  }) = _ApproveSelected;
+
+  /// UI phát sau khi đã hiện snackbar của `approveFeedback` lần đầu —
+  /// để bloc về `null` tránh show lại khi rebuild.
+  const factory ApprovePurchasingEvent.clearApproveFeedback() =
+      _ClearApproveFeedback;
 }

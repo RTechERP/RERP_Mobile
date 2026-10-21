@@ -1,11 +1,12 @@
 // Service cho màn Duyệt phiếu yêu cầu mua hàng (ProjectPartlistPurchaseRequest).
 // API:
-//   - POST /ProjectPartlistPurchaseRequest/get-all
-//   - GET  /ProjectPartlistPurchaseRequest/request-types
-//   - GET  /currency/get-all
-//   - GET  /ProductGroup/get-productgroup-purchase
-//   - GET  /suppliersale/list-supplier-sale
-//   - GET  /ProjectPartlistPurchaseRequest/get-all-project
+//   - POST  /ProjectPartlistPurchaseRequest/get-all
+//   - GET   /ProjectPartlistPurchaseRequest/request-types
+//   - POST  /ProjectPartlistPurchaseRequest/approved   (duyệt / huỷ duyệt)
+//   - GET   /currency/get-all
+//   - GET   /ProductGroup/get-productgroup-purchase
+//   - GET   /suppliersale/list-supplier-sale
+//   - GET   /ProjectPartlistPurchaseRequest/get-all-project
 
 import 'package:injectable/injectable.dart';
 
@@ -114,6 +115,32 @@ class ApprovePurchasingService extends DioBaseApiService {
         (data) => (data as List)
             .map(
               (e) => ProjectFilterItem.fromJson(e as Map<String, dynamic>),
+            )
+            .toList(),
+      ),
+    );
+  }
+
+  /// Duyệt (status=true) hoặc huỷ duyệt (status=false) hàng loạt
+  /// phiếu. BE nhận body là 1 list các phiếu (mỗi phiếu là 1 map đầy
+  /// đủ field của item) và trả về `BaseData<List<...>>` tương tự
+  /// `/get-all` (cùng envelope `status` / `data`).
+  ///
+  /// - [status]: `true` → duyệt, `false` → huỷ duyệt.
+  /// - [items]: danh sách các phiếu đã chọn (toàn bộ field, BE dựa
+  ///   vào `id` và các flag để cập nhật).
+  Future<BaseData<List<ApprovePurchasingItem>>> approvedPurchasing({
+    required bool status,
+    required List<Map<String, dynamic>> items,
+  }) async {
+    return post<BaseData<List<ApprovePurchasingItem>>>(
+      '${ApiEndPoint.getApprovePurchasingApproved}?status=$status&type=false',
+      body: items,
+      parser: (json) => BaseData<List<ApprovePurchasingItem>>.fromJson(
+        json as Map<String, dynamic>,
+        (data) => (data as List)
+            .map(
+              (e) => ApprovePurchasingItem.fromJson(e as Map<String, dynamic>),
             )
             .toList(),
       ),

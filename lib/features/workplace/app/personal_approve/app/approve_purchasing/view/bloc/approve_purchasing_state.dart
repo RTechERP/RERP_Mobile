@@ -16,11 +16,11 @@ class ApprovePurchasingState extends BaseBlocState {
   /// Cache này được fill từ 1 lần gọi `get-all` (không filter theo
   /// loại trên BE) — đổi tab chỉ việc tra `itemsByType[id]` thay vì
   /// gọi lại API.
+  ///
+  /// Đây là nguồn dữ liệu duy nhất: mỗi tab tự resolve data của riêng nó
+  /// qua [itemsFor] / [filteredItemsFor], nên không còn field `items` /
+  /// `filteredItems` gắn với tab đang chọn.
   final Map<int, List<ApprovePurchasingItem>> itemsByType;
-
-  /// Danh sách phiếu của tab đang chọn (resolved từ `itemsByType`).
-  /// UI bind thẳng vào field này.
-  final List<ApprovePurchasingItem> items;
 
   /// Khoảng ngày đang lọc.
   final DateTime? dateStart;
@@ -42,12 +42,28 @@ class ApprovePurchasingState extends BaseBlocState {
   final List<ProjectFilterItem> projects;
 
   /// Bộ lọc client-side hiện tại (search + project + supplier).
-  /// Áp dụng lên cache `itemsByType` qua `filteredItems`.
+  /// Áp dụng lên cache `itemsByType` qua [filteredItemsFor].
   final PurchasingFilter filter;
 
-  /// Items sau khi áp dụng filter cho tab đang chọn.
-  /// UI bind vào field này thay vì `items` thô.
-  final List<ApprovePurchasingItem> filteredItems;
+  /// `true` khi user đã bật chế độ chọn hàng loạt (long-press trên 1
+  /// card hoặc bấm nút "Chọn" trên thanh tab). Khi bật, mỗi card
+  /// con sẽ hiện checkbox + nút "Duyệt" / "Huỷ duyệt" ở bottom bar.
+  final bool isSelectionMode;
+
+  /// Tập `id` các card con đang được chọn. Khi user đổi tab / filter /
+  /// khoảng ngày, danh sách này được reset để tránh thao tác nhầm
+  /// trên dữ liệu không còn hiển thị.
+  final Set<int> selectedIds;
+
+  /// `true` trong lúc bloc đang gọi API duyệt / huỷ duyệt hàng loạt.
+  /// UI dùng để disable 2 nút "Duyệt" / "Huỷ duyệt" và (tuỳ chọn)
+  /// hiển thị loading. Pattern lấy từ `approve_booking_guest_house`.
+  final bool isApproving;
+
+  /// Thông báo gần nhất của thao tác duyệt / huỷ duyệt:
+  /// `success` (xanh), `error` (đỏ) hoặc `null` (không có / đã đóng).
+  /// UI subscribe để show snackbar (xem `Screen`).
+  final ApprovePurchasingFeedback? approveFeedback;
 
   const ApprovePurchasingState({
     required super.status,
@@ -55,7 +71,6 @@ class ApprovePurchasingState extends BaseBlocState {
     this.requestTypes = const [],
     this.selectedRequestTypeId,
     this.itemsByType = const {},
-    this.items = const [],
     this.dateStart,
     this.dateEnd,
     this.isRefreshing = false,
@@ -64,7 +79,10 @@ class ApprovePurchasingState extends BaseBlocState {
     this.suppliers = const [],
     this.projects = const [],
     this.filter = const PurchasingFilter(),
-    this.filteredItems = const [],
+    this.isSelectionMode = false,
+    this.selectedIds = const <int>{},
+    this.isApproving = false,
+    this.approveFeedback,
   });
 
   factory ApprovePurchasingState.init() => ApprovePurchasingState(
@@ -72,7 +90,6 @@ class ApprovePurchasingState extends BaseBlocState {
         requestTypes: const [],
         selectedRequestTypeId: null,
         itemsByType: const {},
-        items: const [],
         dateStart: null,
         dateEnd: null,
         isRefreshing: false,
@@ -81,7 +98,10 @@ class ApprovePurchasingState extends BaseBlocState {
         suppliers: const [],
         projects: const [],
         filter: const PurchasingFilter(),
-        filteredItems: const [],
+        isSelectionMode: false,
+        selectedIds: const <int>{},
+        isApproving: false,
+        approveFeedback: null,
       );
 
   /// Whitelist 3 ID loại phiếu mua được phép hiển thị trên UI.
@@ -132,6 +152,96 @@ class ApprovePurchasingState extends BaseBlocState {
     return itemsByType[requestTypeId]?.length ?? 0;
   }
 
+  /// Items thuộc 1 loại phiếu, chưa áp bộ lọc.
+  ///
+  /// Mỗi tab gọi hàm này với `requestTypeId` của riêng nó, thay vì đọc
+  /// `filteredItems` (vốn chỉ chứa data của tab đang chọn) — nhờ vậy khi
+  /// vuốt sang tab mới, tab đó hiện đúng data của nó chứ không phải data
+  /// tab cũ.
+  List<ApprovePurchasingItem> itemsFor(int requestTypeId) {
+    return itemsByType[requestTypeId] ?? const [];
+  }
+
+  /// Items của 1 loại phiếu sau khi áp bộ lọc hiện tại — dùng cho UI.
+  List<ApprovePurchasingItem> filteredItemsFor(int requestTypeId) {
+    return applyFilter(itemsFor(requestTypeId), filter);
+  }
+
+  /// Áp bộ lọc (search + sản phẩm + trạng thái duyệt + project +
+  /// supplier) lên 1 list items. Trả về list mới đã filter — không
+  /// mutate input.
+  static List<ApprovePurchasingItem> applyFilter(
+    List<ApprovePurchasingItem> source,
+    PurchasingFilter filter,
+  ) {
+    if (filter.isEmpty) return source;
+
+    final kw = filter.searchKeyword.trim().toLowerCase();
+    // `selectedProduct` lưu 1 hoặc 2 giá trị ghép bằng `|` tuỳ theo
+    // item được chọn từ picker (có thể chỉ code, chỉ name, hoặc cả 2).
+    // Logic match: với mỗi item, so `contains` từng khoá trên code
+    // hoặc name của item; chỉ cần khớp 1 khoá là giữ lại (OR) — tránh
+    // khớp quá chặt khiến item tương đương bị loại.
+    final productKeys = filter.selectedProduct
+        .trim()
+        .toLowerCase()
+        .split('|')
+        .where((s) => s.isNotEmpty)
+        .toList();
+
+    return source.where((item) {
+      // Search chung: mã SP / tên SP / note.
+      if (kw.isNotEmpty) {
+        final fields = [
+          item.productCode ?? '',
+          item.productName ?? '',
+          item.note ?? '',
+          item.notePartlist ?? '',
+        ];
+        if (!fields.any((f) => f.toLowerCase().contains(kw))) {
+          return false;
+        }
+      }
+
+      // Lọc theo sản phẩm đã chọn (khoá ghép bằng `|`).
+      if (productKeys.isNotEmpty) {
+        final code = (item.productCode ?? '').toLowerCase();
+        final name = (item.productName ?? '').toLowerCase();
+        // Khớp nếu BẤT KỲ khoá nào chứa code HOẶC name.
+        if (!productKeys.any(
+          (k) => code.contains(k) || name.contains(k),
+        )) {
+          return false;
+        }
+      }
+
+      // Lọc theo trạng thái duyệt BGĐ.
+      final approved = item.isApprovedBgd ?? false;
+      switch (filter.approvalFilter) {
+        case PurchasingApprovalFilter.all:
+          break;
+        case PurchasingApprovalFilter.pending:
+          if (approved) return false;
+          break;
+        case PurchasingApprovalFilter.approved:
+          if (!approved) return false;
+          break;
+      }
+
+      // Project filter.
+      if (filter.selectedProjectId != null) {
+        if (item.projectId != filter.selectedProjectId) return false;
+      }
+
+      // Supplier filter.
+      if (filter.selectedSupplierId != null) {
+        if (item.supplierSaleId != filter.selectedSupplierId) return false;
+      }
+
+      return true;
+    }).toList(growable: false);
+  }
+
   /// Nhóm items theo `ProjectID` để hiển thị 1 card = 1 project.
   /// `null` key = những item không có project.
   Map<int?, List<ApprovePurchasingItem>> groupByProject(
@@ -150,7 +260,6 @@ class ApprovePurchasingState extends BaseBlocState {
         requestTypes,
         selectedRequestTypeId,
         itemsByType,
-        items,
         dateStart,
         dateEnd,
         isRefreshing,
@@ -159,6 +268,31 @@ class ApprovePurchasingState extends BaseBlocState {
         suppliers,
         projects,
         filter,
-        filteredItems,
+        isSelectionMode,
+        selectedIds,
+        isApproving,
+        approveFeedback,
       ];
+}
+
+/// Kết quả thao tác duyệt / huỷ duyệt, mang theo message của BE để UI
+  /// hiển thị đúng thông báo gốc.
+///
+/// extends [Equatable] để state so sánh theo giá trị — hai feedback
+/// cùng message được coi là bằng nhau, tránh rebuild / show snackbar
+/// lặp.
+class ApprovePurchasingFeedback extends Equatable {
+  /// Thông báo hiển thị cho user — lấy từ `message` của API.
+  final String message;
+
+  /// `true` = duyệt thành công, `false` = thất bại (UI chọn màu snackbar).
+  final bool isSuccess;
+
+  const ApprovePurchasingFeedback.success(this.message)
+      : isSuccess = true;
+
+  const ApprovePurchasingFeedback.error(this.message) : isSuccess = false;
+
+  @override
+  List<Object?> get props => [message, isSuccess];
 }

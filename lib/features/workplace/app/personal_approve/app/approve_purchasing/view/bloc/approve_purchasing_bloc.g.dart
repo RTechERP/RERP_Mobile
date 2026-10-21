@@ -19,8 +19,6 @@ abstract class _$ApprovePurchasingStateCWProxy {
   ApprovePurchasingState itemsByType(
       Map<int, List<ApprovePurchasingItem>> itemsByType);
 
-  ApprovePurchasingState items(List<ApprovePurchasingItem> items);
-
   ApprovePurchasingState dateStart(DateTime? dateStart);
 
   ApprovePurchasingState dateEnd(DateTime? dateEnd);
@@ -37,8 +35,14 @@ abstract class _$ApprovePurchasingStateCWProxy {
 
   ApprovePurchasingState filter(PurchasingFilter filter);
 
-  ApprovePurchasingState filteredItems(
-      List<ApprovePurchasingItem> filteredItems);
+  ApprovePurchasingState isSelectionMode(bool isSelectionMode);
+
+  ApprovePurchasingState selectedIds(Set<int> selectedIds);
+
+  ApprovePurchasingState isApproving(bool isApproving);
+
+  ApprovePurchasingState approveFeedback(
+      ApprovePurchasingFeedback? approveFeedback);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ApprovePurchasingState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -52,7 +56,6 @@ abstract class _$ApprovePurchasingStateCWProxy {
     List<ApprovePurchasingRequestTypeItem>? requestTypes,
     int? selectedRequestTypeId,
     Map<int, List<ApprovePurchasingItem>>? itemsByType,
-    List<ApprovePurchasingItem>? items,
     DateTime? dateStart,
     DateTime? dateEnd,
     bool? isRefreshing,
@@ -61,7 +64,10 @@ abstract class _$ApprovePurchasingStateCWProxy {
     List<SupplierItem>? suppliers,
     List<ProjectFilterItem>? projects,
     PurchasingFilter? filter,
-    List<ApprovePurchasingItem>? filteredItems,
+    bool? isSelectionMode,
+    Set<int>? selectedIds,
+    bool? isApproving,
+    ApprovePurchasingFeedback? approveFeedback,
   });
 }
 
@@ -91,10 +97,6 @@ class _$ApprovePurchasingStateCWProxyImpl
   ApprovePurchasingState itemsByType(
           Map<int, List<ApprovePurchasingItem>> itemsByType) =>
       this(itemsByType: itemsByType);
-
-  @override
-  ApprovePurchasingState items(List<ApprovePurchasingItem> items) =>
-      this(items: items);
 
   @override
   ApprovePurchasingState dateStart(DateTime? dateStart) =>
@@ -128,9 +130,21 @@ class _$ApprovePurchasingStateCWProxyImpl
       this(filter: filter);
 
   @override
-  ApprovePurchasingState filteredItems(
-          List<ApprovePurchasingItem> filteredItems) =>
-      this(filteredItems: filteredItems);
+  ApprovePurchasingState isSelectionMode(bool isSelectionMode) =>
+      this(isSelectionMode: isSelectionMode);
+
+  @override
+  ApprovePurchasingState selectedIds(Set<int> selectedIds) =>
+      this(selectedIds: selectedIds);
+
+  @override
+  ApprovePurchasingState isApproving(bool isApproving) =>
+      this(isApproving: isApproving);
+
+  @override
+  ApprovePurchasingState approveFeedback(
+          ApprovePurchasingFeedback? approveFeedback) =>
+      this(approveFeedback: approveFeedback);
 
   @override
 
@@ -146,7 +160,6 @@ class _$ApprovePurchasingStateCWProxyImpl
     Object? requestTypes = const $CopyWithPlaceholder(),
     Object? selectedRequestTypeId = const $CopyWithPlaceholder(),
     Object? itemsByType = const $CopyWithPlaceholder(),
-    Object? items = const $CopyWithPlaceholder(),
     Object? dateStart = const $CopyWithPlaceholder(),
     Object? dateEnd = const $CopyWithPlaceholder(),
     Object? isRefreshing = const $CopyWithPlaceholder(),
@@ -155,7 +168,10 @@ class _$ApprovePurchasingStateCWProxyImpl
     Object? suppliers = const $CopyWithPlaceholder(),
     Object? projects = const $CopyWithPlaceholder(),
     Object? filter = const $CopyWithPlaceholder(),
-    Object? filteredItems = const $CopyWithPlaceholder(),
+    Object? isSelectionMode = const $CopyWithPlaceholder(),
+    Object? selectedIds = const $CopyWithPlaceholder(),
+    Object? isApproving = const $CopyWithPlaceholder(),
+    Object? approveFeedback = const $CopyWithPlaceholder(),
   }) {
     return ApprovePurchasingState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -181,10 +197,6 @@ class _$ApprovePurchasingStateCWProxyImpl
               ? _value.itemsByType
               // ignore: cast_nullable_to_non_nullable
               : itemsByType as Map<int, List<ApprovePurchasingItem>>,
-      items: items == const $CopyWithPlaceholder() || items == null
-          ? _value.items
-          // ignore: cast_nullable_to_non_nullable
-          : items as List<ApprovePurchasingItem>,
       dateStart: dateStart == const $CopyWithPlaceholder()
           ? _value.dateStart
           // ignore: cast_nullable_to_non_nullable
@@ -220,11 +232,25 @@ class _$ApprovePurchasingStateCWProxyImpl
           ? _value.filter
           // ignore: cast_nullable_to_non_nullable
           : filter as PurchasingFilter,
-      filteredItems:
-          filteredItems == const $CopyWithPlaceholder() || filteredItems == null
-              ? _value.filteredItems
+      isSelectionMode: isSelectionMode == const $CopyWithPlaceholder() ||
+              isSelectionMode == null
+          ? _value.isSelectionMode
+          // ignore: cast_nullable_to_non_nullable
+          : isSelectionMode as bool,
+      selectedIds:
+          selectedIds == const $CopyWithPlaceholder() || selectedIds == null
+              ? _value.selectedIds
               // ignore: cast_nullable_to_non_nullable
-              : filteredItems as List<ApprovePurchasingItem>,
+              : selectedIds as Set<int>,
+      isApproving:
+          isApproving == const $CopyWithPlaceholder() || isApproving == null
+              ? _value.isApproving
+              // ignore: cast_nullable_to_non_nullable
+              : isApproving as bool,
+      approveFeedback: approveFeedback == const $CopyWithPlaceholder()
+          ? _value.approveFeedback
+          // ignore: cast_nullable_to_non_nullable
+          : approveFeedback as ApprovePurchasingFeedback?,
     );
   }
 }

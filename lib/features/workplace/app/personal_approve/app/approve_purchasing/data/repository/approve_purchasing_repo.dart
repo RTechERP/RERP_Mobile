@@ -27,4 +27,32 @@ abstract class ApprovePurchasingRepo {
 
   /// Lấy danh sách dự án (cho dropdown dự án).
   Future<Either<BaseError, List<ProjectFilterItem>>> getProjects();
+
+  /// Duyệt (status=true) hoặc huỷ duyệt (status=false) hàng loạt.
+  /// [items] là danh sách các `ApprovePurchasingItem` đã chọn — BE nhận
+  /// kèm toàn bộ field, không chỉ id, để cập nhật đúng bản ghi.
+  ///
+  /// Trả về [ApprovePurchasingResult] gồm các bản ghi BE đã cập nhật
+  /// và `message` gốc từ API (ví dụ "Đã cập nhật trạng thái 1 yêu cầu
+  /// duyệt thành công.") để UI hiển thị đúng, không tự đếm.
+  Future<Either<BaseError, ApprovePurchasingResult>> approvePurchasing({
+    required bool status,
+    required List<ApprovePurchasingItem> items,
+  });
+}
+
+/// Kết quả gọi API duyệt / huỷ duyệt — gồm dữ liệu BE trả về và
+/// message gốc để hiển thị.
+class ApprovePurchasingResult {
+  /// Các bản ghi BE đã cập nhật (dùng để đối chiếu / refresh nếu cần).
+  final List<ApprovePurchasingItem> updatedItems;
+
+  /// Message trả về từ API, ví dụ
+  /// "Đã cập nhật trạng thái 1 yêu cầu duyệt thành công.".
+  final String message;
+
+  const ApprovePurchasingResult({
+    required this.updatedItems,
+    required this.message,
+  });
 }

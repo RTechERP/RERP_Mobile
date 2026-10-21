@@ -8,16 +8,20 @@
 //    phụ thuộc vào API `/request-types`. API chỉ dùng để xác nhận label
 //    (nếu BE trả khác thì ưu tiên label từ API).
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../../../../base/bloc/bloc_status.dart';
 import '../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../common/constants/index.dart';
+import '../../../../../../../../common/utils/dialog/dialog_service.dart';
+import '../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../common/widgets/date_range_picker.dart';
 import '../../data/datasource/models/approve_purchasing_model.dart';
 import '../bloc/approve_purchasing_bloc.dart';
@@ -45,8 +49,15 @@ class _ApprovePurchasingScreenState
   /// Key để điều khiển `RefreshIndicator` — auto-show spinner kiểu
   /// pull-to-refresh khi bloc phát `isRefreshing = true` (đổi khoảng
   /// ngày…). Trigger qua `BlocListener` ở `renderUI`.
-  final GlobalKey<RefreshIndicatorState> _refreshKey =
-      GlobalKey<RefreshIndicatorState>();
+  ///
+  /// Mỗi tab cần 1 GlobalKey riêng: `TabBarView` giữ cả 3 tab con trong
+  /// cây đồ thị, nếu dùng chung 1 key sẽ gây "Duplicate GlobalKey" khi
+  /// chuyển tab.
+  late final List<GlobalKey<RefreshIndicatorState>> _refreshKeys =
+      List.generate(
+    _tabDefs.length,
+    (i) => GlobalKey<RefreshIndicatorState>(),
+  );
 
   /// Định nghĩa tĩnh 3 tab của màn hình (label + requestTypeId).
   /// `TabController` được tạo 1 lần dựa trên độ dài list này, không phụ
@@ -91,21 +102,58 @@ class _ApprovePurchasingScreenState
     super.dispose();
   }
 
-  /// Chỉ trigger khi `isRefreshing` chuyển từ `false → true` để hiện
-  /// spinner pull-to-refresh phía trên list.
+  /// Trigger [listener] khi (a) bloc vừa bật `isRefreshing` để auto-show
+  /// pull-to-refresh, hoặc (b) bloc vừa set `approveFeedback` để hiện
+  /// snackbar kết quả duyệt / huỷ duyệt.
   @override
-  bool listenWhen(ApprovePurchasingState previous, ApprovePurchasingState current) {
-    return !previous.isRefreshing && current.isRefreshing;
+  bool listenWhen(
+    ApprovePurchasingState previous,
+    ApprovePurchasingState current,
+  ) {
+    final refreshChanged =
+        !previous.isRefreshing && current.isRefreshing;
+    final feedbackChanged = previous.approveFeedback !=
+            current.approveFeedback &&
+        current.approveFeedback != null;
+    return refreshChanged || feedbackChanged;
   }
 
   /// Khi bloc vừa bật `isRefreshing` → auto-show spinner pull-to-
   /// refresh (không phủ overlay đen, giữ nguyên list cũ cho đến khi
-  /// load xong).
+  /// load xong). Khi bloc vừa set `approveFeedback` → show snackbar
+  /// kết quả và clear ngay để tránh lặp.
   @override
   void listener(BuildContext context, ApprovePurchasingState state) {
+    final fb = state.approveFeedback;
+    if (fb != null) {
+      _showApproveFeedback(context, fb);
+      bloc.add(const ApprovePurchasingEvent.clearApproveFeedback());
+      return;
+    }
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _refreshKey.currentState?.show();
+      // Chỉ show spinner trên tab đang xem, tránh 3 RefreshIndicator
+      // cùng chạy và tránh GlobalKey bị reparent khi đổi tab.
+      final idx = _tabController.index;
+      if (idx >= 0 && idx < _refreshKeys.length) {
+        _refreshKeys[idx].currentState?.show();
+      }
     });
+  }
+
+  /// Hiện snackbar với message do BE trả về (ví dụ "Đã cập nhật trạng
+  /// thái 1 yêu cầu duyệt thành công."). Màu snackbar theo
+  /// [ApprovePurchasingFeedback.isSuccess].
+  void _showApproveFeedback(
+    BuildContext context,
+    ApprovePurchasingFeedback fb,
+  ) {
+    if (!mounted) return;
+    showMessage(
+      context,
+      fb.message,
+      type: fb.isSuccess ? SnackBarType.success : SnackBarType.error,
+    );
   }
 
   /// Lấy label từ API `/request-types` nếu có, fallback về label tĩnh.
@@ -150,40 +198,118 @@ class _ApprovePurchasingScreenState
             child: _buildTabBar(state),
           ),
           actions: [
-            IconButton(
-              tooltip: 'Bộ lọc',
-              onPressed: _openFilterSheet,
-              icon: Icon(
-                Icons.filter_alt_outlined,
-                color: state.filter.selectedProjectId != null ||
-                        state.filter.selectedSupplierId != null ||
-                        state.filter.searchKeyword.isNotEmpty
-                    ? AppColors.primaryERP
-                    : AppColors.gray,
+            if (!state.isSelectionMode) ...[
+              IconButton(
+                tooltip: 'Bộ lọc',
+                onPressed: _openFilterSheet,
+                icon: Icon(
+                  Icons.filter_alt_outlined,
+                  color: state.filter.selectedProjectId != null ||
+                          state.filter.selectedSupplierId != null ||
+                          state.filter.searchKeyword.isNotEmpty
+                      ? AppColors.primaryERP
+                      : AppColors.gray,
+                ),
               ),
-            ),
-            IconButton(
-              tooltip: 'Lọc ngày',
-              onPressed: () => _openDateRangePicker(context),
-              icon: Icon(
-                Icons.calendar_month,
-                color: state.isDateFiltered
-                    ? AppColors.primaryERP
-                    : AppColors.gray,
+              IconButton(
+                tooltip: 'Lọc ngày',
+                onPressed: () => _openDateRangePicker(context),
+                icon: Icon(
+                  Icons.calendar_month,
+                  color: state.isDateFiltered
+                      ? AppColors.primaryERP
+                      : AppColors.gray,
+                ),
               ),
-            ),
+            ],
+            if (state.isSelectionMode)
+              TextButton(
+                onPressed: () => bloc.add(
+                  const ApprovePurchasingEvent.exitSelectionMode(),
+                ),
+                child: Text(
+                  'Huỷ (${state.selectedIds.length})',
+                  style: const TextStyle(
+                    color: AppColors.alert,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                  ),
+                ),
+              ),
           ],
         ),
-        body: TabBarView(
-          controller: _tabController,
+        body: Stack(
           children: [
-            for (var i = 0; i < _tabDefs.length; i++)
-              _buildTabContent(context, state),
+            TabBarView(
+              controller: _tabController,
+              children: [
+                for (var i = 0; i < _tabDefs.length; i++)
+                  _buildTabContent(
+                    context,
+                    state,
+                    refreshKey: _refreshKeys[i],
+                    requestTypeId: _tabDefs[i].requestTypeId,
+                  ),
+              ],
+            ),
+            if (state.isSelectionMode)
+              Positioned(
+                left: 0,
+                right: 0,
+                bottom: 0,
+                child: _SelectionActionBar(
+                  selectedCount: state.selectedIds.length,
+                  totalCount: selectedId == null
+                      ? 0
+                      : state
+                          .filteredItemsFor(selectedId)
+                          .where((it) => it.id != null)
+                          .length,
+                  isApproving: state.isApproving,
+                  onSelectAll: state.isApproving
+                      ? () {}
+                      : () => bloc.add(
+                          const ApprovePurchasingEvent.selectAllVisible(),
+                        ),
+                  onClearSelection: () => bloc.add(
+                    const ApprovePurchasingEvent.clearSelection(),
+                  ),
+                  onApprove: _onApprove,
+                  onReject: _onReject,
+                ),
+              ),
           ],
         ),
       );
     });
   }
+
+  /// Hiện dialog xác nhận và dispatch event duyệt / huỷ duyệt.
+  ///
+  /// Dùng chung 1 hàm cho cả 2 nút — khác `title`, `description`, và
+  /// `isApproved` truyền vào.
+  Future<void> _confirmAndDispatch({
+    required bool isApproved,
+  }) async {
+    // Chặn thao tác khi đang gọi API (tránh bấm đúp / nhân đôi).
+    if (bloc.state.isApproving) return;
+    final count = bloc.state.selectedIds.length;
+    if (count == 0) return;
+    final title = isApproved ? 'Duyệt phiếu' : 'Huỷ duyệt';
+    final action = isApproved ? 'duyệt' : 'huỷ duyệt';
+    final confirmed = await DialogService.showConfirmDialog(
+      context: context,
+      title: title,
+      message: 'Bạn có muốn $action $count phiếu đã chọn không?',
+    );
+    if (!confirmed) return;
+    if (!mounted) return;
+    bloc.add(ApprovePurchasingEvent.approveSelected(isApproved: isApproved));
+  }
+
+  Future<void> _onApprove() => _confirmAndDispatch(isApproved: true);
+
+  Future<void> _onReject() => _confirmAndDispatch(isApproved: false);
 
   // ── Tab Bar ───────────────────────────────────────────────────────────────
 
@@ -260,10 +386,19 @@ class _ApprovePurchasingScreenState
 
   // ── Tab content ──────────────────────────────────────────────────────────
 
+  /// Build nội dung 1 tab.
+  ///
+  /// Mỗi tab tự resolve data của riêng nó qua
+  /// [ApprovePurchasingState.filteredItemsFor] thay vì đọc
+  /// `state.filteredItems` (chỉ chứa data tab đang chọn). Nhờ vậy khi
+  /// vuốt sang tab mới, tab đó hiện đúng data của nó ngay, không phải
+  /// chờ bloc emit rồi mới đổi.
   Widget _buildTabContent(
     BuildContext context,
-    ApprovePurchasingState state,
-  ) {
+    ApprovePurchasingState state, {
+    required GlobalKey<RefreshIndicatorState> refreshKey,
+    required int requestTypeId,
+  }) {
     if (state.requestTypes.isEmpty &&
         (state.status == BaseStateStatus.loading ||
             state.status == BaseStateStatus.init)) {
@@ -279,32 +414,43 @@ class _ApprovePurchasingScreenState
     }
 
     return RefreshIndicator(
-      key: _refreshKey,
+      key: refreshKey,
       onRefresh: () async {
         bloc.add(const ApprovePurchasingEvent.refresh());
         await bloc.stream.firstWhere(
           (s) => s.status != BaseStateStatus.loading && !s.isRefreshing,
         );
       },
-      child: _buildList(context, state),
+      child: _buildList(context, state, requestTypeId: requestTypeId),
     );
   }
 
-  Widget _buildList(BuildContext context, ApprovePurchasingState state) {
-    // Khi user chuyển tab, bloc đặt status = loading → hiển thị spinner.
-    if (state.status == BaseStateStatus.loading && state.filteredItems.isEmpty) {
-      return ListView(
-        physics: const AlwaysScrollableScrollPhysics(),
-        children: const [
-          SizedBox(height: 200),
-          Center(child: CircularProgressIndicator()),
-        ],
-      );
-    }
-    if (state.status == BaseStateStatus.failed && state.filteredItems.isEmpty) {
-      return _ErrorView(message: state.message ?? 'Lỗi tải dữ liệu');
-    }
-    if (state.filteredItems.isEmpty) {
+  Widget _buildList(
+    BuildContext context,
+    ApprovePurchasingState state, {
+    required int requestTypeId,
+  }) {
+    // Chỉ hiện spinner toàn màn hình lúc init (chưa có data nào).
+    // Khi đã có `itemsByType` thì mỗi tab tự hiện empty state riêng —
+    // tránh cảnh báo tab mới nhảy về data tab cũ.
+    final items = state.filteredItemsFor(requestTypeId);
+
+    if (items.isEmpty) {
+      // Còn đang tải lần đầc → spinner.
+      final isInitialLoad = state.itemsByType.isEmpty &&
+          (state.status == BaseStateStatus.loading ||
+              state.status == BaseStateStatus.init ||
+              state.isRefreshing);
+      if (isInitialLoad) {
+        return ListView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          children: const [
+            SizedBox(height: 200),
+            Center(child: CircularProgressIndicator()),
+          ],
+        );
+      }
+      // Load xong mà tab này không có phiếu → empty state.
       return ListView(
         physics: const AlwaysScrollableScrollPhysics(),
         padding: const EdgeInsets.symmetric(vertical: 80),
@@ -322,7 +468,8 @@ class _ApprovePurchasingScreenState
         ],
       );
     }
-    return _PurchasingList(items: state.filteredItems);
+
+    return _PurchasingList(items: items);
   }
 
   // ── Date range ───────────────────────────────────────────────────────────
@@ -434,16 +581,26 @@ class _PurchasingList extends StatelessWidget {
         return a.compareTo(b);
       });
 
-    return ListView.separated(
-      padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
-      physics: const AlwaysScrollableScrollPhysics(),
-      itemCount: sortedKeys.length,
-      separatorBuilder: (_, _) => const SizedBox(height: 12),
-      itemBuilder: (context, index) {
-        final projectId = sortedKeys[index];
-        return _PurchasingCard(
-          projectId: projectId,
-          projectItems: grouped[projectId]!,
+    return BlocSelector<ApprovePurchasingBloc, ApprovePurchasingState,
+        (bool, Set<int>)>(
+      selector: (s) => (s.isSelectionMode, s.selectedIds),
+      builder: (context, sel) {
+        final selectionMode = sel.$1;
+        final selectedIds = sel.$2;
+        return ListView.separated(
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 120),
+          physics: const AlwaysScrollableScrollPhysics(),
+          itemCount: sortedKeys.length,
+          separatorBuilder: (_, _) => const SizedBox(height: 12),
+          itemBuilder: (context, index) {
+            final projectId = sortedKeys[index];
+            return _PurchasingCard(
+              projectId: projectId,
+              projectItems: grouped[projectId]!,
+              selectionMode: selectionMode,
+              selectedIds: selectedIds,
+            );
+          },
         );
       },
     );
@@ -453,34 +610,40 @@ class _PurchasingList extends StatelessWidget {
 /// Card hiển thị 1 project cùng danh sách card con (mỗi card con = 1 SP).
 ///
 /// Structure:
-/// - Header: TT (#) | statusChip BGD duyệt | ProjectFullName
-/// - Body: danh sách _ProductChildCard (mỗi card = 1 SP với đầy đủ 14 trường)
-/// - Footer: Tổng tiền toàn project | Lý do huỷ (nếu có)
-class _PurchasingCard extends StatelessWidget {
+/// - Header: Dự án: ProjectFullName | x sản phẩm | nút expand/collapse
+/// - Body: danh sách _ProductChildCard (mỗi card = 1 SP với đầy đủ trường)
+/// - Footer: Lý do huỷ (nếu có) — không còn Tổng tiền
+///
+/// Mặc định thu gọn, bấm header để expand/collapse toàn bộ card SP.
+class _PurchasingCard extends StatefulWidget {
   const _PurchasingCard({
     required this.projectId,
     required this.projectItems,
+    required this.selectionMode,
+    required this.selectedIds,
   });
 
   final int? projectId;
   final List<ApprovePurchasingItem> projectItems;
+  final bool selectionMode;
+  final Set<int> selectedIds;
 
-  static final NumberFormat _moneyFmt = NumberFormat('#,###');
+  @override
+  State<_PurchasingCard> createState() => _PurchasingCardState();
+}
+
+class _PurchasingCardState extends State<_PurchasingCard> {
+  bool _isExpanded = true;
 
   @override
   Widget build(BuildContext context) {
+    final projectItems = widget.projectItems;
     if (projectItems.isEmpty) return const SizedBox.shrink();
 
     final first = projectItems.first;
     final projectName =
         (first.projectFullName ?? first.projectName ?? '').trim();
     final reasonCancel = first.reasonCancel ?? '';
-
-    // Tổng tiền = sum(TotalPrice) của tất cả dòng trong project.
-    double total = 0;
-    for (final i in projectItems) {
-      total += i.totalPrice ?? 0;
-    }
 
     return Container(
       decoration: BoxDecoration(
@@ -502,95 +665,102 @@ class _PurchasingCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // ── Header: Dự án: ProjectFullName (x sản phẩm) ─────────────────
-          Container(
-            padding: const EdgeInsets.fromLTRB(14, 12, 14, 10),
-            decoration: BoxDecoration(
-              color: AppColors.primaryERP.withValues(alpha: 0.05),
-              border: Border(
-                bottom: BorderSide(
-                  color: AppColors.primaryERP.withValues(alpha: 0.12),
-                  width: 1,
+          // ── Header: Dự án: ProjectFullName | x sản phẩm | nút expand ──
+          InkWell(
+            onTap: () =>
+                setState(() => _isExpanded = !_isExpanded),
+            child: Container(
+              padding: const EdgeInsets.fromLTRB(14, 12, 8, 12),
+              decoration: BoxDecoration(
+                color: AppColors.primaryERP.withValues(alpha: 0.05),
+                border: Border(
+                  bottom: BorderSide(
+                    color: AppColors.primaryERP.withValues(alpha: 0.12),
+                    width: 1,
+                  ),
                 ),
               ),
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  flex: 7,
-                  child: Text(
-                    'Dự án: $projectName',
-                    style: const TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.heading,
-                    ),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 6),
-                  child: Text(
-                    '|',
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.primaryERP,
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 7,
+                    child: Text(
+                      'Dự án: $projectName',
+                      style: const TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.heading,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                ),
-                Expanded(
-                  flex: 3,
-                  child: Text(
-                    '${projectItems.length} sản phẩm',
-                    style: const TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.primaryERP,
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 6),
+                    child: Text(
+                      '|',
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.primaryERP,
+                      ),
                     ),
-                    textAlign: TextAlign.right,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
                   ),
-                ),
-              ],
-            ),
-          ),
-
-          // ── Danh sách card con (mỗi card = 1 SP) ─────────────────────────
-          ...projectItems.map(
-            (item) => _ProductChildCard(item: item),
-          ),
-
-          // ── Footer: Tổng tiền ───────────────────────────────────────────
-          Container(
-            padding: const EdgeInsets.fromLTRB(14, 10, 14, 10),
-            decoration: BoxDecoration(
-              color: AppColors.alert.withValues(alpha: 0.04),
-              border: Border(
-                top: BorderSide(
-                  color: AppColors.alert.withValues(alpha: 0.15),
-                  width: 1,
-                ),
+                  Expanded(
+                    flex: 3,
+                    child: Text(
+                      '${projectItems.length} sản phẩm',
+                      style: const TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.primaryERP,
+                      ),
+                      textAlign: TextAlign.right,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  const SizedBox(width: 4),
+                  Icon(
+                    _isExpanded ? Icons.expand_less : Icons.expand_more,
+                    size: 22,
+                    color: AppColors.primaryERP,
+                  ),
+                ],
               ),
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  'Tổng tiền: ${_moneyFmt.format(total)}',
-                  style: const TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.alert,
-                  ),
-                ),
-              ],
-            ),
           ),
 
-          // ── Lý do huỷ (nếu có) ──────────────────────────────────────────
+          // ── Danh sách card con (chỉ hiển thị khi expand) ───────────────
+          if (_isExpanded)
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  for (var i = 0; i < projectItems.length; i++)
+                    _ProductChildCard(
+                      key: ValueKey(projectItems[i].id ?? i),
+                      item: projectItems[i],
+                      selectionMode: widget.selectionMode,
+                      selected: projectItems[i].id != null &&
+                          widget.selectedIds.contains(projectItems[i].id),
+                      selectedCount: widget.selectedIds.length,
+                      onToggleSelection: () {
+                        final id = projectItems[i].id;
+                        if (id == null) return;
+                        context.read<ApprovePurchasingBloc>().add(
+                              ApprovePurchasingEvent.toggleSelection(
+                                itemId: id,
+                              ),
+                            );
+                      },
+                    ),
+                ],
+              ),
+            ),
+
+          // ── Lý do huỷ (nếu có) — luôn hiển thị ở footer ───────────────
           if (reasonCancel.trim().isNotEmpty)
             Container(
               width: double.infinity,
@@ -648,266 +818,389 @@ class _PurchasingCard extends StatelessWidget {
 ///   TT | TT Duyệt BGĐ | Mã SP | Tên SP | TSKT | ĐVT | SL | Đơn giá |
 ///   Thành tiền | Loại tiền | Tỷ giá | NCC | Ghi chú | Lý do huỷ
 ///
-/// Tap để expand/collapse.
-class _ProductChildCard extends StatefulWidget {
-  const _ProductChildCard({required this.item});
+/// Hiển thị phẳng (không expand/collapse). Mỗi card có viền bao quanh
+/// (trên/dưới/trái/phải) để tách biệt rõ ràng giữa các phiếu sản phẩm.
+/// Tap checkbox hoặc tap card đều toggle chọn.
+class _ProductChildCard extends StatelessWidget {
+  const _ProductChildCard({
+    super.key,
+    required this.item,
+    required this.selectionMode,
+    required this.selected,
+    required this.selectedCount,
+    required this.onToggleSelection,
+  });
 
   final ApprovePurchasingItem item;
+  final bool selectionMode;
+  final bool selected;
 
-  @override
-  State<_ProductChildCard> createState() => _ProductChildCardState();
-}
+  /// Tổng số card đang chọn — dùng cho logic tap ở tương lai.
+  final int selectedCount;
+  final VoidCallback onToggleSelection;
 
-class _ProductChildCardState extends State<_ProductChildCard> {
-  bool _isExpanded = false;
-
-  ApprovePurchasingItem get item => widget.item;
-
-  static final NumberFormat _moneyFmt = NumberFormat('#,###');
-  static final NumberFormat _rateFmt = NumberFormat('#,##0.##');
+  static final NumberFormat _moneyFmt =
+      NumberFormat('#,##0.00', 'en_US');
+  static final NumberFormat _rateFmt =
+      NumberFormat('#,##0.00', 'en_US');
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.only(bottom: 8),
       decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border(
-          bottom: BorderSide(
-            color: AppColors.gray.withValues(alpha: 0.08),
-            width: 1,
+        color: selected
+            ? AppColors.primaryERP.withValues(alpha: 0.06)
+            : Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: const Color(0xFFE3E8EF),
+          width: 1,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.04),
+            blurRadius: 4,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12),
+        child: InkWell(
+          onTap: onToggleSelection,
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(12, 10, 12, 12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildHeaderRow(),
+              const SizedBox(height: 8),
+              _buildMainFields(),
+              const SizedBox(height: 6),
+              _buildRateRow(),
+              const SizedBox(height: 6),
+              _buildMoneyRow(),
+              if ((item.note ?? '').trim().isNotEmpty) ...[
+                const SizedBox(height: 8),
+                _buildNote(context),
+              ],
+              if (item.reasonCancel != null &&
+                  (item.reasonCancel ?? '').trim().isNotEmpty) ...[
+                const SizedBox(height: 8),
+                _buildReasonCancel(),
+              ],
+            ],
           ),
         ),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Header — tap để expand/collapse
-          _buildHeader(),
-
-          // Chi tiết (khi expand)
-          if (_isExpanded) ...[
-            _buildDivider(),
-            _buildSectionDetails(),
-            const SizedBox(height: 4),
-          ],
-        ],
       ),
     );
   }
 
-  /// Header hiển thị các trường chính (không có lý do huỷ).
-  Widget _buildHeader() {
+  /// Hàng 1: checkbox + #TT + statusChip BGD.
+  Widget _buildHeaderRow() {
+    return Row(
+      children: [
+        _SelectionCheckbox(
+          value: selected,
+          onTap: onToggleSelection,
+        ),
+        const SizedBox(width: 8),
+        Text(
+          '#${(item.tt ?? '').trim().isEmpty ? (item.id?.toString() ?? '-') : item.tt!.trim()}',
+          style: const TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.w700,
+            color: AppColors.heading,
+          ),
+        ),
+        const SizedBox(width: 8),
+        _ApprovalBadge(
+          text: item.isApprovedBgdText ?? 'Chờ duyệt',
+          isApproved: item.isApprovedBgd ?? false,
+        ),
+      ],
+    );
+  }
+
+  /// Hàng nội dung chính: Tên SP (không label) – Mã SP – TSKT – NCC.
+  /// Bỏ hẳn expand/collapse — toàn bộ trường luôn hiển thị.
+  Widget _buildMainFields() {
     final code = (item.productCode ?? '').trim();
     final name = (item.productName ?? '-').trim();
     final model = (item.model ?? '').trim();
-    final unit = (item.unitName ?? '').trim();
-    final unitMoney = (item.unitMoney ?? '').trim();
     final ncc = (item.nameNcc ?? '').trim();
-    final note = (item.note ?? '').trim();
 
-    return InkWell(
-      onTap: () => setState(() => _isExpanded = !_isExpanded),
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Dòng 1: TT + statusChip BGD
-            Row(
-              children: [
-                Text(
-                  '#${(item.tt ?? '').trim().isEmpty ? (item.id?.toString() ?? '-') : item.tt!.trim()}',
-                  style: const TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.heading,
-                  ),
-                ),
-                const SizedBox(width: 8),
-                _ApprovalBadge(
-                  text: item.isApprovedBgdText ?? 'Chờ duyệt',
-                  isApproved: item.isApprovedBgd ?? false,
-                ),
-                const Spacer(),
-                Icon(
-                  _isExpanded ? Icons.expand_less : Icons.expand_more,
-                  size: 20,
-                  color: AppColors.gray,
-                ),
-              ],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Tên sản phẩm không cần label — hiển thị thẳng, in đậm.
+        if (name.isNotEmpty && name != '-')
+          Padding(
+            padding: const EdgeInsets.only(bottom: 4),
+            child: Text(
+              name,
+              style: const TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.w700,
+                color: AppColors.heading,
+              ),
             ),
-
-            const SizedBox(height: 6),
-
-            // Dòng 2: Mã SP | Tên SP
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: _FieldCol(label: 'Mã SP', value: code.isEmpty ? '-' : code),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  flex: 2,
-                  child: _FieldCol(label: 'Tên SP', value: name, valueIsBold: true),
-                ),
-              ],
-            ),
-
-            const SizedBox(height: 4),
-
-            // Dòng 3: TSKT | ĐVT | SL
-            Row(
-              children: [
-                Expanded(
-                  flex: 2,
-                  child: _FieldCol(label: 'TSKT', value: model.isEmpty ? '-' : model),
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: _FieldCol(label: 'ĐVT', value: unit.isEmpty ? '-' : unit),
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: _FieldCol(label: 'SL', value: _formatQty(item.quantity)),
-                ),
-              ],
-            ),
-
-            const SizedBox(height: 4),
-
-            // Dòng 4: Đơn giá | Thành tiền | Loại tiền | Tỷ giá
-            Row(
-              children: [
-                Expanded(
-                  child: _FieldCol(
-                    label: 'Đơn giá',
-                    value: item.unitPrice == null
-                        ? '-'
-                        : _moneyFmt.format(item.unitPrice),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: _FieldCol(
-                    label: 'Thành tiền',
-                    value: item.totalPrice == null
-                        ? '-'
-                        : _moneyFmt.format(item.totalPrice),
-                    isHighlight: true,
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: _FieldCol(
-                    label: 'Loại tiền',
-                    value: unitMoney.isEmpty ? '-' : unitMoney,
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: _FieldCol(
-                    label: 'Tỷ giá',
-                    value: _formatRate(item.currencyRate),
-                  ),
-                ),
-              ],
-            ),
-
-            const SizedBox(height: 4),
-
-            // Dòng 5: NCC | Ghi chú (ghi chú full width, NCC cùng hàng nếu đủ chỗ)
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  flex: 2,
-                  child: _FieldCol(label: 'NCC', value: ncc.isEmpty ? '-' : ncc),
-                ),
-                if (note.isNotEmpty) ...[
-                  const SizedBox(width: 8),
-                  Expanded(
-                    flex: 3,
-                    child: _FieldCol(label: 'Ghi chú', value: note, isNote: true),
-                  ),
-                ],
-              ],
-            ),
-          ],
-        ),
-      ),
+          ),
+        _InfoLine(label: 'Mã sản phẩm', value: code.isEmpty ? '-' : code),
+        if (model.isNotEmpty) _InfoLine(label: 'Thông số kỹ thuật', value: model),
+        if (ncc.isNotEmpty) _InfoLine(label: 'Nhà cung cấp', value: ncc),
+      ],
     );
   }
 
-  /// Phần chi tiết khi expand — chỉ chứa Lý do huỷ (riêng từng dòng SP).
-  Widget _buildSectionDetails() {
-    final reasonCancel = (item.reasonCancel ?? '').trim();
-
-    if (reasonCancel.isEmpty) {
-      return Padding(
-        padding: const EdgeInsets.fromLTRB(12, 10, 12, 8),
-        child: Row(
-          children: [
-            Icon(Icons.info_outline, size: 14, color: AppColors.gray),
-            const SizedBox(width: 6),
-            Text(
-              'Không có lý do huỷ',
-              style: const TextStyle(
-                fontSize: 11,
-                color: AppColors.gray,
-                fontStyle: FontStyle.italic,
-              ),
-            ),
-          ],
+  /// Row cố định: ĐVT – SL – Loại tiền – Tỷ giá (4 cột cách đều nhau).
+  Widget _buildRateRow() {
+    final unit = (item.unitName ?? '').trim();
+    final unitMoney = (item.unitMoney ?? '').trim();
+    return Row(
+      children: [
+        Expanded(
+          child: _FieldCol(
+            label: 'Đơn vị tính',
+            value: unit.isEmpty ? '-' : unit,
+          ),
         ),
-      );
-    }
+        const SizedBox(width: 8),
+        Expanded(
+          child: _FieldCol(
+            label: 'Số lượng',
+            value: _formatQty(item.quantity),
+          ),
+        ),
+        const SizedBox(width: 8),
+        Expanded(
+          child: _FieldCol(
+            label: 'Loại tiền',
+            value: unitMoney.isEmpty ? '-' : unitMoney,
+          ),
+        ),
+        const SizedBox(width: 8),
+        Expanded(
+          child: _FieldCol(
+            label: 'Tỷ giá',
+            value: _formatRate(item.currencyRate),
+          ),
+        ),
+      ],
+    );
+  }
 
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(12, 10, 12, 8),
+  /// Row cuối: Đơn giá – Thành tiền (căn trái, mỗi cột chiếm 1/2).
+  Widget _buildMoneyRow() {
+    return Row(
+      children: [
+        Expanded(
+          child: _FieldCol(
+            label: 'Đơn giá',
+            value: item.unitPrice == null
+                ? '-'
+                : _moneyFmt.format(item.unitPrice),
+          ),
+        ),
+        const SizedBox(width: 8),
+        Expanded(
+          child: _FieldCol(
+            label: 'Thành tiền',
+            value: item.totalPrice == null
+                ? '-'
+                : _moneyFmt.format(item.totalPrice),
+            isHighlight: true,
+          ),
+        ),
+      ],
+    );
+  }
+
+  /// Ghi chú — nằm ở cuối phiếu, giao diện note vàng nhạt.
+  ///
+  /// Hyperlink (http/https/www) được tô đậm + gạch chân màu primary để user
+  /// nhận biết, tap sẽ mở bằng trình duyệt.
+  Widget _buildNote(BuildContext context) {
+    final note = (item.note ?? '').trim();
+    final spans = _buildNoteSpans(context, note);
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.fromLTRB(10, 9, 10, 10),
+      decoration: BoxDecoration(
+        color: AppColors.orangeA100,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: AppColors.orangeA300, width: 1),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              Icon(
-                Icons.cancel_outlined,
-                size: 14,
-                color: AppColors.stateWarningColor,
+              Container(
+                padding: const EdgeInsets.all(4),
+                decoration: BoxDecoration(
+                  color: AppColors.orangeA200,
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: const Icon(
+                  Icons.edit_note_rounded,
+                  size: 14,
+                  color: AppColors.warning,
+                ),
               ),
               const SizedBox(width: 6),
               const Text(
-                'Lý do huỷ',
+                'Ghi chú',
                 style: TextStyle(
                   fontSize: 11,
                   fontWeight: FontWeight.w700,
-                  color: AppColors.stateWarningColor,
+                  letterSpacing: 0.2,
+                  color: AppColors.warning,
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 4),
-          Text(
-            reasonCancel,
+          const SizedBox(height: 6),
+          Text.rich(
+            TextSpan(children: spans),
             style: const TextStyle(
-              fontSize: 12,
-              color: AppColors.stateWarningColor,
-              fontStyle: FontStyle.italic,
+              fontSize: 12.5,
+              height: 1.45,
+              color: AppColors.textSecondaryColor,
             ),
-            maxLines: 3,
-            overflow: TextOverflow.ellipsis,
           ),
         ],
       ),
     );
   }
 
-  Widget _buildDivider() => Container(
-        height: 1,
-        color: AppColors.gray.withValues(alpha: 0.06),
-      );
+  /// Tách nội dung ghi chú thành các span, tô sáng đoạn là hyperlink.
+  ///
+  /// Dùng regex thủ công cho URL http/https/www (không thêm dependency).
+  /// Link được gắn `TapGestureRecognizer` để tap mở bằng app trình duyệt.
+  List<InlineSpan> _buildNoteSpans(BuildContext context, String note) {
+    final baseStyle = const TextStyle(
+      fontSize: 12.5,
+      height: 1.45,
+      color: AppColors.textSecondaryColor,
+    );
+    final linkStyle = const TextStyle(
+      fontSize: 12.5,
+      height: 1.45,
+      color: AppColors.primaryERP,
+      fontWeight: FontWeight.w700,
+      decoration: TextDecoration.underline,
+      decorationColor: AppColors.primaryERP,
+      decorationThickness: 1.5,
+    );
 
-  // ── Helpers ─────────────────────────────────────────────────────────────
+    // Regex bắt URL http/https/www — đủ dùng, không cần thêm dependency.
+    final urlPattern = RegExp(
+      r'(https?://[^\s]+|www\.[^\s]+)',
+      caseSensitive: false,
+    );
+
+    final matches = urlPattern.allMatches(note).toList();
+    if (matches.isEmpty) {
+      return [TextSpan(text: note, style: baseStyle)];
+    }
+
+    final spans = <InlineSpan>[];
+    var cursor = 0;
+    for (final m in matches) {
+      if (m.start > cursor) {
+        spans.add(
+          TextSpan(text: note.substring(cursor, m.start), style: baseStyle),
+        );
+      }
+      final url = m.group(0)!;
+      // Bỏ dấu chấm cuối nếu URL bị vướng punctuation.
+      final trimmed = url.replaceFirst(RegExp(r'[.,;)]+$'), '');
+      final trailing = url.substring(trimmed.length);
+
+      final uri = Uri.tryParse(
+        trimmed.startsWith('http') ? trimmed : 'https://$trimmed',
+      );
+      if (uri != null) {
+        spans.add(
+          TextSpan(
+            text: trimmed,
+            style: linkStyle,
+            recognizer: TapGestureRecognizer()
+              ..onTap = () => _openLink(context, uri),
+          ),
+        );
+      } else {
+        spans.add(TextSpan(text: trimmed, style: baseStyle));
+      }
+
+      if (trailing.isNotEmpty) {
+        spans.add(TextSpan(text: trailing, style: baseStyle));
+      }
+      cursor = m.end;
+    }
+    if (cursor < note.length) {
+      spans.add(TextSpan(text: note.substring(cursor), style: baseStyle));
+    }
+
+    return spans;
+  }
+
+  /// Mở hyperlink bằng app ngoài (browser mặc định của hệ thống).
+  Future<void> _openLink(BuildContext context, Uri uri) async {
+    final messenger = ScaffoldMessenger.maybeOf(context);
+    try {
+      final ok = await launchUrl(uri, mode: LaunchMode.externalApplication);
+      if (!ok && messenger != null) {
+        messenger.showSnackBar(
+          SnackBar(content: Text('Không mở được liên kết: $uri')),
+        );
+      }
+    } catch (_) {
+      messenger?.showSnackBar(
+        SnackBar(content: Text('Không mở được liên kết: $uri')),
+      );
+    }
+  }
+
+  /// Lý do huỷ — hiển thị thẳng dưới cùng nếu có.
+  Widget _buildReasonCancel() {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        color: AppColors.stateWarningColor.withValues(alpha: 0.08),
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(
+          color: AppColors.stateWarningColor.withValues(alpha: 0.25),
+          width: 1,
+        ),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(
+            Icons.cancel_outlined,
+            size: 14,
+            color: AppColors.stateWarningColor,
+          ),
+          const SizedBox(width: 6),
+          Expanded(
+            child: Text(
+              item.reasonCancel!.trim(),
+              style: const TextStyle(
+                fontSize: 12,
+                color: AppColors.heading,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 
   String _formatQty(double? qty) {
     if (qty == null) return '-';
@@ -926,17 +1219,13 @@ class _FieldCol extends StatelessWidget {
     required this.label,
     required this.value,
     this.isHighlight = false,
-    this.valueIsBold = false,
-    this.isNote = false,
-    this.valueColor,
   });
 
   final String label;
   final String value;
+
+  /// Thành tiền — in đậm + màu nhấn.
   final bool isHighlight;
-  final bool valueIsBold;
-  final bool isNote;
-  final Color? valueColor;
 
   @override
   Widget build(BuildContext context) {
@@ -959,23 +1248,59 @@ class _FieldCol extends StatelessWidget {
           displayValue,
           style: TextStyle(
             fontSize: 12,
-            fontWeight: isHighlight
-                ? FontWeight.w700
-                : (valueIsBold ? FontWeight.w600 : FontWeight.w500),
-            color: valueColor ??
-                (isHighlight
-                    ? AppColors.alert
-                    : (isNote
-                        ? AppColors.textSecondaryColor
-                        : (isDash ? AppColors.gray : AppColors.enableText))),
-            fontStyle: isNote && displayValue != '-'
-                ? FontStyle.italic
-                : FontStyle.normal,
+            fontWeight:
+                isHighlight ? FontWeight.w700 : FontWeight.w500,
+            color: isHighlight
+                ? AppColors.alert
+                : (isDash ? AppColors.gray : AppColors.enableText),
           ),
-          maxLines: isNote ? 3 : 2,
+          maxLines: 2,
           overflow: TextOverflow.ellipsis,
         ),
       ],
+    );
+  }
+}
+
+/// Dòng label + value tự giãn theo text, value ở dưới (label ở trên).
+class _InfoLine extends StatelessWidget {
+  const _InfoLine({
+    required this.label,
+    required this.value,
+  });
+
+  final String label;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
+    final displayValue = value.isEmpty ? '-' : value;
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 2),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '$label:',
+            style: const TextStyle(
+              fontSize: 10,
+              color: AppColors.gray,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          const SizedBox(height: 2),
+          Text(
+            displayValue,
+            style: const TextStyle(
+              fontSize: 13,
+              color: AppColors.heading,
+              fontWeight: FontWeight.w500,
+            ),
+            maxLines: 6,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ],
+      ),
     );
   }
 }
@@ -1006,6 +1331,200 @@ class _ApprovalBadge extends StatelessWidget {
           fontWeight: FontWeight.w700,
           color: color,
         ),
+      ),
+    );
+  }
+}
+
+/// Checkbox custom (vuông bo tròn nhỏ) dùng cho từng `_ProductChildCard`
+/// khi màn hình đang ở chế độ chọn hàng loạt. Tap trực tiếp cũng là
+/// toggle selection (kể cả khi user tap đúng vào checkbox).
+class _SelectionCheckbox extends StatelessWidget {
+  const _SelectionCheckbox({required this.value, required this.onTap});
+
+  final bool value;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      behavior: HitTestBehavior.opaque,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 120),
+        width: 22,
+        height: 22,
+        decoration: BoxDecoration(
+          color: value ? AppColors.primaryERP : Colors.transparent,
+          borderRadius: BorderRadius.circular(6),
+          border: Border.all(
+            color: value
+                ? AppColors.primaryERP
+                : AppColors.gray.withValues(alpha: 0.5),
+            width: 1.5,
+          ),
+        ),
+        child: value
+            ? const Icon(
+                Icons.check,
+                size: 14,
+                color: Colors.white,
+              )
+            : null,
+      ),
+    );
+  }
+}
+
+/// Bottom action bar xuất hiện khi `isSelectionMode == true`.
+/// Layout:
+///   Huỷ chọn hàng loạt | (đã chọn N/tất cả) | [Duyệt] [Huỷ duyệt]
+///
+/// - 2 nút Duyệt / Huỷ duyệt chỉ enable khi đã chọn ≥1.
+/// - Có nút "Chọn tất cả" / "Bỏ chọn" thay phiên nhau tuỳ `selectedCount`.
+/// - Cả 2 nút "Duyệt" / "Huỷ duyệt" đều disabled khi `isApproving`
+///   để tránh bấm đúp trong lúc API chạy.
+class _SelectionActionBar extends StatelessWidget {
+  const _SelectionActionBar({
+    required this.selectedCount,
+    required this.totalCount,
+    required this.isApproving,
+    required this.onSelectAll,
+    required this.onClearSelection,
+    required this.onApprove,
+    required this.onReject,
+  });
+
+  final int selectedCount;
+  final int totalCount;
+  final bool isApproving;
+  final VoidCallback onSelectAll;
+  final VoidCallback onClearSelection;
+  final VoidCallback onApprove;
+  final VoidCallback onReject;
+
+  @override
+  Widget build(BuildContext context) {
+    final hasSelection = selectedCount > 0;
+    // Safe area bottom (home indicator) được cộng thẳng vào padding
+    // trong của container, thay vì bọc `SafeArea` bên ngoài — nếu bọc ngoài
+    // thì nền trắng và viền trên sẽ dừng lại trên inset, để lại khoảng
+    // trắng trống dưới thanh bar.
+    final bottomInset = MediaQuery.viewPaddingOf(context).bottom;
+
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.heading.withValues(alpha: 0.06),
+            blurRadius: 12,
+            offset: const Offset(0, -2),
+          ),
+        ],
+        border: Border(
+          top: BorderSide(
+            color: AppColors.primaryERP.withValues(alpha: 0.15),
+            width: 1,
+          ),
+        ),
+      ),
+      padding: EdgeInsets.fromLTRB(16, 12, 16, 12 + bottomInset),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // Hàng info + nút chọn tất cả / bỏ chọn
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  hasSelection
+                      ? 'Đã chọn $selectedCount / $totalCount'
+                      : 'Chưa chọn card nào',
+                  style: const TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.heading,
+                  ),
+                ),
+              ),
+              TextButton(
+                onPressed: hasSelection ? onClearSelection : onSelectAll,
+                child: Text(
+                  hasSelection ? 'Bỏ chọn' : 'Chọn tất cả',
+                  style: const TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.primaryERP,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          // Hàng 2 nút Duyệt / Huỷ duyệt. Disabled khi đang approving hoặc
+          // chưa chọn card nào.
+          Row(
+            children: [
+              Expanded(
+                child: SizedBox(
+                  height: 46,
+                  child: OutlinedButton.icon(
+                    onPressed: (hasSelection && !isApproving)
+                        ? onReject
+                        : null,
+                    icon: const Icon(Icons.cancel_outlined, size: 18),
+                    label: const Text(
+                      'Huỷ duyệt',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: AppColors.alert,
+                      side: BorderSide(
+                        color: AppColors.alert.withValues(alpha: 0.5),
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: SizedBox(
+                  height: 46,
+                  child: ElevatedButton.icon(
+                    onPressed: (hasSelection && !isApproving)
+                        ? onApprove
+                        : null,
+                    icon: const Icon(Icons.check_circle_outline, size: 18),
+                    label: const Text(
+                      'Duyệt',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.primaryERP,
+                      foregroundColor: Colors.white,
+                      disabledBackgroundColor:
+                          AppColors.gray.withValues(alpha: 0.3),
+                      elevation: 0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

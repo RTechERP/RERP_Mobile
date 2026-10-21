@@ -139,4 +139,46 @@ class ApprovePurchasingRepoImpl implements ApprovePurchasingRepo {
       return left(BaseError.httpInternalServerError(e.toString()));
     }
   }
+
+  /// Duyệt / huỷ duyệt hàng loạt. Trả về các phiếu đã được BE cập nhật
+  /// (có thể khác giá trị cũ — ví dụ `isApprovedBgd` đã đổi) kèm message
+  /// gốc từ API để UI hiển thị.
+  @override
+  Future<Either<BaseError, ApprovePurchasingResult>> approvePurchasing({
+    required bool status,
+    required List<ApprovePurchasingItem> items,
+  }) async {
+    try {
+      // BE cần body là list các map đầy đủ field của item. Dùng
+      // `toJson()` để map PascalCase (ID, ProjectCode, ...) cho khớp
+      // schema BE.
+      final payload = items.map((e) => e.toJson()).toList();
+      final res = await _service.approvedPurchasing(
+        status: status,
+        items: payload,
+      );
+      final apiMessage = res.message ?? res.msg;
+      if (res.status == 1) {
+        return right(
+          ApprovePurchasingResult(
+            updatedItems: res.data ?? const [],
+            // BE luôn trả message khi thành công; fallback phòng khi
+            // response thiếu field.
+            message: (apiMessage == null || apiMessage.trim().isEmpty)
+                ? 'Cập nhật trạng thái phiếu thành công'
+                : apiMessage,
+          ),
+        );
+      }
+      return left(
+        BaseError.httpInternalServerError(
+          apiMessage ?? 'Không thể cập nhật trạng thái phiếu mua',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
 }

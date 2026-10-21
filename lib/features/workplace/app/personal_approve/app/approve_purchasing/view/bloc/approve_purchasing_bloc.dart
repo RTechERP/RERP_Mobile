@@ -2,10 +2,12 @@ import 'dart:ui';
 
 import 'package:bloc/bloc.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:equatable/equatable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../../../../base/bloc/index.dart';
+import '../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../common/logger/index.dart';
 import '../../data/datasource/models/approve_purchasing_model.dart';
 import '../../data/repository/approve_purchasing_repo.dart';
@@ -45,6 +47,14 @@ class ApprovePurchasingBloc
             _onSelectProduct(emit, product),
         selectApprovalFilter: (filter) =>
             _onSelectApprovalFilter(emit, filter),
+        exitSelectionMode: () => _onExitSelectionMode(emit),
+        toggleSelection: (itemId) =>
+            _onToggleSelection(emit, itemId),
+        selectAllVisible: () => _onSelectAllVisible(emit),
+        clearSelection: () => _onClearSelection(emit),
+        approveSelected: (isApproved) =>
+            _onApproveSelected(emit, isApproved: isApproved),
+        clearApproveFeedback: () => _onClearApproveFeedback(emit),
       );
     });
   }
@@ -144,11 +154,6 @@ class ApprovePurchasingBloc
       requestTypes: filteredTypes,
       selectedRequestTypeId: selectedId,
       itemsByType: grouped,
-      items: _sliceFor(grouped, selectedId),
-      filteredItems: _applyFilterTo(
-        _sliceFor(grouped, selectedId),
-        state.filter,
-      ),
       currencies: currencies,
       productGroups: productGroups,
       suppliers: suppliers,
@@ -172,19 +177,14 @@ class ApprovePurchasingBloc
       dateStart: dateStart,
       dateEnd: dateEnd,
       message: null,
+      selectedIds: const <int>{},
     ));
     await _reloadAll(
       emit,
-      onSuccess: (grouped) {
-        final slice = _sliceFor(grouped, state.selectedRequestTypeId);
-        emit(state.copyWith(
-          status: BaseStateStatus.success,
-          itemsByType: grouped,
-          items: slice,
-          filteredItems: _applyFilterTo(slice, state.filter),
-          isRefreshing: false,
-        ));
-      },
+      onDone: () => emit(state.copyWith(
+        isRefreshing: false,
+        selectedIds: const <int>{},
+      )),
       onFailure: () => emit(state.copyWith(
         status: BaseStateStatus.failed,
         message: 'Lỗi tải dữ liệu',
@@ -195,20 +195,21 @@ class ApprovePurchasingBloc
 
   //---(Select Tab)---//
 
-  /// Đổi tab — chỉ tra cache `itemsByType`, không gọi API.
-  /// Phải có ít nhất 1 item mới phát emit để tránh state trùng lặp.
+  /// Đổi tab — không gọi API, chỉ đổi `selectedRequestTypeId`.
+  ///
+  /// Không emit lại `items` / `filteredItems` vì UI đã tự resolve data
+  /// theo `requestTypeId` của từng tab qua `filteredItemsFor`. Giữ lại
+  /// emit ở đây sẽ khiến tab cũ nhảy dữ liệu của tab mới trong lúc
+  /// animation đang chạy.
   Future<void> _onSelectTab(
     Emitter<ApprovePurchasingState> emit, {
     required int requestTypeId,
   }) async {
     if (requestTypeId == state.selectedRequestTypeId) return;
-    final slice = _sliceFor(state.itemsByType, requestTypeId);
-    final filtered =
-        _applyFilterTo(slice, state.filter);
     emit(state.copyWith(
       selectedRequestTypeId: requestTypeId,
-      items: slice,
-      filteredItems: filtered,
+      selectedIds: const <int>{},
+      isSelectionMode: false,
     ));
   }
 
@@ -223,10 +224,9 @@ class ApprovePurchasingBloc
       selectedProjectId: projectId,
       clearProject: projectId == null,
     );
-    final filtered = _applyFilterTo(state.items, newFilter);
     emit(state.copyWith(
       filter: newFilter,
-      filteredItems: filtered,
+      selectedIds: const <int>{},
     ));
   }
 
@@ -239,10 +239,9 @@ class ApprovePurchasingBloc
       selectedSupplierId: supplierId,
       clearSupplier: supplierId == null,
     );
-    final filtered = _applyFilterTo(state.items, newFilter);
     emit(state.copyWith(
       filter: newFilter,
-      filteredItems: filtered,
+      selectedIds: const <int>{},
     ));
   }
 
@@ -250,11 +249,9 @@ class ApprovePurchasingBloc
   Future<void> _onResetFilter(
     Emitter<ApprovePurchasingState> emit,
   ) async {
-    const empty = PurchasingFilter();
-    final filtered = _applyFilterTo(state.items, empty);
     emit(state.copyWith(
-      filter: empty,
-      filteredItems: filtered,
+      filter: const PurchasingFilter(),
+      selectedIds: const <int>{},
     ));
   }
 
@@ -264,24 +261,22 @@ class ApprovePurchasingBloc
     String keyword,
   ) async {
     final newFilter = state.filter.copyWith(searchKeyword: keyword);
-    final filtered = _applyFilterTo(state.items, newFilter);
     emit(state.copyWith(
       filter: newFilter,
-      filteredItems: filtered,
+      selectedIds: const <int>{},
     ));
   }
 
   /// Chọn sản phẩm để lọc (giá trị rỗng = bỏ lọc). Logic so khớp nằm
-  /// trong `_applyFilterTo`.
+  /// trong `ApprovePurchasingState.applyFilter`.
   Future<void> _onSelectProduct(
     Emitter<ApprovePurchasingState> emit,
     String product,
   ) async {
     final newFilter = state.filter.copyWith(selectedProduct: product);
-    final filtered = _applyFilterTo(state.items, newFilter);
     emit(state.copyWith(
       filter: newFilter,
-      filteredItems: filtered,
+      selectedIds: const <int>{},
     ));
   }
 
@@ -291,10 +286,9 @@ class ApprovePurchasingBloc
     PurchasingApprovalFilter filter,
   ) async {
     final newFilter = state.filter.copyWith(approvalFilter: filter);
-    final filtered = _applyFilterTo(state.items, newFilter);
     emit(state.copyWith(
       filter: newFilter,
-      filteredItems: filtered,
+      selectedIds: const <int>{},
     ));
   }
 
@@ -305,15 +299,7 @@ class ApprovePurchasingBloc
     emit(state.copyWith(isRefreshing: true, message: null));
     await _reloadAll(
       emit,
-      onSuccess: (grouped) {
-        final slice = _sliceFor(grouped, state.selectedRequestTypeId);
-        emit(state.copyWith(
-          itemsByType: grouped,
-          items: slice,
-          filteredItems: _applyFilterTo(slice, state.filter),
-          isRefreshing: false,
-        ));
-      },
+      onDone: () => emit(state.copyWith(isRefreshing: false)),
       onFailure: () => emit(state.copyWith(isRefreshing: false)),
     );
   }
@@ -388,7 +374,7 @@ class ApprovePurchasingBloc
   /// Regroup + emit. Dùng cho cả `changeDateRange` và `refresh`.
   Future<void> _reloadAll(
     Emitter<ApprovePurchasingState> emit, {
-    void Function(Map<int, List<ApprovePurchasingItem>> grouped)? onSuccess,
+    VoidCallback? onDone,
     VoidCallback? onFailure,
   }) async {
     final items = await _fetchAllItems();
@@ -401,16 +387,12 @@ class ApprovePurchasingBloc
       ));
       return;
     }
-    final grouped = _groupByType(items);
-    final slice = _sliceFor(grouped, state.selectedRequestTypeId);
     emit(state.copyWith(
       status: BaseStateStatus.success,
-      itemsByType: grouped,
-      items: slice,
-      filteredItems: _applyFilterTo(slice, state.filter),
+      itemsByType: _groupByType(items),
       message: null,
     ));
-    onSuccess?.call(grouped);
+    onDone?.call();
   }
 
   //---(Helpers)---//
@@ -439,87 +421,136 @@ class ApprovePurchasingBloc
     return Map.unmodifiable(map);
   }
 
-  /// Lấy slice items cho 1 tab — trả về list rỗng nếu tab chưa có data.
-  List<ApprovePurchasingItem> _sliceFor(
-    Map<int, List<ApprovePurchasingItem>> grouped,
-    int? requestTypeId,
-  ) {
-    if (requestTypeId == null) return const [];
-    return grouped[requestTypeId] ?? const [];
+//---(Selection Mode)---//
+
+  /// Thoát chế độ chọn + clear hết lựa chọn.
+  Future<void> _onExitSelectionMode(
+    Emitter<ApprovePurchasingState> emit,
+  ) async {
+    emit(state.copyWith(
+      isSelectionMode: false,
+      selectedIds: const <int>{},
+    ));
   }
 
-/// Áp dụng filter (search + sản phẩm + trạng thái duyệt + project +
-  /// supplier) lên 1 list items. Trả về list mới đã filter — không
-  /// mutate input.
-  List<ApprovePurchasingItem> _applyFilterTo(
-    List<ApprovePurchasingItem> source,
-    PurchasingFilter filter,
-  ) {
-    if (filter.isEmpty) return source;
+  /// Toggle 1 card. Chọn card đầu tiên sẽ tự bật `isSelectionMode` để
+  /// bottom action bar (Duyệt / Huỷ duyệt) và nút "Huỷ" hiện ra. Bỏ
+  /// chọn hết thì tự thoát mode.
+  Future<void> _onToggleSelection(
+    Emitter<ApprovePurchasingState> emit,
+    int itemId,
+  ) async {
+    final next = Set<int>.from(state.selectedIds);
+    if (!next.add(itemId)) {
+      next.remove(itemId);
+    }
+    emit(state.copyWith(
+      selectedIds: next,
+      isSelectionMode: next.isNotEmpty,
+    ));
+  }
 
-    final kw = filter.searchKeyword.trim().toLowerCase();
-    // `selectedProduct` lưu 1 hoặc 2 giá trị ghép bằng `|` tuỳ theo
-    // item được chọn từ picker (có thể chỉ code, chỉ name, hoặc cả 2).
-    // Logic match: với mỗi item, so `contains` từng khoá trên code
-    // hoặc name của item; chỉ cần khớp 1 khoá là giữ lại (OR) — tránh
-    // khớp quá chặt khiến item tương đương bị loại.
-    final productKeys = filter.selectedProduct
-        .trim()
-        .toLowerCase()
-        .split('|')
-        .where((s) => s.isNotEmpty)
-        .toList();
+  /// Chọn tất cả card con đang hiển thị (theo filter hiện tại của
+  /// tab đang chọn).
+  Future<void> _onSelectAllVisible(
+    Emitter<ApprovePurchasingState> emit,
+  ) async {
+    final typeId = state.selectedRequestTypeId;
+    if (typeId == null) return;
+    final ids = <int>{
+      for (final i in state.filteredItemsFor(typeId))
+        if (i.id != null) i.id!,
+    };
+    emit(state.copyWith(
+      selectedIds: ids,
+      isSelectionMode: ids.isNotEmpty,
+    ));
+  }
 
-    return source.where((item) {
-      // Search chung: mã SP / tên SP / note.
-      if (kw.isNotEmpty) {
-        final fields = [
-          item.productCode ?? '',
-          item.productName ?? '',
-          item.note ?? '',
-          item.notePartlist ?? '',
-        ];
-        if (!fields.any((f) => f.toLowerCase().contains(kw))) {
-          return false;
+  /// Bỏ chọn tất cả nhưng vẫn ở chế độ chọn.
+  Future<void> _onClearSelection(
+    Emitter<ApprovePurchasingState> emit,
+  ) async {
+    emit(state.copyWith(selectedIds: const <int>{}));
+  }
+
+  //---(Approve / Reject)---//
+
+  /// Gọi API duyệt (isApproved=true) hoặc huỷ duyệt (isApproved=false)
+  /// cho toàn bộ id đã chọn. Sau khi BE xác nhận, reload lại danh sách
+  /// để cập nhật trạng thái mới (`IsApprovedBGD`).
+  ///
+  /// Bloc phát `approveFeedback` để UI show snackbar. Một số id có thể
+  /// BE từ chối vẫn n trả về `status == 1` (endpoint không phân biệt
+  /// từng dòng); trong trường hợp đó, đếm lại theo `data` là an toàn.
+  Future<void> _onApproveSelected(
+    Emitter<ApprovePurchasingState> emit, {
+    required bool isApproved,
+  }) async {
+    final ids = state.selectedIds;
+    if (ids.isEmpty) return;
+
+    // Thu thập đầy đủ object phiếu (không chỉ id) vì BE cần body đầy
+    // đủ field cho mỗi item. Lấy từ mọi tab — BE nhận list phẳng,
+    // không quan tâm tab.
+    final items = <ApprovePurchasingItem>[];
+    for (final list in state.itemsByType.values) {
+      for (final it in list) {
+        if (it.id != null && ids.contains(it.id)) items.add(it);
+      }
+    }
+    if (items.isEmpty) return;
+
+    emit(state.copyWith(isApproving: true, approveFeedback: null));
+
+    final res = await _repo.approvePurchasing(
+      status: isApproved,
+      items: items,
+    );
+    if (emit.isDone) return;
+
+    await res.fold(
+      (err) async {
+        final msg = err.getErrorMessage;
+        _log.logE('❌ approvePurchasing failed: $msg');
+        emit(state.copyWith(
+          isApproving: false,
+          approveFeedback: ApprovePurchasingFeedback.error(msg),
+        ));
+      },
+      (result) async {
+        _log.logI(
+          '✅ approvePurchasing ok (isApproved=$isApproved, '
+          'updated=${result.updatedItems.length}): ${result.message}',
+        );
+        // Reload danh sách để cập nhật trạng thái mới trên UI.
+        final refreshed = await _fetchAllItems();
+        if (emit.isDone) return;
+        if (refreshed != null) {
+          emit(state.copyWith(
+            status: BaseStateStatus.success,
+            itemsByType: _groupByType(refreshed),
+            message: null,
+          ));
         }
-      }
+        emit(state.copyWith(
+          isApproving: false,
+          isSelectionMode: false,
+          selectedIds: const <int>{},
+          // Message lấy nguyên từ BE, ví dụ
+          // "Đã cập nhật trạng thái 1 yêu cầu duyệt thành công.".
+          approveFeedback: ApprovePurchasingFeedback.success(result.message),
+        ));
+      },
+    );
+  }
 
-      // Lọc theo sản phẩm đã chọn (khoá ghép bằng `|`).
-      if (productKeys.isNotEmpty) {
-        final code = (item.productCode ?? '').toLowerCase();
-        final name = (item.productName ?? '').toLowerCase();
-        // Khớp nếu BẤT KỲ khoá nào chứa code HOẶC name.
-        if (!productKeys.any(
-          (k) => code.contains(k) || name.contains(k),
-        )) {
-          return false;
-        }
-      }
-
-      // Lọc theo trạng thái duyệt BGĐ.
-      final approved = item.isApprovedBgd ?? false;
-      switch (filter.approvalFilter) {
-        case PurchasingApprovalFilter.all:
-          break;
-        case PurchasingApprovalFilter.pending:
-          if (approved) return false;
-          break;
-        case PurchasingApprovalFilter.approved:
-          if (!approved) return false;
-          break;
-      }
-
-      // Project filter.
-      if (filter.selectedProjectId != null) {
-        if (item.projectId != filter.selectedProjectId) return false;
-      }
-
-      // Supplier filter.
-      if (filter.selectedSupplierId != null) {
-        if (item.supplierSaleId != filter.selectedSupplierId) return false;
-      }
-
-      return true;
-    }).toList(growable: false);
+  /// Reset `approveFeedback` về `null` sau khi UI đã hiện snackbar.
+  /// Không emit nếu đã là `null` để tránh notify thừa.
+  Future<void> _onClearApproveFeedback(
+    Emitter<ApprovePurchasingState> emit,
+  ) async {
+    if (state.approveFeedback == null) return;
+    emit(state.copyWith(approveFeedback: null));
   }
 }

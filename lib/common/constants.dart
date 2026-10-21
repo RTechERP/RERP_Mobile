@@ -499,6 +499,13 @@ class ApiEndPoint {
   static const String getApprovePurchasingAllProject =
       '/ProjectPartlistPurchaseRequest/get-all-project';
 
+  /// Duyệt / huỷ duyệt nhiều phiếu mua.
+  /// API: POST /ProjectPartlistPurchaseRequest/approved
+  /// Query: `status=true` (duyệt) | `status=false` (huỷ duyệt)
+  /// Body: `List<Map>` các phiếu cần cập nhật.
+  static const String getApprovePurchasingApproved =
+      '/ProjectPartlistPurchaseRequest/approved';
+
   // General Form
   static const String departForm = '/document/get-departments';
   static const String getGeneralForm = '/document/get-document-admin-sale';

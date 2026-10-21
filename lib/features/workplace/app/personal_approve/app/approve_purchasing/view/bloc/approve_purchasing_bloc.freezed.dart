@@ -30,6 +30,12 @@ mixin _$ApprovePurchasingEvent {
     required TResult Function(String product) selectProduct,
     required TResult Function(PurchasingApprovalFilter filter)
         selectApprovalFilter,
+    required TResult Function() exitSelectionMode,
+    required TResult Function(int itemId) toggleSelection,
+    required TResult Function() selectAllVisible,
+    required TResult Function() clearSelection,
+    required TResult Function(bool isApproved) approveSelected,
+    required TResult Function() clearApproveFeedback,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -44,6 +50,12 @@ mixin _$ApprovePurchasingEvent {
     TResult? Function(String keyword)? changeSearchKeyword,
     TResult? Function(String product)? selectProduct,
     TResult? Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult? Function()? exitSelectionMode,
+    TResult? Function(int itemId)? toggleSelection,
+    TResult? Function()? selectAllVisible,
+    TResult? Function()? clearSelection,
+    TResult? Function(bool isApproved)? approveSelected,
+    TResult? Function()? clearApproveFeedback,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -58,6 +70,12 @@ mixin _$ApprovePurchasingEvent {
     TResult Function(String keyword)? changeSearchKeyword,
     TResult Function(String product)? selectProduct,
     TResult Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult Function()? exitSelectionMode,
+    TResult Function(int itemId)? toggleSelection,
+    TResult Function()? selectAllVisible,
+    TResult Function()? clearSelection,
+    TResult Function(bool isApproved)? approveSelected,
+    TResult Function()? clearApproveFeedback,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -73,6 +91,12 @@ mixin _$ApprovePurchasingEvent {
     required TResult Function(_ChangeSearchKeyword value) changeSearchKeyword,
     required TResult Function(_SelectProduct value) selectProduct,
     required TResult Function(_SelectApprovalFilter value) selectApprovalFilter,
+    required TResult Function(_ExitSelectionMode value) exitSelectionMode,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_SelectAllVisible value) selectAllVisible,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -87,6 +111,12 @@ mixin _$ApprovePurchasingEvent {
     TResult? Function(_ChangeSearchKeyword value)? changeSearchKeyword,
     TResult? Function(_SelectProduct value)? selectProduct,
     TResult? Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult? Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_SelectAllVisible value)? selectAllVisible,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -101,6 +131,12 @@ mixin _$ApprovePurchasingEvent {
     TResult Function(_ChangeSearchKeyword value)? changeSearchKeyword,
     TResult Function(_SelectProduct value)? selectProduct,
     TResult Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_SelectAllVisible value)? selectAllVisible,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -174,6 +210,12 @@ class _$InitImpl implements _Init {
     required TResult Function(String product) selectProduct,
     required TResult Function(PurchasingApprovalFilter filter)
         selectApprovalFilter,
+    required TResult Function() exitSelectionMode,
+    required TResult Function(int itemId) toggleSelection,
+    required TResult Function() selectAllVisible,
+    required TResult Function() clearSelection,
+    required TResult Function(bool isApproved) approveSelected,
+    required TResult Function() clearApproveFeedback,
   }) {
     return init();
   }
@@ -191,6 +233,12 @@ class _$InitImpl implements _Init {
     TResult? Function(String keyword)? changeSearchKeyword,
     TResult? Function(String product)? selectProduct,
     TResult? Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult? Function()? exitSelectionMode,
+    TResult? Function(int itemId)? toggleSelection,
+    TResult? Function()? selectAllVisible,
+    TResult? Function()? clearSelection,
+    TResult? Function(bool isApproved)? approveSelected,
+    TResult? Function()? clearApproveFeedback,
   }) {
     return init?.call();
   }
@@ -208,6 +256,12 @@ class _$InitImpl implements _Init {
     TResult Function(String keyword)? changeSearchKeyword,
     TResult Function(String product)? selectProduct,
     TResult Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult Function()? exitSelectionMode,
+    TResult Function(int itemId)? toggleSelection,
+    TResult Function()? selectAllVisible,
+    TResult Function()? clearSelection,
+    TResult Function(bool isApproved)? approveSelected,
+    TResult Function()? clearApproveFeedback,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -229,6 +283,12 @@ class _$InitImpl implements _Init {
     required TResult Function(_ChangeSearchKeyword value) changeSearchKeyword,
     required TResult Function(_SelectProduct value) selectProduct,
     required TResult Function(_SelectApprovalFilter value) selectApprovalFilter,
+    required TResult Function(_ExitSelectionMode value) exitSelectionMode,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_SelectAllVisible value) selectAllVisible,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
   }) {
     return init(this);
   }
@@ -246,6 +306,12 @@ class _$InitImpl implements _Init {
     TResult? Function(_ChangeSearchKeyword value)? changeSearchKeyword,
     TResult? Function(_SelectProduct value)? selectProduct,
     TResult? Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult? Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_SelectAllVisible value)? selectAllVisible,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
   }) {
     return init?.call(this);
   }
@@ -263,6 +329,12 @@ class _$InitImpl implements _Init {
     TResult Function(_ChangeSearchKeyword value)? changeSearchKeyword,
     TResult Function(_SelectProduct value)? selectProduct,
     TResult Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_SelectAllVisible value)? selectAllVisible,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -362,6 +434,12 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(String product) selectProduct,
     required TResult Function(PurchasingApprovalFilter filter)
         selectApprovalFilter,
+    required TResult Function() exitSelectionMode,
+    required TResult Function(int itemId) toggleSelection,
+    required TResult Function() selectAllVisible,
+    required TResult Function() clearSelection,
+    required TResult Function(bool isApproved) approveSelected,
+    required TResult Function() clearApproveFeedback,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -379,6 +457,12 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(String keyword)? changeSearchKeyword,
     TResult? Function(String product)? selectProduct,
     TResult? Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult? Function()? exitSelectionMode,
+    TResult? Function(int itemId)? toggleSelection,
+    TResult? Function()? selectAllVisible,
+    TResult? Function()? clearSelection,
+    TResult? Function(bool isApproved)? approveSelected,
+    TResult? Function()? clearApproveFeedback,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -396,6 +480,12 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(String keyword)? changeSearchKeyword,
     TResult Function(String product)? selectProduct,
     TResult Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult Function()? exitSelectionMode,
+    TResult Function(int itemId)? toggleSelection,
+    TResult Function()? selectAllVisible,
+    TResult Function()? clearSelection,
+    TResult Function(bool isApproved)? approveSelected,
+    TResult Function()? clearApproveFeedback,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -417,6 +507,12 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_ChangeSearchKeyword value) changeSearchKeyword,
     required TResult Function(_SelectProduct value) selectProduct,
     required TResult Function(_SelectApprovalFilter value) selectApprovalFilter,
+    required TResult Function(_ExitSelectionMode value) exitSelectionMode,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_SelectAllVisible value) selectAllVisible,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
   }) {
     return changeDateRange(this);
   }
@@ -434,6 +530,12 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_ChangeSearchKeyword value)? changeSearchKeyword,
     TResult? Function(_SelectProduct value)? selectProduct,
     TResult? Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult? Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_SelectAllVisible value)? selectAllVisible,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
   }) {
     return changeDateRange?.call(this);
   }
@@ -451,6 +553,12 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_ChangeSearchKeyword value)? changeSearchKeyword,
     TResult Function(_SelectProduct value)? selectProduct,
     TResult Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_SelectAllVisible value)? selectAllVisible,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -549,6 +657,12 @@ class _$SelectTabImpl implements _SelectTab {
     required TResult Function(String product) selectProduct,
     required TResult Function(PurchasingApprovalFilter filter)
         selectApprovalFilter,
+    required TResult Function() exitSelectionMode,
+    required TResult Function(int itemId) toggleSelection,
+    required TResult Function() selectAllVisible,
+    required TResult Function() clearSelection,
+    required TResult Function(bool isApproved) approveSelected,
+    required TResult Function() clearApproveFeedback,
   }) {
     return selectTab(requestTypeId);
   }
@@ -566,6 +680,12 @@ class _$SelectTabImpl implements _SelectTab {
     TResult? Function(String keyword)? changeSearchKeyword,
     TResult? Function(String product)? selectProduct,
     TResult? Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult? Function()? exitSelectionMode,
+    TResult? Function(int itemId)? toggleSelection,
+    TResult? Function()? selectAllVisible,
+    TResult? Function()? clearSelection,
+    TResult? Function(bool isApproved)? approveSelected,
+    TResult? Function()? clearApproveFeedback,
   }) {
     return selectTab?.call(requestTypeId);
   }
@@ -583,6 +703,12 @@ class _$SelectTabImpl implements _SelectTab {
     TResult Function(String keyword)? changeSearchKeyword,
     TResult Function(String product)? selectProduct,
     TResult Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult Function()? exitSelectionMode,
+    TResult Function(int itemId)? toggleSelection,
+    TResult Function()? selectAllVisible,
+    TResult Function()? clearSelection,
+    TResult Function(bool isApproved)? approveSelected,
+    TResult Function()? clearApproveFeedback,
     required TResult orElse(),
   }) {
     if (selectTab != null) {
@@ -604,6 +730,12 @@ class _$SelectTabImpl implements _SelectTab {
     required TResult Function(_ChangeSearchKeyword value) changeSearchKeyword,
     required TResult Function(_SelectProduct value) selectProduct,
     required TResult Function(_SelectApprovalFilter value) selectApprovalFilter,
+    required TResult Function(_ExitSelectionMode value) exitSelectionMode,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_SelectAllVisible value) selectAllVisible,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
   }) {
     return selectTab(this);
   }
@@ -621,6 +753,12 @@ class _$SelectTabImpl implements _SelectTab {
     TResult? Function(_ChangeSearchKeyword value)? changeSearchKeyword,
     TResult? Function(_SelectProduct value)? selectProduct,
     TResult? Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult? Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_SelectAllVisible value)? selectAllVisible,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
   }) {
     return selectTab?.call(this);
   }
@@ -638,6 +776,12 @@ class _$SelectTabImpl implements _SelectTab {
     TResult Function(_ChangeSearchKeyword value)? changeSearchKeyword,
     TResult Function(_SelectProduct value)? selectProduct,
     TResult Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_SelectAllVisible value)? selectAllVisible,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
     required TResult orElse(),
   }) {
     if (selectTab != null) {
@@ -707,6 +851,12 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(String product) selectProduct,
     required TResult Function(PurchasingApprovalFilter filter)
         selectApprovalFilter,
+    required TResult Function() exitSelectionMode,
+    required TResult Function(int itemId) toggleSelection,
+    required TResult Function() selectAllVisible,
+    required TResult Function() clearSelection,
+    required TResult Function(bool isApproved) approveSelected,
+    required TResult Function() clearApproveFeedback,
   }) {
     return refresh();
   }
@@ -724,6 +874,12 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(String keyword)? changeSearchKeyword,
     TResult? Function(String product)? selectProduct,
     TResult? Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult? Function()? exitSelectionMode,
+    TResult? Function(int itemId)? toggleSelection,
+    TResult? Function()? selectAllVisible,
+    TResult? Function()? clearSelection,
+    TResult? Function(bool isApproved)? approveSelected,
+    TResult? Function()? clearApproveFeedback,
   }) {
     return refresh?.call();
   }
@@ -741,6 +897,12 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(String keyword)? changeSearchKeyword,
     TResult Function(String product)? selectProduct,
     TResult Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult Function()? exitSelectionMode,
+    TResult Function(int itemId)? toggleSelection,
+    TResult Function()? selectAllVisible,
+    TResult Function()? clearSelection,
+    TResult Function(bool isApproved)? approveSelected,
+    TResult Function()? clearApproveFeedback,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -762,6 +924,12 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_ChangeSearchKeyword value) changeSearchKeyword,
     required TResult Function(_SelectProduct value) selectProduct,
     required TResult Function(_SelectApprovalFilter value) selectApprovalFilter,
+    required TResult Function(_ExitSelectionMode value) exitSelectionMode,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_SelectAllVisible value) selectAllVisible,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
   }) {
     return refresh(this);
   }
@@ -779,6 +947,12 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_ChangeSearchKeyword value)? changeSearchKeyword,
     TResult? Function(_SelectProduct value)? selectProduct,
     TResult? Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult? Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_SelectAllVisible value)? selectAllVisible,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
   }) {
     return refresh?.call(this);
   }
@@ -796,6 +970,12 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_ChangeSearchKeyword value)? changeSearchKeyword,
     TResult Function(_SelectProduct value)? selectProduct,
     TResult Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_SelectAllVisible value)? selectAllVisible,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -886,6 +1066,12 @@ class _$SelectProjectImpl implements _SelectProject {
     required TResult Function(String product) selectProduct,
     required TResult Function(PurchasingApprovalFilter filter)
         selectApprovalFilter,
+    required TResult Function() exitSelectionMode,
+    required TResult Function(int itemId) toggleSelection,
+    required TResult Function() selectAllVisible,
+    required TResult Function() clearSelection,
+    required TResult Function(bool isApproved) approveSelected,
+    required TResult Function() clearApproveFeedback,
   }) {
     return selectProject(projectId);
   }
@@ -903,6 +1089,12 @@ class _$SelectProjectImpl implements _SelectProject {
     TResult? Function(String keyword)? changeSearchKeyword,
     TResult? Function(String product)? selectProduct,
     TResult? Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult? Function()? exitSelectionMode,
+    TResult? Function(int itemId)? toggleSelection,
+    TResult? Function()? selectAllVisible,
+    TResult? Function()? clearSelection,
+    TResult? Function(bool isApproved)? approveSelected,
+    TResult? Function()? clearApproveFeedback,
   }) {
     return selectProject?.call(projectId);
   }
@@ -920,6 +1112,12 @@ class _$SelectProjectImpl implements _SelectProject {
     TResult Function(String keyword)? changeSearchKeyword,
     TResult Function(String product)? selectProduct,
     TResult Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult Function()? exitSelectionMode,
+    TResult Function(int itemId)? toggleSelection,
+    TResult Function()? selectAllVisible,
+    TResult Function()? clearSelection,
+    TResult Function(bool isApproved)? approveSelected,
+    TResult Function()? clearApproveFeedback,
     required TResult orElse(),
   }) {
     if (selectProject != null) {
@@ -941,6 +1139,12 @@ class _$SelectProjectImpl implements _SelectProject {
     required TResult Function(_ChangeSearchKeyword value) changeSearchKeyword,
     required TResult Function(_SelectProduct value) selectProduct,
     required TResult Function(_SelectApprovalFilter value) selectApprovalFilter,
+    required TResult Function(_ExitSelectionMode value) exitSelectionMode,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_SelectAllVisible value) selectAllVisible,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
   }) {
     return selectProject(this);
   }
@@ -958,6 +1162,12 @@ class _$SelectProjectImpl implements _SelectProject {
     TResult? Function(_ChangeSearchKeyword value)? changeSearchKeyword,
     TResult? Function(_SelectProduct value)? selectProduct,
     TResult? Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult? Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_SelectAllVisible value)? selectAllVisible,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
   }) {
     return selectProject?.call(this);
   }
@@ -975,6 +1185,12 @@ class _$SelectProjectImpl implements _SelectProject {
     TResult Function(_ChangeSearchKeyword value)? changeSearchKeyword,
     TResult Function(_SelectProduct value)? selectProduct,
     TResult Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_SelectAllVisible value)? selectAllVisible,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
     required TResult orElse(),
   }) {
     if (selectProject != null) {
@@ -1072,6 +1288,12 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     required TResult Function(String product) selectProduct,
     required TResult Function(PurchasingApprovalFilter filter)
         selectApprovalFilter,
+    required TResult Function() exitSelectionMode,
+    required TResult Function(int itemId) toggleSelection,
+    required TResult Function() selectAllVisible,
+    required TResult Function() clearSelection,
+    required TResult Function(bool isApproved) approveSelected,
+    required TResult Function() clearApproveFeedback,
   }) {
     return selectSupplier(supplierId);
   }
@@ -1089,6 +1311,12 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     TResult? Function(String keyword)? changeSearchKeyword,
     TResult? Function(String product)? selectProduct,
     TResult? Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult? Function()? exitSelectionMode,
+    TResult? Function(int itemId)? toggleSelection,
+    TResult? Function()? selectAllVisible,
+    TResult? Function()? clearSelection,
+    TResult? Function(bool isApproved)? approveSelected,
+    TResult? Function()? clearApproveFeedback,
   }) {
     return selectSupplier?.call(supplierId);
   }
@@ -1106,6 +1334,12 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     TResult Function(String keyword)? changeSearchKeyword,
     TResult Function(String product)? selectProduct,
     TResult Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult Function()? exitSelectionMode,
+    TResult Function(int itemId)? toggleSelection,
+    TResult Function()? selectAllVisible,
+    TResult Function()? clearSelection,
+    TResult Function(bool isApproved)? approveSelected,
+    TResult Function()? clearApproveFeedback,
     required TResult orElse(),
   }) {
     if (selectSupplier != null) {
@@ -1127,6 +1361,12 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     required TResult Function(_ChangeSearchKeyword value) changeSearchKeyword,
     required TResult Function(_SelectProduct value) selectProduct,
     required TResult Function(_SelectApprovalFilter value) selectApprovalFilter,
+    required TResult Function(_ExitSelectionMode value) exitSelectionMode,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_SelectAllVisible value) selectAllVisible,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
   }) {
     return selectSupplier(this);
   }
@@ -1144,6 +1384,12 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     TResult? Function(_ChangeSearchKeyword value)? changeSearchKeyword,
     TResult? Function(_SelectProduct value)? selectProduct,
     TResult? Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult? Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_SelectAllVisible value)? selectAllVisible,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
   }) {
     return selectSupplier?.call(this);
   }
@@ -1161,6 +1407,12 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     TResult Function(_ChangeSearchKeyword value)? changeSearchKeyword,
     TResult Function(_SelectProduct value)? selectProduct,
     TResult Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_SelectAllVisible value)? selectAllVisible,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
     required TResult orElse(),
   }) {
     if (selectSupplier != null) {
@@ -1230,6 +1482,12 @@ class _$ResetFilterImpl implements _ResetFilter {
     required TResult Function(String product) selectProduct,
     required TResult Function(PurchasingApprovalFilter filter)
         selectApprovalFilter,
+    required TResult Function() exitSelectionMode,
+    required TResult Function(int itemId) toggleSelection,
+    required TResult Function() selectAllVisible,
+    required TResult Function() clearSelection,
+    required TResult Function(bool isApproved) approveSelected,
+    required TResult Function() clearApproveFeedback,
   }) {
     return resetFilter();
   }
@@ -1247,6 +1505,12 @@ class _$ResetFilterImpl implements _ResetFilter {
     TResult? Function(String keyword)? changeSearchKeyword,
     TResult? Function(String product)? selectProduct,
     TResult? Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult? Function()? exitSelectionMode,
+    TResult? Function(int itemId)? toggleSelection,
+    TResult? Function()? selectAllVisible,
+    TResult? Function()? clearSelection,
+    TResult? Function(bool isApproved)? approveSelected,
+    TResult? Function()? clearApproveFeedback,
   }) {
     return resetFilter?.call();
   }
@@ -1264,6 +1528,12 @@ class _$ResetFilterImpl implements _ResetFilter {
     TResult Function(String keyword)? changeSearchKeyword,
     TResult Function(String product)? selectProduct,
     TResult Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult Function()? exitSelectionMode,
+    TResult Function(int itemId)? toggleSelection,
+    TResult Function()? selectAllVisible,
+    TResult Function()? clearSelection,
+    TResult Function(bool isApproved)? approveSelected,
+    TResult Function()? clearApproveFeedback,
     required TResult orElse(),
   }) {
     if (resetFilter != null) {
@@ -1285,6 +1555,12 @@ class _$ResetFilterImpl implements _ResetFilter {
     required TResult Function(_ChangeSearchKeyword value) changeSearchKeyword,
     required TResult Function(_SelectProduct value) selectProduct,
     required TResult Function(_SelectApprovalFilter value) selectApprovalFilter,
+    required TResult Function(_ExitSelectionMode value) exitSelectionMode,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_SelectAllVisible value) selectAllVisible,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
   }) {
     return resetFilter(this);
   }
@@ -1302,6 +1578,12 @@ class _$ResetFilterImpl implements _ResetFilter {
     TResult? Function(_ChangeSearchKeyword value)? changeSearchKeyword,
     TResult? Function(_SelectProduct value)? selectProduct,
     TResult? Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult? Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_SelectAllVisible value)? selectAllVisible,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
   }) {
     return resetFilter?.call(this);
   }
@@ -1319,6 +1601,12 @@ class _$ResetFilterImpl implements _ResetFilter {
     TResult Function(_ChangeSearchKeyword value)? changeSearchKeyword,
     TResult Function(_SelectProduct value)? selectProduct,
     TResult Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_SelectAllVisible value)? selectAllVisible,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
     required TResult orElse(),
   }) {
     if (resetFilter != null) {
@@ -1410,6 +1698,12 @@ class _$ChangeSearchKeywordImpl implements _ChangeSearchKeyword {
     required TResult Function(String product) selectProduct,
     required TResult Function(PurchasingApprovalFilter filter)
         selectApprovalFilter,
+    required TResult Function() exitSelectionMode,
+    required TResult Function(int itemId) toggleSelection,
+    required TResult Function() selectAllVisible,
+    required TResult Function() clearSelection,
+    required TResult Function(bool isApproved) approveSelected,
+    required TResult Function() clearApproveFeedback,
   }) {
     return changeSearchKeyword(keyword);
   }
@@ -1427,6 +1721,12 @@ class _$ChangeSearchKeywordImpl implements _ChangeSearchKeyword {
     TResult? Function(String keyword)? changeSearchKeyword,
     TResult? Function(String product)? selectProduct,
     TResult? Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult? Function()? exitSelectionMode,
+    TResult? Function(int itemId)? toggleSelection,
+    TResult? Function()? selectAllVisible,
+    TResult? Function()? clearSelection,
+    TResult? Function(bool isApproved)? approveSelected,
+    TResult? Function()? clearApproveFeedback,
   }) {
     return changeSearchKeyword?.call(keyword);
   }
@@ -1444,6 +1744,12 @@ class _$ChangeSearchKeywordImpl implements _ChangeSearchKeyword {
     TResult Function(String keyword)? changeSearchKeyword,
     TResult Function(String product)? selectProduct,
     TResult Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult Function()? exitSelectionMode,
+    TResult Function(int itemId)? toggleSelection,
+    TResult Function()? selectAllVisible,
+    TResult Function()? clearSelection,
+    TResult Function(bool isApproved)? approveSelected,
+    TResult Function()? clearApproveFeedback,
     required TResult orElse(),
   }) {
     if (changeSearchKeyword != null) {
@@ -1465,6 +1771,12 @@ class _$ChangeSearchKeywordImpl implements _ChangeSearchKeyword {
     required TResult Function(_ChangeSearchKeyword value) changeSearchKeyword,
     required TResult Function(_SelectProduct value) selectProduct,
     required TResult Function(_SelectApprovalFilter value) selectApprovalFilter,
+    required TResult Function(_ExitSelectionMode value) exitSelectionMode,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_SelectAllVisible value) selectAllVisible,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
   }) {
     return changeSearchKeyword(this);
   }
@@ -1482,6 +1794,12 @@ class _$ChangeSearchKeywordImpl implements _ChangeSearchKeyword {
     TResult? Function(_ChangeSearchKeyword value)? changeSearchKeyword,
     TResult? Function(_SelectProduct value)? selectProduct,
     TResult? Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult? Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_SelectAllVisible value)? selectAllVisible,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
   }) {
     return changeSearchKeyword?.call(this);
   }
@@ -1499,6 +1817,12 @@ class _$ChangeSearchKeywordImpl implements _ChangeSearchKeyword {
     TResult Function(_ChangeSearchKeyword value)? changeSearchKeyword,
     TResult Function(_SelectProduct value)? selectProduct,
     TResult Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_SelectAllVisible value)? selectAllVisible,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
     required TResult orElse(),
   }) {
     if (changeSearchKeyword != null) {
@@ -1594,6 +1918,12 @@ class _$SelectProductImpl implements _SelectProduct {
     required TResult Function(String product) selectProduct,
     required TResult Function(PurchasingApprovalFilter filter)
         selectApprovalFilter,
+    required TResult Function() exitSelectionMode,
+    required TResult Function(int itemId) toggleSelection,
+    required TResult Function() selectAllVisible,
+    required TResult Function() clearSelection,
+    required TResult Function(bool isApproved) approveSelected,
+    required TResult Function() clearApproveFeedback,
   }) {
     return selectProduct(product);
   }
@@ -1611,6 +1941,12 @@ class _$SelectProductImpl implements _SelectProduct {
     TResult? Function(String keyword)? changeSearchKeyword,
     TResult? Function(String product)? selectProduct,
     TResult? Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult? Function()? exitSelectionMode,
+    TResult? Function(int itemId)? toggleSelection,
+    TResult? Function()? selectAllVisible,
+    TResult? Function()? clearSelection,
+    TResult? Function(bool isApproved)? approveSelected,
+    TResult? Function()? clearApproveFeedback,
   }) {
     return selectProduct?.call(product);
   }
@@ -1628,6 +1964,12 @@ class _$SelectProductImpl implements _SelectProduct {
     TResult Function(String keyword)? changeSearchKeyword,
     TResult Function(String product)? selectProduct,
     TResult Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult Function()? exitSelectionMode,
+    TResult Function(int itemId)? toggleSelection,
+    TResult Function()? selectAllVisible,
+    TResult Function()? clearSelection,
+    TResult Function(bool isApproved)? approveSelected,
+    TResult Function()? clearApproveFeedback,
     required TResult orElse(),
   }) {
     if (selectProduct != null) {
@@ -1649,6 +1991,12 @@ class _$SelectProductImpl implements _SelectProduct {
     required TResult Function(_ChangeSearchKeyword value) changeSearchKeyword,
     required TResult Function(_SelectProduct value) selectProduct,
     required TResult Function(_SelectApprovalFilter value) selectApprovalFilter,
+    required TResult Function(_ExitSelectionMode value) exitSelectionMode,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_SelectAllVisible value) selectAllVisible,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
   }) {
     return selectProduct(this);
   }
@@ -1666,6 +2014,12 @@ class _$SelectProductImpl implements _SelectProduct {
     TResult? Function(_ChangeSearchKeyword value)? changeSearchKeyword,
     TResult? Function(_SelectProduct value)? selectProduct,
     TResult? Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult? Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_SelectAllVisible value)? selectAllVisible,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
   }) {
     return selectProduct?.call(this);
   }
@@ -1683,6 +2037,12 @@ class _$SelectProductImpl implements _SelectProduct {
     TResult Function(_ChangeSearchKeyword value)? changeSearchKeyword,
     TResult Function(_SelectProduct value)? selectProduct,
     TResult Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_SelectAllVisible value)? selectAllVisible,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
     required TResult orElse(),
   }) {
     if (selectProduct != null) {
@@ -1781,6 +2141,12 @@ class _$SelectApprovalFilterImpl implements _SelectApprovalFilter {
     required TResult Function(String product) selectProduct,
     required TResult Function(PurchasingApprovalFilter filter)
         selectApprovalFilter,
+    required TResult Function() exitSelectionMode,
+    required TResult Function(int itemId) toggleSelection,
+    required TResult Function() selectAllVisible,
+    required TResult Function() clearSelection,
+    required TResult Function(bool isApproved) approveSelected,
+    required TResult Function() clearApproveFeedback,
   }) {
     return selectApprovalFilter(filter);
   }
@@ -1798,6 +2164,12 @@ class _$SelectApprovalFilterImpl implements _SelectApprovalFilter {
     TResult? Function(String keyword)? changeSearchKeyword,
     TResult? Function(String product)? selectProduct,
     TResult? Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult? Function()? exitSelectionMode,
+    TResult? Function(int itemId)? toggleSelection,
+    TResult? Function()? selectAllVisible,
+    TResult? Function()? clearSelection,
+    TResult? Function(bool isApproved)? approveSelected,
+    TResult? Function()? clearApproveFeedback,
   }) {
     return selectApprovalFilter?.call(filter);
   }
@@ -1815,6 +2187,12 @@ class _$SelectApprovalFilterImpl implements _SelectApprovalFilter {
     TResult Function(String keyword)? changeSearchKeyword,
     TResult Function(String product)? selectProduct,
     TResult Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult Function()? exitSelectionMode,
+    TResult Function(int itemId)? toggleSelection,
+    TResult Function()? selectAllVisible,
+    TResult Function()? clearSelection,
+    TResult Function(bool isApproved)? approveSelected,
+    TResult Function()? clearApproveFeedback,
     required TResult orElse(),
   }) {
     if (selectApprovalFilter != null) {
@@ -1836,6 +2214,12 @@ class _$SelectApprovalFilterImpl implements _SelectApprovalFilter {
     required TResult Function(_ChangeSearchKeyword value) changeSearchKeyword,
     required TResult Function(_SelectProduct value) selectProduct,
     required TResult Function(_SelectApprovalFilter value) selectApprovalFilter,
+    required TResult Function(_ExitSelectionMode value) exitSelectionMode,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_SelectAllVisible value) selectAllVisible,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
   }) {
     return selectApprovalFilter(this);
   }
@@ -1853,6 +2237,12 @@ class _$SelectApprovalFilterImpl implements _SelectApprovalFilter {
     TResult? Function(_ChangeSearchKeyword value)? changeSearchKeyword,
     TResult? Function(_SelectProduct value)? selectProduct,
     TResult? Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult? Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_SelectAllVisible value)? selectAllVisible,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
   }) {
     return selectApprovalFilter?.call(this);
   }
@@ -1870,6 +2260,12 @@ class _$SelectApprovalFilterImpl implements _SelectApprovalFilter {
     TResult Function(_ChangeSearchKeyword value)? changeSearchKeyword,
     TResult Function(_SelectProduct value)? selectProduct,
     TResult Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_SelectAllVisible value)? selectAllVisible,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
     required TResult orElse(),
   }) {
     if (selectApprovalFilter != null) {
@@ -1888,4 +2284,1201 @@ abstract class _SelectApprovalFilter implements ApprovePurchasingEvent {
   @JsonKey(ignore: true)
   _$$SelectApprovalFilterImplCopyWith<_$SelectApprovalFilterImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ExitSelectionModeImplCopyWith<$Res> {
+  factory _$$ExitSelectionModeImplCopyWith(_$ExitSelectionModeImpl value,
+          $Res Function(_$ExitSelectionModeImpl) then) =
+      __$$ExitSelectionModeImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ExitSelectionModeImplCopyWithImpl<$Res>
+    extends _$ApprovePurchasingEventCopyWithImpl<$Res, _$ExitSelectionModeImpl>
+    implements _$$ExitSelectionModeImplCopyWith<$Res> {
+  __$$ExitSelectionModeImplCopyWithImpl(_$ExitSelectionModeImpl _value,
+      $Res Function(_$ExitSelectionModeImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ExitSelectionModeImpl implements _ExitSelectionMode {
+  const _$ExitSelectionModeImpl();
+
+  @override
+  String toString() {
+    return 'ApprovePurchasingEvent.exitSelectionMode()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ExitSelectionModeImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int requestTypeId) selectTab,
+    required TResult Function() refresh,
+    required TResult Function(int? projectId) selectProject,
+    required TResult Function(int? supplierId) selectSupplier,
+    required TResult Function() resetFilter,
+    required TResult Function(String keyword) changeSearchKeyword,
+    required TResult Function(String product) selectProduct,
+    required TResult Function(PurchasingApprovalFilter filter)
+        selectApprovalFilter,
+    required TResult Function() exitSelectionMode,
+    required TResult Function(int itemId) toggleSelection,
+    required TResult Function() selectAllVisible,
+    required TResult Function() clearSelection,
+    required TResult Function(bool isApproved) approveSelected,
+    required TResult Function() clearApproveFeedback,
+  }) {
+    return exitSelectionMode();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int requestTypeId)? selectTab,
+    TResult? Function()? refresh,
+    TResult? Function(int? projectId)? selectProject,
+    TResult? Function(int? supplierId)? selectSupplier,
+    TResult? Function()? resetFilter,
+    TResult? Function(String keyword)? changeSearchKeyword,
+    TResult? Function(String product)? selectProduct,
+    TResult? Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult? Function()? exitSelectionMode,
+    TResult? Function(int itemId)? toggleSelection,
+    TResult? Function()? selectAllVisible,
+    TResult? Function()? clearSelection,
+    TResult? Function(bool isApproved)? approveSelected,
+    TResult? Function()? clearApproveFeedback,
+  }) {
+    return exitSelectionMode?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int requestTypeId)? selectTab,
+    TResult Function()? refresh,
+    TResult Function(int? projectId)? selectProject,
+    TResult Function(int? supplierId)? selectSupplier,
+    TResult Function()? resetFilter,
+    TResult Function(String keyword)? changeSearchKeyword,
+    TResult Function(String product)? selectProduct,
+    TResult Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult Function()? exitSelectionMode,
+    TResult Function(int itemId)? toggleSelection,
+    TResult Function()? selectAllVisible,
+    TResult Function()? clearSelection,
+    TResult Function(bool isApproved)? approveSelected,
+    TResult Function()? clearApproveFeedback,
+    required TResult orElse(),
+  }) {
+    if (exitSelectionMode != null) {
+      return exitSelectionMode();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_SelectTab value) selectTab,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_SelectProject value) selectProject,
+    required TResult Function(_SelectSupplier value) selectSupplier,
+    required TResult Function(_ResetFilter value) resetFilter,
+    required TResult Function(_ChangeSearchKeyword value) changeSearchKeyword,
+    required TResult Function(_SelectProduct value) selectProduct,
+    required TResult Function(_SelectApprovalFilter value) selectApprovalFilter,
+    required TResult Function(_ExitSelectionMode value) exitSelectionMode,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_SelectAllVisible value) selectAllVisible,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
+  }) {
+    return exitSelectionMode(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_SelectTab value)? selectTab,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_SelectProject value)? selectProject,
+    TResult? Function(_SelectSupplier value)? selectSupplier,
+    TResult? Function(_ResetFilter value)? resetFilter,
+    TResult? Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult? Function(_SelectProduct value)? selectProduct,
+    TResult? Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult? Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_SelectAllVisible value)? selectAllVisible,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
+  }) {
+    return exitSelectionMode?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_SelectTab value)? selectTab,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_SelectProject value)? selectProject,
+    TResult Function(_SelectSupplier value)? selectSupplier,
+    TResult Function(_ResetFilter value)? resetFilter,
+    TResult Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult Function(_SelectProduct value)? selectProduct,
+    TResult Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_SelectAllVisible value)? selectAllVisible,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    required TResult orElse(),
+  }) {
+    if (exitSelectionMode != null) {
+      return exitSelectionMode(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ExitSelectionMode implements ApprovePurchasingEvent {
+  const factory _ExitSelectionMode() = _$ExitSelectionModeImpl;
+}
+
+/// @nodoc
+abstract class _$$ToggleSelectionImplCopyWith<$Res> {
+  factory _$$ToggleSelectionImplCopyWith(_$ToggleSelectionImpl value,
+          $Res Function(_$ToggleSelectionImpl) then) =
+      __$$ToggleSelectionImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int itemId});
+}
+
+/// @nodoc
+class __$$ToggleSelectionImplCopyWithImpl<$Res>
+    extends _$ApprovePurchasingEventCopyWithImpl<$Res, _$ToggleSelectionImpl>
+    implements _$$ToggleSelectionImplCopyWith<$Res> {
+  __$$ToggleSelectionImplCopyWithImpl(
+      _$ToggleSelectionImpl _value, $Res Function(_$ToggleSelectionImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? itemId = null,
+  }) {
+    return _then(_$ToggleSelectionImpl(
+      itemId: null == itemId
+          ? _value.itemId
+          : itemId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ToggleSelectionImpl implements _ToggleSelection {
+  const _$ToggleSelectionImpl({required this.itemId});
+
+  @override
+  final int itemId;
+
+  @override
+  String toString() {
+    return 'ApprovePurchasingEvent.toggleSelection(itemId: $itemId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ToggleSelectionImpl &&
+            (identical(other.itemId, itemId) || other.itemId == itemId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, itemId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ToggleSelectionImplCopyWith<_$ToggleSelectionImpl> get copyWith =>
+      __$$ToggleSelectionImplCopyWithImpl<_$ToggleSelectionImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int requestTypeId) selectTab,
+    required TResult Function() refresh,
+    required TResult Function(int? projectId) selectProject,
+    required TResult Function(int? supplierId) selectSupplier,
+    required TResult Function() resetFilter,
+    required TResult Function(String keyword) changeSearchKeyword,
+    required TResult Function(String product) selectProduct,
+    required TResult Function(PurchasingApprovalFilter filter)
+        selectApprovalFilter,
+    required TResult Function() exitSelectionMode,
+    required TResult Function(int itemId) toggleSelection,
+    required TResult Function() selectAllVisible,
+    required TResult Function() clearSelection,
+    required TResult Function(bool isApproved) approveSelected,
+    required TResult Function() clearApproveFeedback,
+  }) {
+    return toggleSelection(itemId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int requestTypeId)? selectTab,
+    TResult? Function()? refresh,
+    TResult? Function(int? projectId)? selectProject,
+    TResult? Function(int? supplierId)? selectSupplier,
+    TResult? Function()? resetFilter,
+    TResult? Function(String keyword)? changeSearchKeyword,
+    TResult? Function(String product)? selectProduct,
+    TResult? Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult? Function()? exitSelectionMode,
+    TResult? Function(int itemId)? toggleSelection,
+    TResult? Function()? selectAllVisible,
+    TResult? Function()? clearSelection,
+    TResult? Function(bool isApproved)? approveSelected,
+    TResult? Function()? clearApproveFeedback,
+  }) {
+    return toggleSelection?.call(itemId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int requestTypeId)? selectTab,
+    TResult Function()? refresh,
+    TResult Function(int? projectId)? selectProject,
+    TResult Function(int? supplierId)? selectSupplier,
+    TResult Function()? resetFilter,
+    TResult Function(String keyword)? changeSearchKeyword,
+    TResult Function(String product)? selectProduct,
+    TResult Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult Function()? exitSelectionMode,
+    TResult Function(int itemId)? toggleSelection,
+    TResult Function()? selectAllVisible,
+    TResult Function()? clearSelection,
+    TResult Function(bool isApproved)? approveSelected,
+    TResult Function()? clearApproveFeedback,
+    required TResult orElse(),
+  }) {
+    if (toggleSelection != null) {
+      return toggleSelection(itemId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_SelectTab value) selectTab,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_SelectProject value) selectProject,
+    required TResult Function(_SelectSupplier value) selectSupplier,
+    required TResult Function(_ResetFilter value) resetFilter,
+    required TResult Function(_ChangeSearchKeyword value) changeSearchKeyword,
+    required TResult Function(_SelectProduct value) selectProduct,
+    required TResult Function(_SelectApprovalFilter value) selectApprovalFilter,
+    required TResult Function(_ExitSelectionMode value) exitSelectionMode,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_SelectAllVisible value) selectAllVisible,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
+  }) {
+    return toggleSelection(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_SelectTab value)? selectTab,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_SelectProject value)? selectProject,
+    TResult? Function(_SelectSupplier value)? selectSupplier,
+    TResult? Function(_ResetFilter value)? resetFilter,
+    TResult? Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult? Function(_SelectProduct value)? selectProduct,
+    TResult? Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult? Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_SelectAllVisible value)? selectAllVisible,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
+  }) {
+    return toggleSelection?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_SelectTab value)? selectTab,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_SelectProject value)? selectProject,
+    TResult Function(_SelectSupplier value)? selectSupplier,
+    TResult Function(_ResetFilter value)? resetFilter,
+    TResult Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult Function(_SelectProduct value)? selectProduct,
+    TResult Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_SelectAllVisible value)? selectAllVisible,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    required TResult orElse(),
+  }) {
+    if (toggleSelection != null) {
+      return toggleSelection(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ToggleSelection implements ApprovePurchasingEvent {
+  const factory _ToggleSelection({required final int itemId}) =
+      _$ToggleSelectionImpl;
+
+  int get itemId;
+  @JsonKey(ignore: true)
+  _$$ToggleSelectionImplCopyWith<_$ToggleSelectionImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SelectAllVisibleImplCopyWith<$Res> {
+  factory _$$SelectAllVisibleImplCopyWith(_$SelectAllVisibleImpl value,
+          $Res Function(_$SelectAllVisibleImpl) then) =
+      __$$SelectAllVisibleImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SelectAllVisibleImplCopyWithImpl<$Res>
+    extends _$ApprovePurchasingEventCopyWithImpl<$Res, _$SelectAllVisibleImpl>
+    implements _$$SelectAllVisibleImplCopyWith<$Res> {
+  __$$SelectAllVisibleImplCopyWithImpl(_$SelectAllVisibleImpl _value,
+      $Res Function(_$SelectAllVisibleImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$SelectAllVisibleImpl implements _SelectAllVisible {
+  const _$SelectAllVisibleImpl();
+
+  @override
+  String toString() {
+    return 'ApprovePurchasingEvent.selectAllVisible()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$SelectAllVisibleImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int requestTypeId) selectTab,
+    required TResult Function() refresh,
+    required TResult Function(int? projectId) selectProject,
+    required TResult Function(int? supplierId) selectSupplier,
+    required TResult Function() resetFilter,
+    required TResult Function(String keyword) changeSearchKeyword,
+    required TResult Function(String product) selectProduct,
+    required TResult Function(PurchasingApprovalFilter filter)
+        selectApprovalFilter,
+    required TResult Function() exitSelectionMode,
+    required TResult Function(int itemId) toggleSelection,
+    required TResult Function() selectAllVisible,
+    required TResult Function() clearSelection,
+    required TResult Function(bool isApproved) approveSelected,
+    required TResult Function() clearApproveFeedback,
+  }) {
+    return selectAllVisible();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int requestTypeId)? selectTab,
+    TResult? Function()? refresh,
+    TResult? Function(int? projectId)? selectProject,
+    TResult? Function(int? supplierId)? selectSupplier,
+    TResult? Function()? resetFilter,
+    TResult? Function(String keyword)? changeSearchKeyword,
+    TResult? Function(String product)? selectProduct,
+    TResult? Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult? Function()? exitSelectionMode,
+    TResult? Function(int itemId)? toggleSelection,
+    TResult? Function()? selectAllVisible,
+    TResult? Function()? clearSelection,
+    TResult? Function(bool isApproved)? approveSelected,
+    TResult? Function()? clearApproveFeedback,
+  }) {
+    return selectAllVisible?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int requestTypeId)? selectTab,
+    TResult Function()? refresh,
+    TResult Function(int? projectId)? selectProject,
+    TResult Function(int? supplierId)? selectSupplier,
+    TResult Function()? resetFilter,
+    TResult Function(String keyword)? changeSearchKeyword,
+    TResult Function(String product)? selectProduct,
+    TResult Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult Function()? exitSelectionMode,
+    TResult Function(int itemId)? toggleSelection,
+    TResult Function()? selectAllVisible,
+    TResult Function()? clearSelection,
+    TResult Function(bool isApproved)? approveSelected,
+    TResult Function()? clearApproveFeedback,
+    required TResult orElse(),
+  }) {
+    if (selectAllVisible != null) {
+      return selectAllVisible();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_SelectTab value) selectTab,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_SelectProject value) selectProject,
+    required TResult Function(_SelectSupplier value) selectSupplier,
+    required TResult Function(_ResetFilter value) resetFilter,
+    required TResult Function(_ChangeSearchKeyword value) changeSearchKeyword,
+    required TResult Function(_SelectProduct value) selectProduct,
+    required TResult Function(_SelectApprovalFilter value) selectApprovalFilter,
+    required TResult Function(_ExitSelectionMode value) exitSelectionMode,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_SelectAllVisible value) selectAllVisible,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
+  }) {
+    return selectAllVisible(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_SelectTab value)? selectTab,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_SelectProject value)? selectProject,
+    TResult? Function(_SelectSupplier value)? selectSupplier,
+    TResult? Function(_ResetFilter value)? resetFilter,
+    TResult? Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult? Function(_SelectProduct value)? selectProduct,
+    TResult? Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult? Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_SelectAllVisible value)? selectAllVisible,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
+  }) {
+    return selectAllVisible?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_SelectTab value)? selectTab,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_SelectProject value)? selectProject,
+    TResult Function(_SelectSupplier value)? selectSupplier,
+    TResult Function(_ResetFilter value)? resetFilter,
+    TResult Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult Function(_SelectProduct value)? selectProduct,
+    TResult Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_SelectAllVisible value)? selectAllVisible,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    required TResult orElse(),
+  }) {
+    if (selectAllVisible != null) {
+      return selectAllVisible(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SelectAllVisible implements ApprovePurchasingEvent {
+  const factory _SelectAllVisible() = _$SelectAllVisibleImpl;
+}
+
+/// @nodoc
+abstract class _$$ClearSelectionImplCopyWith<$Res> {
+  factory _$$ClearSelectionImplCopyWith(_$ClearSelectionImpl value,
+          $Res Function(_$ClearSelectionImpl) then) =
+      __$$ClearSelectionImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearSelectionImplCopyWithImpl<$Res>
+    extends _$ApprovePurchasingEventCopyWithImpl<$Res, _$ClearSelectionImpl>
+    implements _$$ClearSelectionImplCopyWith<$Res> {
+  __$$ClearSelectionImplCopyWithImpl(
+      _$ClearSelectionImpl _value, $Res Function(_$ClearSelectionImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ClearSelectionImpl implements _ClearSelection {
+  const _$ClearSelectionImpl();
+
+  @override
+  String toString() {
+    return 'ApprovePurchasingEvent.clearSelection()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ClearSelectionImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int requestTypeId) selectTab,
+    required TResult Function() refresh,
+    required TResult Function(int? projectId) selectProject,
+    required TResult Function(int? supplierId) selectSupplier,
+    required TResult Function() resetFilter,
+    required TResult Function(String keyword) changeSearchKeyword,
+    required TResult Function(String product) selectProduct,
+    required TResult Function(PurchasingApprovalFilter filter)
+        selectApprovalFilter,
+    required TResult Function() exitSelectionMode,
+    required TResult Function(int itemId) toggleSelection,
+    required TResult Function() selectAllVisible,
+    required TResult Function() clearSelection,
+    required TResult Function(bool isApproved) approveSelected,
+    required TResult Function() clearApproveFeedback,
+  }) {
+    return clearSelection();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int requestTypeId)? selectTab,
+    TResult? Function()? refresh,
+    TResult? Function(int? projectId)? selectProject,
+    TResult? Function(int? supplierId)? selectSupplier,
+    TResult? Function()? resetFilter,
+    TResult? Function(String keyword)? changeSearchKeyword,
+    TResult? Function(String product)? selectProduct,
+    TResult? Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult? Function()? exitSelectionMode,
+    TResult? Function(int itemId)? toggleSelection,
+    TResult? Function()? selectAllVisible,
+    TResult? Function()? clearSelection,
+    TResult? Function(bool isApproved)? approveSelected,
+    TResult? Function()? clearApproveFeedback,
+  }) {
+    return clearSelection?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int requestTypeId)? selectTab,
+    TResult Function()? refresh,
+    TResult Function(int? projectId)? selectProject,
+    TResult Function(int? supplierId)? selectSupplier,
+    TResult Function()? resetFilter,
+    TResult Function(String keyword)? changeSearchKeyword,
+    TResult Function(String product)? selectProduct,
+    TResult Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult Function()? exitSelectionMode,
+    TResult Function(int itemId)? toggleSelection,
+    TResult Function()? selectAllVisible,
+    TResult Function()? clearSelection,
+    TResult Function(bool isApproved)? approveSelected,
+    TResult Function()? clearApproveFeedback,
+    required TResult orElse(),
+  }) {
+    if (clearSelection != null) {
+      return clearSelection();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_SelectTab value) selectTab,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_SelectProject value) selectProject,
+    required TResult Function(_SelectSupplier value) selectSupplier,
+    required TResult Function(_ResetFilter value) resetFilter,
+    required TResult Function(_ChangeSearchKeyword value) changeSearchKeyword,
+    required TResult Function(_SelectProduct value) selectProduct,
+    required TResult Function(_SelectApprovalFilter value) selectApprovalFilter,
+    required TResult Function(_ExitSelectionMode value) exitSelectionMode,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_SelectAllVisible value) selectAllVisible,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
+  }) {
+    return clearSelection(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_SelectTab value)? selectTab,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_SelectProject value)? selectProject,
+    TResult? Function(_SelectSupplier value)? selectSupplier,
+    TResult? Function(_ResetFilter value)? resetFilter,
+    TResult? Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult? Function(_SelectProduct value)? selectProduct,
+    TResult? Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult? Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_SelectAllVisible value)? selectAllVisible,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
+  }) {
+    return clearSelection?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_SelectTab value)? selectTab,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_SelectProject value)? selectProject,
+    TResult Function(_SelectSupplier value)? selectSupplier,
+    TResult Function(_ResetFilter value)? resetFilter,
+    TResult Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult Function(_SelectProduct value)? selectProduct,
+    TResult Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_SelectAllVisible value)? selectAllVisible,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    required TResult orElse(),
+  }) {
+    if (clearSelection != null) {
+      return clearSelection(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearSelection implements ApprovePurchasingEvent {
+  const factory _ClearSelection() = _$ClearSelectionImpl;
+}
+
+/// @nodoc
+abstract class _$$ApproveSelectedImplCopyWith<$Res> {
+  factory _$$ApproveSelectedImplCopyWith(_$ApproveSelectedImpl value,
+          $Res Function(_$ApproveSelectedImpl) then) =
+      __$$ApproveSelectedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isApproved});
+}
+
+/// @nodoc
+class __$$ApproveSelectedImplCopyWithImpl<$Res>
+    extends _$ApprovePurchasingEventCopyWithImpl<$Res, _$ApproveSelectedImpl>
+    implements _$$ApproveSelectedImplCopyWith<$Res> {
+  __$$ApproveSelectedImplCopyWithImpl(
+      _$ApproveSelectedImpl _value, $Res Function(_$ApproveSelectedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isApproved = null,
+  }) {
+    return _then(_$ApproveSelectedImpl(
+      isApproved: null == isApproved
+          ? _value.isApproved
+          : isApproved // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ApproveSelectedImpl implements _ApproveSelected {
+  const _$ApproveSelectedImpl({required this.isApproved});
+
+  @override
+  final bool isApproved;
+
+  @override
+  String toString() {
+    return 'ApprovePurchasingEvent.approveSelected(isApproved: $isApproved)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ApproveSelectedImpl &&
+            (identical(other.isApproved, isApproved) ||
+                other.isApproved == isApproved));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isApproved);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ApproveSelectedImplCopyWith<_$ApproveSelectedImpl> get copyWith =>
+      __$$ApproveSelectedImplCopyWithImpl<_$ApproveSelectedImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int requestTypeId) selectTab,
+    required TResult Function() refresh,
+    required TResult Function(int? projectId) selectProject,
+    required TResult Function(int? supplierId) selectSupplier,
+    required TResult Function() resetFilter,
+    required TResult Function(String keyword) changeSearchKeyword,
+    required TResult Function(String product) selectProduct,
+    required TResult Function(PurchasingApprovalFilter filter)
+        selectApprovalFilter,
+    required TResult Function() exitSelectionMode,
+    required TResult Function(int itemId) toggleSelection,
+    required TResult Function() selectAllVisible,
+    required TResult Function() clearSelection,
+    required TResult Function(bool isApproved) approveSelected,
+    required TResult Function() clearApproveFeedback,
+  }) {
+    return approveSelected(isApproved);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int requestTypeId)? selectTab,
+    TResult? Function()? refresh,
+    TResult? Function(int? projectId)? selectProject,
+    TResult? Function(int? supplierId)? selectSupplier,
+    TResult? Function()? resetFilter,
+    TResult? Function(String keyword)? changeSearchKeyword,
+    TResult? Function(String product)? selectProduct,
+    TResult? Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult? Function()? exitSelectionMode,
+    TResult? Function(int itemId)? toggleSelection,
+    TResult? Function()? selectAllVisible,
+    TResult? Function()? clearSelection,
+    TResult? Function(bool isApproved)? approveSelected,
+    TResult? Function()? clearApproveFeedback,
+  }) {
+    return approveSelected?.call(isApproved);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int requestTypeId)? selectTab,
+    TResult Function()? refresh,
+    TResult Function(int? projectId)? selectProject,
+    TResult Function(int? supplierId)? selectSupplier,
+    TResult Function()? resetFilter,
+    TResult Function(String keyword)? changeSearchKeyword,
+    TResult Function(String product)? selectProduct,
+    TResult Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult Function()? exitSelectionMode,
+    TResult Function(int itemId)? toggleSelection,
+    TResult Function()? selectAllVisible,
+    TResult Function()? clearSelection,
+    TResult Function(bool isApproved)? approveSelected,
+    TResult Function()? clearApproveFeedback,
+    required TResult orElse(),
+  }) {
+    if (approveSelected != null) {
+      return approveSelected(isApproved);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_SelectTab value) selectTab,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_SelectProject value) selectProject,
+    required TResult Function(_SelectSupplier value) selectSupplier,
+    required TResult Function(_ResetFilter value) resetFilter,
+    required TResult Function(_ChangeSearchKeyword value) changeSearchKeyword,
+    required TResult Function(_SelectProduct value) selectProduct,
+    required TResult Function(_SelectApprovalFilter value) selectApprovalFilter,
+    required TResult Function(_ExitSelectionMode value) exitSelectionMode,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_SelectAllVisible value) selectAllVisible,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
+  }) {
+    return approveSelected(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_SelectTab value)? selectTab,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_SelectProject value)? selectProject,
+    TResult? Function(_SelectSupplier value)? selectSupplier,
+    TResult? Function(_ResetFilter value)? resetFilter,
+    TResult? Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult? Function(_SelectProduct value)? selectProduct,
+    TResult? Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult? Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_SelectAllVisible value)? selectAllVisible,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
+  }) {
+    return approveSelected?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_SelectTab value)? selectTab,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_SelectProject value)? selectProject,
+    TResult Function(_SelectSupplier value)? selectSupplier,
+    TResult Function(_ResetFilter value)? resetFilter,
+    TResult Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult Function(_SelectProduct value)? selectProduct,
+    TResult Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_SelectAllVisible value)? selectAllVisible,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    required TResult orElse(),
+  }) {
+    if (approveSelected != null) {
+      return approveSelected(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ApproveSelected implements ApprovePurchasingEvent {
+  const factory _ApproveSelected({required final bool isApproved}) =
+      _$ApproveSelectedImpl;
+
+  bool get isApproved;
+  @JsonKey(ignore: true)
+  _$$ApproveSelectedImplCopyWith<_$ApproveSelectedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ClearApproveFeedbackImplCopyWith<$Res> {
+  factory _$$ClearApproveFeedbackImplCopyWith(_$ClearApproveFeedbackImpl value,
+          $Res Function(_$ClearApproveFeedbackImpl) then) =
+      __$$ClearApproveFeedbackImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearApproveFeedbackImplCopyWithImpl<$Res>
+    extends _$ApprovePurchasingEventCopyWithImpl<$Res,
+        _$ClearApproveFeedbackImpl>
+    implements _$$ClearApproveFeedbackImplCopyWith<$Res> {
+  __$$ClearApproveFeedbackImplCopyWithImpl(_$ClearApproveFeedbackImpl _value,
+      $Res Function(_$ClearApproveFeedbackImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ClearApproveFeedbackImpl implements _ClearApproveFeedback {
+  const _$ClearApproveFeedbackImpl();
+
+  @override
+  String toString() {
+    return 'ApprovePurchasingEvent.clearApproveFeedback()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ClearApproveFeedbackImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int requestTypeId) selectTab,
+    required TResult Function() refresh,
+    required TResult Function(int? projectId) selectProject,
+    required TResult Function(int? supplierId) selectSupplier,
+    required TResult Function() resetFilter,
+    required TResult Function(String keyword) changeSearchKeyword,
+    required TResult Function(String product) selectProduct,
+    required TResult Function(PurchasingApprovalFilter filter)
+        selectApprovalFilter,
+    required TResult Function() exitSelectionMode,
+    required TResult Function(int itemId) toggleSelection,
+    required TResult Function() selectAllVisible,
+    required TResult Function() clearSelection,
+    required TResult Function(bool isApproved) approveSelected,
+    required TResult Function() clearApproveFeedback,
+  }) {
+    return clearApproveFeedback();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int requestTypeId)? selectTab,
+    TResult? Function()? refresh,
+    TResult? Function(int? projectId)? selectProject,
+    TResult? Function(int? supplierId)? selectSupplier,
+    TResult? Function()? resetFilter,
+    TResult? Function(String keyword)? changeSearchKeyword,
+    TResult? Function(String product)? selectProduct,
+    TResult? Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult? Function()? exitSelectionMode,
+    TResult? Function(int itemId)? toggleSelection,
+    TResult? Function()? selectAllVisible,
+    TResult? Function()? clearSelection,
+    TResult? Function(bool isApproved)? approveSelected,
+    TResult? Function()? clearApproveFeedback,
+  }) {
+    return clearApproveFeedback?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int requestTypeId)? selectTab,
+    TResult Function()? refresh,
+    TResult Function(int? projectId)? selectProject,
+    TResult Function(int? supplierId)? selectSupplier,
+    TResult Function()? resetFilter,
+    TResult Function(String keyword)? changeSearchKeyword,
+    TResult Function(String product)? selectProduct,
+    TResult Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult Function()? exitSelectionMode,
+    TResult Function(int itemId)? toggleSelection,
+    TResult Function()? selectAllVisible,
+    TResult Function()? clearSelection,
+    TResult Function(bool isApproved)? approveSelected,
+    TResult Function()? clearApproveFeedback,
+    required TResult orElse(),
+  }) {
+    if (clearApproveFeedback != null) {
+      return clearApproveFeedback();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_SelectTab value) selectTab,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_SelectProject value) selectProject,
+    required TResult Function(_SelectSupplier value) selectSupplier,
+    required TResult Function(_ResetFilter value) resetFilter,
+    required TResult Function(_ChangeSearchKeyword value) changeSearchKeyword,
+    required TResult Function(_SelectProduct value) selectProduct,
+    required TResult Function(_SelectApprovalFilter value) selectApprovalFilter,
+    required TResult Function(_ExitSelectionMode value) exitSelectionMode,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_SelectAllVisible value) selectAllVisible,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
+  }) {
+    return clearApproveFeedback(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_SelectTab value)? selectTab,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_SelectProject value)? selectProject,
+    TResult? Function(_SelectSupplier value)? selectSupplier,
+    TResult? Function(_ResetFilter value)? resetFilter,
+    TResult? Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult? Function(_SelectProduct value)? selectProduct,
+    TResult? Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult? Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_SelectAllVisible value)? selectAllVisible,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
+  }) {
+    return clearApproveFeedback?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_SelectTab value)? selectTab,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_SelectProject value)? selectProject,
+    TResult Function(_SelectSupplier value)? selectSupplier,
+    TResult Function(_ResetFilter value)? resetFilter,
+    TResult Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult Function(_SelectProduct value)? selectProduct,
+    TResult Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_SelectAllVisible value)? selectAllVisible,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    required TResult orElse(),
+  }) {
+    if (clearApproveFeedback != null) {
+      return clearApproveFeedback(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearApproveFeedback implements ApprovePurchasingEvent {
+  const factory _ClearApproveFeedback() = _$ClearApproveFeedbackImpl;
 }
