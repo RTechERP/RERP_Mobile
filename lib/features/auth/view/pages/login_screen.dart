@@ -160,6 +160,7 @@ class _LoginScreenState
                       icon: Icons.lock_outline,
                       obscureText: true,
                       enableVisibilityToggle: true,
+                      preventSpaces: true,
                       focusNode: _passwordFocus,
                       validator: FormBuilderValidators.required(
                         errorText: 'Vui lòng nhập mật khẩu',

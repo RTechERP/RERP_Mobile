@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 import '../../app_theme/index.dart';
+import '../../utils/formatter/no_spaces_input_formatter.dart';
 import 'form_input_decoration.dart';
 
 class FormInputField extends StatefulWidget {
@@ -20,6 +21,9 @@ class FormInputField extends StatefulWidget {
 
   /// Hiển thị icon mắt để ẩn/hiện mật khẩu (chỉ áp dụng khi [obscureText] = true).
   final bool enableVisibilityToggle;
+
+  /// Chặn nhập dấu cách (khoảng trắng) — ký tự space bị loại bỏ ngay khi gõ/dán.
+  final bool preventSpaces;
 
   final FormFieldValidator<String>? validator;
   final ValueChanged<String?>? onSubmitted;
@@ -67,6 +71,7 @@ class FormInputField extends StatefulWidget {
     this.focusNode,
     this.obscureText = false,
     this.enableVisibilityToggle = false,
+    this.preventSpaces = false,
     this.textInputAction = TextInputAction.next,
     this.validator,
     this.onSubmitted,
@@ -136,6 +141,12 @@ class _FormInputFieldState extends State<FormInputField> {
             ? 1
             : (widget.autoExpand ? null : (widget.maxLines ?? 1));
 
+        /// Formatter chặn khoảng trắng được ghép vào danh sách formatter của field.
+        final effectiveFormatters = <TextInputFormatter>[
+          if (widget.preventSpaces) NoSpacesInputFormatter(),
+          ...?widget.inputFormatters,
+        ];
+
         final controller = _effectiveController;
         final fNode = _effectiveFocusNode;
 
@@ -172,7 +183,7 @@ class _FormInputFieldState extends State<FormInputField> {
           obscureText: isObscured,
           keyboardType: widget.keyboardType,
           textInputAction: widget.textInputAction,
-          inputFormatters: widget.inputFormatters,
+          inputFormatters: effectiveFormatters,
           validator: widget.validator,
           autovalidateMode: widget.autovalidateMode,
           onSubmitted: widget.onSubmitted,
@@ -201,8 +212,7 @@ class _FormInputFieldState extends State<FormInputField> {
                       setState(() => _isPasswordVisible = !_isPasswordVisible);
                     },
                   )
-                : null,
-            suffixIcon: widget.suffixIcon,
+                : widget.suffixIcon,
           ),
           onChanged: (v) {
             field.didChange(v);

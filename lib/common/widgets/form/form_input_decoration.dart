@@ -38,7 +38,6 @@ InputDecoration formInputDecoration(
       icon,
       color: hasError ? error : normal,
     ),
-    suffixIcon: suffixIcon,
 
     /// Icon phụ (ví dụ nút ẩn/hiện mật khẩu)
     suffixIcon: suffixIcon,
