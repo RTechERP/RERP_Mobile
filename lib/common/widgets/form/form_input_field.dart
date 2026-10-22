@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
+import '../../app_theme/index.dart';
 import 'form_input_decoration.dart';
 
 class FormInputField extends StatefulWidget {
@@ -15,6 +16,9 @@ class FormInputField extends StatefulWidget {
 
   final bool obscureText;
   final TextInputAction textInputAction;
+
+  /// Hiển thị icon mắt để ẩn/hiện mật khẩu (chỉ áp dụng khi [obscureText] = true).
+  final bool enableVisibilityToggle;
 
   final FormFieldValidator<String>? validator;
   final ValueChanged<String?>? onSubmitted;
@@ -52,6 +56,7 @@ class FormInputField extends StatefulWidget {
     this.keyboardType,
     this.focusNode,
     this.obscureText = false,
+    this.enableVisibilityToggle = false,
     this.textInputAction = TextInputAction.next,
     this.validator,
     this.onSubmitted,
@@ -76,6 +81,9 @@ class FormInputField extends StatefulWidget {
 class _FormInputFieldState extends State<FormInputField> {
   TextEditingController? _internalController;
   FocusNode? _internalFocusNode;
+
+  /// Trạng thái hiển thị mật khẩu (chỉ dùng khi bật icon mắt).
+  bool _isPasswordVisible = false;
 
   TextEditingController get _effectiveController {
     return widget.controller ??
@@ -111,6 +119,7 @@ class _FormInputFieldState extends State<FormInputField> {
         final rawValue = field.value ?? '';
 
         final showError = field.hasError;
+        final isObscured = widget.obscureText && !_isPasswordVisible;
         final effectiveMaxLines = widget.obscureText
             ? 1
             : (widget.autoExpand ? null : (widget.maxLines ?? 1));
@@ -148,7 +157,7 @@ class _FormInputFieldState extends State<FormInputField> {
           onTap: widget.onTap,
           enabled: widget.enabled,
           focusNode: fNode,
-          obscureText: widget.obscureText,
+          obscureText: isObscured,
           keyboardType: widget.keyboardType,
           textInputAction: widget.textInputAction,
           validator: widget.validator,
@@ -163,6 +172,23 @@ class _FormInputFieldState extends State<FormInputField> {
             hasError: showError,
             errorText: field.errorText,
             isRequired: widget.isRequired,
+            suffixIcon: widget.enableVisibilityToggle && widget.obscureText
+                ? IconButton(
+                    icon: Icon(
+                      _isPasswordVisible
+                          ? Icons.visibility_off_outlined
+                          : Icons.visibility_outlined,
+                      size: 20,
+                      color: showError ? Colors.redAccent : AppColors.hintText,
+                    ),
+                    tooltip: _isPasswordVisible
+                        ? 'Ẩn mật khẩu'
+                        : 'Hiện mật khẩu',
+                    onPressed: () {
+                      setState(() => _isPasswordVisible = !_isPasswordVisible);
+                    },
+                  )
+                : null,
           ),
           onChanged: (v) {
             field.didChange(v);
