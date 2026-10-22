@@ -677,18 +677,31 @@ class _SaleGdnScreenState
     if (action != null) {
       final currentEmployeeId = bloc.state.currentEmployeeId;
       final isCurrentUserAdmin = bloc.state.isCurrentUserAdmin;
-      // User đặc biệt (id 1110) hoặc admin luôn có mọi quyền; ngoài ra
-      // phải là người giao/nhận của phiếu mới có quyền thao tác nhóm
-      // tương ứng.
-      const specialEmployeeId = 1110;
+      // Quy tắc quyền cho nhóm "Chuẩn bị hàng":
+      // - Admin luôn có quyền.
+      // - Người giao hoặc người nhận của phiếu.
+      // - UserID thuộc danh sách được phép xác nhận đặt hàng.
+      const preparedConfirmAllowedIds = {1110, 24, 1763, 1785};
       final isPreparedActor = isCurrentUserAdmin ||
-          currentEmployeeId == specialEmployeeId ||
-          (item.senderId != null && item.senderId == currentEmployeeId);
-      // Nhận hàng/huỷ nhận hàng: ai cũng có quyền (đã được sheet lọc
-      // theo người giao/nhận ở tầng UI trước đó).
+          preparedConfirmAllowedIds.contains(currentEmployeeId) ||
+          (item.senderId != null && item.senderId == currentEmployeeId) ||
+          (item.receiverId != null && item.receiverId == currentEmployeeId);
+      // Nhóm "Nhận hàng" (Đã nhận / Huỷ nhận): bỏ validate (admin/sender/receiver)
+      // — ai cũng có quyền, **trừ** các user thuộc blocklist (1110, 24, 1763, 1785).
+      const receivedBlockedIds = {1110, 24, 1763, 1785};
+      final isReceivedActor =
+          !receivedBlockedIds.contains(currentEmployeeId);
 
       // Nhận hàng: phiếu phải được chuẩn bị trước và chưa nhận hàng.
       if (action.type == BillActionType.markReceived) {
+        if (!isReceivedActor) {
+          showMessage(
+            context,
+            'Bạn không có quyền xác nhận nhận hàng đối với phiếu này',
+            type: SnackBarType.error,
+          );
+          return;
+        }
         if (item.isOrderReceived == true) {
           showMessage(
             context,
@@ -708,6 +721,14 @@ class _SaleGdnScreenState
       }
       // Huỷ nhận hàng: phiếu phải đang ở trạng thái đã nhận hàng.
       if (action.type == BillActionType.cancelReceived) {
+        if (!isReceivedActor) {
+          showMessage(
+            context,
+            'Bạn không có quyền huỷ nhận hàng đối với phiếu này',
+            type: SnackBarType.error,
+          );
+          return;
+        }
         if (item.isOrderReceived != true) {
           showMessage(
             context,

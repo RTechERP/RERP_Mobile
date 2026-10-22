@@ -1,0 +1,1876 @@
+// coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
+
+part of 'material_category_bloc.dart';
+
+// **************************************************************************
+// FreezedGenerator
+// **************************************************************************
+
+T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+
+/// @nodoc
+mixin _$MaterialCategoryEvent {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)
+        init,
+    required TResult Function() refresh,
+    required TResult Function(String? keyword) search,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function(PartListModel item) cancelApproveNew,
+    required TResult Function(PartListModel item) approveNew,
+    required TResult Function(PartListModel item, bool isFix) approveFix,
+    required TResult Function(String message) refreshAfterApprove,
+    required TResult Function(String warehouseCode, List<PartListModel> items)
+        requestExportTransfer,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)?
+        init,
+    TResult? Function()? refresh,
+    TResult? Function(String? keyword)? search,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(PartListModel item)? cancelApproveNew,
+    TResult? Function(PartListModel item)? approveNew,
+    TResult? Function(PartListModel item, bool isFix)? approveFix,
+    TResult? Function(String message)? refreshAfterApprove,
+    TResult? Function(String warehouseCode, List<PartListModel> items)?
+        requestExportTransfer,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)?
+        init,
+    TResult Function()? refresh,
+    TResult Function(String? keyword)? search,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function(PartListModel item)? cancelApproveNew,
+    TResult Function(PartListModel item)? approveNew,
+    TResult Function(PartListModel item, bool isFix)? approveFix,
+    TResult Function(String message)? refreshAfterApprove,
+    TResult Function(String warehouseCode, List<PartListModel> items)?
+        requestExportTransfer,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_CancelApproveNew value) cancelApproveNew,
+    required TResult Function(_ApproveNew value) approveNew,
+    required TResult Function(_ApproveFix value) approveFix,
+    required TResult Function(_RefreshAfterApprove value) refreshAfterApprove,
+    required TResult Function(_RequestExportTransfer value)
+        requestExportTransfer,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult? Function(_ApproveNew value)? approveNew,
+    TResult? Function(_ApproveFix value)? approveFix,
+    TResult? Function(_RefreshAfterApprove value)? refreshAfterApprove,
+    TResult? Function(_RequestExportTransfer value)? requestExportTransfer,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_Search value)? search,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult Function(_ApproveNew value)? approveNew,
+    TResult Function(_ApproveFix value)? approveFix,
+    TResult Function(_RefreshAfterApprove value)? refreshAfterApprove,
+    TResult Function(_RequestExportTransfer value)? requestExportTransfer,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $MaterialCategoryEventCopyWith<$Res> {
+  factory $MaterialCategoryEventCopyWith(MaterialCategoryEvent value,
+          $Res Function(MaterialCategoryEvent) then) =
+      _$MaterialCategoryEventCopyWithImpl<$Res, MaterialCategoryEvent>;
+}
+
+/// @nodoc
+class _$MaterialCategoryEventCopyWithImpl<$Res,
+        $Val extends MaterialCategoryEvent>
+    implements $MaterialCategoryEventCopyWith<$Res> {
+  _$MaterialCategoryEventCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$InitImplCopyWith<$Res> {
+  factory _$$InitImplCopyWith(
+          _$InitImpl value, $Res Function(_$InitImpl) then) =
+      __$$InitImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {int projectId,
+      int projectPartListVersionId,
+      int projectTypeId,
+      String? keyword});
+}
+
+/// @nodoc
+class __$$InitImplCopyWithImpl<$Res>
+    extends _$MaterialCategoryEventCopyWithImpl<$Res, _$InitImpl>
+    implements _$$InitImplCopyWith<$Res> {
+  __$$InitImplCopyWithImpl(_$InitImpl _value, $Res Function(_$InitImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? projectId = null,
+    Object? projectPartListVersionId = null,
+    Object? projectTypeId = null,
+    Object? keyword = freezed,
+  }) {
+    return _then(_$InitImpl(
+      projectId: null == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int,
+      projectPartListVersionId: null == projectPartListVersionId
+          ? _value.projectPartListVersionId
+          : projectPartListVersionId // ignore: cast_nullable_to_non_nullable
+              as int,
+      projectTypeId: null == projectTypeId
+          ? _value.projectTypeId
+          : projectTypeId // ignore: cast_nullable_to_non_nullable
+              as int,
+      keyword: freezed == keyword
+          ? _value.keyword
+          : keyword // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$InitImpl implements _Init {
+  const _$InitImpl(
+      {required this.projectId,
+      required this.projectPartListVersionId,
+      required this.projectTypeId,
+      this.keyword});
+
+  @override
+  final int projectId;
+  @override
+  final int projectPartListVersionId;
+  @override
+  final int projectTypeId;
+  @override
+  final String? keyword;
+
+  @override
+  String toString() {
+    return 'MaterialCategoryEvent.init(projectId: $projectId, projectPartListVersionId: $projectPartListVersionId, projectTypeId: $projectTypeId, keyword: $keyword)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InitImpl &&
+            (identical(other.projectId, projectId) ||
+                other.projectId == projectId) &&
+            (identical(
+                    other.projectPartListVersionId, projectPartListVersionId) ||
+                other.projectPartListVersionId == projectPartListVersionId) &&
+            (identical(other.projectTypeId, projectTypeId) ||
+                other.projectTypeId == projectTypeId) &&
+            (identical(other.keyword, keyword) || other.keyword == keyword));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, projectId, projectPartListVersionId, projectTypeId, keyword);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitImplCopyWith<_$InitImpl> get copyWith =>
+      __$$InitImplCopyWithImpl<_$InitImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)
+        init,
+    required TResult Function() refresh,
+    required TResult Function(String? keyword) search,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function(PartListModel item) cancelApproveNew,
+    required TResult Function(PartListModel item) approveNew,
+    required TResult Function(PartListModel item, bool isFix) approveFix,
+    required TResult Function(String message) refreshAfterApprove,
+    required TResult Function(String warehouseCode, List<PartListModel> items)
+        requestExportTransfer,
+  }) {
+    return init(projectId, projectPartListVersionId, projectTypeId, keyword);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)?
+        init,
+    TResult? Function()? refresh,
+    TResult? Function(String? keyword)? search,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(PartListModel item)? cancelApproveNew,
+    TResult? Function(PartListModel item)? approveNew,
+    TResult? Function(PartListModel item, bool isFix)? approveFix,
+    TResult? Function(String message)? refreshAfterApprove,
+    TResult? Function(String warehouseCode, List<PartListModel> items)?
+        requestExportTransfer,
+  }) {
+    return init?.call(
+        projectId, projectPartListVersionId, projectTypeId, keyword);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)?
+        init,
+    TResult Function()? refresh,
+    TResult Function(String? keyword)? search,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function(PartListModel item)? cancelApproveNew,
+    TResult Function(PartListModel item)? approveNew,
+    TResult Function(PartListModel item, bool isFix)? approveFix,
+    TResult Function(String message)? refreshAfterApprove,
+    TResult Function(String warehouseCode, List<PartListModel> items)?
+        requestExportTransfer,
+    required TResult orElse(),
+  }) {
+    if (init != null) {
+      return init(projectId, projectPartListVersionId, projectTypeId, keyword);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_CancelApproveNew value) cancelApproveNew,
+    required TResult Function(_ApproveNew value) approveNew,
+    required TResult Function(_ApproveFix value) approveFix,
+    required TResult Function(_RefreshAfterApprove value) refreshAfterApprove,
+    required TResult Function(_RequestExportTransfer value)
+        requestExportTransfer,
+  }) {
+    return init(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult? Function(_ApproveNew value)? approveNew,
+    TResult? Function(_ApproveFix value)? approveFix,
+    TResult? Function(_RefreshAfterApprove value)? refreshAfterApprove,
+    TResult? Function(_RequestExportTransfer value)? requestExportTransfer,
+  }) {
+    return init?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_Search value)? search,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult Function(_ApproveNew value)? approveNew,
+    TResult Function(_ApproveFix value)? approveFix,
+    TResult Function(_RefreshAfterApprove value)? refreshAfterApprove,
+    TResult Function(_RequestExportTransfer value)? requestExportTransfer,
+    required TResult orElse(),
+  }) {
+    if (init != null) {
+      return init(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Init implements MaterialCategoryEvent {
+  const factory _Init(
+      {required final int projectId,
+      required final int projectPartListVersionId,
+      required final int projectTypeId,
+      final String? keyword}) = _$InitImpl;
+
+  int get projectId;
+  int get projectPartListVersionId;
+  int get projectTypeId;
+  String? get keyword;
+  @JsonKey(ignore: true)
+  _$$InitImplCopyWith<_$InitImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RefreshImplCopyWith<$Res> {
+  factory _$$RefreshImplCopyWith(
+          _$RefreshImpl value, $Res Function(_$RefreshImpl) then) =
+      __$$RefreshImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$RefreshImplCopyWithImpl<$Res>
+    extends _$MaterialCategoryEventCopyWithImpl<$Res, _$RefreshImpl>
+    implements _$$RefreshImplCopyWith<$Res> {
+  __$$RefreshImplCopyWithImpl(
+      _$RefreshImpl _value, $Res Function(_$RefreshImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$RefreshImpl implements _Refresh {
+  const _$RefreshImpl();
+
+  @override
+  String toString() {
+    return 'MaterialCategoryEvent.refresh()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$RefreshImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)
+        init,
+    required TResult Function() refresh,
+    required TResult Function(String? keyword) search,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function(PartListModel item) cancelApproveNew,
+    required TResult Function(PartListModel item) approveNew,
+    required TResult Function(PartListModel item, bool isFix) approveFix,
+    required TResult Function(String message) refreshAfterApprove,
+    required TResult Function(String warehouseCode, List<PartListModel> items)
+        requestExportTransfer,
+  }) {
+    return refresh();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)?
+        init,
+    TResult? Function()? refresh,
+    TResult? Function(String? keyword)? search,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(PartListModel item)? cancelApproveNew,
+    TResult? Function(PartListModel item)? approveNew,
+    TResult? Function(PartListModel item, bool isFix)? approveFix,
+    TResult? Function(String message)? refreshAfterApprove,
+    TResult? Function(String warehouseCode, List<PartListModel> items)?
+        requestExportTransfer,
+  }) {
+    return refresh?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)?
+        init,
+    TResult Function()? refresh,
+    TResult Function(String? keyword)? search,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function(PartListModel item)? cancelApproveNew,
+    TResult Function(PartListModel item)? approveNew,
+    TResult Function(PartListModel item, bool isFix)? approveFix,
+    TResult Function(String message)? refreshAfterApprove,
+    TResult Function(String warehouseCode, List<PartListModel> items)?
+        requestExportTransfer,
+    required TResult orElse(),
+  }) {
+    if (refresh != null) {
+      return refresh();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_CancelApproveNew value) cancelApproveNew,
+    required TResult Function(_ApproveNew value) approveNew,
+    required TResult Function(_ApproveFix value) approveFix,
+    required TResult Function(_RefreshAfterApprove value) refreshAfterApprove,
+    required TResult Function(_RequestExportTransfer value)
+        requestExportTransfer,
+  }) {
+    return refresh(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult? Function(_ApproveNew value)? approveNew,
+    TResult? Function(_ApproveFix value)? approveFix,
+    TResult? Function(_RefreshAfterApprove value)? refreshAfterApprove,
+    TResult? Function(_RequestExportTransfer value)? requestExportTransfer,
+  }) {
+    return refresh?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_Search value)? search,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult Function(_ApproveNew value)? approveNew,
+    TResult Function(_ApproveFix value)? approveFix,
+    TResult Function(_RefreshAfterApprove value)? refreshAfterApprove,
+    TResult Function(_RequestExportTransfer value)? requestExportTransfer,
+    required TResult orElse(),
+  }) {
+    if (refresh != null) {
+      return refresh(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Refresh implements MaterialCategoryEvent {
+  const factory _Refresh() = _$RefreshImpl;
+}
+
+/// @nodoc
+abstract class _$$SearchImplCopyWith<$Res> {
+  factory _$$SearchImplCopyWith(
+          _$SearchImpl value, $Res Function(_$SearchImpl) then) =
+      __$$SearchImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String? keyword});
+}
+
+/// @nodoc
+class __$$SearchImplCopyWithImpl<$Res>
+    extends _$MaterialCategoryEventCopyWithImpl<$Res, _$SearchImpl>
+    implements _$$SearchImplCopyWith<$Res> {
+  __$$SearchImplCopyWithImpl(
+      _$SearchImpl _value, $Res Function(_$SearchImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? keyword = freezed,
+  }) {
+    return _then(_$SearchImpl(
+      keyword: freezed == keyword
+          ? _value.keyword
+          : keyword // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SearchImpl implements _Search {
+  const _$SearchImpl({this.keyword});
+
+  @override
+  final String? keyword;
+
+  @override
+  String toString() {
+    return 'MaterialCategoryEvent.search(keyword: $keyword)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SearchImpl &&
+            (identical(other.keyword, keyword) || other.keyword == keyword));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, keyword);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SearchImplCopyWith<_$SearchImpl> get copyWith =>
+      __$$SearchImplCopyWithImpl<_$SearchImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)
+        init,
+    required TResult Function() refresh,
+    required TResult Function(String? keyword) search,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function(PartListModel item) cancelApproveNew,
+    required TResult Function(PartListModel item) approveNew,
+    required TResult Function(PartListModel item, bool isFix) approveFix,
+    required TResult Function(String message) refreshAfterApprove,
+    required TResult Function(String warehouseCode, List<PartListModel> items)
+        requestExportTransfer,
+  }) {
+    return search(keyword);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)?
+        init,
+    TResult? Function()? refresh,
+    TResult? Function(String? keyword)? search,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(PartListModel item)? cancelApproveNew,
+    TResult? Function(PartListModel item)? approveNew,
+    TResult? Function(PartListModel item, bool isFix)? approveFix,
+    TResult? Function(String message)? refreshAfterApprove,
+    TResult? Function(String warehouseCode, List<PartListModel> items)?
+        requestExportTransfer,
+  }) {
+    return search?.call(keyword);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)?
+        init,
+    TResult Function()? refresh,
+    TResult Function(String? keyword)? search,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function(PartListModel item)? cancelApproveNew,
+    TResult Function(PartListModel item)? approveNew,
+    TResult Function(PartListModel item, bool isFix)? approveFix,
+    TResult Function(String message)? refreshAfterApprove,
+    TResult Function(String warehouseCode, List<PartListModel> items)?
+        requestExportTransfer,
+    required TResult orElse(),
+  }) {
+    if (search != null) {
+      return search(keyword);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_CancelApproveNew value) cancelApproveNew,
+    required TResult Function(_ApproveNew value) approveNew,
+    required TResult Function(_ApproveFix value) approveFix,
+    required TResult Function(_RefreshAfterApprove value) refreshAfterApprove,
+    required TResult Function(_RequestExportTransfer value)
+        requestExportTransfer,
+  }) {
+    return search(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult? Function(_ApproveNew value)? approveNew,
+    TResult? Function(_ApproveFix value)? approveFix,
+    TResult? Function(_RefreshAfterApprove value)? refreshAfterApprove,
+    TResult? Function(_RequestExportTransfer value)? requestExportTransfer,
+  }) {
+    return search?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_Search value)? search,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult Function(_ApproveNew value)? approveNew,
+    TResult Function(_ApproveFix value)? approveFix,
+    TResult Function(_RefreshAfterApprove value)? refreshAfterApprove,
+    TResult Function(_RequestExportTransfer value)? requestExportTransfer,
+    required TResult orElse(),
+  }) {
+    if (search != null) {
+      return search(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Search implements MaterialCategoryEvent {
+  const factory _Search({final String? keyword}) = _$SearchImpl;
+
+  String? get keyword;
+  @JsonKey(ignore: true)
+  _$$SearchImplCopyWith<_$SearchImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ChangeKeywordImplCopyWith<$Res> {
+  factory _$$ChangeKeywordImplCopyWith(
+          _$ChangeKeywordImpl value, $Res Function(_$ChangeKeywordImpl) then) =
+      __$$ChangeKeywordImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String keyword});
+}
+
+/// @nodoc
+class __$$ChangeKeywordImplCopyWithImpl<$Res>
+    extends _$MaterialCategoryEventCopyWithImpl<$Res, _$ChangeKeywordImpl>
+    implements _$$ChangeKeywordImplCopyWith<$Res> {
+  __$$ChangeKeywordImplCopyWithImpl(
+      _$ChangeKeywordImpl _value, $Res Function(_$ChangeKeywordImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? keyword = null,
+  }) {
+    return _then(_$ChangeKeywordImpl(
+      keyword: null == keyword
+          ? _value.keyword
+          : keyword // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChangeKeywordImpl implements _ChangeKeyword {
+  const _$ChangeKeywordImpl({required this.keyword});
+
+  @override
+  final String keyword;
+
+  @override
+  String toString() {
+    return 'MaterialCategoryEvent.changeKeyword(keyword: $keyword)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangeKeywordImpl &&
+            (identical(other.keyword, keyword) || other.keyword == keyword));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, keyword);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangeKeywordImplCopyWith<_$ChangeKeywordImpl> get copyWith =>
+      __$$ChangeKeywordImplCopyWithImpl<_$ChangeKeywordImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)
+        init,
+    required TResult Function() refresh,
+    required TResult Function(String? keyword) search,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function(PartListModel item) cancelApproveNew,
+    required TResult Function(PartListModel item) approveNew,
+    required TResult Function(PartListModel item, bool isFix) approveFix,
+    required TResult Function(String message) refreshAfterApprove,
+    required TResult Function(String warehouseCode, List<PartListModel> items)
+        requestExportTransfer,
+  }) {
+    return changeKeyword(keyword);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)?
+        init,
+    TResult? Function()? refresh,
+    TResult? Function(String? keyword)? search,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(PartListModel item)? cancelApproveNew,
+    TResult? Function(PartListModel item)? approveNew,
+    TResult? Function(PartListModel item, bool isFix)? approveFix,
+    TResult? Function(String message)? refreshAfterApprove,
+    TResult? Function(String warehouseCode, List<PartListModel> items)?
+        requestExportTransfer,
+  }) {
+    return changeKeyword?.call(keyword);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)?
+        init,
+    TResult Function()? refresh,
+    TResult Function(String? keyword)? search,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function(PartListModel item)? cancelApproveNew,
+    TResult Function(PartListModel item)? approveNew,
+    TResult Function(PartListModel item, bool isFix)? approveFix,
+    TResult Function(String message)? refreshAfterApprove,
+    TResult Function(String warehouseCode, List<PartListModel> items)?
+        requestExportTransfer,
+    required TResult orElse(),
+  }) {
+    if (changeKeyword != null) {
+      return changeKeyword(keyword);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_CancelApproveNew value) cancelApproveNew,
+    required TResult Function(_ApproveNew value) approveNew,
+    required TResult Function(_ApproveFix value) approveFix,
+    required TResult Function(_RefreshAfterApprove value) refreshAfterApprove,
+    required TResult Function(_RequestExportTransfer value)
+        requestExportTransfer,
+  }) {
+    return changeKeyword(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult? Function(_ApproveNew value)? approveNew,
+    TResult? Function(_ApproveFix value)? approveFix,
+    TResult? Function(_RefreshAfterApprove value)? refreshAfterApprove,
+    TResult? Function(_RequestExportTransfer value)? requestExportTransfer,
+  }) {
+    return changeKeyword?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_Search value)? search,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult Function(_ApproveNew value)? approveNew,
+    TResult Function(_ApproveFix value)? approveFix,
+    TResult Function(_RefreshAfterApprove value)? refreshAfterApprove,
+    TResult Function(_RequestExportTransfer value)? requestExportTransfer,
+    required TResult orElse(),
+  }) {
+    if (changeKeyword != null) {
+      return changeKeyword(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangeKeyword implements MaterialCategoryEvent {
+  const factory _ChangeKeyword({required final String keyword}) =
+      _$ChangeKeywordImpl;
+
+  String get keyword;
+  @JsonKey(ignore: true)
+  _$$ChangeKeywordImplCopyWith<_$ChangeKeywordImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CancelApproveNewImplCopyWith<$Res> {
+  factory _$$CancelApproveNewImplCopyWith(_$CancelApproveNewImpl value,
+          $Res Function(_$CancelApproveNewImpl) then) =
+      __$$CancelApproveNewImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({PartListModel item});
+
+  $PartListModelCopyWith<$Res> get item;
+}
+
+/// @nodoc
+class __$$CancelApproveNewImplCopyWithImpl<$Res>
+    extends _$MaterialCategoryEventCopyWithImpl<$Res, _$CancelApproveNewImpl>
+    implements _$$CancelApproveNewImplCopyWith<$Res> {
+  __$$CancelApproveNewImplCopyWithImpl(_$CancelApproveNewImpl _value,
+      $Res Function(_$CancelApproveNewImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? item = null,
+  }) {
+    return _then(_$CancelApproveNewImpl(
+      item: null == item
+          ? _value.item
+          : item // ignore: cast_nullable_to_non_nullable
+              as PartListModel,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PartListModelCopyWith<$Res> get item {
+    return $PartListModelCopyWith<$Res>(_value.item, (value) {
+      return _then(_value.copyWith(item: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$CancelApproveNewImpl implements _CancelApproveNew {
+  const _$CancelApproveNewImpl({required this.item});
+
+  @override
+  final PartListModel item;
+
+  @override
+  String toString() {
+    return 'MaterialCategoryEvent.cancelApproveNew(item: $item)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CancelApproveNewImpl &&
+            (identical(other.item, item) || other.item == item));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, item);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CancelApproveNewImplCopyWith<_$CancelApproveNewImpl> get copyWith =>
+      __$$CancelApproveNewImplCopyWithImpl<_$CancelApproveNewImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)
+        init,
+    required TResult Function() refresh,
+    required TResult Function(String? keyword) search,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function(PartListModel item) cancelApproveNew,
+    required TResult Function(PartListModel item) approveNew,
+    required TResult Function(PartListModel item, bool isFix) approveFix,
+    required TResult Function(String message) refreshAfterApprove,
+    required TResult Function(String warehouseCode, List<PartListModel> items)
+        requestExportTransfer,
+  }) {
+    return cancelApproveNew(item);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)?
+        init,
+    TResult? Function()? refresh,
+    TResult? Function(String? keyword)? search,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(PartListModel item)? cancelApproveNew,
+    TResult? Function(PartListModel item)? approveNew,
+    TResult? Function(PartListModel item, bool isFix)? approveFix,
+    TResult? Function(String message)? refreshAfterApprove,
+    TResult? Function(String warehouseCode, List<PartListModel> items)?
+        requestExportTransfer,
+  }) {
+    return cancelApproveNew?.call(item);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)?
+        init,
+    TResult Function()? refresh,
+    TResult Function(String? keyword)? search,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function(PartListModel item)? cancelApproveNew,
+    TResult Function(PartListModel item)? approveNew,
+    TResult Function(PartListModel item, bool isFix)? approveFix,
+    TResult Function(String message)? refreshAfterApprove,
+    TResult Function(String warehouseCode, List<PartListModel> items)?
+        requestExportTransfer,
+    required TResult orElse(),
+  }) {
+    if (cancelApproveNew != null) {
+      return cancelApproveNew(item);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_CancelApproveNew value) cancelApproveNew,
+    required TResult Function(_ApproveNew value) approveNew,
+    required TResult Function(_ApproveFix value) approveFix,
+    required TResult Function(_RefreshAfterApprove value) refreshAfterApprove,
+    required TResult Function(_RequestExportTransfer value)
+        requestExportTransfer,
+  }) {
+    return cancelApproveNew(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult? Function(_ApproveNew value)? approveNew,
+    TResult? Function(_ApproveFix value)? approveFix,
+    TResult? Function(_RefreshAfterApprove value)? refreshAfterApprove,
+    TResult? Function(_RequestExportTransfer value)? requestExportTransfer,
+  }) {
+    return cancelApproveNew?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_Search value)? search,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult Function(_ApproveNew value)? approveNew,
+    TResult Function(_ApproveFix value)? approveFix,
+    TResult Function(_RefreshAfterApprove value)? refreshAfterApprove,
+    TResult Function(_RequestExportTransfer value)? requestExportTransfer,
+    required TResult orElse(),
+  }) {
+    if (cancelApproveNew != null) {
+      return cancelApproveNew(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CancelApproveNew implements MaterialCategoryEvent {
+  const factory _CancelApproveNew({required final PartListModel item}) =
+      _$CancelApproveNewImpl;
+
+  PartListModel get item;
+  @JsonKey(ignore: true)
+  _$$CancelApproveNewImplCopyWith<_$CancelApproveNewImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ApproveNewImplCopyWith<$Res> {
+  factory _$$ApproveNewImplCopyWith(
+          _$ApproveNewImpl value, $Res Function(_$ApproveNewImpl) then) =
+      __$$ApproveNewImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({PartListModel item});
+
+  $PartListModelCopyWith<$Res> get item;
+}
+
+/// @nodoc
+class __$$ApproveNewImplCopyWithImpl<$Res>
+    extends _$MaterialCategoryEventCopyWithImpl<$Res, _$ApproveNewImpl>
+    implements _$$ApproveNewImplCopyWith<$Res> {
+  __$$ApproveNewImplCopyWithImpl(
+      _$ApproveNewImpl _value, $Res Function(_$ApproveNewImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? item = null,
+  }) {
+    return _then(_$ApproveNewImpl(
+      item: null == item
+          ? _value.item
+          : item // ignore: cast_nullable_to_non_nullable
+              as PartListModel,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PartListModelCopyWith<$Res> get item {
+    return $PartListModelCopyWith<$Res>(_value.item, (value) {
+      return _then(_value.copyWith(item: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$ApproveNewImpl implements _ApproveNew {
+  const _$ApproveNewImpl({required this.item});
+
+  @override
+  final PartListModel item;
+
+  @override
+  String toString() {
+    return 'MaterialCategoryEvent.approveNew(item: $item)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ApproveNewImpl &&
+            (identical(other.item, item) || other.item == item));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, item);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ApproveNewImplCopyWith<_$ApproveNewImpl> get copyWith =>
+      __$$ApproveNewImplCopyWithImpl<_$ApproveNewImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)
+        init,
+    required TResult Function() refresh,
+    required TResult Function(String? keyword) search,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function(PartListModel item) cancelApproveNew,
+    required TResult Function(PartListModel item) approveNew,
+    required TResult Function(PartListModel item, bool isFix) approveFix,
+    required TResult Function(String message) refreshAfterApprove,
+    required TResult Function(String warehouseCode, List<PartListModel> items)
+        requestExportTransfer,
+  }) {
+    return approveNew(item);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)?
+        init,
+    TResult? Function()? refresh,
+    TResult? Function(String? keyword)? search,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(PartListModel item)? cancelApproveNew,
+    TResult? Function(PartListModel item)? approveNew,
+    TResult? Function(PartListModel item, bool isFix)? approveFix,
+    TResult? Function(String message)? refreshAfterApprove,
+    TResult? Function(String warehouseCode, List<PartListModel> items)?
+        requestExportTransfer,
+  }) {
+    return approveNew?.call(item);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)?
+        init,
+    TResult Function()? refresh,
+    TResult Function(String? keyword)? search,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function(PartListModel item)? cancelApproveNew,
+    TResult Function(PartListModel item)? approveNew,
+    TResult Function(PartListModel item, bool isFix)? approveFix,
+    TResult Function(String message)? refreshAfterApprove,
+    TResult Function(String warehouseCode, List<PartListModel> items)?
+        requestExportTransfer,
+    required TResult orElse(),
+  }) {
+    if (approveNew != null) {
+      return approveNew(item);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_CancelApproveNew value) cancelApproveNew,
+    required TResult Function(_ApproveNew value) approveNew,
+    required TResult Function(_ApproveFix value) approveFix,
+    required TResult Function(_RefreshAfterApprove value) refreshAfterApprove,
+    required TResult Function(_RequestExportTransfer value)
+        requestExportTransfer,
+  }) {
+    return approveNew(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult? Function(_ApproveNew value)? approveNew,
+    TResult? Function(_ApproveFix value)? approveFix,
+    TResult? Function(_RefreshAfterApprove value)? refreshAfterApprove,
+    TResult? Function(_RequestExportTransfer value)? requestExportTransfer,
+  }) {
+    return approveNew?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_Search value)? search,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult Function(_ApproveNew value)? approveNew,
+    TResult Function(_ApproveFix value)? approveFix,
+    TResult Function(_RefreshAfterApprove value)? refreshAfterApprove,
+    TResult Function(_RequestExportTransfer value)? requestExportTransfer,
+    required TResult orElse(),
+  }) {
+    if (approveNew != null) {
+      return approveNew(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ApproveNew implements MaterialCategoryEvent {
+  const factory _ApproveNew({required final PartListModel item}) =
+      _$ApproveNewImpl;
+
+  PartListModel get item;
+  @JsonKey(ignore: true)
+  _$$ApproveNewImplCopyWith<_$ApproveNewImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ApproveFixImplCopyWith<$Res> {
+  factory _$$ApproveFixImplCopyWith(
+          _$ApproveFixImpl value, $Res Function(_$ApproveFixImpl) then) =
+      __$$ApproveFixImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({PartListModel item, bool isFix});
+
+  $PartListModelCopyWith<$Res> get item;
+}
+
+/// @nodoc
+class __$$ApproveFixImplCopyWithImpl<$Res>
+    extends _$MaterialCategoryEventCopyWithImpl<$Res, _$ApproveFixImpl>
+    implements _$$ApproveFixImplCopyWith<$Res> {
+  __$$ApproveFixImplCopyWithImpl(
+      _$ApproveFixImpl _value, $Res Function(_$ApproveFixImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? item = null,
+    Object? isFix = null,
+  }) {
+    return _then(_$ApproveFixImpl(
+      item: null == item
+          ? _value.item
+          : item // ignore: cast_nullable_to_non_nullable
+              as PartListModel,
+      isFix: null == isFix
+          ? _value.isFix
+          : isFix // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PartListModelCopyWith<$Res> get item {
+    return $PartListModelCopyWith<$Res>(_value.item, (value) {
+      return _then(_value.copyWith(item: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$ApproveFixImpl implements _ApproveFix {
+  const _$ApproveFixImpl({required this.item, required this.isFix});
+
+  @override
+  final PartListModel item;
+  @override
+  final bool isFix;
+
+  @override
+  String toString() {
+    return 'MaterialCategoryEvent.approveFix(item: $item, isFix: $isFix)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ApproveFixImpl &&
+            (identical(other.item, item) || other.item == item) &&
+            (identical(other.isFix, isFix) || other.isFix == isFix));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, item, isFix);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ApproveFixImplCopyWith<_$ApproveFixImpl> get copyWith =>
+      __$$ApproveFixImplCopyWithImpl<_$ApproveFixImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)
+        init,
+    required TResult Function() refresh,
+    required TResult Function(String? keyword) search,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function(PartListModel item) cancelApproveNew,
+    required TResult Function(PartListModel item) approveNew,
+    required TResult Function(PartListModel item, bool isFix) approveFix,
+    required TResult Function(String message) refreshAfterApprove,
+    required TResult Function(String warehouseCode, List<PartListModel> items)
+        requestExportTransfer,
+  }) {
+    return approveFix(item, isFix);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)?
+        init,
+    TResult? Function()? refresh,
+    TResult? Function(String? keyword)? search,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(PartListModel item)? cancelApproveNew,
+    TResult? Function(PartListModel item)? approveNew,
+    TResult? Function(PartListModel item, bool isFix)? approveFix,
+    TResult? Function(String message)? refreshAfterApprove,
+    TResult? Function(String warehouseCode, List<PartListModel> items)?
+        requestExportTransfer,
+  }) {
+    return approveFix?.call(item, isFix);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)?
+        init,
+    TResult Function()? refresh,
+    TResult Function(String? keyword)? search,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function(PartListModel item)? cancelApproveNew,
+    TResult Function(PartListModel item)? approveNew,
+    TResult Function(PartListModel item, bool isFix)? approveFix,
+    TResult Function(String message)? refreshAfterApprove,
+    TResult Function(String warehouseCode, List<PartListModel> items)?
+        requestExportTransfer,
+    required TResult orElse(),
+  }) {
+    if (approveFix != null) {
+      return approveFix(item, isFix);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_CancelApproveNew value) cancelApproveNew,
+    required TResult Function(_ApproveNew value) approveNew,
+    required TResult Function(_ApproveFix value) approveFix,
+    required TResult Function(_RefreshAfterApprove value) refreshAfterApprove,
+    required TResult Function(_RequestExportTransfer value)
+        requestExportTransfer,
+  }) {
+    return approveFix(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult? Function(_ApproveNew value)? approveNew,
+    TResult? Function(_ApproveFix value)? approveFix,
+    TResult? Function(_RefreshAfterApprove value)? refreshAfterApprove,
+    TResult? Function(_RequestExportTransfer value)? requestExportTransfer,
+  }) {
+    return approveFix?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_Search value)? search,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult Function(_ApproveNew value)? approveNew,
+    TResult Function(_ApproveFix value)? approveFix,
+    TResult Function(_RefreshAfterApprove value)? refreshAfterApprove,
+    TResult Function(_RequestExportTransfer value)? requestExportTransfer,
+    required TResult orElse(),
+  }) {
+    if (approveFix != null) {
+      return approveFix(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ApproveFix implements MaterialCategoryEvent {
+  const factory _ApproveFix(
+      {required final PartListModel item,
+      required final bool isFix}) = _$ApproveFixImpl;
+
+  PartListModel get item;
+  bool get isFix;
+  @JsonKey(ignore: true)
+  _$$ApproveFixImplCopyWith<_$ApproveFixImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RefreshAfterApproveImplCopyWith<$Res> {
+  factory _$$RefreshAfterApproveImplCopyWith(_$RefreshAfterApproveImpl value,
+          $Res Function(_$RefreshAfterApproveImpl) then) =
+      __$$RefreshAfterApproveImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$RefreshAfterApproveImplCopyWithImpl<$Res>
+    extends _$MaterialCategoryEventCopyWithImpl<$Res, _$RefreshAfterApproveImpl>
+    implements _$$RefreshAfterApproveImplCopyWith<$Res> {
+  __$$RefreshAfterApproveImplCopyWithImpl(_$RefreshAfterApproveImpl _value,
+      $Res Function(_$RefreshAfterApproveImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$RefreshAfterApproveImpl(
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RefreshAfterApproveImpl implements _RefreshAfterApprove {
+  const _$RefreshAfterApproveImpl({required this.message});
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'MaterialCategoryEvent.refreshAfterApprove(message: $message)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RefreshAfterApproveImpl &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RefreshAfterApproveImplCopyWith<_$RefreshAfterApproveImpl> get copyWith =>
+      __$$RefreshAfterApproveImplCopyWithImpl<_$RefreshAfterApproveImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)
+        init,
+    required TResult Function() refresh,
+    required TResult Function(String? keyword) search,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function(PartListModel item) cancelApproveNew,
+    required TResult Function(PartListModel item) approveNew,
+    required TResult Function(PartListModel item, bool isFix) approveFix,
+    required TResult Function(String message) refreshAfterApprove,
+    required TResult Function(String warehouseCode, List<PartListModel> items)
+        requestExportTransfer,
+  }) {
+    return refreshAfterApprove(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)?
+        init,
+    TResult? Function()? refresh,
+    TResult? Function(String? keyword)? search,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(PartListModel item)? cancelApproveNew,
+    TResult? Function(PartListModel item)? approveNew,
+    TResult? Function(PartListModel item, bool isFix)? approveFix,
+    TResult? Function(String message)? refreshAfterApprove,
+    TResult? Function(String warehouseCode, List<PartListModel> items)?
+        requestExportTransfer,
+  }) {
+    return refreshAfterApprove?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)?
+        init,
+    TResult Function()? refresh,
+    TResult Function(String? keyword)? search,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function(PartListModel item)? cancelApproveNew,
+    TResult Function(PartListModel item)? approveNew,
+    TResult Function(PartListModel item, bool isFix)? approveFix,
+    TResult Function(String message)? refreshAfterApprove,
+    TResult Function(String warehouseCode, List<PartListModel> items)?
+        requestExportTransfer,
+    required TResult orElse(),
+  }) {
+    if (refreshAfterApprove != null) {
+      return refreshAfterApprove(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_CancelApproveNew value) cancelApproveNew,
+    required TResult Function(_ApproveNew value) approveNew,
+    required TResult Function(_ApproveFix value) approveFix,
+    required TResult Function(_RefreshAfterApprove value) refreshAfterApprove,
+    required TResult Function(_RequestExportTransfer value)
+        requestExportTransfer,
+  }) {
+    return refreshAfterApprove(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult? Function(_ApproveNew value)? approveNew,
+    TResult? Function(_ApproveFix value)? approveFix,
+    TResult? Function(_RefreshAfterApprove value)? refreshAfterApprove,
+    TResult? Function(_RequestExportTransfer value)? requestExportTransfer,
+  }) {
+    return refreshAfterApprove?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_Search value)? search,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult Function(_ApproveNew value)? approveNew,
+    TResult Function(_ApproveFix value)? approveFix,
+    TResult Function(_RefreshAfterApprove value)? refreshAfterApprove,
+    TResult Function(_RequestExportTransfer value)? requestExportTransfer,
+    required TResult orElse(),
+  }) {
+    if (refreshAfterApprove != null) {
+      return refreshAfterApprove(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RefreshAfterApprove implements MaterialCategoryEvent {
+  const factory _RefreshAfterApprove({required final String message}) =
+      _$RefreshAfterApproveImpl;
+
+  String get message;
+  @JsonKey(ignore: true)
+  _$$RefreshAfterApproveImplCopyWith<_$RefreshAfterApproveImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RequestExportTransferImplCopyWith<$Res> {
+  factory _$$RequestExportTransferImplCopyWith(
+          _$RequestExportTransferImpl value,
+          $Res Function(_$RequestExportTransferImpl) then) =
+      __$$RequestExportTransferImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String warehouseCode, List<PartListModel> items});
+}
+
+/// @nodoc
+class __$$RequestExportTransferImplCopyWithImpl<$Res>
+    extends _$MaterialCategoryEventCopyWithImpl<$Res,
+        _$RequestExportTransferImpl>
+    implements _$$RequestExportTransferImplCopyWith<$Res> {
+  __$$RequestExportTransferImplCopyWithImpl(_$RequestExportTransferImpl _value,
+      $Res Function(_$RequestExportTransferImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? warehouseCode = null,
+    Object? items = null,
+  }) {
+    return _then(_$RequestExportTransferImpl(
+      warehouseCode: null == warehouseCode
+          ? _value.warehouseCode
+          : warehouseCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      items: null == items
+          ? _value._items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<PartListModel>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RequestExportTransferImpl implements _RequestExportTransfer {
+  const _$RequestExportTransferImpl(
+      {required this.warehouseCode, required final List<PartListModel> items})
+      : _items = items;
+
+  @override
+  final String warehouseCode;
+  final List<PartListModel> _items;
+  @override
+  List<PartListModel> get items {
+    if (_items is EqualUnmodifiableListView) return _items;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_items);
+  }
+
+  @override
+  String toString() {
+    return 'MaterialCategoryEvent.requestExportTransfer(warehouseCode: $warehouseCode, items: $items)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RequestExportTransferImpl &&
+            (identical(other.warehouseCode, warehouseCode) ||
+                other.warehouseCode == warehouseCode) &&
+            const DeepCollectionEquality().equals(other._items, _items));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, warehouseCode, const DeepCollectionEquality().hash(_items));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RequestExportTransferImplCopyWith<_$RequestExportTransferImpl>
+      get copyWith => __$$RequestExportTransferImplCopyWithImpl<
+          _$RequestExportTransferImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)
+        init,
+    required TResult Function() refresh,
+    required TResult Function(String? keyword) search,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function(PartListModel item) cancelApproveNew,
+    required TResult Function(PartListModel item) approveNew,
+    required TResult Function(PartListModel item, bool isFix) approveFix,
+    required TResult Function(String message) refreshAfterApprove,
+    required TResult Function(String warehouseCode, List<PartListModel> items)
+        requestExportTransfer,
+  }) {
+    return requestExportTransfer(warehouseCode, items);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)?
+        init,
+    TResult? Function()? refresh,
+    TResult? Function(String? keyword)? search,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(PartListModel item)? cancelApproveNew,
+    TResult? Function(PartListModel item)? approveNew,
+    TResult? Function(PartListModel item, bool isFix)? approveFix,
+    TResult? Function(String message)? refreshAfterApprove,
+    TResult? Function(String warehouseCode, List<PartListModel> items)?
+        requestExportTransfer,
+  }) {
+    return requestExportTransfer?.call(warehouseCode, items);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int projectId, int projectPartListVersionId,
+            int projectTypeId, String? keyword)?
+        init,
+    TResult Function()? refresh,
+    TResult Function(String? keyword)? search,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function(PartListModel item)? cancelApproveNew,
+    TResult Function(PartListModel item)? approveNew,
+    TResult Function(PartListModel item, bool isFix)? approveFix,
+    TResult Function(String message)? refreshAfterApprove,
+    TResult Function(String warehouseCode, List<PartListModel> items)?
+        requestExportTransfer,
+    required TResult orElse(),
+  }) {
+    if (requestExportTransfer != null) {
+      return requestExportTransfer(warehouseCode, items);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_CancelApproveNew value) cancelApproveNew,
+    required TResult Function(_ApproveNew value) approveNew,
+    required TResult Function(_ApproveFix value) approveFix,
+    required TResult Function(_RefreshAfterApprove value) refreshAfterApprove,
+    required TResult Function(_RequestExportTransfer value)
+        requestExportTransfer,
+  }) {
+    return requestExportTransfer(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult? Function(_ApproveNew value)? approveNew,
+    TResult? Function(_ApproveFix value)? approveFix,
+    TResult? Function(_RefreshAfterApprove value)? refreshAfterApprove,
+    TResult? Function(_RequestExportTransfer value)? requestExportTransfer,
+  }) {
+    return requestExportTransfer?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_Search value)? search,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_CancelApproveNew value)? cancelApproveNew,
+    TResult Function(_ApproveNew value)? approveNew,
+    TResult Function(_ApproveFix value)? approveFix,
+    TResult Function(_RefreshAfterApprove value)? refreshAfterApprove,
+    TResult Function(_RequestExportTransfer value)? requestExportTransfer,
+    required TResult orElse(),
+  }) {
+    if (requestExportTransfer != null) {
+      return requestExportTransfer(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RequestExportTransfer implements MaterialCategoryEvent {
+  const factory _RequestExportTransfer(
+      {required final String warehouseCode,
+      required final List<PartListModel> items}) = _$RequestExportTransferImpl;
+
+  String get warehouseCode;
+  List<PartListModel> get items;
+  @JsonKey(ignore: true)
+  _$$RequestExportTransferImplCopyWith<_$RequestExportTransferImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}

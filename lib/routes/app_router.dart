@@ -29,6 +29,10 @@ import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_ve
 import 'package:rtc_erp/features/workplace/app/favorites/view/pages/favorites_adding_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/view/bloc/booking_vehicle_bloc.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_guest_house/view/bloc/booking_guest_house_bloc.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_guest_house/view/pages/booking_guest_house_screen.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/rental_vehicle/view/bloc/rental_vehicle_bloc.dart';
+import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/rental_vehicle/view/pages/rental_vehicle_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/meeting_room/view/pages/meeting_room_add_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/reg_general_screen.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/work_category/view/pages/work_category_screen.dart';
@@ -47,8 +51,22 @@ import '../features/auth/view/pages/login_screen.dart';
 import '../features/dashboard/view/dashboard_screen.dart';
 import '../features/more/view/settings/notification/bloc/notification_bloc.dart';
 import '../features/more/view/settings/notification/page/notification_settings_screen.dart';
+import '../features/workplace/app/personal_approve/app/approve_timesheet/view/bloc/approve_timesheet_bloc.dart';
+import '../features/workplace/app/personal_approve/app/approve_timesheet/view/pages/approve_timesheet_detail_screen.dart';
+import '../features/workplace/app/personal_approve/app/approve_timesheet/view/pages/approve_timesheet_senior_screen.dart';
+import '../features/workplace/app/personal_approve/app/approve_booking_guest_house/view/bloc/approve_booking_guest_house_bloc.dart';
+import '../features/workplace/app/personal_approve/app/approve_booking_guest_house/view/pages/approve_booking_guest_house_screen.dart';
+import '../features/workplace/app/personal_approve/app/approve_timesheet/view/pages/approve_timesheet_tbp_screen.dart';
+import '../features/workplace/app/personal_approve/app/approve_timesheet/data/datasource/models/approve_timesheet_model.dart';
+import '../features/workplace/app/personal_approve/view/bloc/personal_approve_menu_bloc.dart';
+import '../features/workplace/app/personal_approve/view/pages/personal_approve_booking_menu_screen.dart';
+import '../features/workplace/app/personal_approve/view/pages/personal_approve_menu_screen.dart';
+import '../features/workplace/app/personal_approve/view/pages/personal_approve_timesheet_menu_screen.dart';
 import '../features/more/view/pages/avatar_viewer_screen.dart';
 import '../features/workplace/app/general_form/view/bloc/general_form_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/booking_guest_house/view/pages/booking_guest_house_add_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/booking_guest_house/view/pages/booking_guest_house_advance_request_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/booking_guest_house/view/pages/booking_guest_house_settlement_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_add_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_edit_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/pages/booking_vehicle_detail_screen.dart';
@@ -65,6 +83,9 @@ import '../features/workplace/app/reg_general/view/pages/poll/data/datasource/mo
 import '../features/workplace/app/reg_general/view/pages/poll/view/bloc/poll_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/poll/view/pages/poll_detail_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/poll/view/pages/poll_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/rental_vehicle/data/datasource/models/rental_vehicle_model.dart';
+import '../features/workplace/app/reg_general/view/pages/rental_vehicle/view/pages/rental_vehicle_add_screen.dart';
+import '../features/workplace/app/reg_general/view/pages/rental_vehicle/view/pages/rental_vehicle_update_screen.dart';
 import '../features/workplace/app/reg_general/view/pages/stationery/data/datasource/models/stationery_model.dart';
 import '../features/workplace/app/reg_general/view/pages/stationery/stationery_edit_route_args.dart';
 import '../features/workplace/app/reg_general/view/pages/stationery/view/bloc/stationery_bloc.dart';
@@ -112,6 +133,8 @@ import '../features/workplace/app/reg_work/view/pages/overtime/view/pages/overti
 import '../features/workplace/app/reg_work/view/pages/overtime/view/pages/overtime_detail_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/overtime/view/pages/overtime_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/overtime/data/datasource/models/overtime_model.dart';
+import '../features/workplace/app/reg_work/view/pages/personal_summary/view/bloc/personal_summary_bloc.dart';
+import '../features/workplace/app/reg_work/view/pages/personal_summary/view/pages/personal_summary_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/salary/view/pages/finger_print_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/salary/view/pages/overview_screen.dart';
 import '../features/workplace/app/reg_work/view/pages/wfh/view/bloc/wfh_bloc.dart';
@@ -199,6 +222,13 @@ import '../features/workplace/app/warehouse/pages/warehouse_agv/view/pages/wareh
 import '../features/workplace/app/warehouse/pages/warehouse_project/view/pages/warehouse_project_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_test/view/pages/warehouse_test_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_screen.dart';
+import '../features/workplace/app/project/project_menu_screen.dart';
+import '../features/workplace/app/project/project_list/app/material_category/view/bloc/material_category_bloc.dart';
+import '../features/workplace/app/project/project_list/app/material_category/view/bloc/solution_bloc.dart';
+import '../features/workplace/app/project/project_list/app/material_category/view/bloc/version_bloc.dart';
+import '../features/workplace/app/project/project_list/app/material_category/view/pages/material_category_screen.dart';
+import '../features/workplace/app/project/project_list/view/bloc/project_list_bloc.dart';
+import '../features/workplace/app/project/project_list/view/pages/project_list_screen.dart';
 import '../features/workplace/app/week_plan/view/bloc/week_plan_bloc.dart';
 import '../features/workplace/app/week_plan/view/pages/week_plan_add_screen.dart';
 import '../features/workplace/app/week_plan/view/pages/week_plan_all_screen.dart';
@@ -530,6 +560,22 @@ class AppRouter {
               }
               return SalaryCardDetailScreen(cardType: cardType, month: month);
             },
+          ),
+        ],
+      ),
+
+      //---(Personal Summary)---//
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(
+            value: getIt<PersonalSummaryBloc>(),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.regworkPersonalSummary,
+            builder: (context, state) => const PersonalSummaryScreen(),
           ),
         ],
       ),
@@ -884,6 +930,125 @@ class AppRouter {
         ],
       ),
 
+      //---(BookingGuestHouse)---//
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(
+            value: getIt<BookingGuestHouseBloc>(),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.bookingGuestHouse,
+            builder: (context, state) => const BookingGuestHousePage(),
+          ),
+          GoRoute(
+            path: RouteNames.bookingGuestHouseAdd,
+            builder: (context, state) => BlocProvider.value(
+              // Share singleton với ShellRoute/list screen — projects/employees/
+              // provinces đã load ở list tồn tại ở bloc state, add screen dùng
+              // lại không cần gọi API.
+              value: getIt<BookingGuestHouseBloc>(),
+              child: const BookingGuestHouseAddScreen(),
+            ),
+          ),
+          GoRoute(
+            // Edit mode: mở lại add_screen với id để load detail + fill form.
+            path: RouteNames.bookingGuestHouseEdit,
+            builder: (context, state) {
+              final extra = state.extra;
+              if (extra is! int) {
+                return const BookingGuestHousePage();
+              }
+              return BlocProvider.value(
+                // Share singleton với list (xem comment ở route
+                // bookingGuestHouseAdd).
+                value: getIt<BookingGuestHouseBloc>(),
+                child: BookingGuestHouseAddScreen(id: extra),
+              );
+            },
+          ),
+          GoRoute(
+            // Cập nhật TTQT: form đầy đủ field + file bill/hoá đơn.
+            // `extra` là `int` (id phiếu đặt phòng) — screen tự gọi
+            // 2 API song song khi mở:
+            // 1. `getBookingGuestHouseById` → load thông tin phiếu
+            // 2. `getPaymentOrderDetailByBookingId` → pre-fill form
+            //    TTQT nếu BE đã có detail trước đó (status 2/3/4/5).
+            //    Status 0/null = chưa có TTQT → giữ form rỗng.
+            path: RouteNames.bookingGuestHouseSettlement,
+            builder: (context, state) {
+              final extra = state.extra;
+              if (extra is SettlementExtra) {
+                return BookingGuestHouseSettlementScreen(extra: extra);
+              }
+              // Fallback: nếu extra là int (backward compat) — coi là
+              // `isOwnBooking = true` (phiếu của chính user, cho sửa).
+              if (extra is int) {
+                return BookingGuestHouseSettlementScreen(
+                  extra: SettlementExtra(
+                    bookingId: extra,
+                    isOwnBooking: true,
+                  ),
+                );
+              }
+              return const SizedBox.shrink();
+            },
+          ),
+          GoRoute(
+            // Đề nghị tạm ứng: form mới 10 field theo yêu cầu bổ sung.
+            path: RouteNames.bookingGuestHouseAdvance,
+            builder: (context, state) {
+              final extra = state.extra;
+              if (extra is! int) {
+                return const BookingGuestHousePage();
+              }
+              return BookingGuestHouseAdvanceRequestScreen(id: extra);
+            },
+          ),
+        ],
+      ),
+
+      //---(RentalVehicle)---//
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(
+            value: getIt<RentalVehicleBloc>(),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.rentalVehicle,
+            builder: (context, state) => const RentalVehicleScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.rentalVehicleAdd,
+            builder: (context, state) {
+              // Lấy widget AddScreen truyền từ list (chứa employees, projects, nextStt).
+              final extra = state.extra;
+              if (extra is RentalVehicleAddScreen) {
+                return extra;
+              }
+              return const RentalVehicleAddScreen();
+            },
+          ),
+          GoRoute(
+            path: RouteNames.rentalVehicleUpdate,
+            builder: (context, state) {
+              final extra = state.extra;
+              if (extra is RentalVehicleUpdateScreen) {
+                return extra;
+              }
+              return const RentalVehicleUpdateScreen(
+                item: RentalVehicleItem(),
+              );
+            },
+          ),
+        ],
+      ),
+
       //---(WorkCategory)---//
       ShellRoute(
         builder: (context, state, child) {
@@ -1199,6 +1364,54 @@ class AppRouter {
         ],
       ),
 
+      //---(Project)---//
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider.value(
+            value: getIt<ProjectListBloc>(),
+            child: BlocProvider.value(
+              value: getIt<MaterialCategoryBloc>(),
+              child: BlocProvider.value(
+                value: getIt<SolutionBloc>(),
+                child: BlocProvider.value(
+                  value: getIt<VersionBloc>(),
+                  child: child,
+                ),
+              ),
+            ),
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.projectMenu,
+            builder: (context, state) => const ProjectMenuScreen(),
+            routes: [
+              GoRoute(
+                path: RouteNames.projectList,
+                builder: (context, state) => const ProjectListScreen(),
+                routes: [
+                  GoRoute(
+                    path: RouteNames.materialCategory,
+                    builder: (context, state) {
+                      final projectRequestId = int.tryParse(
+                        state.uri.queryParameters['projectRequestId'] ?? '',
+                      );
+                      final versionId = int.tryParse(
+                        state.uri.queryParameters['versionId'] ?? '',
+                      );
+                      return MaterialCategoryScreen(
+                        projectRequestId: projectRequestId,
+                        versionId: versionId,
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
+
       //---(Stamp)---//
       ShellRoute(
         builder: (context, state, child) {
@@ -1480,6 +1693,124 @@ class AppRouter {
               final id = state.extra as int? ?? 0;
               return AccountantEditScreen(reportId: id);
             },
+          ),
+        ],
+      ),
+
+      // Personal Approve
+      ShellRoute(
+        builder: (context, state, child) {
+          return BlocProvider(
+            create: (_) => getIt<PersonalApproveMenuBloc>(),
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteNames.personalApprove,
+            builder: (context, state) => const PersonalApproveMenuScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.personalApproveTimesheetMenu,
+            builder: (context, state) =>
+                const PersonalApproveTimesheetMenuScreen(),
+          ),
+          GoRoute(
+            path: RouteNames.personalApproveBookingGnMenu,
+            builder: (context, state) =>
+                const PersonalApproveBookingGnMenuScreen(),
+          ),
+          ShellRoute(
+            builder: (context, state, child) {
+              return BlocProvider.value(
+                value: getIt<ApproveTimesheetBloc>(),
+                child: child,
+              );
+            },
+            routes: [
+              GoRoute(
+                path: RouteNames.personalApproveTimesheet,
+                builder: (context, state) {
+                  // Mở từ menu Phê duyệt → query `?tType=1..9` để
+                  // bloc filter API theo 1 loại phiếu cụ thể.
+                  // Mở trực tiếp (không qua menu) → không có tType,
+                  // hiển thị tất cả.
+                  final tTypeStr = state.uri.queryParameters['tType'];
+                  final tType = int.tryParse(tTypeStr ?? '');
+                  return ApproveTimesheetTbpScreen(initialTType: tType);
+                },
+              ),
+              GoRoute(
+                path: RouteNames.personalApproveSeniorTimesheet,
+                builder: (context, state) => const ApproveTimesheetSeniorScreen(),
+              ),
+              GoRoute(
+                path: RouteNames.personalApproveSeniorTimesheetDetail,
+                builder: (context, state) {
+                  final extra = state.extra;
+                  if (extra is (ApproveTimesheetItem, ApproveTimesheetRole)) {
+                    return ApproveTimesheetDetailScreen(
+                      item: extra.$1,
+                      // role: extra.$2,
+                    );
+                  }
+                  return Scaffold(
+                    appBar: AppBar(title: const Text('Chi tiết phiếu')),
+                    body: const Center(
+                      child: Padding(
+                        padding: EdgeInsets.all(24),
+                        child: Text(
+                          'Không có dữ liệu phiếu. Vui lòng mở từ danh sách.',
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+              GoRoute(
+                path: RouteNames.personalApproveTimesheetDetail,
+                builder: (context, state) {
+                  final extra = state.extra;
+                  if (extra is (ApproveTimesheetItem, ApproveTimesheetRole)) {
+                    return ApproveTimesheetDetailScreen(
+                      item: extra.$1,
+                      // role: extra.$2,
+                    );
+                  }
+                  return Scaffold(
+                    appBar: AppBar(title: const Text('Chi tiết phiếu')),
+                    body: const Center(
+                      child: Padding(
+                        padding: EdgeInsets.all(24),
+                        child: Text(
+                          'Không có dữ liệu phiếu. Vui lòng mở từ danh sách.',
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
+          //---(ApproveBookingGuestHouse)---//
+          // Màn Duyệt phiếu Đặt phòng nhà nghỉ — singleton bloc wrap ở
+          // ShellRoute để share state khi điều hướng giữa list / detail.
+          ShellRoute(
+            builder: (context, state, child) {
+              return BlocProvider.value(
+                value: getIt<ApproveBookingGuestHouseBloc>(),
+                child: child,
+              );
+            },
+            routes: [
+              GoRoute(
+                path: RouteNames.personalApproveBookingGuestHouse,
+                builder: (context, state) =>
+                    const ApproveBookingGuestHousePage(),
+              ),
+            ],
           ),
         ],
       ),

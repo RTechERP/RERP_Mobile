@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 import '../../app_theme/index.dart';
@@ -47,6 +48,15 @@ class FormInputField extends StatefulWidget {
   /// Giới hạn số ký tự. Hiển thị counter bên dưới field khi có giá trị.
   final int? maxLength;
 
+  /// Widget hiển thị ở cuối field (ví dụ: nút X để clear).
+  final Widget? suffixIcon;
+
+  /// Formatter áp dụng cho input — ví dụ: `ThousandsInputFormatter` để
+  /// format số tiền "x.xxx.xxx VNĐ" ngay khi user gõ, tránh phải set
+  /// controller trong `onChanged` (gây StackOverflow do FormBuilder
+  /// lặp vô hạn giữa `didChange` ↔ `notifyListeners`).
+  final List<TextInputFormatter>? inputFormatters;
+
   const FormInputField({
     super.key,
     required this.nameForm,
@@ -72,6 +82,8 @@ class FormInputField extends StatefulWidget {
     this.autovalidateMode = AutovalidateMode.onUserInteraction,
     this.autoExpand = false,
     this.maxLength,
+    this.suffixIcon,
+    this.inputFormatters,
   });
 
   @override
@@ -160,6 +172,7 @@ class _FormInputFieldState extends State<FormInputField> {
           obscureText: isObscured,
           keyboardType: widget.keyboardType,
           textInputAction: widget.textInputAction,
+          inputFormatters: widget.inputFormatters,
           validator: widget.validator,
           autovalidateMode: widget.autovalidateMode,
           onSubmitted: widget.onSubmitted,
@@ -189,6 +202,7 @@ class _FormInputFieldState extends State<FormInputField> {
                     },
                   )
                 : null,
+            suffixIcon: widget.suffixIcon,
           ),
           onChanged: (v) {
             field.didChange(v);

@@ -57,6 +57,8 @@
 	<string>Ứng dụng cần truy cập lịch để tạo và quản lý các sự kiện liên quan đến công việc.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Ứng dụng cần truy cập camera để bạn chụp ảnh đính kèm vào báo cáo, đơn đăng ký, cập nhật ảnh đại diện và quét mã QR trên bảng ESL.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Ứng dụng cần quyền truy cập danh bạ để lưu thông tin danh thiếp đã quét vào danh bạ điện thoại của bạn.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Ứng dụng cần truy cập vị trí nền để theo dõi vị trí làm việc ngay cả khi ứng dụng không hoạt động.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

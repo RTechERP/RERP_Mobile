@@ -34,12 +34,35 @@ class BulkBillActionSheet extends StatefulWidget {
   /// User hiện tại có phải admin không.
   final bool isCurrentUserAdmin;
 
-  /// Helper: user có phải "actor" cho phiếu (admin hoặc sender của phiếu).
+  /// Helper: user có phải "actor" cho phiếu (admin, sender, receiver của phiếu),
+  /// hoặc thuộc nhóm UserID được phép xác nhận đặt hàng.
   bool _isPreparedActor(BillExporResponse b) {
     if (isCurrentUserAdmin) return true;
-    final senderId = b.senderId;
-    return senderId != null && senderId > 0 && senderId == currentEmployeeId;
+    if (currentEmployeeId > 0 &&
+        _preparedConfirmAllowedIds.contains(currentEmployeeId)) {
+      return true;
+    }
+    if (b.senderId != null && b.senderId == currentEmployeeId) return true;
+    if (b.receiverId != null && b.receiverId == currentEmployeeId) return true;
+    return false;
   }
+
+  /// Helper: user có phải "actor" cho nhóm "Nhận hàng" hay không. Bỏ validate
+  /// (admin/sender/receiver) — ai cũng có quyền, TRỪ 4 UserID đặc biệt
+  /// trong `_receivedBlockedIds`.
+  bool _isReceivedActor(BillExporResponse b) {
+    if (_receivedBlockedIds.contains(currentEmployeeId)) return false;
+    return true;
+  }
+
+  /// Danh sách UserID được phép xác nhận / huỷ "Chuẩn bị hàng" bất kể có
+  /// phải người giao/nhận của phiếu hay không.
+  static const Set<int> _preparedConfirmAllowedIds =
+      {1110, 24, 1763, 1785};
+
+  /// Nhóm UserID bị chặn thao tác nhóm "Nhận hàng" (kể cả khi trùng sender/
+  /// receiver của phiếu). Nhóm này chỉ được quyền thao tác "Chuẩn bị hàng".
+  static const Set<int> _receivedBlockedIds = {1110, 24, 1763, 1785};
 
   @override
   State<BulkBillActionSheet> createState() => _BulkBillActionSheetState();
@@ -50,8 +73,9 @@ class _BulkBillActionSheetState extends State<BulkBillActionSheet> {
   /// `widget.bills` lần đầu.
   late final Set<int> _remainingIds;
 
-  /// Cache quyền actor cho từng bill (sender-side). Tính 1 lần / build.
+  /// Cache quyền actor cho từng bill. Tính 1 lần / build.
   bool _isPreparedActor(BillExporResponse b) => widget._isPreparedActor(b);
+  bool _isReceivedActor(BillExporResponse b) => widget._isReceivedActor(b);
 
   @override
   void initState() {
@@ -82,15 +106,14 @@ class _BulkBillActionSheetState extends State<BulkBillActionSheet> {
           // Cần là actor chuẩn bị VÀ đang ở trạng thái đã chuẩn bị.
           return _isPreparedActor(b) && b.isOrderPrepared == true;
         case BulkAction.markReceived:
-          // Nhận: cần là actor (sender/admin/special) VÀ đã chuẩn bị VÀ
-          // chưa nhận. Người không phải sender của phiếu không có quyền.
-          return _isPreparedActor(b) &&
+          // Nhận: cần là actor nhận hàng (admin/sender/receiver, **không**
+          // thuộc blocklist) VÀ đã chuẩn bị VÀ chưa nhận.
+          return _isReceivedActor(b) &&
               b.isOrderPrepared == true &&
               b.isOrderReceived != true;
         case BulkAction.cancelReceived:
-          // Huỷ nhận: cần là actor (sender/admin/special) VÀ đang ở
-          // trạng thái đã nhận.
-          return _isPreparedActor(b) && b.isOrderReceived == true;
+          // Huỷ nhận: cần là actor nhận hàng VÀ đang ở trạng thái đã nhận.
+          return _isReceivedActor(b) && b.isOrderReceived == true;
       }
     }).toList();
   }

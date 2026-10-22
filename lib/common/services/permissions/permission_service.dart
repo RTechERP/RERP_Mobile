@@ -1,4 +1,3 @@
-
 import '../../../features/auth/data/repository/auth_repository.dart';
 import '../../../features/workplace/data/datasource/models/index.dart';
 import '../../enums/permission_enum.dart';
@@ -17,17 +16,19 @@ class PermissionService {
     'report:agv': AppPermission.viewAgvReport,
     'report:ad': AppPermission.viewAdReport,
     'report:accountant': AppPermission.viewAccountingReport,
+    'personal_approve:senior': AppPermission.viewSeniorApprove,
+    'personal_approve:menu': AppPermission.viewPersonalApproveMenu,
   };
 
   static Set<AppPermission> _cachedPermissions = {};
   static bool _initialized = false;
 
-  /// ✅ Init permission theo user hiện tại
+  /// Init permission theo user hiện tại
   static Future<void> init() async {
     final user = await AuthRepository.getCurrentUser();
 
     if (user == null) {
-      reset(); // dùng reset thay vì clear thủ công
+      reset();
       return;
     }
 
@@ -37,7 +38,7 @@ class PermissionService {
     _initialized = true;
   }
 
-  /// ✅ Reset hoàn toàn (dùng khi logout)
+  /// Reset hoàn toàn (dùng khi logout)
   static void reset() {
     _cachedPermissions = {};
     _initialized = false;
@@ -58,10 +59,7 @@ class PermissionService {
     return items.map((item) {
       final enabled = hasAccess(item.id);
 
-      return item.copyWith(
-        enabled: enabled,
-        opacity: enabled ? 1.0 : 0.4,
-      );
+      return item.copyWith(enabled: enabled, opacity: enabled ? 1.0 : 0.4);
     }).toList();
   }
 

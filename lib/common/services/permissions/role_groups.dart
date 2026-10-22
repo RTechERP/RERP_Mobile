@@ -14,8 +14,8 @@ class DepartmentGroups {
 
 class EmployeeIdGroups {
   static const employeeHrs = [586, 5];
-
   static const employeeSaleHCM = [29, 42, 341, 641, 222];
+  static const employeeBOD = [54];
 }
 
 class UserIdGroups {
@@ -59,6 +59,8 @@ class PositionGroups {
 
 class PermissionGroups {
   static const saleAdminReports = ['N1', 'N27'];
-
   static const accountantAdminReports = ['N1', 'N52'];
+  static const senior = ['N85'];
+  static const headOfDepartment = ['N32'];
+  static const boardOfDirector = ['N1'];
 }

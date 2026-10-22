@@ -1,0 +1,160 @@
+// Service gọi API Personal Summary + Department (dùng cho filter).
+import 'package:injectable/injectable.dart';
+import 'package:rtc_erp/base/network/dio/dio_base_api_service.dart';
+
+import '../../../../../../../../../../base/network/models/base_data.dart';
+import '../../../../../../../../../../common/constants.dart';
+import '../../../../../../../summary_work/leave/data/datasource/models/summary_leave_model.dart';
+import '../models/personal_summary_model.dart';
+
+@injectable
+class PersonalSummaryService extends DioBaseApiService {
+  PersonalSummaryService(super.dio);
+
+  /// POST /home/get-summary-employee-person.
+  /// `payload` chứa DateStart/DateEnd/DepartmentID/EmployeeID/IsApproved/Keyword.
+  Future<BaseData<PersonalSummaryData>> getPersonalSummary({
+    required Map<String, dynamic> payload,
+  }) async {
+    return post<BaseData<PersonalSummaryData>>(
+      ApiEndPoint.getSummaryEmployeePerson,
+      body: payload,
+      parser: (json) {
+        final root = (json is Map) ? json : <String, dynamic>{};
+        return BaseData<PersonalSummaryData>.fromJson(
+          root.cast<String, dynamic>(),
+          (data) {
+            // BE có thể trả `data` là object (như payload mẫu) hoặc null.
+            if (data is Map<String, dynamic>) {
+              return PersonalSummaryData.fromJson(data);
+            }
+            if (data is Map) {
+              return PersonalSummaryData.fromJson(
+                Map<String, dynamic>.from(data),
+              );
+            }
+            // Fallback: parse từ chính root khi BE không bọc data.
+            return PersonalSummaryData.fromJson(
+              root.cast<String, dynamic>(),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  /// GET /SummaryAttendance/get-employee-attendance.
+  /// `query` chứa departmentID, employeeID, keyword, dateStart (yyyy-MM-dd),
+  /// dateEnd (yyyy-MM-dd). Response có thể là mảng trần hoặc bọc trong
+  /// `data`/`result` của `BaseData`.
+  Future<BaseData<List<PersonalAttendanceItem>>> getEmployeeAttendance({
+    required Map<String, dynamic> query,
+  }) async {
+    return get<BaseData<List<PersonalAttendanceItem>>>(
+      ApiEndPoint.getEmployeeAttendance,
+      query: query,
+      parser: (json) {
+        // Trường hợp 1: response là mảng trần.
+        if (json is List) {
+          final items = json
+              .whereType<Map>()
+              .map(
+                (e) => PersonalAttendanceItem.fromJson(
+                  e.cast<String, dynamic>(),
+                ),
+              )
+              .toList();
+          return BaseData<List<PersonalAttendanceItem>>(
+            data: items,
+            status: 1,
+          );
+        }
+        // Trường hợp 2: response bọc trong `BaseData` chuẩn.
+        final root = (json is Map) ? json : <String, dynamic>{};
+        return BaseData<List<PersonalAttendanceItem>>.fromJson(
+          root.cast<String, dynamic>(),
+          (data) {
+            if (data is List) {
+              return data
+                  .whereType<Map>()
+                  .map(
+                    (e) => PersonalAttendanceItem.fromJson(
+                      e.cast<String, dynamic>(),
+                    ),
+                  )
+                  .toList();
+            }
+            return <PersonalAttendanceItem>[];
+          },
+        );
+      },
+    );
+  }
+
+  /// GET /Department/get-all.
+  /// Trả về danh sách phòng ban dùng cho bottom sheet lọc.
+  Future<BaseData<List<SummaryDepartment>>> getDepartments() async {
+    return get<BaseData<List<SummaryDepartment>>>(
+      ApiEndPoint.getDepart,
+      parser: (json) => BaseData<List<SummaryDepartment>>.fromJson(
+        (json as Map).cast<String, dynamic>(),
+        (data) => (data as List)
+            .map((e) => SummaryDepartment.fromJson(
+                  (e as Map).cast<String, dynamic>(),
+                ))
+            .toList(),
+      ),
+    );
+  }
+
+  /// GET /SummaryAttendance/get-employees?departmentID=...
+  /// Response được bọc: `{status, message, data: [...]}`. Trong đó
+  /// `data` là mảng các nhân viên của phòng ban.
+  Future<BaseData<List<PersonalAttendanceEmployee>>> getEmployees({
+    required int departmentId,
+  }) async {
+    return get<BaseData<List<PersonalAttendanceEmployee>>>(
+      ApiEndPoint.getAttendanceEmployees,
+      query: {'departmentID': departmentId},
+      parser: (json) {
+        if (json is Map) {
+          final map = json.cast<String, dynamic>();
+          final raw = map['data'];
+          final items = raw is List
+              ? raw
+                  .whereType<Map>()
+                  .map(
+                    (e) => PersonalAttendanceEmployee.fromJson(
+                      (e).cast<String, dynamic>(),
+                    ),
+                  )
+                  .toList()
+              : const <PersonalAttendanceEmployee>[];
+          return BaseData<List<PersonalAttendanceEmployee>>(
+            data: items,
+            status: (map['status'] as num?)?.toInt() ?? 0,
+          );
+        }
+        if (json is List) {
+          // Fallback: nếu BE trả mảng trần.
+          final items = json
+              .whereType<Map>()
+              .map(
+                (e) => PersonalAttendanceEmployee.fromJson(
+                  (e).cast<String, dynamic>(),
+                ),
+              )
+              .toList();
+          return BaseData<List<PersonalAttendanceEmployee>>(
+            data: items,
+            status: 1,
+          );
+        }
+        return BaseData<List<PersonalAttendanceEmployee>>(
+          data: const <PersonalAttendanceEmployee>[],
+          status: 0,
+        );
+      },
+    );
+  }
+}

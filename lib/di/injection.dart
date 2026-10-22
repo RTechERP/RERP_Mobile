@@ -15,10 +15,15 @@ import '../features/celebration/data/datasource/service/celebration_service.dart
 import '../features/celebration/data/repository/celebration_repo.dart';
 import '../features/celebration/data/repository/celebration_repo_impl.dart';
 import '../features/celebration/view/bloc/celebration_bloc.dart';
-import '../features/contact/data/datasource/services/contact_service.dart';
-import '../features/contact/data/repository/contact_repo.dart';
-import '../features/contact/data/repository/contact_repo_impl.dart';
-import '../features/contact/view/bloc/contact_bloc.dart';
+import '../features/contact/business_card/data/datasource/services/contact_save_service.dart';
+import '../features/contact/contact/data/datasource/services/contact_service.dart';
+import '../features/contact/contact/data/repository/contact_repo.dart';
+import '../features/contact/contact/data/repository/contact_repo_impl.dart';
+import '../features/contact/contact/view/bloc/contact_bloc.dart';
+import '../features/contact/business_card/data/datasource/services/business_card_service.dart';
+import '../features/contact/business_card/data/repository/business_card_repo.dart';
+import '../features/contact/business_card/data/repository/business_card_repo_impl.dart';
+import '../features/contact/business_card/view/bloc/business_card_bloc.dart';
 import '../features/more/data/datasource/service/more_service.dart';
 import '../features/more/data/repository/more_repo.dart';
 import '../features/more/data/repository/more_repo_impl.dart';
@@ -27,14 +32,32 @@ import '../features/dashboard/view/newsfeed/data/datasource/service/newsfeed_ser
 import '../features/dashboard/view/newsfeed/data/repository/newsfeed_repo.dart';
 import '../features/dashboard/view/newsfeed/data/repository/newsfeed_repository.dart';
 import '../features/dashboard/view/newsfeed/view/bloc/newsfeed_bloc.dart';
+import '../features/workplace/app/personal_approve/app/approve_timesheet/data/datasource/service/approve_timesheet_service.dart';
+import '../features/workplace/app/personal_approve/app/approve_timesheet/data/repository/approve_timesheet_repo.dart';
+import '../features/workplace/app/personal_approve/app/approve_timesheet/data/repository/approve_timesheet_repo_impl.dart';
+import '../features/workplace/app/personal_approve/app/approve_timesheet/view/bloc/approve_timesheet_bloc.dart';
+import '../features/workplace/app/personal_approve/app/approve_booking_guest_house/data/datasource/service/approve_booking_guest_house_service.dart';
+import '../features/workplace/app/personal_approve/app/approve_booking_guest_house/data/repository/approve_booking_guest_house_repo.dart';
+import '../features/workplace/app/personal_approve/app/approve_booking_guest_house/data/repository/approve_booking_guest_house_repo_impl.dart';
+import '../features/workplace/app/personal_approve/app/approve_booking_guest_house/view/bloc/approve_booking_guest_house_bloc.dart';
+import '../features/workplace/app/personal_approve/view/bloc/personal_approve_menu_bloc.dart';
 import '../features/version/data/datasource/service/app_version_service.dart';
 import '../features/version/data/repository/app_version_repo.dart';
 import '../features/version/data/repository/app_version_repo_impl.dart';
 import '../features/version/view/bloc/app_version_bloc.dart';
+import '../features/workplace/app/project/project_list/app/material_category/data/repository/material_category_repo_impl.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/datasource/service/booking_vehicle_service.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repo_impl.dart';
 import '../features/workplace/app/reg_general/view/pages/booking_vehicle/view/bloc/booking_vehicle_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/booking_guest_house/data/datasource/service/booking_guest_house_service.dart';
+import '../features/workplace/app/reg_general/view/pages/booking_guest_house/data/repository/booking_guest_house_repo.dart';
+import '../features/workplace/app/reg_general/view/pages/booking_guest_house/data/repository/booking_guest_house_repo_impl.dart';
+import '../features/workplace/app/reg_general/view/pages/booking_guest_house/view/bloc/booking_guest_house_bloc.dart';
+import '../features/workplace/app/reg_general/view/pages/rental_vehicle/data/datasource/service/rental_vehicle_service.dart';
+import '../features/workplace/app/reg_general/view/pages/rental_vehicle/data/repository/rental_vehicle_repo.dart';
+import '../features/workplace/app/reg_general/view/pages/rental_vehicle/data/repository/rental_vehicle_repo_impl.dart';
+import '../features/workplace/app/reg_general/view/pages/rental_vehicle/view/bloc/rental_vehicle_bloc.dart';
 import '../features/workplace/app/reg_general/view/pages/contract_registration/data/datasource/service/contract_registration_service.dart';
 import '../features/workplace/app/reg_general/view/pages/contract_registration/data/repository/contract_registration_repo.dart';
 import '../features/workplace/app/reg_general/view/pages/contract_registration/data/repository/contract_registration_repo_impl.dart';
@@ -99,10 +122,27 @@ import '../features/workplace/app/reg_work/view/pages/overtime/data/datasource/s
 import '../features/workplace/app/reg_work/view/pages/overtime/data/repository/overtime_repo.dart';
 import '../features/workplace/app/reg_work/view/pages/overtime/data/repository/overtime_repo_impl.dart';
 import '../features/workplace/app/reg_work/view/pages/overtime/view/bloc/overtime_bloc.dart';
+import '../features/workplace/app/reg_work/view/pages/personal_summary/data/datasource/service/personal_summary_service.dart';
+import '../features/workplace/app/reg_work/view/pages/personal_summary/data/repository/personal_summary_repo.dart';
+import '../features/workplace/app/reg_work/view/pages/personal_summary/data/repository/personal_summary_repo_impl.dart';
+import '../features/workplace/app/reg_work/view/pages/personal_summary/view/bloc/personal_summary_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/lunch/data/datasource/service/lunch_service.dart';
 import '../features/workplace/app/reg_work/view/pages/lunch/data/repository/lunch_repo.dart';
 import '../features/workplace/app/reg_work/view/pages/lunch/data/repository/lunch_repo_impl.dart';
 import '../features/workplace/app/reg_work/view/pages/lunch/view/bloc/lunch_bloc.dart';
+import '../features/workplace/app/project/project_list/app/material_category/data/datasource/service/material_category_service.dart';
+import '../features/workplace/app/project/project_list/app/material_category/data/repository/material_category_repo.dart';
+import '../features/workplace/app/project/project_list/app/material_category/data/repository/solution_repo.dart';
+import '../features/workplace/app/project/project_list/app/material_category/data/repository/solution_repo_impl.dart';
+import '../features/workplace/app/project/project_list/app/material_category/data/repository/version_repo.dart';
+import '../features/workplace/app/project/project_list/app/material_category/data/repository/version_repo_impl.dart';
+import '../features/workplace/app/project/project_list/app/material_category/view/bloc/material_category_bloc.dart';
+import '../features/workplace/app/project/project_list/app/material_category/view/bloc/solution_bloc.dart';
+import '../features/workplace/app/project/project_list/app/material_category/view/bloc/version_bloc.dart';
+import '../features/workplace/app/project/project_list/data/datasource/service/project_list_service.dart';
+import '../features/workplace/app/project/project_list/data/repository/project_list_repo.dart';
+import '../features/workplace/app/project/project_list/data/repository/project_list_repo_impl.dart';
+import '../features/workplace/app/project/project_list/view/bloc/project_list_bloc.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/data/datasource/service/in_out_service.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/data/repository/in_out_repo.dart';
 import '../features/workplace/app/reg_work/view/pages/in_out/data/repository/in_out_repo_impl.dart';
@@ -227,7 +267,27 @@ void configureDependencies() {
     () => BookingVehicleService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<BookingGuestHouseService>(
+    () => BookingGuestHouseService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<RentalVehicleService>(
+    () => RentalVehicleService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<ApproveBookingGuestHouseService>(
+    () => ApproveBookingGuestHouseService(getIt<Dio>()),
+  );
+
   getIt.registerLazySingleton<LunchService>(() => LunchService(getIt<Dio>()));
+
+  getIt.registerLazySingleton<ProjectListService>(
+    () => ProjectListService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<MaterialCategoryService>(
+    () => MaterialCategoryService(getIt<Dio>()),
+  );
 
   getIt.registerLazySingleton<InOutService>(() => InOutService(getIt<Dio>()));
 
@@ -239,6 +299,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<OvertimeService>(
     () => OvertimeService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<PersonalSummaryService>(
+    () => PersonalSummaryService(getIt<Dio>()),
   );
 
   getIt.registerLazySingleton<WorkTripService>(
@@ -297,12 +361,24 @@ void configureDependencies() {
     () => AppVersionService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<ApproveTimeSheetService>(
+    () => ApproveTimeSheetService(getIt<Dio>()),
+  );
+
   getIt.registerLazySingleton<ContactService>(
     () => ContactService(getIt<Dio>()),
   );
 
   getIt.registerLazySingleton<CelebrationService>(
     () => CelebrationService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<BusinessCardService>(
+    () => BusinessCardService(getIt<Dio>()),
+  );
+
+  getIt.registerLazySingleton<ContactSaveService>(
+      () => ContactSaveService(),
   );
 
   getIt.registerLazySingleton<SaleGdnService>(
@@ -367,8 +443,36 @@ void configureDependencies() {
     () => BookingVehicleRepoImpl(getIt<BookingVehicleService>()),
   );
 
+  getIt.registerLazySingleton<BookingGuestHouseRepo>(
+    () => BookingGuestHouseRepoImpl(getIt<BookingGuestHouseService>()),
+  );
+
+  getIt.registerLazySingleton<RentalVehicleRepo>(
+    () => RentalVehicleRepoImpl(getIt<RentalVehicleService>()),
+  );
+
+  getIt.registerLazySingleton<ApproveBookingGuestHouseRepo>(
+    () => ApproveBookingGuestHouseRepoImpl(getIt<ApproveBookingGuestHouseService>()),
+  );
+
   getIt.registerLazySingleton<LunchRepo>(
     () => LunchRepoImpl(getIt<LunchService>()),
+  );
+
+  getIt.registerLazySingleton<ProjectListRepo>(
+    () => ProjectListRepoImpl(getIt<ProjectListService>()),
+  );
+
+  getIt.registerLazySingleton<MaterialCategoryRepo>(
+    () => MaterialCategoryRepoImpl(getIt<MaterialCategoryService>()),
+  );
+
+  getIt.registerLazySingleton<SolutionRepo>(
+    () => SolutionRepoImpl(getIt<MaterialCategoryService>()),
+  );
+
+  getIt.registerLazySingleton<VersionRepo>(
+    () => VersionRepoImpl(getIt<MaterialCategoryService>()),
   );
 
   getIt.registerLazySingleton<InOutRepo>(
@@ -387,6 +491,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<OvertimeRepo>(
     () => OvertimeRepoImpl(getIt<OvertimeService>()),
+  );
+
+  getIt.registerLazySingleton<PersonalSummaryRepo>(
+    () => PersonalSummaryRepoImpl(getIt<PersonalSummaryService>()),
   );
 
   getIt.registerLazySingleton<WorkTripRepo>(
@@ -493,6 +601,10 @@ void configureDependencies() {
     () => RioChatRepoImpl(getIt<RioChatService>()),
   );
 
+  getIt.registerLazySingleton<ApproveTimesheetRepo>(
+    () => ApproveTimesheetRepoImpl(getIt<ApproveTimeSheetService>()),
+  );
+
   /// ===== BLOCS =====
   getIt.registerFactory<AuthBloc>(
     () => AuthBloc(getIt<AuthRepo>(), getIt<LogUtils>()),
@@ -500,7 +612,12 @@ void configureDependencies() {
   getIt.registerFactory<TechBloc>(
     () => TechBloc(getIt<ReportRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
   );
-  getIt.registerFactory<WorkspaceBloc>(() => WorkspaceBloc(getIt<LogUtils>()));
+  getIt.registerFactory<WorkspaceBloc>(
+    () => WorkspaceBloc(
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
   getIt.registerFactory<HrBloc>(
     () => HrBloc(getIt<ReportRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
   );
@@ -538,8 +655,46 @@ void configureDependencies() {
     ),
   );
 
+getIt.registerLazySingleton<BookingGuestHouseBloc>(
+  () => BookingGuestHouseBloc(
+    getIt<BookingGuestHouseRepo>(),
+    getIt<LogUtils>(),
+  ),
+);
+
+  getIt.registerFactory<RentalVehicleBloc>(
+    () => RentalVehicleBloc(
+      getIt<RentalVehicleRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+getIt.registerLazySingleton<ApproveBookingGuestHouseBloc>(
+  () => ApproveBookingGuestHouseBloc(
+    getIt<ApproveBookingGuestHouseRepo>(),
+    getIt<LogUtils>(),
+  ),
+);
+
   getIt.registerFactory<LunchBloc>(
     () => LunchBloc(getIt<LunchRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
+  );
+
+  getIt.registerFactory<ProjectListBloc>(
+    () => ProjectListBloc(getIt<ProjectListRepo>(), getIt<LogUtils>()),
+  );
+
+  getIt.registerFactory<MaterialCategoryBloc>(
+    () => MaterialCategoryBloc(getIt<MaterialCategoryRepo>()),
+  );
+
+  getIt.registerFactory<SolutionBloc>(
+    () => SolutionBloc(getIt<SolutionRepo>(), getIt<LogUtils>()),
+  );
+
+  getIt.registerFactory<VersionBloc>(
+    () => VersionBloc(getIt<VersionRepo>(), getIt<LogUtils>()),
   );
 
   getIt.registerFactory<InOutBloc>(
@@ -561,6 +716,14 @@ void configureDependencies() {
   getIt.registerFactory<OvertimeBloc>(
     () => OvertimeBloc(
       getIt<OvertimeRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<PersonalSummaryBloc>(
+    () => PersonalSummaryBloc(
+      getIt<PersonalSummaryRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
     ),
@@ -658,6 +821,7 @@ void configureDependencies() {
   getIt.registerLazySingleton<SalaryPinService>(
     () => SalaryPinService(getIt<Dio>()),
   );
+
   getIt.registerLazySingleton<SalaryPinRepo>(
     () => SalaryPinRepoImpl(getIt<SalaryPinService>()),
   );
@@ -695,11 +859,23 @@ void configureDependencies() {
     () => ContactRepoImpl(getIt<ContactService>()),
   );
 
+  getIt.registerLazySingleton<BusinessCardRepo>(
+    () => BusinessCardRepoImpl(
+      getIt<BusinessCardService>(),
+      getIt<ContactSaveService>(),
+    ),
+  );
+
+  getIt.registerFactory<ContactBloc>(
+    () => ContactBloc(getIt<ContactRepo>(), getIt<BusinessCardRepo>()),
+  );
+
+  getIt.registerFactory<BusinessCardBloc>(
+    () => BusinessCardBloc(getIt<LogUtils>(), getIt<BusinessCardRepo>()),
+  );
   getIt.registerLazySingleton<CelebrationRepo>(
     () => CelebrationRepoImpl(getIt<CelebrationService>()),
   );
-
-  getIt.registerFactory<ContactBloc>(() => ContactBloc(getIt<ContactRepo>()));
 
   getIt.registerFactory<CelebrationBloc>(
     () => CelebrationBloc(getIt<CelebrationRepo>()),
@@ -711,6 +887,17 @@ void configureDependencies() {
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
     ),
+  );
+
+  getIt.registerFactory<ApproveTimesheetBloc>(
+    () => ApproveTimesheetBloc(
+      getIt<ApproveTimesheetRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<PersonalApproveMenuBloc>(
+    () => PersonalApproveMenuBloc(getIt<AuthRepo>(), getIt<LogUtils>()),
   );
 
   getIt.registerFactory<GeneralFormBloc>(

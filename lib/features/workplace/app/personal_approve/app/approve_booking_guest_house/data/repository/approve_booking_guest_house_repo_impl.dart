@@ -1,0 +1,106 @@
+// Implementation repository cho màn Duyệt phiếu thanh toán Đặt phòng nhà nghỉ.
+
+import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
+import 'package:rtc_erp/base/network/errors/error.dart';
+
+import '../../../../../../../../../base/network/errors/extension.dart';
+import '../datasource/models/approve_booking_guest_house_model.dart';
+import '../datasource/service/approve_booking_guest_house_service.dart';
+import 'approve_booking_guest_house_repo.dart';
+
+@LazySingleton(as: ApproveBookingGuestHouseRepo)
+class ApproveBookingGuestHouseRepoImpl
+    implements ApproveBookingGuestHouseRepo {
+  final ApproveBookingGuestHouseService _service;
+
+  ApproveBookingGuestHouseRepoImpl(this._service);
+
+  @override
+  Future<Either<BaseError, List<ApproveBookingGuestHouseItem>>>
+      getPendingForTbp() async {
+    try {
+      final res = await _service.getPendingForTbp();
+
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? res.msg ??
+              'Không thể tải danh sách phiếu thanh toán',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<ApproveProjectFilterItem>>>
+      getApproveBookingGuestHouseProjects() async {
+    try {
+      final res = await _service.getApproveBookingGuestHouseProjects();
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? res.msg ?? 'Không thể tải danh sách dự án',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<ApproveEmployeeFilterItem>>>
+      getApproveBookingGuestHouseEmployees({String keyword = ''}) async {
+    try {
+      final res = await _service.getApproveBookingGuestHouseEmployees(
+        keyword: keyword,
+      );
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? res.msg ?? 'Không thể tải danh sách nhân viên',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<BaseError, bool>> updateDetailStatus({
+    required int detailId,
+    required int status,
+  }) async {
+    try {
+      final ok = await _service.updateDetailStatus(
+        detailId: detailId,
+        status: status,
+      );
+      if (ok) return right(true);
+      return left(
+        const BaseError.httpInternalServerError(
+          'Cập nhật trạng thái thất bại',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
+}

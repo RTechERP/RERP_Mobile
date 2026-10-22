@@ -18,6 +18,18 @@ class RolePermissionMap {
 
     AppRole.accountant: {AppPermission.viewAccountingReport},
 
+    AppRole.senior: {AppPermission.viewSeniorApprove},
+
+    AppRole.headOfDepartment: {
+      AppPermission.viewHeadOfDepartmentApprove,
+      AppPermission.viewPersonalApproveMenu,
+    },
+
+    AppRole.boardOfDirector: {
+      AppPermission.viewBoardOfDirectorApprove,
+      AppPermission.viewPersonalApproveMenu,
+    },
+
     AppRole.employee: {},
   };
 }

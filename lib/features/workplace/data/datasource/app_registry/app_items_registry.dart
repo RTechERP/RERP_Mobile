@@ -89,15 +89,15 @@ class AppItemRegistry {
       imageUrl: AppImages.app_missed,
     ),
 
-    // AppItemModel(
-    //   id: 'reg_work:sum_personal',
-    //   name: 'reg_work.sum_personal'.tr(),
-    //   iconCodePoint: Icons.person_outline.codePoint,
-    //   iconFontFamily: 'MaterialIcons',
-    //   tab: 'reg_work',
-    //   route: '/regwork/sum-personal',
-    //   imageUrl: AppImages.app_sum_personal,
-    // ),
+    AppItemModel(
+      id: 'reg_work:sum_personal',
+      name: 'reg_work.sum_personal'.tr(),
+      iconCodePoint: Icons.person_outline.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'reg_work',
+      route: RouteNames.regworkPersonalSummary,
+      imageUrl: AppImages.app_sum_personal,
+    ),
     AppItemModel(
       id: 'reg_work:sum_salary',
       name: 'reg_work.sum_salary'.tr(),
@@ -122,12 +122,32 @@ class AppItemRegistry {
     ),
 
     AppItemModel(
+      id: 'reg_general:booking_guest_house',
+      name: 'reg_general.booking_guest_house'.tr(),
+      iconCodePoint: Icons.hotel_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'reg_general',
+      route: RouteNames.bookingGuestHouse,
+      imageUrl: AppImages.reg_regneral_booking,
+    ),
+
+    AppItemModel(
       id: 'reg_general:booking_car',
       name: 'reg_general.booking_car'.tr(),
       iconCodePoint: Icons.directions_car_outlined.codePoint,
       iconFontFamily: 'MaterialIcons',
       tab: 'reg_general',
       route: RouteNames.bookingVehicle,
+      imageUrl: AppImages.reg_regneral_booking,
+    ),
+
+    AppItemModel(
+      id: 'reg_general:rental_vehicle',
+      name: 'reg_general.rental_vehicle'.tr(),
+      iconCodePoint: Icons.local_shipping_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'reg_general',
+      route: RouteNames.rentalVehicle,
       imageUrl: AppImages.reg_regneral_booking,
     ),
 

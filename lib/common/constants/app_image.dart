@@ -81,6 +81,8 @@ class AppImages {
   static const week_plan_timeline = 'assets/images/icons/apps/week_plan/89.png';
 
   static const signature = 'assets/images/icons/apps/week_plan/90.png';
+
+  static const project = 'assets/images/icons/apps/92.png';
   static const test_table = 'assets/images/icons/apps/91.png';
 
   static const chatbot_speechless = 'assets/images/icons/apps/chatbot/speechless.png';
