@@ -57,11 +57,64 @@ class _PersonalApproveMenuScreenState extends BaseState<
         title: Text('Phê duyệt', style: AppStyles.headingTitle2),
         onBackTap: () => onBack(context),
       ),
-      body: _buildMenuContent(context),
+      body: blocBuilder((context, state) {
+        // Chờ bloc lấy xong thông tin user hiện tại thì mới quyết định
+        // menu nào được hiển thị — tránh nháy menu rồi mới mất.
+        if (state.status == BaseStateStatus.init ||
+            state.status == BaseStateStatus.loading) {
+          return const Center(child: CircularProgressIndicator());
+        }
+
+        if (state.status == BaseStateStatus.failed) {
+          return _buildMessage(
+            icon: Icons.error_outline,
+            color: AppColors.alert,
+            message: state.message ?? 'Không tải được thông tin người dùng',
+          );
+        }
+
+        // Mục "Duyệt phiếu mua" chỉ hiện với tài khoản trong whitelist.
+        final canSeePurchasing =
+            _kApproveEmployeeIds.contains(state.currentUserEmployeeId);
+
+        return _buildMenuContent(context, canSeePurchasing: canSeePurchasing);
+      }),
     );
   }
 
-  Widget _buildMenuContent(BuildContext context) {
+  /// Màn trạng thái không có nội dung: icon + thông báo, canh giữa.
+  Widget _buildMessage({
+    required IconData icon,
+    required Color color,
+    required String message,
+  }) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 32),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon, size: 56, color: color),
+            const SizedBox(height: 12),
+            Text(
+              message,
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 14, color: AppColors.gray),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// Render các nhóm menu phê duyệt.
+  ///
+  /// [canSeePurchasing] quyết định mục "Duyệt phiếu mua" có hiển thị hay
+  /// không — chỉ tài khoản trong whitelist mới thấy.
+  Widget _buildMenuContent(
+    BuildContext context, {
+    required bool canSeePurchasing,
+  }) {
     return Padding(
       padding: const EdgeInsets.only(top: 16),
       child: SingleChildScrollView(
@@ -74,7 +127,10 @@ class _PersonalApproveMenuScreenState extends BaseState<
                 for (final group in _kPersonalApproveGroups)
                   Padding(
                     padding: const EdgeInsets.only(bottom: 16),
-                    child: _ApproveGroupSection(group: group),
+                    child: _ApproveGroupSection(
+                      group: group,
+                      canSeeRestricted: canSeePurchasing,
+                    ),
                   ),
               ],
             ),
@@ -102,21 +158,37 @@ class _ApproveGroupItem {
     required this.title,
     required this.icon,
     required this.route,
+    this.restrictedToWhitelist = false,
   });
 
   final String title;
   final IconData icon;
   final String route;
+
+  /// `true` → mục chỉ hiển thị với user thuộc whitelist
+  /// [_kApproveEmployeeIds] (dùng cho mục "Duyệt phiếu mua").
+  final bool restrictedToWhitelist;
 }
 
 /// Hiển thị 1 nhóm duyệt: tiêu đề + grid các mục con.
+///
+/// [canSeeRestricted] điều khiển việc hiển thị các mục đánh dấu
+/// [ _ApproveGroupItem.restrictedToWhitelist ].
 class _ApproveGroupSection extends StatelessWidget {
-  const _ApproveGroupSection({required this.group});
+  const _ApproveGroupSection({
+    required this.group,
+    required this.canSeeRestricted,
+  });
 
   final _ApproveGroup group;
+  final bool canSeeRestricted;
 
   @override
   Widget build(BuildContext context) {
+    final visibleItems = group.items
+        .where((item) => !item.restrictedToWhitelist || canSeeRestricted)
+        .toList();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -140,7 +212,7 @@ class _ApproveGroupSection extends StatelessWidget {
             mainAxisSpacing: 13,
             childAspectRatio: 1,
             children: [
-              for (final item in group.items)
+              for (final item in visibleItems)
                 _MenuTile(
                   icon: item.icon,
                   title: item.title,
@@ -153,6 +225,21 @@ class _ApproveGroupSection extends StatelessWidget {
     );
   }
 }
+
+/// Whitelist `EmployeeID` được phép hiển thị mục "Duyệt phiếu mua".
+///
+/// Gồm 3 tài khoản (cùng `DepartmentID` = 1):
+/// | Code  | EmployeeID | currentUser.ID |
+/// |-------|------------|---------------|
+/// | GM00  | 1          | 1             |
+/// | PD00  | 2          | 2             |
+/// | BD00  | 3          | 1293          |
+///
+/// Đối chiếu theo `EmployeeID` vì đó là field đã được bloc cache trong
+/// `PersonalApproveMenuState.currentUserEmployeeId`. Riêng BD00 có
+/// `currentUser.ID` khác `EmployeeID` nhưng không ảnh hưởng — `ID` chỉ
+/// dùng cho mã nhân viên, không dùng để định danh người duyệt.
+const _kApproveEmployeeIds = <int>{1, 2, 3};
 
 /// Danh sách nhóm duyệt hiển thị trong menu Phê duyệt.
 ///
@@ -180,6 +267,7 @@ final _kPersonalApproveGroups = <_ApproveGroup>[
         title: 'Duyệt phiếu mua',
         icon: Icons.shopping_cart_outlined,
         route: RouteNames.personalApprovePurchasing,
+        restrictedToWhitelist: true,
       ),
     ],
   ),
