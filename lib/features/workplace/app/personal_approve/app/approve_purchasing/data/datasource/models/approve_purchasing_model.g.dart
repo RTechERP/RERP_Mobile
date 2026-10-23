@@ -481,3 +481,59 @@ Map<String, dynamic> _$$ProjectFilterItemImplToJson(
       'TypeProject': instance.typeProject,
       'IsDeleted': instance.isDeleted,
     };
+
+_$ProductPriceHistoryItemImpl _$$ProductPriceHistoryItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ProductPriceHistoryItemImpl(
+      productCode: json['ProductCode'] as String?,
+      productName: json['ProductName'] as String?,
+      unitPrice: (json['UnitPrice'] as num?)?.toDouble(),
+      currencyCode: json['CurrencyCode'] as String?,
+      currencyRate: (json['CurrencyRate'] as num?)?.toDouble(),
+      nameNcc: json['NameNCC'] as String?,
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+      productId: (json['ProductID'] as num?)?.toInt(),
+      leadTime: json['LeadTime'] as String?,
+      tableType: json['TableType'] as String?,
+      projectCode: json['ProjectCode'] as String?,
+      projectName: json['ProjectName'] as String?,
+      supplierSaleId: (json['SupplierSaleID'] as num?)?.toInt(),
+      projectId: (json['ProjectID'] as num?)?.toInt(),
+      unit: json['Unit'] as String?,
+      codeNcc: json['CodeNCC'] as String?,
+      quantity: (json['Quantity'] as num?)?.toDouble(),
+      maker: json['Maker'] as String?,
+      model: json['Model'] as String?,
+      totalPriceExchange: (json['TotalPriceExchange'] as num?)?.toDouble(),
+      totalMoney: (json['TotalMoney'] as num?)?.toDouble(),
+      employeeId: (json['EmployeeID'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$ProductPriceHistoryItemImplToJson(
+        _$ProductPriceHistoryItemImpl instance) =>
+    <String, dynamic>{
+      'ProductCode': instance.productCode,
+      'ProductName': instance.productName,
+      'UnitPrice': instance.unitPrice,
+      'CurrencyCode': instance.currencyCode,
+      'CurrencyRate': instance.currencyRate,
+      'NameNCC': instance.nameNcc,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'ProductID': instance.productId,
+      'LeadTime': instance.leadTime,
+      'TableType': instance.tableType,
+      'ProjectCode': instance.projectCode,
+      'ProjectName': instance.projectName,
+      'SupplierSaleID': instance.supplierSaleId,
+      'ProjectID': instance.projectId,
+      'Unit': instance.unit,
+      'CodeNCC': instance.codeNcc,
+      'Quantity': instance.quantity,
+      'Maker': instance.maker,
+      'Model': instance.model,
+      'TotalPriceExchange': instance.totalPriceExchange,
+      'TotalMoney': instance.totalMoney,
+      'EmployeeID': instance.employeeId,
+    };

@@ -181,4 +181,37 @@ class ApprovePurchasingRepoImpl implements ApprovePurchasingRepo {
       return left(BaseError.httpInternalServerError(e.toString()));
     }
   }
+
+  /// Lấy lịch sử giá của 1 sản phẩm theo từ khoá (mã sản phẩm).
+  /// Sắp xếp mới nhất trước để user thấy giá gần nhất ở trên cùng.
+  @override
+  Future<Either<BaseError, List<ProductPriceHistoryItem>>>
+      getProductPriceHistory({
+    required String keyword,
+  }) async {
+    try {
+      final res = await _service.getProductPriceHistory(keyword: keyword);
+      if (res.status == 1 && res.data != null) {
+        final items = [...res.data!]
+          ..sort((a, b) {
+            final ad = a.createdDate;
+            final bd = b.createdDate;
+            if (ad == null && bd == null) return 0;
+            if (ad == null) return 1;
+            if (bd == null) return -1;
+            return bd.compareTo(ad);
+          });
+        return right(items);
+      }
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? res.msg ?? 'Không thể tải lịch sử giá sản phẩm',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
 }

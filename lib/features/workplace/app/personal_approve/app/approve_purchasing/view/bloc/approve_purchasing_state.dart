@@ -65,6 +65,19 @@ class ApprovePurchasingState extends BaseBlocState {
   /// UI subscribe để show snackbar (xem `Screen`).
   final ApprovePurchasingFeedback? approveFeedback;
 
+  /// Lịch sử giá của sản phẩm đang xem (mới nhất trước).
+  /// `null` = chưa tải / đã đóng sheet.
+  final List<ProductPriceHistoryItem>? priceHistory;
+
+  /// `true` khi đang gọi API lịch sử giá.
+  final bool isLoadingPriceHistory;
+
+  /// Từ khoá (mã sản phẩm) đang xem lịch sử giá.
+  final String? priceHistoryKeyword;
+
+  /// Lỗi khi tải lịch sử giá (để hiển thị ngay trong bottom sheet).
+  final String? priceHistoryError;
+
   const ApprovePurchasingState({
     required super.status,
     super.message,
@@ -83,6 +96,10 @@ class ApprovePurchasingState extends BaseBlocState {
     this.selectedIds = const <int>{},
     this.isApproving = false,
     this.approveFeedback,
+    this.priceHistory,
+    this.isLoadingPriceHistory = false,
+    this.priceHistoryKeyword,
+    this.priceHistoryError,
   });
 
   factory ApprovePurchasingState.init() => ApprovePurchasingState(
@@ -102,6 +119,9 @@ class ApprovePurchasingState extends BaseBlocState {
         selectedIds: const <int>{},
         isApproving: false,
         approveFeedback: null,
+        priceHistory: null,
+        isLoadingPriceHistory: false,
+        priceHistoryKeyword: null,
       );
 
   /// Whitelist 3 ID loại phiếu mua được phép hiển thị trên UI.
@@ -272,6 +292,10 @@ class ApprovePurchasingState extends BaseBlocState {
         selectedIds,
         isApproving,
         approveFeedback,
+        priceHistory,
+        isLoadingPriceHistory,
+        priceHistoryKeyword,
+        priceHistoryError,
       ];
 }
 

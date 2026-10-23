@@ -5433,3 +5433,677 @@ abstract class _ProjectFilterItem implements ProjectFilterItem {
   _$$ProjectFilterItemImplCopyWith<_$ProjectFilterItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+ProductPriceHistoryItem _$ProductPriceHistoryItemFromJson(
+    Map<String, dynamic> json) {
+  return _ProductPriceHistoryItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ProductPriceHistoryItem {
+  @JsonKey(name: 'ProductCode')
+  String? get productCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProductName')
+  String? get productName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UnitPrice')
+  double? get unitPrice => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CurrencyCode')
+  String? get currencyCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CurrencyRate')
+  double? get currencyRate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'NameNCC')
+  String? get nameNcc => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProductID')
+  int? get productId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'LeadTime')
+  String? get leadTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TableType')
+  String? get tableType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectCode')
+  String? get projectCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectName')
+  String? get projectName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'SupplierSaleID')
+  int? get supplierSaleId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectID')
+  int? get projectId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Unit')
+  String? get unit => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CodeNCC')
+  String? get codeNcc => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Quantity')
+  double? get quantity => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Maker')
+  String? get maker => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Model')
+  String? get model => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TotalPriceExchange')
+  double? get totalPriceExchange => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TotalMoney')
+  double? get totalMoney => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ProductPriceHistoryItemCopyWith<ProductPriceHistoryItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProductPriceHistoryItemCopyWith<$Res> {
+  factory $ProductPriceHistoryItemCopyWith(ProductPriceHistoryItem value,
+          $Res Function(ProductPriceHistoryItem) then) =
+      _$ProductPriceHistoryItemCopyWithImpl<$Res, ProductPriceHistoryItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ProductCode') String? productCode,
+      @JsonKey(name: 'ProductName') String? productName,
+      @JsonKey(name: 'UnitPrice') double? unitPrice,
+      @JsonKey(name: 'CurrencyCode') String? currencyCode,
+      @JsonKey(name: 'CurrencyRate') double? currencyRate,
+      @JsonKey(name: 'NameNCC') String? nameNcc,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'ProductID') int? productId,
+      @JsonKey(name: 'LeadTime') String? leadTime,
+      @JsonKey(name: 'TableType') String? tableType,
+      @JsonKey(name: 'ProjectCode') String? projectCode,
+      @JsonKey(name: 'ProjectName') String? projectName,
+      @JsonKey(name: 'SupplierSaleID') int? supplierSaleId,
+      @JsonKey(name: 'ProjectID') int? projectId,
+      @JsonKey(name: 'Unit') String? unit,
+      @JsonKey(name: 'CodeNCC') String? codeNcc,
+      @JsonKey(name: 'Quantity') double? quantity,
+      @JsonKey(name: 'Maker') String? maker,
+      @JsonKey(name: 'Model') String? model,
+      @JsonKey(name: 'TotalPriceExchange') double? totalPriceExchange,
+      @JsonKey(name: 'TotalMoney') double? totalMoney,
+      @JsonKey(name: 'EmployeeID') int? employeeId});
+}
+
+/// @nodoc
+class _$ProductPriceHistoryItemCopyWithImpl<$Res,
+        $Val extends ProductPriceHistoryItem>
+    implements $ProductPriceHistoryItemCopyWith<$Res> {
+  _$ProductPriceHistoryItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? productCode = freezed,
+    Object? productName = freezed,
+    Object? unitPrice = freezed,
+    Object? currencyCode = freezed,
+    Object? currencyRate = freezed,
+    Object? nameNcc = freezed,
+    Object? createdDate = freezed,
+    Object? productId = freezed,
+    Object? leadTime = freezed,
+    Object? tableType = freezed,
+    Object? projectCode = freezed,
+    Object? projectName = freezed,
+    Object? supplierSaleId = freezed,
+    Object? projectId = freezed,
+    Object? unit = freezed,
+    Object? codeNcc = freezed,
+    Object? quantity = freezed,
+    Object? maker = freezed,
+    Object? model = freezed,
+    Object? totalPriceExchange = freezed,
+    Object? totalMoney = freezed,
+    Object? employeeId = freezed,
+  }) {
+    return _then(_value.copyWith(
+      productCode: freezed == productCode
+          ? _value.productCode
+          : productCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productName: freezed == productName
+          ? _value.productName
+          : productName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      unitPrice: freezed == unitPrice
+          ? _value.unitPrice
+          : unitPrice // ignore: cast_nullable_to_non_nullable
+              as double?,
+      currencyCode: freezed == currencyCode
+          ? _value.currencyCode
+          : currencyCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      currencyRate: freezed == currencyRate
+          ? _value.currencyRate
+          : currencyRate // ignore: cast_nullable_to_non_nullable
+              as double?,
+      nameNcc: freezed == nameNcc
+          ? _value.nameNcc
+          : nameNcc // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      productId: freezed == productId
+          ? _value.productId
+          : productId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      leadTime: freezed == leadTime
+          ? _value.leadTime
+          : leadTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      tableType: freezed == tableType
+          ? _value.tableType
+          : tableType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectCode: freezed == projectCode
+          ? _value.projectCode
+          : projectCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectName: freezed == projectName
+          ? _value.projectName
+          : projectName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      supplierSaleId: freezed == supplierSaleId
+          ? _value.supplierSaleId
+          : supplierSaleId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      unit: freezed == unit
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
+              as String?,
+      codeNcc: freezed == codeNcc
+          ? _value.codeNcc
+          : codeNcc // ignore: cast_nullable_to_non_nullable
+              as String?,
+      quantity: freezed == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as double?,
+      maker: freezed == maker
+          ? _value.maker
+          : maker // ignore: cast_nullable_to_non_nullable
+              as String?,
+      model: freezed == model
+          ? _value.model
+          : model // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalPriceExchange: freezed == totalPriceExchange
+          ? _value.totalPriceExchange
+          : totalPriceExchange // ignore: cast_nullable_to_non_nullable
+              as double?,
+      totalMoney: freezed == totalMoney
+          ? _value.totalMoney
+          : totalMoney // ignore: cast_nullable_to_non_nullable
+              as double?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ProductPriceHistoryItemImplCopyWith<$Res>
+    implements $ProductPriceHistoryItemCopyWith<$Res> {
+  factory _$$ProductPriceHistoryItemImplCopyWith(
+          _$ProductPriceHistoryItemImpl value,
+          $Res Function(_$ProductPriceHistoryItemImpl) then) =
+      __$$ProductPriceHistoryItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ProductCode') String? productCode,
+      @JsonKey(name: 'ProductName') String? productName,
+      @JsonKey(name: 'UnitPrice') double? unitPrice,
+      @JsonKey(name: 'CurrencyCode') String? currencyCode,
+      @JsonKey(name: 'CurrencyRate') double? currencyRate,
+      @JsonKey(name: 'NameNCC') String? nameNcc,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'ProductID') int? productId,
+      @JsonKey(name: 'LeadTime') String? leadTime,
+      @JsonKey(name: 'TableType') String? tableType,
+      @JsonKey(name: 'ProjectCode') String? projectCode,
+      @JsonKey(name: 'ProjectName') String? projectName,
+      @JsonKey(name: 'SupplierSaleID') int? supplierSaleId,
+      @JsonKey(name: 'ProjectID') int? projectId,
+      @JsonKey(name: 'Unit') String? unit,
+      @JsonKey(name: 'CodeNCC') String? codeNcc,
+      @JsonKey(name: 'Quantity') double? quantity,
+      @JsonKey(name: 'Maker') String? maker,
+      @JsonKey(name: 'Model') String? model,
+      @JsonKey(name: 'TotalPriceExchange') double? totalPriceExchange,
+      @JsonKey(name: 'TotalMoney') double? totalMoney,
+      @JsonKey(name: 'EmployeeID') int? employeeId});
+}
+
+/// @nodoc
+class __$$ProductPriceHistoryItemImplCopyWithImpl<$Res>
+    extends _$ProductPriceHistoryItemCopyWithImpl<$Res,
+        _$ProductPriceHistoryItemImpl>
+    implements _$$ProductPriceHistoryItemImplCopyWith<$Res> {
+  __$$ProductPriceHistoryItemImplCopyWithImpl(
+      _$ProductPriceHistoryItemImpl _value,
+      $Res Function(_$ProductPriceHistoryItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? productCode = freezed,
+    Object? productName = freezed,
+    Object? unitPrice = freezed,
+    Object? currencyCode = freezed,
+    Object? currencyRate = freezed,
+    Object? nameNcc = freezed,
+    Object? createdDate = freezed,
+    Object? productId = freezed,
+    Object? leadTime = freezed,
+    Object? tableType = freezed,
+    Object? projectCode = freezed,
+    Object? projectName = freezed,
+    Object? supplierSaleId = freezed,
+    Object? projectId = freezed,
+    Object? unit = freezed,
+    Object? codeNcc = freezed,
+    Object? quantity = freezed,
+    Object? maker = freezed,
+    Object? model = freezed,
+    Object? totalPriceExchange = freezed,
+    Object? totalMoney = freezed,
+    Object? employeeId = freezed,
+  }) {
+    return _then(_$ProductPriceHistoryItemImpl(
+      productCode: freezed == productCode
+          ? _value.productCode
+          : productCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productName: freezed == productName
+          ? _value.productName
+          : productName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      unitPrice: freezed == unitPrice
+          ? _value.unitPrice
+          : unitPrice // ignore: cast_nullable_to_non_nullable
+              as double?,
+      currencyCode: freezed == currencyCode
+          ? _value.currencyCode
+          : currencyCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      currencyRate: freezed == currencyRate
+          ? _value.currencyRate
+          : currencyRate // ignore: cast_nullable_to_non_nullable
+              as double?,
+      nameNcc: freezed == nameNcc
+          ? _value.nameNcc
+          : nameNcc // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      productId: freezed == productId
+          ? _value.productId
+          : productId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      leadTime: freezed == leadTime
+          ? _value.leadTime
+          : leadTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      tableType: freezed == tableType
+          ? _value.tableType
+          : tableType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectCode: freezed == projectCode
+          ? _value.projectCode
+          : projectCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectName: freezed == projectName
+          ? _value.projectName
+          : projectName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      supplierSaleId: freezed == supplierSaleId
+          ? _value.supplierSaleId
+          : supplierSaleId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      unit: freezed == unit
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
+              as String?,
+      codeNcc: freezed == codeNcc
+          ? _value.codeNcc
+          : codeNcc // ignore: cast_nullable_to_non_nullable
+              as String?,
+      quantity: freezed == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as double?,
+      maker: freezed == maker
+          ? _value.maker
+          : maker // ignore: cast_nullable_to_non_nullable
+              as String?,
+      model: freezed == model
+          ? _value.model
+          : model // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalPriceExchange: freezed == totalPriceExchange
+          ? _value.totalPriceExchange
+          : totalPriceExchange // ignore: cast_nullable_to_non_nullable
+              as double?,
+      totalMoney: freezed == totalMoney
+          ? _value.totalMoney
+          : totalMoney // ignore: cast_nullable_to_non_nullable
+              as double?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ProductPriceHistoryItemImpl implements _ProductPriceHistoryItem {
+  const _$ProductPriceHistoryItemImpl(
+      {@JsonKey(name: 'ProductCode') this.productCode,
+      @JsonKey(name: 'ProductName') this.productName,
+      @JsonKey(name: 'UnitPrice') this.unitPrice,
+      @JsonKey(name: 'CurrencyCode') this.currencyCode,
+      @JsonKey(name: 'CurrencyRate') this.currencyRate,
+      @JsonKey(name: 'NameNCC') this.nameNcc,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'ProductID') this.productId,
+      @JsonKey(name: 'LeadTime') this.leadTime,
+      @JsonKey(name: 'TableType') this.tableType,
+      @JsonKey(name: 'ProjectCode') this.projectCode,
+      @JsonKey(name: 'ProjectName') this.projectName,
+      @JsonKey(name: 'SupplierSaleID') this.supplierSaleId,
+      @JsonKey(name: 'ProjectID') this.projectId,
+      @JsonKey(name: 'Unit') this.unit,
+      @JsonKey(name: 'CodeNCC') this.codeNcc,
+      @JsonKey(name: 'Quantity') this.quantity,
+      @JsonKey(name: 'Maker') this.maker,
+      @JsonKey(name: 'Model') this.model,
+      @JsonKey(name: 'TotalPriceExchange') this.totalPriceExchange,
+      @JsonKey(name: 'TotalMoney') this.totalMoney,
+      @JsonKey(name: 'EmployeeID') this.employeeId});
+
+  factory _$ProductPriceHistoryItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProductPriceHistoryItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ProductCode')
+  final String? productCode;
+  @override
+  @JsonKey(name: 'ProductName')
+  final String? productName;
+  @override
+  @JsonKey(name: 'UnitPrice')
+  final double? unitPrice;
+  @override
+  @JsonKey(name: 'CurrencyCode')
+  final String? currencyCode;
+  @override
+  @JsonKey(name: 'CurrencyRate')
+  final double? currencyRate;
+  @override
+  @JsonKey(name: 'NameNCC')
+  final String? nameNcc;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'ProductID')
+  final int? productId;
+  @override
+  @JsonKey(name: 'LeadTime')
+  final String? leadTime;
+  @override
+  @JsonKey(name: 'TableType')
+  final String? tableType;
+  @override
+  @JsonKey(name: 'ProjectCode')
+  final String? projectCode;
+  @override
+  @JsonKey(name: 'ProjectName')
+  final String? projectName;
+  @override
+  @JsonKey(name: 'SupplierSaleID')
+  final int? supplierSaleId;
+  @override
+  @JsonKey(name: 'ProjectID')
+  final int? projectId;
+  @override
+  @JsonKey(name: 'Unit')
+  final String? unit;
+  @override
+  @JsonKey(name: 'CodeNCC')
+  final String? codeNcc;
+  @override
+  @JsonKey(name: 'Quantity')
+  final double? quantity;
+  @override
+  @JsonKey(name: 'Maker')
+  final String? maker;
+  @override
+  @JsonKey(name: 'Model')
+  final String? model;
+  @override
+  @JsonKey(name: 'TotalPriceExchange')
+  final double? totalPriceExchange;
+  @override
+  @JsonKey(name: 'TotalMoney')
+  final double? totalMoney;
+  @override
+  @JsonKey(name: 'EmployeeID')
+  final int? employeeId;
+
+  @override
+  String toString() {
+    return 'ProductPriceHistoryItem(productCode: $productCode, productName: $productName, unitPrice: $unitPrice, currencyCode: $currencyCode, currencyRate: $currencyRate, nameNcc: $nameNcc, createdDate: $createdDate, productId: $productId, leadTime: $leadTime, tableType: $tableType, projectCode: $projectCode, projectName: $projectName, supplierSaleId: $supplierSaleId, projectId: $projectId, unit: $unit, codeNcc: $codeNcc, quantity: $quantity, maker: $maker, model: $model, totalPriceExchange: $totalPriceExchange, totalMoney: $totalMoney, employeeId: $employeeId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProductPriceHistoryItemImpl &&
+            (identical(other.productCode, productCode) ||
+                other.productCode == productCode) &&
+            (identical(other.productName, productName) ||
+                other.productName == productName) &&
+            (identical(other.unitPrice, unitPrice) ||
+                other.unitPrice == unitPrice) &&
+            (identical(other.currencyCode, currencyCode) ||
+                other.currencyCode == currencyCode) &&
+            (identical(other.currencyRate, currencyRate) ||
+                other.currencyRate == currencyRate) &&
+            (identical(other.nameNcc, nameNcc) || other.nameNcc == nameNcc) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.productId, productId) ||
+                other.productId == productId) &&
+            (identical(other.leadTime, leadTime) ||
+                other.leadTime == leadTime) &&
+            (identical(other.tableType, tableType) ||
+                other.tableType == tableType) &&
+            (identical(other.projectCode, projectCode) ||
+                other.projectCode == projectCode) &&
+            (identical(other.projectName, projectName) ||
+                other.projectName == projectName) &&
+            (identical(other.supplierSaleId, supplierSaleId) ||
+                other.supplierSaleId == supplierSaleId) &&
+            (identical(other.projectId, projectId) ||
+                other.projectId == projectId) &&
+            (identical(other.unit, unit) || other.unit == unit) &&
+            (identical(other.codeNcc, codeNcc) || other.codeNcc == codeNcc) &&
+            (identical(other.quantity, quantity) ||
+                other.quantity == quantity) &&
+            (identical(other.maker, maker) || other.maker == maker) &&
+            (identical(other.model, model) || other.model == model) &&
+            (identical(other.totalPriceExchange, totalPriceExchange) ||
+                other.totalPriceExchange == totalPriceExchange) &&
+            (identical(other.totalMoney, totalMoney) ||
+                other.totalMoney == totalMoney) &&
+            (identical(other.employeeId, employeeId) ||
+                other.employeeId == employeeId));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        productCode,
+        productName,
+        unitPrice,
+        currencyCode,
+        currencyRate,
+        nameNcc,
+        createdDate,
+        productId,
+        leadTime,
+        tableType,
+        projectCode,
+        projectName,
+        supplierSaleId,
+        projectId,
+        unit,
+        codeNcc,
+        quantity,
+        maker,
+        model,
+        totalPriceExchange,
+        totalMoney,
+        employeeId
+      ]);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProductPriceHistoryItemImplCopyWith<_$ProductPriceHistoryItemImpl>
+      get copyWith => __$$ProductPriceHistoryItemImplCopyWithImpl<
+          _$ProductPriceHistoryItemImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ProductPriceHistoryItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ProductPriceHistoryItem implements ProductPriceHistoryItem {
+  const factory _ProductPriceHistoryItem(
+          {@JsonKey(name: 'ProductCode') final String? productCode,
+          @JsonKey(name: 'ProductName') final String? productName,
+          @JsonKey(name: 'UnitPrice') final double? unitPrice,
+          @JsonKey(name: 'CurrencyCode') final String? currencyCode,
+          @JsonKey(name: 'CurrencyRate') final double? currencyRate,
+          @JsonKey(name: 'NameNCC') final String? nameNcc,
+          @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+          @JsonKey(name: 'ProductID') final int? productId,
+          @JsonKey(name: 'LeadTime') final String? leadTime,
+          @JsonKey(name: 'TableType') final String? tableType,
+          @JsonKey(name: 'ProjectCode') final String? projectCode,
+          @JsonKey(name: 'ProjectName') final String? projectName,
+          @JsonKey(name: 'SupplierSaleID') final int? supplierSaleId,
+          @JsonKey(name: 'ProjectID') final int? projectId,
+          @JsonKey(name: 'Unit') final String? unit,
+          @JsonKey(name: 'CodeNCC') final String? codeNcc,
+          @JsonKey(name: 'Quantity') final double? quantity,
+          @JsonKey(name: 'Maker') final String? maker,
+          @JsonKey(name: 'Model') final String? model,
+          @JsonKey(name: 'TotalPriceExchange') final double? totalPriceExchange,
+          @JsonKey(name: 'TotalMoney') final double? totalMoney,
+          @JsonKey(name: 'EmployeeID') final int? employeeId}) =
+      _$ProductPriceHistoryItemImpl;
+
+  factory _ProductPriceHistoryItem.fromJson(Map<String, dynamic> json) =
+      _$ProductPriceHistoryItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ProductCode')
+  String? get productCode;
+  @override
+  @JsonKey(name: 'ProductName')
+  String? get productName;
+  @override
+  @JsonKey(name: 'UnitPrice')
+  double? get unitPrice;
+  @override
+  @JsonKey(name: 'CurrencyCode')
+  String? get currencyCode;
+  @override
+  @JsonKey(name: 'CurrencyRate')
+  double? get currencyRate;
+  @override
+  @JsonKey(name: 'NameNCC')
+  String? get nameNcc;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate;
+  @override
+  @JsonKey(name: 'ProductID')
+  int? get productId;
+  @override
+  @JsonKey(name: 'LeadTime')
+  String? get leadTime;
+  @override
+  @JsonKey(name: 'TableType')
+  String? get tableType;
+  @override
+  @JsonKey(name: 'ProjectCode')
+  String? get projectCode;
+  @override
+  @JsonKey(name: 'ProjectName')
+  String? get projectName;
+  @override
+  @JsonKey(name: 'SupplierSaleID')
+  int? get supplierSaleId;
+  @override
+  @JsonKey(name: 'ProjectID')
+  int? get projectId;
+  @override
+  @JsonKey(name: 'Unit')
+  String? get unit;
+  @override
+  @JsonKey(name: 'CodeNCC')
+  String? get codeNcc;
+  @override
+  @JsonKey(name: 'Quantity')
+  double? get quantity;
+  @override
+  @JsonKey(name: 'Maker')
+  String? get maker;
+  @override
+  @JsonKey(name: 'Model')
+  String? get model;
+  @override
+  @JsonKey(name: 'TotalPriceExchange')
+  double? get totalPriceExchange;
+  @override
+  @JsonKey(name: 'TotalMoney')
+  double? get totalMoney;
+  @override
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId;
+  @override
+  @JsonKey(ignore: true)
+  _$$ProductPriceHistoryItemImplCopyWith<_$ProductPriceHistoryItemImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}

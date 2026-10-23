@@ -39,6 +39,13 @@ abstract class ApprovePurchasingRepo {
     required bool status,
     required List<ApprovePurchasingItem> items,
   });
+
+  /// Lấy lịch sử giá của 1 sản phẩm theo từ khoá (thường là mã SP).
+  /// Trả về danh sách lịch sử giá, mới nhất trước.
+  Future<Either<BaseError, List<ProductPriceHistoryItem>>>
+      getProductPriceHistory({
+    required String keyword,
+  });
 }
 
 /// Kết quả gọi API duyệt / huỷ duyệt — gồm dữ liệu BE trả về và

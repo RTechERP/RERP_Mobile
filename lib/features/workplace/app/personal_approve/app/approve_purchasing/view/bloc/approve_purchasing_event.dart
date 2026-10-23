@@ -80,4 +80,13 @@ class ApprovePurchasingEvent with _$ApprovePurchasingEvent {
   /// để bloc về `null` tránh show lại khi rebuild.
   const factory ApprovePurchasingEvent.clearApproveFeedback() =
       _ClearApproveFeedback;
+
+  /// Tải lịch sử giá của 1 sản phẩm theo từ khoá (thường là mã SP).
+  /// [keyword] là mã sản phẩm dùng làm query `keyword` của API.
+  const factory ApprovePurchasingEvent.loadPriceHistory({
+    required String keyword,
+  }) = _LoadPriceHistory;
+
+  /// Xoá lịch sử giá khỏi state (sau khi user đóng bottom sheet).
+  const factory ApprovePurchasingEvent.clearPriceHistory() = _ClearPriceHistory;
 }

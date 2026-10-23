@@ -146,4 +146,24 @@ class ApprovePurchasingService extends DioBaseApiService {
       ),
     );
   }
+
+  /// Lấy lịch sử giá của 1 sản phẩm theo từ khoá (mã sản phẩm).
+  /// API: GET /ProjectPartlistPurchaseRequest/history-product-partlist
+  /// Query: `keyword=<mã SP>`
+  Future<BaseData<List<ProductPriceHistoryItem>>> getProductPriceHistory({
+    required String keyword,
+  }) {
+    return get<BaseData<List<ProductPriceHistoryItem>>>(
+      ApiEndPoint.getProductPriceHistory,
+      query: {'keyword': keyword},
+      parser: (json) => BaseData<List<ProductPriceHistoryItem>>.fromJson(
+        json as Map<String, dynamic>,
+        (data) => (data as List)
+            .map(
+              (e) => ProductPriceHistoryItem.fromJson(e as Map<String, dynamic>),
+            )
+            .toList(),
+      ),
+    );
+  }
 }

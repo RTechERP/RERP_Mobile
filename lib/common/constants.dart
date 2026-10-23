@@ -506,6 +506,12 @@ class ApiEndPoint {
   static const String getApprovePurchasingApproved =
       '/ProjectPartlistPurchaseRequest/approved';
 
+  /// Lấy lịch sử giá sản phẩm theo từ khoá (thường là mã sản phẩm).
+  /// API: GET /ProjectPartlistPurchaseRequest/history-product-partlist
+  /// Query: `keyword=<mã SP>`
+  static const String getProductPriceHistory =
+      '/ProjectPartlistPurchaseRequest/history-product-partlist';
+
   // General Form
   static const String departForm = '/document/get-departments';
   static const String getGeneralForm = '/document/get-document-admin-sale';

@@ -282,6 +282,46 @@ class ProjectFilterItem with _$ProjectFilterItem {
 }
 
 // ═══════════════════════════════════════════════════════════════
+// 8. LỊCH SỬ GIÁ SẢN PHẨM — /history-product-partlist
+// ═══════════════════════════════════════════════════════════════
+
+/// Một bản ghi lịch sử giá sản phẩm, trả về từ API
+/// `/ProjectPartlistPurchaseRequest/history-product-partlist`.
+///
+/// Mỗi bản ghi là 1 lần sản phẩm từng được mua ở 1 dự án / 1 NCC
+/// với 1 mức giá tại thời điểm tạo phiếu.
+@freezed
+class ProductPriceHistoryItem with _$ProductPriceHistoryItem {
+  const factory ProductPriceHistoryItem({
+    @JsonKey(name: 'ProductCode') String? productCode,
+    @JsonKey(name: 'ProductName') String? productName,
+    @JsonKey(name: 'UnitPrice') double? unitPrice,
+    @JsonKey(name: 'CurrencyCode') String? currencyCode,
+    @JsonKey(name: 'CurrencyRate') double? currencyRate,
+    @JsonKey(name: 'NameNCC') String? nameNcc,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'ProductID') int? productId,
+    @JsonKey(name: 'LeadTime') String? leadTime,
+    @JsonKey(name: 'TableType') String? tableType,
+    @JsonKey(name: 'ProjectCode') String? projectCode,
+    @JsonKey(name: 'ProjectName') String? projectName,
+    @JsonKey(name: 'SupplierSaleID') int? supplierSaleId,
+    @JsonKey(name: 'ProjectID') int? projectId,
+    @JsonKey(name: 'Unit') String? unit,
+    @JsonKey(name: 'CodeNCC') String? codeNcc,
+    @JsonKey(name: 'Quantity') double? quantity,
+    @JsonKey(name: 'Maker') String? maker,
+    @JsonKey(name: 'Model') String? model,
+    @JsonKey(name: 'TotalPriceExchange') double? totalPriceExchange,
+    @JsonKey(name: 'TotalMoney') double? totalMoney,
+    @JsonKey(name: 'EmployeeID') int? employeeId,
+  }) = _ProductPriceHistoryItem;
+
+  factory ProductPriceHistoryItem.fromJson(Map<String, dynamic> json) =>
+      _$ProductPriceHistoryItemFromJson(json);
+}
+
+// ═══════════════════════════════════════════════════════════════
 // 7. BỘ LỌC CLIENT-SIDE
 // ═══════════════════════════════════════════════════════════════
 

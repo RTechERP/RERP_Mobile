@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../../../../base/bloc/bloc_status.dart';
@@ -26,6 +27,7 @@ import '../../../../../../../../common/widgets/date_range_picker.dart';
 import '../../data/datasource/models/approve_purchasing_model.dart';
 import '../bloc/approve_purchasing_bloc.dart';
 import '../widgets/filter_sheet.dart';
+import '../widgets/product_price_history_sheet.dart';
 
 class ApprovePurchasingScreen extends StatefulWidget {
   const ApprovePurchasingScreen({super.key});
@@ -185,101 +187,122 @@ class _ApprovePurchasingScreenState
         }
       }
 
-      return BaseScaffold(
-        appBar: AppBarCommon(
-          onBackTap: () => context.pop(),
-          centerTitle: false,
-          title: Text(
-            'Duyệt phiếu mua',
-            style: AppStyles.headingTitle2,
-          ),
-          bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(48),
-            child: _buildTabBar(state),
-          ),
-          actions: [
-            if (!state.isSelectionMode) ...[
-              IconButton(
-                tooltip: 'Bộ lọc',
-                onPressed: _openFilterSheet,
-                icon: Icon(
-                  Icons.filter_alt_outlined,
-                  color: state.filter.selectedProjectId != null ||
-                          state.filter.selectedSupplierId != null ||
-                          state.filter.searchKeyword.isNotEmpty
-                      ? AppColors.primaryERP
-                      : AppColors.gray,
-                ),
+      return Stack(
+        children: [
+          BaseScaffold(
+            appBar: AppBarCommon(
+              onBackTap: () => context.pop(),
+              centerTitle: false,
+              title: Text(
+                'Duyệt phiếu mua',
+                style: AppStyles.headingTitle2,
               ),
-              IconButton(
-                tooltip: 'Lọc ngày',
-                onPressed: () => _openDateRangePicker(context),
-                icon: Icon(
-                  Icons.calendar_month,
-                  color: state.isDateFiltered
-                      ? AppColors.primaryERP
-                      : AppColors.gray,
-                ),
+              bottom: PreferredSize(
+                preferredSize: const Size.fromHeight(48),
+                child: _buildTabBar(state),
               ),
-            ],
-            if (state.isSelectionMode)
-              TextButton(
-                onPressed: () => bloc.add(
-                  const ApprovePurchasingEvent.exitSelectionMode(),
-                ),
-                child: Text(
-                  'Huỷ (${state.selectedIds.length})',
-                  style: const TextStyle(
-                    color: AppColors.alert,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 14,
+              actions: [
+                if (!state.isSelectionMode) ...[
+                  IconButton(
+                    tooltip: 'Bộ lọc',
+                    onPressed: _openFilterSheet,
+                    icon: Icon(
+                      Icons.filter_alt_outlined,
+                      color: state.filter.selectedProjectId != null ||
+                              state.filter.selectedSupplierId != null ||
+                              state.filter.searchKeyword.isNotEmpty
+                          ? AppColors.primaryERP
+                          : AppColors.gray,
+                    ),
                   ),
-                ),
-              ),
-          ],
-        ),
-        body: Stack(
-          children: [
-            TabBarView(
-              controller: _tabController,
-              children: [
-                for (var i = 0; i < _tabDefs.length; i++)
-                  _buildTabContent(
-                    context,
-                    state,
-                    refreshKey: _refreshKeys[i],
-                    requestTypeId: _tabDefs[i].requestTypeId,
+                  IconButton(
+                    tooltip: 'Lọc ngày',
+                    onPressed: () => _openDateRangePicker(context),
+                    icon: Icon(
+                      Icons.calendar_month,
+                      color: state.isDateFiltered
+                          ? AppColors.primaryERP
+                          : AppColors.gray,
+                    ),
+                  ),
+                ],
+                if (state.isSelectionMode)
+                  TextButton(
+                    onPressed: () => bloc.add(
+                      const ApprovePurchasingEvent.exitSelectionMode(),
+                    ),
+                    child: Text(
+                      'Huỷ (${state.selectedIds.length})',
+                      style: const TextStyle(
+                        color: AppColors.alert,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 14,
+                      ),
+                    ),
                   ),
               ],
             ),
-            if (state.isSelectionMode)
-              Positioned(
-                left: 0,
-                right: 0,
-                bottom: 0,
-                child: _SelectionActionBar(
-                  selectedCount: state.selectedIds.length,
-                  totalCount: selectedId == null
-                      ? 0
-                      : state
-                          .filteredItemsFor(selectedId)
-                          .where((it) => it.id != null)
-                          .length,
-                  isApproving: state.isApproving,
-                  onSelectAll: state.isApproving
-                      ? () {}
-                      : () => bloc.add(
-                          const ApprovePurchasingEvent.selectAllVisible(),
-                        ),
-                  onClearSelection: () => bloc.add(
-                    const ApprovePurchasingEvent.clearSelection(),
+            body: Stack(
+              children: [
+                TabBarView(
+                  controller: _tabController,
+                  children: [
+                    for (var i = 0; i < _tabDefs.length; i++)
+                      _buildTabContent(
+                        context,
+                        state,
+                        refreshKey: _refreshKeys[i],
+                        requestTypeId: _tabDefs[i].requestTypeId,
+                      ),
+                  ],
+                ),
+                if (state.isSelectionMode)
+                  Positioned(
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    child: _SelectionActionBar(
+                      selectedCount: state.selectedIds.length,
+                      totalCount: selectedId == null
+                          ? 0
+                          : state
+                              .filteredItemsFor(selectedId)
+                              .where((it) => it.id != null)
+                              .length,
+                      isApproving: state.isApproving,
+                      onSelectAll: state.isApproving
+                          ? () {}
+                          : () => bloc.add(
+                              const ApprovePurchasingEvent.selectAllVisible(),
+                            ),
+                      onClearSelection: () => bloc.add(
+                        const ApprovePurchasingEvent.clearSelection(),
+                      ),
+                      onApprove: _onApprove,
+                      onReject: _onReject,
+                    ),
                   ),
-                  onApprove: _onApprove,
-                  onReject: _onReject,
+              ],
+            ),
+          ),
+          // Overlay loading khi đang gọi API duyệt / huỷ duyệt — phủ TOÀN
+          // MÀN (kể cả AppBar) để chặn mọi thao tác khi API đang chạy.
+          if (state.isApproving)
+            Positioned.fill(
+              child: AbsorbPointer(
+                child: Container(
+                  color: Colors.black.withValues(alpha: 0.45),
+                  alignment: Alignment.center,
+                  child: Lottie.asset(
+                    'assets/lotties/Loading.json',
+                    width: 240,
+                    height: 240,
+                    repeat: true,
+                  ),
                 ),
               ),
-          ],
-        ),
+            ),
+        ],
       );
     });
   }
@@ -558,10 +581,19 @@ class _ErrorView extends StatelessWidget {
 }
 
 /// Danh sách phiếu mua — gom theo ProjectID, 1 card / project.
+///
+/// Thứ tự ưu tiên: các phiếu **chưa duyệt** (`isApprovedBgd == false`) được
+/// đưa lên trước — project có phiếu chờ duyệt nằm trên các project đã
+/// duyệt hết. Trong cùng 1 project, các phiếu chờ duyệt cũng được xếp
+/// trước.
 class _PurchasingList extends StatelessWidget {
   const _PurchasingList({required this.items});
 
   final List<ApprovePurchasingItem> items;
+
+  /// Phiếu còn chờ duyệt BGĐ.
+  static bool _isPending(ApprovePurchasingItem item) =>
+      item.isApprovedBgd != true;
 
   @override
   Widget build(BuildContext context) {
@@ -572,9 +604,25 @@ class _PurchasingList extends StatelessWidget {
         .add(item);
     }
 
-    // Sort: project có ID trước, null project sau.
+    // Trong mỗi project: phiếu chờ duyệt lên trước.
+    for (final group in grouped.values) {
+      group.sort((a, b) {
+        final aPending = _isPending(a);
+        final bPending = _isPending(b);
+        if (aPending == bPending) return 0;
+        return aPending ? -1 : 1;
+      });
+    }
+
+    // Sort: project có phiếu chờ duyệt trước; project có ID trước, null
+    // project sau.
     final sortedKeys = grouped.keys.toList()
       ..sort((a, b) {
+        final aPending =
+            grouped[a]!.any(_isPending) ? 0 : 1;
+        final bPending =
+            grouped[b]!.any(_isPending) ? 0 : 1;
+        if (aPending != bPending) return aPending.compareTo(bPending);
         if (a == null && b == null) return 0;
         if (a == null) return 1;
         if (b == null) return -1;
@@ -755,6 +803,18 @@ class _PurchasingCardState extends State<_PurchasingCard> {
                               ),
                             );
                       },
+                      onViewPriceHistory: () {
+                        final code =
+                            (projectItems[i].productCode ?? '').trim();
+                        if (code.isEmpty) return;
+                        ProductPriceHistorySheet.show(
+                          context,
+                          bloc: context.read<ApprovePurchasingBloc>(),
+                          keyword: code,
+                          productName:
+                              (projectItems[i].productName ?? '').trim(),
+                        );
+                      },
                     ),
                 ],
               ),
@@ -829,6 +889,7 @@ class _ProductChildCard extends StatelessWidget {
     required this.selected,
     required this.selectedCount,
     required this.onToggleSelection,
+    required this.onViewPriceHistory,
   });
 
   final ApprovePurchasingItem item;
@@ -838,6 +899,9 @@ class _ProductChildCard extends StatelessWidget {
   /// Tổng số card đang chọn — dùng cho logic tap ở tương lai.
   final int selectedCount;
   final VoidCallback onToggleSelection;
+
+  /// Mở sheet lịch sử giá của sản phẩm này.
+  final VoidCallback onViewPriceHistory;
 
   static final NumberFormat _moneyFmt =
       NumberFormat('#,##0.00', 'en_US');
@@ -920,7 +984,50 @@ class _ProductChildCard extends StatelessWidget {
           text: item.isApprovedBgdText ?? 'Chờ duyệt',
           isApproved: item.isApprovedBgd ?? false,
         ),
+        const Spacer(),
+        _buildPriceHistoryButton(),
       ],
+    );
+  }
+
+  /// Nút mở lịch sử giá sản phẩm — đặt ở góc phải header card SP.
+  ///
+  /// Nút nhỏ, chỉ icon + chữ "Lịch sử giá", dùng màu xanh lam nhạt để nổi
+  /// nhưng không tranh chấp sự chú ý với nội dung phiếu.
+  Widget _buildPriceHistoryButton() {
+    return InkWell(
+      onTap: onViewPriceHistory,
+      borderRadius: BorderRadius.circular(8),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+        decoration: BoxDecoration(
+          color: AppColors.blueA100,
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(
+            color: AppColors.blueA200,
+            width: 1,
+          ),
+        ),
+        child: const Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.history_rounded,
+              size: 13,
+              color: AppColors.blueA500,
+            ),
+            SizedBox(width: 4),
+            Text(
+              'Lịch sử giá',
+              style: TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.w600,
+                color: AppColors.blueA500,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 

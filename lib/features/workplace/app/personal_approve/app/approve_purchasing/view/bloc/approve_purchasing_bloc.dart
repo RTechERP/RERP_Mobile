@@ -55,6 +55,9 @@ class ApprovePurchasingBloc
         approveSelected: (isApproved) =>
             _onApproveSelected(emit, isApproved: isApproved),
         clearApproveFeedback: () => _onClearApproveFeedback(emit),
+        loadPriceHistory: (keyword) =>
+            _onLoadPriceHistory(emit, keyword: keyword),
+        clearPriceHistory: () => _onClearPriceHistory(emit),
       );
     });
   }
@@ -552,5 +555,58 @@ class ApprovePurchasingBloc
   ) async {
     if (state.approveFeedback == null) return;
     emit(state.copyWith(approveFeedback: null));
+  }
+
+  //---(Price History)---//
+
+  /// Tải lịch sử giá của sản phẩm theo từ khoá (mã sản phẩm).
+  /// Lỗi được phát qua `priceHistoryError` để sheet hiển thị thông báo
+  /// ngay trong sheet thay vì snackbar chung.
+  Future<void> _onLoadPriceHistory(
+    Emitter<ApprovePurchasingState> emit, {
+    required String keyword,
+  }) async {
+    if (keyword.trim().isEmpty) return;
+
+    emit(state.copyWith(
+      isLoadingPriceHistory: true,
+      priceHistoryKeyword: keyword,
+      priceHistoryError: null,
+    ));
+
+    final res = await _repo.getProductPriceHistory(keyword: keyword);
+    if (emit.isDone) return;
+
+    await res.fold(
+      (err) async {
+        final msg = err.getErrorMessage;
+        _log.logE('❌ getProductPriceHistory failed: $msg');
+        emit(state.copyWith(
+          isLoadingPriceHistory: false,
+          priceHistory: const [],
+          priceHistoryError: msg,
+        ));
+      },
+      (items) async {
+        _log.logI('✅ getProductPriceHistory ok (${items.length} records)');
+        emit(state.copyWith(
+          isLoadingPriceHistory: false,
+          priceHistory: items,
+          priceHistoryError: null,
+        ));
+      },
+    );
+  }
+
+  /// Xoá lịch sử giá khỏi state (sau khi user đóng sheet).
+  Future<void> _onClearPriceHistory(
+    Emitter<ApprovePurchasingState> emit,
+  ) async {
+    if (state.priceHistory == null && state.priceHistoryKeyword == null) return;
+    emit(state.copyWith(
+      priceHistory: null,
+      priceHistoryKeyword: null,
+      priceHistoryError: null,
+    ));
   }
 }

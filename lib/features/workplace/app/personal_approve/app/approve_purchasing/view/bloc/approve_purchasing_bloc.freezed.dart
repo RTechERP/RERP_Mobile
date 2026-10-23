@@ -36,6 +36,8 @@ mixin _$ApprovePurchasingEvent {
     required TResult Function() clearSelection,
     required TResult Function(bool isApproved) approveSelected,
     required TResult Function() clearApproveFeedback,
+    required TResult Function(String keyword) loadPriceHistory,
+    required TResult Function() clearPriceHistory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -56,6 +58,8 @@ mixin _$ApprovePurchasingEvent {
     TResult? Function()? clearSelection,
     TResult? Function(bool isApproved)? approveSelected,
     TResult? Function()? clearApproveFeedback,
+    TResult? Function(String keyword)? loadPriceHistory,
+    TResult? Function()? clearPriceHistory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -76,6 +80,8 @@ mixin _$ApprovePurchasingEvent {
     TResult Function()? clearSelection,
     TResult Function(bool isApproved)? approveSelected,
     TResult Function()? clearApproveFeedback,
+    TResult Function(String keyword)? loadPriceHistory,
+    TResult Function()? clearPriceHistory,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -97,6 +103,8 @@ mixin _$ApprovePurchasingEvent {
     required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_ApproveSelected value) approveSelected,
     required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
+    required TResult Function(_LoadPriceHistory value) loadPriceHistory,
+    required TResult Function(_ClearPriceHistory value) clearPriceHistory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -117,6 +125,8 @@ mixin _$ApprovePurchasingEvent {
     TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_ApproveSelected value)? approveSelected,
     TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult? Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult? Function(_ClearPriceHistory value)? clearPriceHistory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -137,6 +147,8 @@ mixin _$ApprovePurchasingEvent {
     TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_ApproveSelected value)? approveSelected,
     TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult Function(_ClearPriceHistory value)? clearPriceHistory,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -216,6 +228,8 @@ class _$InitImpl implements _Init {
     required TResult Function() clearSelection,
     required TResult Function(bool isApproved) approveSelected,
     required TResult Function() clearApproveFeedback,
+    required TResult Function(String keyword) loadPriceHistory,
+    required TResult Function() clearPriceHistory,
   }) {
     return init();
   }
@@ -239,6 +253,8 @@ class _$InitImpl implements _Init {
     TResult? Function()? clearSelection,
     TResult? Function(bool isApproved)? approveSelected,
     TResult? Function()? clearApproveFeedback,
+    TResult? Function(String keyword)? loadPriceHistory,
+    TResult? Function()? clearPriceHistory,
   }) {
     return init?.call();
   }
@@ -262,6 +278,8 @@ class _$InitImpl implements _Init {
     TResult Function()? clearSelection,
     TResult Function(bool isApproved)? approveSelected,
     TResult Function()? clearApproveFeedback,
+    TResult Function(String keyword)? loadPriceHistory,
+    TResult Function()? clearPriceHistory,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -289,6 +307,8 @@ class _$InitImpl implements _Init {
     required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_ApproveSelected value) approveSelected,
     required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
+    required TResult Function(_LoadPriceHistory value) loadPriceHistory,
+    required TResult Function(_ClearPriceHistory value) clearPriceHistory,
   }) {
     return init(this);
   }
@@ -312,6 +332,8 @@ class _$InitImpl implements _Init {
     TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_ApproveSelected value)? approveSelected,
     TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult? Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult? Function(_ClearPriceHistory value)? clearPriceHistory,
   }) {
     return init?.call(this);
   }
@@ -335,6 +357,8 @@ class _$InitImpl implements _Init {
     TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_ApproveSelected value)? approveSelected,
     TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult Function(_ClearPriceHistory value)? clearPriceHistory,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -440,6 +464,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function() clearSelection,
     required TResult Function(bool isApproved) approveSelected,
     required TResult Function() clearApproveFeedback,
+    required TResult Function(String keyword) loadPriceHistory,
+    required TResult Function() clearPriceHistory,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -463,6 +489,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function()? clearSelection,
     TResult? Function(bool isApproved)? approveSelected,
     TResult? Function()? clearApproveFeedback,
+    TResult? Function(String keyword)? loadPriceHistory,
+    TResult? Function()? clearPriceHistory,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -486,6 +514,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function()? clearSelection,
     TResult Function(bool isApproved)? approveSelected,
     TResult Function()? clearApproveFeedback,
+    TResult Function(String keyword)? loadPriceHistory,
+    TResult Function()? clearPriceHistory,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -513,6 +543,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_ApproveSelected value) approveSelected,
     required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
+    required TResult Function(_LoadPriceHistory value) loadPriceHistory,
+    required TResult Function(_ClearPriceHistory value) clearPriceHistory,
   }) {
     return changeDateRange(this);
   }
@@ -536,6 +568,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_ApproveSelected value)? approveSelected,
     TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult? Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult? Function(_ClearPriceHistory value)? clearPriceHistory,
   }) {
     return changeDateRange?.call(this);
   }
@@ -559,6 +593,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_ApproveSelected value)? approveSelected,
     TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult Function(_ClearPriceHistory value)? clearPriceHistory,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -663,6 +699,8 @@ class _$SelectTabImpl implements _SelectTab {
     required TResult Function() clearSelection,
     required TResult Function(bool isApproved) approveSelected,
     required TResult Function() clearApproveFeedback,
+    required TResult Function(String keyword) loadPriceHistory,
+    required TResult Function() clearPriceHistory,
   }) {
     return selectTab(requestTypeId);
   }
@@ -686,6 +724,8 @@ class _$SelectTabImpl implements _SelectTab {
     TResult? Function()? clearSelection,
     TResult? Function(bool isApproved)? approveSelected,
     TResult? Function()? clearApproveFeedback,
+    TResult? Function(String keyword)? loadPriceHistory,
+    TResult? Function()? clearPriceHistory,
   }) {
     return selectTab?.call(requestTypeId);
   }
@@ -709,6 +749,8 @@ class _$SelectTabImpl implements _SelectTab {
     TResult Function()? clearSelection,
     TResult Function(bool isApproved)? approveSelected,
     TResult Function()? clearApproveFeedback,
+    TResult Function(String keyword)? loadPriceHistory,
+    TResult Function()? clearPriceHistory,
     required TResult orElse(),
   }) {
     if (selectTab != null) {
@@ -736,6 +778,8 @@ class _$SelectTabImpl implements _SelectTab {
     required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_ApproveSelected value) approveSelected,
     required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
+    required TResult Function(_LoadPriceHistory value) loadPriceHistory,
+    required TResult Function(_ClearPriceHistory value) clearPriceHistory,
   }) {
     return selectTab(this);
   }
@@ -759,6 +803,8 @@ class _$SelectTabImpl implements _SelectTab {
     TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_ApproveSelected value)? approveSelected,
     TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult? Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult? Function(_ClearPriceHistory value)? clearPriceHistory,
   }) {
     return selectTab?.call(this);
   }
@@ -782,6 +828,8 @@ class _$SelectTabImpl implements _SelectTab {
     TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_ApproveSelected value)? approveSelected,
     TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult Function(_ClearPriceHistory value)? clearPriceHistory,
     required TResult orElse(),
   }) {
     if (selectTab != null) {
@@ -857,6 +905,8 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function() clearSelection,
     required TResult Function(bool isApproved) approveSelected,
     required TResult Function() clearApproveFeedback,
+    required TResult Function(String keyword) loadPriceHistory,
+    required TResult Function() clearPriceHistory,
   }) {
     return refresh();
   }
@@ -880,6 +930,8 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function()? clearSelection,
     TResult? Function(bool isApproved)? approveSelected,
     TResult? Function()? clearApproveFeedback,
+    TResult? Function(String keyword)? loadPriceHistory,
+    TResult? Function()? clearPriceHistory,
   }) {
     return refresh?.call();
   }
@@ -903,6 +955,8 @@ class _$RefreshImpl implements _Refresh {
     TResult Function()? clearSelection,
     TResult Function(bool isApproved)? approveSelected,
     TResult Function()? clearApproveFeedback,
+    TResult Function(String keyword)? loadPriceHistory,
+    TResult Function()? clearPriceHistory,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -930,6 +984,8 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_ApproveSelected value) approveSelected,
     required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
+    required TResult Function(_LoadPriceHistory value) loadPriceHistory,
+    required TResult Function(_ClearPriceHistory value) clearPriceHistory,
   }) {
     return refresh(this);
   }
@@ -953,6 +1009,8 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_ApproveSelected value)? approveSelected,
     TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult? Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult? Function(_ClearPriceHistory value)? clearPriceHistory,
   }) {
     return refresh?.call(this);
   }
@@ -976,6 +1034,8 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_ApproveSelected value)? approveSelected,
     TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult Function(_ClearPriceHistory value)? clearPriceHistory,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -1072,6 +1132,8 @@ class _$SelectProjectImpl implements _SelectProject {
     required TResult Function() clearSelection,
     required TResult Function(bool isApproved) approveSelected,
     required TResult Function() clearApproveFeedback,
+    required TResult Function(String keyword) loadPriceHistory,
+    required TResult Function() clearPriceHistory,
   }) {
     return selectProject(projectId);
   }
@@ -1095,6 +1157,8 @@ class _$SelectProjectImpl implements _SelectProject {
     TResult? Function()? clearSelection,
     TResult? Function(bool isApproved)? approveSelected,
     TResult? Function()? clearApproveFeedback,
+    TResult? Function(String keyword)? loadPriceHistory,
+    TResult? Function()? clearPriceHistory,
   }) {
     return selectProject?.call(projectId);
   }
@@ -1118,6 +1182,8 @@ class _$SelectProjectImpl implements _SelectProject {
     TResult Function()? clearSelection,
     TResult Function(bool isApproved)? approveSelected,
     TResult Function()? clearApproveFeedback,
+    TResult Function(String keyword)? loadPriceHistory,
+    TResult Function()? clearPriceHistory,
     required TResult orElse(),
   }) {
     if (selectProject != null) {
@@ -1145,6 +1211,8 @@ class _$SelectProjectImpl implements _SelectProject {
     required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_ApproveSelected value) approveSelected,
     required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
+    required TResult Function(_LoadPriceHistory value) loadPriceHistory,
+    required TResult Function(_ClearPriceHistory value) clearPriceHistory,
   }) {
     return selectProject(this);
   }
@@ -1168,6 +1236,8 @@ class _$SelectProjectImpl implements _SelectProject {
     TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_ApproveSelected value)? approveSelected,
     TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult? Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult? Function(_ClearPriceHistory value)? clearPriceHistory,
   }) {
     return selectProject?.call(this);
   }
@@ -1191,6 +1261,8 @@ class _$SelectProjectImpl implements _SelectProject {
     TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_ApproveSelected value)? approveSelected,
     TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult Function(_ClearPriceHistory value)? clearPriceHistory,
     required TResult orElse(),
   }) {
     if (selectProject != null) {
@@ -1294,6 +1366,8 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     required TResult Function() clearSelection,
     required TResult Function(bool isApproved) approveSelected,
     required TResult Function() clearApproveFeedback,
+    required TResult Function(String keyword) loadPriceHistory,
+    required TResult Function() clearPriceHistory,
   }) {
     return selectSupplier(supplierId);
   }
@@ -1317,6 +1391,8 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     TResult? Function()? clearSelection,
     TResult? Function(bool isApproved)? approveSelected,
     TResult? Function()? clearApproveFeedback,
+    TResult? Function(String keyword)? loadPriceHistory,
+    TResult? Function()? clearPriceHistory,
   }) {
     return selectSupplier?.call(supplierId);
   }
@@ -1340,6 +1416,8 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     TResult Function()? clearSelection,
     TResult Function(bool isApproved)? approveSelected,
     TResult Function()? clearApproveFeedback,
+    TResult Function(String keyword)? loadPriceHistory,
+    TResult Function()? clearPriceHistory,
     required TResult orElse(),
   }) {
     if (selectSupplier != null) {
@@ -1367,6 +1445,8 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_ApproveSelected value) approveSelected,
     required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
+    required TResult Function(_LoadPriceHistory value) loadPriceHistory,
+    required TResult Function(_ClearPriceHistory value) clearPriceHistory,
   }) {
     return selectSupplier(this);
   }
@@ -1390,6 +1470,8 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_ApproveSelected value)? approveSelected,
     TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult? Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult? Function(_ClearPriceHistory value)? clearPriceHistory,
   }) {
     return selectSupplier?.call(this);
   }
@@ -1413,6 +1495,8 @@ class _$SelectSupplierImpl implements _SelectSupplier {
     TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_ApproveSelected value)? approveSelected,
     TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult Function(_ClearPriceHistory value)? clearPriceHistory,
     required TResult orElse(),
   }) {
     if (selectSupplier != null) {
@@ -1488,6 +1572,8 @@ class _$ResetFilterImpl implements _ResetFilter {
     required TResult Function() clearSelection,
     required TResult Function(bool isApproved) approveSelected,
     required TResult Function() clearApproveFeedback,
+    required TResult Function(String keyword) loadPriceHistory,
+    required TResult Function() clearPriceHistory,
   }) {
     return resetFilter();
   }
@@ -1511,6 +1597,8 @@ class _$ResetFilterImpl implements _ResetFilter {
     TResult? Function()? clearSelection,
     TResult? Function(bool isApproved)? approveSelected,
     TResult? Function()? clearApproveFeedback,
+    TResult? Function(String keyword)? loadPriceHistory,
+    TResult? Function()? clearPriceHistory,
   }) {
     return resetFilter?.call();
   }
@@ -1534,6 +1622,8 @@ class _$ResetFilterImpl implements _ResetFilter {
     TResult Function()? clearSelection,
     TResult Function(bool isApproved)? approveSelected,
     TResult Function()? clearApproveFeedback,
+    TResult Function(String keyword)? loadPriceHistory,
+    TResult Function()? clearPriceHistory,
     required TResult orElse(),
   }) {
     if (resetFilter != null) {
@@ -1561,6 +1651,8 @@ class _$ResetFilterImpl implements _ResetFilter {
     required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_ApproveSelected value) approveSelected,
     required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
+    required TResult Function(_LoadPriceHistory value) loadPriceHistory,
+    required TResult Function(_ClearPriceHistory value) clearPriceHistory,
   }) {
     return resetFilter(this);
   }
@@ -1584,6 +1676,8 @@ class _$ResetFilterImpl implements _ResetFilter {
     TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_ApproveSelected value)? approveSelected,
     TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult? Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult? Function(_ClearPriceHistory value)? clearPriceHistory,
   }) {
     return resetFilter?.call(this);
   }
@@ -1607,6 +1701,8 @@ class _$ResetFilterImpl implements _ResetFilter {
     TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_ApproveSelected value)? approveSelected,
     TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult Function(_ClearPriceHistory value)? clearPriceHistory,
     required TResult orElse(),
   }) {
     if (resetFilter != null) {
@@ -1704,6 +1800,8 @@ class _$ChangeSearchKeywordImpl implements _ChangeSearchKeyword {
     required TResult Function() clearSelection,
     required TResult Function(bool isApproved) approveSelected,
     required TResult Function() clearApproveFeedback,
+    required TResult Function(String keyword) loadPriceHistory,
+    required TResult Function() clearPriceHistory,
   }) {
     return changeSearchKeyword(keyword);
   }
@@ -1727,6 +1825,8 @@ class _$ChangeSearchKeywordImpl implements _ChangeSearchKeyword {
     TResult? Function()? clearSelection,
     TResult? Function(bool isApproved)? approveSelected,
     TResult? Function()? clearApproveFeedback,
+    TResult? Function(String keyword)? loadPriceHistory,
+    TResult? Function()? clearPriceHistory,
   }) {
     return changeSearchKeyword?.call(keyword);
   }
@@ -1750,6 +1850,8 @@ class _$ChangeSearchKeywordImpl implements _ChangeSearchKeyword {
     TResult Function()? clearSelection,
     TResult Function(bool isApproved)? approveSelected,
     TResult Function()? clearApproveFeedback,
+    TResult Function(String keyword)? loadPriceHistory,
+    TResult Function()? clearPriceHistory,
     required TResult orElse(),
   }) {
     if (changeSearchKeyword != null) {
@@ -1777,6 +1879,8 @@ class _$ChangeSearchKeywordImpl implements _ChangeSearchKeyword {
     required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_ApproveSelected value) approveSelected,
     required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
+    required TResult Function(_LoadPriceHistory value) loadPriceHistory,
+    required TResult Function(_ClearPriceHistory value) clearPriceHistory,
   }) {
     return changeSearchKeyword(this);
   }
@@ -1800,6 +1904,8 @@ class _$ChangeSearchKeywordImpl implements _ChangeSearchKeyword {
     TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_ApproveSelected value)? approveSelected,
     TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult? Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult? Function(_ClearPriceHistory value)? clearPriceHistory,
   }) {
     return changeSearchKeyword?.call(this);
   }
@@ -1823,6 +1929,8 @@ class _$ChangeSearchKeywordImpl implements _ChangeSearchKeyword {
     TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_ApproveSelected value)? approveSelected,
     TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult Function(_ClearPriceHistory value)? clearPriceHistory,
     required TResult orElse(),
   }) {
     if (changeSearchKeyword != null) {
@@ -1924,6 +2032,8 @@ class _$SelectProductImpl implements _SelectProduct {
     required TResult Function() clearSelection,
     required TResult Function(bool isApproved) approveSelected,
     required TResult Function() clearApproveFeedback,
+    required TResult Function(String keyword) loadPriceHistory,
+    required TResult Function() clearPriceHistory,
   }) {
     return selectProduct(product);
   }
@@ -1947,6 +2057,8 @@ class _$SelectProductImpl implements _SelectProduct {
     TResult? Function()? clearSelection,
     TResult? Function(bool isApproved)? approveSelected,
     TResult? Function()? clearApproveFeedback,
+    TResult? Function(String keyword)? loadPriceHistory,
+    TResult? Function()? clearPriceHistory,
   }) {
     return selectProduct?.call(product);
   }
@@ -1970,6 +2082,8 @@ class _$SelectProductImpl implements _SelectProduct {
     TResult Function()? clearSelection,
     TResult Function(bool isApproved)? approveSelected,
     TResult Function()? clearApproveFeedback,
+    TResult Function(String keyword)? loadPriceHistory,
+    TResult Function()? clearPriceHistory,
     required TResult orElse(),
   }) {
     if (selectProduct != null) {
@@ -1997,6 +2111,8 @@ class _$SelectProductImpl implements _SelectProduct {
     required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_ApproveSelected value) approveSelected,
     required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
+    required TResult Function(_LoadPriceHistory value) loadPriceHistory,
+    required TResult Function(_ClearPriceHistory value) clearPriceHistory,
   }) {
     return selectProduct(this);
   }
@@ -2020,6 +2136,8 @@ class _$SelectProductImpl implements _SelectProduct {
     TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_ApproveSelected value)? approveSelected,
     TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult? Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult? Function(_ClearPriceHistory value)? clearPriceHistory,
   }) {
     return selectProduct?.call(this);
   }
@@ -2043,6 +2161,8 @@ class _$SelectProductImpl implements _SelectProduct {
     TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_ApproveSelected value)? approveSelected,
     TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult Function(_ClearPriceHistory value)? clearPriceHistory,
     required TResult orElse(),
   }) {
     if (selectProduct != null) {
@@ -2147,6 +2267,8 @@ class _$SelectApprovalFilterImpl implements _SelectApprovalFilter {
     required TResult Function() clearSelection,
     required TResult Function(bool isApproved) approveSelected,
     required TResult Function() clearApproveFeedback,
+    required TResult Function(String keyword) loadPriceHistory,
+    required TResult Function() clearPriceHistory,
   }) {
     return selectApprovalFilter(filter);
   }
@@ -2170,6 +2292,8 @@ class _$SelectApprovalFilterImpl implements _SelectApprovalFilter {
     TResult? Function()? clearSelection,
     TResult? Function(bool isApproved)? approveSelected,
     TResult? Function()? clearApproveFeedback,
+    TResult? Function(String keyword)? loadPriceHistory,
+    TResult? Function()? clearPriceHistory,
   }) {
     return selectApprovalFilter?.call(filter);
   }
@@ -2193,6 +2317,8 @@ class _$SelectApprovalFilterImpl implements _SelectApprovalFilter {
     TResult Function()? clearSelection,
     TResult Function(bool isApproved)? approveSelected,
     TResult Function()? clearApproveFeedback,
+    TResult Function(String keyword)? loadPriceHistory,
+    TResult Function()? clearPriceHistory,
     required TResult orElse(),
   }) {
     if (selectApprovalFilter != null) {
@@ -2220,6 +2346,8 @@ class _$SelectApprovalFilterImpl implements _SelectApprovalFilter {
     required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_ApproveSelected value) approveSelected,
     required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
+    required TResult Function(_LoadPriceHistory value) loadPriceHistory,
+    required TResult Function(_ClearPriceHistory value) clearPriceHistory,
   }) {
     return selectApprovalFilter(this);
   }
@@ -2243,6 +2371,8 @@ class _$SelectApprovalFilterImpl implements _SelectApprovalFilter {
     TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_ApproveSelected value)? approveSelected,
     TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult? Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult? Function(_ClearPriceHistory value)? clearPriceHistory,
   }) {
     return selectApprovalFilter?.call(this);
   }
@@ -2266,6 +2396,8 @@ class _$SelectApprovalFilterImpl implements _SelectApprovalFilter {
     TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_ApproveSelected value)? approveSelected,
     TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult Function(_ClearPriceHistory value)? clearPriceHistory,
     required TResult orElse(),
   }) {
     if (selectApprovalFilter != null) {
@@ -2342,6 +2474,8 @@ class _$ExitSelectionModeImpl implements _ExitSelectionMode {
     required TResult Function() clearSelection,
     required TResult Function(bool isApproved) approveSelected,
     required TResult Function() clearApproveFeedback,
+    required TResult Function(String keyword) loadPriceHistory,
+    required TResult Function() clearPriceHistory,
   }) {
     return exitSelectionMode();
   }
@@ -2365,6 +2499,8 @@ class _$ExitSelectionModeImpl implements _ExitSelectionMode {
     TResult? Function()? clearSelection,
     TResult? Function(bool isApproved)? approveSelected,
     TResult? Function()? clearApproveFeedback,
+    TResult? Function(String keyword)? loadPriceHistory,
+    TResult? Function()? clearPriceHistory,
   }) {
     return exitSelectionMode?.call();
   }
@@ -2388,6 +2524,8 @@ class _$ExitSelectionModeImpl implements _ExitSelectionMode {
     TResult Function()? clearSelection,
     TResult Function(bool isApproved)? approveSelected,
     TResult Function()? clearApproveFeedback,
+    TResult Function(String keyword)? loadPriceHistory,
+    TResult Function()? clearPriceHistory,
     required TResult orElse(),
   }) {
     if (exitSelectionMode != null) {
@@ -2415,6 +2553,8 @@ class _$ExitSelectionModeImpl implements _ExitSelectionMode {
     required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_ApproveSelected value) approveSelected,
     required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
+    required TResult Function(_LoadPriceHistory value) loadPriceHistory,
+    required TResult Function(_ClearPriceHistory value) clearPriceHistory,
   }) {
     return exitSelectionMode(this);
   }
@@ -2438,6 +2578,8 @@ class _$ExitSelectionModeImpl implements _ExitSelectionMode {
     TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_ApproveSelected value)? approveSelected,
     TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult? Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult? Function(_ClearPriceHistory value)? clearPriceHistory,
   }) {
     return exitSelectionMode?.call(this);
   }
@@ -2461,6 +2603,8 @@ class _$ExitSelectionModeImpl implements _ExitSelectionMode {
     TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_ApproveSelected value)? approveSelected,
     TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult Function(_ClearPriceHistory value)? clearPriceHistory,
     required TResult orElse(),
   }) {
     if (exitSelectionMode != null) {
@@ -2557,6 +2701,8 @@ class _$ToggleSelectionImpl implements _ToggleSelection {
     required TResult Function() clearSelection,
     required TResult Function(bool isApproved) approveSelected,
     required TResult Function() clearApproveFeedback,
+    required TResult Function(String keyword) loadPriceHistory,
+    required TResult Function() clearPriceHistory,
   }) {
     return toggleSelection(itemId);
   }
@@ -2580,6 +2726,8 @@ class _$ToggleSelectionImpl implements _ToggleSelection {
     TResult? Function()? clearSelection,
     TResult? Function(bool isApproved)? approveSelected,
     TResult? Function()? clearApproveFeedback,
+    TResult? Function(String keyword)? loadPriceHistory,
+    TResult? Function()? clearPriceHistory,
   }) {
     return toggleSelection?.call(itemId);
   }
@@ -2603,6 +2751,8 @@ class _$ToggleSelectionImpl implements _ToggleSelection {
     TResult Function()? clearSelection,
     TResult Function(bool isApproved)? approveSelected,
     TResult Function()? clearApproveFeedback,
+    TResult Function(String keyword)? loadPriceHistory,
+    TResult Function()? clearPriceHistory,
     required TResult orElse(),
   }) {
     if (toggleSelection != null) {
@@ -2630,6 +2780,8 @@ class _$ToggleSelectionImpl implements _ToggleSelection {
     required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_ApproveSelected value) approveSelected,
     required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
+    required TResult Function(_LoadPriceHistory value) loadPriceHistory,
+    required TResult Function(_ClearPriceHistory value) clearPriceHistory,
   }) {
     return toggleSelection(this);
   }
@@ -2653,6 +2805,8 @@ class _$ToggleSelectionImpl implements _ToggleSelection {
     TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_ApproveSelected value)? approveSelected,
     TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult? Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult? Function(_ClearPriceHistory value)? clearPriceHistory,
   }) {
     return toggleSelection?.call(this);
   }
@@ -2676,6 +2830,8 @@ class _$ToggleSelectionImpl implements _ToggleSelection {
     TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_ApproveSelected value)? approveSelected,
     TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult Function(_ClearPriceHistory value)? clearPriceHistory,
     required TResult orElse(),
   }) {
     if (toggleSelection != null) {
@@ -2751,6 +2907,8 @@ class _$SelectAllVisibleImpl implements _SelectAllVisible {
     required TResult Function() clearSelection,
     required TResult Function(bool isApproved) approveSelected,
     required TResult Function() clearApproveFeedback,
+    required TResult Function(String keyword) loadPriceHistory,
+    required TResult Function() clearPriceHistory,
   }) {
     return selectAllVisible();
   }
@@ -2774,6 +2932,8 @@ class _$SelectAllVisibleImpl implements _SelectAllVisible {
     TResult? Function()? clearSelection,
     TResult? Function(bool isApproved)? approveSelected,
     TResult? Function()? clearApproveFeedback,
+    TResult? Function(String keyword)? loadPriceHistory,
+    TResult? Function()? clearPriceHistory,
   }) {
     return selectAllVisible?.call();
   }
@@ -2797,6 +2957,8 @@ class _$SelectAllVisibleImpl implements _SelectAllVisible {
     TResult Function()? clearSelection,
     TResult Function(bool isApproved)? approveSelected,
     TResult Function()? clearApproveFeedback,
+    TResult Function(String keyword)? loadPriceHistory,
+    TResult Function()? clearPriceHistory,
     required TResult orElse(),
   }) {
     if (selectAllVisible != null) {
@@ -2824,6 +2986,8 @@ class _$SelectAllVisibleImpl implements _SelectAllVisible {
     required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_ApproveSelected value) approveSelected,
     required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
+    required TResult Function(_LoadPriceHistory value) loadPriceHistory,
+    required TResult Function(_ClearPriceHistory value) clearPriceHistory,
   }) {
     return selectAllVisible(this);
   }
@@ -2847,6 +3011,8 @@ class _$SelectAllVisibleImpl implements _SelectAllVisible {
     TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_ApproveSelected value)? approveSelected,
     TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult? Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult? Function(_ClearPriceHistory value)? clearPriceHistory,
   }) {
     return selectAllVisible?.call(this);
   }
@@ -2870,6 +3036,8 @@ class _$SelectAllVisibleImpl implements _SelectAllVisible {
     TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_ApproveSelected value)? approveSelected,
     TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult Function(_ClearPriceHistory value)? clearPriceHistory,
     required TResult orElse(),
   }) {
     if (selectAllVisible != null) {
@@ -2939,6 +3107,8 @@ class _$ClearSelectionImpl implements _ClearSelection {
     required TResult Function() clearSelection,
     required TResult Function(bool isApproved) approveSelected,
     required TResult Function() clearApproveFeedback,
+    required TResult Function(String keyword) loadPriceHistory,
+    required TResult Function() clearPriceHistory,
   }) {
     return clearSelection();
   }
@@ -2962,6 +3132,8 @@ class _$ClearSelectionImpl implements _ClearSelection {
     TResult? Function()? clearSelection,
     TResult? Function(bool isApproved)? approveSelected,
     TResult? Function()? clearApproveFeedback,
+    TResult? Function(String keyword)? loadPriceHistory,
+    TResult? Function()? clearPriceHistory,
   }) {
     return clearSelection?.call();
   }
@@ -2985,6 +3157,8 @@ class _$ClearSelectionImpl implements _ClearSelection {
     TResult Function()? clearSelection,
     TResult Function(bool isApproved)? approveSelected,
     TResult Function()? clearApproveFeedback,
+    TResult Function(String keyword)? loadPriceHistory,
+    TResult Function()? clearPriceHistory,
     required TResult orElse(),
   }) {
     if (clearSelection != null) {
@@ -3012,6 +3186,8 @@ class _$ClearSelectionImpl implements _ClearSelection {
     required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_ApproveSelected value) approveSelected,
     required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
+    required TResult Function(_LoadPriceHistory value) loadPriceHistory,
+    required TResult Function(_ClearPriceHistory value) clearPriceHistory,
   }) {
     return clearSelection(this);
   }
@@ -3035,6 +3211,8 @@ class _$ClearSelectionImpl implements _ClearSelection {
     TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_ApproveSelected value)? approveSelected,
     TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult? Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult? Function(_ClearPriceHistory value)? clearPriceHistory,
   }) {
     return clearSelection?.call(this);
   }
@@ -3058,6 +3236,8 @@ class _$ClearSelectionImpl implements _ClearSelection {
     TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_ApproveSelected value)? approveSelected,
     TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult Function(_ClearPriceHistory value)? clearPriceHistory,
     required TResult orElse(),
   }) {
     if (clearSelection != null) {
@@ -3155,6 +3335,8 @@ class _$ApproveSelectedImpl implements _ApproveSelected {
     required TResult Function() clearSelection,
     required TResult Function(bool isApproved) approveSelected,
     required TResult Function() clearApproveFeedback,
+    required TResult Function(String keyword) loadPriceHistory,
+    required TResult Function() clearPriceHistory,
   }) {
     return approveSelected(isApproved);
   }
@@ -3178,6 +3360,8 @@ class _$ApproveSelectedImpl implements _ApproveSelected {
     TResult? Function()? clearSelection,
     TResult? Function(bool isApproved)? approveSelected,
     TResult? Function()? clearApproveFeedback,
+    TResult? Function(String keyword)? loadPriceHistory,
+    TResult? Function()? clearPriceHistory,
   }) {
     return approveSelected?.call(isApproved);
   }
@@ -3201,6 +3385,8 @@ class _$ApproveSelectedImpl implements _ApproveSelected {
     TResult Function()? clearSelection,
     TResult Function(bool isApproved)? approveSelected,
     TResult Function()? clearApproveFeedback,
+    TResult Function(String keyword)? loadPriceHistory,
+    TResult Function()? clearPriceHistory,
     required TResult orElse(),
   }) {
     if (approveSelected != null) {
@@ -3228,6 +3414,8 @@ class _$ApproveSelectedImpl implements _ApproveSelected {
     required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_ApproveSelected value) approveSelected,
     required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
+    required TResult Function(_LoadPriceHistory value) loadPriceHistory,
+    required TResult Function(_ClearPriceHistory value) clearPriceHistory,
   }) {
     return approveSelected(this);
   }
@@ -3251,6 +3439,8 @@ class _$ApproveSelectedImpl implements _ApproveSelected {
     TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_ApproveSelected value)? approveSelected,
     TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult? Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult? Function(_ClearPriceHistory value)? clearPriceHistory,
   }) {
     return approveSelected?.call(this);
   }
@@ -3274,6 +3464,8 @@ class _$ApproveSelectedImpl implements _ApproveSelected {
     TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_ApproveSelected value)? approveSelected,
     TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult Function(_ClearPriceHistory value)? clearPriceHistory,
     required TResult orElse(),
   }) {
     if (approveSelected != null) {
@@ -3351,6 +3543,8 @@ class _$ClearApproveFeedbackImpl implements _ClearApproveFeedback {
     required TResult Function() clearSelection,
     required TResult Function(bool isApproved) approveSelected,
     required TResult Function() clearApproveFeedback,
+    required TResult Function(String keyword) loadPriceHistory,
+    required TResult Function() clearPriceHistory,
   }) {
     return clearApproveFeedback();
   }
@@ -3374,6 +3568,8 @@ class _$ClearApproveFeedbackImpl implements _ClearApproveFeedback {
     TResult? Function()? clearSelection,
     TResult? Function(bool isApproved)? approveSelected,
     TResult? Function()? clearApproveFeedback,
+    TResult? Function(String keyword)? loadPriceHistory,
+    TResult? Function()? clearPriceHistory,
   }) {
     return clearApproveFeedback?.call();
   }
@@ -3397,6 +3593,8 @@ class _$ClearApproveFeedbackImpl implements _ClearApproveFeedback {
     TResult Function()? clearSelection,
     TResult Function(bool isApproved)? approveSelected,
     TResult Function()? clearApproveFeedback,
+    TResult Function(String keyword)? loadPriceHistory,
+    TResult Function()? clearPriceHistory,
     required TResult orElse(),
   }) {
     if (clearApproveFeedback != null) {
@@ -3424,6 +3622,8 @@ class _$ClearApproveFeedbackImpl implements _ClearApproveFeedback {
     required TResult Function(_ClearSelection value) clearSelection,
     required TResult Function(_ApproveSelected value) approveSelected,
     required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
+    required TResult Function(_LoadPriceHistory value) loadPriceHistory,
+    required TResult Function(_ClearPriceHistory value) clearPriceHistory,
   }) {
     return clearApproveFeedback(this);
   }
@@ -3447,6 +3647,8 @@ class _$ClearApproveFeedbackImpl implements _ClearApproveFeedback {
     TResult? Function(_ClearSelection value)? clearSelection,
     TResult? Function(_ApproveSelected value)? approveSelected,
     TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult? Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult? Function(_ClearPriceHistory value)? clearPriceHistory,
   }) {
     return clearApproveFeedback?.call(this);
   }
@@ -3470,6 +3672,8 @@ class _$ClearApproveFeedbackImpl implements _ClearApproveFeedback {
     TResult Function(_ClearSelection value)? clearSelection,
     TResult Function(_ApproveSelected value)? approveSelected,
     TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult Function(_ClearPriceHistory value)? clearPriceHistory,
     required TResult orElse(),
   }) {
     if (clearApproveFeedback != null) {
@@ -3481,4 +3685,437 @@ class _$ClearApproveFeedbackImpl implements _ClearApproveFeedback {
 
 abstract class _ClearApproveFeedback implements ApprovePurchasingEvent {
   const factory _ClearApproveFeedback() = _$ClearApproveFeedbackImpl;
+}
+
+/// @nodoc
+abstract class _$$LoadPriceHistoryImplCopyWith<$Res> {
+  factory _$$LoadPriceHistoryImplCopyWith(_$LoadPriceHistoryImpl value,
+          $Res Function(_$LoadPriceHistoryImpl) then) =
+      __$$LoadPriceHistoryImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String keyword});
+}
+
+/// @nodoc
+class __$$LoadPriceHistoryImplCopyWithImpl<$Res>
+    extends _$ApprovePurchasingEventCopyWithImpl<$Res, _$LoadPriceHistoryImpl>
+    implements _$$LoadPriceHistoryImplCopyWith<$Res> {
+  __$$LoadPriceHistoryImplCopyWithImpl(_$LoadPriceHistoryImpl _value,
+      $Res Function(_$LoadPriceHistoryImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? keyword = null,
+  }) {
+    return _then(_$LoadPriceHistoryImpl(
+      keyword: null == keyword
+          ? _value.keyword
+          : keyword // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LoadPriceHistoryImpl implements _LoadPriceHistory {
+  const _$LoadPriceHistoryImpl({required this.keyword});
+
+  @override
+  final String keyword;
+
+  @override
+  String toString() {
+    return 'ApprovePurchasingEvent.loadPriceHistory(keyword: $keyword)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadPriceHistoryImpl &&
+            (identical(other.keyword, keyword) || other.keyword == keyword));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, keyword);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadPriceHistoryImplCopyWith<_$LoadPriceHistoryImpl> get copyWith =>
+      __$$LoadPriceHistoryImplCopyWithImpl<_$LoadPriceHistoryImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int requestTypeId) selectTab,
+    required TResult Function() refresh,
+    required TResult Function(int? projectId) selectProject,
+    required TResult Function(int? supplierId) selectSupplier,
+    required TResult Function() resetFilter,
+    required TResult Function(String keyword) changeSearchKeyword,
+    required TResult Function(String product) selectProduct,
+    required TResult Function(PurchasingApprovalFilter filter)
+        selectApprovalFilter,
+    required TResult Function() exitSelectionMode,
+    required TResult Function(int itemId) toggleSelection,
+    required TResult Function() selectAllVisible,
+    required TResult Function() clearSelection,
+    required TResult Function(bool isApproved) approveSelected,
+    required TResult Function() clearApproveFeedback,
+    required TResult Function(String keyword) loadPriceHistory,
+    required TResult Function() clearPriceHistory,
+  }) {
+    return loadPriceHistory(keyword);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int requestTypeId)? selectTab,
+    TResult? Function()? refresh,
+    TResult? Function(int? projectId)? selectProject,
+    TResult? Function(int? supplierId)? selectSupplier,
+    TResult? Function()? resetFilter,
+    TResult? Function(String keyword)? changeSearchKeyword,
+    TResult? Function(String product)? selectProduct,
+    TResult? Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult? Function()? exitSelectionMode,
+    TResult? Function(int itemId)? toggleSelection,
+    TResult? Function()? selectAllVisible,
+    TResult? Function()? clearSelection,
+    TResult? Function(bool isApproved)? approveSelected,
+    TResult? Function()? clearApproveFeedback,
+    TResult? Function(String keyword)? loadPriceHistory,
+    TResult? Function()? clearPriceHistory,
+  }) {
+    return loadPriceHistory?.call(keyword);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int requestTypeId)? selectTab,
+    TResult Function()? refresh,
+    TResult Function(int? projectId)? selectProject,
+    TResult Function(int? supplierId)? selectSupplier,
+    TResult Function()? resetFilter,
+    TResult Function(String keyword)? changeSearchKeyword,
+    TResult Function(String product)? selectProduct,
+    TResult Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult Function()? exitSelectionMode,
+    TResult Function(int itemId)? toggleSelection,
+    TResult Function()? selectAllVisible,
+    TResult Function()? clearSelection,
+    TResult Function(bool isApproved)? approveSelected,
+    TResult Function()? clearApproveFeedback,
+    TResult Function(String keyword)? loadPriceHistory,
+    TResult Function()? clearPriceHistory,
+    required TResult orElse(),
+  }) {
+    if (loadPriceHistory != null) {
+      return loadPriceHistory(keyword);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_SelectTab value) selectTab,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_SelectProject value) selectProject,
+    required TResult Function(_SelectSupplier value) selectSupplier,
+    required TResult Function(_ResetFilter value) resetFilter,
+    required TResult Function(_ChangeSearchKeyword value) changeSearchKeyword,
+    required TResult Function(_SelectProduct value) selectProduct,
+    required TResult Function(_SelectApprovalFilter value) selectApprovalFilter,
+    required TResult Function(_ExitSelectionMode value) exitSelectionMode,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_SelectAllVisible value) selectAllVisible,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
+    required TResult Function(_LoadPriceHistory value) loadPriceHistory,
+    required TResult Function(_ClearPriceHistory value) clearPriceHistory,
+  }) {
+    return loadPriceHistory(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_SelectTab value)? selectTab,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_SelectProject value)? selectProject,
+    TResult? Function(_SelectSupplier value)? selectSupplier,
+    TResult? Function(_ResetFilter value)? resetFilter,
+    TResult? Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult? Function(_SelectProduct value)? selectProduct,
+    TResult? Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult? Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_SelectAllVisible value)? selectAllVisible,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult? Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult? Function(_ClearPriceHistory value)? clearPriceHistory,
+  }) {
+    return loadPriceHistory?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_SelectTab value)? selectTab,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_SelectProject value)? selectProject,
+    TResult Function(_SelectSupplier value)? selectSupplier,
+    TResult Function(_ResetFilter value)? resetFilter,
+    TResult Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult Function(_SelectProduct value)? selectProduct,
+    TResult Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_SelectAllVisible value)? selectAllVisible,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult Function(_ClearPriceHistory value)? clearPriceHistory,
+    required TResult orElse(),
+  }) {
+    if (loadPriceHistory != null) {
+      return loadPriceHistory(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadPriceHistory implements ApprovePurchasingEvent {
+  const factory _LoadPriceHistory({required final String keyword}) =
+      _$LoadPriceHistoryImpl;
+
+  String get keyword;
+  @JsonKey(ignore: true)
+  _$$LoadPriceHistoryImplCopyWith<_$LoadPriceHistoryImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ClearPriceHistoryImplCopyWith<$Res> {
+  factory _$$ClearPriceHistoryImplCopyWith(_$ClearPriceHistoryImpl value,
+          $Res Function(_$ClearPriceHistoryImpl) then) =
+      __$$ClearPriceHistoryImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearPriceHistoryImplCopyWithImpl<$Res>
+    extends _$ApprovePurchasingEventCopyWithImpl<$Res, _$ClearPriceHistoryImpl>
+    implements _$$ClearPriceHistoryImplCopyWith<$Res> {
+  __$$ClearPriceHistoryImplCopyWithImpl(_$ClearPriceHistoryImpl _value,
+      $Res Function(_$ClearPriceHistoryImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ClearPriceHistoryImpl implements _ClearPriceHistory {
+  const _$ClearPriceHistoryImpl();
+
+  @override
+  String toString() {
+    return 'ApprovePurchasingEvent.clearPriceHistory()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ClearPriceHistoryImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int requestTypeId) selectTab,
+    required TResult Function() refresh,
+    required TResult Function(int? projectId) selectProject,
+    required TResult Function(int? supplierId) selectSupplier,
+    required TResult Function() resetFilter,
+    required TResult Function(String keyword) changeSearchKeyword,
+    required TResult Function(String product) selectProduct,
+    required TResult Function(PurchasingApprovalFilter filter)
+        selectApprovalFilter,
+    required TResult Function() exitSelectionMode,
+    required TResult Function(int itemId) toggleSelection,
+    required TResult Function() selectAllVisible,
+    required TResult Function() clearSelection,
+    required TResult Function(bool isApproved) approveSelected,
+    required TResult Function() clearApproveFeedback,
+    required TResult Function(String keyword) loadPriceHistory,
+    required TResult Function() clearPriceHistory,
+  }) {
+    return clearPriceHistory();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int requestTypeId)? selectTab,
+    TResult? Function()? refresh,
+    TResult? Function(int? projectId)? selectProject,
+    TResult? Function(int? supplierId)? selectSupplier,
+    TResult? Function()? resetFilter,
+    TResult? Function(String keyword)? changeSearchKeyword,
+    TResult? Function(String product)? selectProduct,
+    TResult? Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult? Function()? exitSelectionMode,
+    TResult? Function(int itemId)? toggleSelection,
+    TResult? Function()? selectAllVisible,
+    TResult? Function()? clearSelection,
+    TResult? Function(bool isApproved)? approveSelected,
+    TResult? Function()? clearApproveFeedback,
+    TResult? Function(String keyword)? loadPriceHistory,
+    TResult? Function()? clearPriceHistory,
+  }) {
+    return clearPriceHistory?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int requestTypeId)? selectTab,
+    TResult Function()? refresh,
+    TResult Function(int? projectId)? selectProject,
+    TResult Function(int? supplierId)? selectSupplier,
+    TResult Function()? resetFilter,
+    TResult Function(String keyword)? changeSearchKeyword,
+    TResult Function(String product)? selectProduct,
+    TResult Function(PurchasingApprovalFilter filter)? selectApprovalFilter,
+    TResult Function()? exitSelectionMode,
+    TResult Function(int itemId)? toggleSelection,
+    TResult Function()? selectAllVisible,
+    TResult Function()? clearSelection,
+    TResult Function(bool isApproved)? approveSelected,
+    TResult Function()? clearApproveFeedback,
+    TResult Function(String keyword)? loadPriceHistory,
+    TResult Function()? clearPriceHistory,
+    required TResult orElse(),
+  }) {
+    if (clearPriceHistory != null) {
+      return clearPriceHistory();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_SelectTab value) selectTab,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_SelectProject value) selectProject,
+    required TResult Function(_SelectSupplier value) selectSupplier,
+    required TResult Function(_ResetFilter value) resetFilter,
+    required TResult Function(_ChangeSearchKeyword value) changeSearchKeyword,
+    required TResult Function(_SelectProduct value) selectProduct,
+    required TResult Function(_SelectApprovalFilter value) selectApprovalFilter,
+    required TResult Function(_ExitSelectionMode value) exitSelectionMode,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_SelectAllVisible value) selectAllVisible,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_ClearApproveFeedback value) clearApproveFeedback,
+    required TResult Function(_LoadPriceHistory value) loadPriceHistory,
+    required TResult Function(_ClearPriceHistory value) clearPriceHistory,
+  }) {
+    return clearPriceHistory(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_SelectTab value)? selectTab,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_SelectProject value)? selectProject,
+    TResult? Function(_SelectSupplier value)? selectSupplier,
+    TResult? Function(_ResetFilter value)? resetFilter,
+    TResult? Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult? Function(_SelectProduct value)? selectProduct,
+    TResult? Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult? Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_SelectAllVisible value)? selectAllVisible,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult? Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult? Function(_ClearPriceHistory value)? clearPriceHistory,
+  }) {
+    return clearPriceHistory?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_SelectTab value)? selectTab,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_SelectProject value)? selectProject,
+    TResult Function(_SelectSupplier value)? selectSupplier,
+    TResult Function(_ResetFilter value)? resetFilter,
+    TResult Function(_ChangeSearchKeyword value)? changeSearchKeyword,
+    TResult Function(_SelectProduct value)? selectProduct,
+    TResult Function(_SelectApprovalFilter value)? selectApprovalFilter,
+    TResult Function(_ExitSelectionMode value)? exitSelectionMode,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_SelectAllVisible value)? selectAllVisible,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_ClearApproveFeedback value)? clearApproveFeedback,
+    TResult Function(_LoadPriceHistory value)? loadPriceHistory,
+    TResult Function(_ClearPriceHistory value)? clearPriceHistory,
+    required TResult orElse(),
+  }) {
+    if (clearPriceHistory != null) {
+      return clearPriceHistory(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearPriceHistory implements ApprovePurchasingEvent {
+  const factory _ClearPriceHistory() = _$ClearPriceHistoryImpl;
 }

@@ -44,6 +44,15 @@ abstract class _$ApprovePurchasingStateCWProxy {
   ApprovePurchasingState approveFeedback(
       ApprovePurchasingFeedback? approveFeedback);
 
+  ApprovePurchasingState priceHistory(
+      List<ProductPriceHistoryItem>? priceHistory);
+
+  ApprovePurchasingState isLoadingPriceHistory(bool isLoadingPriceHistory);
+
+  ApprovePurchasingState priceHistoryKeyword(String? priceHistoryKeyword);
+
+  ApprovePurchasingState priceHistoryError(String? priceHistoryError);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ApprovePurchasingState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -68,6 +77,10 @@ abstract class _$ApprovePurchasingStateCWProxy {
     Set<int>? selectedIds,
     bool? isApproving,
     ApprovePurchasingFeedback? approveFeedback,
+    List<ProductPriceHistoryItem>? priceHistory,
+    bool? isLoadingPriceHistory,
+    String? priceHistoryKeyword,
+    String? priceHistoryError,
   });
 }
 
@@ -147,6 +160,23 @@ class _$ApprovePurchasingStateCWProxyImpl
       this(approveFeedback: approveFeedback);
 
   @override
+  ApprovePurchasingState priceHistory(
+          List<ProductPriceHistoryItem>? priceHistory) =>
+      this(priceHistory: priceHistory);
+
+  @override
+  ApprovePurchasingState isLoadingPriceHistory(bool isLoadingPriceHistory) =>
+      this(isLoadingPriceHistory: isLoadingPriceHistory);
+
+  @override
+  ApprovePurchasingState priceHistoryKeyword(String? priceHistoryKeyword) =>
+      this(priceHistoryKeyword: priceHistoryKeyword);
+
+  @override
+  ApprovePurchasingState priceHistoryError(String? priceHistoryError) =>
+      this(priceHistoryError: priceHistoryError);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ApprovePurchasingState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -172,6 +202,10 @@ class _$ApprovePurchasingStateCWProxyImpl
     Object? selectedIds = const $CopyWithPlaceholder(),
     Object? isApproving = const $CopyWithPlaceholder(),
     Object? approveFeedback = const $CopyWithPlaceholder(),
+    Object? priceHistory = const $CopyWithPlaceholder(),
+    Object? isLoadingPriceHistory = const $CopyWithPlaceholder(),
+    Object? priceHistoryKeyword = const $CopyWithPlaceholder(),
+    Object? priceHistoryError = const $CopyWithPlaceholder(),
   }) {
     return ApprovePurchasingState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -251,6 +285,24 @@ class _$ApprovePurchasingStateCWProxyImpl
           ? _value.approveFeedback
           // ignore: cast_nullable_to_non_nullable
           : approveFeedback as ApprovePurchasingFeedback?,
+      priceHistory: priceHistory == const $CopyWithPlaceholder()
+          ? _value.priceHistory
+          // ignore: cast_nullable_to_non_nullable
+          : priceHistory as List<ProductPriceHistoryItem>?,
+      isLoadingPriceHistory:
+          isLoadingPriceHistory == const $CopyWithPlaceholder() ||
+                  isLoadingPriceHistory == null
+              ? _value.isLoadingPriceHistory
+              // ignore: cast_nullable_to_non_nullable
+              : isLoadingPriceHistory as bool,
+      priceHistoryKeyword: priceHistoryKeyword == const $CopyWithPlaceholder()
+          ? _value.priceHistoryKeyword
+          // ignore: cast_nullable_to_non_nullable
+          : priceHistoryKeyword as String?,
+      priceHistoryError: priceHistoryError == const $CopyWithPlaceholder()
+          ? _value.priceHistoryError
+          // ignore: cast_nullable_to_non_nullable
+          : priceHistoryError as String?,
     );
   }
 }
