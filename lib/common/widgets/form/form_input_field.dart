@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
+import '../../app_theme/index.dart';
+import '../../utils/formatter/no_spaces_input_formatter.dart';
 import 'form_input_decoration.dart';
 
 class FormInputField extends StatefulWidget {
@@ -16,6 +18,12 @@ class FormInputField extends StatefulWidget {
 
   final bool obscureText;
   final TextInputAction textInputAction;
+
+  /// Hiển thị icon mắt để ẩn/hiện mật khẩu (chỉ áp dụng khi [obscureText] = true).
+  final bool enableVisibilityToggle;
+
+  /// Chặn nhập dấu cách (khoảng trắng) — ký tự space bị loại bỏ ngay khi gõ/dán.
+  final bool preventSpaces;
 
   final FormFieldValidator<String>? validator;
   final ValueChanged<String?>? onSubmitted;
@@ -62,6 +70,8 @@ class FormInputField extends StatefulWidget {
     this.keyboardType,
     this.focusNode,
     this.obscureText = false,
+    this.enableVisibilityToggle = false,
+    this.preventSpaces = false,
     this.textInputAction = TextInputAction.next,
     this.validator,
     this.onSubmitted,
@@ -88,6 +98,9 @@ class FormInputField extends StatefulWidget {
 class _FormInputFieldState extends State<FormInputField> {
   TextEditingController? _internalController;
   FocusNode? _internalFocusNode;
+
+  /// Trạng thái hiển thị mật khẩu (chỉ dùng khi bật icon mắt).
+  bool _isPasswordVisible = false;
 
   TextEditingController get _effectiveController {
     return widget.controller ??
@@ -123,9 +136,16 @@ class _FormInputFieldState extends State<FormInputField> {
         final rawValue = field.value ?? '';
 
         final showError = field.hasError;
+        final isObscured = widget.obscureText && !_isPasswordVisible;
         final effectiveMaxLines = widget.obscureText
             ? 1
             : (widget.autoExpand ? null : (widget.maxLines ?? 1));
+
+        /// Formatter chặn khoảng trắng được ghép vào danh sách formatter của field.
+        final effectiveFormatters = <TextInputFormatter>[
+          if (widget.preventSpaces) NoSpacesInputFormatter(),
+          ...?widget.inputFormatters,
+        ];
 
         final controller = _effectiveController;
         final fNode = _effectiveFocusNode;
@@ -160,10 +180,10 @@ class _FormInputFieldState extends State<FormInputField> {
           onTap: widget.onTap,
           enabled: widget.enabled,
           focusNode: fNode,
-          obscureText: widget.obscureText,
+          obscureText: isObscured,
           keyboardType: widget.keyboardType,
           textInputAction: widget.textInputAction,
-          inputFormatters: widget.inputFormatters,
+          inputFormatters: effectiveFormatters,
           validator: widget.validator,
           autovalidateMode: widget.autovalidateMode,
           onSubmitted: widget.onSubmitted,
@@ -176,7 +196,23 @@ class _FormInputFieldState extends State<FormInputField> {
             hasError: showError,
             errorText: field.errorText,
             isRequired: widget.isRequired,
-            suffixIcon: widget.suffixIcon,
+            suffixIcon: widget.enableVisibilityToggle && widget.obscureText
+                ? IconButton(
+                    icon: Icon(
+                      _isPasswordVisible
+                          ? Icons.visibility_off_outlined
+                          : Icons.visibility_outlined,
+                      size: 20,
+                      color: showError ? Colors.redAccent : AppColors.hintText,
+                    ),
+                    tooltip: _isPasswordVisible
+                        ? 'Ẩn mật khẩu'
+                        : 'Hiện mật khẩu',
+                    onPressed: () {
+                      setState(() => _isPasswordVisible = !_isPasswordVisible);
+                    },
+                  )
+                : widget.suffixIcon,
           ),
           onChanged: (v) {
             field.didChange(v);
