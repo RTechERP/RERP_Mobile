@@ -174,6 +174,14 @@ class _WorkTripDetailScreenState
           (detail.isSelfTransport ?? false) ||
           (_bookingVehicleId != null && _bookingVehicleId != 0);
     });
+
+    // Đồng bộ giá trị field "Phiếu đặt xe" (field chỉ tồn tại khi thuộc phòng ban Sale).
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      _formKey.currentState?.fields['wtd_booking_vehicle_id']?.didChange(
+        _hasBookingVehicle() ? _bookingVehicleId.toString() : '',
+      );
+    });
   }
 
   // ── Lookup helpers ─────────────────────────────────────────────────────────
@@ -314,6 +322,9 @@ class _WorkTripDetailScreenState
         });
         WidgetsBinding.instance.addPostFrameCallback((_) {
           final form = _formKey.currentState;
+          form?.fields['wtd_booking_vehicle_id']?.didChange(
+            item.id.toString(),
+          );
           form?.fields['wtd_self_vehicle']?.didChange(true);
           form?.fields['wtd_company_name']?.didChange(
             item.companyNameArrives ?? '',
@@ -347,6 +358,7 @@ class _WorkTripDetailScreenState
     });
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final form = _formKey.currentState;
+      form?.fields['wtd_booking_vehicle_id']?.didChange('');
       form?.fields['wtd_self_vehicle']?.didChange(false);
       form?.fields['wtd_customer_name']?.didChange('');
       form?.fields['wtd_company_name']?.didChange('');
@@ -728,49 +740,85 @@ class _WorkTripDetailScreenState
           if (_isSaleDepartment(state)) ...[
             // Phiếu đặt xe (disable nếu không có danh sách xe, cho chọn nếu có)
             // Khi đã chọn → thêm nút X để xoá.
-            Row(
-              children: [
-                Expanded(
-                  child: GestureDetector(
-                    onTap: state.selfVehicleList.isEmpty
-                        ? null
-                        : () => _openBookingVehicleSheet(state),
-                    child: AbsorbPointer(
-                      absorbing: state.selfVehicleList.isEmpty,
-                      child: _ReadonlyTextField(
-                        icon: Icons.confirmation_number_outlined,
-                        label: 'Phiếu đặt xe',
-                        value: _hasBookingVehicle()
-                            ? _bookingVehicleLabel(state)
-                            : '',
-                        hint: state.selfVehicleList.isEmpty
-                            ? 'Không có danh sách đặt xe'
-                            : 'Chọn phiếu đặt xe',
-                        showArrow: state.selfVehicleList.isNotEmpty,
-                      ),
+            // Bắt buộc khi API đã trả về danh sách phiếu đặt xe.
+            FormBuilderField<String>(
+              name: 'wtd_booking_vehicle_id',
+              initialValue: _hasBookingVehicle()
+                  ? _bookingVehicleId.toString()
+                  : '',
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: (v) {
+                if (state.selfVehicleList.isNotEmpty &&
+                    (v == null || v.trim().isEmpty)) {
+                  return 'Vui lòng chọn phiếu đặt xe';
+                }
+                return null;
+              },
+              builder: (field) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: state.selfVehicleList.isEmpty
+                                ? null
+                                : () => _openBookingVehicleSheet(state),
+                            child: AbsorbPointer(
+                              absorbing: state.selfVehicleList.isEmpty,
+                              child: _ReadonlyTextField(
+                                icon: Icons.confirmation_number_outlined,
+                                label: 'Phiếu đặt xe',
+                                value: _hasBookingVehicle()
+                                    ? _bookingVehicleLabel(state)
+                                    : '',
+                                hint: state.selfVehicleList.isEmpty
+                                    ? 'Không có danh sách đặt xe'
+                                    : 'Chọn phiếu đặt xe',
+                                showArrow: state.selfVehicleList.isNotEmpty,
+                                isRequired: state.selfVehicleList.isNotEmpty,
+                                hasError: field.hasError,
+                              ),
+                            ),
+                          ),
+                        ),
+                        if (_hasBookingVehicle()) ...[
+                          const SizedBox(width: 8),
+                          InkWell(
+                            onTap: _clearBookingVehicle,
+                            borderRadius: BorderRadius.circular(20),
+                            child: Container(
+                              padding: const EdgeInsets.all(6),
+                              decoration: BoxDecoration(
+                                color: Colors.red.shade50,
+                                shape: BoxShape.circle,
+                              ),
+                              child: Icon(
+                                Icons.close,
+                                size: 18,
+                                color: Colors.red.shade400,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ],
                     ),
-                  ),
-                ),
-                if (_hasBookingVehicle()) ...[
-                  const SizedBox(width: 8),
-                  InkWell(
-                    onTap: _clearBookingVehicle,
-                    borderRadius: BorderRadius.circular(20),
-                    child: Container(
-                      padding: const EdgeInsets.all(6),
-                      decoration: BoxDecoration(
-                        color: Colors.red.shade50,
-                        shape: BoxShape.circle,
+                    if (field.hasError && field.errorText != null)
+                      Padding(
+                        padding: const EdgeInsets.only(left: 12, top: 4),
+                        child: Text(
+                          field.errorText!,
+                          style: const TextStyle(
+                            color: Colors.redAccent,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
                       ),
-                      child: Icon(
-                        Icons.close,
-                        size: 18,
-                        color: Colors.red.shade400,
-                      ),
-                    ),
-                  ),
-                ],
-              ],
+                  ],
+                );
+              },
             ),
             const SizedBox(height: 12),
 
@@ -1187,6 +1235,8 @@ class _ReadonlyTextField extends StatelessWidget {
     required this.value,
     this.hint,
     this.showArrow = true,
+    this.isRequired = false,
+    this.hasError = false,
   });
 
   final IconData icon;
@@ -1194,6 +1244,12 @@ class _ReadonlyTextField extends StatelessWidget {
   final String value;
   final String? hint;
   final bool showArrow;
+
+  /// Hiển thị dấu * bắt buộc cạnh label.
+  final bool isRequired;
+
+  /// Đổi viền sang màu lỗi khi field không hợp lệ.
+  final bool hasError;
 
   @override
   Widget build(BuildContext context) {
@@ -1203,18 +1259,34 @@ class _ReadonlyTextField extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.grey.shade100,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.grey.shade300),
+        border: Border.all(
+          color: hasError ? Colors.redAccent : Colors.grey.shade300,
+        ),
       ),
       child: Row(
         children: [
-          Icon(icon, size: 20, color: Colors.grey.shade600),
+          Icon(
+            icon,
+            size: 20,
+            color: hasError ? Colors.redAccent : Colors.grey.shade600,
+          ),
           const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  label,
+                Text.rich(
+                  TextSpan(
+                    text: label,
+                    children: isRequired
+                        ? const [
+                            TextSpan(
+                              text: ' *',
+                              style: TextStyle(color: Colors.redAccent),
+                            ),
+                          ]
+                        : null,
+                  ),
                   style: TextStyle(fontSize: 11, color: Colors.grey.shade600),
                 ),
                 Text(
