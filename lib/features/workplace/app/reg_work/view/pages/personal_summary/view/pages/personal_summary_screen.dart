@@ -1,6 +1,6 @@
 // Màn hình Tổng hợp phiếu cá nhân.
-// Có 8 tab (Đăng ký nghỉ, Đi muộn về sớm, Làm thêm, Công tác,
-// Làm việc ở nhà, Quên chấm công, Làm đêm, Vân tay) +
+// Có 8 phần dữ liệu (Đăng ký nghỉ, Đi muộn về sớm, Làm thêm, Công tác,
+// Làm việc ở nhà, Quên chấm công, Làm đêm, Vân tay) được chọn qua menu +
 // tìm kiếm + lọc trạng thái + lọc ngày.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,6 +18,7 @@ import '../widgets/personal_summary_cards.dart';
 import '../widgets/personal_summary_employee_drawer.dart';
 import '../widgets/personal_summary_filter_sheet.dart';
 import '../widgets/personal_summary_list_header.dart';
+import '../widgets/personal_summary_section_grid.dart';
 
 class PersonalSummaryScreen extends StatefulWidget {
   const PersonalSummaryScreen({super.key});
@@ -28,46 +29,81 @@ class PersonalSummaryScreen extends StatefulWidget {
 
 class _PersonalSummaryScreenState
     extends BaseState<PersonalSummaryScreen, PersonalSummaryEvent,
-        PersonalSummaryState, PersonalSummaryBloc>
-    with TickerProviderStateMixin {
-  late final TabController _tabController;
+        PersonalSummaryState, PersonalSummaryBloc> {
   final _searchController = TextEditingController();
   final _searchFocusNode = FocusNode();
   bool _isSearchOpen = false;
 
-  // Danh sách các tab, định nghĩa label + nguồn dữ liệu tương ứng trong state.
-  static const _tabDefs = <_TabDef>[
-    _TabDef('Đăng ký nghỉ', _TabSource.onLeave),
-    _TabDef('Đi muộn về sớm', _TabSource.earlyLate),
-    _TabDef('Làm thêm', _TabSource.overTime),
-    _TabDef('Công tác', _TabSource.bussiness),
-    _TabDef('Làm việc ở nhà', _TabSource.wfh),
-    _TabDef('Quên chấm công', _TabSource.enf),
-    _TabDef('Làm đêm', _TabSource.nightShift),
-    _TabDef('Vân tay', _TabSource.attendance),
+  /// Index của phần đang được chọn trong lưới.
+  int _selectedSection = 0;
+
+  /// true = đang ở state menu (lưới icon).
+  /// false = đang ở state chi tiết (listHeader + danh sách phiếu của phần đã chọn).
+  bool _isMenuView = true;
+
+  // Danh sách các phần: label + icon + màu + nguồn dữ liệu tương ứng.
+  static const _sections = <PersonalSummarySection>[
+    PersonalSummarySection(
+      label: 'Đăng ký nghỉ',
+      icon: Icons.beach_access_outlined,
+      color: AppColors.blueMain,
+      source: PersonalSummarySource.onLeave,
+    ),
+    PersonalSummarySection(
+      label: 'Đi muộn về sớm',
+      icon: Icons.schedule_outlined,
+      color: AppColors.orangeA500,
+      source: PersonalSummarySource.earlyLate,
+    ),
+    PersonalSummarySection(
+      label: 'Làm thêm',
+      icon: Icons.more_time_outlined,
+      color: AppColors.tealA400,
+      source: PersonalSummarySource.overTime,
+    ),
+    PersonalSummarySection(
+      label: 'Công tác',
+      icon: Icons.luggage_outlined,
+      color: AppColors.purpleA500,
+      source: PersonalSummarySource.bussiness,
+    ),
+    PersonalSummarySection(
+      label: 'Làm việc ở nhà',
+      icon: Icons.home_work_outlined,
+      color: AppColors.greenA500,
+      source: PersonalSummarySource.wfh,
+    ),
+    PersonalSummarySection(
+      label: 'Quên chấm công',
+      icon: Icons.event_busy_outlined,
+      color: AppColors.redA500,
+      source: PersonalSummarySource.enf,
+    ),
+    PersonalSummarySection(
+      label: 'Làm đêm',
+      icon: Icons.nightlight_outlined,
+      color: AppColors.blueA400,
+      source: PersonalSummarySource.nightShift,
+    ),
+    PersonalSummarySection(
+      label: 'Vân tay',
+      icon: Icons.fingerprint_outlined,
+      color: AppColors.primaryERP,
+      source: PersonalSummarySource.attendance,
+    ),
   ];
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: _tabDefs.length, vsync: this);
-    _tabController.addListener(_onTabChanged);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       bloc.add(const PersonalSummaryEvent.init());
     });
   }
 
-  void _onTabChanged() {
-    // TabController gọi listener cả khi animation chạy; chỉ rebuild khi
-    // index đã settle.
-    if (_tabController.indexIsChanging) return;
-    setState(() {});
-  }
-
   @override
   void dispose() {
-    _tabController.dispose();
     _searchController.dispose();
     _searchFocusNode.dispose();
     super.dispose();
@@ -163,85 +199,120 @@ class _PersonalSummaryScreenState
   Widget renderUI(BuildContext context) {
     return BlocBuilder<PersonalSummaryBloc, PersonalSummaryState>(
       builder: (context, state) {
-        final isAttendanceTab = _isAttendanceTab();
-        return BaseScaffold(
-          endDrawer: isAttendanceTab
-              ? PersonalSummaryEmployeeDrawer(
-                  employees: state.employees,
-                  selectedEmployeeId: state.selectedEmployeeId,
-                  isLoading: state.employeesLoading,
-                  onSelect: (id) {
-                    bloc.add(
-                      PersonalSummaryEvent.selectEmployee(employeeId: id),
-                    );
-                  },
-                )
-              : null,
-          appBar: AppBarCommon(
-            onBackTap: () => context.pop(),
-            centerTitle: false,
-            title: Text(
-              'Tổng hợp cá nhân',
-              style: AppStyles.headingTitle2,
-            ),
-            bottom: PreferredSize(
-              preferredSize: const Size.fromHeight(48),
-              child: _buildTabBar(),
-            ),
-            actions: [
-              if (isAttendanceTab)
-                Builder(
-                  builder: (innerCtx) => IconButton(
-                    icon: Badge(
-                      isLabelVisible: state.selectedEmployeeId != null,
-                      child: const Icon(Icons.person_search_outlined),
+        final isAttendance = _isAttendanceSection();
+        return PopScope(
+          // Đang ở state chi tiết thì nút back hệ thống quay lại state menu.
+          canPop: _isMenuView,
+          onPopInvokedWithResult: (didPop, _) {
+            if (didPop) return;
+            _backToMenu();
+          },
+          child: BaseScaffold(
+            endDrawer: isAttendance
+                ? PersonalSummaryEmployeeDrawer(
+                    employees: state.employees,
+                    selectedEmployeeId: state.selectedEmployeeId,
+                    isLoading: state.employeesLoading,
+                    onSelect: (id) {
+                      bloc.add(
+                        PersonalSummaryEvent.selectEmployee(employeeId: id),
+                      );
+                    },
+                  )
+                : null,
+            appBar: AppBarCommon(
+              onBackTap: () => context.pop(),
+              centerTitle: false,
+              title: Text(
+                'Tổng hợp cá nhân',
+                style: AppStyles.headingTitle2,
+              ),
+              actions: [
+                if (isAttendance && !_isMenuView)
+                  Builder(
+                    builder: (innerCtx) => IconButton(
+                      icon: Badge(
+                        isLabelVisible: state.selectedEmployeeId != null,
+                        child: const Icon(Icons.person_search_outlined),
+                      ),
+                      tooltip: 'Chọn nhân sự',
+                      onPressed: () => _openEmployeeDrawer(innerCtx, state),
                     ),
-                    tooltip: 'Chọn nhân sự',
-                    onPressed: () => _openEmployeeDrawer(innerCtx, state),
                   ),
+                IconButton(
+                  icon: const Icon(Icons.calendar_month_outlined),
+                  tooltip: 'Lọc theo ngày',
+                  onPressed: () => _showDateRangePicker(context, state),
                 ),
-              IconButton(
-                icon: const Icon(Icons.calendar_month_outlined),
-                tooltip: 'Lọc theo ngày',
-                onPressed: () => _showDateRangePicker(context, state),
-              ),
-              IconButton(
-                icon: Badge(
-                  isLabelVisible: state.statusFilter != -1,
-                  child: const Icon(Icons.filter_list),
+                IconButton(
+                  icon: Badge(
+                    isLabelVisible: state.statusFilter != -1,
+                    child: const Icon(Icons.filter_list),
+                  ),
+                  tooltip: 'Bộ lọc',
+                  onPressed: () => _showFilterSheet(context, state),
                 ),
-                tooltip: 'Bộ lọc',
-                onPressed: () => _showFilterSheet(context, state),
-              ),
-              IconButton(
-                icon: Icon(_isSearchOpen ? Icons.close : Icons.search),
-                tooltip: 'Tìm kiếm',
-                onPressed: _toggleSearch,
-              ),
-            ],
-          ),
-          body: Column(
-            children: [
-              if (_isSearchOpen) _buildSearchBar(),
-              Expanded(
-                child: TabBarView(
-                  controller: _tabController,
-                  children: [
-                    for (final def in _tabDefs)
-                      _buildTabContent(context, state, def),
-                  ],
+                IconButton(
+                  icon: Icon(_isSearchOpen ? Icons.close : Icons.search),
+                  tooltip: 'Tìm kiếm',
+                  onPressed: _toggleSearch,
                 ),
-              ),
-            ],
+              ],
+            ),
+            body: _isMenuView
+                ? _buildMenuView(context, state)
+                : _buildDetailView(context, state),
           ),
         );
       },
     );
   }
 
-  /// Tab Vân tay là index cuối (thứ 8).
-  bool _isAttendanceTab() {
-    return _tabController.index == _tabDefs.length - 1;
+  /// State menu: chỉ hiển thị lưới icon chọn phần.
+  Widget _buildMenuView(
+    BuildContext context,
+    PersonalSummaryState state,
+  ) {
+    return Column(
+      children: [
+        if (_isSearchOpen) _buildSearchBar(),
+        _buildSectionGrid(state),
+      ],
+    );
+  }
+
+  /// State chi tiết: listHeader + danh sách phiếu của phần đang chọn.
+  Widget _buildDetailView(
+    BuildContext context,
+    PersonalSummaryState state,
+  ) {
+    return Column(
+      children: [
+        if (_isSearchOpen) _buildSearchBar(),
+        Expanded(
+          child: _buildSectionContent(context, state),
+        ),
+      ],
+    );
+  }
+
+  /// Phần "Vân tay" là mục cuối cùng trong menu.
+  bool _isAttendanceSection() {
+    return _sections[_selectedSection].source ==
+        PersonalSummarySource.attendance;
+  }
+
+  /// Quay lại state menu (lưới icon) từ state chi tiết.
+  void _backToMenu() {
+    setState(() {
+      _isMenuView = true;
+      _isSearchOpen = false;
+      _searchFocusNode.unfocus();
+      if (_searchController.text.isNotEmpty) {
+        _searchController.clear();
+        bloc.add(const PersonalSummaryEvent.changeKeyword(keyword: ''));
+      }
+    });
   }
 
   /// Mở drawer chọn nhân sự. Nếu chưa có cache cho phòng ban hiện tại
@@ -270,80 +341,18 @@ class _PersonalSummaryScreenState
     Scaffold.of(context).openEndDrawer();
   }
 
-  // ── Tab Bar ───────────────────────────────────────────────────────────────
+  // ── Section grid ─────────────────────────────────────────────────────────
 
-  Widget _buildTabBar() {
-    return BlocBuilder<PersonalSummaryBloc, PersonalSummaryState>(
-      builder: (context, state) {
-        return Padding(
-          padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
-          child: Container(
-            height: 40,
-            decoration: BoxDecoration(
-              color: AppColors.gray.withValues(alpha: 0.08),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: TabBar(
-              controller: _tabController,
-              isScrollable: true,
-              tabAlignment: TabAlignment.start,
-              indicator: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: AppColors.primaryERP,
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.primaryERP.withValues(alpha: 0.35),
-                    blurRadius: 8,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
-              ),
-              indicatorSize: TabBarIndicatorSize.tab,
-              dividerColor: Colors.transparent,
-              labelColor: Colors.white,
-              unselectedLabelColor: AppColors.gray,
-              labelStyle: const TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w600,
-              ),
-              unselectedLabelStyle: const TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w500,
-              ),
-              tabs: [
-                for (final def in _tabDefs) ...[
-                  Tab(
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(def.label),
-                        const SizedBox(width: 6),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 7,
-                            vertical: 1,
-                          ),
-                          decoration: BoxDecoration(
-                            color: AppColors.blueA400,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Text(
-                            '${_count(state, def.source)}',
-                            style: const TextStyle(
-                              fontSize: 11,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ],
-            ),
-          ),
-        );
+  Widget _buildSectionGrid(PersonalSummaryState state) {
+    return PersonalSummarySectionGrid(
+      sections: _sections,
+      selectedIndex: _selectedSection,
+      countOf: (source) => _count(state, source),
+      onSelected: (index) {
+        setState(() {
+          _selectedSection = index;
+          _isMenuView = false;
+        });
       },
     );
   }
@@ -404,13 +413,14 @@ class _PersonalSummaryScreenState
     );
   }
 
-  // ── Tab content ──────────────────────────────────────────────────────────
+  // ── Section content ──────────────────────────────────────────────────────
 
-  Widget _buildTabContent(
+  Widget _buildSectionContent(
     BuildContext context,
     PersonalSummaryState state,
-    _TabDef def,
   ) {
+    final source = _sections[_selectedSection].source;
+    final section = _sections[_selectedSection];
     return RefreshIndicator(
       onRefresh: () async {
         bloc.add(const PersonalSummaryEvent.refresh());
@@ -427,10 +437,10 @@ class _PersonalSummaryScreenState
                   p.dateStart != c.dateStart ||
                   p.dateEnd != c.dateEnd ||
                   p.keyword != c.keyword ||
-                  _count(p, def.source) != _count(c, def.source),
+                  _count(p, source) != _count(c, source),
               builder: (_, s) {
                 final filtered = filterByKeyword(
-                  _items(s, def.source),
+                  _items(s, source),
                   s.keyword,
                 );
                 return PersonalSummaryListHeader(
@@ -438,13 +448,17 @@ class _PersonalSummaryScreenState
                   dateStart: s.dateStart,
                   dateEnd: s.dateEnd,
                   isSearching: s.keyword.isNotEmpty,
+                  sectionLabel: section.label,
+                  sectionIcon: section.icon,
+                  sectionColor: section.color,
+                  onClose: _backToMenu,
                 );
               },
             ),
           ),
           SliverPadding(
             padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
-            sliver: _buildSliverList(context, state, def),
+            sliver: _buildSliverList(context, state, source),
           ),
         ],
       ),
@@ -454,11 +468,11 @@ class _PersonalSummaryScreenState
   Widget _buildSliverList(
     BuildContext context,
     PersonalSummaryState state,
-    _TabDef def,
+    PersonalSummarySource source,
   ) {
     final loading = state.status == BaseStateStatus.loading;
     final failed = state.status == BaseStateStatus.failed;
-    final rawItems = _items(state, def.source);
+    final rawItems = _items(state, source);
     final items = filterByKeyword(rawItems, state.keyword);
     final isInitialLoading = loading && rawItems.isEmpty;
 
@@ -480,7 +494,7 @@ class _PersonalSummaryScreenState
     return SliverList.separated(
       itemCount: items.length,
       separatorBuilder: (_, _) => const SizedBox(height: 10),
-      itemBuilder: (_, i) => _buildItemFor(def.source, items[i]),
+      itemBuilder: (_, i) => _buildItemFor(source, items[i]),
     );
   }
 
@@ -525,63 +539,46 @@ class _PersonalSummaryScreenState
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 
-enum _TabSource {
-  onLeave,
-  earlyLate,
-  overTime,
-  bussiness,
-  wfh,
-  enf,
-  nightShift,
-  attendance,
-}
-
-class _TabDef {
-  const _TabDef(this.label, this.source);
-  final String label;
-  final _TabSource source;
-}
-
-/// Đếm tổng số phiếu của 1 tab trong state hiện tại.
-int _count(PersonalSummaryState s, _TabSource source) {
+/// Đếm tổng số phiếu của 1 phần trong state hiện tại.
+int _count(PersonalSummaryState s, PersonalSummarySource source) {
   switch (source) {
-    case _TabSource.onLeave:
+    case PersonalSummarySource.onLeave:
       return s.onLeave.length;
-    case _TabSource.earlyLate:
+    case PersonalSummarySource.earlyLate:
       return s.earlyLate.length;
-    case _TabSource.overTime:
+    case PersonalSummarySource.overTime:
       return s.overTime.length;
-    case _TabSource.bussiness:
+    case PersonalSummarySource.bussiness:
       return s.bussiness.length;
-    case _TabSource.wfh:
+    case PersonalSummarySource.wfh:
       return s.wfh.length;
-    case _TabSource.enf:
+    case PersonalSummarySource.enf:
       return s.enf.length;
-    case _TabSource.nightShift:
+    case PersonalSummarySource.nightShift:
       return s.nightShift.length;
-    case _TabSource.attendance:
+    case PersonalSummarySource.attendance:
       return s.attendance.length;
   }
 }
 
-/// Trả về danh sách thuộc tab tương ứng (dưới dạng `List<dynamic>` để xử lý chung).
-List<dynamic> _items(PersonalSummaryState s, _TabSource source) {
+/// Trả về danh sách thuộc phần tương ứng (dưới dạng `List<dynamic>` để xử lý chung).
+List<dynamic> _items(PersonalSummaryState s, PersonalSummarySource source) {
   switch (source) {
-    case _TabSource.onLeave:
+    case PersonalSummarySource.onLeave:
       return s.onLeave;
-    case _TabSource.earlyLate:
+    case PersonalSummarySource.earlyLate:
       return s.earlyLate;
-    case _TabSource.overTime:
+    case PersonalSummarySource.overTime:
       return s.overTime;
-    case _TabSource.bussiness:
+    case PersonalSummarySource.bussiness:
       return s.bussiness;
-    case _TabSource.wfh:
+    case PersonalSummarySource.wfh:
       return s.wfh;
-    case _TabSource.enf:
+    case PersonalSummarySource.enf:
       return s.enf;
-    case _TabSource.nightShift:
+    case PersonalSummarySource.nightShift:
       return s.nightShift;
-    case _TabSource.attendance:
+    case PersonalSummarySource.attendance:
       return s.attendance;
   }
 }
@@ -693,23 +690,23 @@ String _haystackFor(dynamic item) {
 }
 
 /// Render widget card tương ứng với từng loại item.
-Widget _buildItemFor(_TabSource source, dynamic item) {
+Widget _buildItemFor(PersonalSummarySource source, dynamic item) {
   switch (source) {
-    case _TabSource.onLeave:
+    case PersonalSummarySource.onLeave:
       return PersonalLeaveCard(item: item as PersonalLeaveItem);
-    case _TabSource.earlyLate:
+    case PersonalSummarySource.earlyLate:
       return PersonalEarlyLateCard(item: item as PersonalEarlyLateItem);
-    case _TabSource.overTime:
+    case PersonalSummarySource.overTime:
       return PersonalOverTimeCard(item: item as PersonalOverTimeItem);
-    case _TabSource.bussiness:
+    case PersonalSummarySource.bussiness:
       return PersonalBussinessCard(item: item as PersonalBussinessItem);
-    case _TabSource.wfh:
+    case PersonalSummarySource.wfh:
       return PersonalWfhCard(item: item as PersonalWfhItem);
-    case _TabSource.enf:
+    case PersonalSummarySource.enf:
       return PersonalEnfCard(item: item as PersonalEnfItem);
-    case _TabSource.nightShift:
+    case PersonalSummarySource.nightShift:
       return PersonalNightShiftCard(item: item as PersonalNightShiftItem);
-    case _TabSource.attendance:
+    case PersonalSummarySource.attendance:
       return PersonalAttendanceCard(item: item as PersonalAttendanceItem);
   }
 }
