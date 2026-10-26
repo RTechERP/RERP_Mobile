@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:photo_view/photo_view.dart';
+import 'package:photo_view/photo_view_gallery.dart';
 import 'package:rtc_erp/common/app_theme/index.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/models/sale_gdn_model.dart';
 
@@ -945,40 +947,33 @@ class _FullScreenImageViewerState extends State<_FullScreenImageViewer> {
             ),
         ],
       ),
-      body: PageView.builder(
-        controller: _pageController,
+      // PhotoViewGallery tự phân xử cử chỉ: ảnh ở mức zoom gốc thì vuốt ngang
+      // để chuyển ảnh; khi đã zoom thì vuốt để pan, chạm mép ảnh mới chuyển
+      // trang. Hỗ trợ pinch-zoom và double-tap zoom.
+      body: PhotoViewGallery.builder(
+        pageController: _pageController,
         itemCount: widget.imagePaths.length,
+        backgroundDecoration: const BoxDecoration(color: Colors.black),
+        scrollPhysics: const BouncingScrollPhysics(),
         onPageChanged: (index) => setState(() => _currentIndex = index),
-        itemBuilder: (context, index) {
+        loadingBuilder: (_, event) => Center(
+          child: CircularProgressIndicator(
+            color: Colors.white,
+            value: event?.expectedTotalBytes != null
+                ? event!.cumulativeBytesLoaded / event.expectedTotalBytes!
+                : null,
+          ),
+        ),
+        builder: (context, index) {
           final path = widget.imagePaths[index];
-          return InteractiveViewer(
-            minScale: 0.5,
-            maxScale: 4.0,
-            child: Center(
-              child: widget.isLocal
-                  ? Image.file(
-                      File(path),
-                      fit: BoxFit.contain,
-                      errorBuilder: (_, _, _) => _errorPlaceholder(),
-                    )
-                  : Image.network(
-                      path,
-                      fit: BoxFit.contain,
-                      loadingBuilder: (_, child, loadingProgress) {
-                        if (loadingProgress == null) return child;
-                        return Center(
-                          child: CircularProgressIndicator(
-                            color: Colors.white,
-                            value: loadingProgress.expectedTotalBytes != null
-                                ? loadingProgress.cumulativeBytesLoaded /
-                                    loadingProgress.expectedTotalBytes!
-                                : null,
-                          ),
-                        );
-                      },
-                      errorBuilder: (_, _, _) => _errorPlaceholder(),
-                    ),
-            ),
+          return PhotoViewGalleryPageOptions(
+            imageProvider: widget.isLocal
+                ? FileImage(File(path))
+                : NetworkImage(path) as ImageProvider,
+            minScale: PhotoViewComputedScale.contained,
+            maxScale: PhotoViewComputedScale.covered * 4,
+            initialScale: PhotoViewComputedScale.contained,
+            errorBuilder: (_, _, _) => _errorPlaceholder(),
           );
         },
       ),
