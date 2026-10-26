@@ -15,14 +15,14 @@ class HistoryImportExportEvent with _$HistoryImportExportEvent {
   /// Xoá từ khoá tìm kiếm và tải lại danh sách.
   const factory HistoryImportExportEvent.clearSearch() = _ClearSearch;
 
-  /// Đổi bộ lọc loại phiếu (nhập/xuất). Lọc cục bộ, không gọi API.
-  const factory HistoryImportExportEvent.changeTypeFilter(
-    HistoryTypeFilter filter,
-  ) = _ChangeTypeFilter;
-
   /// Đổi khoảng ngày lọc và tải lại danh sách.
   const factory HistoryImportExportEvent.changeDateRange({
     required DateTime dateStart,
     required DateTime dateEnd,
   }) = _ChangeDateRange;
+
+  /// Đổi bộ lọc loại phiếu (nhập/xuất). Lọc cục bộ, không gọi API.
+  const factory HistoryImportExportEvent.changeTypeFilter(
+    HistoryTypeFilter filter,
+  ) = _ChangeTypeFilter;
 }

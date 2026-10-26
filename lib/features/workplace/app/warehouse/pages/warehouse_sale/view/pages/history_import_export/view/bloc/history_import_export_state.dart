@@ -53,14 +53,13 @@ class HistoryImportExportState extends BaseBlocState {
     this.warehouseCode = 'HN',
   });
 
-  /// Mặc định: 1 tháng gần nhất tính đến hôm nay.
+  /// Cố định khoảng tìm kiếm: `dateEnd` = hiện tại, `dateStart` = 2 ngày trước.
   factory HistoryImportExportState.init() {
     final now = DateTime.now();
-    final today = DateTime(now.year, now.month, now.day);
     return HistoryImportExportState(
       status: BaseStateStatus.init,
-      dateStart: DateTime(today.year, today.month - 1, today.day),
-      dateEnd: today,
+      dateStart: now.subtract(const Duration(days: 2)),
+      dateEnd: now,
     );
   }
 

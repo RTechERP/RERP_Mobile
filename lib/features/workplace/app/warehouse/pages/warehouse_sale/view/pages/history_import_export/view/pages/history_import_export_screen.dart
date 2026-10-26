@@ -79,7 +79,7 @@ class _HistoryImportExportScreenState
   Widget renderUI(BuildContext context) {
     return BaseScaffold(
       appBar: AppBarCommon(
-        title: const Text('Lịch sử nhập xuất', style: TextStyle(fontSize: 17)),
+        title: const Text('Lịch sử nhập xuất'),
         onBackTap: () => onBack(context),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(48),
@@ -168,15 +168,13 @@ class _HistoryImportExportScreenState
   void _pickDateRange() {
     final state = bloc.state;
     final now = DateTime.now();
-    final today = DateTime(now.year, now.month, now.day);
 
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       builder: (_) => DateRangePicker(
-        initialStart:
-            state.dateStart ?? today.subtract(const Duration(days: 30)),
-        initialEnd: state.dateEnd ?? today,
+        initialStart: state.dateStart ?? now.subtract(const Duration(days: 2)),
+        initialEnd: state.dateEnd ?? now,
         onApply: (start, end) => bloc.add(
           HistoryImportExportEvent.changeDateRange(
             dateStart: start,

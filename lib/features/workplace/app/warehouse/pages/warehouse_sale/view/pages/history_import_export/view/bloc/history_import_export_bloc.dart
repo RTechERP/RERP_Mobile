@@ -1,14 +1,14 @@
 import 'package:bloc/bloc.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:intl/intl.dart';
 import 'package:rtc_erp/base/bloc/index.dart';
-import 'package:rtc_erp/base/network/errors/error.dart';
+import 'package:rtc_erp/base/network/errors/extension.dart';
 import 'package:rtc_erp/common/logger/index.dart';
-import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/history_import_export/data/datasource/models/history_import_export_model.dart';
-import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/history_import_export/data/repository/history_import_export_repo.dart';
+
+import '../../data/datasource/models/history_import_export_model.dart';
+import '../../data/repository/history_import_export_repo.dart';
 
 part 'history_import_export_event.dart';
 part 'history_import_export_state.dart';
@@ -27,71 +27,65 @@ class HistoryImportExportBloc
     : super(HistoryImportExportState.init()) {
     on<HistoryImportExportEvent>((event, emit) async {
       await event.when(
-        setWarehouseCode: (code) {
-          _onSetWarehouseCode(emit, code);
-          return Future<void>.value();
-        },
-        fetch: () => _fetch(emit),
-        search: (keyword) => _search(emit, keyword),
-        clearSearch: () => _search(emit, ''),
-        changeTypeFilter: (filter) {
-          emit(state.copyWith(typeFilter: filter));
-          return Future<void>.value();
-        },
+        setWarehouseCode: (code) async => _onSetWarehouseCode(emit, code: code),
+        fetch: () => _onFetch(emit),
+        search: (keyword) => _onSearch(emit, keyword: keyword),
+        clearSearch: () => _onSearch(emit, keyword: ''),
+        changeTypeFilter: (filter) async =>
+            emit(state.copyWith(typeFilter: filter)),
         changeDateRange: (dateStart, dateEnd) =>
-            _changeDateRange(emit, dateStart, dateEnd),
+            _onChangeDateRange(emit, dateStart: dateStart, dateEnd: dateEnd),
       );
     });
   }
 
   /// Cập nhật mã kho (HN/HCM/BN) lấy từ màn chọn khu vực. Không gọi API.
   void _onSetWarehouseCode(
-    Emitter<HistoryImportExportState> emit,
-    String? code,
-  ) {
+    Emitter<HistoryImportExportState> emit, {
+    required String? code,
+  }) {
     if (code == null || code.isEmpty || state.warehouseCode == code) return;
     emit(state.copyWith(warehouseCode: code));
   }
 
   /// Tải lại danh sách theo bộ lọc hiện tại (khoảng ngày + từ khoá + kho).
-  Future<void> _fetch(Emitter<HistoryImportExportState> emit) async {
+  Future<void> _onFetch(Emitter<HistoryImportExportState> emit) async {
     emit(state.copyWith(status: BaseStateStatus.loading));
 
-    final Either<BaseError, List<HistoryImportExportResponse>> res = await _repo
-        .getHistory(payload: _buildPayload());
+    final res = await _repo.getHistory(payload: _buildPayload());
 
     res.fold(
-      (l) {
-        _log.logE('❌ getHistoryImportExport failed: $l');
+      (err) {
+        _log.logE('❌ getHistoryImportExport failed: $err');
         emit(
           state.copyWith(
             status: BaseStateStatus.failed,
-            message: _errorText(l),
+            message: err.getErrorMessage,
           ),
         );
       },
-      (r) {
-        _log.logI('✅ getHistoryImportExport success - total: ${r.length}');
-        emit(state.copyWith(status: BaseStateStatus.success, items: r));
+      (items) {
+        _log.logI('✅ getHistoryImportExport success - total: ${items.length}');
+        emit(state.copyWith(status: BaseStateStatus.success, items: items));
       },
     );
   }
 
   /// Lưu từ khoá rồi tải lại danh sách. Từ khoá rỗng = bỏ tìm kiếm.
-  Future<void> _search(
-    Emitter<HistoryImportExportState> emit,
-    String keyword,
-  ) async {
+  Future<void> _onSearch(
+    Emitter<HistoryImportExportState> emit, {
+    required String keyword,
+  }) async {
     emit(state.copyWith(searchKeyword: keyword.trim()));
-    await _fetch(emit);
+    await _onFetch(emit);
   }
 
   /// Đổi khoảng ngày lọc (đầu ngày → cuối ngày) rồi tải lại danh sách.
-  Future<void> _changeDateRange(
-    Emitter<HistoryImportExportState> emit,
-    DateTime dateStart,
-    DateTime dateEnd,
-  ) async {
+  Future<void> _onChangeDateRange(
+    Emitter<HistoryImportExportState> emit, {
+    required DateTime dateStart,
+    required DateTime dateEnd,
+  }) async {
     emit(
       state.copyWith(
         dateStart: DateTime(dateStart.year, dateStart.month, dateStart.day),
@@ -106,7 +100,7 @@ class HistoryImportExportBloc
         ),
       ),
     );
-    await _fetch(emit);
+    await _onFetch(emit);
   }
 
   /// Build payload cho `POST /HistoryImportExport`.
@@ -127,13 +121,5 @@ class HistoryImportExportBloc
       'WarehouseCode': state.warehouseCode,
       'checkedAll': false,
     };
-  }
-
-  String _errorText(BaseError error) {
-    return error.when(
-      httpInternalServerError: (body) => body,
-      httpUnAuthorizedError: () => 'Unauthorized',
-      httpUnknownError: (message) => message,
-    );
   }
 }

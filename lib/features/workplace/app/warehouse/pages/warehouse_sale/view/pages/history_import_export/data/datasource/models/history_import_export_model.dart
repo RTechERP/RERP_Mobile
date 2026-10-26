@@ -50,6 +50,9 @@ class HistoryImportExportResponse with _$HistoryImportExportResponse {
     /// `approveText` (vd. "Huỷ/Chưa nhận chứng từ").
     @JsonKey(name: 'StatusText') String? statusText,
     @JsonKey(name: 'ApproveText') String? approveText,
+
+    /// Thời điểm huỷ/nhận chứng từ (`yyyy-MM-ddTHH:mm:ss`), null nếu chưa có.
+    @JsonKey(name: 'DateStatus') String? dateStatus,
     @JsonKey(name: 'Status') bool? status,
     @JsonKey(name: 'BillType') bool? billType,
     @JsonKey(name: 'BillTypeNew') int? billTypeNew,

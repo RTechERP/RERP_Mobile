@@ -22,8 +22,11 @@ class HistoryImportExportService extends DioBaseApiService {
       parser: (json) => BaseData<List<HistoryImportExportResponse>>.fromJson(
         json,
         (data) => ((data as List?) ?? const <dynamic>[])
-            .map((e) =>
-                HistoryImportExportResponse.fromJson(e as Map<String, dynamic>))
+            .map(
+              (e) => HistoryImportExportResponse.fromJson(
+                e as Map<String, dynamic>,
+              ),
+            )
             .toList(),
       ),
     );

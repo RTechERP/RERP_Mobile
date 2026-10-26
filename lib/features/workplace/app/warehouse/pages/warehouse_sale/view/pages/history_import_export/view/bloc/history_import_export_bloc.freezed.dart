@@ -23,9 +23,9 @@ mixin _$HistoryImportExportEvent {
     required TResult Function() fetch,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
-    required TResult Function(HistoryTypeFilter filter) changeTypeFilter,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
     changeDateRange,
+    required TResult Function(HistoryTypeFilter filter) changeTypeFilter,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
@@ -33,8 +33,8 @@ mixin _$HistoryImportExportEvent {
     TResult? Function()? fetch,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
-    TResult? Function(HistoryTypeFilter filter)? changeTypeFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(HistoryTypeFilter filter)? changeTypeFilter,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
@@ -42,8 +42,8 @@ mixin _$HistoryImportExportEvent {
     TResult Function()? fetch,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
-    TResult Function(HistoryTypeFilter filter)? changeTypeFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(HistoryTypeFilter filter)? changeTypeFilter,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -52,8 +52,8 @@ mixin _$HistoryImportExportEvent {
     required TResult Function(_Fetch value) fetch,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
-    required TResult Function(_ChangeTypeFilter value) changeTypeFilter,
     required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeTypeFilter value) changeTypeFilter,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
@@ -61,8 +61,8 @@ mixin _$HistoryImportExportEvent {
     TResult? Function(_Fetch value)? fetch,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
-    TResult? Function(_ChangeTypeFilter value)? changeTypeFilter,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeTypeFilter value)? changeTypeFilter,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
@@ -70,8 +70,8 @@ mixin _$HistoryImportExportEvent {
     TResult Function(_Fetch value)? fetch,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
-    TResult Function(_ChangeTypeFilter value)? changeTypeFilter,
     TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeTypeFilter value)? changeTypeFilter,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
 }
@@ -171,9 +171,9 @@ class _$SetWarehouseCodeImpl implements _SetWarehouseCode {
     required TResult Function() fetch,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
-    required TResult Function(HistoryTypeFilter filter) changeTypeFilter,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
     changeDateRange,
+    required TResult Function(HistoryTypeFilter filter) changeTypeFilter,
   }) {
     return setWarehouseCode(code);
   }
@@ -185,8 +185,8 @@ class _$SetWarehouseCodeImpl implements _SetWarehouseCode {
     TResult? Function()? fetch,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
-    TResult? Function(HistoryTypeFilter filter)? changeTypeFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(HistoryTypeFilter filter)? changeTypeFilter,
   }) {
     return setWarehouseCode?.call(code);
   }
@@ -198,8 +198,8 @@ class _$SetWarehouseCodeImpl implements _SetWarehouseCode {
     TResult Function()? fetch,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
-    TResult Function(HistoryTypeFilter filter)? changeTypeFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(HistoryTypeFilter filter)? changeTypeFilter,
     required TResult orElse(),
   }) {
     if (setWarehouseCode != null) {
@@ -215,8 +215,8 @@ class _$SetWarehouseCodeImpl implements _SetWarehouseCode {
     required TResult Function(_Fetch value) fetch,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
-    required TResult Function(_ChangeTypeFilter value) changeTypeFilter,
     required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeTypeFilter value) changeTypeFilter,
   }) {
     return setWarehouseCode(this);
   }
@@ -228,8 +228,8 @@ class _$SetWarehouseCodeImpl implements _SetWarehouseCode {
     TResult? Function(_Fetch value)? fetch,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
-    TResult? Function(_ChangeTypeFilter value)? changeTypeFilter,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeTypeFilter value)? changeTypeFilter,
   }) {
     return setWarehouseCode?.call(this);
   }
@@ -241,8 +241,8 @@ class _$SetWarehouseCodeImpl implements _SetWarehouseCode {
     TResult Function(_Fetch value)? fetch,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
-    TResult Function(_ChangeTypeFilter value)? changeTypeFilter,
     TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeTypeFilter value)? changeTypeFilter,
     required TResult orElse(),
   }) {
     if (setWarehouseCode != null) {
@@ -305,9 +305,9 @@ class _$FetchImpl implements _Fetch {
     required TResult Function() fetch,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
-    required TResult Function(HistoryTypeFilter filter) changeTypeFilter,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
     changeDateRange,
+    required TResult Function(HistoryTypeFilter filter) changeTypeFilter,
   }) {
     return fetch();
   }
@@ -319,8 +319,8 @@ class _$FetchImpl implements _Fetch {
     TResult? Function()? fetch,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
-    TResult? Function(HistoryTypeFilter filter)? changeTypeFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(HistoryTypeFilter filter)? changeTypeFilter,
   }) {
     return fetch?.call();
   }
@@ -332,8 +332,8 @@ class _$FetchImpl implements _Fetch {
     TResult Function()? fetch,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
-    TResult Function(HistoryTypeFilter filter)? changeTypeFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(HistoryTypeFilter filter)? changeTypeFilter,
     required TResult orElse(),
   }) {
     if (fetch != null) {
@@ -349,8 +349,8 @@ class _$FetchImpl implements _Fetch {
     required TResult Function(_Fetch value) fetch,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
-    required TResult Function(_ChangeTypeFilter value) changeTypeFilter,
     required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeTypeFilter value) changeTypeFilter,
   }) {
     return fetch(this);
   }
@@ -362,8 +362,8 @@ class _$FetchImpl implements _Fetch {
     TResult? Function(_Fetch value)? fetch,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
-    TResult? Function(_ChangeTypeFilter value)? changeTypeFilter,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeTypeFilter value)? changeTypeFilter,
   }) {
     return fetch?.call(this);
   }
@@ -375,8 +375,8 @@ class _$FetchImpl implements _Fetch {
     TResult Function(_Fetch value)? fetch,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
-    TResult Function(_ChangeTypeFilter value)? changeTypeFilter,
     TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeTypeFilter value)? changeTypeFilter,
     required TResult orElse(),
   }) {
     if (fetch != null) {
@@ -460,9 +460,9 @@ class _$SearchImpl implements _Search {
     required TResult Function() fetch,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
-    required TResult Function(HistoryTypeFilter filter) changeTypeFilter,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
     changeDateRange,
+    required TResult Function(HistoryTypeFilter filter) changeTypeFilter,
   }) {
     return search(keyword);
   }
@@ -474,8 +474,8 @@ class _$SearchImpl implements _Search {
     TResult? Function()? fetch,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
-    TResult? Function(HistoryTypeFilter filter)? changeTypeFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(HistoryTypeFilter filter)? changeTypeFilter,
   }) {
     return search?.call(keyword);
   }
@@ -487,8 +487,8 @@ class _$SearchImpl implements _Search {
     TResult Function()? fetch,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
-    TResult Function(HistoryTypeFilter filter)? changeTypeFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(HistoryTypeFilter filter)? changeTypeFilter,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -504,8 +504,8 @@ class _$SearchImpl implements _Search {
     required TResult Function(_Fetch value) fetch,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
-    required TResult Function(_ChangeTypeFilter value) changeTypeFilter,
     required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeTypeFilter value) changeTypeFilter,
   }) {
     return search(this);
   }
@@ -517,8 +517,8 @@ class _$SearchImpl implements _Search {
     TResult? Function(_Fetch value)? fetch,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
-    TResult? Function(_ChangeTypeFilter value)? changeTypeFilter,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeTypeFilter value)? changeTypeFilter,
   }) {
     return search?.call(this);
   }
@@ -530,8 +530,8 @@ class _$SearchImpl implements _Search {
     TResult Function(_Fetch value)? fetch,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
-    TResult Function(_ChangeTypeFilter value)? changeTypeFilter,
     TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeTypeFilter value)? changeTypeFilter,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -594,9 +594,9 @@ class _$ClearSearchImpl implements _ClearSearch {
     required TResult Function() fetch,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
-    required TResult Function(HistoryTypeFilter filter) changeTypeFilter,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
     changeDateRange,
+    required TResult Function(HistoryTypeFilter filter) changeTypeFilter,
   }) {
     return clearSearch();
   }
@@ -608,8 +608,8 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function()? fetch,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
-    TResult? Function(HistoryTypeFilter filter)? changeTypeFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(HistoryTypeFilter filter)? changeTypeFilter,
   }) {
     return clearSearch?.call();
   }
@@ -621,8 +621,8 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function()? fetch,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
-    TResult Function(HistoryTypeFilter filter)? changeTypeFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(HistoryTypeFilter filter)? changeTypeFilter,
     required TResult orElse(),
   }) {
     if (clearSearch != null) {
@@ -638,8 +638,8 @@ class _$ClearSearchImpl implements _ClearSearch {
     required TResult Function(_Fetch value) fetch,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
-    required TResult Function(_ChangeTypeFilter value) changeTypeFilter,
     required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeTypeFilter value) changeTypeFilter,
   }) {
     return clearSearch(this);
   }
@@ -651,8 +651,8 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult? Function(_Fetch value)? fetch,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
-    TResult? Function(_ChangeTypeFilter value)? changeTypeFilter,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeTypeFilter value)? changeTypeFilter,
   }) {
     return clearSearch?.call(this);
   }
@@ -664,8 +664,8 @@ class _$ClearSearchImpl implements _ClearSearch {
     TResult Function(_Fetch value)? fetch,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
-    TResult Function(_ChangeTypeFilter value)? changeTypeFilter,
     TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeTypeFilter value)? changeTypeFilter,
     required TResult orElse(),
   }) {
     if (clearSearch != null) {
@@ -677,170 +677,6 @@ class _$ClearSearchImpl implements _ClearSearch {
 
 abstract class _ClearSearch implements HistoryImportExportEvent {
   const factory _ClearSearch() = _$ClearSearchImpl;
-}
-
-/// @nodoc
-abstract class _$$ChangeTypeFilterImplCopyWith<$Res> {
-  factory _$$ChangeTypeFilterImplCopyWith(
-    _$ChangeTypeFilterImpl value,
-    $Res Function(_$ChangeTypeFilterImpl) then,
-  ) = __$$ChangeTypeFilterImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({HistoryTypeFilter filter});
-}
-
-/// @nodoc
-class __$$ChangeTypeFilterImplCopyWithImpl<$Res>
-    extends _$HistoryImportExportEventCopyWithImpl<$Res, _$ChangeTypeFilterImpl>
-    implements _$$ChangeTypeFilterImplCopyWith<$Res> {
-  __$$ChangeTypeFilterImplCopyWithImpl(
-    _$ChangeTypeFilterImpl _value,
-    $Res Function(_$ChangeTypeFilterImpl) _then,
-  ) : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? filter = null}) {
-    return _then(
-      _$ChangeTypeFilterImpl(
-        null == filter
-            ? _value.filter
-            : filter // ignore: cast_nullable_to_non_nullable
-                  as HistoryTypeFilter,
-      ),
-    );
-  }
-}
-
-/// @nodoc
-
-class _$ChangeTypeFilterImpl implements _ChangeTypeFilter {
-  const _$ChangeTypeFilterImpl(this.filter);
-
-  @override
-  final HistoryTypeFilter filter;
-
-  @override
-  String toString() {
-    return 'HistoryImportExportEvent.changeTypeFilter(filter: $filter)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ChangeTypeFilterImpl &&
-            (identical(other.filter, filter) || other.filter == filter));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, filter);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ChangeTypeFilterImplCopyWith<_$ChangeTypeFilterImpl> get copyWith =>
-      __$$ChangeTypeFilterImplCopyWithImpl<_$ChangeTypeFilterImpl>(
-        this,
-        _$identity,
-      );
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String? code) setWarehouseCode,
-    required TResult Function() fetch,
-    required TResult Function(String keyword) search,
-    required TResult Function() clearSearch,
-    required TResult Function(HistoryTypeFilter filter) changeTypeFilter,
-    required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
-  }) {
-    return changeTypeFilter(filter);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? code)? setWarehouseCode,
-    TResult? Function()? fetch,
-    TResult? Function(String keyword)? search,
-    TResult? Function()? clearSearch,
-    TResult? Function(HistoryTypeFilter filter)? changeTypeFilter,
-    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
-  }) {
-    return changeTypeFilter?.call(filter);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? code)? setWarehouseCode,
-    TResult Function()? fetch,
-    TResult Function(String keyword)? search,
-    TResult Function()? clearSearch,
-    TResult Function(HistoryTypeFilter filter)? changeTypeFilter,
-    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
-    required TResult orElse(),
-  }) {
-    if (changeTypeFilter != null) {
-      return changeTypeFilter(filter);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
-    required TResult Function(_Fetch value) fetch,
-    required TResult Function(_Search value) search,
-    required TResult Function(_ClearSearch value) clearSearch,
-    required TResult Function(_ChangeTypeFilter value) changeTypeFilter,
-    required TResult Function(_ChangeDateRange value) changeDateRange,
-  }) {
-    return changeTypeFilter(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
-    TResult? Function(_Fetch value)? fetch,
-    TResult? Function(_Search value)? search,
-    TResult? Function(_ClearSearch value)? clearSearch,
-    TResult? Function(_ChangeTypeFilter value)? changeTypeFilter,
-    TResult? Function(_ChangeDateRange value)? changeDateRange,
-  }) {
-    return changeTypeFilter?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
-    TResult Function(_Fetch value)? fetch,
-    TResult Function(_Search value)? search,
-    TResult Function(_ClearSearch value)? clearSearch,
-    TResult Function(_ChangeTypeFilter value)? changeTypeFilter,
-    TResult Function(_ChangeDateRange value)? changeDateRange,
-    required TResult orElse(),
-  }) {
-    if (changeTypeFilter != null) {
-      return changeTypeFilter(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ChangeTypeFilter implements HistoryImportExportEvent {
-  const factory _ChangeTypeFilter(final HistoryTypeFilter filter) =
-      _$ChangeTypeFilterImpl;
-
-  HistoryTypeFilter get filter;
-  @JsonKey(ignore: true)
-  _$$ChangeTypeFilterImplCopyWith<_$ChangeTypeFilterImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -924,9 +760,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function() fetch,
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
-    required TResult Function(HistoryTypeFilter filter) changeTypeFilter,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
     changeDateRange,
+    required TResult Function(HistoryTypeFilter filter) changeTypeFilter,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -938,8 +774,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function()? fetch,
     TResult? Function(String keyword)? search,
     TResult? Function()? clearSearch,
-    TResult? Function(HistoryTypeFilter filter)? changeTypeFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(HistoryTypeFilter filter)? changeTypeFilter,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -951,8 +787,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function()? fetch,
     TResult Function(String keyword)? search,
     TResult Function()? clearSearch,
-    TResult Function(HistoryTypeFilter filter)? changeTypeFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(HistoryTypeFilter filter)? changeTypeFilter,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -968,8 +804,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_Fetch value) fetch,
     required TResult Function(_Search value) search,
     required TResult Function(_ClearSearch value) clearSearch,
-    required TResult Function(_ChangeTypeFilter value) changeTypeFilter,
     required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeTypeFilter value) changeTypeFilter,
   }) {
     return changeDateRange(this);
   }
@@ -981,8 +817,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_Fetch value)? fetch,
     TResult? Function(_Search value)? search,
     TResult? Function(_ClearSearch value)? clearSearch,
-    TResult? Function(_ChangeTypeFilter value)? changeTypeFilter,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeTypeFilter value)? changeTypeFilter,
   }) {
     return changeDateRange?.call(this);
   }
@@ -994,8 +830,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_Fetch value)? fetch,
     TResult Function(_Search value)? search,
     TResult Function(_ClearSearch value)? clearSearch,
-    TResult Function(_ChangeTypeFilter value)? changeTypeFilter,
     TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeTypeFilter value)? changeTypeFilter,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -1015,5 +851,169 @@ abstract class _ChangeDateRange implements HistoryImportExportEvent {
   DateTime get dateEnd;
   @JsonKey(ignore: true)
   _$$ChangeDateRangeImplCopyWith<_$ChangeDateRangeImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ChangeTypeFilterImplCopyWith<$Res> {
+  factory _$$ChangeTypeFilterImplCopyWith(
+    _$ChangeTypeFilterImpl value,
+    $Res Function(_$ChangeTypeFilterImpl) then,
+  ) = __$$ChangeTypeFilterImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({HistoryTypeFilter filter});
+}
+
+/// @nodoc
+class __$$ChangeTypeFilterImplCopyWithImpl<$Res>
+    extends _$HistoryImportExportEventCopyWithImpl<$Res, _$ChangeTypeFilterImpl>
+    implements _$$ChangeTypeFilterImplCopyWith<$Res> {
+  __$$ChangeTypeFilterImplCopyWithImpl(
+    _$ChangeTypeFilterImpl _value,
+    $Res Function(_$ChangeTypeFilterImpl) _then,
+  ) : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? filter = null}) {
+    return _then(
+      _$ChangeTypeFilterImpl(
+        null == filter
+            ? _value.filter
+            : filter // ignore: cast_nullable_to_non_nullable
+                  as HistoryTypeFilter,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$ChangeTypeFilterImpl implements _ChangeTypeFilter {
+  const _$ChangeTypeFilterImpl(this.filter);
+
+  @override
+  final HistoryTypeFilter filter;
+
+  @override
+  String toString() {
+    return 'HistoryImportExportEvent.changeTypeFilter(filter: $filter)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangeTypeFilterImpl &&
+            (identical(other.filter, filter) || other.filter == filter));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, filter);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangeTypeFilterImplCopyWith<_$ChangeTypeFilterImpl> get copyWith =>
+      __$$ChangeTypeFilterImplCopyWithImpl<_$ChangeTypeFilterImpl>(
+        this,
+        _$identity,
+      );
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String? code) setWarehouseCode,
+    required TResult Function() fetch,
+    required TResult Function(String keyword) search,
+    required TResult Function() clearSearch,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+    changeDateRange,
+    required TResult Function(HistoryTypeFilter filter) changeTypeFilter,
+  }) {
+    return changeTypeFilter(filter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String? code)? setWarehouseCode,
+    TResult? Function()? fetch,
+    TResult? Function(String keyword)? search,
+    TResult? Function()? clearSearch,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(HistoryTypeFilter filter)? changeTypeFilter,
+  }) {
+    return changeTypeFilter?.call(filter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String? code)? setWarehouseCode,
+    TResult Function()? fetch,
+    TResult Function(String keyword)? search,
+    TResult Function()? clearSearch,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(HistoryTypeFilter filter)? changeTypeFilter,
+    required TResult orElse(),
+  }) {
+    if (changeTypeFilter != null) {
+      return changeTypeFilter(filter);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SetWarehouseCode value) setWarehouseCode,
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ClearSearch value) clearSearch,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeTypeFilter value) changeTypeFilter,
+  }) {
+    return changeTypeFilter(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ClearSearch value)? clearSearch,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeTypeFilter value)? changeTypeFilter,
+  }) {
+    return changeTypeFilter?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SetWarehouseCode value)? setWarehouseCode,
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_Search value)? search,
+    TResult Function(_ClearSearch value)? clearSearch,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeTypeFilter value)? changeTypeFilter,
+    required TResult orElse(),
+  }) {
+    if (changeTypeFilter != null) {
+      return changeTypeFilter(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangeTypeFilter implements HistoryImportExportEvent {
+  const factory _ChangeTypeFilter(final HistoryTypeFilter filter) =
+      _$ChangeTypeFilterImpl;
+
+  HistoryTypeFilter get filter;
+  @JsonKey(ignore: true)
+  _$$ChangeTypeFilterImplCopyWith<_$ChangeTypeFilterImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
