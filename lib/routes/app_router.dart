@@ -213,6 +213,7 @@ import '../features/workplace/app/summary_work/overtime/view/pages/summary_overt
 import '../features/workplace/app/warehouse/enums/warehouse_type.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_area_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/warehouse_demo_screen.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/history_import_export/view/pages/history_import_export_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/models/sale_gdn_model.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/pages/sale_gdn_detail_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/bloc/sale_gdn_bloc.dart';
@@ -1890,6 +1891,14 @@ class AppRouter {
             },
           ),
         ],
+      ),
+
+      GoRoute(
+        path: RouteNames.warehouseSaleHistoryImportExport,
+        builder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>?;
+          return HistoryImportExportScreen(areaId: extra?['areaId'] as String?);
+        },
       ),
 
       // Warehouse Demo

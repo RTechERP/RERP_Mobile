@@ -520,6 +520,10 @@ class ApiEndPoint {
   /// Body: `[{ "ID": <billId>, "IsOrderReceived": true|false }, ...]`
   static const String updateStatusReceive = '/billexport/status-receive';
 
+  /// Lịch sử nhập/xuất kho.
+  /// API: POST /HistoryImportExport
+  static const String getHistoryImportExport = '/HistoryImportExport';
+
   // Material Category
   static const String getMaterialCategories = '/MaterialCategory/get-material-categories';
 

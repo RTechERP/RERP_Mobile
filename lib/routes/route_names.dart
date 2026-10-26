@@ -311,6 +311,8 @@ class RouteNames {
   static const warehouseTest = '/warehouse_test';
   static const warehouseSaleGdn = '/warehouse_sale_gdn';
   static const warehouseSaleGdnDetail = '/warehouse_sale_gdn/detail';
+  static const warehouseSaleHistoryImportExport =
+      '/warehouse_sale_history_import_export';
 
   // Summary Work
   static const summaryWorkLeaving = '/summary-work/leaving';
