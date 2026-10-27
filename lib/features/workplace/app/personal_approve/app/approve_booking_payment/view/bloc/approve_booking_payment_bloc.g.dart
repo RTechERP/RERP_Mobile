@@ -48,6 +48,14 @@ abstract class _$ApproveBookingPaymentStateCWProxy {
 
   ApproveBookingPaymentState isLoadingMore(bool isLoadingMore);
 
+  ApproveBookingPaymentState detail(ApproveBookingPaymentDetail? detail);
+
+  ApproveBookingPaymentState logs(List<ApproveBookingPaymentLog> logs);
+
+  ApproveBookingPaymentState isLoadingDetail(bool isLoadingDetail);
+
+  ApproveBookingPaymentState detailError(String? detailError);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ApproveBookingPaymentState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -73,6 +81,10 @@ abstract class _$ApproveBookingPaymentStateCWProxy {
     int? totalRows,
     bool? isRefreshing,
     bool? isLoadingMore,
+    ApproveBookingPaymentDetail? detail,
+    List<ApproveBookingPaymentLog>? logs,
+    bool? isLoadingDetail,
+    String? detailError,
   });
 }
 
@@ -158,6 +170,22 @@ class _$ApproveBookingPaymentStateCWProxyImpl
       this(isLoadingMore: isLoadingMore);
 
   @override
+  ApproveBookingPaymentState detail(ApproveBookingPaymentDetail? detail) =>
+      this(detail: detail);
+
+  @override
+  ApproveBookingPaymentState logs(List<ApproveBookingPaymentLog> logs) =>
+      this(logs: logs);
+
+  @override
+  ApproveBookingPaymentState isLoadingDetail(bool isLoadingDetail) =>
+      this(isLoadingDetail: isLoadingDetail);
+
+  @override
+  ApproveBookingPaymentState detailError(String? detailError) =>
+      this(detailError: detailError);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ApproveBookingPaymentState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -184,6 +212,10 @@ class _$ApproveBookingPaymentStateCWProxyImpl
     Object? totalRows = const $CopyWithPlaceholder(),
     Object? isRefreshing = const $CopyWithPlaceholder(),
     Object? isLoadingMore = const $CopyWithPlaceholder(),
+    Object? detail = const $CopyWithPlaceholder(),
+    Object? logs = const $CopyWithPlaceholder(),
+    Object? isLoadingDetail = const $CopyWithPlaceholder(),
+    Object? detailError = const $CopyWithPlaceholder(),
   }) {
     return ApproveBookingPaymentState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -261,6 +293,23 @@ class _$ApproveBookingPaymentStateCWProxyImpl
               ? _value.isLoadingMore
               // ignore: cast_nullable_to_non_nullable
               : isLoadingMore as bool,
+      detail: detail == const $CopyWithPlaceholder()
+          ? _value.detail
+          // ignore: cast_nullable_to_non_nullable
+          : detail as ApproveBookingPaymentDetail?,
+      logs: logs == const $CopyWithPlaceholder() || logs == null
+          ? _value.logs
+          // ignore: cast_nullable_to_non_nullable
+          : logs as List<ApproveBookingPaymentLog>,
+      isLoadingDetail: isLoadingDetail == const $CopyWithPlaceholder() ||
+              isLoadingDetail == null
+          ? _value.isLoadingDetail
+          // ignore: cast_nullable_to_non_nullable
+          : isLoadingDetail as bool,
+      detailError: detailError == const $CopyWithPlaceholder()
+          ? _value.detailError
+          // ignore: cast_nullable_to_non_nullable
+          : detailError as String?,
     );
   }
 }

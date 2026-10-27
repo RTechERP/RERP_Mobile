@@ -43,6 +43,8 @@ class ApproveBookingPaymentBloc
           keyword: keyword,
         ),
         resetFilter: () => _onResetFilter(emit),
+        loadDetail: (id, isAccommodation) =>
+            _onLoadDetail(emit, id, isAccommodation),
       );
     });
   }
@@ -66,13 +68,29 @@ class ApproveBookingPaymentBloc
     ).wait;
     if (emit.isDone) return;
 
+    final steps = stepsRes.getOrElse(() => const []);
     emit(state.copyWith(
-      steps: stepsRes.getOrElse(() => const []),
+      steps: steps,
       departments: departmentsRes.getOrElse(() => const []),
       employees: employeesRes.getOrElse(() => const []),
+      // Mặc định lọc sẵn bước TBP HR duyệt; giữ lựa chọn cũ nếu đã có.
+      selectedStep: state.selectedStep ?? _defaultStep(steps),
     ));
 
     await _fetch(emit, pageIndex: 1);
+  }
+
+  /// Mã bước duyệt (`ApproverCode`) của TBP HR, được chọn sẵn khi mở màn.
+  static const String _defaultStepCode = 'TBPHR';
+
+  /// Bước TBP HR trong [steps]; `null` nếu BE không trả về bước này.
+  ApproveBookingPaymentStep? _defaultStep(
+    List<ApproveBookingPaymentStep> steps,
+  ) {
+    for (final step in steps) {
+      if (step.code == _defaultStepCode) return step;
+    }
+    return null;
   }
 
   //---(Refresh / Load more)---//
@@ -142,6 +160,47 @@ class ApproveBookingPaymentBloc
       message: null,
     ));
     await _fetch(emit, pageIndex: 1);
+  }
+
+  //---(Detail)---//
+
+  /// Gọi song song get-by-id và get-logs cho BottomSheet chi tiết. Chi tiết
+  /// lỗi → báo lỗi có nút thử lại; lịch sử duyệt lỗi không chặn UI, fallback
+  /// danh sách rỗng. [isAccommodation] chọn API Công tác phí hoặc Chi phí
+  /// phương tiện.
+  Future<void> _onLoadDetail(
+    Emitter<ApproveBookingPaymentState> emit,
+    int id,
+    bool isAccommodation,
+  ) async {
+    emit(state.copyWith(
+      isLoadingDetail: true,
+      detail: null,
+      logs: const [],
+      detailError: null,
+    ));
+
+    final (detailRes, logsRes) = await (
+      _repo.getById(id: id, isAccommodation: isAccommodation),
+      _repo.getLogs(paymentOrderId: id, isAccommodation: isAccommodation),
+    ).wait;
+    if (emit.isDone) return;
+
+    detailRes.fold(
+      (err) {
+        _log.logE('❌ getById failed: $err');
+        emit(state.copyWith(
+          isLoadingDetail: false,
+          detailError: err.getErrorMessage,
+        ));
+      },
+      (detail) => emit(state.copyWith(
+        isLoadingDetail: false,
+        detail: detail,
+        logs: logsRes.getOrElse(() => const []),
+        detailError: null,
+      )),
+    );
   }
 
   //---(Fetch)---//

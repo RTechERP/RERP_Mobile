@@ -2,6 +2,8 @@
 // Tương ứng API:
 //   - GET  /VehicleBookingPaymentOrder/get-approve-steps
 //   - POST /VehicleBookingPaymentOrder/get-unified-list
+//   - GET  /VehicleBookingPaymentOrder/get-by-id
+//   - GET  /VehicleBookingPaymentOrder/get-logs
 //   - GET  /Department/get-all
 //   - GET  /Employee
 
@@ -76,6 +78,16 @@ class ApproveBookingPaymentItem with _$ApproveBookingPaymentItem {
       _$ApproveBookingPaymentItemFromJson(json);
 }
 
+/// Phân loại phiếu để chọn đúng API chi tiết.
+extension ApproveBookingPaymentItemX on ApproveBookingPaymentItem {
+  /// `true` với phiếu "Công tác phí" (nhà nghỉ), dùng API
+  /// `AccommodationBookingPaymentOrder`. Ngược lại là "Chi phí phương tiện"
+  /// (API `VehicleBookingPaymentOrder`).
+  bool get isAccommodation =>
+      (typeName ?? '').trim() == 'Công tác phí' ||
+      (paymentType ?? '').trim().toUpperCase() == 'ACCOMMODATION';
+}
+
 /// Phòng ban cho bộ lọc. Tương ứng API: GET /Department/get-all
 @freezed
 class ApproveBookingPaymentDepartment
@@ -105,4 +117,105 @@ class ApproveBookingPaymentEmployee with _$ApproveBookingPaymentEmployee {
 
   factory ApproveBookingPaymentEmployee.fromJson(Map<String, dynamic> json) =>
       _$ApproveBookingPaymentEmployeeFromJson(json);
+}
+
+/// File đính kèm của một dòng chi tiết (ảnh hoá đơn, bill chuyển khoản...).
+/// [fileType] phân loại file, vd `INVOICE`; [url] là link tải/xem trực tiếp.
+@freezed
+class ApproveBookingPaymentFile with _$ApproveBookingPaymentFile {
+  const factory ApproveBookingPaymentFile({
+    @JsonKey(name: 'ID') required int id,
+    @JsonKey(name: 'FileType') String? fileType,
+    @JsonKey(name: 'FileName') String? fileName,
+    @JsonKey(name: 'Url') String? url,
+    @JsonKey(name: 'FileSize') int? fileSize,
+  }) = _ApproveBookingPaymentFile;
+
+  factory ApproveBookingPaymentFile.fromJson(Map<String, dynamic> json) =>
+      _$ApproveBookingPaymentFileFromJson(json);
+}
+
+/// Một dòng chi tiết của phiếu ĐNTT (`Details[]` trong get-by-id).
+@freezed
+class ApproveBookingPaymentDetailLine
+    with _$ApproveBookingPaymentDetailLine {
+  const factory ApproveBookingPaymentDetailLine({
+    @JsonKey(name: 'ID') required int id,
+    @JsonKey(name: 'Files')
+    @Default(<ApproveBookingPaymentFile>[])
+    List<ApproveBookingPaymentFile> files,
+    @JsonKey(name: 'ProjectCode') String? projectCode,
+    @JsonKey(name: 'RecipientName') String? recipientName,
+    @JsonKey(name: 'StartLocation') String? startLocation,
+    @JsonKey(name: 'EndLocation') String? endLocation,
+    @JsonKey(name: 'BankAccount') String? bankAccount,
+    @JsonKey(name: 'BankName') String? bankName,
+    @JsonKey(name: 'TransferType') int? transferType,
+    @JsonKey(name: 'TotalAmount') double? totalAmount,
+    @JsonKey(name: 'TotalAmountWithInvoice') double? totalAmountWithInvoice,
+    @JsonKey(name: 'AmountBeforeVAT') double? amountBeforeVat,
+    @JsonKey(name: 'InvoiceNumber') String? invoiceNumber,
+    @JsonKey(name: 'TransportCompanyName') String? transportCompanyName,
+    @JsonKey(name: 'TransportCompanyTaxCode') String? transportCompanyTaxCode,
+    @JsonKey(name: 'CompanyName') String? companyName,
+    @JsonKey(name: 'DepartmentName') String? departmentName,
+    @JsonKey(name: 'Reason') String? reason,
+    @JsonKey(name: 'Note') String? note,
+    @JsonKey(name: 'IsChunDongPhuongTien') bool? isChunDongPhuongTien,
+    @JsonKey(name: 'IsBill') bool? isBill,
+    // Riêng phiếu Công tác phí (nhà nghỉ)
+    @JsonKey(name: 'HotelName') String? hotelName,
+    @JsonKey(name: 'HotelTaxCode') String? hotelTaxCode,
+    @JsonKey(name: 'CheckInDate') DateTime? checkInDate,
+    @JsonKey(name: 'CheckOutDate') DateTime? checkOutDate,
+  }) = _ApproveBookingPaymentDetailLine;
+
+  factory ApproveBookingPaymentDetailLine.fromJson(
+    Map<String, dynamic> json,
+  ) =>
+      _$ApproveBookingPaymentDetailLineFromJson(json);
+}
+
+/// Chi tiết một phiếu ĐNTT. Tương ứng API: GET /VehicleBookingPaymentOrder/get-by-id
+/// (Chi phí phương tiện) hoặc GET /AccommodationBookingPaymentOrder/get-by-id
+/// (Công tác phí).
+@freezed
+class ApproveBookingPaymentDetail with _$ApproveBookingPaymentDetail {
+  const factory ApproveBookingPaymentDetail({
+    @JsonKey(name: 'ID') required int id,
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'Status') int? status,
+    @JsonKey(name: 'Note') String? note,
+    @JsonKey(name: 'Deadline') DateTime? deadline,
+    // Trạng thái xử lý sau duyệt: đã tiếp nhận chứng từ / đã thanh toán.
+    @JsonKey(name: 'IsReceived') bool? isReceived,
+    @JsonKey(name: 'ReceivedDate') DateTime? receivedDate,
+    @JsonKey(name: 'IsPaid') bool? isPaid,
+    @JsonKey(name: 'PaidDate') DateTime? paidDate,
+    @JsonKey(name: 'Details')
+    @Default(<ApproveBookingPaymentDetailLine>[])
+    List<ApproveBookingPaymentDetailLine> details,
+  }) = _ApproveBookingPaymentDetail;
+
+  factory ApproveBookingPaymentDetail.fromJson(Map<String, dynamic> json) =>
+      _$ApproveBookingPaymentDetailFromJson(json);
+}
+
+/// Một bản ghi lịch sử duyệt. Tương ứng API: GET /VehicleBookingPaymentOrder/get-logs
+/// [isApproved] = 1 là đã duyệt; [contentLog] là nội dung ghi nhận của bước.
+@freezed
+class ApproveBookingPaymentLog with _$ApproveBookingPaymentLog {
+  const factory ApproveBookingPaymentLog({
+    @JsonKey(name: 'ID') required int id,
+    @JsonKey(name: 'Step') int? step,
+    @JsonKey(name: 'StepName') String? stepName,
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'IsApproved') int? isApproved,
+    @JsonKey(name: 'DateApproved') DateTime? dateApproved,
+    @JsonKey(name: 'ReasonCancel') String? reasonCancel,
+    @JsonKey(name: 'ContentLog') String? contentLog,
+  }) = _ApproveBookingPaymentLog;
+
+  factory ApproveBookingPaymentLog.fromJson(Map<String, dynamic> json) =>
+      _$ApproveBookingPaymentLogFromJson(json);
 }

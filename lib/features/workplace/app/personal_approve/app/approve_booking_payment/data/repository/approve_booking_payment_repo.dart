@@ -24,4 +24,18 @@ abstract class ApproveBookingPaymentRepo {
   Future<Either<BaseError, List<ApproveBookingPaymentEmployee>>> getEmployees({
     String keyword,
   });
+
+  /// Lấy chi tiết một phiếu ĐNTT theo `id`. [isAccommodation] = true gọi API
+  /// Công tác phí (nhà nghỉ), ngược lại gọi API Chi phí phương tiện.
+  Future<Either<BaseError, ApproveBookingPaymentDetail>> getById({
+    required int id,
+    bool includeDeleted = false,
+    bool isAccommodation = false,
+  });
+
+  /// Lấy lịch sử duyệt của một phiếu ĐNTT, chọn API theo [isAccommodation].
+  Future<Either<BaseError, List<ApproveBookingPaymentLog>>> getLogs({
+    required int paymentOrderId,
+    bool isAccommodation = false,
+  });
 }

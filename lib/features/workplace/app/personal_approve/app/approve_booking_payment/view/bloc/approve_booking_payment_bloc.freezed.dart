@@ -31,6 +31,7 @@ mixin _$ApproveBookingPaymentEvent {
             String keyword)
         applyFilter,
     required TResult Function() resetFilter,
+    required TResult Function(int id, bool isAccommodation) loadDetail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,6 +48,7 @@ mixin _$ApproveBookingPaymentEvent {
             String keyword)?
         applyFilter,
     TResult? Function()? resetFilter,
+    TResult? Function(int id, bool isAccommodation)? loadDetail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +65,7 @@ mixin _$ApproveBookingPaymentEvent {
             String keyword)?
         applyFilter,
     TResult Function()? resetFilter,
+    TResult Function(int id, bool isAccommodation)? loadDetail,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -74,6 +77,7 @@ mixin _$ApproveBookingPaymentEvent {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ApplyFilter value) applyFilter,
     required TResult Function(_ResetFilter value) resetFilter,
+    required TResult Function(_LoadDetail value) loadDetail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -84,6 +88,7 @@ mixin _$ApproveBookingPaymentEvent {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ApplyFilter value)? applyFilter,
     TResult? Function(_ResetFilter value)? resetFilter,
+    TResult? Function(_LoadDetail value)? loadDetail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -94,6 +99,7 @@ mixin _$ApproveBookingPaymentEvent {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ApplyFilter value)? applyFilter,
     TResult Function(_ResetFilter value)? resetFilter,
+    TResult Function(_LoadDetail value)? loadDetail,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -169,6 +175,7 @@ class _$InitImpl implements _Init {
             String keyword)
         applyFilter,
     required TResult Function() resetFilter,
+    required TResult Function(int id, bool isAccommodation) loadDetail,
   }) {
     return init();
   }
@@ -188,6 +195,7 @@ class _$InitImpl implements _Init {
             String keyword)?
         applyFilter,
     TResult? Function()? resetFilter,
+    TResult? Function(int id, bool isAccommodation)? loadDetail,
   }) {
     return init?.call();
   }
@@ -207,6 +215,7 @@ class _$InitImpl implements _Init {
             String keyword)?
         applyFilter,
     TResult Function()? resetFilter,
+    TResult Function(int id, bool isAccommodation)? loadDetail,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -224,6 +233,7 @@ class _$InitImpl implements _Init {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ApplyFilter value) applyFilter,
     required TResult Function(_ResetFilter value) resetFilter,
+    required TResult Function(_LoadDetail value) loadDetail,
   }) {
     return init(this);
   }
@@ -237,6 +247,7 @@ class _$InitImpl implements _Init {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ApplyFilter value)? applyFilter,
     TResult? Function(_ResetFilter value)? resetFilter,
+    TResult? Function(_LoadDetail value)? loadDetail,
   }) {
     return init?.call(this);
   }
@@ -250,6 +261,7 @@ class _$InitImpl implements _Init {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ApplyFilter value)? applyFilter,
     TResult Function(_ResetFilter value)? resetFilter,
+    TResult Function(_LoadDetail value)? loadDetail,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -314,6 +326,7 @@ class _$RefreshImpl implements _Refresh {
             String keyword)
         applyFilter,
     required TResult Function() resetFilter,
+    required TResult Function(int id, bool isAccommodation) loadDetail,
   }) {
     return refresh();
   }
@@ -333,6 +346,7 @@ class _$RefreshImpl implements _Refresh {
             String keyword)?
         applyFilter,
     TResult? Function()? resetFilter,
+    TResult? Function(int id, bool isAccommodation)? loadDetail,
   }) {
     return refresh?.call();
   }
@@ -352,6 +366,7 @@ class _$RefreshImpl implements _Refresh {
             String keyword)?
         applyFilter,
     TResult Function()? resetFilter,
+    TResult Function(int id, bool isAccommodation)? loadDetail,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -369,6 +384,7 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ApplyFilter value) applyFilter,
     required TResult Function(_ResetFilter value) resetFilter,
+    required TResult Function(_LoadDetail value) loadDetail,
   }) {
     return refresh(this);
   }
@@ -382,6 +398,7 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ApplyFilter value)? applyFilter,
     TResult? Function(_ResetFilter value)? resetFilter,
+    TResult? Function(_LoadDetail value)? loadDetail,
   }) {
     return refresh?.call(this);
   }
@@ -395,6 +412,7 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ApplyFilter value)? applyFilter,
     TResult Function(_ResetFilter value)? resetFilter,
+    TResult Function(_LoadDetail value)? loadDetail,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -459,6 +477,7 @@ class _$LoadMoreImpl implements _LoadMore {
             String keyword)
         applyFilter,
     required TResult Function() resetFilter,
+    required TResult Function(int id, bool isAccommodation) loadDetail,
   }) {
     return loadMore();
   }
@@ -478,6 +497,7 @@ class _$LoadMoreImpl implements _LoadMore {
             String keyword)?
         applyFilter,
     TResult? Function()? resetFilter,
+    TResult? Function(int id, bool isAccommodation)? loadDetail,
   }) {
     return loadMore?.call();
   }
@@ -497,6 +517,7 @@ class _$LoadMoreImpl implements _LoadMore {
             String keyword)?
         applyFilter,
     TResult Function()? resetFilter,
+    TResult Function(int id, bool isAccommodation)? loadDetail,
     required TResult orElse(),
   }) {
     if (loadMore != null) {
@@ -514,6 +535,7 @@ class _$LoadMoreImpl implements _LoadMore {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ApplyFilter value) applyFilter,
     required TResult Function(_ResetFilter value) resetFilter,
+    required TResult Function(_LoadDetail value) loadDetail,
   }) {
     return loadMore(this);
   }
@@ -527,6 +549,7 @@ class _$LoadMoreImpl implements _LoadMore {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ApplyFilter value)? applyFilter,
     TResult? Function(_ResetFilter value)? resetFilter,
+    TResult? Function(_LoadDetail value)? loadDetail,
   }) {
     return loadMore?.call(this);
   }
@@ -540,6 +563,7 @@ class _$LoadMoreImpl implements _LoadMore {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ApplyFilter value)? applyFilter,
     TResult Function(_ResetFilter value)? resetFilter,
+    TResult Function(_LoadDetail value)? loadDetail,
     required TResult orElse(),
   }) {
     if (loadMore != null) {
@@ -640,6 +664,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             String keyword)
         applyFilter,
     required TResult Function() resetFilter,
+    required TResult Function(int id, bool isAccommodation) loadDetail,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -659,6 +684,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             String keyword)?
         applyFilter,
     TResult? Function()? resetFilter,
+    TResult? Function(int id, bool isAccommodation)? loadDetail,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -678,6 +704,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             String keyword)?
         applyFilter,
     TResult Function()? resetFilter,
+    TResult Function(int id, bool isAccommodation)? loadDetail,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -695,6 +722,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ApplyFilter value) applyFilter,
     required TResult Function(_ResetFilter value) resetFilter,
+    required TResult Function(_LoadDetail value) loadDetail,
   }) {
     return changeDateRange(this);
   }
@@ -708,6 +736,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ApplyFilter value)? applyFilter,
     TResult? Function(_ResetFilter value)? resetFilter,
+    TResult? Function(_LoadDetail value)? loadDetail,
   }) {
     return changeDateRange?.call(this);
   }
@@ -721,6 +750,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ApplyFilter value)? applyFilter,
     TResult Function(_ResetFilter value)? resetFilter,
+    TResult Function(_LoadDetail value)? loadDetail,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -907,6 +937,7 @@ class _$ApplyFilterImpl implements _ApplyFilter {
             String keyword)
         applyFilter,
     required TResult Function() resetFilter,
+    required TResult Function(int id, bool isAccommodation) loadDetail,
   }) {
     return applyFilter(typeName, step, department, employee, keyword);
   }
@@ -926,6 +957,7 @@ class _$ApplyFilterImpl implements _ApplyFilter {
             String keyword)?
         applyFilter,
     TResult? Function()? resetFilter,
+    TResult? Function(int id, bool isAccommodation)? loadDetail,
   }) {
     return applyFilter?.call(typeName, step, department, employee, keyword);
   }
@@ -945,6 +977,7 @@ class _$ApplyFilterImpl implements _ApplyFilter {
             String keyword)?
         applyFilter,
     TResult Function()? resetFilter,
+    TResult Function(int id, bool isAccommodation)? loadDetail,
     required TResult orElse(),
   }) {
     if (applyFilter != null) {
@@ -962,6 +995,7 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ApplyFilter value) applyFilter,
     required TResult Function(_ResetFilter value) resetFilter,
+    required TResult Function(_LoadDetail value) loadDetail,
   }) {
     return applyFilter(this);
   }
@@ -975,6 +1009,7 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ApplyFilter value)? applyFilter,
     TResult? Function(_ResetFilter value)? resetFilter,
+    TResult? Function(_LoadDetail value)? loadDetail,
   }) {
     return applyFilter?.call(this);
   }
@@ -988,6 +1023,7 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ApplyFilter value)? applyFilter,
     TResult Function(_ResetFilter value)? resetFilter,
+    TResult Function(_LoadDetail value)? loadDetail,
     required TResult orElse(),
   }) {
     if (applyFilter != null) {
@@ -1066,6 +1102,7 @@ class _$ResetFilterImpl implements _ResetFilter {
             String keyword)
         applyFilter,
     required TResult Function() resetFilter,
+    required TResult Function(int id, bool isAccommodation) loadDetail,
   }) {
     return resetFilter();
   }
@@ -1085,6 +1122,7 @@ class _$ResetFilterImpl implements _ResetFilter {
             String keyword)?
         applyFilter,
     TResult? Function()? resetFilter,
+    TResult? Function(int id, bool isAccommodation)? loadDetail,
   }) {
     return resetFilter?.call();
   }
@@ -1104,6 +1142,7 @@ class _$ResetFilterImpl implements _ResetFilter {
             String keyword)?
         applyFilter,
     TResult Function()? resetFilter,
+    TResult Function(int id, bool isAccommodation)? loadDetail,
     required TResult orElse(),
   }) {
     if (resetFilter != null) {
@@ -1121,6 +1160,7 @@ class _$ResetFilterImpl implements _ResetFilter {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ApplyFilter value) applyFilter,
     required TResult Function(_ResetFilter value) resetFilter,
+    required TResult Function(_LoadDetail value) loadDetail,
   }) {
     return resetFilter(this);
   }
@@ -1134,6 +1174,7 @@ class _$ResetFilterImpl implements _ResetFilter {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ApplyFilter value)? applyFilter,
     TResult? Function(_ResetFilter value)? resetFilter,
+    TResult? Function(_LoadDetail value)? loadDetail,
   }) {
     return resetFilter?.call(this);
   }
@@ -1147,6 +1188,7 @@ class _$ResetFilterImpl implements _ResetFilter {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ApplyFilter value)? applyFilter,
     TResult Function(_ResetFilter value)? resetFilter,
+    TResult Function(_LoadDetail value)? loadDetail,
     required TResult orElse(),
   }) {
     if (resetFilter != null) {
@@ -1158,4 +1200,198 @@ class _$ResetFilterImpl implements _ResetFilter {
 
 abstract class _ResetFilter implements ApproveBookingPaymentEvent {
   const factory _ResetFilter() = _$ResetFilterImpl;
+}
+
+/// @nodoc
+abstract class _$$LoadDetailImplCopyWith<$Res> {
+  factory _$$LoadDetailImplCopyWith(
+          _$LoadDetailImpl value, $Res Function(_$LoadDetailImpl) then) =
+      __$$LoadDetailImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id, bool isAccommodation});
+}
+
+/// @nodoc
+class __$$LoadDetailImplCopyWithImpl<$Res>
+    extends _$ApproveBookingPaymentEventCopyWithImpl<$Res, _$LoadDetailImpl>
+    implements _$$LoadDetailImplCopyWith<$Res> {
+  __$$LoadDetailImplCopyWithImpl(
+      _$LoadDetailImpl _value, $Res Function(_$LoadDetailImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? isAccommodation = null,
+  }) {
+    return _then(_$LoadDetailImpl(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      isAccommodation: null == isAccommodation
+          ? _value.isAccommodation
+          : isAccommodation // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LoadDetailImpl implements _LoadDetail {
+  const _$LoadDetailImpl(this.id, {this.isAccommodation = false});
+
+  @override
+  final int id;
+  @override
+  @JsonKey()
+  final bool isAccommodation;
+
+  @override
+  String toString() {
+    return 'ApproveBookingPaymentEvent.loadDetail(id: $id, isAccommodation: $isAccommodation)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadDetailImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.isAccommodation, isAccommodation) ||
+                other.isAccommodation == isAccommodation));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id, isAccommodation);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadDetailImplCopyWith<_$LoadDetailImpl> get copyWith =>
+      __$$LoadDetailImplCopyWithImpl<_$LoadDetailImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() refresh,
+    required TResult Function() loadMore,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(
+            String? typeName,
+            ApproveBookingPaymentStep? step,
+            ApproveBookingPaymentDepartment? department,
+            ApproveBookingPaymentEmployee? employee,
+            String keyword)
+        applyFilter,
+    required TResult Function() resetFilter,
+    required TResult Function(int id, bool isAccommodation) loadDetail,
+  }) {
+    return loadDetail(id, isAccommodation);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? refresh,
+    TResult? Function()? loadMore,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(
+            String? typeName,
+            ApproveBookingPaymentStep? step,
+            ApproveBookingPaymentDepartment? department,
+            ApproveBookingPaymentEmployee? employee,
+            String keyword)?
+        applyFilter,
+    TResult? Function()? resetFilter,
+    TResult? Function(int id, bool isAccommodation)? loadDetail,
+  }) {
+    return loadDetail?.call(id, isAccommodation);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? refresh,
+    TResult Function()? loadMore,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(
+            String? typeName,
+            ApproveBookingPaymentStep? step,
+            ApproveBookingPaymentDepartment? department,
+            ApproveBookingPaymentEmployee? employee,
+            String keyword)?
+        applyFilter,
+    TResult Function()? resetFilter,
+    TResult Function(int id, bool isAccommodation)? loadDetail,
+    required TResult orElse(),
+  }) {
+    if (loadDetail != null) {
+      return loadDetail(id, isAccommodation);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_LoadMore value) loadMore,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_ResetFilter value) resetFilter,
+    required TResult Function(_LoadDetail value) loadDetail,
+  }) {
+    return loadDetail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_LoadMore value)? loadMore,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_ResetFilter value)? resetFilter,
+    TResult? Function(_LoadDetail value)? loadDetail,
+  }) {
+    return loadDetail?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_LoadMore value)? loadMore,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_ResetFilter value)? resetFilter,
+    TResult Function(_LoadDetail value)? loadDetail,
+    required TResult orElse(),
+  }) {
+    if (loadDetail != null) {
+      return loadDetail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadDetail implements ApproveBookingPaymentEvent {
+  const factory _LoadDetail(final int id, {final bool isAccommodation}) =
+      _$LoadDetailImpl;
+
+  int get id;
+  bool get isAccommodation;
+  @JsonKey(ignore: true)
+  _$$LoadDetailImplCopyWith<_$LoadDetailImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -55,6 +55,47 @@ class ApproveBookingPaymentRepoImpl implements ApproveBookingPaymentRepo {
     );
   }
 
+  @override
+  Future<Either<BaseError, ApproveBookingPaymentDetail>> getById({
+    required int id,
+    bool includeDeleted = false,
+    bool isAccommodation = false,
+  }) async {
+    try {
+      final res = await _service.getById(
+        id: id,
+        includeDeleted: includeDeleted,
+        isAccommodation: isAccommodation,
+      );
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? res.msg ?? 'Không thể tải chi tiết phiếu',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<ApproveBookingPaymentLog>>> getLogs({
+    required int paymentOrderId,
+    bool isAccommodation = false,
+  }) {
+    return _request(
+      () => _service.getLogs(
+        paymentOrderId: paymentOrderId,
+        isAccommodation: isAccommodation,
+      ),
+      'Không thể tải lịch sử duyệt',
+    );
+  }
+
   /// Gọi [call], map `status == 1 && data != null` → `right(data)`;
   /// ngược lại trả `left(BaseError)` với message của BE (hoặc [fallback]).
   Future<Either<BaseError, List<T>>> _request<T>(

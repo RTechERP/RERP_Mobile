@@ -13,8 +13,11 @@ import '../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../common/constants/index.dart';
 import '../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../common/widgets/date_range_picker.dart';
+import '../../../../../reg_general/view/pages/rental_vehicle/view/widgets/list_header.dart';
+import '../../data/datasource/models/approve_booking_payment_model.dart';
 import '../bloc/approve_booking_payment_bloc.dart';
 import '../widgets/approve_booking_payment_card.dart';
+import '../widgets/approve_booking_payment_detail_sheet.dart';
 import '../widgets/approve_booking_payment_filter_sheet.dart';
 class ApproveBookingPaymentScreen extends StatefulWidget {
   const ApproveBookingPaymentScreen({super.key});
@@ -145,6 +148,28 @@ class _ApproveBookingPaymentScreenState
     }
 
     final items = state.visibleItems;
+    // Phòng ban / loại nội dung lọc client-side nên totalRows của BE không còn
+    // đúng; khi đó đếm theo danh sách đang hiển thị.
+    final clientFiltered =
+        state.selectedDepartment != null || state.selectedTypeName != null;
+    return Column(
+      children: [
+        ListHeader(
+          total: clientFiltered ? items.length : state.totalRows,
+          dateStart: state.dateStart,
+          dateEnd: state.dateEnd,
+          isSearching: state.keyword.isNotEmpty,
+        ),
+        const SizedBox(height: 4),
+        Expanded(child: _buildList(state, items)),
+      ],
+    );
+  }
+
+  Widget _buildList(
+    ApproveBookingPaymentState state,
+    List<ApproveBookingPaymentItem> items,
+  ) {
     return RefreshIndicator(
       onRefresh: () async {
         bloc.add(const ApproveBookingPaymentEvent.refresh());
@@ -174,7 +199,15 @@ class _ApproveBookingPaymentScreenState
                         )
                       : const SizedBox.shrink();
                 }
-                return ApproveBookingPaymentCard(item: items[index]);
+                final item = items[index];
+                return GestureDetector(
+                  onTap: () => showApproveBookingPaymentDetailSheet(
+                    context,
+                    bloc,
+                    item,
+                  ),
+                  child: ApproveBookingPaymentCard(item: item),
+                );
               },
             ),
     );

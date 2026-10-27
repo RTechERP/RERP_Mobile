@@ -667,6 +667,26 @@ class ApiEndPoint {
   static const String vehicleBookingPaymentOrderGetUnifiedList =
       '/VehicleBookingPaymentOrder/get-unified-list';
 
+  /// API: GET /VehicleBookingPaymentOrder/get-by-id?id=<id>&includeDeleted=<bool>
+  /// Chi tiết một phiếu ĐNTT (kèm các dòng chi tiết và file đính kèm).
+  static const String vehicleBookingPaymentOrderGetById =
+      '/VehicleBookingPaymentOrder/get-by-id';
+
+  /// API: GET /VehicleBookingPaymentOrder/get-logs?paymentOrderId=<id>
+  /// Lịch sử duyệt của một phiếu ĐNTT.
+  static const String vehicleBookingPaymentOrderGetLogs =
+      '/VehicleBookingPaymentOrder/get-logs';
+
+  /// API: GET /AccommodationBookingPaymentOrder/get-by-id?id=<id>&includeDeleted=<bool>
+  /// Chi tiết một phiếu ĐNTT Công tác phí (nhà nghỉ).
+  static const String accommodationBookingPaymentOrderGetById =
+      '/AccommodationBookingPaymentOrder/get-by-id';
+
+  /// API: GET /AccommodationBookingPaymentOrder/get-logs?paymentOrderId=<id>
+  /// Lịch sử duyệt của phiếu ĐNTT Công tác phí (nhà nghỉ).
+  static const String accommodationBookingPaymentOrderGetLogs =
+      '/AccommodationBookingPaymentOrder/get-logs';
+
   /// Check xung đột trước khi lưu phiếu đăng ký bàn test.
   /// API: POST /ESLRegistration/check-conflict (form-data).
   static const String checkConflictRegistration =

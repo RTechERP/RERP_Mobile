@@ -30,4 +30,11 @@ class ApproveBookingPaymentEvent with _$ApproveBookingPaymentEvent {
 
   /// Xoá toàn bộ bộ lọc (giữ nguyên khoảng ngày).
   const factory ApproveBookingPaymentEvent.resetFilter() = _ResetFilter;
+
+  /// Tải chi tiết + lịch sử duyệt của phiếu có [id] cho BottomSheet chi tiết.
+  /// [isAccommodation] = true với phiếu Công tác phí (API nhà nghỉ).
+  const factory ApproveBookingPaymentEvent.loadDetail(
+    int id, {
+    @Default(false) bool isAccommodation,
+  }) = _LoadDetail;
 }

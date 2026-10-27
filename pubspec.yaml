@@ -111,6 +111,7 @@ dependencies:
   confetti: ^0.8.0
   google_fonts: ^6.2.1
   audioplayers: ^6.1.0
+  timeline_tile: 2.0.0
 
 flutter_native_splash:
   color: "#FFFFFF"

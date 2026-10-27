@@ -42,6 +42,15 @@ class ApproveBookingPaymentState extends BaseBlocState {
   final bool isRefreshing;
   final bool isLoadingMore;
 
+  /// Chi tiết phiếu đang xem trong BottomSheet (null khi chưa tải xong) và
+  /// lịch sử duyệt tương ứng. Tách khỏi [status] để không ảnh hưởng danh sách.
+  final ApproveBookingPaymentDetail? detail;
+  final List<ApproveBookingPaymentLog> logs;
+
+  /// `true` khi đang tải chi tiết; [detailError] khác null khi tải lỗi.
+  final bool isLoadingDetail;
+  final String? detailError;
+
   const ApproveBookingPaymentState({
     required super.status,
     super.message,
@@ -61,6 +70,10 @@ class ApproveBookingPaymentState extends BaseBlocState {
     this.totalRows = 0,
     this.isRefreshing = false,
     this.isLoadingMore = false,
+    this.detail,
+    this.logs = const [],
+    this.isLoadingDetail = false,
+    this.detailError,
   });
 
   factory ApproveBookingPaymentState.init() =>
@@ -120,5 +133,9 @@ class ApproveBookingPaymentState extends BaseBlocState {
         totalRows,
         isRefreshing,
         isLoadingMore,
+        detail,
+        logs,
+        isLoadingDetail,
+        detailError,
       ];
 }

@@ -52,7 +52,9 @@ class ApproveBookingPaymentCard extends StatelessWidget {
               ),
               if (typeName.isNotEmpty) ...[
                 const SizedBox(width: 4),
-                Flexible(child: _Tag(text: typeName, color: AppColors.main)),
+                Flexible(
+                  child: _Tag(text: typeName, color: AppColors.main),
+                ),
               ],
               if (requestType != null) ...[
                 const SizedBox(width: 4),
@@ -98,10 +100,10 @@ class ApproveBookingPaymentCard extends StatelessWidget {
   /// Loại đề nghị theo `TypeOrder` của BE: 1 → ĐN tạm ứng (tím),
   /// 2 → ĐNTT quyết toán (xanh dương). Giá trị khác → null (không hiện chip).
   ({String text, Color color})? get _requestType => switch (item.typeOrder) {
-        1 => (text: 'ĐN tạm ứng', color: AppColors.purple),
-        2 => (text: 'ĐNTT quyết toán', color: AppColors.stateInfoColor),
-        _ => null,
-      };
+    1 => (text: 'ĐN tạm ứng', color: AppColors.purple),
+    2 => (text: 'ĐNTT quyết toán', color: AppColors.stateInfoColor),
+    _ => null,
+  };
 
   String _money(double? amount) =>
       amount == null ? '-' : '${_moneyFmt.format(amount)} đ';
@@ -166,6 +168,7 @@ class _InfoRow extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w500,
+                height: 1.5,
                 color: AppColors.enableText,
               ),
             ),

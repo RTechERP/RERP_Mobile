@@ -104,21 +104,21 @@ class _ApproveBookingPaymentFilterSheetState
 
   void _apply() {
     context.read<ApproveBookingPaymentBloc>().add(
-          ApproveBookingPaymentEvent.applyFilter(
-            typeName: _typeName,
-            step: _step,
-            department: _department,
-            employee: _employee,
-            keyword: _keywordCtl.text,
-          ),
-        );
+      ApproveBookingPaymentEvent.applyFilter(
+        typeName: _typeName,
+        step: _step,
+        department: _department,
+        employee: _employee,
+        keyword: _keywordCtl.text,
+      ),
+    );
     Navigator.of(context).pop();
   }
 
   void _reset() {
-    context
-        .read<ApproveBookingPaymentBloc>()
-        .add(const ApproveBookingPaymentEvent.resetFilter());
+    context.read<ApproveBookingPaymentBloc>().add(
+      const ApproveBookingPaymentEvent.resetFilter(),
+    );
     Navigator.of(context).pop();
   }
 
@@ -197,7 +197,9 @@ class _ApproveBookingPaymentFilterSheetState
                       // Bấm lại chip đang chọn để bỏ lọc.
                       onSelected: (on) =>
                           setState(() => _typeName = on ? name : null),
-                      selectedColor: AppColors.primaryERP.withValues(alpha: 0.15),
+                      selectedColor: AppColors.primaryERP.withValues(
+                        alpha: 0.15,
+                      ),
                       labelStyle: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w600,
