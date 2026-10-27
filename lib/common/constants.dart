@@ -687,6 +687,12 @@ class ApiEndPoint {
   static const String accommodationBookingPaymentOrderGetLogs =
       '/AccommodationBookingPaymentOrder/get-logs';
 
+  /// API: POST /AccommodationBookingPaymentOrder/appoved-tbp
+  /// TBP duyệt (`IsApproved` = 1) / từ chối (`IsApproved` = 2) một ĐNTT
+  /// Công tác phí. Tên endpoint (`appoved`) đúng theo BE.
+  static const String accommodationBookingPaymentOrderApprovedTbp =
+      '/AccommodationBookingPaymentOrder/appoved-tbp';
+
   /// Check xung đột trước khi lưu phiếu đăng ký bàn test.
   /// API: POST /ESLRegistration/check-conflict (form-data).
   static const String checkConflictRegistration =

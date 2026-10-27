@@ -45,6 +45,13 @@ class ApproveBookingPaymentBloc
         resetFilter: () => _onResetFilter(emit),
         loadDetail: (id, isAccommodation) =>
             _onLoadDetail(emit, id, isAccommodation),
+        toggleSelection: (id) => _onToggleSelection(emit, id),
+        selectAll: () => _onSelectAll(emit),
+        clearSelection: () async => emit(state.copyWith(selectedIds: {})),
+        approveSelected: (note) =>
+            _onSubmitApproval(emit, isApproved: true, note: note),
+        rejectSelected: (reason) =>
+            _onSubmitApproval(emit, isApproved: false, reason: reason),
       );
     });
   }
@@ -201,6 +208,69 @@ class ApproveBookingPaymentBloc
         detailError: null,
       )),
     );
+  }
+
+  //---(Selection)---//
+
+  Future<void> _onToggleSelection(
+    Emitter<ApproveBookingPaymentState> emit,
+    int id,
+  ) async {
+    final next = Set<int>.from(state.selectedIds);
+    if (!next.remove(id)) next.add(id);
+    emit(state.copyWith(selectedIds: next));
+  }
+
+  /// Chỉ phiếu Công tác phí mới có API TBP duyệt nên chỉ chọn các phiếu đó.
+  Future<void> _onSelectAll(Emitter<ApproveBookingPaymentState> emit) async {
+    final ids = state.visibleItems
+        .where((i) => i.isAccommodation)
+        .map((i) => i.id)
+        .toSet();
+    emit(state.copyWith(selectedIds: ids));
+  }
+
+  //---(Approve / Reject)---//
+
+  /// Gọi lần lượt API `appoved-tbp` cho từng phiếu đã chọn rồi tải lại danh
+  /// sách. Phiếu lỗi vẫn được giữ chọn để user thử lại; [approveError] chứa
+  /// thông báo khi có ít nhất một phiếu lỗi.
+  Future<void> _onSubmitApproval(
+    Emitter<ApproveBookingPaymentState> emit, {
+    required bool isApproved,
+    String? note,
+    String? reason,
+  }) async {
+    final ids = state.selectedIds.toList();
+    if (ids.isEmpty || state.isApproving) return;
+
+    emit(state.copyWith(isApproving: true, approveError: null));
+
+    final failed = <int>{};
+    String? firstError;
+    for (final id in ids) {
+      final res = await _repo.approveTbp(
+        paymentOrderId: id,
+        isApproved: isApproved,
+        note: note,
+        reasonCancel: reason,
+      );
+      res.fold((err) {
+        _log.logE('❌ approveTbp id=$id failed: $err');
+        failed.add(id);
+        firstError ??= err.getErrorMessage;
+      }, (_) {});
+    }
+    if (emit.isDone) return;
+
+    emit(state.copyWith(
+      isApproving: false,
+      selectedIds: failed,
+      approveError: failed.isEmpty
+          ? null
+          : '${failed.length}/${ids.length} phiếu thất bại: $firstError',
+    ));
+    await _fetch(emit, pageIndex: 1);
   }
 
   //---(Fetch)---//

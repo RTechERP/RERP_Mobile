@@ -96,6 +96,37 @@ class ApproveBookingPaymentRepoImpl implements ApproveBookingPaymentRepo {
     );
   }
 
+  @override
+  Future<Either<BaseError, bool>> approveTbp({
+    required int paymentOrderId,
+    required bool isApproved,
+    String? note,
+    String? reasonCancel,
+  }) async {
+    try {
+      final res = await _service.approveTbp(
+        payload: {
+          'PaymentOrderID': paymentOrderId,
+          'ActionText': isApproved ? 'đã duyệt' : 'đã từ chối',
+          'IsApproved': isApproved ? 1 : 2,
+          if (note != null && note.isNotEmpty) 'Note': note,
+          if (reasonCancel != null && reasonCancel.isNotEmpty)
+            'ReasonCancel': reasonCancel,
+        },
+      );
+      if (res.status == 1) return right(true);
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? res.msg ?? 'Thao tác thất bại',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
+
   /// Gọi [call], map `status == 1 && data != null` → `right(data)`;
   /// ngược lại trả `left(BaseError)` với message của BE (hoặc [fallback]).
   Future<Either<BaseError, List<T>>> _request<T>(

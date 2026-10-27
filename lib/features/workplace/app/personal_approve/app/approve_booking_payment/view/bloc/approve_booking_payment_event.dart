@@ -37,4 +37,23 @@ class ApproveBookingPaymentEvent with _$ApproveBookingPaymentEvent {
     int id, {
     @Default(false) bool isAccommodation,
   }) = _LoadDetail;
+
+  /// Chọn / bỏ chọn một phiếu để duyệt hàng loạt.
+  const factory ApproveBookingPaymentEvent.toggleSelection(int id) =
+      _ToggleSelection;
+
+  /// Chọn tất cả phiếu đang hiển thị có thể duyệt.
+  const factory ApproveBookingPaymentEvent.selectAll() = _SelectAll;
+
+  /// Bỏ chọn toàn bộ phiếu.
+  const factory ApproveBookingPaymentEvent.clearSelection() = _ClearSelection;
+
+  /// TBP duyệt các phiếu đã chọn, kèm [note] tuỳ chọn.
+  const factory ApproveBookingPaymentEvent.approveSelected({String? note}) =
+      _ApproveSelected;
+
+  /// TBP huỷ duyệt (từ chối) các phiếu đã chọn với [reason] bắt buộc.
+  const factory ApproveBookingPaymentEvent.rejectSelected({
+    required String reason,
+  }) = _RejectSelected;
 }

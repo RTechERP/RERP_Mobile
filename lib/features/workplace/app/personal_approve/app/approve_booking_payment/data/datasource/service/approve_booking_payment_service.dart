@@ -4,6 +4,7 @@
 //   - POST /VehicleBookingPaymentOrder/get-unified-list
 //   - GET  /Department/get-all
 //   - GET  /Employee?status=0&departmentID=0&keyword=
+//   - POST /AccommodationBookingPaymentOrder/appoved-tbp
 
 import 'package:injectable/injectable.dart';
 
@@ -95,6 +96,17 @@ class ApproveBookingPaymentService extends DioBaseApiService {
           : ApiEndPoint.vehicleBookingPaymentOrderGetLogs,
       query: {'paymentOrderId': paymentOrderId},
       parser: (json) => _parseList(json, ApproveBookingPaymentLog.fromJson),
+    );
+  }
+
+  /// TBP duyệt / từ chối một ĐNTT Công tác phí.
+  /// API: POST /AccommodationBookingPaymentOrder/appoved-tbp
+  /// [payload] — PaymentOrderID, ActionText, IsApproved (+ Note / ReasonCancel).
+  Future<BaseData<void>> approveTbp({required Map<String, dynamic> payload}) {
+    return post<BaseData<void>>(
+      ApiEndPoint.accommodationBookingPaymentOrderApprovedTbp,
+      body: payload,
+      parser: (json) => BaseData.fromJson(json, (_) {}),
     );
   }
 

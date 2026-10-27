@@ -38,4 +38,14 @@ abstract class ApproveBookingPaymentRepo {
     required int paymentOrderId,
     bool isAccommodation = false,
   });
+
+  /// TBP duyệt ([isApproved] = true, kèm [note] tuỳ chọn) hoặc từ chối
+  /// ([isApproved] = false, kèm [reasonCancel]) một ĐNTT Công tác phí.
+  /// Trả `right(true)` khi BE xác nhận thành công.
+  Future<Either<BaseError, bool>> approveTbp({
+    required int paymentOrderId,
+    required bool isApproved,
+    String? note,
+    String? reasonCancel,
+  });
 }

@@ -13,7 +13,9 @@ import '../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../common/constants/index.dart';
 import '../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../common/widgets/date_range_picker.dart';
+import '../../../../../../../../common/utils/dialog/dialog_service.dart';
 import '../../../../../reg_general/view/pages/rental_vehicle/view/widgets/list_header.dart';
+import '../../../approve_booking_guest_house/view/widgets/approve_booking_guest_house_selection_bar.dart';
 import '../../data/datasource/models/approve_booking_payment_model.dart';
 import '../bloc/approve_booking_payment_bloc.dart';
 import '../widgets/approve_booking_payment_card.dart';
@@ -152,6 +154,7 @@ class _ApproveBookingPaymentScreenState
     // đúng; khi đó đếm theo danh sách đang hiển thị.
     final clientFiltered =
         state.selectedDepartment != null || state.selectedTypeName != null;
+    final selectableCount = items.where((i) => i.isAccommodation).length;
     return Column(
       children: [
         ListHeader(
@@ -162,7 +165,55 @@ class _ApproveBookingPaymentScreenState
         ),
         const SizedBox(height: 4),
         Expanded(child: _buildList(state, items)),
+        if (state.selectedIds.isNotEmpty)
+          ApproveBookingGuestHouseSelectionBar(
+            selectedCount: state.selectedIds.length,
+            totalCount: selectableCount,
+            isAllSelected: state.selectedIds.length == selectableCount,
+            onSelectAll: () =>
+                bloc.add(const ApproveBookingPaymentEvent.selectAll()),
+            onClearSelection: () =>
+                bloc.add(const ApproveBookingPaymentEvent.clearSelection()),
+            onApprove: _onApprove,
+            onReject: _onReject,
+            isApproving: state.isApproving,
+          ),
       ],
+    );
+  }
+
+  /// TBP duyệt các phiếu đã chọn: hỏi xác nhận + ghi chú, gửi, rồi báo kết quả.
+  Future<void> _onApprove() async {
+    final note = await DialogService.showConfirmApproveWithNote(
+      context: context,
+      count: bloc.state.selectedIds.length,
+    );
+    if (note == null) return;
+    bloc.add(ApproveBookingPaymentEvent.approveSelected(note: note));
+    await _showApprovalResult('Duyệt');
+  }
+
+  /// TBP huỷ duyệt các phiếu đã chọn: hỏi xác nhận + lý do huỷ (bắt buộc).
+  Future<void> _onReject() async {
+    final reason = await DialogService.showConfirmCancelWithReason(
+      context: context,
+      count: bloc.state.selectedIds.length,
+    );
+    if (reason == null) return;
+    bloc.add(ApproveBookingPaymentEvent.rejectSelected(reason: reason));
+    await _showApprovalResult('Huỷ duyệt');
+  }
+
+  /// Chờ bloc xử lý xong lượt duyệt rồi báo thành công / thất bại.
+  /// [action] là tên thao tác để ghép vào thông báo.
+  Future<void> _showApprovalResult(String action) async {
+    final done = await bloc.stream.firstWhere((s) => !s.isApproving);
+    if (!mounted) return;
+    final error = done.approveError;
+    showMessage(
+      context,
+      error ?? '$action thành công',
+      type: error == null ? SnackBarType.success : SnackBarType.error,
     );
   }
 
@@ -206,7 +257,15 @@ class _ApproveBookingPaymentScreenState
                     bloc,
                     item,
                   ),
-                  child: ApproveBookingPaymentCard(item: item),
+                  child: ApproveBookingPaymentCard(
+                    item: item,
+                    // API TBP duyệt chỉ có cho phiếu Công tác phí.
+                    selectable: item.isAccommodation,
+                    selected: state.selectedIds.contains(item.id),
+                    onToggleSelection: () => bloc.add(
+                      ApproveBookingPaymentEvent.toggleSelection(item.id),
+                    ),
+                  ),
                 );
               },
             ),

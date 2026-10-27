@@ -56,6 +56,12 @@ abstract class _$ApproveBookingPaymentStateCWProxy {
 
   ApproveBookingPaymentState detailError(String? detailError);
 
+  ApproveBookingPaymentState selectedIds(Set<int> selectedIds);
+
+  ApproveBookingPaymentState isApproving(bool isApproving);
+
+  ApproveBookingPaymentState approveError(String? approveError);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ApproveBookingPaymentState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -85,6 +91,9 @@ abstract class _$ApproveBookingPaymentStateCWProxy {
     List<ApproveBookingPaymentLog>? logs,
     bool? isLoadingDetail,
     String? detailError,
+    Set<int>? selectedIds,
+    bool? isApproving,
+    String? approveError,
   });
 }
 
@@ -186,6 +195,18 @@ class _$ApproveBookingPaymentStateCWProxyImpl
       this(detailError: detailError);
 
   @override
+  ApproveBookingPaymentState selectedIds(Set<int> selectedIds) =>
+      this(selectedIds: selectedIds);
+
+  @override
+  ApproveBookingPaymentState isApproving(bool isApproving) =>
+      this(isApproving: isApproving);
+
+  @override
+  ApproveBookingPaymentState approveError(String? approveError) =>
+      this(approveError: approveError);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ApproveBookingPaymentState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -216,6 +237,9 @@ class _$ApproveBookingPaymentStateCWProxyImpl
     Object? logs = const $CopyWithPlaceholder(),
     Object? isLoadingDetail = const $CopyWithPlaceholder(),
     Object? detailError = const $CopyWithPlaceholder(),
+    Object? selectedIds = const $CopyWithPlaceholder(),
+    Object? isApproving = const $CopyWithPlaceholder(),
+    Object? approveError = const $CopyWithPlaceholder(),
   }) {
     return ApproveBookingPaymentState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -310,6 +334,20 @@ class _$ApproveBookingPaymentStateCWProxyImpl
           ? _value.detailError
           // ignore: cast_nullable_to_non_nullable
           : detailError as String?,
+      selectedIds:
+          selectedIds == const $CopyWithPlaceholder() || selectedIds == null
+              ? _value.selectedIds
+              // ignore: cast_nullable_to_non_nullable
+              : selectedIds as Set<int>,
+      isApproving:
+          isApproving == const $CopyWithPlaceholder() || isApproving == null
+              ? _value.isApproving
+              // ignore: cast_nullable_to_non_nullable
+              : isApproving as bool,
+      approveError: approveError == const $CopyWithPlaceholder()
+          ? _value.approveError
+          // ignore: cast_nullable_to_non_nullable
+          : approveError as String?,
     );
   }
 }

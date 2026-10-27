@@ -51,6 +51,14 @@ class ApproveBookingPaymentState extends BaseBlocState {
   final bool isLoadingDetail;
   final String? detailError;
 
+  /// ID các phiếu Công tác phí đang chọn để TBP duyệt / huỷ duyệt hàng loạt.
+  final Set<int> selectedIds;
+
+  /// `true` khi đang gọi API duyệt / huỷ duyệt; [approveError] khác null khi
+  /// lượt vừa xong có phiếu thất bại (chứa thông báo để hiển thị).
+  final bool isApproving;
+  final String? approveError;
+
   const ApproveBookingPaymentState({
     required super.status,
     super.message,
@@ -74,6 +82,9 @@ class ApproveBookingPaymentState extends BaseBlocState {
     this.logs = const [],
     this.isLoadingDetail = false,
     this.detailError,
+    this.selectedIds = const {},
+    this.isApproving = false,
+    this.approveError,
   });
 
   factory ApproveBookingPaymentState.init() =>
@@ -137,5 +148,8 @@ class ApproveBookingPaymentState extends BaseBlocState {
         logs,
         isLoadingDetail,
         detailError,
+        selectedIds,
+        isApproving,
+        approveError,
       ];
 }

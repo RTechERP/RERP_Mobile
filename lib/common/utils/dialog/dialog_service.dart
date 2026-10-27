@@ -1023,6 +1023,117 @@ class DialogService {
     );
   }
 
+  /// Dialog xác nhận duyệt kèm ô ghi chú (không bắt buộc).
+  /// Trả về ghi chú (chuỗi rỗng nếu bỏ trống) khi user bấm Đồng ý,
+  /// `null` nếu huỷ.
+  static Future<String?> showConfirmApproveWithNote({
+    required BuildContext context,
+    required int count,
+  }) async {
+    final formKey = GlobalKey<FormBuilderState>();
+
+    return await BaseDialog.twoOptionVerticalDialog(
+      context: context,
+      image: const Icon(
+        Icons.info_outline,
+        size: 56,
+        color: AppColors.stateInfoColor,
+      ),
+      title: 'Xác nhận duyệt',
+      descriptionWidget: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            'Bạn có muốn duyệt $count phiếu đã chọn không?',
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 12),
+          FormBuilder(
+            key: formKey,
+            child: FormInputField(
+              nameForm: 'approve_note_form',
+              nameTextField: 'approve_note_field',
+              label: 'Ghi chú',
+              icon: Icons.edit_note,
+              maxLines: 4,
+              autoExpand: true,
+              textInputAction: TextInputAction.newline,
+              maxLength: 500,
+            ),
+          ),
+        ],
+      ),
+      contentTopButton: 'Đồng ý',
+      topButtonFunc: () {
+        final state = formKey.currentState;
+        state?.save();
+        final note = (state?.value['approve_note_field'] as String?)?.trim();
+        context.pop(note ?? '');
+      },
+      contentBottomButton: 'Huỷ',
+      bottomButtonFunc: () {
+        context.pop();
+      },
+    );
+  }
+
+  /// Dialog xác nhận huỷ duyệt kèm ô lý do huỷ (bắt buộc).
+  /// Trả về lý do khi user bấm Đồng ý, `null` nếu huỷ.
+  static Future<String?> showConfirmCancelWithReason({
+    required BuildContext context,
+    required int count,
+  }) async {
+    final formKey = GlobalKey<FormBuilderState>();
+
+    return await BaseDialog.twoOptionVerticalDialog(
+      context: context,
+      image: const Icon(
+        Icons.cancel_outlined,
+        size: 56,
+        color: AppColors.stateErrorColor,
+      ),
+      title: 'Xác nhận huỷ duyệt',
+      descriptionWidget: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            'Bạn có muốn huỷ duyệt $count phiếu đã chọn không?',
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 12),
+          FormBuilder(
+            key: formKey,
+            child: FormInputField(
+              nameForm: 'cancel_reason_form',
+              nameTextField: 'cancel_reason_field',
+              label: 'Lý do huỷ',
+              icon: Icons.edit_note,
+              isRequired: true,
+              maxLines: 4,
+              autoExpand: true,
+              textInputAction: TextInputAction.newline,
+              maxLength: 500,
+              validator: FormBuilderValidators.required(
+                errorText: 'Vui lòng nhập lý do huỷ',
+              ),
+            ),
+          ),
+        ],
+      ),
+      contentTopButton: 'Đồng ý',
+      topButtonFunc: () {
+        final state = formKey.currentState;
+        if (state?.saveAndValidate() ?? false) {
+          context.pop((state!.value['cancel_reason_field'] as String).trim());
+        }
+      },
+      contentBottomButton: 'Huỷ',
+      bottomButtonFunc: () {
+        context.pop();
+      },
+    );
+  }
+
   /// Dialog xác nhận trả bàn test (chỉ áp dụng với phiếu đã duyệt).
   static Future<bool> showConfirmReturn({required BuildContext context}) async {
     bool confirmed = false;

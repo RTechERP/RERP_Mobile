@@ -13,10 +13,23 @@ import '../../data/datasource/models/approve_booking_payment_model.dart';
 /// tổng tiền TT, tổng tiền có HĐ, ngày tạo, tình trạng phiếu và ghi chú
 /// KTTT / KTT (chỉ hiện khi có nội dung).
 class ApproveBookingPaymentCard extends StatelessWidget {
-  const ApproveBookingPaymentCard({super.key, required this.item});
+  const ApproveBookingPaymentCard({
+    super.key,
+    required this.item,
+    this.selectable = false,
+    this.selected = false,
+    this.onToggleSelection,
+  });
 
   /// Phiếu cần hiển thị.
   final ApproveBookingPaymentItem item;
+
+  /// Hiện checkbox chọn phiếu (chỉ phiếu Công tác phí mới duyệt được).
+  final bool selectable;
+
+  /// Phiếu đang được chọn; [onToggleSelection] chạy khi bấm checkbox.
+  final bool selected;
+  final VoidCallback? onToggleSelection;
 
   static final DateFormat _dateFmt = DateFormat('dd/MM/yyyy');
   static final NumberFormat _moneyFmt = NumberFormat('#,###');
@@ -44,6 +57,13 @@ class ApproveBookingPaymentCard extends StatelessWidget {
           // Flexible để 3 chip luôn nằm trên 1 dòng, chip dài tự cắt "...".
           Row(
             children: [
+              if (selectable) ...[
+                _SelectionCheckbox(
+                  value: selected,
+                  onTap: onToggleSelection,
+                ),
+                const SizedBox(width: 8),
+              ],
               Flexible(
                 child: _Tag(
                   text: item.isApprovedText ?? item.currentStepName ?? '-',
@@ -109,6 +129,37 @@ class ApproveBookingPaymentCard extends StatelessWidget {
       amount == null ? '-' : '${_moneyFmt.format(amount)} đ';
 
   String _date(DateTime? d) => d == null ? '-' : _dateFmt.format(d);
+}
+
+/// Checkbox tròn chọn phiếu để duyệt / huỷ duyệt hàng loạt.
+class _SelectionCheckbox extends StatelessWidget {
+  const _SelectionCheckbox({required this.value, required this.onTap});
+
+  final bool value;
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(20),
+      child: Container(
+        width: 24,
+        height: 24,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: value ? AppColors.primaryERP : Colors.transparent,
+          border: Border.all(
+            color: value ? AppColors.primaryERP : AppColors.gray,
+            width: 2,
+          ),
+        ),
+        child: value
+            ? const Icon(Icons.check, size: 16, color: Colors.white)
+            : null,
+      ),
+    );
+  }
 }
 
 /// Tag bo tròn: dùng cho loại nội dung và tình trạng phiếu.
