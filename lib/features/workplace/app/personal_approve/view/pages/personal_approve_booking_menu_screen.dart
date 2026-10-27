@@ -73,6 +73,11 @@ class _PersonalApproveBookingGnMenuScreenState
     BuildContext context,
     _PersonalApproveBookingGnSubMenu menu,
   ) {
+    // Duyệt ĐNTT có màn riêng; các mục còn lại dùng chung màn Duyệt file.
+    if (menu.queryType == 'payment') {
+      context.push(RouteNames.personalApproveBookingPayment);
+      return;
+    }
     context.push(
       '${RouteNames.personalApproveBookingGuestHouse}?type=${menu.queryType}',
     );
@@ -87,6 +92,11 @@ const _kBookingGnSubMenus = <_PersonalApproveBookingGnSubMenu>[
     queryType: 'file',
     icon: Icons.folder_open_outlined,
     title: 'Duyệt file',
+  ),
+  _PersonalApproveBookingGnSubMenu(
+    queryType: 'payment',
+    icon: Icons.request_quote_outlined,
+    title: 'Duyệt ĐNTT',
   ),
 ];
 

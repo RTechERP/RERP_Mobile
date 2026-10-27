@@ -40,6 +40,10 @@ import '../features/workplace/app/personal_approve/app/approve_booking_guest_hou
 import '../features/workplace/app/personal_approve/app/approve_booking_guest_house/data/repository/approve_booking_guest_house_repo.dart';
 import '../features/workplace/app/personal_approve/app/approve_booking_guest_house/data/repository/approve_booking_guest_house_repo_impl.dart';
 import '../features/workplace/app/personal_approve/app/approve_booking_guest_house/view/bloc/approve_booking_guest_house_bloc.dart';
+import '../features/workplace/app/personal_approve/app/approve_booking_payment/data/datasource/service/approve_booking_payment_service.dart';
+import '../features/workplace/app/personal_approve/app/approve_booking_payment/data/repository/approve_booking_payment_repo.dart';
+import '../features/workplace/app/personal_approve/app/approve_booking_payment/data/repository/approve_booking_payment_repo_impl.dart';
+import '../features/workplace/app/personal_approve/app/approve_booking_payment/view/bloc/approve_booking_payment_bloc.dart';
 import '../features/workplace/app/personal_approve/app/approve_purchasing/data/datasource/service/approve_purchasing_service.dart';
 import '../features/workplace/app/personal_approve/app/approve_purchasing/data/repository/approve_purchasing_repo.dart';
 import '../features/workplace/app/personal_approve/app/approve_purchasing/data/repository/approve_purchasing_repo_impl.dart';
@@ -283,6 +287,10 @@ void configureDependencies() {
     () => ApproveBookingGuestHouseService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<ApproveBookingPaymentService>(
+    () => ApproveBookingPaymentService(getIt<Dio>()),
+  );
+
   getIt.registerLazySingleton<ApprovePurchasingService>(
     () => ApprovePurchasingService(getIt<Dio>()),
   );
@@ -461,6 +469,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<ApproveBookingGuestHouseRepo>(
     () => ApproveBookingGuestHouseRepoImpl(getIt<ApproveBookingGuestHouseService>()),
+  );
+
+  getIt.registerLazySingleton<ApproveBookingPaymentRepo>(
+    () => ApproveBookingPaymentRepoImpl(getIt<ApproveBookingPaymentService>()),
   );
 
   getIt.registerLazySingleton<ApprovePurchasingRepo>(
@@ -904,6 +916,13 @@ getIt.registerLazySingleton<ApproveBookingGuestHouseBloc>(
   getIt.registerFactory<ApproveTimesheetBloc>(
     () => ApproveTimesheetBloc(
       getIt<ApproveTimesheetRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<ApproveBookingPaymentBloc>(
+    () => ApproveBookingPaymentBloc(
+      getIt<ApproveBookingPaymentRepo>(),
       getIt<LogUtils>(),
     ),
   );

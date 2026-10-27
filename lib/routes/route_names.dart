@@ -297,6 +297,10 @@ class RouteNames {
   static const personalApprovePurchasing =
       '/personal_approve/approve_purchasing';
 
+  /// Màn Duyệt ĐNTT (đề nghị thanh toán) Đặt xe / Nhà nghỉ.
+  static const personalApproveBookingPayment =
+      '/personal_approve/approve_booking_payment';
+
   /// Menu "Duyệt ĐX/NN" (Đặt xe / Nhà nghỉ) - grid 3 mục: Duyệt file,
   /// Duyệt ĐNTT, Duyệt tạm ứng.
   static const personalApproveBookingGnMenu =

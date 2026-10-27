@@ -56,6 +56,7 @@ import '../features/workplace/app/personal_approve/app/approve_timesheet/view/pa
 import '../features/workplace/app/personal_approve/app/approve_timesheet/view/pages/approve_timesheet_senior_screen.dart';
 import '../features/workplace/app/personal_approve/app/approve_booking_guest_house/view/bloc/approve_booking_guest_house_bloc.dart';
 import '../features/workplace/app/personal_approve/app/approve_booking_guest_house/view/pages/approve_booking_guest_house_screen.dart';
+import '../features/workplace/app/personal_approve/app/approve_booking_payment/view/pages/approve_booking_payment_screen.dart';
 import '../features/workplace/app/personal_approve/app/approve_purchasing/view/bloc/approve_purchasing_bloc.dart';
 import '../features/workplace/app/personal_approve/app/approve_purchasing/view/pages/approve_purchasing_screen.dart';
 import '../features/workplace/app/personal_approve/app/approve_timesheet/view/pages/approve_timesheet_tbp_screen.dart';
@@ -1813,6 +1814,12 @@ class AppRouter {
                     const ApproveBookingGuestHousePage(),
               ),
             ],
+          ),
+          //---(ApproveBookingPayment)---//
+          // Màn Duyệt ĐNTT Đặt xe / Nhà nghỉ — bloc factory, do màn tự quản lý.
+          GoRoute(
+            path: RouteNames.personalApproveBookingPayment,
+            builder: (context, state) => const ApproveBookingPaymentScreen(),
           ),
           //---(ApprovePurchasing)---//
           // Màn Duyệt phiếu yêu cầu mua hàng — singleton bloc wrap ở

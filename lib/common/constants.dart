@@ -657,6 +657,16 @@ class ApiEndPoint {
   static const String accommodationBookingPaymentOrderUpdateDetailStatus =
       '/AccommodationBookingPaymentOrder/update-detail-status';
 
+  /// API: GET /VehicleBookingPaymentOrder/get-approve-steps
+  /// Danh sách các bước duyệt ĐNTT đặt xe / nhà nghỉ.
+  static const String vehicleBookingPaymentOrderGetApproveSteps =
+      '/VehicleBookingPaymentOrder/get-approve-steps';
+
+  /// API: POST /VehicleBookingPaymentOrder/get-unified-list
+  /// Danh sách ĐNTT (xe + nhà nghỉ) theo bộ lọc, có phân trang.
+  static const String vehicleBookingPaymentOrderGetUnifiedList =
+      '/VehicleBookingPaymentOrder/get-unified-list';
+
   /// Check xung đột trước khi lưu phiếu đăng ký bàn test.
   /// API: POST /ESLRegistration/check-conflict (form-data).
   static const String checkConflictRegistration =
