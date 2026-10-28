@@ -11,6 +11,7 @@ import '../../../../../../../../common/enums/index.dart';
 import '../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../common/widgets/form/index.dart';
+import '../../../../data/datasource/models/report_model.dart';
 import '../bloc/ad_bloc.dart';
 
 class AdEditScreen extends StatefulWidget {
@@ -44,25 +45,46 @@ class _AdEditScreenState
     return DateTime.tryParse(date);
   }
 
-  void _bindData(detail, project) {
+  void _bindData(DetailReportNullResponse detail, ProjectResponse? apiProject) {
     if (_loaded) return;
 
-    _contentController.text = detail.content ?? '';
-    _resultsController.text = detail.results ?? '';
-    _totalHoursController.text = (detail.totalHours ?? 0).toInt().toString();
-    _totalOTController.text = (detail.totalHourOT ?? 0).toInt().toString();
+    _contentController.text = detail.content;
+    _resultsController.text = detail.results;
+    _totalHoursController.text = detail.totalHours.toInt().toString();
+    _totalOTController.text = detail.totalHourOT.toInt().toString();
     _backlogController.text = detail.backlog ?? '';
-    _noteController.text = detail.note ?? '';
-    _projectController.text = project?.projectName ?? '';
-    _planNextDayController.text = detail.planNextDay ?? '';
+    _noteController.text = detail.note;
+    // Dự án: ưu tiên "ProjectCode - ProjectName" (giống dropdown chọn dự án).
+    _projectController.text = apiProject != null
+        ? '${apiProject.projectCode} - ${apiProject.projectName}'
+        : '';
+    _planNextDayController.text = detail.planNextDay;
 
     bloc.add(
       AdEvent.updateWork(
         index: 0,
-        totalHours: detail.totalHours?.toInt() ?? 0,
-        totalHourOT: detail.totalHourOT?.toInt() ?? 0,
+        projectId: detail.projectId,
+        projectName: apiProject?.projectName,
+        code: apiProject?.projectCode,
+        totalHours: detail.totalHours.toInt(),
+        totalHourOT: detail.totalHourOT.toInt(),
+        content: detail.content,
+        results: detail.results,
+        backlog: detail.backlog,
+        problem: detail.problem,
+        problemSolve: detail.problemSolve,
+        note: detail.note,
       ),
     );
+    bloc.add(AdEvent.updatePlanNextDay(detail.planNextDay));
+    final loc = detail.location;
+    if (loc != null && loc.isNotEmpty) {
+      if (loc == 'VP RTC') {
+        bloc.add(const AdEvent.updateLocation(type: 'rtc', value: 'VP RTC'));
+      } else {
+        bloc.add(AdEvent.updateLocation(type: 'other', value: loc));
+      }
+    }
 
     _loaded = true;
   }
@@ -95,6 +117,11 @@ class _AdEditScreenState
       listenWhen: (p, c) => p.saveSuccess != c.saveSuccess,
       listener: (context, state) {
         if (state.saveSuccess) {
+          showMessage(
+            context,
+            'Chỉnh sửa báo cáo thành công',
+            type: SnackBarType.success,
+          );
           context.pop(true);
         }
       },
@@ -113,13 +140,20 @@ class _AdEditScreenState
               builder: (context, state) {
                 final detail = state.selectedReportDetail;
 
-                if (detail == null) {
+                if (detail == null || state.projects.isEmpty) {
                   return const Center(child: CircularProgressIndicator());
                 }
 
-                final project = state.selectedProject;
+                // Map ProjectID từ detail với danh sách project-modal đã load.
+                ProjectResponse? apiProject;
+                for (final p in state.projects) {
+                  if (p.id == detail.projectId) {
+                    apiProject = p;
+                    break;
+                  }
+                }
 
-                _bindData(detail, project);
+                _bindData(detail, apiProject);
 
                 return Column(
                   children: [
@@ -139,6 +173,13 @@ class _AdEditScreenState
                                 inputType: InputType.date,
                                 format: DateFormat('dd/MM/yyyy'),
                                 initialValue: _parseDate(detail.dateReport),
+                                isRequired: true,
+                                validator: (v) {
+                                  if (v == null) {
+                                    return 'Vui lòng chọn ngày báo cáo';
+                                  }
+                                  return null;
+                                },
                               ),
                             ),
 
@@ -180,6 +221,13 @@ class _AdEditScreenState
                                         label: 'Chọn dự án',
                                         controller: _projectController,
                                         readOnly: true,
+                                        isRequired: true,
+                                        validator: (v) {
+                                          if (v == null || v.trim().isEmpty) {
+                                            return 'Vui lòng chọn dự án';
+                                          }
+                                          return null;
+                                        },
                                       ),
                                     ),
                                   ),
@@ -197,6 +245,26 @@ class _AdEditScreenState
                                           label: 'Tổng giờ',
                                           keyboardType: TextInputType.number,
                                           controller: _totalHoursController,
+                                          isRequired: true,
+                                          validator: (v) {
+                                            if (v == null ||
+                                                v.trim().isEmpty) {
+                                              return 'Vui lòng nhập tổng giờ';
+                                            }
+                                            final val = double.tryParse(
+                                              v.trim().replaceAll(',', '.'),
+                                            );
+                                            if (val == null) {
+                                              return 'Giá trị không hợp lệ';
+                                            }
+                                            if (val <= 0) {
+                                              return 'Tổng giờ phải > 0';
+                                            }
+                                            if (val > 24) {
+                                              return 'Tổng giờ không > 24';
+                                            }
+                                            return null;
+                                          },
                                           onChanged: (v) {
                                             final value = int.tryParse(v ?? '');
                                             if (value == null)
@@ -222,6 +290,22 @@ class _AdEditScreenState
                                           label: 'OT',
                                           keyboardType: TextInputType.number,
                                           controller: _totalOTController,
+                                          validator: (v) {
+                                            if (v == null || v.trim().isEmpty) {
+                                              return null;
+                                            }
+                                            final val = double.tryParse(
+                                              v.trim().replaceAll(',', '.'),
+                                            );
+                                            if (val == null) {
+                                              return 'Giá trị không hợp lệ';
+                                            }
+                                            if (val < 0) return 'OT không < 0';
+                                            if (val > 24) {
+                                              return 'OT không > 24';
+                                            }
+                                            return null;
+                                          },
                                           onChanged: (v) {
                                             final value = int.tryParse(v ?? '');
                                             if (value == null) return;
@@ -246,8 +330,17 @@ class _AdEditScreenState
                                     nameForm: 'Ad_edit_content',
                                     nameTextField: 'content',
                                     label: 'Nội dung công việc',
-                                    maxLines: 3,
+                                    autoExpand: true,
+                                    keyboardType: TextInputType.multiline,
+                                    textInputAction: TextInputAction.newline,
                                     controller: _contentController,
+                                    isRequired: true,
+                                    validator: (v) {
+                                      if (v == null || v.trim().isEmpty) {
+                                        return 'Vui lòng nhập nội dung công việc';
+                                      }
+                                      return null;
+                                    },
                                     onChanged: (v) {
                                       if (v == null || v.trim().isEmpty) return;
 
@@ -268,8 +361,17 @@ class _AdEditScreenState
                                     nameForm: 'Ad_edit_result',
                                     nameTextField: 'result',
                                     label: 'Kết quả',
-                                    maxLines: 3,
+                                    autoExpand: true,
+                                    keyboardType: TextInputType.multiline,
+                                    textInputAction: TextInputAction.newline,
                                     controller: _resultsController,
+                                    isRequired: true,
+                                    validator: (v) {
+                                      if (v == null || v.trim().isEmpty) {
+                                        return 'Vui lòng nhập kết quả';
+                                      }
+                                      return null;
+                                    },
                                     onChanged: (v) {
                                       if (v == null || v.trim().isEmpty) return;
 
@@ -322,6 +424,9 @@ class _AdEditScreenState
                                       nameForm: 'Ad_edit_backlog',
                                       nameTextField: 'blocking',
                                       label: 'Tồn đọng',
+                                      autoExpand: true,
+                                      keyboardType: TextInputType.multiline,
+                                      textInputAction: TextInputAction.newline,
                                       controller: _backlogController,
                                       onChanged: (v) {
                                         if (v == null || v.trim().isEmpty)
@@ -343,6 +448,9 @@ class _AdEditScreenState
                                       nameForm: 'Ad_edit_note',
                                       nameTextField: 'note',
                                       label: 'Ghi chú',
+                                      autoExpand: true,
+                                      keyboardType: TextInputType.multiline,
+                                      textInputAction: TextInputAction.newline,
                                       controller: _noteController,
                                       onChanged: (v) {
                                         if (v == null || v.trim().isEmpty)
@@ -407,6 +515,16 @@ class _AdEditScreenState
                                       nameTextField: 'Ad_edit_other_location',
                                       label: 'Địa điểm làm việc',
                                       initialValue: state.location ?? '',
+                                      isRequired: state.locationType == 'other',
+                                      validator: (v) {
+                                        if (state.locationType != 'other') {
+                                          return null;
+                                        }
+                                        if (v == null || v.trim().isEmpty) {
+                                          return 'Vui lòng nhập địa điểm làm việc';
+                                        }
+                                        return null;
+                                      },
                                       onChanged: (v) {
                                         bloc.add(
                                           AdEvent.updateLocation(
@@ -429,11 +547,18 @@ class _AdEditScreenState
                                 nameForm: 'Ad_add_next_plan',
                                 nameTextField: 'next_plan',
                                 label: 'Kế hoạch ngày tiếp theo',
-                                maxLines: 3,
+                                autoExpand: true,
                                 keyboardType: TextInputType.multiline,
                                 textInputAction: TextInputAction
                                     .newline, // ⬅ Enter xuống dòng
                                 controller: _planNextDayController,
+                                isRequired: true,
+                                validator: (v) {
+                                  if (v == null || v.trim().isEmpty) {
+                                    return 'Vui lòng nhập kế hoạch ngày tiếp theo';
+                                  }
+                                  return null;
+                                },
                                 onChanged: (v) {
                                   if (v == null || v.trim().isEmpty) return;
 
@@ -470,8 +595,20 @@ class _AdEditScreenState
                             date: values['Ad_edit_date'] as DateTime?,
                             works: state.works,
                             getProjectName: (w) => _projectController.text,
-                            getTotalHours: (w) => w.totalHours,
-                            getOtHours: (w) => w.totalHourOT,
+                            getTotalHours: (w) =>
+                                double.tryParse(
+                                  _totalHoursController.text
+                                      .trim()
+                                      .replaceAll(',', '.'),
+                                ) ??
+                                w.totalHours,
+                            getOtHours: (w) =>
+                                double.tryParse(
+                                  _totalOTController.text
+                                      .trim()
+                                      .replaceAll(',', '.'),
+                                ) ??
+                                w.totalHourOT,
                             getContent: (w) => _contentController.text,
                             getResult: (w) => _resultsController.text,
                             locationType: state.locationType,

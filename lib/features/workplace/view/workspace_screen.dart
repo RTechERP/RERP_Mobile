@@ -73,9 +73,13 @@ class _WorkPlaceScreenState
     final deptId = user.departmentId;
     final posId = user.positionId;
 
-    if (roles.contains(AppRole.tech) && employeeId != 271 ||
-        roles.contains(AppRole.agv) ||
-        roles.contains(AppRole.ad)) {
+    // Phòng LRTK (departmentID = 23) dùng màn báo cáo AD riêng.
+    if (deptId == 23 || roles.contains(AppRole.ad)) {
+      return RouteNames.reportADdepart;
+    }
+
+    if ((roles.contains(AppRole.tech) && employeeId != 271) ||
+        roles.contains(AppRole.agv)) {
       return RouteNames.reportITdepart;
     }
 
