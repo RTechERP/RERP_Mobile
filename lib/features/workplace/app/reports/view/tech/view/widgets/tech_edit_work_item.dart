@@ -54,7 +54,7 @@ class _TechEditWorkItemState extends State<TechEditWorkItem> {
     return value.toString().replaceFirst('.', sep);
   }
 
-  /// Validate hour: must be > 0, ≤ 24, only 1 digit after decimal allowed (0–9).
+  /// Validate hour: must be > 0, ≤ 24, up to 2 digits after decimal allowed.
   static String? _validateHour(String? raw, {bool required = true}) {
     if (raw == null || raw.trim().isEmpty) {
       return required ? 'Nhập số giờ' : null;
@@ -63,14 +63,10 @@ class _TechEditWorkItemState extends State<TechEditWorkItem> {
     final parts = v.split('.');
     if (parts.isEmpty) return 'Giá trị không hợp lệ';
     if (double.tryParse(parts[0]) == null) return 'Giá trị không hợp lệ';
-    // Chỉ cho phép tối đa 1 chữ số sau dấu .
-    if (parts.length > 2 || (parts.length == 2 && parts[1].length > 1)) {
-      return 'Chỉ cho phép tối đa 1 chữ số thập phân';
-    }
+    if (parts.length > 2) return 'Giá trị không hợp lệ';
     if (parts.length == 2 && parts[1].isNotEmpty) {
-      final digit = parts[1];
-      // digit phải là 1 chữ số từ 0–9
-      if (digit.length != 1 || !RegExp(r'^[0-9]$').hasMatch(digit)) {
+      // Cho phép tối đa 2 chữ số thập phân (VD: 6.8, 6.83)
+      if (!RegExp(r'^[0-9]{1,2}$').hasMatch(parts[1])) {
         return 'Giá trị không hợp lệ';
       }
     }

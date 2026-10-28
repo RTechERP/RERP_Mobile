@@ -329,7 +329,10 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
         projectId = apiProject.id;
         pName = apiProject.projectName;
         
-        final pitRes = await _reportRepo.getProjectItemByUser(projectId: projectId);
+        final pitRes = await _reportRepo.getProjectItemByUser(
+          projectId: projectId,
+          status: -1,
+        );
         final listPit = pitRes.getOrElse(() => []);
         
         final apiPit = listPit.where((pit) => pit.code == copyItem.projectItemCode).firstOrNull;
@@ -1034,6 +1037,10 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
 
         final projectItemRes = await _reportRepo.getProjectItemByUser(
           projectId: apiProject.id,
+          // Detail cần map ngược projectItemId (kể cả hạng mục đã 100%),
+          // nên load tất cả với status = -1. List mặc định status = 2
+          // sẽ lọc mất item 100% (VD: ID 44737) khiến code/mission rỗng.
+          status: -1,
         );
 
         final projectItems = projectItemRes.getOrElse(() => []);
