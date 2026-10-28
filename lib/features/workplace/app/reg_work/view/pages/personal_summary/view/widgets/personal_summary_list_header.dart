@@ -1,5 +1,5 @@
-// Card header hiển thị tổng số phiếu của tab hiện tại + khoảng ngày.
-// Tái sử dụng cho 7 tab — chỉ đổi `total` & `isSearching`.
+// Card header hiển thị phần đang xem (icon + tên) + tổng số phiếu + khoảng ngày.
+// Kèm nút X để quay lại state menu.
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -12,12 +12,28 @@ class PersonalSummaryListHeader extends StatelessWidget {
     required this.dateStart,
     required this.dateEnd,
     required this.isSearching,
+    required this.sectionLabel,
+    required this.sectionIcon,
+    required this.sectionColor,
+    required this.onClose,
   });
 
   final int total;
   final DateTime? dateStart;
   final DateTime? dateEnd;
   final bool isSearching;
+
+  /// Tên phần đang hiển thị (vd: "Đăng ký nghỉ").
+  final String sectionLabel;
+
+  /// Icon của phần đang hiển thị.
+  final IconData sectionIcon;
+
+  /// Màu nhấn của icon phần.
+  final Color sectionColor;
+
+  /// Callback khi bấm nút X để quay lại state menu.
+  final VoidCallback onClose;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +48,7 @@ class PersonalSummaryListHeader extends StatelessWidget {
 
     return Container(
       margin: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+      padding: const EdgeInsets.fromLTRB(12, 12, 8, 12),
       decoration: BoxDecoration(
         color: AppColors.primaryERP,
         borderRadius: BorderRadius.circular(14),
@@ -44,82 +60,113 @@ class PersonalSummaryListHeader extends StatelessWidget {
           ),
         ],
       ),
-      child: Row(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.baseline,
-                  textBaseline: TextBaseline.alphabetic,
+          // Hàng 1: icon + tên phần + nút X.
+          Row(
+            children: [
+              Container(
+                width: 36,
+                height: 36,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(11),
+                ),
+                child: Icon(sectionIcon, size: 20, color: sectionColor),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  sectionLabel,
+                  style: const TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
+                    height: 1.2,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              IconButton(
+                icon: const Icon(Icons.close, size: 18, color: Colors.white),
+                tooltip: 'Quay lại menu',
+                onPressed: onClose,
+                visualDensity: VisualDensity.compact,
+                padding: EdgeInsets.zero,
+                constraints:
+                    const BoxConstraints(minWidth: 32, minHeight: 32),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          // Hàng 2: số phiếu bên trái, khoảng ngày bên phải.
+          Row(
+            children: [
+              Text.rich(
+                TextSpan(
                   children: [
-                    Text(
-                      '$total',
+                    TextSpan(
+                      text: '$total',
                       style: const TextStyle(
-                        fontSize: 22,
+                        fontSize: 20,
                         fontWeight: FontWeight.w700,
                         color: Colors.white,
                         height: 1.1,
                       ),
                     ),
-                    const SizedBox(width: 6),
-                    const Text(
-                      'phiếu',
+                    TextSpan(
+                      text: isSearching ? ' phiếu (đang tìm)' : ' phiếu',
                       style: TextStyle(
-                        fontSize: 13,
+                        fontSize: 12,
                         fontWeight: FontWeight.w500,
-                        color: Colors.white,
+                        color: Colors.white.withValues(alpha: 0.9),
                       ),
                     ),
                   ],
                 ),
-                Text(
-                  isSearching ? 'Đang tìm kiếm' : 'Tổng số phiếu',
-                  style: TextStyle(
-                    fontSize: 11,
-                    color: Colors.white.withValues(alpha: 0.85),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              if (rangeText != null) ...[
+                const Spacer(),
+                const SizedBox(width: 8),
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withValues(alpha: 0.18),
+                    borderRadius: BorderRadius.circular(20),
                   ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.event_outlined,
+                        size: 13,
+                        color: Colors.white.withValues(alpha: 0.95),
+                      ),
+                      const SizedBox(width: 5),
+                      Flexible(
+                        child: Text(
+                          rangeText,
+                          style: const TextStyle(
+                            fontSize: 11.5,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
-            ),
+            ],
           ),
-          if (rangeText != null) ...[
-            const SizedBox(width: 8),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(
-                    Icons.event_outlined,
-                    size: 14,
-                    color: AppColors.primaryERP,
-                  ),
-                  const SizedBox(width: 6),
-                  Flexible(
-                    child: Text(
-                      rangeText,
-                      style: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: AppColors.primaryERP,
-                      ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
         ],
       ),
     );

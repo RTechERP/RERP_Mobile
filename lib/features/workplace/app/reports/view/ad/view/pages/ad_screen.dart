@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:go_router/go_router.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import '../../../../../../../../base/bloc/index.dart';
@@ -17,6 +16,7 @@ import '../../../../../../../../common/utils/card/index.dart';
 import '../../../../../../../../common/utils/dialog/index.dart';
 import '../../../../../../../../common/utils/navigation/navigation_utils.dart';
 import '../../../../../../../../common/utils/snack_bar_helper.dart';
+import '../../../../../../../../common/widgets/date_range_picker.dart';
 import '../../../../../../../../routes/route_names.dart';
 import '../../../../data/datasource/models/report_model.dart';
 import '../bloc/ad_bloc.dart';
@@ -253,6 +253,34 @@ class _AdScreenState
                 });
               },
             ),
+            IconButton(
+              icon: const Icon(Icons.date_range_rounded, size: 22),
+              onPressed: () {
+                showModalBottomSheet<void>(
+                  context: context,
+                  isScrollControlled: true,
+                  builder: (_) => DateRangePicker(
+                    initialStart: bloc.state.dateStart,
+                    initialEnd: bloc.state.dateEnd,
+                    onApply: (start, end) {
+                      bloc.add(
+                        AdEvent.changeDateRange(
+                          dateStart: start,
+                          dateEnd: DateTime(
+                            end.year,
+                            end.month,
+                            end.day,
+                            23,
+                            59,
+                            59,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                );
+              },
+            ),
           ],
         ),
 
@@ -318,9 +346,6 @@ class _AdScreenState
                       itemCount: displayList.length,
                       itemBuilder: (context, index) {
                         final r = displayList[index];
-                        final hasData =
-                            (r.projectCode?.isNotEmpty == true) &&
-                                (r.projectName?.isNotEmpty == true);
 
                         final parsedDate = DateTime.tryParse(r.dateReport);
 
@@ -329,23 +354,17 @@ class _AdScreenState
                           projectName: r.projectName,
                           time: parsedDate,
                           progress: (r.percentComplete / 100).clamp(0.0, 1.0),
-                          onTap: hasData
-                              ? () async {
+                          onTap: () async {
                             final reload = await context.push(
-                              RouteNames.reportADdepartDetail,
+                              RouteNames.reportADdepartEdit,
                               extra: r.id,
                             );
 
                             if (reload == true) {
                               bloc.add(const AdEvent.init());
                             }
-                          }
-                              : null,
+                          },
                         );
-
-                        if (!hasData) {
-                          return Opacity(opacity: 0.5, child: card);
-                        }
 
                         return Slidable(
                           key: ValueKey(r.id),

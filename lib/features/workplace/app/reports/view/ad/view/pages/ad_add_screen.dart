@@ -53,6 +53,11 @@ class _AdAddScreenState
           previous.submitSuccess != current.submitSuccess,
           listener: (context, state) {
             if (state.submitSuccess) {
+              showMessage(
+                context,
+                'Tạo báo cáo thành công',
+                type: SnackBarType.success,
+              );
               context.pop(true);
             }
           },
@@ -79,6 +84,13 @@ class _AdAddScreenState
                                 inputType: InputType.date,
                                 initialValue: _initialReportDate(),
                                 format: DateFormat('dd/MM/yyyy'),
+                                isRequired: true,
+                                validator: (v) {
+                                  if (v == null) {
+                                    return 'Vui lòng chọn ngày báo cáo';
+                                  }
+                                  return null;
+                                },
                               ),
                             ),
 
@@ -211,13 +223,23 @@ class _AdAddScreenState
                                       initialValue: 'VP RTC',
                                     )
                                   else
-                                    FormInputField(
-                                      icon: Icons.location_on_outlined,
-                                      nameForm: 'Ad_add_location',
-                                      nameTextField: 'Ad_add_other_location',
-                                      label: 'Địa điểm làm việc',
-                                      initialValue: state.location ?? '',
-                                      onChanged: (v) {
+                    FormInputField(
+                                icon: Icons.location_on_outlined,
+                                nameForm: 'Ad_add_location',
+                                nameTextField: 'Ad_add_other_location',
+                                label: 'Địa điểm làm việc',
+                                initialValue: state.location ?? '',
+                                isRequired: state.locationType == 'other',
+                                validator: (v) {
+                                  if (state.locationType != 'other') {
+                                    return null;
+                                  }
+                                  if (v == null || v.trim().isEmpty) {
+                                    return 'Vui lòng nhập địa điểm làm việc';
+                                  }
+                                  return null;
+                                },
+                                onChanged: (v) {
                                         bloc.add(
                                           AdEvent.updateLocation(
                                             type: 'other',
@@ -239,10 +261,17 @@ class _AdAddScreenState
                                 nameForm: 'Ad_add_next_plan',
                                 nameTextField: 'next_plan',
                                 label: 'Kế hoạch ngày tiếp theo',
-                                maxLines: 3,
+                                autoExpand: true,
                                 keyboardType: TextInputType.multiline,
                                 textInputAction: TextInputAction
                                     .newline, // ⬅ Enter xuống dòng
+                                isRequired: true,
+                                validator: (v) {
+                                  if (v == null || v.trim().isEmpty) {
+                                    return 'Vui lòng nhập kế hoạch ngày tiếp theo';
+                                  }
+                                  return null;
+                                },
                                 onChanged: (v) {
                                   if (v == null) return;
                                   bloc.add(AdEvent.updatePlanNextDay(v));

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-
 import '../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../common/widgets/form/index.dart';
@@ -94,22 +93,30 @@ class _AdAddWorkItemState extends State<AdAddWorkItem> {
   void didUpdateWidget(covariant AdAddWorkItem oldWidget) {
     super.didUpdateWidget(oldWidget);
 
+    if (oldWidget.report == widget.report) return;
+
     final r = widget.report;
 
-    _set(_totalHoursController, r.totalHours.toInt().toString());
-    _set(_totalOTController, (r.totalHourOT ?? 0).toInt().toString());
+    // Đồng bộ controller sau phase build để tránh
+    // setState()/markNeedsBuild() trong lúc build (Form crash).
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
 
-    _set(_contentController, r.content);
-    _set(_resultsController, r.results);
-    _set(_planNextDayController, r.planNextDay);
+      _set(_totalHoursController, r.totalHours.toInt().toString());
+      _set(_totalOTController, (r.totalHourOT ?? 0).toInt().toString());
 
-    _set(_backlogController, r.backlog ?? '');
-    _set(_problemController, r.problem ?? '');
-    _set(_problemSolveController, r.problemSolve ?? '');
-    _set(_noteController, r.note ?? '');
+      _set(_contentController, r.content);
+      _set(_resultsController, r.results);
+      _set(_planNextDayController, r.planNextDay);
 
-    _set(_locationController, r.location ?? '');
-    _set(_projectController, r.projectText ?? '');
+      _set(_backlogController, r.backlog ?? '');
+      _set(_problemController, r.problem ?? '');
+      _set(_problemSolveController, r.problemSolve ?? '');
+      _set(_noteController, r.note ?? '');
+
+      _set(_locationController, r.location ?? '');
+      _set(_projectController, r.projectText ?? '');
+    });
   }
 
   @override
@@ -246,11 +253,20 @@ class _AdAddWorkItemState extends State<AdAddWorkItem> {
                   key: ValueKey('project_${widget.report.id}'),
                   nameForm: 'Ad_project_${widget.report.id}',
                   nameTextField: 'project_${widget.report.id}',
-                  label: (work.projectName ?? '').isNotEmpty
-                      ? work.projectName!
-                      : 'Chọn dự án',
+                  label: 'Dự án',
                   readOnly: true,
                   icon: Icons.category_outlined,
+                  initialValue: (work.projectName ?? '').isNotEmpty
+                      ? work.projectName!
+                      : null,
+                  isRequired: true,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (v) {
+                    if (v == null || v.trim().isEmpty) {
+                      return 'Vui lòng chọn dự án';
+                    }
+                    return null;
+                  },
                 ),
               ),
             ),
@@ -268,6 +284,18 @@ class _AdAddWorkItemState extends State<AdAddWorkItem> {
                     label: 'Tổng giờ',
                     keyboardType: TextInputType.number,
                     controller: _totalHoursController,
+                    isRequired: true,
+                    validator: (v) {
+                      if (v == null || v.trim().isEmpty) {
+                        return 'Vui lòng nhập tổng giờ';
+                      }
+                      final val =
+                          double.tryParse(v.trim().replaceAll(',', '.'));
+                      if (val == null) return 'Giá trị không hợp lệ';
+                      if (val <= 0) return 'Tổng giờ phải > 0';
+                      if (val > 24) return 'Tổng giờ không > 24';
+                      return null;
+                    },
                     onChanged: (v) {
 
                       context.read<AdBloc>().add(
@@ -288,6 +316,15 @@ class _AdAddWorkItemState extends State<AdAddWorkItem> {
                     label: 'OT',
                     keyboardType: TextInputType.number,
                     controller: _totalOTController,
+                    validator: (v) {
+                      if (v == null || v.trim().isEmpty) return null;
+                      final val =
+                          double.tryParse(v.trim().replaceAll(',', '.'));
+                      if (val == null) return 'Giá trị không hợp lệ';
+                      if (val < 0) return 'OT không < 0';
+                      if (val > 24) return 'OT không > 24';
+                      return null;
+                    },
                     onChanged: (v) {
                       context.read<AdBloc>().add(
                         AdEvent.updateWork(
@@ -311,10 +348,17 @@ class _AdAddWorkItemState extends State<AdAddWorkItem> {
               nameTextField: 'content_${widget.report.id}',
 
               label: 'Nội dung công việc',
-              maxLines: 3,
+              autoExpand: true,
               keyboardType: TextInputType.multiline,
               textInputAction: TextInputAction.newline,
               controller: _contentController,
+              isRequired: true,
+              validator: (v) {
+                if (v == null || v.trim().isEmpty) {
+                  return 'Vui lòng nhập nội dung công việc';
+                }
+                return null;
+              },
               onChanged: (v) {
                 context.read<AdBloc>().add(
                   AdEvent.updateWork(
@@ -335,10 +379,17 @@ class _AdAddWorkItemState extends State<AdAddWorkItem> {
               nameForm: 'Ad_add_result_${widget.report.id}',
               nameTextField: 'result_${widget.report.id}',
               label: 'Kết quả',
-              maxLines: 3,
+              autoExpand: true,
               keyboardType: TextInputType.multiline,
               textInputAction: TextInputAction.newline, // ⬅ Enter xuống dòng
               controller: _resultsController,
+              isRequired: true,
+              validator: (v) {
+                if (v == null || v.trim().isEmpty) {
+                  return 'Vui lòng nhập kết quả';
+                }
+                return null;
+              },
               onChanged: (v) {
                 context.read<AdBloc>().add(
                   AdEvent.updateWork(
@@ -386,7 +437,7 @@ class _AdAddWorkItemState extends State<AdAddWorkItem> {
                     nameForm: 'Ad_add_blocking',
                     nameTextField: 'blocking',
                     label: 'Tồn đọng (nếu có)',
-                    maxLines: 2,
+                    autoExpand: true,
                     keyboardType: TextInputType.multiline,
                     textInputAction: TextInputAction.newline,
                     controller: _backlogController,
@@ -407,7 +458,7 @@ class _AdAddWorkItemState extends State<AdAddWorkItem> {
                     nameForm: 'Ad_add_note',
                     nameTextField: 'note',
                     label: 'Ghi chú / Lý do tồn đọng',
-                    maxLines: 2,
+                    autoExpand: true,
                     keyboardType: TextInputType.multiline,
                     textInputAction: TextInputAction.newline,
                     controller: _noteController,

@@ -28,7 +28,7 @@ class _CelebrationTheme {
   factory _CelebrationTheme.seniorityMid({required int seniorityYears}) {
     return _CelebrationTheme(
       backgroundImage: AppImages.seniority,
-      aspectRatio: 0.55,
+      aspectRatio: 0.5,
       backdropTop: const Color(0xFFBBDEFB),
       backdropBottom: const Color(0xFFB2EBF2),
       buttonStyle: _ButtonStyle.seniority,

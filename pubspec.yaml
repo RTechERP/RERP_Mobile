@@ -248,6 +248,7 @@ flutter:
     # (<Family>-<Weight>.ttf) để package tự load từ asset, không gọi network.
     - assets/fonts/DancingScript-Bold.ttf
     - assets/fonts/Cinzel-Bold.ttf
+    - assets/fonts/Cinzel-SemiBold.ttf
     # Lời chúc thâm niên — serif trang trọng, phủ đủ dấu tiếng Việt
     # (Cinzel thiếu 13 dấu nên không dùng cho text tiếng Việt).
     - assets/fonts/PlayfairDisplay-Regular.ttf
