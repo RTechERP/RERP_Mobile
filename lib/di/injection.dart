@@ -193,6 +193,10 @@ import '../features/workplace/app/summary_work/overtime/data/datasource/service/
 import '../features/workplace/app/summary_work/overtime/data/repository/summary_overtime_repo.dart';
 import '../features/workplace/app/summary_work/overtime/data/repository/summary_overtime_repo_impl.dart';
 import '../features/workplace/app/summary_work/overtime/view/bloc/summary_overtime_bloc.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/history_import_export/data/datasource/service/history_import_export_service.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/history_import_export/data/repository/history_import_export_repo.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/history_import_export/data/repository/history_import_export_repo_impl.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/history_import_export/view/bloc/history_import_export_bloc.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/service/sale_gdn_service.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/repository/sale_gdn_repo.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/repository/sale_gdn_repo_impl.dart';
@@ -385,6 +389,10 @@ void configureDependencies() {
     () => SaleGdnService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<HistoryImportExportService>(
+    () => HistoryImportExportService(getIt<Dio>()),
+  );
+
   getIt.registerLazySingleton<SignatureService>(
     () => SignatureService(getIt<Dio>()),
   );
@@ -563,6 +571,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<SaleGdnRepo>(
     () => SaleGdnRepoImpl(getIt<SaleGdnService>()),
+  );
+
+  getIt.registerLazySingleton<HistoryImportExportRepo>(
+    () => HistoryImportExportRepoImpl(getIt<HistoryImportExportService>()),
   );
 
   getIt.registerLazySingleton<SignatureRepo>(
@@ -907,6 +919,13 @@ getIt.registerLazySingleton<ApproveBookingGuestHouseBloc>(
   getIt.registerFactory<SaleGdnBloc>(
     () =>
         SaleGdnBloc(getIt<SaleGdnRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
+  );
+
+  getIt.registerFactory<HistoryImportExportBloc>(
+    () => HistoryImportExportBloc(
+      getIt<HistoryImportExportRepo>(),
+      getIt<LogUtils>(),
+    ),
   );
 
   getIt.registerFactory<MySignatureBloc>(

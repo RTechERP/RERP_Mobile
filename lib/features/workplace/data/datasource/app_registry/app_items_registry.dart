@@ -521,6 +521,14 @@ class AppItemRegistry {
       imageUrl: AppImages.warehouse_gdn,
       route: RouteNames.warehouseSaleGdn,
     ),
+    AppItemModel(
+      id: 'warehouse_sale:history_import_export',
+      name: 'warehouse_sale.history_import_export'.tr(),
+      iconCodePoint: Icons.history_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'warehouse',
+      route: RouteNames.warehouseSaleHistoryImportExport,
+    ),
   ];
   static final List<AppItemModel> all = [
     ...regwork,

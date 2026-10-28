@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:photo_view/photo_view.dart';
+import 'package:photo_view/photo_view_gallery.dart';
 import 'package:rtc_erp/common/app_theme/index.dart';
 
 import 'sale_gdn_detail_camera_page.dart';
@@ -445,27 +447,25 @@ class _ConfirmPageFullscreenViewerState
           ),
         ],
       ),
-      body: PageView.builder(
-        controller: _pageController,
+      // PhotoViewGallery tự phân xử cử chỉ: ảnh ở mức zoom gốc thì vuốt ngang
+      // để chuyển ảnh; khi đã zoom thì vuốt để pan, chạm mép ảnh mới chuyển
+      // trang. Hỗ trợ pinch-zoom và double-tap zoom.
+      body: PhotoViewGallery.builder(
+        pageController: _pageController,
         itemCount: _paths.length,
+        backgroundDecoration: const BoxDecoration(color: Colors.black),
+        scrollPhysics: const BouncingScrollPhysics(),
         onPageChanged: (index) => setState(() => _currentIndex = index),
-        itemBuilder: (context, index) {
-          final path = _paths[index];
-          return InteractiveViewer(
-            minScale: 0.5,
-            maxScale: 4.0,
-            child: Center(
-              child: Image.file(
-                File(path),
-                fit: BoxFit.contain,
-                errorBuilder: (_, __, ___) => const Center(
-                  child: Icon(Icons.broken_image_outlined,
-                      color: Colors.white54, size: 64),
-                ),
-              ),
-            ),
-          );
-        },
+        builder: (context, index) => PhotoViewGalleryPageOptions(
+          imageProvider: FileImage(File(_paths[index])),
+          minScale: PhotoViewComputedScale.contained,
+          maxScale: PhotoViewComputedScale.covered * 4,
+          initialScale: PhotoViewComputedScale.contained,
+          errorBuilder: (_, _, _) => const Center(
+            child: Icon(Icons.broken_image_outlined,
+                color: Colors.white54, size: 64),
+          ),
+        ),
       ),
     );
   }

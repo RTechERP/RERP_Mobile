@@ -164,7 +164,8 @@
   },
   "warehouse_sale": {
     "grn": "Phiếu nhập",
-    "gdn": "Phiếu xuất"
+    "gdn": "Phiếu xuất",
+    "history_import_export": "Ls nhập xuất"
   },
   "project": {
     "menu": "Menu dự án",
