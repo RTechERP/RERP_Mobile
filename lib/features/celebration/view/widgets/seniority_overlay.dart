@@ -18,25 +18,25 @@ class _SeniorityOverlay extends StatelessWidget {
     nameLeft: 0.08,
     nameRight: 0.08,
     nameTop: 0.275,
-    wishesLeft: 0.12,
-    wishesRight: 0.18,
-    wishesBottom: 0.54,
-    yearsLeft: 0.555,
-    yearsRight: 0.10,
-    yearsTop: 0.555,
+    wishesLeft: 0.16,
+    wishesRight: 0.16,
+    wishesBottom: 0.525,
+    yearsLeft: 0.635,
+    yearsRight: 0.1,
+    yearsTop: 0.565,
   );
 
   /// Same artwork. iOS: unit-anchored legacy offsets.
   static const _seniorityIos = _SeniorityPlacement(
     nameLeft: 0.05,
     nameRight: 0.05,
-    nameTop: 0.8,
-    wishesLeft: 0.2,
-    wishesRight: 0.25,
-    wishesBottom: 1.55,
-    yearsLeft: 0.85,
+    nameTop: 0.89,
+    wishesLeft: 0.25,
+    wishesRight: 0.2,
+    wishesBottom: 1.67,
+    yearsLeft: 0.95,
     yearsRight: 0.1,
-    yearsTop: 1.58,
+    yearsTop: 1.78,
   );
 
   _SeniorityPlacement _pickPlacement() {
@@ -45,9 +45,9 @@ class _SeniorityOverlay extends StatelessWidget {
 
   /// Wishes copy driven by the API's `SeniorityYears` value.
   String _wishesFor() {
-    return 'Trân trọng cảm ơn $years năm cống hiến của bạn — '
-        'chúc bạn thật nhiều sức khỏe và thành công '
-        'trên hành trình sắp tới!';
+    return 'Trân trọng cảm ơn bạn vì $years năm đồng hành cùng RTC! '
+        'Chúc bạn luôn mạnh khoẻ, hạnh phúc và cùng RTC tiếp tục '
+        'tạo nên những dấu án đáng tự hào!';
   }
 
   /// Big year numeral ("10") stamped in bright metallic gold.
@@ -239,7 +239,7 @@ class _SeniorityOverlay extends StatelessWidget {
                   child: Text(
                     wishes,
                     textAlign: TextAlign.center,
-                    maxLines: 3,
+                    maxLines: 4,
                     softWrap: true,
                     overflow: TextOverflow.ellipsis,
                     style: GoogleFonts.dancingScript(
