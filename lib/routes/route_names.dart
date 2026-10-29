@@ -339,4 +339,7 @@ class RouteNames {
 
   /// Màn tổng hợp khách hàng CRM (route con của [crmMenu]).
   static const crmSummaryCustomer = 'summary_customer';
+
+  /// Màn danh sách phiếu lead marketing CRM (route con của [crmMenu]).
+  static const crmLeadMarketing = 'lead_marketing';
 }

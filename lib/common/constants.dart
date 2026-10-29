@@ -695,4 +695,25 @@ class ApiEndPoint {
   /// Danh sách khách hàng + dự án tương ứng (dữ liệu tổng hợp CRM).
   /// API: GET /Customer/customer-synthetic.
   static const String getCustomerSynthetic = '/Customer/customer-synthetic';
+
+  // CRM - Lead Marketing
+  /// Danh sách nhân viên sale.
+  /// API: GET /Lead/get-sale-employees?onlyAssignable=false.
+  static const String getLeadSaleEmployees = '/Lead/get-sale-employees';
+
+  /// Danh sách nhân viên marketing.
+  /// API: GET /Lead/get-marketing-employees.
+  static const String getLeadMarketingEmployees = '/Lead/get-marketing-employees';
+
+  /// Danh sách nguồn lead.
+  /// API: GET /LeadSource?sourceGroup=0.
+  static const String getLeadSource = '/LeadSource';
+
+  /// Quyền của người dùng hiện tại trong module Lead.
+  /// API: GET /Lead/get-role-context.
+  static const String getLeadRoleContext = '/Lead/get-role-context';
+
+  /// Danh sách phiếu lead.
+  /// API: GET /Lead/get-data?ViewMode=1&DateStart=...&DateEnd=...&...
+  static const String getLeadData = '/Lead/get-data';
 }

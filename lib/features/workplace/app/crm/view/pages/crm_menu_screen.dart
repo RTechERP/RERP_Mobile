@@ -61,5 +61,13 @@ class CrmMenuScreen extends StatelessWidget {
       tab: 'crm',
       route: '${RouteNames.crmMenu}/${RouteNames.crmSummaryCustomer}',
     ),
+    AppItemModel(
+      id: 'crm:lead_marketing',
+      name: 'crm.lead_marketing'.tr(),
+      iconCodePoint: Icons.campaign_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'crm',
+      route: '${RouteNames.crmMenu}/${RouteNames.crmLeadMarketing}',
+    ),
   ];
 }

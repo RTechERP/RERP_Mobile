@@ -197,6 +197,10 @@ import '../features/workplace/app/crm/summary_customer/data/datasource/service/s
 import '../features/workplace/app/crm/summary_customer/data/repository/summary_customer_repo.dart';
 import '../features/workplace/app/crm/summary_customer/data/repository/summary_customer_repo_impl.dart';
 import '../features/workplace/app/crm/summary_customer/view/bloc/summary_customer_bloc.dart';
+import '../features/workplace/app/crm/lead_marketing/data/datasource/service/lead_marketing_service.dart';
+import '../features/workplace/app/crm/lead_marketing/data/repo/lead_marketing_repo.dart';
+import '../features/workplace/app/crm/lead_marketing/data/repo/lead_marketing_repo_impl.dart';
+import '../features/workplace/app/crm/lead_marketing/view/bloc/lead_marketing_bloc.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/history_import_export/data/datasource/service/history_import_export_service.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/history_import_export/data/repository/history_import_export_repo.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/history_import_export/data/repository/history_import_export_repo_impl.dart';
@@ -429,6 +433,10 @@ void configureDependencies() {
     () => SummaryCustomerService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<LeadMarketingService>(
+    () => LeadMarketingService(getIt<Dio>()),
+  );
+
   getIt.registerLazySingleton<TestTableService>(
     () => TestTableService(getIt<Dio>()),
   );
@@ -615,6 +623,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<SummaryCustomerRepo>(
     () => SummaryCustomerRepoImpl(getIt<SummaryCustomerService>()),
+  );
+
+  getIt.registerLazySingleton<LeadMarketingRepo>(
+    () => LeadMarketingRepoImpl(getIt<LeadMarketingService>()),
   );
 
   getIt.registerLazySingleton<TestTableRepo>(
@@ -995,6 +1007,13 @@ getIt.registerLazySingleton<ApproveBookingGuestHouseBloc>(
   getIt.registerFactory<SummaryCustomerBloc>(
     () => SummaryCustomerBloc(
       getIt<SummaryCustomerRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<LeadMarketingBloc>(
+    () => LeadMarketingBloc(
+      getIt<LeadMarketingRepo>(),
       getIt<LogUtils>(),
     ),
   );

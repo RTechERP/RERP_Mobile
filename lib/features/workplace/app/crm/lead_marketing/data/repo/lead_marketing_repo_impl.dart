@@ -1,0 +1,104 @@
+import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
+import 'package:rtc_erp/base/network/errors/error.dart';
+
+import '../../../../../../../../base/network/errors/extension.dart';
+import '../datasource/models/lead_marketing_model.dart';
+import '../datasource/service/lead_marketing_service.dart';
+import 'lead_marketing_repo.dart';
+
+/// Triển khai repo: ánh xạ dữ liệu và xử lý lỗi.
+@LazySingleton(as: LeadMarketingRepo)
+class LeadMarketingRepoImpl implements LeadMarketingRepo {
+  final LeadMarketingService _service;
+
+  LeadMarketingRepoImpl(this._service);
+
+  @override
+  Future<Either<BaseError, List<LeadEmployee>>> getSaleEmployees() async {
+    try {
+      final res = await _service.getSaleEmployees();
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<LeadEmployee>>> getMarketingEmployees() async {
+    try {
+      final res = await _service.getMarketingEmployees();
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<LeadSource>>> getLeadSources() async {
+    try {
+      final res = await _service.getLeadSources();
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, LeadRoleContext>> getRoleContext() async {
+    try {
+      final res = await _service.getRoleContext();
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<LeadMarketingItem>>> getLeadData({
+    required int viewMode,
+    required DateTime dateStart,
+    required DateTime dateEnd,
+    required int leadType,
+    required bool includeOpen,
+  }) async {
+    try {
+      final res = await _service.getLeadData(
+        viewMode: viewMode,
+        dateStart: dateStart,
+        dateEnd: dateEnd,
+        leadType: leadType,
+        includeOpen: includeOpen,
+      );
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+}

@@ -212,6 +212,8 @@ import '../features/workplace/app/summary_work/overtime/view/bloc/summary_overti
 import '../features/workplace/app/summary_work/overtime/view/pages/summary_overtime_screen.dart';
 import '../features/workplace/app/crm/summary_customer/view/bloc/summary_customer_bloc.dart';
 import '../features/workplace/app/crm/summary_customer/view/pages/summary_customer_screen.dart';
+import '../features/workplace/app/crm/lead_marketing/view/bloc/lead_marketing_bloc.dart';
+import '../features/workplace/app/crm/lead_marketing/view/pages/lead_marketing_screen.dart';
 import '../features/workplace/app/crm/view/pages/crm_menu_screen.dart';
 import '../features/workplace/app/warehouse/enums/warehouse_type.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_area_screen.dart';
@@ -2038,6 +2040,13 @@ class AppRouter {
             builder: (context, state) => BlocProvider.value(
               value: getIt<SummaryCustomerBloc>(),
               child: const SummaryCustomerScreen(),
+            ),
+          ),
+          GoRoute(
+            path: RouteNames.crmLeadMarketing,
+            builder: (context, state) => BlocProvider.value(
+              value: getIt<LeadMarketingBloc>(),
+              child: const LeadMarketingScreen(),
             ),
           ),
         ],
