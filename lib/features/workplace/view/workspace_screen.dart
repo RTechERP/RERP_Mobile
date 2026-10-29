@@ -355,6 +355,17 @@ class _WorkPlaceScreenState
                         route: RouteNames.signature,
                         imageUrl: AppImages.signature,
                       ),
+
+                      // CRM - menu trung gian: bấm "CRM" vào menu CRM,
+                      // sau đó chọn "Tổng hợp khách hàng" mới vào màn chi tiết.
+                      // Dùng icon Material sẵn có của Flutter (không imageUrl),
+                      // ActionIconTile sẽ fallback sang iconCodePoint.
+                      AppItemModel(
+                        id: 'crm',
+                        iconCodePoint: Icons.groups_2_outlined.codePoint,
+                        name: 'applications.crm'.tr(),
+                        route: RouteNames.crmMenu,
+                      ),
                       // AppItemModel(
                       //   id: 'warehouse',
                       //   iconCodePoint: Icons.warehouse_outlined.codePoint,

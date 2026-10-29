@@ -69,7 +69,8 @@
     "week_plan": "Công việc",
     "stock": "Tồn kho theo SP",
     "personal_approve": "Phê duyệt",
-    "warehouse": "Kho"
+    "warehouse": "Kho",
+    "crm": "CRM"
   },
   "general_forms": {
 
@@ -171,6 +172,10 @@
     "menu": "Menu dự án",
     "project_list": "DS dự án",
     "list": "Danh sách dự án"
+  },
+  "crm": {
+    "menu": "Menu CRM",
+    "summary_customer": "T.h khách hàng"
   },
   "dio": {
     "cancel_request": "Request was cancelled",

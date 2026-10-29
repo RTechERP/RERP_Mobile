@@ -210,6 +210,9 @@ import '../features/workplace/app/summary_work/overnight/view/bloc/summary_overn
 import '../features/workplace/app/summary_work/overnight/view/pages/summary_overnight_screen.dart';
 import '../features/workplace/app/summary_work/overtime/view/bloc/summary_overtime_bloc.dart';
 import '../features/workplace/app/summary_work/overtime/view/pages/summary_overtime_screen.dart';
+import '../features/workplace/app/crm/summary_customer/view/bloc/summary_customer_bloc.dart';
+import '../features/workplace/app/crm/summary_customer/view/pages/summary_customer_screen.dart';
+import '../features/workplace/app/crm/view/pages/crm_menu_screen.dart';
 import '../features/workplace/app/warehouse/enums/warehouse_type.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_area_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/warehouse_demo_screen.dart';
@@ -2021,6 +2024,23 @@ class AppRouter {
             ..add(const CelebrationEvent.checkBirthdaySeniority()),
           child: const CelebrationPopupScreen(),
         ),
+      ),
+
+      //---(CRM - Tổng hợp khách hàng)---//
+      // Flow: workspace → CRM menu → Tổng hợp khách hàng.
+      // Menu là route cha, màn tổng hợp là route con.
+      GoRoute(
+        path: RouteNames.crmMenu,
+        builder: (context, state) => const CrmMenuScreen(),
+        routes: [
+          GoRoute(
+            path: RouteNames.crmSummaryCustomer,
+            builder: (context, state) => BlocProvider.value(
+              value: getIt<SummaryCustomerBloc>(),
+              child: const SummaryCustomerScreen(),
+            ),
+          ),
+        ],
       ),
     ],
   );

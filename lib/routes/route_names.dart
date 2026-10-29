@@ -332,4 +332,11 @@ class RouteNames {
   static const projectMenu = '/project/menu';
   static const projectList = 'list';
   static const materialCategory = 'material-category';
+
+  // CRM - Tổng hợp khách hàng
+  /// Menu CRM (lớp menu trung gian): workspace → CRM → Tổng hợp khách hàng.
+  static const crmMenu = '/crm';
+
+  /// Màn tổng hợp khách hàng CRM (route con của [crmMenu]).
+  static const crmSummaryCustomer = 'summary_customer';
 }

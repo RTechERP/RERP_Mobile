@@ -690,4 +690,9 @@ class ApiEndPoint {
   /// POST /ProjectPartList/request-export.
   /// Body: `{ "WarehouseCode": "HN|HCM|BN|HP|DP", "ListItem": [ ... ] }`.
   static const String requestExport = '/ProjectPartList/request-export';
+
+  // CRM - Tổng hợp khách hàng
+  /// Danh sách khách hàng + dự án tương ứng (dữ liệu tổng hợp CRM).
+  /// API: GET /Customer/customer-synthetic.
+  static const String getCustomerSynthetic = '/Customer/customer-synthetic';
 }
