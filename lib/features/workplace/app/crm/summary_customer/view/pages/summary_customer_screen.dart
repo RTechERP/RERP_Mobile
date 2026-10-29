@@ -10,6 +10,7 @@ import '../../../../../../../../common/constants/index.dart';
 import '../../data/datasource/models/summary_customer_model.dart';
 import '../../view/bloc/summary_customer_bloc.dart';
 import '../../view/widgets/summary_customer_card.dart';
+import '../../view/widgets/summary_customer_project_sheet.dart';
 
 /// Màn hình tổng hợp khách hàng CRM.
 ///
@@ -81,7 +82,6 @@ class _SummaryCustomerScreenState extends BaseState<
         return BaseScaffold(
           appBar: AppBarCommon(
             onBackTap: () => context.pop(),
-            centerTitle: false,
             title: _isSearchOpen
                 ? _buildSearchField()
                 : Text(
@@ -225,7 +225,18 @@ class _SummaryCustomerScreenState extends BaseState<
         padding: const EdgeInsets.all(16),
         physics: const AlwaysScrollableScrollPhysics(),
         itemCount: groups.length,
-        itemBuilder: (context, index) => SummaryCustomerCard(group: groups[index]),
+        itemBuilder: (context, index) {
+          final group = groups[index];
+          return SummaryCustomerCard(
+            group: group,
+            onTapProjects: () => SummaryCustomerProjectSheet.show(
+              context,
+              customerName: group.customerName,
+              customerCode: group.customerCode,
+              projects: group.projects,
+            ),
+          );
+        },
         separatorBuilder: (_, _) => const SizedBox(height: 8),
       ),
     );

@@ -42,6 +42,7 @@ class SummaryCustomerGroup {
     required this.industriesNameVi,
     required this.industryProduct,
     required this.projectCount,
+    this.projects = const [],
   });
 
   /// Mã khách hàng.
@@ -65,8 +66,23 @@ class SummaryCustomerGroup {
   /// Ngành nghề.
   final String industryProduct;
 
-  /// Số dự án của khách hàng.
+  /// Số dự án phụ trách của khách hàng.
+  ///
+  /// Chỉ tính những bản ghi có ít nhất một trong ba thông tin
+  /// mã dự án / tên dự án / PIC.
   final int projectCount;
+
+  /// Danh sách dự án (mã - tên - PIC) của khách hàng.
+  final List<SummaryCustomerItem> projects;
+
+  /// Bản ghi được coi là dự án khi có ít nhất mã dự án, tên dự án hoặc PIC.
+  ///
+  /// Những bản ghi trống cả ba thông tin sẽ bị loại khỏi danh sách dự án.
+  static bool _isValidProject(SummaryCustomerItem item) {
+    return (item.projectCode ?? '').trim().isNotEmpty ||
+        (item.projectName ?? '').trim().isNotEmpty ||
+        (item.pic ?? '').trim().isNotEmpty;
+  }
 
   /// Gom danh sách bản ghi API theo khách hàng.
   ///
@@ -76,12 +92,17 @@ class SummaryCustomerGroup {
     List<SummaryCustomerItem> items,
   ) {
     final groups = <String, SummaryCustomerGroup>{};
+    final projects = <String, List<SummaryCustomerItem>>{};
 
     for (final item in items) {
       final code = (item.customerCode ?? '').trim();
       final name = (item.customerName ?? '').trim();
       final key = code.isNotEmpty ? code : name;
       if (key.isEmpty) continue;
+
+      if (_isValidProject(item)) {
+        (projects[key] ??= <SummaryCustomerItem>[]).add(item);
+      }
 
       final existing = groups[key];
       if (existing == null) {
@@ -93,7 +114,7 @@ class SummaryCustomerGroup {
           taxCode: (item.taxCode ?? '').trim(),
           industriesNameVi: (item.industriesNameVi ?? '').trim(),
           industryProduct: (item.industryProduct ?? '').trim(),
-          projectCount: 1,
+          projectCount: 0,
         );
       } else {
         groups[key] = SummaryCustomerGroup(
@@ -104,11 +125,25 @@ class SummaryCustomerGroup {
           taxCode: existing.taxCode,
           industriesNameVi: existing.industriesNameVi,
           industryProduct: existing.industryProduct,
-          projectCount: existing.projectCount + 1,
+          projectCount: existing.projectCount,
         );
       }
     }
 
-    return groups.values.toList();
+    return groups.entries
+        .map(
+          (entry) => SummaryCustomerGroup(
+            customerCode: entry.value.customerCode,
+            customerName: entry.value.customerName,
+            typeName: entry.value.typeName,
+            address: entry.value.address,
+            taxCode: entry.value.taxCode,
+            industriesNameVi: entry.value.industriesNameVi,
+            industryProduct: entry.value.industryProduct,
+            projectCount: projects[entry.key]?.length ?? 0,
+            projects: projects[entry.key] ?? const [],
+          ),
+        )
+        .toList();
   }
 }
