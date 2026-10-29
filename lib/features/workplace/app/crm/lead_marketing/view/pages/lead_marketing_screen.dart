@@ -13,6 +13,7 @@ import '../../data/datasource/models/lead_marketing_model.dart';
 import '../../view/bloc/lead_marketing_bloc.dart';
 import '../../view/widgets/lead_marketing_card.dart';
 import '../../view/widgets/lead_marketing_detail_sheet.dart';
+import '../../view/widgets/lead_marketing_filter_sheet.dart';
 
 /// Màn hình danh sách phiếu lead của phòng ban Marketing trong CRM.
 ///
@@ -93,6 +94,32 @@ class _LeadMarketingScreenState extends BaseState<
     );
   }
 
+  /// Mở bottom sheet bộ lọc nguồn, NV marketing, NV sale và lead đang mở.
+  void _showFilterSheet(LeadMarketingState state) {
+    showLeadMarketingFilterSheet(
+      context: context,
+      sources: state.sources,
+      marketingEmployees: state.marketingEmployees,
+      saleEmployees: state.saleEmployees,
+      selectedSourceId: state.leadSourceId,
+      selectedMarketingEmployeeId: state.marketingEmployeeId,
+      selectedSaleEmployeeId: state.saleEmployeeId,
+      includeOpen: state.includeOpen,
+      selectedStage: state.stageFilter,
+      stageCounts: state.stageCounts,
+      onApply: (sourceId, marketingId, saleId, includeOpen, stage) {
+        bloc.add(LeadMarketingEvent.applyFilter(
+          leadSourceId: sourceId,
+          marketingEmployeeId: marketingId,
+          saleEmployeeId: saleId,
+          includeOpen: includeOpen,
+          stage: stage,
+        ));
+      },
+      onClear: () => bloc.add(const LeadMarketingEvent.clearFilter()),
+    );
+  }
+
   @override
   Widget renderUI(BuildContext context) {
     return BlocBuilder<LeadMarketingBloc, LeadMarketingState>(
@@ -105,7 +132,8 @@ class _LeadMarketingScreenState extends BaseState<
           previous.roleContext != current.roleContext ||
           previous.dateStart != current.dateStart ||
           previous.dateEnd != current.dateEnd ||
-          previous.keyword != current.keyword,
+          previous.keyword != current.keyword ||
+          previous.stageFilter != current.stageFilter,
       builder: (context, state) {
         final loading = state.status == BaseStateStatus.loading;
         final failed = state.status == BaseStateStatus.failed;
@@ -116,15 +144,27 @@ class _LeadMarketingScreenState extends BaseState<
           appBar: AppBarCommon(
             onBackTap: () => context.pop(),
             centerTitle: false,
-            title: _isSearchOpen
-                ? _buildSearchField()
-                : Text('Lead Marketing', style: AppStyles.headingTitle2),
+            title: Text(
+              _isSearchOpen ? 'Tìm kiếm' : 'Lead Marketing',
+              style: AppStyles.headingTitle2,
+            ),
+            // Ô tìm kiếm nằm ở thanh dưới AppBar để chiếm toàn bộ chiều rộng,
+            // không bị bóp còn nhỏ bởi các nút hành động trên AppBar.
+            bottom: _isSearchOpen
+                ? PreferredSize(
+                    preferredSize: const Size.fromHeight(64),
+                    child: _buildSearchField(),
+                  )
+                : null,
             actions: [
-              IconButton(
-                icon: const Icon(Icons.calendar_month_outlined),
-                tooltip: 'Chọn khoảng thời gian',
-                onPressed: () => _showDateRangePicker(state),
-              ),
+              if (!_isSearchOpen) ...[
+                IconButton(
+                  icon: const Icon(Icons.calendar_month_outlined),
+                  tooltip: 'Chọn khoảng thời gian',
+                  onPressed: () => _showDateRangePicker(state),
+                ),
+                _buildFilterButton(state),
+              ],
               IconButton(
                 icon: Icon(_isSearchOpen ? Icons.close : Icons.search),
                 tooltip: _isSearchOpen ? 'Đóng tìm kiếm' : 'Tìm kiếm',
@@ -157,50 +197,101 @@ class _LeadMarketingScreenState extends BaseState<
     );
   }
 
-  /// Ô tìm kiếm hiển thị tại vị trí title của AppBar.
+  /// Nút mở bộ lọc, kèm badge số tiêu chí đang được áp dụng.
+  Widget _buildFilterButton(LeadMarketingState state) {
+    final activeCount = [
+      state.leadSourceId != 0,
+      state.marketingEmployeeId != 0,
+      state.saleEmployeeId != 0,
+      state.stageFilter != null,
+      !state.includeOpen,
+    ].where((e) => e).length;
+
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        IconButton(
+          icon: const Icon(Icons.tune_rounded),
+          tooltip: 'Bộ lọc',
+          onPressed: () => _showFilterSheet(state),
+        ),
+        if (activeCount > 0)
+          Positioned(
+            top: 6,
+            right: 4,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
+              decoration: BoxDecoration(
+                color: AppColors.primaryERP,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Text(
+                '$activeCount',
+                style: const TextStyle(
+                  fontSize: 9,
+                  fontWeight: FontWeight.w800,
+                  color: Colors.white,
+                  height: 1.3,
+                ),
+              ),
+            ),
+          ),
+      ],
+    );
+  }
+
+  /// Ô tìm kiếm hiển thị ở thanh dưới AppBar khi đang bật chế độ tìm kiếm.
   Widget _buildSearchField() {
-    return TextField(
-      controller: _searchController,
-      focusNode: _searchFocusNode,
-      autofocus: true,
-      textInputAction: TextInputAction.search,
-      onChanged: (value) =>
-          bloc.add(LeadMarketingEvent.changeKeyword(keyword: value)),
-      onSubmitted: (value) =>
-          bloc.add(LeadMarketingEvent.changeKeyword(keyword: value.trim())),
-      style: const TextStyle(fontSize: 14, color: AppColors.heading),
-      decoration: InputDecoration(
-        hintText: 'Tìm mã lead, công ty, người liên hệ',
-        hintStyle: const TextStyle(color: AppColors.hintText, fontSize: 14),
-        prefixIcon: const Icon(Icons.search, color: AppColors.gray, size: 20),
-        prefixIconConstraints: const BoxConstraints(minWidth: 36, minHeight: 36),
-        suffixIcon: ValueListenableBuilder<TextEditingValue>(
-          valueListenable: _searchController,
-          builder: (context, value, _) {
-            if (value.text.isEmpty) return const SizedBox.shrink();
-            return IconButton(
-              icon: const Icon(Icons.clear, color: AppColors.gray, size: 18),
-              onPressed: _clearSearch,
-              padding: EdgeInsets.zero,
-              constraints: const BoxConstraints(minWidth: 36, minHeight: 36),
-            );
-          },
-        ),
-        isDense: true,
-        filled: true,
-        fillColor: AppColors.background,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: AppColors.borderColor),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: AppColors.borderColor),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: AppColors.primaryERP, width: 1.5),
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 4, 16, 12),
+      child: SizedBox(
+        height: 44,
+        child: TextField(
+          controller: _searchController,
+          focusNode: _searchFocusNode,
+          autofocus: true,
+          textInputAction: TextInputAction.search,
+          onChanged: (value) =>
+              bloc.add(LeadMarketingEvent.changeKeyword(keyword: value)),
+          onSubmitted: (value) =>
+              bloc.add(LeadMarketingEvent.changeKeyword(keyword: value.trim())),
+          style: const TextStyle(fontSize: 14, color: AppColors.heading),
+          decoration: InputDecoration(
+            hintText: 'Tìm mã lead, công ty, người liên hệ',
+            hintStyle: const TextStyle(color: AppColors.hintText, fontSize: 14),
+            prefixIcon: const Icon(Icons.search, color: AppColors.gray, size: 20),
+            prefixIconConstraints:
+                const BoxConstraints(minWidth: 40, minHeight: 40),
+            suffixIcon: ValueListenableBuilder<TextEditingValue>(
+              valueListenable: _searchController,
+              builder: (context, value, _) {
+                if (value.text.isEmpty) return const SizedBox.shrink();
+                return IconButton(
+                  icon: const Icon(Icons.clear, color: AppColors.gray, size: 18),
+                  onPressed: _clearSearch,
+                  padding: EdgeInsets.zero,
+                  constraints:
+                      const BoxConstraints(minWidth: 40, minHeight: 40),
+                );
+              },
+            ),
+            isDense: true,
+            filled: true,
+            fillColor: AppColors.background,
+            contentPadding: const EdgeInsets.symmetric(horizontal: 12),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: const BorderSide(color: AppColors.borderColor),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: const BorderSide(color: AppColors.borderColor),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: const BorderSide(color: AppColors.primaryERP, width: 1.5),
+            ),
+          ),
         ),
       ),
     );

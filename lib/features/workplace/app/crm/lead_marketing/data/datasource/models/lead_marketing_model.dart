@@ -3,6 +3,65 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'lead_marketing_model.freezed.dart';
 part 'lead_marketing_model.g.dart';
 
+/// Các giai đoạn xử lý dùng để lọc nhanh trên danh sách phiếu lead.
+///
+/// Mã giai đoạn (`Stage`) do API quy định và chưa được chốt, nên bộ lọc
+/// khớp theo tên giai đoạn (`StageName`) mà API trả về.
+enum LeadStage {
+  /// Lead vừa được tạo, chưa xử lý.
+  newLead('Mới'),
+
+  /// Lead đã bàn giao sang sale nhưng chưa có người nhận.
+  waitingAssign('Chờ phân công'),
+
+  /// Lead đã được phân công cho nhân viên sale.
+  assigned('Đã phân công'),
+
+  /// Lead đã được phân công và đang được theo dõi.
+  nurturing('Đang chăm sóc'),
+
+  /// Lead bị trả về cho marketing.
+  returned('Hoàn trả'),
+
+  /// Lead đã bàn giao cho sale.
+  handedOver('Đã bàn giao'),
+
+  /// Lead bị loại khỏi danh sách theo dõi.
+  notMatched('Không phù hợp');
+
+  const LeadStage(this.label);
+
+  /// Tên giai đoạn hiển thị cho người dùng.
+  final String label;
+
+  /// Kiểm tra tên giai đoạn của API có khớp với giai đoạn này hay không.
+  ///
+  /// So khớp theo dạng "chứa" để chấp nhận cả tên rút gọn lẫn tên đầy đủ
+  /// (vd API trả `Hoàn trả MKT` vẫn khớp với `Hoàn trả`).
+  bool matches(String? stageName) {
+    final name = (stageName ?? '').trim().toLowerCase();
+    if (name.isEmpty) return false;
+    return name.contains(label.toLowerCase());
+  }
+
+  /// Tìm giai đoạn theo tên mà API trả về.
+  ///
+  /// Ưu tiên khớp chính xác, sau đó mới khớp theo dạng "chứa" (vd `Hoàn trả MKT`
+  /// → [LeadStage.returned]). Trả về `null` khi không giai đoạn nào khớp.
+  static LeadStage? fromName(String? stageName) {
+    final name = (stageName ?? '').trim();
+    if (name.isEmpty) return null;
+
+    for (final stage in values) {
+      if (stage.label.toLowerCase() == name.toLowerCase()) return stage;
+    }
+    for (final stage in values) {
+      if (stage.matches(name)) return stage;
+    }
+    return null;
+  }
+}
+
 /// Nhân viên (sale hoặc marketing) được API trả về.
 ///
 /// Dùng chung cho cả 2 danh sách vì cấu trúc response giống nhau:

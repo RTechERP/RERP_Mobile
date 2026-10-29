@@ -14,7 +14,11 @@ import '../../data/datasource/models/lead_marketing_model.dart';
 
 /// Tab hiển thị danh sách file đính kèm của phiếu lead.
 ///
-/// Dữ liệu đến từ API `GET /Lead/get-files?customerContactId=X&fileType=1`.
+/// Dùng chung cho 2 nhóm file, phân biệt bằng `fileType` của API
+/// `GET /Lead/get-files?customerContactId=X&fileType=N`:
+/// - `fileType = 1`: file đính kèm thường (tab Files).
+/// - `fileType = 2`: file PO (tab Files PO).
+///
 /// Mỗi file hỗ trợ 2 thao tác:
 /// - Xem trước: ảnh (zoom được) và PDF (viewer native).
 /// - Tải xuống: mọi định dạng — pdf, word, excel, ảnh, zip...

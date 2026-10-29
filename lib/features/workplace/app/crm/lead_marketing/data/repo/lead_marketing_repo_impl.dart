@@ -81,6 +81,9 @@ class LeadMarketingRepoImpl implements LeadMarketingRepo {
     required DateTime dateStart,
     required DateTime dateEnd,
     required int leadType,
+    required int leadSourceId,
+    required int marketingEmployeeId,
+    required int saleEmployeeId,
     required bool includeOpen,
   }) async {
     try {
@@ -89,6 +92,9 @@ class LeadMarketingRepoImpl implements LeadMarketingRepo {
         dateStart: dateStart,
         dateEnd: dateEnd,
         leadType: leadType,
+        leadSourceId: leadSourceId,
+        marketingEmployeeId: marketingEmployeeId,
+        saleEmployeeId: saleEmployeeId,
         includeOpen: includeOpen,
       );
       if (res.status == 1 && res.data != null) {

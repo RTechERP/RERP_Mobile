@@ -31,9 +31,22 @@ class LeadMarketingBloc extends BaseBloc<LeadMarketingEvent, LeadMarketingState>
             _onChangeDateRange(emit, dateStart: dateStart, dateEnd: dateEnd),
         changeKeyword: (keyword) => _onChangeKeyword(emit, keyword: keyword),
         refresh: () => _onInit(emit),
+        applyFilter: (leadSourceId, marketingEmployeeId, saleEmployeeId,
+                includeOpen, stage) =>
+            _onApplyFilter(
+          emit,
+          leadSourceId: leadSourceId,
+          marketingEmployeeId: marketingEmployeeId,
+          saleEmployeeId: saleEmployeeId,
+          includeOpen: includeOpen,
+          stage: stage,
+        ),
+        clearFilter: () => _onClearFilter(emit),
         loadDetail: (id) => _onLoadDetail(emit, id: id),
         loadFiles: (customerContactId) =>
             _onLoadFiles(emit, customerContactId: customerContactId),
+        loadFilesPo: (customerContactId) =>
+            _onLoadFilesPo(emit, customerContactId: customerContactId),
       );
     });
   }
@@ -50,10 +63,78 @@ class LeadMarketingBloc extends BaseBloc<LeadMarketingEvent, LeadMarketingState>
 
     await _loadRoleContext(emit);
 
+    await _loadFilterOptions(emit);
+
     await _loadLeads(
       emit,
       dateStart: start,
       dateEnd: end,
+    );
+  }
+
+  /// Tải các danh sách dùng cho bộ lọc: nguồn lead, NV marketing, NV sale.
+  ///
+  /// Lỗi tải danh sách lọc không chặn việc hiển thị danh sách phiếu lead.
+  Future<void> _loadFilterOptions(Emitter<LeadMarketingState> emit) async {
+    final sources = await _repo.getLeadSources();
+    sources.fold(
+      (l) => _log.logE('Get lead sources failed: $l'),
+      (r) => emit(state.copyWith(sources: r)),
+    );
+
+    final marketing = await _repo.getMarketingEmployees();
+    marketing.fold(
+      (l) => _log.logE('Get marketing employees failed: $l'),
+      (r) => emit(state.copyWith(marketingEmployees: r)),
+    );
+
+    final sale = await _repo.getSaleEmployees();
+    sale.fold(
+      (l) => _log.logE('Get sale employees failed: $l'),
+      (r) => emit(state.copyWith(saleEmployees: r)),
+    );
+  }
+
+  /// Áp dụng bộ lọc — lưu lựa chọn rồi tải lại danh sách phiếu lead.
+  Future<void> _onApplyFilter(
+    Emitter<LeadMarketingState> emit, {
+    required int leadSourceId,
+    required int marketingEmployeeId,
+    required int saleEmployeeId,
+    required bool includeOpen,
+    required LeadStage? stage,
+  }) async {
+    emit(state.copyWith(
+      leadSourceId: leadSourceId,
+      marketingEmployeeId: marketingEmployeeId,
+      saleEmployeeId: saleEmployeeId,
+      includeOpen: includeOpen,
+      stageFilter: stage,
+    ));
+
+    final now = DateTime.now();
+    await _loadLeads(
+      emit,
+      dateStart: state.dateStart ?? DateTime(now.year, now.month, 1),
+      dateEnd: state.dateEnd ?? DateTime(now.year, now.month + 1, 0),
+    );
+  }
+
+  /// Xóa bộ lọc — đưa tất cả tiêu chí về mặc định rồi tải lại danh sách.
+  Future<void> _onClearFilter(Emitter<LeadMarketingState> emit) async {
+    emit(state.copyWith(
+      leadSourceId: 0,
+      marketingEmployeeId: 0,
+      saleEmployeeId: 0,
+      includeOpen: true,
+      stageFilter: null,
+    ));
+
+    final now = DateTime.now();
+    await _loadLeads(
+      emit,
+      dateStart: state.dateStart ?? DateTime(now.year, now.month, 1),
+      dateEnd: state.dateEnd ?? DateTime(now.year, now.month + 1, 0),
     );
   }
 
@@ -153,6 +234,43 @@ class LeadMarketingBloc extends BaseBloc<LeadMarketingEvent, LeadMarketingState>
     );
   }
 
+  /// Tải danh sách file PO đính kèm của phiếu lead.
+  ///
+  /// Dùng `fileType = 2` để lấy nhóm file PO, tách khỏi nhóm file thường.
+  Future<void> _onLoadFilesPo(
+    Emitter<LeadMarketingState> emit, {
+    required int customerContactId,
+  }) async {
+    emit(state.copyWith(
+      filesPoStatus: BaseStateStatus.loading,
+      filesPoMessage: null,
+    ));
+
+    final res = await _repo.getLeadFiles(
+      customerContactId: customerContactId,
+      fileType: 2,
+    );
+
+    await res.fold(
+      (l) async {
+        _log.logE('Get lead PO files failed: $l');
+        emit(state.copyWith(
+          filesPoStatus: BaseStateStatus.failed,
+          filesPoMessage: l.getErrorMessage,
+        ));
+      },
+      (r) async {
+        _log.logI('Get lead PO files success - count: ${r.length}');
+        emit(state.copyWith(
+          filesPoStatus: BaseStateStatus.success,
+          filesPo: r,
+          filesPoMessage: null,
+          filesPoLeadId: customerContactId,
+        ));
+      },
+    );
+  }
+
   /// Gọi API lấy danh sách phiếu lead theo khoảng thời gian đang lọc.
   Future<void> _loadLeads(
     Emitter<LeadMarketingState> emit, {
@@ -170,6 +288,9 @@ class LeadMarketingBloc extends BaseBloc<LeadMarketingEvent, LeadMarketingState>
       dateStart: dateStart,
       dateEnd: dateEnd,
       leadType: state.leadType,
+      leadSourceId: state.leadSourceId,
+      marketingEmployeeId: state.marketingEmployeeId,
+      saleEmployeeId: state.saleEmployeeId,
       includeOpen: state.includeOpen,
     );
 

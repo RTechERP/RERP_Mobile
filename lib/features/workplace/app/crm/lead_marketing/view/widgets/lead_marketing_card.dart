@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 
 import '../../../../../../../../common/app_theme/index.dart';
 import '../../data/datasource/models/lead_marketing_model.dart';
+import 'lead_marketing_stage_style.dart';
 
 /// Card hiển thị một phiếu lead trong danh sách Lead Marketing.
 ///
@@ -33,22 +34,10 @@ class LeadMarketingCard extends StatelessWidget {
   }
 
   /// Màu nhấn mạnh theo giai đoạn xử lý của lead.
-  Color get _stageColor {
-    switch (item.stage) {
-      case 1:
-        return AppColors.tealA400;
-      case 2:
-        return AppColors.blueMain;
-      case 3:
-        return AppColors.orangeA500;
-      case 4:
-        return AppColors.purpleA400;
-      case 5:
-        return AppColors.greenA500;
-      default:
-        return AppColors.gray;
-    }
-  }
+  ///
+  /// Dùng chung [LeadStageStyle] với bộ lọc nên chip giai đoạn ở danh sách
+  /// và trong filter luôn cùng màu.
+  Color get _stageColor => LeadStageStyle.ofName(item.stageName);
 
   @override
   Widget build(BuildContext context) {

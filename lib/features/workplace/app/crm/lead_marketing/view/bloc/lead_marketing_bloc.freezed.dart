@@ -23,8 +23,13 @@ mixin _$LeadMarketingEvent {
         changeDateRange,
     required TResult Function(String keyword) changeKeyword,
     required TResult Function() refresh,
+    required TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)
+        applyFilter,
+    required TResult Function() clearFilter,
     required TResult Function(int id) loadDetail,
     required TResult Function(int customerContactId) loadFiles,
+    required TResult Function(int customerContactId) loadFilesPo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -33,8 +38,13 @@ mixin _$LeadMarketingEvent {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function()? refresh,
+    TResult? Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult? Function()? clearFilter,
     TResult? Function(int id)? loadDetail,
     TResult? Function(int customerContactId)? loadFiles,
+    TResult? Function(int customerContactId)? loadFilesPo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,8 +53,13 @@ mixin _$LeadMarketingEvent {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(String keyword)? changeKeyword,
     TResult Function()? refresh,
+    TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult Function()? clearFilter,
     TResult Function(int id)? loadDetail,
     TResult Function(int customerContactId)? loadFiles,
+    TResult Function(int customerContactId)? loadFilesPo,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -54,8 +69,11 @@ mixin _$LeadMarketingEvent {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ChangeKeyword value) changeKeyword,
     required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_ClearFilter value) clearFilter,
     required TResult Function(_LoadDetail value) loadDetail,
     required TResult Function(_LoadFiles value) loadFiles,
+    required TResult Function(_LoadFilesPo value) loadFilesPo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -64,8 +82,11 @@ mixin _$LeadMarketingEvent {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
     TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_ClearFilter value)? clearFilter,
     TResult? Function(_LoadDetail value)? loadDetail,
     TResult? Function(_LoadFiles value)? loadFiles,
+    TResult? Function(_LoadFilesPo value)? loadFilesPo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -74,8 +95,11 @@ mixin _$LeadMarketingEvent {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ChangeKeyword value)? changeKeyword,
     TResult Function(_Refresh value)? refresh,
+    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_ClearFilter value)? clearFilter,
     TResult Function(_LoadDetail value)? loadDetail,
     TResult Function(_LoadFiles value)? loadFiles,
+    TResult Function(_LoadFilesPo value)? loadFilesPo,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -141,8 +165,13 @@ class _$InitImpl implements _Init {
         changeDateRange,
     required TResult Function(String keyword) changeKeyword,
     required TResult Function() refresh,
+    required TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)
+        applyFilter,
+    required TResult Function() clearFilter,
     required TResult Function(int id) loadDetail,
     required TResult Function(int customerContactId) loadFiles,
+    required TResult Function(int customerContactId) loadFilesPo,
   }) {
     return init();
   }
@@ -154,8 +183,13 @@ class _$InitImpl implements _Init {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function()? refresh,
+    TResult? Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult? Function()? clearFilter,
     TResult? Function(int id)? loadDetail,
     TResult? Function(int customerContactId)? loadFiles,
+    TResult? Function(int customerContactId)? loadFilesPo,
   }) {
     return init?.call();
   }
@@ -167,8 +201,13 @@ class _$InitImpl implements _Init {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(String keyword)? changeKeyword,
     TResult Function()? refresh,
+    TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult Function()? clearFilter,
     TResult Function(int id)? loadDetail,
     TResult Function(int customerContactId)? loadFiles,
+    TResult Function(int customerContactId)? loadFilesPo,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -184,8 +223,11 @@ class _$InitImpl implements _Init {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ChangeKeyword value) changeKeyword,
     required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_ClearFilter value) clearFilter,
     required TResult Function(_LoadDetail value) loadDetail,
     required TResult Function(_LoadFiles value) loadFiles,
+    required TResult Function(_LoadFilesPo value) loadFilesPo,
   }) {
     return init(this);
   }
@@ -197,8 +239,11 @@ class _$InitImpl implements _Init {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
     TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_ClearFilter value)? clearFilter,
     TResult? Function(_LoadDetail value)? loadDetail,
     TResult? Function(_LoadFiles value)? loadFiles,
+    TResult? Function(_LoadFilesPo value)? loadFilesPo,
   }) {
     return init?.call(this);
   }
@@ -210,8 +255,11 @@ class _$InitImpl implements _Init {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ChangeKeyword value)? changeKeyword,
     TResult Function(_Refresh value)? refresh,
+    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_ClearFilter value)? clearFilter,
     TResult Function(_LoadDetail value)? loadDetail,
     TResult Function(_LoadFiles value)? loadFiles,
+    TResult Function(_LoadFilesPo value)? loadFilesPo,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -304,8 +352,13 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
         changeDateRange,
     required TResult Function(String keyword) changeKeyword,
     required TResult Function() refresh,
+    required TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)
+        applyFilter,
+    required TResult Function() clearFilter,
     required TResult Function(int id) loadDetail,
     required TResult Function(int customerContactId) loadFiles,
+    required TResult Function(int customerContactId) loadFilesPo,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -317,8 +370,13 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function()? refresh,
+    TResult? Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult? Function()? clearFilter,
     TResult? Function(int id)? loadDetail,
     TResult? Function(int customerContactId)? loadFiles,
+    TResult? Function(int customerContactId)? loadFilesPo,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -330,8 +388,13 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(String keyword)? changeKeyword,
     TResult Function()? refresh,
+    TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult Function()? clearFilter,
     TResult Function(int id)? loadDetail,
     TResult Function(int customerContactId)? loadFiles,
+    TResult Function(int customerContactId)? loadFilesPo,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -347,8 +410,11 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ChangeKeyword value) changeKeyword,
     required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_ClearFilter value) clearFilter,
     required TResult Function(_LoadDetail value) loadDetail,
     required TResult Function(_LoadFiles value) loadFiles,
+    required TResult Function(_LoadFilesPo value) loadFilesPo,
   }) {
     return changeDateRange(this);
   }
@@ -360,8 +426,11 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
     TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_ClearFilter value)? clearFilter,
     TResult? Function(_LoadDetail value)? loadDetail,
     TResult? Function(_LoadFiles value)? loadFiles,
+    TResult? Function(_LoadFilesPo value)? loadFilesPo,
   }) {
     return changeDateRange?.call(this);
   }
@@ -373,8 +442,11 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ChangeKeyword value)? changeKeyword,
     TResult Function(_Refresh value)? refresh,
+    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_ClearFilter value)? clearFilter,
     TResult Function(_LoadDetail value)? loadDetail,
     TResult Function(_LoadFiles value)? loadFiles,
+    TResult Function(_LoadFilesPo value)? loadFilesPo,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -465,8 +537,13 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
         changeDateRange,
     required TResult Function(String keyword) changeKeyword,
     required TResult Function() refresh,
+    required TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)
+        applyFilter,
+    required TResult Function() clearFilter,
     required TResult Function(int id) loadDetail,
     required TResult Function(int customerContactId) loadFiles,
+    required TResult Function(int customerContactId) loadFilesPo,
   }) {
     return changeKeyword(keyword);
   }
@@ -478,8 +555,13 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function()? refresh,
+    TResult? Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult? Function()? clearFilter,
     TResult? Function(int id)? loadDetail,
     TResult? Function(int customerContactId)? loadFiles,
+    TResult? Function(int customerContactId)? loadFilesPo,
   }) {
     return changeKeyword?.call(keyword);
   }
@@ -491,8 +573,13 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(String keyword)? changeKeyword,
     TResult Function()? refresh,
+    TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult Function()? clearFilter,
     TResult Function(int id)? loadDetail,
     TResult Function(int customerContactId)? loadFiles,
+    TResult Function(int customerContactId)? loadFilesPo,
     required TResult orElse(),
   }) {
     if (changeKeyword != null) {
@@ -508,8 +595,11 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ChangeKeyword value) changeKeyword,
     required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_ClearFilter value) clearFilter,
     required TResult Function(_LoadDetail value) loadDetail,
     required TResult Function(_LoadFiles value) loadFiles,
+    required TResult Function(_LoadFilesPo value) loadFilesPo,
   }) {
     return changeKeyword(this);
   }
@@ -521,8 +611,11 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
     TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_ClearFilter value)? clearFilter,
     TResult? Function(_LoadDetail value)? loadDetail,
     TResult? Function(_LoadFiles value)? loadFiles,
+    TResult? Function(_LoadFilesPo value)? loadFilesPo,
   }) {
     return changeKeyword?.call(this);
   }
@@ -534,8 +627,11 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ChangeKeyword value)? changeKeyword,
     TResult Function(_Refresh value)? refresh,
+    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_ClearFilter value)? clearFilter,
     TResult Function(_LoadDetail value)? loadDetail,
     TResult Function(_LoadFiles value)? loadFiles,
+    TResult Function(_LoadFilesPo value)? loadFilesPo,
     required TResult orElse(),
   }) {
     if (changeKeyword != null) {
@@ -598,8 +694,13 @@ class _$RefreshImpl implements _Refresh {
         changeDateRange,
     required TResult Function(String keyword) changeKeyword,
     required TResult Function() refresh,
+    required TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)
+        applyFilter,
+    required TResult Function() clearFilter,
     required TResult Function(int id) loadDetail,
     required TResult Function(int customerContactId) loadFiles,
+    required TResult Function(int customerContactId) loadFilesPo,
   }) {
     return refresh();
   }
@@ -611,8 +712,13 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function()? refresh,
+    TResult? Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult? Function()? clearFilter,
     TResult? Function(int id)? loadDetail,
     TResult? Function(int customerContactId)? loadFiles,
+    TResult? Function(int customerContactId)? loadFilesPo,
   }) {
     return refresh?.call();
   }
@@ -624,8 +730,13 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(String keyword)? changeKeyword,
     TResult Function()? refresh,
+    TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult Function()? clearFilter,
     TResult Function(int id)? loadDetail,
     TResult Function(int customerContactId)? loadFiles,
+    TResult Function(int customerContactId)? loadFilesPo,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -641,8 +752,11 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ChangeKeyword value) changeKeyword,
     required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_ClearFilter value) clearFilter,
     required TResult Function(_LoadDetail value) loadDetail,
     required TResult Function(_LoadFiles value) loadFiles,
+    required TResult Function(_LoadFilesPo value) loadFilesPo,
   }) {
     return refresh(this);
   }
@@ -654,8 +768,11 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
     TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_ClearFilter value)? clearFilter,
     TResult? Function(_LoadDetail value)? loadDetail,
     TResult? Function(_LoadFiles value)? loadFiles,
+    TResult? Function(_LoadFilesPo value)? loadFilesPo,
   }) {
     return refresh?.call(this);
   }
@@ -667,8 +784,11 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ChangeKeyword value)? changeKeyword,
     TResult Function(_Refresh value)? refresh,
+    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_ClearFilter value)? clearFilter,
     TResult Function(_LoadDetail value)? loadDetail,
     TResult Function(_LoadFiles value)? loadFiles,
+    TResult Function(_LoadFilesPo value)? loadFilesPo,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -680,6 +800,398 @@ class _$RefreshImpl implements _Refresh {
 
 abstract class _Refresh implements LeadMarketingEvent {
   const factory _Refresh() = _$RefreshImpl;
+}
+
+/// @nodoc
+abstract class _$$ApplyFilterImplCopyWith<$Res> {
+  factory _$$ApplyFilterImplCopyWith(
+          _$ApplyFilterImpl value, $Res Function(_$ApplyFilterImpl) then) =
+      __$$ApplyFilterImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {int leadSourceId,
+      int marketingEmployeeId,
+      int saleEmployeeId,
+      bool includeOpen,
+      LeadStage? stage});
+}
+
+/// @nodoc
+class __$$ApplyFilterImplCopyWithImpl<$Res>
+    extends _$LeadMarketingEventCopyWithImpl<$Res, _$ApplyFilterImpl>
+    implements _$$ApplyFilterImplCopyWith<$Res> {
+  __$$ApplyFilterImplCopyWithImpl(
+      _$ApplyFilterImpl _value, $Res Function(_$ApplyFilterImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? leadSourceId = null,
+    Object? marketingEmployeeId = null,
+    Object? saleEmployeeId = null,
+    Object? includeOpen = null,
+    Object? stage = freezed,
+  }) {
+    return _then(_$ApplyFilterImpl(
+      leadSourceId: null == leadSourceId
+          ? _value.leadSourceId
+          : leadSourceId // ignore: cast_nullable_to_non_nullable
+              as int,
+      marketingEmployeeId: null == marketingEmployeeId
+          ? _value.marketingEmployeeId
+          : marketingEmployeeId // ignore: cast_nullable_to_non_nullable
+              as int,
+      saleEmployeeId: null == saleEmployeeId
+          ? _value.saleEmployeeId
+          : saleEmployeeId // ignore: cast_nullable_to_non_nullable
+              as int,
+      includeOpen: null == includeOpen
+          ? _value.includeOpen
+          : includeOpen // ignore: cast_nullable_to_non_nullable
+              as bool,
+      stage: freezed == stage
+          ? _value.stage
+          : stage // ignore: cast_nullable_to_non_nullable
+              as LeadStage?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ApplyFilterImpl implements _ApplyFilter {
+  const _$ApplyFilterImpl(
+      {required this.leadSourceId,
+      required this.marketingEmployeeId,
+      required this.saleEmployeeId,
+      required this.includeOpen,
+      required this.stage});
+
+  @override
+  final int leadSourceId;
+  @override
+  final int marketingEmployeeId;
+  @override
+  final int saleEmployeeId;
+  @override
+  final bool includeOpen;
+  @override
+  final LeadStage? stage;
+
+  @override
+  String toString() {
+    return 'LeadMarketingEvent.applyFilter(leadSourceId: $leadSourceId, marketingEmployeeId: $marketingEmployeeId, saleEmployeeId: $saleEmployeeId, includeOpen: $includeOpen, stage: $stage)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ApplyFilterImpl &&
+            (identical(other.leadSourceId, leadSourceId) ||
+                other.leadSourceId == leadSourceId) &&
+            (identical(other.marketingEmployeeId, marketingEmployeeId) ||
+                other.marketingEmployeeId == marketingEmployeeId) &&
+            (identical(other.saleEmployeeId, saleEmployeeId) ||
+                other.saleEmployeeId == saleEmployeeId) &&
+            (identical(other.includeOpen, includeOpen) ||
+                other.includeOpen == includeOpen) &&
+            (identical(other.stage, stage) || other.stage == stage));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, leadSourceId,
+      marketingEmployeeId, saleEmployeeId, includeOpen, stage);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ApplyFilterImplCopyWith<_$ApplyFilterImpl> get copyWith =>
+      __$$ApplyFilterImplCopyWithImpl<_$ApplyFilterImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function() refresh,
+    required TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)
+        applyFilter,
+    required TResult Function() clearFilter,
+    required TResult Function(int id) loadDetail,
+    required TResult Function(int customerContactId) loadFiles,
+    required TResult Function(int customerContactId) loadFilesPo,
+  }) {
+    return applyFilter(
+        leadSourceId, marketingEmployeeId, saleEmployeeId, includeOpen, stage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function()? refresh,
+    TResult? Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult? Function()? clearFilter,
+    TResult? Function(int id)? loadDetail,
+    TResult? Function(int customerContactId)? loadFiles,
+    TResult? Function(int customerContactId)? loadFilesPo,
+  }) {
+    return applyFilter?.call(
+        leadSourceId, marketingEmployeeId, saleEmployeeId, includeOpen, stage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function()? refresh,
+    TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult Function()? clearFilter,
+    TResult Function(int id)? loadDetail,
+    TResult Function(int customerContactId)? loadFiles,
+    TResult Function(int customerContactId)? loadFilesPo,
+    required TResult orElse(),
+  }) {
+    if (applyFilter != null) {
+      return applyFilter(leadSourceId, marketingEmployeeId, saleEmployeeId,
+          includeOpen, stage);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_ClearFilter value) clearFilter,
+    required TResult Function(_LoadDetail value) loadDetail,
+    required TResult Function(_LoadFiles value) loadFiles,
+    required TResult Function(_LoadFilesPo value) loadFilesPo,
+  }) {
+    return applyFilter(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_ClearFilter value)? clearFilter,
+    TResult? Function(_LoadDetail value)? loadDetail,
+    TResult? Function(_LoadFiles value)? loadFiles,
+    TResult? Function(_LoadFilesPo value)? loadFilesPo,
+  }) {
+    return applyFilter?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_ClearFilter value)? clearFilter,
+    TResult Function(_LoadDetail value)? loadDetail,
+    TResult Function(_LoadFiles value)? loadFiles,
+    TResult Function(_LoadFilesPo value)? loadFilesPo,
+    required TResult orElse(),
+  }) {
+    if (applyFilter != null) {
+      return applyFilter(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ApplyFilter implements LeadMarketingEvent {
+  const factory _ApplyFilter(
+      {required final int leadSourceId,
+      required final int marketingEmployeeId,
+      required final int saleEmployeeId,
+      required final bool includeOpen,
+      required final LeadStage? stage}) = _$ApplyFilterImpl;
+
+  int get leadSourceId;
+  int get marketingEmployeeId;
+  int get saleEmployeeId;
+  bool get includeOpen;
+  LeadStage? get stage;
+  @JsonKey(ignore: true)
+  _$$ApplyFilterImplCopyWith<_$ApplyFilterImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ClearFilterImplCopyWith<$Res> {
+  factory _$$ClearFilterImplCopyWith(
+          _$ClearFilterImpl value, $Res Function(_$ClearFilterImpl) then) =
+      __$$ClearFilterImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearFilterImplCopyWithImpl<$Res>
+    extends _$LeadMarketingEventCopyWithImpl<$Res, _$ClearFilterImpl>
+    implements _$$ClearFilterImplCopyWith<$Res> {
+  __$$ClearFilterImplCopyWithImpl(
+      _$ClearFilterImpl _value, $Res Function(_$ClearFilterImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ClearFilterImpl implements _ClearFilter {
+  const _$ClearFilterImpl();
+
+  @override
+  String toString() {
+    return 'LeadMarketingEvent.clearFilter()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ClearFilterImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function() refresh,
+    required TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)
+        applyFilter,
+    required TResult Function() clearFilter,
+    required TResult Function(int id) loadDetail,
+    required TResult Function(int customerContactId) loadFiles,
+    required TResult Function(int customerContactId) loadFilesPo,
+  }) {
+    return clearFilter();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function()? refresh,
+    TResult? Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult? Function()? clearFilter,
+    TResult? Function(int id)? loadDetail,
+    TResult? Function(int customerContactId)? loadFiles,
+    TResult? Function(int customerContactId)? loadFilesPo,
+  }) {
+    return clearFilter?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function()? refresh,
+    TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult Function()? clearFilter,
+    TResult Function(int id)? loadDetail,
+    TResult Function(int customerContactId)? loadFiles,
+    TResult Function(int customerContactId)? loadFilesPo,
+    required TResult orElse(),
+  }) {
+    if (clearFilter != null) {
+      return clearFilter();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_ClearFilter value) clearFilter,
+    required TResult Function(_LoadDetail value) loadDetail,
+    required TResult Function(_LoadFiles value) loadFiles,
+    required TResult Function(_LoadFilesPo value) loadFilesPo,
+  }) {
+    return clearFilter(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_ClearFilter value)? clearFilter,
+    TResult? Function(_LoadDetail value)? loadDetail,
+    TResult? Function(_LoadFiles value)? loadFiles,
+    TResult? Function(_LoadFilesPo value)? loadFilesPo,
+  }) {
+    return clearFilter?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_ClearFilter value)? clearFilter,
+    TResult Function(_LoadDetail value)? loadDetail,
+    TResult Function(_LoadFiles value)? loadFiles,
+    TResult Function(_LoadFilesPo value)? loadFilesPo,
+    required TResult orElse(),
+  }) {
+    if (clearFilter != null) {
+      return clearFilter(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearFilter implements LeadMarketingEvent {
+  const factory _ClearFilter() = _$ClearFilterImpl;
 }
 
 /// @nodoc
@@ -751,8 +1263,13 @@ class _$LoadDetailImpl implements _LoadDetail {
         changeDateRange,
     required TResult Function(String keyword) changeKeyword,
     required TResult Function() refresh,
+    required TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)
+        applyFilter,
+    required TResult Function() clearFilter,
     required TResult Function(int id) loadDetail,
     required TResult Function(int customerContactId) loadFiles,
+    required TResult Function(int customerContactId) loadFilesPo,
   }) {
     return loadDetail(id);
   }
@@ -764,8 +1281,13 @@ class _$LoadDetailImpl implements _LoadDetail {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function()? refresh,
+    TResult? Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult? Function()? clearFilter,
     TResult? Function(int id)? loadDetail,
     TResult? Function(int customerContactId)? loadFiles,
+    TResult? Function(int customerContactId)? loadFilesPo,
   }) {
     return loadDetail?.call(id);
   }
@@ -777,8 +1299,13 @@ class _$LoadDetailImpl implements _LoadDetail {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(String keyword)? changeKeyword,
     TResult Function()? refresh,
+    TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult Function()? clearFilter,
     TResult Function(int id)? loadDetail,
     TResult Function(int customerContactId)? loadFiles,
+    TResult Function(int customerContactId)? loadFilesPo,
     required TResult orElse(),
   }) {
     if (loadDetail != null) {
@@ -794,8 +1321,11 @@ class _$LoadDetailImpl implements _LoadDetail {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ChangeKeyword value) changeKeyword,
     required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_ClearFilter value) clearFilter,
     required TResult Function(_LoadDetail value) loadDetail,
     required TResult Function(_LoadFiles value) loadFiles,
+    required TResult Function(_LoadFilesPo value) loadFilesPo,
   }) {
     return loadDetail(this);
   }
@@ -807,8 +1337,11 @@ class _$LoadDetailImpl implements _LoadDetail {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
     TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_ClearFilter value)? clearFilter,
     TResult? Function(_LoadDetail value)? loadDetail,
     TResult? Function(_LoadFiles value)? loadFiles,
+    TResult? Function(_LoadFilesPo value)? loadFilesPo,
   }) {
     return loadDetail?.call(this);
   }
@@ -820,8 +1353,11 @@ class _$LoadDetailImpl implements _LoadDetail {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ChangeKeyword value)? changeKeyword,
     TResult Function(_Refresh value)? refresh,
+    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_ClearFilter value)? clearFilter,
     TResult Function(_LoadDetail value)? loadDetail,
     TResult Function(_LoadFiles value)? loadFiles,
+    TResult Function(_LoadFilesPo value)? loadFilesPo,
     required TResult orElse(),
   }) {
     if (loadDetail != null) {
@@ -910,8 +1446,13 @@ class _$LoadFilesImpl implements _LoadFiles {
         changeDateRange,
     required TResult Function(String keyword) changeKeyword,
     required TResult Function() refresh,
+    required TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)
+        applyFilter,
+    required TResult Function() clearFilter,
     required TResult Function(int id) loadDetail,
     required TResult Function(int customerContactId) loadFiles,
+    required TResult Function(int customerContactId) loadFilesPo,
   }) {
     return loadFiles(customerContactId);
   }
@@ -923,8 +1464,13 @@ class _$LoadFilesImpl implements _LoadFiles {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function()? refresh,
+    TResult? Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult? Function()? clearFilter,
     TResult? Function(int id)? loadDetail,
     TResult? Function(int customerContactId)? loadFiles,
+    TResult? Function(int customerContactId)? loadFilesPo,
   }) {
     return loadFiles?.call(customerContactId);
   }
@@ -936,8 +1482,13 @@ class _$LoadFilesImpl implements _LoadFiles {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(String keyword)? changeKeyword,
     TResult Function()? refresh,
+    TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult Function()? clearFilter,
     TResult Function(int id)? loadDetail,
     TResult Function(int customerContactId)? loadFiles,
+    TResult Function(int customerContactId)? loadFilesPo,
     required TResult orElse(),
   }) {
     if (loadFiles != null) {
@@ -953,8 +1504,11 @@ class _$LoadFilesImpl implements _LoadFiles {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ChangeKeyword value) changeKeyword,
     required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_ClearFilter value) clearFilter,
     required TResult Function(_LoadDetail value) loadDetail,
     required TResult Function(_LoadFiles value) loadFiles,
+    required TResult Function(_LoadFilesPo value) loadFilesPo,
   }) {
     return loadFiles(this);
   }
@@ -966,8 +1520,11 @@ class _$LoadFilesImpl implements _LoadFiles {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
     TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_ClearFilter value)? clearFilter,
     TResult? Function(_LoadDetail value)? loadDetail,
     TResult? Function(_LoadFiles value)? loadFiles,
+    TResult? Function(_LoadFilesPo value)? loadFilesPo,
   }) {
     return loadFiles?.call(this);
   }
@@ -979,8 +1536,11 @@ class _$LoadFilesImpl implements _LoadFiles {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ChangeKeyword value)? changeKeyword,
     TResult Function(_Refresh value)? refresh,
+    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_ClearFilter value)? clearFilter,
     TResult Function(_LoadDetail value)? loadDetail,
     TResult Function(_LoadFiles value)? loadFiles,
+    TResult Function(_LoadFilesPo value)? loadFilesPo,
     required TResult orElse(),
   }) {
     if (loadFiles != null) {
@@ -997,5 +1557,189 @@ abstract class _LoadFiles implements LeadMarketingEvent {
   int get customerContactId;
   @JsonKey(ignore: true)
   _$$LoadFilesImplCopyWith<_$LoadFilesImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LoadFilesPoImplCopyWith<$Res> {
+  factory _$$LoadFilesPoImplCopyWith(
+          _$LoadFilesPoImpl value, $Res Function(_$LoadFilesPoImpl) then) =
+      __$$LoadFilesPoImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int customerContactId});
+}
+
+/// @nodoc
+class __$$LoadFilesPoImplCopyWithImpl<$Res>
+    extends _$LeadMarketingEventCopyWithImpl<$Res, _$LoadFilesPoImpl>
+    implements _$$LoadFilesPoImplCopyWith<$Res> {
+  __$$LoadFilesPoImplCopyWithImpl(
+      _$LoadFilesPoImpl _value, $Res Function(_$LoadFilesPoImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? customerContactId = null,
+  }) {
+    return _then(_$LoadFilesPoImpl(
+      customerContactId: null == customerContactId
+          ? _value.customerContactId
+          : customerContactId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LoadFilesPoImpl implements _LoadFilesPo {
+  const _$LoadFilesPoImpl({required this.customerContactId});
+
+  @override
+  final int customerContactId;
+
+  @override
+  String toString() {
+    return 'LeadMarketingEvent.loadFilesPo(customerContactId: $customerContactId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadFilesPoImpl &&
+            (identical(other.customerContactId, customerContactId) ||
+                other.customerContactId == customerContactId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, customerContactId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadFilesPoImplCopyWith<_$LoadFilesPoImpl> get copyWith =>
+      __$$LoadFilesPoImplCopyWithImpl<_$LoadFilesPoImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function() refresh,
+    required TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)
+        applyFilter,
+    required TResult Function() clearFilter,
+    required TResult Function(int id) loadDetail,
+    required TResult Function(int customerContactId) loadFiles,
+    required TResult Function(int customerContactId) loadFilesPo,
+  }) {
+    return loadFilesPo(customerContactId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function()? refresh,
+    TResult? Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult? Function()? clearFilter,
+    TResult? Function(int id)? loadDetail,
+    TResult? Function(int customerContactId)? loadFiles,
+    TResult? Function(int customerContactId)? loadFilesPo,
+  }) {
+    return loadFilesPo?.call(customerContactId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function()? refresh,
+    TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult Function()? clearFilter,
+    TResult Function(int id)? loadDetail,
+    TResult Function(int customerContactId)? loadFiles,
+    TResult Function(int customerContactId)? loadFilesPo,
+    required TResult orElse(),
+  }) {
+    if (loadFilesPo != null) {
+      return loadFilesPo(customerContactId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_ClearFilter value) clearFilter,
+    required TResult Function(_LoadDetail value) loadDetail,
+    required TResult Function(_LoadFiles value) loadFiles,
+    required TResult Function(_LoadFilesPo value) loadFilesPo,
+  }) {
+    return loadFilesPo(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_ClearFilter value)? clearFilter,
+    TResult? Function(_LoadDetail value)? loadDetail,
+    TResult? Function(_LoadFiles value)? loadFiles,
+    TResult? Function(_LoadFilesPo value)? loadFilesPo,
+  }) {
+    return loadFilesPo?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_ClearFilter value)? clearFilter,
+    TResult Function(_LoadDetail value)? loadDetail,
+    TResult Function(_LoadFiles value)? loadFiles,
+    TResult Function(_LoadFilesPo value)? loadFilesPo,
+    required TResult orElse(),
+  }) {
+    if (loadFilesPo != null) {
+      return loadFilesPo(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadFilesPo implements LeadMarketingEvent {
+  const factory _LoadFilesPo({required final int customerContactId}) =
+      _$LoadFilesPoImpl;
+
+  int get customerContactId;
+  @JsonKey(ignore: true)
+  _$$LoadFilesPoImplCopyWith<_$LoadFilesPoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -76,7 +76,7 @@ class LeadMarketingService extends DioBaseApiService {
     );
   }
 
-  /// Lấy danh sách phiếu lead theo khoảng thời gian.
+  /// Lấy danh sách phiếu lead theo khoảng thời gian và các bộ lọc.
   ///
   /// API: GET /Lead/get-data?ViewMode=1&DateStart=...&DateEnd=...&LeadType=0
   /// &LeadSourceID=0&MarketingEmployeeID=0&SaleEmployeeID=0&IncludeOpen=true.
@@ -85,6 +85,9 @@ class LeadMarketingService extends DioBaseApiService {
     required DateTime dateStart,
     required DateTime dateEnd,
     int leadType = 0,
+    int leadSourceId = 0,
+    int marketingEmployeeId = 0,
+    int saleEmployeeId = 0,
     bool includeOpen = true,
   }) async {
     return get<BaseData<List<LeadMarketingItem>>>(
@@ -94,9 +97,9 @@ class LeadMarketingService extends DioBaseApiService {
         'DateStart': _formatDate(dateStart),
         'DateEnd': _formatDate(dateEnd),
         'LeadType': leadType,
-        'LeadSourceID': 0,
-        'MarketingEmployeeID': 0,
-        'SaleEmployeeID': 0,
+        'LeadSourceID': leadSourceId,
+        'MarketingEmployeeID': marketingEmployeeId,
+        'SaleEmployeeID': saleEmployeeId,
         'IncludeOpen': includeOpen,
       },
       parser: (json) => BaseData<List<LeadMarketingItem>>.fromJson(json, (data) {

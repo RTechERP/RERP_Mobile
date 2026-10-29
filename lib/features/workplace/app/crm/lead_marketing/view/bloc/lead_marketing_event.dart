@@ -20,6 +20,19 @@ class LeadMarketingEvent with _$LeadMarketingEvent {
   /// Refresh: tải lại dữ liệu.
   const factory LeadMarketingEvent.refresh() = _Refresh;
 
+  /// Áp dụng bộ lọc: nguồn, NV marketing, NV sale, trạng thái lead đang mở
+  /// và giai đoạn.
+  const factory LeadMarketingEvent.applyFilter({
+    required int leadSourceId,
+    required int marketingEmployeeId,
+    required int saleEmployeeId,
+    required bool includeOpen,
+    required LeadStage? stage,
+  }) = _ApplyFilter;
+
+  /// Xóa toàn bộ bộ lọc và tải lại danh sách.
+  const factory LeadMarketingEvent.clearFilter() = _ClearFilter;
+
   /// Tải chi tiết phiếu lead (kèm hoạt động, lịch sử và quyền thao tác).
   const factory LeadMarketingEvent.loadDetail({
     required int id,
@@ -29,4 +42,9 @@ class LeadMarketingEvent with _$LeadMarketingEvent {
   const factory LeadMarketingEvent.loadFiles({
     required int customerContactId,
   }) = _LoadFiles;
+
+  /// Tải danh sách file PO đính kèm của phiếu lead.
+  const factory LeadMarketingEvent.loadFilesPo({
+    required int customerContactId,
+  }) = _LoadFilesPo;
 }

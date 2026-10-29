@@ -17,12 +17,15 @@ abstract class LeadMarketingRepo {
   /// Lấy quyền của người dùng hiện tại trong module Lead.
   Future<Either<BaseError, LeadRoleContext>> getRoleContext();
 
-  /// Lấy danh sách phiếu lead theo khoảng thời gian.
+  /// Lấy danh sách phiếu lead theo khoảng thời gian và các bộ lọc.
   Future<Either<BaseError, List<LeadMarketingItem>>> getLeadData({
     required int viewMode,
     required DateTime dateStart,
     required DateTime dateEnd,
     required int leadType,
+    required int leadSourceId,
+    required int marketingEmployeeId,
+    required int saleEmployeeId,
     required bool includeOpen,
   });
 

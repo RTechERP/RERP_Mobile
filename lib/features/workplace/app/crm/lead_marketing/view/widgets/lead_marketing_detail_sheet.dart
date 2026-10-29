@@ -9,6 +9,7 @@ import '../../../../../../../../common/app_theme/index.dart';
 import '../../data/datasource/models/lead_marketing_model.dart';
 import '../bloc/lead_marketing_bloc.dart';
 import 'lead_marketing_files_tab.dart';
+import 'lead_marketing_stage_style.dart';
 
 /// Bottom sheet hiển thị đầy đủ thông tin chi tiết của một phiếu lead.
 ///
@@ -44,6 +45,7 @@ class LeadMarketingDetailSheet extends StatefulWidget {
 
     bloc.add(LeadMarketingEvent.loadDetail(id: item.id!));
     bloc.add(LeadMarketingEvent.loadFiles(customerContactId: item.id!));
+    bloc.add(LeadMarketingEvent.loadFilesPo(customerContactId: item.id!));
 
     return showModalBottomSheet<void>(
       context: context,
@@ -68,7 +70,7 @@ class _LeadMarketingDetailSheetState extends State<LeadMarketingDetailSheet>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 4, vsync: this);
+    _tabController = TabController(length: 5, vsync: this);
   }
 
   @override
@@ -113,6 +115,13 @@ class _LeadMarketingDetailSheetState extends State<LeadMarketingDetailSheet>
                 final isFilesLoading =
                     state.filesStatus == BaseStateStatus.loading;
 
+                // Danh sách file PO chỉ dùng khi đúng phiếu đang xem.
+                final filesPo = state.filesPoLeadId == widget.item.id
+                    ? state.filesPo
+                    : const <LeadFile>[];
+                final isFilesPoLoading =
+                    state.filesPoStatus == BaseStateStatus.loading;
+
                 return TabBarView(
                   controller: _tabController,
                   children: [
@@ -124,6 +133,14 @@ class _LeadMarketingDetailSheetState extends State<LeadMarketingDetailSheet>
                       errorMessage:
                           state.filesLeadId == widget.item.id
                               ? state.filesMessage
+                              : null,
+                    ),
+                    LeadMarketingFilesTab(
+                      files: filesPo,
+                      isLoading: isFilesPoLoading,
+                      errorMessage:
+                          state.filesPoLeadId == widget.item.id
+                              ? state.filesPoMessage
                               : null,
                     ),
                     _buildLogsTab(detail?.logs ?? const [], isLoading),
@@ -299,10 +316,13 @@ class _LeadMarketingDetailSheetState extends State<LeadMarketingDetailSheet>
     );
   }
 
-  /// Thanh tab chuyển giữa Thông tin / Hoạt động / Files.
+  /// Thanh tab chuyển giữa Thông tin / Hoạt động / Files / Files PO / Lịch sử.
   Widget _buildTabs(LeadMarketingState state) {
     final filesCount = state.filesLeadId == widget.item.id
         ? state.files.length
+        : 0;
+    final filesPoCount = state.filesPoLeadId == widget.item.id
+        ? state.filesPo.length
         : 0;
 
     return Container(
@@ -328,6 +348,7 @@ class _LeadMarketingDetailSheetState extends State<LeadMarketingDetailSheet>
           const Tab(text: 'Thông tin'),
           const Tab(text: 'Hoạt động'),
           Tab(text: 'Files ($filesCount)'),
+          Tab(text: 'Files PO ($filesPoCount)'),
           const Tab(text: 'Lịch sử'),
         ],
       ),
@@ -1133,7 +1154,7 @@ class _LogTile extends StatelessWidget {
             ),
           ),
         ],
-        if (toStage != null) _stageTag(toStage, AppColors.primaryERP),
+        if (toStage != null) _stageTag(toStage, LeadStageStyle.ofName(toStage)),
       ],
     );
   }

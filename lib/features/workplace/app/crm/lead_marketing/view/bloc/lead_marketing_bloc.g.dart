@@ -25,7 +25,21 @@ abstract class _$LeadMarketingStateCWProxy {
 
   LeadMarketingState leadType(int leadType);
 
+  LeadMarketingState leadSourceId(int leadSourceId);
+
+  LeadMarketingState marketingEmployeeId(int marketingEmployeeId);
+
+  LeadMarketingState saleEmployeeId(int saleEmployeeId);
+
   LeadMarketingState includeOpen(bool includeOpen);
+
+  LeadMarketingState stageFilter(LeadStage? stageFilter);
+
+  LeadMarketingState sources(List<LeadSource> sources);
+
+  LeadMarketingState marketingEmployees(List<LeadEmployee> marketingEmployees);
+
+  LeadMarketingState saleEmployees(List<LeadEmployee> saleEmployees);
 
   LeadMarketingState detail(LeadDetail? detail);
 
@@ -40,6 +54,14 @@ abstract class _$LeadMarketingStateCWProxy {
   LeadMarketingState filesMessage(String? filesMessage);
 
   LeadMarketingState filesLeadId(int? filesLeadId);
+
+  LeadMarketingState filesPo(List<LeadFile> filesPo);
+
+  LeadMarketingState filesPoStatus(BaseStateStatus filesPoStatus);
+
+  LeadMarketingState filesPoMessage(String? filesPoMessage);
+
+  LeadMarketingState filesPoLeadId(int? filesPoLeadId);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `LeadMarketingState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -57,7 +79,14 @@ abstract class _$LeadMarketingStateCWProxy {
     String? keyword,
     int? viewMode,
     int? leadType,
+    int? leadSourceId,
+    int? marketingEmployeeId,
+    int? saleEmployeeId,
     bool? includeOpen,
+    LeadStage? stageFilter,
+    List<LeadSource>? sources,
+    List<LeadEmployee>? marketingEmployees,
+    List<LeadEmployee>? saleEmployees,
     LeadDetail? detail,
     BaseStateStatus? detailStatus,
     String? detailMessage,
@@ -65,6 +94,10 @@ abstract class _$LeadMarketingStateCWProxy {
     BaseStateStatus? filesStatus,
     String? filesMessage,
     int? filesLeadId,
+    List<LeadFile>? filesPo,
+    BaseStateStatus? filesPoStatus,
+    String? filesPoMessage,
+    int? filesPoLeadId,
   });
 }
 
@@ -104,8 +137,37 @@ class _$LeadMarketingStateCWProxyImpl implements _$LeadMarketingStateCWProxy {
   LeadMarketingState leadType(int leadType) => this(leadType: leadType);
 
   @override
+  LeadMarketingState leadSourceId(int leadSourceId) =>
+      this(leadSourceId: leadSourceId);
+
+  @override
+  LeadMarketingState marketingEmployeeId(int marketingEmployeeId) =>
+      this(marketingEmployeeId: marketingEmployeeId);
+
+  @override
+  LeadMarketingState saleEmployeeId(int saleEmployeeId) =>
+      this(saleEmployeeId: saleEmployeeId);
+
+  @override
   LeadMarketingState includeOpen(bool includeOpen) =>
       this(includeOpen: includeOpen);
+
+  @override
+  LeadMarketingState stageFilter(LeadStage? stageFilter) =>
+      this(stageFilter: stageFilter);
+
+  @override
+  LeadMarketingState sources(List<LeadSource> sources) =>
+      this(sources: sources);
+
+  @override
+  LeadMarketingState marketingEmployees(
+          List<LeadEmployee> marketingEmployees) =>
+      this(marketingEmployees: marketingEmployees);
+
+  @override
+  LeadMarketingState saleEmployees(List<LeadEmployee> saleEmployees) =>
+      this(saleEmployees: saleEmployees);
 
   @override
   LeadMarketingState detail(LeadDetail? detail) => this(detail: detail);
@@ -134,6 +196,21 @@ class _$LeadMarketingStateCWProxyImpl implements _$LeadMarketingStateCWProxy {
       this(filesLeadId: filesLeadId);
 
   @override
+  LeadMarketingState filesPo(List<LeadFile> filesPo) => this(filesPo: filesPo);
+
+  @override
+  LeadMarketingState filesPoStatus(BaseStateStatus filesPoStatus) =>
+      this(filesPoStatus: filesPoStatus);
+
+  @override
+  LeadMarketingState filesPoMessage(String? filesPoMessage) =>
+      this(filesPoMessage: filesPoMessage);
+
+  @override
+  LeadMarketingState filesPoLeadId(int? filesPoLeadId) =>
+      this(filesPoLeadId: filesPoLeadId);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `LeadMarketingState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -151,7 +228,14 @@ class _$LeadMarketingStateCWProxyImpl implements _$LeadMarketingStateCWProxy {
     Object? keyword = const $CopyWithPlaceholder(),
     Object? viewMode = const $CopyWithPlaceholder(),
     Object? leadType = const $CopyWithPlaceholder(),
+    Object? leadSourceId = const $CopyWithPlaceholder(),
+    Object? marketingEmployeeId = const $CopyWithPlaceholder(),
+    Object? saleEmployeeId = const $CopyWithPlaceholder(),
     Object? includeOpen = const $CopyWithPlaceholder(),
+    Object? stageFilter = const $CopyWithPlaceholder(),
+    Object? sources = const $CopyWithPlaceholder(),
+    Object? marketingEmployees = const $CopyWithPlaceholder(),
+    Object? saleEmployees = const $CopyWithPlaceholder(),
     Object? detail = const $CopyWithPlaceholder(),
     Object? detailStatus = const $CopyWithPlaceholder(),
     Object? detailMessage = const $CopyWithPlaceholder(),
@@ -159,6 +243,10 @@ class _$LeadMarketingStateCWProxyImpl implements _$LeadMarketingStateCWProxy {
     Object? filesStatus = const $CopyWithPlaceholder(),
     Object? filesMessage = const $CopyWithPlaceholder(),
     Object? filesLeadId = const $CopyWithPlaceholder(),
+    Object? filesPo = const $CopyWithPlaceholder(),
+    Object? filesPoStatus = const $CopyWithPlaceholder(),
+    Object? filesPoMessage = const $CopyWithPlaceholder(),
+    Object? filesPoLeadId = const $CopyWithPlaceholder(),
   }) {
     return LeadMarketingState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -197,11 +285,45 @@ class _$LeadMarketingStateCWProxyImpl implements _$LeadMarketingStateCWProxy {
           ? _value.leadType
           // ignore: cast_nullable_to_non_nullable
           : leadType as int,
+      leadSourceId:
+          leadSourceId == const $CopyWithPlaceholder() || leadSourceId == null
+              ? _value.leadSourceId
+              // ignore: cast_nullable_to_non_nullable
+              : leadSourceId as int,
+      marketingEmployeeId:
+          marketingEmployeeId == const $CopyWithPlaceholder() ||
+                  marketingEmployeeId == null
+              ? _value.marketingEmployeeId
+              // ignore: cast_nullable_to_non_nullable
+              : marketingEmployeeId as int,
+      saleEmployeeId: saleEmployeeId == const $CopyWithPlaceholder() ||
+              saleEmployeeId == null
+          ? _value.saleEmployeeId
+          // ignore: cast_nullable_to_non_nullable
+          : saleEmployeeId as int,
       includeOpen:
           includeOpen == const $CopyWithPlaceholder() || includeOpen == null
               ? _value.includeOpen
               // ignore: cast_nullable_to_non_nullable
               : includeOpen as bool,
+      stageFilter: stageFilter == const $CopyWithPlaceholder()
+          ? _value.stageFilter
+          // ignore: cast_nullable_to_non_nullable
+          : stageFilter as LeadStage?,
+      sources: sources == const $CopyWithPlaceholder() || sources == null
+          ? _value.sources
+          // ignore: cast_nullable_to_non_nullable
+          : sources as List<LeadSource>,
+      marketingEmployees: marketingEmployees == const $CopyWithPlaceholder() ||
+              marketingEmployees == null
+          ? _value.marketingEmployees
+          // ignore: cast_nullable_to_non_nullable
+          : marketingEmployees as List<LeadEmployee>,
+      saleEmployees:
+          saleEmployees == const $CopyWithPlaceholder() || saleEmployees == null
+              ? _value.saleEmployees
+              // ignore: cast_nullable_to_non_nullable
+              : saleEmployees as List<LeadEmployee>,
       detail: detail == const $CopyWithPlaceholder()
           ? _value.detail
           // ignore: cast_nullable_to_non_nullable
@@ -232,6 +354,23 @@ class _$LeadMarketingStateCWProxyImpl implements _$LeadMarketingStateCWProxy {
           ? _value.filesLeadId
           // ignore: cast_nullable_to_non_nullable
           : filesLeadId as int?,
+      filesPo: filesPo == const $CopyWithPlaceholder() || filesPo == null
+          ? _value.filesPo
+          // ignore: cast_nullable_to_non_nullable
+          : filesPo as List<LeadFile>,
+      filesPoStatus:
+          filesPoStatus == const $CopyWithPlaceholder() || filesPoStatus == null
+              ? _value.filesPoStatus
+              // ignore: cast_nullable_to_non_nullable
+              : filesPoStatus as BaseStateStatus,
+      filesPoMessage: filesPoMessage == const $CopyWithPlaceholder()
+          ? _value.filesPoMessage
+          // ignore: cast_nullable_to_non_nullable
+          : filesPoMessage as String?,
+      filesPoLeadId: filesPoLeadId == const $CopyWithPlaceholder()
+          ? _value.filesPoLeadId
+          // ignore: cast_nullable_to_non_nullable
+          : filesPoLeadId as int?,
     );
   }
 }
