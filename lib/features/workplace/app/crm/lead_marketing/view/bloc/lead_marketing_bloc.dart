@@ -31,6 +31,9 @@ class LeadMarketingBloc extends BaseBloc<LeadMarketingEvent, LeadMarketingState>
             _onChangeDateRange(emit, dateStart: dateStart, dateEnd: dateEnd),
         changeKeyword: (keyword) => _onChangeKeyword(emit, keyword: keyword),
         refresh: () => _onInit(emit),
+        loadDetail: (id) => _onLoadDetail(emit, id: id),
+        loadFiles: (customerContactId) =>
+            _onLoadFiles(emit, customerContactId: customerContactId),
       );
     });
   }
@@ -82,6 +85,72 @@ class LeadMarketingBloc extends BaseBloc<LeadMarketingEvent, LeadMarketingState>
     required String keyword,
   }) async {
     emit(state.copyWith(keyword: keyword));
+  }
+
+  /// Tải chi tiết phiếu lead kèm hoạt động, lịch sử và quyền thao tác.
+  Future<void> _onLoadDetail(
+    Emitter<LeadMarketingState> emit, {
+    required int id,
+  }) async {
+    emit(state.copyWith(
+      detailStatus: BaseStateStatus.loading,
+      detailMessage: null,
+    ));
+
+    final res = await _repo.getLeadDetail(id: id);
+
+    await res.fold(
+      (l) async {
+        _log.logE('Get lead detail failed: $l');
+        emit(state.copyWith(
+          detailStatus: BaseStateStatus.failed,
+          detailMessage: l.getErrorMessage,
+        ));
+      },
+      (r) async {
+        _log.logI('Get lead detail success - id: $id');
+        emit(state.copyWith(
+          detailStatus: BaseStateStatus.success,
+          detail: r,
+          detailMessage: null,
+        ));
+      },
+    );
+  }
+
+  /// Tải danh sách file đính kèm của phiếu lead.
+  Future<void> _onLoadFiles(
+    Emitter<LeadMarketingState> emit, {
+    required int customerContactId,
+  }) async {
+    emit(state.copyWith(
+      filesStatus: BaseStateStatus.loading,
+      filesMessage: null,
+    ));
+
+    final res = await _repo.getLeadFiles(
+      customerContactId: customerContactId,
+      fileType: 1,
+    );
+
+    await res.fold(
+      (l) async {
+        _log.logE('Get lead files failed: $l');
+        emit(state.copyWith(
+          filesStatus: BaseStateStatus.failed,
+          filesMessage: l.getErrorMessage,
+        ));
+      },
+      (r) async {
+        _log.logI('Get lead files success - count: ${r.length}');
+        emit(state.copyWith(
+          filesStatus: BaseStateStatus.success,
+          files: r,
+          filesMessage: null,
+          filesLeadId: customerContactId,
+        ));
+      },
+    );
   }
 
   /// Gọi API lấy danh sách phiếu lead theo khoảng thời gian đang lọc.

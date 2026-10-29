@@ -101,4 +101,42 @@ class LeadMarketingRepoImpl implements LeadMarketingRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, LeadDetail>> getLeadDetail({
+    required int id,
+  }) async {
+    try {
+      final res = await _service.getLeadDetail(id: id);
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<LeadFile>>> getLeadFiles({
+    required int customerContactId,
+    required int fileType,
+  }) async {
+    try {
+      final res = await _service.getLeadFiles(
+        customerContactId: customerContactId,
+        fileType: fileType,
+      );
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

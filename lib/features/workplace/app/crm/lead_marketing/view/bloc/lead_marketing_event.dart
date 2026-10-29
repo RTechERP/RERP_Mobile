@@ -19,4 +19,14 @@ class LeadMarketingEvent with _$LeadMarketingEvent {
 
   /// Refresh: tải lại dữ liệu.
   const factory LeadMarketingEvent.refresh() = _Refresh;
+
+  /// Tải chi tiết phiếu lead (kèm hoạt động, lịch sử và quyền thao tác).
+  const factory LeadMarketingEvent.loadDetail({
+    required int id,
+  }) = _LoadDetail;
+
+  /// Tải danh sách file đính kèm của phiếu lead.
+  const factory LeadMarketingEvent.loadFiles({
+    required int customerContactId,
+  }) = _LoadFiles;
 }

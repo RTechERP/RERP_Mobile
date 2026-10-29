@@ -25,4 +25,17 @@ abstract class LeadMarketingRepo {
     required int leadType,
     required bool includeOpen,
   });
+
+  /// Lấy chi tiết phiếu lead kèm hoạt động, lịch sử và quyền thao tác.
+  Future<Either<BaseError, LeadDetail>> getLeadDetail({
+    required int id,
+  });
+
+  /// Lấy danh sách file đính kèm của phiếu lead.
+  ///
+  /// [customerContactId] là ID của phiếu lead.
+  Future<Either<BaseError, List<LeadFile>>> getLeadFiles({
+    required int customerContactId,
+    required int fileType,
+  });
 }

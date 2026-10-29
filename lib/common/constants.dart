@@ -716,4 +716,12 @@ class ApiEndPoint {
   /// Danh sách phiếu lead.
   /// API: GET /Lead/get-data?ViewMode=1&DateStart=...&DateEnd=...&...
   static const String getLeadData = '/Lead/get-data';
+
+  /// Chi tiết phiếu lead (kèm hoạt động, lịch sử và quyền thao tác).
+  /// API: GET /Lead/get-detail?id=11320.
+  static const String getLeadDetail = '/Lead/get-detail';
+
+  /// Danh sách file đính kèm của phiếu lead.
+  /// API: GET /Lead/get-files?customerContactId=11294&fileType=1.
+  static const String getLeadFiles = '/Lead/get-files';
 }

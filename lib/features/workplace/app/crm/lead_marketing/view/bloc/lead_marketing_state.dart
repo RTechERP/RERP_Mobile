@@ -27,6 +27,27 @@ class LeadMarketingState extends BaseBlocState {
   /// Có bao gồm lead đang mở hay không.
   final bool includeOpen;
 
+  /// Chi tiết phiếu lead đang xem (null khi chưa tải hoặc tải lỗi).
+  final LeadDetail? detail;
+
+  /// Trạng thái tải chi tiết phiếu lead.
+  final BaseStateStatus detailStatus;
+
+  /// Thông báo lỗi khi tải chi tiết phiếu lead thất bại.
+  final String? detailMessage;
+
+  /// Danh sách file đính kèm của phiếu lead đang xem.
+  final List<LeadFile> files;
+
+  /// Trạng thái tải danh sách file đính kèm.
+  final BaseStateStatus filesStatus;
+
+  /// Thông báo lỗi khi tải danh sách file đính kèm thất bại.
+  final String? filesMessage;
+
+  /// ID của phiếu lead mà [files] đang thuộc về.
+  final int? filesLeadId;
+
   const LeadMarketingState({
     required super.status,
     super.message,
@@ -38,6 +59,13 @@ class LeadMarketingState extends BaseBlocState {
     this.viewMode = 1,
     this.leadType = 0,
     this.includeOpen = true,
+    this.detail,
+    this.detailStatus = BaseStateStatus.init,
+    this.detailMessage,
+    this.files = const [],
+    this.filesStatus = BaseStateStatus.init,
+    this.filesMessage,
+    this.filesLeadId,
   });
 
   factory LeadMarketingState.init() => const LeadMarketingState(
@@ -85,5 +113,12 @@ class LeadMarketingState extends BaseBlocState {
         viewMode,
         leadType,
         includeOpen,
+        detail,
+        detailStatus,
+        detailMessage,
+        files,
+        filesStatus,
+        filesMessage,
+        filesLeadId,
       ];
 }

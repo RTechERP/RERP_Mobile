@@ -205,3 +205,246 @@ Map<String, dynamic> _$$LeadMarketingItemImplToJson(
       'AdminSaleName': instance.adminSaleName,
       'TotalMoneyPO': instance.totalMoneyPo,
     };
+
+_$LeadDetailImpl _$$LeadDetailImplFromJson(Map<String, dynamic> json) =>
+    _$LeadDetailImpl(
+      lead: json['lead'] == null
+          ? null
+          : LeadDetailLead.fromJson(json['lead'] as Map<String, dynamic>),
+      activities: (json['activities'] as List<dynamic>?)
+          ?.map((e) => LeadActivity.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      logs: (json['logs'] as List<dynamic>?)
+          ?.map((e) => LeadLog.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      actions: json['actions'] == null
+          ? null
+          : LeadActions.fromJson(json['actions'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$LeadDetailImplToJson(_$LeadDetailImpl instance) =>
+    <String, dynamic>{
+      'lead': instance.lead,
+      'activities': instance.activities,
+      'logs': instance.logs,
+      'actions': instance.actions,
+    };
+
+_$LeadDetailLeadImpl _$$LeadDetailLeadImplFromJson(Map<String, dynamic> json) =>
+    _$LeadDetailLeadImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      leadCode: json['LeadCode'] as String?,
+      leadType: (json['LeadType'] as num?)?.toInt(),
+      customerId: (json['CustomerID'] as num?)?.toInt(),
+      customerTeam: json['CustomerTeam'] as String?,
+      customerPart: json['CustomerPart'] as String?,
+      customerPosition: json['CustomerPosition'] as String?,
+      customerType: (json['CustomerType'] as num?)?.toInt(),
+      isDeleted: json['IsDeleted'] as bool?,
+      contactName: json['ContactName'] as String?,
+      contactPosition: json['ContactPosition'] as String?,
+      contactPhone: json['ContactPhone'] as String?,
+      contactEmail: json['ContactEmail'] as String?,
+      contactAppointmentDate: json['ContactAppointmentDate'] as String?,
+      createdDate: json['CreatedDate'] as String?,
+      collectedDate: json['CollectedDate'] as String?,
+      leadSourceId: (json['LeadSourceID'] as num?)?.toInt(),
+      campaignName: json['CampaignName'] as String?,
+      rating: (json['Rating'] as num?)?.toInt(),
+      estimatedValue: (json['EstimatedValue'] as num?)?.toDouble(),
+      productInterest: json['ProductInterest'] as String?,
+      needDescription: json['NeedDescription'] as String?,
+      note: json['Note'] as String?,
+      website: json['Website'] as String?,
+      saleEmployeeId: (json['SaleEmployeeID'] as num?)?.toInt(),
+      marketingEmployeeId: (json['MarketingEmployeeID'] as num?)?.toInt(),
+      stage: (json['Stage'] as num?)?.toInt(),
+      handoverLeaderId: (json['HandoverLeaderID'] as num?)?.toInt(),
+      adminSaleId: (json['AdminSaleID'] as num?)?.toInt(),
+      handoverDate: json['HandoverDate'] as String?,
+      handoverBy: (json['HandoverBy'] as num?)?.toInt(),
+      qualifiedDate: json['QualifiedDate'] as String?,
+      lostReason: json['LostReason'] as String?,
+      closedDate: json['ClosedDate'] as String?,
+      returnReason: json['ReturnReason'] as String?,
+      assignedDate: json['AssignedDate'] as String?,
+      assignedBy: (json['AssignedBy'] as num?)?.toInt(),
+      nextFollowUpDate: json['NextFollowUpDate'] as String?,
+      poReason: json['PoReason'] as String?,
+      poDate: json['PoDate'] as String?,
+      poTypeId: (json['PoTypeID'] as num?)?.toInt(),
+      createdBy: json['CreatedBy'] as String?,
+      updatedBy: json['UpdatedBy'] as String?,
+      updatedDate: json['UpdatedDate'] as String?,
+    );
+
+Map<String, dynamic> _$$LeadDetailLeadImplToJson(
+        _$LeadDetailLeadImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'LeadCode': instance.leadCode,
+      'LeadType': instance.leadType,
+      'CustomerID': instance.customerId,
+      'CustomerTeam': instance.customerTeam,
+      'CustomerPart': instance.customerPart,
+      'CustomerPosition': instance.customerPosition,
+      'CustomerType': instance.customerType,
+      'IsDeleted': instance.isDeleted,
+      'ContactName': instance.contactName,
+      'ContactPosition': instance.contactPosition,
+      'ContactPhone': instance.contactPhone,
+      'ContactEmail': instance.contactEmail,
+      'ContactAppointmentDate': instance.contactAppointmentDate,
+      'CreatedDate': instance.createdDate,
+      'CollectedDate': instance.collectedDate,
+      'LeadSourceID': instance.leadSourceId,
+      'CampaignName': instance.campaignName,
+      'Rating': instance.rating,
+      'EstimatedValue': instance.estimatedValue,
+      'ProductInterest': instance.productInterest,
+      'NeedDescription': instance.needDescription,
+      'Note': instance.note,
+      'Website': instance.website,
+      'SaleEmployeeID': instance.saleEmployeeId,
+      'MarketingEmployeeID': instance.marketingEmployeeId,
+      'Stage': instance.stage,
+      'HandoverLeaderID': instance.handoverLeaderId,
+      'AdminSaleID': instance.adminSaleId,
+      'HandoverDate': instance.handoverDate,
+      'HandoverBy': instance.handoverBy,
+      'QualifiedDate': instance.qualifiedDate,
+      'LostReason': instance.lostReason,
+      'ClosedDate': instance.closedDate,
+      'ReturnReason': instance.returnReason,
+      'AssignedDate': instance.assignedDate,
+      'AssignedBy': instance.assignedBy,
+      'NextFollowUpDate': instance.nextFollowUpDate,
+      'PoReason': instance.poReason,
+      'PoDate': instance.poDate,
+      'PoTypeID': instance.poTypeId,
+      'CreatedBy': instance.createdBy,
+      'UpdatedBy': instance.updatedBy,
+      'UpdatedDate': instance.updatedDate,
+    };
+
+_$LeadActivityImpl _$$LeadActivityImplFromJson(Map<String, dynamic> json) =>
+    _$LeadActivityImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      leadId: (json['LeadID'] as num?)?.toInt(),
+      activityType: (json['ActivityType'] as num?)?.toInt(),
+      activityTypeName: json['ActivityTypeName'] as String?,
+      activityDate: json['ActivityDate'] as String?,
+      content: json['Content'] as String?,
+      result: json['Result'] as String?,
+      nextAction: json['NextAction'] as String?,
+      nextActionDate: json['NextActionDate'] as String?,
+      employeeId: (json['EmployeeID'] as num?)?.toInt(),
+      employeeName: json['EmployeeName'] as String?,
+      createdBy: json['CreatedBy'] as String?,
+      createdDate: json['CreatedDate'] as String?,
+    );
+
+Map<String, dynamic> _$$LeadActivityImplToJson(_$LeadActivityImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'LeadID': instance.leadId,
+      'ActivityType': instance.activityType,
+      'ActivityTypeName': instance.activityTypeName,
+      'ActivityDate': instance.activityDate,
+      'Content': instance.content,
+      'Result': instance.result,
+      'NextAction': instance.nextAction,
+      'NextActionDate': instance.nextActionDate,
+      'EmployeeID': instance.employeeId,
+      'EmployeeName': instance.employeeName,
+      'CreatedBy': instance.createdBy,
+      'CreatedDate': instance.createdDate,
+    };
+
+_$LeadLogImpl _$$LeadLogImplFromJson(Map<String, dynamic> json) =>
+    _$LeadLogImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      leadId: (json['LeadID'] as num?)?.toInt(),
+      typeLog: (json['TypeLog'] as num?)?.toInt(),
+      typeLogName: json['TypeLogName'] as String?,
+      fromStage: (json['FromStage'] as num?)?.toInt(),
+      toStage: (json['ToStage'] as num?)?.toInt(),
+      fromEmployeeId: (json['FromEmployeeID'] as num?)?.toInt(),
+      fromEmployeeName: json['FromEmployeeName'] as String?,
+      toEmployeeId: (json['ToEmployeeID'] as num?)?.toInt(),
+      toEmployeeName: json['ToEmployeeName'] as String?,
+      contentLog: json['ContentLog'] as String?,
+      createdBy: json['CreatedBy'] as String?,
+      createdDate: json['CreatedDate'] as String?,
+    );
+
+Map<String, dynamic> _$$LeadLogImplToJson(_$LeadLogImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'LeadID': instance.leadId,
+      'TypeLog': instance.typeLog,
+      'TypeLogName': instance.typeLogName,
+      'FromStage': instance.fromStage,
+      'ToStage': instance.toStage,
+      'FromEmployeeID': instance.fromEmployeeId,
+      'FromEmployeeName': instance.fromEmployeeName,
+      'ToEmployeeID': instance.toEmployeeId,
+      'ToEmployeeName': instance.toEmployeeName,
+      'ContentLog': instance.contentLog,
+      'CreatedBy': instance.createdBy,
+      'CreatedDate': instance.createdDate,
+    };
+
+_$LeadFileImpl _$$LeadFileImplFromJson(Map<String, dynamic> json) =>
+    _$LeadFileImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      fileName: json['FileName'] as String?,
+      serverPath: json['ServerPath'] as String?,
+      originPath: json['OriginPath'] as String?,
+      customerContactId: (json['CustomerContactID'] as num?)?.toInt(),
+      fileType: (json['FileType'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$LeadFileImplToJson(_$LeadFileImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'FileName': instance.fileName,
+      'ServerPath': instance.serverPath,
+      'OriginPath': instance.originPath,
+      'CustomerContactID': instance.customerContactId,
+      'FileType': instance.fileType,
+    };
+
+_$LeadActionsImpl _$$LeadActionsImplFromJson(Map<String, dynamic> json) =>
+    _$LeadActionsImpl(
+      canView: json['CanView'] as bool?,
+      canEdit: json['CanEdit'] as bool?,
+      canQualify: json['CanQualify'] as bool?,
+      canDisqualify: json['CanDisqualify'] as bool?,
+      canHandover: json['CanHandover'] as bool?,
+      canAssign: json['CanAssign'] as bool?,
+      canReturn: json['CanReturn'] as bool?,
+      canClose: json['CanClose'] as bool?,
+      canLinkCustomer: json['CanLinkCustomer'] as bool?,
+      canReopen: json['CanReopen'] as bool?,
+      canAddActivity: json['CanAddActivity'] as bool?,
+      canDelete: json['CanDelete'] as bool?,
+      canPo: json['CanPO'] as bool?,
+    );
+
+Map<String, dynamic> _$$LeadActionsImplToJson(_$LeadActionsImpl instance) =>
+    <String, dynamic>{
+      'CanView': instance.canView,
+      'CanEdit': instance.canEdit,
+      'CanQualify': instance.canQualify,
+      'CanDisqualify': instance.canDisqualify,
+      'CanHandover': instance.canHandover,
+      'CanAssign': instance.canAssign,
+      'CanReturn': instance.canReturn,
+      'CanClose': instance.canClose,
+      'CanLinkCustomer': instance.canLinkCustomer,
+      'CanReopen': instance.canReopen,
+      'CanAddActivity': instance.canAddActivity,
+      'CanDelete': instance.canDelete,
+      'CanPO': instance.canPo,
+    };

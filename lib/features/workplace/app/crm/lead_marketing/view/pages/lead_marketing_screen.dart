@@ -96,6 +96,16 @@ class _LeadMarketingScreenState extends BaseState<
   @override
   Widget renderUI(BuildContext context) {
     return BlocBuilder<LeadMarketingBloc, LeadMarketingState>(
+      // Bỏ qua thay đổi của chi tiết phiếu để không dựng lại danh sách
+      // (và không mất vị trí scroll) khi bottom sheet đang tải dữ liệu.
+      buildWhen: (previous, current) =>
+          previous.leads != current.leads ||
+          previous.status != current.status ||
+          previous.message != current.message ||
+          previous.roleContext != current.roleContext ||
+          previous.dateStart != current.dateStart ||
+          previous.dateEnd != current.dateEnd ||
+          previous.keyword != current.keyword,
       builder: (context, state) {
         final loading = state.status == BaseStateStatus.loading;
         final failed = state.status == BaseStateStatus.failed;

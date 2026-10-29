@@ -108,6 +108,46 @@ class LeadMarketingService extends DioBaseApiService {
     );
   }
 
+  /// Lấy chi tiết phiếu lead kèm hoạt động, lịch sử và quyền thao tác.
+  ///
+  /// API: GET /Lead/get-detail?id=X.
+  /// Response: `{ status, message, data: { lead, activities, logs, actions } }`.
+  Future<BaseData<LeadDetail>> getLeadDetail({
+    required int id,
+  }) async {
+    return get<BaseData<LeadDetail>>(
+      ApiEndPoint.getLeadDetail,
+      query: {'id': id},
+      parser: (json) => BaseData<LeadDetail>.fromJson(
+        json,
+        (data) => LeadDetail.fromJson(data as Map<String, dynamic>),
+      ),
+    );
+  }
+
+  /// Lấy danh sách file đính kèm của phiếu lead.
+  ///
+  /// API: GET /Lead/get-files?customerContactId=X&fileType=1.
+  /// [customerContactId] là ID của phiếu lead.
+  Future<BaseData<List<LeadFile>>> getLeadFiles({
+    required int customerContactId,
+    int fileType = 1,
+  }) async {
+    return get<BaseData<List<LeadFile>>>(
+      ApiEndPoint.getLeadFiles,
+      query: {
+        'customerContactId': customerContactId,
+        'fileType': fileType,
+      },
+      parser: (json) => BaseData<List<LeadFile>>.fromJson(json, (data) {
+        return _parseList<LeadFile>(
+          data,
+          LeadFile.fromJson,
+        );
+      }),
+    );
+  }
+
   /// Định dạng ngày theo chuẩn `yyyy-MM-dd` mà API mong đợi.
   String _formatDate(DateTime date) {
     return '${date.year.toString().padLeft(4, '0')}-'
