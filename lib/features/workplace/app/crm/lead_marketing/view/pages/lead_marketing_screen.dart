@@ -130,8 +130,8 @@ class _LeadMarketingScreenState extends BaseShareState<
 
   /// Mở menu thao tác khi bấm vào card phiếu lead.
   ///
-  /// Menu gồm: xem chi tiết, chỉnh sửa, xoá phiếu. Xoá phiếu cần xác nhận
-  /// trước.
+  /// Menu gồm: xem chi tiết, chỉnh sửa, ghi hoạt động, xoá phiếu. Xoá phiếu
+  /// cần xác nhận trước.
   Future<void> _openMenu(
     BuildContext context,
     LeadMarketingItem item,
@@ -148,6 +148,9 @@ class _LeadMarketingScreenState extends BaseShareState<
         break;
       case 'edit':
         _goToEditScreen(item);
+        break;
+      case 'activity':
+        _goToAddActivityScreen(item);
         break;
       case 'delete':
         await _confirmDeleteLead(context, item);
@@ -180,6 +183,17 @@ class _LeadMarketingScreenState extends BaseShareState<
         'customerLabel': item.companyName,
         'customerSnapshot': customer,
       },
+    );
+  }
+
+  /// Mở màn ghi hoạt động cho phiếu lead.
+  void _goToAddActivityScreen(LeadMarketingItem item) {
+    final id = item.id;
+    if (id == null) return;
+
+    context.push(
+      RouteNames.crmLeadActivityAdd,
+      extra: {'id': id, 'leadCode': item.leadCode},
     );
   }
 

@@ -95,6 +95,18 @@ abstract class _$LeadMarketingStateCWProxy {
 
   LeadMarketingState deleteMessage(String? deleteMessage);
 
+  LeadMarketingState activityStatus(BaseStateStatus activityStatus);
+
+  LeadMarketingState activityMessage(String? activityMessage);
+
+  LeadMarketingState activityResult(LeadActivitySaveResult? activityResult);
+
+  LeadMarketingState activityTypes(List<LeadActivityType> activityTypes);
+
+  LeadMarketingState activityTypesStatus(BaseStateStatus activityTypesStatus);
+
+  LeadMarketingState activityTypesMessage(String? activityTypesMessage);
+
   LeadMarketingState currentUser(User? currentUser);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `LeadMarketingState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
@@ -147,6 +159,12 @@ abstract class _$LeadMarketingStateCWProxy {
     List<LeadDuplicateInfo>? duplicates,
     BaseStateStatus? deleteStatus,
     String? deleteMessage,
+    BaseStateStatus? activityStatus,
+    String? activityMessage,
+    LeadActivitySaveResult? activityResult,
+    List<LeadActivityType>? activityTypes,
+    BaseStateStatus? activityTypesStatus,
+    String? activityTypesMessage,
     User? currentUser,
   });
 }
@@ -324,6 +342,30 @@ class _$LeadMarketingStateCWProxyImpl implements _$LeadMarketingStateCWProxy {
       this(deleteMessage: deleteMessage);
 
   @override
+  LeadMarketingState activityStatus(BaseStateStatus activityStatus) =>
+      this(activityStatus: activityStatus);
+
+  @override
+  LeadMarketingState activityMessage(String? activityMessage) =>
+      this(activityMessage: activityMessage);
+
+  @override
+  LeadMarketingState activityResult(LeadActivitySaveResult? activityResult) =>
+      this(activityResult: activityResult);
+
+  @override
+  LeadMarketingState activityTypes(List<LeadActivityType> activityTypes) =>
+      this(activityTypes: activityTypes);
+
+  @override
+  LeadMarketingState activityTypesStatus(BaseStateStatus activityTypesStatus) =>
+      this(activityTypesStatus: activityTypesStatus);
+
+  @override
+  LeadMarketingState activityTypesMessage(String? activityTypesMessage) =>
+      this(activityTypesMessage: activityTypesMessage);
+
+  @override
   LeadMarketingState currentUser(User? currentUser) =>
       this(currentUser: currentUser);
 
@@ -379,6 +421,12 @@ class _$LeadMarketingStateCWProxyImpl implements _$LeadMarketingStateCWProxy {
     Object? duplicates = const $CopyWithPlaceholder(),
     Object? deleteStatus = const $CopyWithPlaceholder(),
     Object? deleteMessage = const $CopyWithPlaceholder(),
+    Object? activityStatus = const $CopyWithPlaceholder(),
+    Object? activityMessage = const $CopyWithPlaceholder(),
+    Object? activityResult = const $CopyWithPlaceholder(),
+    Object? activityTypes = const $CopyWithPlaceholder(),
+    Object? activityTypesStatus = const $CopyWithPlaceholder(),
+    Object? activityTypesMessage = const $CopyWithPlaceholder(),
     Object? currentUser = const $CopyWithPlaceholder(),
   }) {
     return LeadMarketingState(
@@ -574,6 +622,34 @@ class _$LeadMarketingStateCWProxyImpl implements _$LeadMarketingStateCWProxy {
           ? _value.deleteMessage
           // ignore: cast_nullable_to_non_nullable
           : deleteMessage as String?,
+      activityStatus: activityStatus == const $CopyWithPlaceholder() ||
+              activityStatus == null
+          ? _value.activityStatus
+          // ignore: cast_nullable_to_non_nullable
+          : activityStatus as BaseStateStatus,
+      activityMessage: activityMessage == const $CopyWithPlaceholder()
+          ? _value.activityMessage
+          // ignore: cast_nullable_to_non_nullable
+          : activityMessage as String?,
+      activityResult: activityResult == const $CopyWithPlaceholder()
+          ? _value.activityResult
+          // ignore: cast_nullable_to_non_nullable
+          : activityResult as LeadActivitySaveResult?,
+      activityTypes:
+          activityTypes == const $CopyWithPlaceholder() || activityTypes == null
+              ? _value.activityTypes
+              // ignore: cast_nullable_to_non_nullable
+              : activityTypes as List<LeadActivityType>,
+      activityTypesStatus:
+          activityTypesStatus == const $CopyWithPlaceholder() ||
+                  activityTypesStatus == null
+              ? _value.activityTypesStatus
+              // ignore: cast_nullable_to_non_nullable
+              : activityTypesStatus as BaseStateStatus,
+      activityTypesMessage: activityTypesMessage == const $CopyWithPlaceholder()
+          ? _value.activityTypesMessage
+          // ignore: cast_nullable_to_non_nullable
+          : activityTypesMessage as String?,
       currentUser: currentUser == const $CopyWithPlaceholder()
           ? _value.currentUser
           // ignore: cast_nullable_to_non_nullable

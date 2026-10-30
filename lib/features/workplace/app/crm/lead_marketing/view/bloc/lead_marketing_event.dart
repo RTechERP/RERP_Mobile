@@ -94,4 +94,15 @@ class LeadMarketingEvent with _$LeadMarketingEvent {
 
   /// Xóa trạng thái kết quả xoá phiếu lead.
   const factory LeadMarketingEvent.clearDeleteState() = _ClearDeleteState;
+
+  /// Tải danh sách loại nhóm dùng cho form ghi hoạt động.
+  const factory LeadMarketingEvent.loadActivityTypes() = _LoadActivityTypes;
+
+  /// Ghi hoạt động lên phiếu lead.
+  const factory LeadMarketingEvent.saveActivity({
+    required Map<String, dynamic> payload,
+  }) = _SaveActivity;
+
+  /// Xóa trạng thái kết quả ghi hoạt động.
+  const factory LeadMarketingEvent.clearActivityState() = _ClearActivityState;
 }

@@ -322,4 +322,38 @@ class LeadMarketingRepoImpl implements LeadMarketingRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, LeadActivitySaveResult>> saveActivity({
+    required Map<String, dynamic> payload,
+  }) async {
+    try {
+      final res = await _service.saveActivity(payload: payload);
+      if (res.status == 1) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? 'Ghi hoạt động thất bại',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<LeadActivityType>>> getActivityTypes() async {
+    try {
+      final res = await _service.getActivityTypes();
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

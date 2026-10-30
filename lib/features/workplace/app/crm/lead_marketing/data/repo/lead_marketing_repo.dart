@@ -90,4 +90,12 @@ abstract class LeadMarketingRepo {
   Future<Either<BaseError, List<int>>> deleteLeads({
     required List<int> ids,
   });
+
+  /// Ghi hoạt động lên phiếu lead.
+  Future<Either<BaseError, LeadActivitySaveResult>> saveActivity({
+    required Map<String, dynamic> payload,
+  });
+
+  /// Lấy danh sách loại nhóm dùng cho hoạt động của phiếu lead.
+  Future<Either<BaseError, List<LeadActivityType>>> getActivityTypes();
 }

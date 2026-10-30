@@ -128,6 +128,24 @@ class LeadMarketingState extends BaseBlocState {
   /// Thông báo kết quả xoá phiếu lead (thành công / thất bại).
   final String? deleteMessage;
 
+  /// Trạng thái đang ghi hoạt động.
+  final BaseStateStatus activityStatus;
+
+  /// Thông báo kết quả ghi hoạt động (thành công / thất bại).
+  final String? activityMessage;
+
+  /// Kết quả ghi hoạt động sau khi thành công (null nếu chưa ghi).
+  final LeadActivitySaveResult? activityResult;
+
+  /// Danh sách loại nhóm dùng cho form ghi hoạt động.
+  final List<LeadActivityType> activityTypes;
+
+  /// Trạng thái tải danh sách loại nhóm.
+  final BaseStateStatus activityTypesStatus;
+
+  /// Thông báo lỗi khi tải danh sách loại nhóm thất bại.
+  final String? activityTypesMessage;
+
   /// Thông tin người dùng hiện tại — dùng để mặc định NV marketing phụ trách.
   final User? currentUser;
 
@@ -175,6 +193,12 @@ class LeadMarketingState extends BaseBlocState {
     this.duplicates = const [],
     this.deleteStatus = BaseStateStatus.init,
     this.deleteMessage,
+    this.activityStatus = BaseStateStatus.init,
+    this.activityMessage,
+    this.activityResult,
+    this.activityTypes = const [],
+    this.activityTypesStatus = BaseStateStatus.init,
+    this.activityTypesMessage,
     this.currentUser,
   });
 
@@ -285,6 +309,12 @@ class LeadMarketingState extends BaseBlocState {
         duplicates,
         deleteStatus,
         deleteMessage,
+        activityStatus,
+        activityMessage,
+        activityResult,
+        activityTypes,
+        activityTypesStatus,
+        activityTypesMessage,
         currentUser,
       ];
 }

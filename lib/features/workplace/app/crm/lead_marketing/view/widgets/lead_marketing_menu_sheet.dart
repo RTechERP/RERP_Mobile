@@ -33,6 +33,14 @@ class LeadMenuItem {
     color: Color(0xFFFB8C00),
   );
 
+  /// Thao tác ghi hoạt động lên phiếu lead.
+  static const LeadMenuItem activity = LeadMenuItem(
+    id: 'activity',
+    name: 'Ghi hoạt động',
+    icon: Icons.history_toggle_off_outlined,
+    color: Color(0xFF8E24AA),
+  );
+
   /// Thao tác xoá phiếu lead.
   static const LeadMenuItem delete = LeadMenuItem(
     id: 'delete',
@@ -42,7 +50,7 @@ class LeadMenuItem {
   );
 
   /// Danh sách thao tác mặc định của phiếu lead.
-  static const List<LeadMenuItem> menuItems = [detail, edit, delete];
+  static const List<LeadMenuItem> menuItems = [detail, edit, activity, delete];
 }
 
 /// Bottom sheet hiển thị menu thao tác của một phiếu lead.

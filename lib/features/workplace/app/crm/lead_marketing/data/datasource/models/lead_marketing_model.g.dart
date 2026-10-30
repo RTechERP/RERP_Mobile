@@ -288,6 +288,38 @@ Map<String, dynamic> _$$LeadSaveResultImplToJson(
       'idConCus': instance.idConCus,
     };
 
+_$LeadActivitySaveResultImpl _$$LeadActivitySaveResultImplFromJson(
+        Map<String, dynamic> json) =>
+    _$LeadActivitySaveResultImpl(
+      message: json['message'] as String?,
+      id: (json['ID'] as num?)?.toInt(),
+      leadId: (json['LeadID'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$LeadActivitySaveResultImplToJson(
+        _$LeadActivitySaveResultImpl instance) =>
+    <String, dynamic>{
+      'message': instance.message,
+      'ID': instance.id,
+      'LeadID': instance.leadId,
+    };
+
+_$LeadActivityTypeImpl _$$LeadActivityTypeImplFromJson(
+        Map<String, dynamic> json) =>
+    _$LeadActivityTypeImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      mainIndex: json['MainIndex'] as String?,
+      mainGroup: (json['MainGroup'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$LeadActivityTypeImplToJson(
+        _$LeadActivityTypeImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'MainIndex': instance.mainIndex,
+      'MainGroup': instance.mainGroup,
+    };
+
 _$LeadMarketingItemImpl _$$LeadMarketingItemImplFromJson(
         Map<String, dynamic> json) =>
     _$LeadMarketingItemImpl(

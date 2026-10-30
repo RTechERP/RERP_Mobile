@@ -179,6 +179,62 @@ class LeadMarketingService extends DioBaseApiService {
     )..message = message;
   }
 
+  /// Ghi hoạt động lên phiếu lead.
+  ///
+  /// API: POST /Lead/save-activity.
+  /// Body: `{ "ID": 0, "ActivityType": 15, "ActivityDate": "...",
+  /// "Content": "...", "Result": "...", "NextAction": "...",
+  /// "NextActionDate": "...", "LeadID": 11320 }`.
+  Future<BaseData<LeadActivitySaveResult>> saveActivity({
+    required Map<String, dynamic> payload,
+  }) async {
+    return post<BaseData<LeadActivitySaveResult>>(
+      ApiEndPoint.saveLeadActivity,
+      body: payload,
+      parser: (json) => _parseActivitySaveResult(json),
+    );
+  }
+
+  /// Lấy danh sách loại nhóm dùng cho hoạt động của phiếu lead.
+  ///
+  /// API: GET /DailyReportSale/get-mainindex.
+  Future<BaseData<List<LeadActivityType>>> getActivityTypes() async {
+    return get<BaseData<List<LeadActivityType>>>(
+      ApiEndPoint.getTypeTeamSale,
+      parser: (json) => BaseData<List<LeadActivityType>>.fromJson(json, (data) {
+        return _parseList<LeadActivityType>(
+          data,
+          LeadActivityType.fromJson,
+        );
+      }),
+    );
+  }
+
+  /// Parse response save-activity — lấy `status`/`message` ở envelope và
+  /// `data` (object hoạt động) để dựng [LeadActivitySaveResult].
+  ///
+  /// BE có thể trả `data` dạng object hoặc mảng 1 phần tử → chuẩn hoá về
+  /// object trước khi parse.
+  BaseData<LeadActivitySaveResult> _parseActivitySaveResult(dynamic json) {
+    final root = json is Map
+        ? Map<String, dynamic>.from(json)
+        : <String, dynamic>{};
+
+    dynamic data = root['data'];
+    if (data is List) {
+      data = data.isEmpty ? null : data.first;
+    }
+
+    final message = root['message'] as String?;
+
+    return BaseData<LeadActivitySaveResult>(
+      status: (root['status'] as num?)?.toInt(),
+      data: LeadActivitySaveResult.fromJson(
+        data is Map ? Map<String, dynamic>.from(data) : <String, dynamic>{},
+      ).copyWith(message: message),
+    )..message = message;
+  }
+
   /// Parse response save-data — lấy `status`/`message` ở envelope và
   /// `data` (object phiếu lead) để dựng [LeadSaveResult].
   BaseData<LeadSaveResult> _parseSaveResult(dynamic json) {

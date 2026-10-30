@@ -3690,6 +3690,417 @@ abstract class _LeadSaveResult implements LeadSaveResult {
       throw _privateConstructorUsedError;
 }
 
+LeadActivitySaveResult _$LeadActivitySaveResultFromJson(
+    Map<String, dynamic> json) {
+  return _LeadActivitySaveResult.fromJson(json);
+}
+
+/// @nodoc
+mixin _$LeadActivitySaveResult {
+  /// Thông báo từ API.
+  @JsonKey(name: 'message')
+  String? get message => throw _privateConstructorUsedError;
+
+  /// ID hoạt động vừa tạo.
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+
+  /// ID phiếu lead chứa hoạt động.
+  @JsonKey(name: 'LeadID')
+  int? get leadId => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $LeadActivitySaveResultCopyWith<LeadActivitySaveResult> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LeadActivitySaveResultCopyWith<$Res> {
+  factory $LeadActivitySaveResultCopyWith(LeadActivitySaveResult value,
+          $Res Function(LeadActivitySaveResult) then) =
+      _$LeadActivitySaveResultCopyWithImpl<$Res, LeadActivitySaveResult>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'LeadID') int? leadId});
+}
+
+/// @nodoc
+class _$LeadActivitySaveResultCopyWithImpl<$Res,
+        $Val extends LeadActivitySaveResult>
+    implements $LeadActivitySaveResultCopyWith<$Res> {
+  _$LeadActivitySaveResultCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = freezed,
+    Object? id = freezed,
+    Object? leadId = freezed,
+  }) {
+    return _then(_value.copyWith(
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      leadId: freezed == leadId
+          ? _value.leadId
+          : leadId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$LeadActivitySaveResultImplCopyWith<$Res>
+    implements $LeadActivitySaveResultCopyWith<$Res> {
+  factory _$$LeadActivitySaveResultImplCopyWith(
+          _$LeadActivitySaveResultImpl value,
+          $Res Function(_$LeadActivitySaveResultImpl) then) =
+      __$$LeadActivitySaveResultImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'LeadID') int? leadId});
+}
+
+/// @nodoc
+class __$$LeadActivitySaveResultImplCopyWithImpl<$Res>
+    extends _$LeadActivitySaveResultCopyWithImpl<$Res,
+        _$LeadActivitySaveResultImpl>
+    implements _$$LeadActivitySaveResultImplCopyWith<$Res> {
+  __$$LeadActivitySaveResultImplCopyWithImpl(
+      _$LeadActivitySaveResultImpl _value,
+      $Res Function(_$LeadActivitySaveResultImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = freezed,
+    Object? id = freezed,
+    Object? leadId = freezed,
+  }) {
+    return _then(_$LeadActivitySaveResultImpl(
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      leadId: freezed == leadId
+          ? _value.leadId
+          : leadId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$LeadActivitySaveResultImpl implements _LeadActivitySaveResult {
+  const _$LeadActivitySaveResultImpl(
+      {@JsonKey(name: 'message') this.message,
+      @JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'LeadID') this.leadId});
+
+  factory _$LeadActivitySaveResultImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LeadActivitySaveResultImplFromJson(json);
+
+  /// Thông báo từ API.
+  @override
+  @JsonKey(name: 'message')
+  final String? message;
+
+  /// ID hoạt động vừa tạo.
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+
+  /// ID phiếu lead chứa hoạt động.
+  @override
+  @JsonKey(name: 'LeadID')
+  final int? leadId;
+
+  @override
+  String toString() {
+    return 'LeadActivitySaveResult(message: $message, id: $id, leadId: $leadId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LeadActivitySaveResultImpl &&
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.leadId, leadId) || other.leadId == leadId));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, message, id, leadId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LeadActivitySaveResultImplCopyWith<_$LeadActivitySaveResultImpl>
+      get copyWith => __$$LeadActivitySaveResultImplCopyWithImpl<
+          _$LeadActivitySaveResultImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$LeadActivitySaveResultImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _LeadActivitySaveResult implements LeadActivitySaveResult {
+  const factory _LeadActivitySaveResult(
+          {@JsonKey(name: 'message') final String? message,
+          @JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'LeadID') final int? leadId}) =
+      _$LeadActivitySaveResultImpl;
+
+  factory _LeadActivitySaveResult.fromJson(Map<String, dynamic> json) =
+      _$LeadActivitySaveResultImpl.fromJson;
+
+  @override
+
+  /// Thông báo từ API.
+  @JsonKey(name: 'message')
+  String? get message;
+  @override
+
+  /// ID hoạt động vừa tạo.
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+
+  /// ID phiếu lead chứa hoạt động.
+  @JsonKey(name: 'LeadID')
+  int? get leadId;
+  @override
+  @JsonKey(ignore: true)
+  _$$LeadActivitySaveResultImplCopyWith<_$LeadActivitySaveResultImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+LeadActivityType _$LeadActivityTypeFromJson(Map<String, dynamic> json) {
+  return _LeadActivityType.fromJson(json);
+}
+
+/// @nodoc
+mixin _$LeadActivityType {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+
+  /// Tên loại nhóm hiển thị cho người dùng.
+  @JsonKey(name: 'MainIndex')
+  String? get mainIndex => throw _privateConstructorUsedError;
+  @JsonKey(name: 'MainGroup')
+  int? get mainGroup => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $LeadActivityTypeCopyWith<LeadActivityType> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LeadActivityTypeCopyWith<$Res> {
+  factory $LeadActivityTypeCopyWith(
+          LeadActivityType value, $Res Function(LeadActivityType) then) =
+      _$LeadActivityTypeCopyWithImpl<$Res, LeadActivityType>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'MainIndex') String? mainIndex,
+      @JsonKey(name: 'MainGroup') int? mainGroup});
+}
+
+/// @nodoc
+class _$LeadActivityTypeCopyWithImpl<$Res, $Val extends LeadActivityType>
+    implements $LeadActivityTypeCopyWith<$Res> {
+  _$LeadActivityTypeCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? mainIndex = freezed,
+    Object? mainGroup = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      mainIndex: freezed == mainIndex
+          ? _value.mainIndex
+          : mainIndex // ignore: cast_nullable_to_non_nullable
+              as String?,
+      mainGroup: freezed == mainGroup
+          ? _value.mainGroup
+          : mainGroup // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$LeadActivityTypeImplCopyWith<$Res>
+    implements $LeadActivityTypeCopyWith<$Res> {
+  factory _$$LeadActivityTypeImplCopyWith(_$LeadActivityTypeImpl value,
+          $Res Function(_$LeadActivityTypeImpl) then) =
+      __$$LeadActivityTypeImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'MainIndex') String? mainIndex,
+      @JsonKey(name: 'MainGroup') int? mainGroup});
+}
+
+/// @nodoc
+class __$$LeadActivityTypeImplCopyWithImpl<$Res>
+    extends _$LeadActivityTypeCopyWithImpl<$Res, _$LeadActivityTypeImpl>
+    implements _$$LeadActivityTypeImplCopyWith<$Res> {
+  __$$LeadActivityTypeImplCopyWithImpl(_$LeadActivityTypeImpl _value,
+      $Res Function(_$LeadActivityTypeImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? mainIndex = freezed,
+    Object? mainGroup = freezed,
+  }) {
+    return _then(_$LeadActivityTypeImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      mainIndex: freezed == mainIndex
+          ? _value.mainIndex
+          : mainIndex // ignore: cast_nullable_to_non_nullable
+              as String?,
+      mainGroup: freezed == mainGroup
+          ? _value.mainGroup
+          : mainGroup // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$LeadActivityTypeImpl implements _LeadActivityType {
+  const _$LeadActivityTypeImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'MainIndex') this.mainIndex,
+      @JsonKey(name: 'MainGroup') this.mainGroup});
+
+  factory _$LeadActivityTypeImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LeadActivityTypeImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+
+  /// Tên loại nhóm hiển thị cho người dùng.
+  @override
+  @JsonKey(name: 'MainIndex')
+  final String? mainIndex;
+  @override
+  @JsonKey(name: 'MainGroup')
+  final int? mainGroup;
+
+  @override
+  String toString() {
+    return 'LeadActivityType(id: $id, mainIndex: $mainIndex, mainGroup: $mainGroup)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LeadActivityTypeImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.mainIndex, mainIndex) ||
+                other.mainIndex == mainIndex) &&
+            (identical(other.mainGroup, mainGroup) ||
+                other.mainGroup == mainGroup));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, mainIndex, mainGroup);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LeadActivityTypeImplCopyWith<_$LeadActivityTypeImpl> get copyWith =>
+      __$$LeadActivityTypeImplCopyWithImpl<_$LeadActivityTypeImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$LeadActivityTypeImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _LeadActivityType implements LeadActivityType {
+  const factory _LeadActivityType(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'MainIndex') final String? mainIndex,
+          @JsonKey(name: 'MainGroup') final int? mainGroup}) =
+      _$LeadActivityTypeImpl;
+
+  factory _LeadActivityType.fromJson(Map<String, dynamic> json) =
+      _$LeadActivityTypeImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+
+  /// Tên loại nhóm hiển thị cho người dùng.
+  @JsonKey(name: 'MainIndex')
+  String? get mainIndex;
+  @override
+  @JsonKey(name: 'MainGroup')
+  int? get mainGroup;
+  @override
+  @JsonKey(ignore: true)
+  _$$LeadActivityTypeImplCopyWith<_$LeadActivityTypeImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 LeadMarketingItem _$LeadMarketingItemFromJson(Map<String, dynamic> json) {
   return _LeadMarketingItem.fromJson(json);
 }

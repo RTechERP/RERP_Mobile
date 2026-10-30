@@ -213,6 +213,7 @@ import '../features/workplace/app/summary_work/overtime/view/pages/summary_overt
 import '../features/workplace/app/crm/summary_customer/view/bloc/summary_customer_bloc.dart';
 import '../features/workplace/app/crm/summary_customer/view/pages/summary_customer_screen.dart';
 import '../features/workplace/app/crm/lead_marketing/data/datasource/models/lead_marketing_model.dart';
+import '../features/workplace/app/crm/lead_marketing/view/pages/lead_activity_add_screen.dart';
 import '../features/workplace/app/crm/lead_marketing/view/pages/lead_marketing_add_screen.dart';
 import '../features/workplace/app/crm/lead_marketing/view/pages/lead_marketing_edit_screen.dart';
 import '../features/workplace/app/crm/lead_marketing/view/pages/lead_marketing_screen.dart';
@@ -2075,6 +2076,25 @@ class AppRouter {
                     stage: stage,
                     customerLabel: customerLabel,
                     customerSnapshot: customerSnapshot,
+                  );
+                },
+              ),
+              GoRoute(
+                // Path con phải là relative (không có `/` đầu).
+                path: 'activity/add',
+                builder: (context, state) {
+                  final extra = state.extra;
+                  int leadId = 0;
+                  String? leadCode;
+                  if (extra is Map) {
+                    leadId = (extra['id'] as int?) ?? 0;
+                    leadCode = extra['leadCode'] as String?;
+                  } else if (extra is int) {
+                    leadId = extra;
+                  }
+                  return LeadActivityAddScreen(
+                    leadId: leadId,
+                    leadCode: leadCode,
                   );
                 },
               ),

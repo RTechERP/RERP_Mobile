@@ -60,6 +60,9 @@ class LeadMarketingBloc extends BaseBloc<LeadMarketingEvent, LeadMarketingState>
         clearSubmitState: () async => _onClearSubmitState(emit),
         deleteLead: (id) => _onDeleteLead(emit, id: id),
         clearDeleteState: () async => _onClearDeleteState(emit),
+        loadActivityTypes: () => _onLoadActivityTypes(emit),
+        saveActivity: (payload) => _onSaveActivity(emit, payload: payload),
+        clearActivityState: () async => _onClearActivityState(emit),
       );
     });
   }
@@ -542,6 +545,77 @@ class LeadMarketingBloc extends BaseBloc<LeadMarketingEvent, LeadMarketingState>
     emit(state.copyWith(
       deleteStatus: BaseStateStatus.init,
       deleteMessage: null,
+    ));
+  }
+
+  /// Tải danh sách loại nhóm dùng cho form ghi hoạt động.
+  Future<void> _onLoadActivityTypes(
+    Emitter<LeadMarketingState> emit,
+  ) async {
+    emit(state.copyWith(
+      activityTypesStatus: BaseStateStatus.loading,
+      activityTypesMessage: null,
+    ));
+
+    final res = await _repo.getActivityTypes();
+
+    await res.fold(
+      (l) async {
+        _log.logE('Get lead activity types failed: $l');
+        emit(state.copyWith(
+          activityTypesStatus: BaseStateStatus.failed,
+          activityTypesMessage: l.getErrorMessage,
+        ));
+      },
+      (r) async {
+        _log.logI('Get lead activity types success - count: ${r.length}');
+        emit(state.copyWith(
+          activityTypesStatus: BaseStateStatus.success,
+          activityTypes: r,
+          activityTypesMessage: null,
+        ));
+      },
+    );
+  }
+
+  /// Ghi hoạt động lên phiếu lead.
+  Future<void> _onSaveActivity(
+    Emitter<LeadMarketingState> emit, {
+    required Map<String, dynamic> payload,
+  }) async {
+    emit(state.copyWith(
+      activityStatus: BaseStateStatus.loading,
+      activityMessage: null,
+      activityResult: null,
+    ));
+
+    final res = await _repo.saveActivity(payload: payload);
+
+    await res.fold(
+      (l) async {
+        _log.logE('Save lead activity failed: $l');
+        emit(state.copyWith(
+          activityStatus: BaseStateStatus.failed,
+          activityMessage: l.getErrorMessage,
+        ));
+      },
+      (r) async {
+        _log.logI('Save lead activity success - id: ${r.id}');
+        emit(state.copyWith(
+          activityStatus: BaseStateStatus.success,
+          activityMessage: r.message ?? 'Ghi hoạt động thành công!',
+          activityResult: r,
+        ));
+      },
+    );
+  }
+
+  /// Xóa trạng thái kết quả ghi hoạt động.
+  void _onClearActivityState(Emitter<LeadMarketingState> emit) {
+    emit(state.copyWith(
+      activityStatus: BaseStateStatus.init,
+      activityMessage: null,
+      activityResult: null,
     ));
   }
 

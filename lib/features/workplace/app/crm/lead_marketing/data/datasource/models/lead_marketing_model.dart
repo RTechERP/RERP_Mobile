@@ -353,6 +353,45 @@ class LeadSaveResult with _$LeadSaveResult {
       _$LeadSaveResultFromJson(json);
 }
 
+/// Kết quả ghi hoạt động lên phiếu lead.
+///
+/// API: POST /Lead/save-activity.
+/// Response: `{ status, message, data: { ID, ... } }`.
+@freezed
+class LeadActivitySaveResult with _$LeadActivitySaveResult {
+  const factory LeadActivitySaveResult({
+    /// Thông báo từ API.
+    @JsonKey(name: 'message') String? message,
+
+    /// ID hoạt động vừa tạo.
+    @JsonKey(name: 'ID') int? id,
+
+    /// ID phiếu lead chứa hoạt động.
+    @JsonKey(name: 'LeadID') int? leadId,
+  }) = _LeadActivitySaveResult;
+
+  factory LeadActivitySaveResult.fromJson(Map<String, dynamic> json) =>
+      _$LeadActivitySaveResultFromJson(json);
+}
+
+/// Loại nhóm dùng cho hoạt động của phiếu lead.
+///
+/// API: GET /DailyReportSale/get-mainindex (dùng chung service `getTypeTeamSale`).
+@freezed
+class LeadActivityType with _$LeadActivityType {
+  const factory LeadActivityType({
+    @JsonKey(name: 'ID') int? id,
+
+    /// Tên loại nhóm hiển thị cho người dùng.
+    @JsonKey(name: 'MainIndex') String? mainIndex,
+
+    @JsonKey(name: 'MainGroup') int? mainGroup,
+  }) = _LeadActivityType;
+
+  factory LeadActivityType.fromJson(Map<String, dynamic> json) =>
+      _$LeadActivityTypeFromJson(json);
+}
+
 /// Loại khách hàng.
 ///
 /// Backend chưa có API danh sách nên tạm đặt cố định 4 giá trị (gồm
