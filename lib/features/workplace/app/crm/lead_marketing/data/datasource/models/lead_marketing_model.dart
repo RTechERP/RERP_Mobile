@@ -60,6 +60,18 @@ enum LeadStage {
     }
     return null;
   }
+
+  /// Thông báo khi phiếu lead ở giai đoạn không được phép xoá.
+  static const String blockedDeleteMessage =
+      'Không thể xóa lead ở trạng thái Đang xử lý, Đã chốt KH hoặc Đã PO';
+
+  /// Kiểm tra phiếu lead ở giai đoạn [stageName] có được phép xoá hay không.
+  ///
+  /// Chỉ giai đoạn [LeadStage.newLead] (lead mới) mới được xoá; mọi giai đoạn
+  /// khác đều bị chặn với thông báo [blockedDeleteMessage].
+  static bool isDeletable(String? stageName) {
+    return fromName(stageName) == LeadStage.newLead;
+  }
 }
 
 /// Nhân viên (sale hoặc marketing) được API trả về.

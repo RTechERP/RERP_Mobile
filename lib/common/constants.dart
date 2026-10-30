@@ -737,6 +737,10 @@ class ApiEndPoint {
   /// API: POST /Lead/save-data.
   static const String saveLeadData = '/Lead/save-data';
 
+  /// Xoá phiếu lead.
+  /// API: POST /Lead/delete — body là mảng ID phiếu cần xoá.
+  static const String deleteLead = '/Lead/delete';
+
   // CRM - Danh mục khách hàng (dùng khi tạo phiếu lead)
   /// Danh sách lĩnh vực của khách hàng.
   /// API: GET /Customer/get-customer-industry.

@@ -197,6 +197,42 @@ class LeadMarketingService extends DioBaseApiService {
     )..message = message;
   }
 
+  /// Xoá phiếu lead.
+  ///
+  /// API: POST /Lead/delete — body là mảng ID phiếu cần xoá (vd `[11334]`).
+  /// Response: `{ status, message, data: [11334] }` — `data` là danh sách ID
+  /// đã xoá thành công.
+  Future<BaseData<List<int>>> deleteLeads({
+    required List<int> ids,
+  }) async {
+    return post<BaseData<List<int>>>(
+      ApiEndPoint.deleteLead,
+      body: ids,
+      parser: (json) => _parseDeletedIds(json),
+    );
+  }
+
+  /// Parse response delete — lấy `status`/`message` ở envelope và danh sách
+  /// ID đã xoá trong `data`.
+  BaseData<List<int>> _parseDeletedIds(dynamic json) {
+    final root = json is Map
+        ? Map<String, dynamic>.from(json)
+        : <String, dynamic>{};
+
+    final data = root['data'];
+    final message = root['message'] as String?;
+
+    final deletedIds = data is List
+        ? data.whereType<num>().map((e) => e.toInt()).toList()
+        : const <int>[];
+
+    return BaseData<List<int>>(
+      // BE đôi khi không trả `status` → coi như thành công nếu có dữ liệu.
+      status: (root['status'] as num?)?.toInt() ?? (deletedIds.isEmpty ? 0 : 1),
+      data: deletedIds,
+    )..message = message;
+  }
+
   /// Lấy chi tiết phiếu lead kèm hoạt động, lịch sử và quyền thao tác.
   ///
   /// API: GET /Lead/get-detail?id=X.

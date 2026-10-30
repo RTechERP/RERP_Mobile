@@ -122,6 +122,12 @@ class LeadMarketingState extends BaseBlocState {
   /// Không rỗng → UI hiện dialog xác nhận có lưu trùng hay không.
   final List<LeadDuplicateInfo> duplicates;
 
+  /// Trạng thái đang xoá phiếu lead.
+  final BaseStateStatus deleteStatus;
+
+  /// Thông báo kết quả xoá phiếu lead (thành công / thất bại).
+  final String? deleteMessage;
+
   /// Thông tin người dùng hiện tại — dùng để mặc định NV marketing phụ trách.
   final User? currentUser;
 
@@ -167,6 +173,8 @@ class LeadMarketingState extends BaseBlocState {
     this.submitMessage,
     this.saveResult,
     this.duplicates = const [],
+    this.deleteStatus = BaseStateStatus.init,
+    this.deleteMessage,
     this.currentUser,
   });
 
@@ -275,6 +283,8 @@ class LeadMarketingState extends BaseBlocState {
         submitMessage,
         saveResult,
         duplicates,
+        deleteStatus,
+        deleteMessage,
         currentUser,
       ];
 }

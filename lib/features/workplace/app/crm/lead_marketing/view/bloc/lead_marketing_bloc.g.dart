@@ -91,6 +91,10 @@ abstract class _$LeadMarketingStateCWProxy {
 
   LeadMarketingState duplicates(List<LeadDuplicateInfo> duplicates);
 
+  LeadMarketingState deleteStatus(BaseStateStatus deleteStatus);
+
+  LeadMarketingState deleteMessage(String? deleteMessage);
+
   LeadMarketingState currentUser(User? currentUser);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `LeadMarketingState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
@@ -141,6 +145,8 @@ abstract class _$LeadMarketingStateCWProxy {
     String? submitMessage,
     LeadSaveResult? saveResult,
     List<LeadDuplicateInfo>? duplicates,
+    BaseStateStatus? deleteStatus,
+    String? deleteMessage,
     User? currentUser,
   });
 }
@@ -310,6 +316,14 @@ class _$LeadMarketingStateCWProxyImpl implements _$LeadMarketingStateCWProxy {
       this(duplicates: duplicates);
 
   @override
+  LeadMarketingState deleteStatus(BaseStateStatus deleteStatus) =>
+      this(deleteStatus: deleteStatus);
+
+  @override
+  LeadMarketingState deleteMessage(String? deleteMessage) =>
+      this(deleteMessage: deleteMessage);
+
+  @override
   LeadMarketingState currentUser(User? currentUser) =>
       this(currentUser: currentUser);
 
@@ -363,6 +377,8 @@ class _$LeadMarketingStateCWProxyImpl implements _$LeadMarketingStateCWProxy {
     Object? submitMessage = const $CopyWithPlaceholder(),
     Object? saveResult = const $CopyWithPlaceholder(),
     Object? duplicates = const $CopyWithPlaceholder(),
+    Object? deleteStatus = const $CopyWithPlaceholder(),
+    Object? deleteMessage = const $CopyWithPlaceholder(),
     Object? currentUser = const $CopyWithPlaceholder(),
   }) {
     return LeadMarketingState(
@@ -549,6 +565,15 @@ class _$LeadMarketingStateCWProxyImpl implements _$LeadMarketingStateCWProxy {
               ? _value.duplicates
               // ignore: cast_nullable_to_non_nullable
               : duplicates as List<LeadDuplicateInfo>,
+      deleteStatus:
+          deleteStatus == const $CopyWithPlaceholder() || deleteStatus == null
+              ? _value.deleteStatus
+              // ignore: cast_nullable_to_non_nullable
+              : deleteStatus as BaseStateStatus,
+      deleteMessage: deleteMessage == const $CopyWithPlaceholder()
+          ? _value.deleteMessage
+          // ignore: cast_nullable_to_non_nullable
+          : deleteMessage as String?,
       currentUser: currentUser == const $CopyWithPlaceholder()
           ? _value.currentUser
           // ignore: cast_nullable_to_non_nullable

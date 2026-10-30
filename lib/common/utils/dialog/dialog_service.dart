@@ -1200,6 +1200,42 @@ class DialogService {
     return confirmed;
   }
 
+  /// Dialog xác nhận xoá phiếu lead.
+  ///
+  /// Trả về `true` nếu người dùng đồng ý xoá, `false` nếu huỷ.
+  static Future<bool> showConfirmDeleteLead({
+    required BuildContext context,
+    String? leadCode,
+  }) async {
+    bool confirmed = false;
+    final code = (leadCode ?? '').trim();
+
+    await BaseDialog.twoOptionVerticalDialog(
+      context: context,
+      image: const Icon(
+        Icons.delete_outline,
+        size: 56,
+        color: AppColors.stateErrorColor,
+      ),
+      title: 'Xác nhận xoá phiếu lead',
+      description: code.isEmpty
+          ? 'Bạn có chắc chắn muốn xoá phiếu lead này không?'
+          : 'Bạn có chắc chắn muốn xoá phiếu lead $code không?',
+      contentTopButton: 'Xoá',
+      topButtonFunc: () {
+        confirmed = true;
+        onBack(context);
+      },
+      contentBottomButton: 'Huỷ',
+      bottomButtonFunc: () {
+        confirmed = false;
+        onBack(context);
+      },
+    );
+
+    return confirmed;
+  }
+
   static Future<void> showCancelBooking({
     required BuildContext context,
     VoidCallback? onConfirm,

@@ -58,6 +58,8 @@ class LeadMarketingBloc extends BaseBloc<LeadMarketingEvent, LeadMarketingState>
             _onSubmitLead(emit, payload: payload, skipDuplicateCheck: true),
         cancelDuplicateSave: () async => _onCancelDuplicateSave(emit),
         clearSubmitState: () async => _onClearSubmitState(emit),
+        deleteLead: (id) => _onDeleteLead(emit, id: id),
+        clearDeleteState: () async => _onClearDeleteState(emit),
       );
     });
   }
@@ -67,10 +69,10 @@ class LeadMarketingBloc extends BaseBloc<LeadMarketingEvent, LeadMarketingState>
     emit(state.copyWith(status: BaseStateStatus.loading));
 
     // Giữ khoảng thời gian đang chọn khi refresh, nếu chưa chọn thì
-    // mặc định là tháng hiện tại.
+    // mặc định là 3 tháng gần nhất (từ đầu tháng cách đây 3 tháng đến hôm nay).
     final now = DateTime.now();
-    final start = state.dateStart ?? DateTime(now.year, now.month, 1);
-    final end = state.dateEnd ?? DateTime(now.year, now.month + 1, 0);
+    final start = state.dateStart ?? DateTime(now.year, now.month - 3, 1);
+    final end = state.dateEnd ?? now;
 
     await _loadRoleContext(emit);
 
@@ -128,8 +130,8 @@ class LeadMarketingBloc extends BaseBloc<LeadMarketingEvent, LeadMarketingState>
     final now = DateTime.now();
     await _loadLeads(
       emit,
-      dateStart: state.dateStart ?? DateTime(now.year, now.month, 1),
-      dateEnd: state.dateEnd ?? DateTime(now.year, now.month + 1, 0),
+      dateStart: state.dateStart ?? DateTime(now.year, now.month - 3, 1),
+      dateEnd: state.dateEnd ?? now,
     );
   }
 
@@ -146,8 +148,8 @@ class LeadMarketingBloc extends BaseBloc<LeadMarketingEvent, LeadMarketingState>
     final now = DateTime.now();
     await _loadLeads(
       emit,
-      dateStart: state.dateStart ?? DateTime(now.year, now.month, 1),
-      dateEnd: state.dateEnd ?? DateTime(now.year, now.month + 1, 0),
+      dateStart: state.dateStart ?? DateTime(now.year, now.month - 3, 1),
+      dateEnd: state.dateEnd ?? now,
     );
   }
 
@@ -496,6 +498,47 @@ class LeadMarketingBloc extends BaseBloc<LeadMarketingEvent, LeadMarketingState>
       submitMessage: null,
       saveResult: null,
       duplicates: const [],
+    ));
+  }
+
+  /// Xoá phiếu lead.
+  ///
+  /// Gọi `POST /Lead/delete` với mảng ID. Chỉ coi là thành công khi API
+  /// trả `message` và `data` có chứa ID đã xoá.
+  Future<void> _onDeleteLead(
+    Emitter<LeadMarketingState> emit, {
+    required int id,
+  }) async {
+    emit(state.copyWith(
+      deleteStatus: BaseStateStatus.loading,
+      deleteMessage: null,
+    ));
+
+    final res = await _repo.deleteLeads(ids: [id]);
+
+    await res.fold(
+      (l) async {
+        _log.logE('Delete lead failed: $l');
+        emit(state.copyWith(
+          deleteStatus: BaseStateStatus.failed,
+          deleteMessage: l.getErrorMessage,
+        ));
+      },
+      (r) async {
+        _log.logI('Delete lead success - ids: $r');
+        emit(state.copyWith(
+          deleteStatus: BaseStateStatus.success,
+          deleteMessage: 'Xóa lead thành công!',
+        ));
+      },
+    );
+  }
+
+  /// Xóa trạng thái kết quả xoá phiếu lead.
+  void _onClearDeleteState(Emitter<LeadMarketingState> emit) {
+    emit(state.copyWith(
+      deleteStatus: BaseStateStatus.init,
+      deleteMessage: null,
     ));
   }
 

@@ -302,4 +302,24 @@ class LeadMarketingRepoImpl implements LeadMarketingRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, List<int>>> deleteLeads({
+    required List<int> ids,
+  }) async {
+    try {
+      final res = await _service.deleteLeads(ids: ids);
+      // Chỉ coi là thành công khi API trả `message` và `data` có dữ liệu.
+      if (res.status == 1 && res.data != null && res.data!.isNotEmpty) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? 'Xoá phiếu lead thất bại',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

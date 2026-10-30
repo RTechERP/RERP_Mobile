@@ -4,10 +4,13 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../../../base/bloc/index.dart';
+import '../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../common/constants/index.dart';
+import '../../../../../../../../common/utils/dialog/dialog_service.dart';
+import '../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../common/widgets/date_range_picker.dart';
 import '../../../../../../../../routes/route_names.dart';
 import '../../data/datasource/models/lead_marketing_model.dart';
@@ -15,6 +18,7 @@ import '../../view/bloc/lead_marketing_bloc.dart';
 import '../../view/widgets/lead_marketing_card.dart';
 import '../../view/widgets/lead_marketing_detail_sheet.dart';
 import '../../view/widgets/lead_marketing_filter_sheet.dart';
+import '../../view/widgets/lead_marketing_menu_sheet.dart';
 
 /// Màn hình danh sách phiếu lead của phòng ban Marketing trong CRM.
 ///
@@ -124,9 +128,63 @@ class _LeadMarketingScreenState extends BaseShareState<
     );
   }
 
+  /// Mở menu thao tác khi bấm vào card phiếu lead.
+  ///
+  /// Menu gồm: xem chi tiết, xoá phiếu. Xoá phiếu cần xác nhận trước.
+  Future<void> _openMenu(
+    BuildContext context,
+    LeadMarketingItem item,
+  ) async {
+    final actionId = await LeadMenuSheet.show(
+      context,
+      leadCode: item.leadCode,
+    );
+    if (!context.mounted || actionId == null) return;
+
+    switch (actionId) {
+      case 'detail':
+        await LeadMarketingDetailSheet.show(context, item);
+        break;
+      case 'delete':
+        await _confirmDeleteLead(context, item);
+        break;
+    }
+  }
+
+  /// Xác nhận rồi xoá phiếu lead.
+  ///
+  /// Chỉ cho xoá khi phiếu đang ở giai đoạn khác (không phải Đang xử lý,
+  /// Đã chốt KH hoặc Đã PO). Thông báo kết quả được hiển thị qua listener
+  /// của bloc trong [renderUI].
+  Future<void> _confirmDeleteLead(
+    BuildContext context,
+    LeadMarketingItem item,
+  ) async {
+    final id = item.id;
+    if (id == null) return;
+
+    // Chặn trước khi gọi API: chỉ lead mới mới được xoá, các giai đoạn
+    // khác đều báo thông báo chặn.
+    if (!LeadStage.isDeletable(item.stageName)) {
+      context.showMessage(
+        LeadStage.blockedDeleteMessage,
+        type: SnackBarType.error,
+      );
+      return;
+    }
+
+    final confirmed = await DialogService.showConfirmDeleteLead(
+      context: context,
+      leadCode: item.leadCode,
+    );
+    if (!context.mounted || !confirmed) return;
+
+    bloc.add(LeadMarketingEvent.deleteLead(id: id));
+  }
+
   @override
   Widget renderUI(BuildContext context) {
-    return BlocBuilder<LeadMarketingBloc, LeadMarketingState>(
+    return BlocConsumer<LeadMarketingBloc, LeadMarketingState>(
       // Bỏ qua thay đổi của chi tiết phiếu để không dựng lại danh sách
       // (và không mất vị trí scroll) khi bottom sheet đang tải dữ liệu.
       buildWhen: (previous, current) =>
@@ -138,6 +196,25 @@ class _LeadMarketingScreenState extends BaseShareState<
           previous.dateEnd != current.dateEnd ||
           previous.keyword != current.keyword ||
           previous.stageFilter != current.stageFilter,
+      listenWhen: (previous, current) =>
+          previous.deleteStatus != current.deleteStatus,
+      listener: (context, state) {
+        // Kết quả xoá phiếu lead — thông báo rồi tải lại danh sách.
+        if (state.deleteStatus == BaseStateStatus.success) {
+          context.showMessage(
+            state.deleteMessage ?? 'Xóa lead thành công!',
+            type: SnackBarType.success,
+          );
+          bloc.add(const LeadMarketingEvent.clearDeleteState());
+          bloc.add(const LeadMarketingEvent.refresh());
+        } else if (state.deleteStatus == BaseStateStatus.failed) {
+          context.showMessage(
+            state.deleteMessage ?? 'Xóa lead thất bại',
+            type: SnackBarType.error,
+          );
+          bloc.add(const LeadMarketingEvent.clearDeleteState());
+        }
+      },
       builder: (context, state) {
         final loading = state.status == BaseStateStatus.loading;
         final failed = state.status == BaseStateStatus.failed;
@@ -372,7 +449,7 @@ class _LeadMarketingScreenState extends BaseShareState<
           final item = leads[index];
           return LeadMarketingCard(
             item: item,
-            onTap: () => LeadMarketingDetailSheet.show(context, item),
+            onTap: () => _openMenu(context, item),
           );
         },
         separatorBuilder: (_, _) => const SizedBox(height: 8),

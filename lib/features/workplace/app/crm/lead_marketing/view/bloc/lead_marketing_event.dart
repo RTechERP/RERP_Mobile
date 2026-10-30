@@ -84,4 +84,14 @@ class LeadMarketingEvent with _$LeadMarketingEvent {
   /// Bloc là singleton nên state còn sót lại sẽ khiến màn add hiển thị lại
   /// thông báo và đẩy người dùng ra khỏi màn khi vào lại.
   const factory LeadMarketingEvent.clearSubmitState() = _ClearSubmitState;
+
+  /// Xoá phiếu lead.
+  ///
+  /// [id] là ID của phiếu lead cần xoá.
+  const factory LeadMarketingEvent.deleteLead({
+    required int id,
+  }) = _DeleteLead;
+
+  /// Xóa trạng thái kết quả xoá phiếu lead.
+  const factory LeadMarketingEvent.clearDeleteState() = _ClearDeleteState;
 }

@@ -82,4 +82,12 @@ abstract class LeadMarketingRepo {
   Future<Either<BaseError, LeadSaveResult>> saveData({
     required Map<String, dynamic> payload,
   });
+
+  /// Xoá phiếu lead.
+  ///
+  /// [ids] là danh sách ID phiếu cần xoá. Trả về danh sách ID đã xoá
+  /// thành công.
+  Future<Either<BaseError, List<int>>> deleteLeads({
+    required List<int> ids,
+  });
 }
