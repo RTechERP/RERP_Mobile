@@ -151,6 +151,106 @@ class LeadMarketingService extends DioBaseApiService {
     );
   }
 
+  /// Lấy danh sách nhóm hàng (loại PO) dùng khi tạo phiếu lead.
+  ///
+  /// API: GET /Lead/po-types.
+  Future<BaseData<List<LeadPoType>>> getLeadPoTypes() async {
+    return get<BaseData<List<LeadPoType>>>(
+      ApiEndPoint.getLeadPoTypes,
+      parser: (json) => BaseData<List<LeadPoType>>.fromJson(json, (data) {
+        return _parseList<LeadPoType>(
+          data,
+          LeadPoType.fromJson,
+        );
+      }),
+    );
+  }
+
+  /// Lấy danh sách lĩnh vực của khách hàng.
+  ///
+  /// API: GET /Customer/get-customer-industry.
+  Future<BaseData<List<LeadCustomerIndustry>>> getCustomerIndustries() async {
+    return get<BaseData<List<LeadCustomerIndustry>>>(
+      ApiEndPoint.getCustomerIndustries,
+      parser: (json) => BaseData<List<LeadCustomerIndustry>>.fromJson(
+        json,
+        (data) {
+          return _parseList<LeadCustomerIndustry>(
+            data,
+            LeadCustomerIndustry.fromJson,
+          );
+        },
+      ),
+    );
+  }
+
+  /// Lấy danh sách ngành nghề của khách hàng.
+  ///
+  /// API: GET /Customer/get-customer-specialization.
+  Future<BaseData<List<LeadCustomerSpecialization>>>
+      getCustomerSpecializations() async {
+    return get<BaseData<List<LeadCustomerSpecialization>>>(
+      ApiEndPoint.getCustomerSpecializations,
+      parser: (json) => BaseData<List<LeadCustomerSpecialization>>.fromJson(
+        json,
+        (data) {
+          return _parseList<LeadCustomerSpecialization>(
+            data,
+            LeadCustomerSpecialization.fromJson,
+          );
+        },
+      ),
+    );
+  }
+
+  /// Lấy danh sách lĩnh vực kinh doanh.
+  ///
+  /// API: GET /Customer/get-business-field.
+  Future<BaseData<List<LeadBusinessField>>> getBusinessFields() async {
+    return get<BaseData<List<LeadBusinessField>>>(
+      ApiEndPoint.getBusinessFields,
+      parser: (json) => BaseData<List<LeadBusinessField>>.fromJson(
+        json,
+        (data) {
+          return _parseList<LeadBusinessField>(
+            data,
+            LeadBusinessField.fromJson,
+          );
+        },
+      ),
+    );
+  }
+
+  /// Lấy danh sách tỉnh/thành.
+  ///
+  /// API: GET /Customer/get-provinces.
+  Future<BaseData<List<LeadProvince>>> getCustomerProvinces() async {
+    return get<BaseData<List<LeadProvince>>>(
+      ApiEndPoint.getCustomerProvinces,
+      parser: (json) => BaseData<List<LeadProvince>>.fromJson(json, (data) {
+        return _parseList<LeadProvince>(
+          data,
+          LeadProvince.fromJson,
+        );
+      }),
+    );
+  }
+
+  /// Lấy danh sách khách hàng.
+  ///
+  /// API: GET /Customer/get-customers.
+  Future<BaseData<List<LeadCustomer>>> getCustomers() async {
+    return get<BaseData<List<LeadCustomer>>>(
+      ApiEndPoint.getCustomerList,
+      parser: (json) => BaseData<List<LeadCustomer>>.fromJson(json, (data) {
+        return _parseList<LeadCustomer>(
+          data,
+          LeadCustomer.fromJson,
+        );
+      }),
+    );
+  }
+
   /// Định dạng ngày theo chuẩn `yyyy-MM-dd` mà API mong đợi.
   String _formatDate(DateTime date) {
     return '${date.year.toString().padLeft(4, '0')}-'

@@ -41,4 +41,23 @@ abstract class LeadMarketingRepo {
     required int customerContactId,
     required int fileType,
   });
+
+  /// Lấy danh sách nhóm hàng (loại PO).
+  Future<Either<BaseError, List<LeadPoType>>> getLeadPoTypes();
+
+  /// Lấy danh sách lĩnh vực của khách hàng.
+  Future<Either<BaseError, List<LeadCustomerIndustry>>> getCustomerIndustries();
+
+  /// Lấy danh sách ngành nghề của khách hàng.
+  Future<Either<BaseError, List<LeadCustomerSpecialization>>>
+      getCustomerSpecializations();
+
+  /// Lấy danh sách lĩnh vực kinh doanh.
+  Future<Either<BaseError, List<LeadBusinessField>>> getBusinessFields();
+
+  /// Lấy danh sách tỉnh/thành.
+  Future<Either<BaseError, List<LeadProvince>>> getCustomerProvinces();
+
+  /// Lấy danh sách khách hàng.
+  Future<Either<BaseError, List<LeadCustomer>>> getCustomers();
 }

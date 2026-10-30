@@ -81,6 +81,24 @@ class LeadMarketingState extends BaseBlocState {
   /// ID của phiếu lead mà [filesPo] đang thuộc về.
   final int? filesPoLeadId;
 
+  /// Danh sách nhóm hàng (loại PO) dùng khi tạo phiếu lead.
+  final List<LeadPoType> poTypes;
+
+  /// Danh sách lĩnh vực của khách hàng.
+  final List<LeadCustomerIndustry> customerIndustries;
+
+  /// Danh sách ngành nghề của khách hàng.
+  final List<LeadCustomerSpecialization> customerSpecializations;
+
+  /// Danh sách lĩnh vực kinh doanh.
+  final List<LeadBusinessField> businessFields;
+
+  /// Danh sách tỉnh/thành.
+  final List<LeadProvince> provinces;
+
+  /// Danh sách khách hàng.
+  final List<LeadCustomer> customers;
+
   const LeadMarketingState({
     required super.status,
     super.message,
@@ -110,6 +128,12 @@ class LeadMarketingState extends BaseBlocState {
     this.filesPoStatus = BaseStateStatus.init,
     this.filesPoMessage,
     this.filesPoLeadId,
+    this.poTypes = const [],
+    this.customerIndustries = const [],
+    this.customerSpecializations = const [],
+    this.businessFields = const [],
+    this.provinces = const [],
+    this.customers = const [],
   });
 
   factory LeadMarketingState.init() => const LeadMarketingState(
@@ -204,5 +228,11 @@ class LeadMarketingState extends BaseBlocState {
         filesPoStatus,
         filesPoMessage,
         filesPoLeadId,
+        poTypes,
+        customerIndustries,
+        customerSpecializations,
+        businessFields,
+        provinces,
+        customers,
       ];
 }

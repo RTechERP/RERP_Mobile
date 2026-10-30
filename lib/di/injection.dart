@@ -1011,7 +1011,7 @@ getIt.registerLazySingleton<ApproveBookingGuestHouseBloc>(
     ),
   );
 
-  getIt.registerFactory<LeadMarketingBloc>(
+  getIt.registerLazySingleton<LeadMarketingBloc>(
     () => LeadMarketingBloc(
       getIt<LeadMarketingRepo>(),
       getIt<LogUtils>(),

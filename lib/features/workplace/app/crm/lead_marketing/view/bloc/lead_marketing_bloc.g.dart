@@ -63,6 +63,20 @@ abstract class _$LeadMarketingStateCWProxy {
 
   LeadMarketingState filesPoLeadId(int? filesPoLeadId);
 
+  LeadMarketingState poTypes(List<LeadPoType> poTypes);
+
+  LeadMarketingState customerIndustries(
+      List<LeadCustomerIndustry> customerIndustries);
+
+  LeadMarketingState customerSpecializations(
+      List<LeadCustomerSpecialization> customerSpecializations);
+
+  LeadMarketingState businessFields(List<LeadBusinessField> businessFields);
+
+  LeadMarketingState provinces(List<LeadProvince> provinces);
+
+  LeadMarketingState customers(List<LeadCustomer> customers);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `LeadMarketingState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -98,6 +112,12 @@ abstract class _$LeadMarketingStateCWProxy {
     BaseStateStatus? filesPoStatus,
     String? filesPoMessage,
     int? filesPoLeadId,
+    List<LeadPoType>? poTypes,
+    List<LeadCustomerIndustry>? customerIndustries,
+    List<LeadCustomerSpecialization>? customerSpecializations,
+    List<LeadBusinessField>? businessFields,
+    List<LeadProvince>? provinces,
+    List<LeadCustomer>? customers,
   });
 }
 
@@ -211,6 +231,32 @@ class _$LeadMarketingStateCWProxyImpl implements _$LeadMarketingStateCWProxy {
       this(filesPoLeadId: filesPoLeadId);
 
   @override
+  LeadMarketingState poTypes(List<LeadPoType> poTypes) =>
+      this(poTypes: poTypes);
+
+  @override
+  LeadMarketingState customerIndustries(
+          List<LeadCustomerIndustry> customerIndustries) =>
+      this(customerIndustries: customerIndustries);
+
+  @override
+  LeadMarketingState customerSpecializations(
+          List<LeadCustomerSpecialization> customerSpecializations) =>
+      this(customerSpecializations: customerSpecializations);
+
+  @override
+  LeadMarketingState businessFields(List<LeadBusinessField> businessFields) =>
+      this(businessFields: businessFields);
+
+  @override
+  LeadMarketingState provinces(List<LeadProvince> provinces) =>
+      this(provinces: provinces);
+
+  @override
+  LeadMarketingState customers(List<LeadCustomer> customers) =>
+      this(customers: customers);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `LeadMarketingState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -247,6 +293,12 @@ class _$LeadMarketingStateCWProxyImpl implements _$LeadMarketingStateCWProxy {
     Object? filesPoStatus = const $CopyWithPlaceholder(),
     Object? filesPoMessage = const $CopyWithPlaceholder(),
     Object? filesPoLeadId = const $CopyWithPlaceholder(),
+    Object? poTypes = const $CopyWithPlaceholder(),
+    Object? customerIndustries = const $CopyWithPlaceholder(),
+    Object? customerSpecializations = const $CopyWithPlaceholder(),
+    Object? businessFields = const $CopyWithPlaceholder(),
+    Object? provinces = const $CopyWithPlaceholder(),
+    Object? customers = const $CopyWithPlaceholder(),
   }) {
     return LeadMarketingState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -371,6 +423,34 @@ class _$LeadMarketingStateCWProxyImpl implements _$LeadMarketingStateCWProxy {
           ? _value.filesPoLeadId
           // ignore: cast_nullable_to_non_nullable
           : filesPoLeadId as int?,
+      poTypes: poTypes == const $CopyWithPlaceholder() || poTypes == null
+          ? _value.poTypes
+          // ignore: cast_nullable_to_non_nullable
+          : poTypes as List<LeadPoType>,
+      customerIndustries: customerIndustries == const $CopyWithPlaceholder() ||
+              customerIndustries == null
+          ? _value.customerIndustries
+          // ignore: cast_nullable_to_non_nullable
+          : customerIndustries as List<LeadCustomerIndustry>,
+      customerSpecializations:
+          customerSpecializations == const $CopyWithPlaceholder() ||
+                  customerSpecializations == null
+              ? _value.customerSpecializations
+              // ignore: cast_nullable_to_non_nullable
+              : customerSpecializations as List<LeadCustomerSpecialization>,
+      businessFields: businessFields == const $CopyWithPlaceholder() ||
+              businessFields == null
+          ? _value.businessFields
+          // ignore: cast_nullable_to_non_nullable
+          : businessFields as List<LeadBusinessField>,
+      provinces: provinces == const $CopyWithPlaceholder() || provinces == null
+          ? _value.provinces
+          // ignore: cast_nullable_to_non_nullable
+          : provinces as List<LeadProvince>,
+      customers: customers == const $CopyWithPlaceholder() || customers == null
+          ? _value.customers
+          // ignore: cast_nullable_to_non_nullable
+          : customers as List<LeadCustomer>,
     );
   }
 }

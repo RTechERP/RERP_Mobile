@@ -724,4 +724,30 @@ class ApiEndPoint {
   /// Danh sách file đính kèm của phiếu lead.
   /// API: GET /Lead/get-files?customerContactId=11294&fileType=1.
   static const String getLeadFiles = '/Lead/get-files';
+
+  /// Danh sách nhóm hàng (loại PO) dùng khi tạo phiếu lead.
+  /// API: GET /Lead/po-types.
+  static const String getLeadPoTypes = '/Lead/po-types';
+
+  // CRM - Danh mục khách hàng (dùng khi tạo phiếu lead)
+  /// Danh sách lĩnh vực của khách hàng.
+  /// API: GET /Customer/get-customer-industry.
+  static const String getCustomerIndustries = '/Customer/get-customer-industry';
+
+  /// Danh sách ngành nghề của khách hàng.
+  /// API: GET /Customer/get-customer-specialization.
+  static const String getCustomerSpecializations =
+      '/Customer/get-customer-specialization';
+
+  /// Danh sách lĩnh vực kinh doanh (business field).
+  /// API: GET /Customer/get-business-field.
+  static const String getBusinessFields = '/Customer/get-business-field';
+
+  /// Danh sách tỉnh/thành.
+  /// API: GET /Customer/get-provinces.
+  static const String getCustomerProvinces = '/Customer/get-provinces';
+
+  /// Danh sách khách hàng.
+  /// API: GET /Customer/get-customers.
+  static const String getCustomerList = '/Customer/get-customers';
 }

@@ -47,4 +47,8 @@ class LeadMarketingEvent with _$LeadMarketingEvent {
   const factory LeadMarketingEvent.loadFilesPo({
     required int customerContactId,
   }) = _LoadFilesPo;
+
+  /// Tải toàn bộ danh mục cần cho form tạo phiếu lead: nhóm hàng, lĩnh vực,
+  /// ngành nghề, business field, tỉnh/thành và khách hàng.
+  const factory LeadMarketingEvent.loadFormOptions() = _LoadFormOptions;
 }

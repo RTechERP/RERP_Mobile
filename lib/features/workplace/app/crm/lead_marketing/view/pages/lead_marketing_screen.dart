@@ -9,6 +9,7 @@ import '../../../../../../../../base/widgets/base_widget.dart';
 import '../../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../../common/constants/index.dart';
 import '../../../../../../../../common/widgets/date_range_picker.dart';
+import '../../../../../../../../routes/route_names.dart';
 import '../../data/datasource/models/lead_marketing_model.dart';
 import '../../view/bloc/lead_marketing_bloc.dart';
 import '../../view/widgets/lead_marketing_card.dart';
@@ -26,7 +27,7 @@ class LeadMarketingScreen extends StatefulWidget {
   State<LeadMarketingScreen> createState() => _LeadMarketingScreenState();
 }
 
-class _LeadMarketingScreenState extends BaseState<
+class _LeadMarketingScreenState extends BaseShareState<
     LeadMarketingScreen,
     LeadMarketingEvent,
     LeadMarketingState,
@@ -41,6 +42,9 @@ class _LeadMarketingScreenState extends BaseState<
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       bloc.add(const LeadMarketingEvent.init());
+      // Tải trước danh mục cho form tạo phiếu lead để khi mở màn add
+      // không phải chờ mạng.
+      bloc.add(const LeadMarketingEvent.loadFormOptions());
     });
   }
 
@@ -191,6 +195,20 @@ class _LeadMarketingScreenState extends BaseState<
                 ),
               ),
             ],
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () async {
+              final reload = await context.push(
+                RouteNames.crmLeadMarketingAdd,
+              );
+
+              if (reload == true) {
+                bloc.add(const LeadMarketingEvent.init());
+              }
+            },
+            backgroundColor: AppColors.primaryERP,
+            foregroundColor: Colors.white,
+            child: const Icon(Icons.add),
           ),
         );
       },

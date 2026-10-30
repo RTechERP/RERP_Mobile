@@ -78,6 +78,131 @@ Map<String, dynamic> _$$LeadRoleContextImplToJson(
       'CanAssign': instance.canAssign,
     };
 
+_$LeadPoTypeImpl _$$LeadPoTypeImplFromJson(Map<String, dynamic> json) =>
+    _$LeadPoTypeImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      mainIndex: json['MainIndex'] as String?,
+      mainGroup: (json['MainGroup'] as num?)?.toInt(),
+      mainIndex1: json['MainIndex1'] as String?,
+    );
+
+Map<String, dynamic> _$$LeadPoTypeImplToJson(_$LeadPoTypeImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'MainIndex': instance.mainIndex,
+      'MainGroup': instance.mainGroup,
+      'MainIndex1': instance.mainIndex1,
+    };
+
+_$LeadCustomerIndustryImpl _$$LeadCustomerIndustryImplFromJson(
+        Map<String, dynamic> json) =>
+    _$LeadCustomerIndustryImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      industriesNameVi: json['IndustriesNameVI'] as String?,
+      industriesNameEn: json['IndustriesNameEN'] as String?,
+      numberOrder: (json['NumberOrder'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$LeadCustomerIndustryImplToJson(
+        _$LeadCustomerIndustryImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'IndustriesNameVI': instance.industriesNameVi,
+      'IndustriesNameEN': instance.industriesNameEn,
+      'NumberOrder': instance.numberOrder,
+    };
+
+_$LeadCustomerSpecializationImpl _$$LeadCustomerSpecializationImplFromJson(
+        Map<String, dynamic> json) =>
+    _$LeadCustomerSpecializationImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      stt: (json['STT'] as num?)?.toInt(),
+      code: json['Code'] as String?,
+      name: json['Name'] as String?,
+    );
+
+Map<String, dynamic> _$$LeadCustomerSpecializationImplToJson(
+        _$LeadCustomerSpecializationImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'STT': instance.stt,
+      'Code': instance.code,
+      'Name': instance.name,
+    };
+
+_$LeadBusinessFieldImpl _$$LeadBusinessFieldImplFromJson(
+        Map<String, dynamic> json) =>
+    _$LeadBusinessFieldImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      stt: (json['STT'] as num?)?.toInt(),
+      code: json['Code'] as String?,
+      name: json['Name'] as String?,
+    );
+
+Map<String, dynamic> _$$LeadBusinessFieldImplToJson(
+        _$LeadBusinessFieldImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'STT': instance.stt,
+      'Code': instance.code,
+      'Name': instance.name,
+    };
+
+_$LeadProvinceImpl _$$LeadProvinceImplFromJson(Map<String, dynamic> json) =>
+    _$LeadProvinceImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      stt: (json['STT'] as num?)?.toInt(),
+      provinceCode: json['ProvinceCode'] as String?,
+      provinceName: json['ProvinceName'] as String?,
+    );
+
+Map<String, dynamic> _$$LeadProvinceImplToJson(_$LeadProvinceImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'STT': instance.stt,
+      'ProvinceCode': instance.provinceCode,
+      'ProvinceName': instance.provinceName,
+    };
+
+_$LeadCustomerImpl _$$LeadCustomerImplFromJson(Map<String, dynamic> json) =>
+    _$LeadCustomerImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      customerName: json['CustomerName'] as String?,
+      customerCode: json['CustomerCode'] as String?,
+      customerShortName: json['CustomerShortName'] as String?,
+      address: json['Address'] as String?,
+      phone: json['Phone'] as String?,
+      email: json['Email'] as String?,
+      contactName: json['ContactName'] as String?,
+      contactPhone: json['ContactPhone'] as String?,
+      contactEmail: json['ContactEmail'] as String?,
+      province: json['Province'] as String?,
+      customerType: (json['CustomerType'] as num?)?.toInt(),
+      customerIndustriesId: (json['CustomerIndustriesID'] as num?)?.toInt(),
+      customerSpecializationId:
+          (json['CustomerSpecializationID'] as num?)?.toInt(),
+      taxCode: json['TaxCode'] as String?,
+    );
+
+Map<String, dynamic> _$$LeadCustomerImplToJson(_$LeadCustomerImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'CustomerName': instance.customerName,
+      'CustomerCode': instance.customerCode,
+      'CustomerShortName': instance.customerShortName,
+      'Address': instance.address,
+      'Phone': instance.phone,
+      'Email': instance.email,
+      'ContactName': instance.contactName,
+      'ContactPhone': instance.contactPhone,
+      'ContactEmail': instance.contactEmail,
+      'Province': instance.province,
+      'CustomerType': instance.customerType,
+      'CustomerIndustriesID': instance.customerIndustriesId,
+      'CustomerSpecializationID': instance.customerSpecializationId,
+      'TaxCode': instance.taxCode,
+    };
+
 _$LeadMarketingItemImpl _$$LeadMarketingItemImplFromJson(
         Map<String, dynamic> json) =>
     _$LeadMarketingItemImpl(

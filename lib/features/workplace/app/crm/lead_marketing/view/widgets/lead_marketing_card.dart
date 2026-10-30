@@ -171,6 +171,12 @@ class LeadMarketingCard extends StatelessWidget {
         spacing: 6,
         runSpacing: 6,
         children: [
+          if ((item.customerCode ?? '').trim().isNotEmpty)
+            _StatusChip(
+              label: item.customerCode!.trim(),
+              color: AppColors.purpleA400,
+              icon: Icons.badge_outlined,
+            ),
           if ((item.poTypeName ?? '').trim().isNotEmpty)
             _StatusChip(
               label: item.poTypeName!.trim(),
@@ -183,12 +189,7 @@ class LeadMarketingCard extends StatelessWidget {
               color: AppColors.tealA400,
               icon: Icons.campaign_outlined,
             ),
-          if ((item.customerCode ?? '').trim().isNotEmpty)
-            _StatusChip(
-              label: item.customerCode!.trim(),
-              color: AppColors.purpleA400,
-              icon: Icons.badge_outlined,
-            ),
+
         ],
       ),
     );

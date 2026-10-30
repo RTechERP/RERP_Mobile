@@ -145,4 +145,96 @@ class LeadMarketingRepoImpl implements LeadMarketingRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, List<LeadPoType>>> getLeadPoTypes() async {
+    try {
+      final res = await _service.getLeadPoTypes();
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<LeadCustomerIndustry>>>
+      getCustomerIndustries() async {
+    try {
+      final res = await _service.getCustomerIndustries();
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<LeadCustomerSpecialization>>>
+      getCustomerSpecializations() async {
+    try {
+      final res = await _service.getCustomerSpecializations();
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<LeadBusinessField>>> getBusinessFields() async {
+    try {
+      final res = await _service.getBusinessFields();
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<LeadProvince>>> getCustomerProvinces() async {
+    try {
+      final res = await _service.getCustomerProvinces();
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<LeadCustomer>>> getCustomers() async {
+    try {
+      final res = await _service.getCustomers();
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

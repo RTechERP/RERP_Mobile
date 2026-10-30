@@ -47,6 +47,7 @@ class LeadMarketingBloc extends BaseBloc<LeadMarketingEvent, LeadMarketingState>
             _onLoadFiles(emit, customerContactId: customerContactId),
         loadFilesPo: (customerContactId) =>
             _onLoadFilesPo(emit, customerContactId: customerContactId),
+        loadFormOptions: () => _onLoadFormOptions(emit),
       );
     });
   }
@@ -268,6 +269,49 @@ class LeadMarketingBloc extends BaseBloc<LeadMarketingEvent, LeadMarketingState>
           filesPoLeadId: customerContactId,
         ));
       },
+    );
+  }
+
+  /// Tải toàn bộ danh mục dùng cho form tạo phiếu lead.
+  ///
+  /// Gồm: nhóm hàng (loại PO), lĩnh vực, ngành nghề, business field,
+  /// tỉnh/thành và khách hàng. Lỗi tải một danh mục không chặn các danh mục
+  /// còn lại.
+  Future<void> _onLoadFormOptions(Emitter<LeadMarketingState> emit) async {
+    final poTypes = await _repo.getLeadPoTypes();
+    poTypes.fold(
+      (l) => _log.logE('Get lead PO types failed: $l'),
+      (r) => emit(state.copyWith(poTypes: r)),
+    );
+
+    final industries = await _repo.getCustomerIndustries();
+    industries.fold(
+      (l) => _log.logE('Get customer industries failed: $l'),
+      (r) => emit(state.copyWith(customerIndustries: r)),
+    );
+
+    final specializations = await _repo.getCustomerSpecializations();
+    specializations.fold(
+      (l) => _log.logE('Get customer specializations failed: $l'),
+      (r) => emit(state.copyWith(customerSpecializations: r)),
+    );
+
+    final businessFields = await _repo.getBusinessFields();
+    businessFields.fold(
+      (l) => _log.logE('Get business fields failed: $l'),
+      (r) => emit(state.copyWith(businessFields: r)),
+    );
+
+    final provinces = await _repo.getCustomerProvinces();
+    provinces.fold(
+      (l) => _log.logE('Get customer provinces failed: $l'),
+      (r) => emit(state.copyWith(provinces: r)),
+    );
+
+    final customers = await _repo.getCustomers();
+    customers.fold(
+      (l) => _log.logE('Get customers failed: $l'),
+      (r) => emit(state.copyWith(customers: r)),
     );
   }
 

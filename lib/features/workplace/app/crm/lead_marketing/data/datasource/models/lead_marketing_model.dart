@@ -121,6 +121,136 @@ class LeadRoleContext with _$LeadRoleContext {
       _$LeadRoleContextFromJson(json);
 }
 
+/// Nhóm hàng (loại PO) dùng khi tạo phiếu lead.
+///
+/// API: GET /Lead/po-types.
+@freezed
+class LeadPoType with _$LeadPoType {
+  const factory LeadPoType({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'MainIndex') String? mainIndex,
+    @JsonKey(name: 'MainGroup') int? mainGroup,
+    @JsonKey(name: 'MainIndex1') String? mainIndex1,
+  }) = _LeadPoType;
+
+  factory LeadPoType.fromJson(Map<String, dynamic> json) =>
+      _$LeadPoTypeFromJson(json);
+}
+
+/// Lĩnh vực của khách hàng.
+///
+/// API: GET /Customer/get-customer-industry.
+@freezed
+class LeadCustomerIndustry with _$LeadCustomerIndustry {
+  const factory LeadCustomerIndustry({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'IndustriesNameVI') String? industriesNameVi,
+    @JsonKey(name: 'IndustriesNameEN') String? industriesNameEn,
+    @JsonKey(name: 'NumberOrder') int? numberOrder,
+  }) = _LeadCustomerIndustry;
+
+  factory LeadCustomerIndustry.fromJson(Map<String, dynamic> json) =>
+      _$LeadCustomerIndustryFromJson(json);
+}
+
+/// Ngành nghề của khách hàng.
+///
+/// API: GET /Customer/get-customer-specialization.
+@freezed
+class LeadCustomerSpecialization with _$LeadCustomerSpecialization {
+  const factory LeadCustomerSpecialization({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'STT') int? stt,
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'Name') String? name,
+  }) = _LeadCustomerSpecialization;
+
+  factory LeadCustomerSpecialization.fromJson(Map<String, dynamic> json) =>
+      _$LeadCustomerSpecializationFromJson(json);
+}
+
+/// Lĩnh vực kinh doanh (business field).
+///
+/// API: GET /Customer/get-business-field.
+@freezed
+class LeadBusinessField with _$LeadBusinessField {
+  const factory LeadBusinessField({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'STT') int? stt,
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'Name') String? name,
+  }) = _LeadBusinessField;
+
+  factory LeadBusinessField.fromJson(Map<String, dynamic> json) =>
+      _$LeadBusinessFieldFromJson(json);
+}
+
+/// Tỉnh/thành.
+///
+/// API: GET /Customer/get-provinces.
+@freezed
+class LeadProvince with _$LeadProvince {
+  const factory LeadProvince({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'STT') int? stt,
+    @JsonKey(name: 'ProvinceCode') String? provinceCode,
+    @JsonKey(name: 'ProvinceName') String? provinceName,
+  }) = _LeadProvince;
+
+  factory LeadProvince.fromJson(Map<String, dynamic> json) =>
+      _$LeadProvinceFromJson(json);
+}
+
+/// Khách hàng dùng khi tạo phiếu lead.
+///
+/// API: GET /Customer/get-customers.
+@freezed
+class LeadCustomer with _$LeadCustomer {
+  const factory LeadCustomer({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'CustomerName') String? customerName,
+    @JsonKey(name: 'CustomerCode') String? customerCode,
+    @JsonKey(name: 'CustomerShortName') String? customerShortName,
+    @JsonKey(name: 'Address') String? address,
+    @JsonKey(name: 'Phone') String? phone,
+    @JsonKey(name: 'Email') String? email,
+    @JsonKey(name: 'ContactName') String? contactName,
+    @JsonKey(name: 'ContactPhone') String? contactPhone,
+    @JsonKey(name: 'ContactEmail') String? contactEmail,
+    @JsonKey(name: 'Province') String? province,
+    @JsonKey(name: 'CustomerType') int? customerType,
+    @JsonKey(name: 'CustomerIndustriesID') int? customerIndustriesId,
+    @JsonKey(name: 'CustomerSpecializationID') int? customerSpecializationId,
+    @JsonKey(name: 'TaxCode') String? taxCode,
+  }) = _LeadCustomer;
+
+  factory LeadCustomer.fromJson(Map<String, dynamic> json) =>
+      _$LeadCustomerFromJson(json);
+}
+
+/// Loại khách hàng.
+///
+/// Backend chưa có API danh sách nên tạm đặt cố định 3 giá trị, giá trị gửi
+/// API sẽ chốt sau.
+enum LeadCustomerType {
+  /// Thị trường nội bộ.
+  domestic(1, 'TM'),
+
+  /// Xuất khẩu.
+  export(2, 'EU'),
+
+  /// Nội địa.
+  domesticMarket(3, 'SI');
+
+  const LeadCustomerType(this.value, this.label);
+
+  /// Mã gửi API.
+  final int value;
+
+  /// Mã hiển thị cho người dùng.
+  final String label;
+}
+
 /// Một phiếu lead trong danh sách.
 ///
 /// API: GET /Lead/get-data.
