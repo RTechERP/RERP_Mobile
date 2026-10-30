@@ -347,4 +347,9 @@ class RouteNames {
   ///
   /// Dùng absolute path để `context.push` không bị lỗi match với route cha.
   static const crmLeadMarketingAdd = '/crm/lead_marketing/add';
+
+  /// Màn chỉnh sửa phiếu lead (route con của [crmLeadMarketing]).
+  ///
+  /// Dùng absolute path để `context.push` không bị lỗi match với route cha.
+  static const crmLeadMarketingEdit = '/crm/lead_marketing/edit';
 }

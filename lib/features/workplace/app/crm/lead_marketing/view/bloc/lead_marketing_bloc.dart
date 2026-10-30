@@ -417,12 +417,15 @@ class LeadMarketingBloc extends BaseBloc<LeadMarketingEvent, LeadMarketingState>
     ));
 
     if (!skipDuplicateCheck) {
-      // Bước 1: kiểm tra trùng lặp.
+      // Bước 1: kiểm tra trùng lặp. Khi chỉnh sửa, loại trừ chính phiếu
+      // đang sửa để không tự trùng với bản ghi cũ.
+      final leadId = (payload['ID'] as int?) ?? 0;
       final dupRes = await _repo.checkDuplicate(
         phone: (payload['ContactPhone'] ?? '').toString(),
         email: (payload['ContactEmail'] ?? '').toString(),
         taxCode: (payload['TaxCode'] ?? '').toString(),
         companyName: (payload['CompanyName'] ?? '').toString(),
+        excludeLeadId: leadId,
       );
 
       // `checkDuplicate` chỉ trả `Right` khi API trả `status = 1` (API đã

@@ -212,7 +212,9 @@ import '../features/workplace/app/summary_work/overtime/view/bloc/summary_overti
 import '../features/workplace/app/summary_work/overtime/view/pages/summary_overtime_screen.dart';
 import '../features/workplace/app/crm/summary_customer/view/bloc/summary_customer_bloc.dart';
 import '../features/workplace/app/crm/summary_customer/view/pages/summary_customer_screen.dart';
+import '../features/workplace/app/crm/lead_marketing/data/datasource/models/lead_marketing_model.dart';
 import '../features/workplace/app/crm/lead_marketing/view/pages/lead_marketing_add_screen.dart';
+import '../features/workplace/app/crm/lead_marketing/view/pages/lead_marketing_edit_screen.dart';
 import '../features/workplace/app/crm/lead_marketing/view/pages/lead_marketing_screen.dart';
 import '../features/workplace/app/crm/view/pages/crm_menu_screen.dart';
 import '../features/workplace/app/warehouse/enums/warehouse_type.dart';
@@ -2050,6 +2052,31 @@ class AppRouter {
                 // Path con phải là relative (không có `/` đầu).
                 path: 'add',
                 builder: (context, state) => const LeadMarketingAddScreen(),
+              ),
+              GoRoute(
+                // Path con phải là relative (không có `/` đầu).
+                path: 'edit',
+                builder: (context, state) {
+                  final extra = state.extra;
+                  int leadId = 0;
+                  int? stage;
+                  String? customerLabel;
+                  LeadCustomer? customerSnapshot;
+                  if (extra is Map) {
+                    leadId = (extra['id'] as int?) ?? 0;
+                    stage = extra['stage'] as int?;
+                    customerLabel = extra['customerLabel'] as String?;
+                    customerSnapshot = extra['customerSnapshot'] as LeadCustomer?;
+                  } else if (extra is int) {
+                    leadId = extra;
+                  }
+                  return LeadMarketingEditScreen(
+                    leadId: leadId,
+                    stage: stage,
+                    customerLabel: customerLabel,
+                    customerSnapshot: customerSnapshot,
+                  );
+                },
               ),
             ],
           ),

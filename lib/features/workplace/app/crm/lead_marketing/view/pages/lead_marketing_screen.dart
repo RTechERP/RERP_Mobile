@@ -130,7 +130,8 @@ class _LeadMarketingScreenState extends BaseShareState<
 
   /// Mở menu thao tác khi bấm vào card phiếu lead.
   ///
-  /// Menu gồm: xem chi tiết, xoá phiếu. Xoá phiếu cần xác nhận trước.
+  /// Menu gồm: xem chi tiết, chỉnh sửa, xoá phiếu. Xoá phiếu cần xác nhận
+  /// trước.
   Future<void> _openMenu(
     BuildContext context,
     LeadMarketingItem item,
@@ -145,10 +146,41 @@ class _LeadMarketingScreenState extends BaseShareState<
       case 'detail':
         await LeadMarketingDetailSheet.show(context, item);
         break;
+      case 'edit':
+        _goToEditScreen(item);
+        break;
       case 'delete':
         await _confirmDeleteLead(context, item);
         break;
     }
+  }
+
+  /// Mở màn chỉnh sửa phiếu lead.
+  ///
+  /// Truyền `ID`, giai đoạn hiện tại và thông tin khách hàng qua `extra` để
+  /// màn edit dựng payload khi lưu đúng với phiếu đang sửa.
+  void _goToEditScreen(LeadMarketingItem item) {
+    final id = item.id;
+    if (id == null) return;
+
+    // Ảnh chụp thông tin khách hàng từ danh sách để dựng payload khi API
+    // chi tiết khách hàng chưa kịp về (các field API chi tiết phiếu không
+    // trả: TaxCode, Website, BusinessFieldID).
+    final customerId = item.customerId;
+    final customerMatches = customerId == null
+        ? const <LeadCustomer>[]
+        : bloc.state.customers.where((c) => c.id == customerId).toList();
+    final customer = customerMatches.isEmpty ? null : customerMatches.first;
+
+    context.push(
+      RouteNames.crmLeadMarketingEdit,
+      extra: {
+        'id': id,
+        'stage': item.stage,
+        'customerLabel': item.companyName,
+        'customerSnapshot': customer,
+      },
+    );
   }
 
   /// Xác nhận rồi xoá phiếu lead.

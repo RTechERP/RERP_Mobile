@@ -25,6 +25,14 @@ class LeadMenuItem {
     color: Color(0xFF1E88E5),
   );
 
+  /// Thao tác chỉnh sửa phiếu lead.
+  static const LeadMenuItem edit = LeadMenuItem(
+    id: 'edit',
+    name: 'Chỉnh sửa',
+    icon: Icons.edit_outlined,
+    color: Color(0xFFFB8C00),
+  );
+
   /// Thao tác xoá phiếu lead.
   static const LeadMenuItem delete = LeadMenuItem(
     id: 'delete',
@@ -34,7 +42,7 @@ class LeadMenuItem {
   );
 
   /// Danh sách thao tác mặc định của phiếu lead.
-  static const List<LeadMenuItem> menuItems = [detail, delete];
+  static const List<LeadMenuItem> menuItems = [detail, edit, delete];
 }
 
 /// Bottom sheet hiển thị menu thao tác của một phiếu lead.
@@ -140,7 +148,9 @@ class LeadMenuSheet extends StatelessWidget {
               padding: const EdgeInsets.all(16),
               shrinkWrap: true,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: menuItems.length > 4 ? 3 : 2,
+                // Từ 3 mục trở lên dùng 3 cột để ô menu gọn, không bị to
+                // như màn vật tư.
+                crossAxisCount: menuItems.length >= 3 ? 3 : 2,
                 crossAxisSpacing: 12,
                 mainAxisSpacing: 12,
                 childAspectRatio: 0.95,
