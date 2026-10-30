@@ -65,4 +65,21 @@ abstract class LeadMarketingRepo {
   Future<Either<BaseError, LeadCustomer>> getCustomerDetail({
     required int id,
   });
+
+  /// Kiểm tra trùng lặp phiếu lead trước khi lưu.
+  ///
+  /// [excludeLeadId] là ID phiếu đang sửa (0 khi tạo mới) để không tự
+  /// trùng với chính nó.
+  Future<Either<BaseError, LeadDuplicateCheckResult>> checkDuplicate({
+    required String phone,
+    String? email,
+    String? taxCode,
+    String? companyName,
+    int excludeLeadId = 0,
+  });
+
+  /// Lưu phiếu lead (thêm mới hoặc cập nhật).
+  Future<Either<BaseError, LeadSaveResult>> saveData({
+    required Map<String, dynamic> payload,
+  });
 }

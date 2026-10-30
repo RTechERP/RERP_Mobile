@@ -57,4 +57,31 @@ class LeadMarketingEvent with _$LeadMarketingEvent {
   const factory LeadMarketingEvent.loadCustomerDetail({
     required int id,
   }) = _LoadCustomerDetail;
+
+  /// Kiểm tra trùng lặp rồi lưu phiếu lead.
+  ///
+  /// Bloc sẽ gọi `POST /Lead/check-duplicate` trước; nếu API phát hiện bản ghi
+  /// trùng thì dừng lại để UI hỏi người dùng, nếu không mới gọi tiếp
+  /// `POST /Lead/save-data`.
+  const factory LeadMarketingEvent.submitLead({
+    required Map<String, dynamic> payload,
+  }) = _SubmitLead;
+
+  /// Người dùng đã xác nhận lưu phiếu lead bị trùng.
+  ///
+  /// Gửi lại payload để bloc gọi thẳng API lưu, bỏ qua bước kiểm tra
+  /// trùng lặp.
+  const factory LeadMarketingEvent.confirmDuplicateSave({
+    required Map<String, dynamic> payload,
+  }) = _ConfirmDuplicateSave;
+
+  /// Người dùng huỷ lưu phiếu lead bị trùng — quay lại màn form.
+  const factory LeadMarketingEvent.cancelDuplicateSave() =
+      _CancelDuplicateSave;
+
+  /// Xóa trạng thái kết quả lưu phiếu lead.
+  ///
+  /// Bloc là singleton nên state còn sót lại sẽ khiến màn add hiển thị lại
+  /// thông báo và đẩy người dùng ra khỏi màn khi vào lại.
+  const factory LeadMarketingEvent.clearSubmitState() = _ClearSubmitState;
 }

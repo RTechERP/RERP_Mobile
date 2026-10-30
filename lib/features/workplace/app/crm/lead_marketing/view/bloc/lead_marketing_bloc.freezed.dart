@@ -32,6 +32,11 @@ mixin _$LeadMarketingEvent {
     required TResult Function(int customerContactId) loadFilesPo,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
+    required TResult Function(Map<String, dynamic> payload) submitLead,
+    required TResult Function(Map<String, dynamic> payload)
+        confirmDuplicateSave,
+    required TResult Function() cancelDuplicateSave,
+    required TResult Function() clearSubmitState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -49,6 +54,10 @@ mixin _$LeadMarketingEvent {
     TResult? Function(int customerContactId)? loadFilesPo,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitLead,
+    TResult? Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult? Function()? cancelDuplicateSave,
+    TResult? Function()? clearSubmitState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -66,6 +75,10 @@ mixin _$LeadMarketingEvent {
     TResult Function(int customerContactId)? loadFilesPo,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
+    TResult Function(Map<String, dynamic> payload)? submitLead,
+    TResult Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult Function()? cancelDuplicateSave,
+    TResult Function()? clearSubmitState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -82,6 +95,10 @@ mixin _$LeadMarketingEvent {
     required TResult Function(_LoadFilesPo value) loadFilesPo,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
+    required TResult Function(_SubmitLead value) submitLead,
+    required TResult Function(_ConfirmDuplicateSave value) confirmDuplicateSave,
+    required TResult Function(_CancelDuplicateSave value) cancelDuplicateSave,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -97,6 +114,10 @@ mixin _$LeadMarketingEvent {
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult? Function(_SubmitLead value)? submitLead,
+    TResult? Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult? Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -112,6 +133,10 @@ mixin _$LeadMarketingEvent {
     TResult Function(_LoadFilesPo value)? loadFilesPo,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult Function(_SubmitLead value)? submitLead,
+    TResult Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -186,6 +211,11 @@ class _$InitImpl implements _Init {
     required TResult Function(int customerContactId) loadFilesPo,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
+    required TResult Function(Map<String, dynamic> payload) submitLead,
+    required TResult Function(Map<String, dynamic> payload)
+        confirmDuplicateSave,
+    required TResult Function() cancelDuplicateSave,
+    required TResult Function() clearSubmitState,
   }) {
     return init();
   }
@@ -206,6 +236,10 @@ class _$InitImpl implements _Init {
     TResult? Function(int customerContactId)? loadFilesPo,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitLead,
+    TResult? Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult? Function()? cancelDuplicateSave,
+    TResult? Function()? clearSubmitState,
   }) {
     return init?.call();
   }
@@ -226,6 +260,10 @@ class _$InitImpl implements _Init {
     TResult Function(int customerContactId)? loadFilesPo,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
+    TResult Function(Map<String, dynamic> payload)? submitLead,
+    TResult Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult Function()? cancelDuplicateSave,
+    TResult Function()? clearSubmitState,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -248,6 +286,10 @@ class _$InitImpl implements _Init {
     required TResult Function(_LoadFilesPo value) loadFilesPo,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
+    required TResult Function(_SubmitLead value) submitLead,
+    required TResult Function(_ConfirmDuplicateSave value) confirmDuplicateSave,
+    required TResult Function(_CancelDuplicateSave value) cancelDuplicateSave,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
   }) {
     return init(this);
   }
@@ -266,6 +308,10 @@ class _$InitImpl implements _Init {
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult? Function(_SubmitLead value)? submitLead,
+    TResult? Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult? Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
   }) {
     return init?.call(this);
   }
@@ -284,6 +330,10 @@ class _$InitImpl implements _Init {
     TResult Function(_LoadFilesPo value)? loadFilesPo,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult Function(_SubmitLead value)? submitLead,
+    TResult Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -385,6 +435,11 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(int customerContactId) loadFilesPo,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
+    required TResult Function(Map<String, dynamic> payload) submitLead,
+    required TResult Function(Map<String, dynamic> payload)
+        confirmDuplicateSave,
+    required TResult Function() cancelDuplicateSave,
+    required TResult Function() clearSubmitState,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -405,6 +460,10 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(int customerContactId)? loadFilesPo,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitLead,
+    TResult? Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult? Function()? cancelDuplicateSave,
+    TResult? Function()? clearSubmitState,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -425,6 +484,10 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(int customerContactId)? loadFilesPo,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
+    TResult Function(Map<String, dynamic> payload)? submitLead,
+    TResult Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult Function()? cancelDuplicateSave,
+    TResult Function()? clearSubmitState,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -447,6 +510,10 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_LoadFilesPo value) loadFilesPo,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
+    required TResult Function(_SubmitLead value) submitLead,
+    required TResult Function(_ConfirmDuplicateSave value) confirmDuplicateSave,
+    required TResult Function(_CancelDuplicateSave value) cancelDuplicateSave,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
   }) {
     return changeDateRange(this);
   }
@@ -465,6 +532,10 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult? Function(_SubmitLead value)? submitLead,
+    TResult? Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult? Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
   }) {
     return changeDateRange?.call(this);
   }
@@ -483,6 +554,10 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_LoadFilesPo value)? loadFilesPo,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult Function(_SubmitLead value)? submitLead,
+    TResult Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -582,6 +657,11 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     required TResult Function(int customerContactId) loadFilesPo,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
+    required TResult Function(Map<String, dynamic> payload) submitLead,
+    required TResult Function(Map<String, dynamic> payload)
+        confirmDuplicateSave,
+    required TResult Function() cancelDuplicateSave,
+    required TResult Function() clearSubmitState,
   }) {
     return changeKeyword(keyword);
   }
@@ -602,6 +682,10 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult? Function(int customerContactId)? loadFilesPo,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitLead,
+    TResult? Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult? Function()? cancelDuplicateSave,
+    TResult? Function()? clearSubmitState,
   }) {
     return changeKeyword?.call(keyword);
   }
@@ -622,6 +706,10 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult Function(int customerContactId)? loadFilesPo,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
+    TResult Function(Map<String, dynamic> payload)? submitLead,
+    TResult Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult Function()? cancelDuplicateSave,
+    TResult Function()? clearSubmitState,
     required TResult orElse(),
   }) {
     if (changeKeyword != null) {
@@ -644,6 +732,10 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     required TResult Function(_LoadFilesPo value) loadFilesPo,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
+    required TResult Function(_SubmitLead value) submitLead,
+    required TResult Function(_ConfirmDuplicateSave value) confirmDuplicateSave,
+    required TResult Function(_CancelDuplicateSave value) cancelDuplicateSave,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
   }) {
     return changeKeyword(this);
   }
@@ -662,6 +754,10 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult? Function(_SubmitLead value)? submitLead,
+    TResult? Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult? Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
   }) {
     return changeKeyword?.call(this);
   }
@@ -680,6 +776,10 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult Function(_LoadFilesPo value)? loadFilesPo,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult Function(_SubmitLead value)? submitLead,
+    TResult Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
     required TResult orElse(),
   }) {
     if (changeKeyword != null) {
@@ -751,6 +851,11 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(int customerContactId) loadFilesPo,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
+    required TResult Function(Map<String, dynamic> payload) submitLead,
+    required TResult Function(Map<String, dynamic> payload)
+        confirmDuplicateSave,
+    required TResult Function() cancelDuplicateSave,
+    required TResult Function() clearSubmitState,
   }) {
     return refresh();
   }
@@ -771,6 +876,10 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(int customerContactId)? loadFilesPo,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitLead,
+    TResult? Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult? Function()? cancelDuplicateSave,
+    TResult? Function()? clearSubmitState,
   }) {
     return refresh?.call();
   }
@@ -791,6 +900,10 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(int customerContactId)? loadFilesPo,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
+    TResult Function(Map<String, dynamic> payload)? submitLead,
+    TResult Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult Function()? cancelDuplicateSave,
+    TResult Function()? clearSubmitState,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -813,6 +926,10 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_LoadFilesPo value) loadFilesPo,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
+    required TResult Function(_SubmitLead value) submitLead,
+    required TResult Function(_ConfirmDuplicateSave value) confirmDuplicateSave,
+    required TResult Function(_CancelDuplicateSave value) cancelDuplicateSave,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
   }) {
     return refresh(this);
   }
@@ -831,6 +948,10 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult? Function(_SubmitLead value)? submitLead,
+    TResult? Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult? Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
   }) {
     return refresh?.call(this);
   }
@@ -849,6 +970,10 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_LoadFilesPo value)? loadFilesPo,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult Function(_SubmitLead value)? submitLead,
+    TResult Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -987,6 +1112,11 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     required TResult Function(int customerContactId) loadFilesPo,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
+    required TResult Function(Map<String, dynamic> payload) submitLead,
+    required TResult Function(Map<String, dynamic> payload)
+        confirmDuplicateSave,
+    required TResult Function() cancelDuplicateSave,
+    required TResult Function() clearSubmitState,
   }) {
     return applyFilter(
         leadSourceId, marketingEmployeeId, saleEmployeeId, includeOpen, stage);
@@ -1008,6 +1138,10 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     TResult? Function(int customerContactId)? loadFilesPo,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitLead,
+    TResult? Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult? Function()? cancelDuplicateSave,
+    TResult? Function()? clearSubmitState,
   }) {
     return applyFilter?.call(
         leadSourceId, marketingEmployeeId, saleEmployeeId, includeOpen, stage);
@@ -1029,6 +1163,10 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     TResult Function(int customerContactId)? loadFilesPo,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
+    TResult Function(Map<String, dynamic> payload)? submitLead,
+    TResult Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult Function()? cancelDuplicateSave,
+    TResult Function()? clearSubmitState,
     required TResult orElse(),
   }) {
     if (applyFilter != null) {
@@ -1052,6 +1190,10 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     required TResult Function(_LoadFilesPo value) loadFilesPo,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
+    required TResult Function(_SubmitLead value) submitLead,
+    required TResult Function(_ConfirmDuplicateSave value) confirmDuplicateSave,
+    required TResult Function(_CancelDuplicateSave value) cancelDuplicateSave,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
   }) {
     return applyFilter(this);
   }
@@ -1070,6 +1212,10 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult? Function(_SubmitLead value)? submitLead,
+    TResult? Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult? Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
   }) {
     return applyFilter?.call(this);
   }
@@ -1088,6 +1234,10 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     TResult Function(_LoadFilesPo value)? loadFilesPo,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult Function(_SubmitLead value)? submitLead,
+    TResult Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
     required TResult orElse(),
   }) {
     if (applyFilter != null) {
@@ -1167,6 +1317,11 @@ class _$ClearFilterImpl implements _ClearFilter {
     required TResult Function(int customerContactId) loadFilesPo,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
+    required TResult Function(Map<String, dynamic> payload) submitLead,
+    required TResult Function(Map<String, dynamic> payload)
+        confirmDuplicateSave,
+    required TResult Function() cancelDuplicateSave,
+    required TResult Function() clearSubmitState,
   }) {
     return clearFilter();
   }
@@ -1187,6 +1342,10 @@ class _$ClearFilterImpl implements _ClearFilter {
     TResult? Function(int customerContactId)? loadFilesPo,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitLead,
+    TResult? Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult? Function()? cancelDuplicateSave,
+    TResult? Function()? clearSubmitState,
   }) {
     return clearFilter?.call();
   }
@@ -1207,6 +1366,10 @@ class _$ClearFilterImpl implements _ClearFilter {
     TResult Function(int customerContactId)? loadFilesPo,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
+    TResult Function(Map<String, dynamic> payload)? submitLead,
+    TResult Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult Function()? cancelDuplicateSave,
+    TResult Function()? clearSubmitState,
     required TResult orElse(),
   }) {
     if (clearFilter != null) {
@@ -1229,6 +1392,10 @@ class _$ClearFilterImpl implements _ClearFilter {
     required TResult Function(_LoadFilesPo value) loadFilesPo,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
+    required TResult Function(_SubmitLead value) submitLead,
+    required TResult Function(_ConfirmDuplicateSave value) confirmDuplicateSave,
+    required TResult Function(_CancelDuplicateSave value) cancelDuplicateSave,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
   }) {
     return clearFilter(this);
   }
@@ -1247,6 +1414,10 @@ class _$ClearFilterImpl implements _ClearFilter {
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult? Function(_SubmitLead value)? submitLead,
+    TResult? Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult? Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
   }) {
     return clearFilter?.call(this);
   }
@@ -1265,6 +1436,10 @@ class _$ClearFilterImpl implements _ClearFilter {
     TResult Function(_LoadFilesPo value)? loadFilesPo,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult Function(_SubmitLead value)? submitLead,
+    TResult Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
     required TResult orElse(),
   }) {
     if (clearFilter != null) {
@@ -1356,6 +1531,11 @@ class _$LoadDetailImpl implements _LoadDetail {
     required TResult Function(int customerContactId) loadFilesPo,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
+    required TResult Function(Map<String, dynamic> payload) submitLead,
+    required TResult Function(Map<String, dynamic> payload)
+        confirmDuplicateSave,
+    required TResult Function() cancelDuplicateSave,
+    required TResult Function() clearSubmitState,
   }) {
     return loadDetail(id);
   }
@@ -1376,6 +1556,10 @@ class _$LoadDetailImpl implements _LoadDetail {
     TResult? Function(int customerContactId)? loadFilesPo,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitLead,
+    TResult? Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult? Function()? cancelDuplicateSave,
+    TResult? Function()? clearSubmitState,
   }) {
     return loadDetail?.call(id);
   }
@@ -1396,6 +1580,10 @@ class _$LoadDetailImpl implements _LoadDetail {
     TResult Function(int customerContactId)? loadFilesPo,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
+    TResult Function(Map<String, dynamic> payload)? submitLead,
+    TResult Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult Function()? cancelDuplicateSave,
+    TResult Function()? clearSubmitState,
     required TResult orElse(),
   }) {
     if (loadDetail != null) {
@@ -1418,6 +1606,10 @@ class _$LoadDetailImpl implements _LoadDetail {
     required TResult Function(_LoadFilesPo value) loadFilesPo,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
+    required TResult Function(_SubmitLead value) submitLead,
+    required TResult Function(_ConfirmDuplicateSave value) confirmDuplicateSave,
+    required TResult Function(_CancelDuplicateSave value) cancelDuplicateSave,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
   }) {
     return loadDetail(this);
   }
@@ -1436,6 +1628,10 @@ class _$LoadDetailImpl implements _LoadDetail {
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult? Function(_SubmitLead value)? submitLead,
+    TResult? Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult? Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
   }) {
     return loadDetail?.call(this);
   }
@@ -1454,6 +1650,10 @@ class _$LoadDetailImpl implements _LoadDetail {
     TResult Function(_LoadFilesPo value)? loadFilesPo,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult Function(_SubmitLead value)? submitLead,
+    TResult Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
     required TResult orElse(),
   }) {
     if (loadDetail != null) {
@@ -1551,6 +1751,11 @@ class _$LoadFilesImpl implements _LoadFiles {
     required TResult Function(int customerContactId) loadFilesPo,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
+    required TResult Function(Map<String, dynamic> payload) submitLead,
+    required TResult Function(Map<String, dynamic> payload)
+        confirmDuplicateSave,
+    required TResult Function() cancelDuplicateSave,
+    required TResult Function() clearSubmitState,
   }) {
     return loadFiles(customerContactId);
   }
@@ -1571,6 +1776,10 @@ class _$LoadFilesImpl implements _LoadFiles {
     TResult? Function(int customerContactId)? loadFilesPo,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitLead,
+    TResult? Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult? Function()? cancelDuplicateSave,
+    TResult? Function()? clearSubmitState,
   }) {
     return loadFiles?.call(customerContactId);
   }
@@ -1591,6 +1800,10 @@ class _$LoadFilesImpl implements _LoadFiles {
     TResult Function(int customerContactId)? loadFilesPo,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
+    TResult Function(Map<String, dynamic> payload)? submitLead,
+    TResult Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult Function()? cancelDuplicateSave,
+    TResult Function()? clearSubmitState,
     required TResult orElse(),
   }) {
     if (loadFiles != null) {
@@ -1613,6 +1826,10 @@ class _$LoadFilesImpl implements _LoadFiles {
     required TResult Function(_LoadFilesPo value) loadFilesPo,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
+    required TResult Function(_SubmitLead value) submitLead,
+    required TResult Function(_ConfirmDuplicateSave value) confirmDuplicateSave,
+    required TResult Function(_CancelDuplicateSave value) cancelDuplicateSave,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
   }) {
     return loadFiles(this);
   }
@@ -1631,6 +1848,10 @@ class _$LoadFilesImpl implements _LoadFiles {
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult? Function(_SubmitLead value)? submitLead,
+    TResult? Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult? Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
   }) {
     return loadFiles?.call(this);
   }
@@ -1649,6 +1870,10 @@ class _$LoadFilesImpl implements _LoadFiles {
     TResult Function(_LoadFilesPo value)? loadFilesPo,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult Function(_SubmitLead value)? submitLead,
+    TResult Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
     required TResult orElse(),
   }) {
     if (loadFiles != null) {
@@ -1747,6 +1972,11 @@ class _$LoadFilesPoImpl implements _LoadFilesPo {
     required TResult Function(int customerContactId) loadFilesPo,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
+    required TResult Function(Map<String, dynamic> payload) submitLead,
+    required TResult Function(Map<String, dynamic> payload)
+        confirmDuplicateSave,
+    required TResult Function() cancelDuplicateSave,
+    required TResult Function() clearSubmitState,
   }) {
     return loadFilesPo(customerContactId);
   }
@@ -1767,6 +1997,10 @@ class _$LoadFilesPoImpl implements _LoadFilesPo {
     TResult? Function(int customerContactId)? loadFilesPo,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitLead,
+    TResult? Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult? Function()? cancelDuplicateSave,
+    TResult? Function()? clearSubmitState,
   }) {
     return loadFilesPo?.call(customerContactId);
   }
@@ -1787,6 +2021,10 @@ class _$LoadFilesPoImpl implements _LoadFilesPo {
     TResult Function(int customerContactId)? loadFilesPo,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
+    TResult Function(Map<String, dynamic> payload)? submitLead,
+    TResult Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult Function()? cancelDuplicateSave,
+    TResult Function()? clearSubmitState,
     required TResult orElse(),
   }) {
     if (loadFilesPo != null) {
@@ -1809,6 +2047,10 @@ class _$LoadFilesPoImpl implements _LoadFilesPo {
     required TResult Function(_LoadFilesPo value) loadFilesPo,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
+    required TResult Function(_SubmitLead value) submitLead,
+    required TResult Function(_ConfirmDuplicateSave value) confirmDuplicateSave,
+    required TResult Function(_CancelDuplicateSave value) cancelDuplicateSave,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
   }) {
     return loadFilesPo(this);
   }
@@ -1827,6 +2069,10 @@ class _$LoadFilesPoImpl implements _LoadFilesPo {
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult? Function(_SubmitLead value)? submitLead,
+    TResult? Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult? Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
   }) {
     return loadFilesPo?.call(this);
   }
@@ -1845,6 +2091,10 @@ class _$LoadFilesPoImpl implements _LoadFilesPo {
     TResult Function(_LoadFilesPo value)? loadFilesPo,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult Function(_SubmitLead value)? submitLead,
+    TResult Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
     required TResult orElse(),
   }) {
     if (loadFilesPo != null) {
@@ -1916,6 +2166,11 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     required TResult Function(int customerContactId) loadFilesPo,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
+    required TResult Function(Map<String, dynamic> payload) submitLead,
+    required TResult Function(Map<String, dynamic> payload)
+        confirmDuplicateSave,
+    required TResult Function() cancelDuplicateSave,
+    required TResult Function() clearSubmitState,
   }) {
     return loadFormOptions();
   }
@@ -1936,6 +2191,10 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     TResult? Function(int customerContactId)? loadFilesPo,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitLead,
+    TResult? Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult? Function()? cancelDuplicateSave,
+    TResult? Function()? clearSubmitState,
   }) {
     return loadFormOptions?.call();
   }
@@ -1956,6 +2215,10 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     TResult Function(int customerContactId)? loadFilesPo,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
+    TResult Function(Map<String, dynamic> payload)? submitLead,
+    TResult Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult Function()? cancelDuplicateSave,
+    TResult Function()? clearSubmitState,
     required TResult orElse(),
   }) {
     if (loadFormOptions != null) {
@@ -1978,6 +2241,10 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     required TResult Function(_LoadFilesPo value) loadFilesPo,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
+    required TResult Function(_SubmitLead value) submitLead,
+    required TResult Function(_ConfirmDuplicateSave value) confirmDuplicateSave,
+    required TResult Function(_CancelDuplicateSave value) cancelDuplicateSave,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
   }) {
     return loadFormOptions(this);
   }
@@ -1996,6 +2263,10 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult? Function(_SubmitLead value)? submitLead,
+    TResult? Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult? Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
   }) {
     return loadFormOptions?.call(this);
   }
@@ -2014,6 +2285,10 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     TResult Function(_LoadFilesPo value)? loadFilesPo,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult Function(_SubmitLead value)? submitLead,
+    TResult Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
     required TResult orElse(),
   }) {
     if (loadFormOptions != null) {
@@ -2106,6 +2381,11 @@ class _$LoadCustomerDetailImpl implements _LoadCustomerDetail {
     required TResult Function(int customerContactId) loadFilesPo,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
+    required TResult Function(Map<String, dynamic> payload) submitLead,
+    required TResult Function(Map<String, dynamic> payload)
+        confirmDuplicateSave,
+    required TResult Function() cancelDuplicateSave,
+    required TResult Function() clearSubmitState,
   }) {
     return loadCustomerDetail(id);
   }
@@ -2126,6 +2406,10 @@ class _$LoadCustomerDetailImpl implements _LoadCustomerDetail {
     TResult? Function(int customerContactId)? loadFilesPo,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitLead,
+    TResult? Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult? Function()? cancelDuplicateSave,
+    TResult? Function()? clearSubmitState,
   }) {
     return loadCustomerDetail?.call(id);
   }
@@ -2146,6 +2430,10 @@ class _$LoadCustomerDetailImpl implements _LoadCustomerDetail {
     TResult Function(int customerContactId)? loadFilesPo,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
+    TResult Function(Map<String, dynamic> payload)? submitLead,
+    TResult Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult Function()? cancelDuplicateSave,
+    TResult Function()? clearSubmitState,
     required TResult orElse(),
   }) {
     if (loadCustomerDetail != null) {
@@ -2168,6 +2456,10 @@ class _$LoadCustomerDetailImpl implements _LoadCustomerDetail {
     required TResult Function(_LoadFilesPo value) loadFilesPo,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
+    required TResult Function(_SubmitLead value) submitLead,
+    required TResult Function(_ConfirmDuplicateSave value) confirmDuplicateSave,
+    required TResult Function(_CancelDuplicateSave value) cancelDuplicateSave,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
   }) {
     return loadCustomerDetail(this);
   }
@@ -2186,6 +2478,10 @@ class _$LoadCustomerDetailImpl implements _LoadCustomerDetail {
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult? Function(_SubmitLead value)? submitLead,
+    TResult? Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult? Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
   }) {
     return loadCustomerDetail?.call(this);
   }
@@ -2204,6 +2500,10 @@ class _$LoadCustomerDetailImpl implements _LoadCustomerDetail {
     TResult Function(_LoadFilesPo value)? loadFilesPo,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult Function(_SubmitLead value)? submitLead,
+    TResult Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
     required TResult orElse(),
   }) {
     if (loadCustomerDetail != null) {
@@ -2221,4 +2521,839 @@ abstract class _LoadCustomerDetail implements LeadMarketingEvent {
   @JsonKey(ignore: true)
   _$$LoadCustomerDetailImplCopyWith<_$LoadCustomerDetailImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SubmitLeadImplCopyWith<$Res> {
+  factory _$$SubmitLeadImplCopyWith(
+          _$SubmitLeadImpl value, $Res Function(_$SubmitLeadImpl) then) =
+      __$$SubmitLeadImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Map<String, dynamic> payload});
+}
+
+/// @nodoc
+class __$$SubmitLeadImplCopyWithImpl<$Res>
+    extends _$LeadMarketingEventCopyWithImpl<$Res, _$SubmitLeadImpl>
+    implements _$$SubmitLeadImplCopyWith<$Res> {
+  __$$SubmitLeadImplCopyWithImpl(
+      _$SubmitLeadImpl _value, $Res Function(_$SubmitLeadImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? payload = null,
+  }) {
+    return _then(_$SubmitLeadImpl(
+      payload: null == payload
+          ? _value._payload
+          : payload // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SubmitLeadImpl implements _SubmitLead {
+  const _$SubmitLeadImpl({required final Map<String, dynamic> payload})
+      : _payload = payload;
+
+  final Map<String, dynamic> _payload;
+  @override
+  Map<String, dynamic> get payload {
+    if (_payload is EqualUnmodifiableMapView) return _payload;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_payload);
+  }
+
+  @override
+  String toString() {
+    return 'LeadMarketingEvent.submitLead(payload: $payload)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SubmitLeadImpl &&
+            const DeepCollectionEquality().equals(other._payload, _payload));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_payload));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SubmitLeadImplCopyWith<_$SubmitLeadImpl> get copyWith =>
+      __$$SubmitLeadImplCopyWithImpl<_$SubmitLeadImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function() refresh,
+    required TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)
+        applyFilter,
+    required TResult Function() clearFilter,
+    required TResult Function(int id) loadDetail,
+    required TResult Function(int customerContactId) loadFiles,
+    required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function() loadFormOptions,
+    required TResult Function(int id) loadCustomerDetail,
+    required TResult Function(Map<String, dynamic> payload) submitLead,
+    required TResult Function(Map<String, dynamic> payload)
+        confirmDuplicateSave,
+    required TResult Function() cancelDuplicateSave,
+    required TResult Function() clearSubmitState,
+  }) {
+    return submitLead(payload);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function()? refresh,
+    TResult? Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult? Function()? clearFilter,
+    TResult? Function(int id)? loadDetail,
+    TResult? Function(int customerContactId)? loadFiles,
+    TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function()? loadFormOptions,
+    TResult? Function(int id)? loadCustomerDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitLead,
+    TResult? Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult? Function()? cancelDuplicateSave,
+    TResult? Function()? clearSubmitState,
+  }) {
+    return submitLead?.call(payload);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function()? refresh,
+    TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult Function()? clearFilter,
+    TResult Function(int id)? loadDetail,
+    TResult Function(int customerContactId)? loadFiles,
+    TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function()? loadFormOptions,
+    TResult Function(int id)? loadCustomerDetail,
+    TResult Function(Map<String, dynamic> payload)? submitLead,
+    TResult Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult Function()? cancelDuplicateSave,
+    TResult Function()? clearSubmitState,
+    required TResult orElse(),
+  }) {
+    if (submitLead != null) {
+      return submitLead(payload);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_ClearFilter value) clearFilter,
+    required TResult Function(_LoadDetail value) loadDetail,
+    required TResult Function(_LoadFiles value) loadFiles,
+    required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_LoadFormOptions value) loadFormOptions,
+    required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
+    required TResult Function(_SubmitLead value) submitLead,
+    required TResult Function(_ConfirmDuplicateSave value) confirmDuplicateSave,
+    required TResult Function(_CancelDuplicateSave value) cancelDuplicateSave,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+  }) {
+    return submitLead(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_ClearFilter value)? clearFilter,
+    TResult? Function(_LoadDetail value)? loadDetail,
+    TResult? Function(_LoadFiles value)? loadFiles,
+    TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_LoadFormOptions value)? loadFormOptions,
+    TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult? Function(_SubmitLead value)? submitLead,
+    TResult? Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult? Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+  }) {
+    return submitLead?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_ClearFilter value)? clearFilter,
+    TResult Function(_LoadDetail value)? loadDetail,
+    TResult Function(_LoadFiles value)? loadFiles,
+    TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_LoadFormOptions value)? loadFormOptions,
+    TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult Function(_SubmitLead value)? submitLead,
+    TResult Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    required TResult orElse(),
+  }) {
+    if (submitLead != null) {
+      return submitLead(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SubmitLead implements LeadMarketingEvent {
+  const factory _SubmitLead({required final Map<String, dynamic> payload}) =
+      _$SubmitLeadImpl;
+
+  Map<String, dynamic> get payload;
+  @JsonKey(ignore: true)
+  _$$SubmitLeadImplCopyWith<_$SubmitLeadImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ConfirmDuplicateSaveImplCopyWith<$Res> {
+  factory _$$ConfirmDuplicateSaveImplCopyWith(_$ConfirmDuplicateSaveImpl value,
+          $Res Function(_$ConfirmDuplicateSaveImpl) then) =
+      __$$ConfirmDuplicateSaveImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Map<String, dynamic> payload});
+}
+
+/// @nodoc
+class __$$ConfirmDuplicateSaveImplCopyWithImpl<$Res>
+    extends _$LeadMarketingEventCopyWithImpl<$Res, _$ConfirmDuplicateSaveImpl>
+    implements _$$ConfirmDuplicateSaveImplCopyWith<$Res> {
+  __$$ConfirmDuplicateSaveImplCopyWithImpl(_$ConfirmDuplicateSaveImpl _value,
+      $Res Function(_$ConfirmDuplicateSaveImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? payload = null,
+  }) {
+    return _then(_$ConfirmDuplicateSaveImpl(
+      payload: null == payload
+          ? _value._payload
+          : payload // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ConfirmDuplicateSaveImpl implements _ConfirmDuplicateSave {
+  const _$ConfirmDuplicateSaveImpl(
+      {required final Map<String, dynamic> payload})
+      : _payload = payload;
+
+  final Map<String, dynamic> _payload;
+  @override
+  Map<String, dynamic> get payload {
+    if (_payload is EqualUnmodifiableMapView) return _payload;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_payload);
+  }
+
+  @override
+  String toString() {
+    return 'LeadMarketingEvent.confirmDuplicateSave(payload: $payload)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ConfirmDuplicateSaveImpl &&
+            const DeepCollectionEquality().equals(other._payload, _payload));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_payload));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ConfirmDuplicateSaveImplCopyWith<_$ConfirmDuplicateSaveImpl>
+      get copyWith =>
+          __$$ConfirmDuplicateSaveImplCopyWithImpl<_$ConfirmDuplicateSaveImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function() refresh,
+    required TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)
+        applyFilter,
+    required TResult Function() clearFilter,
+    required TResult Function(int id) loadDetail,
+    required TResult Function(int customerContactId) loadFiles,
+    required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function() loadFormOptions,
+    required TResult Function(int id) loadCustomerDetail,
+    required TResult Function(Map<String, dynamic> payload) submitLead,
+    required TResult Function(Map<String, dynamic> payload)
+        confirmDuplicateSave,
+    required TResult Function() cancelDuplicateSave,
+    required TResult Function() clearSubmitState,
+  }) {
+    return confirmDuplicateSave(payload);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function()? refresh,
+    TResult? Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult? Function()? clearFilter,
+    TResult? Function(int id)? loadDetail,
+    TResult? Function(int customerContactId)? loadFiles,
+    TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function()? loadFormOptions,
+    TResult? Function(int id)? loadCustomerDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitLead,
+    TResult? Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult? Function()? cancelDuplicateSave,
+    TResult? Function()? clearSubmitState,
+  }) {
+    return confirmDuplicateSave?.call(payload);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function()? refresh,
+    TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult Function()? clearFilter,
+    TResult Function(int id)? loadDetail,
+    TResult Function(int customerContactId)? loadFiles,
+    TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function()? loadFormOptions,
+    TResult Function(int id)? loadCustomerDetail,
+    TResult Function(Map<String, dynamic> payload)? submitLead,
+    TResult Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult Function()? cancelDuplicateSave,
+    TResult Function()? clearSubmitState,
+    required TResult orElse(),
+  }) {
+    if (confirmDuplicateSave != null) {
+      return confirmDuplicateSave(payload);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_ClearFilter value) clearFilter,
+    required TResult Function(_LoadDetail value) loadDetail,
+    required TResult Function(_LoadFiles value) loadFiles,
+    required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_LoadFormOptions value) loadFormOptions,
+    required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
+    required TResult Function(_SubmitLead value) submitLead,
+    required TResult Function(_ConfirmDuplicateSave value) confirmDuplicateSave,
+    required TResult Function(_CancelDuplicateSave value) cancelDuplicateSave,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+  }) {
+    return confirmDuplicateSave(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_ClearFilter value)? clearFilter,
+    TResult? Function(_LoadDetail value)? loadDetail,
+    TResult? Function(_LoadFiles value)? loadFiles,
+    TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_LoadFormOptions value)? loadFormOptions,
+    TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult? Function(_SubmitLead value)? submitLead,
+    TResult? Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult? Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+  }) {
+    return confirmDuplicateSave?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_ClearFilter value)? clearFilter,
+    TResult Function(_LoadDetail value)? loadDetail,
+    TResult Function(_LoadFiles value)? loadFiles,
+    TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_LoadFormOptions value)? loadFormOptions,
+    TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult Function(_SubmitLead value)? submitLead,
+    TResult Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    required TResult orElse(),
+  }) {
+    if (confirmDuplicateSave != null) {
+      return confirmDuplicateSave(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ConfirmDuplicateSave implements LeadMarketingEvent {
+  const factory _ConfirmDuplicateSave(
+          {required final Map<String, dynamic> payload}) =
+      _$ConfirmDuplicateSaveImpl;
+
+  Map<String, dynamic> get payload;
+  @JsonKey(ignore: true)
+  _$$ConfirmDuplicateSaveImplCopyWith<_$ConfirmDuplicateSaveImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CancelDuplicateSaveImplCopyWith<$Res> {
+  factory _$$CancelDuplicateSaveImplCopyWith(_$CancelDuplicateSaveImpl value,
+          $Res Function(_$CancelDuplicateSaveImpl) then) =
+      __$$CancelDuplicateSaveImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$CancelDuplicateSaveImplCopyWithImpl<$Res>
+    extends _$LeadMarketingEventCopyWithImpl<$Res, _$CancelDuplicateSaveImpl>
+    implements _$$CancelDuplicateSaveImplCopyWith<$Res> {
+  __$$CancelDuplicateSaveImplCopyWithImpl(_$CancelDuplicateSaveImpl _value,
+      $Res Function(_$CancelDuplicateSaveImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$CancelDuplicateSaveImpl implements _CancelDuplicateSave {
+  const _$CancelDuplicateSaveImpl();
+
+  @override
+  String toString() {
+    return 'LeadMarketingEvent.cancelDuplicateSave()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CancelDuplicateSaveImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function() refresh,
+    required TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)
+        applyFilter,
+    required TResult Function() clearFilter,
+    required TResult Function(int id) loadDetail,
+    required TResult Function(int customerContactId) loadFiles,
+    required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function() loadFormOptions,
+    required TResult Function(int id) loadCustomerDetail,
+    required TResult Function(Map<String, dynamic> payload) submitLead,
+    required TResult Function(Map<String, dynamic> payload)
+        confirmDuplicateSave,
+    required TResult Function() cancelDuplicateSave,
+    required TResult Function() clearSubmitState,
+  }) {
+    return cancelDuplicateSave();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function()? refresh,
+    TResult? Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult? Function()? clearFilter,
+    TResult? Function(int id)? loadDetail,
+    TResult? Function(int customerContactId)? loadFiles,
+    TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function()? loadFormOptions,
+    TResult? Function(int id)? loadCustomerDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitLead,
+    TResult? Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult? Function()? cancelDuplicateSave,
+    TResult? Function()? clearSubmitState,
+  }) {
+    return cancelDuplicateSave?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function()? refresh,
+    TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult Function()? clearFilter,
+    TResult Function(int id)? loadDetail,
+    TResult Function(int customerContactId)? loadFiles,
+    TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function()? loadFormOptions,
+    TResult Function(int id)? loadCustomerDetail,
+    TResult Function(Map<String, dynamic> payload)? submitLead,
+    TResult Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult Function()? cancelDuplicateSave,
+    TResult Function()? clearSubmitState,
+    required TResult orElse(),
+  }) {
+    if (cancelDuplicateSave != null) {
+      return cancelDuplicateSave();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_ClearFilter value) clearFilter,
+    required TResult Function(_LoadDetail value) loadDetail,
+    required TResult Function(_LoadFiles value) loadFiles,
+    required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_LoadFormOptions value) loadFormOptions,
+    required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
+    required TResult Function(_SubmitLead value) submitLead,
+    required TResult Function(_ConfirmDuplicateSave value) confirmDuplicateSave,
+    required TResult Function(_CancelDuplicateSave value) cancelDuplicateSave,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+  }) {
+    return cancelDuplicateSave(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_ClearFilter value)? clearFilter,
+    TResult? Function(_LoadDetail value)? loadDetail,
+    TResult? Function(_LoadFiles value)? loadFiles,
+    TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_LoadFormOptions value)? loadFormOptions,
+    TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult? Function(_SubmitLead value)? submitLead,
+    TResult? Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult? Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+  }) {
+    return cancelDuplicateSave?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_ClearFilter value)? clearFilter,
+    TResult Function(_LoadDetail value)? loadDetail,
+    TResult Function(_LoadFiles value)? loadFiles,
+    TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_LoadFormOptions value)? loadFormOptions,
+    TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult Function(_SubmitLead value)? submitLead,
+    TResult Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    required TResult orElse(),
+  }) {
+    if (cancelDuplicateSave != null) {
+      return cancelDuplicateSave(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CancelDuplicateSave implements LeadMarketingEvent {
+  const factory _CancelDuplicateSave() = _$CancelDuplicateSaveImpl;
+}
+
+/// @nodoc
+abstract class _$$ClearSubmitStateImplCopyWith<$Res> {
+  factory _$$ClearSubmitStateImplCopyWith(_$ClearSubmitStateImpl value,
+          $Res Function(_$ClearSubmitStateImpl) then) =
+      __$$ClearSubmitStateImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearSubmitStateImplCopyWithImpl<$Res>
+    extends _$LeadMarketingEventCopyWithImpl<$Res, _$ClearSubmitStateImpl>
+    implements _$$ClearSubmitStateImplCopyWith<$Res> {
+  __$$ClearSubmitStateImplCopyWithImpl(_$ClearSubmitStateImpl _value,
+      $Res Function(_$ClearSubmitStateImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ClearSubmitStateImpl implements _ClearSubmitState {
+  const _$ClearSubmitStateImpl();
+
+  @override
+  String toString() {
+    return 'LeadMarketingEvent.clearSubmitState()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ClearSubmitStateImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function() refresh,
+    required TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)
+        applyFilter,
+    required TResult Function() clearFilter,
+    required TResult Function(int id) loadDetail,
+    required TResult Function(int customerContactId) loadFiles,
+    required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function() loadFormOptions,
+    required TResult Function(int id) loadCustomerDetail,
+    required TResult Function(Map<String, dynamic> payload) submitLead,
+    required TResult Function(Map<String, dynamic> payload)
+        confirmDuplicateSave,
+    required TResult Function() cancelDuplicateSave,
+    required TResult Function() clearSubmitState,
+  }) {
+    return clearSubmitState();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function()? refresh,
+    TResult? Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult? Function()? clearFilter,
+    TResult? Function(int id)? loadDetail,
+    TResult? Function(int customerContactId)? loadFiles,
+    TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function()? loadFormOptions,
+    TResult? Function(int id)? loadCustomerDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitLead,
+    TResult? Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult? Function()? cancelDuplicateSave,
+    TResult? Function()? clearSubmitState,
+  }) {
+    return clearSubmitState?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function()? refresh,
+    TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult Function()? clearFilter,
+    TResult Function(int id)? loadDetail,
+    TResult Function(int customerContactId)? loadFiles,
+    TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function()? loadFormOptions,
+    TResult Function(int id)? loadCustomerDetail,
+    TResult Function(Map<String, dynamic> payload)? submitLead,
+    TResult Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult Function()? cancelDuplicateSave,
+    TResult Function()? clearSubmitState,
+    required TResult orElse(),
+  }) {
+    if (clearSubmitState != null) {
+      return clearSubmitState();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_ClearFilter value) clearFilter,
+    required TResult Function(_LoadDetail value) loadDetail,
+    required TResult Function(_LoadFiles value) loadFiles,
+    required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_LoadFormOptions value) loadFormOptions,
+    required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
+    required TResult Function(_SubmitLead value) submitLead,
+    required TResult Function(_ConfirmDuplicateSave value) confirmDuplicateSave,
+    required TResult Function(_CancelDuplicateSave value) cancelDuplicateSave,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+  }) {
+    return clearSubmitState(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_ClearFilter value)? clearFilter,
+    TResult? Function(_LoadDetail value)? loadDetail,
+    TResult? Function(_LoadFiles value)? loadFiles,
+    TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_LoadFormOptions value)? loadFormOptions,
+    TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult? Function(_SubmitLead value)? submitLead,
+    TResult? Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult? Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+  }) {
+    return clearSubmitState?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_ClearFilter value)? clearFilter,
+    TResult Function(_LoadDetail value)? loadDetail,
+    TResult Function(_LoadFiles value)? loadFiles,
+    TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_LoadFormOptions value)? loadFormOptions,
+    TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult Function(_SubmitLead value)? submitLead,
+    TResult Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    required TResult orElse(),
+  }) {
+    if (clearSubmitState != null) {
+      return clearSubmitState(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearSubmitState implements LeadMarketingEvent {
+  const factory _ClearSubmitState() = _$ClearSubmitStateImpl;
 }

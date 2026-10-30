@@ -221,11 +221,124 @@ class LeadCustomer with _$LeadCustomer {
     @JsonKey(name: 'CustomerType') int? customerType,
     @JsonKey(name: 'CustomerIndustriesID') int? customerIndustriesId,
     @JsonKey(name: 'CustomerSpecializationID') int? customerSpecializationId,
+    @JsonKey(name: 'BusinessFieldID') int? businessFieldId,
+    @JsonKey(name: 'Website') String? website,
     @JsonKey(name: 'TaxCode') String? taxCode,
   }) = _LeadCustomer;
 
   factory LeadCustomer.fromJson(Map<String, dynamic> json) =>
       _$LeadCustomerFromJson(json);
+}
+
+/// Một bản ghi lead bị trùng mà API phát hiện.
+///
+/// API: POST /Lead/check-duplicate → `data[]`.
+@freezed
+class LeadDuplicateInfo with _$LeadDuplicateInfo {
+  const factory LeadDuplicateInfo({
+    /// Bảng nguồn chứa bản ghi trùng (vd "Lead").
+    @JsonKey(name: 'SourceTable') String? sourceTable,
+
+    /// ID bản ghi trùng.
+    @JsonKey(name: 'ID') int? id,
+
+    /// Mã bản ghi trùng (vd "LD-2610-0028").
+    @JsonKey(name: 'Code') String? code,
+
+    /// Tên bản ghi trùng.
+    @JsonKey(name: 'Name') String? name,
+
+    /// Họ tên người liên hệ của bản ghi trùng.
+    @JsonKey(name: 'ContactName') String? contactName,
+
+    /// SĐT người liên hệ của bản ghi trùng.
+    @JsonKey(name: 'ContactPhone') String? contactPhone,
+
+    /// Email người liên hệ của bản ghi trùng.
+    @JsonKey(name: 'ContactEmail') String? contactEmail,
+
+    /// Giai đoạn hiện tại của bản ghi trùng.
+    @JsonKey(name: 'Stage') int? stage,
+
+    /// Trường bị trùng (vd "Email", "Phone", "TaxCode", "CompanyName").
+    @JsonKey(name: 'MatchField') String? matchField,
+
+    /// Người phụ trách bản ghi trùng.
+    @JsonKey(name: 'OwnerName') String? ownerName,
+
+    /// Bộ phận của người phụ trách (vd "Marketing", "Sales").
+    @JsonKey(name: 'OwnerSide') String? ownerSide,
+  }) = _LeadDuplicateInfo;
+
+  factory LeadDuplicateInfo.fromJson(Map<String, dynamic> json) =>
+      _$LeadDuplicateInfoFromJson(json);
+}
+
+/// Kết quả kiểm tra trùng lặp phiếu lead.
+///
+/// API: POST /Lead/check-duplicate.
+/// Response: `{ status, message, data: [ ... ] }` — `status = 1` nghĩa là
+/// API đã kiểm tra xong; `data` là danh sách bản ghi bị trùng (có thể rỗng).
+@freezed
+class LeadDuplicateCheckResult with _$LeadDuplicateCheckResult {
+  const factory LeadDuplicateCheckResult({
+    /// Thông báo từ API.
+    @JsonKey(name: 'message') String? message,
+
+    /// Danh sách bản ghi bị trùng.
+    @JsonKey(name: 'data') List<LeadDuplicateInfo>? duplicates,
+  }) = _LeadDuplicateCheckResult;
+
+  factory LeadDuplicateCheckResult.fromJson(Map<String, dynamic> json) =>
+      _$LeadDuplicateCheckResultFromJson(json);
+}
+
+/// Kết quả lưu phiếu lead.
+///
+/// API: POST /Lead/save-data.
+/// Response: `{ status, message, data: { ID, LeadCode, ... } }`.
+@freezed
+class LeadSaveResult with _$LeadSaveResult {
+  const factory LeadSaveResult({
+    /// Thông báo từ API (vd "Thêm lead thành công!").
+    @JsonKey(name: 'message') String? message,
+
+    /// ID phiếu lead vừa tạo.
+    @JsonKey(name: 'ID') int? id,
+
+    /// Mã phiếu lead (vd "LD-2610-0025").
+    @JsonKey(name: 'LeadCode') String? leadCode,
+
+    /// ID khách hàng gắn với phiếu.
+    @JsonKey(name: 'CustomerID') int? customerId,
+
+    /// ID nhóm hàng (loại PO).
+    @JsonKey(name: 'PoTypeID') int? poTypeId,
+
+    /// ID nguồn lead.
+    @JsonKey(name: 'LeadSourceID') int? leadSourceId,
+
+    /// Họ tên người liên hệ.
+    @JsonKey(name: 'ContactName') String? contactName,
+
+    /// SĐT người liên hệ.
+    @JsonKey(name: 'ContactPhone') String? contactPhone,
+
+    /// Email người liên hệ.
+    @JsonKey(name: 'ContactEmail') String? contactEmail,
+
+    /// ID nhân viên marketing phụ trách.
+    @JsonKey(name: 'MarketingEmployeeID') int? marketingEmployeeId,
+
+    /// Giai đoạn xử lý sau khi tạo.
+    @JsonKey(name: 'Stage') int? stage,
+
+    /// ID liên kết khách hàng trả về từ BE.
+    @JsonKey(name: 'idConCus') int? idConCus,
+  }) = _LeadSaveResult;
+
+  factory LeadSaveResult.fromJson(Map<String, dynamic> json) =>
+      _$LeadSaveResultFromJson(json);
 }
 
 /// Loại khách hàng.

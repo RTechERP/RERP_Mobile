@@ -181,6 +181,8 @@ _$LeadCustomerImpl _$$LeadCustomerImplFromJson(Map<String, dynamic> json) =>
       customerIndustriesId: (json['CustomerIndustriesID'] as num?)?.toInt(),
       customerSpecializationId:
           (json['CustomerSpecializationID'] as num?)?.toInt(),
+      businessFieldId: (json['BusinessFieldID'] as num?)?.toInt(),
+      website: json['Website'] as String?,
       taxCode: json['TaxCode'] as String?,
     );
 
@@ -200,7 +202,90 @@ Map<String, dynamic> _$$LeadCustomerImplToJson(_$LeadCustomerImpl instance) =>
       'CustomerType': instance.customerType,
       'CustomerIndustriesID': instance.customerIndustriesId,
       'CustomerSpecializationID': instance.customerSpecializationId,
+      'BusinessFieldID': instance.businessFieldId,
+      'Website': instance.website,
       'TaxCode': instance.taxCode,
+    };
+
+_$LeadDuplicateInfoImpl _$$LeadDuplicateInfoImplFromJson(
+        Map<String, dynamic> json) =>
+    _$LeadDuplicateInfoImpl(
+      sourceTable: json['SourceTable'] as String?,
+      id: (json['ID'] as num?)?.toInt(),
+      code: json['Code'] as String?,
+      name: json['Name'] as String?,
+      contactName: json['ContactName'] as String?,
+      contactPhone: json['ContactPhone'] as String?,
+      contactEmail: json['ContactEmail'] as String?,
+      stage: (json['Stage'] as num?)?.toInt(),
+      matchField: json['MatchField'] as String?,
+      ownerName: json['OwnerName'] as String?,
+      ownerSide: json['OwnerSide'] as String?,
+    );
+
+Map<String, dynamic> _$$LeadDuplicateInfoImplToJson(
+        _$LeadDuplicateInfoImpl instance) =>
+    <String, dynamic>{
+      'SourceTable': instance.sourceTable,
+      'ID': instance.id,
+      'Code': instance.code,
+      'Name': instance.name,
+      'ContactName': instance.contactName,
+      'ContactPhone': instance.contactPhone,
+      'ContactEmail': instance.contactEmail,
+      'Stage': instance.stage,
+      'MatchField': instance.matchField,
+      'OwnerName': instance.ownerName,
+      'OwnerSide': instance.ownerSide,
+    };
+
+_$LeadDuplicateCheckResultImpl _$$LeadDuplicateCheckResultImplFromJson(
+        Map<String, dynamic> json) =>
+    _$LeadDuplicateCheckResultImpl(
+      message: json['message'] as String?,
+      duplicates: (json['data'] as List<dynamic>?)
+          ?.map((e) => LeadDuplicateInfo.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$$LeadDuplicateCheckResultImplToJson(
+        _$LeadDuplicateCheckResultImpl instance) =>
+    <String, dynamic>{
+      'message': instance.message,
+      'data': instance.duplicates,
+    };
+
+_$LeadSaveResultImpl _$$LeadSaveResultImplFromJson(Map<String, dynamic> json) =>
+    _$LeadSaveResultImpl(
+      message: json['message'] as String?,
+      id: (json['ID'] as num?)?.toInt(),
+      leadCode: json['LeadCode'] as String?,
+      customerId: (json['CustomerID'] as num?)?.toInt(),
+      poTypeId: (json['PoTypeID'] as num?)?.toInt(),
+      leadSourceId: (json['LeadSourceID'] as num?)?.toInt(),
+      contactName: json['ContactName'] as String?,
+      contactPhone: json['ContactPhone'] as String?,
+      contactEmail: json['ContactEmail'] as String?,
+      marketingEmployeeId: (json['MarketingEmployeeID'] as num?)?.toInt(),
+      stage: (json['Stage'] as num?)?.toInt(),
+      idConCus: (json['idConCus'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$LeadSaveResultImplToJson(
+        _$LeadSaveResultImpl instance) =>
+    <String, dynamic>{
+      'message': instance.message,
+      'ID': instance.id,
+      'LeadCode': instance.leadCode,
+      'CustomerID': instance.customerId,
+      'PoTypeID': instance.poTypeId,
+      'LeadSourceID': instance.leadSourceId,
+      'ContactName': instance.contactName,
+      'ContactPhone': instance.contactPhone,
+      'ContactEmail': instance.contactEmail,
+      'MarketingEmployeeID': instance.marketingEmployeeId,
+      'Stage': instance.stage,
+      'idConCus': instance.idConCus,
     };
 
 _$LeadMarketingItemImpl _$$LeadMarketingItemImplFromJson(

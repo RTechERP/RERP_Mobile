@@ -83,6 +83,16 @@ abstract class _$LeadMarketingStateCWProxy {
 
   LeadMarketingState customerDetailMessage(String? customerDetailMessage);
 
+  LeadMarketingState submitStatus(BaseStateStatus submitStatus);
+
+  LeadMarketingState submitMessage(String? submitMessage);
+
+  LeadMarketingState saveResult(LeadSaveResult? saveResult);
+
+  LeadMarketingState duplicates(List<LeadDuplicateInfo> duplicates);
+
+  LeadMarketingState currentUser(User? currentUser);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `LeadMarketingState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -127,6 +137,11 @@ abstract class _$LeadMarketingStateCWProxy {
     LeadCustomer? customerDetail,
     BaseStateStatus? customerDetailStatus,
     String? customerDetailMessage,
+    BaseStateStatus? submitStatus,
+    String? submitMessage,
+    LeadSaveResult? saveResult,
+    List<LeadDuplicateInfo>? duplicates,
+    User? currentUser,
   });
 }
 
@@ -279,6 +294,26 @@ class _$LeadMarketingStateCWProxyImpl implements _$LeadMarketingStateCWProxy {
       this(customerDetailMessage: customerDetailMessage);
 
   @override
+  LeadMarketingState submitStatus(BaseStateStatus submitStatus) =>
+      this(submitStatus: submitStatus);
+
+  @override
+  LeadMarketingState submitMessage(String? submitMessage) =>
+      this(submitMessage: submitMessage);
+
+  @override
+  LeadMarketingState saveResult(LeadSaveResult? saveResult) =>
+      this(saveResult: saveResult);
+
+  @override
+  LeadMarketingState duplicates(List<LeadDuplicateInfo> duplicates) =>
+      this(duplicates: duplicates);
+
+  @override
+  LeadMarketingState currentUser(User? currentUser) =>
+      this(currentUser: currentUser);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `LeadMarketingState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -324,6 +359,11 @@ class _$LeadMarketingStateCWProxyImpl implements _$LeadMarketingStateCWProxy {
     Object? customerDetail = const $CopyWithPlaceholder(),
     Object? customerDetailStatus = const $CopyWithPlaceholder(),
     Object? customerDetailMessage = const $CopyWithPlaceholder(),
+    Object? submitStatus = const $CopyWithPlaceholder(),
+    Object? submitMessage = const $CopyWithPlaceholder(),
+    Object? saveResult = const $CopyWithPlaceholder(),
+    Object? duplicates = const $CopyWithPlaceholder(),
+    Object? currentUser = const $CopyWithPlaceholder(),
   }) {
     return LeadMarketingState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -491,6 +531,28 @@ class _$LeadMarketingStateCWProxyImpl implements _$LeadMarketingStateCWProxy {
               ? _value.customerDetailMessage
               // ignore: cast_nullable_to_non_nullable
               : customerDetailMessage as String?,
+      submitStatus:
+          submitStatus == const $CopyWithPlaceholder() || submitStatus == null
+              ? _value.submitStatus
+              // ignore: cast_nullable_to_non_nullable
+              : submitStatus as BaseStateStatus,
+      submitMessage: submitMessage == const $CopyWithPlaceholder()
+          ? _value.submitMessage
+          // ignore: cast_nullable_to_non_nullable
+          : submitMessage as String?,
+      saveResult: saveResult == const $CopyWithPlaceholder()
+          ? _value.saveResult
+          // ignore: cast_nullable_to_non_nullable
+          : saveResult as LeadSaveResult?,
+      duplicates:
+          duplicates == const $CopyWithPlaceholder() || duplicates == null
+              ? _value.duplicates
+              // ignore: cast_nullable_to_non_nullable
+              : duplicates as List<LeadDuplicateInfo>,
+      currentUser: currentUser == const $CopyWithPlaceholder()
+          ? _value.currentUser
+          // ignore: cast_nullable_to_non_nullable
+          : currentUser as User?,
     );
   }
 }

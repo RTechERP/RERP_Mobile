@@ -6,6 +6,8 @@ import 'package:injectable/injectable.dart';
 import '../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../common/logger/index.dart';
+import '../../../../../../../../features/auth/data/datasource/models/user_model.dart';
+import '../../../../../../../../features/auth/data/repository/auth_repo.dart';
 import '../../data/datasource/models/lead_marketing_model.dart';
 import '../../data/repo/lead_marketing_repo.dart';
 
@@ -18,10 +20,12 @@ part 'lead_marketing_bloc.freezed.dart';
 @injectable
 class LeadMarketingBloc extends BaseBloc<LeadMarketingEvent, LeadMarketingState> {
   final LeadMarketingRepo _repo;
+  final AuthRepo _authRepo;
   final LogUtils _log;
 
   LeadMarketingBloc(
     this._repo,
+    this._authRepo,
     this._log,
   ) : super(LeadMarketingState.init()) {
     on<LeadMarketingEvent>((event, emit) async {
@@ -49,6 +53,11 @@ class LeadMarketingBloc extends BaseBloc<LeadMarketingEvent, LeadMarketingState>
             _onLoadFilesPo(emit, customerContactId: customerContactId),
         loadFormOptions: () => _onLoadFormOptions(emit),
         loadCustomerDetail: (id) => _onLoadCustomerDetail(emit, id: id),
+        submitLead: (payload) => _onSubmitLead(emit, payload: payload),
+        confirmDuplicateSave: (payload) =>
+            _onSubmitLead(emit, payload: payload, skipDuplicateCheck: true),
+        cancelDuplicateSave: () async => _onCancelDuplicateSave(emit),
+        clearSubmitState: () async => _onClearSubmitState(emit),
       );
     });
   }
@@ -64,6 +73,8 @@ class LeadMarketingBloc extends BaseBloc<LeadMarketingEvent, LeadMarketingState>
     final end = state.dateEnd ?? DateTime(now.year, now.month + 1, 0);
 
     await _loadRoleContext(emit);
+
+    await _loadCurrentUser(emit);
 
     await _loadFilterOptions(emit);
 
@@ -276,13 +287,27 @@ class LeadMarketingBloc extends BaseBloc<LeadMarketingEvent, LeadMarketingState>
   /// Tải toàn bộ danh mục dùng cho form tạo phiếu lead.
   ///
   /// Gồm: nhóm hàng (loại PO), lĩnh vực, ngành nghề, business field,
-  /// tỉnh/thành và khách hàng. Lỗi tải một danh mục không chặn các danh mục
-  /// còn lại.
+  /// tỉnh/thành, khách hàng, nguồn lead và NV marketing. Lỗi tải một
+  /// danh mục không chặn các danh mục còn lại.
   Future<void> _onLoadFormOptions(Emitter<LeadMarketingState> emit) async {
+    await _loadCurrentUser(emit);
+
     final poTypes = await _repo.getLeadPoTypes();
     poTypes.fold(
       (l) => _log.logE('Get lead PO types failed: $l'),
       (r) => emit(state.copyWith(poTypes: r)),
+    );
+
+    final sources = await _repo.getLeadSources();
+    sources.fold(
+      (l) => _log.logE('Get lead sources failed: $l'),
+      (r) => emit(state.copyWith(sources: r)),
+    );
+
+    final marketing = await _repo.getMarketingEmployees();
+    marketing.fold(
+      (l) => _log.logE('Get marketing employees failed: $l'),
+      (r) => emit(state.copyWith(marketingEmployees: r)),
     );
 
     final industries = await _repo.getCustomerIndustries();
@@ -349,6 +374,129 @@ class LeadMarketingBloc extends BaseBloc<LeadMarketingEvent, LeadMarketingState>
         ));
       },
     );
+  }
+
+  /// Tải thông tin người dùng hiện tại.
+  ///
+  /// Dùng để mặc định "NV Marketing phụ trách" trong form tạo phiếu lead.
+  Future<void> _loadCurrentUser(Emitter<LeadMarketingState> emit) async {
+    final res = await _authRepo.getCurrentUser();
+    await res.fold(
+      (l) async => _log.logE('Get current user failed: $l'),
+      (r) async {
+        if (r != null) {
+          emit(state.copyWith(currentUser: r));
+        }
+      },
+    );
+  }
+
+  /// Kiểm tra trùng lặp rồi lưu phiếu lead.
+  ///
+  /// Luồng:
+  /// 1. `POST /Lead/check-duplicate` với SĐT / email / mã số thuế / tên
+  ///    công ty lấy từ [payload] (bỏ qua nếu [skipDuplicateCheck] = true).
+  /// 2. Nếu API trả `status = 1` và `data` có bản ghi trùng → dừng lại,
+  ///    đưa danh sách trùng ra state để UI hỏi người dùng.
+  /// 3. Không trùng (hoặc người dùng đã xác nhận lưu trùng) → gọi tiếp
+  ///    `POST /Lead/save-data`.
+  /// 4. Lưu thành công → `submitStatus = success`, kèm `message` + `data`
+  ///    (ID, LeadCode) để UI xác nhận.
+  Future<void> _onSubmitLead(
+    Emitter<LeadMarketingState> emit, {
+    required Map<String, dynamic> payload,
+    bool skipDuplicateCheck = false,
+  }) async {
+    emit(state.copyWith(
+      submitStatus: BaseStateStatus.loading,
+      submitMessage: null,
+      saveResult: null,
+      duplicates: const [],
+    ));
+
+    if (!skipDuplicateCheck) {
+      // Bước 1: kiểm tra trùng lặp.
+      final dupRes = await _repo.checkDuplicate(
+        phone: (payload['ContactPhone'] ?? '').toString(),
+        email: (payload['ContactEmail'] ?? '').toString(),
+        taxCode: (payload['TaxCode'] ?? '').toString(),
+        companyName: (payload['CompanyName'] ?? '').toString(),
+      );
+
+      // `checkDuplicate` chỉ trả `Right` khi API trả `status = 1` (API đã
+      // kiểm tra xong); status khác 1 → repo quy về `Left` kèm message.
+      final dupError = await dupRes.fold(
+        (l) async => l.getErrorMessage,
+        (r) async => null,
+      );
+      if (dupError != null) {
+        _log.logE('Check lead duplicate failed: $dupError');
+        emit(state.copyWith(
+          submitStatus: BaseStateStatus.failed,
+          submitMessage: dupError,
+        ));
+        return;
+      }
+
+      // Bước 2: có bản ghi trùng → hỏi người dùng trước khi lưu.
+      final duplicates = await dupRes.fold(
+        (l) async => const <LeadDuplicateInfo>[],
+        (r) async => r.duplicates ?? const <LeadDuplicateInfo>[],
+      );
+      if (duplicates.isNotEmpty) {
+        _log.logW('Lead duplicate found - count: ${duplicates.length}');
+        emit(state.copyWith(
+          submitStatus: BaseStateStatus.idle,
+          duplicates: duplicates,
+        ));
+        return;
+      }
+    }
+
+    // Bước 3: lưu phiếu lead.
+    final saveRes = await _repo.saveData(payload: payload);
+
+    await saveRes.fold(
+      (l) async {
+        _log.logE('Save lead failed: $l');
+        emit(state.copyWith(
+          submitStatus: BaseStateStatus.failed,
+          submitMessage: l.getErrorMessage,
+        ));
+      },
+      (r) async {
+        _log.logI('Save lead success - id: ${r.id}, code: ${r.leadCode}');
+        emit(state.copyWith(
+          submitStatus: BaseStateStatus.success,
+          submitMessage: r.message ?? 'Thêm lead thành công!',
+          saveResult: r,
+          duplicates: const [],
+        ));
+      },
+    );
+  }
+
+  /// Người dùng huỷ lưu phiếu lead bị trùng — quay lại màn form.
+  void _onCancelDuplicateSave(Emitter<LeadMarketingState> emit) {
+    emit(state.copyWith(
+      submitStatus: BaseStateStatus.init,
+      submitMessage: null,
+      saveResult: null,
+      duplicates: const [],
+    ));
+  }
+
+  /// Xóa trạng thái kết quả lưu phiếu lead.
+  ///
+  /// Được gọi sau khi UI đã xử lý kết quả (hiển thị thông báo) để lần mở
+  /// màn sau không bị lặp lại thông báo cũ.
+  void _onClearSubmitState(Emitter<LeadMarketingState> emit) {
+    emit(state.copyWith(
+      submitStatus: BaseStateStatus.init,
+      submitMessage: null,
+      saveResult: null,
+      duplicates: const [],
+    ));
   }
 
   /// Gọi API lấy danh sách phiếu lead theo khoảng thời gian đang lọc.

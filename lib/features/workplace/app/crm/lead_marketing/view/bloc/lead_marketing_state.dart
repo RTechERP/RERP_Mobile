@@ -108,6 +108,23 @@ class LeadMarketingState extends BaseBlocState {
   /// Thông báo lỗi khi tải chi tiết khách hàng thất bại.
   final String? customerDetailMessage;
 
+  /// Trạng thái đang kiểm tra trùng lặp + lưu phiếu lead.
+  final BaseStateStatus submitStatus;
+
+  /// Thông báo kết quả lưu phiếu lead (thành công / thất bại).
+  final String? submitMessage;
+
+  /// Kết quả lưu phiếu lead sau khi thành công (null nếu chưa lưu).
+  final LeadSaveResult? saveResult;
+
+  /// Danh sách bản ghi lead bị trùng phát hiện bởi API check-duplicate.
+  ///
+  /// Không rỗng → UI hiện dialog xác nhận có lưu trùng hay không.
+  final List<LeadDuplicateInfo> duplicates;
+
+  /// Thông tin người dùng hiện tại — dùng để mặc định NV marketing phụ trách.
+  final User? currentUser;
+
   const LeadMarketingState({
     required super.status,
     super.message,
@@ -146,6 +163,11 @@ class LeadMarketingState extends BaseBlocState {
     this.customerDetail,
     this.customerDetailStatus = BaseStateStatus.init,
     this.customerDetailMessage,
+    this.submitStatus = BaseStateStatus.init,
+    this.submitMessage,
+    this.saveResult,
+    this.duplicates = const [],
+    this.currentUser,
   });
 
   factory LeadMarketingState.init() => const LeadMarketingState(
@@ -249,5 +271,10 @@ class LeadMarketingState extends BaseBlocState {
         customerDetail,
         customerDetailStatus,
         customerDetailMessage,
+        submitStatus,
+        submitMessage,
+        saveResult,
+        duplicates,
+        currentUser,
       ];
 }

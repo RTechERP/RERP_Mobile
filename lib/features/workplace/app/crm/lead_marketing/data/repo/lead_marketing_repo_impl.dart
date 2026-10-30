@@ -254,4 +254,52 @@ class LeadMarketingRepoImpl implements LeadMarketingRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, LeadDuplicateCheckResult>> checkDuplicate({
+    required String phone,
+    String? email,
+    String? taxCode,
+    String? companyName,
+    int excludeLeadId = 0,
+  }) async {
+    try {
+      final res = await _service.checkDuplicate(
+        phone: phone,
+        email: email,
+        taxCode: taxCode,
+        companyName: companyName,
+        excludeLeadId: excludeLeadId,
+      );
+      if (res.status == 1) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? 'Dữ liệu bị trùng lặp, không thể tạo phiếu lead',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, LeadSaveResult>> saveData({
+    required Map<String, dynamic> payload,
+  }) async {
+    try {
+      final res = await _service.saveData(payload: payload);
+      if (res.status == 1) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? 'Lưu phiếu lead thất bại',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

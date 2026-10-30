@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../../../../../../base/bloc/index.dart';
 import '../../../../../../../../base/widgets/base_scaffold.dart';
@@ -13,6 +14,7 @@ import '../../../../../../../../common/enums/index.dart';
 import '../../../../../../../../common/helpers/form_helper.dart';
 import '../../../../../../../../common/helpers/select_bottom_sheet_helper.dart';
 import '../../../../../../../../common/utils/formatter/thousands_input_formatter.dart';
+import '../../../../../../../../common/utils/dialog/dialog_service.dart';
 import '../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../common/widgets/form/index.dart';
 import '../../data/datasource/models/lead_marketing_model.dart';
@@ -66,6 +68,21 @@ class _LeadMarketingAddScreenState
   /// người dùng được phép tự chọn. Các trường còn lại chỉ nhận từ API.
   bool _canPickSpecialization = false;
 
+  /// Đã mặc định "Nguồn lead" bằng item đầu tiên của danh sách chưa.
+  bool _sourceDefaultApplied = false;
+
+  /// Đã mặc định "NV Marketing phụ trách" bằng currentUser chưa.
+  bool _marketingDefaultApplied = false;
+
+  /// Đã xử lý kết quả lưu phiếu lead hiện tại chưa.
+  ///
+  /// Bloc là singleton nên kết quả có thể còn sót trong state; cờ này đảm bảo
+  /// mỗi kết quả chỉ được xử lý đúng một lần.
+  bool _submitResultHandled = false;
+
+  /// Payload đang chờ lưu — dùng lại khi người dùng xác nhận lưu trùng.
+  Map<String, dynamic>? _pendingPayload;
+
   @override
   void initState() {
     super.initState();
@@ -79,65 +96,197 @@ class _LeadMarketingAddScreenState
       if (bloc.state.customers.isEmpty || bloc.state.poTypes.isEmpty) {
         bloc.add(const LeadMarketingEvent.loadFormOptions());
       }
+      // Danh mục có thể đã tải sẵn từ màn danh sách → mặc định luôn.
+      _applyDefaultSource(bloc.state);
+      _applyDefaultMarketingEmployee(bloc.state);
     });
   }
 
   @override
   Widget renderUI(BuildContext context) {
-    return BlocConsumer<LeadMarketingBloc, LeadMarketingState>(
-      listenWhen: (previous, current) =>
-          previous.customerDetailStatus != current.customerDetailStatus ||
-          previous.customerIndustries != current.customerIndustries ||
-          previous.customerSpecializations != current.customerSpecializations ||
-          previous.provinces != current.provinces,
-      listener: (context, state) {
-        // Chỉ fill khi đã có chi tiết khách hàng. Danh mục có thể về sau
-        // chi tiết → listener fill lại khi danh mục thay đổi.
-        if (state.customerDetailStatus == BaseStateStatus.success) {
-          _fillFromCustomerDetail(state);
-        }
-      },
-      builder: (context, state) {
-        return BaseScaffold(
-          appBar: AppBarCommon(
-            title: const Text('Tạo phiếu Lead'),
-            onBackTap: () => context.pop(),
-          ),
-          body: Column(
-            children: [
-              Expanded(
-                child: FormBuilder(
-                  key: _formKey,
-                  // Dùng SingleChildScrollView thay vì ListView: ListView build
-                  // lazy nên field nằm ngoài viewport sẽ bị dispose và mất
-                  // trạng thái validate (viền đỏ) khi vuốt qua lại.
-                  child: SingleChildScrollView(
-                    padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _buildCompanySection(state),
-                        const SizedBox(height: 12),
-                        _buildContactSection(),
-                        const SizedBox(height: 12),
-                        _buildDemandSection(state),
-                      ],
+    return Stack(
+      children: [
+        BlocConsumer<LeadMarketingBloc, LeadMarketingState>(
+          listenWhen: (previous, current) =>
+              previous.customerDetailStatus != current.customerDetailStatus ||
+              previous.customerIndustries != current.customerIndustries ||
+              previous.customerSpecializations !=
+                  current.customerSpecializations ||
+              previous.provinces != current.provinces ||
+              previous.sources != current.sources ||
+              previous.marketingEmployees != current.marketingEmployees ||
+              previous.currentUser != current.currentUser ||
+              previous.submitStatus != current.submitStatus ||
+              previous.duplicates != current.duplicates,
+          listener: (context, state) {
+            // Chỉ fill khi đã có chi tiết khách hàng. Danh mục có thể về sau
+            // chi tiết → listener fill lại khi danh mục thay đổi.
+            if (state.customerDetailStatus == BaseStateStatus.success) {
+              _fillFromCustomerDetail(state);
+            }
+
+            // Mặc định nguồn lead = item đầu tiên trong danh sách.
+            _applyDefaultSource(state);
+
+            // Mặc định NV marketing phụ trách = currentUser.
+            _applyDefaultMarketingEmployee(state);
+
+            // API check-duplicate phát hiện bản ghi trùng → hỏi người dùng.
+            if (state.duplicates.isNotEmpty) {
+              _handleDuplicateConfirm(context, state.duplicates);
+              return;
+            }
+
+            // Kết quả lưu phiếu lead.
+            if (state.submitStatus == BaseStateStatus.success) {
+              if (_submitResultHandled) return;
+              _submitResultHandled = true;
+              final result = state.saveResult;
+              final message = state.submitMessage ?? 'Thêm lead thành công!';
+              final code = result?.leadCode;
+              showMessage(
+                context,
+                code == null || code.isEmpty ? message : '$message ($code)',
+                type: SnackBarType.success,
+              );
+              // Bloc là singleton → xóa trạng thái để lần mở màn sau không bị
+              // lặp lại thông báo và đẩy người dùng ra khỏi màn.
+              bloc.add(const LeadMarketingEvent.clearSubmitState());
+              // Tải lại danh sách để phiếu vừa tạo hiển thị ngay.
+              bloc.add(const LeadMarketingEvent.refresh());
+              // Tắt bàn phím trước khi pop, tránh bàn phím nhấp nháy lên
+              // rồi tắt khi thoát màn.
+              _hideKeyboard();
+              context.pop();
+            } else if (state.submitStatus == BaseStateStatus.failed) {
+              if (_submitResultHandled) return;
+              _submitResultHandled = true;
+              showMessage(
+                context,
+                state.submitMessage ?? 'Lưu phiếu lead thất bại',
+                type: SnackBarType.error,
+              );
+              bloc.add(const LeadMarketingEvent.clearSubmitState());
+            }
+          },
+          builder: (context, state) {
+            return BaseScaffold(
+              appBar: AppBarCommon(
+                title: const Text('Tạo phiếu Lead'),
+                onBackTap: () => context.pop(),
+              ),
+              body: Column(
+                children: [
+                  Expanded(
+                    child: FormBuilder(
+                      key: _formKey,
+                      // Dùng SingleChildScrollView thay vì ListView: ListView build
+                      // lazy nên field nằm ngoài viewport sẽ bị dispose và mất
+                      // trạng thái validate (viền đỏ) khi vuốt qua lại.
+                      child: SingleChildScrollView(
+                        padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _buildCompanySection(state),
+                            const SizedBox(height: 12),
+                            _buildContactSection(),
+                            const SizedBox(height: 12),
+                            _buildDemandSection(state),
+                          ],
+                        ),
+                      ),
                     ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: FormActions(
+                      mode: FormActionMode.add,
+                      submitText: 'Lưu',
+                      submitEnabled:
+                          state.submitStatus != BaseStateStatus.loading,
+                      onSubmit: () => _handleSubmit(),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
+
+        /// Overlay loading khi đang kiểm tra trùng lặp / lưu phiếu lead.
+        BlocBuilder<LeadMarketingBloc, LeadMarketingState>(
+          buildWhen: (p, c) => p.submitStatus != c.submitStatus,
+          builder: (context, state) {
+            if (state.submitStatus != BaseStateStatus.loading) {
+              return const SizedBox.shrink();
+            }
+            return Positioned.fill(
+              child: AbsorbPointer(
+                child: Container(
+                  color: Colors.black.withValues(alpha: 0.45),
+                  alignment: Alignment.center,
+                  child: Lottie.asset(
+                    'assets/lotties/Loading.json',
+                    width: 240,
+                    height: 240,
+                    repeat: true,
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: FormActions(
-                  mode: FormActionMode.add,
-                  submitText: 'Lưu',
-                  onSubmit: () => _handleSubmit(),
-                ),
-              ),
-            ],
-          ),
-        );
-      },
+            );
+          },
+        ),
+      ],
+    );
+  }
+
+  /// Mặc định "Nguồn lead" bằng item đầu tiên của danh sách nguồn lead.
+  ///
+  /// Chỉ mặc định 1 lần — nếu người dùng tự chọn nguồn khác thì không bị
+  /// ghi đè khi danh sách được tải lại.
+  void _applyDefaultSource(LeadMarketingState state) {
+    if (_sourceDefaultApplied) return;
+    if (state.sources.isEmpty) return;
+
+    final source = state.sources.first;
+    if (source.id == null) return;
+
+    _sourceDefaultApplied = true;
+    _setSelectValue('lead_source_text', leadSourceLabel(source));
+    _setHiddenValue('lead_source_id', source.id.toString());
+  }
+
+  /// Mặc định "NV Marketing phụ trách" bằng currentUser.
+  ///
+  /// currentUser được đối chiếu với danh sách NV marketing để lấy đúng
+  /// tên hiển thị và ID nhân viên tương ứng. Khớp theo mã nhân viên trước,
+  /// sau đó mới theo ID.
+  void _applyDefaultMarketingEmployee(LeadMarketingState state) {
+    if (_marketingDefaultApplied) return;
+    if (state.marketingEmployees.isEmpty) return;
+
+    final user = state.currentUser;
+    if (user == null) return;
+
+    final code = user.code.trim();
+    final employeeId = user.employeeId;
+
+    final matches = state.marketingEmployees.where((e) {
+      if (code.isNotEmpty && (e.code ?? '').trim() == code) return true;
+      return e.id == employeeId;
+    }).toList();
+    if (matches.isEmpty) return;
+
+    final employee = matches.first;
+    _marketingDefaultApplied = true;
+    _setSelectValue(
+      'lead_marketing_employee_text',
+      _employeeLabel(employee),
+    );
+    _setHiddenValue(
+      'lead_marketing_employee_id',
+      employee.id?.toString() ?? '',
     );
   }
 
@@ -764,8 +913,9 @@ class _LeadMarketingAddScreenState
 
   /// Kiểm tra form rồi gửi sự kiện tạo phiếu lead.
   ///
-  /// API tạo phiếu chưa chốt nên hiện tại chỉ validate và báo lại giá trị đã
-  /// nhập, phần gửi API sẽ nối tiếp khi có endpoint.
+  /// Bloc sẽ tự gọi `POST /Lead/check-duplicate` trước, nếu `status = 1` thì
+  /// gọi tiếp `POST /Lead/save-data` và trả về `message` + `data` để xác
+  /// nhận kết quả.
   void _handleSubmit() {
     FocusScope.of(context).unfocus();
 
@@ -787,9 +937,167 @@ class _LeadMarketingAddScreenState
     }
 
     final values = formState.value;
-    debugPrint('[LeadAdd] form values: $values');
 
-    showMessage(context, 'Phiếu lead đã được tạo', type: SnackBarType.success);
+    // Cho phép xử lý kết quả mới (sau lần lưu trước đã xử lý rồi).
+    _submitResultHandled = false;
+
+    final payload = _buildPayload(values);
+    _pendingPayload = payload;
+
+    bloc.add(LeadMarketingEvent.submitLead(payload: payload));
+  }
+
+  /// Hỏi người dùng có muốn lưu phiếu lead bị trùng hay không.
+  ///
+  /// Xác nhận → gọi lại API lưu bỏ qua bước kiểm tra trùng lặp.
+  /// Huỷ → quay lại màn form, giữ nguyên dữ liệu đã nhập.
+  Future<void> _handleDuplicateConfirm(
+    BuildContext context,
+    List<LeadDuplicateInfo> duplicates,
+  ) async {
+    final payload = _pendingPayload;
+    if (payload == null) {
+      bloc.add(const LeadMarketingEvent.cancelDuplicateSave());
+      return;
+    }
+
+    final confirmed = await DialogService.showConfirmDuplicateLead(
+      context: context,
+      codes: duplicates
+          .map((item) => (item.code ?? '').trim())
+          .where((code) => code.isNotEmpty)
+          .toList(),
+    );
+
+    // Đóng bàn phím ngay khi thoát dialog: nếu không, focus sẽ quay lại ô
+    // nhập liều và bàn phím bật lên rồi tắt khi màn hình được pop.
+    _hideKeyboard();
+
+    if (!mounted) return;
+
+    if (confirmed) {
+      bloc.add(LeadMarketingEvent.confirmDuplicateSave(payload: payload));
+      return;
+    }
+
+    // Huỷ → quay lại màn form, giữ nguyên dữ liệu đã nhập.
+    bloc.add(LeadMarketingEvent.cancelDuplicateSave());
+  }
+
+  /// Ẩn bàn phím và bỏ focus ô nhập.
+  ///
+  /// Khi một route bị pop, Flutter khôi phục focus về ô nhập cuối cùng đã
+  /// focus → bàn phím bật lên. Vì vậy cần unfocus thêm sau khi pop để bàn
+  /// phím không bị nhấp nháy.
+  void _hideKeyboard() {
+    final focusScope = FocusScope.of(context);
+    focusScope.unfocus();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      focusScope.unfocus();
+    });
+    // Sau khi dialog đóng, focus ô nhập được khôi phục khi route của dialog
+    // bị pop → unfocus thêm một lần nữa sau khi animation kết thúc.
+    Future.delayed(const Duration(milliseconds: 400), () {
+      if (!mounted) return;
+      focusScope.unfocus();
+    });
+  }
+
+  /// Dựng payload gửi `POST /Lead/save-data` từ giá trị form.
+  ///
+  /// Các field không có trên form (CompanyName, TaxCode, BusinessFieldID,
+  /// Website, ...) lấy từ chi tiết khách hàng đã chọn.
+  Map<String, dynamic> _buildPayload(Map<String, dynamic> values) {
+    final customer = _resolveCustomer();
+
+    String text(String key) {
+      final value = values[key];
+      return value == null ? '' : value.toString().trim();
+    }
+
+    int? intValue(String key) {
+      final value = values[key];
+      if (value == null) return null;
+      return int.tryParse(value.toString().trim());
+    }
+
+    double? doubleValue(String key) {
+      final value = values[key];
+      if (value == null) return null;
+      final raw = value.toString().trim().replaceAll('.', '');
+      if (raw.isEmpty) return null;
+      return double.tryParse(raw);
+    }
+
+    DateTime? dateValue(String key) {
+      final value = values[key];
+      if (value is DateTime) return value;
+      if (value == null) return null;
+      return DateTime.tryParse(value.toString());
+    }
+
+    return {
+      'ID': 0,
+      'CustomerID': intValue('lead_customer_id') ?? 0,
+      'LeadSourceID': intValue('lead_source_id') ?? 0,
+      'CampaignName': text('lead_campaign_name'),
+      'CollectedDate': _formatIsoDate(dateValue('lead_collected_date')),
+      'CompanyName': customer?.customerName ?? '',
+      'PoTypeID': intValue('lead_po_type_id') ?? 0,
+      'POTypeID': intValue('lead_po_type_id') ?? 0,
+      'CustomerType': intValue('lead_customer_type') ?? 0,
+      'TaxCode': customer?.taxCode ?? '',
+      'CustomerIndustriesID':
+          intValue('lead_industry_id') ?? customer?.customerIndustriesId ?? 0,
+      'BusinessFieldID': customer?.businessFieldId ?? 0,
+      'Province': text('lead_province_text'),
+      'Address': text('lead_address'),
+      'Website': customer?.website ?? '',
+      'ContactName': text('lead_contact_name'),
+      'ContactPosition': text('lead_contact_position'),
+      'ContactPhone': text('lead_contact_phone'),
+      'ContactEmail': text('lead_contact_email'),
+      'NeedDescription': text('lead_need_description'),
+      'ProductInterest': text('lead_product_interest'),
+      'EstimatedValue': doubleValue('lead_estimated_value'),
+      'Rating': intValue('lead_rating') ?? 0,
+      'NextFollowUpDate': _formatIsoDate(dateValue('lead_follow_up_date')),
+      'MarketingEmployeeID': intValue('lead_marketing_employee_id') ?? 0,
+      'SaleEmployeeID': null,
+      'Note': text('lead_note'),
+      'LeadType': 1,
+      'Stage': 0,
+      'ContactAppointmentDate':
+          _formatIsoDate(dateValue('lead_follow_up_date')),
+    };
+  }
+
+  /// Lấy thông tin khách hàng đang chọn.
+  ///
+  /// Ưu tiên chi tiết khách hàng đã tải (đầy đủ field nhất); nếu chưa có
+  /// thì tra trong danh sách khách hàng theo ID đã chọn.
+  LeadCustomer? _resolveCustomer() {
+    final detail = bloc.state.customerDetail;
+    if (detail != null) return detail;
+
+    final idValue = _formKey.currentState?.value['lead_customer_id'];
+    final id = int.tryParse(idValue?.toString().trim() ?? '');
+    if (id == null) return null;
+
+    final matches = bloc.state.customers.where((c) => c.id == id).toList();
+    return matches.isEmpty ? null : matches.first;
+  }
+
+  /// Định dạng ngày theo chuẩn ISO mà API mong đợi (`yyyy-MM-ddTHH:mm:ss`).
+  ///
+  /// Trả về null khi chưa chọn ngày để BE nhận null thay vì chuỗi rỗng.
+  String? _formatIsoDate(DateTime? date) {
+    if (date == null) return null;
+    final d = DateTime(date.year, date.month, date.day);
+    return '${d.year.toString().padLeft(4, '0')}-'
+        '${d.month.toString().padLeft(2, '0')}-'
+        '${d.day.toString().padLeft(2, '0')}T00:00:00';
   }
 }
 

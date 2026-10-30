@@ -729,6 +729,14 @@ class ApiEndPoint {
   /// API: GET /Lead/po-types.
   static const String getLeadPoTypes = '/Lead/po-types';
 
+  /// Kiểm tra trùng lặp phiếu lead theo SĐT / email / tên công ty.
+  /// API: POST /Lead/check-duplicate.
+  static const String checkLeadDuplicate = '/Lead/check-duplicate';
+
+  /// Tạo / cập nhật phiếu lead.
+  /// API: POST /Lead/save-data.
+  static const String saveLeadData = '/Lead/save-data';
+
   // CRM - Danh mục khách hàng (dùng khi tạo phiếu lead)
   /// Danh sách lĩnh vực của khách hàng.
   /// API: GET /Customer/get-customer-industry.

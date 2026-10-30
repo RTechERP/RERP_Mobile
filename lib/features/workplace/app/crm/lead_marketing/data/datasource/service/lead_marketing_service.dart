@@ -111,6 +111,92 @@ class LeadMarketingService extends DioBaseApiService {
     );
   }
 
+  /// Kiểm tra trùng lặp phiếu lead trước khi lưu.
+  ///
+  /// API: POST /Lead/check-duplicate.
+  /// Body: `{ "Phone": ..., "Email": ..., "TaxCode": ..., "CompanyName": ...,
+  /// "ExcludeLeadID": ... }`.
+  /// Response: `{ status, message, data: { ... } }` — `status = 1` nghĩa là
+  /// dữ liệu hợp lệ, được phép gọi tiếp API lưu.
+  Future<BaseData<LeadDuplicateCheckResult>> checkDuplicate({
+    required String phone,
+    String? email,
+    String? taxCode,
+    String? companyName,
+    int excludeLeadId = 0,
+  }) async {
+    return post<BaseData<LeadDuplicateCheckResult>>(
+      ApiEndPoint.checkLeadDuplicate,
+      body: {
+        'Phone': phone,
+        'Email': email ?? '',
+        'TaxCode': taxCode ?? '',
+        'CompanyName': companyName ?? '',
+        'ExcludeLeadID': excludeLeadId,
+      },
+      parser: (json) => _parseDuplicateCheck(json),
+    );
+  }
+
+  /// Lưu phiếu lead (thêm mới hoặc cập nhật).
+  ///
+  /// API: POST /Lead/save-data.
+  /// Body: map payload đúng format BE mong đợi (do UI dựng từ form).
+  /// Response: `{ status, message, data: { ID, LeadCode, ... } }`.
+  Future<BaseData<LeadSaveResult>> saveData({
+    required Map<String, dynamic> payload,
+  }) async {
+    return post<BaseData<LeadSaveResult>>(
+      ApiEndPoint.saveLeadData,
+      body: payload,
+      parser: (json) => _parseSaveResult(json),
+    );
+  }
+
+  /// Parse response check-duplicate — lấy `status`/`message` ở envelope và
+  /// danh sách bản ghi bị trùng trong `data`.
+  BaseData<LeadDuplicateCheckResult> _parseDuplicateCheck(dynamic json) {
+    final root = json is Map
+        ? Map<String, dynamic>.from(json)
+        : <String, dynamic>{};
+
+    final data = root['data'];
+    final message = root['message'] as String?;
+
+    final duplicates = data is List
+        ? data
+              .whereType<Map>()
+              .map((e) => LeadDuplicateInfo.fromJson(Map<String, dynamic>.from(e)))
+              .toList()
+        : const <LeadDuplicateInfo>[];
+
+    return BaseData<LeadDuplicateCheckResult>(
+      status: (root['status'] as num?)?.toInt(),
+      data: LeadDuplicateCheckResult(
+        message: message,
+        duplicates: duplicates,
+      ),
+    )..message = message;
+  }
+
+  /// Parse response save-data — lấy `status`/`message` ở envelope và
+  /// `data` (object phiếu lead) để dựng [LeadSaveResult].
+  BaseData<LeadSaveResult> _parseSaveResult(dynamic json) {
+    final root = json is Map
+        ? Map<String, dynamic>.from(json)
+        : <String, dynamic>{};
+
+    final data = root['data'];
+    final message = root['message'] as String?;
+
+    return BaseData<LeadSaveResult>(
+      status: (root['status'] as num?)?.toInt(),
+      data: LeadSaveResult.fromJson(
+        data is Map ? Map<String, dynamic>.from(data) : <String, dynamic>{},
+      ).copyWith(message: message),
+    )..message = message;
+  }
+
   /// Lấy chi tiết phiếu lead kèm hoạt động, lịch sử và quyền thao tác.
   ///
   /// API: GET /Lead/get-detail?id=X.

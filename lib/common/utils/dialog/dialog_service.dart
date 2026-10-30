@@ -1075,6 +1075,131 @@ class DialogService {
     return confirmed;
   }
 
+  /// Dialog xác nhận lưu phiếu lead bị trùng.
+  ///
+  /// Hiển thị danh sách mã phiếu lead bị trùng do API `check-duplicate` trả
+  /// về. Trả về `true` nếu người dùng xác nhận vẫn lưu, `false` nếu huỷ.
+  static Future<bool> showConfirmDuplicateLead({
+    required BuildContext context,
+    required List<String> codes,
+  }) async {
+    bool confirmed = false;
+
+    // Danh sách mã phiếu trùng dạng chip, căn giữa, cuộn được khi có quá
+    // nhiều bản ghi.
+    final codesWidget = ConstrainedBox(
+      constraints: const BoxConstraints(maxHeight: 180),
+      child: SingleChildScrollView(
+        child: Center(
+          child: Wrap(
+            alignment: WrapAlignment.center,
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              for (final code in codes)
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 7,
+                  ),
+                  decoration: BoxDecoration(
+                    color: AppColors.warning.withValues(alpha: 0.10),
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(
+                      color: AppColors.warning.withValues(alpha: 0.30),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.description_outlined,
+                        size: 15,
+                        color: AppColors.warning,
+                      ),
+                      const SizedBox(width: 6),
+                      Text(
+                        code,
+                        style: const TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.warning,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+            ],
+          ),
+        ),
+      ),
+    );
+
+    final descriptionWidget = Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+          'Dữ liệu đã tồn tại trong hệ thống:',
+          textAlign: TextAlign.center,
+          style: AppStyles.body2.copyWith(
+            color: AppColors.neutralText,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        SizedBox(height: AppUICommons.smallVerticalSpacing),
+        codesWidget,
+        SizedBox(height: AppUICommons.mediumVerticalSpacing),
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: AppColors.warning.withValues(alpha: 0.08),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Text(
+            'Bạn có chắc muốn lưu phiếu lead bị trùng này?',
+            textAlign: TextAlign.center,
+            style: AppStyles.body2.copyWith(
+              color: AppColors.neutralText,
+            ),
+          ),
+        ),
+      ],
+    );
+
+    await BaseDialog.twoOptionVerticalDialog(
+      context: context,
+      image: Container(
+        width: 64,
+        height: 64,
+        decoration: BoxDecoration(
+          color: AppColors.warning.withValues(alpha: 0.12),
+          shape: BoxShape.circle,
+        ),
+        child: const Icon(
+          Icons.warning_amber_rounded,
+          size: 34,
+          color: AppColors.warning,
+        ),
+      ),
+      title: 'Phát hiện dữ liệu trùng',
+      descriptionWidget: descriptionWidget,
+      contentTopButton: 'Vẫn lưu',
+      topButtonFunc: () {
+        confirmed = true;
+        onBack(context);
+      },
+      contentBottomButton: 'Huỷ',
+      bottomButtonFunc: () {
+        confirmed = false;
+        onBack(context);
+      },
+    );
+
+    return confirmed;
+  }
+
   static Future<void> showCancelBooking({
     required BuildContext context,
     VoidCallback? onConfirm,

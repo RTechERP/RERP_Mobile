@@ -12,8 +12,7 @@ part of 'history_import_export_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$HistoryImportExportEvent {
@@ -24,9 +23,10 @@ mixin _$HistoryImportExportEvent {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(HistoryTypeFilter filter) changeTypeFilter,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String? code)? setWarehouseCode,
@@ -35,7 +35,8 @@ mixin _$HistoryImportExportEvent {
     TResult? Function()? clearSearch,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(HistoryTypeFilter filter)? changeTypeFilter,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? code)? setWarehouseCode,
@@ -45,7 +46,8 @@ mixin _$HistoryImportExportEvent {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(HistoryTypeFilter filter)? changeTypeFilter,
     required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SetWarehouseCode value) setWarehouseCode,
@@ -54,7 +56,8 @@ mixin _$HistoryImportExportEvent {
     required TResult Function(_ClearSearch value) clearSearch,
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_ChangeTypeFilter value) changeTypeFilter,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SetWarehouseCode value)? setWarehouseCode,
@@ -63,7 +66,8 @@ mixin _$HistoryImportExportEvent {
     TResult? Function(_ClearSearch value)? clearSearch,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_ChangeTypeFilter value)? changeTypeFilter,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SetWarehouseCode value)? setWarehouseCode,
@@ -73,22 +77,20 @@ mixin _$HistoryImportExportEvent {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_ChangeTypeFilter value)? changeTypeFilter,
     required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $HistoryImportExportEventCopyWith<$Res> {
-  factory $HistoryImportExportEventCopyWith(
-    HistoryImportExportEvent value,
-    $Res Function(HistoryImportExportEvent) then,
-  ) = _$HistoryImportExportEventCopyWithImpl<$Res, HistoryImportExportEvent>;
+  factory $HistoryImportExportEventCopyWith(HistoryImportExportEvent value,
+          $Res Function(HistoryImportExportEvent) then) =
+      _$HistoryImportExportEventCopyWithImpl<$Res, HistoryImportExportEvent>;
 }
 
 /// @nodoc
-class _$HistoryImportExportEventCopyWithImpl<
-  $Res,
-  $Val extends HistoryImportExportEvent
->
+class _$HistoryImportExportEventCopyWithImpl<$Res,
+        $Val extends HistoryImportExportEvent>
     implements $HistoryImportExportEventCopyWith<$Res> {
   _$HistoryImportExportEventCopyWithImpl(this._value, this._then);
 
@@ -100,10 +102,9 @@ class _$HistoryImportExportEventCopyWithImpl<
 
 /// @nodoc
 abstract class _$$SetWarehouseCodeImplCopyWith<$Res> {
-  factory _$$SetWarehouseCodeImplCopyWith(
-    _$SetWarehouseCodeImpl value,
-    $Res Function(_$SetWarehouseCodeImpl) then,
-  ) = __$$SetWarehouseCodeImplCopyWithImpl<$Res>;
+  factory _$$SetWarehouseCodeImplCopyWith(_$SetWarehouseCodeImpl value,
+          $Res Function(_$SetWarehouseCodeImpl) then) =
+      __$$SetWarehouseCodeImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String? code});
 }
@@ -112,22 +113,21 @@ abstract class _$$SetWarehouseCodeImplCopyWith<$Res> {
 class __$$SetWarehouseCodeImplCopyWithImpl<$Res>
     extends _$HistoryImportExportEventCopyWithImpl<$Res, _$SetWarehouseCodeImpl>
     implements _$$SetWarehouseCodeImplCopyWith<$Res> {
-  __$$SetWarehouseCodeImplCopyWithImpl(
-    _$SetWarehouseCodeImpl _value,
-    $Res Function(_$SetWarehouseCodeImpl) _then,
-  ) : super(_value, _then);
+  __$$SetWarehouseCodeImplCopyWithImpl(_$SetWarehouseCodeImpl _value,
+      $Res Function(_$SetWarehouseCodeImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? code = freezed}) {
-    return _then(
-      _$SetWarehouseCodeImpl(
-        freezed == code
-            ? _value.code
-            : code // ignore: cast_nullable_to_non_nullable
-                  as String?,
-      ),
-    );
+  $Res call({
+    Object? code = freezed,
+  }) {
+    return _then(_$SetWarehouseCodeImpl(
+      freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 
@@ -160,9 +160,7 @@ class _$SetWarehouseCodeImpl implements _SetWarehouseCode {
   @pragma('vm:prefer-inline')
   _$$SetWarehouseCodeImplCopyWith<_$SetWarehouseCodeImpl> get copyWith =>
       __$$SetWarehouseCodeImplCopyWithImpl<_$SetWarehouseCodeImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -172,7 +170,7 @@ class _$SetWarehouseCodeImpl implements _SetWarehouseCode {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(HistoryTypeFilter filter) changeTypeFilter,
   }) {
     return setWarehouseCode(code);
@@ -264,9 +262,8 @@ abstract class _SetWarehouseCode implements HistoryImportExportEvent {
 /// @nodoc
 abstract class _$$FetchImplCopyWith<$Res> {
   factory _$$FetchImplCopyWith(
-    _$FetchImpl value,
-    $Res Function(_$FetchImpl) then,
-  ) = __$$FetchImplCopyWithImpl<$Res>;
+          _$FetchImpl value, $Res Function(_$FetchImpl) then) =
+      __$$FetchImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -274,9 +271,8 @@ class __$$FetchImplCopyWithImpl<$Res>
     extends _$HistoryImportExportEventCopyWithImpl<$Res, _$FetchImpl>
     implements _$$FetchImplCopyWith<$Res> {
   __$$FetchImplCopyWithImpl(
-    _$FetchImpl _value,
-    $Res Function(_$FetchImpl) _then,
-  ) : super(_value, _then);
+      _$FetchImpl _value, $Res Function(_$FetchImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -306,7 +302,7 @@ class _$FetchImpl implements _Fetch {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(HistoryTypeFilter filter) changeTypeFilter,
   }) {
     return fetch();
@@ -393,9 +389,8 @@ abstract class _Fetch implements HistoryImportExportEvent {
 /// @nodoc
 abstract class _$$SearchImplCopyWith<$Res> {
   factory _$$SearchImplCopyWith(
-    _$SearchImpl value,
-    $Res Function(_$SearchImpl) then,
-  ) = __$$SearchImplCopyWithImpl<$Res>;
+          _$SearchImpl value, $Res Function(_$SearchImpl) then) =
+      __$$SearchImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String keyword});
 }
@@ -405,21 +400,20 @@ class __$$SearchImplCopyWithImpl<$Res>
     extends _$HistoryImportExportEventCopyWithImpl<$Res, _$SearchImpl>
     implements _$$SearchImplCopyWith<$Res> {
   __$$SearchImplCopyWithImpl(
-    _$SearchImpl _value,
-    $Res Function(_$SearchImpl) _then,
-  ) : super(_value, _then);
+      _$SearchImpl _value, $Res Function(_$SearchImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? keyword = null}) {
-    return _then(
-      _$SearchImpl(
-        null == keyword
-            ? _value.keyword
-            : keyword // ignore: cast_nullable_to_non_nullable
-                  as String,
-      ),
-    );
+  $Res call({
+    Object? keyword = null,
+  }) {
+    return _then(_$SearchImpl(
+      null == keyword
+          ? _value.keyword
+          : keyword // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 
@@ -461,7 +455,7 @@ class _$SearchImpl implements _Search {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(HistoryTypeFilter filter) changeTypeFilter,
   }) {
     return search(keyword);
@@ -553,9 +547,8 @@ abstract class _Search implements HistoryImportExportEvent {
 /// @nodoc
 abstract class _$$ClearSearchImplCopyWith<$Res> {
   factory _$$ClearSearchImplCopyWith(
-    _$ClearSearchImpl value,
-    $Res Function(_$ClearSearchImpl) then,
-  ) = __$$ClearSearchImplCopyWithImpl<$Res>;
+          _$ClearSearchImpl value, $Res Function(_$ClearSearchImpl) then) =
+      __$$ClearSearchImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -563,9 +556,8 @@ class __$$ClearSearchImplCopyWithImpl<$Res>
     extends _$HistoryImportExportEventCopyWithImpl<$Res, _$ClearSearchImpl>
     implements _$$ClearSearchImplCopyWith<$Res> {
   __$$ClearSearchImplCopyWithImpl(
-    _$ClearSearchImpl _value,
-    $Res Function(_$ClearSearchImpl) _then,
-  ) : super(_value, _then);
+      _$ClearSearchImpl _value, $Res Function(_$ClearSearchImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -595,7 +587,7 @@ class _$ClearSearchImpl implements _ClearSearch {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(HistoryTypeFilter filter) changeTypeFilter,
   }) {
     return clearSearch();
@@ -681,10 +673,9 @@ abstract class _ClearSearch implements HistoryImportExportEvent {
 
 /// @nodoc
 abstract class _$$ChangeDateRangeImplCopyWith<$Res> {
-  factory _$$ChangeDateRangeImplCopyWith(
-    _$ChangeDateRangeImpl value,
-    $Res Function(_$ChangeDateRangeImpl) then,
-  ) = __$$ChangeDateRangeImplCopyWithImpl<$Res>;
+  factory _$$ChangeDateRangeImplCopyWith(_$ChangeDateRangeImpl value,
+          $Res Function(_$ChangeDateRangeImpl) then) =
+      __$$ChangeDateRangeImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DateTime dateStart, DateTime dateEnd});
 }
@@ -694,25 +685,25 @@ class __$$ChangeDateRangeImplCopyWithImpl<$Res>
     extends _$HistoryImportExportEventCopyWithImpl<$Res, _$ChangeDateRangeImpl>
     implements _$$ChangeDateRangeImplCopyWith<$Res> {
   __$$ChangeDateRangeImplCopyWithImpl(
-    _$ChangeDateRangeImpl _value,
-    $Res Function(_$ChangeDateRangeImpl) _then,
-  ) : super(_value, _then);
+      _$ChangeDateRangeImpl _value, $Res Function(_$ChangeDateRangeImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? dateStart = null, Object? dateEnd = null}) {
-    return _then(
-      _$ChangeDateRangeImpl(
-        dateStart: null == dateStart
-            ? _value.dateStart
-            : dateStart // ignore: cast_nullable_to_non_nullable
-                  as DateTime,
-        dateEnd: null == dateEnd
-            ? _value.dateEnd
-            : dateEnd // ignore: cast_nullable_to_non_nullable
-                  as DateTime,
-      ),
-    );
+  $Res call({
+    Object? dateStart = null,
+    Object? dateEnd = null,
+  }) {
+    return _then(_$ChangeDateRangeImpl(
+      dateStart: null == dateStart
+          ? _value.dateStart
+          : dateStart // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      dateEnd: null == dateEnd
+          ? _value.dateEnd
+          : dateEnd // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
   }
 }
 
@@ -749,9 +740,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   @pragma('vm:prefer-inline')
   _$$ChangeDateRangeImplCopyWith<_$ChangeDateRangeImpl> get copyWith =>
       __$$ChangeDateRangeImplCopyWithImpl<_$ChangeDateRangeImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -761,7 +750,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(HistoryTypeFilter filter) changeTypeFilter,
   }) {
     return changeDateRange(dateStart, dateEnd);
@@ -842,10 +831,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
 }
 
 abstract class _ChangeDateRange implements HistoryImportExportEvent {
-  const factory _ChangeDateRange({
-    required final DateTime dateStart,
-    required final DateTime dateEnd,
-  }) = _$ChangeDateRangeImpl;
+  const factory _ChangeDateRange(
+      {required final DateTime dateStart,
+      required final DateTime dateEnd}) = _$ChangeDateRangeImpl;
 
   DateTime get dateStart;
   DateTime get dateEnd;
@@ -856,10 +844,9 @@ abstract class _ChangeDateRange implements HistoryImportExportEvent {
 
 /// @nodoc
 abstract class _$$ChangeTypeFilterImplCopyWith<$Res> {
-  factory _$$ChangeTypeFilterImplCopyWith(
-    _$ChangeTypeFilterImpl value,
-    $Res Function(_$ChangeTypeFilterImpl) then,
-  ) = __$$ChangeTypeFilterImplCopyWithImpl<$Res>;
+  factory _$$ChangeTypeFilterImplCopyWith(_$ChangeTypeFilterImpl value,
+          $Res Function(_$ChangeTypeFilterImpl) then) =
+      __$$ChangeTypeFilterImplCopyWithImpl<$Res>;
   @useResult
   $Res call({HistoryTypeFilter filter});
 }
@@ -868,22 +855,21 @@ abstract class _$$ChangeTypeFilterImplCopyWith<$Res> {
 class __$$ChangeTypeFilterImplCopyWithImpl<$Res>
     extends _$HistoryImportExportEventCopyWithImpl<$Res, _$ChangeTypeFilterImpl>
     implements _$$ChangeTypeFilterImplCopyWith<$Res> {
-  __$$ChangeTypeFilterImplCopyWithImpl(
-    _$ChangeTypeFilterImpl _value,
-    $Res Function(_$ChangeTypeFilterImpl) _then,
-  ) : super(_value, _then);
+  __$$ChangeTypeFilterImplCopyWithImpl(_$ChangeTypeFilterImpl _value,
+      $Res Function(_$ChangeTypeFilterImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? filter = null}) {
-    return _then(
-      _$ChangeTypeFilterImpl(
-        null == filter
-            ? _value.filter
-            : filter // ignore: cast_nullable_to_non_nullable
-                  as HistoryTypeFilter,
-      ),
-    );
+  $Res call({
+    Object? filter = null,
+  }) {
+    return _then(_$ChangeTypeFilterImpl(
+      null == filter
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as HistoryTypeFilter,
+    ));
   }
 }
 
@@ -916,9 +902,7 @@ class _$ChangeTypeFilterImpl implements _ChangeTypeFilter {
   @pragma('vm:prefer-inline')
   _$$ChangeTypeFilterImplCopyWith<_$ChangeTypeFilterImpl> get copyWith =>
       __$$ChangeTypeFilterImplCopyWithImpl<_$ChangeTypeFilterImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -928,7 +912,7 @@ class _$ChangeTypeFilterImpl implements _ChangeTypeFilter {
     required TResult Function(String keyword) search,
     required TResult Function() clearSearch,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(HistoryTypeFilter filter) changeTypeFilter,
   }) {
     return changeTypeFilter(filter);

@@ -79,6 +79,7 @@ class _$HistoryImportExportStateCWProxyImpl
       this(warehouseCode: warehouseCode);
 
   @override
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `HistoryImportExportState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -110,14 +111,14 @@ class _$HistoryImportExportStateCWProxyImpl
           : items as List<HistoryImportExportResponse>,
       searchKeyword:
           searchKeyword == const $CopyWithPlaceholder() || searchKeyword == null
-          ? _value.searchKeyword
-          // ignore: cast_nullable_to_non_nullable
-          : searchKeyword as String,
+              ? _value.searchKeyword
+              // ignore: cast_nullable_to_non_nullable
+              : searchKeyword as String,
       typeFilter:
           typeFilter == const $CopyWithPlaceholder() || typeFilter == null
-          ? _value.typeFilter
-          // ignore: cast_nullable_to_non_nullable
-          : typeFilter as HistoryTypeFilter,
+              ? _value.typeFilter
+              // ignore: cast_nullable_to_non_nullable
+              : typeFilter as HistoryTypeFilter,
       dateStart: dateStart == const $CopyWithPlaceholder()
           ? _value.dateStart
           // ignore: cast_nullable_to_non_nullable
@@ -128,9 +129,9 @@ class _$HistoryImportExportStateCWProxyImpl
           : dateEnd as DateTime?,
       warehouseCode:
           warehouseCode == const $CopyWithPlaceholder() || warehouseCode == null
-          ? _value.warehouseCode
-          // ignore: cast_nullable_to_non_nullable
-          : warehouseCode as String,
+              ? _value.warehouseCode
+              // ignore: cast_nullable_to_non_nullable
+              : warehouseCode as String,
     );
   }
 }

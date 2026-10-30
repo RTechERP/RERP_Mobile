@@ -2040,6 +2040,10 @@ mixin _$LeadCustomer {
   int? get customerIndustriesId => throw _privateConstructorUsedError;
   @JsonKey(name: 'CustomerSpecializationID')
   int? get customerSpecializationId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'BusinessFieldID')
+  int? get businessFieldId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Website')
+  String? get website => throw _privateConstructorUsedError;
   @JsonKey(name: 'TaxCode')
   String? get taxCode => throw _privateConstructorUsedError;
 
@@ -2070,6 +2074,8 @@ abstract class $LeadCustomerCopyWith<$Res> {
       @JsonKey(name: 'CustomerType') int? customerType,
       @JsonKey(name: 'CustomerIndustriesID') int? customerIndustriesId,
       @JsonKey(name: 'CustomerSpecializationID') int? customerSpecializationId,
+      @JsonKey(name: 'BusinessFieldID') int? businessFieldId,
+      @JsonKey(name: 'Website') String? website,
       @JsonKey(name: 'TaxCode') String? taxCode});
 }
 
@@ -2100,6 +2106,8 @@ class _$LeadCustomerCopyWithImpl<$Res, $Val extends LeadCustomer>
     Object? customerType = freezed,
     Object? customerIndustriesId = freezed,
     Object? customerSpecializationId = freezed,
+    Object? businessFieldId = freezed,
+    Object? website = freezed,
     Object? taxCode = freezed,
   }) {
     return _then(_value.copyWith(
@@ -2159,6 +2167,14 @@ class _$LeadCustomerCopyWithImpl<$Res, $Val extends LeadCustomer>
           ? _value.customerSpecializationId
           : customerSpecializationId // ignore: cast_nullable_to_non_nullable
               as int?,
+      businessFieldId: freezed == businessFieldId
+          ? _value.businessFieldId
+          : businessFieldId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      website: freezed == website
+          ? _value.website
+          : website // ignore: cast_nullable_to_non_nullable
+              as String?,
       taxCode: freezed == taxCode
           ? _value.taxCode
           : taxCode // ignore: cast_nullable_to_non_nullable
@@ -2190,6 +2206,8 @@ abstract class _$$LeadCustomerImplCopyWith<$Res>
       @JsonKey(name: 'CustomerType') int? customerType,
       @JsonKey(name: 'CustomerIndustriesID') int? customerIndustriesId,
       @JsonKey(name: 'CustomerSpecializationID') int? customerSpecializationId,
+      @JsonKey(name: 'BusinessFieldID') int? businessFieldId,
+      @JsonKey(name: 'Website') String? website,
       @JsonKey(name: 'TaxCode') String? taxCode});
 }
 
@@ -2218,6 +2236,8 @@ class __$$LeadCustomerImplCopyWithImpl<$Res>
     Object? customerType = freezed,
     Object? customerIndustriesId = freezed,
     Object? customerSpecializationId = freezed,
+    Object? businessFieldId = freezed,
+    Object? website = freezed,
     Object? taxCode = freezed,
   }) {
     return _then(_$LeadCustomerImpl(
@@ -2277,6 +2297,14 @@ class __$$LeadCustomerImplCopyWithImpl<$Res>
           ? _value.customerSpecializationId
           : customerSpecializationId // ignore: cast_nullable_to_non_nullable
               as int?,
+      businessFieldId: freezed == businessFieldId
+          ? _value.businessFieldId
+          : businessFieldId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      website: freezed == website
+          ? _value.website
+          : website // ignore: cast_nullable_to_non_nullable
+              as String?,
       taxCode: freezed == taxCode
           ? _value.taxCode
           : taxCode // ignore: cast_nullable_to_non_nullable
@@ -2303,6 +2331,8 @@ class _$LeadCustomerImpl implements _LeadCustomer {
       @JsonKey(name: 'CustomerType') this.customerType,
       @JsonKey(name: 'CustomerIndustriesID') this.customerIndustriesId,
       @JsonKey(name: 'CustomerSpecializationID') this.customerSpecializationId,
+      @JsonKey(name: 'BusinessFieldID') this.businessFieldId,
+      @JsonKey(name: 'Website') this.website,
       @JsonKey(name: 'TaxCode') this.taxCode});
 
   factory _$LeadCustomerImpl.fromJson(Map<String, dynamic> json) =>
@@ -2351,12 +2381,18 @@ class _$LeadCustomerImpl implements _LeadCustomer {
   @JsonKey(name: 'CustomerSpecializationID')
   final int? customerSpecializationId;
   @override
+  @JsonKey(name: 'BusinessFieldID')
+  final int? businessFieldId;
+  @override
+  @JsonKey(name: 'Website')
+  final String? website;
+  @override
   @JsonKey(name: 'TaxCode')
   final String? taxCode;
 
   @override
   String toString() {
-    return 'LeadCustomer(id: $id, customerName: $customerName, customerCode: $customerCode, customerShortName: $customerShortName, address: $address, phone: $phone, email: $email, contactName: $contactName, contactPhone: $contactPhone, contactEmail: $contactEmail, province: $province, customerType: $customerType, customerIndustriesId: $customerIndustriesId, customerSpecializationId: $customerSpecializationId, taxCode: $taxCode)';
+    return 'LeadCustomer(id: $id, customerName: $customerName, customerCode: $customerCode, customerShortName: $customerShortName, address: $address, phone: $phone, email: $email, contactName: $contactName, contactPhone: $contactPhone, contactEmail: $contactEmail, province: $province, customerType: $customerType, customerIndustriesId: $customerIndustriesId, customerSpecializationId: $customerSpecializationId, businessFieldId: $businessFieldId, website: $website, taxCode: $taxCode)';
   }
 
   @override
@@ -2389,6 +2425,9 @@ class _$LeadCustomerImpl implements _LeadCustomer {
             (identical(
                     other.customerSpecializationId, customerSpecializationId) ||
                 other.customerSpecializationId == customerSpecializationId) &&
+            (identical(other.businessFieldId, businessFieldId) ||
+                other.businessFieldId == businessFieldId) &&
+            (identical(other.website, website) || other.website == website) &&
             (identical(other.taxCode, taxCode) || other.taxCode == taxCode));
   }
 
@@ -2410,6 +2449,8 @@ class _$LeadCustomerImpl implements _LeadCustomer {
       customerType,
       customerIndustriesId,
       customerSpecializationId,
+      businessFieldId,
+      website,
       taxCode);
 
   @JsonKey(ignore: true)
@@ -2443,6 +2484,8 @@ abstract class _LeadCustomer implements LeadCustomer {
       @JsonKey(name: 'CustomerIndustriesID') final int? customerIndustriesId,
       @JsonKey(name: 'CustomerSpecializationID')
       final int? customerSpecializationId,
+      @JsonKey(name: 'BusinessFieldID') final int? businessFieldId,
+      @JsonKey(name: 'Website') final String? website,
       @JsonKey(name: 'TaxCode') final String? taxCode}) = _$LeadCustomerImpl;
 
   factory _LeadCustomer.fromJson(Map<String, dynamic> json) =
@@ -2491,11 +2534,1159 @@ abstract class _LeadCustomer implements LeadCustomer {
   @JsonKey(name: 'CustomerSpecializationID')
   int? get customerSpecializationId;
   @override
+  @JsonKey(name: 'BusinessFieldID')
+  int? get businessFieldId;
+  @override
+  @JsonKey(name: 'Website')
+  String? get website;
+  @override
   @JsonKey(name: 'TaxCode')
   String? get taxCode;
   @override
   @JsonKey(ignore: true)
   _$$LeadCustomerImplCopyWith<_$LeadCustomerImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+LeadDuplicateInfo _$LeadDuplicateInfoFromJson(Map<String, dynamic> json) {
+  return _LeadDuplicateInfo.fromJson(json);
+}
+
+/// @nodoc
+mixin _$LeadDuplicateInfo {
+  /// Bảng nguồn chứa bản ghi trùng (vd "Lead").
+  @JsonKey(name: 'SourceTable')
+  String? get sourceTable => throw _privateConstructorUsedError;
+
+  /// ID bản ghi trùng.
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+
+  /// Mã bản ghi trùng (vd "LD-2610-0028").
+  @JsonKey(name: 'Code')
+  String? get code => throw _privateConstructorUsedError;
+
+  /// Tên bản ghi trùng.
+  @JsonKey(name: 'Name')
+  String? get name => throw _privateConstructorUsedError;
+
+  /// Họ tên người liên hệ của bản ghi trùng.
+  @JsonKey(name: 'ContactName')
+  String? get contactName => throw _privateConstructorUsedError;
+
+  /// SĐT người liên hệ của bản ghi trùng.
+  @JsonKey(name: 'ContactPhone')
+  String? get contactPhone => throw _privateConstructorUsedError;
+
+  /// Email người liên hệ của bản ghi trùng.
+  @JsonKey(name: 'ContactEmail')
+  String? get contactEmail => throw _privateConstructorUsedError;
+
+  /// Giai đoạn hiện tại của bản ghi trùng.
+  @JsonKey(name: 'Stage')
+  int? get stage => throw _privateConstructorUsedError;
+
+  /// Trường bị trùng (vd "Email", "Phone", "TaxCode", "CompanyName").
+  @JsonKey(name: 'MatchField')
+  String? get matchField => throw _privateConstructorUsedError;
+
+  /// Người phụ trách bản ghi trùng.
+  @JsonKey(name: 'OwnerName')
+  String? get ownerName => throw _privateConstructorUsedError;
+
+  /// Bộ phận của người phụ trách (vd "Marketing", "Sales").
+  @JsonKey(name: 'OwnerSide')
+  String? get ownerSide => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $LeadDuplicateInfoCopyWith<LeadDuplicateInfo> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LeadDuplicateInfoCopyWith<$Res> {
+  factory $LeadDuplicateInfoCopyWith(
+          LeadDuplicateInfo value, $Res Function(LeadDuplicateInfo) then) =
+      _$LeadDuplicateInfoCopyWithImpl<$Res, LeadDuplicateInfo>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'SourceTable') String? sourceTable,
+      @JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'Name') String? name,
+      @JsonKey(name: 'ContactName') String? contactName,
+      @JsonKey(name: 'ContactPhone') String? contactPhone,
+      @JsonKey(name: 'ContactEmail') String? contactEmail,
+      @JsonKey(name: 'Stage') int? stage,
+      @JsonKey(name: 'MatchField') String? matchField,
+      @JsonKey(name: 'OwnerName') String? ownerName,
+      @JsonKey(name: 'OwnerSide') String? ownerSide});
+}
+
+/// @nodoc
+class _$LeadDuplicateInfoCopyWithImpl<$Res, $Val extends LeadDuplicateInfo>
+    implements $LeadDuplicateInfoCopyWith<$Res> {
+  _$LeadDuplicateInfoCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? sourceTable = freezed,
+    Object? id = freezed,
+    Object? code = freezed,
+    Object? name = freezed,
+    Object? contactName = freezed,
+    Object? contactPhone = freezed,
+    Object? contactEmail = freezed,
+    Object? stage = freezed,
+    Object? matchField = freezed,
+    Object? ownerName = freezed,
+    Object? ownerSide = freezed,
+  }) {
+    return _then(_value.copyWith(
+      sourceTable: freezed == sourceTable
+          ? _value.sourceTable
+          : sourceTable // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactName: freezed == contactName
+          ? _value.contactName
+          : contactName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactPhone: freezed == contactPhone
+          ? _value.contactPhone
+          : contactPhone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactEmail: freezed == contactEmail
+          ? _value.contactEmail
+          : contactEmail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      stage: freezed == stage
+          ? _value.stage
+          : stage // ignore: cast_nullable_to_non_nullable
+              as int?,
+      matchField: freezed == matchField
+          ? _value.matchField
+          : matchField // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ownerName: freezed == ownerName
+          ? _value.ownerName
+          : ownerName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ownerSide: freezed == ownerSide
+          ? _value.ownerSide
+          : ownerSide // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$LeadDuplicateInfoImplCopyWith<$Res>
+    implements $LeadDuplicateInfoCopyWith<$Res> {
+  factory _$$LeadDuplicateInfoImplCopyWith(_$LeadDuplicateInfoImpl value,
+          $Res Function(_$LeadDuplicateInfoImpl) then) =
+      __$$LeadDuplicateInfoImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'SourceTable') String? sourceTable,
+      @JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'Name') String? name,
+      @JsonKey(name: 'ContactName') String? contactName,
+      @JsonKey(name: 'ContactPhone') String? contactPhone,
+      @JsonKey(name: 'ContactEmail') String? contactEmail,
+      @JsonKey(name: 'Stage') int? stage,
+      @JsonKey(name: 'MatchField') String? matchField,
+      @JsonKey(name: 'OwnerName') String? ownerName,
+      @JsonKey(name: 'OwnerSide') String? ownerSide});
+}
+
+/// @nodoc
+class __$$LeadDuplicateInfoImplCopyWithImpl<$Res>
+    extends _$LeadDuplicateInfoCopyWithImpl<$Res, _$LeadDuplicateInfoImpl>
+    implements _$$LeadDuplicateInfoImplCopyWith<$Res> {
+  __$$LeadDuplicateInfoImplCopyWithImpl(_$LeadDuplicateInfoImpl _value,
+      $Res Function(_$LeadDuplicateInfoImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? sourceTable = freezed,
+    Object? id = freezed,
+    Object? code = freezed,
+    Object? name = freezed,
+    Object? contactName = freezed,
+    Object? contactPhone = freezed,
+    Object? contactEmail = freezed,
+    Object? stage = freezed,
+    Object? matchField = freezed,
+    Object? ownerName = freezed,
+    Object? ownerSide = freezed,
+  }) {
+    return _then(_$LeadDuplicateInfoImpl(
+      sourceTable: freezed == sourceTable
+          ? _value.sourceTable
+          : sourceTable // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactName: freezed == contactName
+          ? _value.contactName
+          : contactName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactPhone: freezed == contactPhone
+          ? _value.contactPhone
+          : contactPhone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactEmail: freezed == contactEmail
+          ? _value.contactEmail
+          : contactEmail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      stage: freezed == stage
+          ? _value.stage
+          : stage // ignore: cast_nullable_to_non_nullable
+              as int?,
+      matchField: freezed == matchField
+          ? _value.matchField
+          : matchField // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ownerName: freezed == ownerName
+          ? _value.ownerName
+          : ownerName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ownerSide: freezed == ownerSide
+          ? _value.ownerSide
+          : ownerSide // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$LeadDuplicateInfoImpl implements _LeadDuplicateInfo {
+  const _$LeadDuplicateInfoImpl(
+      {@JsonKey(name: 'SourceTable') this.sourceTable,
+      @JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'Code') this.code,
+      @JsonKey(name: 'Name') this.name,
+      @JsonKey(name: 'ContactName') this.contactName,
+      @JsonKey(name: 'ContactPhone') this.contactPhone,
+      @JsonKey(name: 'ContactEmail') this.contactEmail,
+      @JsonKey(name: 'Stage') this.stage,
+      @JsonKey(name: 'MatchField') this.matchField,
+      @JsonKey(name: 'OwnerName') this.ownerName,
+      @JsonKey(name: 'OwnerSide') this.ownerSide});
+
+  factory _$LeadDuplicateInfoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LeadDuplicateInfoImplFromJson(json);
+
+  /// Bảng nguồn chứa bản ghi trùng (vd "Lead").
+  @override
+  @JsonKey(name: 'SourceTable')
+  final String? sourceTable;
+
+  /// ID bản ghi trùng.
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+
+  /// Mã bản ghi trùng (vd "LD-2610-0028").
+  @override
+  @JsonKey(name: 'Code')
+  final String? code;
+
+  /// Tên bản ghi trùng.
+  @override
+  @JsonKey(name: 'Name')
+  final String? name;
+
+  /// Họ tên người liên hệ của bản ghi trùng.
+  @override
+  @JsonKey(name: 'ContactName')
+  final String? contactName;
+
+  /// SĐT người liên hệ của bản ghi trùng.
+  @override
+  @JsonKey(name: 'ContactPhone')
+  final String? contactPhone;
+
+  /// Email người liên hệ của bản ghi trùng.
+  @override
+  @JsonKey(name: 'ContactEmail')
+  final String? contactEmail;
+
+  /// Giai đoạn hiện tại của bản ghi trùng.
+  @override
+  @JsonKey(name: 'Stage')
+  final int? stage;
+
+  /// Trường bị trùng (vd "Email", "Phone", "TaxCode", "CompanyName").
+  @override
+  @JsonKey(name: 'MatchField')
+  final String? matchField;
+
+  /// Người phụ trách bản ghi trùng.
+  @override
+  @JsonKey(name: 'OwnerName')
+  final String? ownerName;
+
+  /// Bộ phận của người phụ trách (vd "Marketing", "Sales").
+  @override
+  @JsonKey(name: 'OwnerSide')
+  final String? ownerSide;
+
+  @override
+  String toString() {
+    return 'LeadDuplicateInfo(sourceTable: $sourceTable, id: $id, code: $code, name: $name, contactName: $contactName, contactPhone: $contactPhone, contactEmail: $contactEmail, stage: $stage, matchField: $matchField, ownerName: $ownerName, ownerSide: $ownerSide)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LeadDuplicateInfoImpl &&
+            (identical(other.sourceTable, sourceTable) ||
+                other.sourceTable == sourceTable) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.contactName, contactName) ||
+                other.contactName == contactName) &&
+            (identical(other.contactPhone, contactPhone) ||
+                other.contactPhone == contactPhone) &&
+            (identical(other.contactEmail, contactEmail) ||
+                other.contactEmail == contactEmail) &&
+            (identical(other.stage, stage) || other.stage == stage) &&
+            (identical(other.matchField, matchField) ||
+                other.matchField == matchField) &&
+            (identical(other.ownerName, ownerName) ||
+                other.ownerName == ownerName) &&
+            (identical(other.ownerSide, ownerSide) ||
+                other.ownerSide == ownerSide));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      sourceTable,
+      id,
+      code,
+      name,
+      contactName,
+      contactPhone,
+      contactEmail,
+      stage,
+      matchField,
+      ownerName,
+      ownerSide);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LeadDuplicateInfoImplCopyWith<_$LeadDuplicateInfoImpl> get copyWith =>
+      __$$LeadDuplicateInfoImplCopyWithImpl<_$LeadDuplicateInfoImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$LeadDuplicateInfoImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _LeadDuplicateInfo implements LeadDuplicateInfo {
+  const factory _LeadDuplicateInfo(
+          {@JsonKey(name: 'SourceTable') final String? sourceTable,
+          @JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'Code') final String? code,
+          @JsonKey(name: 'Name') final String? name,
+          @JsonKey(name: 'ContactName') final String? contactName,
+          @JsonKey(name: 'ContactPhone') final String? contactPhone,
+          @JsonKey(name: 'ContactEmail') final String? contactEmail,
+          @JsonKey(name: 'Stage') final int? stage,
+          @JsonKey(name: 'MatchField') final String? matchField,
+          @JsonKey(name: 'OwnerName') final String? ownerName,
+          @JsonKey(name: 'OwnerSide') final String? ownerSide}) =
+      _$LeadDuplicateInfoImpl;
+
+  factory _LeadDuplicateInfo.fromJson(Map<String, dynamic> json) =
+      _$LeadDuplicateInfoImpl.fromJson;
+
+  @override
+
+  /// Bảng nguồn chứa bản ghi trùng (vd "Lead").
+  @JsonKey(name: 'SourceTable')
+  String? get sourceTable;
+  @override
+
+  /// ID bản ghi trùng.
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+
+  /// Mã bản ghi trùng (vd "LD-2610-0028").
+  @JsonKey(name: 'Code')
+  String? get code;
+  @override
+
+  /// Tên bản ghi trùng.
+  @JsonKey(name: 'Name')
+  String? get name;
+  @override
+
+  /// Họ tên người liên hệ của bản ghi trùng.
+  @JsonKey(name: 'ContactName')
+  String? get contactName;
+  @override
+
+  /// SĐT người liên hệ của bản ghi trùng.
+  @JsonKey(name: 'ContactPhone')
+  String? get contactPhone;
+  @override
+
+  /// Email người liên hệ của bản ghi trùng.
+  @JsonKey(name: 'ContactEmail')
+  String? get contactEmail;
+  @override
+
+  /// Giai đoạn hiện tại của bản ghi trùng.
+  @JsonKey(name: 'Stage')
+  int? get stage;
+  @override
+
+  /// Trường bị trùng (vd "Email", "Phone", "TaxCode", "CompanyName").
+  @JsonKey(name: 'MatchField')
+  String? get matchField;
+  @override
+
+  /// Người phụ trách bản ghi trùng.
+  @JsonKey(name: 'OwnerName')
+  String? get ownerName;
+  @override
+
+  /// Bộ phận của người phụ trách (vd "Marketing", "Sales").
+  @JsonKey(name: 'OwnerSide')
+  String? get ownerSide;
+  @override
+  @JsonKey(ignore: true)
+  _$$LeadDuplicateInfoImplCopyWith<_$LeadDuplicateInfoImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+LeadDuplicateCheckResult _$LeadDuplicateCheckResultFromJson(
+    Map<String, dynamic> json) {
+  return _LeadDuplicateCheckResult.fromJson(json);
+}
+
+/// @nodoc
+mixin _$LeadDuplicateCheckResult {
+  /// Thông báo từ API.
+  @JsonKey(name: 'message')
+  String? get message => throw _privateConstructorUsedError;
+
+  /// Danh sách bản ghi bị trùng.
+  @JsonKey(name: 'data')
+  List<LeadDuplicateInfo>? get duplicates => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $LeadDuplicateCheckResultCopyWith<LeadDuplicateCheckResult> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LeadDuplicateCheckResultCopyWith<$Res> {
+  factory $LeadDuplicateCheckResultCopyWith(LeadDuplicateCheckResult value,
+          $Res Function(LeadDuplicateCheckResult) then) =
+      _$LeadDuplicateCheckResultCopyWithImpl<$Res, LeadDuplicateCheckResult>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'data') List<LeadDuplicateInfo>? duplicates});
+}
+
+/// @nodoc
+class _$LeadDuplicateCheckResultCopyWithImpl<$Res,
+        $Val extends LeadDuplicateCheckResult>
+    implements $LeadDuplicateCheckResultCopyWith<$Res> {
+  _$LeadDuplicateCheckResultCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = freezed,
+    Object? duplicates = freezed,
+  }) {
+    return _then(_value.copyWith(
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      duplicates: freezed == duplicates
+          ? _value.duplicates
+          : duplicates // ignore: cast_nullable_to_non_nullable
+              as List<LeadDuplicateInfo>?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$LeadDuplicateCheckResultImplCopyWith<$Res>
+    implements $LeadDuplicateCheckResultCopyWith<$Res> {
+  factory _$$LeadDuplicateCheckResultImplCopyWith(
+          _$LeadDuplicateCheckResultImpl value,
+          $Res Function(_$LeadDuplicateCheckResultImpl) then) =
+      __$$LeadDuplicateCheckResultImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'data') List<LeadDuplicateInfo>? duplicates});
+}
+
+/// @nodoc
+class __$$LeadDuplicateCheckResultImplCopyWithImpl<$Res>
+    extends _$LeadDuplicateCheckResultCopyWithImpl<$Res,
+        _$LeadDuplicateCheckResultImpl>
+    implements _$$LeadDuplicateCheckResultImplCopyWith<$Res> {
+  __$$LeadDuplicateCheckResultImplCopyWithImpl(
+      _$LeadDuplicateCheckResultImpl _value,
+      $Res Function(_$LeadDuplicateCheckResultImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = freezed,
+    Object? duplicates = freezed,
+  }) {
+    return _then(_$LeadDuplicateCheckResultImpl(
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      duplicates: freezed == duplicates
+          ? _value._duplicates
+          : duplicates // ignore: cast_nullable_to_non_nullable
+              as List<LeadDuplicateInfo>?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$LeadDuplicateCheckResultImpl implements _LeadDuplicateCheckResult {
+  const _$LeadDuplicateCheckResultImpl(
+      {@JsonKey(name: 'message') this.message,
+      @JsonKey(name: 'data') final List<LeadDuplicateInfo>? duplicates})
+      : _duplicates = duplicates;
+
+  factory _$LeadDuplicateCheckResultImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LeadDuplicateCheckResultImplFromJson(json);
+
+  /// Thông báo từ API.
+  @override
+  @JsonKey(name: 'message')
+  final String? message;
+
+  /// Danh sách bản ghi bị trùng.
+  final List<LeadDuplicateInfo>? _duplicates;
+
+  /// Danh sách bản ghi bị trùng.
+  @override
+  @JsonKey(name: 'data')
+  List<LeadDuplicateInfo>? get duplicates {
+    final value = _duplicates;
+    if (value == null) return null;
+    if (_duplicates is EqualUnmodifiableListView) return _duplicates;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  String toString() {
+    return 'LeadDuplicateCheckResult(message: $message, duplicates: $duplicates)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LeadDuplicateCheckResultImpl &&
+            (identical(other.message, message) || other.message == message) &&
+            const DeepCollectionEquality()
+                .equals(other._duplicates, _duplicates));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, message, const DeepCollectionEquality().hash(_duplicates));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LeadDuplicateCheckResultImplCopyWith<_$LeadDuplicateCheckResultImpl>
+      get copyWith => __$$LeadDuplicateCheckResultImplCopyWithImpl<
+          _$LeadDuplicateCheckResultImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$LeadDuplicateCheckResultImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _LeadDuplicateCheckResult implements LeadDuplicateCheckResult {
+  const factory _LeadDuplicateCheckResult(
+          {@JsonKey(name: 'message') final String? message,
+          @JsonKey(name: 'data') final List<LeadDuplicateInfo>? duplicates}) =
+      _$LeadDuplicateCheckResultImpl;
+
+  factory _LeadDuplicateCheckResult.fromJson(Map<String, dynamic> json) =
+      _$LeadDuplicateCheckResultImpl.fromJson;
+
+  @override
+
+  /// Thông báo từ API.
+  @JsonKey(name: 'message')
+  String? get message;
+  @override
+
+  /// Danh sách bản ghi bị trùng.
+  @JsonKey(name: 'data')
+  List<LeadDuplicateInfo>? get duplicates;
+  @override
+  @JsonKey(ignore: true)
+  _$$LeadDuplicateCheckResultImplCopyWith<_$LeadDuplicateCheckResultImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+LeadSaveResult _$LeadSaveResultFromJson(Map<String, dynamic> json) {
+  return _LeadSaveResult.fromJson(json);
+}
+
+/// @nodoc
+mixin _$LeadSaveResult {
+  /// Thông báo từ API (vd "Thêm lead thành công!").
+  @JsonKey(name: 'message')
+  String? get message => throw _privateConstructorUsedError;
+
+  /// ID phiếu lead vừa tạo.
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+
+  /// Mã phiếu lead (vd "LD-2610-0025").
+  @JsonKey(name: 'LeadCode')
+  String? get leadCode => throw _privateConstructorUsedError;
+
+  /// ID khách hàng gắn với phiếu.
+  @JsonKey(name: 'CustomerID')
+  int? get customerId => throw _privateConstructorUsedError;
+
+  /// ID nhóm hàng (loại PO).
+  @JsonKey(name: 'PoTypeID')
+  int? get poTypeId => throw _privateConstructorUsedError;
+
+  /// ID nguồn lead.
+  @JsonKey(name: 'LeadSourceID')
+  int? get leadSourceId => throw _privateConstructorUsedError;
+
+  /// Họ tên người liên hệ.
+  @JsonKey(name: 'ContactName')
+  String? get contactName => throw _privateConstructorUsedError;
+
+  /// SĐT người liên hệ.
+  @JsonKey(name: 'ContactPhone')
+  String? get contactPhone => throw _privateConstructorUsedError;
+
+  /// Email người liên hệ.
+  @JsonKey(name: 'ContactEmail')
+  String? get contactEmail => throw _privateConstructorUsedError;
+
+  /// ID nhân viên marketing phụ trách.
+  @JsonKey(name: 'MarketingEmployeeID')
+  int? get marketingEmployeeId => throw _privateConstructorUsedError;
+
+  /// Giai đoạn xử lý sau khi tạo.
+  @JsonKey(name: 'Stage')
+  int? get stage => throw _privateConstructorUsedError;
+
+  /// ID liên kết khách hàng trả về từ BE.
+  @JsonKey(name: 'idConCus')
+  int? get idConCus => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $LeadSaveResultCopyWith<LeadSaveResult> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LeadSaveResultCopyWith<$Res> {
+  factory $LeadSaveResultCopyWith(
+          LeadSaveResult value, $Res Function(LeadSaveResult) then) =
+      _$LeadSaveResultCopyWithImpl<$Res, LeadSaveResult>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'LeadCode') String? leadCode,
+      @JsonKey(name: 'CustomerID') int? customerId,
+      @JsonKey(name: 'PoTypeID') int? poTypeId,
+      @JsonKey(name: 'LeadSourceID') int? leadSourceId,
+      @JsonKey(name: 'ContactName') String? contactName,
+      @JsonKey(name: 'ContactPhone') String? contactPhone,
+      @JsonKey(name: 'ContactEmail') String? contactEmail,
+      @JsonKey(name: 'MarketingEmployeeID') int? marketingEmployeeId,
+      @JsonKey(name: 'Stage') int? stage,
+      @JsonKey(name: 'idConCus') int? idConCus});
+}
+
+/// @nodoc
+class _$LeadSaveResultCopyWithImpl<$Res, $Val extends LeadSaveResult>
+    implements $LeadSaveResultCopyWith<$Res> {
+  _$LeadSaveResultCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = freezed,
+    Object? id = freezed,
+    Object? leadCode = freezed,
+    Object? customerId = freezed,
+    Object? poTypeId = freezed,
+    Object? leadSourceId = freezed,
+    Object? contactName = freezed,
+    Object? contactPhone = freezed,
+    Object? contactEmail = freezed,
+    Object? marketingEmployeeId = freezed,
+    Object? stage = freezed,
+    Object? idConCus = freezed,
+  }) {
+    return _then(_value.copyWith(
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      leadCode: freezed == leadCode
+          ? _value.leadCode
+          : leadCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerId: freezed == customerId
+          ? _value.customerId
+          : customerId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      poTypeId: freezed == poTypeId
+          ? _value.poTypeId
+          : poTypeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      leadSourceId: freezed == leadSourceId
+          ? _value.leadSourceId
+          : leadSourceId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      contactName: freezed == contactName
+          ? _value.contactName
+          : contactName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactPhone: freezed == contactPhone
+          ? _value.contactPhone
+          : contactPhone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactEmail: freezed == contactEmail
+          ? _value.contactEmail
+          : contactEmail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      marketingEmployeeId: freezed == marketingEmployeeId
+          ? _value.marketingEmployeeId
+          : marketingEmployeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stage: freezed == stage
+          ? _value.stage
+          : stage // ignore: cast_nullable_to_non_nullable
+              as int?,
+      idConCus: freezed == idConCus
+          ? _value.idConCus
+          : idConCus // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$LeadSaveResultImplCopyWith<$Res>
+    implements $LeadSaveResultCopyWith<$Res> {
+  factory _$$LeadSaveResultImplCopyWith(_$LeadSaveResultImpl value,
+          $Res Function(_$LeadSaveResultImpl) then) =
+      __$$LeadSaveResultImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'LeadCode') String? leadCode,
+      @JsonKey(name: 'CustomerID') int? customerId,
+      @JsonKey(name: 'PoTypeID') int? poTypeId,
+      @JsonKey(name: 'LeadSourceID') int? leadSourceId,
+      @JsonKey(name: 'ContactName') String? contactName,
+      @JsonKey(name: 'ContactPhone') String? contactPhone,
+      @JsonKey(name: 'ContactEmail') String? contactEmail,
+      @JsonKey(name: 'MarketingEmployeeID') int? marketingEmployeeId,
+      @JsonKey(name: 'Stage') int? stage,
+      @JsonKey(name: 'idConCus') int? idConCus});
+}
+
+/// @nodoc
+class __$$LeadSaveResultImplCopyWithImpl<$Res>
+    extends _$LeadSaveResultCopyWithImpl<$Res, _$LeadSaveResultImpl>
+    implements _$$LeadSaveResultImplCopyWith<$Res> {
+  __$$LeadSaveResultImplCopyWithImpl(
+      _$LeadSaveResultImpl _value, $Res Function(_$LeadSaveResultImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = freezed,
+    Object? id = freezed,
+    Object? leadCode = freezed,
+    Object? customerId = freezed,
+    Object? poTypeId = freezed,
+    Object? leadSourceId = freezed,
+    Object? contactName = freezed,
+    Object? contactPhone = freezed,
+    Object? contactEmail = freezed,
+    Object? marketingEmployeeId = freezed,
+    Object? stage = freezed,
+    Object? idConCus = freezed,
+  }) {
+    return _then(_$LeadSaveResultImpl(
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      leadCode: freezed == leadCode
+          ? _value.leadCode
+          : leadCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerId: freezed == customerId
+          ? _value.customerId
+          : customerId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      poTypeId: freezed == poTypeId
+          ? _value.poTypeId
+          : poTypeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      leadSourceId: freezed == leadSourceId
+          ? _value.leadSourceId
+          : leadSourceId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      contactName: freezed == contactName
+          ? _value.contactName
+          : contactName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactPhone: freezed == contactPhone
+          ? _value.contactPhone
+          : contactPhone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactEmail: freezed == contactEmail
+          ? _value.contactEmail
+          : contactEmail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      marketingEmployeeId: freezed == marketingEmployeeId
+          ? _value.marketingEmployeeId
+          : marketingEmployeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stage: freezed == stage
+          ? _value.stage
+          : stage // ignore: cast_nullable_to_non_nullable
+              as int?,
+      idConCus: freezed == idConCus
+          ? _value.idConCus
+          : idConCus // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$LeadSaveResultImpl implements _LeadSaveResult {
+  const _$LeadSaveResultImpl(
+      {@JsonKey(name: 'message') this.message,
+      @JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'LeadCode') this.leadCode,
+      @JsonKey(name: 'CustomerID') this.customerId,
+      @JsonKey(name: 'PoTypeID') this.poTypeId,
+      @JsonKey(name: 'LeadSourceID') this.leadSourceId,
+      @JsonKey(name: 'ContactName') this.contactName,
+      @JsonKey(name: 'ContactPhone') this.contactPhone,
+      @JsonKey(name: 'ContactEmail') this.contactEmail,
+      @JsonKey(name: 'MarketingEmployeeID') this.marketingEmployeeId,
+      @JsonKey(name: 'Stage') this.stage,
+      @JsonKey(name: 'idConCus') this.idConCus});
+
+  factory _$LeadSaveResultImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LeadSaveResultImplFromJson(json);
+
+  /// Thông báo từ API (vd "Thêm lead thành công!").
+  @override
+  @JsonKey(name: 'message')
+  final String? message;
+
+  /// ID phiếu lead vừa tạo.
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+
+  /// Mã phiếu lead (vd "LD-2610-0025").
+  @override
+  @JsonKey(name: 'LeadCode')
+  final String? leadCode;
+
+  /// ID khách hàng gắn với phiếu.
+  @override
+  @JsonKey(name: 'CustomerID')
+  final int? customerId;
+
+  /// ID nhóm hàng (loại PO).
+  @override
+  @JsonKey(name: 'PoTypeID')
+  final int? poTypeId;
+
+  /// ID nguồn lead.
+  @override
+  @JsonKey(name: 'LeadSourceID')
+  final int? leadSourceId;
+
+  /// Họ tên người liên hệ.
+  @override
+  @JsonKey(name: 'ContactName')
+  final String? contactName;
+
+  /// SĐT người liên hệ.
+  @override
+  @JsonKey(name: 'ContactPhone')
+  final String? contactPhone;
+
+  /// Email người liên hệ.
+  @override
+  @JsonKey(name: 'ContactEmail')
+  final String? contactEmail;
+
+  /// ID nhân viên marketing phụ trách.
+  @override
+  @JsonKey(name: 'MarketingEmployeeID')
+  final int? marketingEmployeeId;
+
+  /// Giai đoạn xử lý sau khi tạo.
+  @override
+  @JsonKey(name: 'Stage')
+  final int? stage;
+
+  /// ID liên kết khách hàng trả về từ BE.
+  @override
+  @JsonKey(name: 'idConCus')
+  final int? idConCus;
+
+  @override
+  String toString() {
+    return 'LeadSaveResult(message: $message, id: $id, leadCode: $leadCode, customerId: $customerId, poTypeId: $poTypeId, leadSourceId: $leadSourceId, contactName: $contactName, contactPhone: $contactPhone, contactEmail: $contactEmail, marketingEmployeeId: $marketingEmployeeId, stage: $stage, idConCus: $idConCus)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LeadSaveResultImpl &&
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.leadCode, leadCode) ||
+                other.leadCode == leadCode) &&
+            (identical(other.customerId, customerId) ||
+                other.customerId == customerId) &&
+            (identical(other.poTypeId, poTypeId) ||
+                other.poTypeId == poTypeId) &&
+            (identical(other.leadSourceId, leadSourceId) ||
+                other.leadSourceId == leadSourceId) &&
+            (identical(other.contactName, contactName) ||
+                other.contactName == contactName) &&
+            (identical(other.contactPhone, contactPhone) ||
+                other.contactPhone == contactPhone) &&
+            (identical(other.contactEmail, contactEmail) ||
+                other.contactEmail == contactEmail) &&
+            (identical(other.marketingEmployeeId, marketingEmployeeId) ||
+                other.marketingEmployeeId == marketingEmployeeId) &&
+            (identical(other.stage, stage) || other.stage == stage) &&
+            (identical(other.idConCus, idConCus) ||
+                other.idConCus == idConCus));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      message,
+      id,
+      leadCode,
+      customerId,
+      poTypeId,
+      leadSourceId,
+      contactName,
+      contactPhone,
+      contactEmail,
+      marketingEmployeeId,
+      stage,
+      idConCus);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LeadSaveResultImplCopyWith<_$LeadSaveResultImpl> get copyWith =>
+      __$$LeadSaveResultImplCopyWithImpl<_$LeadSaveResultImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$LeadSaveResultImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _LeadSaveResult implements LeadSaveResult {
+  const factory _LeadSaveResult(
+      {@JsonKey(name: 'message') final String? message,
+      @JsonKey(name: 'ID') final int? id,
+      @JsonKey(name: 'LeadCode') final String? leadCode,
+      @JsonKey(name: 'CustomerID') final int? customerId,
+      @JsonKey(name: 'PoTypeID') final int? poTypeId,
+      @JsonKey(name: 'LeadSourceID') final int? leadSourceId,
+      @JsonKey(name: 'ContactName') final String? contactName,
+      @JsonKey(name: 'ContactPhone') final String? contactPhone,
+      @JsonKey(name: 'ContactEmail') final String? contactEmail,
+      @JsonKey(name: 'MarketingEmployeeID') final int? marketingEmployeeId,
+      @JsonKey(name: 'Stage') final int? stage,
+      @JsonKey(name: 'idConCus') final int? idConCus}) = _$LeadSaveResultImpl;
+
+  factory _LeadSaveResult.fromJson(Map<String, dynamic> json) =
+      _$LeadSaveResultImpl.fromJson;
+
+  @override
+
+  /// Thông báo từ API (vd "Thêm lead thành công!").
+  @JsonKey(name: 'message')
+  String? get message;
+  @override
+
+  /// ID phiếu lead vừa tạo.
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+
+  /// Mã phiếu lead (vd "LD-2610-0025").
+  @JsonKey(name: 'LeadCode')
+  String? get leadCode;
+  @override
+
+  /// ID khách hàng gắn với phiếu.
+  @JsonKey(name: 'CustomerID')
+  int? get customerId;
+  @override
+
+  /// ID nhóm hàng (loại PO).
+  @JsonKey(name: 'PoTypeID')
+  int? get poTypeId;
+  @override
+
+  /// ID nguồn lead.
+  @JsonKey(name: 'LeadSourceID')
+  int? get leadSourceId;
+  @override
+
+  /// Họ tên người liên hệ.
+  @JsonKey(name: 'ContactName')
+  String? get contactName;
+  @override
+
+  /// SĐT người liên hệ.
+  @JsonKey(name: 'ContactPhone')
+  String? get contactPhone;
+  @override
+
+  /// Email người liên hệ.
+  @JsonKey(name: 'ContactEmail')
+  String? get contactEmail;
+  @override
+
+  /// ID nhân viên marketing phụ trách.
+  @JsonKey(name: 'MarketingEmployeeID')
+  int? get marketingEmployeeId;
+  @override
+
+  /// Giai đoạn xử lý sau khi tạo.
+  @JsonKey(name: 'Stage')
+  int? get stage;
+  @override
+
+  /// ID liên kết khách hàng trả về từ BE.
+  @JsonKey(name: 'idConCus')
+  int? get idConCus;
+  @override
+  @JsonKey(ignore: true)
+  _$$LeadSaveResultImplCopyWith<_$LeadSaveResultImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
